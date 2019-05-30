@@ -100,7 +100,7 @@
 /datum/reagent/space_drugs/on_mob_life(mob/living/L, metabolism)
 	L.set_drugginess(15)
 	if(prob(10) && !L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
-		step(L, pick(cardinal))
+		step(L, pick(GLOB.cardinals))
 	if(prob(7))
 		L.emote(pick("twitch","drool","moan","giggle"))
 	return ..()
@@ -211,7 +211,7 @@
 
 /datum/reagent/mercury/on_mob_life(mob/living/L, metabolism)
 	if(!L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
-		step(L, pick(cardinal))
+		step(L, pick(GLOB.cardinals))
 	if(prob(5))
 		L.emote(pick("twitch","drool","moan"))
 	L.adjustBrainLoss(1, TRUE)
@@ -310,7 +310,7 @@
 
 /datum/reagent/lithium/on_mob_life(mob/living/L, metabolism)
 	if(!L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
-		step(L, pick(cardinal))
+		step(L, pick(GLOB.cardinals))
 	if(prob(5))
 		L.emote(pick("twitch","drool","moan"))
 	return ..()

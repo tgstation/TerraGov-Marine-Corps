@@ -127,7 +127,7 @@
 		var/obj/effect/particle_effect/smoke/S = new type(T, null, null, cloud)
 		reagents.copy_to(S, reagents.total_volume)
 		S.copy_stats(src)
-		S.setDir(pick(cardinal))
+		S.setDir(pick(GLOB.cardinals))
 		if(S.amount > 0)
 			newsmokes.Add(S)
 		else

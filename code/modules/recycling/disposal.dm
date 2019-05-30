@@ -712,7 +712,7 @@
 //Remains : set to leave broken pipe pieces in place
 /obj/structure/disposalpipe/proc/broken(var/remains = 0)
 	if(remains)
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinals)
 			if(D & dpdir)
 				var/obj/structure/disposalpipe/broken/P = new(loc)
 				P.setDir(D)
@@ -1048,7 +1048,8 @@
 	New()
 		. = ..()
 		dpdir = dir|turn(dir, 180)
-		if(sort_tag) tagger_locations |= sort_tag
+		if(sort_tag) 
+			GLOB.tagger_locations |= sort_tag
 		updatename()
 		updatedesc()
 		update()
@@ -1105,7 +1106,8 @@
 
 	New()
 		. = ..()
-		if(sortType) tagger_locations |= sortType
+		if(sortType) 
+			GLOB.tagger_locations |= sortType
 
 		updatedir()
 		updatename()
@@ -1395,7 +1397,7 @@
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = alldirs.Copy()
+		dirs = GLOB.alldirs.Copy()
 
 	streak(dirs)
 
@@ -1404,6 +1406,6 @@
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = alldirs.Copy()
+		dirs = GLOB.alldirs.Copy()
 
 	streak(dirs)

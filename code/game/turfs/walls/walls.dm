@@ -59,7 +59,7 @@
 	if(.) //successful turf change
 
 		var/turf/T
-		for(var/i in cardinal)
+		for(var/i in GLOB.cardinals)
 			T = get_step(src, i)
 
 			//update junction type of nearby walls

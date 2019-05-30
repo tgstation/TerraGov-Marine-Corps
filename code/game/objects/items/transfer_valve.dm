@@ -174,7 +174,6 @@
 		if(attacher)
 			log_str += "(<A HREF='?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
 
-		bombers += log_str
 		log_admin(log_str)
 		message_admins(log_str)
 		merge_gases()

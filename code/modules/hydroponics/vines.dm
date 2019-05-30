@@ -199,7 +199,7 @@
 			overlays += flower_overlay
 
 /obj/effect/plantsegment/proc/spread()
-	var/direction = pick(cardinal)
+	var/direction = pick(GLOB.cardinals)
 	var/step = get_step(src,direction)
 	if(istype(step,/turf/open/floor))
 		var/turf/open/floor/F = step

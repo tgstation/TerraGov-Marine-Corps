@@ -343,7 +343,7 @@
 
 	if(M.in_throw_mode && M.dir != dir && !M.incapacitated() && !M.get_active_held_item())
 		var/catch_chance = 50
-		if(M.dir == reverse_dir[dir])
+		if(M.dir == reverse_direction(dir))
 			catch_chance += 20
 		catch_chance -= M.shock_stage * 0.3
 		if(M.get_inactive_held_item())

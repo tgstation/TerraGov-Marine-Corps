@@ -335,7 +335,7 @@
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/window/W in get_step(src, direction))
 			W.update_icon()
 
@@ -631,7 +631,7 @@
 		triggered = TRUE
 	if(!from_dir) //air escaping sound effect for original window
 		playsound(src, 'sound/machines/hiss.ogg', 50, 1)
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 		if(direction == from_dir)
 			continue //doesn't check backwards
 		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(src,direction) )

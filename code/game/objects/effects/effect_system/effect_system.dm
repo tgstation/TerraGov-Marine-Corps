@@ -71,9 +71,9 @@ steam.start() -- spawns the effect
 				var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(src.location)
 				var/direction
 				if(src.cardinals)
-					direction = pick(cardinal)
+					direction = pick(GLOB.cardinals)
 				else
-					direction = pick(alldirs)
+					direction = pick(GLOB.alldirs)
 				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(steam,direction)
@@ -130,9 +130,9 @@ steam.start() -- spawns the effect
 				src.total_sparks++
 				var/direction
 				if(src.cardinals)
-					direction = pick(cardinal)
+					direction = pick(GLOB.cardinals)
 				else
-					direction = pick(alldirs)
+					direction = pick(GLOB.alldirs)
 				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(sparks,direction)

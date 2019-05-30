@@ -25,7 +25,7 @@
 
 		if(prob(33) && canmove && !buckled && isturf(loc) && !pulledby) //won't move if being pulled
 
-			step(src, pick(cardinal))
+			step(src, pick(GLOB.cardinals))
 
 		if(prob(1))
 			emote(pick("scratch","jump","roll","tail"))
@@ -99,8 +99,6 @@
 				adjustToxLoss(3)
 				if(prob(1))
 					to_chat(src, "<span class='warning'>You mutate!</span>")
-					randmutb(src)
-					domutcheck(src,null)
 					emote("gasp")
 
 /mob/living/carbon/monkey/handle_breath(list/air_info)
