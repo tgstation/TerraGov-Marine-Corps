@@ -66,12 +66,6 @@
 
 //=================================================
 
-	//2spooky
-#define SKELETON 29
-#define PLANT 30
-
-//=================================================
-
 //disabilities
 #define NEARSIGHTED		(1<<0)
 #define EPILEPSY		(1<<1)
