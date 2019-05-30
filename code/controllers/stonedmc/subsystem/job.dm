@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(job)
 	//Jobs will use the default access unless the population is below a certain level.
 	var/mat = CONFIG_GET(number/minimal_access_threshold)
 	if(mat)
-		if(mat > length(unassigned))
+		if(length(unassigned) > mat)
 			CONFIG_SET(flag/jobs_have_minimal_access, FALSE)
 		else
 			CONFIG_SET(flag/jobs_have_minimal_access, TRUE)
