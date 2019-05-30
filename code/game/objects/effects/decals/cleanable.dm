@@ -49,4 +49,3 @@
 		return
 
 	D = new(get_turf(src))
-	D.blood_DNA = blood_DNA

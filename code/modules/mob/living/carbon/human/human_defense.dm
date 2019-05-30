@@ -324,17 +324,13 @@ Contains most of the procs that are called when a mob is attacked by something
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 
-/mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
-	if (gloves)
+/mob/living/carbon/human/proc/bloody_hands(mob/living/source, amount = 2)
+	if (istype(gloves))
 		gloves.add_mob_blood(source)
-		gloves:transfer_blood = amount
+		gloves.transfer_blood = amount
 	else
-		var/list/blood_dna = source.get_blood_dna_list()
-		if(!blood_dna)
-			return
 		var/b_color = source.get_blood_color()
 
-		transfer_blood_dna(blood_dna)
 		if(b_color)
 			blood_color = b_color
 		bloody_hands = amount

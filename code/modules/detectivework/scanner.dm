@@ -26,11 +26,6 @@
 		F.name = text("FPrintC- '[M.name]'")
 		to_chat(user, "<span class='notice'>Done printing.")
 		to_chat(user, "<span class='notice'>[M]'s Fingerprints: [md5(M.dna.uni_identity)]")
-	if ( M.blood_DNA && M.blood_DNA.len )
-		to_chat(user, "<span class='notice'>Blood found on [M]. Analysing...</span>")
-		spawn(15)
-			for(var/blood in M.blood_DNA)
-				to_chat(user, "<span class='notice'>Blood type: [M.blood_DNA[blood]]\nDNA: [blood]</span>")
 	return
 
 /obj/item/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
@@ -53,20 +48,7 @@
 
 	var/fingerprints = A.return_fingerprints()
 
-	//General
-	if(istype(A,/turf)) //Due to making blood invisible to the cursor, we need to make sure it scans it here.
-		var/turf/T = get_turf(A)
-		for(var/obj/effect/decal/cleanable/blood/B in T)
-			if (B.blood_DNA && B.blood_DNA.len)
-				to_chat(user, "<span class='notice'>Blood detected. Analysing...</span>")
-				spawn(15)
-					for(var/blood in B.blood_DNA)
-						to_chat(user, "Blood type: <span class='warning'> [B.blood_DNA[blood]] \t \black DNA: <span class='warning'> [blood]</span>")
-					if(add_data(B))
-						to_chat(user, "<span class='notice'>Object already in internal memory. Consolidating data...</span>")
-						flick("forensic2",src)
-				return
-	if (!fingerprints && !A.suit_fibers && !A.blood_DNA)
+	if (!fingerprints && !A.suit_fibers)
 		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 		"<span class='warning'>Unable to locate any fingerprints, materials, fibers, or blood on [A]!</span>",\
 		"You hear a faint hum of electrical equipment.")
@@ -98,13 +80,6 @@
 	if(A.suit_fibers && A.suit_fibers.len)
 		to_chat(user, "<span class='notice'>Fibers/Materials Data Stored: Scan with Hi-Res Forensic Scanner to retrieve.")
 		flick("forensic2",src)
-
-	//Blood
-	if (A.blood_DNA && A.blood_DNA.len)
-		to_chat(user, "<span class='notice'>Blood detected. Analysing...</span>")
-		spawn(15)
-			for(var/blood in A.blood_DNA)
-				to_chat(user, "Blood type: <span class='warning'> [A.blood_DNA[blood]] \t \black DNA: <span class='warning'> [blood]</span>")
 
 	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 	"<span class='notice'>You finish scanning \the [A].</span>",\

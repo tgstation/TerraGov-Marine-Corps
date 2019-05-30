@@ -126,7 +126,7 @@
 
 		if(!istype(T)) 
 			return
-		if(!T.dna)
+		if(!T.blood_type)
 			return
 		if(NOCLONE in T.mutations)
 			return

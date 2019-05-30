@@ -19,13 +19,11 @@
 				var/bloodcolor=""
 				if(H.shoes)
 					var/obj/item/clothing/shoes/S = H.shoes
-					if(S.track_blood && S.blood_DNA)
-						bloodDNA = S.blood_DNA
+					if(S.track_blood && S.blood_overlay)
 						bloodcolor=S.blood_color
 						S.track_blood--
 				else
-					if(H.track_blood && H.feet_blood_DNA)
-						bloodDNA = H.feet_blood_DNA
+					if(H.track_blood && H.feet_blood_color)
 						bloodcolor=H.feet_blood_color
 						H.track_blood--
 

@@ -329,7 +329,6 @@
 
 /obj/item/storage/pill_bottle/restricted
 	var/req_id_role
-	var/scan_dna = FALSE
 	var/req_dna
 	var/scan_name = FALSE
 	var/req_role
@@ -361,15 +360,6 @@
 		var/datum/mind/M = L.mind
 		if(req_role && M.assigned_role && M.assigned_role != req_role)
 			to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
-			return FALSE
-
-	if(scan_dna && (iscarbon(L)))
-		var/mob/living/carbon/C = L
-		if(!req_dna)
-			if(!input_dna(C))
-				return FALSE
-		else if(!C.dna || C.dna.unique_enzymes != req_dna)
-			to_chat(C, "<span class='notice'>It must have some kind of special lock...</span>")
 			return FALSE
 
 	return TRUE

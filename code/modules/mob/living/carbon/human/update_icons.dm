@@ -452,7 +452,7 @@ var/global/list/damage_icon_parts = list()
 		else
 			standing.icon = U.sprite_sheet_id?'icons/mob/uniform_1.dmi':'icons/mob/uniform_0.dmi'
 
-		if(U.blood_DNA)
+		if(U.blood_overlay)
 			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "uniformblood")
 			bloodsies.color		= U.blood_color
 			standing.overlays	+= bloodsies
@@ -501,13 +501,13 @@ var/global/list/damage_icon_parts = list()
 		else
 			standing = image("icon" = 'icons/mob/hands.dmi', "icon_state" = "[t_state]", "layer" =-GLOVES_LAYER)
 
-		if(gloves.blood_DNA)
+		if(gloves.blood_overlay)
 			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
 			bloodsies.color = gloves.blood_color
 			standing.overlays	+= bloodsies
 		overlays_standing[GLOVES_LAYER]	= standing
 	else
-		if(blood_DNA)
+		if(blood_overlay)
 			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
 			bloodsies.color = blood_color
 			overlays_standing[GLOVES_LAYER]	= bloodsies
@@ -570,13 +570,13 @@ var/global/list/damage_icon_parts = list()
 		else
 			standing = image("icon" = 'icons/mob/feet.dmi', "icon_state" = "[shoes.icon_state]", "layer" =-SHOES_LAYER)
 
-		if(shoes.blood_DNA)
+		if(shoes.blood_overlay)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "shoeblood")
 			bloodsies.color = shoes.blood_color
 			standing.overlays += bloodsies
 		overlays_standing[SHOES_LAYER] = standing
 	else
-		if(feet_blood_DNA)
+		if(feet_blood_color)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "shoeblood")
 			bloodsies.color = feet_blood_color
 			overlays_standing[SHOES_LAYER] = bloodsies
@@ -688,7 +688,7 @@ var/global/list/damage_icon_parts = list()
 						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 						standing.overlays += I
 
-		if(wear_suit.blood_DNA)
+		if(wear_suit.blood_overlay)
 			var/obj/item/clothing/suit/S = wear_suit
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
 			bloodsies.color = wear_suit.blood_color

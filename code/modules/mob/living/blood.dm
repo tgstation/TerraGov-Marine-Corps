@@ -389,8 +389,6 @@
 	if(!T.can_bloody)
 		return
 
-	var/list/temp_blood_DNA
-
 	if(small_drip)
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
 		var/obj/effect/decal/cleanable/blood/drip/drop = locate() in T
@@ -398,15 +396,11 @@
 			if(drop.drips < 3)
 				drop.drips++
 				drop.overlays |= pick(drop.random_icon_states)
-				drop.transfer_mob_blood_dna(src)
 				return
 			else
-				temp_blood_DNA = list()
-				temp_blood_DNA |= drop.blood_DNA.Copy() //we transfer the dna from the drip to the splatter
 				qdel(drop)//the drip is replaced by a bigger splatter
 		else
 			drop = new(T)
-			drop.transfer_mob_blood_dna(src)
 			if(b_color)
 				drop.basecolor = b_color
 				drop.color = b_color
@@ -420,9 +414,6 @@
 		if(b_color)
 			B.basecolor = b_color
 			B.color = b_color
-	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
-	if(temp_blood_DNA)
-		B.blood_DNA |= temp_blood_DNA
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)
