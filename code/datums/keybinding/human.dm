@@ -9,9 +9,9 @@
     full_name = "Quick equip"
     description = ""
 
+
 /datum/keybinding/human/quick_equip/down(client/user)
-    var/mob/living/carbon/human/H = user.mob
-    H.quick_equip()
+    SEND_SIGNAL(user.mob, COMSIG_KB_QUICKEQUIP)
     return TRUE
 
 
@@ -22,8 +22,7 @@
     description = ""
 
 /datum/keybinding/human/holster/down(client/user)
-    var/mob/living/carbon/human/H = user.mob
-    H.holster()
+    SEND_SIGNAL(user.mob, COMSIG_KB_HOLSTER)
     return TRUE
 
 
@@ -33,7 +32,7 @@
     full_name = "Perform unique action"
     description = ""
 
+
 /datum/keybinding/human/unique_action/down(client/user)
-    var/mob/living/carbon/human/H = user.mob
-    H.unique_action()
+    SEND_SIGNAL(user.mob, COMSIG_KB_UNIQUEACTION)
     return TRUE

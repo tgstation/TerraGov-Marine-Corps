@@ -195,6 +195,10 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 
+// human signals for keybindings
+#define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
+#define COMSIG_KB_HOLSTER "keybinding_holster"
+#define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 
 /*******Non-Signal Component Related Defines*******/
 

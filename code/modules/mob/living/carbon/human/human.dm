@@ -42,6 +42,9 @@
 
 	randomize_appearance()
 
+	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, .proc/quick_equip)
+	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/holster)
+	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/unique_action)
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
