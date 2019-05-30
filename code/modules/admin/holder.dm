@@ -376,6 +376,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/create_outfit,
 	/datum/admins/proc/offer,
+	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/change_hivenumber,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,

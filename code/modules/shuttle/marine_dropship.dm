@@ -83,6 +83,15 @@
 	rechargeTime = 2 MINUTES
 	prearrivalTime = 12 SECONDS
 
+/obj/docking_port/mobile/marine_dropship/register()
+	. = ..()
+	SSshuttle.dropships += src
+
+/obj/docking_port/mobile/marine_dropship/Destroy(force)
+	. = ..()
+	if(force)
+		SSshuttle.dropships -= src
+
 /obj/docking_port/mobile/marine_dropship/on_ignition()
 	playsound(return_center_turf(), 'sound/effects/engine_startup.ogg', 60, 0)
 
@@ -172,12 +181,6 @@
 	name = "shuttle control console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
-
-/*
-/obj/machinery/door/poddoor/shutters/transit/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
-	. = ..()
-	if(!SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
-		close()*/
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()

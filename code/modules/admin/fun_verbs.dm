@@ -983,3 +983,49 @@
 
 	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
+
+
+	
+/datum/admins/proc/force_dropship()
+	set category = "Fun"
+	set name = "Force Dropship"
+	to_chat(usr, "<span class='warning'>forcedropship!</span>")
+	if(!check_rights(R_FUN))
+		return
+	to_chat(usr, "<span class='warning'>rightsok!</span>")
+	var/obj/docking_port/mobile/marine_dropship/D = input("Choose dropship.", "Choose Dropship") as null|anything in SSshuttle.dropships
+	to_chat(usr, "<span class='warning'>picked a dropship [D], [D.type]!</span>")
+	if(!istype(D))
+		return
+	to_chat(usr, "<span class='warning'>type wrong!</span>")
+	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Active Shuttle", "Yes", "No") != "Yes")
+		return
+
+	var/instant = FALSE
+
+	if(alert("Move Shuttle instantly??", "Instant Move", "Yes", "No") == "Yes")
+		instant = TRUE
+
+	var/list/possible_destinations = list("lz1", "lz2", "alamo", "normandy")
+	var/list/validdocks = list()
+
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(!possible_destinations.Find(S.id))
+			continue
+		if(!D.check_dock(S, silent=TRUE))
+			continue
+		validdocks += S
+
+	if(!length(validdocks))
+		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
+		return
+
+	var/obj/docking_port/stationary/dock = input("Choose the destination.", "Choose Destination") as null|anything in validdocks
+
+	if(!dock)
+		return
+
+	SSshuttle.moveShuttleToDock(D.id, dock, !instant)
+
+	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [dock], [dock.id][instant?" instantly":""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [dock], [dock.id][instant?" instantly":""].")
