@@ -56,7 +56,7 @@
 		return
 
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 
 
 		var/turf/T = get_step(src,direction)

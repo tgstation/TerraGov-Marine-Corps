@@ -407,7 +407,7 @@
 	var/turf/U = loc
 	spawn(0)
 		var/turf/T
-		for(var/i in cardinal)
+		for(var/i in GLOB.cardinals)
 			T = get_step(U, i)
 			if(!istype(T))
 				continue
@@ -423,7 +423,7 @@
 //do we still have something next to us to support us?
 /obj/structure/mineral_door/resin/proc/check_resin_support()
 	var/turf/T
-	for(var/i in cardinal)
+	for(var/i in GLOB.cardinals)
 		T = get_step(src, i)
 		if(T.density)
 			. = TRUE

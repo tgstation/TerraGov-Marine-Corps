@@ -221,7 +221,7 @@
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()
 	update_icon()
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/fence/W in get_step(src, direction))
 			W.update_icon()
 

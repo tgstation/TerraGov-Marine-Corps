@@ -140,7 +140,7 @@
 
 	//We move the tripwire randomly in either of the four cardinal directions
 	if(tripwire)
-		var/direction = pick(cardinal)
+		var/direction = pick(GLOB.cardinals)
 		var/step_direction = get_step(src, direction)
 		tripwire.forceMove(step_direction)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)

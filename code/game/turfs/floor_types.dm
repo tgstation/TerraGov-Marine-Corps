@@ -245,7 +245,7 @@
 		spawn(4)
 			if(src)
 				update_icon()
-				for(var/direction in cardinal)
+				for(var/direction in GLOB.cardinals)
 					if(istype(get_step(src,direction),/turf/open/floor))
 						var/turf/open/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly

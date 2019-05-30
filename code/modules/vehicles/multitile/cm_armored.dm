@@ -359,7 +359,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!lying)
 		temp = get_step(T, facing)
 		T = temp
-		T = get_step(T, pick(cardinal))
+		T = get_step(T, pick(GLOB.cardinals))
 		if(mob_size == MOB_SIZE_BIG)
 			throw_at(T, 3, 2, C, 0)
 		else
@@ -379,7 +379,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		return ..()
 	temp = get_step(T, facing)
 	T = temp
-	T = get_step(T, pick(cardinal))
+	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
@@ -388,7 +388,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		return ..()
 	temp = get_step(T, facing)
 	T = temp
-	T = get_step(T, pick(cardinal))
+	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, C, 0)
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
