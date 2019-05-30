@@ -115,7 +115,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		if(!broken && !burnt)
 			if(icon_state != "carpetsymbol")
 				var/connectdir = 0
-				for(var/direction in cardinal)
+				for(var/direction in GLOB.cardinals)
 					if(isfloorturf(get_step(src, direction)))
 						var/turf/open/floor/FF = get_step(src, direction)
 						if(FF.is_carpet_floor())
@@ -164,7 +164,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	..()
 	if(is_grass_floor())
 		var/dir_sum = 0
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinals)
 			var/turf/T = get_step(src,direction)
 			if(!(T.is_grass_floor()))
 				dir_sum += direction
@@ -267,7 +267,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 /turf/open/floor/proc/make_plating()
 
 	if(is_grass_floor())
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinals)
 			if(istype(get_step(src,direction),/turf/open/floor))
 				var/turf/open/floor/FF = get_step(src,direction)
 				FF.update_icon() //So siding get updated properly
@@ -467,7 +467,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			F.state = L.state
 			F.on = L.on
 		else if(istype(T, /obj/item/stack/tile/grass))
-			for(var/direction in cardinal)
+			for(var/direction in GLOB.cardinals)
 				if(isfloorturf(get_step(src, direction)))
 					var/turf/open/floor/FF = get_step(src,direction)
 					FF.update_icon() //so siding gets updated properly

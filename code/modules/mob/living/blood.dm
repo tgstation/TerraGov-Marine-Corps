@@ -266,26 +266,7 @@
 
 	blood_data["blood_colour"] = get_blood_color()
 
-	blood_data["viruses"] = list()
-
 	return blood_data
-
-
-/mob/living/carbon/get_blood_data()
-	var/list/blood_data = ..()
-	if(!blood_data)
-		return
-
-	for(var/datum/disease/D in viruses)
-		blood_data["viruses"] += D.Copy()
-
-	if(resistances && resistances.len)
-		blood_data["resistances"] = resistances.Copy()
-
-	return blood_data
-
-
-
 
 
 

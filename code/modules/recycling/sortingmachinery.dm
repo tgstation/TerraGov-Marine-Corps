@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(tagger_locations)
+
 /obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
@@ -329,8 +331,8 @@
 		var/dat
 
 		dat += "<table style='width:100%; padding:4px;'><tr>"
-		for(var/i = 1, i <= tagger_locations.len, i++)
-			dat += "<td><a href='?src=\ref[src];nextTag=[tagger_locations[i]]'>[tagger_locations[i]]</a></td>"
+		for(var/i in 1 to length(GLOB.tagger_locations))
+			dat += "<td><a href='?src=\ref[src];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
 
 			if (i%4==0)
 				dat += "</tr><tr>"
@@ -348,7 +350,7 @@
 
 	Topic(href, href_list)
 		src.add_fingerprint(usr)
-		if(href_list["nextTag"] && href_list["nextTag"] in tagger_locations)
+		if(href_list["nextTag"] && href_list["nextTag"] in GLOB.tagger_locations)
 			src.currTag = href_list["nextTag"]
 		openwindow(usr)
 

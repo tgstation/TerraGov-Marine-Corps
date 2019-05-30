@@ -54,6 +54,9 @@
 			H.ethnicity = H.client.prefs.ethnicity
 			H.body_type = H.client.prefs.body_type
 			H.flavor_text = H.client.prefs.flavor_text
+			H.update_body()
+			H.update_hair()
+			H.regenerate_icons()
 		if(H.mind)
 			H.mind.name = H.real_name
 		

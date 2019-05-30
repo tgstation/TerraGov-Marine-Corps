@@ -52,7 +52,7 @@
 	if(!U)
 		U = loc
 	if(istype(U))
-		for (var/dirn in cardinal)
+		for (var/dirn in GLOB.cardinals)
 			var/turf/T = get_step(U, dirn)
 
 			if (!istype(T))
@@ -65,7 +65,7 @@
 
 /obj/effect/alien/weeds/proc/update_sprite()
 	var/my_dir = 0
-	for (var/check_dir in cardinal)
+	for (var/check_dir in GLOB.cardinals)
 		var/turf/check = get_step(src, check_dir)
 
 		if (!istype(check))

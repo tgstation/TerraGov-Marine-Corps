@@ -110,7 +110,6 @@
 	var/faction = "Neutral"
 
 //Monkey/infected mode
-	var/list/resistances
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 

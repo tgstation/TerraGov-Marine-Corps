@@ -134,7 +134,7 @@
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
 		var/wall_support = FALSE
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinals)
 			var/turf/TS = get_step(T,D)
 			if(TS)
 				if(TS.density)
@@ -171,7 +171,7 @@
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
 		var/wall_support = FALSE
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinals)
 			var/turf/TS = get_step(T,D)
 			if(TS)
 				if(TS.density)
