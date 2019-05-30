@@ -48,12 +48,14 @@
 
 /obj/docking_port/stationary/marine_dropship/lz1
 	name = "Landing Zone One"
+	id = "lz1"
 
 /obj/docking_port/stationary/marine_dropship/lz1/prison
 	name = "Main Hangar"
 
 /obj/docking_port/stationary/marine_dropship/lz2
 	name = "Landing Zone Two"
+	id = "lz2"
 
 /obj/docking_port/stationary/marine_dropship/lz2/prison
 	name = "Civ Residence Hangar"
@@ -114,7 +116,7 @@
 	icon_state = "console"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
-	possible_destinations = "dropship;alamo;normandy"
+	possible_destinations = "lz1;lz2;alamo;normandy"
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/user)
 	attack_alien(user)
