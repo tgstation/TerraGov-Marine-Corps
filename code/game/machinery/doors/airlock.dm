@@ -524,6 +524,7 @@
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user)
 	//to_chat(world, text("airlock attackby src [] obj [] mob []", src, C, user))
+	add_fingerprint(user)
 	if(istype(C, /obj/item/clothing/mask/cigarette))
 		if(isElectrified())
 			var/obj/item/clothing/mask/cigarette/L = C
@@ -531,12 +532,10 @@
 			return
 	else if(istype(C, /obj/item/assembly/signaler))
 		return src.attack_hand(user)
-	if(!issilicon(user))
+	else if(!issilicon(user))
 		if(isElectrified())
 			if(shock(user, 75))
 				return
-	add_fingerprint(user)
-
 	else
 		return ..()
 
