@@ -142,15 +142,14 @@
 		flick("door_deny", src)
 
 
-/obj/machinery/door/attackby(obj/item/I, mob/user)
+/obj/machinery/door/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/card/emag))
 		if(!operating && density && operable())
 			flick("door_spark", src)
 			sleep(6)
 			open()
-		return TRUE
-	else if(!(I.flags_item & NOBLUDGEON))
-		try_to_activate_door(user)
 		return TRUE
 
 /obj/machinery/door/emp_act(severity)

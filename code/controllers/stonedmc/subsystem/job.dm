@@ -128,9 +128,17 @@ SUBSYSTEM_DEF(job)
 
 	initial_players_to_assign = length(unassigned)
 
-	JobDebug("DO, Len: [unassigned.len]")
+	JobDebug("DO, Len: [length(unassigned)]")
 	if(length(unassigned) == 0)
 		return FALSE
+
+	//Jobs will use the default access unless the population is below a certain level.
+	var/mat = CONFIG_GET(number/minimal_access_threshold)
+	if(mat)
+		if(mat > length(unassigned))
+			CONFIG_SET(flag/jobs_have_minimal_access, FALSE)
+		else
+			CONFIG_SET(flag/jobs_have_minimal_access, TRUE)
 
 	//Shuffle players and jobs
 	unassigned = shuffle(unassigned)
@@ -253,6 +261,9 @@ SUBSYSTEM_DEF(job)
 		job.radio_help_message(M)
 		if(job.req_admin_notify)
 			to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
+		if(CONFIG_GET(number/minimal_access_threshold))
+			to_chat(M, "<span class='notice'><b>As this ship was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "skeleton crew, additional access may" : "full crew, only your job's necessities"] have been added to your ID card.</b></span>")
+	
 	if(job && L)
 		job.after_spawn(L, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
 

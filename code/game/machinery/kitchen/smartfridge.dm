@@ -56,76 +56,83 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/smartfridge/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (istype(O, /obj/item/card/emag))
-		if(is_secure_fridge && !emagged)
-			emagged = 1
-			locked = -1
-			to_chat(user, "You short out the product lock on [src].")
-		return
-	if(isscrewdriver(O))
+/obj/machinery/smartfridge/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/emag))
+		if(!is_secure_fridge || emagged)
+			return
+
+		emagged = TRUE
+		locked = FALSE
+		to_chat(user, "You short out the product lock on [src].")
+
+	else if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, icon_panel)
 		SSnano.update_uis(src)
-		return
 
-	if(ismultitool(O) || iswirecutter(O))
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			attack_hand(user)
-		return
+	else if(ismultitool(I) || iswirecutter(I))
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			return
+		
+		attack_hand(user)
 
-	if(!src.ispowered)
+	else if(!ispowered)
 		to_chat(user, "<span class='notice'>\The [src] is unpowered and useless.</span>")
 		return
 
-	if(accept_check(O))
-		if(contents.len >= max_n_of_items)
+	if(accept_check(I))
+		if(length(contents) >= max_n_of_items)
 			to_chat(user, "<span class='notice'>\The [src] is full.</span>")
-			return 1
+			return TRUE
+		else if(!user.drop_held_item())
+			return TRUE
+
+		I.forceMove(src)
+
+		if(item_quants[I.name])
+			item_quants[I.name]++
 		else
-			if(user.drop_held_item())
-				O.forceMove(src)
-				if(item_quants[O.name])
-					item_quants[O.name]++
-				else
-					item_quants[O.name] = 1
+			item_quants[I.name] = 1
 
-				user.visible_message("<span class='notice'>[user] has added \the [O] to \the [src].", \
-									 "<span class='notice'>You add \the [O] to \the [src].")
+		user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].", \
+							 "<span class='notice'>You add \the [I] to \the [src].")
+		SSnano.update_uis(src)
 
-			SSnano.update_uis(src)
-
-	else if(istype(O, /obj/item/storage/bag/plants))
-		var/obj/item/storage/bag/plants/P = O
+	else if(istype(I, /obj/item/storage/bag/plants))
+		var/obj/item/storage/bag/plants/P = I
 		var/plants_loaded = 0
 		for(var/obj/G in P.contents)
-			if(accept_check(G))
-				if(contents.len >= max_n_of_items)
-					to_chat(user, "<span class='notice'>\The [src] is full.</span>")
-					return 1
-				else
-					P.remove_from_storage(G,src)
-					if(item_quants[G.name])
-						item_quants[G.name]++
-					else
-						item_quants[G.name] = 1
-					plants_loaded++
-		if(plants_loaded)
+			if(!accept_check(G))
+				continue
 
-			user.visible_message( \
-				"<span class='notice'>[user] loads \the [src] with \the [P].</span>", \
+			if(contents.len >= max_n_of_items)
+				to_chat(user, "<span class='notice'>\The [src] is full.</span>")
+				return TRUE
+
+			P.remove_from_storage(G, src)
+			if(item_quants[G.name])
+				item_quants[G.name]++
+			else
+				item_quants[G.name] = 1
+			plants_loaded++
+
+		if(plants_loaded)
+			user.visible_message("<span class='notice'>[user] loads \the [src] with \the [P].</span>", \
 				"<span class='notice'>You load \the [src] with \the [P].</span>")
-			if(P.contents.len > 0)
+
+			if(length(P.contents) > 0)
 				to_chat(user, "<span class='notice'>Some items are refused.</span>")
 
 		SSnano.update_uis(src)
 
 	else
-		to_chat(user, "<span class='notice'>\The [src] smartly refuses [O].</span>")
-		return 1
+		to_chat(user, "<span class='notice'>\The [src] smartly refuses [I].</span>")
+		return TRUE
 
 /obj/machinery/smartfridge/attack_paw(mob/user)
 	return attack_hand(user)

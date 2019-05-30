@@ -409,13 +409,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 
 /proc/is_blocked_turf(turf/T)
-	var/can_pass = TRUE
 	if(T.density) 
-		can_pass = FALSE
+		return TRUE
 	for(var/atom/A in T)
 		if(A.density)
-			can_pass = FALSE
-	return can_pass
+			return TRUE
 
 
 var/global/image/busy_indicator_clock

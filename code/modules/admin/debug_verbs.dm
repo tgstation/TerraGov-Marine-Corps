@@ -432,8 +432,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSdbcore.failed_connections = 0
 
 	if(!SSdbcore.Connect())
+		log_admin("Database connection failed: " + SSdbcore.ErrorMsg())
 		message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
 	else
+		log_admin("Database connection re-established!")
 		message_admins("Database connection re-established!")
 
 
