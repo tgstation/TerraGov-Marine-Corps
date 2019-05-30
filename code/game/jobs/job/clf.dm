@@ -1,5 +1,4 @@
 /datum/job/clf
-	department_flag = J_FLAG_CLF
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/pfc/crafty
@@ -10,7 +9,6 @@
 /datum/job/clf/standard
 	title = "CLF Standard"
 	paygrade = "CLF1"
-	flag = CLF_STANDARD
 	outfit = /datum/outfit/job/clf/standard
 
 
@@ -56,7 +54,6 @@
 /datum/job/clf/medic
 	title = "CLF Medic"
 	paygrade = "CLF2"
-	flag = CLF_MEDIC
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/clf/medic
 
@@ -106,7 +103,6 @@
 /datum/job/clf/leader
 	title = "CLF Leader"
 	paygrade = "CLF3"
-	flag = CLF_LEADER
 	outfit = /datum/outfit/job/clf/leader
 
 

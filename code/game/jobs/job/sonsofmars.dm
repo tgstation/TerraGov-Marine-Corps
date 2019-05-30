@@ -1,5 +1,4 @@
 /datum/job/som
-	department_flag = J_FLAG_SOM
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/pfc/crafty
@@ -16,7 +15,6 @@
 /datum/job/som/standard
 	title = "SOM Standard"
 	paygrade = "SOM1"
-	flag = SOM_STANDARD
 	outfit = /datum/outfit/job/som/standard
 
 
@@ -63,7 +61,6 @@
 /datum/job/som/medic
 	title = "SOM Medic"
 	paygrade = "SOM2"
-	flag = SOM_MEDIC
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
 
@@ -114,7 +111,6 @@
 /datum/job/som/veteran
 	title = "SOM Veteran"
 	paygrade = "SOM3"
-	flag = SOM_LEADER
 	outfit = /datum/outfit/job/som/veteran
 
 
@@ -167,7 +163,6 @@
 /datum/job/som/leader
 	title = "SOM Leader"
 	paygrade = "SOM3"
-	flag = SOM_LEADER
 	outfit = /datum/outfit/job/som/leader
 
 
