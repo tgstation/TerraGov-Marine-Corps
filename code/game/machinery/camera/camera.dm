@@ -9,7 +9,7 @@
 	layer = WALL_OBJ_LAYER
 	resistance_flags = FIRE_PROOF
 
-	var/list/network = list("almayer")
+	var/list/network = list("marinemainship")
 	var/c_tag = null
 	var/status = TRUE
 	var/start_active = FALSE //If it ignores the random chance to start broken on round start
@@ -144,7 +144,7 @@
 
 
 /obj/machinery/camera/proc/can_see()
-	return get_hear(view_range, get_turf(src))
+	return hearers(view_range, get_turf(src))
 
 
 /atom/proc/auto_turn()
@@ -213,16 +213,16 @@
 
 //cameras installed inside the dropships, accessible via both cockpit monitor and Theseus camera computers
 /obj/machinery/camera/autoname/almayer/dropship_one
-	network = list("theseus", "dropship1")
+	network = list("marinemainship", "dropship1")
 
 
 /obj/machinery/camera/autoname/almayer/dropship_two
-	network = list("theseus", "dropship2")
+	network = list("marinemainship", "dropship2")
 
 
 /obj/machinery/camera/autoname/almayer
 	name = "military-grade camera"
-	network = list("theseus")
+	network = list("marinemainship")
 
 
 //used by the laser camera dropship equipment

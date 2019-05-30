@@ -9,7 +9,7 @@
 	status_flags = CANSTUN|CANKNOCKOUT
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 
-	var/list/network = list("theseus", "marine", "dropship1", "dropship2")
+	var/list/network = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current
 
 	var/mob/camera/aiEye/eyeobj
@@ -44,7 +44,7 @@
 	. = ..()
 
 	builtInCamera = new(src)
-	builtInCamera.network = list("theseus", "marine", "dropship1", "dropship2")
+	builtInCamera.network = list("marinemainship", "marine", "dropship1", "dropship2")
 
 	announcement = new()
 	announcement.title = "A.I. Announcement"

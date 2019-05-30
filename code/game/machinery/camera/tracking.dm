@@ -37,7 +37,7 @@
 	track.others.Cut()
 
 	if(usr.stat == DEAD)
-		return list()
+		return
 
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
@@ -147,7 +147,7 @@
 	user.switchCamera(src)
 
 
-/proc/camera_sort(list/L)
+/proc/camera_sort(list/L)  // TODO: replace this bubblesort with a mergesort - spookydonut
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 

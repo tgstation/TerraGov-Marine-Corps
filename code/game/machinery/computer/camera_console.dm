@@ -5,7 +5,7 @@
 
 	circuit = /obj/item/circuitboard/computer/security
 
-	var/list/network = list("theseus")
+	var/list/network = list("marinemainship")
 	var/list/watchers = list() //who's using the console, associated with the camera they're on.
 	var/long_ranged = FALSE
 
@@ -151,8 +151,8 @@
 		if(!(islist(C.network)))
 			stack_trace("Camera in a cameranet has a non-list camera network")
 			continue
-		var/list/tempnetwork = C.network&network
-		if(tempnetwork.len)
+		var/list/tempnetwork = C.network & network
+		if(length(tempnetwork))
 			D["[C.c_tag][(C.status ? null : " (Deactivated)")]"] = C
 	return D
 
@@ -212,11 +212,11 @@
 /obj/machinery/computer/security/almayer
 	density = 0
 	icon_state = "security_cam"
-	network = list("theseus")
+	network = list("marinemainship")
 
 
 /obj/machinery/computer/security/almayer_network
-	network = list("theseus")
+	network = list("marinemainship")
 
 
 /obj/machinery/computer/security/dropship
