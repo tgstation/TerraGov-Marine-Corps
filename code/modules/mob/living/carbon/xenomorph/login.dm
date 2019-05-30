@@ -1,6 +1,13 @@
 /mob/living/carbon/xenomorph/Login()
 	. = ..()
 
+	if(see_in_dark == XENO_NIGHTVISION_ENABLED)
+		var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+		if(!L)
+			return
+
+		L.alpha = 0
+
 	if(!isdistress(SSticker.mode))
 		return 
 

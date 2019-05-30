@@ -4,7 +4,6 @@
 	icon_state = "pipe_d"
 	density = 1
 	anchored = 1
-	var/unwrenched = 0
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
@@ -64,40 +63,42 @@
 	ui_interact(L)
 	return
 
-/obj/machinery/pipedispenser/attackby(obj/item/W, mob/user, params)
-	add_fingerprint(user)
-	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
-		to_chat(usr, "<span class='notice'>You put [W] back into [src].</span>")
-		qdel(W)
-		return
-	else if (iswrench(W))
-		if (unwrenched==FALSE)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+/obj/machinery/pipedispenser/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
+		to_chat(usr, "<span class='notice'>You put [I] back into [src].</span>")
+		qdel(I)
+
+	else if(iswrench(I))
+		if(anchored)
+			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
-			if (do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
-				user.visible_message( \
-					"[user] unfastens \the [src].", \
-					"<span class='notice'> You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
-					"You hear ratchet.")
-				anchored = FALSE
-				machine_stat |= MAINT
-				unwrenched = TRUE
-				if (usr.interactee==src)
-					usr << browse(null, "window=pipedispenser")
-		else /*if (unwrenched==1)*/
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+
+			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			user.visible_message("[user] unfastens \the [src].", \
+				"<span class='notice'> You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
+				"You hear ratchet.")
+			anchored = FALSE
+			machine_stat |= MAINT
+
+			if(user.interactee == src)
+				usr << browse(null, "window=pipedispenser")
+		else
+			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
-			if (do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-				user.visible_message( \
-					"[user] fastens \the [src].", \
-					"<span class='notice'> You have fastened \the [src]. Now it can dispense pipes.</span>", \
-					"You hear ratchet.")
-				anchored = TRUE
-				machine_stat &= ~MAINT
-				unwrenched = FALSE
-				power_change()
-	else
-		return ..()
+			
+			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			user.visible_message("[user] fastens \the [src].", \
+				"<span class='notice'> You have fastened \the [src]. Now it can dispense pipes.</span>", \
+				"You hear ratchet.")
+			anchored = TRUE
+			machine_stat &= ~MAINT
+			power_change()
 
 /obj/machinery/pipedispenser/proc/verify_recipe(recipes, path)
 	for(var/category in recipes)
@@ -181,9 +182,7 @@
 
 // adding a pipe dispensers that spawn unhooked from the ground
 /obj/machinery/pipedispenser/orderable
-	anchored = 0
-	unwrenched = 1
+	anchored = FALSE
 
 /obj/machinery/pipedispenser/disposal/orderable
-	anchored = 0
-	unwrenched = 1
+	anchored = FALSE

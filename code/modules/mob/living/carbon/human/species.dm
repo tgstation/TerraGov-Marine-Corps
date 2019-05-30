@@ -1,5 +1,5 @@
 /*
-	Datum-based species. Should make for much cleaner and easier to maintain mutantrace code.
+	Datum-based species. Should make for much cleaner and easier to maintain species code.
 */
 
 /datum/species
@@ -30,7 +30,6 @@
 	var/default_language = /datum/language/common
 	var/speech_verb_override
 	var/secondary_langs = list()  // The names of secondary languages that are available to this species.
-	var/mutantrace                // Safeguard due to old code.
 	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
 	var/list/speech_chance
 	var/has_fine_manipulation = TRUE // Can use small items.
@@ -71,7 +70,7 @@
 	var/brute_mod = null    // Physical damage reduction/malus.
 	var/burn_mod = null     // Burn damage reduction/malus.
 
-	var/species_flags  = NOFLAGS       // Various specific features.
+	var/species_flags  = NONE       // Various specific features.
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()

@@ -20,6 +20,7 @@
 	merge_type = /obj/item/stack/sheet/glass
 
 	var/created_window = /obj/structure/window
+	var/reinforced_type = /obj/item/stack/sheet/glass/reinforced
 	var/is_reinforced = 0
 	var/list/construction_options = list("One Direction", "Full Window")
 
@@ -29,35 +30,37 @@
 /obj/item/stack/sheet/glass/attack_self(mob/user)
 	construct_window(user)
 
-/obj/item/stack/sheet/glass/attackby(obj/item/W, mob/user)
-	..()
-	if(!is_reinforced)
-		if(istype(W,/obj/item/stack/cable_coil))
-			var/obj/item/stack/cable_coil/CC = W
-			if (get_amount() < 1 || CC.get_amount() < 5)
-				to_chat(user, "<span class='warning'>You need five lengths of coil and one sheet of glass to make wired glass.</span>")
-				return
+/obj/item/stack/sheet/glass/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-			CC.use(5)
-			new /obj/item/stack/light_w(user.loc, 1)
-			use(1)
-			to_chat(user, "<span class='notice'>You attach wire to the [name].</span>")
-		else if(istype(W, /obj/item/stack/rods))
-			var/obj/item/stack/rods/V  = W
-			if (V.get_amount() < 1 || get_amount() < 1)
-				to_chat(user, "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass.</span>")
-				return
+	if(is_reinforced)
+		return
 
-			var/obj/item/stack/sheet/glass/reinforced/RG = new (user.loc)
-			RG.add_fingerprint(user)
-			RG.add_to_stacks(user)
-			var/obj/item/stack/sheet/glass/G = src
-			src = null
-			var/replace = (user.get_inactive_held_item()==G)
-			V.use(1)
-			G.use(1)
-			if (!G && replace)
-				user.put_in_hands(RG)
+	if(istype(I, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/CC = I
+
+		if(get_amount() < 1 || CC.get_amount() < 5)
+			to_chat(user, "<span class='warning'>You need five lengths of coil and one sheet of glass to make wired glass.</span>")
+			return
+
+		CC.use(5)
+		new /obj/item/stack/light_w(user.loc, 1)
+		use(1)
+		to_chat(user, "<span class='notice'>You attach wire to the [name].</span>")
+
+	else if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/V  = I
+		if(V.get_amount() < 1 || get_amount() < 1)
+			to_chat(user, "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass.</span>")
+			return
+
+		var/obj/item/stack/sheet/glass/RG = new reinforced_type(user.loc)
+		RG.add_to_stacks(user)
+		use(1)
+		V.use(1)
+		if(!src && !RG)
+			user.put_in_hands(RG)
+
 
 /obj/item/stack/sheet/glass/proc/construct_window(mob/user)
 	if(!user || !src)	return 0
@@ -78,7 +81,7 @@
 			if(!src)	return 1
 			if(src.loc != user)	return 1
 
-			var/list/directions = new/list(cardinal)
+			var/list/directions = new/list(GLOB.cardinals)
 			var/i = 0
 			for (var/obj/structure/window/win in user.loc)
 				i++
@@ -86,7 +89,7 @@
 					to_chat(user, "<span class='warning'>There are too many windows in this location.</span>")
 					return 1
 				directions-=win.dir
-				if(!(win.dir in cardinal))
+				if(!(win.dir in GLOB.cardinals))
 					to_chat(user, "<span class='warning'>Can't let you do that.</span>")
 					return 1
 
@@ -171,23 +174,7 @@
 	matter = list("glass" = 7500)
 	origin_tech = "materials=3;phorontech=2"
 	created_window = /obj/structure/window/phoronbasic
-
-/obj/item/stack/sheet/glass/phoronglass/attackby(obj/item/W, mob/user)
-	..()
-	if( istype(W, /obj/item/stack/rods) )
-		var/obj/item/stack/rods/V  = W
-		var/obj/item/stack/sheet/glass/phoronrglass/RG = new (user.loc)
-		RG.add_fingerprint(user)
-		RG.add_to_stacks(user)
-		V.use(1)
-		var/obj/item/stack/sheet/glass/G = src
-		src = null
-		var/replace = (user.get_inactive_held_item()==G)
-		G.use(1)
-		if (!G && !RG && replace)
-			user.put_in_hands(RG)
-	else
-		return ..()
+	reinforced_type = /obj/item/stack/sheet/glass/phoronrglass
 
 /*
  * Reinforced phoron glass sheets

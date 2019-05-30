@@ -381,14 +381,19 @@
 		holstered = null
 		update_icon()
 
-/obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
-	if(!istype(W, /obj/item/grab))
-		return ..()
-	if(isxeno(user))
+/obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!istype(I, /obj/item/grab))
 		return
-	var/obj/item/grab/G = W
+
+	else if(isxeno(user))
+		return
+
+	var/obj/item/grab/G = I
 	if(!isliving(G.grabbed_thing))
 		return
+
 	if(!QDELETED(occupant))
 		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
 		return
@@ -404,7 +409,7 @@
 		return
 
 	if(M.client)
-		if(alert(M,"Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
+		if(alert(M, "Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
 			if(QDELETED(M) || !(G?.grabbed_thing == M))
 				return
 		else

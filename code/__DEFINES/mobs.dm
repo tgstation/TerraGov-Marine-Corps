@@ -118,6 +118,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define UNCONSCIOUS	1
 #define DEAD		2
 
+#define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period)))
+
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
 #define BRUTE		"brute"
@@ -199,6 +201,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SLASHING_ALLOWED 1
 #define XENO_SLASHING_RESTRICTED 2
 
+
+#define XENO_NIGHTVISION_ENABLED 8
+#define XENO_NIGHTVISION_DISABLED 4
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////

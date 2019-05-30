@@ -70,9 +70,9 @@
 	else
 		W.forceMove(get_turf(src))
 		W.layer = initial(W.layer)
+		W.plane = initial(W.plane)
 		W.dropped(src)
 		return FALSE
-
 
 
 /mob/proc/drop_item_v()		//this is dumb.
@@ -132,6 +132,7 @@
 	if (client)
 		client.screen -= I
 	I.layer = initial(I.layer)
+	I.plane = initial(I.plane)
 	if(newloc)
 		if(!nomoveupdate)
 			I.forceMove(newloc)

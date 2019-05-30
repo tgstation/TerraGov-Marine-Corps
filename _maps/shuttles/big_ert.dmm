@@ -1,0 +1,1822 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/closed/wall/almayer/white{
+	tiles_with = list(/turf/closed/wall/almayer/white,/obj/structure/window/framed/almayer/white)
+	},
+/area/shuttle/big_ert)
+"ac" = (
+/obj/structure/window/framed/almayer/white,
+/turf/open/floor/plating,
+/area/shuttle/big_ert)
+"ad" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/transit/open{
+	id = "top_ERTLARGE"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"ag" = (
+/turf/closed/wall/almayer/white,
+/area/shuttle/big_ert)
+"ah" = (
+/obj/structure/closet/crate,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ai" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"aj" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"ak" = (
+/obj/structure/largecrate/random/barrel/red,
+/obj/machinery/door_control{
+	id = "top_ERTLARGE";
+	name = "shutter controller";
+	pixel_x = 32
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"am" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"an" = (
+/obj/structure/table/almayer,
+/obj/item/device/flashlight/lamp,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ao" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/rack,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ap" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aq" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ar" = (
+/obj/structure/sink,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"as" = (
+/obj/structure/closet/secure_closet/medical2,
+/obj/item/storage/box/gloves{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"at" = (
+/obj/item/storage/surgical_tray,
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"au" = (
+/obj/machinery/microwave,
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"av" = (
+/turf/open/floor/almayer,
+/area/shuttle/big_ert)
+"aw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/turf/open/floor/almayer,
+/area/shuttle/big_ert)
+"ax" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ay" = (
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"az" = (
+/obj/machinery/door/airlock/almayer/medical{
+	name = "Operating Theatre";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aA" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aB" = (
+/obj/structure/table/almayer,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aC" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"aD" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"aE" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/turf/open/floor/almayer,
+/area/shuttle/big_ert)
+"aF" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 2
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"aG" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aH" = (
+/obj/machinery/iv_drip,
+/obj/structure/mirror{
+	pixel_y = -28
+	},
+/obj/item/reagent_container/blood/OMinus,
+/obj/item/reagent_container/blood/OMinus,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aI" = (
+/obj/structure/table/almayer,
+/obj/item/storage/pouch/medkit,
+/obj/item/storage/pouch/medkit,
+/obj/item/storage/pouch/medical,
+/obj/item/storage/pouch/medical,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/reagent_container/spray/surgery,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aJ" = (
+/obj/structure/table/almayer,
+/obj/item/folder/black{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/obj/item/map/current_map,
+/turf/open/floor/carpet/edge2{
+	dir = 9
+	},
+/area/shuttle/big_ert)
+"aK" = (
+/obj/structure/bed/chair/office/light,
+/turf/open/floor/carpet/edge2{
+	dir = 5
+	},
+/area/shuttle/big_ert)
+"aL" = (
+/turf/open/floor/wood,
+/area/shuttle/big_ert)
+"aM" = (
+/obj/structure/table/almayer,
+/obj/item/paper_bin,
+/obj/item/tool/pen,
+/turf/open/floor/wood,
+/area/shuttle/big_ert)
+"aN" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 2;
+	name = "Crew Bunks"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"aO" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aP" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aQ" = (
+/obj/machinery/door/airlock/almayer/medical{
+	dir = 2;
+	name = "Operating Theatre";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aR" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/communications,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/edge2{
+	dir = 10
+	},
+/area/shuttle/big_ert)
+"aS" = (
+/obj/structure/table/almayer,
+/obj/item/device/flashlight/lamp/green,
+/turf/open/floor/carpet/edge2{
+	dir = 6
+	},
+/area/shuttle/big_ert)
+"aT" = (
+/obj/structure/bed,
+/obj/item/bedsheet/rd,
+/turf/open/floor/wood,
+/area/shuttle/big_ert)
+"aU" = (
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/backpack/marine/satchel/tech,
+/obj/item/storage/toolbox/electrical,
+/obj/item/clothing/tie/storage/webbing,
+/obj/item/cell/infinite,
+/obj/item/cell/infinite,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aV" = (
+/obj/machinery/vending/engivend,
+/obj/item/device/radio/intercom/general{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aW" = (
+/obj/structure/rack,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aX" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"aY" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"aZ" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ba" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/device/radio,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bb" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/belt/combatLifesaver,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bc" = (
+/obj/structure/flora/pottedplant{
+	tag = "icon-plant-10";
+	icon_state = "plant-21"
+	},
+/turf/open/floor/wood,
+/area/shuttle/big_ert)
+"bd" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/shuttle/big_ert)
+"be" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/wood,
+/area/shuttle/big_ert)
+"bf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/almayer,
+/obj/machinery/computer/security,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bg" = (
+/obj/structure/table/almayer,
+/obj/item/clipboard,
+/obj/item/folder/red,
+/obj/item/handcuffs,
+/obj/item/handcuffs,
+/obj/item/handcuffs,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bh" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/secure_data,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bi" = (
+/obj/machinery/autolathe,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bj" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bk" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bl" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bm" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bn" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bo" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bp" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bq" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/almayer{
+	tag = "icon-blue (NORTHEAST)";
+	icon_state = "plating";
+	dir = 5
+	},
+/area/shuttle/big_ert)
+"br" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bs" = (
+/obj/machinery/door/airlock/almayer/command{
+	dir = 1;
+	name = "Captain's Quarters"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bt" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/big_ert)
+"bu" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bv" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/big_ert)
+"bw" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/card,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bx" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/machinery/power/apc/almayer{
+	cell_type = /obj/item/cell/hyper;
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/big_ert)
+"by" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bz" = (
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bA" = (
+/obj/machinery/door/airlock/almayer/engineering{
+	name = "Aft Storage"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bB" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bC" = (
+/obj/machinery/door/airlock/almayer/command{
+	dir = 4;
+	name = "Bridge"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bD" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bE" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bG" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bH" = (
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/big_ert)
+"bI" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/big_ert)
+"bK" = (
+/obj/structure/table/almayer,
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/wood{
+	amount = 50
+	},
+/obj/item/stack/sheet/wood{
+	amount = 50
+	},
+/obj/item/stack/sheet/plasteel{
+	amount = 30
+	},
+/obj/item/stack/sheet/plasteel{
+	amount = 30
+	},
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bL" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bM" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bN" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bO" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bP" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bQ" = (
+/obj/machinery/door/airlock/almayer/command{
+	dir = 1;
+	name = "Captain's Storage"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bR" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/big_ert)
+"bS" = (
+/obj/structure/bed/chair/office/light,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"bT" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/big_ert)
+"bU" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/communications,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bV" = (
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/backpack/marine/engineerpack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/clothing/tie/storage/webbing,
+/obj/item/clothing/glasses/welding,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bW" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bX" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bY" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"bZ" = (
+/obj/structure/table/almayer,
+/obj/item/clothing/suit/armor/bulletproof,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ca" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/beanbag{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/obj/item/weapon/gun/shotgun/combat,
+/obj/item/weapon/gun/shotgun/combat,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cb" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/smg/m39,
+/obj/item/ammo_magazine/smg/m39,
+/obj/item/ammo_magazine/smg/m39,
+/obj/item/weapon/gun/smg/m39/elite,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cc" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/almayer,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cd" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ce" = (
+/obj/structure/table/almayer,
+/obj/item/paper_bin,
+/obj/item/tool/pen,
+/obj/item/tool/pen,
+/obj/item/tool/pen,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cf" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 2;
+	name = "Secure Storage"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"cg" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 2;
+	name = "Crew Lockers"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"ch" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/almayer,
+/obj/item/ammo_magazine/pistol/vp70{
+	pixel_x = 5
+	},
+/obj/item/ammo_magazine/pistol/vp70{
+	pixel_x = 5
+	},
+/obj/item/weapon/gun/pistol/vp70{
+	pixel_y = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"ci" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"cj" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"ck" = (
+/obj/structure/closet/secure_closet/securecom{
+	desc = "You could probably get thrown out an airlock just by looking at this...";
+	name = "captain's secure box"
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cl" = (
+/obj/machinery/cryopod/right,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cm" = (
+/obj/structure/rack,
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/m94,
+/obj/item/storage/box/m94,
+/obj/item/storage/box/zipcuffs,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cn" = (
+/obj/structure/closet,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"co" = (
+/obj/machinery/door/window/westright{
+	dir = 2
+	},
+/obj/machinery/shower{
+	tag = "icon-shower (EAST)";
+	icon_state = "shower";
+	dir = 4
+	},
+/obj/item/tool/soap,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cp" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/smg/m39,
+/obj/item/ammo_magazine/smg/m39,
+/obj/item/weapon/gun/smg/m39/elite,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cs" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"ct" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"cu" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/tool/extinguisher,
+/obj/item/tool/extinguisher,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cv" = (
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cw" = (
+/obj/structure/closet,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cx" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"cy" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 4;
+	name = "Restroom"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"cz" = (
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/freezer,
+/area/shuttle/big_ert)
+"cA" = (
+/obj/structure/table/almayer,
+/obj/item/paper_bin{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/wy_mre,
+/obj/item/tool/pen,
+/obj/item/tool/pen,
+/obj/item/tool/pen,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cB" = (
+/obj/structure/table/almayer,
+/obj/item/clipboard,
+/obj/item/clipboard,
+/obj/item/folder,
+/obj/item/folder,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cC" = (
+/obj/structure/table/almayer,
+/obj/structure/largecrate/random/case/small{
+	pixel_y = 5
+	},
+/obj/item/storage/backpack/lightpack,
+/obj/item/storage/backpack/lightpack,
+/obj/item/storage/backpack/lightpack,
+/obj/item/storage/box/bodybags{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cD" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cE" = (
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cF" = (
+/obj/structure/toilet{
+	tag = "icon-toilet00 (NORTH)";
+	icon_state = "toilet00";
+	dir = 1
+	},
+/turf/open/floor/freezer,
+/area/shuttle/big_ert)
+"cG" = (
+/obj/structure/closet/crate,
+/obj/machinery/door_control{
+	id = "bot_ERTLARGE";
+	name = "shutter controller";
+	pixel_x = 32
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate";
+	tag = "icon-sterile"
+	},
+/area/shuttle/big_ert)
+"cI" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/transit/open{
+	id = "bot_ERTLARGE"
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+"uS" = (
+/obj/docking_port/mobile/ert_big,
+/turf/open/floor/plating/almayer,
+/area/shuttle/big_ert)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ag
+ac
+ag
+ac
+ag
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ag
+ag
+bi
+bx
+bK
+ag
+ag
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ac
+aU
+bj
+by
+bL
+bV
+ac
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+ag
+ac
+ag
+ag
+aV
+bk
+bz
+bM
+bW
+ag
+ag
+ac
+ag
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+ag
+ag
+au
+aB
+ag
+ag
+ag
+bA
+ag
+ag
+ag
+cl
+cl
+ag
+ag
+aa
+"}
+(6,1,1) = {"
+aa
+ac
+am
+av
+aC
+ag
+aW
+bk
+bz
+bM
+bX
+ag
+ai
+cs
+cA
+ac
+aa
+"}
+(7,1,1) = {"
+aa
+ac
+am
+av
+aD
+aN
+aX
+bl
+aj
+bN
+aX
+cf
+aj
+ct
+cB
+ac
+aa
+"}
+(8,1,1) = {"
+aa
+ag
+an
+aw
+aE
+ag
+aY
+bm
+aY
+bm
+aY
+ag
+cm
+cu
+cC
+ag
+aa
+"}
+(9,1,1) = {"
+ab
+ag
+ag
+ag
+ag
+ag
+aZ
+bm
+aY
+bm
+bY
+ag
+ag
+ag
+ag
+ag
+ab
+"}
+(10,1,1) = {"
+ac
+ah
+ao
+ax
+ac
+aO
+ba
+bm
+aY
+bm
+aW
+aO
+ac
+cv
+cD
+aW
+ac
+"}
+(11,1,1) = {"
+ad
+ai
+ai
+ai
+aF
+ai
+ai
+bn
+uS
+bn
+ai
+ai
+aF
+ai
+ai
+ai
+cI
+"}
+(12,1,1) = {"
+ad
+aj
+aj
+aj
+aF
+aj
+aj
+bo
+aj
+bo
+aj
+aj
+aF
+aj
+aj
+aj
+cI
+"}
+(13,1,1) = {"
+ac
+ak
+ap
+ay
+ac
+aP
+aW
+bm
+aY
+bm
+aW
+aP
+ac
+aW
+cE
+cG
+ac
+"}
+(14,1,1) = {"
+ab
+ag
+ag
+az
+ag
+ag
+aZ
+bm
+aY
+bm
+bY
+ag
+ag
+ag
+ag
+ag
+ab
+"}
+(15,1,1) = {"
+aa
+ag
+aq
+ay
+aG
+ag
+aY
+bm
+aY
+bm
+aY
+ag
+cn
+cw
+cn
+ag
+aa
+"}
+(16,1,1) = {"
+aa
+ag
+ar
+av
+ay
+aQ
+aX
+bp
+bB
+bO
+aX
+cg
+bB
+cx
+bB
+ac
+aa
+"}
+(17,1,1) = {"
+aa
+ag
+as
+av
+aH
+ag
+aY
+bq
+aY
+bm
+aY
+ag
+ag
+cy
+ag
+ag
+aa
+"}
+(18,1,1) = {"
+aa
+ag
+at
+aA
+aI
+ag
+bb
+br
+ai
+bP
+bb
+ag
+co
+cz
+cF
+ag
+aa
+"}
+(19,1,1) = {"
+aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+bC
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+ag
+aJ
+aR
+bc
+ag
+bD
+ag
+bZ
+ch
+bZ
+ag
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+ac
+aK
+aS
+bd
+ag
+bE
+ac
+ca
+ci
+ca
+ag
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+ac
+aL
+aL
+aL
+bs
+bF
+bQ
+aX
+cj
+aX
+ag
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+ag
+aM
+aT
+be
+ag
+bG
+ac
+cb
+ck
+cp
+ag
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+ag
+ac
+ag
+ag
+ag
+bC
+ag
+ag
+ag
+ag
+ag
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ag
+bf
+bt
+bz
+bR
+cc
+ag
+aa
+aa
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ac
+bg
+bu
+bH
+bS
+cd
+ac
+aa
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ag
+bh
+bv
+bI
+bT
+ce
+ag
+aa
+aa
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ag
+ag
+bw
+bJ
+bU
+ag
+ag
+aa
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ag
+ac
+ac
+ac
+ag
+aa
+aa
+aa
+aa
+aa
+aa
+"}

@@ -22,7 +22,7 @@
 	return 1
 
 /obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
@@ -82,34 +82,36 @@
 	update_icon()
 	return 1
 
-/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.flags_item & ITEM_ABSTRACT) return
-	if(opened)
-		user.transferItemToLoc(W, loc)
-	else if(istype(W, /obj/item/packageWrap))
-		return
-	else if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/C = W
+/obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
 		if(rigged)
 			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
 			return
-		if (C.use(1))
-			user  << "<span class='notice'>You rig [src].</span>"
-			rigged = 1
+		if(!C.use(1))
 			return
-	else if(istype(W, /obj/item/radio/electropack))
-		if(rigged)
-			user  << "<span class='notice'>You attach [W] to [src].</span>"
-			user.drop_held_item()
-			W.loc = src
+
+		to_chat(user, "<span class='notice'>You rig [src].</span>")
+		rigged = TRUE
+
+	else if(istype(I, /obj/item/radio/electropack))
+		if(!rigged)
 			return
-	else if(iswirecutter(W))
-		if(rigged)
-			user  << "<span class='notice'>You cut away the wiring.</span>"
-			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			rigged = 0
+
+		to_chat(user, "<span class='notice'>You attach [I] to [src].</span>")
+		user.drop_held_item()
+		I.forceMove(src)
+
+	else if(iswirecutter(I))
+		if(!rigged)
 			return
-	else return attack_hand(user)
+
+		to_chat(user, "<span class='notice'>You cut away the wiring.</span>")
+		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		rigged = FALSE
+
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)

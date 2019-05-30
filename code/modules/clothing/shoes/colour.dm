@@ -81,9 +81,8 @@
 	..()
 	remove_cuffs(user)
 
-/obj/item/clothing/shoes/orange/attackby(H as obj, mob/user as mob)
-	..()
-	if (istype(H, /obj/item/handcuffs))
-		attach_cuffs(H, user)
+/obj/item/clothing/shoes/orange/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-
+	if(istype(I, /obj/item/handcuffs))
+		attach_cuffs(I, user)

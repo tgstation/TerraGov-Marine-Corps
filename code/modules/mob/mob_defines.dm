@@ -111,7 +111,6 @@
 	var/faction = "Neutral"
 
 //Monkey/infected mode
-	var/list/resistances
 
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
@@ -128,6 +127,8 @@
 	var/universal_understand = 0 // Set to 1 to enable the mob to understand everyone, not necessarily speak
 
 	var/immune_to_ssd = FALSE
+
+	var/last_bumped = 0
 
 	//Emotes
 	var/audio_emote_time = 1

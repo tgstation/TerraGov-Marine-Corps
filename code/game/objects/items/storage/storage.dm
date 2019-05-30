@@ -44,7 +44,7 @@
 		if(usr.lying)
 			return
 
-		if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+		if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
@@ -257,7 +257,7 @@
 	if(usr.incapacitated(TRUE))
 		return
 
-	if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return
 
 	var/list/PL = params2list(params)
@@ -449,14 +449,13 @@
 	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/storage/attackby(obj/item/W, mob/user)
+/obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!can_be_inserted(W))
+	if(!can_be_inserted(I))
 		return
 
-	W.add_fingerprint(user)
-	return handle_item_insertion(W, FALSE, user)
+	return handle_item_insertion(I, FALSE, user)
 
 
 /obj/item/storage/attack_hand(mob/user)
@@ -529,6 +528,7 @@
 	boxes.icon_state = "block"
 	boxes.screen_loc = "7,7 to 10,8"
 	boxes.layer = HUD_LAYER
+	boxes.plane = HUD_PLANE
 
 	storage_start = new /obj/screen/storage(  )
 	storage_start.name = "storage"
@@ -536,28 +536,34 @@
 	storage_start.icon_state = "storage_start"
 	storage_start.screen_loc = "7,7 to 10,8"
 	storage_start.layer = HUD_LAYER
+	storage_start.plane = HUD_PLANE
 	storage_continue = new /obj/screen/storage(  )
 	storage_continue.name = "storage"
 	storage_continue.master = src
 	storage_continue.icon_state = "storage_continue"
 	storage_continue.screen_loc = "7,7 to 10,8"
 	storage_continue.layer = HUD_LAYER
+	storage_continue.plane = HUD_PLANE
 	storage_end = new /obj/screen/storage(  )
 	storage_end.name = "storage"
 	storage_end.master = src
 	storage_end.icon_state = "storage_end"
 	storage_end.screen_loc = "7,7 to 10,8"
 	storage_end.layer = HUD_LAYER
+	storage_end.plane = HUD_PLANE
 
 	stored_start = new /obj //we just need these to hold the icon
 	stored_start.icon_state = "stored_start"
 	stored_start.layer = HUD_LAYER
+	stored_start.plane = HUD_PLANE
 	stored_continue = new /obj
 	stored_continue.icon_state = "stored_continue"
 	stored_continue.layer = HUD_LAYER
+	stored_continue.plane = HUD_PLANE
 	stored_end = new /obj
 	stored_end.icon_state = "stored_end"
 	stored_end.layer = HUD_LAYER
+	stored_end.plane = HUD_PLANE
 
 	closer = new
 	closer.master = src

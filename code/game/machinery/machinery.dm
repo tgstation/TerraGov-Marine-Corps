@@ -96,7 +96,7 @@ Class Procs:
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	var/machine_stat = NOFLAGS
+	var/machine_stat = NONE
 	var/emagged = 0
 	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto
@@ -122,16 +122,17 @@ Class Procs:
 	verb_say = "beeps"
 	verb_yell = "blares"
 
-/obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
+/obj/machinery/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		var/obj/item/tool/pickaxe/plasmacutter/P = C
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
-			qdel()
-		return
+
+		if(!do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+		P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
+		qdel(src)
 
 /obj/machinery/Initialize()
 	. = ..()
@@ -414,7 +415,6 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 		"dermaline_amount" = H.reagents.get_reagent_amount("dermaline"),
 		"blood_amount" = H.blood_volume,
 		"disabilities" = H.sdisabilities,
-		"tg_diseases_list" = H.viruses.Copy(),
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.limbs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
@@ -454,10 +454,6 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 	dat += text("[]\tDermaline: [] units</FONT><BR>", (occ["dermaline_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["dermaline_amount"])
 	dat += text("[]\tBicaridine: [] units<BR>", (occ["bicaridine_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["bicaridine_amount"])
 	dat += text("[]\tDexalin: [] units<BR>", (occ["dexalin_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["dexalin_amount"])
-
-	for(var/datum/disease/D in occ["tg_diseases_list"])
-		if(!D.hidden[SCANNER])
-			dat += text("<font color=#b54646><B>Warning: [D.form] Detected</B>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</FONT><BR>")
 
 	dat += "<HR><table border='1'>"
 	dat += "<tr>"

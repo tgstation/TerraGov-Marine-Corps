@@ -109,15 +109,17 @@ var/global/list/holodeck_programs = list(
 		return
 
 
-/obj/machinery/computer/HolodeckControl/attackby(var/obj/item/D as obj, var/mob/user as mob)
-	if(istype(D, /obj/item/card/emag) && !emagged)
-		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
-		emagged = 1
+/obj/machinery/computer/HolodeckControl/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/emag) && !emagged)
+		playsound(loc, 'sound/effects/sparks4.ogg', 25, 1)
+		emagged = TRUE
 		to_chat(user, "<span class='notice'>You vastly increase projector power and override the safety and security protocols.</span>")
 		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator.")
-		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
-	src.updateUsrDialog()
-	return
+	
+	updateUsrDialog()
+
 
 /obj/machinery/computer/HolodeckControl/New()
 	..()
@@ -298,14 +300,14 @@ var/global/list/holodeck_programs = list(
 		..()
 		spawn(4)
 			update_icon()
-			for(var/direction in cardinal)
+			for(var/direction in GLOB.cardinals)
 				if(istype(get_step(src,direction),/turf/open/floor))
 					var/turf/open/floor/FF = get_step(src,direction)
 					FF.update_icon() //so siding get updated properly
 
-/turf/open/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
+/turf/open/floor/holofloor/attackby(obj/item/I, mob/user, params)
 	return
-	// HOLOFLOOR DOES NOT GIVE A FUCK
+
 
 
 
@@ -335,24 +337,26 @@ var/global/list/holodeck_programs = list(
 	return // HOLOTABLE DOES NOT GIVE A FUCK
 
 
-/obj/structure/table/holotable/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/grab) && get_dist(src,user)<=1)
-		var/obj/item/grab/G = W
-		if(ismob(G.grabbed_thing))
-			var/mob/M = G.grabbed_thing
-			if(user.grab_level < GRAB_AGGRESSIVE)
-				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
-				return
-			M.forceMove(loc)
-			M.KnockDown(5)
-			user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
-		return
-
-	if (iswrench(W))
+/obj/structure/table/holotable/attackby(obj/item/I, mob/user, params)
+	if(iswrench(I))
 		to_chat(user, "It's a holotable!  There are no bolts!")
-		return
 
-	..()
+	else if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+		var/obj/item/grab/G = I
+		if(!ismob(G.grabbed_thing))
+			return
+
+		var/mob/M = G.grabbed_thing
+		if(user.grab_level < GRAB_AGGRESSIVE)
+			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			return
+
+		M.forceMove(loc)
+		M.KnockDown(5)
+		user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
+
+	else
+		return ..()
 
 /obj/structure/table/holotable/wood
 	name = "table"
@@ -416,30 +420,32 @@ var/global/list/holodeck_programs = list(
 	var/side = ""
 	var/id = ""
 
-/obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/grab) && get_dist(src,user)<=1)
-		var/obj/item/grab/G = W
-		if(ismob(G.grabbed_thing))
-			var/mob/M = G.grabbed_thing
-			if(user.grab_level < GRAB_AGGRESSIVE)
-				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
-				return
-			M.forceMove(loc)
-			M.KnockDown(5)
-			for(var/obj/machinery/scoreboard/X in GLOB.machines)
-				if(X.id == id)
-					X.score(side, 3)// 3 points for dunking a mob
-					// no break, to update multiple scoreboards
-			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
-		return
-	else if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.transferItemToLoc(W, loc)
+/obj/structure/holohoop/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+		var/obj/item/grab/G = I
+		if(!ismob(G.grabbed_thing))
+			return
+
+		var/mob/M = G.grabbed_thing
+		if(user.grab_level < GRAB_AGGRESSIVE)
+			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			return
+		M.forceMove(loc)
+		M.KnockDown(5)
+		for(var/obj/machinery/scoreboard/X in GLOB.machines)
+			if(X.id == id)
+				X.score(side, 3)// 3 points for dunking a mob
+				// no break, to update multiple scoreboards
+		visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
+
+	else if(get_dist(src, user) < 2)
+		user.transferItemToLoc(I, loc)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side)
-				// no break, to update multiple scoreboards
-		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>")
-		return
+		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
 
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item) && mover.throwing)
@@ -487,7 +493,7 @@ var/global/list/holodeck_programs = list(
 	..()
 
 
-/obj/machinery/readybutton/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/readybutton/attackby(obj/item/I, mob/user, params)
 	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
 /obj/machinery/readybutton/attack_hand(mob/user as mob)
@@ -545,7 +551,6 @@ var/global/list/holodeck_programs = list(
 /obj/structure/rack/holorack/attack_hand(mob/user as mob)
 	return
 
-/obj/structure/rack/holorack/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswrench(W))
+/obj/structure/rack/holorack/attackby(obj/item/I, mob/user, params)
+	if(iswrench(I))
 		to_chat(user, "It's a holorack!  You can't unwrench it!")
-		return

@@ -28,16 +28,18 @@
 		storedinfo += "\[[time2text(timerecorded * 10, "mm:ss")]\] [speaker.name]: \"[message]\""
 
 
-/obj/item/taperecorder/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/card/emag))
-		if(emagged == 0)
-			emagged = 1
-			recording = 0
-			to_chat(user, "<span class='warning'>PZZTTPFFFT</span>")
-			icon_state = "taperecorderidle"
-		else
+/obj/item/taperecorder/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/card/emag))
+		if(emagged)
 			to_chat(user, "<span class='warning'>It is already emagged!</span>")
+			return
+
+		emagged = TRUE
+		recording = FALSE
+		to_chat(user, "<span class='warning'>PZZTTPFFFT</span>")
+		icon_state = "taperecorderidle"
 
 /obj/item/taperecorder/proc/explode()
 	var/turf/T = get_turf(loc)

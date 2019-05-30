@@ -139,7 +139,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 
 
-/mob/living/proc/revive(keep_viruses)
+/mob/living/proc/revive()
 	rejuvenate()
 
 /mob/living/proc/on_revive()

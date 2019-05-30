@@ -71,17 +71,17 @@
 			if(prob(10))
 				say("Nom")
 
-/mob/living/simple_animal/hostile/retaliate/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	var/obj/item/reagent_container/glass/G = O
-	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
-		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
+/mob/living/simple_animal/hostile/retaliate/goat/attackby(obj/item/I, mob/user, params)
+	if(stat == CONSCIOUS && istype(I, /obj/item/reagent_container/glass) && I.is_open_container())
+		var/obj/item/reagent_container/glass/G = I
+		user.visible_message("<span class='notice'>[user] milks [src] using \the [G].</span>")
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			to_chat(user, "<span class='warning'>The [O] is full.</span>")
+			to_chat(user, "<span class='warning'>The [G] is full.</span>")
 		if(!transfered)
 			to_chat(user, "<span class='warning'>The udder is dry. Wait a bit longer...</span>")
 	else
-		..()
+		return ..()
 //cow
 /mob/living/simple_animal/cow
 	name = "cow"
@@ -226,18 +226,20 @@ var/global/chicken_count = 0
 	..()
 	chicken_count -= 1
 
-/mob/living/simple_animal/chicken/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/reagent_container/food/snacks/grown/wheat)) //feedin' dem chickens
-		if(!stat && eggsleft < 8)
-			user.visible_message("<span class='notice'> [user] feeds [O] to [name]! It clucks happily.</span>","<span class='notice'> You feed [O] to [name]! It clucks happily.</span>")
-			user.drop_held_item()
-			qdel(O)
-			eggsleft += rand(1, 4)
-			//to_chat(world, eggsleft)
-		else
+/mob/living/simple_animal/chicken/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/reagent_container/food/snacks/grown/wheat)) //feedin' dem chickens
+		if(stat != CONSCIOUS || eggsleft >= 8)
 			to_chat(user, "<span class='notice'>[name] doesn't seem hungry!</span>")
+			return
+
+		user.visible_message("<span class='notice'>[user] feeds [I] to [name]! It clucks happily.</span>",\
+			"<span class='notice'> You feed [I] to [name]! It clucks happily.</span>")
+		user.drop_held_item()
+		qdel(I)
+		eggsleft += rand(1, 4)
+
 	else
-		..()
+		return ..()
 
 /mob/living/simple_animal/chicken/Life()
 	. =..()

@@ -360,7 +360,9 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/anim(turf/location, atom/target, a_icon, a_icon_state, flick_anim, sleeptime = 0, direction)
 //This proc throws up either an icon or an animation for a specified amount of time.
 //The variables should be apparent enough.
-	var/atom/movable/overlay/animation = new(location)
+	var/atom/movable/animation = new(location)
+	animation.anchored = FALSE
+	animation.density = FALSE
 	if(direction)
 		animation.setDir(direction)
 	animation.icon = a_icon
@@ -369,7 +371,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		animation.icon_state = a_icon_state
 	else
 		animation.icon_state = "blank"
-		animation.master = target
 		flick(flick_anim, animation)
 	sleep(max(sleeptime, 15))
 	qdel(animation)
@@ -408,13 +409,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 
 /proc/is_blocked_turf(turf/T)
-	var/can_pass = TRUE
 	if(T.density) 
-		can_pass = FALSE
+		return TRUE
 	for(var/atom/A in T)
 		if(A.density)
-			can_pass = FALSE
-	return can_pass
+			return TRUE
 
 
 var/global/image/busy_indicator_clock

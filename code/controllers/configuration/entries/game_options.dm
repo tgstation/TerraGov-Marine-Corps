@@ -146,6 +146,10 @@
 
 /datum/config_entry/flag/jobs_have_minimal_access
 
+/datum/config_entry/number/minimal_access_threshold	//If the number of players is larger than this threshold, minimal access will be turned on.
+	config_entry_value = 10
+	min_val = 0
+
 /datum/config_entry/flag/humans_need_surnames
 
 /datum/config_entry/flag/allow_ai

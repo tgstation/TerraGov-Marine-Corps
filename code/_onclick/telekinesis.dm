@@ -65,7 +65,7 @@ var/const/tk_maxrange = 15
 	desc = "Magic"
 	icon = 'icons/obj/magic.dmi'//Needs sprites
 	icon_state = "2"
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	flags_item = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
 	//item_state = null
 	w_class = 10.0
@@ -169,7 +169,7 @@ var/const/tk_maxrange = 15
 		O.anchored = 1
 		O.density = 0
 		O.layer = FLY_LAYER
-		O.setDir(pick(cardinal))
+		O.setDir(pick(GLOB.cardinals))
 		O.icon = 'icons/effects/effects.dmi'
 		O.icon_state = "nothing"
 		flick("empdisable",O)

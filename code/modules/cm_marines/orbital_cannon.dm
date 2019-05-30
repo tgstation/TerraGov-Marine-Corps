@@ -272,59 +272,66 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		overlays += image("cannon_tray_[fuel_amt]")
 
 
-/obj/structure/orbital_tray/attackby(obj/item/I, mob/user)
+/obj/structure/orbital_tray/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+
 	if(istype(I, /obj/item/powerloader_clamp))
 		var/obj/item/powerloader_clamp/PC = I
-		if(PC.linked_powerloader)
-			if(PC.loaded)
-				if(istype(PC.loaded, /obj/structure/ob_ammo))
-					var/obj/structure/ob_ammo/OA = PC.loaded
-					if(OA.is_solid_fuel)
-						if(fuel_amt >= 6)
-							to_chat(user, "<span class='warning'>[src] can't accept more solid fuel.</span>")
-						else if(!warhead)
-							to_chat(user, "<span class='warning'>A warhead must be placed in [src] first.</span>")
-						else
-							to_chat(user, "<span class='notice'>You load [OA] into [src].</span>")
-							playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-							fuel_amt++
-							PC.loaded = null
-							PC.update_icon()
-							qdel(OA)
-							update_icon()
-					else
-						if(warhead)
-							to_chat(user, "<span class='warning'>[src] already has a warhead.</span>")
-						else
-							to_chat(user, "<span class='notice'>You load [OA] into [src].</span>")
-							playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-							warhead = OA
-							OA.forceMove(src)
-							PC.loaded = null
-							PC.update_icon()
-							update_icon()
 
-			else
+		if(!PC.linked_powerloader)
+			return TRUE
 
-				if(fuel_amt)
-					var/obj/structure/ob_ammo/ob_fuel/OF = new (PC.linked_powerloader)
-					PC.loaded = OF
-					fuel_amt--
-				else if(warhead)
-					warhead.forceMove(PC.linked_powerloader)
-					PC.loaded = warhead
-					warhead = null
-				else
-					return TRUE
+		if(PC.loaded)
+			if(!istype(PC.loaded, /obj/structure/ob_ammo))
+				return TRUE
+
+			var/obj/structure/ob_ammo/OA = PC.loaded
+			if(OA.is_solid_fuel)
+				if(fuel_amt >= 6)
+					to_chat(user, "<span class='warning'>[src] can't accept more solid fuel.</span>")
+					return
+
+				if(!warhead)
+					to_chat(user, "<span class='warning'>A warhead must be placed in [src] first.</span>")
+					return
+
+				to_chat(user, "<span class='notice'>You load [OA] into [src].</span>")
+				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+				fuel_amt++
+				PC.loaded = null
 				PC.update_icon()
-				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+				qdel(OA)
 				update_icon()
+			else
+				if(warhead)
+					to_chat(user, "<span class='warning'>[src] already has a warhead.</span>")
+					return
+
+				to_chat(user, "<span class='notice'>You load [OA] into [src].</span>")
+				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+				warhead = OA
+				OA.forceMove(src)
+				PC.loaded = null
+				PC.update_icon()
+				update_icon()
+		else
+			if(fuel_amt)
+				var/obj/structure/ob_ammo/ob_fuel/OF = new(PC.linked_powerloader)
+				PC.loaded = OF
+				fuel_amt--
+			else if(warhead)
+				warhead.forceMove(PC.linked_powerloader)
+				PC.loaded = warhead
+				warhead = null
+			else
+				return TRUE
+			PC.update_icon()
+			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+			to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+			update_icon()
+
 		return TRUE
-	else
-		. = ..()
-
-
 
 
 /obj/structure/ob_ammo
@@ -336,20 +343,24 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	icon = 'icons/Marine/almayer_props.dmi'
 	var/is_solid_fuel = 0
 
-/obj/structure/ob_ammo/attackby(obj/item/I, mob/user)
+/obj/structure/ob_ammo/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/powerloader_clamp))
 		var/obj/item/powerloader_clamp/PC = I
-		if(PC.linked_powerloader)
-			if(!PC.loaded)
-				forceMove(PC.linked_powerloader)
-				PC.loaded = src
-				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				PC.update_icon()
-				to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
-				update_icon()
+		if(!PC.linked_powerloader)
+			return TRUE
+
+		if(PC.loaded)
+			return TRUE
+			
+		forceMove(PC.linked_powerloader)
+		PC.loaded = src
+		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		PC.update_icon()
+		to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+		update_icon()
 		return TRUE
-	else
-		. = ..()
 
 /obj/structure/ob_ammo/examine(mob/user)
 	..()

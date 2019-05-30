@@ -446,6 +446,10 @@
 		now_pushing = 0
 
 
+/mob/living/Bumped(atom/movable/AM)
+	. = ..()
+	last_bumped = world.time
+
 
 /mob/living/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0

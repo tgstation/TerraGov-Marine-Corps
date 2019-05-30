@@ -25,7 +25,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	flag = SQUAD_MARINE
 	prefflag = PREF_JOB_SQMARINE
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
 	total_positions = -1
@@ -54,7 +54,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	flag = SQUAD_ENGINEER
 	prefflag = PREF_JOB_SQENGINEER
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/combat_engineer
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
@@ -83,7 +83,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	flag = SQUAD_CORPSMAN
 	prefflag = PREF_JOB_SQCORPSMAN
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
@@ -112,7 +112,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	prefflag = PREF_JOB_SQSMARTGUNNER
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/smartgunner
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	outfit = /datum/outfit/job/marine/smartgunner
@@ -140,7 +140,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	prefflag = PREF_JOB_SQSPECIALIST
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/specialist
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	outfit = /datum/outfit/job/marine/specialist

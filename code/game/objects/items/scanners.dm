@@ -208,9 +208,6 @@ REAGENT SCANNER
 			dat += "\t<span class='scanner'> *Ionizing radiation detected.</span>\n"
 	if (M.getCloneLoss())
 		dat += "\t<span class='scanner'> *Subject appears to have been imperfectly cloned.</span>\n"
-	for(var/datum/disease/D in M.viruses)
-		if(!D.hidden[SCANNER])
-			dat += "\t<span class='scannerb'> *Warning: [D.form] Detected</span><span class='scanner'>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</span>\n"
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
 		dat += "\t<span class='scanner'> *Subject is <b>brain dead</b></span>.\n"
 	else if (M.getBrainLoss() >= 60)

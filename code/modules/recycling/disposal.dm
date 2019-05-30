@@ -38,17 +38,18 @@
 	start_processing()
 
 //Attack by item places it in to disposal
-/obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
-	if(machine_stat & BROKEN || !I || !user)
+/obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(machine_stat & BROKEN)
 		return
 
-	if(isxeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
+	else if(isxeno(user))
 		return
 
-	add_fingerprint(user)
-	if(mode <= 0) //It's off
+	else if(mode <= 0)
 		if(isscrewdriver(I))
-			if(contents.len > 0)
+			if(length(contents))
 				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
 			if(mode == 0) //It's off but still not unscrewed
@@ -58,29 +59,31 @@
 				return
 			else if(mode == -1)
 				mode = 0
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 				return
 		else if(iswelder(I) && mode == -1)
-			if(contents.len > 0)
+			if(length(contents))
 				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
 			var/obj/item/tool/weldingtool/W = I
-			if(W.remove_fuel(0, user))
-				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
-				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
-					to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
-					var/obj/structure/disposalconstruct/C = new(loc)
-					transfer_fingerprints_to(C)
-					C.ptype = 6 //6 = disposal unit
-					C.anchored = 1
-					C.density = 1
-					C.update()
-					qdel(src)
-			else
+			if(!W.remove_fuel(0, user))
 				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
-			return
+				return
+
+			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
+			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+				return
+
+			to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
+			var/obj/structure/disposalconstruct/C = new(loc)
+			transfer_fingerprints_to(C)
+			C.ptype = 6 //6 = disposal unit
+			C.anchored = TRUE
+			C.density = TRUE
+			C.update()
+			qdel(src)
 
 	if(istype(I, /obj/item/storage/bag/trash))
 		var/obj/item/storage/bag/trash/T = I
@@ -89,29 +92,30 @@
 			T.remove_from_storage(O, src)
 		T.update_icon()
 		update()
-		return
 
 	var/obj/item/grab/G = I
 	if(istype(G)) //Handle grabbed mob
-		if(ismob(G.grabbed_thing) && user.grab_level >= GRAB_AGGRESSIVE)
-			var/mob/GM = G.grabbed_thing
-			user.visible_message("<span class='warning'>[user] starts putting [GM] into [src].</span>",
-			"<span class='warning'>You start putting [GM] into [src].</span>")
-			if(do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) && G.grabbed_thing == GM)
-				GM.forceMove(src)
-				user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
-				"<span class='warning'>[user] puts [GM] into [src].</span>")
-				log_combat(user, GM, "placed", addition="into disposals")
-				message_admins("[ADMIN_TPMONTY(usr)] placed [ADMIN_TPMONTY(GM)] in a disposals unit.")
-				flush()
-		return
+		if(!ismob(G.grabbed_thing) || user.grab_level < GRAB_AGGRESSIVE)
+			return
+			
+		var/mob/GM = G.grabbed_thing
+		user.visible_message("<span class='warning'>[user] starts putting [GM] into [src].</span>",
+		"<span class='warning'>You start putting [GM] into [src].</span>")
 
-	if(!I)
-		return
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || G.grabbed_thing != GM)
+			return
 
-	if(user.transferItemToLoc(I, src))
+		GM.forceMove(src)
+		user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
+		"<span class='warning'>[user] puts [GM] into [src].</span>")
+		log_combat(user, GM, "placed", addition="into disposals")
+		message_admins("[ADMIN_TPMONTY(usr)] placed [ADMIN_TPMONTY(GM)] in a disposals unit.")
+		flush()
+
+	else if(user.transferItemToLoc(I, src))
 		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
 		"<span class='notice'>You place [I] into [src].</span>")
+	
 	update()
 
 //Mouse drop another mob or self
@@ -708,7 +712,7 @@
 //Remains : set to leave broken pipe pieces in place
 /obj/structure/disposalpipe/proc/broken(var/remains = 0)
 	if(remains)
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinals)
 			if(D & dpdir)
 				var/obj/structure/disposalpipe/broken/P = new(loc)
 				P.setDir(D)
@@ -759,30 +763,32 @@
 		broken(1)
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
-/obj/structure/disposalpipe/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
 	var/turf/T = loc
 	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
-	add_fingerprint(user)
+
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 
-		if(W.remove_fuel(0, user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			//Check if anything changed over 2 seconds
-			var/turf/uloc = user.loc
-			var/atom/wloc = W.loc
-			user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
-			"<span class='notice'>You start slicing [src].</span>")
-			sleep(30)
-			if(!W.isOn()) return
-			if(user.loc == uloc && wloc == W.loc)
-				welded()
-			else
-				to_chat(user, "<span class='warning'>You must stay still while welding [src].</span>")
-		else
+		if(!W.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to cut [src].</span>")
+			return
+
+		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		//Check if anything changed over 2 seconds
+		var/turf/uloc = user.loc
+		var/atom/wloc = I.loc
+		user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
+		"<span class='notice'>You start slicing [src].</span>")
+		sleep(30)
+		if(!W.isOn() || user.loc != uloc || wloc != I.loc) 
+			to_chat(user, "<span class='warning'>You must stay still while welding [src].</span>")
+			return
+
+		welded()
 
 //Called when pipe is cut with blowtorch
 /obj/structure/disposalpipe/proc/welded()
@@ -1042,7 +1048,8 @@
 	New()
 		. = ..()
 		dpdir = dir|turn(dir, 180)
-		if(sort_tag) tagger_locations |= sort_tag
+		if(sort_tag) 
+			GLOB.tagger_locations |= sort_tag
 		updatename()
 		updatedesc()
 		update()
@@ -1058,19 +1065,20 @@
 	else
 		name = initial(name)
 
-/obj/structure/disposalpipe/tagger/attackby(var/obj/item/I, var/mob/user)
-	if(..())
-		return
+/obj/structure/disposalpipe/tagger/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
 
-		if(O.currTag) //Tag set
-			sort_tag = O.currTag
-			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>Changed tag to '[sort_tag]'.</span>")
-			updatename()
-			updatedesc()
+		if(!O.currTag) //Tag set
+			return
+
+		sort_tag = O.currTag
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+		to_chat(user, "<span class='notice'>Changed tag to '[sort_tag]'.</span>")
+		updatename()
+		updatedesc()
 
 /obj/structure/disposalpipe/tagger/transfer(var/obj/structure/disposalholder/H)
 	if(sort_tag)
@@ -1098,7 +1106,8 @@
 
 	New()
 		. = ..()
-		if(sortType) tagger_locations |= sortType
+		if(sortType) 
+			GLOB.tagger_locations |= sortType
 
 		updatedir()
 		updatename()
@@ -1127,19 +1136,20 @@
 
 	dpdir = sortdir|posdir|negdir
 
-/obj/structure/disposalpipe/sortjunction/attackby(var/obj/item/I, var/mob/user)
-	if(..())
-		return
+/obj/structure/disposalpipe/sortjunction/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
 
-		if(O.currTag) //Tag set
-			sortType = O.currTag
-			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>Changed filter to '[sortType]'.</span>")
-			updatename()
-			updatedesc()
+		if(!O.currTag)
+			return
+
+		sortType = O.currTag
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+		to_chat(user, "<span class='notice'>Changed filter to '[sortType]'.</span>")
+		updatename()
+		updatedesc()
 
 /obj/structure/disposalpipe/sortjunction/proc/divert_check(var/checkTag)
 	return sortType == checkTag
@@ -1223,33 +1233,36 @@
 	update()
 
 //Override attackby so we disallow trunkremoval when somethings ontop
-/obj/structure/disposalpipe/trunk/attackby(var/obj/item/I, var/mob/user)
-
+/obj/structure/disposalpipe/trunk/attackby(obj/item/I, mob/user, params)
 	//Disposal constructors
 	var/obj/structure/disposalconstruct/C = locate() in loc
-	if(C && C.anchored)
+	if(C?.anchored)
 		return
+
 	var/turf/T = loc
 	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
-	add_fingerprint(user)
+
+	. = ..()
+
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
-		if(W.remove_fuel(0, user))
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			//Check if anything changed over 2 seconds
-			var/turf/uloc = user.loc
-			var/atom/wloc = W.loc
-			user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
-			"<span class='notice'>You start slicing [src].</span>")
-			sleep(30)
-			if(!W.isOn()) return
-			if(user.loc == uloc && wloc == W.loc)
-				welded()
-			else
-				to_chat(user, "<span class='warning'>You must stay still while welding the pipe.</span>")
-		else
+		if(!W.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to cut the pipe.</span>")
+			return
+
+		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		//Check if anything changed over 2 seconds
+		var/turf/uloc = user.loc
+		var/atom/wloc = I.loc
+		user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
+		"<span class='notice'>You start slicing [src].</span>")
+		sleep(30)
+		if(!W.isOn() || user.loc != uloc && wloc != I.loc)
+			to_chat(user, "<span class='warning'>You must stay still while welding the pipe.</span>")
+			return
+
+		welded()
 
 //Would transfer to next pipe segment, but we are in a trunk. If not entering from disposal bin, transfer to linked object (outlet or bin)
 /obj/structure/disposalpipe/trunk/transfer(var/obj/structure/disposalholder/H)
@@ -1327,42 +1340,46 @@
 				AM.throw_at(target, 3, 1)
 		qdel(H)
 
-/obj/structure/disposaloutlet/attackby(var/obj/item/I, var/mob/user)
-	if(!I || !user)
-		return
-	add_fingerprint(user)
+/obj/structure/disposaloutlet/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(isscrewdriver(I))
-		if(mode == 0)
-			mode = 1
+		mode = !mode
+		if(mode)
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
-		else if(mode == 1)
-			mode = 0
+		else
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
-	else if(iswelder(I) && mode == 1)
+	
+	else if(iswelder(I) && mode)
 		var/obj/item/tool/weldingtool/W = I
-		if(W.remove_fuel(0, user))
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
-			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
-				to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
-				var/obj/structure/disposalconstruct/C = new(loc)
-				transfer_fingerprints_to(C)
-				C.ptype = 7 //7 =  outlet
-				C.update()
-				C.anchored = 1
-				C.density = 1
-				qdel(src)
-		else
+		if(!W.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+			return
+
+		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
+
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+			return
+
+		to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
+		var/obj/structure/disposalconstruct/C = new(loc)
+		transfer_fingerprints_to(C)
+		C.ptype = 7 //7 =  outlet
+		C.update()
+		C.anchored = TRUE
+		C.density = TRUE
+		qdel(src)
+
 
 /obj/structure/disposaloutlet/retrieval
 	name = "retrieval outlet"
 	desc = "An outlet for the pneumatic disposal system."
 	resistance_flags = UNACIDABLE
 
-/obj/structure/disposaloutlet/retrieval/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/disposaloutlet/retrieval/attackby(obj/item/I, mob/user, params)
 	return
 
 //Called when movable is expelled from a disposal pipe or outlet, by default does nothing, override for special behaviour
@@ -1380,7 +1397,7 @@
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = alldirs.Copy()
+		dirs = GLOB.alldirs.Copy()
 
 	streak(dirs)
 
@@ -1389,6 +1406,6 @@
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = alldirs.Copy()
+		dirs = GLOB.alldirs.Copy()
 
 	streak(dirs)

@@ -32,15 +32,21 @@
 		master.growth_queue -= src
 	. = ..()
 
-/obj/effect/plantsegment/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
-			qdel(src)
-	else if(W.heat_source >= 3500)
+/obj/effect/plantsegment/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.remove_fuel(0, user))
+			return
+
 		qdel(src)
-	else if(W.sharp)
-		switch(W.sharp)
+
+	else if(I.heat_source >= 3500)
+		qdel(src)
+
+	else if(I.sharp)
+		switch(I.sharp)
 			if(IS_SHARP_ITEM_BIG)
 				qdel(src)
 			if(IS_SHARP_ITEM_ACCURATE)
@@ -51,8 +57,6 @@
 					qdel(src)
 	else
 		manual_unbuckle(user)
-		return
-
 
 
 /obj/effect/plantsegment/attack_hand(mob/user as mob)
@@ -195,7 +199,7 @@
 			overlays += flower_overlay
 
 /obj/effect/plantsegment/proc/spread()
-	var/direction = pick(cardinal)
+	var/direction = pick(GLOB.cardinals)
 	var/step = get_step(src,direction)
 	if(istype(step,/turf/open/floor))
 		var/turf/open/floor/F = step

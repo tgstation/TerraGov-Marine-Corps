@@ -47,7 +47,7 @@
 	if(usr.incapacitated(TRUE))
 		return TRUE
 
-	if(istype(usr.loc,/obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return TRUE
 
 	switch(name)
@@ -232,7 +232,7 @@
 
 
 /obj/screen/pull/update_icon(mob/user)
-	if(!user) 
+	if(!user)
 		return
 	if(user.pulling)
 		icon_state = "pull"
@@ -267,11 +267,6 @@
 	screen_loc = "7,7 to 10,8"
 
 
-/obj/screen/storage/New(new_master, mapload)
-	. = ..()
-	master = new_master
-
-
 /obj/screen/storage/proc/update_fullness(obj/item/storage/S)
 	if(!length(S.contents))
 		color = null
@@ -282,11 +277,11 @@
 		total_w += I.w_class
 	var/fullness = round(10 * max(length(S.contents) / S.storage_slots, total_w / S.max_storage_space))
 	switch(fullness)
-		if(10) 
+		if(10)
 			color = "#ff0000"
-		if(7 to 9) 
+		if(7 to 9)
 			color = "#ffa500"
-		else 
+		else
 			color = null
 
 
@@ -501,12 +496,12 @@
 
 
 /obj/screen/Click()
-	if(!usr)	
+	if(!usr)
 		return TRUE
 
 	switch(name)
 		if("equip")
-			if(istype(usr.loc,/obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+			if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 				return TRUE
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
@@ -525,9 +520,9 @@
 
 		if("Toggle Rail Flashlight")
 			var/obj/item/weapon/gun/G = usr.get_held_item()
-			if(!istype(G)) 
+			if(!istype(G))
 				return
-			if(!G.get_active_firearm(usr)) 
+			if(!G.get_active_firearm(usr))
 				return
 			var/obj/item/attachable/flashlight/F = G.rail
 			if(F?.activate_attachment(G, usr))

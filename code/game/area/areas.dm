@@ -253,7 +253,7 @@
 	updateicon()
 
 /area/proc/destroy_area() //Just overlays for now to make it seem like nothing is left.
-	flags_alarm_state = NOFLAGS
+	flags_alarm_state = NONE
 	active_areas -= src //So it doesn't process anymore.
 	icon_state = "area_destroyed"
 */

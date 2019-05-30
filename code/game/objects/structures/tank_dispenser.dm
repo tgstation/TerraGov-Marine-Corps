@@ -47,43 +47,38 @@
 	return
 
 
-/obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/dispenser/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
-		if(oxygentanks < 10)
-			user.drop_held_item()
-			I.loc = src
-			oxytanks.Add(I)
-			oxygentanks++
-			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
-			if(oxygentanks < 5)
-				update_icon()
-		else
+		if(oxygentanks >= 10)
 			to_chat(user, "<span class='notice'>[src] is full.</span>")
-		updateUsrDialog()
-		return
-	if(istype(I, /obj/item/tank/phoron))
-		if(phorontanks < 10)
-			user.drop_held_item()
-			I.loc = src
-			platanks.Add(I)
-			phorontanks++
-			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
-			if(oxygentanks < 6)
-				update_icon()
-		else
+			return
+
+		user.drop_held_item()
+		I.forceMove(src)
+		oxytanks += I
+		oxygentanks++
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		if(oxygentanks < 5)
+			update_icon()
+
+	else if(istype(I, /obj/item/tank/phoron))
+		if(phorontanks >= 10)
 			to_chat(user, "<span class='notice'>[src] is full.</span>")
-		updateUsrDialog()
-		return
-/*
-	if(iswrench(I))
-		if(anchored)
-			to_chat(user, "<span class='notice'>You lean down and unwrench [src].</span>")
-			anchored = 0
-		else
-			to_chat(user, "<span class='notice'>You wrench [src] into place.</span>")
-			anchored = 1
-		return
-*/
+			return
+
+		user.drop_held_item()
+		I.forceMove(src)
+		platanks += I
+		phorontanks++
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		if(oxygentanks < 6)
+			update_icon()
+
+	updateUsrDialog()
+
+
 /obj/structure/dispenser/Topic(href, href_list)
 	if(usr.stat || usr.restrained())
 		return

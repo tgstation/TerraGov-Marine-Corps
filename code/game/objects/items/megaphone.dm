@@ -50,10 +50,10 @@
 			spamcheck = 0
 		return
 
-/obj/item/megaphone/attackby(obj/item/I, mob/user)
+/obj/item/megaphone/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/card/emag) && !emagged)
 		to_chat(user, "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>")
-		emagged = 1
-		insults = rand(1, 3)//to prevent dickflooding
-		return
-	return
+		emagged = TRUE
+		insults = rand(1, 3)

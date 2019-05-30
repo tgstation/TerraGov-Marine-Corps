@@ -1,45 +1,39 @@
 
-/proc/gibs(atom/location, var/list/viruses, var/datum/dna/MobDNA)		//CARN MARKER
-	new /obj/effect/spawner/gibspawner/generic(get_turf(location),viruses,MobDNA)
+/proc/gibs(atom/location, var/datum/dna/MobDNA)		//CARN MARKER
+	new /obj/effect/spawner/gibspawner/generic(get_turf(location),MobDNA)
 
-/proc/hgibs(atom/location, var/list/viruses, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
-	new /obj/effect/spawner/gibspawner/human(get_turf(location),viruses,MobDNA,fleshcolor,bloodcolor)
+/proc/hgibs(atom/location, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+	new /obj/effect/spawner/gibspawner/human(get_turf(location),MobDNA,fleshcolor,bloodcolor)
 
-/proc/xgibs(atom/location, var/list/viruses)
-	new /obj/effect/spawner/gibspawner/xeno(get_turf(location),viruses)
+/proc/xgibs(atom/location)
+	new /obj/effect/spawner/gibspawner/xeno(get_turf(location))
 
-/proc/robogibs(atom/location, var/list/viruses)
-	new /obj/effect/spawner/gibspawner/robot(get_turf(location),viruses)
+/proc/robogibs(atom/location)
+	new /obj/effect/spawner/gibspawner/robot(get_turf(location))
 
 /obj/effect/spawner/gibspawner
 	var/sparks = 0 //whether sparks spread on Gib()
-	var/virusProb = 20 //the chance for viruses to spread on the gibs
 	var/list/gibtypes = list()
 	var/list/gibamounts = list()
 	var/list/gibdirections = list() //of lists
 	var/fleshcolor //Used for gibbed humans.
 	var/bloodcolor //Used for gibbed humans.
 
-	New(location, var/list/viruses, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+	New(location, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
 		..()
 
 		if(fleshcolor) src.fleshcolor = fleshcolor
 		if(bloodcolor) src.bloodcolor = bloodcolor
 
 		if(istype(loc,/turf)) //basically if a badmin spawns it
-			Gib(loc,viruses,MobDNA)
+			Gib(loc,MobDNA)
 
-	proc/Gib(atom/location, var/list/viruses = list(), var/datum/dna/MobDNA = null)
+	proc/Gib(atom/location, var/datum/dna/MobDNA = null)
 		if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
 			to_chat(world, "<span class='warning'>Gib list length mismatch!</span>")
 			return
 
 		var/obj/effect/decal/cleanable/blood/gibs/gib = null
-		for(var/datum/disease/D in viruses)
-			if(D.spread_type == SPECIAL)
-				viruses -= D
-				qdel(D)
-
 		if(sparks)
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(2, 1, location)
@@ -58,13 +52,6 @@
 						gib.basecolor = bloodcolor
 
 					gib.update_icon()
-
-					if(viruses.len > 0)
-						for(var/datum/disease/D in viruses)
-							if(prob(virusProb))
-								var/datum/disease/viruus = D.Copy(1)
-								gib.viruses += viruus
-								viruus.holder = gib
 
 					gib.blood_DNA = list()
 					if(MobDNA)
@@ -96,7 +83,7 @@
 		gibamounts = list(1,1,1,1,1,1,1)
 
 		New()
-			gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), alldirs, alldirs, list())
+			gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), GLOB.alldirs, GLOB.alldirs, list())
 			gibamounts[6] = pick(0,1,2)
 			..()
 
@@ -105,7 +92,7 @@
 		gibamounts = list(1,1,1,1,1,1,1)
 
 		New()
-			gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), alldirs, alldirs, list())
+			gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), GLOB.alldirs, GLOB.alldirs, list())
 			gibamounts[6] = pick(0,1,2)
 			..()
 
@@ -115,6 +102,6 @@
 		gibamounts = list(1,1,1,1,1,1)
 
 		New()
-			gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), alldirs, alldirs)
+			gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), GLOB.alldirs, GLOB.alldirs)
 			gibamounts[6] = pick(0,1,2)
 			..()

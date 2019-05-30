@@ -105,16 +105,20 @@
 			spawn(5) src.reagents.clear_reagents()
 			return
 
-/obj/item/reagent_container/glass/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/flashlight/pen))
-		var/tmp_label = sanitize(input(user, "Enter a label for [name]","Label", label_text))
+/obj/item/reagent_container/glass/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/flashlight/pen))
+		var/tmp_label = sanitize(input(user, "Enter a label for [name]", "Label", label_text))
 		if(length(tmp_label) > MAX_NAME_LEN)
 			to_chat(user, "<span class='warning'>The label can be at most [MAX_NAME_LEN] characters long.</span>")
-		else
-			user.visible_message("<span class='notice'>[user] labels [src] as \"[tmp_label]\".</span>", \
-								 "<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
-			label_text = tmp_label
-			update_name_label()
+			return
+
+		user.visible_message("<span class='notice'>[user] labels [src] as \"[tmp_label]\".</span>", \
+							 "<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
+
+		label_text = tmp_label
+		update_name_label()
 
 /obj/item/reagent_container/glass/proc/update_name_label()
 	if(label_text == "")
@@ -245,23 +249,24 @@
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
 
-/obj/item/reagent_container/glass/bucket/attackby(obj/item/I, mob/user)
+/obj/item/reagent_container/glass/bucket/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(isprox(I))
 		to_chat(user, "You add [I] to [src].")
 		qdel(I)
 		user.put_in_hands(new /obj/item/frame/bucket_sensor)
 		user.dropItemToGround(src)
 		qdel(src)
+
 	else if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
 			to_chat(user, "[src] is out of water!</span>")
-		else
-			reagents.trans_to(I, 5)
-			to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		return
-	else
-		..()
+			return
+
+		reagents.trans_to(I, 5)
+		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/item/reagent_container/glass/bucket/update_icon()
 	overlays.Cut()

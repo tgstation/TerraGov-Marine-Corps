@@ -105,17 +105,19 @@
 /obj/item/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
-	..()
+/obj/item/handcuffs/cable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
-		if (R.use(1))
-			var/obj/item/weapon/wirerod/W = new /obj/item/weapon/wirerod
+		if(!R.use(1))
+			return
 
-			user.put_in_hands(W)
-			to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
-			qdel(src)
-			update_icon(user)
+		var/obj/item/weapon/wirerod/W = new
+		user.put_in_hands(W)
+		to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
+		qdel(src)
+		update_icon(user)
 
 
 /obj/item/handcuffs/cyborg

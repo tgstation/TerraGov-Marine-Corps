@@ -66,24 +66,23 @@
 						H.next_move_slowdown += rand(12,20)
 						to_chat(H, "<span class='warning'>You got completely tangeled in [src]! Oh boy...</span>")
 
-/obj/structure/bush/attackby(var/obj/I as obj, var/mob/user as mob)
-	//hatchets and shiet can clear away undergrowth
-	if(I && (istype(I, /obj/item/tool/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))
-		var/damage = rand(2,5)
-		if(istype(I,/obj/item/weapon/claymore/mercsword))
-			damage = rand(8,18)
+/obj/structure/bush/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if((istype(I, /obj/item/tool/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))
+		var/damage = rand(2, 5)
+		if(istype(I, /obj/item/weapon/claymore/mercsword))
+			damage = rand(8, 18)
 		if(indestructable)
-			//this bush marks the edge of the map, you can't destroy it
 			to_chat(user, "<span class='warning'> You flail away at the undergrowth, but it's too thick here.</span>")
-		else
-			user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
-			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
-			obj_integrity -= damage
-			if(obj_integrity < 0)
-				to_chat(user, "<span class='notice'>You clear away [src].</span>")
-			healthcheck()
-	else
-		return ..()
+			return
+
+		user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
+		playsound(loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
+		obj_integrity -= damage
+		if(obj_integrity < 0)
+			to_chat(user, "<span class='notice'>You clear away [src].</span>")
+		healthcheck()
 
 /obj/structure/bush/proc/healthcheck()
 	if(obj_integrity < 35 && opacity)

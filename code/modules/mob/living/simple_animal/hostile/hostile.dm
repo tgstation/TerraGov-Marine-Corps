@@ -42,13 +42,6 @@
 					T = L
 					break
 
-		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
-			var/obj/mecha/M = A
-			if (M.occupant)
-				stance = HOSTILE_STANCE_ATTACK
-				T = M
-				break
-
 		if(istype(A, /obj/machinery/bot))
 			var/obj/machinery/bot/B = A
 			if (B.obj_integrity > 0)
@@ -95,10 +88,6 @@
 		var/mob/living/L = target_mob
 		L.attack_animal(src)
 		return L
-	if(istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		M.attack_animal(src)
-		return M
 	if(istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		B.attack_animal(src)
@@ -115,7 +104,6 @@
 
 /mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
 	var/list/L = hearers(src, dist)
-	L += GLOB.mechas_list
 	return L
 
 /mob/living/simple_animal/hostile/death()
@@ -195,9 +183,9 @@
 
 /mob/living/simple_animal/hostile/proc/DestroySurroundings()
 	if(prob(break_stuff_probability))
-		for(var/dir in cardinal) // North, South, East, West
+		for(var/dir in GLOB.cardinals) // North, South, East, West
 			for(var/obj/structure/window/obstacle in get_step(src, dir))
-				if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
+				if(obstacle.dir == reverse_direction(dir)) // So that windows get smashed in the right order
 					obstacle.attack_animal(src)
 					return
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))

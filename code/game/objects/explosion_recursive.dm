@@ -33,7 +33,7 @@ proc/explosion_rec(turf/epicenter, power)
 	explosion_turfs[epicenter] = power
 
 	//This steap handles the gathering of turfs which will be ex_act() -ed in the next step. It also ensures each turf gets the maximum possible amount of power dealt to it.
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 		var/turf/T = get_step(epicenter, direction)
 		T.explosion_spread(power - epicenter.explosion_resistance, direction)
 
@@ -110,7 +110,7 @@ proc/explosion_rec(turf/epicenter, power)
 	T.explosion_spread(side_spread_power, turn(direction,90))
 
 	/*
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 		var/turf/T = get_step(src, direction)
 		T.explosion_spread(spread_power)
 	*/

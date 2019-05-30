@@ -38,8 +38,6 @@
 
 /obj/item/circuitboard/ai_module/proc/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 	to_chat(target, "[sender] has uploaded a change to the laws you must follow, using a [name]. From now on: ")
-	var/time = time2text(world.realtime,"hh:mm:ss")
-	lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
 
 
 /******************** Modules ********************/
@@ -69,7 +67,6 @@
 	var/law = text("Safeguard []. Individuals that threaten [] are not human and are a threat to humans.'", targetName, targetName)
 	to_chat(target, law)
 	target.add_supplied_law(4, law)
-	lawchanges.Add("The law specified [targetName]")
 
 
 
@@ -98,7 +95,6 @@
 	var/law = "Only [targetName] is human."
 	to_chat(target, law)
 	target.set_zeroth_law(law)
-	lawchanges.Add("The law specified [targetName]")
 
 /******************** ProtectStation ********************/
 
@@ -227,7 +223,6 @@
 	if(!lawpos || lawpos < 15)
 		lawpos = 15
 	target.add_supplied_law(lawpos, law)
-	lawchanges.Add("The law was '[newFreeFormLaw]'")
 
 /obj/item/circuitboard/ai_module/freeform/install(var/obj/machinery/computer/C)
 	if(!newFreeFormLaw)
@@ -370,7 +365,6 @@
 	..()
 	var/law = "[newFreeFormLaw]"
 	target.add_inherent_law(law)
-	lawchanges.Add("The law is '[newFreeFormLaw]'")
 
 /obj/item/circuitboard/ai_module/freeformcore/install(var/obj/machinery/computer/C)
 	if(!newFreeFormLaw)
@@ -393,9 +387,6 @@
 
 /obj/item/circuitboard/ai_module/syndicate/transmitInstructions(var/mob/living/silicon/ai/target, var/mob/sender)
 //	..()    //We don't want this module reporting to the AI who dun it. --NEO
-	var/time = time2text(world.realtime,"hh:mm:ss")
-	lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
-	lawchanges.Add("The law is '[newFreeFormLaw]'")
 	to_chat(target, "<span class='warning'>BZZZZT</span>")
 	var/law = "[newFreeFormLaw]"
 	target.add_ion_law(law)

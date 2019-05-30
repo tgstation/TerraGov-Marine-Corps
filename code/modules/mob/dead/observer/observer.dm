@@ -233,6 +233,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	if(!can_reenter_corpse)
 		set_away_time()
+		ghost.mind?.current = ghost 
+		// if you ghost while alive your current mob is now your ghost
+		// aghosting is invoked with can_reenter_corpse = TRUE so this won't mess with aghosting
 
 	if(ghost.client)
 		ghost.client.change_view(world.view)

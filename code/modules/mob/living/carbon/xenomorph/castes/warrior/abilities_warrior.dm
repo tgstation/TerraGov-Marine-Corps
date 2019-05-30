@@ -93,12 +93,14 @@
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if (X.Adjacent(A))
+		X.swap_hand()
 		X.start_pulling(A, TRUE)
+		X.swap_hand()
 
 	add_cooldown()
 	return TRUE
 
-/mob/living/carbon/Xenomorph/Warrior/CtrlClickOn(atom/A)
+/mob/living/carbon/xenomorph/warrior/CtrlClickOn(atom/A)
 	if(SEND_SIGNAL(src, COMSIG_WARRIOR_CTRL_CLICK_ATOM, A) & COMSIG_WARRIOR_USED_LUNGE)
 		return
 	return ..()

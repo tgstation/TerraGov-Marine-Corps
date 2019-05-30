@@ -52,7 +52,7 @@
 	name = "Delta Overwatch Console"
 	squad_console = DELTA_SQUAD
 
-/obj/machinery/computer/overwatch/attackby(var/obj/I as obj, var/mob/user as mob)  //Can't break or disassemble.
+/obj/machinery/computer/overwatch/attackby(obj/item/I, mob/user, params)
 	return
 
 /obj/machinery/computer/overwatch/bullet_act(var/obj/item/projectile/Proj) //Can't shoot it
@@ -611,7 +611,7 @@
 		R.recalculateChannels()
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
-		ID.access += ACCESS_MARINE_LEADER
+		ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	H.hud_set_squad()
 	H.update_inv_head() //updating marine helmet leader overlays
 	H.update_inv_wear_suit()
@@ -1137,17 +1137,6 @@
 			var/datum/action/skill/issue_order/A = new path()
 			A.give_action(H)
 
-
-/mob/living/carbon/human/Initialize()
-	. = ..()
-	var/datum/action/skill/toggle_orders/toggle_orders_action = new
-	toggle_orders_action.give_action(src)
-	var/datum/action/skill/issue_order/move/issue_order_move = new
-	issue_order_move.give_action(src)
-	var/datum/action/skill/issue_order/hold/issue_order_hold = new
-	issue_order_hold.give_action(src)
-	var/datum/action/skill/issue_order/focus/issue_order_focus = new
-	issue_order_focus.give_action(src)
 
 /obj/machinery/computer/overwatch/proc/get_squad_by_id(id)
 	if(!squads || !length(squads))

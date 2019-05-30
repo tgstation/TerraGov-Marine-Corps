@@ -27,7 +27,7 @@
 /obj/machinery/space_heater/CanPass(atom/movable/mover, turf/target)
 	if(!density) //Because broken racks -Agouri |TODO: SPRITE!|
 		return 1
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	else
 		return 0
@@ -49,24 +49,29 @@
 		cell.emp_act(severity)
 	..(severity)
 
-/obj/machinery/space_heater/attackby(obj/item/I, mob/user)
+/obj/machinery/space_heater/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(istype(I, /obj/item/cell))
-		if(open)
-			if(cell)
-				to_chat(user, "There is already a power cell inside.")
-				return
-			else
-				// insert cell
-				var/obj/item/cell/C = usr.get_active_held_item()
-				if(istype(C))
-					if(user.transferItemToLoc(C, src))
-						cell = C
-						C.add_fingerprint(usr)
-
-						user.visible_message("<span class='notice'> [user] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
-		else
+		if(!open)
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
+
+		if(cell)
+			to_chat(user, "There is already a power cell inside.")
+			return
+
+		var/obj/item/cell/C = user.get_active_held_item()
+		if(!istype(C))
+			return
+
+		if(!user.transferItemToLoc(C, src))
+			return
+			
+		cell = C
+		C.add_fingerprint(user)
+
+		user.visible_message("<span class='notice'> [user] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
+
 	else if(isscrewdriver(I))
 		open = !open
 		user.visible_message("<span class='notice'> [user] [open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'> You [open ? "open" : "close"] the hatch on the [src].</span>")
@@ -74,9 +79,6 @@
 		if(!open && user.interactee == src)
 			user << browse(null, "window=spaceheater")
 			user.unset_interaction()
-	else
-		..()
-	return
 
 /obj/machinery/space_heater/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)

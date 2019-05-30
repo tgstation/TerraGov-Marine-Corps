@@ -76,7 +76,6 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	// From old dna.
 	var/b_type
-	var/mutantrace = null  // The type of mutant race the player is, if applicable (i.e. potato-man)
 	var/real_name          // Stores the real name of the person who originally got this dna datum. Used primarily for changelings,
 
 	// New stuff
@@ -91,7 +90,6 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/datum/dna/new_dna = new()
 	new_dna.unique_enzymes=unique_enzymes
 	new_dna.b_type=b_type
-	new_dna.mutantrace=mutantrace
 	new_dna.real_name=real_name
 	new_dna.species=species
 	for(var/b=1;b<=DNA_SE_LENGTH;b++)
@@ -367,4 +365,3 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	ResetSE()
 
 	unique_enzymes = md5(character.real_name)
-	reg_dna[unique_enzymes] = character.real_name

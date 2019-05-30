@@ -1,7 +1,6 @@
 /datum/emergency_call/upp_commando
 	name = "UPP Commandos"
-	shuttle_id = "Distress_UPP"
-	name_of_spawn = "Distress_UPP"
+	shuttle_id = "distress_upp"
 
 
 /datum/emergency_call/upp_commando/print_backstory(mob/living/carbon/human/H)
