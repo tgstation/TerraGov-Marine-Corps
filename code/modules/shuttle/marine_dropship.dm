@@ -461,38 +461,3 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-
-/obj/machinery/computer/shuttle_control/almayer/hangar
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "supply"
-
-// Old mapping stuff
-/obj/effect/landmark/shuttle_loc/marine_trg/evacuation
-
-/obj/machinery/computer/shuttle_control/ert
-	var/shuttle_tag
-
-/obj/machinery/computer/shuttle_control/ert/centcom
-
-/obj/effect/landmark/distress_pmcitem
-
-/obj/effect/landmark/distress_uppitem
-
-/obj/effect/landmark/distress_pmc
-
-/obj/effect/landmark/distress_upp
-
-/obj/effect/landmark/shuttle_loc/marine_trg/landing
-
-/area/supply/dock
-
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod
-
-/obj/effect/landmark/shuttle_loc/marine_src/evacuation
-
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship
-
-/area/supply/station
-
-/obj/effect/landmark/shuttle_loc/marine_src/dropship

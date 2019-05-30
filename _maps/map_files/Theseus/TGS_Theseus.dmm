@@ -12565,7 +12565,6 @@
 /area/almayer/medical/upper_medical)
 "aBN" = (
 /obj/structure/table/almayer,
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
 /turf/open/floor/almayer{
 	dir = 2;
 	icon_state = "sterile_green_side";
@@ -18851,10 +18850,6 @@
 	icon_state = "orangecorner"
 	},
 /area/almayer/hallways/stern_hallway)
-"aOk" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/closed/wall/almayer,
-/area/almayer/hull/upper_hull)
 "aOl" = (
 /obj/structure/table/almayer,
 /obj/item/storage/fancy/cigarettes/lucky_strikes,
@@ -19243,10 +19238,6 @@
 	dir = 1
 	},
 /area/almayer/shipboard/brig_cells)
-"aPJ" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/closed/wall/almayer/outer/reinforced,
-/area/almayer/hull/upper_hull)
 "aPK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -20368,13 +20359,6 @@
 	icon_state = "kitchen"
 	},
 /area/almayer/living/captain_mess)
-"aTs" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer/mono,
-/area/almayer/shipboard/brig_cells)
 "aTv" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/almayer{
@@ -24228,10 +24212,6 @@
 /obj/effect/multitile_spawner/cm_armored/tank,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
-"beS" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer,
-/area/almayer/shipboard/ex_firing_range)
 "beT" = (
 /obj/machinery/light,
 /turf/open/floor/almayer{
@@ -25752,10 +25732,6 @@
 /obj/machinery/camera/autoname/almayer{
 	dir = 1
 	},
-/turf/open/floor/almayer/mono,
-/area/almayer/hallways/starboard_hallway)
-"bix" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
 "biy" = (
@@ -30416,13 +30392,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/living/cryo_cells)
-"buL" = (
-/obj/machinery/cryopod/right,
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer{
-	icon_state = "cargo"
-	},
-/area/almayer/living/cryo_cells)
 "buM" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/light{
@@ -33158,10 +33127,6 @@
 "bCa" = (
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cryo_cells)
-"bCb" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer/mono,
-/area/almayer/living/cryo_cells)
 "bCc" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/cryo_cells)
@@ -34258,7 +34223,6 @@
 /area/almayer/engineering/engineering_workshop)
 "bEX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
 /turf/open/floor/almayer,
 /area/almayer/engineering/engineering_workshop)
 "bEY" = (
@@ -41392,10 +41356,6 @@
 /obj/machinery/door/airlock/almayer/marine/charlie/sl,
 /turf/open/floor/almayer/mono,
 /area/almayer/squads/charlie)
-"bWZ" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/closed/wall/almayer,
-/area/almayer/squads/charlie)
 "bXa" = (
 /turf/open/floor/almayer{
 	tag = "icon-bluecorner";
@@ -42320,13 +42280,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/living/cafeteria_port)
-"bZu" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer,
-/area/almayer/living/cafeteria_port)
 "bZv" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison{
@@ -42985,14 +42938,6 @@
 	tag = "icon-blue"
 	},
 /area/almayer/living/port_emb)
-"cbl" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer{
-	dir = 8;
-	icon_state = "blue";
-	tag = "icon-blue"
-	},
-/area/almayer/living/port_emb)
 "cbm" = (
 /obj/structure/bed,
 /obj/machinery/light{
@@ -43127,7 +43072,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
 /turf/open/floor/almayer/mono,
 /area/almayer/hull/lower_hull)
 "cbI" = (
@@ -43345,22 +43289,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	dir = 1;
-	icon_state = "blue";
-	tag = "icon-blue"
-	},
-/area/almayer/squads/delta)
-"ccm" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -43554,15 +43482,6 @@
 "ccB" = (
 /turf/closed/wall/almayer/outer,
 /area/almayer/shipboard/port_point_defense)
-"ccD" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/almayer/mono,
-/area/almayer/hull/lower_hull)
 "ccE" = (
 /obj/structure/table/almayer,
 /obj/item/storage/box/donkpockets,
@@ -44511,10 +44430,6 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/shipboard/starboard_missiles)
-"cfr" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/closed/wall/almayer,
-/area/almayer/hull/lower_hull)
 "cfs" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/hallways/repair_bay)
@@ -45333,7 +45248,6 @@
 /area/almayer/shipboard/brig_cells)
 "chp" = (
 /obj/structure/table/woodentable,
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -46003,17 +45917,6 @@
 /obj/structure/closet/toolcloset,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/port_hallway)
-"cjm" = (
-/obj/structure/bed/chair/reinforced{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer{
-	tag = "icon-bluefull";
-	icon_state = "bluefull"
-	},
-/area/almayer/living/briefing)
 "cjn" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -46177,13 +46080,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/shipboard/port_missiles)
-"cjJ" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer{
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
-	},
-/area/almayer/shipboard/port_missiles)
 "cjK" = (
 /obj/item/tool/warning_cone,
 /obj/machinery/light{
@@ -46214,10 +46110,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/shipboard/weapon_room)
-"cjO" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer/mono,
-/area/almayer/hallways/port_hallway)
 "cjP" = (
 /obj/machinery/door/poddoor/almayer{
 	density = 0;
@@ -46438,13 +46330,6 @@
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
 	},
-/area/almayer/hallways/hangar)
-"cku" = (
-/obj/machinery/landinglight/ds2/delayone{
-	dir = 8
-	},
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "ckw" = (
 /obj/structure/table/almayer,
@@ -46857,10 +46742,6 @@
 	},
 /turf/open/floor/almayer,
 /area/almayer/living/bridgebunks)
-"dTW" = (
-/obj/effect/landmark/shuttle_loc/marine_crs/dropship,
-/turf/open/floor/almayer/mono,
-/area/almayer/shipboard/brig)
 "dUd" = (
 /turf/open/floor/almayer{
 	tag = "icon-blue (NORTH)";
@@ -55580,7 +55461,7 @@ ahf
 aPM
 cfV
 ahf
-aTs
+aPM
 cfV
 ahf
 aPM
@@ -59685,7 +59566,7 @@ auL
 axv
 aiw
 aEH
-dTW
+aiw
 aFv
 cgC
 aHs
@@ -60332,7 +60213,7 @@ vsz
 bHV
 cjB
 cjE
-cjJ
+cjH
 bNe
 bOh
 bPf
@@ -67006,7 +66887,7 @@ bos
 bqp
 cjX
 ckd
-cku
+bos
 bqp
 blE
 btY
@@ -74227,8 +74108,8 @@ bRE
 can
 caO
 cbH
-ccD
-ccD
+cbH
+cbH
 caO
 cdW
 aVk
@@ -79748,7 +79629,7 @@ aQS
 aQS
 aQS
 aQS
-beS
+aQS
 aQS
 aRt
 cfu
@@ -80394,7 +80275,7 @@ bYV
 aVs
 aVs
 cbf
-cfr
+aVs
 aVs
 aVs
 aVs
@@ -83717,7 +83598,7 @@ bHk
 bHk
 bHp
 bIA
-cjm
+bIA
 cjn
 bMr
 bNT
@@ -85019,7 +84900,7 @@ bXK
 bZd
 bZN
 caI
-cbl
+cbj
 ccb
 ccM
 cdw
@@ -88605,7 +88486,7 @@ bKO
 bMx
 bnF
 bOM
-cjO
+bGq
 bQw
 bGq
 bDM
@@ -88618,7 +88499,7 @@ bZk
 bZT
 bSQ
 cbr
-ccm
+ccl
 ccS
 cbn
 cdP
@@ -88840,7 +88721,7 @@ baV
 bir
 biu
 bjV
-bix
+biu
 blV
 bnF
 art
@@ -88875,7 +88756,7 @@ bZk
 bZU
 bSQ
 cbs
-ccm
+ccl
 ccT
 cbn
 cbn
@@ -89646,7 +89527,7 @@ bZk
 bZU
 bSQ
 cbs
-ccm
+ccl
 ccQ
 cdA
 ccQ
@@ -90160,7 +90041,7 @@ bZk
 bZT
 bSQ
 cbr
-ccm
+ccl
 ccV
 cbn
 cdP
@@ -90417,7 +90298,7 @@ bZk
 bZU
 bSQ
 cbs
-ccm
+ccl
 ccW
 cbn
 cbn
@@ -90931,7 +90812,7 @@ bZm
 bZT
 bSQ
 cbr
-ccm
+ccl
 ccV
 cbn
 ccQ
@@ -91188,7 +91069,7 @@ bZn
 bZU
 bSQ
 cbs
-ccm
+ccl
 ccX
 cdB
 ccQ
@@ -91302,7 +91183,7 @@ aFa
 aoI
 apS
 apS
-aPJ
+aoH
 amu
 dya
 aOg
@@ -93238,7 +93119,7 @@ bDM
 bSQ
 bUE
 bWa
-bWZ
+bSQ
 bXX
 bZp
 bZT
@@ -95019,7 +94900,7 @@ bwq
 bpH
 bnJ
 bpH
-bCb
+bCa
 bpH
 bnJ
 bpN
@@ -96324,7 +96205,7 @@ bST
 bWg
 bXc
 bYf
-bZu
+bYi
 bYi
 caM
 cbC
@@ -96959,7 +96840,7 @@ aJw
 aoM
 akL
 amo
-aOk
+aap
 aam
 aai
 aag
@@ -97584,7 +97465,7 @@ bnJ
 bpN
 brz
 bpN
-buL
+bnJ
 brz
 bpN
 buM

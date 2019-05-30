@@ -1153,12 +1153,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
-"adK" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "1"
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "adL" = (
 /obj/machinery/light{
 	dir = 4
@@ -22660,12 +22654,6 @@
 "brE" = (
 /turf/open/floor/greengrid,
 /area/bigredv2/outside/se)
-"brF" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "2"
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "brG" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -32114,7 +32102,7 @@ aao
 aao
 aao
 aao
-adK
+aao
 aeh
 aaf
 aaf
@@ -33516,7 +33504,7 @@ bie
 bie
 bie
 bie
-brF
+bie
 bsb
 bpv
 bpv

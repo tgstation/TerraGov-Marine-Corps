@@ -1237,9 +1237,6 @@
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/surface/engineering/generator)
 "ael" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "1"
-	},
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
@@ -39925,14 +39922,6 @@
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
-"bZP" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "2"
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 10
-	},
-/area/ice_colony/exterior/surface/landing_pad)
 "bZR" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -85956,7 +85945,7 @@ bbu
 bbu
 bbu
 bbu
-bZP
+aYE
 bZS
 aUP
 aUP
