@@ -300,7 +300,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 	
 	//This is down here because of the browse() calls in tooltip/New()
-	if(!tooltips)
+	if(!tooltips && prefs.tooltips)
 		tooltips = new /datum/tooltip(src)
 
 

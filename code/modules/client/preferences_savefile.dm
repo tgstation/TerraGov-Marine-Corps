@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	25
+#define SAVEFILE_VERSION_MAX	26
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -20,6 +20,9 @@
 				break
 		return FALSE
 
+	if(savefile_version < 26)
+		S["tooltips"] << TRUE
+		
 	if(savefile_version < 25)
 		S["ghost_vision"]	<< TRUE
 		S["ghost_orbit"]	<< GHOST_ORBIT_CIRCLE
@@ -88,6 +91,7 @@
 	S["ghost_form"]			>> ghost_form
 	S["ghost_others"]		>> ghost_others
 	S["hotkeys"]			>> hotkeys
+	S["tooltips"]			>> tooltips
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -108,6 +112,7 @@
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
+	tooltips		= sanitize_integer(tooltips, 0, 1, initial(tooltips))
 
 	return TRUE
 
@@ -140,6 +145,7 @@
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
+	tooltips		= sanitize_integer(tooltips, 0, 1, initial(tooltips))
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
@@ -160,6 +166,7 @@
 	S["ghost_form"]			<< ghost_form
 	S["ghost_others"]		<< ghost_others
 	S["hotkeys"]			<< hotkeys
+	S["tooltips"]			<< tooltips
 
 	return TRUE
 

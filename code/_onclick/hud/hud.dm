@@ -246,10 +246,14 @@
 
 
 /obj/screen/action_button/MouseEntered(location, control, params)
+	if (!usr.client?.prefs?.tooltips)
+		return
 	openToolTip(usr, src, params, title = name, content = desc)
 
 
 /obj/screen/action_button/MouseExited()
+	if (!usr.client?.prefs?.tooltips)
+		return
 	closeToolTip(usr)
 
 
