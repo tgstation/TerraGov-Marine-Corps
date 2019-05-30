@@ -26,7 +26,8 @@
 	force = 10
 
 /obj/item/weapon/classic_baton/attack(mob/living/M as mob, mob/living/user as mob)
-	if(!..()) 
+	. = ..()
+	if(!.) 
 		return
 
 	if (M.stuttering < 8)
