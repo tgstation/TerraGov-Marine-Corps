@@ -603,3 +603,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 		qdel(src)
 	else
 		update_icon()
+
+
+/obj/machinery/proc/remove_eye_control(mob/living/user)
+	return

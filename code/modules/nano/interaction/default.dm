@@ -18,17 +18,6 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 	return STATUS_UPDATE									// Ghosts can view updates
 
 
-/mob/living/silicon/robot/default_can_use_topic(src_object)
-	. = shared_nano_interaction()
-	if(. <= STATUS_DISABLED)
-		return
-
-	// robots can interact with things they can see within their view range
-	if((src_object in view(src)) && get_dist(src_object, src) <= client.view)
-		return STATUS_INTERACTIVE	// interactive (green visibility)
-	return STATUS_DISABLED			// no updates, completely disabled (red visibility)
-
-
 /mob/living/silicon/ai/default_can_use_topic(src_object)
 	. = shared_nano_interaction()
 	if(. != STATUS_INTERACTIVE)

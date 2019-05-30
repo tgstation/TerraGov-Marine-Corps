@@ -518,7 +518,7 @@
 /area/centcom/control)
 "eV" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/security/almayer_network,
+/obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/almayer,
 /area/centcom/control)
 "eW" = (
@@ -858,7 +858,7 @@
 /turf/open/floor/almayer/mono,
 /area/centcom/suppy)
 "gs" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/holopad,
 /turf/open/floor/almayer,
 /area/centcom)
 "gv" = (
@@ -2643,7 +2643,7 @@
 /turf/open/floor/grass,
 /area/centcom)
 "nZ" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/holopad,
 /turf/open/floor/almayer/mono,
 /area/centcom)
 "oa" = (
@@ -2792,7 +2792,7 @@
 /turf/open/floor/almayer,
 /area/centcom)
 "pb" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/holopad,
 /obj/structure/prop/almayer/valmoric,
 /turf/open/floor/carpet,
 /area/centcom)

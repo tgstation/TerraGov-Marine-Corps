@@ -1,89 +1,64 @@
 /mob/living/silicon
 	gender = NEUTER
 	voice_name = "synthesized voice"
-	var/syndicate = 0
-	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
-	immune_to_ssd = 1
-	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
+	verb_say = "states"
+	verb_ask = "queries"
+	verb_exclaim = "declares"
+	verb_yell = "alarms"
 
-	//Used in say.dm.
-	var/speak_statement = "states"
-	var/speak_exclamation = "declares"
-	var/speak_query = "queries"
-	var/pose //Yes, now AIs can pose too.
-	var/obj/item/camera/siliconcam/aiCamera = null //photography
-	var/local_transmit //If set, can only speak to others of the same type within a short range.
+	initial_language_holder = /datum/language_holder/synthetic
 
-	var/med_hud = MOB_HUD_MEDICAL_ADVANCED //Determines the med hud to use
-	var/sec_hud = MOB_HUD_SECURITY_ADVANCED //Determines the sec hud to use
-	var/list/HUD_toggled = list(0,0,0)
+	var/obj/machinery/camera/builtInCamera = null
+	var/obj/item/radio/headset/almayer/mcom/ai/radio = null
+
+	var/list/HUD_toggled = list(0, 0, 0)
+
 
 /mob/living/silicon/Initialize()
 	. = ..()
+	radio = new(src)
 	GLOB.silicon_mobs += src
+
 
 /mob/living/silicon/Destroy()
 	GLOB.silicon_mobs -= src
+	QDEL_NULL(radio)
 	return ..()
 
-/mob/living/silicon/proc/show_laws()
-	return
 
 /mob/living/silicon/drop_held_item()
 	return
 
+
 /mob/living/silicon/drop_all_held_items()
 	return
 
-/mob/living/simple_animal/update_transform()
-	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
-	var/changed = 0
-
-	if(resize != RESIZE_DEFAULT_SIZE)
-		changed++
-		ntransform.Scale(resize)
-		resize = RESIZE_DEFAULT_SIZE
-
-	if(changed)
-		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)
-			src.take_limb_damage(20)
-			Stun(rand(5,10))
+			take_limb_damage(20)
+			Stun(rand(5, 10))
 		if(2)
-			src.take_limb_damage(10)
-			Stun(rand(1,5))
+			take_limb_damage(10)
+			Stun(rand(1, ))
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
 	to_chat(src, "<span class='warning'>Warning: Electromagnetic pulse detected.</span>")
-	..()
+	return ..()
 
-/mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
-	return	//immune
 
-/mob/living/silicon/proc/damage_mob(var/brute = 0, var/fire = 0, var/tox = 0)
+/mob/living/silicon/stun_effect_act(stun_amount, agony_amount)
 	return
+
 
 /mob/living/silicon/IsAdvancedToolUser()
 	return TRUE
 
-/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
-	return 0//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 
-
-// this function shows health in the Status panel
-/mob/living/silicon/proc/show_system_integrity()
-	if(!stat)
-		stat(null, text("System integrity: [round((health/maxHealth)*100)]%"))
-	else
-		stat(null, text("Systems nonfunctional"))
-
-// this function displays the station time in the status panel
-/mob/living/silicon/proc/show_station_time()
-	stat(null, "Station Time: [worldtime2text()]")
+/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = 0)
+	return 0 //The only effect that can hit them atm is flashes and they still directly edit so this works for now
 
 
 // This adds the basic clock, and malf_ai info to all silicon lifeforms
@@ -91,19 +66,11 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-		show_station_time()
-		show_system_integrity()
+		if(!stat)
+			stat(null, text("System integrity: [round((health/maxHealth)*100)]%"))
+		else
+			stat(null, text("Systems nonfunctional"))
 
-// this function displays the stations manifest in a separate window
-/mob/living/silicon/proc/show_station_manifest()
-	var/dat
-	if(GLOB.datacore)
-		dat += GLOB.datacore.get_manifest(1) // make it monochrome
-
-	var/datum/browser/popup = new(src, "airoster", "<div align='center'>Crew Manifest</div>")
-	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(src, "airoster")
 
 //can't inject synths
 /mob/living/silicon/can_inject(mob/user, error_msg, target_zone, penetrate_thick = FALSE)
@@ -142,22 +109,6 @@
 		H.add_hud_to(src)
 		to_chat(src, "<span class='boldnotice'>[hud_choice] Enabled</span>")
 
-/mob/living/silicon/verb/pose()
-	set name = "Set Pose"
-	set desc = "Sets a description which will be shown when someone examines you."
-	set category = "IC"
-
-	pose =  copytext(sanitize(input(usr, "This is [src]. It is...", "Pose", null)  as text), 1, MAX_MESSAGE_LEN)
-
-/mob/living/silicon/verb/set_flavor()
-	set name = "Set Flavour Text"
-	set desc = "Sets an extended description of your character's features."
-	set category = "IC"
-
-	flavor_text =  copytext(sanitize(input(usr, "Please enter your new flavour text.", "Flavour text", null)  as text), 1)
-
-/mob/living/silicon/binarycheck()
-	return 1
 
 /mob/living/silicon/ex_act(severity)
 	flash_eyes()

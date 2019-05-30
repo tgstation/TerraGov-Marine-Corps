@@ -134,8 +134,6 @@
 
 	var/recently_pointed_to = 0 //used as cooldown for the pointing verb.
 
-	var/list/image/hud_list //This mob's HUD (med/sec, etc) images. Associative list.
-
 	var/list/hud_possible //HUD images that this mob can provide.
 
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
@@ -148,6 +146,9 @@
 	var/list/light_sources = list()
 
 	var/notransform
+
+	var/atom/movable/remote_control //Calls relaymove() to whatever it is
+	var/obj/machinery/machine = null
 
 	var/typing
 
