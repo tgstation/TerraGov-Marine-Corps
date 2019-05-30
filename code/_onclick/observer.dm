@@ -1,5 +1,5 @@
 /mob/dead/observer/DblClickOn(atom/A, params)
-	if(client?.click_intercept)
+	if(check_click_intercept(params, A))
 		return
 
 	if(can_reenter_corpse && mind?.current)
