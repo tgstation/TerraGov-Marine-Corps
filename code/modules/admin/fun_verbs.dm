@@ -1017,18 +1017,25 @@
 			continue
 		if(!D.check_dock(S, silent=TRUE))
 			continue
-		validdocks += S
+		validdocks += S.name
 
 	if(!length(validdocks))
 		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
 		return
 
-	var/obj/docking_port/stationary/dock = input("Choose the destination.", "Choose Destination") as null|anything in validdocks
+	var/dock = input("Choose the destination.", "Choose Destination") as null|anything in validdocks
 
-	if(!dock)
+	var/obj/docking_port/stationary/target
+
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(S.name != dock)
+			continue
+		target = S
+
+	if(!target)
 		return
 
-	SSshuttle.moveShuttleToDock(D.id, dock, !instant)
+	SSshuttle.moveShuttleToDock(D.id, target, !instant)
 
-	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [dock], [dock.id][instant?" instantly":""].")
-	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [dock], [dock.id][instant?" instantly":""].")
+	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
