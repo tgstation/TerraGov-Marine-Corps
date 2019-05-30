@@ -95,5 +95,26 @@
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 
+#define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
+#define COMSIG_XENOMORPH_ATTACK_BARRICADE "xenomorph_attack_barricade"
+#define COMSIG_XENOMORPH_ATTACK_CLOSET "xenomorph_attack_closet"
+#define COMSIG_XENOMORPH_ATTACK_RAZORWIRE "xenomorph_attack_razorwire"
+#define COMSIG_XENOMORPH_ATTACK_BED "xenomorph_attack_bed"
+#define COMSIG_XENOMORPH_ATTACK_NEST "xenomorph_attack_nest"
+#define COMSIG_XENOMORPH_ATTACK_TABLE "xenomorph_attack_table"
+#define COMSIG_XENOMORPH_ATTACK_RACK "xenomorph_attack_rack"
+#define COMSIG_XENOMORPH_ATTACK_SENTRY "xenomorph_attack_sentry"
+#define COMSIG_XENOMORPH_ATTACK_M56_POST "xenomorph_attack_m56_post"
+#define COMSIG_XENOMORPH_ATTACK_M56 "xenomorph_attack_m56"
+#define COMSIG_XENOMORPH_ATTACK_TANK "xenomorph_attack_tank"
+#define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
+
+#define COMSIG_XENOMORPH_DISARM_HUMAN "xenomorph_disarm_human"
+
+#define COMSIG_XENOMORPH_THROW_HIT "xenomorph_throw_hit"
+
+#define COMSIG_XENOMORPH_FIRE_BURNING "xenomorph_fire_burning"
+#define COMSIG_XENOMORPH_TAKING_DAMAGE "xenomorph_taking_damage" // (target, damagetaken)
+
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
