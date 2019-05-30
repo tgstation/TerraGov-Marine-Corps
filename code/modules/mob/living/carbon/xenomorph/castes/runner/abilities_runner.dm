@@ -5,6 +5,7 @@
 	name = "Toggle Savage"
 	action_icon_state = "savage_on"
 	mechanics_text = "Toggle on to add a vicious attack to your pounce."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
 
 /datum/action/xeno_action/toggle_savage/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -78,6 +79,7 @@
 	ability_name = "pounce"
 	plasma_cost = 10
 	var/range = 6
+	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
 /datum/action/xeno_action/activable/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()

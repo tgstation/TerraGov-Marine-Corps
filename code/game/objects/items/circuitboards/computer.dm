@@ -36,11 +36,6 @@
 	build_path = "/obj/machinery/computer/cryopod"
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/aiupload
-	name = "Circuit board (AI Upload)"
-	build_path = /obj/machinery/computer/aiupload
-	origin_tech = "programming=4"
-
 /obj/item/circuitboard/computer/med_data
 	name = "Circuit board (Medical Records)"
 	build_path = /obj/machinery/computer/med_data
@@ -165,10 +160,7 @@
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/aifixer
-	name = "Circuit board (AI Integrity Restorer)"
-	build_path = /obj/machinery/computer/aifixer
-	origin_tech = "programming=3;biotech=2"
+
 /obj/item/circuitboard/computer/area_atmos
 	name = "Circuit board (Area Air Control)"
 	build_path = /obj/machinery/computer/area_atmos

@@ -45,5 +45,4 @@
 	var/obj/item/tank/internal = null//Human/Monkey
 
 	var/datum/dna/dna //Carbon
-	var/list/viruses = list()
 	//see: setup.dm for list of mutations

@@ -45,6 +45,13 @@
 		if(3.0)
 			take_damage((rand(50, 100)))
 
+/obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
+		take_damage(rand(0.2, 2))
+
 /*
  * Resin
  */
@@ -407,7 +414,7 @@
 	var/turf/U = loc
 	spawn(0)
 		var/turf/T
-		for(var/i in cardinal)
+		for(var/i in GLOB.cardinals)
 			T = get_step(U, i)
 			if(!istype(T))
 				continue
@@ -423,7 +430,7 @@
 //do we still have something next to us to support us?
 /obj/structure/mineral_door/resin/proc/check_resin_support()
 	var/turf/T
-	for(var/i in cardinal)
+	for(var/i in GLOB.cardinals)
 		T = get_step(src, i)
 		if(T.density)
 			. = TRUE

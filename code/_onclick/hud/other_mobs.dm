@@ -12,7 +12,7 @@
 
 //BRAIN
 
-/datum/hud/brain/New(mob/living/brain/owner, ui_style='icons/mob/screen1_Midnight.dmi')
+/datum/hud/brain/New(mob/living/brain/owner, ui_style='icons/mob/screen/midnight.dmi')
 	..()
 
 /mob/living/brain/create_hud()

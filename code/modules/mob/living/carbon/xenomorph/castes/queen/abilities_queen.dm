@@ -116,6 +116,8 @@
 	ability_name = "screech"
 	plasma_cost = 250
 	cooldown_timer = 50 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
@@ -221,6 +223,7 @@
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Grow an ovipositor to lay eggs and access new abilities. Takes 20 seconds and you cannot move while on the ovipositor."
 	plasma_cost = 700
+	keybind_signal = COMSIG_XENOABILITY_GROW_OVIPOSITOR
 
 /datum/action/xeno_action/grow_ovipositor/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -262,6 +265,7 @@
 	name = "Remove Eggsac"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Get off your ovipositor, causing it to collapse. You must grow a new one the next time you wish to reattach."
+	keybind_signal = COMSIG_XENOABILITY_REMOVE_EGGSAC
 
 /datum/action/xeno_action/remove_eggsac/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -306,8 +310,7 @@
 		A.give_action(src)
 
 	anchored = TRUE
-	resting = FALSE
-	update_canmove()
+	set_resting(FALSE)
 	update_icons()
 
 	hive?.update_leader_pheromones()
@@ -377,6 +380,7 @@
 	action_icon_state = "watch_xeno"
 	mechanics_text = "See from the target Xenomorphs vision."
 	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 
 /datum/action/xeno_action/watch_xeno/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -409,6 +413,7 @@
 /datum/action/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
 /datum/action/xeno_action/psychic_whisper/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -437,6 +442,7 @@
 	action_icon_state = "toggle_queen_zoom"
 	mechanics_text = "Zoom out for a larger view around wherever you are looking."
 	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -455,6 +461,7 @@
 	action_icon_state = "xeno_lead"
 	mechanics_text = "Make a target Xenomorph a leader."
 	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 
 /datum/action/xeno_action/set_xeno_lead/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -504,6 +511,7 @@
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
 /datum/action/xeno_action/queen_heal/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -541,6 +549,7 @@
 	action_icon_state = "queen_give_plasma"
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
 /datum/action/xeno_action/queen_give_plasma/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -574,6 +583,7 @@
 	name = "Give Order"
 	action_icon_state = "queen_order"
 	plasma_cost = 100
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
 
 /datum/action/xeno_action/queen_order/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -606,6 +616,7 @@
 	action_icon_state = "xeno_deevolve"
 	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
+	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
 
 /datum/action/xeno_action/deevolve/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
@@ -726,6 +737,7 @@
 	ability_name = "advance larval growth"
 	plasma_cost = 300
 	cooldown_timer = 15 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH
 
 /datum/action/xeno_action/activable/larva_growth/can_use_ability(atom/A, silent, override_flags)
 	. = ..()

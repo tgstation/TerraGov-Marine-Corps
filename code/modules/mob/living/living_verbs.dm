@@ -268,24 +268,31 @@
 		return
 
 	if(!resting)
-		resting = TRUE
-		to_chat(src, "<span class='notice'>You are now resting.</span>")
-		update_canmove()
+		set_resting(TRUE, FALSE)
 	else if(action_busy)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
 	else if(do_mob(src, src, 2 SECONDS, uninterruptible = TRUE))
 		get_up()
 
-
 /mob/living/proc/get_up()
 	if(!incapacitated(TRUE))
-		to_chat(src, "<span class='notice'>You get up.</span>")
-		resting = FALSE
-		update_canmove()
+		set_resting(FALSE, FALSE)
 	else
 		to_chat(src, "<span class='notice'>You fail to get up.</span>")
 
+/mob/living/proc/set_resting(rest, silent = TRUE)
+	if(!silent)
+		if(rest)
+			to_chat(src, "<span class='notice'>You are now resting.</span>")
+		else
+			to_chat(src, "<span class='notice'>You get up.</span>")
+	resting = rest
+	update_resting()
+
+/mob/living/proc/update_resting()
+	hud_used?.rest_icon?.update_icon(src)
+	update_canmove()
 
 /mob/living/verb/ghost()
 	set category = "OOC"
@@ -298,7 +305,7 @@
 	if(alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body") != "Ghost")
 		return
 
-	resting = TRUE
+	set_resting(TRUE)
 	log_game("[key_name(usr)] has ghosted.")
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	var/mob/dead/observer/ghost = ghostize(FALSE)

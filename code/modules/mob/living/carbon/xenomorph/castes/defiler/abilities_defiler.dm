@@ -6,6 +6,7 @@
 	action_icon_state = "neuroclaws_off"
 	mechanics_text = "Toggle on to add neurotoxin to your melee slashes."
 	cooldown_timer = 1 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_NEUROCLAWS
 
 /datum/action/xeno_action/neuroclaws/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
@@ -80,6 +81,8 @@
 	ability_name = "emit neurogas"
 	plasma_cost = 200
 	cooldown_timer = 40 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)

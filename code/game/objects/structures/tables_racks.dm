@@ -116,7 +116,7 @@
 						dir_sum += 128
 
 	var/table_type = 0 //stand_alone table
-	if(dir_sum%16 in cardinal)
+	if(dir_sum%16 in GLOB.cardinals)
 		table_type = 1 //endtable
 		dir_sum %= 16
 	if(dir_sum%16 in list(3, 12))
@@ -267,8 +267,7 @@
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
 		"<span class='danger'>You slash [src]!</span>", null, 5)
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TABLE)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -582,8 +581,7 @@
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 	"<span class='danger'>You slice [src] apart!</span>", null, 5)
 	destroy_structure()
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RACK)
 
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()

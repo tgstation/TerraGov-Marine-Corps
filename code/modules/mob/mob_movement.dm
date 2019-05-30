@@ -86,6 +86,12 @@
 	if(direct in GLOB.diagonals)
 		double_delay = TRUE
 
+	if(L.remote_control) //we're controlling something, our movement is relayed to it
+		return L.remote_control.relaymove(L, direct)
+
+	if(isAI(L))
+		return AIMove(n, direct, L)
+
 	//Check if you are being grabbed and if so attemps to break it
 	if(L.pulledby)
 		if(L.incapacitated(TRUE))
@@ -125,7 +131,7 @@
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
 
 		if(L.confused)
-			step(L, pick(cardinal))
+			step(L, pick(GLOB.cardinals))
 		else
 			. = ..()
 

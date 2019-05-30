@@ -39,12 +39,6 @@
 		ML.apply_damage(rand(1,3), BRUTE, dam_zone, armor)
 		for(var/mob/O in viewers(ML, null))
 			O.show_message("<span class='danger'>[name] has bit [ML]!</span>", 1)
-		if(armor >= 1) //Complete negation
-			return
-		if(ismonkey(ML))
-			for(var/datum/disease/D in viruses)
-				if(istype(D, /datum/disease/jungle_fever))
-					ML.contract_disease(D,1,0)
 	else
 		for(var/mob/O in viewers(ML, null))
 			O.show_message("<span class='danger'>[src] has attempted to bite [ML]!</span>", 1)
@@ -56,11 +50,3 @@
 */
 /mob/new_player/Click()
 	return TRUE
-
-
-/atom/proc/attack_ai(mob/user as mob)
-	return FALSE
-
-
-/atom/proc/attack_robot(mob/user as mob)
-	return FALSE

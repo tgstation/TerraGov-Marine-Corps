@@ -128,6 +128,12 @@ Contains most of the procs that are called when a mob is attacked by something
 			return TRUE
 	return ..()
 
+/mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) && species.has_organ["lungs"])
+		var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
+		L?.take_damage(1, TRUE)
+
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
 	if(!I || !user)	return 0
@@ -221,7 +227,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	//Melee weapon embedded object code.
 	if (I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
 		var/damage = I.force
-		if(damage > 40) 
+		if(damage > 40)
 			damage = 40
 		if (!armor && weapon_sharp && prob(3))
 			affecting.embed(I)

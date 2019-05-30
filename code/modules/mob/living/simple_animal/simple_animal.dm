@@ -85,7 +85,7 @@
 	. = ..()
 	icon_state = icon_living
 	density = initial(density)
-	resting = FALSE
+	set_resting(FALSE)
 
 /mob/living/simple_animal/Life()
 	..()
@@ -101,7 +101,7 @@
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-					Move(get_step(src,pick(cardinal)))
+					Move(get_step(src,pick(GLOB.cardinals)))
 					turns_since_move = 0
 
 	//Speaking
@@ -220,7 +220,7 @@
 	health = 0
 	icon_state = icon_dead
 	density = FALSE
-	resting = TRUE
+	set_resting(TRUE)
 
 
 /mob/living/simple_animal/gib()

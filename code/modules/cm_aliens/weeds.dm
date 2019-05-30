@@ -11,7 +11,7 @@
 	plane = FLOOR_PLANE
 	layer = TURF_LAYER
 	var/parent_node
-	max_integrity = 1
+	max_integrity = 4
 
 /obj/effect/alien/weeds/healthcheck()
     if(obj_integrity <= 0)
@@ -52,7 +52,7 @@
 	if(!U)
 		U = loc
 	if(istype(U))
-		for (var/dirn in cardinal)
+		for (var/dirn in GLOB.cardinals)
 			var/turf/T = get_step(U, dirn)
 
 			if (!istype(T))
@@ -65,7 +65,7 @@
 
 /obj/effect/alien/weeds/proc/update_sprite()
 	var/my_dir = 0
-	for (var/check_dir in cardinal)
+	for (var/check_dir in GLOB.cardinals)
 		var/turf/check = get_step(src, check_dir)
 
 		if (!istype(check))
@@ -202,7 +202,7 @@
 	// Generate our full graph before adding to SSweeds
 	generate_weed_graph()
 	SSweeds.add_node(src)
-	
+
 	if(X)
 		add_hiddenprint(X)
 
@@ -215,7 +215,7 @@
 		node_size--
 		for(var/X in turfs_to_check)
 			var/turf/T = X
-			for(var/direction in GLOB.cardinals) 
+			for(var/direction in GLOB.cardinals)
 				var/turf/AdjT = get_step(T, direction)
 				if (AdjT == src) // Ignore the node
 					continue

@@ -69,10 +69,6 @@
 		if(approximate_intensity > 30)
 			lighting_controller.processing = 0
 
-		var/powernet_rebuild_was_deferred_already = defer_powernet_rebuild
-		// Large enough explosion. For performance reasons, powernets will be rebuilt manually
-		if(!defer_powernet_rebuild && (approximate_intensity > 25))
-			defer_powernet_rebuild = TRUE
 
 		if(heavy_impact_range > 1)
 			var/datum/effect_system/explosion/E = new/datum/effect_system/explosion()
@@ -125,9 +121,7 @@
 			lighting_controller.processing = 1
 			lighting_controller.process() //Restart the lighting controller
 
-		if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
-			SSmachines.makepowernets()
-			defer_powernet_rebuild = FALSE
+		SSmachines.makepowernets()
 
 	return 1
 

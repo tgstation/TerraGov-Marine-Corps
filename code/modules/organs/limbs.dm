@@ -718,7 +718,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 			if(organ)
 				//Throw organs around
-				var/lol = pick(cardinal)
+				var/lol = pick(GLOB.cardinals)
 				step(organ,lol)
 
 		owner.update_body(1, 1)

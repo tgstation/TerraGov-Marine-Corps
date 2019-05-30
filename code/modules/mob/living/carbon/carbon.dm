@@ -1,7 +1,4 @@
-
 /mob/living/carbon/Destroy()
-	for(var/datum/disease/virus in viruses)
-		virus.cure()
 	. = ..()
 	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
 
@@ -54,21 +51,13 @@
 	if (legcuffed && !initial(legcuffed))
 		dropItemToGround(legcuffed)
 	legcuffed = initial(legcuffed)
-	
+
 	return ..()
 
 
 /mob/living/carbon/human/attack_hand(mob/living/carbon/M)
 	if(!iscarbon(M))
 		return
-
-	for(var/datum/disease/D in viruses)
-		if(D.spread_by_touch())
-			M.contract_disease(D, 0, 1, CONTACT_HANDS)
-
-	for(var/datum/disease/D in M.viruses)
-		if(D.spread_by_touch())
-			contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	next_move += 7 //Adds some lag to the 'attack'
 	return
@@ -77,16 +66,6 @@
 /mob/living/carbon/attack_paw(mob/living/carbon/M)
 	if(!iscarbon(M))
 		return
-
-	for(var/datum/disease/D in viruses)
-
-		if(D.spread_by_touch())
-			M.contract_disease(D, 0, 1, CONTACT_HANDS)
-
-	for(var/datum/disease/D in M.viruses)
-
-		if(D.spread_by_touch())
-			contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	next_move += 7 //Adds some lag to the 'attack'
 	return
@@ -138,16 +117,12 @@
 		wielded_item.zoom(src)
 	hand = !hand
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		hud_used.l_hand_hud_object.update_icon(hand)
+		hud_used.r_hand_hud_object.update_icon(!hand)
 		if(hand)	//This being 1 means the left hand is in use
-			hud_used.l_hand_hud_object.icon_state = "hand_active"
-			hud_used.r_hand_hud_object.icon_state = "hand_inactive"
+			hud_used.l_hand_hud_object.add_overlay("hand_active")
 		else
-			hud_used.l_hand_hud_object.icon_state = "hand_inactive"
-			hud_used.r_hand_hud_object.icon_state = "hand_active"
-	/*if (!( src.hand ))
-		src.hands.setDir(NORTH)
-	else
-		src.hands.setDir(SOUTH)*/
+			hud_used.r_hand_hud_object.add_overlay("hand_active")
 	return
 
 /mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
@@ -202,8 +177,7 @@
 				if(client)
 					AdjustSleeping(-5)
 				if(sleeping == 0)
-					resting = 0
-					update_canmove()
+					set_resting(FALSE)
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
 				AdjustKnockedout(-3)
@@ -423,10 +397,10 @@
 		LL_dir.transform = 0 //Reset and 0 out
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
-/mob/living/carbon/clear_leader_tracking()	
+/mob/living/carbon/clear_leader_tracking()
 	var/obj/screen/LL_dir = hud_used.SL_locator
 	LL_dir.icon_state = "SL_locator_off"
-	
+
 
 /mob/living/carbon/proc/equip_preference_gear(client/C)
 	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))

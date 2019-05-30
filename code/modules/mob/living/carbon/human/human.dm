@@ -312,7 +312,7 @@
 
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
-/mob/living/carbon/human/proc/get_visible_name()
+/mob/living/carbon/human/get_visible_name()
 	if( wear_mask && (wear_mask.flags_inv_hide & HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
 	if( head && (head.flags_inv_hide & HIDEFACE) )
@@ -1044,7 +1044,7 @@
 		germ_level += n
 
 
-/mob/living/carbon/human/revive(keep_viruses)
+/mob/living/carbon/human/revive()
 	for (var/datum/limb/O in limbs)
 		if(O.limb_status & LIMB_ROBOT)
 			O.limb_status = LIMB_ROBOT
@@ -1074,10 +1074,6 @@
 
 	for(var/datum/internal_organ/I in internal_organs)
 		I.damage = 0
-
-	if(!keep_viruses)
-		for (var/datum/disease/virus in viruses)
-			virus.cure(0)
 
 	undefibbable = FALSE
 	

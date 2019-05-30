@@ -512,7 +512,7 @@
 	. = ..()
 	if(.)
 		var/turf/T
-		for(var/i in cardinal)
+		for(var/i in GLOB.cardinals)
 			T = get_step(src, i)
 			if(!istype(T)) continue
 			for(var/obj/structure/mineral_door/resin/R in T)

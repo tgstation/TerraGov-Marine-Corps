@@ -113,8 +113,8 @@
 
 	if(damage > 12) //Light damage won't splash.
 		check_blood_splash(damage, damagetype, chancemod)
-		if(damage > 15 && stealth_router(HANDLE_STEALTH_CHECK)) //Any significant damage causes us to break stealth
-			stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage)
 
 	if(stat == DEAD)
 		return FALSE

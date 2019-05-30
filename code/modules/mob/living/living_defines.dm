@@ -75,6 +75,7 @@
 	var/reagent_shock_modifier = 0 //negative values reduce shock/pain
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 
+	var/smoke_delay = FALSE
 	var/smokecloaked = FALSE //For the new Smoke Grenade
 
 	var/no_stun = FALSE
