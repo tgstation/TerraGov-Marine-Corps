@@ -35,16 +35,21 @@
 		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
 		destroy_structure()
 
-/obj/structure/attackby(obj/item/C as obj, mob/user as mob)
+/obj/structure/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(C, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+
+	if(!istype(I, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		return
-	var/obj/item/tool/pickaxe/plasmacutter/P = C
+
+	var/obj/item/tool/pickaxe/plasmacutter/P = I
 	if(!P.start_cut(user, name, src))
 		return
-	if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-		P.cut_apart(user, name, src)
-		qdel(src)
+		
+	if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
+		return
+
+	P.cut_apart(user, name, src)
+	qdel(src)
 
 //Default "structure" proc. This should be overwritten by sub procs.
 /obj/structure/attack_alien(mob/living/carbon/xenomorph/M)

@@ -196,59 +196,54 @@
 		return
 	attack_generic(M, M.melee_damage_upper)
 
-/obj/structure/window/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
+/obj/structure/window/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/grab) && get_dist(src, user) < 2)
 		if(isxeno(user))
 			return
-		var/obj/item/grab/G = W
-		if(isliving(G.grabbed_thing))
-			var/mob/living/M = G.grabbed_thing
-			var/state = user.grab_level
-			user.drop_held_item()
-			switch(state)
-				if(GRAB_PASSIVE)
-					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
-					log_admin("[key_name(usr)] slams [key_name(M)] against \the [src].")
-					log_combat(user, M, "slammed", "", "against \the [src]")
-					msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
-					M.apply_damage(7)
-					if(damageable) //Possible to destroy
-						obj_integrity -= 10
-				if(GRAB_AGGRESSIVE)
-					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
-					log_admin("[key_name(usr)] bashes [key_name(M)] against \the [src].")
-					log_combat(user, M, "bashed", "", "against \the [src]")
-					msg_admin_attack("[key_name(usr)] bashed [key_name(M)]'s face' against \the [src].")
-					if(prob(50))
-						M.KnockDown(1)
-					M.apply_damage(10)
-					if(damageable) //Possible to destroy
-						obj_integrity -= 25
-				if(GRAB_NECK)
-					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
-					log_admin("[key_name(usr)] crushes [key_name(M)] against \the [src].")
-					log_combat(user, M, "crushed", "", "against \the [src]")
-					msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
-					M.KnockDown(5)
-					M.apply_damage(20)
-					if(damageable) //Possible to destroy
-						obj_integrity -= 50
-			healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
+		var/obj/item/grab/G = I
+		if(!isliving(G.grabbed_thing))
+			return
+
+		var/mob/living/M = G.grabbed_thing
+		var/state = user.grab_level
+		user.drop_held_item()
+		switch(state)
+			if(GRAB_PASSIVE)
+				M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+				log_admin("[key_name(usr)] slams [key_name(M)] against \the [src].")
+				log_combat(user, M, "slammed", "", "against \the [src]")
+				msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
+				M.apply_damage(7)
+				if(damageable) //Possible to destroy
+					obj_integrity -= 10
+			if(GRAB_AGGRESSIVE)
+				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+				log_admin("[key_name(usr)] bashes [key_name(M)] against \the [src].")
+				log_combat(user, M, "bashed", "", "against \the [src]")
+				msg_admin_attack("[key_name(usr)] bashed [key_name(M)]'s face' against \the [src].")
+				if(prob(50))
+					M.KnockDown(1)
+				M.apply_damage(10)
+				if(damageable) //Possible to destroy
+					obj_integrity -= 25
+			if(GRAB_NECK)
+				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+				log_admin("[key_name(usr)] crushes [key_name(M)] against \the [src].")
+				log_combat(user, M, "crushed", "", "against \the [src]")
+				msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
+				M.KnockDown(5)
+				M.apply_damage(20)
+				if(damageable) //Possible to destroy
+					obj_integrity -= 50
+			
+		healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
+
+	else if(I.flags_item & NOBLUDGEON)
 		return
 
-	if(W.flags_item & NOBLUDGEON)
-		return
-
-	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && deconstructable)
-		var/obj/item/tool/pickaxe/plasmacutter/P = W
-		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
-				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-				obj_integrity = 0
-				healthcheck(0, 0, 1)
-				return
-
-	else if(isscrewdriver(W) && deconstructable)
+	else if(isscrewdriver(I) && deconstructable)
 		dismantle = TRUE
 		if(reinf && state >= 1)
 			state = 3 - state
@@ -266,21 +261,20 @@
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>"))
 		else if(static_frame && state == 0)
 			disassemble_window()
-	else if(iscrowbar(W) && reinf && state <= 1 && deconstructable)
+
+	else if(iscrowbar(I) && reinf && state <= 1 && deconstructable)
 		dismantle = TRUE
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		to_chat(user, (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>"))
 
-	if(damageable && dismantle == FALSE) //Possible to destroy
-		obj_integrity -= W.force
+	else if(damageable && dismantle == FALSE) //Possible to destroy
+		obj_integrity -= I.force
 		if(obj_integrity <= 7  && !reinf && !static_frame && deconstructable)
 			anchored = FALSE
 			update_nearby_icons()
 			step(src, get_dir(user, src))
-		healthcheck(1, 1, 1, user, W)
-		. = ..() // Do the attack animation.
-	dismantle = FALSE
+		healthcheck(1, 1, 1, user, I)
 
 
 /obj/structure/window/proc/disassemble_window()
@@ -534,7 +528,6 @@
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
 	max_integrity = 1000
 	deconstructable = FALSE
-	window_frame = /obj/structure/window_frame/almayer/requisitions
 
 /obj/structure/window/framed/almayer/white
 	icon_state = "white_rwindow0"

@@ -34,36 +34,41 @@
 	if(charging)
 		to_chat(user, "Current charge: [charging.charge]")
 
-/obj/machinery/cell_charger/attackby(obj/item/W, mob/user)
+/obj/machinery/cell_charger/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(machine_stat & BROKEN)
 		return
 
-	if(istype(W, /obj/item/cell) && anchored)
+	if(istype(I, /obj/item/cell) && anchored)
 		if(charging)
 			to_chat(user, "<span class='warning'>There is already a cell in the charger.</span>")
 			return
-		else
-			var/area/a = loc.loc // Gets our locations location, like a dream within a dream
-			if(!isarea(a))
-				return
-			if(a.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-				to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>")
-				return
 
-			if(user.transferItemToLoc(W, src))
-				charging = W
-				user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
-				chargelevel = -1
-				start_processing()
+		var/area/A = loc.loc
+		if(!isarea(A))
+			return
+
+		if(A.power_equip == 0) // There's no APC in this area, don't try to cheat power!
+			to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>")
+			return
+
+		if(user.transferItemToLoc(I, src))
+			charging = I
+			user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
+			chargelevel = -1
+			start_processing()
+
 		updateicon()
-	else if(iswrench(W))
+
+	else if(iswrench(I))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
 			return
 
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground")
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(charging)

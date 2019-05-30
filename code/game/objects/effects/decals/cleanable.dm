@@ -7,10 +7,10 @@
 		src.icon_state = pick(src.random_icon_states)
 	return ..()
 
-/obj/effect/decal/cleanable/attackby(obj/item/W, mob/user)
+/obj/effect/decal/cleanable/attackby(obj/item/I, mob/user, params)
 	var/obj/effect/alien/weeds/A = locate() in loc
 	if(A)
-		return A.attackby(W,user)
+		return A.attackby(I, user, params)
 	else
 		return ..()
 

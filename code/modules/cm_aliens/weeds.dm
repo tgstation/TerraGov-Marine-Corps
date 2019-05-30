@@ -95,43 +95,43 @@
 			if(prob(50))
 				qdel(src)
 
-/obj/effect/alien/weeds/attackby(obj/item/W, mob/living/user)
-	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
-		return 0
+/obj/effect/alien/weeds/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	user.changeNext_move(W.attack_speed)
+	if(I.flags_item & NOBLUDGEON || !isliving(user))
+		return
 
-	var/damage = W.force
-	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
+	var/damage = I.force
+	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate
 		damage *= 0.25
 
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-
-		if(WT.remove_fuel(0))
-			damage = 15
-			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
-
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.remove_fuel(0))
+			return
+		damage = 15
+		playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 	else
 		playsound(loc, "alien_resin_break", 25)
-	user.animation_attack_on(src)
+
+	var/mob/living/L = user
+	L.animation_attack_on(src)
 
 	var/multiplier = 1
-	if(W.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
-	var/obj/item/tool/pickaxe/plasmacutter/P
-	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
-		P = W
-		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 			multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 
-	if(!P) //Plasma cutters have their own message.
+	else //Plasma cutters have their own message.
 		if(istype(src, /obj/effect/alien/weeds/node)) //The pain is real
-			to_chat(user, "<span class='warning'>You hit \the [src] with \the [W].</span>")
+			to_chat(user, "<span class='warning'>You hit \the [src] with \the [I].</span>")
 		else
-			to_chat(user, "<span class='warning'>You cut \the [src] away with \the [W].</span>")
+			to_chat(user, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
 
 	obj_integrity -= damage * multiplier
 	healthcheck()

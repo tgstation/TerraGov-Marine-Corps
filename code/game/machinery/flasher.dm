@@ -103,18 +103,17 @@
 		if ((M.m_intent != MOVE_INTENT_WALK) && (src.anchored))
 			src.flash()
 
-/obj/machinery/flasher/portable/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswrench(W))
-		add_fingerprint(user)
-		src.anchored = !src.anchored
+/obj/machinery/flasher/portable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswrench(I))
+		anchored = !anchored
 
-		if (!src.anchored)
-			user.show_message(text("<span class='warning'> [src] can now be moved.</span>"))
-			src.overlays.Cut()
-
-		else if (src.anchored)
+		if(!anchored)
 			user.show_message(text("<span class='warning'> [src] is now secured.</span>"))
-			src.overlays += "[base_state]-s"
+			overlays += "[base_state]-s"
+		else
+			user.show_message(text("<span class='warning'> [src] can now be moved.</span>"))
+			overlays.Cut()
 
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -122,8 +121,9 @@
 /obj/machinery/flasher_button/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/flasher_button/attackby(obj/item/W, mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_hand(mob/user as mob)
 

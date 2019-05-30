@@ -100,14 +100,18 @@
 	to_chat(user, "You take out the [pcell] out of the [src].")
 	pcell = null
 
-/obj/item/smartgun_powerpack/attackby(obj/item/A, mob/user)
-	if(!istype(A, /obj/item/cell))
-		return ..()
-	if(!QDELETED(pcell))
-		to_chat(user, "There already is a cell in the [src].")
-		return
-	var/obj/item/cell/C = A
-	if(user.transferItemToLoc(C, src))
+/obj/item/smartgun_powerpack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/cell))
+		var/obj/item/cell/C = I
+
+		if(!QDELETED(pcell))
+			to_chat(user, "There already is a cell in the [src].")
+			return
+
+		if(!user.transferItemToLoc(C, src))
+			return
+			
 		pcell = C
 		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)

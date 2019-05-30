@@ -130,20 +130,19 @@
 	start_processing()
 	return TRUE
 
-/obj/machinery/power/fusion_engine/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/fuelCell))
+/obj/machinery/power/fusion_engine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/fuelCell))
 		if(is_on)
 			to_chat(user, "<span class='warning'>The [src] needs to be turned off first.</span>")
-			return TRUE
-		if(!fusion_cell)
-			if(user.transferItemToLoc(O, src))
-				fusion_cell = O
-				update_icon()
-				to_chat(user, "<span class='notice'>You load the [src] with the [O].</span>")
-			return TRUE
-		else
+			return
+		if(fusion_cell)
 			to_chat(user, "<span class='warning'>You need to remove the fuel cell from [src] first.</span>")
-			return TRUE
+			return
+		if(user.transferItemToLoc(I, src))
+			fusion_cell = I
+			update_icon()
+			to_chat(user, "<span class='notice'>You load the [src] with the [I].</span>")
 		return TRUE
 	else
 		return ..()

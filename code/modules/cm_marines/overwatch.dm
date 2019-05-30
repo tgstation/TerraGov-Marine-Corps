@@ -52,7 +52,7 @@
 	name = "Delta Overwatch Console"
 	squad_console = DELTA_SQUAD
 
-/obj/machinery/computer/overwatch/attackby(var/obj/I as obj, var/mob/user as mob)  //Can't break or disassemble.
+/obj/machinery/computer/overwatch/attackby(obj/item/I, mob/user, params)
 	return
 
 /obj/machinery/computer/overwatch/bullet_act(var/obj/item/projectile/Proj) //Can't shoot it

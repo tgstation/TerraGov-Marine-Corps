@@ -41,14 +41,19 @@
 	else
 		..()
 
-/obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
-	if(istype(W, /obj/item/detective_scanner))
+/obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/detective_scanner))
 		return
-	if(istype(W, /obj/item/card/emag))
+
+	else if(istype(I, /obj/item/card/emag))
 		req_access = list()
 		req_one_access = list()
-		playsound(src.loc, "sparks", 25, 1)
-	return src.attack_hand(user)
+		playsound(loc, "sparks", 25, 1)
+
+	else 
+		return attack_hand(user)
 
 /obj/machinery/door_control/proc/handle_dropship(var/ship_id)
 	var/shuttle_tag
@@ -191,11 +196,13 @@
 /obj/machinery/driver_button/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/driver_button/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/driver_button/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(W, /obj/item/detective_scanner))
+	if(istype(I, /obj/item/detective_scanner))
 		return
-	return src.attack_hand(user)
+	else
+		return attack_hand(user)
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
 

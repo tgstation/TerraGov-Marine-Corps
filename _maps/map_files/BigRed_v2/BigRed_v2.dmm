@@ -17408,11 +17408,11 @@
 /turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "aZA" = (
-/turf/open/floor/carpet/alt,
+/turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "aZB" = (
 /obj/structure/bed/chair/comfy/black,
-/turf/open/floor/carpet/alt,
+/turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "aZD" = (
 /obj/structure/window/reinforced{
@@ -17494,13 +17494,13 @@
 "aZT" = (
 /obj/structure/table,
 /obj/machinery/computer3/laptop/secure_data,
-/turf/open/floor/carpet/alt,
+/turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "aZU" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor/carpet/alt,
+/turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "aZW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -17727,11 +17727,11 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor/carpet/alt,
+/turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "baH" = (
 /obj/structure/table,
-/turf/open/floor/carpet/alt,
+/turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "baI" = (
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor{
@@ -17855,7 +17855,7 @@
 "bbj" = (
 /obj/structure/table,
 /obj/item/alienjar,
-/turf/open/floor/carpet/alt,
+/turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "bbk" = (
 /obj/machinery/light{
@@ -18235,7 +18235,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/carpet/alt,
+/turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "bcI" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
