@@ -103,8 +103,6 @@
 
 	var/job //Living
 
-	var/voice_name = "unidentifiable voice"
-
 	var/faction = "Neutral"
 
 //Monkey/infected mode

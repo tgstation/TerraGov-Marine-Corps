@@ -968,7 +968,6 @@ mob/proc/yank_out_object()
 	log_played_names(ckey, newname)
 
 	real_name = newname
-	voice_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname

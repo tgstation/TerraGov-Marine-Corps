@@ -584,7 +584,7 @@ var/global/image/busy_indicator_hostile
 							continue
 						O.loc = X
 					for(var/mob/M in T)
-						if(!ismob(M) || istype(M, /mob/aiEye)) 
+						if(!ismob(M)) 
 							continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
 
@@ -752,7 +752,7 @@ var/global/image/busy_indicator_hostile
 
 					for(var/mob/M in T)
 
-						if(!ismob(M) || istype(M, /mob/aiEye)) 
+						if(!ismob(M)) 
 							continue // If we need to check for more mobs, I'll add a variable
 						mobs += M
 

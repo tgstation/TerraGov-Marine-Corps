@@ -8,7 +8,7 @@
 	var/list/T = list()
 
 	for(var/obj/machinery/camera/C in L)
-		var/list/tempnetwork = C.network & network
+		var/list/tempnetwork = C.network & available_networks
 		if(length(tempnetwork))
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
 
@@ -36,12 +36,12 @@
 	track.humans.Cut()
 	track.others.Cut()
 
-	if(usr.stat == DEAD)
+	if(incapacitated())
 		return
 
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
-		if(!L.can_track(usr))
+		if(!L.can_track(src))
 			continue
 
 		var/name = L.name
@@ -80,32 +80,30 @@
 	if(!istype(target))
 		return
 
-	var/mob/living/silicon/ai/U = usr
+	cameraFollow = target
+	tracking = TRUE
 
-	U.cameraFollow = target
-	U.tracking = TRUE
-
-	if(!target || !target.can_track(usr))
-		to_chat(U, "<span class='warning'>Target is not near any active cameras.</span>")
-		U.cameraFollow = null
+	if(!target || !target.can_track(src))
+		to_chat(src, "<span class='warning'>Target is not near any active cameras.</span>")
+		cameraFollow = null
 		return
 
-	to_chat(U, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	to_chat(src, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
 
 	var/cameraticks = 0
 	spawn(0)
-		while(U.cameraFollow == target)
-			if(U.cameraFollow == null)
+		while(cameraFollow == target)
+			if(cameraFollow == null)
 				return
 
-			if(!target.can_track(usr))
-				U.tracking = TRUE
+			if(!target.can_track(src))
+				tracking = TRUE
 				if(!cameraticks)
-					to_chat(U, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+					to_chat(src, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
 				cameraticks++
 				if(cameraticks > 9)
-					U.cameraFollow = null
-					to_chat(U, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+					cameraFollow = null
+					to_chat(src, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
 					tracking = FALSE
 					return
 				else
@@ -114,14 +112,14 @@
 
 			else
 				cameraticks = 0
-				U.tracking = FALSE
+				tracking = FALSE
 
-			if(U.eyeobj)
-				U.eyeobj.setLoc(get_turf(target))
+			if(eyeobj)
+				eyeobj.setLoc(get_turf(target))
 
 			else
 				view_core()
-				U.cameraFollow = null
+				cameraFollow = null
 				return
 
 			sleep(10)

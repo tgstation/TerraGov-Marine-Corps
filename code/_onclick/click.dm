@@ -411,6 +411,7 @@
 
 
 /obj/screen/click_catcher
+	name = null
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "catcher"
 	plane = CLICKCATCHER_PLANE

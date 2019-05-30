@@ -24,11 +24,9 @@
 	if(H.gender == MALE)
 		H.name = pick(GLOB.first_names_male_pmc) + " " + pick(GLOB.last_names_pmc)
 		H.real_name = H.name
-		H.voice_name = H.name
 	else
 		H.name = pick(GLOB.first_names_female_pmc) + " " + pick(GLOB.last_names_pmc)
 		H.real_name = H.name
-		H.voice_name = H.name
 
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)

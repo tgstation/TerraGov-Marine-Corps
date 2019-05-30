@@ -157,7 +157,7 @@
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
-		command_announcement.Announce("A distress beacon has been launched from the [CONFIG_GET(string/ship_name)].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
+		priority_announce("A distress beacon has been launched from the [CONFIG_GET(string/ship_name)].", "Priority Alert", sound = 'sound/AI/distressbeacon.ogg')
 
 	SSticker.mode.on_distress_cooldown = TRUE
 
@@ -192,7 +192,7 @@
 		candidates = list()
 
 		if(announce)
-			command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
+			priority_announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
 
 		SSticker.mode.picked_call = null
 		SSticker.mode.on_distress_cooldown = TRUE
@@ -216,7 +216,7 @@
 		message_admins("Distress beacon: All valid candidates were selected.")
 
 	if(announce)
-		command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
+		priority_announce(dispatch_message, "Distress Beacon", sound = 'sound/AI/distressreceived.ogg')
 
 	message_admins("Distress beacon: [name] finalized, starting spawns.")
 
