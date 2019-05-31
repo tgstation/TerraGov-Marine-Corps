@@ -1,9 +1,8 @@
-//Fire
 /obj/effect/particle_effect/fire  //Fire that ignites mobs and deletes itself after some time, but doesn't mess with atmos. Good fire flamethrowers and incendiary stuff.
 	name = "fire"
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "f3"
-	var/life = 0.5 //In seconds
+	var/life = 0.5 SECONDS
 	mouse_opacity = 0
 
 /obj/effect/particle_effect/fire/Initialize()
@@ -11,7 +10,7 @@
 	if(!isturf(loc))
 		qdel(src)
 		return
-	QDEL_IN(src, life SECONDS)
+	QDEL_IN(src, life)
 
 	setDir(pick(GLOB.cardinals))
 	SetLuminosity(3)
@@ -30,10 +29,3 @@
 	. = ..()
 	if(istype(L))
 		L.fire_act()
-
-	//End fire
-
-
-/turf/proc/detonate_banshee()
-	var/obj/structure/ship_ammo/rocket/banshee/B = new(src)
-	B.detonate_on(src)
