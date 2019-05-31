@@ -8,10 +8,10 @@
 #define BE_OVERFLOW 1
 #define RETURN_TO_LOBBY 2
 
-#define JOBS_PRIORITY_HIGH   1
+#define JOBS_PRIORITY_HIGH   3
 #define JOBS_PRIORITY_MEDIUM 2
-#define JOBS_PRIORITY_LOW    3
-#define JOBS_PRIORITY_NEVER  4
+#define JOBS_PRIORITY_LOW    1
+#define JOBS_PRIORITY_NEVER  0
 
 #define MAX_GEAR_COST 5 //Custom loadout point limit.
 
