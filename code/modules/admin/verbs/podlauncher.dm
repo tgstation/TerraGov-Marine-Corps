@@ -673,7 +673,7 @@
 	toLaunch.forceMove(shippingLane)
 	if(launchClone)
 		for(var/atom/movable/O in launchList)
-			DuplicateObject(O).forceMove(toLaunch)
+			DuplicateObject(O, toLaunch)
 		new /obj/effect/DPtarget(A, toLaunch)
 	else
 		for(var/atom/movable/O in launchList)
