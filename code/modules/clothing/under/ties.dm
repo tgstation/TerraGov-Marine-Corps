@@ -361,29 +361,29 @@
 
 
 //For the holster hotkey
-/mob/living/carbon/human/proc/holster()
+/mob/living/carbon/human/proc/do_holster()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+
 	if(incapacitated() || lying) 
-		return FALSE
+		return
 	
 	if(!istype(w_uniform, /obj/item/clothing/under))
-		return FALSE
+		return
 
 	var/obj/item/clothing/under/S = w_uniform
 
 	if(!istype(S.hastie, /obj/item/clothing/tie/holster))
-		return FALSE
+		return
 
 	var/obj/item/clothing/tie/holster/H = S.hastie
 
 	if(!H.holstered)
 		var/obj/item/weapon/gun/G = get_active_held_item()
 		if(!istype(G))
-			return FALSE
+			return
 		H.holster(G, src)
 	else
 		H.unholster(src)
-	
-	return TRUE
 
 
 /obj/item/clothing/tie/holster/m4a3/New()

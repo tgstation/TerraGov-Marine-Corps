@@ -120,11 +120,17 @@
 #define COMSIG_XENOMORPH_FIRE_BURNING "xenomorph_fire_burning"
 #define COMSIG_XENOMORPH_TAKING_DAMAGE "xenomorph_taking_damage" // (target, damagetaken)
 
+//human signals
+#define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
+
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
 
+//keybindings
+
+#define COMSIG_KB_ACTIVATED (1<<0)
+
 // xeno abilities for keybindings
-#define COMSIG_XENOABILITY_HAS_ABILITY 1
 
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
 #define COMSIG_XENOABILITY_DROP_WEEDS "xenoability_drop_weeds"

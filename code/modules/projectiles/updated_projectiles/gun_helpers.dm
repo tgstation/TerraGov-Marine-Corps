@@ -310,15 +310,16 @@ should be alright.
 	return FALSE
 
 
-/mob/living/carbon/human/proc/unique_action()
+/mob/living/carbon/human/proc/do_unique_action()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 	if(incapacitated() || lying)
-		return FALSE
+		return
 
 	var/obj/item/weapon/gun/G = get_active_held_item()
 	if(!istype(G))
-		return FALSE
+		return
 
-	return G.unique_action(src)
+	G.unique_action(src)
 
 
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)

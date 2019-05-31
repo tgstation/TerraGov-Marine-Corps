@@ -3,7 +3,7 @@
 	weight = WEIGHT_MOB
 
 /datum/keybinding/xeno/down(client/user)
-	if(SEND_SIGNAL(user.mob, keybind_signal) & COMSIG_XENOABILITY_HAS_ABILITY)
+	if(SEND_SIGNAL(user.mob, keybind_signal) & COMSIG_KB_ACTIVATED)
 		return TRUE
 
 	return FALSE

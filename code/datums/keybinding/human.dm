@@ -3,7 +3,7 @@
 	weight = WEIGHT_MOB
 
 /datum/keybinding/human/down(client/user)
-	return !isnull(SEND_SIGNAL(user.mob, keybind_signal)) //True or False is not important here. If there's a return, we've triggered a proc.
+	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal), COMSIG_KB_ACTIVATED)
 
 
 /datum/keybinding/human/quick_equip
