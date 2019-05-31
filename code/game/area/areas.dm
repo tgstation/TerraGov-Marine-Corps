@@ -30,7 +30,7 @@
 	uid = ++global_uid
 	related = list(src)
 	active_areas += src
-	all_areas += src
+	GLOB.all_areas += src
 
 	initialize_power_and_lighting()
 
