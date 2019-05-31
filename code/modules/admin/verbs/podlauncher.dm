@@ -710,14 +710,15 @@
 	var/delayString = temp_pod.landingDelay == initial(temp_pod.landingDelay) ? "" : " Delay=[temp_pod.landingDelay*0.1]s"
 	var/damageString = temp_pod.damage == 0 ? "" : " Dmg=[temp_pod.damage]"
 	var/explosionString = ""
+	var/areaString = specificTarget ? "in [AREACOORD(specificTarget)]" : ""
 	var/explosion_sum = temp_pod.explosionSize[1] + temp_pod.explosionSize[2] + temp_pod.explosionSize[3] + temp_pod.explosionSize[4]
 	if(explosion_sum != 0)
 		explosionString = " Boom=|"
 		for(var/X in temp_pod.explosionSize)
 			explosionString += "[X]|"
 
-	var/msg = "launched [podString][whomString].[delayString][damageString][explosionString]"
-	message_admins("[key_name_admin(usr)] [msg] in [AREACOORD(specificTarget)].")
+	var/msg = "launched [podString][whomString].[delayString][damageString][explosionString][areaString]"
+	message_admins("[key_name_admin(usr)] [msg].")
 	if(!isemptylist(whoDyin))
 		for(var/mob/living/M in whoDyin)
 			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
