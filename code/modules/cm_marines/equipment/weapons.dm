@@ -37,7 +37,7 @@
 	pcell = new /obj/item/cell(src)
 
 /obj/item/smartgun_powerpack/attack_self(mob/living/carbon/human/user, automatic = FALSE)
-	if(!type(user) || user.incapacitated())
+	if(!istype(user) || user.incapacitated())
 		return FALSE
 
 	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()

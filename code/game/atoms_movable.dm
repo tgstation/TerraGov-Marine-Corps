@@ -610,10 +610,8 @@
 	return TRUE
 
 
-/atom/movable/proc/stop_pulling(feedback = FALSE)
+/atom/movable/proc/stop_pulling()
 	if(!pulling)
-		if(feedback)
-			to_chat(user, "<span class='notice'>You are not pulling anything.</span>")
 		return FALSE
 
 	pulling.pulledby = null
