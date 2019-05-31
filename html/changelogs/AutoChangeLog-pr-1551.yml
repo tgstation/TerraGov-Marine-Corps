@@ -1,8 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - bugfix: "fixed smoke grenades spawning smoke onto the user's location when detonating."
-  - tweak: "Extended the smoke effects to simple mobs and xenomorphs a bit.
-twek: Raised the smoke layer, now it covers mobs too."
-  - balance: "Reworked white phosphorous grenades to not be total trash. Buffed fireloss on contact, added oxyloss, blurring and lung damage if inhaled, now capable of dealing minor damage to alien resin structures and a mild loss of stored plasma in xenomorphs. Also roughly less opaque so to not block FoV and with higher smoke radius. Careful of FF potentials."
-  - balance: "Also slighty improved cloaking nades lifespan, though they may need proper improvements later."

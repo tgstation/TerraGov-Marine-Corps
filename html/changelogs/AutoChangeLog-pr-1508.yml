@@ -1,9 +1,0 @@
-author: "Ghommie"
-delete-after: True
-changes: 
-  - rscadd: "Added a rest button to human/monkey UIs."
-  - code_imp: "Reorganized and cleaned up hud screen files and icons."
-  - server: "Renamed the orange and old UI style choices to Plasmafire and Retro respectively, remember to set up your ui style again if you happened to be using one or another."
-  - server: "Changed the default client's ui_alpha preference from 255 to 230, made UIs types other than human also compatible with said preference."
-  - imageadd: "updated human/monkey health ui icons from (old) bay to tg. adjusted a couple icon states palettes, and dozen other minor changes."
-  - imagedel: "Deleted a bunch of duplicate icon states all around the UI icon files."
