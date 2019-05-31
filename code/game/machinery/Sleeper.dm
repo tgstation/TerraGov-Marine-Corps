@@ -619,7 +619,6 @@
 
 
 /obj/machinery/sleeper/portable_sleeper/attackby(obj/item/I, mob/user, params)
-	. = ..()
 
 	if(istype(I, /obj/item/reagent_container/glass))
 		if(beaker)
@@ -652,7 +651,6 @@
 	update_use_power(2)
 	occupant = M
 	start_processing()
-	connected.start_processing()
 
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"
@@ -710,7 +708,6 @@
 	stasis = FALSE
 	occupant = null
 	stop_processing()
-	connected.stop_processing()
 	update_use_power(1)
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
@@ -789,7 +786,6 @@
 	update_use_power(2)
 	occupant = usr
 	start_processing()
-	connected.start_processing()
 	icon_state = "sleeper_1"
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"
