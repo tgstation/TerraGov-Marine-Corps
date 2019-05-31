@@ -109,29 +109,29 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/reload(mob/user, obj/item/ammo_magazine/handful/magazine)
-		if(flags_gun_features & GUN_BURST_FIRING)
-			return FALSE
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return FALSE
 
-		if(!istype(magazine)) //Can only reload with handfuls.
-			to_chat(user, "<span class='warning'>You can't use that to reload!</span>")
-			return FALSE
+	if(!istype(magazine)) //Can only reload with handfuls.
+		to_chat(user, "<span class='warning'>You can't use that to reload!</span>")
+		return FALSE
 
-		if(!check_chamber_position()) //For the double barrel.
-			to_chat(user, "<span class='warning'>[src] has to be open!</span>")
-			return FALSE
+	if(!check_chamber_position()) //For the double barrel.
+		to_chat(user, "<span class='warning'>[src] has to be open!</span>")
+		return FALSE
 
-		//From here we know they are using shotgun type ammo and reloading via handful.
-		//Makes some of this a lot easier to determine.
+	//From here we know they are using shotgun type ammo and reloading via handful.
+	//Makes some of this a lot easier to determine.
 
-		var/mag_caliber = magazine.default_ammo //Handfuls can get deleted, so we need to keep this on hand for later.
-		if(current_mag.transfer_ammo(magazine,user,1))
-			add_to_tube(user,mag_caliber) //This will check the other conditions.
+	var/mag_caliber = magazine.default_ammo //Handfuls can get deleted, so we need to keep this on hand for later.
+	if(current_mag.transfer_ammo(magazine,user,1))
+		add_to_tube(user,mag_caliber) //This will check the other conditions.
 
 
 /obj/item/weapon/gun/shotgun/unload(mob/user)
-		if(flags_gun_features & GUN_BURST_FIRING)
-			return FALSE
-		return empty_chamber(user)
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return FALSE
+	return empty_chamber(user)
 
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
