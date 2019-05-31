@@ -125,6 +125,5 @@ Notes:
 /proc/closeToolTip(mob/user)
 	if(!istype(user))
 		return
-	if(user.?.client.tooltips)
-		user.client.tooltips.hide()
+	user.client?.tooltips?.hide()
 
