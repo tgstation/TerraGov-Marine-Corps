@@ -22,51 +22,42 @@
 	base_state = "pflash"
 	density = 1
 
-/*
-/obj/machinery/flasher/New()
-	sleep(4)					//<--- What the fuck are you doing? D=
-	src.sd_SetLuminosity(2)
-*/
+
 /obj/machinery/flasher/power_change()
 	..()
 	if ( !(machine_stat & NOPOWER) )
 		icon_state = "[base_state]1"
-//		src.sd_SetLuminosity(2)
 	else
 		icon_state = "[base_state]1-p"
-//		src.sd_SetLuminosity(0)
 
-//Don't want to render prison breaks impossible
-/obj/machinery/flasher/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(iswirecutter(I))
-		disable = !disable
-		if(disable)
-			user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")
-		else
-			user.visible_message("<span class='warning'> [user] has connected the [src]'s flashbulb!</span>", "<span class='warning'> You connect the [src]'s flashbulb!</span>")
 
-//Let the AI trigger them directly.
+/obj/machinery/flasher/wirecutter_act(mob/living/user, obj/item/W)
+	add_fingerprint(user)
+	disable = !disable
+	if (disable)
+		user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")
+	if (!disable)
+		user.visible_message("<span class='warning'> [user] has connected the [src]'s flashbulb!</span>", "<span class='warning'> You connect the [src]'s flashbulb!</span>")
+
 /obj/machinery/flasher/attack_ai()
-	if (src.anchored)
-		return src.flash()
+	if (anchored)
+		return flash()
 	else
 		return
 
 /obj/machinery/flasher/proc/flash()
 	if (!(powered()))
 		return
-
-	if ((src.disable) || (src.last_flash && world.time < src.last_flash + 150))
+	if ((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
-	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/flash.ogg', 25, 1)
 	flick("[base_state]_flash", src)
-	src.last_flash = world.time
+	last_flash = world.time
 	use_power(1500)
 
 	for (var/mob/O in viewers(src, null))
-		if (get_dist(src, O) > src.range)
+		if (get_dist(src, O) > range)
 			continue
 
 		if (ishuman(O))
@@ -97,13 +88,13 @@
 	..(severity)
 
 /obj/machinery/flasher/portable/HasProximity(atom/movable/AM as mob|obj)
-	if ((src.disable) || (src.last_flash && world.time < src.last_flash + 150))
+	if ((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
-		if ((M.m_intent != MOVE_INTENT_WALK) && (src.anchored))
-			src.flash()
+		if ((M.m_intent != MOVE_INTENT_WALK) && (anchored))
+			flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -118,10 +109,10 @@
 			overlays.Cut()
 
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -144,7 +135,7 @@
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
-		if(M.id == src.id)
+		if(M.id == id)
 			spawn()
 				M.flash()
 
