@@ -547,6 +547,10 @@
 		refreshBay()
 		. = TRUE
 
+
+/datum/podlauncher/proc/on_set_interaction()
+	return
+
 			
 /datum/podlauncher/proc/on_unset_interaction()
 	qdel(src)
@@ -662,7 +666,7 @@
 /datum/podlauncher/proc/launch(turf/A)
 	if(isnull(A))
 		return
-	var/obj/structure/closet/supplypod/centcompod/toLaunch = DuplicateObject(temp_pod)
+	var/obj/structure/closet/supplypod/centcompod/toLaunch = DuplicateObject(temp_pod, temp_pod.loc)
 	toLaunch.bay = bay
 	toLaunch.update_icon()
 	var/shippingLane = GLOB.areas_by_type[/area/centcom/supplypod/flyMeToTheMoon]
