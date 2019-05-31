@@ -21,7 +21,7 @@
 	var/damageChoice = 0
 	var/launcherActivated = FALSE
 	var/effectBurst = FALSE
-	var/effectAnnounce = TRUE
+	var/effectAnnounce = FALSE
 	var/numTurfs = 0
 	var/launchCounter = 1
 	var/atom/specificTarget
@@ -643,7 +643,7 @@
 	numTurfs = 0
 	acceptableTurfs = list()
 	for(var/turf/T in orderedArea)
-		if(!length(typecache_filter_list_reverse(T.contents, ignored_atoms)))
+		if(length(typecache_filter_list_reverse(T.contents, ignored_atoms)))
 			acceptableTurfs.Add(T)
 			numTurfs ++
 
