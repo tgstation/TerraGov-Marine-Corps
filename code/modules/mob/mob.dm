@@ -867,14 +867,12 @@ mob/proc/yank_out_object()
 		else
 			unset_interaction()
 	interactee = AM
-	if(istype(interactee)) //some stupid code is setting datums as interactee...
-		interactee.on_set_interaction(src)
+	interactee.on_set_interaction(src)
 
 
 /mob/proc/unset_interaction()
 	if(interactee)
-		if(istype(interactee))
-			interactee.on_unset_interaction(src)
+		interactee.on_unset_interaction(src)
 		interactee = null
 
 

@@ -30,6 +30,8 @@
 	var/area = null
 	var/obj/screen/click_catcher/void = null
 	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
+	var/mouse_up_icon = null
+	var/mouse_down_icon = null
 
 	//Sound related
 	var/last_sound = 0
