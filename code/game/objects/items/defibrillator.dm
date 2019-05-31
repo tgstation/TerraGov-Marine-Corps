@@ -132,10 +132,7 @@
 
 	var/mob/dead/observer/G = H.get_ghost()
 	if(istype(G))
-		G << 'sound/effects/adminhelp.ogg'
-		var/msg = "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
-		(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[G];reentercorpse=1'>click here!</a>)</font></span>"
-		to_chat(G, msg)
+		notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = H, action = NOTIFY_JUMP)
 	else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR.</span>")
@@ -212,6 +209,9 @@
 			H.update_canmove()
 			H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 			to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
+
+			notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = H, action = NOTIFY_ORBIT)
+
 		else
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again.</span>") //Freak case
 	else

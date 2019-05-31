@@ -253,6 +253,9 @@
 	if(X.check_plasma(plasma_cost))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
+
+		notify_ghosts("\The <b>[X]</b> has started growing an ovipositor!", source = X, action = NOTIFY_ORBIT)
+
 		if(!do_after(X, 200, TRUE, alien_weeds, BUSY_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
 			return
 

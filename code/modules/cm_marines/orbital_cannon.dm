@@ -214,6 +214,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	for(var/M in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
 		SEND_SOUND(M, 'sound/effects/OB_incoming.ogg')
 
+	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
+
 	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME)
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)

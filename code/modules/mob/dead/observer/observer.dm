@@ -145,12 +145,28 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 		if(istype(target))
 			ManualFollow(target)
+			return
 		else
 			var/atom/movable/AM = locate(href_list["track"])
 			ManualFollow(AM)
-			
+			return
 		
+			
+	else if(href_list["jump"])
+		var/x = text2num(href_list["x"])
+		var/y = text2num(href_list["y"])
+		var/z = text2num(href_list["z"])
 
+		if(x == 0 && y == 0 && z == 0)
+			return
+
+		var/turf/T = locate(x, y, z)
+		if(!T)
+			return
+
+		var/mob/dead/observer/A = usr
+		A.forceMove(T)
+		return
 
 	else if(href_list["claim"])
 		var/mob/living/target = locate(href_list["claim"]) in GLOB.mob_list
@@ -808,6 +824,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(client.eye != client.mob)
 		client.perspective = MOB_PERSPECTIVE
 		client.eye = client.mob
+		observetarget = null
 		return
 
 	var/mob/target = input("Please select a mob:", "Observe", null, null) as null|anything in GLOB.mob_list
@@ -817,6 +834,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(client && target)
 		client.perspective = EYE_PERSPECTIVE
 		client.eye = target
+		observetarget = target
 
 
 /mob/dead/observer/verb/dnr()

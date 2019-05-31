@@ -51,6 +51,8 @@
 
 // for clean transfers between hives
 /mob/living/carbon/xenomorph/proc/transfer_to_hive(hivenumber)
+	if (hive.hivenumber == hivenumber) 
+		return // If we are in that hive already
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("invalid hivenumber passed to transfer_to_hive")
 
@@ -277,6 +279,7 @@
 		set_queen(Q)
 		if(announce)
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
+			notify_ghosts("A new <b>[Q]</b> has risen!", source = Q, action = NOTIFY_ORBIT)
 		update_leader_pheromones()
 		return TRUE
 	if(announce)
@@ -299,6 +302,7 @@
 	if(living_xeno_queen == Q)
 		set_queen(null)
 	update_queen()
+	notify_ghosts("\The <b>[Q]</b> has been slain!", source = Q, action = NOTIFY_JUMP)
 	return TRUE
 
 /datum/hive_status/proc/start_queen_timer()

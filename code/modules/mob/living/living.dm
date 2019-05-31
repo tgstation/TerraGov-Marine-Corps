@@ -456,10 +456,7 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
-	for(var/i in GLOB.observer_list)
-		var/mob/dead/observer/O = i
-		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
-
+	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
