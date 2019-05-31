@@ -612,12 +612,8 @@
 	//Life support
 	occupant?.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 
-	if(filtering)
-		if(beaker)
-			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
-				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					occupant.reagents.trans_to(beaker, 10)
-
+	if(stasis)
+		occupant.bodytemperature = 100
 
 	updateUsrDialog()
 
@@ -700,7 +696,7 @@
 		stasis = FALSE
 	else
 		occupant.in_stasis = STASIS_IN_BAG
-		occupant.bodytemperature = 100 //Temp fix for broken atmos
+		occupant.bodytemperature = 100
 		stasis = TRUE
 
 /obj/machinery/sleeper/portable_sleeper/go_out()
@@ -751,10 +747,6 @@
 		to_chat(user, text("[]\t -Burn Severity %: []</font>", (occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getFireLoss()))
 		to_chat(user, "<span class='notice'>Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)</span>")
 		to_chat(user, "<span class='notice'>\t [occupant.knocked_out / 5] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
-		if(beaker)
-			to_chat(user, "<span class='notice'>\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining.</span>")
-		else
-			to_chat(user, "<span class='notice'>No Dialysis Output Beaker loaded.</span>")
 	else
 		to_chat(user, "<span class='notice'>There is no one inside!</span>")
 	return
@@ -826,10 +818,6 @@
 			var/amount = text2num(href_list["amount"])
 			if(amount == 5 || amount == 10)
 				inject_chemical(user,href_list["chemical"],amount)
-	if (href_list["removebeaker"])
-		remove_beaker()
-	if (href_list["togglefilter"])
-		toggle_filter()
 	if (href_list["togglestasis"])
 		toggle_stasis()
 	if (href_list["ejectify"])
