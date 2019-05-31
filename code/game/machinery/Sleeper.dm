@@ -706,7 +706,7 @@
 	occupant.in_stasis = null //disable stasis
 	stasis = FALSE
 	occupant = null
-	stop_processing()
+	STOP_PROCESSING(SSobj, src)
 	update_use_power(1)
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
