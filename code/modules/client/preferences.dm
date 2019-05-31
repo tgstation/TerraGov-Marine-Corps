@@ -493,9 +493,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Create an inverted list of keybindings -> key
 	var/list/user_binds = list()
 	for(var/key in key_bindings)
-		for(var/i in key_bindings[key])
-			var/datum/keybinding/kb = i
-			user_binds[kb.name] = key
+		for(var/kb_name in key_bindings[key])
+			user_binds[kb_name] = key
 
 	var/list/kb_categories = list()
 	// Group keybinds by category
@@ -539,7 +538,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var ctrl = e.ctrlKey ? 1 : 0;
 		var numpad = (95 < e.keyCode && e.keyCode < 112) ? 1 : 0;
 		var escPressed = e.keyCode == 27 ? 1 : 0;
-		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb];old_key=[old_key];clear_key='+escPressed+';key='+e.key+';shift='+shift+';alt='+alt+';ctrl='+ctrl+';numpad='+numpad+';key_code='+e.keyCode;
+		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb.name];old_key=[old_key];clear_key='+escPressed+';key='+e.key+';shift='+shift+';alt='+alt+';ctrl='+ctrl+';numpad='+numpad+';key_code='+e.keyCode;
 		window.location=url;
 	}
 	document.getElementById('focus').focus();
@@ -928,8 +927,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 
 		if("keybindings_set")
-			var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
-			if(!istype(kb))
+			var/kb_name = href_list["keybinding"]
+			if(!kb_name)
 				user << browse(null, "window=capturekeypress")
 				ShowKeybindings(user)
 				return
@@ -937,38 +936,46 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/clear_key = text2num(href_list["clear_key"])
 			var/old_key = href_list["old_key"]
 			if(clear_key)
+				message_admins("clear_key, old - [old_key], name [kb_name]")
 				if(old_key != "Unbound") // if it was already set
-					key_bindings[old_key] -= kb
+					key_bindings[old_key] -= kb_name
+					key_bindings["Unbound"] += list(kb_name)
 				user << browse(null, "window=capturekeypress")
 				ShowKeybindings(user)
 				return
 
 			var/key = href_list["key"]
 			var/numpad = text2num(href_list["numpad"])
-			// TODO: Handle holding shift or alt down
-			// var/shift = text2num(href_list["shift"])
-			// var/alt = text2num(href_list["alt"])
-			// var/ctrl = text2num(href_list["ctrl"])
+			var/AltMod = text2num(href_list["alt"]) ? "Alt-" : ""
+			var/CtrlMod = text2num(href_list["ctrl"]) ? "Ctrl-" : ""
+			var/ShiftMod = text2num(href_list["shift"]) ? "Shift-" : ""
 			// var/key_code = text2num(href_list["key_code"])
 
 			var/new_key = uppertext(key)
-			// NumpadX, and Space are special cases and doesn't work just uppercase
-			new_key = new_key == "SPACEBAR" ? "Space" : new_key
-			if(numpad)
+
+			// This is a mapping from JS keys to Byond - ref: https://keycode.info/
+			var/list/_kbMap = list(
+				"INSERT" = "Insert", "HOME" = "NorthWest", "PAGEUP" = "NorthEast",
+				"DEL" = "Delete", "END" = "SouthWest",  "PAGEDOWN" = "SouthEast",
+				"SPACEBAR" = "Space", "ALT" = "Alt", "SHIFT" = "Shift", "CONTROL" = "Ctrl"
+			)
+			new_key = _kbMap[new_key] ? _kbMap[new_key] : new_key
+
+			if (numpad)
 				new_key = "Numpad[new_key]"
-			key_bindings[new_key] += list(kb)
-			key_bindings[new_key] = sortKeybindings(key_bindings[new_key])
-			
-			if(old_key != "Unbound")
-				key_bindings[old_key] -= kb
+
+			var/full_key = "[AltMod][CtrlMod][ShiftMod][new_key]"
+			key_bindings[old_key] -= kb_name
+			key_bindings[full_key] += list(kb_name)
+			key_bindings[full_key] = sortList(key_bindings[full_key])
 
 			user << browse(null, "window=capturekeypress")
 			ShowKeybindings(user)
 			return
-		
+
 		if("keybindings_done")
 			user << browse(null, "window=keybindings")
-		
+
 		if("keybindings_reset")
 			key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
 			ShowKeybindings(user)
@@ -996,7 +1003,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			desiredLvl = JOBS_PRIORITY_NEVER
 		else
 			desiredLvl = JOBS_PRIORITY_LOW
-	
+
 	SetJobPreferenceLevel(job, desiredLvl)
 	SetChoices(user)
 
@@ -1011,6 +1018,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		for(var/j in job_preferences)
 			if(job_preferences[j] == JOBS_PRIORITY_HIGH)
 				job_preferences[j] = JOBS_PRIORITY_MEDIUM
-	
+
 	job_preferences[job.title] = level
 	return TRUE
