@@ -103,12 +103,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define IS_SHARP_ITEM_ACCURATE		2 //knife, scalpel
 #define IS_SHARP_ITEM_BIG			3 //fireaxe, hatchet, energy sword
 
-
-//pry capable item defines
-#define IS_PRY_CAPABLE_SIMPLE		1
-#define IS_PRY_CAPABLE_CROWBAR		2 //actual crowbar
-#define IS_PRY_CAPABLE_FORCE		3 //can force open even powered airlocks
-
 //plasma cutter
 
 #define PLASMACUTTER_MIN_MOD	0.01

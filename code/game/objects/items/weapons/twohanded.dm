@@ -135,12 +135,12 @@
 /obj/item/weapon/twohanded/fireaxe/wield(mob/user)
 	. = ..()
 	if(!.) return
-	pry_capable = IS_PRY_CAPABLE_SIMPLE
+/* REMIND JALLEO TO READD CROWBAR FUNCTION HERE*/
 
 /obj/item/weapon/twohanded/fireaxe/unwield(mob/user)
 	. = ..()
 	if(!.) return
-	pry_capable = 0
+/* REMIND JALLEO TO READD CROWBAR FUNCTION HERE*/
 
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return

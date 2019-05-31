@@ -137,24 +137,6 @@
 		to_chat(user, "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
-	if(isscrewdriver(I))
-		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
-		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance hatch of [src].")
-		updateUsrDialog()
-		return
-
-	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		//Don't eat multitools or wirecutters used on an open lathe.
-		if(ismultitool(I) || iswirecutter(I))
-			attack_hand(user)
-			return
-
-		//Dismantle the frame.
-		if(iscrowbar(I))
-			dismantle()
-			return
-
 	//Resources are being loaded.
 	var/obj/item/eating = I
 	if(!eating.matter)
@@ -212,6 +194,28 @@
 
 	updateUsrDialog()
 	return TRUE //so the item's afterattack isn't called
+
+
+/obj/machinery/autolathe/screwdriver_act(mob/living/user, obj/item/I)
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
+	to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance hatch of [src].")
+	updateUsrDialog()
+	return
+/obj/machinery/autolathe/wirecutter_act(mob/living/user, obj/item/I)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		attack_hand(user)
+		return
+
+/obj/machinery/autolathe/multitool_act(mob/living/user, obj/item/I)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		attack_hand(user)
+		return
+
+/obj/machinery/autolathe/crowbar_act(mob/living/user, obj/item/I)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		dismantle()
+		return
 
 /obj/machinery/autolathe/attack_paw(mob/user as mob)
 	return attack_hand(user)

@@ -61,14 +61,15 @@
 
 		updateicon()
 
-	else if(iswrench(I))
-		if(charging)
-			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
-			return
 
-		anchored = !anchored
-		to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground")
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+/obj/machinery/cell_charger/wrench_act(mob/living/user, obj/item/I)
+	if(charging)
+		to_chat(user, "<span class='warning'>Remove the cell first!</span>")
+		return
+
+	anchored = !anchored
+	to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground")
+	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(charging)
@@ -76,7 +77,7 @@
 		charging.add_fingerprint(user)
 		charging.updateicon()
 
-		src.charging = null
+		charging = null
 		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")
 		chargelevel = -1
 		updateicon()

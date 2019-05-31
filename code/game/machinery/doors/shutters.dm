@@ -13,6 +13,28 @@
 	else
 		layer = PODDOOR_CLOSED_LAYER
 
+/obj/machinery/door/poddoor/shutters/crowbar_act(mob/living/user, obj/item/C)
+	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		operating = 1
+		spawn(-1)
+			flick("shutterc0", src)
+			icon_state = "shutter0"
+			sleep(15)
+			density = 0
+			SetOpacity(0)
+			operating = 0
+			return
+
+/obj/machinery/door/poddoor/shutters/weld_cut_act(mob/living/user, obj/item/C)
+	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = C
+		if(!P.start_cut(user, name, src))
+			return
+		if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
+			P.cut_apart(user, name, src)
+			qdel()
+		return
+
 /obj/machinery/door/poddoor/shutters/open()
 	if(operating) //doors can still open when emag-disabled
 		return FALSE

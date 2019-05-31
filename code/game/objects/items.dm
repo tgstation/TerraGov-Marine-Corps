@@ -15,7 +15,6 @@
 
 	var/sharp = FALSE		// whether this item cuts
 	var/edge = FALSE		// whether this item is more likely to dismember
-	var/pry_capable = FALSE //whether this item can be used to pry things open.
 	var/heat_source = FALSE //whether this item is a source of heat, and how hot it is (in Kelvin).
 
 	var/hitsound = null

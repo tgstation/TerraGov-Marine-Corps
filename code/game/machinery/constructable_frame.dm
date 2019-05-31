@@ -30,8 +30,7 @@
 	icon_state = "box_1"
 	state = 2
 
-/obj/machinery/constructable_frame/machine_frame
-	attackby(obj/item/P as obj, mob/user as mob)
+/obj/machinery/constructable_frame/machine_frame/attackby(obj/item/P as obj, mob/user as mob)
 		if(P.crit_fail)
 			to_chat(user, "<span class='warning'>This part is faulty, you cannot add this to the machine!</span>")
 			return

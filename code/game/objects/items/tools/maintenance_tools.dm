@@ -400,18 +400,12 @@
 	matter = list("metal" = 50)
 	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
-	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	tool_behaviour = TOOL_CROWBAR
-
 
 /obj/item/tool/crowbar/red
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
-
-
-
-
 
 /*
  Welding backpack
