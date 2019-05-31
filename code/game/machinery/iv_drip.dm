@@ -126,9 +126,7 @@
 
 		if(!istype(T)) 
 			return
-		if(!T.dna)
-			return
-		if(NOCLONE in T.mutations)
+		if(!T.blood_type)
 			return
 
 		if(T.species?.species_flags & NO_BLOOD)

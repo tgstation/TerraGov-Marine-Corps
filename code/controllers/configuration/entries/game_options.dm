@@ -132,8 +132,6 @@
 	config_entry_value = 3000
 	min_val = 0
 
-/datum/config_entry/flag/husking_on
-
 /datum/config_entry/flag/bones_can_break
 
 /datum/config_entry/flag/unlimited_rotate_speed

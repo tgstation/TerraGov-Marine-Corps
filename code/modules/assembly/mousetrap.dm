@@ -55,7 +55,7 @@
 		if(!armed)
 			to_chat(user, "<span class='notice'>You arm [src].</span>")
 		else
-			if(((user.getBrainLoss() >= 60 || (CLUMSY in user.mutations)) && prob(50)))
+			if(user.getBrainLoss() >= 60 && prob(50))
 				var/which_hand = "l_hand"
 				if(!user.hand)
 					which_hand = "r_hand"
@@ -71,7 +71,7 @@
 
 	attack_hand(mob/living/user as mob)
 		if(armed)
-			if(((user.getBrainLoss() >= 60 || CLUMSY in user.mutations)) && prob(50))
+			if(user.getBrainLoss() >= 60 && prob(50))
 				var/which_hand = "l_hand"
 				if(!user.hand)
 					which_hand = "r_hand"

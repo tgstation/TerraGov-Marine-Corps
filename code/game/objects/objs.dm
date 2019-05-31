@@ -72,14 +72,6 @@
 				is_in_use = TRUE
 				attack_ai(usr)
 
-	// check for TK users
-
-	if (ishuman(usr))
-		if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-			if(!(usr in nearby))
-				if(usr.client && usr.interactee==src)
-					is_in_use = TRUE
-					attack_hand(usr)
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 

@@ -131,10 +131,6 @@
 			step(src, get_dir(AM, src))
 	healthcheck()
 
-/obj/structure/window/attack_tk(mob/user as mob)
-	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
-	playsound(loc, 'sound/effects/glassknock.ogg', 15, 1)
-
 /obj/structure/window/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HELP)
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 25, 1)
@@ -146,14 +142,7 @@
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	add_fingerprint(user)
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		if(damageable) //Possible to destroy
-			user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-			obj_integrity -= 500
-		healthcheck(1, 1, 1, user)
-
-	else if(user.a_intent == INTENT_HARM)
+	if(user.a_intent == INTENT_HARM)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user

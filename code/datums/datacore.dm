@@ -174,7 +174,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["rank"]		= assignment
 	G.fields["squad"]		= H.assigned_squad ? H.assigned_squad.name : null
 	G.fields["age"]			= H.age
-	G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 	G.fields["p_stat"]		= "Active"
 	G.fields["m_stat"]		= "Stable"
 	G.fields["sex"]			= H.gender
@@ -196,7 +195,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	M.fields["id"]			= id
 	M.fields["name"]		= H.real_name
 	M.fields["b_type"]		= H.b_type
-	M.fields["b_dna"]		= H.dna.unique_enzymes
 	M.fields["mi_dis"]		= "None"
 	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
 	M.fields["ma_dis"]		= "None"

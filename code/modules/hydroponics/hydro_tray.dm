@@ -638,14 +638,6 @@
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
 
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_tk(mob/user as mob)
-
-	if(harvest)
-		harvest(user)
-
-	else if(dead)
-		remove_dead(user)
-
 /obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/user as mob)
 
 	if(istype(usr,/mob/living/silicon))

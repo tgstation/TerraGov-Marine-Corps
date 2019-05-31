@@ -170,9 +170,7 @@
 			CM.last_special = world.time + 100
 
 			var/can_break_cuffs
-			if(HULK in usr.mutations)
-				can_break_cuffs = 1
-			else if(istype(CM,/mob/living/carbon/human))
+			if(istype(CM,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = CM
 				if(H.species.can_shred(H))
 					can_break_cuffs = 1
@@ -223,9 +221,7 @@
 			CM.last_special = world.time + 100
 
 			var/can_break_cuffs
-			if(HULK in usr.mutations)
-				can_break_cuffs = 1
-			else if(istype(CM,/mob/living/carbon/human))
+			if(istype(CM,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = CM
 				if(H.species.can_shred(H))
 					can_break_cuffs = 1

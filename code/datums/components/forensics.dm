@@ -69,7 +69,7 @@
 			if(!ignoregloves)
 				H.gloves.add_fingerprint(H, TRUE) //ignoregloves = 1 to avoid infinite loop.
 				return
-		var/full_print = md5(H.dna.uni_identity)
+		var/full_print = md5(H.real_name) // lol
 		LAZYSET(fingerprints, full_print, full_print)
 	return TRUE
 

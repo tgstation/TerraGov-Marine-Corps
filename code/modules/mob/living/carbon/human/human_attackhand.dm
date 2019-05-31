@@ -15,8 +15,6 @@
 		var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 		var/armor_block = run_armor_check(affecting, "melee")
 
-		if(HULK in M.mutations)			damage += 5
-
 		playsound(loc, "punch", 25, 1)
 
 		visible_message("<span class='danger'>[M] has punched [src]!</span>")
@@ -106,7 +104,6 @@
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(HULK in M.mutations) damage += 5
 			playsound(loc, attack.attack_sound, 25, 1)
 
 			visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
@@ -247,6 +244,4 @@
 					treat += "(Salved)"
 
 				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>")
-			if((SKELETON in mutations) && !w_uniform && !wear_suit)
-				play_xylophone()
 	return ..()

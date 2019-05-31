@@ -79,7 +79,7 @@
 /mob/living/carbon/human/proc/is_revivable()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!get_limb("head") || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations))
+	if(!get_limb("head") || !heart || heart.is_broken() || !has_brain() || chestburst)
 		return 0
 	return 1
 

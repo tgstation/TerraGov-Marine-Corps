@@ -6,11 +6,6 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	..(loc)
 	if(!istype(H))
 		return
-	if(H.dna)
-		if(!blood_DNA)
-			blood_DNA = list()
-		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
-
 	//Forming icon for the limb
 
 	//Setting base icon for this mob's race

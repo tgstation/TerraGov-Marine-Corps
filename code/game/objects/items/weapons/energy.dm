@@ -75,9 +75,6 @@
 		sword_color = pick("red","blue","green","purple")
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You accidentally cut yourself with [src].</span>")
-		user.take_limb_damage(5,5)
 	active = !active
 	if (active)
 		force = 30
