@@ -174,6 +174,14 @@
 	no_panel = TRUE
 	not_weldable = TRUE
 
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/proc/lockdown()
+	unlock()
+	close()
+	lock()
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/proc/release()
+	unlock()
+
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ex_act(severity)
 	return
 

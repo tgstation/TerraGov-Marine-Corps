@@ -7,6 +7,13 @@
 /obj/structure/dropship_piece/one/front,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
+"ac" = (
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 8
+	},
+/obj/machinery/door/airlock/dropship_hatch/left,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "ad" = (
 /obj/structure/dropship_piece/one/front/right,
 /turf/template_noop,
@@ -42,23 +49,14 @@
 /area/shuttle/dropship/alamo)
 "ak" = (
 /obj/machinery/computer/security/dropship/one,
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "al" = (
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "am" = (
 /obj/machinery/computer/dropship_weapons/dropship1,
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "an" = (
 /turf/closed/shuttle/dropship1{
@@ -94,10 +92,7 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "at" = (
 /obj/item/radio/intercom{
@@ -107,10 +102,7 @@
 	pixel_x = 21;
 	pixel_y = 43
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "au" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -123,10 +115,7 @@
 	pixel_x = -6;
 	pixel_y = -16
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "av" = (
 /turf/closed/shuttle/dropship1/transparent{
@@ -173,10 +162,7 @@
 /area/shuttle/dropship/alamo)
 "aC" = (
 /obj/machinery/door/airlock/hatch/cockpit,
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aD" = (
 /turf/closed/shuttle/dropship1{
@@ -210,10 +196,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aJ" = (
 /obj/item/radio/intercom{
@@ -234,15 +217,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aL" = (
-/obj/machinery/door_control{
-	id = "sh_dropship1";
-	name = "Dropship Lockdown";
-	normaldoorcontrol = 3;
-	pixel_y = -19;
-	req_access_txt = "0";
-	req_one_access_txt = "3;22";
-	throw_range = 15
-	},
+/obj/machinery/door_control/dropship,
 /turf/open/shuttle/dropship{
 	tag = "icon-floor8";
 	icon_state = "floor8"
@@ -264,10 +239,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aO" = (
 /turf/closed/shuttle/dropship1{
@@ -310,10 +282,7 @@
 	dir = 8;
 	pixel_x = 16
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aV" = (
 /turf/closed/shuttle/dropship1{
@@ -360,27 +329,12 @@
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
-"bd" = (
-/obj/machinery/door/airlock/dropship_hatch,
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 8
-	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
-/area/shuttle/dropship/alamo)
-"be" = (
-/obj/machinery/door/airlock/dropship_hatch{
-	dir = 8
-	},
+"bc" = (
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 4
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/obj/machinery/door/airlock/dropship_hatch/right,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bf" = (
 /turf/closed/shuttle/dropship1{
@@ -449,10 +403,7 @@
 /area/shuttle/dropship/alamo)
 "bp" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bq" = (
 /turf/closed/shuttle/dropship1{
@@ -485,17 +436,11 @@
 /obj/machinery/vending/wallmed1{
 	pixel_x = -30
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bw" = (
 /obj/effect/attach_point/crew_weapon/dropship1,
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bx" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -504,10 +449,7 @@
 /obj/machinery/vending/wallmed1{
 	pixel_x = 30
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "by" = (
 /turf/closed/shuttle/dropship1{
@@ -533,10 +475,7 @@
 	dir = 4;
 	pixel_x = -16
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bE" = (
 /turf/closed/shuttle/dropship1/transparent{
@@ -639,19 +578,13 @@
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 1
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bZ" = (
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 1
 	},
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ca" = (
 /turf/closed/shuttle/dropship1{
@@ -697,10 +630,7 @@
 /area/shuttle/dropship/alamo)
 "Ki" = (
 /obj/machinery/computer/shuttle/marine_dropship/one,
-/turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 
 (1,1,1) = {"
@@ -735,8 +665,8 @@ ay
 aH
 aR
 aY
-bd
-bd
+ac
+ac
 bf
 bi
 bn
@@ -919,8 +849,8 @@ aF
 aO
 aV
 ba
-be
-be
+bc
+bc
 bh
 bm
 br

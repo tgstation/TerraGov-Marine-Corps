@@ -189,6 +189,58 @@
 	else
 		close()
 
+/turf/open/shuttle/dropship/floor
+	icon_state = "rasputin15"
+
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+	. = ..()
+	RegisterSignal(port, COMSIG_DROPSHIP_LOCKDOWN_REAR, .proc/lockdown)
+	RegisterSignal(port, COMSIG_DROPSHIP_RELEASE_REAR, .proc/release)
+
+/obj/machinery/door/airlock/dropship_hatch/left/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+	. = ..()
+	RegisterSignal(port, COMSIG_DROPSHIP_LOCKDOWN_LEFT, .proc/lockdown)
+	RegisterSignal(port, COMSIG_DROPSHIP_RELEASE_LEFT, .proc/release)
+	
+/obj/machinery/door/airlock/dropship_hatch/right/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+	. = ..()
+	RegisterSignal(port, COMSIG_DROPSHIP_LOCKDOWN_RIGHT, .proc/lockdown)
+	RegisterSignal(port, COMSIG_DROPSHIP_RELEASE_RIGHT, .proc/release)
+
+/obj/machinery/door_control/dropship
+	var/obj/docking_port/mobile/marine_dropship/D
+	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP)
+	pixel_y = -19
+	name = "Dropship Lockdown"
+
+/obj/machinery/door_control/dropship/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+	. = ..()
+	D = port
+
+/obj/machinery/door_control/dropship/attack_hand(mob/living/user)
+	src.add_fingerprint(user)
+	if(isxeno(user))
+		return
+	if(!is_operational())
+		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
+		return
+
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access Denied</span>")
+		flick("doorctrl-denied",src)
+		return
+
+	use_power(5)
+	pressed = TRUE
+	update_icon()
+	add_fingerprint(user)
+
+	SEND_SIGNAL(D, COMSIG_DROPSHIP_LOCKDOWN_REAR)
+	SEND_SIGNAL(D, COMSIG_DROPSHIP_LOCKDOWN_LEFT)
+	SEND_SIGNAL(D, COMSIG_DROPSHIP_LOCKDOWN_RIGHT)
+
+	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE)
+
 // half-tile structure pieces
 /obj/structure/dropship_piece
 	icon = 'icons/obj/structures/dropship_structures.dmi'
@@ -202,8 +254,8 @@
 /obj/structure/dropship_piece/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
 	if(. & MOVE_AREA)
-		. |= MOVE_CONTENTS
-		. &= ~MOVE_TURF
+		ENABLE_BITFIELD(., MOVE_CONTENTS)
+		DISABLE_BITFIELD(., MOVE_TURF)
 
 /obj/structure/dropship_piece/one
 	name = "\improper Alamo"

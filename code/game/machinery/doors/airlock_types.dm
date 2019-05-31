@@ -475,6 +475,14 @@
 	not_weldable = TRUE
 	aiControlDisabled = TRUE
 
+/obj/machinery/door/airlock/dropship_hatch/proc/lockdown()
+	unlock()
+	close()
+	lock()
+
+/obj/machinery/door/airlock/dropship_hatch/proc/release()
+	unlock()
+
 /obj/machinery/door/airlock/dropship_hatch/ex_act(severity)
 	return
 
