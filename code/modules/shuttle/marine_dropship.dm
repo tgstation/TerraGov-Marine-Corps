@@ -83,9 +83,43 @@
 	rechargeTime = 2 MINUTES
 	prearrivalTime = 12 SECONDS
 
+	var/list/left_airlocks = list()
+	var/list/right_airlocks = list()
+	var/list/rear_airlocks = list()
+
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
 	SSshuttle.dropships += src
+
+/obj/docking_port/mobile/marine_dropship/proc/lockdown_airlocks(side)
+	switch(side)
+		if("left")
+			for(var/i in left_airlocks)
+				var/obj/machinery/door/airlock/dropship_hatch/D = i
+				D.lockdown()
+		if("right")
+			for(var/i in right_airlocks)
+				var/obj/machinery/door/airlock/dropship_hatch/D = i
+				D.lockdown()
+		if("rear")
+			for(var/i in rear_airlocks)
+				var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D = i
+				D.lockdown()
+
+/obj/docking_port/mobile/marine_dropship/proc/unlock_airlocks(side)
+	switch(side)
+		if("left")
+			for(var/i in left_airlocks)
+				var/obj/machinery/door/airlock/dropship_hatch/D = i
+				D.release()
+		if("right")
+			for(var/i in right_airlocks)
+				var/obj/machinery/door/airlock/dropship_hatch/D = i
+				D.release()
+		if("rear")
+			for(var/i in rear_airlocks)
+				var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D = i
+				D.release()
 
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
 	. = ..()
@@ -112,6 +146,73 @@
 
 /obj/docking_port/mobile/marine_dropship/two
 	id = "normandy"
+
+// queen calldown
+
+/obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
+	timer = 0
+	destination = null
+	return request(S)
+
+/mob/living/carbon/xenomorph/queen/proc/calldown_dropship()
+	set category = "Alien"
+	set name = "Call Down Dropship"
+	set desc = "Call down the dropship to the closest LZ"
+
+	if(!isdistress(SSticker?.mode))
+		to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+
+	var/datum/game_mode/distress/D = SSticker.mode
+
+	if(!D.can_summon_dropship())
+		to_chat(src, "<span class='warning'>You can't call down the shuttle.</span>")
+		return
+
+	to_chat(src, "<span class='warning'>You begin calling down the shuttle.</span>")
+	if(!do_after(src, 80, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		to_chat(src, "<span class='warning'>You stop.</span>")
+		return
+
+	if(!D.summon_dropship(src))
+		to_chat(src, "<span class='warning'>Something went wrong.</span>")
+		return
+
+	hive?.xeno_message("The Queen has summoned down the metal bird, gather to her now!")
+
+#define ALIVE_HUMANS_FOR_CALLDOWN 0.1
+
+/datum/game_mode/distress/proc/can_summon_dropship()
+	if(SSticker.round_start_time + 30 MINUTES > world.time)
+		return FALSE
+	var/humans_on_ground = 0
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		if(is_ground_level(H.z))
+			humans_on_ground++
+	return (humans_on_ground/length(GLOB.alive_human_list)) <= ALIVE_HUMANS_FOR_CALLDOWN
+
+// summon dropship to closest lz to A
+/datum/game_mode/distress/proc/summon_dropship(atom/A)
+	var/list/lzs = list()
+	for(var/i in SSshuttle.stationary)
+		var/obj/docking_port/stationary/S = i
+		if(S.z != A.z)
+			continue
+		if(S.id == "lz1" || S.id == "lz2")
+			lzs[S] = get_dist(S, A)
+	if(!length(lzs))
+		stack_trace("couldn't find any lzs to call down the dropship to")
+		return FALSE
+	var/obj/docking_port/stationary/closest = lzs[1]
+	for(var/j in lzs)
+		if(lzs[j] < lzs[closest])
+			closest = j
+	var/obj/docking_port/mobile/marine_dropship/D
+	for(var/k in SSshuttle.dropships)
+		var/obj/docking_port/mobile/M = k
+		if(M.id == "alamo")
+			D = M
+	return D.summon_dropship_to(closest)
 
 // ************************************************	//
 //													//
@@ -144,9 +245,58 @@
 	popup.set_title_image(X.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
+/obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access Denied!</span>")
+		return
+	var/list/options = params2list(possible_destinations)
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	if(M)
+		var/destination_found
+		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+			if(!options.Find(S.id))
+				continue
+			if(!M.check_dock(S, silent=TRUE))
+				continue
+			destination_found = TRUE
+			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+		dat += "Left Doors: <a href='?src=[REF(src)];lock=left'>Lockdown</a> <a href='?src=[REF(src)];unlock=left'>Unlock</a><br>"
+		dat += "Right Doors: <a href='?src=[REF(src)];lock=right'>Lockdown</a> <a href='?src=[REF(src)];unlock=right'>Unlock</a><br>"
+		dat += "Rear Door: <a href='?src=[REF(src)];lock=rear'>Lockdown</a> <a href='?src=[REF(src)];unlock=rear'>Unlock</a><br>"
+		dat += "All Doors: <a href='?src=[REF(src)];lockdown=1'>Lockdown</a> <a href='?src=[REF(src)];release=1'>Unlock</a><br>"
+		if(!destination_found)
+			dat += "<B>Shuttle Locked</B><br>"
+	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
+
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	popup.set_content("<center>[dat]</center>")
+	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+	popup.open()
+
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
 	. = ..()
-	if(!Adjacent(usr) || !isxeno(usr))
+	if(!Adjacent(usr))
+		return
+	if(ishuman(usr))
+		if(!allowed(usr))
+			return
+		var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
+		if(href_list["lockdown"])
+			M.lockdown_airlocks("rear")
+			M.lockdown_airlocks("left")
+			M.lockdown_airlocks("right")
+		else if(href_list["release"])
+			M.unlock_airlocks("rear")
+			M.unlock_airlocks("left")
+			M.unlock_airlocks("right")
+		else if(href_list["lock"])
+			M.lockdown_airlocks(href_list["lock"])
+		else if(href_list["unlock"])
+			M.unlock_airlocks(href_list["unlock"])
+		return
+	
+	else if(!isxeno(usr))
 		return
 	var/mob/living/carbon/xenomorph/X = usr
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
@@ -164,9 +314,9 @@
 			if(0)
 				visible_message("Shuttle departing. Please stand away from the doors.")
 			if(1)
-				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
+				to_chat(X, "<span class='warning'>Invalid shuttle requested.</span>")
 			else
-				to_chat(usr, "<span class='notice'>Unable to comply.</span>")
+				to_chat(X, "<span class='notice'>Unable to comply.</span>")
 
 /obj/machinery/computer/shuttle/marine_dropship/one
 	name = "\improper 'Alamo' flight controls"
@@ -194,18 +344,24 @@
 
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	. = ..()
-	RegisterSignal(port, COMSIG_DROPSHIP_LOCKDOWN_REAR, .proc/lockdown)
-	RegisterSignal(port, COMSIG_DROPSHIP_RELEASE_REAR, .proc/release)
+	if(!istype(port, /obj/docking_port/mobile/marine_dropship))
+		return
+	var/obj/docking_port/mobile/marine_dropship/D = port
+	D.rear_airlocks += src
 
 /obj/machinery/door/airlock/dropship_hatch/left/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	. = ..()
-	RegisterSignal(port, COMSIG_DROPSHIP_LOCKDOWN_LEFT, .proc/lockdown)
-	RegisterSignal(port, COMSIG_DROPSHIP_RELEASE_LEFT, .proc/release)
+	if(!istype(port, /obj/docking_port/mobile/marine_dropship))
+		return
+	var/obj/docking_port/mobile/marine_dropship/D = port
+	D.left_airlocks += src
 	
 /obj/machinery/door/airlock/dropship_hatch/right/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	. = ..()
-	RegisterSignal(port, COMSIG_DROPSHIP_LOCKDOWN_RIGHT, .proc/lockdown)
-	RegisterSignal(port, COMSIG_DROPSHIP_RELEASE_RIGHT, .proc/release)
+	if(!istype(port, /obj/docking_port/mobile/marine_dropship))
+		return
+	var/obj/docking_port/mobile/marine_dropship/D = port
+	D.right_airlocks += src
 
 /obj/machinery/door_control/dropship
 	var/obj/docking_port/mobile/marine_dropship/D
@@ -235,9 +391,9 @@
 	update_icon()
 	add_fingerprint(user)
 
-	SEND_SIGNAL(D, COMSIG_DROPSHIP_LOCKDOWN_REAR)
-	SEND_SIGNAL(D, COMSIG_DROPSHIP_LOCKDOWN_LEFT)
-	SEND_SIGNAL(D, COMSIG_DROPSHIP_LOCKDOWN_RIGHT)
+	D.lockdown_airlocks("rear")
+	D.lockdown_airlocks("left")
+	D.lockdown_airlocks("right")
 
 	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE)
 

@@ -72,11 +72,10 @@
 /obj/machinery/door_control/proc/handle_pod()
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
-			var/area/A = get_area(M)
 			if(M.density)
-				INVOKE_ASYNC(M, .proc/open)
+				INVOKE_ASYNC(M, /obj/machinery/door/.proc/open)
 			else
-				INVOKE_ASYNC(M, .proc/close)
+				INVOKE_ASYNC(M, /obj/machinery/door/.proc/close)
 
 /obj/machinery/door_control/attack_hand(mob/user)
 	if(istype(user,/mob/living/carbon/xenomorph))
@@ -185,8 +184,6 @@
 				handle_door()
 			if(CONTROL_POD_DOORS)
 				handle_pod()
-			if(CONTROL_DROPSHIP)
-				handle_dropship(id)
 
 		desiredstate = !desiredstate
 		triggered = 1
