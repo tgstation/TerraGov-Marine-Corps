@@ -525,7 +525,10 @@
 				dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Activate Cryostasis</A><HR>"
 
 		for(var/chemical in available_chemicals)
-			dat += "<br>Inject [available_chemicals[chemical]]: "
+			if(chemical == available_chemicals[1])
+				dat += "Inject [available_chemicals[chemical]]: "
+			else
+				dat += "<br>Inject [available_chemicals[chemical]]: "
 			for(var/amount in amounts)
 				dat += "<a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a> "
 
@@ -534,7 +537,7 @@
 		dat += "The sleeper is empty."
 	dat += text("<BR><BR><A href='?src=\ref[];mach_close=sleeper'>Close</A>", user)
 
-	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 850)
+	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 840)
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "sleeper")
