@@ -70,10 +70,7 @@
 			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
 				to_chat(user, "<span class='warning'>There is already a blood sample in [src].</span>")
 				return
-			if(!C.dna)
-				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-				return
-			if(NOCLONE in C.mutations) //target done been et, no more blood in him
+			if(!C.blood_type)
 				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 				return
 

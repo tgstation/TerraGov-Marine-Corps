@@ -10,10 +10,10 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	if(M.gloves)
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.transfer_blood) //bloodied gloves transfer blood to touched objects
-			if(add_blood(G.blood_DNA, G.blood_color)) //only reduces the bloodiness of our gloves if the item wasn't already bloody
+			if(add_blood(G.blood_color)) //only reduces the bloodiness of our gloves if the item wasn't already bloody
 				G.transfer_blood--
 	else if(M.bloody_hands)
-		if(add_blood(M.blood_DNA, M.blood_color))
+		if(add_blood(M.blood_color))
 			M.bloody_hands--
 
 	if(!suit_fibers) suit_fibers = list()
@@ -46,7 +46,6 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	fields["area"] = sanitize("[get_area(A)]")
 	fields["fprints"] = A.return_fingerprints()
 	fields["fibers"] = A.suit_fibers ? A.suit_fibers.Copy() : list()
-	fields["blood"] = A.blood_DNA ? A.blood_DNA.Copy() : list()
 	fields["time"] = world.time
 
 /datum/data/record/forensic/proc/merge(var/datum/data/record/other)

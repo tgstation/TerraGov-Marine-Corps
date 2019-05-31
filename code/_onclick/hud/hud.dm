@@ -246,6 +246,18 @@
 	return
 
 
+/obj/screen/action_button/MouseEntered(location, control, params)
+	if (!usr.client?.prefs?.tooltips)
+		return
+	openToolTip(usr, src, params, title = name, content = desc)
+
+
+/obj/screen/action_button/MouseExited()
+	if (!usr.client?.prefs?.tooltips)
+		return
+	closeToolTip(usr)
+
+
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12()
 	set name = "F12"

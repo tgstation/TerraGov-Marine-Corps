@@ -25,6 +25,10 @@
 
 	var/obj/screen/click_catcher/void
 
+	//datum that controls the displaying and hiding of tooltips
+	var/datum/tooltip/tooltips
+
+
 		///////////////
 		//SOUND STUFF//
 		///////////////

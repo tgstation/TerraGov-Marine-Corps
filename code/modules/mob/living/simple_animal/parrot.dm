@@ -78,7 +78,6 @@
 								/obj/machinery/teleport,
 								/obj/machinery/computer,
 								/obj/machinery/suit_storage_unit,
-								/obj/machinery/dna_scannernew,
 								/obj/machinery/telecomms,
 								/obj/machinery/smartfridge,
 								/obj/machinery/recharge_station)

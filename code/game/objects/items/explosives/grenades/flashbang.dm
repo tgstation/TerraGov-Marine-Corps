@@ -48,8 +48,6 @@
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_safety += 2
-			if(HULK in H.mutations)
-				ear_safety += 1
 			if(istype(H.head, /obj/item/clothing/head/helmet/riot))
 				ear_safety += 2
 

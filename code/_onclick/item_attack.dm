@@ -80,8 +80,6 @@
 	add_fingerprint(user)
 
 	var/power = force
-	if(HULK in user.mutations)
-		power *= 2
 
 	if(user.mind && user.mind.cm_skills)
 		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
@@ -108,9 +106,8 @@
 			if("brute")
 				M.apply_damage(power,BRUTE)
 			if("fire")
-				if (!(COLD_RESISTANCE in M.mutations))
-					M.apply_damage(power,BURN)
-					to_chat(M, "<span class='warning'>It burns!</span>")
+				M.apply_damage(power,BURN)
+				to_chat(M, "<span class='warning'>It burns!</span>")
 		M.updatehealth()
 	else
 		var/mob/living/carbon/human/H = M

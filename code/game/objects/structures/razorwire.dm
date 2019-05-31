@@ -89,11 +89,6 @@
 			M.entangle_delay = null
 	entangled_list = list()
 
-
-/obj/structure/razorwire/attack_tk() // no telehulk sorry
-	return
-
-
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
 

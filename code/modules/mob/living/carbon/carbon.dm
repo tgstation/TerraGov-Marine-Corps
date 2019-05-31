@@ -203,21 +203,6 @@
 
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 5)
 
-
-
-
-// ++++ROCKDTBEN++++ MOB PROCS -- Ask me before touching.
-// Stop! ... Hammertime! ~Carn
-
-/mob/living/carbon/proc/getDNA()
-	return dna
-
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
-	dna = newDNA
-
-// ++++ROCKDTBEN++++ MOB PROCS //END
-
-
 //Throwing stuff
 
 /mob/living/carbon/proc/toggle_throw_mode()

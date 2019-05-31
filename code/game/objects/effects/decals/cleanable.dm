@@ -44,9 +44,8 @@
 	if(!prob(50))
 		return
 
-	var/obj/effect/decal/cleanable/blood/drip/D = new (get_turf(src))
+	new /obj/effect/decal/cleanable/blood/drip(get_turf(src))
 	if(!prob(50))
 		return
 
-	D = new(get_turf(src))
-	D.blood_DNA = blood_DNA
+	new /obj/effect/decal/cleanable/blood/drip(get_turf(src))
