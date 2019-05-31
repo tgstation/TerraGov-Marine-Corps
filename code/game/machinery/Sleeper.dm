@@ -649,7 +649,7 @@
 	visible_message("[user] puts [M] into the sleeper.", 3)
 	update_use_power(2)
 	occupant = M
-	start_processing()
+	START_PROCESSING(SSobj, src)
 
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"
