@@ -2,7 +2,7 @@
 	name = "proximity sensor"
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	icon_state = "prox"
-	matter = list("metal" = 800, "metal" = 200)
+	matter = list("metal" = 800, "glass" = 200)
 	attachable = TRUE
 
 	var/scanning = FALSE

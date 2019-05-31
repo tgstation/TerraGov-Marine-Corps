@@ -38,7 +38,7 @@
 		var/list/viewable = view(affected_range, epicenter)
 
 		var/list/accessible = list(epicenter)
-		for(var/i = 1; i <= affected_range; i++)
+		for(var/i = 1 to affected_range)
 			var/list/turflist = list()
 			for(var/turf/T in (orange(i, epicenter) - orange(i-1, epicenter)))
 				turflist |= T
