@@ -83,7 +83,10 @@ Style:
 {{:helper.link("Gondola", null, {"styleGondola" : 1}, null, data.styleChoice == 13 ? "selected" : null, null)}}
 {{:helper.link("See-Through", null, {"styleSeeThrough" : 1}, null, data.styleChoice == 14 ? "selected" : null, null)}}
 <br><br>
-<h4>{{data.numObjects}} turfs in {{data.bay}}</h4>
+Action:
+<br>
 {{:helper.link("Refresh Pod Bay", null, {"refresh" : 1}, null, null, null)}}
 {{:helper.link("Enter Launch Mode", null, {"giveLauncher" : 1}, null, null, null)}}
 {{:helper.link("Clear Selected Bay", null, {"clearBay" : 1}, null, null, null)}}
+<br><br>
+{{data.numObjects}} turfs in {{data.bay}}

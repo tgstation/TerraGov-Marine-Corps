@@ -639,7 +639,7 @@
 	numTurfs = 0
 	acceptableTurfs = list()
 	for(var/turf/T in orderedArea)
-		if(length(typecache_filter_list_reverse(T.contents, ignored_atoms)))
+		if(!length(typecache_filter_list_reverse(T.contents, ignored_atoms)))
 			acceptableTurfs.Add(T)
 			numTurfs ++
 
