@@ -8,7 +8,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/path
 	var/default_slot = 1
 	var/savefile_version = 0
-	var/current_tab = 0
 
 	//Admin
 	var/muted = NONE
