@@ -605,7 +605,7 @@
 			occupant.in_stasis = null
 		stasis = FALSE
 		filtering = FALSE
-		stop_processing() //Shut down; stasis off, filtering off, stop processing.
+		STOP_PROCESSING(SSobj, src) //Shut down; stasis off, filtering off, stop processing.
 		return
 
 	//Life support
