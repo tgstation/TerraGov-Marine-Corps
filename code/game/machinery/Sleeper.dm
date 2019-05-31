@@ -784,7 +784,7 @@
 	visible_message("[user] climbs into the sleeper.", 3)
 	update_use_power(2)
 	occupant = usr
-	start_processing()
+	START_PROCESSING(SSobj, src)
 	icon_state = "sleeper_1"
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"
