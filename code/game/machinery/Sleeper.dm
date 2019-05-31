@@ -482,7 +482,7 @@
 /obj/machinery/sleeper/portable_sleeper
 	name = "Portable Sleeper"
 	desc = "A fancy folding bed with built-in injectors and a limited health scanner."
-	anchored = 0
+	anchored = FALSE
 	available_chemicals = list("peridaxon" = "Peridaxon", "quickclot" = "Quick-Clot", "inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "bicaridine" = "Bicaridine", "kelotane" = "Kelotane", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine", "spaceacillin" = "Spaceacillin")
 
 	active_power_usage = 100 //builtin health analyzer, injectors.
