@@ -635,7 +635,7 @@
 				endY = T.y
 		for(var/i in endY to startY)
 			for(var/j in startX to endX)
-				orderedArea.Add(locate(j,startY - (i - endY), 1))
+				orderedArea.Add(locate(j, startY - (i - endY), 1))
 	return orderedArea
 
 

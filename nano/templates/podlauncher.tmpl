@@ -5,7 +5,7 @@ Supplypod bay:
 {{:helper.link("Bay #3", null, {"bay3" : 1}, null, data.bayNumber == 3 ? "selected" : null, null)}}
 {{:helper.link("Bay #4", null, {"bay4" : 1}, null, data.bayNumber == 4 ? "selected" : null, null)}}
 {{:helper.link("Bay #5", null, {"bay5" : 1}, null, data.bayNumber == 5 ? "selected" : null, null)}}
-<br>
+<br><br>
 Teleport to:
 <br>
 {{:helper.link(data.bay, null, {"teleportCentcom" : 1}, null, null, null)}}
@@ -14,12 +14,12 @@ Teleport to:
 Launch clones:
 <br>
 {{:helper.link("Launch Clones", null, {"launchClone" : 1}, null, data.launchClone ? "selected" : null, null)}}
-<br>
+<br><br>
 Launch all at once:
 <br>
 {{:helper.link("Ordered", null, {"launchOrdered" : 1}, null, data.launchChoice == 1 ? "selected" : null, null)}}
 {{:helper.link("Random", null, {"launchRandom" : 1}, null, data.launchChoice == 2 ? "selected" : null, null)}}
-<br>
+<br><br>
 Explosion:
 <br>
 {{:helper.link("Custom Size", null, {"explosionCustom" : 1}, null, data.explosionChoice == 1? "selected" : null, null)}}
@@ -29,13 +29,13 @@ Damage:
 <br>
 {{:helper.link("Custom Damage", null, {"damageCustom" : 1}, null, data.damageChoice == 1 ? "selected" : null, null)}}
 {{:helper.link("Gib", null, {"damageGib" : 1}, null, data.damageChoice == 1 ? "selected" : null, null)}}
-<br>
+<br><br>
 Damage effects:
 <br>
 {{:helper.link("Stun", null, {"effectStun" : 1}, null, data.effectStun ? "selected" : null, null)}}
 {{:helper.link("Delimb", null, {"effectLimb" : 1}, null, data.effectLimb ? "selected" : null, null)}}
 {{:helper.link("De-organ", null, {"effectOrgans" : 1}, null, data.effectOrgans ? "selected" : null, null)}}
-<br>
+<br><br>
 Movement effects:
 <br>
 {{:helper.link("Bluespace", null, {"effectBluespace" : 1}, null, data.effectBluespace ? "selected" : null, null)}}
@@ -46,12 +46,12 @@ Movement effects:
 {{:helper.link("Any Descent Angle", null, {"effectCircle" : 1}, null, data.effectCircle ? "selected" : null, null)}}
 {{:helper.link("Machine Gun Mode", null, {"effectBurst" : 1}, null, data.effectBurst ? "selected" : null, null)}}
 {{:helper.link("Specific Target", null, {"effectTarget" : 1}, null, data.effectTarget ? "selected" : null, null)}}
-<br>
+<br><br>
 Customization:
 <br>
 {{:helper.link("Custom Name", null, {"effectName" : 1}, null, data.effectName ? "selected" : null, null)}}
 {{:helper.link("Alert Ghosts", null, {"effectAnnounce" : 1}, null, data.effectAnnounce ? "selected" : null, null)}}
-<br>
+<br><br>
 Sound:
 <br>
 {{:helper.link("Custom Falling Sound", null, {"fallingSound" : 1}, null, data.fallingSound ? "selected" : null, null)}}
@@ -59,14 +59,14 @@ Sound:
 {{:helper.link("Custom Opening Sound", null, {"openingSound" : 1}, null, data.openingSound ? "selected" : null, null)}}
 {{:helper.link("Custom Leaving Sound", null, {"leavingSound" : 1}, null, data.leavingSound ? "selected" : null, null)}}
 {{:helper.link("Admin Sound Volume", null, {"soundVolume" : 1}, null, data.soundVolume ? "selected" : null, null)}}
-<br>
+<br><br>
 Delay timers:
 <br>
 {{:helper.link("Custom Falling Duration", null, {"fallDuration" : 1}, null, data.fallDuration != 4 ? "selected" : null, null)}}
 {{:helper.link("Custom Landing Time", null, {"landingDelay" : 1}, null, data.landingDelay != 20 ? "selected" : null, null)}}
 {{:helper.link("Custom Opening Time", null, {"openingDelay" : 1}, null, data.openingDelay != 30 ? "selected" : null, null)}}
 {{:helper.link("Custom Leaving Time", null, {"departureDelay" : 1}, null, data.departureDelay != 30 ? "selected" : null, null)}}
-<br>
+<br><br>
 Style:
 <br>
 {{:helper.link("Standard", null, {"styleStandard" : 1}, null, data.styleChoice == 1 ? "selected" : null, null)}}
@@ -83,10 +83,8 @@ Style:
 {{:helper.link("Gondola", null, {"styleGondola" : 1}, null, data.styleChoice == 13 ? "selected" : null, null)}}
 {{:helper.link("See-Through", null, {"styleSeeThrough" : 1}, null, data.styleChoice == 14 ? "selected" : null, null)}}
 <br><br>
-Action:
+Action ({{:data.numObjects}} turfs in {{:data.bay}}):
 <br>
 {{:helper.link("Refresh Pod Bay", null, {"refresh" : 1}, null, null, null)}}
 {{:helper.link("Enter Launch Mode", null, {"giveLauncher" : 1}, null, null, null)}}
 {{:helper.link("Clear Selected Bay", null, {"clearBay" : 1}, null, null, null)}}
-<br><br>
-{{data.numObjects}} turfs in {{data.bay}}
