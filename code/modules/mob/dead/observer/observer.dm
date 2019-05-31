@@ -880,3 +880,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	client.screen = list()
 	hud_used.show_hud(hud_used.hud_version)
+
+
+/mob/dead/observer/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+	return IsAdminGhost(usr)

@@ -616,3 +616,17 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	var/stealth = "@[num2text(num)]"
 	GLOB.stealthminID["IRCKEY"] = stealth
 	return	stealth
+
+
+/proc/IsAdminGhost(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(!user.client)
+		return FALSE
+	if(!isobserver(user))
+		return FALSE
+	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
+		return FALSE
+	if(!user.client.ai_interact)
+		return FALSE
+	return TRUE

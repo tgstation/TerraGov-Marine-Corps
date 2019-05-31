@@ -1588,3 +1588,13 @@
 		GLOB.datacore.manifest_inject(src)
 
 	return TRUE
+
+
+/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+	. = ..()
+	if(!Adjacent(AM) && (AM.loc != src))
+		if(!proximity)
+			return TRUE
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return TRUE

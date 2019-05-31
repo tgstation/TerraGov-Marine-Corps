@@ -172,6 +172,13 @@
 	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
 		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
 
+	var/list/transferring_comps = list()
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, flags, transferring_comps)
+	for(var/i in transferring_comps)
+		var/datum/component/comp = i
+		comp.RemoveComponent()
+
+
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
 
@@ -727,3 +734,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			vis_contents += GLOB.cameranet.vis_contents_objects
 		else
 			vis_contents -= GLOB.cameranet.vis_contents_objects
+
+
+/turf/AllowDrop()
+	return TRUE
