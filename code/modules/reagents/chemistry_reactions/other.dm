@@ -1,48 +1,3 @@
-
-
-/datum/chemical_reaction/explosion_potassium
-	name = "Explosion"
-	id = "explosion_potassium"
-	required_reagents = list("water" = 1, "potassium" = 1)
-	on_reaction(var/datum/reagents/holder, var/created_volume)
-		var/atom/location = holder.my_atom.loc
-		if(holder.my_atom && location) //It exists outside of null space.
-			var/datum/effect_system/reagents_explosion/e = new()
-			e.set_up(round (created_volume/10, 1), holder.my_atom, 0, 0)
-			e.holder_damage(holder.my_atom)
-			if(isliving(holder.my_atom))
-				e.amount *= 0.5
-				var/mob/living/L = holder.my_atom
-				if(L.stat!=DEAD)
-					e.amount *= 0.5
-			if(e.start()) //Gets rid of doubling down on explosives for gameplay purposes. Hacky, but enough for now.
-			//Should be removed when we actually balance out chemistry.
-				var/obj/item/explosive/grenade/g
-				var/obj/item/storage/s
-				for(g in location) qdel(g) //Grab anything on our turf/something.
-				if(istype(location, /obj/item/storage) || ismob(location)) //If we're in a bag or person.
-					for(s in location) //Find all other containers.
-						for(g in s) qdel(g) //Delete all the grenades.
-				if(istype(location.loc, /obj/item/storage) || ismob(location.loc)) //If the container is in another container.
-					for(g in location.loc) qdel(g) //Delete all the grenades inside.
-					for(s in location.loc) //Search for more containers.
-						if(s == location) continue //Don't search the container we're in.
-						for(g in s) qdel(g) //Delete all the grenades inside.
-		holder.clear_reagents()
-		return
-
-/datum/chemical_reaction/emp_pulse
-	name = "EMP Pulse"
-	id = "emp_pulse"
-	required_reagents = list("uranium" = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
-
-	on_reaction(var/datum/reagents/holder, var/created_volume)
-		var/location = get_turf(holder.my_atom)
-		// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
-		// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
-		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
-		holder.clear_reagents()
-
 /datum/chemical_reaction/pttoxin
 	name = "Toxin"
 	id = "pttoxin"
@@ -126,26 +81,6 @@
 	id = "glycerol"
 	results = list("glycerol" = 1)
 	required_reagents = list("cornoil" = 3, "sacid" = 1)
-
-/datum/chemical_reaction/nitroglycerin
-	name = "Nitroglycerin"
-	id = "nitroglycerin"
-	results = list("nitroglycerin" = 2)
-	required_reagents = list("glycerol" = 1, "pacid" = 1, "sacid" = 1)
-
-/datum/chemical_reaction/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/datum/effect_system/reagents_explosion/e = new()
-	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)
-	e.holder_damage(holder.my_atom)
-	if(isliving(holder.my_atom))
-		e.amount *= 0.5
-		var/mob/living/L = holder.my_atom
-		if(L.stat!=DEAD)
-			e.amount *= 0.5
-	e.start()
-
-	holder.clear_reagents()
-
 
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"

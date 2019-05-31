@@ -18,3 +18,9 @@
 			to_chat(src, "<span class='xenowarning'>You feel your plasma reserves being drained.</span>")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
+
+
+/mob/living/carbon/xenomorph/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+	if(!no_effect && !visual_effect_icon)
+		visual_effect_icon = ATTACK_EFFECT_CLAW
+	return ..()
