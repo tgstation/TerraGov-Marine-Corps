@@ -936,7 +936,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/clear_key = text2num(href_list["clear_key"])
 			var/old_key = href_list["old_key"]
 			if(clear_key)
-				message_admins("clear_key, old - [old_key], name [kb_name]")
 				if(old_key != "Unbound") // if it was already set
 					key_bindings[old_key] -= kb_name
 					key_bindings["Unbound"] += list(kb_name)
