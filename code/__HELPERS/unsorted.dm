@@ -202,6 +202,12 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	return "[round(frequency / 10)].[frequency % 10]"
 
 
+//Opposite of format, returns as a number
+/proc/unformat_frequency(frequency)
+	frequency = text2num(frequency)
+	return frequency * 10
+
+
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
