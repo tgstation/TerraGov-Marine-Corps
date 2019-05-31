@@ -307,18 +307,18 @@ should be alright.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
-	return
+	return FALSE
 
 
 /mob/living/carbon/human/proc/unique_action()
-	if(stat != CONSCIOUS)
-		return
+	if(incapacitated() || lying)
+		return FALSE
 
 	var/obj/item/weapon/gun/G = get_active_held_item()
 	if(!istype(G))
-		return
+		return FALSE
 
-	G.unique_action(src)
+	return G.unique_action(src)
 
 
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)

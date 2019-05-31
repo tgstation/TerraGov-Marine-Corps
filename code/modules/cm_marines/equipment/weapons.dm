@@ -36,29 +36,29 @@
 	. = ..()
 	pcell = new /obj/item/cell(src)
 
-/obj/item/smartgun_powerpack/attack_self(mob/user, automatic = FALSE)
-	if(!ishuman(user) || user.stat)
+/obj/item/smartgun_powerpack/attack_self(mob/living/carbon/human/user, automatic = FALSE)
+	if(!type(user) || user.incapacitated())
 		return FALSE
 
 	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()
 
 	if(!istype(mygun))
 		to_chat(user, "You must be holding an M56 Smartgun to begin the reload process.")
-		return
+		return TRUE
 	if(rounds_remaining < 1)
 		to_chat(user, "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!")
-		return
+		return TRUE
 	if(!pcell)
 		to_chat(user, "Your powerpack doesn't have a battery! Slap one in there!")
-		return
+		return TRUE
 
 	mygun.shells_fired_now = 0 //If you attempt a reload, the shells reset. Also prevents double reload if you fire off another 20 bullets while it's loading.
 
 	if(reloading)
-		return
+		return TRUE
 	if(pcell.charge <= 50)
 		to_chat(user, "Your powerpack's battery is too drained! Get a new battery and install it!")
-		return
+		return TRUE
 
 	reloading = TRUE
 	if(!automatic)
@@ -77,7 +77,6 @@
 			to_chat(user, "Your reloading was interrupted!")
 			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
 			reloading = FALSE
-			return
 	else
 		if(autoload_check(user, reload_duration, mygun, src))
 			reload(user, mygun, TRUE)
@@ -86,7 +85,6 @@
 			to_chat(user, "The automated reload process was interrupted!")
 			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
 			reloading = FALSE
-			return
 	return TRUE
 
 /obj/item/smartgun_powerpack/attack_hand(mob/user)

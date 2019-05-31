@@ -1,29 +1,30 @@
 /mob/living/carbon/human/proc/quick_equip()
 	if(incapacitated() || lying || istype(loc, /obj/vehicle/multitile/root/cm_armored))
-		return
+		return FALSE
 
 	var/obj/item/I = get_active_held_item()
 	if(!I)
 		if(next_move > world.time)
-			return
+			return FALSE
 		if(client?.prefs?.preferred_slot)
 			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
 				next_move = world.time + 3
-				return
+				return TRUE
 		for(var/slot in SLOT_DRAW_ORDER)
 			if(draw_from_slot_if_possible(slot))
 				next_move = world.time + 3
-				return
+				return TRUE
 	else
 		if(client?.prefs?.preferred_slot)
 			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
-				return
+				return TRUE
 		if(!equip_to_appropriate_slot(I, FALSE))
-			return
+			return FALSE
 		if(hand)
 			update_inv_l_hand(FALSE)
 		else
 			update_inv_r_hand(FALSE)
+	return TRUE
 
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
