@@ -334,7 +334,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 	if(hud_used && hud_used.action_intent)
-		hud_used.action_intent.icon_state = "intent_[a_intent]"
+		hud_used.action_intent.icon_state = "[a_intent]"
 
 
 //can the mob be operated on?

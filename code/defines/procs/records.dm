@@ -45,7 +45,6 @@
 	M.fields["id"]			= null
 	M.fields["name"]		= H.real_name
 	M.fields["b_type"]		= H.b_type
-	M.fields["b_dna"]		= H.dna.unique_enzymes
 	M.fields["mi_dis"]		= "None"
 	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
 	M.fields["ma_dis"]		= "None"

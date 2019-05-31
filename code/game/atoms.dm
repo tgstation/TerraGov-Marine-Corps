@@ -24,6 +24,8 @@
 	var/list/atom_colours	 //used to store the different colors on an atom
 							//its inherent color, the colored paint applied on it, special color effect etc...
 
+	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
+
 	var/datum/component/orbiter/orbiters
 
 /*
@@ -191,7 +193,7 @@ directive is properly returned.
 				size = "bulky"
 			if(6 to INFINITY)
 				size = "huge"
-		to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item.")
+		to_chat(user, "This is a [blood_color ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""][icon2html(src, user)][src.name]. It is a [size] item.")
 
 
 	if(desc)
@@ -561,6 +563,11 @@ Proc for attack log creation, because really why not
 
 //the vision impairment to give to the mob whose perspective is set to that atom (e.g. an unfocused camera giving you an impaired vision when looking through it)
 /atom/proc/get_remote_view_fullscreens(mob/user)
+	return
+
+
+//the sight changes to give to the mob whose perspective is set to that atom (e.g. A mob with nightvision loses its nightvision while looking through a normal camera)
+/atom/proc/update_remote_sight(mob/living/user)
 	return
 
 

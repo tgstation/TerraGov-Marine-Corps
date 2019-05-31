@@ -99,13 +99,10 @@
 
 	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
 
-	var/smoke_delay = FALSE
-
 	var/inertia_dir = 0
 
 	var/job //Living
 
-	var/list/mutations //Carbon -- Doohl
 	var/voice_name = "unidentifiable voice"
 
 	var/faction = "Neutral"
@@ -137,8 +134,6 @@
 
 	var/recently_pointed_to = 0 //used as cooldown for the pointing verb.
 
-	var/list/image/hud_list //This mob's HUD (med/sec, etc) images. Associative list.
-
 	var/list/hud_possible //HUD images that this mob can provide.
 
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
@@ -152,11 +147,13 @@
 
 	var/notransform
 
+	var/atom/movable/remote_control //Calls relaymove() to whatever it is
+	var/obj/machinery/machine = null
+
 	var/typing
 
 	var/bloody_hands = 0
 	var/track_blood = 0
-	var/list/feet_blood_DNA
 	var/feet_blood_color
 
 	var/move_on_shuttle = 1 // Can move on the shuttle.

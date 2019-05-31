@@ -59,7 +59,7 @@
 			if(10 to 12)
 				if(getBrainLoss() >= 50 && !lying)
 					to_chat(src, "<span class='danger'>Your legs won't respond properly, you fall down.</span>")
-					resting = 1
+					set_resting(TRUE)
 
 /mob/living/carbon/human/handle_impaired_vision()
 	. = ..()

@@ -114,9 +114,6 @@
 	else
 		return TRUE
 
-/obj/structure/barricade/attack_robot(mob/user as mob)
-	return attack_hand(user)
-
 /obj/structure/barricade/attack_animal(mob/user as mob)
 	return attack_alien(user)
 
@@ -136,8 +133,7 @@
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		M.apply_damage(10)
 	update_health(TRUE)
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
 	. = ..()

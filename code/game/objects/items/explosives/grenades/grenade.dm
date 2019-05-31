@@ -39,26 +39,21 @@
 
 	add_fingerprint(user)
 	activate(user)
-	if((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
-		spawn(5)
-			prime()
 
-	else
-		user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
-		"<span class='warning'>You prime \a [name]!</span>")
-		if(initial(dangerous) && ishumanbasic(user))
-			var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
+	user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
+	"<span class='warning'>You prime \a [name]!</span>")
+	if(initial(dangerous) && ishumanbasic(user))
+		var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
-			for(var/mob/living/carbon/human/H in hearers(6,user))
-				H.playsound_local(user, nade_sound, 35)
+		for(var/mob/living/carbon/human/H in hearers(6,user))
+			H.playsound_local(user, nade_sound, 35)
 
-			var/image/grenade = image('icons/mob/talk.dmi', user, "grenade")
-			user.add_emote_overlay(grenade)
+		var/image/grenade = image('icons/mob/talk.dmi', user, "grenade")
+		user.add_emote_overlay(grenade)
 
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			C.throw_mode_on()
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		C.throw_mode_on()
 
 
 /obj/item/explosive/grenade/proc/activate(mob/user as mob)

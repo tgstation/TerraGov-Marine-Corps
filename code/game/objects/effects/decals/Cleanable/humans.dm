@@ -13,7 +13,6 @@ var/global/list/image/splatter_cache=list()
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
 	var/base_icon = 'icons/effects/blood.dmi'
-	blood_DNA = list()
 	var/basecolor="#ff3b00" // Color when wet.
 	var/amount = 5
 
@@ -29,8 +28,6 @@ var/global/list/image/splatter_cache=list()
 		for(var/obj/effect/decal/cleanable/blood/B in loc)
 			if(B == src)
 				continue
-			if(blood_DNA)
-				B.blood_DNA |= blood_DNA.Copy()
 			return INITIALIZE_HINT_QDEL
 	return INITIALIZE_HINT_LATELOAD
 
@@ -56,15 +53,12 @@ var/global/list/image/splatter_cache=list()
 	if(perp.shoes && !perp.buckled)//Adding blood to shoes
 		var/obj/item/clothing/shoes/S = perp.shoes
 		if(istype(S))
-			S.add_blood(blood_DNA, basecolor)
+			S.add_blood(basecolor)
 			S.track_blood = max(amount,S.track_blood)
 
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
 		perp.track_blood = max(amount,perp.track_blood)
-		if(!perp.feet_blood_DNA)
-			perp.feet_blood_DNA = list()
-		perp.feet_blood_DNA |= blood_DNA.Copy()
 	else if (perp.buckled && istype(perp.buckled, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
 		W.bloodiness = 4
@@ -88,25 +82,25 @@ var/global/list/image/splatter_cache=list()
 		amount -= taken
 		to_chat(user, "<span class='notice'>You get some of \the [src] on your hands.</span>")
 
-		user.add_blood(blood_DNA, basecolor)
+		user.add_blood(basecolor)
 		user.bloody_hands += taken
 		user.update_inv_gloves()
 
 
 
 /obj/effect/decal/cleanable/blood/splatter
-        random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
-        amount = 2
+	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	amount = 2
 
 /obj/effect/decal/cleanable/blood/drip
-        name = "drips of blood"
-        desc = "Some small drips of blood."
-        gender = PLURAL
-        icon = 'icons/effects/drip.dmi'
-        icon_state = "1"
-        random_icon_states = list("1","2","3","4","5")
-        amount = 0
-        var/drips
+	name = "drips of blood"
+	desc = "Some small drips of blood."
+	gender = PLURAL
+	icon = 'icons/effects/drip.dmi'
+	icon_state = "1"
+	random_icon_states = list("1","2","3","4","5")
+	amount = 0
+	var/drips
 
 /obj/effect/decal/cleanable/blood/writing
 	icon_state = "tracks"
@@ -173,17 +167,17 @@ var/global/list/image/splatter_cache=list()
 
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(var/list/directions)
-        spawn (0)
-                var/direction = pick(directions)
-                for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
-                        sleep(3)
-                        if (i > 0)
-                                var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
-                                b.basecolor = src.basecolor
-                                b.update_icon()
+	spawn (0)
+		var/direction = pick(directions)
+		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
+			sleep(3)
+			if (i > 0)
+				var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
+				b.basecolor = src.basecolor
+				b.update_icon()
 
-                        if (step_to(src, get_step(src, direction), 0))
-                                break
+			if (step_to(src, get_step(src, direction), 0))
+				break
 
 
 /obj/effect/decal/cleanable/mucus

@@ -20,8 +20,6 @@
 		return FALSE
 
 	X.start_pulling(src)
-	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
@@ -88,7 +86,9 @@
 			KnockOut(knockout_stacks)
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src)
+
 	X.neuroclaw_router(src) //if we have neuroclaws...
 	if(dam_bonus)
 		tackle_pain += dam_bonus
@@ -239,12 +239,13 @@
 			KnockOut(knockout_stacks) //...And we knock 
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 	if(dam_bonus)
 		damage += dam_bonus
 	else //We avoid stacking, like hit-and-run and savage.
 		damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
+
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src)
 
 	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
 	updatehealth()

@@ -94,7 +94,7 @@
 	add_fingerprint(user)
 	if(on && user.zone_selected == "eyes")
 
-		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
+		if((user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 
@@ -115,9 +115,6 @@
 		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
-			else if(XRAY in M.mutations)	//mob has X-RAY vision
-				M.flash_eyes()
-				to_chat(user, "<span class='notice'>[M] pupils give an eerie glow!</span>")
 			else	//they're okay!
 				M.flash_eyes()
 				to_chat(user, "<span class='notice'>[M]'s pupils narrow.</span>")

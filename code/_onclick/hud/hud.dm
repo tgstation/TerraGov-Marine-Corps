@@ -35,6 +35,7 @@
 	var/obj/screen/zone_sel
 	var/obj/screen/pull_icon
 	var/obj/screen/throw_icon
+	var/obj/screen/rest_icon
 	var/obj/screen/oxygen_icon
 	var/obj/screen/pressure_icon
 	var/obj/screen/toxin_icon
@@ -243,6 +244,18 @@
 
 /mob/new_player/add_click_catcher()
 	return
+
+
+/obj/screen/action_button/MouseEntered(location, control, params)
+	if (!usr.client?.prefs?.tooltips)
+		return
+	openToolTip(usr, src, params, title = name, content = desc)
+
+
+/obj/screen/action_button/MouseExited()
+	if (!usr.client?.prefs?.tooltips)
+		return
+	closeToolTip(usr)
 
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)

@@ -72,14 +72,6 @@
 				is_in_use = TRUE
 				attack_ai(usr)
 
-	// check for TK users
-
-	if (ishuman(usr))
-		if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-			if(!(usr in nearby))
-				if(usr.client && usr.interactee==src)
-					is_in_use = TRUE
-					attack_hand(usr)
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
@@ -93,9 +85,8 @@
 		if ((M.client && M.interactee == src))
 			is_in_use = TRUE
 			interact(M)
-	var/ai_in_use = AutoUpdateAI(src)
-
-	if(!ai_in_use && !is_in_use)
+			
+	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 /obj/proc/interact(mob/user)

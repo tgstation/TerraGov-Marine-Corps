@@ -1,9 +1,9 @@
 
 /proc/gibs(atom/location, var/datum/dna/MobDNA)		//CARN MARKER
-	new /obj/effect/spawner/gibspawner/generic(get_turf(location),MobDNA)
+	new /obj/effect/spawner/gibspawner/generic(get_turf(location))
 
 /proc/hgibs(atom/location, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
-	new /obj/effect/spawner/gibspawner/human(get_turf(location),MobDNA,fleshcolor,bloodcolor)
+	new /obj/effect/spawner/gibspawner/human(get_turf(location),fleshcolor,bloodcolor)
 
 /proc/xgibs(atom/location)
 	new /obj/effect/spawner/gibspawner/xeno(get_turf(location))
@@ -19,16 +19,16 @@
 	var/fleshcolor //Used for gibbed humans.
 	var/bloodcolor //Used for gibbed humans.
 
-	New(location, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+	New(location, var/fleshcolor, var/bloodcolor)
 		..()
 
 		if(fleshcolor) src.fleshcolor = fleshcolor
 		if(bloodcolor) src.bloodcolor = bloodcolor
 
 		if(istype(loc,/turf)) //basically if a badmin spawns it
-			Gib(loc,MobDNA)
+			Gib(loc)
 
-	proc/Gib(atom/location, var/datum/dna/MobDNA = null)
+	proc/Gib(atom/location)
 		if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
 			to_chat(world, "<span class='warning'>Gib list length mismatch!</span>")
 			return
@@ -53,13 +53,6 @@
 
 					gib.update_icon()
 
-					gib.blood_DNA = list()
-					if(MobDNA)
-						gib.blood_DNA[MobDNA.unique_enzymes] = MobDNA.b_type
-					else if(istype(src, /obj/effect/spawner/gibspawner/xeno))
-						gib.blood_DNA["UNKNOWN DNA"] = "X*"
-					else if(istype(src, /obj/effect/spawner/gibspawner/human)) // Probably a monkey
-						gib.blood_DNA["Non-human DNA"] = "A+"
 					var/list/directions = gibdirections[i]
 					if(directions.len)
 						gib.streak(directions)

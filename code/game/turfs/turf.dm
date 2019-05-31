@@ -60,6 +60,7 @@
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
 		ChangeTurf(/turf/open/floor/plating, TRUE)
+	visibilityChanged()
 	return ..()
 
 /turf/ex_act(severity)
@@ -714,3 +715,15 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	// Make toxins vomit look different
 	if(toxvomit)
 		this.icon_state = "vomittox_[pick(1,4)]"
+
+
+/turf/proc/visibilityChanged()
+	GLOB.cameranet.updateVisibility(src)
+	// The cameranet usually handles this for us, but if we've just been
+	// recreated we should make sure we have the cameranet vis_contents.
+	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
+	if(C)
+		if(C.obscuredTurfs[src])
+			vis_contents += GLOB.cameranet.vis_contents_objects
+		else
+			vis_contents -= GLOB.cameranet.vis_contents_objects

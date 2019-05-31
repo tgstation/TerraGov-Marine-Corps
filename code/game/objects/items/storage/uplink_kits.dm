@@ -35,10 +35,6 @@
 
 			if("freedom")
 				new /obj/item/implanter/freedom(src)
-
-			if("hacker")
-				new /obj/item/circuitboard/ai_module/syndicate(src)
-				new /obj/item/card/emag(src)
 				return
 
 			if("smoothoperator")

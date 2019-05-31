@@ -9,6 +9,7 @@
 	plasma_cost = 25
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 6 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_HEADBUTT
 
 /datum/action/xeno_action/activable/headbutt/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -98,6 +99,8 @@
 	plasma_cost = 35
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 12 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
 
 /datum/action/xeno_action/activable/tail_sweep/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -157,6 +160,7 @@
 	ability_name = "toggle crest defense"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_CREST_DEFENSE
 
 /datum/action/xeno_action/activable/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
@@ -213,6 +217,7 @@
 	ability_name = "fortify"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_FORTIFY
 
 /datum/action/xeno_action/activable/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner

@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	26
+#define SAVEFILE_VERSION_MAX	28
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,19 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+
+	if(savefile_version < 28)
+		S["tooltips"] << TRUE
+
+	if(savefile_version < 27)
+		switch(S["ui_style"])
+			if("Orange")
+				S["ui_style"] << "Plasmafire"
+			if("old")
+				S["ui_style"] << "Retro"
+		if(S["ui_style_alpha"] == 255)
+			S["ui_style_alpha"] << 230
 
 	if(savefile_version < 26)
 		S["key_bindings"] << deepCopyList(GLOB.keybinding_list_by_key)
@@ -91,6 +104,7 @@
 	S["ghost_form"]			>> ghost_form
 	S["ghost_others"]		>> ghost_others
 	S["hotkeys"]			>> hotkeys
+	S["tooltips"]			>> tooltips
 
 	// Custom hotkeys
 	S["key_bindings"]		>> key_bindings
@@ -114,6 +128,7 @@
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
+	tooltips		= sanitize_integer(tooltips, 0, 1, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key)) 
 
@@ -149,6 +164,7 @@
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	hotkeys			= sanitize_integer(hotkeys, 0, 1, initial(hotkeys))
+	tooltips		= sanitize_integer(tooltips, 0, 1, initial(tooltips))
 
 	S["default_slot"]		<< default_slot
 	S["lastchangelog"]		<< lastchangelog
@@ -170,6 +186,7 @@
 	S["ghost_form"]			<< ghost_form
 	S["ghost_others"]		<< ghost_others
 	S["hotkeys"]			<< hotkeys
+	S["tooltips"]			<< tooltips
 
 	return TRUE
 
@@ -435,7 +452,7 @@
 /datum/preferences/proc/save()
 	save_preferences()
 	save_character()
-	
+
 
 /datum/preferences/proc/load()
 	load_preferences()

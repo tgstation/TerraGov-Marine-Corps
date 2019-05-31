@@ -273,17 +273,8 @@ Class Procs:
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
-	var/norange = 0
-	if(ishuman(usr))
-		var/mob/living/carbon/human/H = usr
-		if(istype(H.l_hand, /obj/item/tk_grab))
-			norange = 1
-		else if(istype(H.r_hand, /obj/item/tk_grab))
-			norange = 1
-
-	if(!norange)
-		if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !issilicon(usr))
-			return 1
+	if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !issilicon(usr))
+		return 1
 
 	src.add_fingerprint(usr)
 
@@ -603,3 +594,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 		qdel(src)
 	else
 		update_icon()
+
+
+/obj/machinery/proc/remove_eye_control(mob/living/user)
+	return

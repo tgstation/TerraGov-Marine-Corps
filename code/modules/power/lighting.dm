@@ -443,10 +443,8 @@
 		else
 			prot = 1
 
-		if(prot > 0 || (COLD_RESISTANCE in user.mutations))
+		if(prot > 0)
 			to_chat(user, "You remove the light [fitting]")
-		else if(TK in user.mutations)
-			to_chat(user, "You telekinetically remove the light [fitting].")
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
@@ -470,31 +468,6 @@
 		L.add_fingerprint(user)
 	else
 		L.forceMove(loc) //if not, put it on the ground
-	status = LIGHT_EMPTY
-	update()
-
-
-/obj/machinery/light/attack_tk(mob/user)
-	if(status == LIGHT_EMPTY)
-		to_chat(user, "There is no [fitting] in this light.")
-		return
-
-	to_chat(user, "You telekinetically remove the light [fitting].")
-	// create a light tube/bulb item and put it in the user's hand
-	var/obj/item/light_bulb/L = new light_type()
-	L.status = status
-	L.rigged = rigged
-	L.brightness = brightness
-	L.color = l_color
-
-	// light item inherits the switchcount, then zero it
-	L.switchcount = switchcount
-	switchcount = 0
-
-	L.update()
-	L.add_fingerprint(user)
-	L.loc = loc
-
 	status = LIGHT_EMPTY
 	update()
 

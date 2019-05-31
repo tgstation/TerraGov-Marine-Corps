@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_special = BE_SPECIAL_DEFAULT	//Special role selection
 	var/ui_style = "Midnight"
 	var/ui_style_color = "#ffffff"
-	var/ui_style_alpha = 255
+	var/ui_style_alpha = 230
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
 
@@ -107,6 +107,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/exp = list()
 	var/list/menuoptions
+
+	// Hud tooltip
+	var/tooltips = TRUE
 
 
 /datum/preferences/New(client/C)
@@ -288,6 +291,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show" : "Hide"]</a><br>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
 	dat += "<b>Keybindings:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
+	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 
 
 	if(CONFIG_GET(flag/allow_metadata))
@@ -945,6 +949,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			else
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
 
+		if("tooltips")
+			tooltips = !tooltips
+			if(!tooltips)
+				closeToolTip(usr)
+			else if(!usr.client.tooltips && tooltips)
+				usr.client.tooltips = new /datum/tooltip(usr.client)
+
 		if("keybindings_menu")
 			ShowKeybindings(user)
 			return
@@ -1023,8 +1034,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.real_name = real_name
 	character.name = character.real_name
 	character.voice_name = character.real_name
-	if(character.dna)
-		character.dna.real_name = character.real_name
 
 	character.flavor_text = flavor_text
 

@@ -192,8 +192,7 @@
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
 			"<span class='danger'>You smash \the [src]!</span>", null, 5)
-		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
 		return attack_paw(M)
 
@@ -294,12 +293,6 @@
 /obj/structure/closet/attack_hand(mob/living/user)
 	add_fingerprint(user)
 	return toggle(user)
-
-// tk grab then use on self
-/obj/structure/closet/attack_self_tk(mob/user as mob)
-	src.add_fingerprint(user)
-	if(!src.toggle())
-		to_chat(usr, "<span class='notice'>It won't budge!</span>")
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)

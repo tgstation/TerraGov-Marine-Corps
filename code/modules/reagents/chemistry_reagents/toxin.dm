@@ -125,12 +125,6 @@
 	toxpwr = 0
 	taste_description = "mint"
 
-/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/L, metabolism)
-	if(FAT in L.mutations)
-		L.gib()
-	else
-		return ..()
-
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	id = "carpotoxin"

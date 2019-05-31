@@ -15,13 +15,6 @@
 	. = ..()
 	handle_rotation()
 
-/obj/structure/bed/chair/attack_tk(mob/user as mob)
-	if(buckled_mob)
-		..()
-	else
-		rotate()
-	return
-
 /obj/structure/bed/chair/setDir(newdir)
 	. = ..()
 	handle_rotation()

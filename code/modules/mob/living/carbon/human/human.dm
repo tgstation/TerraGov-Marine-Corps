@@ -13,10 +13,7 @@
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
-
-	if(!dna)
-		dna = new /datum/dna(b_type)
-		// Species name is handled by set_species()
+	blood_type = b_type
 
 	if(!species)
 		set_species()
@@ -30,9 +27,6 @@
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
 	round_statistics.total_humans_created++
-
-	if(dna)
-		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
 
@@ -312,7 +306,7 @@
 
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
-/mob/living/carbon/human/proc/get_visible_name()
+/mob/living/carbon/human/get_visible_name()
 	if( wear_mask && (wear_mask.flags_inv_hide & HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
 	if( head && (head.flags_inv_hide & HIDEFACE) )
@@ -326,7 +320,7 @@
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name()
 	var/datum/limb/head/head = get_limb("head")
-	if( !head || head.disfigured || (head.limb_status & LIMB_DESTROYED) || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
+	if( !head || head.disfigured || (head.limb_status & LIMB_DESTROYED) || !real_name )	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
 
@@ -871,11 +865,6 @@
 
 	return 0
 
-
-/mob/living/carbon/human/proc/check_dna()
-	dna.check_integrity(src)
-	return
-
 /mob/living/carbon/human/get_species()
 
 	if(!species)
@@ -894,143 +883,6 @@
 
 /mob/living/carbon/human/proc/xylophone_cooldown()
 	xylophone = FALSE
-
-/mob/living/carbon/human/proc/morph()
-	set name = "Morph"
-	set category = "Superpower"
-
-	if(stat!=CONSCIOUS)
-		reset_view(0)
-		remoteview_target = null
-		return
-
-	if(!(mMorph in mutations))
-		src.verbs -= /mob/living/carbon/human/proc/morph
-		return
-
-	var/new_facial = input("Please select facial hair color.", "Character Generation",rgb(r_facial,g_facial,b_facial)) as color
-	if(new_facial)
-		r_facial = hex2num(copytext(new_facial, 2, 4))
-		g_facial = hex2num(copytext(new_facial, 4, 6))
-		b_facial = hex2num(copytext(new_facial, 6, 8))
-
-	var/new_hair = input("Please select hair color.", "Character Generation",rgb(r_hair,g_hair,b_hair)) as color
-	if(new_facial)
-		r_hair = hex2num(copytext(new_hair, 2, 4))
-		g_hair = hex2num(copytext(new_hair, 4, 6))
-		b_hair = hex2num(copytext(new_hair, 6, 8))
-
-	var/new_eyes = input("Please select eye color.", "Character Generation",rgb(r_eyes,g_eyes,b_eyes)) as color
-	if(new_eyes)
-		r_eyes = hex2num(copytext(new_eyes, 2, 4))
-		g_eyes = hex2num(copytext(new_eyes, 4, 6))
-		b_eyes = hex2num(copytext(new_eyes, 6, 8))
-
-
-	// hair
-	var/list/hairs = list()
-
-	// loop through potential hairs
-	for(var/x in subtypesof(/datum/sprite_accessory/hair))
-		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
-		hairs.Add(H.name) // add hair name to hairs
-		qdel(H) // delete the hair after it's all done
-
-	var/new_style = input("Please select hair style", "Character Generation",h_style)  as null|anything in hairs
-
-	// if new style selected (not cancel)
-	if (new_style)
-		h_style = new_style
-
-	// facial hair
-	var/list/fhairs = list()
-
-	for(var/x in subtypesof(/datum/sprite_accessory/facial_hair))
-		var/datum/sprite_accessory/facial_hair/H = new x
-		fhairs.Add(H.name)
-		qdel(H)
-
-	new_style = input("Please select facial style", "Character Generation",f_style)  as null|anything in fhairs
-
-	if(new_style)
-		f_style = new_style
-
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
-	if (new_gender)
-		if(new_gender == "Male")
-			gender = MALE
-		else
-			gender = FEMALE
-	regenerate_icons()
-	check_dna()
-
-	visible_message("<span class='notice'> \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!</span>", "<span class='notice'> You change your appearance!</span>", "<span class='warning'> Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!</span>")
-
-/mob/living/carbon/human/proc/remotesay()
-	set name = "Project mind"
-	set category = "Superpower"
-
-	if(stat!=CONSCIOUS)
-		reset_view(0)
-		remoteview_target = null
-		return
-
-	if(!(mRemotetalk in src.mutations))
-		src.verbs -= /mob/living/carbon/human/proc/remotesay
-		return
-	var/list/creatures = list()
-	for(var/mob/living/carbon/h in GLOB.player_list)
-		creatures += h
-	var/mob/target = input ("Who do you want to project your mind to ?") as null|anything in creatures
-	if (isnull(target))
-		return
-
-	var/say = input ("What do you wish to say")
-	if(mRemotetalk in target.mutations)
-		target.show_message("<span class='notice'> You hear [src.real_name]'s voice: [say]</span>")
-	else
-		target.show_message("<span class='notice'> You hear a voice that seems to echo around the room: [say]</span>")
-	usr.show_message("<span class='notice'> You project your mind into [target.real_name]: [say]</span>")
-	log_directed_talk(usr, target, say, LOG_SAY, "project mind")
-	for(var/mob/dead/observer/G in GLOB.dead_mob_list)
-		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
-
-/mob/living/carbon/human/proc/remoteobserve()
-	set name = "Remote View"
-	set category = "Superpower"
-
-	if(stat!=CONSCIOUS)
-		remoteview_target = null
-		reset_view(0)
-		return
-
-	if(!(mRemote in src.mutations))
-		remoteview_target = null
-		reset_view(0)
-		src.verbs -= /mob/living/carbon/human/proc/remoteobserve
-		return
-
-	if(client.eye != client.mob)
-		remoteview_target = null
-		reset_view(0)
-		return
-
-	var/list/mob/creatures = list()
-
-	for(var/mob/living/carbon/h in GLOB.player_list)
-		var/turf/temp_turf = get_turf(h)
-		if(!is_ground_level(temp_turf.z) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
-			continue
-		creatures += h
-
-	var/mob/target = input ("Who do you want to project your mind to ?") as mob in creatures
-
-	if (target)
-		remoteview_target = target
-		reset_view(target)
-	else
-		remoteview_target = null
-		reset_view(0)
 
 /mob/living/carbon/human/proc/get_visible_gender()
 	if(wear_suit && wear_suit.flags_inv_hide & HIDEJUMPSUIT && ((head && head.flags_inv_hide & HIDEMASK) || wear_mask))
@@ -1177,14 +1029,8 @@
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
-	if(!dna)
-		if(!new_species)
-			new_species = "Human"
-	else
-		if(!new_species)
-			new_species = dna.species
-		else
-			dna.species = new_species
+	if(!new_species)
+		new_species = "Human"
 
 	if(species)
 
@@ -1333,16 +1179,6 @@
 				flavor_text += "\n\n"
 	return ..()
 
-/mob/living/carbon/human/getDNA()
-	if(species.species_flags & NO_SCAN)
-		return null
-	..()
-
-/mob/living/carbon/human/setDNA()
-	if(species.species_flags & NO_SCAN)
-		return
-	..()
-
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
 
@@ -1458,13 +1294,6 @@
 				see_invisible = min(G.see_invisible, see_invisible)
 	else
 		clear_fullscreen("glasses_vision", 0)
-
-
-	if(XRAY in mutations)
-		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = max(see_in_dark, 8)
-
-
 
 /mob/living/carbon/human/get_total_tint()
 	. = ..()
@@ -1749,9 +1578,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-
-	if(dna)
-		dna.real_name = real_name
 
 	if(istype(wear_id))
 		var/obj/item/card/id/C = wear_id

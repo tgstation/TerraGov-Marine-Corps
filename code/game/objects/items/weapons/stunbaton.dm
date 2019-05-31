@@ -136,11 +136,6 @@
 	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
-	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "span class='danger'>You accidentally hit yourself with the [src]!</span>")
-		user.KnockDown(30)
-		deductcharge(hitcost)
-		return
 
 	var/agony = agonyforce
 	var/stun = stunforce

@@ -21,3 +21,15 @@
 		if(X.hivemind_talk(message))
 			return FALSE
 	return TRUE
+
+
+/datum/saymode/binary //everything that uses .b (silicons, drones, blobbernauts/spores, swarmers)
+	key = MODE_KEY_BINARY
+	mode = MODE_BINARY
+
+
+/datum/saymode/binary/handle_message(mob/living/user, message, datum/language/language)
+	if(user.binarycheck())
+		user.robot_talk(message)
+		return FALSE
+	return FALSE

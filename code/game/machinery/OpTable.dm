@@ -47,11 +47,6 @@
 	return
 
 /obj/machinery/optable/attack_paw(mob/user as mob)
-	if ((HULK in usr.mutations))
-		to_chat(usr, text("<span class='notice'> You destroy the operating table.</span>"))
-		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
-		src.density = 0
-		qdel(src)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
 		step(user, get_dir(user, src))
 		if (user.loc == src.loc)
@@ -67,12 +62,6 @@
 		to_chat(user, "<span class='information'>It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa.</span>")
 
 /obj/machinery/optable/attack_hand(mob/living/user)
-	if (HULK in usr.mutations)
-		to_chat(usr, text("<span class='notice'> You destroy the table.</span>"))
-		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
-		src.density = 0
-		qdel(src)
-		return
 	if(buckled_mob)
 		unbuckle(user)
 		return
@@ -168,7 +157,7 @@
 		user.visible_message("<span class='notice'>[user] climbs on the operating table.","You climb on the operating table.</span>", null, null, 4)
 	else
 		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, 4)
-	C.resting = 1
+	C.set_resting(TRUE)
 	C.forceMove(loc)
 
 	add_fingerprint(user)

@@ -89,11 +89,6 @@
 			M.entangle_delay = null
 	entangled_list = list()
 
-
-/obj/structure/razorwire/attack_tk() // no telehulk sorry
-	return
-
-
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -201,8 +196,7 @@
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
 	update_health(TRUE)
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
 
 /obj/structure/razorwire/ex_act(severity)
 	switch(severity)
