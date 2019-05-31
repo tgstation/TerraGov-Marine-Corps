@@ -1,0 +1,4 @@
+author: "Jalleo"
+delete-after: True
+changes: 
+  - code_imp: "Code made slightly better in tiny areas. Report any issues about the fusion generator or elsewhere"
