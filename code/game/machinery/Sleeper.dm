@@ -525,12 +525,10 @@
 				dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Activate Cryostasis</A><HR>"
 
 		for(var/chemical in available_chemicals)
-			if(chemical == available_chemicals[1])
-				dat += "Inject [available_chemicals[chemical]]: "
-			else
-				dat += "<br>Inject [available_chemicals[chemical]]: "
+			dat += "Inject [available_chemicals[chemical]]: "
 			for(var/amount in amounts)
 				dat += "<a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a> "
+			dat += "<br>"
 
 		dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
 	else
