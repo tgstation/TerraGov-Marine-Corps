@@ -218,7 +218,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(current_species.preferences)
 		for(var/preference_id in current_species.preferences)
 			dat += "<b>[current_species.preferences[preference_id]]:</b> <a href='?_src_=prefs;preference=[preference_id]'><b>[vars[preference_id]]</b></a><br>"
-		dat += "<br>"
 
 	dat += "<a href='?_src_=prefs;preference=random'>Randomize</a>"
 
@@ -290,9 +289,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		dat += " <a href ='?_src_=prefs;preference=loadoutadd'>\[add\]</a>"
 		if(length(gear))
 			dat += " <a href ='?_src_=prefs;preference=loadoutclear'>\[clear\]</a>"
-
-	dat += "<br><br>"
-
 
 
 
