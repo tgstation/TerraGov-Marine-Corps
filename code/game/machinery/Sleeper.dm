@@ -105,7 +105,10 @@
 				dat += "<HR>No Dialysis Output Beaker is present.<BR><HR>"
 
 			for(var/chemical in connected.available_chemicals)
-				dat += "<br>Inject [connected.available_chemicals[chemical]]: "
+				if(chemical == "inaprovaline") //change inaprovaline for the chemical id of whatever is first in the available_chemicals list.
+					dat += "Inject [connected.available_chemicals[chemical]]: "
+				else
+					dat += "<br>Inject [connected.available_chemicals[chemical]]: "
 				for(var/amount in connected.amounts)
 					dat += "<a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a> "
 
@@ -114,7 +117,7 @@
 			dat += "The sleeper is empty."
 	dat += text("<BR><BR><A href='?src=\ref[];mach_close=sleeper'>Close</A>", user)
 
-	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 870)
+	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 860)
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "sleeper")
