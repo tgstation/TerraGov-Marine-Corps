@@ -107,7 +107,7 @@
 			for(var/chemical in connected.available_chemicals)
 				dat += "Inject [connected.available_chemicals[chemical]]:"
 				for(var/amount in connected.amounts)
-					dat += "<a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a> "
+					dat += " <a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a>"
 				dat += "<br>"
 
 			dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
