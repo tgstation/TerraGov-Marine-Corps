@@ -92,7 +92,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "podlauncher.tmpl", "Launch Pod", 700, 700, null, master_ui, state)
+		ui = new(user, src, ui_key, "podlauncher.tmpl", "Launch Pod", 1000, 700, null, master_ui, state)
 		ui.set_initial_data(data)
 		ui.open()
 
