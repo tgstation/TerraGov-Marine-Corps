@@ -37,7 +37,7 @@
 	G.reenter_corpse()
 
 
-/datum/hud/ghost/New(mob/owner, ui_style='icons/mob/screen1_White.dmi')
+/datum/hud/ghost/New(mob/owner, ui_style='icons/mob/screen/white.dmi')
 	. = ..()
 	var/obj/screen/using
 
