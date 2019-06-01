@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	29
+#define SAVEFILE_VERSION_MAX	30
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,9 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 30)
+		WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.keybinding_list_by_key))
 
 	if(savefile_version < 29)
 		WRITE_FILE(S["metadata"], null)
@@ -134,7 +137,7 @@
 	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
-	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key)) 
+	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
 
 	return TRUE
 
