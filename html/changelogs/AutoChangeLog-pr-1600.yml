@@ -1,5 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "Added ghost hud"
-  - rscadd: "Added new ghost alerts, They show specific events to ghosts that happen throughout the round, allowing ghosts to see more action."
