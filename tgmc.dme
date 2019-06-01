@@ -153,6 +153,7 @@
 #include "code\controllers\stonedmc\subsystem\chat.dm"
 #include "code\controllers\stonedmc\subsystem\codex.dm"
 #include "code\controllers\stonedmc\subsystem\dbcore.dm"
+#include "code\controllers\stonedmc\subsystem\dcs.dm"
 #include "code\controllers\stonedmc\subsystem\direction.dm"
 #include "code\controllers\stonedmc\subsystem\evacuation.dm"
 #include "code\controllers\stonedmc\subsystem\garbage.dm"
