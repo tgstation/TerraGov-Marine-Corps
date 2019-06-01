@@ -71,7 +71,7 @@
 
 	for(var/mob/dead/observer/M in GLOB.player_list)
 		if(M.client)
-			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > Join Response Team</b> verb to join!</span></font><br>")
+			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > <a href='byond://?src=[REF(M)];join_ert=1'>Join Response Team</a></b> verb to join!</span></font><br>")
 			to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
 
 
@@ -172,7 +172,7 @@
 	for(var/i in candidates)
 		var/datum/mind/M = i
 		if(!istype(M)) // invalid
-			continue 
+			continue
 		if(M.current?.stat != DEAD) //Strip them from the list, they aren't dead anymore.
 			if(M.current)
 				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
