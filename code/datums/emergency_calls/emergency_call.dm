@@ -69,7 +69,8 @@
 	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.
 		return
 
-	for(var/mob/dead/observer/M in GLOB.player_list)
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/M = i
 		if(M.client)
 			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > <a href='byond://?src=[REF(M)];join_ert=1'>Join Response Team</a></b> verb to join!</span></font><br>")
 			to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
