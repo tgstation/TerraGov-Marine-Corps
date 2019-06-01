@@ -215,6 +215,10 @@
 	if(!check_rights(R_SERVER))
 		return
 
+	if (!SSticker.current_state == GAME_STATE_STARTUP && !SSticker.current_state == GAME_STATE_PREGAME)
+		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
+		return
+
 	if(SSticker.start_immediately)
 		SSticker.start_immediately = FALSE
 		log_admin("[key_name(usr)] has cancelled the early round start.")
@@ -225,7 +229,7 @@
 		return
 
 	var/startup_msg = ""
-	if (SSticker.current_state == GAME_STATE_STARTUP || SSticker.current_state == GAME_STATE_PREGAME)
+	if(SSticker.current_state == GAME_STATE_STARTUP)
 		startup_msg = " The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again."
 
 	SSticker.start_immediately = TRUE
