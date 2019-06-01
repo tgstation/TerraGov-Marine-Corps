@@ -216,7 +216,7 @@
 		return
 
 	if(SSticker.current_state != GAME_STATE_STARTUP && SSticker.current_state != GAME_STATE_PREGAME)
-		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
+		to_chat(usr, "<span class='warning'>The round has already started.</span>")
 		return
 
 	if(SSticker.start_immediately)
