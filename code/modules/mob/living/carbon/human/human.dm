@@ -871,6 +871,13 @@
 	return species.name
 
 
+/mob/living/carbon/human/proc/play_xylophone()
+	visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
+	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
+	playsound(loc, song, 25, 1)
+	addtimer(CALLBACK(src, .xylophone_cooldown), 1200)
+
+
 /mob/living/carbon/human/proc/get_visible_gender()
 	if(wear_suit && wear_suit.flags_inv_hide & HIDEJUMPSUIT && ((head && head.flags_inv_hide & HIDEMASK) || wear_mask))
 		return NEUTER
