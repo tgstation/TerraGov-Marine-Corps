@@ -119,7 +119,7 @@
 		switch(S)
 			// General effects
 			if("shatter")
-				S = pick('sound/effects/Glassbr1.ogg','sound/effects/Glassbr2.ogg','sound/effects/Glassbr3.ogg')
+				S = pick('sound/effects/glassbr1.ogg','sound/effects/glassbr2.ogg','sound/effects/glassbr3.ogg')
 			if("explosion")
 				S = pick('sound/effects/Explosion1.ogg','sound/effects/Explosion2.ogg')
 			if("sparks")

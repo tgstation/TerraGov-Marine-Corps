@@ -717,7 +717,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if(hitstaken == 3)
 		visible_message("[user] smashes \the [src]!")
 		isbroken = TRUE
-		playsound(loc, 'sound/effects/Glassbr3.ogg', 50, 1)
+		playsound(loc, 'sound/effects/glassbr3.ogg', 50, 1)
 	else
 		visible_message("[user] forcefully slams \the [src] with \the [I]!" )
 		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)

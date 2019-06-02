@@ -104,7 +104,7 @@ FIRE ALARM
 					user.visible_message("<span class='warning'> [user] has disconnected [src]'s detecting unit!</span>", "You have disconnected [src]'s detecting unit.")
 			else if(iswirecutter(I))
 				user.visible_message("<span class='warning'> [user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				buildstage = 1
 				update_icon()
 		if(1)
@@ -119,7 +119,7 @@ FIRE ALARM
 					return
 			else if(iscrowbar(I))
 				to_chat(user, "You pry out the circuit!")
-				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				spawn(20)
 					var/obj/item/circuitboard/firealarm/circuit
 					if(!electronics)
@@ -143,7 +143,7 @@ FIRE ALARM
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/fire_alarm/frame = new /obj/item/frame/fire_alarm
 				frame.forceMove(user.loc)
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				qdel(src)
 
 /obj/machinery/firealarm/power_change()

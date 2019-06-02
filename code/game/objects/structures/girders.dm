@@ -87,7 +87,7 @@
 				to_chat(user, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
 				return
 
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now securing the girder</span>")
 
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -106,7 +106,7 @@
 			to_chat(user, "<span class='notice'>You unfasten a bolt from the girder!</span>")
 
 	else if(isscrewdriver(I) && state == 2 && istype(src, /obj/structure/girder/reinforced))
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now unsecuring support struts</span>")
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
@@ -115,7 +115,7 @@
 		state = 1
 
 	else if(iswirecutter(I) && istype(src, /obj/structure/girder/reinforced) && state == 1)
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now removing support struts</span>")
 		
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -126,7 +126,7 @@
 		qdel(src)
 
 	else if(iscrowbar(I) && state == 0 && anchored)
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
 
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -198,7 +198,7 @@
 		if(!WT.remove_fuel(0,user))
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
 

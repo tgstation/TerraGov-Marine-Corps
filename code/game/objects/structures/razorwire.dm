@@ -135,7 +135,7 @@
 
 		user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 		"<span class='notice'>You disassemble [src].</span>")
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		destroyed(TRUE)
 
 	else if(iswelder(I))
@@ -148,7 +148,7 @@
 			delay -= 10 + user.mind.cm_skills.engineer * 5
 		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 		"<span class='notice'>You begin repairing the damage to [src].</span>")
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		var/old_loc = loc
 		if(!do_after(user, delay, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
 			return
@@ -157,7 +157,7 @@
 		"<span class='notice'>You repair [src].</span>")
 		obj_integrity = min(obj_integrity + 100, max_integrity)
 		update_health()
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	else if((I.flags_item & ITEM_ABSTRACT))
 		return

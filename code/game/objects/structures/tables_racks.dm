@@ -302,7 +302,7 @@
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
 
@@ -499,7 +499,7 @@
 		if(status == 2)
 			user.visible_message("<span class='notice'>[user] starts weakening [src].</span>",
 			"<span class='notice'>You start weakening [src]</span>")
-			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+			playsound(loc, 'sound/items/welder.ogg', 25, 1)
 			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 				return
 
@@ -512,7 +512,7 @@
 		else
 			user.visible_message("<span class='notice'>[user] starts welding [src] back together.</span>",
 			"<span class='notice'>You start welding [src] back together.</span>")
-			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+			playsound(loc, 'sound/items/welder.ogg', 25, 1)
 			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 				return
 
@@ -584,7 +584,7 @@
 
 	if(iswrench(I))
 		destroy_structure(1)
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 	else if((I.flags_item & ITEM_ABSTRACT))
 		return

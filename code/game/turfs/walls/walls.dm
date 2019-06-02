@@ -377,7 +377,7 @@
 
 		user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 		"<span class='notice'>You start repairing the damage to [src].</span>")
-		playsound(src, 'sound/items/Welder.ogg', 25, 1)
+		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		if(!do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
 			return
 
@@ -391,7 +391,7 @@
 			if(0)
 				if(iswelder(I))
 					var/obj/item/tool/weldingtool/WT = I
-					playsound(src, 'sound/items/Welder.ogg', 25, 1)
+					playsound(src, 'sound/items/welder.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] begins slicing through the outer plating.</span>",
 					"<span class='notice'>You begin slicing through the outer plating.</span>")
 
@@ -408,7 +408,7 @@
 				if(isscrewdriver(I))
 					user.visible_message("<span class='notice'>[user] begins removing the support lines.</span>",
 					"<span class='notice'>You begin removing the support lines.</span>")
-					playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
+					playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
@@ -424,7 +424,7 @@
 					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message("<span class='notice'>[user] begins slicing through the metal cover.</span>",
 					"<span class='notice'>You begin slicing through the metal cover.</span>")
-					playsound(src, 'sound/items/Welder.ogg', 25, 1)
+					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
@@ -439,7 +439,7 @@
 				if(iscrowbar(I))
 					user.visible_message("<span class='notice'>[user] struggles to pry off the cover.</span>",
 					"<span class='notice'>You struggle to pry off the cover.</span>")
-					playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
+					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
@@ -454,7 +454,7 @@
 				if(iswrench(I))
 					user.visible_message("<span class='notice'>[user] starts loosening the anchoring bolts securing the support rods.</span>",
 					"<span class='notice'>You start loosening the anchoring bolts securing the support rods.</span>")
-					playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
+					playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
@@ -469,7 +469,7 @@
 				if(iswirecutter(I))
 					user.visible_message("<span class='notice'>[user] begins uncrimping the hydraulic lines.</span>",
 					"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
-					playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
+					playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
@@ -484,7 +484,7 @@
 				if(iscrowbar(I))
 					user.visible_message("<span class='notice'>[user] struggles to pry off the inner sheath.</span>",
 					"<span class='notice'>You struggle to pry off the inner sheath.</span>")
-					playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
+					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
@@ -500,7 +500,7 @@
 					var/obj/item/tool/weldingtool/WT = I
 					user.visible_message("<span class='notice'>[user] begins slicing through the final layer.</span>",
 					"<span class='notice'>You begin slicing through the final layer.</span>")
-					playsound(src, 'sound/items/Welder.ogg', 25, 1)
+					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return

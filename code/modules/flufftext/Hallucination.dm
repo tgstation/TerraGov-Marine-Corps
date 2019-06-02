@@ -119,22 +119,22 @@ mob/living/carbon/proc/handle_hallucinations()
 						if(prob(50))src << 'sound/effects/Explosion1.ogg'
 						else src << 'sound/effects/Explosion2.ogg'
 					if(3) src << 'sound/effects/explosionfar.ogg'
-					if(4) src << 'sound/effects/Glassbr1.ogg'
-					if(5) src << 'sound/effects/Glassbr2.ogg'
-					if(6) src << 'sound/effects/Glassbr3.ogg'
+					if(4) src << 'sound/effects/glassbr1.ogg'
+					if(5) src << 'sound/effects/glassbr2.ogg'
+					if(6) src << 'sound/effects/glassbr3.ogg'
 					if(7) src << 'sound/machines/twobeep.ogg'
 					if(8) src << 'sound/machines/windowdoor.ogg'
 					if(9)
 						//To make it more realistic, I added two gunshots (enough to kill)
-						src << 'sound/weapons/Gunshot.ogg'
+						src << 'sound/weapons/gunshot.ogg'
 						spawn(rand(10,30))
-							src << 'sound/weapons/Gunshot.ogg'
+							src << 'sound/weapons/gunshot.ogg'
 					if(10) src << 'sound/weapons/smash.ogg'
 					if(11)
 						//Same as above, but with tasers.
-						src << 'sound/weapons/Taser.ogg'
+						src << 'sound/weapons/taser.ogg'
 						spawn(rand(10,30))
-							src << 'sound/weapons/Taser.ogg'
+							src << 'sound/weapons/taser.ogg'
 				//Rare audio
 					if(12)
 //These sounds are (mostly) taken from Hidden: Source

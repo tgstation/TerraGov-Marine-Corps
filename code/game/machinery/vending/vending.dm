@@ -259,7 +259,7 @@
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
 		if(anchored)
 			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
