@@ -303,46 +303,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "yellow"
 	requires_power = 0
 */
-// CENTCOM
 
-/area/centcom
-	name = "\improper Centcom"
-	icon_state = "centcom"
-	requires_power = 0
-
-/area/centcom/control
-	name = "\improper Centcom Control"
-
-/area/centcom/evac
-	name = "\improper Centcom Emergency Shuttle"
-
-/area/centcom/suppy
-	name = "\improper Centcom Supply"
-
-/area/centcom/ferry
-	name = "\improper Centcom Transport Shuttle"
-
-/area/centcom/shuttle
-	name = "\improper Centcom Administration Shuttle"
-
-/area/centcom/test
-	name = "\improper Centcom Testing Facility"
-
-/area/centcom/living
-	name = "\improper Centcom Living Quarters"
-
-/area/centcom/specops
-	name = "\improper Centcom Special Ops"
-/*
-/area/centcom/creed
-	name = "Creed's Office"
-*/
-/area/centcom/holding
-	name = "\improper Abandoned Holding Facility"
-
-/area/centcom/solitary
-	name = "Solitary Confinement"
-	icon_state = "brig"
 
 //SYNDICATES
 
