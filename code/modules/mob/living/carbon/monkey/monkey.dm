@@ -1,6 +1,5 @@
 /mob/living/carbon/monkey
 	name = "monkey"
-	voice_name = "monkey"
 	speak_emote = list("chimpers")
 	icon_state = "monkey1"
 	icon = 'icons/mob/monkey.dmi'
@@ -33,7 +32,6 @@
 
 /mob/living/carbon/monkey/tajara
 	name = "farwa"
-	voice_name = "farwa"
 	speak_emote = list("mews")
 	icon_state = "tajkey1"
 	greaterform_type = /datum/species/tajaran
@@ -41,7 +39,6 @@
 
 /mob/living/carbon/monkey/skrell
 	name = "neaera"
-	voice_name = "neaera"
 	speak_emote = list("squicks")
 	icon_state = "skrellkey1"
 	greaterform_type = /datum/species/skrell
@@ -49,7 +46,6 @@
 
 /mob/living/carbon/monkey/unathi
 	name = "stok"
-	voice_name = "stok"
 	speak_emote = list("hisses")
 	icon_state = "stokkey1"
 	greaterform_type = /datum/species/unathi
@@ -59,7 +55,6 @@
 //-----Monkey Yeti Thing
 /mob/living/carbon/monkey/yiren
 	name = "yiren"
-	voice_name = "yiren"
 	speak_emote = list("grumbles")
 	icon_state = "yirenkey1"
 	cold_level_1 = ICE_COLONY_TEMPERATURE - 20

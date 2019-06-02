@@ -92,13 +92,6 @@
 	if(!input)
 		return
 
-	var/glob
-	switch(alert(usr, "Do you want to use the ship AI to say the message or a global marine announcement?", "AI Report", "Ship", "Global", "Cancel"))
-		if("Global")
-			glob = TRUE
-		if("Cancel")
-			return		
-
 	var/paper
 	switch(alert(usr, "Do you want to print out a paper at the communications consoles?", "AI Report", "Yes", "No", "Cancel"))
 		if("Yes")
@@ -106,21 +99,10 @@
 		if("Cancel")
 			return
 
-	if(glob)
-		command_announcement.Announce(input, MAIN_AI_SYSTEM, new_sound = "sound/misc/interference.ogg")
-	else
-		ai_system.Announce(input)
+	priority_announce(input, MAIN_AI_SYSTEM, sound = "sound/misc/interference.ogg")
 
 	if(paper)
-		for(var/obj/machinery/computer/communications/C in GLOB.machines)
-			if(C.machine_stat & (BROKEN|NOPOWER))
-				continue
-			var/obj/item/paper/P = new /obj/item/paper(C.loc)
-			P.name = "'[MAIN_AI_SYSTEM] Update.'"
-			P.info = input
-			P.update_icon()
-			C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
-			C.messagetext.Add(P.info)
+		print_command_report(input, "[MAIN_AI_SYSTEM] Update", announce = FALSE)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
@@ -141,20 +123,13 @@
 		return
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
-		for(var/obj/machinery/computer/communications/C in GLOB.machines)
-			if(!(C.machine_stat & (BROKEN|NOPOWER)))
-				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "'[CONFIG_GET(string/ship_name)] Update.'"
-				P.info = input
-				P.update_icon()
-				C.messagetitle.Add("[CONFIG_GET(string/ship_name)] Update")
-				C.messagetext.Add(P.info)
+		print_command_report(input, "[CONFIG_GET(string/ship_name)] Update", announce = FALSE)
 
 	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
 		if("Yes")
-			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', admin = TRUE);
+			priority_announce(input, customname, sound = 'sound/AI/commandreport.ogg');
 		if("No")
-			command_announcement.Announce("<span class='warning'>New update available at all communication consoles.</span>", customname, new_sound = 'sound/AI/commandreport.ogg', admin = TRUE)
+			priority_announce("New update available at all communication consoles.", type = ANNOUNCEMENT_COMMAND, sound = 'sound/AI/commandreport.ogg')
 		if("Cancel")
 			return
 
