@@ -19,8 +19,6 @@
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't know how to use this!</span>")
 		return
-	if(user.silent)
-		return
 
 	if(spamcheck)
 		to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")

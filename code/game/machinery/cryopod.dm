@@ -303,17 +303,17 @@
 				dept_console = CRYO_DELTA
 		if(job)
 			var/datum/job/J = SSjob.name_occupations[job]
-			if(J.flag & SQUAD_SPECIALIST && specset && !available_specialist_sets.Find(specset))
+			if(istype(J, /datum/job/marine/specialist) && specset && !available_specialist_sets.Find(specset))
 				available_specialist_sets += specset //we make the set this specialist took if any available again
-			if(J.flag & SQUAD_ENGINEER)
+			if(istype(J, /datum/job/marine/engineer))
 				assigned_squad.num_engineers--
-			if(J.flag & SQUAD_CORPSMAN)
+			if(istype(J, /datum/job/marine/corpsman))
 				assigned_squad.num_medics--
-			if(J.flag & SQUAD_SPECIALIST)
+			if(istype(J, /datum/job/marine/specialist))
 				assigned_squad.num_specialists--
-			if(J.flag & SQUAD_SMARTGUNNER)
+			if(istype(J, /datum/job/marine/smartgunner))
 				assigned_squad.num_smartgun--
-			if(J.flag & SQUAD_LEADER)
+			if(istype(J, /datum/job/marine/leader))
 				assigned_squad.num_leaders--
 		assigned_squad.count--
 		assigned_squad.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.

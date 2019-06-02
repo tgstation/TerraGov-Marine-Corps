@@ -152,14 +152,16 @@ SUBSYSTEM_DEF(job)
 
 	// Loop through all levels from high to low
 	var/list/shuffledoccupations = shuffle(occupations)
-	for(var/level = JOBS_PRIORITY_HIGH to JOBS_PRIORITY_LOW)
+	var/list/levels = list(JOBS_PRIORITY_HIGH, JOBS_PRIORITY_MEDIUM, JOBS_PRIORITY_LOW)
+
+	for(var/level in levels)
 		// Loop through all unassigned players
 		for(var/mob/new_player/player in unassigned)
 
 			// Loop through all jobs
 			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
 				// If the player wants that job on this level, then try give it to him.
-				if(player.client.prefs.GetJobDepartment(job, level) & job.prefflag)
+				if(player.client.prefs.job_preferences[job.title] == level)
 					// If the job isn't filled
 					if((job.current_positions < job.total_positions) || job.total_positions == -1)
 						JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
@@ -178,7 +180,7 @@ SUBSYSTEM_DEF(job)
 
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/new_player/player)
-	if(player.client.prefs.alternate_option == BE_MARINE)
+	if(player.client.prefs.alternate_option == BE_OVERFLOW)
 		if(!AssignRole(player, SSjob.overflow_role))
 			RejectPlayer(player)
 	else if(player.client.prefs.alternate_option == GET_RANDOM_JOB)

@@ -12,13 +12,11 @@
 	var/list/network = list("marinemainship")
 	var/c_tag = null
 	var/status = TRUE
-	var/start_active = FALSE //If it ignores the random chance to start broken on round start
 	var/area/myarea = null
 
 	var/view_range = 7
 	var/short_range = 2
 
-	var/busy = FALSE
 	var/in_use_lights = FALSE
 	var/internal_light = TRUE //Whether it can light up when an AI views it
 
@@ -43,14 +41,10 @@
 	GLOB.cameranet.cameras += src
 	GLOB.cameranet.addCamera(src)
 
-	if(isturf(loc))
-		myarea = get_area(src)
-		LAZYADD(myarea.cameras, src)
+	myarea = get_area(src)
+	LAZYADD(myarea.cameras, src)
 
-	if(mapload && is_station_level(z) && prob(3) && !start_active)
-		toggle_cam()
-	else //this is handled by toggle_camera, so no need to update it twice.
-		update_icon()
+	update_icon()
 
 
 /obj/machinery/camera/Destroy()

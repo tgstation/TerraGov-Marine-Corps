@@ -105,7 +105,6 @@
 	desc = "What the hell is THAT?"
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Drone Walking"
-	voice_name = "xenomorph"
 	speak_emote = list("hisses")
 	melee_damage_lower = 5
 	melee_damage_upper = 10 //Arbitrary damage values
@@ -113,8 +112,6 @@
 	attack_sound = null
 	friendly = "nuzzles"
 	wall_smash = FALSE
-	universal_understand = FALSE
-	universal_speak = FALSE
 	health = 5
 	maxHealth = 5
 	rotate_on_lying = FALSE

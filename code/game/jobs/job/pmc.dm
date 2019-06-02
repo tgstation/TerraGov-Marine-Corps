@@ -1,5 +1,4 @@
 /datum/job/pmc
-	department_flag = J_FLAG_PMC
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/pfc/pmc
@@ -10,7 +9,6 @@
 /datum/job/pmc/standard
 	title = "PMC Standard"
 	paygrade = "PMC1"
-	flag = PMC_STANDARD
 	outfit = /datum/outfit/job/pmc/standard
 
 
@@ -54,7 +52,6 @@
 	title = "PMC Gunner"
 	paygrade = "PMC2"
 	skills_type = /datum/skills/smartgunner/pmc
-	flag = PMC_GUNNER
 	outfit = /datum/outfit/job/pmc/gunner
 
 
@@ -96,7 +93,6 @@
 	title = "PMC Sniper"
 	paygrade = "PMC3"
 	skills_type = /datum/skills/specialist/pmc
-	flag = PMC_SNIPER
 	outfit = /datum/outfit/job/pmc/sniper
 
 
@@ -140,7 +136,6 @@
 	title = "PMC Leader"
 	paygrade = "PMC4"
 	skills_type = /datum/skills/SL/pmc
-	flag = PMC_LEADER
 	outfit = /datum/outfit/job/pmc/leader
 
 

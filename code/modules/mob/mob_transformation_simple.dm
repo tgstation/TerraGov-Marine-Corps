@@ -37,7 +37,6 @@
 		if(H.client)
 			H.name = H.client.prefs.real_name
 			H.real_name = H.client.prefs.real_name
-			H.voice_name = H.client.prefs.real_name
 			H.gender = H.client.prefs.gender
 			H.h_style = H.client.prefs.h_style
 			H.f_style = H.client.prefs.f_style

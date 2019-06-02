@@ -3,7 +3,6 @@
 /mob/living/carbon/human
 	name = "unknown"
 	real_name = "unknown"
-	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD)
@@ -27,8 +26,6 @@
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
 	round_statistics.total_humans_created++
-
-	prev_gender = gender // Debug for plural genders
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -872,17 +869,12 @@
 
 	return species.name
 
-/mob/living/carbon/human/proc/play_xylophone()
-	if(!src.xylophone)
-		visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
-		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
-		playsound(loc, song, 25, 1)
-		xylophone = TRUE
-		addtimer(CALLBACK(src, .xylophone_cooldown), 1200)
-	return
 
-/mob/living/carbon/human/proc/xylophone_cooldown()
-	xylophone = FALSE
+/mob/living/carbon/human/proc/play_xylophone()
+	visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
+	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
+	playsound(loc, song, 25, 1)
+
 
 /mob/living/carbon/human/proc/get_visible_gender()
 	if(wear_suit && wear_suit.flags_inv_hide & HIDEJUMPSUIT && ((head && head.flags_inv_hide & HIDEMASK) || wear_mask))
@@ -1314,12 +1306,10 @@
 		gender = FEMALE
 		name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
 		real_name = name
-		voice_name = name
 	else
 		gender = MALE
 		name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
 		real_name = name
-		voice_name = name
 
 
 	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))

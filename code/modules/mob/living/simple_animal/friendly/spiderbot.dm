@@ -19,7 +19,6 @@
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
-	universal_speak = 1 //Temp until these are rewritten.
 
 	wander = 0
 

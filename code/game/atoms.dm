@@ -306,8 +306,6 @@ directive is properly returned.
 			log_admin_private(log_text)
 		if(LOG_ASAY)
 			log_admin_private_asay(log_text)
-		if(LOG_OWNERSHIP)
-			log_game(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
 		else

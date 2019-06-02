@@ -626,10 +626,6 @@
 	jitteriness = 0
 
 
-/datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
-	H.universal_understand = 1
-	return ..()
-
 
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H)

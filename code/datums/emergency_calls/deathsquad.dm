@@ -21,7 +21,6 @@
 
 	H.name = pick(names)
 	H.real_name = H.name
-	H.voice_name = H.name
 
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)

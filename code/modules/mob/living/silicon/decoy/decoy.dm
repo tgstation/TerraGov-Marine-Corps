@@ -11,7 +11,6 @@
 	name = "AI"
 	icon = 'icons/Marine/ai.dmi'
 	icon_state = "hydra"
-	voice_name = "ARES v3.2"
 	anchored = 1
 	canmove = FALSE
 	density = TRUE //Do not want to see past it.

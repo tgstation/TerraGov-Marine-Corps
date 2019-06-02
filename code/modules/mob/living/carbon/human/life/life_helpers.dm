@@ -199,10 +199,6 @@
 
 	return min(1, thermal_protection)
 
-/mob/living/carbon/human/handle_silent()
-	if(..())
-		speech_problem_flag = 1
-	return silent
 
 /mob/living/carbon/human/handle_slurring()
 	if(..())

@@ -462,6 +462,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
 
+// Xeno charge types
+#define CHARGE_TYPE_SMALL			1
+#define CHARGE_TYPE_MEDIUM			2
+#define CHARGE_TYPE_LARGE			3
+#define CHARGE_TYPE_MASSIVE			4
+
+
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
 #define HUNTER_STEALTH_WALK_PLASMADRAIN			2

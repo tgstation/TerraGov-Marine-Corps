@@ -65,8 +65,6 @@
 	var/last_dam = -1	//Used for determining if we need to process all limbs or just some or even none.
 	//var/list/bad_limbs = list()// limbs we check until they are good.
 
-	var/xylophone = 0 //For the spoooooooky xylophone cooldown
-
 	var/mob/remoteview_target
 
 	var/list/flavor_texts = list()
@@ -74,8 +72,6 @@
 
 
 	//Life variables
-
-	var/prev_gender // Debug for plural genders
 
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
 

@@ -91,9 +91,6 @@
 	if(!bounds)
 		return
 
-	//if(!SSmapping.loading_ruins) //Will be done manually during mapping ss init
-	//	repopulate_sorted_areas()
-
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()
 

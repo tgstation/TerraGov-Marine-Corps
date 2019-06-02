@@ -326,7 +326,6 @@
 	L.SetKnockeddown(0)
 	L.SetStunned(0)
 	L.SetKnockedout(0)
-	L.silent = 0
 	L.dizziness = 0
 	L.drowsyness = 0
 	L.stuttering = 0

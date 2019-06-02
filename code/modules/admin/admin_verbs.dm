@@ -674,7 +674,7 @@
 	var/selection = input("Jump to:", "Jump") as null|anything in list("Area", "Turf", "Coords", "Mob", "Key")
 	switch(selection)
 		if("Area")
-			var/area/A = input("Area", "Jump") as null|anything in return_sorted_areas()
+			var/area/A = input("Area", "Jump") as null|anything in GLOB.sorted_areas
 			target = pick(get_area_turfs(A))
 		if("Turf")
 			var/turf/T = input("Turf", "Jump") as null|anything in GLOB.turfs
@@ -767,7 +767,7 @@
 	var/turf/target
 	switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
 		if("Area")
-			var/area/A = input("Pick an area.", "Send Mob") as null|anything in return_sorted_areas()
+			var/area/A = input("Pick an area.", "Send Mob") as null|anything in GLOB.sorted_areas
 			if(!A)
 				return
 			target = pick(get_area_turfs(A))
@@ -791,7 +791,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(target)].")
 
 
-/datum/admins/proc/jump_area(area/A in return_sorted_areas())
+/datum/admins/proc/jump_area(area/A in GLOB.sorted_areas)
 	set category = null
 	set name = "Jump to Area"
 

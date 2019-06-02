@@ -346,7 +346,7 @@
 		animation_spin(5, 1)
 
 	throwing = TRUE
-	thrower = thrower
+	src.thrower = thrower
 	throw_source = get_turf(src)	//store the origin turf
 
 	var/dist_x = abs(target.x - x)
