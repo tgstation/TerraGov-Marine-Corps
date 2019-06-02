@@ -92,12 +92,13 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/proc/clear_leader(squad_id)
 	leader_mapping[squad_id] = null
 
-/datum/controller/subsystem/direction/proc/init_squad(/datum/squad/S, mob/L = null)
-	var/new_squad_id = "faction_[last_faction_id++]"
-	processing_mobs.Add(new_squad_id)
-	processing_mobs[new_squad_id] = list()
+/datum/controller/subsystem/direction/proc/init_squad(/datum/squad/S, mob/L = null, tracking_id = null)
+	if(!tracking_id)
+		tracking_id = "faction_[last_faction_id++]"
+	processing_mobs.Add(tracking_id)
+	processing_mobs[tracking_id] = list()
 
-	leader_mapping[new_squad_id] = L // Unassigned squad leader by default
+	leader_mapping[tracking_id] = L // Unassigned squad leader by default
 
-	return new_squad_id
+	return tracking_id
 
