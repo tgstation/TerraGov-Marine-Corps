@@ -29,8 +29,7 @@
 		if(MOB_SIZE_XENO)
 			xeno_strings += "Can smash walls: No"
 	xeno_strings += "Max health: [xeno_caste.max_health]"
-	var/list/armour_to_descriptive_term = ARMOUR_TO_DESCRIPTIVE_TERM
-	for(var/armor_type in armour_to_descriptive_term)
+	for(var/armor_type in GLOB.armour_to_descriptive_term)
 		switch(armor.getRating(armor_type))
 			if(0)
 				xeno_strings += "Has no protection against [armour_to_descriptive_term[armor_type]]."

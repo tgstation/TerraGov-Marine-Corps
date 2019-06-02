@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 	if(general_entry && general_entry.mechanics_text)
 		armor_strings += general_entry.mechanics_text + "<br>"
 
-	for(var/armor_type in armour_to_descriptive_term)
+	for(var/armor_type in GLOB.armour_to_descriptive_term)
 		switch(armor.getRating(armor_type))
 			if(0)
 				armor_strings += "It provides no protection against [armour_to_descriptive_term[armor_type]]."
