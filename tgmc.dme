@@ -354,6 +354,7 @@
 #include "code\game\machinery\bots\medbot.dm"
 #include "code\game\machinery\bots\mulebot.dm"
 #include "code\game\machinery\camera\camera.dm"
+#include "code\game\machinery\camera\camera_assembly.dm"
 #include "code\game\machinery\camera\tracking.dm"
 #include "code\game\machinery\computer\arcade.dm"
 #include "code\game\machinery\computer\area_air_control.dm"
