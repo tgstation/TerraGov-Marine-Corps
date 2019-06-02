@@ -149,9 +149,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	if(istype(H.wear_ear, /obj/item/radio/headset/almayer)) // they've been transferred
 		var/obj/item/radio/headset/almayer/headset = H.wear_ear
-		if(headset.sl_direction && H.mind.assigned_role != "Squad Leader")
-			var/_tracking_id = H.mind.assigned_role != "Squad Leader" ? tracking_id : "marine-sl"
-			SSdirection.start_tracking(_tracking_id, H)
+		if(headset.sl_direction && H.assigned_squad.squad_leader != H)
+			SSdirection.start_tracking(tracking_id, H)
 
 	var/c_oldass = C.assignment
 	C.access += access //Add their squad access to their ID
