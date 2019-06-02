@@ -10,5 +10,5 @@
 
 
 /obj/effect/Destroy()
-	. = ..()
 	GLOB.effect_list -= src
+	return ..()

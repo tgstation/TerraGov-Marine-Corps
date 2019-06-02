@@ -90,15 +90,15 @@
 	spread_foam()
 
 /obj/effect/particle_effect/foam/proc/foam_mob(mob/living/L)
-	if(lifetime<1)
-		return 0
+	if(lifetime < 1)
+		return FALSE
 	if(!istype(L))
-		return 0
-	var/fraction = 1/initial(reagent_divisor)
+		return FALSE
+	var/fraction = 1 / initial(reagent_divisor)
 	if(lifetime % reagent_divisor)
 		reagents.reaction(L, VAPOR, fraction)
 	lifetime--
-	return 1
+	return TRUE
 
 /obj/effect/particle_effect/foam/proc/spread_foam()
 	for(var/direction in GLOB.cardinals)
@@ -112,7 +112,7 @@
 
 		for(var/mob/living/L in T)
 			foam_mob(L)
-		var/obj/effect/particle_effect/foam/F = new src.type(T)
+		var/obj/effect/particle_effect/foam/F = new(T)
 		F.amount = amount
 		reagents.copy_to(F, (reagents.total_volume))
 		F.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
@@ -136,15 +136,14 @@
 	effect_type = /obj/effect/particle_effect/foam/long_life
 
 /datum/effect_system/foam_spread/New()
-	..()
+	. = ..()
 	chemholder = new /obj()
-	var/datum/reagents/R = new/datum/reagents(1000)
+	var/datum/reagents/R = new(1000)
 	chemholder.reagents = R
 	R.my_atom = chemholder
 
 /datum/effect_system/foam_spread/Destroy()
-	qdel(chemholder)
-	chemholder = null
+	QDEL_NULL(chemholder)
 	return ..()
 
 /datum/effect_system/foam_spread/set_up(amt=5, loca, datum/reagents/carry = null)

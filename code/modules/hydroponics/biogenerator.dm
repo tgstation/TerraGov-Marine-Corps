@@ -14,7 +14,7 @@
 
 	New()
 		..()
-		var/datum/reagents/R = new/datum/reagents(1000)
+		var/datum/reagents/R = new(1000)
 		reagents = R
 		R.my_atom = src
 		beaker = new /obj/item/reagent_container/glass/beaker/large(src)

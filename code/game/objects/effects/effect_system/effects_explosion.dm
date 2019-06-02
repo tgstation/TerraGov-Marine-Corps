@@ -42,8 +42,8 @@
 		location = get_turf(loca)
 
 /datum/effect_system/explosion/start()
-	new/obj/effect/explosion( location )
-	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
+	new /obj/effect/explosion(location)
+	var/datum/effect_system/expl_particles/P = new
 	P.set_up(10, 0, location)
 	P.start()
 
@@ -54,5 +54,5 @@
 	S.set_up(2, location)
 	S.start()
 /datum/effect_system/explosion/smoke/start()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/create_smoke), 5)

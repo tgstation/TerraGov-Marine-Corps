@@ -86,11 +86,11 @@
 
 /datum/effect_system/reagents_explosion
 	var/amount 						// TNT equivalent
-	var/flashing = 0			// does explosion creates flash effect?
+	var/flashing = FALSE			// does explosion creates flash effect?
 	var/flashing_factor = 0		// factor of how powerful the flash effect relatively to the explosion
-	var/explosion_message = 1				//whether we show a message to mobs.
+	var/explosion_message = TRUE				//whether we show a message to mobs.
 
-/datum/effect_system/reagents_explosion/set_up(amt, loca, flash = 0, flash_fact = 0, message = 1)
+/datum/effect_system/reagents_explosion/set_up(amt, loca, flash = FALSE, flash_fact = 0, message = TRUE)
 	amount = amt
 	explosion_message = message
 	if(isturf(loca))
@@ -106,7 +106,7 @@
 		location.visible_message("<span class='danger'>The solution violently explodes!</span>", \
 								"<span class='italics'>You hear an explosion!</span>")
 	if (amount < 1)
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+		var/datum/effect_system/spark_spread/s = new
 		s.set_up(2, 1, location)
 		s.start()
 

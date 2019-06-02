@@ -33,8 +33,8 @@
 /datum/chemical_reaction/reagent_explosion/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
 	if(holder.has_reagent("stabilizing_agent"))
 		return
-	holder.remove_reagent("nitroglycerin", created_volume*2)
-	..()
+	holder.remove_reagent("nitroglycerin", created_volume * 2)
+	return ..()
 
 /datum/chemical_reaction/reagent_explosion/nitroglycerin_explosion
 	name = "Nitroglycerin explosion"
@@ -67,8 +67,8 @@
 	mix_message = "<span class='boldannounce'>Sparks start flying around the black powder!</span>"
 
 /datum/chemical_reaction/reagent_explosion/blackpowder_explosion/on_reaction(datum/reagents/holder, created_volume)
-	sleep(rand(50,100))
-	..()
+	sleep(rand(50, 100))
+	return ..()
 
 /datum/chemical_reaction/thermite
 	name = "Thermite"
@@ -107,7 +107,7 @@
 	if(S)
 		S.set_up(holder, smoke_radius, location, 0)
 		S.start()
-	if(holder && holder.my_atom)
+	if(holder?.my_atom)
 		holder.clear_reagents()
 
 /datum/chemical_reaction/smoke_powder_smoke
@@ -126,7 +126,7 @@
 	if(S)
 		S.set_up(holder, smoke_radius, location, 0)
 		S.start()
-	if(holder && holder.my_atom)
+	if(holder?.my_atom)
 		holder.clear_reagents()
 
 /datum/chemical_reaction/napalm

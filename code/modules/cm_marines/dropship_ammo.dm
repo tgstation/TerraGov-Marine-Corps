@@ -316,7 +316,7 @@
 		impact.ceiling_debris_check(2)
 		spawn(5)
 			explosion(impact,-1,1,3, 5, 0)//no messaging admin, that'd spam them.
-			var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
+			var/datum/effect_system/expl_particles/P = new
 			P.set_up(4, 0, impact)
 			P.start()
 			spawn(5)
@@ -357,7 +357,7 @@
 	spawn(5)
 		var/turf/T = pick(range(5, impact))
 		explosion(T,-1,-1,1, 2, 0)// Smaller explosion to prevent this becoming the PO meta
-		var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
+		var/datum/effect_system/expl_particles/P = new
 		P.set_up(4, 0, T)
 		P.start()
 		spawn(5)

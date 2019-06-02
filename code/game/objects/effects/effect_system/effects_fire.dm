@@ -8,8 +8,7 @@
 /obj/effect/particle_effect/fire/Initialize()
 	. = ..()
 	if(!isturf(loc))
-		qdel(src)
-		return
+		return QDEL_HINT_QUEUE
 	QDEL_IN(src, life)
 
 	setDir(pick(GLOB.cardinals))
