@@ -60,6 +60,10 @@ Godspeed, captain! And remember, you are not above the law."})
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 
+/datum/job/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
+	. = ..()
+	SSdirection.set_leader("marine-sl", L)
+
 
 /datum/job/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()

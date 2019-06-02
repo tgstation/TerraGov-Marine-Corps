@@ -231,7 +231,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	else
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 128
-			SSdirection.start_tracking(user.assigned_squad.tracking_id, user)
+			var/tracking_id = user.mind.assigned_role != "Squad Leader" ? user.assigned_squad.tracking_id : "marine-sl"
+			SSdirection.start_tracking(tracking_id, user)
 		sl_direction = TRUE
 		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
 		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
