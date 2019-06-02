@@ -152,10 +152,7 @@
 
 /mob/living/carbon/human/mind_initialize()
 	. = ..()
-	//if not, we give the mind default job_knowledge and assigned_role
-	if(!mind.assigned_role)
-		if(mind.cm_skills)
-			qdel(mind.cm_skills)
+	if(!mind.cm_skills)
 		mind.cm_skills = new /datum/skills/pfc
 
 

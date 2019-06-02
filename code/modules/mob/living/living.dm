@@ -24,7 +24,6 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
-	handle_silent()
 
 /mob/living/proc/handle_organs()
 	reagent_move_delay_modifier = 0
@@ -49,11 +48,6 @@
 	if(stuttering)
 		stuttering = max(stuttering-1, 0)
 	return stuttering
-
-/mob/living/proc/handle_silent()
-	if(silent)
-		silent = max(silent-1, 0)
-	return silent
 
 /mob/living/proc/handle_drugged()
 	if(druggy)
@@ -189,22 +183,6 @@
 
 
 /mob/living/proc/UpdateDamageIcon()
-	return
-
-
-/mob/living/proc/Examine_OOC()
-	set name = "Examine Meta-Info (OOC)"
-	set category = "OOC"
-	set src in view()
-
-	if(CONFIG_GET(flag/allow_metadata))
-		if(client)
-			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
-		else
-			to_chat(usr, "[src] does not have any stored infomation!")
-	else
-		to_chat(usr, "OOC Metadata is not supported by this server!")
-
 	return
 
 
@@ -418,9 +396,12 @@
 
 
 /mob/living/throw_at(atom/target, range, speed, thrower)
-	if(!target || !src)	return 0
-	if(pulling) stop_pulling() //being thrown breaks pulls.
-	if(pulledby) pulledby.stop_pulling()
+	if(!target || !src)	
+		return 0
+	if(pulling) 
+		stop_pulling() //being thrown breaks pulls.
+	if(pulledby) 
+		pulledby.stop_pulling()
 	set_frozen(TRUE) //can't move while being thrown
 	update_canmove()
 	. = ..()

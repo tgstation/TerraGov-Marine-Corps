@@ -1,6 +1,5 @@
 /mob/living/silicon
 	gender = NEUTER
-	voice_name = "synthesized voice"
 	verb_say = "states"
 	verb_ask = "queries"
 	verb_exclaim = "declares"

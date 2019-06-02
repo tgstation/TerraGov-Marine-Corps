@@ -30,7 +30,7 @@
 	uid = ++global_uid
 	related = list(src)
 	active_areas += src
-	all_areas += src
+	GLOB.all_areas += src
 
 	initialize_power_and_lighting()
 
@@ -341,23 +341,18 @@
 	var/area/oldarea = L.lastarea
 	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == MOVE_INTENT_RUN)) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
-		L.make_floating(0)
 
 	L.lastarea = newarea
 
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.client && (L.client.prefs.toggles_sound & SOUND_AMBIENCE)))	return
 
-	if(!L.client.ambience_playing)
-		L.client.ambience_playing = 1
-		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 30, channel = 2)
-
-	if(src.ambience.len && prob(35))
+	if(prob(35) && length(ambience))
 		sound = pick(ambience)
 
-		if(world.time > L.client.played + 900)
+		if(world.time > L.client.last_sound + 90 SECONDS)
 			L << sound(sound, repeat = 0, wait = 0, volume = musVolume, channel = 1)
-			L.client.played = world.time
+			L.client.last_sound = world.time
 
 
 /area/Exited(atom/movable/M)
@@ -375,18 +370,6 @@
 		if(gravitystate)
 			for(var/mob/living/carbon/human/M in SubA)
 				thunk(M)
-			for(var/mob/M1 in SubA)
-				M1.make_floating(0)
-		else
-			for(var/mob/M in SubA)
-				if(M.Check_Dense_Object() && istype(src,/mob/living/carbon/human/))
-					var/mob/living/carbon/human/H = src
-					if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING))  //magboots + dense_object = no floaty effect
-						H.make_floating(0)
-					else
-						H.make_floating(1)
-				else
-					M.make_floating(1)
 
 /area/proc/thunk(mob)
 	if(istype(mob,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.

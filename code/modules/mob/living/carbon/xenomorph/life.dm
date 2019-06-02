@@ -261,7 +261,7 @@
 
 	if(interactee)
 		interactee.check_eye(src)
-	else if(!client.adminobs)
+	else
 		reset_view(null)
 
 	return TRUE

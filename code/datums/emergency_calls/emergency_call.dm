@@ -157,7 +157,7 @@
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
-		command_announcement.Announce("A distress beacon has been launched from the [CONFIG_GET(string/ship_name)].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
+		priority_announce("A distress beacon has been launched from the [CONFIG_GET(string/ship_name)].", "Priority Alert", sound = 'sound/AI/distressbeacon.ogg')
 
 	SSticker.mode.on_distress_cooldown = TRUE
 
@@ -177,6 +177,10 @@
 			if(M.current)
 				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
 			continue
+		if(M.current) //If they still have a body
+			if(!isaghost(M.current) && M.current.stat != DEAD) // and not dead or admin ghosting,
+				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
+				continue
 		if(name == "Xenomorphs" && is_banned_from(M.current.ckey, ROLE_XENOMORPH))
 			if(M.current)
 				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you are jobbanned from Xenomorph.</span>")
@@ -192,7 +196,7 @@
 		candidates = list()
 
 		if(announce)
-			command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
+			priority_announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
 
 		SSticker.mode.picked_call = null
 		SSticker.mode.on_distress_cooldown = TRUE
@@ -216,7 +220,7 @@
 		message_admins("Distress beacon: All valid candidates were selected.")
 
 	if(announce)
-		command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
+		priority_announce(dispatch_message, "Distress Beacon", sound = 'sound/AI/distressreceived.ogg')
 
 	message_admins("Distress beacon: [name] finalized, starting spawns.")
 

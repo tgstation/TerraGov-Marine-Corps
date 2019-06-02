@@ -165,8 +165,7 @@
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
 					shuttle1.transit_gun_mission = 0
 					shuttle1.launch_crash()
-					command_announcement.Announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", \
-					"Dropship Alert", new_sound = 'sound/AI/hijack.ogg')
+					priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 					shuttle.alerts_allowed--
 					to_chat(usr, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
 					var/mob/living/carbon/xenomorph/queen/Q = usr // typechecked above

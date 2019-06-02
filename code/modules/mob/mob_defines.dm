@@ -12,7 +12,6 @@
 	var/static/next_mob_id = 0
 
 	var/stat = CONSCIOUS //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
-	var/obj/screen/hands //robot
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.
@@ -48,9 +47,6 @@
 	var/mob_size = MOB_SIZE_HUMAN
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
 	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
-	var/emote_type = 1		// Define emote default type, 1 for seen emotes, 2 for heard emotes
-
-	var/name_archive //For admin things like possession
 
 	var/luminosity_total = 0 //For max luminosity stuff.
 
@@ -63,8 +59,6 @@
 	var/old_y = 0
 	var/dizziness = 0 //Carbon
 	var/jitteriness = 0 //Carbon
-	var/is_floating = FALSE
-	var/floatiness = 0
 
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/knocked_out = 0
@@ -97,13 +91,9 @@
 
 	var/in_throw_mode = FALSE
 
-	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
-
 	var/inertia_dir = 0
 
 	var/job //Living
-
-	var/voice_name = "unidentifiable voice"
 
 	var/faction = "Neutral"
 
@@ -118,10 +108,6 @@
 	var/list/observers = null	//The list of people observing this mob.
 
 	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
-
-	//Whether or not mobs can understand other mobtypes. These stay in /mob so that ghosts can hear everything.
-	var/universal_speak = 0 // Set to 1 to enable the mob to speak to everyone -- TLE
-	var/universal_understand = 0 // Set to 1 to enable the mob to understand everyone, not necessarily speak
 
 	var/immune_to_ssd = FALSE
 

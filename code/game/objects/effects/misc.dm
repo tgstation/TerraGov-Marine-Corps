@@ -134,3 +134,8 @@
 /obj/effect/opacifier/Initialize(mapload, initial_opacity)
 	. = ..()
 	SetOpacity(initial_opacity)
+
+
+/obj/effect/supplypod_selector
+	icon_state = "supplypod_selector"
+	layer = FLY_LAYER

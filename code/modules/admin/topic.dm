@@ -448,7 +448,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		SSticker.mode.distress_cancelled = TRUE
-		command_announcement.Announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
+		priority_announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
 		log_game("[key_name(usr)] has denied a distress beacon, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has denied a distress beacon, requested by [ADMIN_TPMONTY(M)]")
 
@@ -617,7 +617,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+				var/area/A = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
 				if(!A || !M)
 					return
 				target = pick(get_area_turfs(A))
@@ -1033,7 +1033,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				else
 					target = marked_datum
 
+		var/obj/structure/closet/supplypod/centcompod/pod
+
 		if(target)
+			if(where == "frompod")
+				pod = new()
+
 			for(var/path in paths)
 				for(var/i in 1 to number)
 					if(path in typesof(/turf))
@@ -1043,7 +1048,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 							N.name = obj_name
 					else
 						var/atom/O
-						O = new path(target)
+						if(where == "frompod")
+							O = new path(pod)
+						else
+							O = new path(target)
 
 						if(!QDELETED(O))
 							if(obj_dir)
@@ -1057,6 +1065,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 								var/mob/living/L = usr
 								var/obj/item/I = O
 								L.put_in_hands(I)
+
+		if(pod)
+			new /obj/effect/DPtarget(target, pod)
 
 		log_admin("[key_name(usr)] created [number] [english_list(paths)] at [AREACOORD(usr.loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] created [number] [english_list(paths)] at [ADMIN_VERBOSEJMP(usr.loc)].")

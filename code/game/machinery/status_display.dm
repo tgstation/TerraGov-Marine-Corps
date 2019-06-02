@@ -1,6 +1,3 @@
-// Status display
-// (formerly Countdown timer display)
-
 #define CHARS_PER_LINE 5
 #define FONT_SIZE "5pt"
 #define FONT_COLOR "#09f"
@@ -39,16 +36,19 @@
 	if(maptext)
 		maptext = ""
 
+
 /// Immediately change the display to the given picture.
 /obj/machinery/status_display/proc/set_picture(state)
 	remove_display()
 	add_overlay(state)
+
 
 /// Immediately change the display to the given two lines.
 /obj/machinery/status_display/proc/update_display(line1, line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
 	if(maptext != new_text)
 		maptext = new_text
+
 
 /// Prepare the display to marquee the given two lines.
 ///
@@ -124,144 +124,7 @@
 		to_chat(user, msg.Join())
 
 
-// Helper procs for child display types.
-/obj/machinery/status_display/proc/display_shuttle_status(obj/docking_port/mobile/shuttle)
-	if(!shuttle)
-		// the shuttle is missing - no processing
-		update_display("shutl?","")
-		return PROCESS_KILL
-	else if(shuttle.timer)
-		var/line1 = "-[shuttle.getModeStr()]-"
-		var/line2 = shuttle.getTimerStr()
-
-		if(length(line2) > CHARS_PER_LINE)
-			line2 = "error"
-		update_display(line1, line2)
-	else
-		// don't kill processing, the timer might turn back on
-		remove_display()
-
-
-/obj/machinery/status_display/proc/examine_shuttle(mob/user, obj/docking_port/mobile/shuttle)
-	if (shuttle)
-		var/modestr = shuttle.getModeStr()
-		if (modestr)
-			if (shuttle.timer)
-				modestr = "<br>\t<tt>[modestr]: [shuttle.getTimerStr()]</tt>"
-			else
-				modestr = "<br>\t<tt>[modestr]</tt>"
-		to_chat(user, "The display says:<br>\t<tt>[shuttle.name]</tt>[modestr]")
-	else
-		to_chat(user, "The display says:<br>\t<tt>Shuttle missing!</tt>")
-
-
-/// Evac display which shows shuttle timer or message set by Command.
-/obj/machinery/status_display/evac
-	var/frequency = FREQ_STATUS_DISPLAYS
-	var/mode = SD_EMERGENCY
-	var/friendc = FALSE      // track if Friend Computer mode
-	var/last_picture  // For when Friend Computer mode is undone
-
-
-/obj/machinery/status_display/evac/Initialize()
-	. = ..()
-	// register for radio system
-	SSradio.add_object(src, frequency)
-
-
-/obj/machinery/status_display/evac/Destroy()
-	SSradio.remove_object(src,frequency)
-	return ..()
-
-
-/obj/machinery/status_display/evac/process()
-	if(machine_stat & NOPOWER)
-		// No power, no processing.
-		remove_display()
-		return PROCESS_KILL
-
-	if(friendc) //Makes all status displays except supply shuttle timer display the eye -- Urist
-		set_picture("ai_friend")
-		return PROCESS_KILL
-
-	switch(mode)
-		if(SD_BLANK)
-			remove_display()
-			return PROCESS_KILL
-
-		if(SD_MESSAGE)
-			return ..()
-
-		if(SD_PICTURE)
-			set_picture(last_picture)
-			return PROCESS_KILL
-
-
-/obj/machinery/status_display/evac/examine(mob/user)
-	. = ..()
-	if(!message1 && !message2)
-		to_chat(user, "The display is blank.")
-
-
-/obj/machinery/status_display/evac/receive_signal(datum/signal/signal)
-	switch(signal.data["command"])
-		if("blank")
-			mode = SD_BLANK
-			set_message(null, null)
-		if("shuttle")
-			mode = SD_EMERGENCY
-			set_message(null, null)
-		if("message")
-			mode = SD_MESSAGE
-			set_message(signal.data["msg1"], signal.data["msg2"])
-		if("alert")
-			mode = SD_PICTURE
-			last_picture = signal.data["picture_state"]
-			set_picture(last_picture)
-		if("friendcomputer")
-			friendc = !friendc
-	update()
-
-
-/// General-purpose shuttle status display.
-/obj/machinery/status_display/shuttle
-	name = "shuttle display"
-	var/shuttle_id
-
-
-/obj/machinery/status_display/shuttle/process()
-	if(!shuttle_id || (machine_stat & NOPOWER))
-		// No power, no processing.
-		remove_display()
-		return PROCESS_KILL
-
-	return display_shuttle_status(SSshuttle.getShuttle(shuttle_id))
-
-
-/obj/machinery/status_display/shuttle/examine(mob/user)
-	. = ..()
-	if(shuttle_id)
-		examine_shuttle(user, SSshuttle.getShuttle(shuttle_id))
-	else
-		to_chat(user, "The display is blank.")
-
-
-/obj/machinery/status_display/shuttle/vv_edit_var(var_name, var_value)
-	. = ..()
-	if(!.)
-		return
-	switch(var_name)
-		if("shuttle_id")
-			update()
-
-
-/obj/machinery/status_display/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
-	if(port && (shuttle_id == initial(shuttle_id) || override))
-		shuttle_id = port.id
-	update()
-
-
-/// Pictograph display which the AI can use to emote.
+// Pictograph display which the AI can use to emote.
 /obj/machinery/status_display/ai
 	name = "\improper AI display"
 	desc = "A small screen which the AI can use to present itself."
@@ -281,8 +144,7 @@
 
 
 /obj/machinery/status_display/ai/attack_ai(mob/living/silicon/ai/user)
-	if(isAI(user))
-		user.ai_statuschange()
+	user.display_status()
 
 
 /obj/machinery/status_display/ai/process()

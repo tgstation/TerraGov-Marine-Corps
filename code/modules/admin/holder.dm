@@ -381,6 +381,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
+	/datum/admins/proc/launch_pod,
 	/client/proc/toggle_buildmode
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
