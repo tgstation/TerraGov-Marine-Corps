@@ -173,10 +173,6 @@
 		var/datum/mind/M = i
 		if(!istype(M)) // invalid
 			continue
-		if(M.current?.stat != DEAD) //Strip them from the list, they aren't dead anymore.
-			if(M.current)
-				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
-			continue
 		if(M.current) //If they still have a body
 			if(!isaghost(M.current) && M.current.stat != DEAD) // and not dead or admin ghosting,
 				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
