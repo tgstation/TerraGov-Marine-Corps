@@ -89,6 +89,7 @@
 	#define COMSIG_MOB_CANCEL_CLICKON 1
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
+#define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 
 // xeno stuff
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"

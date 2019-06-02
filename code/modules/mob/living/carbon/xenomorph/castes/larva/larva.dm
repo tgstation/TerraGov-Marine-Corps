@@ -11,6 +11,7 @@
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
 	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
+	hud_type = /datum/hud/larva
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/xenohide,

@@ -141,9 +141,3 @@
 			H.r_hand.screen_loc = null
 		if(H.l_hand)
 			H.l_hand.screen_loc = null
-
-
-/mob/living/carbon/xenomorph/create_hud()
-	if(client && !hud_used)
-		var/ui_alpha = client.prefs.ui_style_alpha
-		hud_used = new /datum/hud/alien(src, ui_alpha)

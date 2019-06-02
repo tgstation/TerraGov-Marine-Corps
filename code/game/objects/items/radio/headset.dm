@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	item_state = "headset"
 	frequency = FREQ_COMMON
 	var/obj/machinery/camera/camera
-	var/datum/mob_hud/squadhud = null
+	var/datum/atom_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
@@ -163,7 +163,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		wearer = user
-		squadhud = huds[MOB_HUD_SQUAD]
+		squadhud = GLOB.huds[DATA_HUD_SQUAD]
 		headset_hud_on = FALSE //So we always activate on equip.
 		sl_direction = FALSE
 		toggle_squadhud(wearer)

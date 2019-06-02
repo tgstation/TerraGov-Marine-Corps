@@ -134,8 +134,16 @@
 	. = ..()
 
 
-/mob/proc/create_hud()
-	return
+/mob/proc/create_mob_hud()
+	if(!client || hud_used)
+		return
+	var/ui_style = ui_style2icon(client.prefs.ui_style)
+	var/ui_color = client.prefs.ui_style_color
+	var/ui_alpha = client.prefs.ui_style_alpha
+	hud_used = new hud_type(src, ui_style, ui_color, ui_alpha)
+	update_sight()
+	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
+
 
 /datum/hud/proc/plane_masters_update()
 	// Plane masters are always shown to OUR mob, never to observers
@@ -235,14 +243,6 @@
 	return
 
 /datum/hud/proc/persistant_inventory_update()
-	return
-
-
-/mob/proc/add_click_catcher()
-	client.screen += client.void
-
-
-/mob/new_player/add_click_catcher()
 	return
 
 

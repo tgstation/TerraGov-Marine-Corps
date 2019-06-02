@@ -85,16 +85,16 @@
 	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD", null) as null|anything in listed_huds
 	if(!client)
 		return
-	var/datum/mob_hud/H
+	var/datum/atom_hud/H
 	var/HUD_nbr = 1
 	switch(hud_choice)
 		if("Medical HUD")
-			H = huds[MOB_HUD_MEDICAL_OBSERVER]
+			H = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 		if("Security HUD")
-			H = huds[MOB_HUD_SECURITY_ADVANCED]
+			H = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 			HUD_nbr = 2
 		if("Squad HUD")
-			H = huds[MOB_HUD_SQUAD]
+			H = GLOB.huds[DATA_HUD_SQUAD]
 			HUD_nbr = 3
 		else
 			return

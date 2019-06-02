@@ -73,8 +73,3 @@
 		screenmob.client.screen -= static_inventory
 	else
 		screenmob.client.screen += static_inventory
-
-
-/mob/dead/observer/create_hud()
-	if(client && !hud_used)
-		hud_used = new /datum/hud/ghost(src, ui_style2icon(client.prefs.ui_style))

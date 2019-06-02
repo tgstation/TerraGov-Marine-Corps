@@ -37,7 +37,7 @@
 	issue_order_focus.give_action(src)
 
 	//makes order hud visible
-	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
 	H.add_hud_to(usr)
 
 	randomize_appearance()
