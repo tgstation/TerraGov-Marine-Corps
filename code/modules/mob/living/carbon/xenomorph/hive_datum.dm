@@ -35,7 +35,6 @@
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
 
-	SSdirection.init_squad(null, null, hivenumber) // No squad (yet), no queen, custom tracking_id
 
 // ***************************************
 // *********** Helpers

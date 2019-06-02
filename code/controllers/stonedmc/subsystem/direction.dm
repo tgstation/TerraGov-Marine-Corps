@@ -22,6 +22,13 @@ SUBSYSTEM_DEF(direction)
 	var/last_faction_id = 0 // use to create unique faction ids
 
 
+/datum/controller/subsystem/direction/Initialize(start_timeofday)
+	. = ..()
+	// Static squads/factions can be defined here for tracking
+	for (var/hivenumber in GLOB.hive_datums)
+		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
+		init_squad(null, HS.living_xeno_queen, hivenumber)
+
 /datum/controller/subsystem/direction/stat_entry()
 	var/mobcount = 0
 	for(var/L in processing_mobs)
@@ -92,12 +99,10 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/proc/clear_leader(squad_id)
 	leader_mapping[squad_id] = null
 
-/datum/controller/subsystem/direction/proc/init_squad(/datum/squad/S, mob/L = null, tracking_id = null)
+/datum/controller/subsystem/direction/proc/init_squad(datum/squad/S, mob/L, tracking_id)
 	if(!tracking_id)
 		tracking_id = "faction_[last_faction_id++]"
-	processing_mobs.Add(tracking_id)
 	processing_mobs[tracking_id] = list()
-
 	leader_mapping[tracking_id] = L // Unassigned squad leader by default
 
 	return tracking_id
