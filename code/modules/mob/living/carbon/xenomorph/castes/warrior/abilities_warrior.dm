@@ -43,6 +43,27 @@
 	plasma_cost = 10
 	cooldown_timer = WARRIOR_LUNGE_COOLDOWN
 
+/datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
+	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
+		return COMSIG_WARRIOR_CANT_NECKGRAB
+
+/datum/action/xeno_action/activable/lunge/proc/lunge(mob/living/owner, atom/A)
+	if(can_use_ability(A, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+		use_ability(A)
+		return COMSIG_WARRIOR_USED_LUNGE
+
+/datum/action/xeno_action/activable/lunge/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAB, .proc/add_cooldown)
+	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/neck_grab)
+	RegisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM, .proc/lunge)
+
+/datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
+	UnregisterSignal(owner, COMSIG_WARRIOR_NECKGRAB)
+	UnregisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM)
+
 /datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -51,13 +72,13 @@
 		return FALSE
 	if(!ishuman(A))
 		return FALSE
+	var/flags_to_check = use_state_flags|override_flags
 	var/mob/living/carbon/human/H = A
-	if(H.stat == DEAD)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_DEAD_TARGET) && H.stat == DEAD)
 		return FALSE
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	var/mob/living/carbon/Xenomorph/X = owner
-	X.used_lunge = FALSE
 	to_chat(X, "<span class='notice'>You get ready to lunge again.</span>")
 	return ..()
 
@@ -69,7 +90,6 @@
 	"<span class='xenowarning'>You lunge at [A]!</span>")
 
 	succeed_activate()
-	X.used_lunge = TRUE // triggered by start_pulling
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if (X.Adjacent(A))
@@ -77,6 +97,11 @@
 
 	add_cooldown()
 	return TRUE
+
+/mob/living/carbon/Xenomorph/Warrior/CtrlClickOn(atom/A)
+	if(SEND_SIGNAL(src, COMSIG_WARRIOR_CTRL_CLICK_ATOM, A) & COMSIG_WARRIOR_USED_LUNGE)
+		return
+	return ..()
 
 // ***************************************
 // *********** Fling

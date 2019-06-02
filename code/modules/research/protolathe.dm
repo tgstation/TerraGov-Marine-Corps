@@ -24,8 +24,9 @@ Note: Must be placed west/left of and R&D console to function.
 	var/uranium_amount = 0.0
 	var/diamond_amount = 0.0
 
-/obj/machinery/r_n_d/protolathe/New()
-	..()
+
+/obj/machinery/r_n_d/protolathe/Initialize()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/protolathe(src)
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
@@ -35,6 +36,7 @@ Note: Must be placed west/left of and R&D console to function.
 	component_parts += new /obj/item/reagent_container/glass/beaker(src)
 	component_parts += new /obj/item/reagent_container/glass/beaker(src)
 	RefreshParts()
+
 
 /obj/machinery/r_n_d/protolathe/proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
 	return m_amount + g_amount + gold_amount + silver_amount + phoron_amount + uranium_amount + diamond_amount

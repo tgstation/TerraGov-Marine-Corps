@@ -16,7 +16,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	var/blood_amount = 0.0
 	var/chitin_amount = 0.0
 
-/obj/machinery/r_n_d/bioprinter/New()
+/obj/machinery/r_n_d/bioprinter/Initialize()
 	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/protolathe(src) //We'll need to make our own board one day
