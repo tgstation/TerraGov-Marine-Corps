@@ -127,7 +127,6 @@
 				move_delay = 7 + CONFIG_GET(number/movedelay/walk_delay)
 		move_delay += L.movement_delay(direct)
 		//We are now going to move
-		moving = TRUE
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
 
 		if(L.confused)
@@ -135,7 +134,6 @@
 		else
 			. = ..()
 
-		moving = FALSE
 		if(double_delay)
 			move_delay = world.time + (move_delay * SQRTWO)
 		else

@@ -348,16 +348,12 @@
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.client && (L.client.prefs.toggles_sound & SOUND_AMBIENCE)))	return
 
-	if(!L.client.ambience_playing)
-		L.client.ambience_playing = 1
-		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 30, channel = 2)
-
-	if(src.ambience.len && prob(35))
+	if(prob(35) && length(ambience))
 		sound = pick(ambience)
 
-		if(world.time > L.client.played + 900)
+		if(world.time > L.client.last_sound + 90 SECONDS)
 			L << sound(sound, repeat = 0, wait = 0, volume = musVolume, channel = 1)
-			L.client.played = world.time
+			L.client.last_sound = world.time
 
 
 /area/Exited(atom/movable/M)
