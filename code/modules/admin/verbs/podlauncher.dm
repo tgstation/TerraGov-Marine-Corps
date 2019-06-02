@@ -39,8 +39,8 @@
 	else if(ismob(user))
 		var/mob/M = user
 		holder = M.client
-	bay =  locate(/area/centcom/supplypod/loading/one) in all_areas
-	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in all_areas)
+	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.all_areas
+	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.all_areas)
 	selector = new()
 	launchList = list()
 	acceptableTurfs = list()
@@ -104,31 +104,31 @@
 
 
 	if(href_list["bay1"])
-		bay = locate(/area/centcom/supplypod/loading/one) in all_areas
+		bay = locate(/area/centcom/supplypod/loading/one) in GLOB.all_areas
 		refreshBay()
 		. = TRUE
 
 
 	else if(href_list["bay2"])
-		bay = locate(/area/centcom/supplypod/loading/two) in all_areas
+		bay = locate(/area/centcom/supplypod/loading/two) in GLOB.all_areas
 		refreshBay()
 		. = TRUE
 
 
 	else if(href_list["bay3"])
-		bay = locate(/area/centcom/supplypod/loading/three) in all_areas
+		bay = locate(/area/centcom/supplypod/loading/three) in GLOB.all_areas
 		refreshBay()
 		. = TRUE
 
 
 	else if(href_list["bay4"])
-		bay = locate(/area/centcom/supplypod/loading/four) in all_areas
+		bay = locate(/area/centcom/supplypod/loading/four) in GLOB.all_areas
 		refreshBay()
 		. = TRUE
 
 
 	else if(href_list["bay5"])
-		bay = locate(/area/centcom/supplypod/loading/ert) in all_areas
+		bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.all_areas
 		refreshBay()
 		. = TRUE
 
@@ -136,7 +136,7 @@
 	else if(href_list["teleportCentcom"])
 		var/mob/M = holder.mob
 		oldTurf = get_turf(M)
-		var/area/A = locate(bay) in all_areas
+		var/area/A = locate(bay) in GLOB.all_areas
 		var/list/turfs = list()
 		for(var/turf/T in A)
 			turfs.Add(T)
