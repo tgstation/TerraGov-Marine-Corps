@@ -24,7 +24,6 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
-	handle_silent()
 
 /mob/living/proc/handle_organs()
 	reagent_move_delay_modifier = 0
@@ -49,11 +48,6 @@
 	if(stuttering)
 		stuttering = max(stuttering-1, 0)
 	return stuttering
-
-/mob/living/proc/handle_silent()
-	if(silent)
-		silent = max(silent-1, 0)
-	return silent
 
 /mob/living/proc/handle_drugged()
 	if(druggy)

@@ -112,8 +112,6 @@
 	attack_sound = null
 	friendly = "nuzzles"
 	wall_smash = FALSE
-	universal_understand = FALSE
-	universal_speak = FALSE
 	health = 5
 	maxHealth = 5
 	rotate_on_lying = FALSE

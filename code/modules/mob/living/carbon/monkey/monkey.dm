@@ -323,7 +323,7 @@
 	return
 
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
-	return universal_speak
+	return FALSE
 
 
 /mob/living/carbon/monkey/update_sight()

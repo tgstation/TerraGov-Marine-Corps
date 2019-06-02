@@ -124,7 +124,6 @@
 
 		if(!isspaceturf(src))
 			M.inertia_dir = 0
-			M.make_floating(0)
 	..()
 
 /turf/effect_smoke(obj/effect/particle_effect/smoke/S)

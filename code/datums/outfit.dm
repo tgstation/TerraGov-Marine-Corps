@@ -138,6 +138,4 @@
 		H.l_store.add_fingerprint(H, TRUE)
 	if(H.r_store)
 		H.r_store.add_fingerprint(H, TRUE)
-	for(var/obj/item/I in H.hands)
-		I.add_fingerprint(H, TRUE)
 	return TRUE

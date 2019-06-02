@@ -8,10 +8,10 @@
 	var/health = 100 	//A mob's health
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
-	var/bruteloss = 0.0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
-	var/oxyloss = 0.0	//Oxygen depravation damage (no air in lungs)
-	var/toxloss = 0.0	//Toxic damage caused by being poisoned or radiated
-	var/fireloss = 0.0	//Burn damage caused by being way too hot, too cold or burnt.
+	var/bruteloss = 0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
+	var/oxyloss = 0	//Oxygen depravation damage (no air in lungs)
+	var/toxloss = 0	//Toxic damage caused by being poisoned or radiated
+	var/fireloss = 0	//Burn damage caused by being way too hot, too cold or burnt.
 	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/radiation = 0	//If the mob is irradiated.
@@ -31,8 +31,6 @@
 	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
 
 	var/cameraFollow
-
-	var/silent	//Can't talk. Value goes down every life proc.
 
 	// Putting these here for attack_animal().
 	var/melee_damage_lower = 0
