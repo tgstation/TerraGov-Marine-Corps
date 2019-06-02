@@ -426,55 +426,27 @@ var/global/image/busy_indicator_hostile
 	return FALSE
 
 
-//Returns: all the areas in the world
-/proc/return_areas()
-	var/list/area/areas = list()
-	for(var/area/A in all_areas)
-		areas += A
-	return areas
-
-
-//Returns: all the areas in the world, sorted.
-/proc/return_sorted_areas()
-	return sortNames(return_areas())
-
-
-//Takes: Area type as text string or as typepath OR an instance of the area.
-//Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype)
-	if(!areatype) 
-		return
-	if(istext(areatype)) 
-		areatype = text2path(areatype)
-	if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
-
-	var/list/areas = list()
-	for(var/area/N in all_areas)
-		if(!istype(N, areatype)) 
-			continue
-		areas += N
-	return areas
-
-
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
 /proc/get_area_turfs(areatype)
 	if(!areatype) 
 		return
+
 	if(istext(areatype)) 
 		areatype = text2path(areatype)
+
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
 	var/list/turfs = list()
-	for(var/area/N in all_areas)
-		if(!istype(N, areatype))
-			return
-		for(var/turf/T in N) 
+	for(var/i in GLOB.all_areas)
+		var/area/A = i
+		if(!istype(A, areatype))
+			continue
+		for(var/turf/T in A)
 			turfs += T
+
 	return turfs
 
 
@@ -1109,12 +1081,12 @@ var/list/WALLITEMS = list(
 
 //Repopulates sortedAreas list
 /proc/repopulate_sorted_areas()
-	GLOB.sortedAreas = list()
+	GLOB.sorted_areas = list()
 
 	for(var/area/A in world)
-		GLOB.sortedAreas.Add(A)
+		GLOB.sorted_areas.Add(A)
 
-	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+	sortTim(GLOB.sorted_areas, /proc/cmp_name_asc)
 
 
 // Format a power value in W, kW, MW, or GW.

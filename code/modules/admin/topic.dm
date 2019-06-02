@@ -617,7 +617,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+				var/area/A = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
 				if(!A || !M)
 					return
 				target = pick(get_area_turfs(A))

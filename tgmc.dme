@@ -511,7 +511,6 @@
 #include "code\game\objects\items\RSF.dm"
 #include "code\game\objects\items\RSP.dm"
 #include "code\game\objects\items\scanners.dm"
-#include "code\game\objects\items\scrolls.dm"
 #include "code\game\objects\items\shards.dm"
 #include "code\game\objects\items\shooting_range.dm"
 #include "code\game\objects\items\stock_parts.dm"
