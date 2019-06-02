@@ -38,7 +38,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
-	
+
 	var/ghost_medhud = FALSE
 	var/ghost_sechud = FALSE
 	var/ghost_squadhud = FALSE
@@ -150,8 +150,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			var/atom/movable/AM = locate(href_list["track"])
 			ManualFollow(AM)
 			return
-		
-			
+
+
 	else if(href_list["jump"])
 		var/x = text2num(href_list["x"])
 		var/y = text2num(href_list["y"])
@@ -176,7 +176,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		target.take_over(src)
 
+	else if(href_list["join_ert"])
+		if(!isobserver(usr))
+			return
+		var/mob/dead/observer/A = usr
 
+		A.JoinResponseTeam()
+		return
 
 	else if(href_list["preference"])
 		if(!client?.prefs)
@@ -214,7 +220,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	else if(gender == MALE)
 		ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
-		
+
 	else
 		ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
@@ -233,7 +239,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	if(!can_reenter_corpse)
 		set_away_time()
-		ghost.mind?.current = ghost 
+		ghost.mind?.current = ghost
 		// if you ghost while alive your current mob is now your ghost
 		// aghosting is invoked with can_reenter_corpse = TRUE so this won't mess with aghosting
 
@@ -382,8 +388,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			ghost_orderhud ? H.add_hud_to(src) : H.remove_hud_from(src)
 			client.prefs.ghost_hud ^= GHOST_HUD_ORDER
 			client.prefs.save_preferences()
-			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]</span>")			
-		
+			to_chat(src, "<span class='boldnotice'>[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]</span>")
+
 
 
 /mob/dead/observer/verb/teleport(area/A in GLOB.sorted_areas)
@@ -871,7 +877,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			UNSETEMPTY(target.observers)
 
 	. = ..()
-	
+
 	if(!.)
 		return
 
