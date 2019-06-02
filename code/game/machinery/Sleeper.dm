@@ -105,7 +105,7 @@
 				dat += "<HR>No Dialysis Output Beaker is present.<BR><HR>"
 
 			for(var/chemical in connected.available_chemicals)
-				dat += "Inject [connected.available_chemicals[chemical]]:"
+				dat += "<label style='width:150px; display: inline-block'>Inject [connected.available_chemicals[chemical]]:</label>"
 				for(var/amount in connected.amounts)
 					dat += " <a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a>"
 				dat += "<br>"
