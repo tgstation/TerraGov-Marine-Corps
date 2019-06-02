@@ -1,5 +1,4 @@
 /datum/job/freelancer
-	department_flag = J_FLAG_FREELANCER
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/pfc/crafty
@@ -10,7 +9,6 @@
 /datum/job/freelancer/standard
 	title = "Freelancer Standard"
 	paygrade = "FRE1"
-	flag = FRE_STANDARD
 	outfit = /datum/outfit/job/freelancer/standard
 
 
@@ -61,7 +59,6 @@
 /datum/job/freelancer/medic
 	title = "Freelancer Medic"
 	paygrade = "FRE2"
-	flag = FRE_MEDIC
 	skills_type = /datum/skills/combat_medic
 	outfit = /datum/outfit/job/freelancer/medic
 
@@ -120,7 +117,6 @@
 /datum/job/freelancer/leader
 	title = "Freelancer Leader"
 	paygrade = "FRE3"
-	flag = FRE_LEADER
 	skills_type = /datum/skills/SL
 	outfit = /datum/outfit/job/freelancer/leader
 

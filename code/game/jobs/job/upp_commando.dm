@@ -9,7 +9,6 @@
 /datum/job/upp/commando/standard
 	title = "UPP Commando Standard"
 	paygrade = "UPPC1"
-	flag = UPP_COM_STANDARD
 	outfit = /datum/outfit/job/upp/commando/standard
 
 
@@ -61,7 +60,6 @@
 	title = "UPP Commando Medic"
 	paygrade = "UPPC2"
 	skills_type = /datum/skills/commando/medic
-	flag = UPP_COM_MEDIC
 	outfit = /datum/outfit/job/upp/commando/medic
 
 

@@ -205,8 +205,6 @@ Voting
 /datum/config_entry/number/vote_autogamemode_timeleft
 	config_entry_value = 999999999
 
-/datum/config_entry/flag/allow_metadata	// Metadata is supported.
-
 /*
 Master controller and performance related.
 */

@@ -1,5 +1,4 @@
 /datum/job/survivor
-	department_flag = J_FLAG_SURVIVOR
 	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	skills_type = /datum/skills/civilian/survivor
@@ -9,7 +8,6 @@
 //Assistant
 /datum/job/survivor/assistant
 	title = "Assistant"
-	flag = SURV_ASSISTANT
 	outfit = /datum/outfit/job/survivor/assistant
 
 
@@ -26,7 +24,6 @@
 /datum/job/survivor/scientist
 	title = "Scientist"
 	skills_type = /datum/skills/civilian/survivor/scientist
-	flag = SURV_SCIENTIST
 	outfit = /datum/outfit/job/survivor/scientist
 
 
@@ -44,7 +41,6 @@
 /datum/job/survivor/doctor
 	title = "Doctor's Assistant"
 	skills_type = /datum/skills/civilian/survivor/doctor
-	flag = SURV_DOCTOR
 	outfit = /datum/outfit/job/survivor/doctor
 
 
@@ -61,7 +57,6 @@
 //Liaison
 /datum/job/survivor/liaison
 	title = "Liaison"
-	flag = SURV_LIAISON
 	outfit = /datum/outfit/job/survivor/liaison
 
 
@@ -78,7 +73,6 @@
 /datum/job/survivor/security
 	title = "Security Guard"
 	skills_type = /datum/skills/civilian/survivor/marshal
-	flag = SURV_SECGUARD
 	outfit = /datum/outfit/job/survivor/security
 
 
@@ -94,7 +88,6 @@
 //Civilian
 /datum/job/survivor/civilian
 	title = "Civilian"
-	flag = SURV_CIVILIAN
 	outfit = /datum/outfit/job/survivor/civilian
 
 
@@ -111,7 +104,6 @@
 /datum/job/survivor/chef
 	title = "Chef"
 	skills_type = /datum/skills/civilian/survivor/chef
-	flag = SURV_CHEF
 	outfit = /datum/outfit/job/survivor/chef
 
 
@@ -128,7 +120,6 @@
 //Botanist
 /datum/job/survivor/botanist
 	title = "Botanist"
-	flag = SURV_BOTANIST
 	outfit = /datum/outfit/job/survivor/botanist
 
 
@@ -146,7 +137,6 @@
 /datum/job/survivor/atmos
 	title = "Atmospherics Technician"
 	skills_type = /datum/skills/civilian/survivor/atmos
-	flag = SURV_ATMOS
 	outfit = /datum/outfit/job/survivor/atmos
 
 
@@ -162,7 +152,6 @@
 //Chaplain
 /datum/job/survivor/chaplain
 	title = "Chaplain"
-	flag = SURV_CHAPLAIN
 	outfit = /datum/outfit/job/survivor/chaplain
 
 
@@ -179,7 +168,6 @@
 /datum/job/survivor/miner
 	title = "Miner"
 	skills_type = /datum/skills/civilian/survivor/miner
-	flag = SURV_MINER
 	outfit = /datum/outfit/job/survivor/miner
 
 
@@ -195,7 +183,6 @@
 //Salesman
 /datum/job/survivor/salesman
 	title = "Salesman"
-	flag = SURV_SALESMAN
 	outfit = /datum/outfit/job/survivor/salesman
 
 
@@ -213,7 +200,6 @@
 /datum/job/survivor/marshal
 	title = "Colonial Marshal"
 	skills_type = /datum/skills/civilian/survivor/marshal
-	flag = SURV_COLMARSHAL
 	outfit = /datum/outfit/job/survivor/marshal
 
 
@@ -231,7 +217,6 @@
 /datum/job/survivor/clown
 	title = "Clown"
 	skills_type = /datum/skills/civilian/survivor/clown
-	flag = SURV_CLOWN
 	outfit = /datum/outfit/job/survivor/clown
 
 
