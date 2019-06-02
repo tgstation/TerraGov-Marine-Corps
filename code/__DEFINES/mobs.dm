@@ -548,12 +548,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARLIE_SQUAD 3
 #define DELTA_SQUAD 4
 
-// tracking map ID, add more squads/ert leaders/hives etc to track via SSdirection here
-#define TRACK_ALPHA_SQUAD "alpha_squad"
-#define TRACK_BRAVO_SQUAD "bravo_squad"
-#define TRACK_CHARLIE_SQUAD "charlie_squad"
-#define TRACK_DELTA_SQUAD "delta_squad"
-
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
 

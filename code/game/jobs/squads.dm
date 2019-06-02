@@ -42,7 +42,6 @@
 /datum/squad/alpha
 	name = "Alpha"
 	id = ALPHA_SQUAD
-	tracking_id = TRACK_ALPHA_SQUAD
 	color = "#e61919" // rgb(230,25,25)
 	access = list(ACCESS_MARINE_ALPHA)
 	usable = TRUE
@@ -52,7 +51,6 @@
 /datum/squad/bravo
 	name = "Bravo"
 	id = BRAVO_SQUAD
-	tracking_id = TRACK_BRAVO_SQUAD
 	color = "#ffc32d" // rgb(255,195,45)
 	access = list(ACCESS_MARINE_BRAVO)
 	usable = 1
@@ -62,7 +60,6 @@
 /datum/squad/charlie
 	name = "Charlie"
 	id = CHARLIE_SQUAD
-	tracking_id = TRACK_CHARLIE_SQUAD
 	color = "#c864c8" // rgb(200,100,200)
 	access = list(ACCESS_MARINE_CHARLIE)
 	usable = TRUE
@@ -71,7 +68,6 @@
 /datum/squad/delta
 	name = "Delta"
 	id = DELTA_SQUAD
-	tracking_id = TRACK_DELTA_SQUAD
 	color = "#4148c8" // rgb(65,72,200)
 	access = list(ACCESS_MARINE_DELTA)
 	usable = TRUE
@@ -97,6 +93,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	helmetsl.color = color
 	GLOB.helmetmarkings[type] = helmet
 	GLOB.helmetmarkings_sl[type] = helmetsl
+
+	tracking_id = SSdirection.init_squad(src)
 
 /datum/squad/proc/get_all_members()
 	return marines_list
