@@ -13,7 +13,7 @@
 /mob/living/silicon/ai/radio(message, message_mode, list/spans, language)
 	if(incapacitated())
 		return FALSE
-	if(!control_disabled)
+	if(control_disabled)
 		to_chat(src, "<span class='danger'>Your radio transmitter is offline!</span>")
 		return FALSE
 	return ..()
