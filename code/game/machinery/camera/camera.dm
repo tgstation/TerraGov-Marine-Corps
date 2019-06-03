@@ -367,3 +367,7 @@
 
 /obj/machinery/camera/autoname/lz_camera/ex_act()
 	return
+
+
+/obj/machinery/camera/autoname/lz_camera/update_icon()
+	return
