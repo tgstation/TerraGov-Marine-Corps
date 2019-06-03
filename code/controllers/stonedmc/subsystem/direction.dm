@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(direction)
 	wait = 1 SECONDS
 
 	// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
-	var/list/leader_mapping[0]
+	var/list/leader_mapping = list()
 
 	// this is a two d list of defines to lists of mobs tracking that leader
 	// eg; list(CHARLIE_SL = list(<list of references to squad marines), XENO_NORMAL_QUEEN = list(<list of xeno mob refs))
