@@ -1392,7 +1392,7 @@
 		dat += "No fingerprints detected."
 
 	for(var/i in A.fingerprints)
-		dat += "[i]<br>"
+		dat += "[i] - [A.fingerprints[i]]<br>"
 
 	var/datum/browser/browser = new(usr, "fingerprints_[A]", "Fingerprints on [A]")
 	browser.set_content(dat)
