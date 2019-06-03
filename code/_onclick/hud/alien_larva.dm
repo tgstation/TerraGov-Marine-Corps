@@ -1,4 +1,4 @@
-/datum/hud/larva/New(mob/living/carbon/xenomorph/larva/owner, , ui_style, ui_color, ui_alpha = 230)
+/datum/hud/larva/New(mob/living/carbon/xenomorph/larva/owner, ui_style, ui_color, ui_alpha = 230)
 	..()
 	var/obj/screen/using
 
