@@ -6,6 +6,7 @@
 	var/flags_atom = NONE
 	var/datum/reagents/reagents = null
 
+	var/list/fingerprints
 	var/blood_color
 	var/list/blood_DNA
 
@@ -448,7 +449,11 @@ Proc for attack log creation, because really why not
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
-	AddComponent(/datum/component/forensics)
+	RegisterSignal(src, COMSIG_ITEM_ATTACK_SELF, .proc/f_attack_self)
+	RegisterSignal(src, COMSIG_PARENT_ATTACKBY, .proc/f_attackby)
+	RegisterSignal(src, COMSIG_ATOM_ATTACK_HAND, .proc/f_attack_hand)
+	RegisterSignal(src, COMSIG_TOPIC, .proc/f_topic)
+	RegisterSignal(src, COMSIG_PARENT_PREQDELETED, .proc/f_transfer)
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -589,3 +594,52 @@ Proc for attack log creation, because really why not
 
 /atom/proc/AllowDrop()
 	return FALSE
+
+
+/atom/proc/f_attack_self(atom/A, mob/M)
+	add_fingerprint(M, "attack_self")
+
+
+/atom/proc/f_attackby(atom/A, obj/item/I, mob/M, params)
+	add_fingerprint(M, "attackby", I)
+
+
+/atom/proc/f_attack_hand(atom/A, mob/M)
+	add_fingerprint(M, "attack_hand")
+
+
+/atom/proc/f_topic(atom/A, mob/M, href_list)
+	add_fingerprint(M, "topic")
+
+
+/atom/proc/f_transfer(force)
+	if(!isturf(loc))
+		return
+
+	TransferComponents(loc)
+
+
+/atom/proc/add_fingerprint(mob/M, type, special)
+	if(!islist(fingerprints))
+		fingerprints = list()
+
+	if(!type)
+		CRASH("Attempted to add fingerprint of invalid action type.")
+
+	if(!istype(M))
+		CRASH("Invalid mob type [M] when attempting to add fingerprint of type [type].")
+
+	if(!M.key)
+		return
+
+	var/current_time = stationTimestamp()
+
+	if(!LAZYACCESS(fingerprints, M.key))
+		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""]")
+	else
+		var/laststamppos = findtext(LAZYACCESS(fingerprints, M.key), " Last: ")
+		if(laststamppos)
+			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
+		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""]"
+	
+	return TRUE
