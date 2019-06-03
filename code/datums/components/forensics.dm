@@ -36,19 +36,19 @@
 		return COMPONENT_INCOMPATIBLE
 
 
-/datum/component/forensics/proc/f_attack_self(mob/M)
+/datum/component/forensics/proc/f_attack_self(atom/A, mob/M)
 	add_fingerprint(M, "attack_self")
 
 
-/datum/component/forensics/proc/f_attackby(obj/item/I, mob/M, params)
+/datum/component/forensics/proc/f_attackby(atom/A, obj/item/I, mob/M, params)
 	add_fingerprint(M, "attackby", I)
 
 
-/datum/component/forensics/proc/f_attack_hand(mob/M)
+/datum/component/forensics/proc/f_attack_hand(atom/A, mob/M)
 	add_fingerprint(M, "attack_hand")
 
 
-/datum/component/forensics/proc/f_topic(mob/M, href_list)
+/datum/component/forensics/proc/f_topic(atom/A, mob/M, href_list)
 	add_fingerprint(M, "topic")
 
 
@@ -66,19 +66,19 @@
 		CRASH("Attempted to add fingerprint of invalid action type.")
 
 	if(!istype(M))
-		CRASH("Invalid mob type when attempting to add fingerprint of type [type].")
+		CRASH("Invalid mob type [M] when attempting to add fingerprint of type [type].")
 
 	if(!M.key)
 		return
 
-	var/current_time = time_stamp()
+	var/current_time = stationTimestamp()
 
 	if(!LAZYACCESS(fingerprints, M.key))
-		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""] [M.ckey]")
+		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""]")
 	else
 		var/laststamppos = findtext(LAZYACCESS(fingerprints, M.key), " Last: ")
 		if(laststamppos)
 			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
-		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""] [M.ckey]"
+		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""]"
 	
 	return TRUE
