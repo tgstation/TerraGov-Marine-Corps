@@ -1,9 +1,68 @@
 /client/script = {"<style>
-body					{font-family: Verdana, sans-serif;}
+html, body {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	color: #000000;
+}
+body {
+	background: #fff;
+    font-family: Verdana, sans-serif;
+    font-size: 9pt;
+    line-height: 1.2;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	word-wrap: break-word;
+}
 
-h1, h2, h3, h4, h5, h6	{color: #0000ff;	font-family: Georgia, Verdana, sans-serif;}
+em {
+	font-style: normal;
+	font-weight: bold;
+}
 
-em						{font-style: normal;	font-weight: bold;}
+img {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	-ms-interpolation-mode: nearest-neighbor;
+	image-rendering: pixelated;
+}
+img.icon {
+	height: 1em;
+	min-height: 16px;
+	width: auto;
+	vertical-align: bottom;
+}
+
+
+.r:before {
+	content: 'x';
+}
+.r {
+	display: inline-block;
+	min-width: 0.5em;
+	font-size: 0.7em;
+	padding: 0.2em 0.3em;
+	line-height: 1;
+	color: white;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	background-color: crimson;
+	border-radius: 10px;
+}
+
+a {color: #0000ff;}
+a.visited {color: #ff00ff;}
+a:visited {color: #ff00ff;}
+a.popt {text-decoration: none;}
+
+
+.bold, .name, .prefix, .ooc, .looc, .adminooc, .admin, .medal, .yell {font-weight: bold;}
+
+.italic, .italics,  .emote {font-style: italic;}
+
+.highlight {background: yellow;}
 
 .motd					{color: #638500;	font-family: Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
@@ -22,6 +81,7 @@ em						{font-style: normal;	font-weight: bold;}
 .admin					{color: #386aff;	font-weight: bold;}
 .adminsay				{color: #9611D4;	font-weight: bold;}
 .headminsay				{color: #5A0A7F;	font-weight: bold;}
+.boldannounce			{color: #ff0000;	font-weight: bold;}
 
 .adminnotice			{color: #0000ff;}
 .adminhelp              {color: #ff0000;    font-weight: bold;}
@@ -32,7 +92,6 @@ em						{font-style: normal;	font-weight: bold;}
 .deadsay				{color: #5c00e6;}
 .radio					{color: #4E4E4E;}
 .deptradio				{color: #993399;}
-.impradio				{color: #ffd900;}
 .comradio				{color: #004080;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #5C5C8A;}
@@ -48,6 +107,10 @@ em						{font-style: normal;	font-weight: bold;}
 .bravoradio				{color: #C68610;}
 .charlieradio			{color: #AA55AA;}
 .deltaradio				{color: #007FCF;}
+
+.binarysay    			{color: #20c20e; background-color: #000000; display: block;}
+.binarysay a  			{color: #00ff00;}
+.binarysay a:active, .binarysay a:visited {color: #88ff88;}
 
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
@@ -75,20 +138,20 @@ h1.alert, h2.alert		{color: #000000;}
 .danger					{color: #ff0000;	font-weight: bold;}
 .xenodanger				{color: #2a623d;	font-weight: bold;}
 .avoidharm				{color:	#72a0e5;	font-weight: bold;}
-.highdanger				{color: #ff0000;	font-weight: bold; font-size: 3;}
-.xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 3;}
-.xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 3;}
+.highdanger				{color: #ff0000;	font-weight: bold; font-size: 1.5em;}
+.xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 1.5em;}
+.xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
 
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}
 
-.role_header			{color: #db0000		text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 2;}
-.role_body				{color: #000099;	text-align: center;}
+.role_header			{color: #db0000;	display: block; text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 1.5em;}
+.role_body				{color: #000099;	display: block; text-align: center;}
 
-.round_setup			{color: #db0000		font-family: impact; font-size: 2;}
-.round_header			{color: #db0000; 	text-align: center; font-family: courier; font-weight: bold; font-size: 4;}
-.round_body				{color: #001427; 	text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 3;}
-.event_announcement		{color: #600d48; 	font-family: arial-narrow; font-weight: bold; font-size: 3;}
+.round_setup			{color: #db0000;		font-family: impact; font-size: 1.25em;}
+.round_header			{color: #db0000; 	display: block; text-align: center; font-family: courier; font-weight: bold; font-size: 2em;}
+.round_body				{color: #001427; 	display: block; text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 1.5em;}
+.event_announcement		{color: #600d48; 	font-family: arial-narrow; font-weight: bold; font-size: 1.5em;}
 
 .centerbold				{				 	text-align: center; font-weight: bold;}
 
@@ -104,9 +167,11 @@ h1.alert, h2.alert		{color: #000000;}
 .vox					{color: #AA00AA;}
 .rough					{font-family: trebuchet-ms, cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
+.command_headset		{font-weight: bold; font-size: 18px;}
+.robot					{font-family: "Courier New", cursive, sans-serif;}
 
 
-.green					{color: #37ba54;}
+.green					{color: #29b245;}
 .nicegreen				{color: #14a833;}
 .shadowling				{color: #3b2769;}
 .cult					{color: #960000;}
@@ -132,4 +197,11 @@ h1.alert, h2.alert		{color: #000000;}
 .deconversion_message	{color: #5000A0; font-size: 3; font-style: italic;}
 
 .interface				{color: #330033;}
+
+.connectionClosed, .fatalError {background: red; color: white; padding: 5px;}
+.connectionClosed.restored {background: green;}
+.internal.boldnshit {color: blue; font-weight: bold;}
+
+.text-normal {font-weight: normal; font-style: normal;}
+.hidden {display: none; visibility: hidden;}
 </style>"}
