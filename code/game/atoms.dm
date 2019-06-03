@@ -47,6 +47,9 @@ directive is properly returned.
 
 	QDEL_NULL(light)
 
+	if(isturf(loc))
+		loc.fingerprints = fingerprints
+
 	return ..()
 
 //===========================================================================
@@ -449,12 +452,6 @@ Proc for attack log creation, because really why not
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
-	RegisterSignal(src, COMSIG_ITEM_ATTACK_SELF, .proc/f_attack_self)
-	RegisterSignal(src, COMSIG_PARENT_ATTACKBY, .proc/f_attackby)
-	RegisterSignal(src, COMSIG_ATOM_ATTACK_HAND, .proc/f_attack_hand)
-	RegisterSignal(src, COMSIG_TOPIC, .proc/f_topic)
-	RegisterSignal(src, COMSIG_PARENT_PREQDELETED, .proc/f_transfer)
-
 	return INITIALIZE_HINT_NORMAL
 
 
@@ -596,29 +593,6 @@ Proc for attack log creation, because really why not
 	return FALSE
 
 
-/atom/proc/f_attack_self(atom/A, mob/M)
-	add_fingerprint(M, "attack_self")
-
-
-/atom/proc/f_attackby(atom/A, obj/item/I, mob/M, params)
-	add_fingerprint(M, "attackby", I)
-
-
-/atom/proc/f_attack_hand(atom/A, mob/M)
-	add_fingerprint(M, "attack_hand")
-
-
-/atom/proc/f_topic(atom/A, mob/M, href_list)
-	add_fingerprint(M, "topic")
-
-
-/atom/proc/f_transfer(force)
-	if(!isturf(loc))
-		return
-
-	TransferComponents(loc)
-
-
 /atom/proc/add_fingerprint(mob/M, type, special)
 	if(!islist(fingerprints))
 		fingerprints = list()
@@ -643,3 +617,8 @@ Proc for attack log creation, because really why not
 		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""]"
 	
 	return TRUE
+
+
+/atom/Topic(href, href_list)
+	. = ..()
+	add_fingerprint(usr, "topic")
