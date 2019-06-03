@@ -5,6 +5,7 @@
 	icon = 'icons/mob/monkey.dmi'
 	gender = NEUTER
 	flags_pass = PASSTABLE
+	hud_type = /datum/hud/monkey
 	hud_possible = list(STATUS_HUD_XENO_INFECTION)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie

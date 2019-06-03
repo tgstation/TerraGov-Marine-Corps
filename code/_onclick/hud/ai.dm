@@ -86,7 +86,7 @@
 	AI.drop_new_multicam()
 
 
-/datum/hud/ai/New(mob/owner)
+/datum/hud/ai/New(mob/owner, ui_style, ui_color, ui_alpha = 230)
 	. = ..()
 	var/obj/screen/using
 

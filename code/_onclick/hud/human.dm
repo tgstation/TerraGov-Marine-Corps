@@ -343,12 +343,3 @@
 			H.r_hand.screen_loc = null
 		if(H.l_hand)
 			H.l_hand.screen_loc = null
-
-
-
-/mob/living/carbon/human/create_hud()
-	if(client && !hud_used)
-		var/ui_style = ui_style2icon(client.prefs.ui_style)
-		var/ui_color = client.prefs.ui_style_color
-		var/ui_alpha = client.prefs.ui_style_alpha
-		hud_used = new /datum/hud/human(src, ui_style, ui_color, ui_alpha)

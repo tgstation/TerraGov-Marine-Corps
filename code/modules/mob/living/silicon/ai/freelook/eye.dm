@@ -25,7 +25,7 @@
 
 
 /mob/camera/aiEye/proc/update_ai_detect_hud()
-	var/datum/atom_hud/ai_detector/hud = huds[DATA_HUD_AI_DETECT]
+	var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
 	var/list/old_images = hud_list[AI_DETECT_HUD]
 	if(!ai_detector_visible)
 		hud.remove_from_hud(src)
@@ -115,7 +115,7 @@
 		c.remove(src)
 	GLOB.aiEyes -= src
 	if(ai_detector_visible)
-		var/datum/atom_hud/ai_detector/hud = huds[DATA_HUD_AI_DETECT]
+		var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
 		hud.remove_from_hud(src)
 		var/list/L = hud_list[AI_DETECT_HUD]
 		QDEL_LIST(L)

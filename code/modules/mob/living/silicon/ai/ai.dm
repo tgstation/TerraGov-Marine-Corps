@@ -9,6 +9,7 @@
 	job = "AI"
 	status_flags = CANSTUN|CANKNOCKOUT
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
+	hud_type = /datum/hud/ai
 
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current

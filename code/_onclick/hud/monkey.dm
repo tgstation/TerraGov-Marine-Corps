@@ -173,12 +173,3 @@
 			M.r_hand.screen_loc = null
 		if(M.l_hand)
 			M.l_hand.screen_loc = null
-
-
-
-/mob/living/carbon/monkey/create_hud()
-	if(client && !hud_used)
-		var/ui_style = ui_style2icon(client.prefs.ui_style)
-		var/ui_color = client.prefs.ui_style_color
-		var/ui_alpha = client.prefs.ui_style_alpha
-		hud_used = new /datum/hud/monkey(src, ui_style, ui_color, ui_alpha)
