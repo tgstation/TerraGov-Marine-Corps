@@ -136,7 +136,7 @@
 	if(length(contents))
 		var/list/areas_in_z = SSmapping.areas_in_z
 		var/z
-		for(var/i in 1 to length(contents))
+		for(var/i in contents)
 			var/atom/thing = i
 			if(!thing)
 				continue
