@@ -163,7 +163,7 @@ Also added 'exclude' turf to avoid travelling over; defaults to null
 //removes and returns the first element of the heap
 //(i.e the max or the min dependant on the comparison function)
 /datum/Heap/proc/Pop()
-	if(!L.len)
+	if(!length(L))
 		return 0
 	. = L[1]
 
