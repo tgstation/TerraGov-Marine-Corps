@@ -181,3 +181,45 @@
 	set name = "Cancel Camera View"
 
 	view_core()
+
+
+/mob/living/silicon/ai/verb/toggle_acceleration()
+	set category = "AI Commands"
+	set name = "Toggle Camera Acceleration"
+
+	if(incapacitated())
+		return
+
+	acceleration = !acceleration
+
+	to_chat(src, "<span class='notice'>Camera acceleration has been toggled [acceleration ? "on" : "off"].</span>")
+
+
+/mob/living/silicon/ai/verb/radio_settings()
+	set category = "AI Commands"
+	set name = "Radio Settings"
+
+	if(incapacitated())
+		return
+
+	if(!radio)
+		to_chat(src, "<span class='warning'>No internal radio detected.</span>")
+		return
+
+	to_chat(src, "<span class='notice'>Accessing internal radio settings.</span>")
+	radio.interact(src)
+
+
+/mob/living/silicon/ai/verb/toggle_floor_bolts()
+	set category = "AI Commands"
+	set name = "Toggle Floor Bolts"
+
+	if(!isturf(loc))
+		return
+
+	if(incapacitated())
+		return
+
+	anchored = !anchored
+
+	to_chat(src, "<span class='notice'>You are now [anchored ? "" : "un"]anchored.</span>")

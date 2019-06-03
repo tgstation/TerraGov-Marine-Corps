@@ -336,7 +336,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	command = TRUE
 
 
-/obj/item/radio/headset/almayer/mcom/ai
+/obj/item/radio/headset/almayer/mcom/silicon
+	name = "silicon radio"
 	keyslot = new /obj/item/encryptionkey/mcom/ai
 
 

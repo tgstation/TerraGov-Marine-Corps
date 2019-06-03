@@ -305,7 +305,7 @@
 	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
 		wires.cut_all()
 		update_icon()
-		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!", null, null, 5)
+		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
 	else
 		beenhit += 1
 

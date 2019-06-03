@@ -351,6 +351,10 @@
 		var/obj/item/frame/light_fixture/small/AH = I
 		AH.try_build(src)
 
+	else if(istype(I, /obj/item/frame/camera))
+		var/obj/item/frame/camera/AH = I
+		AH.try_build(src, user)
+
 	//Poster stuff
 	else if(istype(I, /obj/item/contraband/poster))
 		place_poster(I, user)

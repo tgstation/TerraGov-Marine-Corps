@@ -184,6 +184,37 @@
 	to_chat(user, "It contains [get_fuel()]/[max_fuel] units of fuel!")
 
 
+/obj/item/tool/weldingtool/use(used = 0)
+	if(!isOn() || !check_fuel())
+		return FALSE
+
+	if(get_fuel() < used)
+		return FALSE
+
+	reagents.remove_reagent("fuel", used)
+	check_fuel()
+	return TRUE
+
+
+// When welding is about to start, run a normal tool_use_check, then flash a mob if it succeeds.
+/obj/item/tool/weldingtool/tool_start_check(mob/living/user, amount = 0)
+	. = tool_use_check(user, amount)
+	if(. && user)
+		eyecheck(user)
+
+
+// If welding tool ran out of fuel during a construction task, construction fails.
+/obj/item/tool/weldingtool/tool_use_check(mob/living/user, amount)
+	if(!isOn() || !check_fuel())
+		to_chat(user, "<span class='warning'>[src] has to be on to complete this task!</span>")
+		return FALSE
+
+	if(get_fuel() < amount)
+		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task!</span>")
+		return FALSE
+
+	return TRUE
+
 
 /obj/item/tool/weldingtool/process()
 	if(gc_destroyed)

@@ -44,9 +44,11 @@
 
 	track = new(src)
 	builtInCamera = new(src)
-	builtInCamera.network = list("marinemainship", "marine", "dropship1", "dropship2")
+	builtInCamera.network = list("marinemainship")
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+
+	create_eye()
 
 	GLOB.ai_list += src
 
@@ -58,14 +60,25 @@
 	return ..()
 
 
-/mob/living/silicon/ai/restrained()
+/mob/living/silicon/ai/restrained(ignore_grab)
 	return FALSE
 
 
+/mob/living/silicon/ai/incapacitated(ignore_restraints)
+	if(control_disabled)
+		return TRUE
+	return ..()
+
+
+/mob/living/silicon/ai/resist()
+	return
+
+
 /mob/living/silicon/ai/emp_act(severity)
+	. = ..()
+
 	if(prob(30)) 
 		view_core()
-	return ..()
 
 
 /mob/living/silicon/ai/Topic(href, href_list)
@@ -197,3 +210,41 @@
 			AT.get_remote_view_fullscreens(src)
 		else
 			clear_fullscreen("remote_view", 0)
+
+
+/mob/living/silicon/ai/Stat()
+	. = ..()
+
+	if(statpanel("Status"))
+	
+		if(stat != CONSCIOUS)
+			stat(null, text("Systems nonfunctional"))
+			return
+
+		stat(null, text("System integrity: [(health + 100) / 2]%"))
+
+
+/mob/living/silicon/ai/canUseTopic(atom/movable/AM, proximity, dexterity)
+	if(control_disabled || incapacitated())
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
+	if(proximity && !in_range(AM, src))
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return can_see(AM)
+
+
+/mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
+	. = ..()
+
+	if(oldname == newname)
+		return
+
+	if(eyeobj)
+		eyeobj.name = "[newname] (AI Eye)"
+
+
+/mob/living/silicon/ai/forceMove(atom/destination)
+	. = ..()
+	if(.)
+		end_multicam()

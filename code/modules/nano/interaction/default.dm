@@ -33,6 +33,9 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 	if(src_object in view(client.view, src))
 		return STATUS_INTERACTIVE
 
+	else if(src_object in view(client.view, eyeobj))
+		return STATUS_INTERACTIVE
+
 	else if(get_dist(src_object, src) <= client.view)	// View does not return what one would expect while installed in an inteliCard
 		return STATUS_INTERACTIVE
 

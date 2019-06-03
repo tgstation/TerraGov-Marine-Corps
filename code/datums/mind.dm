@@ -166,6 +166,11 @@
 	mind.assigned_role = "Silicon"
 
 
+/mob/living/silicon/ai/mind_initialize()
+	. = ..()
+	mind.assigned_role = "AI"
+
+
 /mob/living/simple_animal/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Animal"
