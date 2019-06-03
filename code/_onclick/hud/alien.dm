@@ -36,7 +36,7 @@
 	icon_state = "power_display2"
 	screen_loc = ui_alienplasmadisplay
 
-/datum/hud/alien/New(mob/living/carbon/xenomorph/owner, ui_alpha = 230)
+/datum/hud/alien/New(mob/living/carbon/xenomorph/owner, ui_style, ui_color, ui_alpha = 230)
 	..()
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
