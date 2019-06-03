@@ -108,7 +108,7 @@
 	if(!L.ckey)
 		return
 
-	if(!(L.client && (L.client.prefs.toggles_sound & SOUND_AMBIENCE)))
+	if(!L.client || !(L.client.prefs.toggles_sound & SOUND_AMBIENCE))
 		return
 
 	if(!prob(35))
