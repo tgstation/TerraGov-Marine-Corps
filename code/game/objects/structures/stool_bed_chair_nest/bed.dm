@@ -170,7 +170,7 @@ obj/structure/bed/Destroy()
 		if(!buildstacktype)
 			return
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		new buildstacktype(loc, buildstackamount)
 		qdel(src)
 

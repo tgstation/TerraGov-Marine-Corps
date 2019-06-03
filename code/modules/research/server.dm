@@ -113,7 +113,7 @@
 
 	else if(opened && iscrowbar(I))
 		griefProtection()
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
 		M.state = 2
 		M.icon_state = "box_1"

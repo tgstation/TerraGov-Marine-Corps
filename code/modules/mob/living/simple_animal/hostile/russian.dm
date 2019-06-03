@@ -41,7 +41,7 @@
 	weapon1 = /obj/item/weapon/gun/pistol
 	ranged = 1
 	projectiletype = /obj/item/projectile
-	projectilesound = 'sound/weapons/Gunshot.ogg'
+	projectilesound = 'sound/weapons/gunshot.ogg'
 	casingtype = null
 
 
@@ -85,7 +85,7 @@
 	//weapon1 = /obj/item/weapon/gun/projectile/mateba
 	ranged = 1
 	projectiletype = /obj/item/projectile
-	projectilesound = 'sound/weapons/Gunshot.ogg'
+	projectilesound = 'sound/weapons/gunshot.ogg'
 	casingtype = null
 
 

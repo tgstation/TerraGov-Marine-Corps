@@ -81,7 +81,7 @@
 			connected.loc = src
 			return
 	morgue_open = !morgue_open
-	playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	update_icon()
 
 

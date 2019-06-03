@@ -777,7 +777,7 @@ table tr:first-child th:first-child { border: none;}
 				user.visible_message("<span class='notice'>[user] starts prying out [src]'s circuits.</span>",
 				"<span class='notice'>You start prying out [src]'s circuits.</span>")
 
-				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
@@ -805,7 +805,7 @@ table tr:first-child th:first-child { border: none;}
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
 				frame.forceMove(user.loc)
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				qdel(src)
 
 /obj/machinery/alarm/power_change()

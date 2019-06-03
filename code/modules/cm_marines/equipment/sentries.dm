@@ -139,7 +139,7 @@
 			user.visible_message("<span class='notice'>[user] unsecures \the [src] from the ground.</span>",
 			"<span class='notice'>You unsecure \the [src] from the ground.</span>")
 			anchored = FALSE
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		else
 			user.visible_message("<span class='notice'>[user] begins securing \the [src] to the ground.</span>",
 			"<span class='notice'>You begin securing \the [src] to the ground.</span>")
@@ -150,7 +150,7 @@
 			user.visible_message("<span class='notice'>[user] secures \the [src] to the ground.</span>",
 			"<span class='notice'>You secure \the [src] to the ground.</span>")
 			anchored = TRUE
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 	else if(istype(I, /obj/item/turret_top))
 		var/obj/item/turret_top/T = I
@@ -171,7 +171,7 @@
 		"<span class='notice'>You attach the turret top to \the [src].</span>")
 		has_top = TRUE
 		icon_state = "sentry_base"
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		qdel(T)
 
 	else if(isscrewdriver(I))
@@ -213,7 +213,7 @@
 		has_top = FALSE
 		icon_state = "sentry_tripod"
 		new /obj/item/turret_top(loc)
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
@@ -555,7 +555,7 @@
 			user.visible_message("<span class='notice'>[user] unanchors [src] from the ground.</span>",
 			"<span class='notice'>You unanchor [src] from the ground.</span>")
 			anchored = FALSE
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		else
 			user.visible_message("<span class='notice'>[user] begins securing [src] to the ground.</span>",
 			"<span class='notice'>You begin securing [src] to the ground.</span>")
@@ -566,7 +566,7 @@
 			user.visible_message("<span class='notice'>[user] secures [src] to the ground.</span>",
 			"<span class='notice'>You secure [src] to the ground.</span>")
 			anchored = TRUE
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 	// Rotation
 	else if(isscrewdriver(I))
@@ -579,7 +579,7 @@
 			DISABLE_BITFIELD(turret_flags, TURRET_ON)
 			update_icon()
 
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>",
 		"<span class='notice'>You rotate [src].</span>")
 		if(dir == NORTH)
@@ -612,7 +612,7 @@
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>",
 		"<span class='notice'>You repair [src].</span>")
 		update_health(-50)
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	else if(iscrowbar(I))
 
@@ -636,7 +636,7 @@
 			
 		user.visible_message("<span class='notice'>[user] removes [src]'s [cell.name].</span>",
 		"<span class='notice'>You remove [src]'s [cell.name].</span>")
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.put_in_hands(cell)
 		cell = null
 		update_icon()

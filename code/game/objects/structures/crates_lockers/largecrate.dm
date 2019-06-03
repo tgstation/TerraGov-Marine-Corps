@@ -141,7 +141,7 @@
 		user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
 							 "<span class='notice'>You weld open \the [src].</span>", \
 							 "<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		qdel(src)
 
 	else
@@ -215,7 +215,7 @@
 	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
-	playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	to_chat(user, "<span class='notice'>You cut the straps away.</span>")
 	icon_state = "secure_crate"
 	strapped = FALSE
