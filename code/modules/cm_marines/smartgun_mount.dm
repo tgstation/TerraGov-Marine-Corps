@@ -211,7 +211,7 @@
 
 		to_chat(user, "You're securing the M56D into place")
 
-		if(!do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
