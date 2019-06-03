@@ -1199,6 +1199,17 @@
 			return FALSE
 	return TRUE
 
+
+/obj/machinery/power/apc/proc/toggle_breaker(mob/user)
+	if(machine_stat & (NOPOWER|BROKEN|MAINT))
+		return
+
+	operating = !operating
+	log_combat(user, src, "turned [operating ? "on" : "off"]")
+	update()
+	update_icon()
+
+
 //------Various APCs ------//
 
 // mapping helpers

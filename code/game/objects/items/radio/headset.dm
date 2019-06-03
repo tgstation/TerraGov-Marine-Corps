@@ -130,13 +130,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		to_chat(user, "<span class='notice'>You toggle high-volume mode [use_command ? "on" : "off"].</span>")
 
 
-/obj/item/radio/headset/can_receive(freq, level, AIuser)
+/obj/item/radio/headset/can_receive(freq, level)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(H.wear_ear == src)
-			return ..(freq, level)
-	else if(AIuser)
-		return ..(freq, level)
+			return ..()
+	else if(issilicon(loc))
+		return ..()
 	return FALSE
 
 
