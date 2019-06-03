@@ -598,10 +598,10 @@ Proc for attack log creation, because really why not
 		fingerprints = list()
 
 	if(!type)
-		CRASH("Attempted to add fingerprint of invalid action type.")
+		CRASH("Attempted to add fingerprint without an action type.")
 
 	if(!istype(M))
-		CRASH("Invalid mob type [M] when attempting to add fingerprint of type [type].")
+		CRASH("Invalid mob type [M]([M.type]) when attempting to add fingerprint of type [type].")
 
 	if(!M.key)
 		return
@@ -609,12 +609,12 @@ Proc for attack log creation, because really why not
 	var/current_time = stationTimestamp()
 
 	if(!LAZYACCESS(fingerprints, M.key))
-		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""]")
+		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] [special ? "| [special]" : ""]")
 	else
 		var/laststamppos = findtext(LAZYACCESS(fingerprints, M.key), " Last: ")
 		if(laststamppos)
 			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
-		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""]"
+		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] [special ? " | [special]" : ""]"
 	
 	return TRUE
 
