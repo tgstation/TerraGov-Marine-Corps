@@ -42,7 +42,8 @@
 	GLOB.cameranet.addCamera(src)
 
 	myarea = get_area(src)
-	LAZYADD(myarea.cameras, src)
+	if(myarea)
+		LAZYADD(myarea.cameras, src)
 
 	update_icon()
 
