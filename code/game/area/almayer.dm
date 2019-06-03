@@ -374,4 +374,4 @@
 /area/almayer/powered //for objects not intended to lose power
 	name = "\improper Powered"
 	icon_state = "selfdestruct"
-	requires_power = 0
+	requires_power = FALSE
