@@ -90,7 +90,6 @@
 		reconnect()
 
 /obj/machinery/power/generator/attack_hand(mob/user)
-	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
 	interact(user)
 

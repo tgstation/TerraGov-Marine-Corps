@@ -101,8 +101,6 @@
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE
 
-	add_fingerprint(user)
-
 	if(buildstate == GEOTHERMAL_HEAVY_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
 		return FALSE

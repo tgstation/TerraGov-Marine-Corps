@@ -24,15 +24,11 @@
 		powernet = attached.powernet
 
 /obj/machinery/power/monitor/attack_ai(mob/user)
-	add_fingerprint(user)
-
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 
 /obj/machinery/power/monitor/attack_hand(mob/user)
-	add_fingerprint(user)
-
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)

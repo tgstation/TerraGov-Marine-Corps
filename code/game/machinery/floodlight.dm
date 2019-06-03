@@ -45,7 +45,6 @@
 		else
 			cell.loc = loc
 
-		cell.add_fingerprint(user)
 		cell.updateicon()
 
 		src.cell = null

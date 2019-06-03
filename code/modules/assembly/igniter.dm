@@ -29,4 +29,3 @@
 
 /obj/item/assembly/igniter/attack_self(mob/user)
 	activate()
-	add_fingerprint(user)

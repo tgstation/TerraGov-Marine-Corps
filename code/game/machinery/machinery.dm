@@ -276,8 +276,6 @@ Class Procs:
 	if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !issilicon(usr))
 		return 1
 
-	src.add_fingerprint(usr)
-
 	var/area/A = get_area(src)
 	A.master.powerupdate = 1
 
@@ -320,8 +318,6 @@ Class Procs:
 
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
 		return TRUE
-
-	src.add_fingerprint(user)
 
 	var/area/A = get_area(src)
 	A.master.powerupdate = 1

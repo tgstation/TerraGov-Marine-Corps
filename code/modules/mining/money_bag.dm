@@ -65,7 +65,6 @@
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	if(href_list["remove"])
 		var/obj/item/coin/COIN
 		switch(href_list["remove"])

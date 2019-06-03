@@ -41,7 +41,6 @@
 	. = ..()
 	if(.)
 		return
-	add_fingerprint(user)
 
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
@@ -176,7 +175,6 @@
 /obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	add_fingerprint(user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
 		return

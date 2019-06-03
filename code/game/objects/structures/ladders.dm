@@ -86,14 +86,12 @@
 	step(user, get_dir(user, src))
 	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You start climbing [ladder_dir_name] [src].</span>")
-	add_fingerprint(user)
 	if(!do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC) || user.lying || user.anchored)
 		return
 	user.trainteleport(ladder_dest.loc)
 	visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
 	user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
-	ladder_dest.add_fingerprint(user)
 
 /obj/structure/ladder/attack_paw(mob/user as mob)
 	return attack_hand(user)
@@ -171,7 +169,6 @@
 			is_watching = 1
 			usr.set_interaction(src)
 
-	add_fingerprint(usr)
 
 //Throwing Shiet
 /obj/structure/ladder/attackby(obj/item/I, mob/user, params)

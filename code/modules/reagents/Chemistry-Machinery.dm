@@ -146,7 +146,6 @@
 			B.loc = loc
 			beaker = null
 
-	add_fingerprint(usr)
 	attack_hand(usr)
 	return TRUE // update UIs attached to this object
 
@@ -314,7 +313,6 @@
 	if(!in_range(src, user))
 		return
 
-	add_fingerprint(user)
 	user.set_interaction(src)
 
 

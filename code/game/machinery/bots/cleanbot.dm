@@ -96,7 +96,6 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	switch(href_list["operation"])
 		if("start")
 			if (src.on)

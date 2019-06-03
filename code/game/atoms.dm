@@ -6,7 +6,6 @@
 	var/flags_atom = NONE
 	var/datum/reagents/reagents = null
 
-	var/fingerprintslast
 	var/blood_color
 	var/list/blood_DNA
 
@@ -448,6 +447,8 @@ Proc for attack log creation, because really why not
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
+
+	AddComponent(/datum/component/forensics)
 
 	return INITIALIZE_HINT_NORMAL
 

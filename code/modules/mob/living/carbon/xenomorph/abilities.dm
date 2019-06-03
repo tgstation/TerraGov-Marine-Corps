@@ -67,8 +67,7 @@
 
 	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
-	var/obj/effect/alien/weeds/node/N = new (owner.loc, src, owner)
-	owner.transfer_fingerprints_to(N)
+	new /obj/effect/alien/weeds/node (owner.loc, src, owner)
 	playsound(owner.loc, "alien_resin_build", 25)
 	round_statistics.weeds_planted++
 	return succeed_activate()
@@ -199,8 +198,9 @@
 		new_resin = T
 	else
 		new_resin = new X.selected_resin(T)
-	new_resin.add_hiddenprint(X) //so admins know who placed it
-	succeed_activate()
+
+	if(new_resin)
+		succeed_activate()
 
 
 /datum/action/xeno_action/toggle_pheromones
@@ -552,7 +552,6 @@
 		return fail_activate()
 
 	newacid.name = newacid.name + " (on [A.name])" //Identify what the acid is on
-	newacid.add_hiddenprint(X)
 
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")

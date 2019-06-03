@@ -639,7 +639,6 @@
 			log_admin("[key_name(usr)] ejected [key_name(occupant)] from the autodoc.")
 			message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc.")
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
-			add_fingerprint(usr)
 			return
 		if(!ishuman(usr))
 			return
@@ -664,7 +663,6 @@
 				message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc during surgery causing damage.")
 				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
 		go_out()
-		add_fingerprint(usr)
 
 /obj/machinery/autodoc/verb/move_inside()
 	set name = "Enter Med-Pod"
@@ -710,7 +708,6 @@
 		connected.start_processing()
 		for(var/obj/O in src)
 			qdel(O)
-		add_fingerprint(usr)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
 	for(var/atom/movable/A in contents)
@@ -1219,7 +1216,6 @@
 		if(href_list["ejectify"])
 			connected.eject()
 			updateUsrDialog()
-		add_fingerprint(usr)
 
 /obj/machinery/autodoc/event
 	event = 1

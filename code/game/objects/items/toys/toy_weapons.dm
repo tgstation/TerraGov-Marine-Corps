@@ -51,7 +51,6 @@
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 		if (flag)
 			return
-		src.add_fingerprint(user)
 		if (src.bullets < 1)
 			user.show_message("<span class='warning'> *click* *click*</span>", 2)
 			playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
@@ -156,7 +155,6 @@
 
 
 	attack(mob/M as mob, mob/user as mob)
-		src.add_fingerprint(user)
 
 // ******* Check
 
@@ -226,7 +224,6 @@
 			H.update_inv_l_hand(0)
 			H.update_inv_r_hand()
 
-		src.add_fingerprint(user)
 		return
 
 /obj/item/toy/katana

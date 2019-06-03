@@ -308,7 +308,6 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					else
 						visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
 
-		src.add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src))
 			if ((M.client && M.interactee == src))
 				src.attack_hand(M)

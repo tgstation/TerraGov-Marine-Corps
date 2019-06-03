@@ -28,7 +28,6 @@
 	if (usr.stat != 0)
 		return
 	src.go_out()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/bodyscanner/verb/move_inside()
@@ -52,7 +51,6 @@
 		//O = null
 		qdel(O)
 		//Foreach goto(124)
-	src.add_fingerprint(usr)
 	return
 
 /obj/machinery/bodyscanner/proc/go_out()
@@ -112,7 +110,6 @@
 	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		O.forceMove(loc)
-	add_fingerprint(user)
 
 
 /obj/machinery/bodyscanner/ex_act(severity)

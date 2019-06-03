@@ -32,7 +32,6 @@
 	else
 		status = 0
 		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
-	add_fingerprint(user)
 
 /obj/item/weapon/stunprod/attack(mob/M, mob/user)
 	if(user.a_intent == INTENT_HARM)
@@ -53,7 +52,6 @@
 			status = 0
 			update_icon()
 
-	add_fingerprint(user)
 
 
 /obj/item/weapon/stunprod/emp_act(severity)

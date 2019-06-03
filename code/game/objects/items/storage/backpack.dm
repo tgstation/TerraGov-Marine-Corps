@@ -19,7 +19,6 @@
 		if(H.back == src)
 /*			if(user.dropItemToGround(src))
 				pickup(user)
-				add_fingerprint(user)
 				if(!user.put_in_active_hand(src))
 					dropped(user)
 */

@@ -120,8 +120,6 @@
 	if(. || isAI(usr))
 		return
 
-	add_fingerprint(usr)
-
 	if(!is_operational())
 		return
 

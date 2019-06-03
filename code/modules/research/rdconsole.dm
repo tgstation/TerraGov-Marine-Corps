@@ -169,8 +169,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(..())
 		return
 
-	add_fingerprint(usr)
-
 	usr.set_interaction(src)
 	if(href_list["menu"]) //Switches menu screens. Converts a sent text string into a number. Saves a LOT of code.
 		var/temp_screen = text2num(href_list["menu"])

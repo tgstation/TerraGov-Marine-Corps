@@ -518,7 +518,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		usr << browse(null, "window=orbital_console")
 		usr.unset_interaction()
 
-	add_fingerprint(usr)
 //	updateUsrDialog()
 	attack_hand(usr)
 

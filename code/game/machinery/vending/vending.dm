@@ -476,7 +476,6 @@
 		else if ((href_list["togglevoice"]) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			src.shut_up = !src.shut_up
 
-		src.add_fingerprint(usr)
 		ui_interact(usr) //updates the nanoUI window
 		updateUsrDialog() //updates the wires window
 	else

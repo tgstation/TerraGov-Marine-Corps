@@ -237,7 +237,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
 	if(href_list["toggle_power"])
 		TogglePower()
 		. = TRUE

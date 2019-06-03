@@ -471,7 +471,6 @@
 	var/mob/living/carbon/human/user = usr //this is us
 	if(user.incapacitated())
 		return
-	src.add_fingerprint(usr)
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
 		if(user.interactee == src)
 			user.unset_interaction()

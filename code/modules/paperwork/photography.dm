@@ -77,7 +77,6 @@
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "photo")]"
-	add_fingerprint(usr)
 	return
 
 
@@ -106,7 +105,6 @@
 				if("l_hand")
 					M.dropItemToGround(src)
 					M.put_in_l_hand(src)
-			add_fingerprint(usr)
 			return
 		if(over_object == usr && in_range(src, usr) || usr.contents.Find(src))
 			if(usr.s_active)

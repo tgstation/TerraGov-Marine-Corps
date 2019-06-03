@@ -74,7 +74,6 @@ obj/structure/sign/poster/New(var/serial)
 			icon_state = "poster_ripped"
 			name = "ripped poster"
 			desc = "You can't make out anything from the poster's original print. It's ruined."
-			add_fingerprint(user)
 		if("No")
 			return
 

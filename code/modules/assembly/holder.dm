@@ -124,7 +124,6 @@
 
 
 /obj/item/assembly_holder/attack_self(mob/user)
-	add_fingerprint(user)
 	if(!a_left || !a_right)
 		to_chat(user, "<span class='danger'>Assembly part missing!</span>")
 		return

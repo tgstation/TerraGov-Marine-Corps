@@ -70,7 +70,6 @@
 					ready = 1
 
 			src.updateUsrDialog()
-			src.add_fingerprint(usr)
 			return
 
 
@@ -110,7 +109,6 @@
 			return
 		M.forceMove(src)
 		src.occupant = M
-		src.add_fingerprint(usr)
 		icon_state = "implantchair_on"
 		return 1
 
@@ -148,7 +146,6 @@
 			if(usr.stat != 0)
 				return
 			src.go_out(usr)
-			add_fingerprint(usr)
 			return
 
 

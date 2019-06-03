@@ -71,7 +71,6 @@
 	if (!src.chained) return
 
 	user.put_in_hands(src.chained)
-	src.chained.add_fingerprint(user)
 
 	src.slowdown = initial(slowdown)
 	src.icon_state = "orange"

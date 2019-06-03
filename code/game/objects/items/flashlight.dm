@@ -91,7 +91,6 @@
 
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
-	add_fingerprint(user)
 	if(on && user.zone_selected == "eyes")
 
 		if((user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly

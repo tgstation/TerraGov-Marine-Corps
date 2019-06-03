@@ -402,7 +402,6 @@
 /obj/machinery/computer/squad_changer/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	if(user) add_fingerprint(user)
 
 	usr.set_interaction(src)
 
@@ -476,7 +475,6 @@
 					to_chat(usr, "You need to insert a card to modify.")
 			else
 				to_chat(usr, "You don't have sufficient access to use this console.")
-		src.add_fingerprint(usr)
 	src.attack_hand(usr)
 	return
 

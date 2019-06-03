@@ -54,10 +54,12 @@
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 	return
 
 
-/obj/item/proc/attack(mob/living/M, mob/living/user, def_zone)
+/obj/item/proc/attack(mob/living/M, mob/living/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
 
 	if(flags_item & NOBLUDGEON)
@@ -76,8 +78,6 @@
 	msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])" )
 
 	/////////////////////////
-
-	add_fingerprint(user)
 
 	var/power = force
 
@@ -111,7 +111,7 @@
 		M.updatehealth()
 	else
 		var/mob/living/carbon/human/H = M
-		var/hit = H.attacked_by(src, user, def_zone)
+		var/hit = H.attacked_by(src, user)
 		if (hit && hitsound)
 			playsound(loc, hitsound, 25, 1)
 		H.camo_off_process(SCOUT_CLOAK_OFF_ATTACK)

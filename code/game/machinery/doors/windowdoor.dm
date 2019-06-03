@@ -34,7 +34,6 @@
 				close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
-	add_fingerprint(M)
 	if (!( SSticker ))
 		return
 	if (src.operating)
@@ -100,10 +99,8 @@
 /obj/machinery/door/window/take_damage(var/damage)
 	src.obj_integrity = max(0, src.obj_integrity - damage)
 	if (src.obj_integrity <= 0)
-		var/obj/item/shard/S = new(loc)
-		transfer_fingerprints_to(S)
+		new /obj/item/shard(loc)
 		var/obj/item/stack/cable_coil/CC = new(loc)
-		transfer_fingerprints_to(CC)
 		CC.amount = 2
 		var/obj/item/circuitboard/airlock/ae
 		if(!electronics)
@@ -119,7 +116,6 @@
 			ae = electronics
 			electronics = null
 			ae.loc = src.loc
-		transfer_fingerprints_to(ae)
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0

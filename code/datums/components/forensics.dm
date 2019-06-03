@@ -1,27 +1,34 @@
 /datum/component/forensics
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	can_transfer = TRUE
-	var/list/fingerprints		//assoc print = print
-	var/list/hiddenprints		//assoc ckey = realname/gloves/ckey
-	var/list/blood_DNA			//assoc dna = bloodtype
-	var/list/fibers				//assoc print = print
+	var/list/fingerprints		//assoc ckey = realname/time/action/ckey
 
 
 /datum/component/forensics/InheritComponent(datum/component/forensics/F, original)		//Use of | and |= being different here is INTENTIONAL.
 	fingerprints = fingerprints | F.fingerprints
-	hiddenprints = hiddenprints | F.hiddenprints
-	blood_DNA = blood_DNA | F.blood_DNA
-	fibers = fibers | F.fibers
 	return ..()
 
 
-/datum/component/forensics/Initialize(new_fingerprints, new_hiddenprints, new_blood_DNA, new_fibers)
+/datum/component/forensics/Initialize(new_fingerprints)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	fingerprints = new_fingerprints
-	hiddenprints = new_hiddenprints
-	blood_DNA = new_blood_DNA
-	fibers = new_fibers
+
+
+/datum/component/forensics/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/f_attack_self)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/f_attackby)
+	RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/f_attack_hand)
+	RegisterSignal(parent, COMSIG_TOPIC, .proc/f_topic)
+	RegisterSignal(parent, COMSIG_PARENT_PREQDELETED, .proc/transfer)
+
+
+/datum/component/forensics/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_ITEM_ATTACK_SELF)
+	UnregisterSignal(parent, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(parent, COMSIG_ATOM_ATTACK_HAND)
+	UnregisterSignal(parent, COMSIG_TOPIC)
+	UnregisterSignal(parent, COMSIG_PARENT_PREQDELETED)
 
 
 /datum/component/forensics/PostTransfer()
@@ -29,127 +36,49 @@
 		return COMPONENT_INCOMPATIBLE
 
 
-/datum/component/forensics/proc/wipe_fingerprints()
-	fingerprints = null
-	return TRUE
+/datum/component/forensics/proc/f_attack_self(mob/M)
+	add_fingerprint(M, "attack_self")
 
 
-/datum/component/forensics/proc/wipe_hiddenprints()
-	return	//no.
+/datum/component/forensics/proc/f_attackby(obj/item/I, mob/M, params)
+	add_fingerprint(M, "attackby", I)
 
 
-/datum/component/forensics/proc/wipe_blood_DNA()
-	blood_DNA = null
-	return TRUE
+/datum/component/forensics/proc/f_attack_hand(mob/M)
+	add_fingerprint(M, "attack_hand")
 
 
-/datum/component/forensics/proc/wipe_fibers()
-	fibers = null
-	return TRUE
+/datum/component/forensics/proc/f_topic(mob/M, href_list)
+	add_fingerprint(M, "topic")
 
 
-/datum/component/forensics/proc/add_fingerprint_list(list/_fingerprints)	//list(text)
-	if(!length(_fingerprints))
+/datum/component/forensics/proc/transfer(force)
+	var/atom/A = parent
+	if(!isturf(A.loc))
 		return
-	LAZYINITLIST(fingerprints)
-	for(var/i in _fingerprints)	//We use an associative list, make sure we don't just merge a non-associative list into ours.
-		fingerprints[i] = i
-	return TRUE
+
+	TransferComponents(A.loc)
 
 
-/datum/component/forensics/proc/add_fingerprint(mob/living/M, ignoregloves = FALSE)
-	add_hiddenprint(M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		add_fibers(H)
-		if(H.gloves) //Check if the gloves (if any) hide fingerprints
-			var/obj/item/clothing/gloves/G = H.gloves
-			if(G.transfer_prints)
-				ignoregloves = TRUE
-			if(!ignoregloves)
-				H.gloves.add_fingerprint(H, TRUE) //ignoregloves = 1 to avoid infinite loop.
-				return
-		var/full_print = md5(H.real_name) // lol
-		LAZYSET(fingerprints, full_print, full_print)
-	return TRUE
 
+/datum/component/forensics/proc/add_fingerprint(mob/M, type, special)
+	if(!type)
+		CRASH("Attempted to add fingerprint of invalid action type.")
 
-/datum/component/forensics/proc/add_fiber_list(list/_fibertext)		//list(text)
-	if(!length(_fibertext))
-		return
-	LAZYINITLIST(fibers)
-	for(var/i in _fibertext)	//We use an associative list, make sure we don't just merge a non-associative list into ours.
-		fibers[i] = i
-	return TRUE
+	if(!istype(M))
+		CRASH("Invalid mob type when attempting to add fingerprint of type [type].")
 
-
-/datum/component/forensics/proc/add_fibers(mob/living/carbon/human/M)
-	var/fibertext
-	var/item_multiplier = isitem(src)?1.2:1
-	if(M.wear_suit)
-		fibertext = "Material from \a [M.wear_suit]."
-		if(prob(10*item_multiplier) && !LAZYACCESS(fibers, fibertext))
-			LAZYSET(fibers, fibertext, fibertext)
-		if(!(M.wear_suit.flags_armor_protection & CHEST))
-			if(M.w_uniform)
-				fibertext = "Fibers from \a [M.w_uniform]."
-				if(prob(12*item_multiplier) && !LAZYACCESS(fibers, fibertext)) //Wearing a suit means less of the uniform exposed.
-					LAZYSET(fibers, fibertext, fibertext)
-		if(!(M.wear_suit.flags_armor_protection & HANDS))
-			if(M.gloves)
-				fibertext = "Material from a pair of [M.gloves.name]."
-				if(prob(20*item_multiplier) && !LAZYACCESS(fibers, fibertext))
-					LAZYSET(fibers, fibertext, fibertext)
-	else if(M.w_uniform)
-		fibertext = "Fibers from \a [M.w_uniform]."
-		if(prob(15*item_multiplier) && !LAZYACCESS(fibers, fibertext))
-			// "Added fibertext: [fibertext]"
-			LAZYSET(fibers, fibertext, fibertext)
-		if(M.gloves)
-			fibertext = "Material from a pair of [M.gloves.name]."
-			if(prob(20*item_multiplier) && !LAZYACCESS(fibers, fibertext))
-				LAZYSET(fibers, fibertext, fibertext)
-	else if(M.gloves)
-		fibertext = "Material from a pair of [M.gloves.name]."
-		if(prob(20*item_multiplier) && !LAZYACCESS(fibers, fibertext))
-			LAZYSET(fibers, fibertext, fibertext)
-	return TRUE
-
-
-/datum/component/forensics/proc/add_hiddenprint_list(list/_hiddenprints)	//list(ckey = text)
-	if(!length(_hiddenprints))
-		return
-	LAZYINITLIST(hiddenprints)
-	for(var/i in _hiddenprints)	//We use an associative list, make sure we don't just merge a non-associative list into ours.
-		hiddenprints[i] = _hiddenprints[i]
-	return TRUE
-
-
-/datum/component/forensics/proc/add_hiddenprint(mob/M)
 	if(!M.key)
 		return
-	var/hasgloves = ""
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.gloves)
-			hasgloves = "(gloves)"
+
 	var/current_time = time_stamp()
-	if(!LAZYACCESS(hiddenprints, M.key))
-		LAZYSET(hiddenprints, M.key, "First: [M.real_name]\[[current_time]\][hasgloves]. Ckey: [M.ckey]")
+
+	if(!LAZYACCESS(fingerprints, M.key))
+		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""] [M.ckey]")
 	else
-		var/laststamppos = findtext(LAZYACCESS(hiddenprints, M.key), " Last: ")
+		var/laststamppos = findtext(LAZYACCESS(fingerprints, M.key), " Last: ")
 		if(laststamppos)
-			LAZYSET(hiddenprints, M.key, copytext(hiddenprints[M.key], 1, laststamppos))
-		hiddenprints[M.key] += " Last: [M.real_name]\[[current_time]\][hasgloves]. Ckey: [M.ckey]"	//made sure to be existing by if(!LAZYACCESS);else
-	var/atom/A = parent
-	A.fingerprintslast = M.ckey
-	return TRUE
-
-
-/datum/component/forensics/proc/add_blood_DNA(list/dna)		//list(dna_enzymes = type)
-	if(!length(dna))
-		return
-	LAZYINITLIST(blood_DNA)
-	for(var/i in dna)
-		blood_DNA[i] = dna[i]
+			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
+		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] |[special ? " [special] |" : ""] [M.ckey]"
+	
 	return TRUE

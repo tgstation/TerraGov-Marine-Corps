@@ -15,7 +15,6 @@
 /obj/machinery/computer/shuttle_control/attack_hand(mob/user)
 	if(..(user))
 		return
-	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user) && !isxeno(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return 1
@@ -135,8 +134,6 @@
 /obj/machinery/computer/shuttle_control/Topic(href, href_list)
 	if(..())
 		return
-
-	add_fingerprint(usr)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))

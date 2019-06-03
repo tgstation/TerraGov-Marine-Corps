@@ -387,7 +387,6 @@
 				song.lines = lines
 				song.tempo = tempo
 
-	add_fingerprint(usr)
 	for(var/mob/M in viewers(1, loc))
 		if((M.client && M.interactee == src))
 			attack_self(M)

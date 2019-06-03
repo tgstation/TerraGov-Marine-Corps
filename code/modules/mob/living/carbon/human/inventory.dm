@@ -464,7 +464,6 @@
 
 	M.visible_message("<span class='danger'>[src] tries to remove [M]'s [I.name].</span>", \
 					"<span class='userdanger'>[src] tries to remove [M]'s [I.name].</span>", null, 5)
-	I.add_fingerprint(src)
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
