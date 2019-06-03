@@ -459,3 +459,7 @@
 /area/prison/secret
 	name = "\improper Secret Room"
 	icon_state = "tcomsatcham"
+
+
+/area/prison/console
+	name = "\improper Shuttle Console"
