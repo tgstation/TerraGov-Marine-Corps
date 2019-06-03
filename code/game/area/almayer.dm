@@ -375,36 +375,3 @@
 	name = "\improper Powered"
 	icon_state = "selfdestruct"
 	requires_power = 0
-
-/area/almayer/evacuation
-	icon = 'icons/turf/areas.dmi'
-	icon_state = "shuttle2"
-	requires_power = 0
-
-//Placeholder.
-/area/almayer/evacuation/pod1
-/area/almayer/evacuation/pod2
-/area/almayer/evacuation/pod3
-/area/almayer/evacuation/pod4
-/area/almayer/evacuation/pod5
-/area/almayer/evacuation/pod6
-/area/almayer/evacuation/pod7
-/area/almayer/evacuation/pod8
-/area/almayer/evacuation/pod9
-/area/almayer/evacuation/pod10
-/area/almayer/evacuation/pod11
-
-/area/almayer/evacuation/stranded
-
-//Placeholder.
-/area/almayer/evacuation/stranded/pod1
-/area/almayer/evacuation/stranded/pod2
-/area/almayer/evacuation/stranded/pod3
-/area/almayer/evacuation/stranded/pod4
-/area/almayer/evacuation/stranded/pod5
-/area/almayer/evacuation/stranded/pod6
-/area/almayer/evacuation/stranded/pod7
-/area/almayer/evacuation/stranded/pod8
-/area/almayer/evacuation/stranded/pod9
-/area/almayer/evacuation/stranded/pod10
-/area/almayer/evacuation/stranded/pod11
