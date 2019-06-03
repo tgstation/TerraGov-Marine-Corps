@@ -35,7 +35,6 @@
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
 
-
 // ***************************************
 // *********** Helpers
 // ***************************************
@@ -52,7 +51,7 @@
 
 // for clean transfers between hives
 /mob/living/carbon/xenomorph/proc/transfer_to_hive(hivenumber)
-	if (hive.hivenumber == hivenumber)
+	if (hive.hivenumber == hivenumber) 
 		return // If we are in that hive already
 	if(!GLOB.hive_datums[hivenumber])
 		CRASH("invalid hivenumber passed to transfer_to_hive")
