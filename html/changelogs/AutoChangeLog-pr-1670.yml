@@ -1,4 +1,0 @@
-author: "LaKiller8"
-delete-after: True
-changes: 
-  - balance: "The amount of specialists is now scaled and depends on the amount of ready players."
