@@ -1588,3 +1588,24 @@
 		to_chat(src, "<span class='warning'>You are too far away!</span>")
 		return FALSE
 	return TRUE
+
+
+/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/almayer/H)
+	if(QDELETED(H?.camera) || oldloc == get_turf(src))
+		return
+
+	GLOB.cameranet.updatePortableCamera(H.camera)
+
+
+/mob/living/carbon/human/update_camera_location(oldloc)
+	oldloc = get_turf(oldloc)
+
+	if(!wear_ear || !istype(wear_ear, /obj/item/radio/headset/almayer) || oldloc == get_turf(src))
+		return
+
+	var/obj/item/radio/headset/almayer/H = wear_ear
+
+	if(QDELETED(H.camera))
+		return
+
+	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)

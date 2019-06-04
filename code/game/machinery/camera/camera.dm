@@ -321,6 +321,11 @@
 	network = list("marinemainship")
 
 
+/obj/machinery/camera/headset
+	name = "headset camera"
+	network = list("marine")
+
+
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam
 	name = "laser camera"

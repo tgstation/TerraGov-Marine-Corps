@@ -156,8 +156,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/Initialize()
 	. = ..()
-	camera = new /obj/machinery/camera(src)
-	camera.network = list("marine")
+	camera = new /obj/machinery/camera/headset(src)
 
 
 /obj/item/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
