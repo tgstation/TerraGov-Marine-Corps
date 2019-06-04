@@ -7,8 +7,8 @@
 /obj/screen/human/equip/Click()
 	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech
 		return TRUE
-	var/mob/living/carbon/human/H = usr
-	H.quick_equip()
+	SEND_SIGNAL(usr, COMSIG_CLICK_QUICKEQUIP)
+
 
 /datum/hud/human/New(mob/living/carbon/human/owner, ui_style='icons/mob/screen/White.dmi', ui_color = "#ffffff", ui_alpha = 230)
 	..()

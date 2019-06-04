@@ -189,7 +189,7 @@
 	starting_attachment_types = list()
 
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
-	toggle_chargemode(user)
+	return toggle_chargemode(user)
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
@@ -227,6 +227,9 @@
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
+	
+	return TRUE
+
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
@@ -342,10 +345,10 @@
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
-		return
+		return FALSE
 
 	if(!cell || cell.loc != src)
-		return
+		return FALSE
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		cell.loc = get_turf(src) //Drop it on the ground.
@@ -359,3 +362,5 @@
 	cell = null
 
 	update_icon(user)
+
+	return TRUE
