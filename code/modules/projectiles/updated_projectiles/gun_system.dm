@@ -20,6 +20,7 @@
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/gunshot.ogg'
+	var/dry_fire_sound	= 'sound/weapons/gun_empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
 	var/empty_sound 	= 'sound/weapons/smg_empty_alarm.ogg'
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
@@ -934,9 +935,9 @@ and you're good to go.
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
 		to_chat(user, "<span class='warning'><b>*click*</b></span>")
-		playsound(user, 'sound/weapons/gun_empty.ogg', 25, 1, 5) //5 tile range
+		playsound(user, dry_fire_sound, 25, 1, 5) //5 tile range
 	else
-		playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
+		playsound(src, dry_fire_sound, 25, 1, 5)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, reflex = 0, dual_wield = 0)

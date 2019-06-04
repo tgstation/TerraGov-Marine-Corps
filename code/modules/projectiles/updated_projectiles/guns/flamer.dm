@@ -10,6 +10,7 @@
 	w_class = 4
 	force = 15
 	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
+	dry_fire_sound = 'sound/weapons/gun_flamethrower_empty.ogg'
 	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
@@ -45,7 +46,7 @@
 
 
 /obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user,'sound/weapons/flipblade.ogg', 25, 1)
+	playsound(user, lit ? 'sound/weapons/gun_flamethrower_off.ogg' : 'sound/weapons/gun_flamethrower_on.ogg', 25, 1)
 	lit = !lit
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")

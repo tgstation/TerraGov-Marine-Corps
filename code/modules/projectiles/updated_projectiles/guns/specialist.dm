@@ -764,7 +764,7 @@
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
-	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
+	playsound(loc,'sound/weapons/gun_launcher.ogg', 50, 1)
 	. = ..()
 
 
@@ -910,7 +910,7 @@
 	caliber = "12 gauge shotgun shells" //codex
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
+	fire_sound = 'sound/weapons/gun_shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
