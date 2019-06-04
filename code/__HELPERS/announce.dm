@@ -3,7 +3,7 @@
 #define ANNOUNCEMENT_COMMAND 3
 
 
-/proc/priority_announce(message, title = "Announcement", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', list/receivers = (GLOB.alive_human_list + GLOB.silicon_mobs))
+/proc/priority_announce(message, title = "Announcement", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', list/receivers = (GLOB.alive_human_list + GLOB.silicon_mobs + GLOB.observer_list))
 	if(!message)
 		return
 
