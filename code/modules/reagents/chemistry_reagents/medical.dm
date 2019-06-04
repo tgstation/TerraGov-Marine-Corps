@@ -3,7 +3,6 @@
 
 /datum/reagent/medicine
 	name = "Medicine"
-	id = "medicine"
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	taste_description = "bitterness"
@@ -16,7 +15,6 @@
 
 /datum/reagent/medicine/inaprovaline
 	name = "Inaprovaline"
-	id = "inaprovaline"
 	description = "Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE*2
@@ -48,7 +46,6 @@
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
-	id = "ryetalyn"
 	description = "Ryetalyn can cure all genetic abnomalities via a catalytic process."
 	reagent_state = SOLID
 	color = "#C8A5DC" // rgb: 200, 165, 220
@@ -73,7 +70,6 @@
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
-	id = "paracetamol"
 	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
 	color = "#C855DC"
 	scannable = TRUE
@@ -94,7 +90,6 @@
 
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
-	id = "tramadol"
 	description = "A simple, yet effective painkiller."
 	color = "#C8A5DC"
 	scannable = TRUE
@@ -115,7 +110,6 @@
 
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
-	id = "oxycodone"
 	description = "An effective and very addictive painkiller."
 	color = "#C805DC"
 	custom_metabolism = 0.25 // Lasts 10 minutes for 15 units
@@ -137,7 +131,6 @@
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
-	id = "leporazine"
 	description = "Leporazine can be use to stabilize an individuals body temperature."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = TRUE
@@ -161,7 +154,6 @@
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
-	id = "kelotane"
 	description = "Kelotane is a drug used to treat burns."
 	color = "#D8C58C"
 	scannable = TRUE
@@ -180,7 +172,6 @@
 
 /datum/reagent/medicine/dermaline
 	name = "Dermaline"
-	id = "dermaline"
 	description = "Dermaline is the next step in burn medication. Works twice as good as kelotane and enables the body to restore even the direst heat-damaged tissue."
 	color = "#F8C57C"
 	overdose_threshold = REAGENTS_OVERDOSE/2
@@ -199,7 +190,6 @@
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
-	id = "dexalin"
 	description = "Dexalin is used in the treatment of oxygen deprivation."
 	color = "#C865FC"
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -222,7 +212,6 @@
 
 /datum/reagent/medicine/dexalinplus
 	name = "Dexalin Plus"
-	id = "dexalinplus"
 	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
 	color = "#C8A5FC"
 	overdose_threshold = REAGENTS_OVERDOSE/2
@@ -245,7 +234,6 @@
 
 /datum/reagent/medicine/tricordrazine
 	name = "Tricordrazine"
-	id = "tricordrazine"
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
 	color = "#B865CC"
 	scannable = TRUE
@@ -273,7 +261,6 @@
 
 /datum/reagent/medicine/dylovene
 	name = "Dylovene"
-	id = "dylovene"
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
@@ -306,7 +293,6 @@
 
 /datum/reagent/medicine/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
-	id = "adminordrazine"
 	description = "It's magic. We don't have to explain it."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	taste_description = "badmins"
@@ -341,7 +327,6 @@
 
 /datum/reagent/medicine/synaptizine
 	name = "Synaptizine"
-	id = "synaptizine"
 	description = "Synaptizine is used to treat various diseases."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.1
@@ -369,7 +354,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant
 	name = "Neuraline"
-	id = "neuraline"
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.4
@@ -401,7 +385,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
-	id = "hyronalin"
 	description = "Hyronalin is a medicinal drug used to counter the effect of radiation poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.05
@@ -421,7 +404,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
-	id = "arithrazine"
 	description = "Arithrazine is an unstable medication used for the most extreme cases of radiation poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.05
@@ -443,7 +425,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/russianred
 	name = "Russian Red"
-	id = "russianred"
 	description = "An emergency radiation treatment, however it has extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 1
@@ -471,7 +452,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
-	id = "alkysine"
 	description = "Alkysine is a drug used to lessen the damage to neurological tissue after a catastrophic injury. Can heal brain tissue."
 	color = "#E89599"
 	custom_metabolism = 0.05
@@ -492,7 +472,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
-	id = "imidazoline"
 	description = "Heals eye damage"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -518,7 +497,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
-	id = "peridaxon"
 	description = "Used to stabilize internal organs while waiting for surgery, and fixes organ damage at cryogenic temperatures. Medicate cautiously."
 	color = "#C845DC"
 	overdose_threshold = REAGENTS_OVERDOSE/2
@@ -545,7 +523,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
-	id = "bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
 	color = "#E8756C"
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -565,7 +542,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
-	id = "meralyne"
 	description = "Meralyne is a concentrated form of bicardine and can be used to treat extensive blunt trauma."
 	color = "#E6666C"
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
@@ -585,7 +561,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
-	id = "quickclot"
 	description = "A chemical designed to quickly arrest all sorts of bleeding by encouraging coagulation. Can rectify internal bleeding at cryogenic temperatures."
 	color = "#CC00FF"
 	overdose_threshold = REAGENTS_OVERDOSE/2 //Was 4, now 6 //Now 15
@@ -615,7 +590,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/hyperzine
 	name = "Hyperzine"
-	id = "hyperzine"
 	description = "Hyperzine is a highly effective, muscle and adrenal stimulant that massively accelerates metabolism.  May cause heart damage"
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.2
@@ -689,7 +663,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/ultrazine
 	name = "Ultrazine"
-	id = "ultrazine"
 	description = "A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.0167 //5 units will last approximately 10 minutes
@@ -788,7 +761,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
-	id = "cryoxadone"
 	description = "A chemical mixture with almost magical healing powers. Its main limitation is that the targets body temperature must be under 170K for it to metabolise correctly."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
@@ -805,7 +777,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/clonexadone
 	name = "Clonexadone"
-	id = "clonexadone"
 	description = "A liquid compound similar to that used in the cloning process. Can be used to 'finish' the cloning process when used in conjunction with a cryo tube."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = TRUE
@@ -821,7 +792,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/rezadone
 	name = "Rezadone"
-	id = "rezadone"
 	description = "A powder derived from fish toxin, this substance can effectively treat genetic damage in humanoids, though excessive consumption has side effects."
 	reagent_state = SOLID
 	color = "#669900" // rgb: 102, 153, 0
@@ -830,7 +800,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	scannable = TRUE
 	taste_description = "fish"
 
-/datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/rezadone/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 15)
 			L.adjustCloneLoss(-1)
@@ -856,7 +826,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
-	id = "spaceacillin"
 	description = "An all-purpose antiviral agent."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = 0.01
@@ -872,7 +841,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/ethylredoxrazine	// FUCK YOU, ALCOHOL
 	name = "Ethylredoxrazine"
-	id = "ethylredoxrazine"
 	description = "A powerful oxidizer that reacts with ethanol."
 	reagent_state = SOLID
 	color = "#605048" // rgb: 96, 80, 72
@@ -895,85 +863,8 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 /datum/reagent/medicine/ethylredoxrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX)
 
-///////RP CHEMS///////
-
-#define ANTIDEPRESSANT_MESSAGE_DELAY 5 MINUTES
-
-/datum/reagent/medicine/antidepressant
-	name = "Antidepressant"
-	id = "antidepressant"
-	var/timer = 0
-
-/datum/reagent/medicine/antidepressant/methylphenidate
-	name = "Methylphenidate"
-	id = "methylphenidate"
-	description = "Improves the ability to concentrate."
-	color = "#C8A5DC"
-	custom_metabolism = 0.01
-
-/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, "<span class='notice'>Your mind feels focused and undivided.</span>")
-
-/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_life(mob/living/L, metabolism)
-	if(world.time > timer + ANTIDEPRESSANT_MESSAGE_DELAY)
-		timer = world.time
-		to_chat(L, "<span class='notice'>Your mind feels focused and undivided.</span>")
-	return ..()
-
-/datum/reagent/medicine/antidepressant/methylphenidate/on_mob_delete(mob/living/L, metabolism)
-	to_chat(L, "<span class='warning'>You lose focus.</span>")
-	return ..()
-
-/datum/reagent/medicine/antidepressant/citalopram
-	name = "Citalopram"
-	id = "citalopram"
-	description = "Stabilizes the mind a little."
-	color = "#C8A5DC"
-	custom_metabolism = 0.01
-
-/datum/reagent/medicine/antidepressant/citalopram/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, "<span class='notice'>Your mind feels stable.. a little stable.</span>")
-	return ..()
-
-/datum/reagent/medicine/antidepressant/citalopram/on_mob_life(mob/living/L, metabolism)
-	if(world.time > timer + ANTIDEPRESSANT_MESSAGE_DELAY)
-		timer = world.time
-		to_chat(L, "<span class='notice'>Your mind feels stable.. a little stable.</span>")
-	return ..()
-
-/datum/reagent/medicine/antidepressant/citalopram/on_mob_delete(mob/living/L, metabolism)
-	to_chat(L, "<span class='warning'>Your mind feels a little less stable...</span>")
-	return ..()
-
-
-/datum/reagent/medicine/antidepressant/paroxetine
-	name = "Paroxetine"
-	id = "paroxetine"
-	description = "Stabilizes the mind greatly, but has a chance of adverse effects."
-	color = "#C8A5DC"
-	custom_metabolism = 0.01
-
-/datum/reagent/medicine/antidepressant/paroxetine/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, "<span class='notice'>Your mind feels much more stable.</span>")
-	return ..()
-
-/datum/reagent/medicine/antidepressant/paroxetine/on_mob_life(mob/living/L, metabolism)
-	if(world.time > timer + ANTIDEPRESSANT_MESSAGE_DELAY)
-		timer = world.time
-		if(prob(90))
-			to_chat(L, "<span class='notice'>Your mind feels much more stable.</span>")
-		else
-			to_chat(L, "<span class='warning'>Your mind breaks apart...</span>")
-			L.hallucination += 200
-	return ..()
-
-/datum/reagent/medicine/antidepressant/paroxetine/on_mob_delete(mob/living/L, metabolism)
-	to_chat(L, "<span class='warning'>Your mind feels much less stable...</span>")
-	return ..()
-
 /datum/reagent/medicine/hypervene
 	name = "Hypervene"
-	id = "hypervene"
 	description = "Quickly purges the body of toxin damage, radiation and all other chemicals. Causes significant pain."
 	color = "#19C832"
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
@@ -984,11 +875,12 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	taste_multi = 8
 
 /datum/reagent/medicine/hypervene/on_mob_life(mob/living/L, metabolism)
+	var/datum/reagent/H = get_reagent(/datum/reagent/medicine/hyperzine)
+	if(H)
+		H.current_cycle += HYPERVENE_REMOVAL_AMOUNT * REM * 1 / max(1,custom_metabolism) //Increment hyperzine's purge cycle in proportion to the amount removed.
 	for(var/datum/reagent/R in L.reagents.reagent_list)
 		if(R != src)
-			L.reagents.remove_reagent(R.id,HYPERVENE_REMOVAL_AMOUNT * REM)
-			if(R.id == "hyperzine")
-				R.current_cycle += HYPERVENE_REMOVAL_AMOUNT * REM * 1 / max(1,custom_metabolism) //Increment hyperzine's purge cycle in proportion to the amount removed.
+			L.reagents.remove_reagent(R.type,HYPERVENE_REMOVAL_AMOUNT * REM)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
 	if(prob(5)) //causes vomiting
 		L.vomit()

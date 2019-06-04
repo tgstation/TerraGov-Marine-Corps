@@ -30,10 +30,10 @@
 	var/heal_threshold = 10 //Start healing when they have this much damage in a category
 	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
 	//Setting which reagents to use to treat what by default. By id.
-	var/treatment_brute = "tricordrazine"
-	var/treatment_oxy = "tricordrazine"
-	var/treatment_fire = "tricordrazine"
-	var/treatment_tox = "tricordrazine"
+	var/treatment_brute = /datum/reagent/medicine/tricordrazine
+	var/treatment_oxy = /datum/reagent/medicine/tricordrazine
+	var/treatment_fire = /datum/reagent/medicine/tricordrazine
+	var/treatment_tox = /datum/reagent/medicine/tricordrazine
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 	var/shut_up = 0 //self explanatory :)
 
@@ -41,10 +41,10 @@
 	name = "Mysterious Medibot"
 	desc = "International Medibot of mystery."
 	skin = "bezerk"
-	treatment_oxy = "dexalinplus"
-	treatment_brute = "bicaridine"
-	treatment_fire = "kelotane"
-	treatment_tox = "dylovene"
+	treatment_oxy = /datum/reagent/medicine/dexalinplus
+	treatment_brute = /datum/reagent/medicine/bicaridine
+	treatment_fire = /datum/reagent/medicine/kelotane
+	treatment_tox = /datum/reagent/medicine/dylovene
 
 
 
@@ -378,14 +378,14 @@
 	if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
 		var/safety_fail = 0
 		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
-			if(C.reagents.has_reagent(R.id))
+			if(C.reagents.has_reagent(R.type))
 				safety_fail = 1
 				break
 		if(!safety_fail)
 			reagent_id = "internal_beaker"
 
 	if(emagged == 2) //Emagged! Time to poison everybody.
-		reagent_id = "toxin"
+		reagent_id = /datum/reagent/toxin
 
 	if (!reagent_id && (C.getBruteLoss() >= heal_threshold))
 		if(!C.reagents.has_reagent(src.treatment_brute))

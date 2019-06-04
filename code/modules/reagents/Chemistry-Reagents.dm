@@ -132,4 +132,4 @@
 				break
 			if(is_type_in_list(R, purge_list))
 				count--
-				L.reagents.remove_reagent(R.id,purge_rate)
+				L.reagents.remove_reagent(R.type,purge_rate)

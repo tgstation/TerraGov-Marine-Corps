@@ -107,7 +107,8 @@
 //*******************************//
 
 var/list/fruit_icon_states = list("badrecipe","kudzupod","reishi","lime","grapes","boiledrorocore","chocolateegg")
-var/list/reagent_effects = list("toxin","dylovene","sleeptoxin","space_drugs","mindbreaker","zombiepowder","impedrezene")
+var/list/reagent_effects = list(/datum/reagent/toxin, /datum/reagent/medicine/dylovene, /datum/reagent/toxin/sleeptoxin, /datum/reagent/space_drugs,
+								/datum/reagent/toxin/mindbreaker, /datum/reagent/toxin/zombiepowder, /datum/reagent/impedrezene)
 var/jungle_plants_init = 0
 
 /proc/init_jungle_plants()
@@ -136,6 +137,7 @@ var/jungle_plants_init = 0
 
 
 /obj/structure/jungle_plant/New()
+	. = ..()
 	if(!jungle_plants_init)
 		init_jungle_plants()
 
@@ -168,4 +170,4 @@ var/jungle_plants_init = 0
 		overlays += fruit_overlay
 	else
 		to_chat(user, "<span class='warning'> There are no fruit left on [src].</span>")
-		
+

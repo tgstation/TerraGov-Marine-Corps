@@ -284,13 +284,13 @@ REAGENT SCANNER
 			var/reagentdata[0]
 			for(var/A in M.reagents.reagent_list)
 				var/datum/reagent/R = A
-				reagents_in_body["[R.id]"] = R.volume
+				reagents_in_body["[R.type]"] = R.volume
 				if(R.scannable)
 					if(R.overdosed)
-						reagentdata["[R.id]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+						reagentdata["[R.type]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
 						overdosed++
 					else
-						reagentdata["[R.id]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+						reagentdata["[R.type]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
 				else
 					unknown++
 			if(reagentdata.len)
@@ -591,7 +591,7 @@ REAGENT SCANNER
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.id != "blood")
+			if(R.type != /datum/reagent/blood)
 				reagents.clear_reagents()
 				to_chat(user, "<span class='warning'>The sample was contaminated! Please insert another sample</span>")
 				return

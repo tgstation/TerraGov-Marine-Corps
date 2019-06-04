@@ -192,10 +192,7 @@
 
 //Transfers blood from container to mob
 /mob/living/carbon/proc/inject_blood(obj/item/reagent_container/container, amount)
-	for(var/datum/reagent/R in container.reagents.reagent_list)
-		reagents.add_reagent(R.id, amount, R.data)
-		reagents.update_total()
-		container.reagents.remove_reagent(R.id, amount)
+	container.reagents.trans_to(src, amount)
 
 
 //Transfers blood from container to human, respecting blood types compatability.
@@ -209,9 +206,9 @@
 			else
 				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
 		else
-			reagents.add_reagent(R.id, amount, R.data)
+			reagents.add_reagent(R.type, amount, R.data)
 			reagents.update_total()
-		container.reagents.remove_reagent(R.id, amount)
+		container.reagents.remove_reagent(R.type, amount)
 
 
 //Gets blood from mob to the container, preserving all data in it.
@@ -230,8 +227,8 @@
 
 	var/list/temp_chem = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
-		temp_chem += R.id
-		temp_chem[R.id] = R.volume
+		temp_chem += R.type
+		temp_chem[R.type] = R.volume
 	data["trace_chem"] = list2params(temp_chem)
 
 	O.reagents.add_reagent(b_id, amount, data)

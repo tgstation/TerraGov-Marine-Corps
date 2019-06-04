@@ -76,7 +76,7 @@
 			F.create_reagents(10)
 			if (reagents)
 				for(var/datum/reagent/R in reagents.reagent_list)
-					F.reagents.add_reagent(R.id, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
+					F.reagents.add_reagent(R.type, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
 
 // foam disolves when heated
 // except metal foams
@@ -125,7 +125,7 @@
 
 		if(carry && !metal)
 			for(var/datum/reagent/R in carry.reagent_list)
-				carried_reagents += R.id
+				carried_reagents += R.type
 
 	start()
 		spawn(0)

@@ -126,7 +126,7 @@
 
 		for(var/i in I.reagents.reagent_list)
 			var/datum/reagent/R = i
-			if(!(R.id in acceptable_reagents))
+			if(!(R.type in acceptable_reagents))
 				to_chat(user, "<span class='warning'>Your [I] contains components unsuitable for cookery.</span>")
 				return TRUE
 
@@ -196,9 +196,9 @@
 
 		for (var/datum/reagent/R in reagents.reagent_list)
 			var/display_name = R.name
-			if (R.id == "capsaicin")
+			if (R.type == /datum/reagent/consumable/capsaicin)
 				display_name = "Hotsauce"
-			if (R.id == "frostoil")
+			if (R.type == /datum/reagent/consumable/frostoil)
 				display_name = "Coldsauce"
 			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
 

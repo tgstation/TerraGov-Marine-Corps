@@ -19,3 +19,16 @@ GLOBAL_VAR_INIT(num_financial_terminals, 1)
 GLOBAL_VAR_INIT(next_account_number, 0)
 GLOBAL_LIST_EMPTY(all_money_accounts)
 GLOBAL_VAR_INIT(station_account, null)
+
+//list of reagent types that influence hearts' BPM.
+
+GLOBAL_LIST_INIT(tachycardics, list(/datum/reagent/consumable/drink/coffee, /datum/reagent/medicine/inaprovaline,
+									/datum/reagent/medicine/hyperzine, /datum/reagent/nitroglycerin,
+									/datum/reagent/consumable/ethanol/thirteenloko, /datum/reagent/nicotine))
+
+GLOBAL_LIST_INIT(bradycardics, list(/datum/reagent/consumable/drink/neurotoxin, /datum/reagent/medicine/cryoxadone,
+									/datum/reagent/medicine/clonexadone, /datum/reagent/space_drugs, /datum/reagent/toxin/sleeptoxin))
+
+GLOBAL_LIST_INIT(heartstoppers, list(/datum/reagent/toxin/potassium_chlorophoride, /datum/reagent/toxin/zombiepowder))
+
+GLOBAL_LIST_INIT(conditional_heartstoppers, list(/datum/reagent/toxin/potassium_chloride))

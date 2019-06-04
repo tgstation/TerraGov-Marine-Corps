@@ -49,14 +49,14 @@
 	name = "Soy Sauce"
 	id = /datum/reagent/consumable/soysauce
 	results = list(/datum/reagent/consumable/soysauce = 5)
-	required_reagents = list(/datum/reagent/consumable/drink/milk/soymilk = 4, "sacid" = 1)
+	required_reagents = list(/datum/reagent/consumable/drink/milk/soymilk = 4, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/condensedcapsaicin
 	name = "Condensed Capsaicin"
 	id = /datum/reagent/consumable/capsaicin/condensed
 	results = list(/datum/reagent/consumable/capsaicin/condensed = 1)
 	required_reagents = list(/datum/reagent/consumable/capsaicin = 2)
-	required_catalysts = list("phoron" = 5)
+	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
 
 /datum/chemical_reaction/sodiumchloride
 	name = "Sodium Chloride"
@@ -80,7 +80,7 @@
 	name = "Syntiflesh"
 	id = "syntiflesh"
 	results = null
-	required_reagents = list(/datum/reagent/blood = 5, "clonexadone" = 1)
+	required_reagents = list(/datum/reagent/blood = 5, /datum/reagent/medicine/clonexadone = 1)
 
 	on_reaction(var/datum/reagents/holder, var/created_volume)
 		var/location = get_turf(holder.my_atom)
@@ -185,7 +185,7 @@
 	name = "Space Beer"
 	id = /datum/reagent/consumable/ethanol/beer
 	results = list(/datum/reagent/consumable/ethanol/beer = 10)
-	required_reagents = list("cornoil" = 10)
+	required_reagents = list(/datum/reagent/consumable/cornoil = 10)
 	required_catalysts = list(/datum/reagent/consumable/enzyme = 5)
 
 /datum/chemical_reaction/vodka
@@ -279,7 +279,7 @@
 	name = "Toxins Special"
 	id = /datum/reagent/consumable/ethanol/toxins_special
 	results = list(/datum/reagent/consumable/ethanol/toxins_special = 5)
-	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/ethanol/vermouth = 1, "phoron" = 2)
+	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/ethanol/vermouth = 1, /datum/reagent/toxin/phoron = 2)
 
 /datum/chemical_reaction/beepsky_smash
 	name = "Beepksy Smash"
@@ -291,7 +291,7 @@
 	name = "The Doctor's Delight"
 	id = /datum/reagent/consumable/drink/doctor_delight
 	results = list(/datum/reagent/consumable/drink/doctor_delight = 5)
-	required_reagents = list(/datum/reagent/consumable/drink/limejuice = 1, /datum/reagent/consumable/drink/tomatojuice = 1, /datum/reagent/consumable/drink/orangejuice = 1, /datum/reagent/consumable/drink/milk/cream = 1, "tricordrazine" = 1)
+	required_reagents = list(/datum/reagent/consumable/drink/limejuice = 1, /datum/reagent/consumable/drink/tomatojuice = 1, /datum/reagent/consumable/drink/orangejuice = 1, /datum/reagent/consumable/drink/milk/cream = 1, /datum/reagent/medicine/tricordrazine = 1)
 
 /datum/chemical_reaction/irish_cream
 	name = "Irish Cream"
@@ -488,7 +488,7 @@
 	name = "Acid Spit"
 	id = /datum/reagent/consumable/ethanol/acid_spit
 	results = list(/datum/reagent/consumable/ethanol/acid_spit = 6)
-	required_reagents = list("sacid" = 1, /datum/reagent/consumable/ethanol/wine = 5)
+	required_reagents = list(/datum/reagent/toxin/acid = 1, /datum/reagent/consumable/ethanol/wine = 5)
 
 /datum/chemical_reaction/amasec
 	name = "Amasec"
@@ -518,7 +518,7 @@
 	name = "Neurotoxin"
 	id = /datum/reagent/consumable/drink/neurotoxin
 	results = list(/datum/reagent/consumable/drink/neurotoxin = 2)
-	required_reagents = list(/datum/reagent/consumable/drink/gargle_blaster = 1, "sleeptoxin" = 1)
+	required_reagents = list(/datum/reagent/consumable/drink/gargle_blaster = 1, /datum/reagent/toxin/sleeptoxin = 1)
 
 /datum/chemical_reaction/snowwhite
 	name = "Snow White"

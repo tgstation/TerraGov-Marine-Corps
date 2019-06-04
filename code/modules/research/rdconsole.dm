@@ -147,9 +147,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			to_chat(user, "A disk is already loaded into the machine.")
 			return
 
-		if(istype(I, /obj/item/disk/tech_disk)) 
+		if(istype(I, /obj/item/disk/tech_disk))
 			t_disk = I
-		else if(istype(I, /obj/item/disk/design_disk)) 
+		else if(istype(I, /obj/item/disk/design_disk))
 			d_disk = I
 		else
 			to_chat(user, "<span class='warning'>Machine cannot accept disks in that format.</span>")
@@ -157,7 +157,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		user.transferItemToLoc(I, src)
 		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
-	
+
 	else if(istype(I, /obj/item/card/emag) && !emagged)
 		playsound(loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = TRUE
@@ -796,7 +796,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Chemical Storage<BR><HR>"
 			for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
 				dat += "Name: [R.name]|Units: [R.volume] "
-				dat += "<A href='?src=\ref[src];disposeP=[R.id]'>(Purge)</A><BR>"
+				dat += "<A href='?src=\ref[src];disposeP=[R.type]'>(Purge)</A><BR>"
 				dat += "<A href='?src=\ref[src];disposeallP=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
 		///////////////////CIRCUIT IMPRINTER SCREENS////////////////////
@@ -842,7 +842,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Chemical Storage<BR><HR>"
 			for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
 				dat += "Name: [R.name]|Units: [R.volume] "
-				dat += "<A href='?src=\ref[src];disposeI=[R.id]'>(Purge)</A><BR>"
+				dat += "<A href='?src=\ref[src];disposeI=[R.type]'>(Purge)</A><BR>"
 				dat += "<A href='?src=\ref[src];disposeallI=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
 		if(4.3)

@@ -15,7 +15,7 @@
 			desc = "Two or more drinks, mixed together."*/
 		/*else if(reagents.reagent_list.len == 1)
 			for(var/datum/reagent/R in reagents.reagent_list)
-				switch(R.id)*/
+				switch(R.type)*/
 		if (reagents.reagent_list.len > 0)
 			//mrid = R.get_master_reagent_id()
 			switch(reagents.get_master_reagent_id())

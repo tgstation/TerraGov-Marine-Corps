@@ -489,7 +489,7 @@
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		del_reagent(R.id)
+		del_reagent(R.type)
 	return 0
 
 
@@ -641,7 +641,7 @@
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
-		if (R.id == reagent)
+		if (R.type == reagent)
 			if(!amount)
 				return R
 			else
@@ -664,7 +664,7 @@
 /datum/reagents/proc/get_reagent(reagent_id)
 	for(var/X in reagent_list)
 		var/datum/reagent/R = X
-		if(R.id == reagent_id)
+		if(R.type == reagent_id)
 			return R
 
 

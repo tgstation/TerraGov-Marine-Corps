@@ -249,7 +249,7 @@
 				if(filter_effect < 3)
 					var/toxloss = istype(R, /datum/reagent/toxin) ? 0.3 : 0.1
 					owner.adjustToxLoss(toxloss * PROCESS_ACCURACY)
-				owner.reagents.remove_reagent(R.id, R.custom_metabolism*filter_effect)
+				owner.reagents.remove_reagent(R.type, R.custom_metabolism*filter_effect)
 
 		//Heal toxin damage slowly if not damaged
 		if(damage < 5 && prob(25))
