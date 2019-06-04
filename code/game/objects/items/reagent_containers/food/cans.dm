@@ -121,7 +121,7 @@
 	desc = "A can of soda water. Tap water's more refreshing cousin...according to those Europe-folk."
 	icon_state = "sodawater"
 	center_of_mass = list("x"=16, "y"=10)
-	list_reagents = list(/datum/reagent/consumable/drink/cold/sodawater" = 50)
+	list_reagents = list(/datum/reagent/consumable/drink/cold/sodawater = 50)
 
 /obj/item/reagent_container/food/drinks/cans/souto
 	name = "\improper Souto Classic"

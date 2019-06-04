@@ -875,7 +875,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	taste_multi = 8
 
 /datum/reagent/medicine/hypervene/on_mob_life(mob/living/L, metabolism)
-	var/datum/reagent/H = get_reagent(/datum/reagent/medicine/hyperzine)
+	var/datum/reagent/H = L.reagents.get_reagent(/datum/reagent/medicine/hyperzine)
 	if(H)
 		H.current_cycle += HYPERVENE_REMOVAL_AMOUNT * REM * 1 / max(1,custom_metabolism) //Increment hyperzine's purge cycle in proportion to the amount removed.
 	for(var/datum/reagent/R in L.reagents.reagent_list)

@@ -653,3 +653,14 @@
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(2*REM)
 	return ..()
+
+/datum/reagent/laughter
+	name = "Laughter"
+	description = "Some say that this is the best medicine, but recent studies have proven that to be untrue."
+	custom_metabolism = INFINITY
+	color = "#FF4DD2"
+	taste_description = "laughter"
+
+/datum/reagent/laughter/on_mob_life(mob/living/carbon/M)
+	M.emote("laugh")
+	return ..()

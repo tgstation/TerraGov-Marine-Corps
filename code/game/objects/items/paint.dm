@@ -5,7 +5,7 @@
 	gender= PLURAL
 	name = "paint"
 	desc = "Used to recolor floors and walls. Can be removed by the janitor."
-	icon = 'icons/obj/items_and_weapons.dmi'
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "paint_neutral"
 	var/item_color = "FFFFFF"
 	item_state = "paintcan"
@@ -103,4 +103,4 @@
 	if(!isturf(target) || !isobj(target))
 		return
 	if(target.color != initial(target.color))
-	target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+		target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)

@@ -44,7 +44,7 @@
 					name = "Glass of cream"
 					desc = "Ewwww..."
 					center_of_mass = list("x"=16, "y"=10)
-				if(/datum/reagent/consumable/hot_coco)
+				if(/datum/reagent/consumable/drink/hot_coco)
 					icon_state  = "chocolateglass"
 					name = "Glass of chocolate"
 					desc = "Tasty"
@@ -378,7 +378,7 @@
 					name = "Barefoot"
 					desc = "Barefoot and pregnant"
 					center_of_mass = list("x"=17, "y"=8)
-				if(/datum/reagent/consumable/ethanol/demonsbloo)
+				if(/datum/reagent/consumable/ethanol/demonsblood)
 					icon_state = "demonsblood"
 					name = "Demons Blood"
 					desc = "Just looking at this thing makes the hair at the back of your neck stand up."
@@ -533,7 +533,7 @@
 					name = "Brown Star"
 					desc = "It's not what it sounds like..."
 					center_of_mass = list("x"=16, "y"=10)
-				if(/datum/reagent/consumable/drink/grapejuice
+				if(/datum/reagent/consumable/drink/grapejuice)
 					icon_state = "grapejuice"
 					name = "Glass of grape juice"
 					desc = "It's grrrrrape!"

@@ -194,24 +194,6 @@ var/global/list/randomized_pill_icons
 	. = ..()
 	icon_state = randomized_pill_icons[7]
 
-
-/obj/item/reagent_container/pill/methylphenidate
-	pill_desc = "A methylphenidate pill. This improves the ability to concentrate."
-	list_reagents = list(/datum/reagent/medicine/antidepressant/methylphenidate = 15)
-
-/obj/item/reagent_container/pill/methylphenidate/New()
-	. = ..()
-	icon_state = randomized_pill_icons[8]
-
-/obj/item/reagent_container/pill/citalopram
-	pill_desc = "A citalopram pill. A mild anti-depressant."
-	list_reagents = list(/datum/reagent/medicine/antidepressant/citalopram = 15)
-
-/obj/item/reagent_container/pill/citalopram/New()
-	. = ..()
-	icon_state = randomized_pill_icons[9]
-
-
 /obj/item/reagent_container/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
@@ -238,7 +220,7 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/happy
 	pill_desc = "A Happy Pill! Happy happy joy joy!"
-	list_reagents = list(/datum/reagent/space_drugs = 15, /datum/reagent/consumable/sugar = 15, /datum/reagent/consumable/laughter = 5)
+	list_reagents = list(/datum/reagent/space_drugs = 15, /datum/reagent/consumable/sugar = 15, /datum/reagent/laughter = 5)
 
 /obj/item/reagent_container/pill/happy/New()
 	. = ..()

@@ -360,6 +360,6 @@
 
 /datum/chemical_reaction/laughter
 	name = "laughter"
-	id = /datum/reagent/consumable/drink/laughter
-	results = list(/datum/reagent/consumable/drink/laughter = 5)
+	id = /datum/reagent/laughter
+	results = list(/datum/reagent/laughter = 5)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/drink/banana = 1)

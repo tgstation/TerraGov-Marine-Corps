@@ -193,11 +193,11 @@ I said no!
 	if(!being_cooked.warm)
 		being_cooked.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, 5)
 		being_cooked.bitesize = 6
-		being_cooked.name = "Warm [initial(being_cooked.name)]
+		being_cooked.name = "Warm [initial(being_cooked.name)]"
 		being_cooked.warm = TRUE
 	addtimer(CALLBACK(being_cooked, /obj/item/reagent_container/food/snacks/donkpocket/proc/cooltime), 7 MINUTES, TIMER_UNIQUE)
 
-/datum/recipe/donkpocketmake_food(obj/container)
+/datum/recipe/donkpocket/make_food(obj/container)
 	. = ..()
 	var/obj/item/reagent_container/food/snacks/donkpocket/being_cooked = .
 	warm_up(being_cooked)
