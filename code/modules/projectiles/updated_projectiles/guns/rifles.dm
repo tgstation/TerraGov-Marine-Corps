@@ -25,8 +25,10 @@
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
+
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
-	cock(user)
+	return cock(user)
+
 
 /obj/item/weapon/gun/rifle/get_ammo_type()
 	if(!ammo)

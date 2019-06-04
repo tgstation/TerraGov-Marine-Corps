@@ -317,6 +317,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob)
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
+			if("ai")
+				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
 
 		C.holder.show_player_panel(newmob)
 

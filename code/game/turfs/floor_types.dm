@@ -184,7 +184,7 @@
 	if(iswrench(I))
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
-		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return

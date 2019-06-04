@@ -155,7 +155,10 @@
 			recipes_list = srl.recipes
 		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
 		var/multiplier = text2num(href_list["multiplier"])
-		if(multiplier <= 0) //href protection
+		var/max_multiplier = round(max_amount / R.req_amount)
+		if(multiplier <= 0 || multiplier > max_multiplier) //href protection
+			log_game("[key_name(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier] at [AREACOORD(usr.loc)].")
+			message_admins("[ADMIN_TPMONTY(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier]. Possible HREF exploit.")
 			return
 		if(!building_checks(R, multiplier))
 			return

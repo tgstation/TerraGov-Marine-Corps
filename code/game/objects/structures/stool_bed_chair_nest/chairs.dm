@@ -74,7 +74,7 @@
 
 		user.visible_message("<span class='notice'>[user] begins welding down \the [src].</span>",
 		"<span class='notice'>You begin welding down \the [src].</span>")
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
 			to_chat(user, "<span class='warning'>You need to stand still!</span>")
 			return
@@ -82,7 +82,7 @@
 		"<span class='notice'>You weld down \the [src].</span>")
 		if(buildstacktype)
 			new buildstacktype(loc, buildstackamount)
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		qdel(src)
 
 
@@ -251,7 +251,7 @@
 			if(DROPSHIP_CHAIR_UNFOLDED)
 				user.visible_message("<span class='warning'>[user] begins loosening the bolts on \the [src].</span>",
 				"<span class='warning'>You begin loosening the bolts on \the [src].</span>")
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
@@ -263,7 +263,7 @@
 			if(DROPSHIP_CHAIR_FOLDED)
 				user.visible_message("<span class='warning'>[user] begins unfolding \the [src].</span>",
 				"<span class='warning'>You begin unfolding \the [src].</span>")
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return

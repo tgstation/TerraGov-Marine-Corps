@@ -82,6 +82,7 @@
 	var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
 	var/next_move_modifier = 1 //Value to multiply action/click delays by
 
+	var/hud_type = /datum/hud
 	var/datum/hud/hud_used
 	var/list/alerts = list() // contains /obj/screen/alert only, used by alerts.dm
 

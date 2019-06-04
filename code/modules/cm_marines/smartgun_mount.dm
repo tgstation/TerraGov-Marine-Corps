@@ -166,7 +166,7 @@
 		return
 
 	if(iswrench(I)) //rotate the mount
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>","<span class='notice'>You rotate [src].</span>")
 		setDir(turn(dir, -90))
 
@@ -177,7 +177,7 @@
 		if(!do_after(user,30, TRUE, src, BUSY_ICON_BUILD) || gun_mounted || !anchored)
 			return
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'> [user] installs [MG] into place.</span>","<span class='notice'> You install [MG] into place.</span>")
 		gun_mounted = TRUE
 		gun_rounds = MG.rounds
@@ -198,7 +198,7 @@
 		if(!do_after(user,30, TRUE, src, BUSY_ICON_BUILD) || !gun_mounted)
 			return
 
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("<span class='notice'> [user] removes [src]'s gun.</span>","<span class='notice'> You remove [src]'s gun.</span>")
 		new /obj/item/m56d_gun(loc)
 		gun_mounted = FALSE
@@ -214,7 +214,7 @@
 		if(!do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
-		playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 		user.visible_message("<span class='notice'> [user] screws the M56D into the mount.</span>","<span class='notice'> You finalize the M56D mounted smartgun system.</span>")
 		var/obj/machinery/m56d_hmg/G = new(loc) //Here comes our new turret.
 		G.visible_message("[icon2html(G, viewers(G))] <B>[G] is now complete!</B>") //finished it for everyone to
@@ -289,7 +289,7 @@
 			to_chat(user, "This one is anchored in place and cannot be rotated.")
 			return
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		user.visible_message("[user] rotates the [src].","You rotate the [src].")
 		setDir(turn(dir, -90))
 
@@ -303,7 +303,7 @@
 			return
 
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		var/obj/item/m56d_gun/HMG = new(loc) //Here we generate our disassembled mg.
 		new /obj/item/m56d_post(loc)
 		HMG.rounds = rounds //Inherent the amount of ammo we had.
@@ -336,7 +336,7 @@
 	health -= damage
 	if(health <= 0)
 		var/destroyed = rand(0,1) //Ammo cooks off or something. Who knows.
-		playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(src.loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!destroyed) new /obj/machinery/m56d_post(loc)
 		else
 			var/obj/item/m56d_gun/HMG = new(loc)
@@ -582,7 +582,7 @@
 	if(!incapacitated() && MG.operator == src)
 		MG.burst_fire = !MG.burst_fire
 		to_chat(src, "<span class='notice'>You set [MG] to [MG.burst_fire ? "burst fire" : "single fire"] mode.</span>")
-		playsound(loc, 'sound/items/Deconstruct.ogg',25,1)
+		playsound(loc, 'sound/items/deconstruct.ogg',25,1)
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
 	name = "\improper M56D Smartgun Nest"

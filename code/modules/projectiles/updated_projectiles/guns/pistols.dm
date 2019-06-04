@@ -30,7 +30,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
-	cock(user)
+	return cock(user)
 
 /obj/item/weapon/gun/pistol/get_ammo_type()
 	if(!ammo)

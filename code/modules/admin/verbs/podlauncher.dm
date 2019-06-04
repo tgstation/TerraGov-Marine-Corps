@@ -6,6 +6,9 @@
 		return
 
 	var/datum/podlauncher/P = new(usr)
+	if(!P.bay || !P.podarea)
+		return
+
 	P.ui_interact(usr)
 	usr.set_interaction(P)
 
@@ -15,6 +18,7 @@
 	var/turf/oldTurf
 	var/client/holder
 	var/area/bay
+	var/area/podarea
 	var/launchClone = FALSE
 	var/launchChoice = 1
 	var/explosionChoice = 0
@@ -40,7 +44,8 @@
 		var/mob/M = user
 		holder = M.client
 	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.all_areas
-	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.all_areas)
+	podarea = locate(/area/centcom/supplypod/podStorage) in GLOB.all_areas
+	createPod(podarea)
 	selector = new()
 	launchList = list()
 	acceptableTurfs = list()
@@ -613,9 +618,17 @@
 	preLaunch()
 
 
+/datum/podlauncher/proc/createPod(area/A)
+	if(isnull(A))
+		to_chat(holder.mob, "<span class='warning'>No /area/centcom/supplypod/podStorage in the world! You can make one yourself if necessary.</span>")
+		return
+
+	temp_pod = new(A)
+
+
 /datum/podlauncher/proc/createOrderedArea(area/A)
 	if(isnull(A))
-		to_chat(holder.mob, "No /area/centcom/supplypod/loading/ in the world! You can make one yourself if necessary.")
+		to_chat(holder.mob, "<span class='warning'>No /area/centcom/supplypod/loading/ in the world! You can make one yourself if necessary.</span>")
 		return
 
 	orderedArea = list()

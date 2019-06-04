@@ -37,11 +37,14 @@
 	issue_order_focus.give_action(src)
 
 	//makes order hud visible
-	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
 	H.add_hud_to(usr)
 
 	randomize_appearance()
 
+	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
+	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
+	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()

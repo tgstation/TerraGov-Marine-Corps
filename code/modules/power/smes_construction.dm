@@ -218,7 +218,7 @@
 			to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 			return
 
-		playsound(get_turf(src), 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(get_turf(src), 'sound/items/crowbar.ogg', 25, 1)
 		to_chat(user, "<span class='warning'>You begin to disassemble the [src]!</span>")
 		
 		if(!do_after(user, 10 SECONDS * cur_coils, TRUE, src, BUSY_ICON_BUILD)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s

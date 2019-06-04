@@ -19,7 +19,7 @@
 	var/muzzle_flash 	= "muzzle_flash"
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
-	var/fire_sound 		= 'sound/weapons/Gunshot.ogg'
+	var/fire_sound 		= 'sound/weapons/gunshot.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
 	var/empty_sound 	= 'sound/weapons/smg_empty_alarm.ogg'
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
@@ -409,11 +409,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
-		return
+		return FALSE
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !flags_gun_features & GUN_ENERGY)
-		cock(user)
-		return
+		return cock(user)
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.loc = get_turf(src) //Drop it on the ground.
@@ -428,14 +427,17 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 	update_icon(user)
 
+	return TRUE
+
+
 //Manually cock the gun
 //This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG or ENERGY
 /obj/item/weapon/gun/proc/cock(mob/user)
 
 	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG|GUN_ENERGY))
-		return
+		return FALSE
 	if(cock_cooldown > world.time)
-		return
+		return FALSE
 
 	cock_cooldown = world.time + cock_delay
 	cock_gun(user)
@@ -481,6 +483,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
 		"<span class='notice'>You cock [src].</span>", null, 4)
 	ready_in_chamber() //This will already check for everything else, loading the next bullet.
+
+	return TRUE
+
 
 //Since reloading and casings are closely related, placing this here ~N
 /obj/item/weapon/gun/proc/make_casing(casing_type) //Handle casings is set to discard them.

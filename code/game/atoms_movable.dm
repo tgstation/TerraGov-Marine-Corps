@@ -612,10 +612,12 @@
 
 /atom/movable/proc/stop_pulling()
 	if(!pulling)
-		return
+		return FALSE
 
 	pulling.pulledby = null
 	pulling = null
+
+	return TRUE
 
 
 /atom/movable/proc/check_pulling()

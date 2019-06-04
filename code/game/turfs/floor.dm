@@ -413,7 +413,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			new floor_tile.type(src)
 
 		make_plating()
-		playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
 	else if(isscrewdriver(I) && is_wood_floor())
 		if(broken || burnt)
@@ -424,7 +424,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			new floor_tile.type(src)
 
 		make_plating()
-		playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
 
 	else if(istype(I, /obj/item/stack/rods))
@@ -445,7 +445,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			return
 
 		ChangeTurf(/turf/open/floor/engine)
-		playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
+		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
 	if(istype(I, /obj/item/stack/tile))
 		if(!is_plating())
@@ -479,7 +479,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		T.use(1)
 		update_icon()
 		levelupdate()
-		playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 
 	else if(istype(I, /obj/item/tool/shovel))
 		if(!is_grass_floor())
@@ -504,7 +504,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			return
 
 		to_chat(user, "<span class='warning'>You fix some dents on the broken plating.</span>")
-		playsound(src, 'sound/items/Welder.ogg', 25, 1)
+		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		icon_state = "plating"
 		burnt = FALSE
 		broken = FALSE

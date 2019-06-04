@@ -1,4 +1,5 @@
 /obj/screen
+	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
 	plane = HUD_PLANE
