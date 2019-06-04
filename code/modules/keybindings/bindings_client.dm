@@ -14,7 +14,9 @@
 	var/AltMod = keys_held["Alt"] ? "Alt-" : ""
 	var/CtrlMod = keys_held["Ctrl"] ? "Ctrl-" : ""
 	var/ShiftMod = keys_held["Shift"] ? "Shift-" : ""
-	var/full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
+	var/full_key = "[_key]"
+	if (!(_key in list("Alt", "Ctrl", "Shift")))
+		full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
 	for (var/kb_name in prefs.key_bindings[full_key])
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
 		if (kb.down(src))
