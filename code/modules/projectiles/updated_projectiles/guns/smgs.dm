@@ -114,7 +114,7 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/smg_light.ogg'
+	fire_sound = 'sound/weapons/gun_mp5.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp5
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -151,7 +151,7 @@
 	caliber = "4.6x30mm" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/smg_light.ogg'
+	fire_sound = 'sound/weapons/gun_mp7.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,

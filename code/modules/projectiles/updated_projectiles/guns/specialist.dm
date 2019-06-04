@@ -239,7 +239,7 @@
 	max_shells = 10 //codex
 	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
-	fire_sound = 'sound/weapons/gun_kt42.ogg'
+	fire_sound = 'sound/weapons/gun_svd.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(

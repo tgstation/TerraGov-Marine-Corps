@@ -334,7 +334,7 @@
 	caliber = "7.62x38mm Rimmed" //codex
 	max_shells = 7 //codex
 	origin_tech = "combat=3;materials=1;syndicate=3"
-	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
+	fire_sound = 'sound/weapons/gun_ny.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
 	attachable_allowed = list(
