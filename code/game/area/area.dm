@@ -133,21 +133,23 @@
 
 
 /area/proc/reg_in_areas_in_z()
-	if(length(contents))
-		var/list/areas_in_z = SSmapping.areas_in_z
-		var/z
-		for(var/i in contents)
-			var/atom/thing = i
-			if(!thing)
-				continue
-			z = thing.z
-			break
-		if(!z)
-			WARNING("No z found for [src]")
-			return
-		if(!areas_in_z["[z]"])
-			areas_in_z["[z]"] = list()
-		areas_in_z["[z]"] += src
+	if(!length(contents))
+		return
+		
+	var/list/areas_in_z = SSmapping.areas_in_z
+	var/z
+	for(var/i in contents)
+		var/atom/thing = i
+		if(!thing)
+			continue
+		z = thing.z
+		break
+	if(!z)
+		WARNING("No z found for [src]")
+		return
+	if(!areas_in_z["[z]"])
+		areas_in_z["[z]"] = list()
+	areas_in_z["[z]"] += src
 
 
 
