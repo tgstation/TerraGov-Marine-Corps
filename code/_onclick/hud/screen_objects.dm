@@ -350,7 +350,7 @@
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/selecting = "chest"
-	var/static/list/hover_overlays_cache = list()
+	var/list/hover_overlays_cache = list()
 	var/hovering
 	var/z_prefix
 
