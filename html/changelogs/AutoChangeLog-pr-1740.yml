@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - bugfix: "Fixed Alt to toggle walking and holding Ctrl to face a direction"
