@@ -41,8 +41,7 @@
 	if(!do_after(user, 30, TRUE, wall, BUSY_ICON_BUILD))
 		return
 
-	var/obj/structure/camera_assembly/CA = new /obj/structure/camera_assembly(constrloc, constrdir)
-	transfer_fingerprints_to(CA)
+	new /obj/structure/camera_assembly(constrloc, constrdir)
 
 	user.visible_message("[user] attaches [src] to the wall.", \
 		"You attach [src] to the wall.")
