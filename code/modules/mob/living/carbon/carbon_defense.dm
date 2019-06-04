@@ -34,7 +34,7 @@
 		blur_eyes(4)
 		blind_eyes(2)
 		var/reagent_amount = 5 + S.strength * 2
-		reagents.add_reagent("xeno_toxin", reagent_amount)
+		reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, reagent_amount)
 		if(prob(10 * S.strength)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
 			to_chat(src, "<span class='danger'>You feel your body going numb and lifeless!</span>")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
@@ -45,6 +45,6 @@
 	var/protection = .
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO) && (internal || has_smoke_protection())) //either inhaled or this.
 		var/reagent_amount = 3 + S.strength
-		reagents.add_reagent("xeno_toxin", round(reagent_amount * protection, 0.1))
+		reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(reagent_amount * protection, 0.1))
 		if(prob(10 * S.strength * protection))
 			to_chat(src, "<span class='danger'>Your body goes numb where the gas touches it!</span>")

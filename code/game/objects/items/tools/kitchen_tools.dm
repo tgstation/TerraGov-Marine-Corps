@@ -45,14 +45,9 @@
 	if (reagents.total_volume > 0)
 		reagents.reaction(M, INGEST)
 		reagents.trans_to(M, reagents.total_volume)
-		if(M == user)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='notice'> [] eats some [] from \the [].</span>", user, loaded, src), 1)
-				M.reagents.add_reagent("nutriment", 1)
-		else
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='notice'> [] feeds [] some [] from \the []</span>", user, M, loaded, src), 1)
-				M.reagents.add_reagent("nutriment", 1)
+		user.visible_message("<span class='notice'> [user] [M == user ? "eats" : "feeds [M]"] some [loaded] from [src]</span>", \
+						"<span class='notice'> You [M == user ? "eat" : "feed [M]"] some [loaded] from [src]</span>")
+		M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 		overlays.Cut()
 		return

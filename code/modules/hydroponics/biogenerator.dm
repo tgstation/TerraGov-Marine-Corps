@@ -169,7 +169,7 @@
 	sleep(30)
 	switch(item)
 		if("milk")
-			beaker.reagents.add_reagent("milk",10)
+			beaker.reagents.add_reagent(/datum/reagent/consumable/drink/milk, 10)
 		if("meat")
 			new/obj/item/reagent_container/food/snacks/meat(src.loc)
 		if("ez")

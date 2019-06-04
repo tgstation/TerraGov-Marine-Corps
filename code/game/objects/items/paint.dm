@@ -1,235 +1,106 @@
 //NEVER USE THIS IT SUX	-PETETHEGOAT
+//IT SUCKS A BIT LESS -GIACOM
 
-var/global/list/cached_icons = list()
-
-/obj/item/reagent_container/glass/paint
-	desc = "It's a paint bucket."
-	name = "paint bucket"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "paint_neutral"
-	item_state = "paintcan"
-	matter = list("metal" = 200)
-	w_class = 3.0
-	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(10,20,30,50,70)
-	volume = 70
-	init_reagent_flags = OPENCONTAINER
-	var/paint_type = ""
-
-	afterattack(turf/target, mob/user, proximity)
-		if(!proximity) return
-		if(istype(target) && reagents.total_volume > 5)
-			user.visible_message("<span class='warning'> \The [target] has been splashed with something by [user]!</span>")
-			spawn(5)
-				reagents.reaction(target, TOUCH)
-				reagents.remove_any(5)
-		else
-			return ..()
-
-	New()
-		if(paint_type == "remover")
-			name = "paint remover bucket"
-		else if(paint_type && lentext(paint_type) > 0)
-			name = paint_type + " " + name
-		..()
-		reagents.add_reagent("paint_[paint_type]", volume)
-
-	on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
-		var/mixedcolor = mix_color_from_reagents(reagents.reagent_list)
-		for(var/datum/reagent/paint/P in reagents.reagent_list)
-			P.color = mixedcolor
-
-	red
-		icon_state = "paint_red"
-		paint_type = "red"
-
-	green
-		icon_state = "paint_green"
-		paint_type = "green"
-
-	blue
-		icon_state = "paint_blue"
-		paint_type = "blue"
-
-	yellow
-		icon_state = "paint_yellow"
-		paint_type = "yellow"
-
-	violet
-		icon_state = "paint_violet"
-		paint_type = "violet"
-
-	black
-		icon_state = "paint_black"
-		paint_type = "black"
-
-	white
-		icon_state = "paint_white"
-		paint_type = "white"
-
-	remover
-		paint_type = "remover"
-/*
 /obj/item/paint
 	gender= PLURAL
 	name = "paint"
-	desc = "Used to recolor floors and walls. Can not be removed by the janitor."
-	icon = 'icons/obj/items/items.dmi'
+	desc = "Used to recolor floors and walls. Can be removed by the janitor."
+	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "paint_neutral"
-	color = "FFFFFF"
+	var/item_color = "FFFFFF"
 	item_state = "paintcan"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
+	resistance_flags = FLAMMABLE
+	max_integrity = 100
+	var/paintleft = 10
 
 /obj/item/paint/red
 	name = "red paint"
-	color = "FF0000"
+	item_color = "C73232" //"FF0000"
 	icon_state = "paint_red"
 
 /obj/item/paint/green
 	name = "green paint"
-	color = "00FF00"
+	item_color = "2A9C3B" //"00FF00"
 	icon_state = "paint_green"
 
 /obj/item/paint/blue
 	name = "blue paint"
-	color = "0000FF"
+	item_color = "5998FF" //"0000FF"
 	icon_state = "paint_blue"
 
 /obj/item/paint/yellow
 	name = "yellow paint"
-	color = "FFFF00"
+	item_color = "CFB52B" //"FFFF00"
 	icon_state = "paint_yellow"
 
 /obj/item/paint/violet
 	name = "violet paint"
-	color = "FF00FF"
+	item_color = "AE4CCD" //"FF00FF"
 	icon_state = "paint_violet"
 
 /obj/item/paint/black
 	name = "black paint"
-	color = "333333"
+	item_color = "333333"
 	icon_state = "paint_black"
 
 /obj/item/paint/white
 	name = "white paint"
-	color = "FFFFFF"
+	item_color = "FFFFFF"
 	icon_state = "paint_white"
 
 
 /obj/item/paint/anycolor
-	gender= PLURAL
-	name = "any color"
+	gender = PLURAL
+	name = "adaptive paint"
 	icon_state = "paint_neutral"
 
-	attack_self(mob/user as mob)
-		var/t1 = input(user, "Please select a color:", "Locking Computer", null) in list( "red", "blue", "green", "yellow", "black", "white")
-		if ((user.get_active_held_item() != src || user.stat || user.restrained()))
-			return
-		switch(t1)
-			if("red")
-				color = "FF0000"
-			if("blue")
-				color = "0000FF"
-			if("green")
-				color = "00FF00"
-			if("yellow")
-				color = "FFFF00"
-			if("violet")
-				color = "FF00FF"
-			if("white")
-				color = "FFFFFF"
-			if("black")
-				color = "333333"
-		icon_state = "paint_[t1]"
-		add_fingerprint(user)
+/obj/item/paint/anycolor/attack_self(mob/user)
+	var/t1 = input(user, "Please select a color:", "[src]", null) in list( "red", "blue", "green", "yellow", "violet", "black", "white")
+	if ((user.get_active_held_item() != src || user.stat || user.restrained()))
 		return
+	switch(t1)
+		if("red")
+			item_color = "C73232"
+		if("blue")
+			item_color = "5998FF"
+		if("green")
+			item_color = "2A9C3B"
+		if("yellow")
+			item_color = "CFB52B"
+		if("violet")
+			item_color = "AE4CCD"
+		if("white")
+			item_color = "FFFFFF"
+		if("black")
+			item_color = "333333"
+	icon_state = "paint_[t1]"
+	add_fingerprint(user)
 
 
-/obj/item/paint/afterattack(turf/target, mob/user as mob, proximity)
-	if(!proximity) return
-	if(!istype(target) || isspaceturf(target))
+/obj/item/paint/afterattack(atom/target, mob/user, proximity)
+	. = ..()
+	if(!proximity)
 		return
-	var/ind = "[initial(target.icon)][color]"
-	if(!cached_icons[ind])
-		var/icon/overlay = new/icon(initial(target.icon))
-		overlay.Blend("#[color]",ICON_MULTIPLY)
-		overlay.SetIntensity(1.4)
-		target.icon = overlay
-		cached_icons[ind] = target.icon
-	else
-		target.icon = cached_icons[ind]
-	return
+	if(paintleft <= 0)
+		icon_state = "paint_empty"
+		return
+	if(!isturf(target) || isspaceturf(target))
+		return
+	var/newcolor = "#" + item_color
+	target.add_atom_colour(newcolor, WASHABLE_COLOUR_PRIORITY)
 
 /obj/item/paint/paint_remover
 	gender =  PLURAL
 	name = "paint remover"
+	desc = "Used to remove color from anything."
 	icon_state = "paint_neutral"
 
-	afterattack(turf/target, mob/user as mob)
-		if(istype(target) && target.icon != initial(target.icon))
-			target.icon = initial(target.icon)
-		return
-*/
-
-/datum/reagent/paint
-	name = "Paint"
-	id = "paint_"
-	reagent_state = 2
-	color = "#808080"
-	description = "This paint will only adhere to floor tiles."
-
-/datum/reagent/paint/reaction_turf(turf/T, volume)
-	if(!istype(T) || isspaceturf(T))
-		return
-	T.color = color
-
-/datum/reagent/paint/reaction_obj(obj/O, volume)
+/obj/item/paint/paint_remover/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(istype(O,/obj/item/light_bulb))
-		O.color = color
-
-/datum/reagent/paint/red
-	name = "Red Paint"
-	id = "paint_red"
-	color = "#FE191A"
-
-/datum/reagent/paint/green
-	name = "Green Paint"
-	color = "#18A31A"
-	id = "paint_green"
-
-/datum/reagent/paint/blue
-	name = "Blue Paint"
-	color = "#247CFF"
-	id = "paint_blue"
-
-/datum/reagent/paint/yellow
-	name = "Yellow Paint"
-	color = "#FDFE7D"
-	id = "paint_yellow"
-
-/datum/reagent/paint/violet
-	name = "Violet Paint"
-	color = "#CC0099"
-	id = "paint_violet"
-
-/datum/reagent/paint/black
-	name = "Black Paint"
-	color = "#333333"
-	id = "paint_black"
-
-/datum/reagent/paint/white
-	name = "White Paint"
-	color = "#F0F8FF"
-	id = "paint_white"
-
-/datum/reagent/paint_remover
-	name = "Paint Remover"
-	id = "paint_remover"
-	description = "Paint remover is used to remove floor paint from floor tiles."
-	reagent_state = 2
-	color = "#808080"
-
-/datum/reagent/paint_remover/reaction_turf(turf/T, volume)
-	if(istype(T) && T.icon != initial(T.icon))
-		T.icon = initial(T.icon)
+	if(!proximity)
+		return
+	if(!isturf(target) || !isobj(target))
+		return
+	if(target.color != initial(target.color))
+	target.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)

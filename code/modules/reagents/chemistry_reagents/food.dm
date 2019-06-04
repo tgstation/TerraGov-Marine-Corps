@@ -130,8 +130,8 @@
 	var/agony_amount = 2
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/L, metabolism)
-	if(holder.has_reagent("frostoil"))
-		holder.remove_reagent("frostoil", 5)
+	if(holder.has_reagent(/datum/reagent/consumable/frostoil))
+		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if((H.species.species_flags & NO_PAIN))
@@ -235,8 +235,8 @@
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/L, metabolism)
 	if(prob(1))
 		L.emote("shiver")
-	if(holder.has_reagent("capsaicin"))
-		holder.remove_reagent("capsaicin", 5)
+	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
+		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 5)
 	return ..()
 
 /datum/reagent/consumable/sodiumchloride
@@ -274,16 +274,6 @@
 	nutriment_factor = 5
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "bitterness"
-
-/datum/reagent/consumable/hot_coco
-	name = "Hot Chocolate"
-	id = "hot_coco"
-	description = "Made with love! And cocoa beans."
-	reagent_state = LIQUID
-	nutriment_factor = 2
-	color = "#403010" // rgb: 64, 48, 16
-	taste_description = "creamy chocolate"
-	adj_temp = 5
 
 /datum/reagent/consumable/psilocybin
 	name = "Psilocybin"
@@ -422,7 +412,7 @@
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
-	L.reagents.add_reagent("sugar",3)
+	L.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
 	L.adjustBruteLoss(-0,5 * REM, FALSE)
 	L.adjustFireLoss(-0,5 * REM, FALSE)
 	L.adjustOxyLoss(-0,5 * REM, FALSE)

@@ -52,7 +52,7 @@
 	if(!check_plasma(50) || !neuro_claws || !H)
 		return
 	use_plasma(50)
-	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
+	H.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, neuro_claws_dose)
 	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
 
 // ***************************************

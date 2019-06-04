@@ -79,10 +79,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 25
 	taste_description = "piss water"
 
-/datum/reagent/consumable/ethanol/wy_beer
+/datum/reagent/consumable/ethanol/beer/light
 	name = "Aspen Beer"
 	id = "aspen"
-	description = "Pretty good when you get past the fact that it tastes like piss. Canned by the Nanotrasen Corporation."
+	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. This variety has reduced calorie and alcohol content."
 	color = "#ffcc66"
 	boozepwr = 5 //Space Europeans hate it
 	taste_description = "dish water"
@@ -110,11 +110,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "molasses"
 	boozepwr = 75
 
-/datum/reagent/consumable/ethanol/specialwhiskey
+/datum/reagent/consumable/ethanol/whiskey/special
 	name = "Special Blend Whiskey"
 	id = "specialwhiskey"
 	description = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
-	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 80
 	taste_description = "exquisite amber"
 

@@ -188,16 +188,19 @@ I said no!
 		/obj/item/reagent_container/food/snacks/meatball
 	)
 	result = /obj/item/reagent_container/food/snacks/donkpocket //SPECIAL
-	proc/warm_up(var/obj/item/reagent_container/food/snacks/donkpocket/being_cooked)
-		being_cooked.warm = 1
-		being_cooked.reagents.add_reagent("tricordrazine", 5)
+
+/datum/recipe/donkpocket/proc/warm_up(obj/item/reagent_container/food/snacks/donkpocket/being_cooked)
+	if(!being_cooked.warm)
+		being_cooked.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, 5)
 		being_cooked.bitesize = 6
-		being_cooked.name = "Warm " + being_cooked.name
-		being_cooked.cooltime()
-	make_food(var/obj/container as obj)
-		var/obj/item/reagent_container/food/snacks/donkpocket/being_cooked = ..(container)
-		warm_up(being_cooked)
-		return being_cooked
+		being_cooked.name = "Warm [initial(being_cooked.name)]
+		being_cooked.warm = TRUE
+	addtimer(CALLBACK(being_cooked, /obj/item/reagent_container/food/snacks/donkpocket/proc/cooltime), 7 MINUTES, TIMER_UNIQUE)
+
+/datum/recipe/donkpocketmake_food(obj/container)
+	. = ..()
+	var/obj/item/reagent_container/food/snacks/donkpocket/being_cooked = .
+	warm_up(being_cooked)
 
 /datum/recipe/donkpocket/warm
 	reagents = list() //This is necessary since this is a child object of the above recipe and we don't want donk pockets to need flour

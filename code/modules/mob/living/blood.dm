@@ -177,9 +177,9 @@
 	if(iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		if(blood_id == C.get_blood_id())//both mobs have the same blood substance
-			if(blood_id == "blood") //normal blood
+			if(blood_id == /datum/reagent/blood) //normal blood
 				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.b_type)))
-					C.reagents.add_reagent("toxin", amount * 0.5)
+					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return 1
 
 			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
@@ -203,9 +203,9 @@
 	var/b_id = get_blood_id()
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		// If its blood, lets check its compatible or not and cause some toxins.
-		if(istype(R, /datum/reagent/blood) && b_id && R.id == b_id)
-			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(blood_type)))
-				reagents.add_reagent("toxin", amount * 0.5)
+		if(istype(R, /datum/reagent/blood) && b_id && R.type == b_id)
+			if(b_id == /datum/reagent/blood && R.data && !(R.data["blood_type"] in get_safe_blood(blood_type)))
+				reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 			else
 				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
 		else

@@ -578,9 +578,6 @@
 /datum/reagent/impedrezene/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX) //Overdose starts getting bad
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /datum/reagent/nanites
 	name = "Nanomachines"
 	id = "nanites"

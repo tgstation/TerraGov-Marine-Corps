@@ -539,7 +539,7 @@
 	var/S = specific_heat()
 	chem_temp = CLAMP(chem_temp * (J / (S * total_volume)), 2.7, 1000)
 
-/datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, no_react = 0, safety = 0, no_overdose = FALSE)
+/datum/reagents/proc/add_reagent(reagent, amount, list/data, reagtemp = 300, no_react = FALSE, safety = FALSE, no_overdose = FALSE)
 	if(!isnum(amount) || !amount || amount <= 0)
 		return FALSE
 
@@ -605,7 +605,7 @@
 		handle_reactions()
 	return TRUE
 
-/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) //// Like add_reagent but you can enter a list. Format it like this: list("toxin" = 10, "beer" = 15)
+/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) //// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)
 	for(var/r_id in list_reagents)
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)

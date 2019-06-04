@@ -58,7 +58,7 @@
 		update_icon()
 
 	else if(istype(I, /obj/item/grab))
-		if(isxeno(user)) 
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I
 
@@ -103,7 +103,7 @@
 		if(w_items + I.w_class > 5)
 			to_chat(user, "<span class='notice'>The cistern is full.</span>")
 			return
-			
+
 		user.drop_held_item()
 		I.forceMove(src)
 		w_items += I.w_class
@@ -123,7 +123,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/grab))
-		if(isxeno(user)) 
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
@@ -343,7 +343,6 @@
 		return
 	is_washing = 1
 	var/turf/T = get_turf(src)
-//	reagents.add_reagent("water", 2)
 	T.clean(src)
 	spawn(100)
 		is_washing = 0
@@ -426,7 +425,7 @@
 
 	var/obj/item/reagent_container/RG = I
 	if(istype(RG) && RG.is_open_container())
-		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")
 		return
 
@@ -450,7 +449,7 @@
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
 	var/turf/location = user.loc
-	if(!isturf(location)) 
+	if(!isturf(location))
 		return
 
 	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
@@ -458,7 +457,7 @@
 	if(!do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
 		return
 
-	if(user.loc != location || user.get_active_held_item() != I) 
+	if(user.loc != location || user.get_active_held_item() != I)
 		return
 
 	I.clean_blood()

@@ -87,9 +87,9 @@
 		if(istype(imp_in, /mob/living/carbon/))
 			var/mob/living/carbon/M = imp_in
 
-			var/neuraline_inject_amount = max(1-M.reagents.get_reagent_amount("neuraline"), 0)
+			var/neuraline_inject_amount = max(1-M.reagents.get_reagent_amount(/datum/reagent/medicine/neuraline), 0)
 
-			M.reagents.add_reagent("neuraline", neuraline_inject_amount, null, 1)
+			M.reagents.add_reagent(/datum/reagent/medicine/neuraline, neuraline_inject_amount, null, 1)
 
 
 /obj/item/implant/neurostim/emp_act(severity)

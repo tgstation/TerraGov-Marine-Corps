@@ -113,7 +113,7 @@
 
 		to_chat(user, "You inject the solution into the power cell.")
 
-		if(S.reagents.has_reagent("phoron", 5))
+		if(S.reagents.has_reagent(/datum/reagent/toxin/phoron, 5))
 			rigged = TRUE
 		S.reagents.clear_reagents()
 

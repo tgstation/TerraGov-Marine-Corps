@@ -134,7 +134,7 @@
 	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 		if(!W.welding)
-			if(W.reagents.has_reagent("welding_fuel", W.max_fuel))
+			if(W.reagents.holder_full())
 				to_chat(user, "<span class='warning'>Your [W.name] is already full!</span>")
 				return
 			reagents.trans_to(W, W.max_fuel)

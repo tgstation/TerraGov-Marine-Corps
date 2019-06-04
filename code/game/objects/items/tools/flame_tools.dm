@@ -189,7 +189,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lastHolder = null
 	var/smoketime = 300
 	var/chem_volume = 30
-	var/list/list_reagents = list("nicotine" = 15)
+	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/cigarette/New()

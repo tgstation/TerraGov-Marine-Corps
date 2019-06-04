@@ -69,13 +69,10 @@
 /datum/reagent/consumable/drink/carrotjuice/on_mob_life(mob/living/L, metabolism)
 	L.adjust_blurriness(-1)
 	L.adjust_blindness(-1)
-	switch(current_cycle)
-		if(1 to 20)
-			//nothing
-		if(21 to INFINITY)
-			if(prob(current_cycle-10) && iscarbon(L))
-				var/mob/living/carbon/C = L
-				C.disabilities &= ~NEARSIGHTED
+	if(current_cycle > 20)
+		if(prob(current_cycle-10) && iscarbon(L))
+			var/mob/living/carbon/C = L
+			C.disabilities &= ~NEARSIGHTED
 	return ..()
 
 /datum/reagent/consumable/drink/berryjuice
@@ -154,7 +151,7 @@
 	taste_description = "nothing"
 
 
-/datum/reagent/consumable/laughter
+/datum/reagent/consumable/drink/laughter
 	name = "Laughter"
 	id = "laughter"
 	description = "Some say that this is the best medicine, but recent studies have proven that to be untrue."
@@ -162,7 +159,7 @@
 	color = "#FF4DD2"
 	taste_description = "laughter"
 
-/datum/reagent/consumable/laughter/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/drink/laughter/on_mob_life(mob/living/carbon/M)
 	M.emote("laugh")
 	return ..()
 
@@ -183,8 +180,8 @@
 
 /datum/reagent/consumable/drink/milk/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(0.2,0)
-	if(holder.has_reagent("capsaicin"))
-		holder.remove_reagent("capsaicin", 2)
+	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
+		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
 	return ..()
 
 /datum/reagent/consumable/drink/milk/soymilk
@@ -214,7 +211,7 @@
 	description = "Made with love! And cocoa beans."
 	nutriment_factor = 2
 	color = "#403010" // rgb: 64, 48, 16
-	adj_temp = 15
+	adj_temp = 5
 	taste_description = "creamy chocolate"
 
 /datum/reagent/consumable/drink/coffee
@@ -233,8 +230,8 @@
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
 	L.Jitter(2)
-	if(adj_temp > 0 && holder.has_reagent("frostoil"))
-		holder.remove_reagent("frostoil", 5)
+	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil))
+		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	return ..()
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
@@ -446,8 +443,8 @@
 /datum/reagent/consumable/drink/cold/milkshake/on_mob_life(mob/living/L, metabolism)
 	if(prob(1))
 		L.emote("shiver")
-	if(holder.has_reagent("capsaicin"))
-		holder.remove_reagent("capsaicin", 2)
+	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
+		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
 	return ..()
 
 /datum/reagent/consumable/drink/cold/rewriter

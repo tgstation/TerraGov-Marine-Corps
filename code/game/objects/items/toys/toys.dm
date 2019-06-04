@@ -32,10 +32,9 @@
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
 
-/obj/item/toy/balloon/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
+/obj/item/toy/balloon/Initialize()
+	. = ..()
+	create_reagents(10, OPENCONTAINER_NOUNIT)
 
 /obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -60,7 +59,7 @@
 			to_chat(user, "The [I] is empty.")
 			return
 
-		if(I.reagents.has_reagent("pacid", 1))
+		if(I.reagents.has_reagent(/datum/reagent/toxin/acid/polyacid, 1))
 			to_chat(user, "The acid chews through the balloon!")
 			I.reagents.reaction(user, TOUCH)
 			qdel(src)
@@ -190,13 +189,9 @@
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	var/empty = 0
-	flags
 
 /obj/item/toy/waterflower/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("water", 10)
+	create_reagents(10, null, list(/datum/reagent/water = 10))
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return

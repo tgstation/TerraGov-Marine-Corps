@@ -12,7 +12,7 @@
 	return FALSE
 
 /mob/living/carbon/proc/need_breathe()
-	if(reagents.has_reagent("lexorin") || in_stasis)
+	if(reagents.has_reagent(/datum/reagent/toxin/lexorin) || in_stasis)
 		return FALSE
 	return TRUE
 

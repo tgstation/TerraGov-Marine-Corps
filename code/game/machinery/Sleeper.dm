@@ -173,7 +173,9 @@
 	anchored = 1
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
-	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "bicaridine" = "Bicaridine", "kelotane" = "Kelotane", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine", "spaceacillin" = "Spaceacillin")
+	var/available_chemicals = list(/datum/reagent/medicine/inaprovaline = "Inaprovaline", /datum/reagent/toxin/sleeptoxin = "Soporific", /datum/reagent/medicine/paracetamol = "Paracetamol",
+								/datum/reagent/medicine/bicaridine = "Bicaridine", /datum/reagent/medicine/kelotane = "Kelotane", /datum/reagent/medicine/dylovene = "Dylovene",
+								/datum/reagent/medicine/dexalin = "Dexalin", /datum/reagent/medicine/tricordrazine = "Tricordrazine", /datum/reagent/medicine/spaceacillin = "Spaceacillin")
 	var/amounts = list(5, 10)
 	var/obj/item/reagent_container/glass/beaker = null
 	var/filtering = FALSE
@@ -190,7 +192,7 @@
 	beaker = new /obj/item/reagent_container/glass/beaker/large()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
-		
+
 /obj/machinery/sleeper/Destroy()
 	occupant?.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null

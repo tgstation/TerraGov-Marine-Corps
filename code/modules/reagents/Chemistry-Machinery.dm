@@ -17,9 +17,11 @@
 	var/recharged = 0
 	var/hackedcheck = 0
 	var/list/dispensable_reagents = list(
-	"aluminum","carbon","chlorine","copper","ethanol","fluorine","hydrogen",
-	"iron","lithium","mercury","nitrogen","oxygen","phosphorus","potassium",
-	"radium","sacid","silicon","sodium","sugar","sulfur","tungsten","water")
+	/datum/reagent/aluminum,/datum/reagent/carbon,/datum/reagent/chlorine,/datum/reagent/copper,/datum/reagent/consumable/ethanol,
+	/datum/reagent/fluorine,/datum/reagent/hydrogen,/datum/reagent/iron,/datum/reagent/lithium,/datum/reagent/mercury,
+	/datum/reagent/nitrogen,/datum/reagent/oxygen,/datum/reagent/phosphorus,/datum/reagent/potassium,/datum/reagent/radium,
+	/datum/reagent/toxin/acid,/datum/reagent/silicon,/datum/reagent/sodium,/datum/reagent/consumable/sugar,
+	/datum/reagent/sulfur, /datum/reagent/water)
 
 /obj/machinery/chem_dispenser/proc/recharge()
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -156,7 +158,7 @@
 	if(beaker)
 		to_chat(user, "Something is already loaded into the machine.")
 		return
-		
+
 	else if(istype(I, /obj/item/reagent_container) && I.is_open_container())
 		if(!user.transferItemToLoc(I, src))
 			return
@@ -164,7 +166,7 @@
 		beaker =  I
 		to_chat(user, "You set [I] on the machine.")
 		SSnano.update_uis(src) // update all UIs attached to src
-	
+
 	else if(istype(I, /obj/item/reagent_container/glass))
 		to_chat(user, "Take the lid off [I] first.")
 
@@ -192,7 +194,11 @@
 	accept_glass = TRUE
 	req_one_access = list()
 	max_energy = 100
-	dispensable_reagents = list("water","ice","coffee","cream","tea","icetea","cola","spacemountainwind","dr_gibb","space_up","tonic","sodawater","lemon_lime","sugar","orangejuice","limejuice","watermelonjuice")
+	dispensable_reagents = list(/datum/reagent/water,/datum/reagent/consumable/drink/cold/ice,/datum/reagent/consumable/drink/coffee,
+	/datum/reagent/consumable/drink/milk/cream,/datum/reagent/consumable/drink/tea,/datum/reagent/consumable/drink/tea/icetea,/datum/reagent/consumable/drink/cold/space_cola,
+	/datum/reagent/consumable/drink/cold/spacemountainwind,/datum/reagent/consumable/drink/cold/dr_gibb,/datum/reagent/consumable/drink/cold/space_up,
+	/datum/reagent/consumable/drink/cold/tonic,/datum/reagent/consumable/drink/cold/sodawater,/datum/reagent/consumable/drink/cold/lemon_lime,
+	/datum/reagent/consumable/sugar,/datum/reagent/consumable/drink/orangejuice,/datum/reagent/consumable/drink/limejuice,/datum/reagent/consumable/drink/watermelonjuice)
 
 /obj/machinery/chem_dispenser/soda/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -201,10 +207,10 @@
 		hackedcheck = !hackedcheck
 		if(hackedcheck)
 			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
-			dispensable_reagents += list("thirteenloko", "grapesoda")
+			dispensable_reagents += list(/datum/reagent/consumable/ethanol/thirteenloko, /datum/reagent/consumable/drink/grapesoda)
 		else
 			to_chat(user, "You change the mode from 'Pizza King' to 'McNano'.")
-			dispensable_reagents -= list("thirteenloko", "grapesoda")
+			dispensable_reagents -= list(/datum/reagent/consumable/ethanol/thirteenloko, /datum/reagent/consumable/drink/grapesoda)
 
 /obj/machinery/chem_dispenser/beer
 	icon_state = "booze_dispenser"
@@ -215,7 +221,11 @@
 	max_energy = 100
 	req_one_access = list()
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
-	dispensable_reagents = list("lemon_lime","sugar","orangejuice","limejuice","sodawater","tonic","beer","kahlua","whiskey","sake","wine","vodka","gin","rum","tequila","vermouth","cognac","ale","mead")
+	dispensable_reagents = list(/datum/reagent/consumable/drink/cold/lemon_lime,/datum/reagent/consumable/sugar,/datum/reagent/consumable/drink/orangejuice,/datum/reagent/consumable/drink/limejuice,/datum/reagent/consumable/drink/cold/sodawater,
+	/datum/reagent/consumable/drink/cold/tonic,/datum/reagent/consumable/ethanol/beer,/datum/reagent/consumable/ethanol/kahlua,/datum/reagent/consumable/ethanol/whiskey,
+	/datum/reagent/consumable/ethanol/sake,/datum/reagent/consumable/ethanol/wine,/datum/reagent/consumable/ethanol/vodka,/datum/reagent/consumable/ethanol/gin,
+	/datum/reagent/consumable/ethanol/rum,/datum/reagent/consumable/ethanol/tequila,/datum/reagent/consumable/ethanol/vermouth,/datum/reagent/consumable/ethanol/cognac,
+	/datum/reagent/consumable/ethanol/ale,/datum/reagent/consumable/ethanol/mead)
 
 /obj/machinery/chem_dispenser/beer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -224,10 +234,10 @@
 		hackedcheck = !hackedcheck
 		if(hackedcheck)
 			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
-			dispensable_reagents += list("goldschlager", "patron", "watermelonjuice", "berryjuice")
+			dispensable_reagents += list(/datum/reagent/consumable/ethanol/goldschlager, /datum/reagent/consumable/ethanol/patron, /datum/reagent/consumable/drink/watermelonjuice, /datum/reagent/consumable/drink/berryjuice)
 		else
 			to_chat(user, "You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.")
-			dispensable_reagents -= list("goldschlager", "patron", "watermelonjuice", "berryjuice")
+			dispensable_reagents -= list(/datum/reagent/consumable/ethanol/goldschlager, /datum/reagent/consumable/ethanol/patron, /datum/reagent/consumable/drink/watermelonjuice, /datum/reagent/consumable/drink/berryjuice)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -281,7 +291,7 @@
 		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
 		updateUsrDialog()
 		icon_state = "mixer1"
-	
+
 	else if(istype(I,/obj/item/reagent_container/glass))
 		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
 
@@ -934,13 +944,13 @@
 			var/amount = allowed[r_id]
 			if(amount <= 0)
 				if(amount == 0)
-					if (O.reagents != null && O.reagents.has_reagent("nutriment"))
-						beaker.reagents.add_reagent(r_id, min(O.reagents.get_reagent_amount("nutriment"), space))
-						O.reagents.remove_reagent("nutriment", min(O.reagents.get_reagent_amount("nutriment"), space))
+					if (O.reagents != null && O.reagents.has_reagent(/datum/reagent/consumable/nutriment))
+						beaker.reagents.add_reagent(r_id, min(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment), space))
+						O.reagents.remove_reagent(/datum/reagent/consumable/nutriment, min(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment), space))
 				else
-					if (O.reagents != null && O.reagents.has_reagent("nutriment"))
-						beaker.reagents.add_reagent(r_id, min(round(O.reagents.get_reagent_amount("nutriment")*abs(amount)), space))
-						O.reagents.remove_reagent("nutriment", min(O.reagents.get_reagent_amount("nutriment"), space))
+					if (O.reagents != null && O.reagents.has_reagent(/datum/reagent/consumable/nutriment))
+						beaker.reagents.add_reagent(r_id, min(round(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)*abs(amount)), space))
+						O.reagents.remove_reagent(/datum/reagent/consumable/nutriment, min(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment), space))
 
 			else
 				O.reagents.trans_id_to(beaker, r_id, min(amount, space))

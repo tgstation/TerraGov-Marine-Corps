@@ -371,7 +371,7 @@
 /obj/item/reagent_container/syringe/inaprovaline
 	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	list_reagents = list("inaprovaline" = 15)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
 /obj/item/reagent_container/syringe/inaprovaline/New()
 	. = ..()
@@ -381,7 +381,7 @@
 /obj/item/reagent_container/syringe/dylovene
 	name = "syringe (dylovene)"
 	desc = "Contains anti-toxins."
-	list_reagents = list("dylovene" = 15)
+	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 
 /obj/item/reagent_container/syringe/dylovene/New()
 	. = ..()
@@ -401,7 +401,7 @@
 /obj/item/reagent_container/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
-	list_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
+	list_reagents = list(/datum/reagent/space_drugs = 5, /datum/reagent/toxin/mindbreaker = 5, /datum/reagent/cryptobiolin = 5)
 
 /obj/item/reagent_container/syringe/drugs/New()
 	. = ..()
@@ -409,7 +409,7 @@
 	update_icon()
 
 /obj/item/reagent_container/syringe/ld50_syringe/choral
-	list_reagents = list("chloralhydrate" = 50)
+	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 50)
 
 /obj/item/reagent_container/syringe/ld50_syringe/choral/New()
 	. = ..()
@@ -419,7 +419,7 @@
 /obj/item/reagent_container/syringe/mixed
 	name = "syringe (mixed)"
 	desc = "Contains inaprovaline & dylovene."
-	list_reagents = list("inaprovaline" = 7, "dylovene" = 8)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 7, /datum/reagent/medicine/dylovene = 8)
 
 /obj/item/reagent_container/syringe/mixed/New()
 	. = ..()

@@ -213,8 +213,9 @@
 
 	if(owner.life_tick % PROCESS_ACCURACY == 0)
 
+		var/anti_tox = owner.reagents.has_reagent(/datum/reagent/medicine/dylovene)
 		//High toxins levels are dangerous
-		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("dylovene"))
+		if(owner.getToxLoss() >= 60 && !anti_tox)
 			//Healthy liver suffers on its own
 			if (damage < min_broken_damage)
 				take_damage(0.2 * PROCESS_ACCURACY, TRUE)
@@ -226,7 +227,7 @@
 
 		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
 		if(!owner.drunkenness && owner.getToxLoss() <= 15 && !owner.radiation && min_bruised_damage > damage > 0)
-			if(!owner.reagents.has_reagent("dylovene")) // Detox effect
+			if(!anti_tox)) // Detox effect
 				heal_damage(0.2 * PROCESS_ACCURACY)
 			else
 				heal_damage(0.04 * PROCESS_ACCURACY)

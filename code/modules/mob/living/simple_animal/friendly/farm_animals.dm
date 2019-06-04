@@ -43,7 +43,7 @@
 
 		if(stat == CONSCIOUS)
 			if(udder && prob(5))
-				udder.add_reagent("milk", rand(5, 10))
+				udder.add_reagent(/datum/reagent/consumable/drink/milk, rand(5, 10))
 
 		if(locate(/obj/effect/plantsegment) in loc)
 			var/obj/effect/plantsegment/SV = locate(/obj/effect/plantsegment) in loc
@@ -127,7 +127,7 @@
 	. = ..()
 	if(stat == CONSCIOUS)
 		if(udder && prob(5))
-			udder.add_reagent("milk", rand(5, 10))
+			udder.add_reagent(/datum/reagent/consumable/drink/milk, rand(5, 10))
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M as mob)
 	if(!stat && M.a_intent == INTENT_DISARM && icon_state != icon_dead)

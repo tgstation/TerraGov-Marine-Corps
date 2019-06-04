@@ -120,7 +120,7 @@
 	else if(istype(I,/obj/item/reagent_container/glass) || \
 	        istype(I,/obj/item/reagent_container/food/drinks) || \
 	        istype(I,/obj/item/reagent_container/food/condiment))
-	
+
 		if(!I.reagents)
 			return TRUE
 
@@ -135,7 +135,7 @@
 
 	else
 		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [I].</span>")
-		
+
 	updateUsrDialog()
 	return TRUE
 
@@ -357,8 +357,8 @@
 				amount+=O.reagents.get_reagent_amount(id)
 		qdel(O)
 	src.reagents.clear_reagents()
-	ffuu.reagents.add_reagent("carbon", amount)
-	ffuu.reagents.add_reagent("toxin", amount/10)
+	ffuu.reagents.add_reagent(/datum/reagent/carbon, amount)
+	ffuu.reagents.add_reagent(/datum/reagent/toxin, amount/10)
 	return ffuu
 
 /obj/machinery/microwave/Topic(href, href_list)

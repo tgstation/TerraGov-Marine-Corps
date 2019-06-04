@@ -28,11 +28,11 @@
 		if(user.mind && (user.mind.assigned_role == "Chaplain"))
 			call(/obj/effect/rune/proc/revealrunes)(src)*/
 	if(user.mind && (user.mind.assigned_role == "Chaplain"))
-		if(A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
+		if(A.reagents && A.reagents.has_reagent(/datum/reagent/water)) //blesses all the water in the holder
 			to_chat(user, "<span class='notice'>You bless [A].</span>")
-			var/water2holy = A.reagents.get_reagent_amount("water")
-			A.reagents.del_reagent("water")
-			A.reagents.add_reagent("holywater",water2holy)
+			var/water2holy = A.reagents.get_reagent_amount(/datum/reagent/water)
+			A.reagents.del_reagent(/datum/reagent/water)
+			A.reagents.add_reagent(/datum/reagent/water/holywater,water2holy)
 
 /obj/item/storage/bible/attackby(obj/item/I, mob/user, params)
 	. = ..()

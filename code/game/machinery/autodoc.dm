@@ -112,7 +112,7 @@
 			if(blood_transfer)
 				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
 					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
-						blood_pack.reagents.add_reagent("blood", 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
+						blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
 						visible_message("\ [src] speaks: Blood reserves depleted, switching to fresh bag.")
 					occupant.inject_blood(blood_pack, 8) // double iv stand rate
 					if(prob(10))
@@ -314,10 +314,10 @@
 						while(amount > 0)
 							if(!surgery) break
 							if(amount < inject_per_second)
-								H.reagents.add_reagent("spaceacillin",amount)
+								H.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, amount)
 								break
 							else
-								H.reagents.add_reagent("spaceacillin",inject_per_second)
+								H.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, inject_per_second)
 								amount -= inject_per_second
 								sleep(10*surgery_mod)
 
@@ -529,10 +529,10 @@
 						while(amount > 0)
 							if(!surgery) break
 							if(amount < inject_per_second)
-								H.reagents.add_reagent("spaceacillin",amount)
+								H.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,amount)
 								break
 							else
-								H.reagents.add_reagent("spaceacillin",inject_per_second)
+								H.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,inject_per_second)
 								amount -= inject_per_second
 								sleep(10)
 
@@ -816,14 +816,14 @@
 
 	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
-		
+
 	if(occupant)
 		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
-	if(!M || !G) 
+	if(!M || !G)
 		return
-		
+
 	M.forceMove(src)
 	update_use_power(2)
 	occupant = M

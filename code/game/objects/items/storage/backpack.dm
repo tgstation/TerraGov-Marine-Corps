@@ -29,7 +29,7 @@
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	
+
 	if(use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
 
@@ -628,11 +628,7 @@
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
-	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
-
+	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/I, mob/user, params)
 	if(iswelder(I))
@@ -640,7 +636,7 @@
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")
 			return
-		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
+		if(T.reagents.holder_full() || !reagents.total_volume)
 			return ..()
 
 		reagents.trans_to(I, T.max_fuel)

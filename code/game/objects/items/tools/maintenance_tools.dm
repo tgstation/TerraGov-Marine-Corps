@@ -426,11 +426,9 @@
 	w_class = 4.0
 	var/max_fuel = 600 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
-/obj/item/tool/weldpack/New()
-	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+/obj/item/tool/weldpack/Initialize()
+	. = ..()
+	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel)) //Lotsa refills
 
 /obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
 	. = ..()

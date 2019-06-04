@@ -111,23 +111,18 @@
 /obj/item/reagent_container/spray/cleaner
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
+	list_reagents = list(/datum/reagent/space_cleaner = 250)
 
 /obj/item/reagent_container/spray/cleaner/drone
-	name = "space cleaner"
-	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
-
-
-/obj/item/reagent_container/spray/cleaner/Initialize()
-	. = ..()
-	reagents.add_reagent("cleaner", volume)
+	list_reagents = list(/datum/reagent/space_cleaner = 50)
 
 
 /obj/item/reagent_container/spray/surgery
 	name = "sterilizing spray"
 	desc = "Infection and necrosis are a thing of the past!"
 	volume = 100
-	list_reagents = list("cleaner" = 50, "sterilizine" = 50)
+	list_reagents = list(/datum/reagent/space_cleaner = 50, /datum/reagent/sterilizine = 50)
 
 
 //pepperspray
@@ -139,7 +134,7 @@
 	possible_transfer_amounts = null
 	volume = 40
 	safety = TRUE
-	list_reagents = list("condensedcapsaicin" = 40)
+	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 40)
 
 /obj/item/reagent_container/spray/pepper/examine(mob/user)
 	..()
@@ -160,7 +155,7 @@
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = null
 	volume = 10
-	list_reagents = list("water" = 10)
+	list_reagents = list(/datum/reagent/water = 10)
 
 //chemsprayer
 /obj/item/reagent_container/spray/chemsprayer
@@ -220,7 +215,7 @@
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
 	volume = 100
-	list_reagents = list("plantbgone" = 100)
+	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
 
 
 /obj/item/reagent_container/spray/plantbgone/afterattack(atom/A, mob/user, proximity)

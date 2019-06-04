@@ -210,7 +210,7 @@
 	if(!need_breathe())
 		return
 
-	if(health < get_crit_threshold() && !reagents.has_reagent("inaprovaline"))
+	if(health < get_crit_threshold() && !reagents.has_reagent(/datum/reagent/medicine/inaprovaline))
 		Losebreath(1, TRUE)
 	else
 		adjust_Losebreath(-1, TRUE)
