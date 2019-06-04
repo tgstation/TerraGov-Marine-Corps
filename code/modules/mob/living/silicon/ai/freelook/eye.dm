@@ -117,9 +117,6 @@
 	if(ai_detector_visible)
 		var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
 		hud.remove_from_hud(src)
-		var/list/L = hud_list[AI_DETECT_HUD]
-		if(L)
-			QDEL_LIST(L)
 	return ..()
 
 
