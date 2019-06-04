@@ -141,9 +141,9 @@
 	var/S = 0
 	for(var/obj/item/reagent_container/food/snacks/grown/I in contents)
 		S += 5
-		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
+		if(I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) < 0.1)
 			points += 1
-		else points += I.reagents.get_reagent_amount("nutriment")*10
+		else points += I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)*10
 		qdel(I)
 	if(S)
 		processing = 1

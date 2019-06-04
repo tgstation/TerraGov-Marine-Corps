@@ -28,7 +28,7 @@
 
 //Germs
 /datum/internal_organ/proc/handle_antibiotics()
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 
 	if (!germ_level || antibiotics < MIN_ANTIBIOTICS)
 		return
@@ -78,7 +78,7 @@
 		handle_antibiotics()
 
 		//** Handle the effects of infections
-		var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+		var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 
 		if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
 			germ_level--
@@ -179,7 +179,7 @@
 		if(prob(5))
 			owner.emote("cough")		//respitory tract infection
 
-	if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		if(is_bruised())
 			if(prob(2))
 				spawn owner.emote("me", 1, "coughs up blood!")
@@ -234,7 +234,7 @@
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
-		if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+		if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 			if(is_bruised())
 				filter_effect -= 1
 			if(is_broken())
@@ -256,7 +256,7 @@
 			owner.adjustToxLoss(-0.5)
 
 		//Deal toxin damage if damaged
-		if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+		if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 			if(is_bruised() && prob(25))
 				owner.adjustToxLoss(0.1 * (damage/2))
 			else if(is_broken() && prob(50))
@@ -281,14 +281,14 @@
 	// This should probably be expanded in some way, but fucked if I know
 	// what else kidneys can process in our reagent list.
 	var/datum/reagent/coffee = locate(/datum/reagent/consumable/drink/coffee) in owner.reagents.reagent_list
-	if(coffee && !owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+	if(coffee && !owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		if(is_bruised())
 			owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
 		else if(is_broken())
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
 	//Deal toxin damage if damaged
-	if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		if(is_bruised() && prob(25))
 			owner.adjustToxLoss(0.1 * (damage/3))
 		else if(is_broken() && prob(50))
@@ -325,7 +325,7 @@
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
-	if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
+	if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		if(is_bruised())
 			owner.set_blurriness(20)
 		if(is_broken())

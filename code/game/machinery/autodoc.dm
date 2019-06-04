@@ -111,7 +111,7 @@
 					to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
 			if(blood_transfer)
 				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
-					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
+					if(blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
 						blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
 						visible_message("\ [src] speaks: Blood reserves depleted, switching to fresh bag.")
 					occupant.inject_blood(blood_pack, 8) // double iv stand rate
@@ -308,7 +308,7 @@
 					if(ADSURGERY_GERMS) // Just dose them with the maximum amount of antibiotics and hope for the best
 						if(prob(30)) visible_message("\ [src] speaks, Beginning organ disinfection.");
 						var/datum/reagent/R = GLOB.chemical_reagents_list["spaceacillin"]
-						var/amount = R.overdose_threshold - H.reagents.get_reagent_amount("spaceacillin")
+						var/amount = R.overdose_threshold - H.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 						var/inject_per_second = 3
 						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
 						while(amount > 0)
@@ -523,7 +523,7 @@
 						if(prob(30)) visible_message("\ [src] speaks, Beginning limb disinfection.");
 
 						var/datum/reagent/R = GLOB.chemical_reagents_list["spaceacillin"]
-						var/amount = (R.overdose_threshold/2) - H.reagents.get_reagent_amount("spaceacillin")
+						var/amount = (R.overdose_threshold/2) - H.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 						var/inject_per_second = 3
 						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
 						while(amount > 0)

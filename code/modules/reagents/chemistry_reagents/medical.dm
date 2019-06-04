@@ -211,7 +211,7 @@
 		L.adjustToxLoss(2*REM)
 	else
 		L.adjustOxyLoss(-2*REM)
-	holder.remove_reagent("lexorin", 2 * REM)
+	holder.remove_reagent(/datum/reagent/toxin/lexorin, 2 * REM)
 	return ..()
 
 /datum/reagent/medicine/dexalin/overdose_process(mob/living/L, metabolism)
@@ -234,7 +234,7 @@
 		L.adjustToxLoss(3*REM)
 	else
 		L.adjustOxyLoss(-L.getOxyLoss())
-	holder.remove_reagent("lexorin", 2*REM)
+	holder.remove_reagent(/datum/reagent/toxin/lexorin, 2*REM)
 	return ..()
 
 /datum/reagent/medicine/dexalinplus/overdose_process(mob/living/L, metabolism)
@@ -355,7 +355,7 @@ datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.AdjustKnockedout(-1)
 	L.AdjustStunned(-1)
 	L.AdjustKnockeddown(-1)
-	holder.remove_reagent("mindbreaker", 5)
+	holder.remove_reagent(/datum/reagent/toxin/mindbreaker, 5)
 	L.hallucination = max(0, L.hallucination - 10)
 	if(prob(80))
 		L.adjustToxLoss(1)

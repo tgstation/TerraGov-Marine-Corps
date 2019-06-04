@@ -76,7 +76,7 @@
 	toxpwr = 3
 
 /datum/reagent/toxin/phoron/on_mob_life(mob/living/L, metabolism)
-	holder.remove_reagent("inaprovaline", 2*REM)
+	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, 2*REM)
 	return ..()
 
 /datum/reagent/toxin/lexorin

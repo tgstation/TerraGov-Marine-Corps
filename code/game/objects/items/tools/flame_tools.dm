@@ -298,15 +298,17 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "lit [name]"
 	attack_verb = list("burnt", "singed")
 	damtype = "fire"
-	if(reagents.get_reagent_amount("phoron")) // the phoron explodes when exposed to fire
+	var/phoron_amount = reagents.get_reagent_amount(/datum/reagent/toxin/phoron)
+	if(phoron_amount) // the phoron explodes when exposed to fire
 		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount("phoron") / 2.5, 1), get_turf(src), 0, 0)
+		e.set_up(round(phoron_amount / 2.5, 1), get_turf(src), 0, 0)
 		e.start()
 		qdel(src)
 		return
-	if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
+	var/fuel_amount = reagents.get_reagent_amount(/datum/reagent/fuel)
+	if(fuel_amount) // the fuel explodes, too, but much less violently
 		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
+		e.set_up(round(fuel_amount / 5, 1), get_turf(src), 0, 0)
 		e.start()
 		qdel(src)
 		return

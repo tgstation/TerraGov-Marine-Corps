@@ -625,13 +625,6 @@
 	color = "#404030" // rgb: 64, 64, 48
 	taste_description = "mordant"
 
-/datum/reagent/ultraglue
-	name = "Ultra Glue"
-	id = "glue"
-	description = "An extremely powerful bonding agent."
-	color = "#FFFFCC" // rgb: 255, 255, 204
-	taste_description = "something chewy"
-
 /datum/reagent/diethylamine
 	name = "Diethylamine"
 	id = "diethylamine"

@@ -45,7 +45,7 @@
 			if(!heart)
 				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
 
-			if(!(reagents.get_reagent_amount("peridaxon") >= 0.05) && heart.damage > 1)
+			if(!(reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05) && heart.damage > 1)
 				if(heart.damage < heart.min_bruised_damage)
 					heart_multi = 0.9
 					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
@@ -123,7 +123,7 @@
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/proc/drip(amt)
 
-	if(reagents.get_reagent_amount("quickclot")) //Quickclot stops bleeding, magic!
+	if(reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)) //Quickclot stops bleeding, magic!
 		return
 
 	if(blood_volume)

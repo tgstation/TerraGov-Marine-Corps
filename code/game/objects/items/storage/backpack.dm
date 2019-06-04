@@ -649,7 +649,7 @@
 			return ..()
 
 		var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
-		reagents.remove_reagent("fuel", fuel_available)
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_available)
 		FT.current_rounds = fuel_available
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = "Fuel"
@@ -697,7 +697,7 @@
 		var/fuel_refill = FTL.max_rounds - FTL.current_rounds
 		if(reagents.total_volume < fuel_refill)
 			fuel_refill = reagents.total_volume
-		reagents.remove_reagent("fuel", fuel_refill)
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_refill)
 		FTL.current_rounds = FTL.current_rounds + fuel_refill
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")

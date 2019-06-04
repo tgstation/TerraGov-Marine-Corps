@@ -21,12 +21,13 @@
 		if(current_rounds)
 			to_chat(user, "<span class='warning'>You can't mix fuel mixtures!</span>")
 			return
-		var/fuel_available = FT.reagents.get_reagent_amount("fuel") < max_rounds ? FT.reagents.get_reagent_amount("fuel") : max_rounds
+		var/fuel_amount = FT.reagents.get_reagent_amount(/datum/reagent/fuel)
+		var/fuel_available = fuel_amount < max_rounds ? fuel_amount : max_rounds
 		if(!fuel_available)
 			to_chat(user, "<span class='warning'>[FT] is empty!</span>")
 			return
 
-		FT.reagents.remove_reagent("fuel", fuel_available)
+		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_available)
 		current_rounds = fuel_available
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		caliber = "Fuel"
