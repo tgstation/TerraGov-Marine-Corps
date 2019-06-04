@@ -37,7 +37,7 @@
 	G.reenter_corpse()
 
 
-/datum/hud/ghost/New(mob/owner, ui_style='icons/mob/screen/white.dmi')
+/datum/hud/ghost/New(mob/owner, ui_style='icons/mob/screen/white.dmi', ui_color, ui_alpha = 230)
 	. = ..()
 	var/obj/screen/using
 
@@ -73,8 +73,3 @@
 		screenmob.client.screen -= static_inventory
 	else
 		screenmob.client.screen += static_inventory
-
-
-/mob/dead/observer/create_hud()
-	if(client && !hud_used)
-		hud_used = new /datum/hud/ghost(src, ui_style2icon(client.prefs.ui_style))

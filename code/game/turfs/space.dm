@@ -55,7 +55,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
-		playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 		ReplaceWithLattice()
 
 	else if(istype(I, /obj/item/stack/tile/plasteel))
@@ -68,7 +68,7 @@
 		if(S.get_amount() < 1)
 			return
 		qdel(L)
-		playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 		S.build(src)
 		S.use(1)
 

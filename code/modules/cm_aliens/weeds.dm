@@ -110,7 +110,7 @@
 		if(!WT.remove_fuel(0))
 			return
 		damage = 15
-		playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder.ogg', 25, 1)
 	else
 		playsound(loc, "alien_resin_break", 25)
 

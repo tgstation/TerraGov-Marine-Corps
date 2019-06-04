@@ -48,7 +48,7 @@
 
 		log_combat(user, M, "stunned", src)
 
-		playsound(src.loc, 'sound/weapons/Egloves.ogg', 25, 1)
+		playsound(src.loc, 'sound/weapons/egloves.ogg', 25, 1)
 		if(charges < 1)
 			status = 0
 			update_icon()

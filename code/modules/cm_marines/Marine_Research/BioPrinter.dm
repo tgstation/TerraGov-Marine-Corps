@@ -69,7 +69,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 			to_chat(user, "<span class='warning'>You can't load the [src] while it's opened.</span>")
 			return TRUE
 
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
 		M.state = 2
 		M.icon_state = "box_1"

@@ -74,7 +74,7 @@ RCD
 				return
 
 	proc/activate()
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+		playsound(src.loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 
 	afterattack(atom/A, mob/user, proximity)

@@ -109,7 +109,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>You cut away the wiring.</span>")
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		rigged = FALSE
 
 

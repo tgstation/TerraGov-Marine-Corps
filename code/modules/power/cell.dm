@@ -90,7 +90,7 @@
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		spark_system.start(src)
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1, 6)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1, 6)
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()

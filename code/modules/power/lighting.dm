@@ -44,14 +44,14 @@
 
 	if(iswrench(I))
 		if(stage == 1)
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "You begin deconstructing [src].")
 			if(!do_after(usr, 30, TRUE, src, BUSY_ICON_BUILD))
 				return
 			new /obj/item/stack/sheet/metal(get_turf(loc), sheets_refunded)
 			user.visible_message("[user] deconstructs [src].", \
 				"You deconstruct [src].", "You hear a noise.")
-			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 			qdel(src)
 		else if(stage == 2)
 			to_chat(user, "You have to remove the wires first.")
@@ -72,7 +72,7 @@
 		new /obj/item/stack/cable_coil(get_turf(loc), 1, "red")
 		user.visible_message("[user.name] removes the wiring from [src].", \
 			"You remove the wiring from [src].", "You hear a noise.")
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 
 	else if(iscablecoil(I))
 		var/obj/item/stack/cable_coil/coil = I
@@ -105,7 +105,7 @@
 		stage = 3
 		user.visible_message("[user] closes [src]'s casing.", \
 			"You close [src]'s casing.", "You hear a noise.")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 
 		switch(fixture_type)
 			if("tube")
@@ -335,7 +335,7 @@
 
 	else if(status == LIGHT_EMPTY)
 		if(isscrewdriver(I)) //If it's a screwdriver open it.
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			user.visible_message("[user] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
 			var/obj/machinery/light_construct/newlight

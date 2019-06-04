@@ -429,8 +429,9 @@
 
 
 	body += {"<br>
-		<b>Transformation:</b><br>
-		 Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a>
+		<b>Transformation:</b>
+		<br> Special: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
+		<a href='?src=[ref];transform=ai;mob=[REF(M)]'>AI</a>
 		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a>

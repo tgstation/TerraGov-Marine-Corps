@@ -72,7 +72,7 @@
 
 	else if(iswrench(I))
 		if(anchored)
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
 
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -87,7 +87,7 @@
 			if(user.interactee == src)
 				usr << browse(null, "window=pipedispenser")
 		else
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
 			
 			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))

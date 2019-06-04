@@ -195,7 +195,7 @@
 			disconnect_from_network()
 			to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
 
-		playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)

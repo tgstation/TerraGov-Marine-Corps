@@ -8,7 +8,7 @@
 	initial_language_holder = /datum/language_holder/synthetic
 
 	var/obj/machinery/camera/builtInCamera = null
-	var/obj/item/radio/headset/almayer/mcom/ai/radio = null
+	var/obj/item/radio/headset/almayer/mcom/silicon/radio = null
 
 	var/list/HUD_toggled = list(0, 0, 0)
 
@@ -30,6 +30,42 @@
 
 
 /mob/living/silicon/drop_all_held_items()
+	return
+
+
+/mob/living/silicon/get_held_item()
+	return
+
+
+/mob/living/silicon/get_inactive_held_item()
+	return
+
+
+/mob/living/silicon/get_active_held_item()
+	return
+
+
+/mob/living/silicon/put_in_l_hand(obj/item/I)
+	return
+
+
+/mob/living/silicon/put_in_r_hand(obj/item/I)
+	return
+
+
+/mob/living/silicon/stripPanelEquip(obj/item/I, mob/M, slot)
+	return
+
+
+/mob/living/silicon/stripPanelUnequip(obj/item/I, mob/M, slot)
+	return
+
+
+/mob/living/silicon/med_hud_set_health()
+	return
+
+
+/mob/living/silicon/med_hud_set_status()
 	return
 
 
@@ -56,19 +92,32 @@
 	return TRUE
 
 
-/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = 0)
-	return 0 //The only effect that can hit them atm is flashes and they still directly edit so this works for now
+/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = FALSE)
+	return FALSE
 
 
-// This adds the basic clock, and malf_ai info to all silicon lifeforms
-/mob/living/silicon/Stat()
-	. = ..()
+/mob/living/silicon/adjustToxLoss(amount)
+	return FALSE
 
-	if(statpanel("Stats"))
-		if(!stat)
-			stat(null, text("System integrity: [round((health/maxHealth)*100)]%"))
-		else
-			stat(null, text("Systems nonfunctional"))
+
+/mob/living/silicon/setToxLoss(amount)
+	return FALSE
+
+
+/mob/living/silicon/adjustCloneLoss(amount)
+	return FALSE
+
+
+/mob/living/silicon/setCloneLoss(amount)
+	return FALSE
+
+
+/mob/living/silicon/adjustBrainLoss(amount)
+	return FALSE
+
+
+/mob/living/silicon/setBrainLoss(amount)
+	return FALSE
 
 
 //can't inject synths
@@ -85,16 +134,16 @@
 	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD", null) as null|anything in listed_huds
 	if(!client)
 		return
-	var/datum/mob_hud/H
+	var/datum/atom_hud/H
 	var/HUD_nbr = 1
 	switch(hud_choice)
 		if("Medical HUD")
-			H = huds[MOB_HUD_MEDICAL_OBSERVER]
+			H = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 		if("Security HUD")
-			H = huds[MOB_HUD_SECURITY_ADVANCED]
+			H = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 			HUD_nbr = 2
 		if("Squad HUD")
-			H = huds[MOB_HUD_SQUAD]
+			H = GLOB.huds[DATA_HUD_SQUAD]
 			HUD_nbr = 3
 		else
 			return
@@ -113,18 +162,64 @@
 	flash_eyes()
 
 	switch(severity)
-		if(1.0)
-			if (stat != 2)
-				adjustBruteLoss(100)
-				adjustFireLoss(100)
-				if(!anchored)
-					gib()
-		if(2.0)
-			if (stat != 2)
-				adjustBruteLoss(60)
-				adjustFireLoss(60)
-		if(3.0)
-			if (stat != 2)
-				adjustBruteLoss(30)
+		if(1)
+			if(stat == DEAD)
+				return
+			adjustBruteLoss(100)
+			adjustFireLoss(100)
+			if(!anchored)
+				gib()
+		if(2)
+			if(stat == DEAD)
+				return
+			adjustBruteLoss(60)
+			adjustFireLoss(60)
+		if(3)
+			if(stat == DEAD)
+				return
+			adjustBruteLoss(30)
 
 	updatehealth()
+
+
+/mob/living/silicon/emp_act(severity)
+	. = ..()
+
+	to_chat(src, "<span class='danger'>Electromagnetic pulse detected.</span>")
+
+	switch(severity)
+		if(1)
+			adjustBruteLoss(20)
+		if(2)
+			adjustBruteLoss(10)
+
+	to_chat(src, "<span class='danger'>*BZZZT*</span>")
+	flash_eyes()
+
+
+/mob/living/silicon/update_transform()
+	var/matrix/ntransform = matrix(transform)
+	var/changed = 0
+	if(resize != RESIZE_DEFAULT_SIZE)
+		changed++
+		ntransform.Scale(resize)
+		resize = RESIZE_DEFAULT_SIZE
+
+	if(changed)
+		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
+	return ..()
+
+
+/mob/living/silicon/attack_hand(mob/living/user)
+	switch(user.a_intent)
+		if(INTENT_HELP)
+			user.visible_message("[user] pets [src].", "<span class='notice'>You pet [src].</span>")
+		
+		if(INTENT_GRAB)
+			user.start_pulling(src)
+
+		else
+			user.animation_attack_on(src)
+			playsound(loc, 'sound/effects/bang.ogg', 10, 1)
+			visible_message("<span class='danger'>[user] punches [src], but doesn't leave a dent.</span>", \
+				"<span class='warning'>[user] punches [src], but doesn't leave a dent.</span>")

@@ -64,6 +64,6 @@
 			stored_matter[material] += total_material
 	qdel(I)
 	if(last_recycle_sound < world.time)
-		playsound(loc, 'sound/items/Welder.ogg', 30, 1)
+		playsound(loc, 'sound/items/welder.ogg', 30, 1)
 		last_recycle_sound = world.time + 50
 

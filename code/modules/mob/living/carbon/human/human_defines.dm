@@ -107,3 +107,5 @@
 	var/damageoverlaytemp = 0
 
 	var/specset //Simple way to track which set has the player taken
+
+	hud_type = /datum/hud/human

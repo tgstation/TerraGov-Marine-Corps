@@ -1,4 +1,4 @@
-/datum/hud/larva/New(mob/living/carbon/xenomorph/larva/owner, ui_alpha = 230)
+/datum/hud/larva/New(mob/living/carbon/xenomorph/larva/owner, ui_style, ui_color, ui_alpha = 230)
 	..()
 	var/obj/screen/using
 
@@ -19,10 +19,3 @@
 	locate_leader = new /obj/screen/alien/queen_locator()
 	locate_leader.alpha = ui_alpha
 	infodisplay += locate_leader
-
-
-
-/mob/living/carbon/xenomorph/larva/create_hud()
-	if(client && !hud_used)
-		var/ui_alpha = client.prefs.ui_style_alpha
-		hud_used = new /datum/hud/larva(src, ui_alpha)

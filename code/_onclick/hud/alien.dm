@@ -36,7 +36,7 @@
 	icon_state = "power_display2"
 	screen_loc = ui_alienplasmadisplay
 
-/datum/hud/alien/New(mob/living/carbon/xenomorph/owner, ui_alpha = 230)
+/datum/hud/alien/New(mob/living/carbon/xenomorph/owner, ui_style, ui_color, ui_alpha = 230)
 	..()
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
@@ -141,9 +141,3 @@
 			H.r_hand.screen_loc = null
 		if(H.l_hand)
 			H.l_hand.screen_loc = null
-
-
-/mob/living/carbon/xenomorph/create_hud()
-	if(client && !hud_used)
-		var/ui_alpha = client.prefs.ui_style_alpha
-		hud_used = new /datum/hud/alien(src, ui_alpha)

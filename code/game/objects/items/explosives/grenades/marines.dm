@@ -145,7 +145,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
 	icon_state = "molotov"
 	item_state = "molotov"
-	arm_sound = 'sound/items/Welder2.ogg'
+	arm_sound = 'sound/items/welder2.ogg'
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/incendiary/molotov/New()

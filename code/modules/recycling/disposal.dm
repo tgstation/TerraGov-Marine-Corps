@@ -54,12 +54,12 @@
 				return
 			if(mode == 0) //It's off but still not unscrewed
 				mode = -1 //Set it to doubleoff
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
 				return
 			else if(mode == -1)
 				mode = 0
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 				return
 		else if(iswelder(I) && mode == -1)
@@ -71,7 +71,7 @@
 				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 				return
 
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
 			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 				return
@@ -764,7 +764,7 @@
 			to_chat(user, "<span class='warning'>You need more welding fuel to cut [src].</span>")
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
 		var/atom/wloc = I.loc
@@ -1238,7 +1238,7 @@
 			to_chat(user, "<span class='warning'>You need more welding fuel to cut the pipe.</span>")
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
 		var/atom/wloc = I.loc
@@ -1333,10 +1333,10 @@
 	if(isscrewdriver(I))
 		mode = !mode
 		if(mode)
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
 		else
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 	
 	else if(iswelder(I) && mode)
@@ -1345,7 +1345,7 @@
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))

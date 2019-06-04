@@ -180,7 +180,7 @@
 		if(!L.knocked_down)
 			L.KnockDown(4)
 
-	playsound(loc, 'sound/weapons/Egloves.ogg', 25, 1, 6)
+	playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, 6)
 	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
 
 	deductcharge(hitcost)
