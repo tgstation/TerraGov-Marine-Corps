@@ -281,7 +281,6 @@
 	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
 	death_sound = 'sound/voice/scream_horror1.ogg'
 
-	darksight = 8
 	slowdown = 0.3
 	insulated = 1
 	has_fine_manipulation = FALSE
@@ -314,7 +313,6 @@
 	unarmed_type = /datum/unarmed_attack/claws
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	primitive = /mob/living/carbon/monkey/unathi
-	darksight = 3
 	taste_sensitivity = TASTE_SENSITIVE
 	gluttonous = 1
 
@@ -341,7 +339,6 @@
 	default_language = /datum/language/tajaran
 	tail = "tajtail"
 	unarmed_type = /datum/unarmed_attack/claws
-	darksight = 8
 
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200

@@ -56,13 +56,6 @@ REAGENT SCANNER
 							O.invisibility = INVISIBILITY_MAXIMUM
 							O.alpha = 255
 
-		var/mob/living/M = locate() in T
-		if(M && M.invisibility == INVISIBILITY_LEVEL_TWO)
-			M.invisibility = 0
-			spawn(2)
-				if(M)
-					M.invisibility = INVISIBILITY_LEVEL_TWO
-
 
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
