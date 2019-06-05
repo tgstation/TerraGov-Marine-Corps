@@ -564,7 +564,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already."
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist
-	fire_sound = 'sound/weapons/gun_sniper.ogg'
+	fire_sound = 'sound/weapons/gun_mosin.ogg'
+	dry_fire_sound = 'sound/weapons/gun_empty.ogg'
 	caliber = "7.62x54mm Rimmed" //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex

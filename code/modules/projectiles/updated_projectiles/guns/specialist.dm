@@ -738,8 +738,9 @@
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
-	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
-	unload_sound = 'sound/weapons/gun_mortar_reload.ogg'
+	dry_fire_sound = 'sound/weapons/gun_launcher_empty.ogg'
+	reload_sound = 'sound/weapons/gun_launcher_reload.ogg'
+	unload_sound = 'sound/weapons/gun_launcher_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 

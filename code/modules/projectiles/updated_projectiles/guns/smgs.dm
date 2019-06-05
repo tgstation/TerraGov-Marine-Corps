@@ -219,7 +219,7 @@
 	caliber = "7.62x25mm" //codex
 	max_shells = 35 //codex
 	origin_tech = "combat=3;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/smg_heavy.ogg'
+	fire_sound = 'sound/weapons/gun_ppsh.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	attachable_allowed = list(
 						/obj/item/attachable/compensator,

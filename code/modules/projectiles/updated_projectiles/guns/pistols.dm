@@ -208,7 +208,7 @@
 	item_state = "deagle"
 	caliber = ".50 AE" //codex
 	max_shells = 7 //codex
-	fire_sound = 'sound/weapons/gun_44mag.ogg'
+	fire_sound = 'sound/weapons/gun_deagle.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/heavy
 	force = 13
 	attachable_allowed = list(
