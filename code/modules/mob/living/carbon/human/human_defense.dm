@@ -369,12 +369,12 @@ Contains most of the procs that are called when a mob is attacked by something
 	return 1
 
 
-/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = world.view)
+/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = world.view, within_sight = TRUE)
 	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 	var/dist_pct = get_dist(src, Q) / screech_range
 
 	// Intensity is reduced by a 30% if you can't see the queen. Hold orders will reduce by an extra 10% per rank.
-	var/reduce_within_sight = (Q in view(screech_range, loc)) ? 1 : 0.7
+	var/reduce_within_sight = within_sight ? 1 : 0.7
 	var/reduce_prot_aura = protection_aura * 0.1
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
