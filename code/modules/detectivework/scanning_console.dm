@@ -288,7 +288,7 @@
 			updateUsrDialog()
 		if(scan_progress == 0)
 			scan_progress = -1
-			ping("Scan complete.")
+			visible_message("Scan complete.")
 			var/datum/data/record/forensic/fresh = new(scanning)
 			add_record(fresh)
 			stop_processing()

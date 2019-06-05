@@ -13,7 +13,7 @@
 	max_integrity = 20
 	req_access =list(ACCESS_MARINE_MEDBAY)
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
-//var/emagged = 0
+//var/DISABLE_BITFIELD(obj_flags, EMAGGED)
 	var/list/botcard_access = list(ACCESS_MARINE_MEDBAY)
 	var/obj/item/reagent_container/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
@@ -176,11 +176,11 @@
 	. = ..()
 
 	if(istype(I, /obj/item/card/id))
-		if(allowed(user) && !open && !emagged)
+		if(allowed(user) && !open && !CHECK_BITFIELD(obj_flags, EMAGGED))
 			locked = !locked
 			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")
 			updateUsrDialog()
-		else if(emagged)
+		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>ERROR</span>")
 		else if(open)
 			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
@@ -215,7 +215,7 @@
 		src.currently_healing = 0
 		src.last_found = world.time
 		src.anchored = 0
-		src.emagged = 2
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		src.safety_checks = 0
 		src.on = 1
 		src.icon_state = "medibot[src.on]"
@@ -320,7 +320,7 @@
 	if(C.suiciding)
 		return 0 //Kevorkian school of robotic medical assistants.
 
-	if(src.emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED)) //Everyone needs our medicine. (Our medicine is toxins)
 		return 1
 
 	if(safety_checks)
@@ -383,7 +383,7 @@
 		if(!safety_fail)
 			reagent_id = "internal_beaker"
 
-	if(emagged == 2) //Emagged! Time to poison everybody.
+	if(CHECK_BITFIELD(obj_flags, EMAGGED) == 2) //Emagged! Time to poison everybody.
 		reagent_id = "toxin"
 
 	if (!reagent_id && (C.getBruteLoss() >= heal_threshold))
