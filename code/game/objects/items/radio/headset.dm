@@ -286,21 +286,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		usr << browse(null, "window=radio")
 
 
-/obj/item/radio/headset/almayer/ce
-	name = "chief ship engineer's headset"
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/ce
-	use_command = TRUE
-	command = TRUE
-
-
-/obj/item/radio/headset/almayer/cmo
-	name = "chief medical officer's headset"
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/cmo
-	use_command = TRUE
-	command = TRUE
-
 
 /obj/item/radio/headset/almayer/mt
 	name = "engineering radio headset"
