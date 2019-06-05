@@ -594,6 +594,8 @@
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.squad_leader = H
 	SSdirection.set_leader(current_squad.tracking_id, H)
+	SSdirection.start_tracking("marine-sl", H)
+
 	if(H.mind.assigned_role == "Squad Leader")
 		H.mind.comm_title = "SL"
 	else

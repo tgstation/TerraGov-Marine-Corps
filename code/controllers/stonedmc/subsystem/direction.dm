@@ -25,6 +25,7 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/Initialize(start_timeofday)
 	. = ..()
 	// Static squads/factions can be defined here for tracking
+	init_squad(null, null, "marine-sl")
 	for (var/hivenumber in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 		init_squad(null, HS.living_xeno_queen, hivenumber)
