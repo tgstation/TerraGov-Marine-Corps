@@ -213,7 +213,7 @@
 		new_xeno.updatehealth()
 
 	if(xeno_mobhud)
-		var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
+		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 

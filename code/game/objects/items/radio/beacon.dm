@@ -16,7 +16,6 @@
 		src.code = t
 	if (!( src.code ))
 		src.code = "beacon"
-	src.add_fingerprint(usr)
 	return
 
 

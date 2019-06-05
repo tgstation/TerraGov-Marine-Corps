@@ -64,8 +64,6 @@
 		return
 
 	if (user.a_intent == INTENT_HARM && ismob(target))
-		if((CLUMSY in user.mutations) && prob(50))
-			target = user
 		var/mob/M = target
 		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
 			user.KnockDown(3)
@@ -97,10 +95,7 @@
 					if(T.get_blood_id() && reagents.has_reagent(T.get_blood_id()))
 						to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
 						return
-					if(!T.dna)
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-						return
-					if(NOCLONE in T.mutations) //target done been et, no more blood in him
+					if(!T.blood_type)
 						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 						return
 
@@ -274,7 +269,6 @@
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	add_mob_blood(target)
-	add_fingerprint(usr)
 	update_icon()
 
 

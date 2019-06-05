@@ -125,12 +125,6 @@
 	toxpwr = 0
 	taste_description = "mint"
 
-/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/L, metabolism)
-	if(FAT in L.mutations)
-		L.gib()
-	else
-		return ..()
-
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	id = "carpotoxin"
@@ -155,7 +149,6 @@
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
 	L.KnockDown(10)
-	L.silent = max(L.silent, 10)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)

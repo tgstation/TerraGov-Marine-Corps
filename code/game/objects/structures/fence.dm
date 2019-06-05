@@ -59,13 +59,7 @@
 	healthcheck()
 
 /obj/structure/fence/attack_hand(mob/user as mob)
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
-		obj_integrity -= 100
-		healthcheck(1, 1, user)
-
-	else if(ishuman(user) && user.a_intent == INTENT_HARM)
+	if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			attack_generic(H, 25)
@@ -121,7 +115,7 @@
 
 		user.visible_message("<span class='notice'>[user] starts repairing [src] with [R].</span>",
 		"<span class='notice'>You start repairing [src] with [R]")
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
@@ -135,7 +129,7 @@
 		cut = 0
 		density = 1
 		update_icon()
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] repairs [src] with [R].</span>",
 		"<span class='notice'>You repair [src] with [R]")
 
@@ -175,11 +169,11 @@
 	else if(iswirecutter(I))
 		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [I].</span>",
 		"<span class='notice'>You start cutting through [src] with [I]")
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] cuts through [src] with [I].</span>",
 		"<span class='notice'>You cut through [src] with [I]")
 		cut_grille()
@@ -221,7 +215,7 @@
 //This proc is used to update the icons of nearby windows.
 /obj/structure/fence/proc/update_nearby_icons()
 	update_icon()
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/fence/W in get_step(src, direction))
 			W.update_icon()
 

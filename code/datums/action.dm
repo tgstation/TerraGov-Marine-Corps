@@ -123,6 +123,8 @@
 #define XACT_IGNORE_DEAD_TARGET	(1 << 12) // bypass checks of a dead target
 #define XACT_IGNORE_SELECTED_ABILITY	(1 << 13) // bypass the check of the selected ability
 
+#define XACT_KEYBIND_USE_ABILITY (1 << 0) // immediately activate even if selectable
+
 /datum/action/xeno_action
 	var/action_icon_state
 	var/plasma_cost = 0
@@ -132,7 +134,9 @@
 	var/last_use
 	var/cooldown_timer
 	var/ability_name
+	var/keybind_flags
 	var/image/cooldown_image
+	var/keybind_signal
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -142,6 +146,21 @@
 	cooldown_image = image('icons/effects/progressicons.dmi', null, "busy_clock")
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
+
+/datum/action/xeno_action/give_action(mob/living/L)
+	. = ..()
+	if(keybind_signal)
+		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
+
+/datum/action/xeno_action/remove_action(mob/living/L)
+	. = ..()
+	if(keybind_signal)
+		UnregisterSignal(L, keybind_signal)
+
+/datum/action/xeno_action/proc/keybind_activation()
+	if(can_use_action())
+		action_activate()
+	return COMSIG_KB_ACTIVATED
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -266,6 +285,16 @@
 	. = ..()
 	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
 	selected_frame.appearance_flags = RESET_COLOR
+
+/datum/action/xeno_action/activable/keybind_activation()
+	. = COMSIG_KB_ACTIVATED
+	if(CHECK_BITFIELD(keybind_flags, XACT_KEYBIND_USE_ABILITY))
+		if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+			use_ability()
+		return
+
+	if(can_use_action(FALSE, null, TRUE)) // just for selecting
+		action_activate()
 
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner

@@ -36,11 +36,6 @@
 	build_path = "/obj/machinery/computer/cryopod"
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/aiupload
-	name = "Circuit board (AI Upload)"
-	build_path = /obj/machinery/computer/aiupload
-	origin_tech = "programming=4"
-
 /obj/item/circuitboard/computer/med_data
 	name = "Circuit board (Medical Records)"
 	build_path = /obj/machinery/computer/med_data
@@ -48,11 +43,6 @@
 /obj/item/circuitboard/computer/pandemic
 	name = "Circuit board (PanD.E.M.I.C. 2200)"
 	build_path = /obj/machinery/computer/pandemic
-	origin_tech = "programming=2;biotech=2"
-
-/obj/item/circuitboard/computer/scan_consolenew
-	name = "Circuit board (DNA Machine)"
-	build_path = /obj/machinery/computer/scan_consolenew
 	origin_tech = "programming=2;biotech=2"
 
 /obj/item/circuitboard/computer/communications
@@ -165,14 +155,7 @@
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/HolodeckControl // Not going to let people get this, but it's just here for future
-	name = "Circuit board (Holodeck Control)"
-	build_path = /obj/machinery/computer/HolodeckControl
-	origin_tech = "programming=4"
-/obj/item/circuitboard/computer/aifixer
-	name = "Circuit board (AI Integrity Restorer)"
-	build_path = /obj/machinery/computer/aifixer
-	origin_tech = "programming=3;biotech=2"
+
 /obj/item/circuitboard/computer/area_atmos
 	name = "Circuit board (Area Air Control)"
 	build_path = /obj/machinery/computer/area_atmos
@@ -226,7 +209,7 @@
 
 	if(isscrewdriver(I))
 		user.visible_message("<span class='notice'> \the [user] adjusts the jumper on the [src]'s access protocol pins.</span>", "<span class='notice'> You adjust the jumper on the access protocol pins.</span>")
-		
+
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "Circuit Board (RD Console - Robotics)"
 			build_path = /obj/machinery/computer/rdconsole/robotics

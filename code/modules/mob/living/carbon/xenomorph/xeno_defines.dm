@@ -105,7 +105,6 @@
 	desc = "What the hell is THAT?"
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Drone Walking"
-	voice_name = "xenomorph"
 	speak_emote = list("hisses")
 	melee_damage_lower = 5
 	melee_damage_upper = 10 //Arbitrary damage values
@@ -113,8 +112,6 @@
 	attack_sound = null
 	friendly = "nuzzles"
 	wall_smash = FALSE
-	universal_understand = FALSE
-	universal_speak = FALSE
 	health = 5
 	maxHealth = 5
 	rotate_on_lying = FALSE
@@ -122,6 +119,7 @@
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
 	see_infrared = TRUE
+	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
 	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()

@@ -88,13 +88,6 @@
 	spawn_number = 7
 	w_class = 3
 
-/obj/item/storage/box/injectors
-	name = "box of DNA injectors"
-	desc = "This box contains injectors it seems."
-	spawn_type = /obj/item/dnainjector/h2m
-	spawn_number = 6
-	w_class = 3
-
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"

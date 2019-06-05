@@ -73,7 +73,6 @@
 	else if(href_list["back"])
 		selected_mail = null
 
-	add_fingerprint(usr)
 //	updateUsrDialog()
 	attack_hand(usr)
 

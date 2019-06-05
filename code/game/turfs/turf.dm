@@ -60,6 +60,7 @@
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
 		ChangeTurf(/turf/open/floor/plating, TRUE)
+	visibilityChanged()
 	return ..()
 
 /turf/ex_act(severity)
@@ -123,7 +124,6 @@
 
 		if(!isspaceturf(src))
 			M.inertia_dir = 0
-			M.make_floating(0)
 	..()
 
 /turf/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -170,6 +170,13 @@
 	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
 	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
 		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
+
+	var/list/transferring_comps = list()
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, flags, transferring_comps)
+	for(var/i in transferring_comps)
+		var/datum/component/comp = i
+		comp.RemoveComponent()
+
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
@@ -268,7 +275,8 @@
 
 //Enable cable laying on turf click instead of pixel hunting the cable
 /turf/attackby(obj/item/I, mob/living/user, params)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	user.changeNext_move(I.attack_speed)
@@ -277,12 +285,10 @@
 		var/obj/item/stack/cable_coil/coil = I
 		for(var/obj/structure/cable/C in src)
 			if(C.d1 == CABLE_NODE || C.d2 == CABLE_NODE)
-				C.attackby(I,user)
+				C.attackby(I, user, params)
 				return
 		coil.place_turf(src, user)
 		return TRUE
-
-	return FALSE
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()
@@ -304,7 +310,7 @@
 
 	switch(A.ceiling)
 		if(CEILING_GLASS)
-			playsound(src, "sound/effects/Glassbr1.ogg", 60, 1)
+			playsound(src, "sound/effects/glassbr1.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
 					visible_message("<span class='boldnotice'>Shards of glass rain down from above!</span>")
@@ -707,3 +713,27 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	name = "Z-level baseturf placeholder"
 	desc = "Marker for z-level baseturf, usually resolves to space."
 	baseturfs = /turf/baseturf_bottom
+
+
+/turf/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
+	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
+
+	// Make toxins vomit look different
+	if(toxvomit)
+		this.icon_state = "vomittox_[pick(1,4)]"
+
+
+/turf/proc/visibilityChanged()
+	GLOB.cameranet.updateVisibility(src)
+	// The cameranet usually handles this for us, but if we've just been
+	// recreated we should make sure we have the cameranet vis_contents.
+	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
+	if(C)
+		if(C.obscuredTurfs[src])
+			vis_contents += GLOB.cameranet.vis_contents_objects
+		else
+			vis_contents -= GLOB.cameranet.vis_contents_objects
+
+
+/turf/AllowDrop()
+	return TRUE

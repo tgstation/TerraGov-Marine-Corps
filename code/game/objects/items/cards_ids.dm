@@ -38,7 +38,6 @@
 		src.name = text("data disk- '[]'", t)
 	else
 		src.name = "data disk"
-	src.add_fingerprint(usr)
 	return
 
 /obj/item/card/data/clown
@@ -107,8 +106,7 @@
 	if(uses<1)
 		user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
 		user.drop_held_item()
-		var/obj/item/card/emag_broken/junk = new(user.loc)
-		junk.add_fingerprint(user)
+		new /obj/item/card/emag_broken(user.loc)
 		qdel(src)
 		return
 
@@ -124,8 +122,6 @@
 	flags_equip_slot = ITEM_SLOT_ID
 
 	var/blood_type = "\[UNSET\]"
-	var/dna_hash = "\[UNSET\]"
-	var/fingerprint_hash = "\[UNSET\]"
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
@@ -137,18 +133,16 @@
 	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
 
 
-/obj/item/card/id/New()
-	..()
-	spawn(30)
-	if(ishuman(loc))
-		blood_type = loc:dna:b_type
-		dna_hash = loc:dna:unique_enzymes
-		fingerprint_hash = md5(loc:dna:uni_identity)
+/obj/item/card/id/Initialize()
+	. = ..()
+	if(!ishuman(loc))
+		return
+	var/mob/living/carbon/human/H = loc
+	blood_type = H.blood_type
 
 /obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")
 
-	src.add_fingerprint(user)
 	return
 
 /obj/item/card/id/GetAccess()
@@ -173,8 +167,6 @@
 
 	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
-	to_chat(usr, "The DNA hash on the card is [dna_hash].")
-	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
 	return
 
 

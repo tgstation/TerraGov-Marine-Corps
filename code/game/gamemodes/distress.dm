@@ -59,7 +59,7 @@
     if(!SSmapping.config.announce_text)
         return
 
-    command_announcement.Announce(SSmapping.config.announce_text, "[CONFIG_GET(string/ship_name)]")
+	priority_announce(SSmapping.config.announce_text, "[CONFIG_GET(string/ship_name)]")
 
 
 /datum/game_mode/distress/process()
@@ -139,6 +139,31 @@
     xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
     surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
     marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
+
+	var/current_smartgunners = 0
+	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
+	var/current_specialists = 0
+	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
+
+	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
+	SG.total_positions = maximum_smartgunners
+
+	var/datum/job/SP = SSjob.GetJobType(/datum/job/marine/specialist)
+	SP.total_positions = maximum_specialists
+
+	for(var/i in SSjob.squads)
+		var/datum/squad/S = SSjob.squads[i]
+		if(current_specialists >= maximum_specialists)
+			S.max_specialists = 0
+		else
+			S.max_specialists = 1
+			current_specialists++
+		if(current_smartgunners >= maximum_smartgunners)
+			S.max_smartgun = 0
+		else
+			S.max_smartgun = 1
+			current_smartgunners++
+
 
 
 /datum/game_mode/distress/proc/initialize_xenomorphs()
@@ -655,8 +680,8 @@
     var/input = {"Bioscan complete.
 
 Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[numXenosPlanetr > 0 && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
-    
-    command_announcement.Announce(input, name, new_sound = 'sound/AI/bioscan.ogg')
+	
+	priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
 
     log_admin("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
 

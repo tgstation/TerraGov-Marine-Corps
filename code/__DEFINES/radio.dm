@@ -73,11 +73,14 @@
 #define FREQ_CHARLIE	1365
 #define FREQ_DELTA		1367
 
+#define FREQ_STATUS_DISPLAYS 1435
+
 #define MIN_FREQ 1441 // ------------------------------------------------------
 // Only the 1441 to 1489 range is freely available for general conversation.
 // This represents 1/8th of the available spectrum.
 
 
+#define FREQ_SIGNALER	1457  // the default for new signalers
 #define FREQ_COMMON		1461
 
 #define FREQ_CIV_GENERAL	1469

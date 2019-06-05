@@ -154,3 +154,12 @@
 
 		if(!findname(.))
 			break
+
+
+/proc/get_mob_by_ckey(key)
+	if(!key)
+		return
+	var/list/mobs = sortmobs()
+	for(var/mob/M in mobs)
+		if(M.ckey == key)
+			return M

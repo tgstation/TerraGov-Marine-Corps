@@ -39,33 +39,35 @@
 		var/mob/M = src.loc
 		M.update_inv_w_uniform()
 
-/obj/item/clothing/under/attackby(obj/item/I, mob/user)
+/obj/item/clothing/under/attackby(obj/item/I, mob/user, params)
 	if(hastie)
-		hastie.attackby(I, user)
-		return 1
+		hastie.attackby(I, user, params)
+		return TRUE
 
+	else if(!ishuman(user))
+		return ..()
+
+	var/mob/living/carbon/human/H = user
 	if(!hastie && istype(I, /obj/item/clothing/tie))
 		var/obj/item/clothing/tie/T = I
-		if(!T.tie_check(src, user)) return
+		if(!T.tie_check(src, user)) 
+			return ..()
 		user.drop_held_item()
 		hastie = T
 		hastie.on_attached(src, user)
+		H.update_inv_w_uniform()
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			H.update_inv_w_uniform()
+	else if(loc == user && istype(I, /obj/item/clothing/under) && src != I)
+		if(H.w_uniform != src)
+			return ..()
 
-		return
+		H.dropItemToGround(src)
+		if(!H.equip_to_appropriate_slot(I))
+			return ..()
+		H.put_in_active_hand(src)
 
-	if(loc == user && istype(I,/obj/item/clothing/under) && src != I)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(H.w_uniform == src)
-				H.dropItemToGround(src)
-				if(H.equip_to_appropriate_slot(I))
-					H.put_in_active_hand(src)
-
-	..()
+	else
+		return ..()
 
 /obj/item/clothing/under/attack_hand(mob/user as mob)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
@@ -93,7 +95,6 @@
 					if("l_hand")
 						usr.dropItemToGround(src)
 						usr.put_in_l_hand(src)
-				add_fingerprint(usr)
 
 
 /obj/item/clothing/under/examine(mob/user)
@@ -202,7 +203,6 @@
 	hastie.on_removed()
 	if(user)
 		user.put_in_hands(hastie)
-		hastie.add_fingerprint(user)
 	hastie = null
 	update_clothing_icon()
 

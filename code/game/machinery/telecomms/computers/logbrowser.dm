@@ -112,7 +112,6 @@
 	if(.)
 		return
 
-	add_fingerprint(usr)
 	usr.set_interaction(src)
 
 	if(href_list["viewserver"])

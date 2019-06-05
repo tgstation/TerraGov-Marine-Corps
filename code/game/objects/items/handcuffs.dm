@@ -24,10 +24,6 @@
 	if (!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
-	if ((CLUMSY in usr.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>Uh ... how do those things work?!</span>")
-		place_handcuffs(user, user)
-		return
 	if(!C.handcuffed)
 		place_handcuffs(C, user)
 

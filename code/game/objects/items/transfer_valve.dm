@@ -122,7 +122,6 @@
 			update_icon()
 		if(href_list["device"])
 			attached_device.attack_self(usr)
-	src.add_fingerprint(usr)
 	return 1 // Returning 1 sends an update to attached UIs
 
 /obj/item/transfer_valve/process_activation(var/obj/item/D)
@@ -174,7 +173,6 @@
 		if(attacher)
 			log_str += "(<A HREF='?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
 
-		bombers += log_str
 		log_admin(log_str)
 		message_admins(log_str)
 		merge_gases()

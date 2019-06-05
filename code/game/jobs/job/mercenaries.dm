@@ -1,5 +1,4 @@
 /datum/job/mercenaries
-	department_flag = J_FLAG_MERCENARY
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/mercenary
@@ -10,7 +9,6 @@
 /datum/job/mercenaries/heavy
 	title = "Mercenary Heavy"
 	paygrade = "MRC1"
-	flag = MERC_HEAVY
 	outfit = /datum/outfit/job/mercenaries/heavy
 
 
@@ -34,7 +32,6 @@
 /datum/job/mercenaries/miner
 	title = "Mercenary Miner"
 	paygrade = "MRC2"
-	flag = MERC_MINER
 	outfit = /datum/outfit/job/mercenaries/miner
 
 
@@ -57,7 +54,6 @@
 /datum/job/mercenaries/engineer
 	title = "Mercenary Engineer"
 	paygrade = "MRC3"
-	flag = MERC_ENGINEER
 	outfit = /datum/outfit/job/mercenaries/engineer
 
 

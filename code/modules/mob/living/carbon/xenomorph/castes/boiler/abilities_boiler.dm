@@ -7,6 +7,7 @@
 	action_icon_state = "toggle_long_range"
 	mechanics_text = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	plasma_cost = 20
+	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -31,6 +32,7 @@
 	action_icon_state = "toggle_bomb0"
 	mechanics_text = "Switches Boiler Bombard type between Corrosive Acid and Neurotoxin."
 	use_state_flags = XACT_USE_BUSY
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
@@ -68,6 +70,7 @@
 	mechanics_text = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
 	plasma_cost = 200
 	ability_name = "bombard"
+	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner

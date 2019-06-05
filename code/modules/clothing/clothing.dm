@@ -197,17 +197,18 @@
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
 	return 0 // return 1 to cancel attack_hand()
 
-/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
-	if(iswirecutter(W) || istype(W, /obj/item/tool/surgery/scalpel))
-		if (clipped)
+/obj/item/clothing/gloves/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
+		if(clipped)
 			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
 			update_icon()
 			return
 
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='warning'> [user] cuts the fingertips off of the [src].</span>","<span class='warning'> You cut the fingertips off of the [src].</span>")
 
-		clipped = 1
+		clipped = TRUE
 		name = "mangled [name]"
 		desc = "[desc]<br>They have had the fingertips cut off of them."
 

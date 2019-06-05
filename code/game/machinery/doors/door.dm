@@ -94,8 +94,6 @@
 	if(operating)
 		return
 
-	add_fingerprint(user)
-
 	if(!src.requiresID())
 		user = null
 
@@ -119,13 +117,7 @@
 		return
 	return try_to_activate_door(user)
 
-/obj/machinery/door/attack_tk(mob/user)
-	if(requiresID() && !allowed(null))
-		return
-	..()
-
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
-	add_fingerprint(user)
 	if(operating || emagged)
 		return
 	if(!Adjacent(user))
@@ -142,15 +134,14 @@
 		flick("door_deny", src)
 
 
-/obj/machinery/door/attackby(obj/item/I, mob/user)
+/obj/machinery/door/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/card/emag))
 		if(!operating && density && operable())
 			flick("door_spark", src)
 			sleep(6)
 			open()
-		return TRUE
-	else if(!(I.flags_item & NOBLUDGEON))
-		try_to_activate_door(user)
 		return TRUE
 
 /obj/machinery/door/emp_act(severity)

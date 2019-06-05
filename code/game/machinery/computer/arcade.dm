@@ -135,7 +135,6 @@
 			src.New()
 			emagged = 0
 
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
 
@@ -205,25 +204,24 @@
 	return
 
 
-/obj/machinery/computer/arcade/attackby(I as obj, user as mob)
+/obj/machinery/computer/arcade/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
 	if(istype(I, /obj/item/card/emag) && !emagged)
 		temp = "If you die in the game, you die for real!"
 		player_hp = 30
 		player_mp = 10
 		enemy_hp = 45
 		enemy_mp = 20
-		gameover = 0
-		blocked = 0
+		gameover = FALSE
+		blocked = FALSE
 
-		emagged = 1
+		emagged = TRUE
 
 		enemy_name = "Cuban Pete"
 		name = "Outbomb Cuban Pete"
 
-
-		src.updateUsrDialog()
-	else
-		..()
+		updateUsrDialog()
 
 
 /obj/machinery/computer/arcade/emp_act(severity)

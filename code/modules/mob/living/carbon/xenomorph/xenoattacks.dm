@@ -72,12 +72,6 @@
 
 			var/damage = rand(1, 3)
 			if(prob(85))
-				if(HULK in M.mutations)
-					damage += 5
-					spawn(0)
-						step_away(src, M, 15)
-						sleep(3)
-						step_away(src, M, 15)
 				damage += attack.damage > 5 ? attack.damage : 0
 
 				playsound(loc, attack.attack_sound, 25, 1)

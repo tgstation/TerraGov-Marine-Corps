@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "fixes the zone_sel ui overlays possibly being of improper tonalities when hovered over with the pointer."

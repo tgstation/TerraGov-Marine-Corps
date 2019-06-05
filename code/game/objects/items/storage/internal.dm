@@ -74,7 +74,6 @@
 					else
 						user.dropItemToGround(master_item)
 						user.put_in_l_hand(master_item)
-			master_item.add_fingerprint(user)
 			return 0
 	return 0
 
@@ -97,7 +96,6 @@
 			H.r_store = null
 			return 0
 
-	src.add_fingerprint(user)
 	if(master_item.loc == user)
 		src.open(user)
 		return 0

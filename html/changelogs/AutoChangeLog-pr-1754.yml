@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - bugfix: "screenshot keybinding not working due to bad client"

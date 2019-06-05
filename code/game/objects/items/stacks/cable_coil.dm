@@ -107,10 +107,8 @@
 			use(amt)
 
 /obj/item/stack/cable_coil/attack_hand(mob/user as mob)
-	add_fingerprint(user)
 	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
-		transfer_fingerprints_to(F)
 		user.put_in_hands(F)
 		use(1)
 	else
@@ -193,7 +191,6 @@
 	//set up the new cable
 	C.d1 = CABLE_NODE
 	C.d2 = dirn
-	C.add_fingerprint(user)
 	C.update_icon()
 
 	//create a new powernet with the cable, if needed it will be merged later
@@ -263,7 +260,6 @@
 
 			NC.d1 = CABLE_NODE
 			NC.d2 = fdirn
-			NC.add_fingerprint(user)
 			NC.update_icon()
 
 			//create a new powernet with the cable, if needed it will be merged later
@@ -312,7 +308,6 @@
 		C.update_stored(2, item_color)
 		C.cable_color = item_color
 
-		C.add_fingerprint(user)
 		C.update_icon()
 
 

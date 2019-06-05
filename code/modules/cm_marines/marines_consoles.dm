@@ -13,29 +13,33 @@
 	var/printing = null
 
 
-/obj/machinery/computer/marine_card/attackby(O as obj, user as mob)//TODO:SANITY
-	if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/idcard = O
+/obj/machinery/computer/marine_card/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/idcard = I
 		if(ACCESS_MARINE_LOGISTICS in idcard.access)
+			if(scan || modify)
+				to_chat(user, "Both slots are full already. Remove a card first.")
+				return
+
 			if(!scan)
-				usr.drop_held_item()
-				idcard.loc = src
+				user.drop_held_item()
+				idcard.forceMove(src)
 				scan = idcard
 			else if(!modify)
-				usr.drop_held_item()
-				idcard.loc = src
+				user.drop_held_item()
+				idcard.forceMove(src)
 				modify = idcard
-			else
-				to_chat(user, "Both slots are full already. Remove a card first.")
+
 		else
-			if(!modify)
-				usr.drop_held_item()
-				idcard.loc = src
-				modify = idcard
-			else
+			if(modify)
 				to_chat(user, "Both slots are full already. Remove a card first.")
-	else
-		..()
+				return
+
+			user.drop_held_item()
+			idcard.forceMove(src)
+			modify = idcard
 
 
 /obj/machinery/computer/marine_card/attack_ai(var/mob/user as mob)
@@ -370,18 +374,18 @@
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
 
-/obj/machinery/computer/squad_changer/attackby(O as obj, user as mob)//TODO:SANITY
-	if(user) add_fingerprint(user)
-	if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/idcard = O
-		if(!modify)
-			usr.drop_held_item()
-			idcard.loc = src
-			modify = idcard
-		else
+/obj/machinery/computer/squad_changer/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/idcard = I
+		if(modify)
 			to_chat(user, "Remove the inserted card first.")
-	else
-		..()
+			return
+
+		user.drop_held_item()
+		idcard.forceMove(src)
+		modify = idcard
 
 
 /obj/machinery/computer/squad_changer/attack_ai(var/mob/user as mob)
@@ -398,7 +402,6 @@
 /obj/machinery/computer/squad_changer/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	if(user) add_fingerprint(user)
 
 	usr.set_interaction(src)
 
@@ -472,7 +475,6 @@
 					to_chat(usr, "You need to insert a card to modify.")
 			else
 				to_chat(usr, "You don't have sufficient access to use this console.")
-		src.add_fingerprint(usr)
 	src.attack_hand(usr)
 	return
 

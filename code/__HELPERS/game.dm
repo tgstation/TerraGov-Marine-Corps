@@ -153,3 +153,15 @@
 	if(!C?.prefs.windowflashing && !ignorepref)
 		return
 	winset(C, "mainwindow", "flash=5")
+
+
+// Like view but bypasses luminosity check
+/proc/get_hear(range, atom/source)
+
+	var/lum = source.luminosity
+	source.luminosity = 6
+
+	var/list/heard = view(range, source)
+	source.luminosity = lum
+
+	return heard

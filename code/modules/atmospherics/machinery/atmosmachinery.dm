@@ -170,12 +170,27 @@
 	nodes[nodes.Find(reference)] = null
 	update_icon()
 
-/obj/machinery/atmospherics/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/pipe)) //lets you autodrop
-		var/obj/item/pipe/pipe = W
-		if(user.dropItemToGround(pipe))
-			pipe.setPipingLayer(piping_layer) //align it with us
-			return TRUE
+/obj/machinery/atmospherics/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pipe)) //lets you autodrop
+		var/obj/item/pipe/pipe = I
+		if(!user.dropItemToGround(pipe))
+			return
+
+		pipe.setPipingLayer(piping_layer) //align it with us
+		return TRUE
+
+	else if(iswrench(I)) // this is just until someone ports the tg tool handling code
+		. = wrench_act(user, I)
+
+	else if(ismultitool(I))
+		. = multitool_act(user, I)
+
+	else if(isscrewdriver(I))
+		. = screwdriver_act(user, I)	
+
+	else if(iswelder(I))
+		. = welder_act(user, I)
+		
 	if(!.)
 		return ..()
 
@@ -190,7 +205,6 @@
 
 	//var/datum/gas_mixture/int_air = return_air()
 	//var/datum/gas_mixture/env_air = loc.return_air()
-	add_fingerprint(user)
 
 	//var/unsafe_wrenching = FALSE
 	//var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
@@ -243,7 +257,6 @@
 			stored.setPipingLayer(piping_layer)
 //			if(!disassembled)
 //				stored.obj_integrity = stored.max_integrity * 0.5
-			transfer_fingerprints_to(stored)
 			qdel(src)
 	..()
 

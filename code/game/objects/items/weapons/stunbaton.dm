@@ -81,7 +81,6 @@
 			H.KnockDown(20)
 			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
 			deductcharge(hitcost)
-			add_fingerprint(user)
 			return FALSE
 	return TRUE
 
@@ -129,17 +128,11 @@
 			to_chat(user, "<span class='warning'>[src] does not have a power source!</span>")
 		else
 			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
-	add_fingerprint(user)
 
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
 	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-		return
-	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "span class='danger'>You accidentally hit yourself with the [src]!</span>")
-		user.KnockDown(30)
-		deductcharge(hitcost)
 		return
 
 	var/agony = agonyforce
@@ -185,7 +178,7 @@
 		if(!L.knocked_down)
 			L.KnockDown(4)
 
-	playsound(loc, 'sound/weapons/Egloves.ogg', 25, 1, 6)
+	playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, 6)
 	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
 
 	deductcharge(hitcost)

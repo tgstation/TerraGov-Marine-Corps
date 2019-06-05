@@ -69,7 +69,7 @@
 
 	else if(isscrewdriver(I))
 		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
 
 	else if(istype(I, /obj/item/cell) && panel_open)

@@ -23,6 +23,8 @@
 	. = ..()
 
 	if(statpanel("Stats"))
+		if(client)
+			stat(null, "Ping: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
 		if(GLOB.round_id)
 			stat("Round ID: [GLOB.round_id]")
 		stat("Operation Time: [worldtime2text()]")
@@ -149,7 +151,7 @@
 		else if(M.see_invisible < invisibility || (T != loc && T != src)) //if src is invisible to us or is inside something (and isn't a turf),
 			if(!blind_message) // then people see blind message if there is one, otherwise nothing.
 				continue
-			
+
 			msg = blind_message
 
 		M.show_message(msg, EMOTE_VISIBLE, blind_message, EMOTE_AUDIBLE)
@@ -520,9 +522,6 @@
 	if(ismob(AM))
 		M = AM
 
-	else if(istype(AM, /obj))
-		AM.add_fingerprint(src)
-
 	if(AM.pulledby && AM.pulledby.grab_level < GRAB_NECK)
 		if(M)
 			visible_message("<span class='warning'>[src] has broken [AM.pulledby]'s grip on [M]!</span>", null, null, 5)
@@ -552,7 +551,8 @@
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
 
-	if(hud_used && hud_used.pull_icon) hud_used.pull_icon.icon_state = "pull1"
+	if(hud_used?.pull_icon)
+		hud_used.pull_icon.icon_state = "pull"
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(M)
@@ -571,37 +571,6 @@
 		if(!M.stat)
 			to_chat(src, message)
 
-//handles up-down floaty effect in space
-/mob/proc/make_floating(var/n)
-
-	floatiness = n
-
-	if(floatiness && !is_floating)
-		start_floating()
-	else if(!floatiness && is_floating)
-		stop_floating()
-
-/mob/proc/start_floating()
-
-	is_floating = 1
-
-	var/amplitude = 2 //maximum displacement from original position
-	var/period = 36 //time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
-
-	var/top = old_y + amplitude
-	var/bottom = old_y - amplitude
-	var/half_period = period / 2
-	var/quarter_period = period / 4
-
-	animate(src, pixel_y = top, time = quarter_period, easing = SINE_EASING|EASE_OUT, loop = -1)		//up
-	animate(pixel_y = bottom, time = half_period, easing = SINE_EASING, loop = -1)						//down
-	animate(pixel_y = old_y, time = quarter_period, easing = SINE_EASING|EASE_IN, loop = -1)			//back
-
-/mob/proc/stop_floating()
-	animate(src, pixel_y = old_y, time = 5, easing = SINE_EASING|EASE_IN) //halt animation
-	//reset the pixel offsets to zero
-	is_floating = 0
-
 
 /mob/GenerateTag()
 	tag = "mob_[next_mob_id++]"
@@ -612,12 +581,17 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)						return 0
-	if(client.moving)					return 0
-	if(stat==2)						return 0
-	if(anchored)						return 0
-	if(restrained())					return 0
-	return 1
+	if(!canmove)						
+		return FALSE
+	if(stat == DEAD)						
+		return FALSE
+	if(anchored)						
+		return FALSE
+	if(notransform)
+		return FALSE
+	if(restrained())					
+		return FALSE
+	return TRUE
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
@@ -859,14 +833,12 @@ mob/proc/yank_out_object()
 		else
 			unset_interaction()
 	interactee = AM
-	if(istype(interactee)) //some stupid code is setting datums as interactee...
-		interactee.on_set_interaction(src)
+	interactee.on_set_interaction(src)
 
 
 /mob/proc/unset_interaction()
 	if(interactee)
-		if(istype(interactee))
-			interactee.on_unset_interaction(src)
+		interactee.on_unset_interaction(src)
 		interactee = null
 
 
@@ -945,7 +917,7 @@ mob/proc/yank_out_object()
 		else
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = loc
-			
+
 	return TRUE
 
 
@@ -967,7 +939,6 @@ mob/proc/yank_out_object()
 	log_played_names(ckey, newname)
 
 	real_name = newname
-	voice_name = newname
 	name = newname
 	if(mind)
 		mind.name = newname

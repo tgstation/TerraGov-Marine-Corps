@@ -101,8 +101,6 @@
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE
 
-	add_fingerprint(user)
-
 	if(buildstate == GEOTHERMAL_HEAVY_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
 		return FALSE
@@ -127,68 +125,78 @@
 	start_processing()
 	return TRUE
 
-/obj/machinery/power/geothermal/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(iswelder(O) && buildstate == GEOTHERMAL_HEAVY_DAMAGE && !is_on)
-		var/obj/item/tool/weldingtool/WT = O
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+/obj/machinery/power/geothermal/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
 			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 				return
-		if(WT.remove_fuel(1, user))
-			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
-			"<span class='notice'>You start welding [src]'s internal damage.</span>")
-			if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
-				return FALSE
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			buildstate = GEOTHERMAL_MEDIUM_DAMAGE
-			user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
-			"<span class='notice'>You weld [src]'s internal damage.</span>")
-			update_icon()
-			return TRUE
-		else
+
+		if(!WT.remove_fuel(1, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
-	else if(iswirecutter(O))
-		if(buildstate == GEOTHERMAL_MEDIUM_DAMAGE && !is_on)
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
-				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
-				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
-					return
-			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
-			"<span class='notice'>You start securing [src]'s wiring.</span>")
-			if(do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) && buildstate == GEOTHERMAL_MEDIUM_DAMAGE && !is_on)
-				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				buildstate = GEOTHERMAL_LIGHT_DAMAGE
-				user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
-				"<span class='notice'>You secure [src]'s wiring.</span>")
-				update_icon()
-				return TRUE
-	else if(iswrench(O))
-		if(buildstate == GEOTHERMAL_LIGHT_DAMAGE && !is_on)
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
-				"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
-				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
-					return
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-			user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
-			"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
-			if(do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) && buildstate == GEOTHERMAL_LIGHT_DAMAGE && !is_on)
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				buildstate = GEOTHERMAL_NO_DAMAGE
-				user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
-				"<span class='notice'>You repair [src]'s tubing and plating.</span>")
-				update_icon()
-				return TRUE
-	else
-		. = ..() //Deal with everything else, like hitting with stuff
+		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
+		user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
+		"<span class='notice'>You start welding [src]'s internal damage.</span>")
+		
+		if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
+			return FALSE
+		
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		buildstate = GEOTHERMAL_MEDIUM_DAMAGE
+		user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
+		"<span class='notice'>You weld [src]'s internal damage.</span>")
+		update_icon()
+		return TRUE
+	else if(iswirecutter(I))
+		if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE && is_on)
+			return
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
+			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
+				return
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
+		"<span class='notice'>You start securing [src]'s wiring.</span>")
+		
+		if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
+			return FALSE
+
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		buildstate = GEOTHERMAL_LIGHT_DAMAGE
+		user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
+		"<span class='notice'>You secure [src]'s wiring.</span>")
+		update_icon()
+		return TRUE
+	else if(iswrench(I))
+		if(buildstate != GEOTHERMAL_LIGHT_DAMAGE && is_on)
+			return
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
+			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+				return
+
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
+		"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
+
+		if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
+			return FALSE
+
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		buildstate = GEOTHERMAL_NO_DAMAGE
+		user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
+		"<span class='notice'>You repair [src]'s tubing and plating.</span>")
+		update_icon()
+		return TRUE
 
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
@@ -335,71 +343,70 @@
 		else
 			playsound(loc, "alien_claw_metal", 25, 1)
 
-/obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
+/obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(isscrewdriver(I))
-		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
 		else
-			DISABLE_BITFIELD(machine_stat, PANEL_OPEN)
 			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
 		update_icon()
 		return FALSE
-	/*else if(iswrench(I))
-		if(panel_open)
-			toggle_light(anchored ? SWITCH_OFF : SWITCH_ON)
-			anchored = !anchored
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			return FALSE*/
-	else if(damaged)
-		if(iswelder(I))
-			var/obj/item/tool/weldingtool/WT = I
 
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
-				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
-				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || repair_state != FLOODLIGHT_REPAIR_WELD)
-					return FALSE
+	if(!damaged)
+		return
 
-			if(repair_state == FLOODLIGHT_REPAIR_WELD)
-				if(WT.remove_fuel(1, user))
-					playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-					user.visible_message("<span class='notice'>[user] starts welding [src]'s damage.</span>",
-					"<span class='notice'>You start welding [src]'s damage.</span>")
-					if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && repair_state == FLOODLIGHT_REPAIR_WELD)
-						playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-						repair_state = FLOODLIGHT_REPAIR_WIRECUTTER
-						user.visible_message("<span class='notice'>[user] welds [src]'s damage.</span>",
-						"<span class='notice'>You weld [src]'s damage.</span>")
-						return TRUE
-				else
-					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
-			return TRUE
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
 
-		else if(iswirecutter(I))
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
-				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
-				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || repair_state != FLOODLIGHT_REPAIR_WIRECUTTER)
-					return FALSE
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+			var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || repair_state != FLOODLIGHT_REPAIR_WELD)
+				return FALSE
 
-			if(repair_state == FLOODLIGHT_REPAIR_WIRECUTTER)
-				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] starts mending [src]'s damaged cables.</span>",\
-				"<span class='notice'>You start mending [src]'s damaged cables.</span>")
-				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) && repair_state == FLOODLIGHT_REPAIR_WIRECUTTER)
-					playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-					repair_state = FLOODLIGHT_REPAIR_FINE
-					damaged = FALSE
-					obj_integrity = max_integrity
-					toggle_light(SWITCH_ON)
-					user.visible_message("<span class='notice'>[user] mends [src]'s damaged cables.</span>",\
-					"<span class='notice'>You mend [src]'s damaged cables.</span>")
-			return TRUE
+		if(!WT.remove_fuel(1, user))
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+			return
+		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
+		user.visible_message("<span class='notice'>[user] starts welding [src]'s damage.</span>",
+		"<span class='notice'>You start welding [src]'s damage.</span>")
 
-	. = ..()
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || repair_state != FLOODLIGHT_REPAIR_WELD)
+			return FALSE
+
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		repair_state = FLOODLIGHT_REPAIR_WIRECUTTER
+		user.visible_message("<span class='notice'>[user] welds [src]'s damage.</span>",
+		"<span class='notice'>You weld [src]'s damage.</span>")
+		return TRUE
+
+	else if(iswirecutter(I))
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
+			var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || repair_state != FLOODLIGHT_REPAIR_WIRECUTTER)
+				return FALSE
+
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		user.visible_message("<span class='notice'>[user] starts mending [src]'s damaged cables.</span>",\
+		"<span class='notice'>You start mending [src]'s damaged cables.</span>")
+
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || repair_state != FLOODLIGHT_REPAIR_WIRECUTTER)
+			return FALSE
+
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		repair_state = FLOODLIGHT_REPAIR_FINE
+		damaged = FALSE
+		obj_integrity = initial(obj_integrity)
+		toggle_light(SWITCH_ON)
+		user.visible_message("<span class='notice'>[user] mend [src]'s damaged cables.</span>",\
+		"<span class='notice'>You mend [src]'s damaged cables.</span>")
+		return TRUE
 
 /obj/machinery/colony_floodlight/attack_hand(mob/user)
 	if(ishuman(user))

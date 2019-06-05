@@ -36,7 +36,6 @@
 
 	MouseDrop(over_object, src_location, over_location)
 		if (locked)
-			src.add_fingerprint(usr)
 			return
 		..()
 
@@ -83,7 +82,6 @@
 					src.code += text("[]", href_list["type"])
 					if (length(src.code) > 5)
 						src.code = "ERROR"
-			src.add_fingerprint(usr)
 			for(var/mob/M in viewers(1, src.loc))
 				if ((M.client && M.interactee == src))
 					src.attack_self(M)
@@ -157,7 +155,6 @@
 			for(var/mob/M in range(1))
 				if (M.s_active == src)
 					src.close(M)
-		src.add_fingerprint(user)
 		return
 
 	//I consider this worthless but it isn't my code so whatever.  Remove or uncomment.

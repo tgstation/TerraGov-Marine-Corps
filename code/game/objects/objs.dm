@@ -72,14 +72,6 @@
 				is_in_use = TRUE
 				attack_ai(usr)
 
-	// check for TK users
-
-	if (ishuman(usr))
-		if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-			if(!(usr in nearby))
-				if(usr.client && usr.interactee==src)
-					is_in_use = TRUE
-					attack_hand(usr)
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
@@ -93,9 +85,8 @@
 		if ((M.client && M.interactee == src))
 			is_in_use = TRUE
 			interact(M)
-	var/ai_in_use = AutoUpdateAI(src)
-
-	if(!ai_in_use && !is_in_use)
+			
+	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 /obj/proc/interact(mob/user)
@@ -123,9 +114,6 @@
 	if(can_buckle) manual_unbuckle(user)
 	else . = ..()
 
-/obj/attack_ai(mob/user)
-	if(can_buckle) manual_unbuckle(user)
-	else . = ..()
 
 /obj/proc/handle_rotation()
 	return
@@ -171,7 +159,6 @@
 					"<span class='notice'>You unbuckle yourself from [src].</span>",\
 					"<span class='notice'>You hear metal clanking</span>")
 			unbuckle()
-			src.add_fingerprint(user)
 			return 1
 
 	return 0
@@ -208,7 +195,6 @@
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
-	src.add_fingerprint(user)
 	afterbuckle(M)
 
 /obj/proc/send_buckling_message(mob/M, mob/user)

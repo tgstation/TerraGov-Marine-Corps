@@ -24,7 +24,6 @@
 	var/scannable = 0 //shows up on health analyzers
 	var/self_consuming = FALSE
 	var/spray_warning = FALSE //whether spraying that reagent creates an admin message.
-	var/list/viruses = list()
 	var/color = "#000000" // rgb: 0, 0, 0
 	var/can_synth = TRUE // can this reagent be synthesized? (example: odysseus syringe gun)
 	var/list/datum/reagent/purge_list = list() //Does this purge any specific chems?

@@ -1,140 +1,140 @@
-/datum/hud/monkey/New(mob/living/carbon/monkey/owner, ui_style='icons/mob/screen1_old.dmi')
+/datum/hud/monkey/New(mob/living/carbon/monkey/owner, ui_style='icons/mob/screen/White.dmi', ui_color = "#ffffff", ui_alpha = 230)
 	..()
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
 
 	using = new /obj/screen/act_intent()
 	using.icon = ui_style
-	using.icon_state = "intent_"+owner.a_intent
+	using.alpha = ui_alpha
+	using.icon_state = owner.a_intent
 	static_inventory += using
 	action_intent = using
 
 	using = new /obj/screen/mov_intent()
 	using.icon = ui_style
+	using.color = ui_color
+	using.alpha = ui_alpha
 	using.icon_state = (owner.m_intent == MOVE_INTENT_RUN ? "running" : "walking")
 	static_inventory += using
 	move_intent = using
 
 	using = new /obj/screen/drop()
 	using.icon = ui_style
+	using.color = ui_color
+	using.alpha = ui_alpha
 	static_inventory += using
 
-	inv_box = new /obj/screen/inventory()
-	inv_box.name = "r_hand"
-	inv_box.setDir(WEST)
+	inv_box = new /obj/screen/inventory/hand/right()
 	inv_box.icon = ui_style
-	inv_box.icon_state = "hand_inactive"
+	inv_box.color = ui_color
+	inv_box.alpha = ui_alpha
 	if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
-		inv_box.icon_state = "hand_active"
-	inv_box.screen_loc = ui_rhand
+		inv_box.add_overlay("hand_active")
 	inv_box.slot_id = SLOT_R_HAND
 	inv_box.layer = HUD_LAYER
-	src.r_hand_hud_object = inv_box
+	r_hand_hud_object = inv_box
 	static_inventory += inv_box
 
-	inv_box = new /obj/screen/inventory()
-	inv_box.name = "l_hand"
-	inv_box.setDir(EAST)
+	inv_box = new /obj/screen/inventory/hand()
 	inv_box.icon = ui_style
-	inv_box.icon_state = "hand_inactive"
-	if(owner && owner.hand)	//This being 1 means the left hand is in use
-		inv_box.icon_state = "hand_active"
-	inv_box.screen_loc = ui_lhand
+	inv_box.color = ui_color
+	inv_box.alpha = ui_alpha
+	if(owner?.hand)	//This being 1 means the left hand is in use
+		inv_box.add_overlay("hand_active")
 	inv_box.slot_id = SLOT_L_HAND
 	inv_box.layer = HUD_LAYER
-	src.l_hand_hud_object = inv_box
+	l_hand_hud_object = inv_box
 	static_inventory += inv_box
 
-	using = new /obj/screen/inventory()
-	using.name = "hand"
-	using.setDir(SOUTH)
-	using.icon = ui_style
-	using.icon_state = "hand1"
-	using.screen_loc = ui_swaphand1
-	using.layer = HUD_LAYER
+	using = new /obj/screen/swap_hand()
+	using.color = ui_color
+	using.alpha = ui_alpha
 	static_inventory += using
 
-	using = new /obj/screen/inventory()
-	using.name = "hand"
-	using.setDir(SOUTH)
-	using.icon = ui_style
-	using.icon_state = "hand2"
-	using.screen_loc = ui_swaphand2
-	using.layer = HUD_LAYER
+	using = new /obj/screen/swap_hand/right()
+	using.color = ui_color
+	using.alpha = ui_alpha
 	static_inventory += using
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "mask"
-	inv_box.setDir(NORTH)
 	inv_box.icon = ui_style
-	inv_box.icon_state = "equip"
+	inv_box.icon_state = "mask"
+	inv_box.color = ui_color
+	inv_box.alpha = ui_alpha
 	inv_box.screen_loc = ui_monkey_mask
 	inv_box.slot_id = SLOT_WEAR_MASK
-	inv_box.layer = HUD_LAYER
 	static_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "back"
-	inv_box.setDir(NORTHEAST)
 	inv_box.icon = ui_style
-	inv_box.icon_state = "equip"
+	inv_box.icon_state = "back"
+	inv_box.color = ui_color
+	inv_box.alpha = ui_alpha
 	inv_box.screen_loc = ui_back
 	inv_box.slot_id = SLOT_BACK
-	inv_box.layer = HUD_LAYER
 	static_inventory += inv_box
 
 
 	throw_icon = new /obj/screen/throw_catch()
 	throw_icon.icon = ui_style
+	throw_icon.color = ui_color
+	throw_icon.alpha = ui_alpha
 	hotkeybuttons += throw_icon
 
 	oxygen_icon = new /obj/screen/oxygen()
-	oxygen_icon.icon = ui_style
 	infodisplay += oxygen_icon
 
 	pressure_icon = new /obj/screen()
-	pressure_icon.icon = ui_style
 	pressure_icon.icon_state = "pressure0"
 	pressure_icon.name = "pressure"
 	pressure_icon.screen_loc = ui_pressure
 	infodisplay += pressure_icon
 
 	toxin_icon = new /obj/screen()
-	toxin_icon.icon = ui_style
 	toxin_icon.icon_state = "tox0"
 	toxin_icon.name = "toxin"
 	toxin_icon.screen_loc = ui_toxin
 	infodisplay += toxin_icon
 
 	internals = new /obj/screen/internals()
-	internals.icon = ui_style
 	infodisplay += internals
 
 	fire_icon = new /obj/screen/fire()
-	fire_icon.icon = ui_style
 	infodisplay += fire_icon
 
 	bodytemp_icon = new /obj/screen/bodytemp()
-	bodytemp_icon.icon = ui_style
 	infodisplay += bodytemp_icon
 
 	healths = new /obj/screen/healths()
-	healths.icon = ui_style
 	infodisplay += healths
 
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style
+	pull_icon.color = ui_color
+	pull_icon.alpha = ui_alpha
 	pull_icon.update_icon(owner)
 	hotkeybuttons += pull_icon
 
+	rest_icon = new /obj/screen/rest()
+	rest_icon.icon = ui_style
+	rest_icon.color = ui_color
+	rest_icon.alpha = ui_alpha
+	rest_icon.update_icon(owner)
+	static_inventory += rest_icon
+
 	zone_sel = new /obj/screen/zone_sel()
 	zone_sel.icon = ui_style
+	zone_sel.color = ui_color
+	zone_sel.alpha = ui_alpha
 	zone_sel.update_icon(owner)
 	static_inventory += zone_sel
 
 	using = new /obj/screen/resist()
 	using.icon = ui_style
-	using.screen_loc = ui_pull_resist
+	using.color = ui_color
+	using.alpha = ui_alpha
 	hotkeybuttons += using
 
 
@@ -173,9 +173,3 @@
 			M.r_hand.screen_loc = null
 		if(M.l_hand)
 			M.l_hand.screen_loc = null
-
-
-
-/mob/living/carbon/monkey/create_hud()
-	if(client && !hud_used)
-		hud_used = new /datum/hud/monkey(src, ui_style2icon(client.prefs.ui_style))

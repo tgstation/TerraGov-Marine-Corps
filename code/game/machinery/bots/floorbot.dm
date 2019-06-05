@@ -75,29 +75,30 @@
 
 
 /obj/machinery/bot/floorbot/attackby(var/obj/item/W , mob/user as mob)
+	. = ..()
+
 	if(istype(W, /obj/item/stack/tile/plasteel))
 		var/obj/item/stack/tile/plasteel/T = W
-		if(src.amount >= 50)
+		if(amount >= 50)
 			return
-		var/loaded = min(50-src.amount, T.get_amount())
+		var/loaded = min(50 - amount, T.get_amount())
 		T.use(loaded)
-		src.amount += loaded
-		to_chat(user, "<span class='notice'>You load [loaded] tiles into the floorbot. He now contains [src.amount] tiles.</span>")
-		src.updateicon()
+		amount += loaded
+		to_chat(user, "<span class='notice'>You load [loaded] tiles into the floorbot. He now contains [amount] tiles.</span>")
+		updateicon()
+
 	else if(istype(W, /obj/item/card/id))
-		if(src.allowed(usr) && !open && !emagged)
-			src.locked = !src.locked
-			to_chat(user, "<span class='notice'>You [src.locked ? "lock" : "unlock"] the [src] behaviour controls.</span>")
+		if(allowed(user) && !open && !emagged)
+			locked = !locked
+			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
+		else if(emagged)
+			to_chat(user, "<span class='warning'>ERROR</span>")
+		else if(open)
+			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 		else
-			if(emagged)
-				to_chat(user, "<span class='warning'>ERROR</span>")
-			if(open)
-				to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
-			else
-				to_chat(user, "<span class='warning'>Access denied.</span>")
-		src.updateUsrDialog()
-	else
-		..()
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+		updateUsrDialog()
+
 
 /obj/machinery/bot/floorbot/Emag(mob/user as mob)
 	..()
@@ -108,7 +109,6 @@
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	switch(href_list["operation"])
 		if("start")
 			if (src.on)
@@ -367,21 +367,25 @@
 	return
 
 
-/obj/item/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/plasteel/T, mob/user as mob)
-	if(!istype(T, /obj/item/stack/tile/plasteel))
-		..()
-		return
-	if(src.contents.len >= 1)
+/obj/item/storage/toolbox/mechanical/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/stack/tile/plasteel))
+		return ..()
+
+	var/obj/item/stack/tile/plasteel/PS = I
+
+	if(length(contents) >= 1)
 		to_chat(user, "<span class='notice'>They wont fit in as there is already stuff inside.</span>")
 		return
+
 	if(user.s_active)
 		user.s_active.close(user)
-	if (T.use(10))
-		var/obj/item/frame/toolbox_tiles/B = new /obj/item/frame/toolbox_tiles
-		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>")
-		user.temporarilyRemoveItemFromInventory(src)
-		qdel(src)
-	else
+
+	if(!PS.use(10))
 		to_chat(user, "<span class='warning'>You need 10 floortiles for a floorbot.</span>")
-	return
+		return
+
+	var/obj/item/frame/toolbox_tiles/B = new
+	user.put_in_hands(B)
+	to_chat(user, "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>")
+	user.temporarilyRemoveItemFromInventory(src)
+	qdel(src)

@@ -152,10 +152,7 @@
 
 /mob/living/carbon/human/mind_initialize()
 	. = ..()
-	//if not, we give the mind default job_knowledge and assigned_role
-	if(!mind.assigned_role)
-		if(mind.cm_skills)
-			qdel(mind.cm_skills)
+	if(!mind.cm_skills)
 		mind.cm_skills = new /datum/skills/pfc
 
 
@@ -167,6 +164,11 @@
 /mob/living/silicon/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Silicon"
+
+
+/mob/living/silicon/ai/mind_initialize()
+	. = ..()
+	mind.assigned_role = "AI"
 
 
 /mob/living/simple_animal/mind_initialize()

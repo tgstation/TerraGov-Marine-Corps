@@ -153,7 +153,6 @@
 			updateUsrDialog()
 			update_icon()
 
-	add_fingerprint(usr)
 
 
 
@@ -236,59 +235,64 @@
 
 
 
-/obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/living/user)
+/obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(machine_stat & NOPOWER)
+		return
 
-	if(!(machine_stat & NOPOWER))
+	if(!isopen)
+		return
 
-		if(isopen)
+	if(istype(I, /obj/item/clothing/suit/space))
+		var/obj/item/clothing/suit/space/S = I
+		if(inserted_suit)
+			to_chat(user, "<span class='warning'>The unit already contains a suit.</span>")
+			return
 
-			if( istype(I,/obj/item/clothing/suit/space) )
-				var/obj/item/clothing/suit/space/S = I
-				if(inserted_suit)
-					to_chat(user, "<span class='warning'>The unit already contains a suit.</span>")
-					return
-				if(user.transferItemToLoc(S, src))
-					to_chat(user, "<span class='notice'>You load the [S.name] into the storage compartment.</span>")
-					inserted_suit = S
-					update_icon()
-					updateUsrDialog()
-				return
+		if(!user.transferItemToLoc(S, src))
+			return
 
-			if( istype(I,/obj/item/clothing/head/helmet) )
-				var/obj/item/clothing/head/helmet/H = I
-				if(inserted_helmet)
-					to_chat(user, "<span class='warning'>The unit already contains a helmet.</span>")
-					return
-				to_chat(user, "<span class='notice'>You load the [H.name] into the storage compartment.</span>")
-				if(user.transferItemToLoc(H, src))
-					inserted_helmet = H
-					update_icon()
-					updateUsrDialog()
-				return
+		to_chat(user, "<span class='notice'>You load the [S.name] into the storage compartment.</span>")
+		inserted_suit = S
 
-			if( istype(I,/obj/item/clothing/mask) )
-				var/obj/item/clothing/mask/M = I
-				if(inserted_mask)
-					to_chat(user, "<span class='warning'>The unit already contains a mask.</span>")
-					return
-				to_chat(user, "<span class='notice'>You load the [M.name] into the storage compartment.</span>")
-				if(user.transferItemToLoc(M, src))
-					inserted_mask = M
-					update_icon()
-					updateUsrDialog()
-				return
+	else if(istype(I,/obj/item/clothing/head/helmet))
+		var/obj/item/clothing/head/helmet/H = I
+		if(inserted_helmet)
+			to_chat(user, "<span class='warning'>The unit already contains a helmet.</span>")
+			return
 
-			if( istype(I,/obj/item/tank) )
-				var/obj/item/tank/T = I
-				if(inserted_tank)
-					to_chat(user, "<span class='warning'>The unit already contains a tank.</span>")
-					return
-				to_chat(user, "<span class='notice'>You load the [T.name] into the storage compartment.</span>")
-				if(user.transferItemToLoc(T, src))
-					inserted_tank = T
-					update_icon()
-					updateUsrDialog()
-				return
+		if(!user.transferItemToLoc(H, src))
+			return
+
+		to_chat(user, "<span class='notice'>You load the [H.name] into the storage compartment.</span>")
+		inserted_helmet = H
+
+	else if(istype(I, /obj/item/clothing/mask))
+		var/obj/item/clothing/mask/M = I
+		if(inserted_mask)
+			to_chat(user, "<span class='warning'>The unit already contains a mask.</span>")
+			return
+
+		if(!user.transferItemToLoc(M, src))
+			return
+
+		to_chat(user, "<span class='notice'>You load the [M.name] into the storage compartment.</span>")
+		inserted_mask = M
+
+	else if(istype(I, /obj/item/tank))
+		var/obj/item/tank/T = I
+		if(inserted_tank)
+			to_chat(user, "<span class='warning'>The unit already contains a tank.</span>")
+			return
+
+		if(!user.transferItemToLoc(T, src))
+			return
+
+		to_chat(user, "<span class='notice'>You load the [T.name] into the storage compartment.</span>")
+		inserted_tank = T
+
+	update_icon()
+	updateUsrDialog()
 
 
 

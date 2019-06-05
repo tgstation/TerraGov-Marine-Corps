@@ -67,7 +67,6 @@
 	if (src.destroyed && src.occupied)
 		to_chat(user, "\b You deactivate the hover field built into the case.")
 		src.occupied = 0
-		src.add_fingerprint(user)
 		update_icon()
 		return
 	else

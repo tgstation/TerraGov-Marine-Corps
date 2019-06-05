@@ -73,6 +73,65 @@
 		
 		-->
 		<div class="commit sansserif">
+			<h2 class="date">04 June 2019</h2>
+			<h3 class="author">Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Sleeper window is more compact.</li>
+				<li class="tweak">Sleeper window is condensed even more.</li>
+			</ul>
+			<h3 class="author">LaKiller8 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">The amount of specialists is now scaled and depends on the amount of ready players.</li>
+				<li class="tweak">Cameras are now buildable and deconstructable again, xenos can slash them, humans can repair them.</li>
+			</ul>
+
+			<h2 class="date">01 June 2019</h2>
+			<h3 class="author">Jalleo updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Code made slightly better in tiny areas. Report any issues about the fusion generator or elsewhere</li>
+			</ul>
+			<h3 class="author">LaKiller8 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">Assembly and chem grenade code has been refactored to /tg/ standard.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added ghost hud</li>
+				<li class="rscadd">Added new ghost alerts, They show specific events to ghosts that happen throughout the round, allowing ghosts to see more action.</li>
+				<li class="rscadd">Tooltips now appear on certain things to help with readability, first pass adds tooltips to on screen actions.</li>
+			</ul>
+
+			<h2 class="date">31 May 2019</h2>
+			<h3 class="author">Ghommie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added a rest button to human/monkey UIs.</li>
+				<li class="code_imp">Reorganized and cleaned up hud screen files and icons.</li>
+				<li class="server">Renamed the orange and old UI style choices to Plasmafire and Retro respectively, remember to set up your ui style again if you happened to be using one or another.</li>
+				<li class="server">Changed the default client's ui_alpha preference from 255 to 230, made UIs types other than human also compatible with said preference.</li>
+				<li class="imageadd">updated human/monkey health ui icons from (old) bay to tg. adjusted a couple icon states palettes, and dozen other minor changes.</li>
+				<li class="imagedel">Deleted a bunch of duplicate icon states all around the UI icon files.</li>
+				<li class="bugfix">fixed smoke grenades spawning smoke onto the user's location when detonating.</li>
+				<li class="tweak">Extended the smoke effects to simple mobs and xenomorphs a bit. twek: Raised the smoke layer, now it covers mobs too.</li>
+				<li class="balance">Reworked white phosphorous grenades to not be total trash. Buffed fireloss on contact, added oxyloss, blurring and lung damage if inhaled, now capable of dealing minor damage to alien resin structures and a mild loss of stored plasma in xenomorphs. Also roughly less opaque so to not block FoV and with higher smoke radius. Careful of FF potentials.</li>
+				<li class="balance">Also slighty improved cloaking nades lifespan, though they may need proper improvements later.</li>
+			</ul>
+			<h3 class="author">LaKiller8 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">Silicon code has been refactored.</li>
+				<li class="code_imp">AI eye and multicam code has been ported from /tg/.</li>
+			</ul>
+			<h3 class="author">spookydonut updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">All xeno abilities can be used with keybinds now, although for targeted abilities the keybind will only select it.</li>
+			</ul>
+
+			<h2 class="date">30 May 2019</h2>
+			<h3 class="author">LaKiller8 & ArachnidNexus & MJP updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">Added in new sprites and equipment for the Sons of Mars.</li>
+				<li class="tweak">CLF has been replaced by the Sons of Mars in active distress rotation.</li>
+			</ul>
+
 			<h2 class="date">29 May 2019</h2>
 			<h3 class="author">Jalleo updated:</h3>
 			<ul class="changes bgimages16">
@@ -535,85 +594,6 @@
 			<h3 class="author">Rohesie updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="balance">Doctor medical skill buffed to CMO/Synth level, so they are all on par.</li>
-			</ul>
-
-			<h2 class="date">02 April 2019</h2>
-			<h3 class="author">Alterist updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">corrercts SD maint walls being outer walls to regular hull walls</li>
-			</ul>
-			<h3 class="author">LaKiller8 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscdel">All of predator code has been purged.</li>
-			</ul>
-			<h3 class="author">Shadow-Quill updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixes Oxycodone OD.</li>
-			</ul>
-
-			<h2 class="date">01 April 2019</h2>
-			<h3 class="author">Alterist updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="imageadd">Fixes revolver sprite</li>
-			</ul>
-			<h3 class="author">Hughgent updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">knife attachments</li>
-			</ul>
-			<h3 class="author">JJRcop updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">SDQL2 now features a list constructor that takes a selector query.</li>
-				<li class="tweak">The MAP statement will unwrap lone lists that are the only result. This means the parent query begins directly iterating over the list rather than a list that contains the list.</li>
-			</ul>
-			<h3 class="author">Jalordon updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Leader pheromones now function again while the queen is ovipositored</li>
-			</ul>
-			<h3 class="author">by Surrealistik updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">ERT reinforcements now scale in proportion to the difference between the number of xenos and marines. Further an ERT call will fail if humans outnumber Xenos more than 3 to 1.</li>
-				<li class="tweak">Smartgun base accuracy multiplier slightly increased, from 1.05 to 1.1</li>
-			</ul>
-
-			<h2 class="date">30 March 2019</h2>
-			<h3 class="author">Metroidlover updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Tactical Shotguns and Double Barrel Shotguns can now go on your back</li>
-			</ul>
-			<h3 class="author">by Surrealistik updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Pheromone progression smoothed out for all phero castes; more powerful pheromones up front, with diminishing increases at subsequent upgrade levels.</li>
-			</ul>
-
-			<h2 class="date">29 March 2019</h2>
-			<h3 class="author">Alterist updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">moved SD shutters forward, adds back inner walls</li>
-				<li class="bugfix">SD walls shouldn't link with the shutters anymore</li>
-			</ul>
-			<h3 class="author">KitKetKetrai updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Reduces ceremonial sword damage from 65 to 48</li>
-			</ul>
-			<h3 class="author">Ondrej008 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Select Equipment now gives pouches, yey</li>
-			</ul>
-			<h3 class="author">Surrealistik and Ghommie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Being devoured blinds a mob until it is disgorged. Further, any radio transmissions from that mob are badly garbled.</li>
-				<li class="refactor">refactored vision tint embumberance (welding helmets, blindfolds) a little.</li>
-			</ul>
-			<h3 class="author">spookydonut updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Living mobs can no longer be put in morgue trays</li>
-			</ul>
-
-			<h2 class="date">28 March 2019</h2>
-			<h3 class="author">by Surrealistik updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Knockdown stacks for mobs crushed by the tank reduced from 12 to 1, and they are displaced behind the tank. Tanks do not apply knockdown stacks to knocked down mobs. Mobs crushed are displaced away from the tank.</li>
-				<li class="balance">Tank takes no collision damage while running over objects/walls it is facing with the snowplow , and the damage it deals to them is doubled.</li>
 			</ul>
 		</div>
 

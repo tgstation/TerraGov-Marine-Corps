@@ -122,16 +122,17 @@ Class Procs:
 	verb_say = "beeps"
 	verb_yell = "blares"
 
-/obj/machinery/attackby(obj/item/C as obj, mob/user as mob)
+/obj/machinery/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		var/obj/item/tool/pickaxe/plasmacutter/P = C
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
-			qdel()
-		return
+
+		if(!do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+		P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
+		qdel(src)
 
 /obj/machinery/Initialize()
 	. = ..()
@@ -272,19 +273,8 @@ Class Procs:
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
-	var/norange = 0
-	if(ishuman(usr))
-		var/mob/living/carbon/human/H = usr
-		if(istype(H.l_hand, /obj/item/tk_grab))
-			norange = 1
-		else if(istype(H.r_hand, /obj/item/tk_grab))
-			norange = 1
-
-	if(!norange)
-		if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !issilicon(usr))
-			return 1
-
-	src.add_fingerprint(usr)
+	if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !issilicon(usr))
+		return 1
 
 	var/area/A = get_area(src)
 	A.master.powerupdate = 1
@@ -293,6 +283,11 @@ Class Procs:
 
 /obj/machinery/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
+
+
+/obj/machinery/attack_ai(mob/user)
+	return interact(user)
+
 
 //Xenomorphs can't use machinery, not even the "intelligent" ones
 //Exception is Queen and shuttles, because plot power
@@ -323,8 +318,6 @@ Class Procs:
 
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
 		return TRUE
-
-	src.add_fingerprint(user)
 
 	var/area/A = get_area(src)
 	A.master.powerupdate = 1
@@ -364,7 +357,7 @@ Class Procs:
 		return 0
 
 /obj/machinery/proc/dismantle()
-	playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 	var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
 	M.state = 2
 	M.icon_state = "box_1"
@@ -414,7 +407,6 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 		"dermaline_amount" = H.reagents.get_reagent_amount("dermaline"),
 		"blood_amount" = H.blood_volume,
 		"disabilities" = H.sdisabilities,
-		"tg_diseases_list" = H.viruses.Copy(),
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.limbs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
@@ -454,10 +446,6 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 	dat += text("[]\tDermaline: [] units</FONT><BR>", (occ["dermaline_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["dermaline_amount"])
 	dat += text("[]\tBicaridine: [] units<BR>", (occ["bicaridine_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["bicaridine_amount"])
 	dat += text("[]\tDexalin: [] units<BR>", (occ["dexalin_amount"] < 30 ? "<font color='white'>" : "<font color=#b54646>"), occ["dexalin_amount"])
-
-	for(var/datum/disease/D in occ["tg_diseases_list"])
-		if(!D.hidden[SCANNER])
-			dat += text("<font color=#b54646><B>Warning: [D.form] Detected</B>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</FONT><BR>")
 
 	dat += "<HR><table border='1'>"
 	dat += "<tr>"
@@ -607,3 +595,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 		qdel(src)
 	else
 		update_icon()
+
+
+/obj/machinery/proc/remove_eye_control(mob/living/user)
+	return

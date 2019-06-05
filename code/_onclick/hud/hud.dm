@@ -35,6 +35,7 @@
 	var/obj/screen/zone_sel
 	var/obj/screen/pull_icon
 	var/obj/screen/throw_icon
+	var/obj/screen/rest_icon
 	var/obj/screen/oxygen_icon
 	var/obj/screen/pressure_icon
 	var/obj/screen/toxin_icon
@@ -133,8 +134,16 @@
 	. = ..()
 
 
-/mob/proc/create_hud()
-	return
+/mob/proc/create_mob_hud()
+	if(!client || hud_used)
+		return
+	var/ui_style = ui_style2icon(client.prefs.ui_style)
+	var/ui_color = client.prefs.ui_style_color
+	var/ui_alpha = client.prefs.ui_style_alpha
+	hud_used = new hud_type(src, ui_style, ui_color, ui_alpha)
+	update_sight()
+	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
+
 
 /datum/hud/proc/plane_masters_update()
 	// Plane masters are always shown to OUR mob, never to observers
@@ -237,12 +246,16 @@
 	return
 
 
-/mob/proc/add_click_catcher()
-	client.screen += client.void
+/obj/screen/action_button/MouseEntered(location, control, params)
+	if (!usr.client?.prefs?.tooltips)
+		return
+	openToolTip(usr, src, params, title = name, content = desc)
 
 
-/mob/new_player/add_click_catcher()
-	return
+/obj/screen/action_button/MouseExited()
+	if (!usr.client?.prefs?.tooltips)
+		return
+	closeToolTip(usr)
 
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)

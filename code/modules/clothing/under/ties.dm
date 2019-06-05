@@ -31,7 +31,6 @@
 
 	if(user)
 		to_chat(user, "<span class='notice'>You attach [src] to [has_suit].</span>")
-		src.add_fingerprint(user)
 
 /obj/item/clothing/tie/proc/on_removed()
 	if(!has_suit)
@@ -278,7 +277,6 @@
 
 	holstered = W
 	user.transferItemToLoc(holstered, src)
-	holstered.add_fingerprint(user)
 	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
@@ -296,7 +294,6 @@
 			user.visible_message("<span class='notice'>[user] draws the [holstered], pointing it at the ground.</span>", \
 			"<span class='notice'>You draw the [holstered], pointing it at the ground.</span>")
 		user.put_in_hands(holstered)
-		holstered.add_fingerprint(user)
 		holstered = null
 		return TRUE
 
@@ -308,8 +305,8 @@
 
 	..(user)
 
-/obj/item/clothing/tie/holster/attackby(obj/item/W as obj, mob/user as mob)
-	holster(W, user)
+/obj/item/clothing/tie/holster/attackby(obj/item/I, mob/user, params)
+	holster(I, user)
 
 /obj/item/clothing/tie/holster/emp_act(severity)
 	if (holstered)
@@ -361,10 +358,11 @@
 
 
 //For the holster hotkey
-/mob/living/carbon/human/proc/holster()
-	if(stat != CONSCIOUS) 
-		return
+/mob/living/carbon/human/proc/do_holster()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
+	if(incapacitated() || lying) 
+		return
 	
 	if(!istype(w_uniform, /obj/item/clothing/under))
 		return
@@ -377,11 +375,10 @@
 	var/obj/item/clothing/tie/holster/H = S.hastie
 
 	if(!H.holstered)
-		if(!istype(get_active_held_item(), /obj/item/weapon/gun))
-			to_chat(src, "<span class='notice'>You need your gun equiped to holster it.</span>")
+		var/obj/item/weapon/gun/G = get_active_held_item()
+		if(!istype(G))
 			return
-		var/obj/item/weapon/gun/W = get_active_held_item()
-		H.holster(W, src)
+		H.holster(G, src)
 	else
 		H.unholster(src)
 
@@ -478,8 +475,8 @@
 	if (hold.handle_mousedrop(usr, over_object))
 		..(over_object)
 
-/obj/item/clothing/tie/storage/attackby(obj/item/W as obj, mob/user as mob)
-	return hold.attackby(W, user)
+/obj/item/clothing/tie/storage/attackby(obj/item/I, mob/user, params)
+	return hold.attackby(I, user, params)
 
 /obj/item/clothing/tie/storage/emp_act(severity)
 	hold.emp_act(severity)
@@ -491,7 +488,6 @@
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)
 		hold.remove_from_storage(I, T)
-	src.add_fingerprint(user)
 
 /obj/item/clothing/tie/storage/webbing
 	name = "webbing"
@@ -629,33 +625,29 @@
 	if(isliving(user))
 		user.visible_message("<span class='warning'> [user] displays their TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>","<span class='warning'> You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>")
 
-/obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (istype(O, /obj/item/card/emag))
-		if (emagged)
+	if(istype(I, /obj/item/card/emag))
+		if(emagged)
 			to_chat(user, "<span class='warning'>[src] is already cracked.</span>")
 			return
-		else
-			emagged = 1
-			to_chat(user, "<span class='warning'>You swipe [O] and crack the holobadge security checks.</span>")
+
+		emagged = TRUE
+		to_chat(user, "<span class='warning'>You swipe [I] and crack the holobadge security checks.</span>")
+
+	else if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/id_card = I
+
+		if(!(ACCESS_MARINE_BRIG in id_card.access) || !emagged)
+			to_chat(user, "[src] rejects your insufficient access rights.")
 			return
 
-	else if(istype(O, /obj/item/card/id))
+		to_chat(user, "You imprint your ID details onto the badge.")
+		stored_name = id_card.registered_name
+		name = "holobadge ([stored_name])"
+		desc = "This glowing blue badge marks [stored_name] as THE LAW."
 
-		var/obj/item/card/id/id_card = null
-
-		if(istype(O, /obj/item/card/id))
-			id_card = O
-
-		if(ACCESS_MARINE_BRIG in id_card.access || emagged)
-			to_chat(user, "You imprint your ID details onto the badge.")
-			stored_name = id_card.registered_name
-			name = "holobadge ([stored_name])"
-			desc = "This glowing blue badge marks [stored_name] as THE LAW."
-		else
-			to_chat(user, "[src] rejects your insufficient access rights.")
-		return
-	..()
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))

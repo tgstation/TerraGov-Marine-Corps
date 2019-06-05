@@ -161,20 +161,6 @@
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] removed a vital organ ([src]) from [ADMIN_TPMONTY(target)].")
 		target.death()
 
-/obj/item/organ/appendix/removed(mob/living/carbon/target, mob/living/carbon/user)
-
-	..()
-
-	var/inflamed = 0
-	for(var/datum/disease/appendicitis/appendicitis in target.viruses)
-		inflamed = 1
-		appendicitis.cure()
-		target.resistances += appendicitis
-
-	if(inflamed)
-		icon_state = "appendixinflamed"
-		name = "inflamed appendix"
-
 /obj/item/organ/eyes/removed(var/mob/living/target,var/mob/living/user)
 
 	if(!eye_colour)
@@ -230,8 +216,6 @@
 
 	// Pass over the blood.
 	reagents.trans_to(O, reagents.total_volume)
-
-	transfer_fingerprints_to(O)
 
 	user.put_in_active_hand(O)
 	qdel(src)

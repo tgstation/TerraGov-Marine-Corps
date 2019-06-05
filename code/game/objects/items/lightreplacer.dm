@@ -177,7 +177,6 @@
 //Can you use it?
 
 /obj/item/lightreplacer/proc/CanUse(var/mob/living/user)
-	src.add_fingerprint(user)
 	//Not sure what else to check for. Maybe if clumsy?
 	if(uses > 0)
 		return 1

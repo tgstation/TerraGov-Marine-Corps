@@ -391,8 +391,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/proc/die()
 	var/turf/T = get_turf(src)
-	var/obj/item/butt = new type_butt(T)
-	transfer_fingerprints_to(butt)
+	new type_butt(T)
 	if(ismob(loc))
 		var/mob/living/M = loc
 		M.temporarilyRemoveItemFromInventory(src)	//un-equip it so the overlays can update

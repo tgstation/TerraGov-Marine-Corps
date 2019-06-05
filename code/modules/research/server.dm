@@ -113,7 +113,7 @@
 
 	else if(opened && iscrowbar(I))
 		griefProtection()
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
 		M.state = 2
 		M.icon_state = "box_1"
@@ -179,7 +179,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
 	usr.set_interaction(src)
 	if(!src.allowed(usr) && !emagged)
 		to_chat(usr, "<span class='warning'>You do not have the required access level</span>")

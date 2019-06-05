@@ -57,8 +57,8 @@ GLOBAL_LIST_EMPTY(survivor_spawn_key_item) // required items ( power cells, beac
 GLOBAL_LIST_EMPTY(awaydestinations)	//a list of landmarks that the warpgate can take you to
 GLOBAL_LIST_EMPTY(vr_spawnpoints)
 
-//used by jump-to-area etc. Updated by area/updateName()
-GLOBAL_LIST_EMPTY(sortedAreas)
+	//used by jump-to-area etc. Updated by area/updateName()
+GLOBAL_LIST_EMPTY(sorted_areas)
 /// An association from typepath to area instance. Only includes areas with `unique` set.
 GLOBAL_LIST_EMPTY(areas_by_type)
 

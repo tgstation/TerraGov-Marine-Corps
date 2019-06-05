@@ -229,8 +229,7 @@
 
 			var/type_p = L[3]
 
-			var/obj/item/IT = new type_p(loc)
-			IT.add_fingerprint(usr)
+			new type_p(loc)
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM)
 				new headset_type(loc)
@@ -260,7 +259,6 @@
 			if(use_points)
 				I.marine_points -= cost
 
-		src.add_fingerprint(usr)
 		ui_interact(usr) //updates the nanoUI window
 
 

@@ -48,7 +48,6 @@
 	response_disarm = "gently moves aside the"
 	response_harm   = "swats the"
 	stop_automated_movement = 1
-	universal_speak = 1
 
 	var/parrot_state = PARROT_WANDER //Hunt for a perch when created
 	var/parrot_sleep_max = 25 //The time the parrot sits while perched before looking around. Mosly a way to avoid the parrot's AI in life() being run every single tick.
@@ -78,7 +77,6 @@
 								/obj/machinery/teleport,
 								/obj/machinery/computer,
 								/obj/machinery/suit_storage_unit,
-								/obj/machinery/dna_scannernew,
 								/obj/machinery/telecomms,
 								/obj/machinery/smartfridge,
 								/obj/machinery/recharge_station)
@@ -371,7 +369,7 @@
 		//Wander around aimlessly. This will help keep the loops from searches down
 		//and possibly move the mob into a new are in view of something they can use
 		if(prob(90))
-			step(src, pick(cardinal))
+			step(src, pick(GLOB.cardinals))
 			return
 
 		if(!held_item && !parrot_perch) //If we've got nothing to do.. look for something to do.

@@ -45,7 +45,7 @@
 				else
 					src.hitstaken++
 					if(src.hitstaken == 4)
-						playsound(user, 'sound/effects/Glassbr3.ogg', 50, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
+						playsound(user, 'sound/effects/glassbr3.ogg', 50, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
 						src.smashed = 1
 						src.locked = 0
 						src.localopened = 1
@@ -117,7 +117,6 @@
 				user.put_in_hands(fireaxe)
 				fireaxe = null
 				to_chat(user, "<span class='notice'>You take the fire axe from the [name].</span>")
-				src.add_fingerprint(user)
 				update_icon()
 			else
 				if(src.smashed)
@@ -139,15 +138,6 @@
 			else
 				src.icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
 				spawn(10) update_icon()
-
-	attack_tk(mob/user as mob)
-		if(localopened && fireaxe)
-			fireaxe.loc = loc
-			to_chat(user, "<span class='notice'>You telekinetically remove the fire axe.</span>")
-			fireaxe = null
-			update_icon()
-			return
-		attack_hand(user)
 
 	verb/toggle_openness() //nice name, huh? HUH?! -Erro //YEAH -Agouri
 		set name = "Open/Close"

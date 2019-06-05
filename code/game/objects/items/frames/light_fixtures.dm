@@ -21,7 +21,7 @@
 	if (get_dist(on_wall,usr)>1)
 		return
 	var/ndir = get_dir(usr,on_wall)
-	if (!(ndir in cardinal))
+	if (!(ndir in GLOB.cardinals))
 		return
 	var/turf/loc = get_turf(usr)
 	if (!isfloorturf(loc))
@@ -39,7 +39,6 @@
 		if("tube")
 			newlight = new /obj/machinery/light_construct(constrloc)
 	newlight.setDir(constrdir)
-	transfer_fingerprints_to(newlight)
 
 	usr.visible_message("[usr.name] attaches [src] to the wall.", \
 		"You attach [src] to the wall.")

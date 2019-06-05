@@ -64,39 +64,6 @@
 #define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
 
-// mob/var/list/mutations
-var/list/global_mutations = list() // list of hidden mutation things
-
-#define STRUCDNASIZE 27
-#define UNIDNASIZE 13
-
-	// Generic mutations:
-#define	TK				1
-#define COLD_RESISTANCE	2
-#define XRAY			3
-#define HULK			4
-#define CLUMSY			5
-#define FAT				6
-#define HUSK			7
-#define NOCLONE			8
-//=================================================
-
-	//2spooky
-#define SKELETON 29
-#define PLANT 30
-
-// Other Mutations:
-#define mNobreath		100 	// no need to breathe
-#define mRemote			101 	// remote viewing
-#define mRegen			102 	// health regen
-#define mRun			103 	// no slowdown
-#define mRemotetalk		104 	// remote talking
-#define mMorph			105 	// changing appearance
-#define mBlend			106 	// nothing (seriously nothing)
-#define mHallucination	107 	// hallucinations
-#define mFingerprints	108 	// no fingerprints
-#define mShock			109 	// insulated hands
-#define mSmallsize		110 	// table climbing
 //=================================================
 
 //disabilities
@@ -495,6 +462,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
 
+// Xeno charge types
+#define CHARGE_TYPE_SMALL			1
+#define CHARGE_TYPE_MEDIUM			2
+#define CHARGE_TYPE_LARGE			3
+#define CHARGE_TYPE_MASSIVE			4
+
+
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
 #define HUNTER_STEALTH_WALK_PLASMADRAIN			2
@@ -506,7 +480,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK					1
-#define HANDLE_STEALTH_CODE_CANCEL				2
 #define HANDLE_SNEAK_ATTACK_CHECK				3
 #define HUNTER_SNEAK_TACKLE_ARMOR_PEN			0.5 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration
@@ -581,12 +554,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BRAVO_SQUAD 2
 #define CHARLIE_SQUAD 3
 #define DELTA_SQUAD 4
-
-// tracking map ID, add more squads/ert leaders/hives etc to track via SSdirection here
-#define TRACK_ALPHA_SQUAD "alpha_squad"
-#define TRACK_BRAVO_SQUAD "bravo_squad"
-#define TRACK_CHARLIE_SQUAD "charlie_squad"
-#define TRACK_DELTA_SQUAD "delta_squad"
 
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.

@@ -46,7 +46,6 @@
 	if(..())
 		return TRUE
 //	usr.set_machine(src)
-	src.add_fingerprint(usr)
 	if(!allowed(usr))
 		to_chat(usr, "<span class='danger'>Access denied.</span>")
 		return TRUE

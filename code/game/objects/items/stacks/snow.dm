@@ -107,5 +107,4 @@
 	user.visible_message("<span class='notice'>[user] assembles a snow barricade.</span>",
 	"<span class='notice'>You assemble a snow barricade.</span>")
 	SB.setDir(user.dir)
-	SB.add_fingerprint(user)
 	use(3)

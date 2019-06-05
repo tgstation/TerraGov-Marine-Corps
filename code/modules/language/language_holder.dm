@@ -116,6 +116,11 @@
 	grant_all_languages(omnitongue = TRUE)
 
 
+/datum/language_holder/synthetic
+	languages = list(/datum/language/common)
+	shadow_languages = list(/datum/language/common, /datum/language/machine)
+
+
 
 /mob/living/verb/language_menu()
 	set category = "IC"

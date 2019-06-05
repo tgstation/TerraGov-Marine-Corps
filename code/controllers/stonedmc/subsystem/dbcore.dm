@@ -159,12 +159,12 @@ SUBSYSTEM_DEF(dbcore)
 	if(QDELETED(connection) || op.GetError())
 		return FALSE
 	if(advanced)
-		var/datum/DBQuery/query_db_version = NewQuery("SELECT major, minor FROM [format_table_name("schema_revision")] ORDER BY date DESC LIMIT 1")
-		var/connected = TRUE
-		if(!query_db_version.Execute())
-			connected = FALSE
-		qdel(query_db_version)
-		return connected
+		var/datum/DBQuery/testing_query = NewQuery("SELECT 1")
+		if(!testing_query.Execute())
+			qdel(testing_query)
+			return FALSE
+		qdel(testing_query)
+		return TRUE
 	else
 		return TRUE
 
@@ -326,6 +326,16 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 	. = !error
 	if(!. && log_error)
 		log_sql("[error] | Query used: [sql]")
+		if(query.GetErrorCode() == 2006)
+			SSdbcore.Disconnect()
+			log_sql("Database connection detected down. Attempting to re-establish.")
+			message_admins("Database connection detected down. Attempting to re-establish.")
+			if(!SSdbcore.Connect())
+				log_sql("Database connection failed: " + SSdbcore.ErrorMsg())
+				message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
+			else
+				log_sql("Database connection re-established.")
+				message_admins("Database connection re-established.")
 	if(!async && timed_out)
 		log_sql("Query execution started at [start_time]")
 		log_sql("Query execution ended at [REALTIMEOFDAY]")

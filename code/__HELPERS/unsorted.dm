@@ -202,42 +202,10 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	return "[round(frequency / 10)].[frequency % 10]"
 
 
-//Picks a string of symbols to display as the law number for hacked or ion laws
-/proc/ionnum()
-	return "[pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
-
-
-//When a borg is activated, it can choose which AI it wants to be slaved to
-/proc/active_ais()
-	. = list()
-	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
-		if(A.stat == DEAD)
-			continue
-		if(A.control_disabled)
-			continue
-		. += A
-	return .
-
-
-//Find an active ai with the least borgs.
-/proc/select_active_ai_with_fewest_borgs()
-	var/mob/living/silicon/ai/selected
-	var/list/active = active_ais()
-	for(var/mob/living/silicon/ai/A in active)
-		if(!selected || (selected.connected_robots > A.connected_robots))
-			selected = A
-
-	return selected
-
-
-/proc/select_active_ai(mob/user)
-	var/list/ais = active_ais()
-	if(length(ais))
-		if(user)	
-			. = input(usr,"AI signals detected:", "AI selection") in ais
-		else		
-			. = pick(ais)
-	return .
+//Opposite of format, returns as a number
+/proc/unformat_frequency(frequency)
+	frequency = text2num(frequency)
+	return frequency * 10
 
 
 //Orders mobs by type then by name
@@ -409,13 +377,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 
 /proc/is_blocked_turf(turf/T)
-	var/can_pass = TRUE
 	if(T.density) 
-		can_pass = FALSE
+		return TRUE
 	for(var/atom/A in T)
 		if(A.density)
-			can_pass = FALSE
-	return can_pass
+			return TRUE
 
 
 var/global/image/busy_indicator_clock
@@ -460,55 +426,27 @@ var/global/image/busy_indicator_hostile
 	return FALSE
 
 
-//Returns: all the areas in the world
-/proc/return_areas()
-	var/list/area/areas = list()
-	for(var/area/A in all_areas)
-		areas += A
-	return areas
-
-
-//Returns: all the areas in the world, sorted.
-/proc/return_sorted_areas()
-	return sortNames(return_areas())
-
-
-//Takes: Area type as text string or as typepath OR an instance of the area.
-//Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype)
-	if(!areatype) 
-		return
-	if(istext(areatype)) 
-		areatype = text2path(areatype)
-	if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
-
-	var/list/areas = list()
-	for(var/area/N in all_areas)
-		if(!istype(N, areatype)) 
-			continue
-		areas += N
-	return areas
-
-
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
 /proc/get_area_turfs(areatype)
 	if(!areatype) 
 		return
+
 	if(istext(areatype)) 
 		areatype = text2path(areatype)
+
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
 	var/list/turfs = list()
-	for(var/area/N in all_areas)
-		if(!istype(N, areatype))
-			return
-		for(var/turf/T in N) 
+	for(var/i in GLOB.all_areas)
+		var/area/A = i
+		if(!istype(A, areatype))
+			continue
+		for(var/turf/T in A)
 			turfs += T
+
 	return turfs
 
 
@@ -618,7 +556,7 @@ var/global/image/busy_indicator_hostile
 							continue
 						O.loc = X
 					for(var/mob/M in T)
-						if(!ismob(M) || istype(M, /mob/aiEye)) 
+						if(!ismob(M)) 
 							continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
 
@@ -786,7 +724,7 @@ var/global/image/busy_indicator_hostile
 
 					for(var/mob/M in T)
 
-						if(!ismob(M) || istype(M, /mob/aiEye)) 
+						if(!ismob(M)) 
 							continue // If we need to check for more mobs, I'll add a variable
 						mobs += M
 
@@ -1143,12 +1081,12 @@ var/list/WALLITEMS = list(
 
 //Repopulates sortedAreas list
 /proc/repopulate_sorted_areas()
-	GLOB.sortedAreas = list()
+	GLOB.sorted_areas = list()
 
 	for(var/area/A in world)
-		GLOB.sortedAreas.Add(A)
+		GLOB.sorted_areas.Add(A)
 
-	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+	sortTim(GLOB.sorted_areas, /proc/cmp_name_asc)
 
 
 // Format a power value in W, kW, MW, or GW.
@@ -1185,3 +1123,51 @@ var/list/WALLITEMS = list(
 			processing += A.contents
 			assembled += A
 	return assembled
+
+
+/*
+
+ Gets the turf this atom's *ICON* appears to inhabit
+ It takes into account:
+ * Pixel_x/y
+ * Matrix x/y
+
+ NOTE: if your atom has non-standard bounds then this proc
+ will handle it, but:
+ * if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
+ (this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
+ * if the bounds are odd, the true middle turf of the atom is returned
+
+*/
+
+/proc/get_turf_pixel(atom/AM)
+	if(!istype(AM))
+		return
+
+	//Find AM's matrix so we can use it's X/Y pixel shifts
+	var/matrix/M = matrix(AM.transform)
+
+	var/pixel_x_offset = AM.pixel_x + M.get_x_shift()
+	var/pixel_y_offset = AM.pixel_y + M.get_y_shift()
+
+	//Irregular objects
+	var/icon/AMicon = icon(AM.icon, AM.icon_state)
+	var/AMiconheight = AMicon.Height()
+	var/AMiconwidth = AMicon.Width()
+	if(AMiconheight != world.icon_size || AMiconwidth != world.icon_size)
+		pixel_x_offset += ((AMiconwidth/world.icon_size)-1)*(world.icon_size*0.5)
+		pixel_y_offset += ((AMiconheight/world.icon_size)-1)*(world.icon_size*0.5)
+
+	//DY and DX
+	var/rough_x = round(round(pixel_x_offset,world.icon_size)/world.icon_size)
+	var/rough_y = round(round(pixel_y_offset,world.icon_size)/world.icon_size)
+
+	//Find coordinates
+	var/turf/T = get_turf(AM) //use AM's turfs, as it's coords are the same as AM's AND AM's coords are lost if it is inside another atom
+	if(!T)
+		return null
+	var/final_x = T.x + rough_x
+	var/final_y = T.y + rough_y
+
+	if(final_x || final_y)
+		return locate(final_x, final_y, T.z)

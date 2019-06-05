@@ -305,7 +305,7 @@
 	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
 		wires.cut_all()
 		update_icon()
-		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!", null, null, 5)
+		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
 	else
 		beenhit += 1
 
@@ -332,7 +332,7 @@
 				to_chat(user, "<span class='warning'>Disconnect the terminal first.</span>")
 				return
 
-			playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts removing [src]'s power control board.</span>",
 			"<span class='notice'>You start removing [src]'s power control board.</span>")
 			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || has_electronics != APC_ELECTRONICS_INSTALLED)
@@ -407,13 +407,13 @@
 			if(has_electronics == APC_ELECTRONICS_INSTALLED && terminal)
 				has_electronics = APC_ELECTRONICS_SECURED
 				machine_stat &= ~MAINT
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] screws [src]'s circuit electronics into place.</span>",
 				"<span class='notice'>You screw [src]'s circuit electronics into place.</span>")
 			else if(has_electronics == APC_ELECTRONICS_SECURED)
 				has_electronics = APC_ELECTRONICS_INSTALLED
 				machine_stat |= MAINT
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] unfastens [src]'s circuit electronics.</span>",
 				"<span class='notice'>You unfasten [src]'s circuit electronics.</span>")
 			else
@@ -509,7 +509,7 @@
 
 		user.visible_message("<span class='notice'>[user] starts wiring [src]'s frame.</span>",
 		"<span class='notice'>You start wiring [src]'s frame.</span>")
-		playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 		
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || terminal || !opened || has_electronics == APC_ELECTRONICS_SECURED)
 			return
@@ -548,7 +548,7 @@
 
 		user.visible_message("<span class='notice'>[user] starts inserting the power control board into [src].</span>",
 		"<span class='notice'>You start inserting the power control board into [src].</span>")
-		playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 			return
@@ -585,7 +585,7 @@
 
 		user.visible_message("<span class='notice'>[user] starts unwelding [src]'s frame.</span>",
 		"<span class='notice'>You start unwelding [src]'s frame.</span>")
-		playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder.ogg', 25, 1)
 
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(3, user))
 			return
@@ -661,7 +661,6 @@
 /obj/machinery/power/apc/attack_hand(mob/user)
 	. = ..()
 
-	add_fingerprint(user)
 
 	//Human mob special interaction goes here.
 	if(ishuman(user))
@@ -722,7 +721,6 @@
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !cell)
 					return
 			user.put_in_hands(cell)
-			cell.add_fingerprint(user)
 			cell.updateicon()
 
 			src.cell = null
@@ -877,8 +875,6 @@
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
-	add_fingerprint(usr)
-
 	if(href_list["lock"])
 		coverlocked = !coverlocked
 
@@ -1198,6 +1194,17 @@
 		if(!do_after(H, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	return TRUE
+
+
+/obj/machinery/power/apc/proc/toggle_breaker(mob/user)
+	if(machine_stat & (NOPOWER|BROKEN|MAINT))
+		return
+
+	operating = !operating
+	log_combat(user, src, "turned [operating ? "on" : "off"]")
+	update()
+	update_icon()
+
 
 //------Various APCs ------//
 

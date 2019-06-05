@@ -26,27 +26,13 @@
 	force = 10
 
 /obj/item/weapon/classic_baton/attack(mob/living/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
-		user.KnockDown(3 * force)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.apply_damage(2*force, BRUTE, "head")
-		else
-			user.take_limb_damage(2*force)
+	. = ..()
+	if(!.) 
 		return
-/*this is already called in ..()
-	src.add_fingerprint(user)
 
-	log_combat(user, M, "attacked", src, "(INTENT: [uppertext(user.a_intent)])")
-*/
-
-	if(!..()) return
-	//playsound(src.loc, "swing_hit", 25, 1, -1)
-	if (M.stuttering < 8 && (!(HULK in M.mutations))  /*&& (!istype(H:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
+	if (M.stuttering < 8)
 		M.stuttering = 8
-	for(var/mob/O in viewers(M))
-		if (O.client)	O.show_message("<span class='danger'>[M] has been beaten with \the [src] by [user]!</span>", 1, "<span class='warning'> You hear someone fall</span>", 2)
+	visible_message("<span class='danger'>[M] has been beaten with \the [src] by [user]!</span>", null, "<span class='warning'> You hear someone fall</span>", 2)
 
 //Telescopic baton
 /obj/item/weapon/telebaton
@@ -88,9 +74,8 @@
 		H.update_inv_r_hand()
 
 	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 15, 1)
-	add_fingerprint(user)
 
-	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
+	if(blood_overlay) //updates blood overlay, if any
 		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
 
 		var/icon/I = new /icon(src.icon, src.icon_state)
@@ -104,16 +89,6 @@
 
 /obj/item/weapon/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
-		if ((CLUMSY in user.mutations) && prob(50))
-			to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
-			user.KnockDown(3 * force)
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				H.apply_damage(force, BRUTE, "head")
-				H.apply_damage(force, HALLOSS, "head")
-			else
-				user.take_limb_damage(force * 2)
-			return
 		if(..())
 			//playsound(src.loc, "swing_hit", 25, 1, 6)
 			return
@@ -132,9 +107,6 @@
 		return 0
 
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You beat yourself in the head with [src].</span>")
-		user.take_limb_damage(5)
 	active = !active
 	if (active)
 		force = 10
@@ -155,5 +127,4 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	add_fingerprint(user)
 	return

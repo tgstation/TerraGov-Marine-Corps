@@ -25,7 +25,6 @@
 /obj/machinery/computer/area_atmos/attack_hand(var/mob/user as mob)
 	if(..(user))
 		return
-	src.add_fingerprint(usr)
 	var/dat = {"
 	<html>
 		<head>
@@ -96,7 +95,6 @@
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 
 
 	if(href_list["scan"])

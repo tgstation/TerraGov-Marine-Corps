@@ -395,7 +395,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	else if (href_list["mainmenu"])
 		temp = null
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 	return
 
@@ -645,6 +644,5 @@ GLOBAL_LIST_EMPTY(exports_types)
 	else if (href_list["mainmenu"])
 		temp = null
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 	return

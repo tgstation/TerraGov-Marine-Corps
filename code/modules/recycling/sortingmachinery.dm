@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(tagger_locations)
+
 /obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
@@ -267,9 +269,6 @@
 				if(i > 5)
 					P.icon_state = "deliverycrate5"
 					P.name = "huge parcel"
-				P.add_fingerprint(usr)
-				O.add_fingerprint(usr)
-				src.add_fingerprint(usr)
 				src.amount -= 1
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
 				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
@@ -329,8 +328,8 @@
 		var/dat
 
 		dat += "<table style='width:100%; padding:4px;'><tr>"
-		for(var/i = 1, i <= tagger_locations.len, i++)
-			dat += "<td><a href='?src=\ref[src];nextTag=[tagger_locations[i]]'>[tagger_locations[i]]</a></td>"
+		for(var/i in 1 to length(GLOB.tagger_locations))
+			dat += "<td><a href='?src=\ref[src];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
 
 			if (i%4==0)
 				dat += "</tr><tr>"
@@ -347,8 +346,7 @@
 		return
 
 	Topic(href, href_list)
-		src.add_fingerprint(usr)
-		if(href_list["nextTag"] && href_list["nextTag"] in tagger_locations)
+		if(href_list["nextTag"] && href_list["nextTag"] in GLOB.tagger_locations)
 			src.currTag = href_list["nextTag"]
 		openwindow(usr)
 
@@ -420,10 +418,10 @@
 	if(isscrewdriver(I))
 		c_mode = !c_mode
 		if(c_mode)
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "You remove the screws around the power connection.")
 		else
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "You attach the screws around the power connection.")
 
 	else if(istype(I, /obj/item/tool/weldingtool) && c_mode)
@@ -433,7 +431,7 @@
 			to_chat(user, "You need more welding fuel to complete this task.")
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, "You start slicing the floorweld off the delivery chute.")
 		
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))

@@ -54,12 +54,12 @@
 				return
 			if(mode == 0) //It's off but still not unscrewed
 				mode = -1 //Set it to doubleoff
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
 				return
 			else if(mode == -1)
 				mode = 0
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 				return
 		else if(iswelder(I) && mode == -1)
@@ -71,14 +71,13 @@
 				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 				return
 
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
 			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
 			to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
 			var/obj/structure/disposalconstruct/C = new(loc)
-			transfer_fingerprints_to(C)
 			C.ptype = 6 //6 = disposal unit
 			C.anchored = TRUE
 			C.density = TRUE
@@ -123,7 +122,6 @@
 	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
-	add_fingerprint(user)
 
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
@@ -194,7 +192,6 @@
 //User interaction
 /obj/machinery/disposal/interact(mob/user, var/ai=0)
 
-	add_fingerprint(user)
 	if(machine_stat & BROKEN)
 		user.unset_interaction()
 		return
@@ -235,7 +232,6 @@
 		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
 		return
 	..()
-	add_fingerprint(usr)
 	if(machine_stat & BROKEN)
 		return
 	if(usr.stat || usr.restrained() || flushing)
@@ -435,7 +431,6 @@
 	var/active = 0	//True if the holder is moving, otherwise inactive
 	dir = 0
 	var/count = 2048 //Can travel 2048 steps before going inactive (in case of loops)
-	var/has_fat_guy = 0	//True if contains a fat person
 	var/destinationTag = "" //Changes if contains a delivery container
 	var/tomail = 0 //Changes if contains wrapped package
 	var/hasmob = 0 //If it contains a mob
@@ -468,10 +463,6 @@
 	for(var/atom/movable/AM in D)
 		AM.loc = src
 		SEND_SIGNAL(AM, COMSIG_MOVABLE_DISPOSING, src, D)
-		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			if(FAT in H.mutations) //Is a human and fat?
-				has_fat_guy = 1 //Set flag on holder
 		if(istype(AM, /obj/structure/bigDelivery) && !hasmob)
 			var/obj/structure/bigDelivery/T = AM
 			destinationTag = T.sortTag
@@ -503,12 +494,6 @@
 				if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
 					H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
-		if(has_fat_guy && prob(2)) //Chance of becoming stuck per segment if contains a fat guy
-			active = 0
-			//Find the fat guys
-			for(var/mob/living/carbon/human/H in src)
-
-			break
 		sleep(1) //Was 1
 		var/obj/structure/disposalpipe/curr = loc
 		last = curr
@@ -546,8 +531,6 @@
 			if(M.client) //If a client mob, update eye to follow this holder
 				M.client.eye = src
 
-	if(other.has_fat_guy)
-		has_fat_guy = 1
 	qdel(other)
 
 /obj/structure/disposalholder/proc/settag(var/new_tag)
@@ -712,7 +695,7 @@
 //Remains : set to leave broken pipe pieces in place
 /obj/structure/disposalpipe/proc/broken(var/remains = 0)
 	if(remains)
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinals)
 			if(D & dpdir)
 				var/obj/structure/disposalpipe/broken/P = new(loc)
 				P.setDir(D)
@@ -777,7 +760,7 @@
 			to_chat(user, "<span class='warning'>You need more welding fuel to cut [src].</span>")
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
 		var/atom/wloc = I.loc
@@ -821,7 +804,6 @@
 			C.ptype = 13
 		if("pipe-tagger-partial")
 			C.ptype = 14
-	transfer_fingerprints_to(C)
 	C.setDir(dir)
 	C.density = 0
 	C.anchored = 1
@@ -1048,7 +1030,8 @@
 	New()
 		. = ..()
 		dpdir = dir|turn(dir, 180)
-		if(sort_tag) tagger_locations |= sort_tag
+		if(sort_tag) 
+			GLOB.tagger_locations |= sort_tag
 		updatename()
 		updatedesc()
 		update()
@@ -1105,7 +1088,8 @@
 
 	New()
 		. = ..()
-		if(sortType) tagger_locations |= sortType
+		if(sortType) 
+			GLOB.tagger_locations |= sortType
 
 		updatedir()
 		updatename()
@@ -1249,7 +1233,7 @@
 			to_chat(user, "<span class='warning'>You need more welding fuel to cut the pipe.</span>")
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		//Check if anything changed over 2 seconds
 		var/turf/uloc = user.loc
 		var/atom/wloc = I.loc
@@ -1344,10 +1328,10 @@
 	if(isscrewdriver(I))
 		mode = !mode
 		if(mode)
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
 		else
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 	
 	else if(iswelder(I) && mode)
@@ -1356,7 +1340,7 @@
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
@@ -1364,7 +1348,6 @@
 
 		to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
 		var/obj/structure/disposalconstruct/C = new(loc)
-		transfer_fingerprints_to(C)
 		C.ptype = 7 //7 =  outlet
 		C.update()
 		C.anchored = TRUE
@@ -1395,7 +1378,7 @@
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = alldirs.Copy()
+		dirs = GLOB.alldirs.Copy()
 
 	streak(dirs)
 
@@ -1404,6 +1387,6 @@
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = alldirs.Copy()
+		dirs = GLOB.alldirs.Copy()
 
 	streak(dirs)

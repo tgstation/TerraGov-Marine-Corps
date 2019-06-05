@@ -59,31 +59,32 @@
 			START_PROCESSING(SSobj, src)
 
 
-/obj/machinery/iv_drip/attackby(obj/item/W, mob/living/user)
-	if (istype(W, /obj/item/reagent_container))
+/obj/machinery/iv_drip/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/reagent_container))
 		if(beaker)
 			to_chat(user, "<span class='warning'>There is already a reagent container loaded!</span>")
 			return
 
-		if((!istype(W, /obj/item/reagent_container/blood) && !istype(W, /obj/item/reagent_container/glass)) || istype(W, /obj/item/reagent_container/glass/bucket))
+		if((!istype(I, /obj/item/reagent_container/blood) && !istype(I, /obj/item/reagent_container/glass)) || istype(I, /obj/item/reagent_container/glass/bucket))
 			to_chat(user, "<span class='warning'>That won't fit!</span>")
 			return
 
-		if(user.transferItemToLoc(W, src))
-			beaker = W
+		if(!user.transferItemToLoc(I, src))
+			return
 
-			var/reagentnames = ""
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
-				reagentnames += ";[R.name]"
+		beaker = I
 
-			log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(src.loc)].")
-			message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
-			
-			to_chat(user, "You attach \the [W] to \the [src].")
-			update_icon()
-		return
-	else
-		return ..()
+		var/reagentnames = ""
+		for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			reagentnames += ";[R.name]"
+
+		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(src.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
+		
+		to_chat(user, "You attach \the [I] to \the [src].")
+		update_icon()
 
 
 /obj/machinery/iv_drip/process()
@@ -125,9 +126,7 @@
 
 		if(!istype(T)) 
 			return
-		if(!T.dna)
-			return
-		if(NOCLONE in T.mutations)
+		if(!T.blood_type)
 			return
 
 		if(T.species?.species_flags & NO_BLOOD)

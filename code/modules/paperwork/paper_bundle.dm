@@ -115,7 +115,6 @@
 			else
 				dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
 			human_user << browse(dat, "window=[name]")
-			P.add_fingerprint(usr)
 		else if(istype(src[page], /obj/item/photo))
 			var/obj/item/photo/P = src[page]
 			human_user << browse_rsc(P.img, "tmp_photo.png")
@@ -124,8 +123,6 @@
 			+ "<div> <img src='tmp_photo.png' width = '180'" \
 			+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : ""]"\
 			+ "</body></html>", "window=[name]")
-			P.add_fingerprint(usr)
-		add_fingerprint(usr)
 		update_icon()
 	return
 
@@ -182,7 +179,6 @@
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the bundle?", "Bundle Labelling", null)  as text), 1, MAX_NAME_LEN)
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
-	add_fingerprint(usr)
 
 /obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
@@ -192,7 +188,6 @@
 	to_chat(usr, "<span class='notice'>You loosen the bundle.</span>")
 	for(var/obj/O in src)
 		O.forceMove(usr.loc)
-		O.add_fingerprint(usr)
 	usr.dropItemToGround(src)
 	qdel(src)
 
@@ -231,7 +226,6 @@
 	if(I.loc == user)
 		user.dropItemToGround(I)
 	I.forceMove(src)
-	I.add_fingerprint(user)
 	amount++
 	if(!no_message)
 		to_chat(user, "<span class='notice'>You add [I] to [src].</span>")

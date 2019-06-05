@@ -77,20 +77,16 @@
 	set category = "Object"
 	set src in usr
 
-	if((CLUMSY in usr.mutations) && prob(50))
-		to_chat(usr, "<span class='warning'>You cut yourself on the paper.</span>")
-		return
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text), 1, MAX_NAME_LEN)
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
-	add_fingerprint(usr)
 	return
 
 
 /obj/item/paper/attack_ai(var/mob/living/silicon/ai/user as mob)
 	var/dist
-	if(istype(user) && user.camera) //is AI
-		dist = get_dist(src, user.camera)
+	if(istype(user) && user.current) //is AI
+		dist = get_dist(src, user.current)
 	else //cyborg or AI not seeing through a camera
 		dist = get_dist(src, user)
 	if(dist < 2)

@@ -43,7 +43,6 @@
 		icon_state = "axe0"
 		w_class = 5
 		heat_source = 0
-	add_fingerprint(user)
 
 
 
@@ -75,9 +74,6 @@
 		sword_color = pick("red","blue","green","purple")
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You accidentally cut yourself with [src].</span>")
-		user.take_limb_damage(5,5)
 	active = !active
 	if (active)
 		force = 30
@@ -103,7 +99,6 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	add_fingerprint(user)
 	return
 
 

@@ -44,14 +44,14 @@
 
 	if(iswrench(I))
 		if(stage == 1)
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "You begin deconstructing [src].")
 			if(!do_after(usr, 30, TRUE, src, BUSY_ICON_BUILD))
 				return
 			new /obj/item/stack/sheet/metal(get_turf(loc), sheets_refunded)
 			user.visible_message("[user] deconstructs [src].", \
 				"You deconstruct [src].", "You hear a noise.")
-			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 			qdel(src)
 		else if(stage == 2)
 			to_chat(user, "You have to remove the wires first.")
@@ -72,7 +72,7 @@
 		new /obj/item/stack/cable_coil(get_turf(loc), 1, "red")
 		user.visible_message("[user.name] removes the wiring from [src].", \
 			"You remove the wiring from [src].", "You hear a noise.")
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 
 	else if(iscablecoil(I))
 		var/obj/item/stack/cable_coil/coil = I
@@ -105,7 +105,7 @@
 		stage = 3
 		user.visible_message("[user] closes [src]'s casing.", \
 			"You close [src]'s casing.", "You hear a noise.")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 
 		switch(fixture_type)
 			if("tube")
@@ -114,7 +114,6 @@
 				newlight = new /obj/machinery/light/small/built(loc)
 
 		newlight.setDir(dir)
-		transfer_fingerprints_to(newlight)
 		qdel(src)
 
 
@@ -335,7 +334,7 @@
 
 	else if(status == LIGHT_EMPTY)
 		if(isscrewdriver(I)) //If it's a screwdriver open it.
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			user.visible_message("[user] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
 			var/obj/machinery/light_construct/newlight
@@ -349,7 +348,6 @@
 					newlight.icon_state = "bulb-construct-stage2"
 			newlight.setDir(dir)
 			newlight.stage = 2
-			transfer_fingerprints_to(newlight)
 			qdel(src)
 
 		else if(has_power() && (I.flags_atom & CONDUCT))
@@ -415,8 +413,6 @@
 
 /obj/machinery/light/attack_hand(mob/user)
 
-	add_fingerprint(user)
-
 	if(status == LIGHT_EMPTY)
 		to_chat(user, "There is no [fitting] in this light.")
 		return
@@ -443,10 +439,8 @@
 		else
 			prot = 1
 
-		if(prot > 0 || (COLD_RESISTANCE in user.mutations))
+		if(prot > 0)
 			to_chat(user, "You remove the light [fitting]")
-		else if(TK in user.mutations)
-			to_chat(user, "You telekinetically remove the light [fitting].")
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
@@ -466,35 +460,8 @@
 
 	L.update()
 
-	if(user.put_in_active_hand(L))	//succesfully puts it in our active hand
-		L.add_fingerprint(user)
-	else
+	if(!user.put_in_active_hand(L))	//succesfully puts it in our active hand
 		L.forceMove(loc) //if not, put it on the ground
-	status = LIGHT_EMPTY
-	update()
-
-
-/obj/machinery/light/attack_tk(mob/user)
-	if(status == LIGHT_EMPTY)
-		to_chat(user, "There is no [fitting] in this light.")
-		return
-
-	to_chat(user, "You telekinetically remove the light [fitting].")
-	// create a light tube/bulb item and put it in the user's hand
-	var/obj/item/light_bulb/L = new light_type()
-	L.status = status
-	L.rigged = rigged
-	L.brightness = brightness
-	L.color = l_color
-
-	// light item inherits the switchcount, then zero it
-	L.switchcount = switchcount
-	switchcount = 0
-
-	L.update()
-	L.add_fingerprint(user)
-	L.loc = loc
-
 	status = LIGHT_EMPTY
 	update()
 

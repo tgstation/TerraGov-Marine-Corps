@@ -24,6 +24,10 @@
 	ui_interact(user)
 
 
+/obj/machinery/computer/dropship_weapons/attack_ai(mob/user)
+	return attack_hand(user)
+
+
 /obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/data[0]
 	var/datum/shuttle/ferry/marine/FM = shuttle_controller.shuttles[shuttle_tag]
@@ -91,8 +95,6 @@
 /obj/machinery/computer/dropship_weapons/Topic(href, href_list)
 	if(..())
 		return
-
-	add_fingerprint(usr)
 
 	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))

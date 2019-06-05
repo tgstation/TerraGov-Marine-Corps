@@ -191,6 +191,7 @@
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
 
 /mob/living/carbon/xenomorph/stop_pulling()
@@ -224,7 +225,7 @@
 	hud_set_pheromone()
 	//and display them
 	add_to_all_mob_huds()
-	var/datum/mob_hud/MH = huds[MOB_HUD_XENO_INFECTION]
+	var/datum/atom_hud/MH = GLOB.huds[DATA_HUD_XENO_INFECTION]
 	MH.add_hud_to(src)
 
 
