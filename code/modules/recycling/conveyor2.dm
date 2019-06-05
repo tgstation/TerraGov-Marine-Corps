@@ -9,7 +9,7 @@
 	layer = CONVEYOR_LAYER // so they appear under stuff
 	anchored = 1
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
-	var/is_operational = 1	// true if can operate (no broken segments in this belt run)
+	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
 	var/backwards		// hopefully self-explanatory
 	var/movedir			// the actual direction to move stuff in
@@ -68,7 +68,7 @@
 		stop_processing()
 		return
 
-	if(!is_operational || (machine_stat & NOPOWER))
+	if(!operable || (machine_stat & NOPOWER))
 		operating = 0
 
 	if(operating)
@@ -141,26 +141,26 @@
 
 	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)
 	if(C)
-		C.set_is_operational(dir, id, 0)
+		C.set_is_operarable(dir, id, 0)
 
 	C = locate() in get_step(src, turn(dir,180))
 	if(C)
-		C.set_is_operational(turn(dir,180), id, 0)
+		C.set_is_operarable(turn(dir,180), id, 0)
 
 
-//set the is_operational var if ID matches, propagating in the given direction
+//set the operable var if ID matches, propagating in the given direction
 
-/obj/machinery/conveyor/proc/set_is_operational(stepdir, match_id, op)
+/obj/machinery/conveyor/proc/set_is_operarable(stepdir, match_id, op)
 
 	if(id != match_id)
 		return
-	is_operational = op
-	if(is_operational) start_processing()
+	operable = op
+	if(operable) start_processing()
 
 	update()
 	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
 	if(C)
-		C.set_is_operational(stepdir, id, op)
+		C.set_is_operarable(stepdir, id, op)
 
 /*
 /obj/machinery/conveyor/verb/destroy_belt()
