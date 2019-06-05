@@ -34,7 +34,7 @@
 	var/mouse_down_icon = null
 
 	//Sound related
-	var/last_sound = 0
+	var/played = FALSE
 
 	//Security related
 	var/list/topiclimiter

@@ -1,64 +1,3 @@
-/*
-
-### This file contains a list of all the areas in your station. Format is as follows:
-
-/area/CATEGORY/OR/DESCRIPTOR/NAME 	(you can make as many subdivisions as you want)
-	name = "NICE NAME" 				(not required but makes things really nice)
-	icon = "ICON FILENAME" 			(defaults to areas.dmi)
-	icon_state = "NAME OF ICON" 	(defaults to "unknown" (blank))
-	requires_power = 0 				(defaults to 1)
-	music = "music/music.ogg"		(defaults to "music/music.ogg")
-
-NOTE: there are two lists of areas in the end of this file: centcom and station itself. Please maintain these lists valid. --rastaf0
-
-*/
-
-
-
-/area
-	var/atmos = 1
-	var/atmosalm = 0
-	var/poweralm = 1
-
-	level = null
-	name = "Unknown"
-	icon = 'icons/turf/areas.dmi'
-	icon_state = "unknown"
-	layer = AREAS_LAYER
-	mouse_opacity = 0
-	invisibility = INVISIBILITY_LIGHTING
-	var/lightswitch = 1
-
-	var/flags_alarm_state = NONE
-
-	var/debug = 0
-	var/powerupdate = 10		//We give everything 10 ticks to settle out it's power usage.
-	var/requires_power = 1
-	var/unlimited_power = 0
-	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
-
-	var/power_equip = 1
-	var/power_light = 1
-	var/power_environ = 1
-	var/music = null
-	var/used_equip = 0
-	var/used_light = 0
-	var/used_environ = 0
-
-	var/has_gravity = 1
-	var/list/apc = list()
-	var/list/area_machines = list() // list of machines only for master areas
-	var/no_air = null
-	var/area/master				// master area used for power calcluations
-								// (original area before splitting due to sd_DAL)
-	var/list/related			// the other areas of the same type as this
-//	var/list/lights				// list of all lights on this area
-	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
-	var/air_doors_activated = 0
-	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
-
-
-/*-----------------------------------------------------------------------------*/
 /area/space
 	name = "\improper Space"
 	requires_power = 1
@@ -108,7 +47,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle/escape
 	name = "\improper Abandoned Emergency Shuttle"
-	music = "music/escape.ogg"
 
 /area/shuttle/escape/station
 	name = "\improper Abandoned Emergency Shuttle Station"
@@ -124,7 +62,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle/escape_pod1
 	name = "\improper Escape Pod One"
-	music = "music/escape.ogg"
 
 /area/shuttle/escape_pod1/station
 	icon_state = "shuttle2"
@@ -137,7 +74,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle/escape_pod2
 	name = "\improper Escape Pod Two"
-	music = "music/escape.ogg"
 
 /area/shuttle/escape_pod2/station
 	icon_state = "shuttle2"
@@ -150,7 +86,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle/escape_pod3
 	name = "\improper Escape Pod Three"
-	music = "music/escape.ogg"
 
 /area/shuttle/escape_pod3/station
 	icon_state = "shuttle2"
@@ -163,7 +98,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle/escape_pod5 //Pod 4 was lost to meteors
 	name = "\improper Escape Pod Five"
-	music = "music/escape.ogg"
 
 /area/shuttle/escape_pod5/station
 	icon_state = "shuttle2"
@@ -176,7 +110,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/shuttle/mining
 	name = "\improper abandoned Mining Shuttle"
-	music = "music/escape.ogg"
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
@@ -191,102 +124,95 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/shuttle/transport1/station
 	icon_state = "shuttle"
 	name = "\improper Abandoned Transport Shuttle"
-/*
-/area/shuttle/alien/base
-	icon_state = "shuttle"
-	name = "\improper Abandoned Alien Shuttle Base"
-	requires_power = 1
-	luminosity = 0
-	lighting_use_dynamic = 1
-
-/area/shuttle/alien/mine
-	icon_state = "shuttle"
-	name = "\improper Abandoned Alien Shuttle Mine"
-	requires_power = 1
-	luminosity = 0
-	lighting_use_dynamic = 1
-*/
 
 
 /area/shuttle/prison/
 	name = "\improper Abandoned Prison Shuttle"
 
+
 /area/shuttle/prison/station
 	icon_state = "shuttle"
 
+
 /area/shuttle/prison/prison
 	icon_state = "shuttle2"
+
 
 /area/shuttle/specops/centcom
 	name = "\improper Abandoned Special Ops Shuttle"
 	icon_state = "shuttlered"
 
+
 /area/shuttle/specops/station
 	name = "\improper Abandoned Special Ops Shuttle"
 	icon_state = "shuttlered2"
+
 
 /area/shuttle/syndicate_elite/mothership
 	name = "\improper Abandoned Syndicate Elite Shuttle"
 	icon_state = "shuttlered"
 
+
 /area/shuttle/syndicate_elite/station
 	name = "\improper Abandoned Syndicate Elite Shuttle"
 	icon_state = "shuttlered2"
+
 
 /area/shuttle/administration/centcom
 	name = "\improper Abandoned Administration Shuttle Centcom"
 	icon_state = "shuttlered"
 
+
 /area/shuttle/administration/station
 	name = "\improper Abandoned Administration Shuttle"
 	icon_state = "shuttlered2"
 
+
 /area/shuttle/thunderdome
 	name = "honk"
+
 
 /area/shuttle/thunderdome/grnshuttle
 	name = "\improper Abandoned Thunderdome GRN Shuttle"
 	icon_state = "green"
 
+
 /area/shuttle/thunderdome/grnshuttle/dome
 	name = "\improper Abandoned GRN Shuttle"
 	icon_state = "shuttlegrn"
+
 
 /area/shuttle/thunderdome/grnshuttle/station
 	name = "\improper Abandoned GRN Station"
 	icon_state = "shuttlegrn2"
 
+
 /area/shuttle/thunderdome/redshuttle
 	name = "\improper Abandoned Thunderdome RED Shuttle"
 	icon_state = "red"
+
 
 /area/shuttle/thunderdome/redshuttle/dome
 	name = "\improper Abandoned RED Shuttle"
 	icon_state = "shuttlered"
 
+
 /area/shuttle/thunderdome/redshuttle/station
 	name = "\improper Abandoned RED Station"
 	icon_state = "shuttlered2"
-// === Trying to remove these areas:
-/*
-/area/shuttle/research
-	name = "\improper Abandoned Research Shuttle"
-	music = "music/escape.ogg"
 
-/area/shuttle/research/station
-	icon_state = "shuttle2"
 
-/area/shuttle/research/outpost
-	icon_state = "shuttle"
-*/
 /area/shuttle/vox/station
 	name = "\improper Abandoned Vox Skipjack"
 	icon_state = "yellow"
 	requires_power = 0
 
+
 /area/airtunnel1/      // referenced in airtunnel.dm:759
 
+
 /area/dummy/           // Referenced in engine.dm:261
+
 
 /area/start            // will be unused once kurper gets his login interface patch done
 	name = "start area"
@@ -296,87 +222,64 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	lighting_use_dynamic = 0
 	has_gravity = 1
 
-// === end remove
-/*
-/area/alien
-	name = "\improper Abandoned Alien base"
-	icon_state = "yellow"
-	requires_power = 0
-*/
-
-
-//SYNDICATES
 
 /area/syndicate_mothership
 	name = "\improper Abandoned Syndicate Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
-	unlimited_power = 1
+
 
 /area/syndicate_mothership/control
 	name = "\improper Abandoned Syndicate Control Room"
 	icon_state = "syndie-control"
 
+
 /area/syndicate_mothership/elite_squad
 	name = "\improper Abandoned Syndicate Elite Squad"
 	icon_state = "syndie-elite"
 
-//EXTRA
 
-/area/asteroid					// -- TLE
+/area/asteroid
 	name = "\improper Abandoned Asteroid"
 	icon_state = "asteroid"
 	requires_power = 0
 
-/area/asteroid/cave				// -- TLE
+
+/area/asteroid/cave
 	name = "\improper Abandoned Asteroid - Underground"
 	icon_state = "cave"
 	requires_power = 0
+
 
 /area/asteroid/artifactroom
 	name = "\improper Abandoned Asteroid - Artifact"
 	icon_state = "cave"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-/area/planet/clown
-	name = "\improper Abandoned Clown Planet"
-	icon_state = "honk"
-	requires_power = 0
-*/
 /area/tdome
 	name = "\improper Abandoned Thunderdome"
 	icon_state = "thunder"
 	requires_power = 0
 
+
 /area/tdome/tdome1
 	name = "\improper Abandoned Thunderdome (Team 1)"
 	icon_state = "green"
+
 
 /area/tdome/tdome2
 	name = "\improper Abandoned Thunderdome (Team 2)"
 	icon_state = "yellow"
 
+
 /area/tdome/tdomeadmin
 	name = "\improper Abandoned Thunderdome (Admin.)"
 	icon_state = "purple"
 
+
 /area/tdome/tdomeobserve
 	name = "\improper Abandoned Thunderdome (Observer.)"
 	icon_state = "purple"
-
 
 
 /area/deathmatch
@@ -384,14 +287,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "green"
 	requires_power = 0
 
-//ENEMY
 
-//names are used
 /area/syndicate_station
 	name = "\improper Abandoned Syndicate Station"
 	icon_state = "yellow"
 	requires_power = 0
-	unlimited_power = 1
 
 /area/syndicate_station/start
 	name = "\improper Abandoned Syndicate Forward Operating Base"
@@ -760,12 +660,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/bridge
 	name = "\improper Abandoned Bridge"
 	icon_state = "bridge"
-	music = "signal"
 
 /area/bridge/meeting_room
 	name = "\improper Abandoned Heads of Staff Meeting Room"
 	icon_state = "bridge"
-	music = null
+
 
 /area/crew_quarters/captain
 	name = "\improper Abandoned Captain's Office"
@@ -1122,17 +1021,17 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/teleporter
 	name = "\improper Abandoned Teleporter"
 	icon_state = "teleporter"
-	music = "signal"
+
 
 /area/gateway
 	name = "\improper Abandoned Gateway"
 	icon_state = "teleporter"
-	music = "signal"
+
 
 /area/AIsattele
 	name = "\improper Abandoned AI Satellite Teleporter Room"
 	icon_state = "teleporter"
-	music = "signal"
+
 	ambience = list('sound/ambience/ambimalf.ogg')
 
 //MedBay
@@ -1140,38 +1039,38 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical/medbay
 	name = "\improper Abandoned Medbay"
 	icon_state = "medbay"
-	music = 'sound/ambience/signal.ogg'
+
 
 //Medbay is a large area, these additional areas help level out APC load.
 /area/medical/medbay2
 	name = "\improper Abandoned Medbay"
 	icon_state = "medbay2"
-	music = 'sound/ambience/signal.ogg'
+
 
 /area/medical/medbay3
 	name = "\improper Abandoned Medbay"
 	icon_state = "medbay3"
-	music = 'sound/ambience/signal.ogg'
+
 
 /area/medical/biostorage
 	name = "\improper Abandoned Secondary Storage"
 	icon_state = "medbay2"
-	music = 'sound/ambience/signal.ogg'
+
 
 /area/medical/reception
 	name = "\improper Abandoned Medbay Reception"
 	icon_state = "medbay"
-	music = 'sound/ambience/signal.ogg'
+
 
 /area/medical/psych
 	name = "\improper Abandoned Psych Room"
 	icon_state = "medbay3"
-	music = 'sound/ambience/signal.ogg'
+
 
 /area/crew_quarters/medbreak
 	name = "\improper Abandoned Break Room"
 	icon_state = "medbay3"
-	music = 'sound/ambience/signal.ogg'
+
 
 /area/medical/patients_rooms
 	name = "\improper Abandoned Patient's Rooms"

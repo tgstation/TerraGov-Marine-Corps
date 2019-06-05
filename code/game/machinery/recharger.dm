@@ -40,7 +40,7 @@ obj/machinery/recharger
 		return
 	// Checks to make sure he's not in space doing it, and that the area got proper power.
 	var/area/A = get_area(src)
-	if(!isarea(A) || (A.power_equip == 0 && !A.unlimited_power))
+	if(!isarea(A) || (A.power_equip == 0 && A.requires_power))
 		to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
 		return
 

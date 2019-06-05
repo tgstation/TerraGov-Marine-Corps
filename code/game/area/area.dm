@@ -1,25 +1,71 @@
-// Areas.dm
-
-
-
-// ===
 /area
+	level = null
+	name = "Unknown"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "unknown"
+	layer = AREAS_LAYER
+	plane = BLACKNESS_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	invisibility = INVISIBILITY_LIGHTING
+
+	var/flags_alarm_state = NONE
+
+	var/unique = TRUE
+
+	var/powerupdate = 10
+	
+	var/requires_power = TRUE
+	var/always_unpowered = FALSE
+
+	var/power_equip = TRUE
+	var/power_light = TRUE
+	var/power_environ = TRUE
+
+	var/used_equip = 0
+	var/used_light = 0
+	var/used_environ = 0
+
+	var/has_gravity = TRUE
+
+
+	var/list/apc = list()
+	var/list/area_machines = list() // list of machines only for master areas
+	var/area/master				// master area used for power calcluations
+								// (original area before splitting due to sd_DAL)
+	var/list/related			// the other areas of the same type as this
+
 	var/global/global_uid = 0
 	var/uid
+
+	var/atmos = TRUE
+	var/atmosalm = FALSE
+	var/poweralm = TRUE
+	var/lightswitch = TRUE
+
+	var/gas_type = GAS_TYPE_AIR
+	var/pressure = ONE_ATMOSPHERE
+	var/temperature = T20C
+
 	var/ceiling = CEILING_NONE //the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 	var/fake_zlevel // for multilevel maps in the same z level
-	var/gas_type = GAS_TYPE_AIR
-	var/temperature = T20C
-	var/pressure = ONE_ATMOSPHERE
-	var/unique = TRUE
+
 	var/list/cameras
+	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/air_doors_activated = FALSE
+	var/list/ambience = list('sound/ambience/ambigen1.ogg', 'sound/ambience/ambigen3.ogg', 'sound/ambience/ambigen4.ogg', \
+		'sound/ambience/ambigen5.ogg', 'sound/ambience/ambigen6.ogg', 'sound/ambience/ambigen7.ogg', 'sound/ambience/ambigen8.ogg',\
+		'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambigen11.ogg', 'sound/ambience/ambigen12.ogg',\
+		'sound/ambience/ambigen14.ogg')
+
+
 	
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
-	if (unique)
+	if(unique)
 		GLOB.areas_by_type[type] = src
 	return ..()
+
 
 /area/Initialize(mapload, ...)
 	. = ..()
@@ -38,25 +84,11 @@
 
 	return INITIALIZE_HINT_LATELOAD
 
+
 /area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
 
-/area/proc/reg_in_areas_in_z()
-	if(contents.len)
-		var/list/areas_in_z = SSmapping.areas_in_z
-		var/z
-		for(var/i in 1 to contents.len)
-			var/atom/thing = contents[i]
-			if(!thing)
-				continue
-			z = thing.z
-			break
-		if(!z)
-			WARNING("No z found for [src]")
-			return
-		if(!areas_in_z["[z]"])
-			areas_in_z["[z]"] = list()
-		areas_in_z["[z]"] += src
+
 
 /area/Destroy()
 	if(GLOB.areas_by_type[type] == src)
@@ -64,9 +96,67 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
+
+/area/Entered(atom/movable/AM)
+	set waitfor = FALSE
+	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, AM)
+	SEND_SIGNAL(AM, COMSIG_ENTER_AREA, src) //The atom that enters the area
+	if(!isliving(AM))
+		return
+
+	var/mob/living/L = AM
+	if(!L.ckey)
+		return
+
+	if(!L.client || !(L.client.prefs.toggles_sound & SOUND_AMBIENCE))
+		return
+
+	if(!prob(35))
+		return
+
+	var/sound = pick(ambience)
+
+	if(!L.client.played)
+		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = 1018))
+		L.client.played = TRUE
+		addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
+
+
+/client/proc/ResetAmbiencePlayed()
+	played = FALSE
+
+
+
+/area/Exited(atom/movable/M)
+	SEND_SIGNAL(src, COMSIG_AREA_EXITED, M)
+	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
+
+
+/area/proc/reg_in_areas_in_z()
+	if(!length(contents))
+		return
+		
+	var/list/areas_in_z = SSmapping.areas_in_z
+	var/z
+	for(var/i in contents)
+		var/atom/thing = i
+		if(!thing)
+			continue
+		z = thing.z
+		break
+	if(!z)
+		WARNING("No z found for [src]")
+		return
+	if(!areas_in_z["[z]"])
+		areas_in_z["[z]"] = list()
+	areas_in_z["[z]"] += src
+
+
+
 // A hook so areas can modify the incoming args
 /area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	return flags
+
 
 /area/proc/initialize_power_and_lighting(override_power)
 	if(requires_power)
@@ -86,8 +176,9 @@
 	power_change()		// all machines set to current power level, also updates lighting icon
 	InitializeLighting()
 
+
 /area/proc/poweralert(var/state, var/obj/source as obj)
-	if (state != poweralm)
+	if(state != poweralm)
 		poweralm = state
 		if(istype(source))	//Only report power alarms on the z-level where the source is located.
 			var/list/cameras = list()
@@ -105,10 +196,8 @@
 					else
 						a.triggerAlarm("Power", src, cameras, source)
 
-/area/proc/atmosalert(danger_level)
-//	if(type==/area) //No atmos alarms in space
-//		return 0 //redudant
 
+/area/proc/atmosalert(danger_level)
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
 	for (var/area/RA in related)
 		for (var/obj/machinery/alarm/AA in RA)
@@ -146,27 +235,37 @@
 		return TRUE
 	return FALSE
 
+
 /area/proc/air_doors_close()
-	if(!src.master.air_doors_activated)
-		src.master.air_doors_activated = 1
-		for(var/obj/machinery/door/firedoor/E in src.master.all_doors)
-			if(!E:blocked)
-				if(E.operating)
-					E:nextstate = OPEN
-				else if(!E.density)
-					spawn(0)
-						E.close()
+	if(master.air_doors_activated)
+		return
+
+	master.air_doors_activated = TRUE
+	for(var/obj/machinery/door/firedoor/E in master.all_doors)
+		if(E.blocked)
+			continue
+
+		if(E.operating)
+			E.nextstate = OPEN
+		else if(!E.density)
+			spawn(0)
+				E.close()
+
 
 /area/proc/air_doors_open()
-	if(src.master.air_doors_activated)
-		src.master.air_doors_activated = 0
-		for(var/obj/machinery/door/firedoor/E in src.master.all_doors)
-			if(!E:blocked)
-				if(E.operating)
-					E:nextstate = OPEN
-				else if(E.density)
-					spawn(0)
-						E.open()
+	if(!master.air_doors_activated)
+		return
+
+	master.air_doors_activated = FALSE
+	for(var/obj/machinery/door/firedoor/E in master.all_doors)
+		if(E.blocked)
+			continue
+
+		if(E.operating)
+			E.nextstate = OPEN
+		else if(E.density)
+			spawn(0)
+				E.open()
 
 
 /area/proc/firealert()
@@ -192,12 +291,14 @@
 		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.triggerAlarm("Fire", src, cameras, src)
 
+
 /area/proc/firereset()
 	if(flags_alarm_state & ALARM_WARNING_FIRE)
 		flags_alarm_state &= ~ALARM_WARNING_FIRE
 		master.flags_alarm_state &= ~ALARM_WARNING_FIRE		//used for firedoor checks
 		mouse_opacity = 0
 		updateicon()
+
 		for(var/obj/machinery/door/firedoor/D in all_doors)
 			if(!D.blocked)
 				if(D.operating)
@@ -205,45 +306,10 @@
 				else if(D.density)
 					spawn(0)
 					D.open()
-		for(var/area/RA in related)
-			for (var/obj/machinery/camera/C in RA)
-				C.network.Remove("Fire Alarms")
-		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
+
+		for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.cancelAlarm("Fire", src, src)
 
-/area/proc/readyalert()
-	if(!(flags_alarm_state & ALARM_WARNING_READY))
-		flags_alarm_state |= ALARM_WARNING_READY
-		updateicon()
-
-/area/proc/readyreset()
-	if(flags_alarm_state & ALARM_WARNING_READY)
-		flags_alarm_state &= ~ALARM_WARNING_READY
-		updateicon()
-/*
-/area/proc/toggle_evacuation() //toggles lights and creates an overlay.
-	flags_alarm_state ^= ALARM_WARNING_EVAC
-	master.flags_alarm_state ^= ALARM_WARNING_EVAC
-	//if(flags_alarm_state & ALARM_WARNING_EVAC)
-	//	master.lightswitch = FALSE
-		//lightswitch = FALSE //Lights going off.
-//	else
-	//	master.lightswitch = TRUE
-		//lightswitch = TRUE //Coming on.
-	master.updateicon()
-
-	//master.power_change()
-
-
-/area/proc/toggle_shut_down()
-	flags_alarm_state ^= ALARM_WARNING_DOWN
-	updateicon()
-
-/area/proc/destroy_area() //Just overlays for now to make it seem like nothing is left.
-	flags_alarm_state = NONE
-	active_areas -= src //So it doesn't process anymore.
-	icon_state = "area_destroyed"
-*/
 
 /area/proc/updateicon()
 	var/I //More important == bottom. Fire normally takes priority over everything.
@@ -256,18 +322,14 @@
 
 	if(icon_state != I) icon_state = I //If the icon state changed, change it. Otherwise do nothing.
 
-/*
-#define EQUIP 1
-#define LIGHT 2
-#define ENVIRON 3
-*/
 
-/area/proc/powered(var/chan)		// return true if the area has power to given channel
-
+/area/proc/powered(chan)
 	if(!master.requires_power)
 		return TRUE
+
 	if(master.always_unpowered)
 		return FALSE
+
 	switch(chan)
 		if(EQUIP)
 			return master.power_equip
@@ -275,9 +337,9 @@
 			return master.power_light
 		if(ENVIRON)
 			return master.power_environ
+
 	return FALSE
 
-// called when power status changes
 
 /area/proc/power_change()
 	powerupdate = 2
@@ -287,7 +349,8 @@
 		if(flags_alarm_state)
 			RA.updateicon()
 
-/area/proc/usage(var/chan)
+
+/area/proc/usage(chan)
 	var/used = 0
 	switch(chan)
 		if(LIGHT)
@@ -301,12 +364,14 @@
 
 	return used
 
+
 /area/proc/clear_usage()
 	master.used_equip = 0
 	master.used_light = 0
 	master.used_environ = 0
 
-/area/proc/use_power(var/amount, var/chan)
+
+/area/proc/use_power(amount, chan)
 	switch(chan)
 		if(EQUIP)
 			master.used_equip += amount
@@ -317,94 +382,19 @@
 
 	master.powerupdate = TRUE
 
-/area/Entered(atom/movable/A, atom/OldLoc)
-	SEND_SIGNAL(src, COMSIG_AREA_ENTERED, A)
-	SEND_SIGNAL(A, COMSIG_ENTER_AREA, src) //The atom that enters the area
-	var/musVolume = 20
-	var/sound = 'sound/ambience/ambigen1.ogg'
 
-	if(istype(A, /obj/machinery))
-		var/area/newarea = get_area(A)
-		var/area/oldarea = get_area(OldLoc)
-		oldarea.master.area_machines -= A
-		newarea.master.area_machines += A
-		return
-
-	if(!istype(A,/mob/living))	return
-
-	var/mob/living/L = A
-	if(!L.ckey)	return
-
-	if(!L.lastarea)
-		L.lastarea = get_area(L.loc)
-	var/area/newarea = get_area(L.loc)
-	var/area/oldarea = L.lastarea
-	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == MOVE_INTENT_RUN)) // Being ready when you change areas gives you a chance to avoid falling all together.
-		thunk(L)
-
-	L.lastarea = newarea
-
-	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(!(L && L.client && (L.client.prefs.toggles_sound & SOUND_AMBIENCE)))	return
-
-	if(prob(35) && length(ambience))
-		sound = pick(ambience)
-
-		if(world.time > L.client.last_sound + 90 SECONDS)
-			L << sound(sound, repeat = 0, wait = 0, volume = musVolume, channel = 1)
-			L.client.last_sound = world.time
-
-
-/area/Exited(atom/movable/M)
-	SEND_SIGNAL(src, COMSIG_AREA_EXITED, M)
-	SEND_SIGNAL(M, COMSIG_EXIT_AREA, src) //The atom that exits the area
-
-
-/area/proc/gravitychange(var/gravitystate = 0, var/area/A)
-
-	A.has_gravity = gravitystate
-
-	for(var/area/SubA in A.related)
-		SubA.has_gravity = gravitystate
-
-		if(gravitystate)
-			for(var/mob/living/carbon/human/M in SubA)
-				thunk(M)
-
-/area/proc/thunk(mob)
-	if(istype(mob,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
-		if((istype(mob:shoes, /obj/item/clothing/shoes/magboots) && (mob:shoes.flags_inventory & NOSLIPPING)))
-			return
-
-	if(isspaceturf(get_turf(mob))) // Can't fall onto nothing.
-		return
-
-	if((istype(mob,/mob/living/carbon/human/)) && (mob:m_intent == MOVE_INTENT_RUN)) // Only clumbsy humans can fall on their asses.
-		mob:AdjustStunned(5)
-		mob:AdjustKnockeddown(5)
-
-	else if (istype(mob,/mob/living/carbon/human/))
-		mob:AdjustStunned(2)
-		mob:AdjustKnockeddown(2)
-
-	to_chat(mob, "Gravity!")
-
-
-
-
-
-//atmos related procs
 
 /area/return_air()
 	return list(gas_type, temperature, pressure)
 
+
 /area/return_pressure()
 	return pressure
+
 
 /area/return_temperature()
 	return temperature
 
+
 /area/return_gas()
 	return gas_type
-
-
