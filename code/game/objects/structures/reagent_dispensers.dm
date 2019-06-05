@@ -63,7 +63,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
-	list_reagents = list("water" = 1000)
+	list_reagents = list(/datum/reagent/water = 1000)
 
 
 
@@ -72,7 +72,7 @@
 	desc = "A fueltank"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
-	list_reagents = list("fuel" = 1000)
+	list_reagents = list(/datum/reagent/fuel = 1000)
 	var/modded = FALSE
 	var/obj/item/assembly_holder/rig = null
 	var/exploding = FALSE
@@ -210,7 +210,7 @@
 	possible_transfer_amounts = null
 	anchored = TRUE
 	tank_volume = 500
-	list_reagents = list("water" = 500)
+	list_reagents = list(/datum/reagent/water = 500)
 
 
 /obj/structure/reagent_dispensers/beerkeg
@@ -218,7 +218,7 @@
 	desc = "A beer keg"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
-	list_reagents = list("beer" = 1000)
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 1000)
 
 
 /obj/structure/reagent_dispensers/wallmounted
@@ -248,7 +248,7 @@
 	desc = "Refill pepper spray canisters."
 	icon_state = "peppertank"
 	amount_per_transfer_from_this = 45
-	list_reagents = list("condensedcapsaicin" = 1000)
+	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 1000)
 
 /obj/structure/reagent_dispensers/wallmounted/peppertank/New()
 	. = ..()
@@ -259,4 +259,4 @@
 	name = "virus food dispenser"
 	desc = "A dispenser of virus food."
 	icon_state = "virusfoodtank"
-	list_reagents = list("virusfood" = 1000)
+	list_reagents = list(/datum/reagent/consumable/virus_food = 1000)

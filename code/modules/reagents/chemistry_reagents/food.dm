@@ -20,7 +20,7 @@
 		C.nutrition += nutriment_factor * REM
 	if(adj_temp)
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
-	holder.remove_reagent(id, custom_metabolism)
+	holder.remove_reagent(type, custom_metabolism)
 	return TRUE
 
 /datum/reagent/consumable/nutriment

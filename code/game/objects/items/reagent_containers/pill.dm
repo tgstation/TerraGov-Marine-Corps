@@ -280,7 +280,7 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/quickclot
 	pill_desc = "A quick-clot pill. Stabilizes internal bleeding temporarily."
-	list_reagents = list("quickclot" = 10)
+	list_reagents = list(/datum/reagent/medicine/quickclot = 10)
 
 /obj/item/reagent_container/pill/quickclot/New()
 	. = ..()

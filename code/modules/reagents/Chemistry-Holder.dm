@@ -138,7 +138,7 @@
 
 	return name
 
-/datum/reagents/proc/get_master_reagent_id()
+/datum/reagents/proc/get_master_reagent_type()
 	var/list/cached_reagents = reagent_list
 	var/max_type
 	var/max_volume = 0
@@ -217,7 +217,7 @@
 		var/copy_amount = T.volume * part
 		if(preserve_data)
 			trans_data = T.data
-		R.add_reagent(T.id, copy_amount * multiplier, trans_data)
+		R.add_reagent(T.type, copy_amount * multiplier, trans_data)
 
 	src.update_total()
 	R.update_total()
@@ -226,7 +226,7 @@
 	return amount
 
 
-/datum/reagents/proc/trans_id_to(obj/target, reagent, amount=1, preserve_data=1)//Not sure why this proc didn't exist before. It does now! /N
+/datum/reagents/proc/trans_type_to(obj/target, reagent, amount=1, preserve_data=1)//Not sure why this proc didn't exist before. It does now! /N
 	var/list/cached_reagents = reagent_list
 	if (!target)
 		return
@@ -610,7 +610,7 @@
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
 
-/datum/reagents/proc/remove_reagent(reagent, amount, safety)//Added a safety check for the trans_id_to
+/datum/reagents/proc/remove_reagent(reagent, amount, safety)//Added a safety check for the trans_type_to
 	if(isnull(amount))
 		amount = 0
 		CRASH("null amount passed to reagent code")

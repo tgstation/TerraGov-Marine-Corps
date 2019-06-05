@@ -89,7 +89,7 @@
 		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall")
 			return
 		if(reagents.reagent_list.len > 0)
-			switch(reagents.get_master_reagent_id())
+			switch(reagents.get_master_reagent_type())
 				if(/datum/reagent/consumable/ketchup)
 					name = "Ketchup"
 					desc = "You feel more American already."

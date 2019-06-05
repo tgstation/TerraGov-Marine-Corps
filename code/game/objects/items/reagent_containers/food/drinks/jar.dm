@@ -13,7 +13,7 @@
 /obj/item/reagent_container/food/drinks/jar/on_reagent_change()
 	if (reagents.reagent_list.len > 0)
 		/*
-		switch(reagents.get_master_reagent_id())
+		switch(reagents.get_master_reagent_type())
 			if("slime")
 				icon_state = "jar_slime"
 				name = "slime jam"

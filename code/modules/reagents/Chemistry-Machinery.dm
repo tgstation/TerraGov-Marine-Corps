@@ -108,7 +108,7 @@
 	for (var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
-			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
+			chemicals.Add(list(list("title" = temp.name, "id" = temp.type, "commands" = list("dispense" = temp.type)))) // list in a list because Byond merges the first list...
 	data["chemicals"] = chemicals
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -305,13 +305,13 @@
 		to_chat(user, "<span class='notice'>You add the pill bottle into the dispenser slot!</span>")
 		updateUsrDialog()
 
-/obj/machinery/chem_master/proc/transfer_chemicals(var/obj/dest, var/obj/source, var/amount, var/reagent_id)
+/obj/machinery/chem_master/proc/transfer_chemicals(obj/dest, obj/source, amount, reagent_type)
 	if(istype(source))
 		if(amount > 0 && source.reagents && amount <= source.reagents.maximum_volume)
 			if(!istype(dest))
-				source.reagents.remove_reagent(reagent_id, amount)
+				source.reagents.remove_reagent(reagent_type, amount)
 			else if(dest.reagents)
-				source.reagents.trans_id_to(dest, reagent_id, amount)
+				source.reagents.trans_type_to(dest, reagent_type, amount)
 
 /obj/machinery/chem_master/Topic(href, href_list)
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -578,22 +578,22 @@
 			for(var/datum/reagent/G in beaker.reagents.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name];reag_type=[G.type]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=[G.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];addcustom=[G.id]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=[G.volume]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];addcustom=[G.type]'>(Custom)</A><BR>"
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name];reag_type=[N.type]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=[N.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];removecustom=[N.id]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=[N.volume]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];removecustom=[N.type]'>(Custom)</A><BR>"
 		else
 			dat += "Empty<BR>"
 		if(!condi)
@@ -953,7 +953,7 @@
 						O.reagents.remove_reagent(/datum/reagent/consumable/nutriment, min(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment), space))
 
 			else
-				O.reagents.trans_id_to(beaker, r_id, min(amount, space))
+				O.reagents.trans_type_to(beaker, r_id, min(amount, space))
 
 			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break

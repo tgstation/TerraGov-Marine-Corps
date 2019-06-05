@@ -186,45 +186,42 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 	chems = list()
 	if(prob(80))
-		chems["nutriment"] = list(rand(1,10),rand(10,20))
+		chems[/datum/reagent/consumable/nutriment] = list(rand(1,10),rand(10,20))
 
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
 		var/list/possible_chems = list(
-			"bicaridine",
-			"hyperzine",
-			"cryoxadone",
-			"blood",
-			"water",
-			"potassium",
-			"plasticide",
-			"slimetoxin",
-			"aslimetoxin",
-			"inaprovaline",
-			"space_drugs",
-			"paroxetine",
-			"mercury",
-			"sugar",
-			"radium",
-			"ryetalyn",
-			"alkysine",
-			"thermite",
-			"tramadol",
-			"cryptobiolin",
-			"dermaline",
-			"dexalin",
-			"phoron",
-			"synaptizine",
-			"impedrezene",
-			"hyronalin",
-			"peridaxon",
-			"toxin",
-			"rezadone",
-			"ethylredoxrazine",
-			"cyanide",
-			"mindbreaker",
-			"sleeptoxin"
+			/datum/reagent/medicine/bicaridine,
+			/datum/reagent/medicine/hyperzine,
+			/datum/reagent/medicine/cryoxadone,
+			/datum/reagent/blood,
+			/datum/reagent/water,
+			/datum/reagent/potassium,
+			/datum/reagent/toxin/plasticide,
+			/datum/reagent/medicine/inaprovaline,
+			/datum/reagent/space_drugs,
+			/datum/reagent/mercury,
+			/datum/reagent/consumable/sugar,
+			/datum/reagent/radium,
+			/datum/reagent/medicine/ryetalyn,
+			/datum/reagent/medicine/alkysine,
+			/datum/reagent/thermite,
+			/datum/reagent/medicine/tramadol,
+			/datum/reagent/cryptobiolin,
+			/datum/reagent/medicine/dermaline,
+			/datum/reagent/medicine/dexalin,
+			/datum/reagent/toxin/phoron,
+			/datum/reagent/medicine/synaptizine,
+			/datum/reagent/impedrezene,
+			/datum/reagent/medicine/hyronalin,
+			/datum/reagent/medicine/peridaxon,
+			/datum/reagent/toxin,
+			/datum/reagent/medicine/rezadone,
+			/datum/reagent/medicine/ethylredoxrazine,
+			/datum/reagent/toxin/cyanide,
+			/datum/reagent/toxin/mindbreaker,
+			/datum/reagent/toxin/sleeptoxin
 			)
 
 		for(var/x=1;x<=additional_chems;x++)
@@ -669,7 +666,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	seed_name = "chili"
 	display_name = "chili plants"
 	products = list(/obj/item/reagent_container/food/snacks/grown/chili)
-	chems = list("capsaicin" = list(3,5), "nutriment" = list(1,25))
+	chems = list(/datum/reagent/consumable/capsaicin = list(3,5), /datum/reagent/consumable/nutriment = list(1,25))
 	mutants = list("icechili")
 	packet_icon = "seed-chili"
 	plant_icon = "chili"
@@ -687,7 +684,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	display_name = "ice-pepper plants"
 	mutants = null
 	products = list(/obj/item/reagent_container/food/snacks/grown/icepepper)
-	chems = list("frostoil" = list(3,5), "nutriment" = list(1,50))
+	chems = list(/datum/reagent/consumable/frostoil = list(3,5), /datum/reagent/consumable/nutriment = list(1,50))
 	packet_icon = "seed-icepepper"
 	plant_icon = "chiliice"
 
@@ -704,7 +701,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-berry"
 	plant_icon = "berry"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 20
 	maturation = 5
@@ -720,7 +717,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-glowberry"
 	plant_icon = "glowberry"
-	chems = list("nutriment" = list(1,10), "uranium" = list(3,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/uranium = list(3,5))
 
 	lifespan = 30
 	maturation = 5
@@ -736,7 +733,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = list("deathberries")
 	packet_icon = "seed-poisonberry"
 	plant_icon = "poisonberry"
-	chems = list("nutriment" = list(1), "toxin" = list(3,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/toxin = list(3,5))
 
 /datum/seed/berry/poison/death
 	name = "deathberries"
@@ -746,7 +743,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/deathberries)
 	packet_icon = "seed-deathberry"
 	plant_icon = "deathberry"
-	chems = list("nutriment" = list(1), "toxin" = list(3,3), "lexorin" = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/toxin = list(3,3), /datum/reagent/toxin/lexorin = list(1,5))
 
 	yield = 3
 	potency = 50
@@ -761,7 +758,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-nettle"
 	plant_icon = "nettle"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,50), "sacid" = list(0,1))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,50), /datum/reagent/toxin/acid = list(0,1))
 	lifespan = 30
 	maturation = 6
 	production = 6
@@ -777,7 +774,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-deathnettle"
 	plant_icon = "deathnettle"
-	chems = list("nutriment" = list(1,50), "pacid" = list(0,1))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,50), /datum/reagent/toxin/acid/polyacid = list(0,1))
 
 	maturation = 8
 	yield = 2
@@ -792,7 +789,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-tomato"
 	plant_icon = "tomato"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 25
 	maturation = 8
@@ -808,7 +805,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = list("killer")
 	packet_icon = "seed-bloodtomato"
 	plant_icon = "bloodtomato"
-	chems = list("nutriment" = list(1,10), "blood" = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/blood = list(1,5))
 
 	yield = 3
 
@@ -832,7 +829,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = list("bluespacetomato")
 	packet_icon = "seed-bluetomato"
 	plant_icon = "bluetomato"
-	chems = list("nutriment" = list(1,20), "lube" = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20), /datum/reagent/lube = list(1,5))
 
 /datum/seed/tomato/blue/teleport
 	name = "bluespacetomato"
@@ -842,7 +839,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-bluespacetomato"
 	plant_icon = "bluespacetomato"
-	chems = list("nutriment" = list(1,20), "singulo" = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20), /datum/reagent/consumable/ethanol/singulo = list(1,5))
 
 //Eggplants/varieties.
 /datum/seed/eggplant
@@ -854,7 +851,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-eggplant"
 	plant_icon = "eggplant"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 25
 	maturation = 6
@@ -885,7 +882,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-apple"
 	plant_icon = "apple"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 55
 	maturation = 6
@@ -897,7 +894,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	name = "poisonapple"
 	mutants = null
 	products = list(/obj/item/reagent_container/food/snacks/grown/apple/poisoned)
-	chems = list("cyanide" = list(1,5))
+	chems = list(/datum/reagent/toxin/cyanide = list(1,5))
 
 /datum/seed/apple/gold
 	name = "goldapple"
@@ -907,7 +904,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-goldapple"
 	plant_icon = "goldapple"
-	chems = list("nutriment" = list(1,10), "gold" = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/gold = list(1,5))
 
 	maturation = 10
 	production = 10
@@ -923,7 +920,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-ambrosiavulgaris"
 	plant_icon = "ambrosiavulgaris"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1), "space_drugs" = list(1,8), "kelotane" = list(1,8,1), "bicaridine" = list(1,10,1), "toxin" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/space_drugs = list(1,8), /datum/reagent/medicine/kelotane = list(1,8,1), /datum/reagent/medicine/bicaridine = list(1,10,1), /datum/reagent/toxin = list(1,10))
 
 	lifespan = 60
 	maturation = 6
@@ -939,7 +936,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-ambrosiadeus"
 	plant_icon = "ambrosiadeus"
-	chems = list("nutriment" = list(1), "bicaridine" = list(1,8), "synaptizine" = list(1,8,1), "hyperzine" = list(1,10,1), "space_drugs" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/bicaridine = list(1,8), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyperzine = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
 
 //Mushrooms/varieties.
 /datum/seed/mushroom
@@ -951,7 +948,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = list("reishi","amanita","plumphelmet")
 	packet_icon = "mycelium-chanter"
 	plant_icon = "chanter"
-	chems = list("nutriment" = list(1,25))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,25))
 
 	lifespan = 35
 	maturation = 7
@@ -981,7 +978,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = list("walkingmushroom","towercap")
 	packet_icon = "mycelium-plump"
 	plant_icon = "plump"
-	chems = list("nutriment" = list(2,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(2,10))
 
 	lifespan = 25
 	maturation = 8
@@ -996,7 +993,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = list("libertycap","glowshroom")
 	packet_icon = "mycelium-reishi"
 	plant_icon = "reishi"
-	chems = list("nutriment" = list(1,50), "psilocybin" = list(3,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,50), /datum/reagent/consumable/psilocybin = list(3,5))
 
 	maturation = 10
 	production = 5
@@ -1012,7 +1009,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "mycelium-liberty"
 	plant_icon = "liberty"
-	chems = list("nutriment" = list(1), "sleeptoxin" = list(3,3), "space_drugs" = list(1,25))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/toxin/sleeptoxin = list(3,3), /datum/reagent/space_drugs = list(1,25))
 
 	lifespan = 25
 	production = 1
@@ -1027,7 +1024,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = list("destroyingangel","plastic")
 	packet_icon = "mycelium-amanita"
 	plant_icon = "amanita"
-	chems = list("nutriment" = list(1), "amatoxin" = list(3,3), "psilocybin" = list(1,25))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/toxin/amatoxin = list(3,3), /datum/reagent/consumable/psilocybin = list(1,25))
 
 	lifespan = 50
 	maturation = 10
@@ -1043,7 +1040,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/mushroom/angel)
 	packet_icon = "mycelium-angel"
 	plant_icon = "angel"
-	chems = list("nutriment" = list(1,50), "amatoxin" = list(13,3), "psilocybin" = list(1,25))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,50), /datum/reagent/toxin/amatoxin = list(13,3), /datum/reagent/consumable/psilocybin = list(1,25))
 
 	maturation = 12
 	yield = 2
@@ -1069,7 +1066,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "mycelium-glowshroom"
 	plant_icon = "glowshroom"
-	chems = list("radium" = list(1,20))
+	chems = list(/datum/reagent/radium = list(1,20))
 
 	lifespan = 120
 	maturation = 15
@@ -1087,7 +1084,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "mycelium-walkingmushroom"
 	plant_icon = "walkingmushroom"
-	chems = list("nutriment" = list(2,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(2,10))
 
 	lifespan = 30
 	maturation = 5
@@ -1103,7 +1100,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "mycelium-plast"
 	plant_icon = "plastellium"
-	chems = list("plasticide" = list(1,10))
+	chems = list(/datum/reagent/toxin/plasticide = list(1,10))
 
 	lifespan = 15
 	maturation = 5
@@ -1119,7 +1116,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/harebell)
 	packet_icon = "seed-harebell"
 	plant_icon = "harebell"
-	chems = list("nutriment" = list(1,20))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20))
 
 	lifespan = 100
 	maturation = 7
@@ -1134,7 +1131,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-poppy"
 	products = list(/obj/item/reagent_container/food/snacks/grown/poppy)
 	plant_icon = "poppy"
-	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20), /datum/reagent/medicine/bicaridine = list(1,10))
 
 	lifespan = 25
 	potency = 20
@@ -1165,7 +1162,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/grapes)
 	plant_icon = "grape"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,10), "sugar" = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10),/datum/reagent/consumable/sugar = list(1,5))
 
 	lifespan = 50
 	maturation = 3
@@ -1181,7 +1178,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/greengrapes)
 	mutants = null
 	plant_icon = "greengrape"
-	chems = list("nutriment" = list(1,10), "kelotane" = list(3,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/medicine/kelotane = list(3,5))
 
 //Everything else
 /datum/seed/peanuts
@@ -1192,7 +1189,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/peanut)
 	plant_icon = "peanut"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 55
 	maturation = 6
@@ -1208,7 +1205,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/cabbage)
 	plant_icon = "cabbage"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 50
 	maturation = 3
@@ -1224,7 +1221,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-shand"
 	products = list(/obj/item/stack/medical/bruise_pack/tajaran)
 	plant_icon = "shand"
-	chems = list("bicaridine" = list(0,10))
+	chems = list(/datum/reagent/medicine/bicaridine = list(0,10))
 
 	lifespan = 50
 	maturation = 3
@@ -1240,7 +1237,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-mtear"
 	products = list(/obj/item/stack/medical/ointment/tajaran)
 	plant_icon = "mtear"
-	chems = list("honey" = list(1,10), "kelotane" = list(3,5))
+	chems = list(/datum/reagent/consumable/honey = list(1,10), /datum/reagent/medicine/kelotane = list(3,5))
 
 	lifespan = 50
 	maturation = 3
@@ -1257,7 +1254,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/banana)
 	plant_icon = "banana"
 	harvest_repeat = 1
-	chems = list("banana" = list(1,10))
+	chems = list(/datum/reagent/consumable/drink/banana = list(1,10))
 
 	lifespan = 50
 	maturation = 6
@@ -1271,7 +1268,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-corn"
 	products = list(/obj/item/reagent_container/food/snacks/grown/corn)
 	plant_icon = "corn"
-	chems = list("nutriment" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 25
 	maturation = 8
@@ -1287,7 +1284,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-potato"
 	products = list(/obj/item/reagent_container/food/snacks/grown/potato)
 	plant_icon = "potato"
-	chems = list("nutriment" = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 30
 	maturation = 10
@@ -1304,7 +1301,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/soybeans)
 	plant_icon = "soybean"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,20))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20))
 
 	lifespan = 25
 	maturation = 4
@@ -1319,7 +1316,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-wheat"
 	products = list(/obj/item/reagent_container/food/snacks/grown/wheat)
 	plant_icon = "wheat"
-	chems = list("nutriment" = list(1,25))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,25))
 
 	lifespan = 25
 	maturation = 6
@@ -1334,7 +1331,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-rice"
 	products = list(/obj/item/reagent_container/food/snacks/grown/ricestalk)
 	plant_icon = "rice"
-	chems = list("nutriment" = list(1,25))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,25))
 
 	lifespan = 25
 	maturation = 6
@@ -1350,7 +1347,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-carrot"
 	products = list(/obj/item/reagent_container/food/snacks/grown/carrot)
 	plant_icon = "carrot"
-	chems = list("nutriment" = list(1,20), "imidazoline" = list(3,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20), /datum/reagent/medicine/imidazoline = list(3,5))
 
 	lifespan = 25
 	maturation = 10
@@ -1381,7 +1378,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-whitebeet"
 	products = list(/obj/item/reagent_container/food/snacks/grown/whitebeet)
 	plant_icon = "whitebeet"
-	chems = list("nutriment" = list(0,20), "sugar" = list(1,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(0,20), /datum/reagent/consumable/sugar = list(1,5))
 
 	lifespan = 60
 	maturation = 6
@@ -1397,7 +1394,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/sugarcane)
 	plant_icon = "sugarcane"
 	harvest_repeat = 1
-	chems = list("sugar" = list(4,5))
+	chems = list(/datum/reagent/consumable/sugar = list(4,5))
 
 	lifespan = 60
 	maturation = 3
@@ -1414,7 +1411,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/watermelon)
 	plant_icon = "watermelon"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,6))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,6))
 
 	lifespan = 50
 	maturation = 6
@@ -1430,7 +1427,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/pumpkin)
 	plant_icon = "pumpkin"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,6))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,6))
 
 	lifespan = 50
 	maturation = 6
@@ -1447,7 +1444,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/lime)
 	plant_icon = "lime"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,20))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20))
 
 	lifespan = 55
 	maturation = 6
@@ -1463,7 +1460,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/lemon)
 	plant_icon = "lemon"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,20))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20))
 
 	lifespan = 55
 	maturation = 6
@@ -1479,7 +1476,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/orange)
 	plant_icon = "orange"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,20))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,20))
 
 	lifespan = 60
 	maturation = 6
@@ -1510,7 +1507,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/cocoapod)
 	plant_icon = "cocoapod"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,10), "coco" = list(4,5))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/consumable/coco = list(4,5))
 
 	lifespan = 20
 	maturation = 5
@@ -1528,7 +1525,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/cherries)
 	plant_icon = "cherry"
 	harvest_repeat = 1
-	chems = list("nutriment" = list(1,15), "sugar" = list(1,15))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,15), /datum/reagent/consumable/sugar = list(1,15))
 
 	lifespan = 35
 	maturation = 5
@@ -1545,7 +1542,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_container/food/snacks/grown/kudzupod)
 	plant_icon = "kudzu"
 	product_colour = "#96D278"
-	chems = list("nutriment" = list(1,50), "dylovene" = list(1,25))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,50), /datum/reagent/medicine/dylovene = list(1,25))
 
 	lifespan = 20
 	maturation = 6

@@ -28,7 +28,7 @@
 	heat_damage_per_tick = 20
 	cold_damage_per_tick = 20
 	var/poison_per_bite = 5
-	var/poison_type = "toxin"
+	var/poison_type = /datum/reagent/toxin
 	faction = "spiders"
 	var/busy = 0
 	flags_pass = PASSTABLE

@@ -161,7 +161,7 @@
 		/obj/item/reagent_container/food/snacks/mre_pack/meal4,
 		/obj/item/reagent_container/food/snacks/mre_pack/meal5,
 		/obj/item/reagent_container/food/snacks/mre_pack/meal6)
-		
+
 	for(var/i in 1 to 7)
 		var/picked = pick(randompick)
 		new picked(src)
@@ -173,7 +173,7 @@
 	icon_state = "yummers"
 	filling_color = "#ED1169"
 	w_class = 1
-	list_reagents = list("nutriment" = 8)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	bitesize = 4
 	tastes = list("nutraloafed food" = 7, "cocoa" = 1)
 
@@ -189,7 +189,7 @@
 	desc = "A slice of banana bread with cream pie spread. A slippery combination."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
-	list_reagents = list("nutriment" = 9)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
 	bitesize = 3
 	tastes = list("something funny" = 2, "bread" = 4)
 
@@ -197,7 +197,7 @@
 	name = "\improper TGMC Prepared Meal (pork)"
 	desc = "It's hard to go wrong with rice and pork."
 	icon_state = "MREb"
-	list_reagents = list("nutriment" = 9)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
 	bitesize = 2
 	tastes = list("rice and pork" = 1)
 
@@ -205,7 +205,7 @@
 	name = "\improper TGMC Prepared Meal (spag)"
 	desc = "That's-a spicy meat-aball!"
 	icon_state = "MREc"
-	list_reagents = list("nutriment" = 9)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 9)
 	tastes = list("pasta" = 3, "ground beef" = 1)
 	bitesize = 3
 
@@ -213,7 +213,7 @@
 	name = "\improper TGMC Prepared Meal (pizza)"
 	desc = "Aubergine, carrot and sweetcorn, all on a bed of cheese and tomato sauce."
 	icon_state = "MREd"
-	list_reagents = list("nutriment" = 8)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("pizza" = 3, "vegetables" = 1)
 	bitesize = 1
 
@@ -221,7 +221,7 @@
 	name = "\improper TGMC Prepared Meal (monkey)"
 	desc = "Sopa de Macaco, Uma Delicia."
 	icon_state = "MREe"
-	list_reagents = list("nutriment" = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("meat soup" = 2, "the jungle" = 2)
 	bitesize = 3
 
@@ -229,7 +229,7 @@
 	name = "\improper TGMC Prepared Meal (tofu)"
 	desc = "BBQ sticky tofu in a bun, hand crafted by Hungarian children who believe in a galaxy with soldiers that kill people, not animals."
 	icon_state = "MREf"
-	list_reagents = list("nutriment" = 8)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("grilled tofu" = 2, "grass" = 1)
 	bitesize = 2
 
@@ -237,7 +237,7 @@
 	name = "\improper Xmas Prepared Meal:sugar cookies"
 	desc = "Delicious Sugar Cookies"
 	icon_state = "mreCookies"
-	list_reagents = list("nutriment" = 9, "sugar" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/sugar = 1)
 	bitesize = 2
 	tastes = list("cookies" = 1, "artificial flavoring" = 1)
 
@@ -245,7 +245,7 @@
 	name = "\improper Xmas Prepared Meal:gingerbread cookie"
 	desc = "A cookie without a soul."
 	icon_state = "mreGingerbread"
-	list_reagents = list("nutriment" = 9, "sugar" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/sugar = 1)
 	tastes = list("batter" = 3, "ginger" = 1)
 	bitesize = 2
 
@@ -253,7 +253,7 @@
 	name = "\improper Xmas Prepared Meal:fruitcake"
 	desc = "Also known as ''the Commander''."
 	icon_state = "mreFruitcake"
-	list_reagents = list("nutriment" = 9, "sugar" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/sugar = 1)
 	tastes = list("fruits" = 3, "leadership" = 1)
 	bitesize = 2
 
@@ -292,7 +292,7 @@
 
 /obj/item/storage/box/wy_mre/Initialize(mapload, ...)
 	. = ..()
-	
+
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
 	new /obj/item/reagent_container/food/snacks/donkpocket(src)
@@ -305,6 +305,6 @@
 		/obj/item/reagent_container/food/snacks/spacetwinkie,
 		/obj/item/reagent_container/food/snacks/cookie,
 		/obj/item/reagent_container/food/snacks/chocolatebar)
-	
+
 	var/picked = pick(randompick)
 	new picked(src)

@@ -4,7 +4,6 @@
 
 /datum/reagent
 	var/name = "Reagent"
-	var/id = "reagent"
 	var/description = ""
 	var/specific_heat = SPECIFIC_HEAT_DEFAULT	//J/(K*mol)
 	var/taste_description = "metaphorical salt"
@@ -37,7 +36,7 @@
 	if(method == VAPOR && L.reagents) //foam, spray
 		var/amount = round(volume * touch_protection, 0.1)
 		if(amount >= 0.5)
-			L.reagents.add_reagent(id, amount)
+			L.reagents.add_reagent(type, amount)
 
 /datum/reagent/proc/reaction_obj(obj/O, volume)
 	return
@@ -48,7 +47,7 @@
 /datum/reagent/proc/on_mob_life(mob/living/L, metabolism)
 	purge(L)
 	current_cycle++
-	holder.remove_reagent(id, custom_metabolism * L.metabolism_efficiency) //By default it slowly disappears.
+	holder.remove_reagent(type, custom_metabolism * L.metabolism_efficiency) //By default it slowly disappears.
 	return TRUE
 
 // Called when this reagent is first added to a mob

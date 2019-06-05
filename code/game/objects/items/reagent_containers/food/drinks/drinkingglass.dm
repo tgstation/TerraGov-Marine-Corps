@@ -17,8 +17,8 @@
 			for(var/datum/reagent/R in reagents.reagent_list)
 				switch(R.type)*/
 		if (reagents.reagent_list.len > 0)
-			//mrid = R.get_master_reagent_id()
-			switch(reagents.get_master_reagent_id())
+			//mrid = R.get_master_reagent_type()
+			switch(reagents.get_master_reagent_type())
 				if(/datum/reagent/consumable/ethanol/beer)
 					icon_state = "beerglass"
 					name = "Beer glass"

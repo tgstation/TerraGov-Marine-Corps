@@ -391,7 +391,7 @@
 /obj/item/reagent_container/syringe/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
-	list_reagents = list("spaceacillin" = 15)
+	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
 /obj/item/reagent_container/syringe/antiviral/New()
 	. = ..()

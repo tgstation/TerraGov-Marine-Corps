@@ -44,7 +44,6 @@
 	return return_name
 
 /obj/machinery/computer/NTresearch/proc/CallMaterialName(var/ID)
-	var/datum/reagent/temp_reagent
 	var/return_name = null
 	if (copytext(ID, 1, 2) == "$")
 		return_name = copytext(ID, 2)
@@ -70,13 +69,10 @@
 			if("resin")   //Xeno Biomass - if an organ/sample is placed into the 3D printer instead of the Organic Analyzer, it generates this instead of research points.
 				return_name = "Alien Resin"
 	else
-		for(var/R in subtypesof(/datum/reagent))
-			temp_reagent = null
-			temp_reagent = new R()
-			if(temp_reagent.id == ID)
-				return_name = temp_reagent.name
-				qdel(temp_reagent)
-				temp_reagent = null
+		for(var/A in GLOB.chemical_reagents_list)
+			var/datum/reagent/R = A
+			if(R.type == ID)
+				return_name = R.name
 				break
 	return return_name
 

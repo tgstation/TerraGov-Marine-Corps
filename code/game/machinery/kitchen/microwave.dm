@@ -352,7 +352,7 @@
 	for (var/obj/O in contents-ffuu)
 		amount++
 		if (O.reagents)
-			var/id = O.reagents.get_master_reagent_id()
+			var/id = O.reagents.get_master_reagent_type()
 			if (id)
 				amount+=O.reagents.get_reagent_amount(id)
 		qdel(O)

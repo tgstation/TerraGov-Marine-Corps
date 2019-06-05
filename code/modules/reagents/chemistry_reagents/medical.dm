@@ -10,7 +10,7 @@
 /datum/reagent/medicine/on_mob_life(mob/living/L, metabolism)
 	purge(L)
 	current_cycle++
-	holder.remove_reagent(id, custom_metabolism / L.metabolism_efficiency) //so far metabolism efficiency is fixed to 1, but medicine reagents last longer the better it is.
+	holder.remove_reagent(type, custom_metabolism / L.metabolism_efficiency) //so far metabolism efficiency is fixed to 1, but medicine reagents last longer the better it is.
 	return TRUE
 
 /datum/reagent/medicine/inaprovaline
@@ -334,7 +334,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
 
-datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	L.drowsyness = max(L.drowsyness-5, 0)
 	L.AdjustKnockedout(-1)
@@ -346,10 +346,10 @@ datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 		L.adjustToxLoss(1)
 	return ..()
 
-datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 
-datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(1, 1, 1)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant
