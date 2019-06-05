@@ -291,10 +291,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	Moved(oldloc, direct)
 
 
-/mob/dead/observer/examine(mob/user)
-	to_chat(user, desc)
-
-
 /mob/dead/observer/can_use_hands()
 	return FALSE
 
