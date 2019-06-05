@@ -114,9 +114,6 @@
 	if(can_buckle) manual_unbuckle(user)
 	else . = ..()
 
-/obj/attack_ai(mob/user)
-	if(can_buckle) manual_unbuckle(user)
-	else . = ..()
 
 /obj/proc/handle_rotation()
 	return

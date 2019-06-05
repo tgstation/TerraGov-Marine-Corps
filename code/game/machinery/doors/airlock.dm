@@ -200,12 +200,6 @@
 
 
 /obj/machinery/door/airlock/attack_ai(mob/user)
-	if(!canAIControl(user))
-		if(canAIHack())
-			hack(user)
-			return
-		else
-			to_chat(user, "<span class='warning'>Airlock AI control has been blocked with a firewall. Unable to hack.</span>")
 	if(obj_flags & EMAGGED)
 		to_chat(user, "<span class='warning'>Unable to interface: Airlock is unresponsive.</span>")
 		return
@@ -800,3 +794,131 @@
 	else
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT)
 	updateDialog()
+
+
+/obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(welded)
+		to_chat(user, "<span class='warning'>The airlock has been welded shut.</span>")
+		return
+
+	if(locked)
+		to_chat(user, "<span class='warning'>The door bolts are down.</span>")
+		return
+
+	if(!density)
+		close()
+	else
+		open()
+
+
+/obj/machinery/door/airlock/proc/shock_restore(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	if(isElectrified())
+		set_electrified(MACHINE_NOT_ELECTRIFIED, user)
+
+
+/obj/machinery/door/airlock/proc/shock_temp(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME, user)
+
+
+/obj/machinery/door/airlock/proc/shock_perm(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	set_electrified(MACHINE_ELECTRIFIED_PERMANENT, user)
+
+
+/obj/machinery/door/airlock/proc/emergency_on(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(emergency)
+		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")		
+		return
+
+	emergency = TRUE
+	update_icon()
+
+
+
+/obj/machinery/door/airlock/proc/emergency_off(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(!emergency)
+		to_chat(user, "<span class='warning'>Emergency access is already disabled.</span>")
+		return
+
+	emergency = FALSE
+	update_icon()
+
+
+/obj/machinery/door/airlock/proc/bolt_raise(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_BOLTS))
+		to_chat(user, "<span class='warning'>The door bolt wire is cut.</span>")
+		return
+
+	if(!locked)
+		to_chat(user, "<span class='warning'>The door bolts are already up.</span>")
+		return
+
+	if(!hasPower())
+		to_chat(user, "<span class='warning'>Cannot raise door bolts due to power failure.</span>")
+		return
+
+	unbolt()
+		
+
+
+/obj/machinery/door/airlock/proc/bolt_drop(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_BOLTS))
+		to_chat(user, "<span class='warning'>The door bolt wire is cut.</span>")
+		return
+
+	bolt()
+
+
+/obj/machinery/door/airlock/proc/bolt()
+	if(locked)
+		return
+
+	locked = TRUE
+	playsound(src, 'sound/machines/boltsdown.ogg', 30, 0, 3)
+	audible_message("<span class='notice'>You hear a click from the bottom of the door.</span>", null,  1)
+	update_icon()
+
+
+/obj/machinery/door/airlock/proc/unbolt()
+	if(!locked)
+		return
+
+	locked = FALSE
+	playsound(src, 'sound/machines/boltsup.ogg', 30, 0, 3)
+	audible_message("<span class='notice'>You hear a click from the bottom of the door.</span>", null,  1)
+	update_icon()

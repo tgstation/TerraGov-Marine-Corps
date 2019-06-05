@@ -286,6 +286,11 @@ Class Procs:
 /obj/machinery/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
+
+/obj/machinery/attack_ai(mob/user)
+	return interact(user)
+
+
 //Xenomorphs can't use machinery, not even the "intelligent" ones
 //Exception is Queen and shuttles, because plot power
 /obj/machinery/attack_alien(mob/living/carbon/xenomorph/M)

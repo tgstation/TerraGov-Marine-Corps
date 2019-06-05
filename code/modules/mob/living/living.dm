@@ -206,6 +206,26 @@
 		s_active.close(src)
 
 
+/mob/living/Moved(oldLoc, dir)
+	. = ..()
+	update_camera_location(oldLoc)
+
+
+/mob/living/forceMove(atom/destination)
+	. = ..()
+	//Only bother updating the camera if we actually managed to move
+	if(.)
+		update_camera_location(destination)
+
+
+/mob/living/proc/do_camera_update(oldLoc)
+	return
+
+
+/mob/living/proc/update_camera_location(oldLoc)
+	return
+
+
 /mob/living/vv_get_dropdown()
 	. = ..()
 	. += "---"
