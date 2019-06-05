@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		//Check for and apply hard CC.
 		if(( M.mob_size == MOB_SIZE_BIG && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
 			var/mob/living/L = M
-			if(!M.stunned && !M.knocked_down) //Prevent chain stunning.
+			if(!L.stunned && !L.knocked_down) //Prevent chain stunning.
 				L.apply_effects(stun,weaken)
 			if(knockback)
 				if(isxeno(M))

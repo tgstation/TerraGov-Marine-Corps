@@ -64,14 +64,14 @@
 	if(signal.data["code"] != code)
 		return
 
-	if(ismob(loc) && on)
-		var/mob/M = loc
-		to_chat(M, "<span class='danger'>You feel a sharp shock!</span>")
+	if(isliving(loc) && on)
+		var/mob/living/L = loc
+		to_chat(L, "<span class='danger'>You feel a sharp shock!</span>")
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(3, 1, M)
+		s.set_up(3, 1, L)
 		s.start()
 
-		M.KnockDown(10)
+		L.KnockDown(10)
 
 	if(master && wires & 1)
 		master.receive_signal()

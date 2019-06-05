@@ -681,16 +681,19 @@
 	return
 
 // called when bot bumps into anything
-/obj/machinery/bot/mulebot/Bump(var/atom/obs)
-	if(wires.is_cut(WIRE_AVOIDANCE))		//usually just bumps, but if avoidance disabled knock over mobs
-		var/mob/M = obs
-		if(ismob(M))
-			visible_message("<span class='warning'> [src] knocks over [M]!</span>")
-			M.stop_pulling()
-			M.Stun(8)
-			M.KnockDown(5)
-			M.lying = 1
-	..()
+/obj/machinery/bot/mulebot/Bump(atom/A)
+	if(!wires.is_cut(WIRE_AVOIDANCE))		//usually just bumps, but if avoidance disabled knock over mobs
+		return ..()
+
+	if(!isliving(A))
+		return ..()
+		
+	var/mob/living/L = A
+	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
+	L.stop_pulling()
+	L.Stun(8)
+	L.KnockDown(5)
+	L.lying = TRUE
 
 /obj/machinery/bot/mulebot/alter_health()
 	return get_turf(src)

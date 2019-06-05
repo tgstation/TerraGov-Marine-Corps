@@ -786,7 +786,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
 
-/mob/proc/bullet_message(obj/item/projectile/P)
+/mob/living/proc/bullet_message(obj/item/projectile/P)
 	if(!P) return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
@@ -795,8 +795,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", \
 						"<span class='highdanger'>You are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)
 
-	if(ismob(P.firer))
-		var/mob/firingMob = P.firer
+	if(isliving(P.firer))
+		var/mob/living/firingMob = P.firer
 		var/turf/T = get_turf(firingMob)
 		if(ishuman(firingMob) && ishuman(src) && !firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
 			log_combat(firingMob, src, "shot", P)

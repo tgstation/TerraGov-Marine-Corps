@@ -1135,42 +1135,6 @@
 		W.update_icon()
 		W.message = message
 
-/mob/living/carbon/human/print_flavor_text()
-	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
-	var/head_exposed = 1
-	var/face_exposed = 1
-	var/eyes_exposed = 1
-	var/torso_exposed = 1
-	var/arms_exposed = 1
-	var/legs_exposed = 1
-	var/hands_exposed = 1
-	var/feet_exposed = 1
-
-	for(var/obj/item/clothing/C in equipment)
-		if(C.flags_armor_protection & HEAD)
-			head_exposed = 0
-		if(C.flags_armor_protection & FACE)
-			face_exposed = 0
-		if(C.flags_armor_protection & EYES)
-			eyes_exposed = 0
-		if(C.flags_armor_protection & CHEST)
-			torso_exposed = 0
-		if(C.flags_armor_protection & ARMS)
-			arms_exposed = 0
-		if(C.flags_armor_protection & HANDS)
-			hands_exposed = 0
-		if(C.flags_armor_protection & LEGS)
-			legs_exposed = 0
-		if(C.flags_armor_protection & FEET)
-			feet_exposed = 0
-
-	for (var/T in flavor_texts)
-		if(flavor_texts[T] && flavor_texts[T] != "")
-			if((T == "head" && head_exposed) || (T == "face" && face_exposed) || (T == "eyes" && eyes_exposed) || (T == "torso" && torso_exposed) || (T == "arms" && arms_exposed) || (T == "hands" && hands_exposed) || (T == "legs" && legs_exposed) || (T == "feet" && feet_exposed))
-				flavor_text += flavor_texts[T]
-				flavor_text += "\n\n"
-	return ..()
-
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
 

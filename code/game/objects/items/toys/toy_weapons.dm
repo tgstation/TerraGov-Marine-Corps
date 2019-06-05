@@ -148,8 +148,9 @@
 					qdel(D)
 
 			return
-		else if (bullets == 0)
-			user.KnockDown(5)
+		else if(!bullets && isliving(user))
+			var/mob/living/L = user
+			L.KnockDown(5)
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("<span class='warning'> [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
 
@@ -168,10 +169,10 @@
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/crossbow_ammo(M.loc)
 			src.bullets--
-		else if (M.lying && src.bullets == 0)
-			for(var/mob/O in viewers(M, null))
-				if (O.client)	O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), 1, "<span class='warning'> You hear someone fall</span>", 2)
-			user.KnockDown(5)
+		else if(M.lying && !bullets && isliving(M))
+			var/mob/living/L = M
+			L.visible_message("<span class='danger'>[user] casually lines up a shot with [L]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>")
+			L.KnockDown(5)
 		return
 
 /obj/item/toy/crossbow_ammo

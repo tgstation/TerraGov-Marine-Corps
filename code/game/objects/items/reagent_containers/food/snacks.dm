@@ -77,7 +77,7 @@
 				to_chat(M, "<span class='warning'>You take a bite of [src].</span>")
 			if (fullness > 350 && fullness <= 550)
 				to_chat(M, "<span class='warning'>You unwillingly chew a bit of [src].</span>")
-			if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
+			if (fullness > (550 * (1 + C.overeatduration / 2000)))	// The more you eat - the more you can eat
 				to_chat(M, "<span class='warning'>You cannot force any more of [src] to go down your throat.</span>")
 				return FALSE
 		else
@@ -88,7 +88,7 @@
 					return
 
 
-			if (fullness <= (550 * (1 + M.overeatduration / 1000)))
+			if (fullness <= (550 * (1 + C.overeatduration / 1000)))
 				for(var/mob/O in viewers(world.view, user))
 					O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
 			else

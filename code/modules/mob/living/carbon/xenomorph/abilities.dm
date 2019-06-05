@@ -32,13 +32,13 @@
 
 /datum/action/xeno_action/regurgitate/action_activate()
 	var/mob/living/carbon/C = owner
-	for(var/mob/M in C.stomach_contents)
-		C.stomach_contents.Remove(M)
-		if(M.loc != C)
+	for(var/mob/living/L in C.stomach_contents)
+		C.stomach_contents.Remove(L)
+		if(L.loc != C)
 			continue
-		M.forceMove(C.loc)
-		M.SetKnockeddown(1)
-		M.adjust_blindness(-1)
+		L.forceMove(C.loc)
+		L.SetKnockeddown(1)
+		L.adjust_blindness(-1)
 
 	C.visible_message("<span class='xenowarning'>\The [C] hurls out the contents of their stomach!</span>", \
 	"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)

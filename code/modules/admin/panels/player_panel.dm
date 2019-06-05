@@ -213,7 +213,8 @@
 		if(isliving(M))
 			if(iscarbon(M)) //Carbon stuff
 				if(ishuman(M))
-					M_job = M.job
+					var/mob/living/carbon/human/H = M
+					M_job = H.job
 				else if(ismonkey(M))
 					M_job = "Monkey"
 				else if(isxeno(M))
@@ -263,7 +264,7 @@
 				<td align='center' bgcolor='[color]'>
 					<span id='notice_span[i]'></span>
 					<a id='link[i]'
-					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[M.computer_id]","[REF(M)]")'
+					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.ip_address]","[M.computer_id]","[REF(M)]")'
 					>
 					<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
 					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [previous_names]</span>
@@ -334,7 +335,7 @@
 
 		dat += {"<td align=center><a href='?src=[ref];playerpanel=[REF(M)]'>PP</a></td>
 		<td>[M.computer_id]</td>
-		<td>[M.lastKnownIP]</td>
+		<td>[M.ip_address]</td>
 		<td><a href='?src=[ref];observejump=[REF(M)]'>JMP</a></td>
 		<td><a href='?src=[ref];observefollow=[REF(M)]'>FLW</a></td>
 		<td><a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a></td>
@@ -386,8 +387,11 @@
 		<a href='?src=[ref];observefollow=[REF(M)]'>FLW</a> -
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a></b><br>
 		<b>Mob Type:</b> [M.type]<br>
-		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>
-		<b>Mob Faction:</b> [M.faction]<br>"}
+		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>"}
+
+	if(isliving(M))
+		var/mob/living/L = M
+		body += "<b>Mob Faction:</b> [L.faction]<br>"
 
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"

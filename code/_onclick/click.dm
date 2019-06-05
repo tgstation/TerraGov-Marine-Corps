@@ -390,9 +390,12 @@
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
-	src.point_to(A)
 	return
 
+
+/mob/living/ShiftMiddleClickOn(atom/A)
+	point_to(A)
+		
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)

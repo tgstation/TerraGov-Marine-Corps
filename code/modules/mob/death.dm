@@ -47,9 +47,6 @@
 
 	update_canmove()
 
-	dizziness = 0
-	jitteriness = 0
-
 	if(client)
 		client.change_view(world.view) //just so we never get stuck with a large view somehow
 

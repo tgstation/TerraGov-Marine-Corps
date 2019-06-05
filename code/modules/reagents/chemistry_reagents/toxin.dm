@@ -437,7 +437,7 @@
 				to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
 			return
 
-	if(!L.unacidable)
+	if(!isxeno(L))
 		if(ishuman(L) && volume >= 10)
 			var/mob/living/carbon/human/H = L
 			var/datum/limb/affecting = H.get_limb("head")

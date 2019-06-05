@@ -24,17 +24,17 @@
 
 	else if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
-		if(!ismob(G.grabbed_thing))
+		if(!isliving(G.grabbed_thing))
 			return
 
-		var/mob/M = G.grabbed_thing
+		var/mob/living/L = G.grabbed_thing
 		if(user.grab_level < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 
-		M.forceMove(loc)
-		M.KnockDown(5)
-		user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
+		L.forceMove(loc)
+		L.KnockDown(5)
+		user.visible_message("<span class='danger'>[user] puts [L] on the table.</span>")
 
 	else
 		return ..()
@@ -92,20 +92,20 @@
 	
 	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
-		if(!ismob(G.grabbed_thing))
+		if(!isliving(G.grabbed_thing))
 			return
 
-		var/mob/M = G.grabbed_thing
+		var/mob/living/L = G.grabbed_thing
 		if(user.grab_level < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
-		M.forceMove(loc)
-		M.KnockDown(5)
+		L.forceMove(loc)
+		L.KnockDown(5)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob
 				// no break, to update multiple scoreboards
-		visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
+		visible_message("<span class='danger'>[user] dunks [L] into the [src]!</span>")
 
 	else if(get_dist(src, user) < 2)
 		user.transferItemToLoc(I, loc)

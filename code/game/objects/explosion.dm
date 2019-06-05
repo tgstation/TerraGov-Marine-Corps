@@ -54,12 +54,20 @@
 		var/close = trange(world.view + round(devastation_range, 1), epicenter)
 		//To all distanced mobs play a different sound
 		for(var/mob/M in GLOB.mob_list)
-			if(M.z == epicenter.z)
-				if(!(M in close))
-					// check if the mob can hear
-					if(M.ear_deaf <= 0 || !M.ear_deaf)
-						if(!isspaceturf(M.loc))
-							M << 'sound/effects/explosionfar.ogg'
+			if(M.z != epicenter.z)
+				continue
+
+			if(M in close)
+				continue
+
+			if(isliving(M))
+				var/mob/living/L = M
+				if(L.ear_deaf > 0 || isspaceturf(L.loc))
+					continue
+			
+			SEND_SOUND(M, 'sound/effects/explosionfar.ogg')
+
+
 		if(adminlog)
 			log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")

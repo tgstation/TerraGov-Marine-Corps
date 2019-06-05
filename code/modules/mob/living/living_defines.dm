@@ -15,11 +15,26 @@
 	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/radiation = 0	//If the mob is irradiated.
-	var/drowsyness = 0	//Carbon
+	var/drowsyness = 0
 
 	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
 	var/druggy = 0
+	var/sleeping = 0
+	var/sdisabilities = NONE
+
+	var/eye_blind = 0
+	var/eye_blurry = 0
+	var/ear_deaf = 0
+	var/ear_damage = 0
+
+	var/knocked_out = 0
+	var/stunned = 0
+	var/frozen = 0
+	var/knocked_down = 0
+
+	var/dizziness = 0
+	var/jitteriness = 0
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
@@ -89,6 +104,9 @@
 
 	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 
-
+	var/job
+	var/faction = "Neutral"
 
 	var/away_time = 0 //When the player has disconnected.
+
+	var/recently_pointed_to = 0 //used as cooldown for the pointing verb.
