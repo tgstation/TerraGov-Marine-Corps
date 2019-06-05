@@ -95,6 +95,11 @@
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 
+
+// /mob/living/carbon/human signals
+#define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
+
+
 // xeno stuff
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
 #define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"

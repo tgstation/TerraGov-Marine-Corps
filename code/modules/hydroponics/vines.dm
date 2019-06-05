@@ -42,7 +42,7 @@
 
 		qdel(src)
 
-	else if(I.heat_source >= 3500)
+	else if(I.heat >= 3500)
 		qdel(src)
 
 	else if(I.sharp)

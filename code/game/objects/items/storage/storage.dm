@@ -224,7 +224,7 @@
 
 	for(var/obj/item/O in contents)
 		startpoint = endpoint + 1
-		endpoint += storage_width * O.get_storage_cost()/max_storage_space
+		endpoint += storage_width * O.w_class / max_storage_space
 
 		click_border_start.Add(startpoint)
 		click_border_end.Add(endpoint)
@@ -359,9 +359,9 @@
 			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
 		return FALSE
 
-	var/sum_storage_cost = W.get_storage_cost()
+	var/sum_storage_cost = W.w_class
 	for(var/obj/item/I in contents)
-		sum_storage_cost += I.get_storage_cost() //Adds up the combined storage costs which will be in the storage item if the item is added to it.
+		sum_storage_cost += I.w_class
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
@@ -627,27 +627,6 @@
 	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END
-
-
-/obj/item/proc/get_storage_cost() //framework for adjusting storage costs
-	if (storage_cost)
-		return storage_cost
-	else
-		return w_class
-/*
-		if(w_class == 1)
-			return 1
-		if(w_class == 2)
-			return 2
-		if(w_class == 3)
-			return 4
-		if(w_class == 4)
-			return 8
-		if(w_class == 5)
-			return 16
-		else
-			return 1000
-*/
 
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.

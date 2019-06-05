@@ -320,7 +320,7 @@
 		return
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
-	if(thermite && I.heat_source >= 1000)
+	if(thermite && I.heat >= 1000)
 		if(hull)
 			to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [I]</span>.")
 			return
