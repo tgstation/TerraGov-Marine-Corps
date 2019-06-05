@@ -60,10 +60,8 @@
 		return attack_hand(user)
 
 /obj/machinery/holosign_switch/attack_hand(mob/user as mob)
-	src.add_fingerprint(usr)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	add_fingerprint(user)
 
 	use_power(5)
 

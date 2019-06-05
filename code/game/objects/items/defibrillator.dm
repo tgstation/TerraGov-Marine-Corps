@@ -65,7 +65,6 @@
 	"<span class='notice'>You turn [src] [ready? "on and take the paddles out" : "off and put the paddles back in"].</span>")
 	playsound(get_turf(src), "sparks", 25, 1, 4)
 	update_icon()
-	add_fingerprint(user)
 
 /mob/living/carbon/human/proc/get_ghost()
 	if(mind && !client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.

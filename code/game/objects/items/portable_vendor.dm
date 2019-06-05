@@ -39,8 +39,6 @@
 
 	var/mob/living/carbon/human/H = user
 
-	src.add_fingerprint(usr)
-
 	if(broken)
 		to_chat(user, "<span class='notice'>[src] is irrepairably broken.</span>")
 		return
@@ -166,7 +164,6 @@
 				fabricating = 0
 				update_overlays()
 
-		src.add_fingerprint(usr)
 		ui_interact(usr) //updates the nanoUI window
 
 

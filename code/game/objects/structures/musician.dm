@@ -423,7 +423,6 @@
 				song.tempo = tempo
 				updateUsrDialog()
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 	return
 

@@ -45,7 +45,6 @@
 	if(!buckled_mob || buckled_mob.buckled != src)
 		return
 
-	add_fingerprint(user)
 
 	if(buckled_mob != user)
 		if(user.incapacitated())

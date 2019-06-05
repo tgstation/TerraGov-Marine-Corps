@@ -153,7 +153,6 @@
 			updateUsrDialog()
 			update_icon()
 
-	add_fingerprint(usr)
 
 
 

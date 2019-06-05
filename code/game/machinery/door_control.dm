@@ -154,7 +154,6 @@
 					M.close()
 
 /obj/machinery/door_control/attack_hand(mob/user)
-	src.add_fingerprint(user)
 	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -168,7 +167,6 @@
 
 	use_power(5)
 	icon_state = "doorctrl1"
-	add_fingerprint(user)
 
 	switch(normaldoorcontrol)
 		if(CONTROL_NORMAL_DOORS)
@@ -206,12 +204,10 @@
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
 
-	src.add_fingerprint(usr)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return
-	add_fingerprint(user)
 
 	use_power(5)
 

@@ -159,7 +159,6 @@
 					"<span class='notice'>You unbuckle yourself from [src].</span>",\
 					"<span class='notice'>You hear metal clanking</span>")
 			unbuckle()
-			src.add_fingerprint(user)
 			return 1
 
 	return 0
@@ -196,7 +195,6 @@
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
-	src.add_fingerprint(user)
 	afterbuckle(M)
 
 /obj/proc/send_buckling_message(mob/M, mob/user)

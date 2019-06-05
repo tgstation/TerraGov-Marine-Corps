@@ -337,14 +337,8 @@ datum/effect_system/smoke_spread/tactical
 		if(contained)
 			contained = "\[[contained]\]"
 
-		var/where = "[AREACOORD(location)]"
-		if(carry.my_atom.fingerprintslast)
-			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
-			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Last associated key: [M ? ADMIN_TPMONTY(M) : carry.my_atom.fingerprintslast].")
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
-		else
-			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. No associated key.")
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
+		message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained].")
+		log_game("A chemical smoke reaction has taken place in ([AREACOORD(location)])[contained].")
 
 /datum/effect_system/smoke_spread/chem/start()
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)

@@ -262,7 +262,6 @@
 				if(open && cell && !usr.get_active_held_item())
 					cell.updateicon()
 					usr.put_in_active_hand(cell)
-					cell.add_fingerprint(usr)
 					cell = null
 
 					usr.visible_message("<span class='notice'> [usr] removes the power cell from [src].</span>", "<span class='notice'> You remove the power cell from [src].</span>")
@@ -275,7 +274,6 @@
 						if(usr.drop_held_item())
 							cell = C
 							C.forceMove(src)
-							C.add_fingerprint(usr)
 
 							usr.visible_message("<span class='notice'> [usr] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
 							updateDialog()

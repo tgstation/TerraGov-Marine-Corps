@@ -37,8 +37,6 @@
 		to_chat(M, "<span class='notice'>The recycler is empty.</span>")
 		return
 
-	add_fingerprint(M)
-
 	if(cell_right == null)
 		cell_left.update_icon()
 		M.put_in_hands(cell_left)

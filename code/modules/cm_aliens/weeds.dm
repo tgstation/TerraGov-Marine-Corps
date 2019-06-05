@@ -203,9 +203,6 @@
 	generate_weed_graph()
 	SSweeds.add_node(src)
 
-	if(X)
-		add_hiddenprint(X)
-
 
 /obj/effect/alien/weeds/node/proc/generate_weed_graph()
 	var/list/turfs_to_check = list()

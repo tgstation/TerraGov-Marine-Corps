@@ -192,11 +192,9 @@
 
 	if(nadeassembly)
 		var/mob/M = get_mob_by_ckey(assemblyattacher)
-		var/mob/last = get_mob_by_ckey(nadeassembly.fingerprintslast)
-		var/mob/log = (last ? last : M)
 
-		log_explosion("[key_name(log)] primed [src] at [AREACOORD(loc)].")
-		log_combat(log, src, "primed")
+		log_explosion("[key_name(M)] primed [src] at [AREACOORD(loc)].")
+		log_combat(M, src, "primed")
 
 	if(ismob(loc))
 		var/mob/M = loc

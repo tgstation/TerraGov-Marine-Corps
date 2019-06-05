@@ -323,7 +323,6 @@
 		..()
 	if(usr.stat || usr.restrained()|| usr.mob_size == MOB_SIZE_SMALL)
 		return
-	add_fingerprint(usr)
 	if(href_list["close"])
 		usr << browse(null, "window=airlock")
 		if(usr.interactee==src)
@@ -510,7 +509,6 @@
 					else
 						to_chat(usr, "The door bolt lights are already enabled!")
 
-	add_fingerprint(usr)
 	update_icon()
 	if(!nowindow)
 		updateUsrDialog()
@@ -777,7 +775,6 @@
 				message = "temp shocked for [secondsElectrified] seconds"
 		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])"))
 		log_combat(user, src, message)
-		add_hiddenprint(user)
 
 
 /obj/machinery/door/airlock/proc/electrified_loop()

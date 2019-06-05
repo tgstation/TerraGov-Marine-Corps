@@ -11,8 +11,7 @@
 	walltype = "rwall"
 
 /turf/closed/wall/r_wall/attack_hand(mob/user)
-	add_fingerprint(user)
-
+	return
 
 /turf/closed/wall/r_wall/can_be_dissolved()
 	if(hull)

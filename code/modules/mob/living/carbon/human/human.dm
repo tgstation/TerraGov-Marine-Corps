@@ -466,7 +466,6 @@
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
 				if (internal)
-					internal.add_fingerprint(usr)
 					internal = null
 					if (hud_used && hud_used.internals)
 						hud_used.internals.icon_state = "internal0"
@@ -481,7 +480,6 @@
 							internal = belt
 						if (internal)
 							visible_message("<span class='notice'>[src] is now running on internals.</span>", null, null, 1)
-							internal.add_fingerprint(usr)
 							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
@@ -511,8 +509,7 @@
 							o.limb_status &= ~LIMB_SPLINTED
 							limbcount++
 					if(limbcount)
-						var/obj/item/W = new /obj/item/stack/medical/splint(loc, limbcount)
-						W.add_fingerprint(usr)
+						new /obj/item/stack/medical/splint(loc, limbcount)
 
 	if(href_list["tie"])
 		if(!usr.action_busy)
@@ -1136,7 +1133,6 @@
 		W.basecolor = (blood_color) ? blood_color : "#A10808"
 		W.update_icon()
 		W.message = message
-		W.add_fingerprint(src)
 
 /mob/living/carbon/human/print_flavor_text()
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)

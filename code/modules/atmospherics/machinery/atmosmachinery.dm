@@ -205,7 +205,6 @@
 
 	//var/datum/gas_mixture/int_air = return_air()
 	//var/datum/gas_mixture/env_air = loc.return_air()
-	add_fingerprint(user)
 
 	//var/unsafe_wrenching = FALSE
 	//var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
@@ -258,7 +257,6 @@
 			stored.setPipingLayer(piping_layer)
 //			if(!disassembled)
 //				stored.obj_integrity = stored.max_integrity * 0.5
-			transfer_fingerprints_to(stored)
 			qdel(src)
 	..()
 

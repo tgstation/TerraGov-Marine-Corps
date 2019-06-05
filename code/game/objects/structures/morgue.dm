@@ -65,7 +65,6 @@
 			return FALSE
 
 /obj/structure/morgue/proc/toggle_morgue(mob/user)
-	add_fingerprint(user)
 	if(!connected) return
 	if(morgue_open)
 		for(var/atom/movable/A in connected.loc)

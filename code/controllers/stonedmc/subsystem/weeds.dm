@@ -85,22 +85,17 @@ SUBSYSTEM_DEF(weeds)
 
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
 	if(iswallturf(T))
-		var/obj/effect/alien/weeds/weedwall/WW = new (T)
-		N.transfer_fingerprints_to(WW)
+		new /obj/effect/alien/weeds/weedwall(T)
 		return
 
 	for (var/obj/O in T)
 		if(istype(O, /obj/structure/window/framed))
-			var/obj/effect/alien/weeds/weedwall/window/WN = new (T)
-			N.transfer_fingerprints_to(WN)
+			new /obj/effect/alien/weeds/weedwall/window(T)
 			return
 		else if(istype(O, /obj/structure/window_frame))
-			var/obj/effect/alien/weeds/weedwall/frame/F = new (T)
-			N.transfer_fingerprints_to(F)
+			new /obj/effect/alien/weeds/weedwall/frame(T)
 			return
 		else if(istype(O, /obj/machinery/door) && O.density /*&& (!(O.flags_atom & ON_BORDER) || O.dir != dirn)*/)
 			return
 
-	var/obj/effect/alien/weeds/S = new (T, N)
-	N.transfer_fingerprints_to(S)
-
+	new /obj/effect/alien/weeds(T, N)

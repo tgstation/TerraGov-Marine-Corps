@@ -32,7 +32,6 @@
 
 
 /obj/machinery/flasher/wirecutter_act(mob/living/user, obj/item/W)
-	add_fingerprint(user)
 	disable = !disable
 	if (disable)
 		user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")

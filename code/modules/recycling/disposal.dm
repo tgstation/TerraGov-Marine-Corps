@@ -78,7 +78,6 @@
 
 			to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
 			var/obj/structure/disposalconstruct/C = new(loc)
-			transfer_fingerprints_to(C)
 			C.ptype = 6 //6 = disposal unit
 			C.anchored = TRUE
 			C.density = TRUE
@@ -123,7 +122,6 @@
 	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
-	add_fingerprint(user)
 
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
@@ -194,7 +192,6 @@
 //User interaction
 /obj/machinery/disposal/interact(mob/user, var/ai=0)
 
-	add_fingerprint(user)
 	if(machine_stat & BROKEN)
 		user.unset_interaction()
 		return
@@ -235,7 +232,6 @@
 		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
 		return
 	..()
-	add_fingerprint(usr)
 	if(machine_stat & BROKEN)
 		return
 	if(usr.stat || usr.restrained() || flushing)
@@ -808,7 +804,6 @@
 			C.ptype = 13
 		if("pipe-tagger-partial")
 			C.ptype = 14
-	transfer_fingerprints_to(C)
 	C.setDir(dir)
 	C.density = 0
 	C.anchored = 1
@@ -1353,7 +1348,6 @@
 
 		to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
 		var/obj/structure/disposalconstruct/C = new(loc)
-		transfer_fingerprints_to(C)
 		C.ptype = 7 //7 =  outlet
 		C.update()
 		C.anchored = TRUE

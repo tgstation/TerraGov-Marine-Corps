@@ -48,8 +48,6 @@
 		var/obj/item/P = locate(href_list["remove"])
 		if((P && P.loc == src))
 			P.loc = get_turf(src)	//dump paper on the floor because you're a clumsy fuck
-			P.add_fingerprint(usr)
-			add_fingerprint(usr)
 			notices--
 			icon_state = "nboard0[notices]"
 
@@ -60,11 +58,9 @@
 
 		if((P && P.loc == src)) //ifthe paper's on the board
 			if(istype(usr.r_hand, /obj/item/tool/pen)) //and you're holding a pen
-				add_fingerprint(usr)
 				P.attackby(usr.r_hand, usr) //then do ittttt
 			else
 				if(istype(usr.l_hand, /obj/item/tool/pen)) //check other hand for pen
-					add_fingerprint(usr)
 					P.attackby(usr.l_hand, usr)
 				else
 					to_chat(usr, "<span class='notice'>You'll need something to write with!</span>")

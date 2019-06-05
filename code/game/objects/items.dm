@@ -163,7 +163,6 @@
 		user.next_move = max(user.next_move+2,world.time + 2)
 	if(!gc_destroyed) //item may have been cdel'd by the drop above.
 		pickup(user)
-		add_fingerprint(user)
 		if(!user.put_in_active_hand(src))
 			dropped(user)
 

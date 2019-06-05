@@ -87,7 +87,6 @@
 		togglelock(user)
 
 /obj/structure/closet/secure_closet/attack_hand(mob/living/user)
-	add_fingerprint(user)
 	if(locked)
 		togglelock(user)
 	else
@@ -103,7 +102,6 @@
 
 	if(usr.incapacitated())
 		return
-	add_fingerprint(usr)
 	togglelock(usr)
 
 /obj/structure/closet/secure_closet/update_icon()

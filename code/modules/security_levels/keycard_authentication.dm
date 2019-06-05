@@ -102,7 +102,6 @@
 		reset()
 
 	updateUsrDialog()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/keycard_auth/proc/reset()

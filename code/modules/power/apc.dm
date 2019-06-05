@@ -661,7 +661,6 @@
 /obj/machinery/power/apc/attack_hand(mob/user)
 	. = ..()
 
-	add_fingerprint(user)
 
 	//Human mob special interaction goes here.
 	if(ishuman(user))
@@ -722,7 +721,6 @@
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !cell)
 					return
 			user.put_in_hands(cell)
-			cell.add_fingerprint(user)
 			cell.updateicon()
 
 			src.cell = null
@@ -877,8 +875,6 @@
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
-	add_fingerprint(usr)
-
 	if(href_list["lock"])
 		coverlocked = !coverlocked
 

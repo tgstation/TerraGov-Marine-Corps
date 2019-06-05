@@ -71,7 +71,6 @@
 				src.locked = L
 				one_time_use = 1
 
-			src.add_fingerprint(usr)
 	else
 		..()
 
@@ -130,7 +129,6 @@
 	src.locked = L[desc]
 	for(var/mob/O in hearers(src, null))
 		O.show_message("<span class='notice'> Locked In</span>", 2)
-	src.add_fingerprint(usr)
 	return
 
 /obj/machinery/computer/teleporter/verb/set_id(t as text)
@@ -338,7 +336,6 @@
 		use_power(5000)
 		for(var/mob/O in hearers(src, null))
 			O.show_message("<span class='notice'> Teleporter engaged!</span>", 2)
-	src.add_fingerprint(usr)
 	src.engaged = 1
 	return
 
@@ -351,7 +348,6 @@
 		com.accurate = 0
 		for(var/mob/O in hearers(src, null))
 			O.show_message("<span class='notice'> Teleporter disengaged!</span>", 2)
-	src.add_fingerprint(usr)
 	src.engaged = 0
 	return
 
@@ -373,7 +369,6 @@
 		spawn(30)
 			active=0
 
-	src.add_fingerprint(usr)
 	return
 
 /obj/machinery/teleport/station/power_change()

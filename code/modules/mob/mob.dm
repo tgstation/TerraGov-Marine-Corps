@@ -522,9 +522,6 @@
 	if(ismob(AM))
 		M = AM
 
-	else if(istype(AM, /obj))
-		AM.add_fingerprint(src)
-
 	if(AM.pulledby && AM.pulledby.grab_level < GRAB_NECK)
 		if(M)
 			visible_message("<span class='warning'>[src] has broken [AM.pulledby]'s grip on [M]!</span>", null, null, 5)

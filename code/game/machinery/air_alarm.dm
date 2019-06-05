@@ -612,7 +612,6 @@ table tr:first-child th:first-child { border: none;}
 		usr << browse(null, "window=AAlarmwires")
 		return
 
-	add_fingerprint(usr)
 	usr.set_interaction(src)
 
 	// hrefs that can always be called -walter0o

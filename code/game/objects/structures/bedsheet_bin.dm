@@ -23,7 +23,6 @@ LINEN BINS
 		layer = ABOVE_MOB_LAYER
 	else
 		layer = initial(layer)
-	add_fingerprint(user)
 
 
 /obj/item/bedsheet/blue
@@ -153,4 +152,3 @@ LINEN BINS
 			hidden = null
 
 
-	add_fingerprint(user)

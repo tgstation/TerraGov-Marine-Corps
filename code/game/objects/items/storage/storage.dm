@@ -67,7 +67,6 @@
 				if("l_hand")
 					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
-			add_fingerprint(usr)
 
 /obj/item/storage/proc/return_inv()
 
@@ -399,7 +398,6 @@
 	if(user)
 		if (user.client && user.s_active != src)
 			user.client.screen -= W
-		add_fingerprint(user)
 		if(!prevent_warning)
 			var/visidist = W.w_class >= 3 ? 3 : 1
 			user.visible_message("<span class='notice'>[usr] puts [W] into [src].</span>",\
@@ -469,7 +467,6 @@
 		..()
 		for(var/mob/M in content_watchers)
 			close(M)
-	add_fingerprint(user)
 
 
 /obj/item/storage/verb/toggle_gathering_mode()

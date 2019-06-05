@@ -61,7 +61,6 @@
 		return
 
 	user.set_interaction(src)
-	src.add_fingerprint(usr)
 
 	if(!(SSticker))
 		return
@@ -127,7 +126,6 @@
 		return
 
 	usr.set_interaction(src)
-	add_fingerprint(usr)
 
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])
@@ -427,7 +425,6 @@
 		return
 
 	go_out()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/cryopod/verb/move_inside()
@@ -476,7 +473,6 @@
 	start_processing()
 	log_admin("[key_name(user)] has entered a stasis pod.")
 	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
-	add_fingerprint(user)
 
 /obj/machinery/cryopod/proc/go_out()
 

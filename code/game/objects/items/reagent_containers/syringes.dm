@@ -269,7 +269,6 @@
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	add_mob_blood(target)
-	add_fingerprint(usr)
 	update_icon()
 
 

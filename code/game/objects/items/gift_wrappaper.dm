@@ -28,7 +28,6 @@
 	user.drop_held_item()
 	if(gift)
 		user.put_in_active_hand(gift)
-		gift.add_fingerprint(user)
 	else
 		to_chat(user, "<span class='notice'>The gift was empty!</span>")
 	qdel(src)
@@ -107,7 +106,6 @@
 	var/obj/item/I = new gift_type(M)
 	M.temporarilyRemoveItemFromInventory(src)
 	M.put_in_hands(I)
-	I.add_fingerprint(M)
 	qdel(src)
 	return
 

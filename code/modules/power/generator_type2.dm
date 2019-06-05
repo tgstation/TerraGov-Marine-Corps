@@ -56,7 +56,6 @@
 
 
 /obj/machinery/power/generator_type2/attack_hand(mob/user)
-	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 

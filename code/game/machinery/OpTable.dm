@@ -160,7 +160,6 @@
 	C.set_resting(TRUE)
 	C.forceMove(loc)
 
-	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		victim = H

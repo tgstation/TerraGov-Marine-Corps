@@ -96,8 +96,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
-
 	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
 		return

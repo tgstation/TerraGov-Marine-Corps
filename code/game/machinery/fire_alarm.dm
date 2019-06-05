@@ -225,7 +225,6 @@ FIRE ALARM
 
 		src.updateUsrDialog()
 
-		src.add_fingerprint(usr)
 	else
 		usr << browse(null, "window=firealarm")
 		return

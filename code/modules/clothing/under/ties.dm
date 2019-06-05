@@ -31,7 +31,6 @@
 
 	if(user)
 		to_chat(user, "<span class='notice'>You attach [src] to [has_suit].</span>")
-		src.add_fingerprint(user)
 
 /obj/item/clothing/tie/proc/on_removed()
 	if(!has_suit)
@@ -278,7 +277,6 @@
 
 	holstered = W
 	user.transferItemToLoc(holstered, src)
-	holstered.add_fingerprint(user)
 	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
@@ -296,7 +294,6 @@
 			user.visible_message("<span class='notice'>[user] draws the [holstered], pointing it at the ground.</span>", \
 			"<span class='notice'>You draw the [holstered], pointing it at the ground.</span>")
 		user.put_in_hands(holstered)
-		holstered.add_fingerprint(user)
 		holstered = null
 		return TRUE
 
@@ -491,7 +488,6 @@
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)
 		hold.remove_from_storage(I, T)
-	src.add_fingerprint(user)
 
 /obj/item/clothing/tie/storage/webbing
 	name = "webbing"

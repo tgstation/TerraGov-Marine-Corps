@@ -73,7 +73,6 @@
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(charging)
 		usr.put_in_hands(charging)
-		charging.add_fingerprint(user)
 		charging.updateicon()
 
 		src.charging = null

@@ -94,8 +94,6 @@
 	if(operating)
 		return
 
-	add_fingerprint(user)
-
 	if(!src.requiresID())
 		user = null
 
@@ -120,7 +118,6 @@
 	return try_to_activate_door(user)
 
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
-	add_fingerprint(user)
 	if(operating || emagged)
 		return
 	if(!Adjacent(user))

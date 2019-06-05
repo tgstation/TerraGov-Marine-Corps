@@ -143,7 +143,6 @@
 
 			if(do_mob(usr, src, 30, BUSY_ICON_GENERIC))
 				if (internal)
-					internal.add_fingerprint(usr)
 					internal = null
 					if (hud_used && hud_used.internals)
 						hud_used.internals.icon_state = "internal0"
@@ -152,7 +151,6 @@
 						if (istype(back, /obj/item/tank))
 							internal = back
 							visible_message("[src] is now running on internals.", null, 3)
-							internal.add_fingerprint(usr)
 							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 

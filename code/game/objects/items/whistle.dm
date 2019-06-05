@@ -11,7 +11,6 @@
 
 /obj/item/whistle/attack_self(mob/user as mob)
 	whistle_playsound(user)
-	add_fingerprint(user)
 	return
 
 /obj/item/whistle/attackby(obj/item/I, mob/user, params)
@@ -48,7 +47,6 @@
 				if("l_hand")
 					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
-			add_fingerprint(usr)
 
 
 /obj/item/hailer

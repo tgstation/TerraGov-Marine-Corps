@@ -118,7 +118,6 @@
 /* Holopads */
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
 	hangup_all_calls()
-	add_hiddenprint(usr)
 
 
 /* Airlocks */

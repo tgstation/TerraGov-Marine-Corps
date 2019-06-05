@@ -128,7 +128,6 @@
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	if ((href_list["power"]) && (src.allowed(usr)))
 		if (src.on)
 			turn_off()

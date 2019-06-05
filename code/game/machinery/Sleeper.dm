@@ -145,7 +145,6 @@
 	if (href_list["ejectify"])
 		connected.eject()
 	attack_hand(user)
-	add_fingerprint(usr)
 	return
 
 
@@ -427,7 +426,6 @@
 		icon_state = "sleeper_0-r"
 	icon_state = "sleeper_0"
 	go_out()
-	add_fingerprint(usr)
 
 
 /obj/machinery/sleeper/verb/remove_beaker()
@@ -440,7 +438,6 @@
 		filtering = FALSE
 		beaker.loc = usr.loc
 		beaker = null
-	add_fingerprint(usr)
 
 
 /obj/machinery/sleeper/verb/move_inside()
@@ -474,4 +471,3 @@
 
 	for(var/obj/O in src)
 		qdel(O)
-	add_fingerprint(usr)

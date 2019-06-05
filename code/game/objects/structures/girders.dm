@@ -242,7 +242,6 @@
 		else
 			Tsrc.ChangeTurf(/turf/closed/wall)
 		for(var/turf/closed/wall/X in Tsrc.loc)
-			if(X)	X.add_hiddenprint(usr)
 		qdel(src)
 
 /obj/structure/girder/examine(mob/user)
