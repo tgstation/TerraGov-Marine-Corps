@@ -21,6 +21,10 @@
 	var/queen_death_countdown = 0
 
 
+/datum/game_mode/distress/announce()
+	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
+
+
 /datum/game_mode/distress/can_start()
 	. = ..()
 	initialize_scales()
@@ -30,10 +34,6 @@
 		return FALSE
 	initialize_survivor()
 	return TRUE
-
-
-/datum/game_mode/distress/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
 
 
 /datum/game_mode/distress/pre_setup()
@@ -53,7 +53,6 @@
 	scale_gear()
 
 	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
-
 
 
 /datum/game_mode/distress/proc/map_announce()
@@ -236,7 +235,6 @@
 		return FALSE
 
 	return TRUE
-
 
 /datum/game_mode/distress/proc/transform_xeno(datum/mind/M)
 	var/mob/living/carbon/xenomorph/larva/X = new (pick(GLOB.xeno_spawn))
@@ -573,6 +571,45 @@
 
 	to_chat(world, dat)
 
+/datum/game_mode/distress/mode_new_player_panel(mob/new_player/NP)
+
+	var/output = "<div align='center'>"
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A></p>"
+
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
+		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
+	else
+		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the TGMC!</A></p>"
+		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
+
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
+
+	if(!IsGuestKey(NP.key))
+		if(SSdbcore.Connect())
+			var/isadmin = FALSE
+			if(check_rights(R_ADMIN, FALSE))
+				isadmin = TRUE
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
+			if(query_get_new_polls.Execute())
+				var/newpoll = FALSE
+				if(query_get_new_polls.NextRow())
+					newpoll = TRUE
+
+				if(newpoll)
+					output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				else
+					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
+			qdel(query_get_new_polls)
+			if(QDELETED(src))
+				return
+
+	output += "</div>"
+
+	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
 
 /datum/game_mode/distress/proc/announce_bioscans(delta = 2)
 	var/list/xenoLocationsP = list()
@@ -677,48 +714,21 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
 
+/datum/game_mode/distress/handle_late_spawn()
+	var/datum/game_mode/distress/D = SSticker.mode
+	D.latejoin_tally++
+
+	if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
+		D.latejoin_tally -= D.latejoin_larva_drop
+		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		HS.stored_larva++
+
+
 /datum/game_mode/distress/attempt_to_join_as_larva(mob/xeno_candidate)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!HS.stored_larva)
-		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
-		return FALSE
-
-	if(!HS.living_xeno_queen?.ovipositor)
-		to_chat(xeno_candidate, "<span class='warning'>There are no mothers with an ovipositor deployed.</span>")
-		return FALSE
-
-	if (!xeno_candidate || !xeno_candidate.client)
-		return FALSE
-
-	if(HS.living_xeno_queen?.incapacitated(TRUE))
-		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
-		return FALSE
-
-	if(!isnewplayer(xeno_candidate))
-		if(!DEATHTIME_CHECK(xeno_candidate))
-			DEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
-
-	return HS.living_xeno_queen
+	return HS.can_spawn_larva(xeno_candidate)
 
 
 /datum/game_mode/distress/spawn_larva(mob/xeno_candidate)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(!xeno_candidate?.mind)
-		return FALSE
-
-	if(!HS.stored_larva || !istype(HS.living_xeno_queen))
-		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
-		return FALSE
-
-	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(HS.living_xeno_queen.loc)
-	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
-
-	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
-	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
-	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
-	HS.stored_larva--
-
-	log_admin("[key_name(new_xeno)] has joined as [new_xeno].")
-	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
+	return HS.spawn_larva(xeno_candidate)
