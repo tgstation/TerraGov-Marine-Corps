@@ -141,16 +141,16 @@
 
 	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)
 	if(C)
-		C.set_is_operarable(dir, id, 0)
+		C.set_operable(dir, id, 0)
 
 	C = locate() in get_step(src, turn(dir,180))
 	if(C)
-		C.set_is_operarable(turn(dir,180), id, 0)
+		C.set_operable(turn(dir,180), id, 0)
 
 
 //set the operable var if ID matches, propagating in the given direction
 
-/obj/machinery/conveyor/proc/set_is_operarable(stepdir, match_id, op)
+/obj/machinery/conveyor/proc/set_operable(stepdir, match_id, op)
 
 	if(id != match_id)
 		return
@@ -160,7 +160,7 @@
 	update()
 	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
 	if(C)
-		C.set_is_operarable(stepdir, id, op)
+		C.set_operable(stepdir, id, op)
 
 /*
 /obj/machinery/conveyor/verb/destroy_belt()
