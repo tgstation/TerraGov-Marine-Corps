@@ -102,7 +102,7 @@
 		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 
 	else if(iscrowbar(I) && open)
-		dismantle()
+		deconstruct()
 
 	else if(istype(I, /obj/item/disk/botany))
 		var/obj/item/disk/botany/B = I

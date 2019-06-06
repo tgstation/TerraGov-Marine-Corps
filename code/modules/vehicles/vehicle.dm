@@ -15,7 +15,6 @@
 	var/open = FALSE	//Maint panel
 	var/locked = TRUE
 	var/stat = 0
-	var/emagged = 0
 	var/powered = FALSE		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 	var/buckling_y = 0
@@ -161,7 +160,7 @@
 	update_icon()
 
 /obj/vehicle/proc/Emag(mob/user as mob)
-	emagged = 1
+	ENABLE_BITFIELD(obj_flags, EMAGGED)
 
 	if(locked)
 		locked = FALSE

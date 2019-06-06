@@ -611,7 +611,6 @@
 	icon_state = "holobadge"
 	flags_equip_slot = ITEM_SLOT_BELT
 
-	var/emagged = 0 //Emagging removes Sec check.
 	var/stored_name = null
 
 /obj/item/clothing/tie/holobadge/cord
@@ -629,17 +628,17 @@
 	. = ..()
 
 	if(istype(I, /obj/item/card/emag))
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>[src] is already cracked.</span>")
 			return
 
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "<span class='warning'>You swipe [I] and crack the holobadge security checks.</span>")
 
 	else if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/id_card = I
 
-		if(!(ACCESS_MARINE_BRIG in id_card.access) || !emagged)
+		if(!(ACCESS_MARINE_BRIG in id_card.access) || !CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "[src] rejects your insufficient access rights.")
 			return
 

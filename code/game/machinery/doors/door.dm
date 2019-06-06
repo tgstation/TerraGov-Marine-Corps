@@ -118,7 +118,7 @@
 	return try_to_activate_door(user)
 
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
-	if(operating || emagged)
+	if(operating || CHECK_BITFIELD(obj_flags, EMAGGED))
 		return
 	if(!Adjacent(user))
 		user = null //so allowed(user) always succeeds
@@ -138,7 +138,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/card/emag))
-		if(!operating && density && operable())
+		if(!operating && density && is_operational())
 			flick("door_spark", src)
 			sleep(6)
 			open()

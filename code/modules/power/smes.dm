@@ -254,7 +254,7 @@
 
 
 	else if(iswirecutter(I) && terminal && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		terminal.dismantle(user)
+		terminal.deconstruct(user)
 
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)

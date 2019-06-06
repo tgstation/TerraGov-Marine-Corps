@@ -152,7 +152,7 @@
 
 		//Dismantle the frame.
 		if(iscrowbar(I))
-			dismantle()
+			deconstruct()
 			return
 
 	//Resources are being loaded.
@@ -303,7 +303,7 @@
 	storage_capacity["metal"] = tot_rating  * 25000
 	storage_capacity["glass"] = tot_rating  * 12500
 
-/obj/machinery/autolathe/dismantle()
+/obj/machinery/autolathe/deconstruct()
 	var/list/sheets = list("metal" = /obj/item/stack/sheet/metal, "glass" = /obj/item/stack/sheet/glass)
 
 	for(var/mat in stored_material)

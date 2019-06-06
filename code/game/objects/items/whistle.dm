@@ -58,14 +58,13 @@
 	flags_atom = CONDUCT
 
 	var/spamcheck = 0
-	var/emagged = 0
 	var/insults = 0//just in case
 
 /obj/item/hailer/attack_self(mob/living/carbon/user as mob)
 	if (spamcheck)
 		return
 
-	if(emagged)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		if(insults >= 1)
 			playsound(get_turf(src), 'sound/voice/binsult.ogg', 25, 1, vary = 0)//hueheuheuheuheuheuhe
 			user.show_message("<span class='warning'>[user]'s [name] gurgles, \"FUCK YOUR CUNT YOU SHIT EATING CUNT TILL YOU ARE A MASS EATING SHIT CUNT. EAT PENISES IN YOUR FUCK FACE AND SHIT OUT ABORTIONS TO FUCK UP SHIT IN YOUR ASS YOU COCK FUCK SHIT MONKEY FROM THE DEPTHS OF SHIT\"</span>",2) //It's a hearable message silly!
@@ -83,7 +82,7 @@
 /obj/item/hailer/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag) && !emagged)
+	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(user, "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>")
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		insults = rand(1, 3)
