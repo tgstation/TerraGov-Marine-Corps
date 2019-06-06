@@ -238,7 +238,6 @@ There's no indication of what "1" and "2" mean! Instead, you'd do something like
 			(...)
 ````
 This is clearer and enhances readability of your code! Get used to doing it!
-On another note, if the define is only used in one place only with a clearly named variable (var/cost), then adding a define would further obfuscate it, use the regular data types in those cases.
 
 ### Control statements
 (if, while, for, etc)
