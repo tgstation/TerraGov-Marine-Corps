@@ -8,7 +8,7 @@
 	icon_state = "mortar_m402"
 	anchored = 1
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	density = 1
+	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/targ_x = 0 //Initial target coordinates
 	var/targ_y = 0

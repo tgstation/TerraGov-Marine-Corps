@@ -2,7 +2,7 @@
 	name = "\improper autolathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
-	density = 1
+	density = TRUE
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 10

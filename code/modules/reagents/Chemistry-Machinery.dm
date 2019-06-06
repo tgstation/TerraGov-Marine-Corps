@@ -1,6 +1,6 @@
 /obj/machinery/chem_dispenser
 	name = "chem dispenser"
-	density = 1
+	density = TRUE
 	anchored = 1
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "dispenser"
@@ -232,7 +232,7 @@
 
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
-	density = 1
+	density = TRUE
 	anchored = 1
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "mixer0"
@@ -612,7 +612,7 @@
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "analyser"
 	anchored = 1
-	density = 1
+	density = TRUE
 
 
 /obj/machinery/computer/pandemic

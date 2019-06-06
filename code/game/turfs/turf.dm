@@ -12,7 +12,7 @@
 
 		/snow - snow is one type of non-floor open turf
 
-	/closed - all turfs with density = 1 are turf/closed
+	/closed - all turfs with density = TRUE are turf/closed
 
 		/wall - walls are constructed walls as opposed to natural solid turfs
 

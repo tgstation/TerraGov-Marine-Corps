@@ -235,7 +235,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	desc = "The orbital cannon's loading tray."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "cannon_tray"
-	density = 1
+	density = TRUE
 	anchored = 1
 	throwpass = TRUE
 	climbable = TRUE
@@ -336,7 +336,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 /obj/structure/ob_ammo
 	name = "theoretical ob ammo"
-	density = 1
+	density = TRUE
 	anchored = 1
 	throwpass = TRUE
 	climbable = TRUE

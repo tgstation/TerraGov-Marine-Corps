@@ -4,7 +4,7 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "book-0"
 	anchored = 1
-	density = 1
+	density = TRUE
 	opacity = 1
 
 /obj/structure/bookcase/Initialize()

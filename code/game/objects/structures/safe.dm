@@ -25,7 +25,7 @@ FLOOR SAFES
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "safe"
 	anchored = 1
-	density = 1
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/spawnkey = 1 //Spawn safe code on top of it?

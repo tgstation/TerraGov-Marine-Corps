@@ -1,7 +1,7 @@
 /obj/machinery/r_n_d
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
-	density = 1
+	density = TRUE
 	anchored = 1
 	use_power = 1
 	var/busy = 0

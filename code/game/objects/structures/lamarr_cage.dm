@@ -3,7 +3,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "labcage1"
 	desc = "A glass lab container for storing interesting creatures."
-	density = 1
+	density = TRUE
 	anchored = 1
 	resistance_flags = UNACIDABLE
 	max_integrity = 30

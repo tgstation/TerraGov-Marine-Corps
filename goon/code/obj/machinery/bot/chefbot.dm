@@ -3,7 +3,7 @@
 	desc = "Central Command's iconic chefbot."
 	icon = 'goon/icons/obj/aibots.dmi'
 	icon_state = "chefbot-idle"
-	density = 1
+	density = TRUE
 	anchored = 0
 	on = 1 // ACTION
 	health = 100

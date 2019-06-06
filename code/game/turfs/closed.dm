@@ -2,7 +2,7 @@
 
 //turfs with density = TRUE
 /turf/closed
-	density = 1
+	density = TRUE
 	opacity = 1
 
 

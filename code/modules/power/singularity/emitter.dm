@@ -6,7 +6,7 @@
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
 	anchored = 0
-	density = 1
+	density = TRUE
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 	var/id = null
 	use_power = 0	//uses powernet power, not APC power

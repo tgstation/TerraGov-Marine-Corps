@@ -7,7 +7,7 @@
 	name = "Exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. There is nothing left to Salvage."
 	icon = 'icons/mecha/mecha.dmi'
-	density = 1
+	density = TRUE
 	anchored = 0
 	opacity = 0
 

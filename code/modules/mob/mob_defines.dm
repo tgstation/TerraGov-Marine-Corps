@@ -1,7 +1,7 @@
 /mob
 	name = "nameless mob"
 
-	density = 1
+	density = TRUE
 	layer = MOB_LAYER
 	animate_movement = 2
 	datum_flags = DF_USE_TAG

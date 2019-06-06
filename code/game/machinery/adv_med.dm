@@ -7,7 +7,7 @@
 	name = "Body Scanner"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scanner_0"
-	density = 1
+	density = TRUE
 	anchored = 1
 
 	use_power = 1

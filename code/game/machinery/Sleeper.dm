@@ -164,7 +164,7 @@
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
-	density = 1
+	density = TRUE
 	anchored = 1
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null

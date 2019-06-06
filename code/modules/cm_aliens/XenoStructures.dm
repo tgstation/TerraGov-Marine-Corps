@@ -392,7 +392,7 @@
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]closing",src)
 	sleep(10)
-	density = 1
+	density = TRUE
 	opacity = 1
 	state = 0
 	update_icon()
