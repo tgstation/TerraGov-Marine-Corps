@@ -76,7 +76,7 @@
 
 /datum/game_mode/crash/declare_completion()
 	. = ..()
-	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
+	to_chat(world, "<span class='round_header'>|[round_finished]|</span>")
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
 	
 	var/musical_track
