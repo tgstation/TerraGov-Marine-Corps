@@ -5,7 +5,7 @@
 	icon = 'icons/Marine/barricades.dmi'
 	density = TRUE
 	icon_state = "turnstile"
-	anchored = 1
+	anchored = TRUE
 	dir = 8
 	var/last_use
 	var/id

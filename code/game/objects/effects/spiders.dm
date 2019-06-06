@@ -3,7 +3,7 @@
 	name = "web"
 	desc = "it's stringy and sticky"
 	icon = 'icons/effects/effects.dmi'
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	max_integrity = 15
 

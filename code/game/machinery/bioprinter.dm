@@ -5,7 +5,7 @@
 	desc = "It's a machine that can either grow replacement or manufacture synthetic organs."
 	icon = 'icons/obj/surgery.dmi'
 
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 
 	icon_state = "bioprinter"

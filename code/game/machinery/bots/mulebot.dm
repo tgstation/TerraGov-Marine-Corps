@@ -10,7 +10,7 @@
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	animate_movement=1
 	max_integrity = 150
 	fire_dam_coeff = 0.7

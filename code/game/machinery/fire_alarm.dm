@@ -17,7 +17,7 @@ FIRE ALARM
 	var/timing = 0.0
 	var/lockdownbyai = 0
 	var/obj/item/circuitboard/firealarm/electronics = null
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6

@@ -6,7 +6,7 @@
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses

@@ -236,7 +236,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "cannon_tray"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	layer = LADDER_LAYER + 0.01
@@ -337,7 +337,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 /obj/structure/ob_ammo
 	name = "theoretical ob ammo"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/almayer_props.dmi'

@@ -5,7 +5,7 @@
 	name = "dropship part fabricator"
 	desc = "A large automated 3D printer for producing new dropship parts."
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 20
 	icon = 'icons/obj/machines/drone_fab.dmi'

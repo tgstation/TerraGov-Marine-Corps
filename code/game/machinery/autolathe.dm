@@ -3,7 +3,7 @@
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 100

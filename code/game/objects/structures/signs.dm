@@ -1,6 +1,6 @@
 /obj/structure/sign
 	icon = 'icons/obj/decals.dmi'
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
 	density = 0
 	layer = WALL_OBJ_LAYER
@@ -223,7 +223,7 @@
 	name = "sign"
 	icon = 'icons/obj/safety_signs.dmi'
 	desc = "A sign warning of a particular hazard"
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
 	density = 0
 

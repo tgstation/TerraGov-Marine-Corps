@@ -12,7 +12,7 @@
 	var/morgue_type = "morgue"
 	var/tray_path = /obj/structure/morgue_tray
 	var/morgue_open = 0
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/morgue/New()
 	..()
@@ -119,7 +119,7 @@
 	density = TRUE
 	layer = OBJ_LAYER
 	var/obj/structure/morgue/linked_morgue = null
-	anchored = 1
+	anchored = TRUE
 	throwpass = 1
 
 /obj/structure/morgue_tray/New(loc, obj/structure/morgue/morgue_source)

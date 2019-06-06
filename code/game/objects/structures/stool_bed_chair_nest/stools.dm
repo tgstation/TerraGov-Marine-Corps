@@ -2,7 +2,7 @@
 	name = "stool"
 	desc = "Apply butt."
 	icon_state = "stool"
-	anchored = 1
+	anchored = TRUE
 	can_buckle = FALSE
 	foldabletype = /obj/item/stool
 

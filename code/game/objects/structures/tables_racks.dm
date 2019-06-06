@@ -16,7 +16,7 @@
 	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "table"
 	density = TRUE
-	anchored = 1.0
+	anchored = TRUE
 	layer = TABLE_LAYER
 	throwpass = TRUE	//You can throw objects over this, despite it's density.")
 	climbable = TRUE
@@ -548,7 +548,7 @@
 	icon_state = "rack"
 	density = TRUE
 	layer = TABLE_LAYER
-	anchored = 1.0
+	anchored = TRUE
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
 	climbable = TRUE
 	parts = /obj/item/frame/rack

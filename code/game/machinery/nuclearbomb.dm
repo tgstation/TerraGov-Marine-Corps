@@ -191,7 +191,7 @@ var/bomb_set
 		onclose(user, "nuclearbomb")
 	else if (src.deployable)
 		if(removal_stage < 5)
-			src.anchored = 1
+			src.anchored = TRUE
 			visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
 			visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")

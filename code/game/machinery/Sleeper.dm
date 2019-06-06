@@ -7,7 +7,7 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/connected = null
-	anchored = 1 //About time someone fixed this.
+	anchored = TRUE //About time someone fixed this.
 	density = 0
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
@@ -165,7 +165,7 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "bicaridine" = "Bicaridine", "kelotane" = "Kelotane", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine", "spaceacillin" = "Spaceacillin")

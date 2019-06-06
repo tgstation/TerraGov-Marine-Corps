@@ -10,7 +10,7 @@
 	icon = 'icons/obj/musician.dmi'
 	desc = "What a shame. This piano looks like it'll never play again. Ever. Don't even ask about it."
 	icon_state = "pianobroken"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 
 /obj/structure/device/broken_moog
@@ -18,14 +18,14 @@
 	icon = 'icons/obj/musician.dmi'
 	desc = "This spacemoog synthesizer is vintage, but trashed. Seems someone didn't like its hot fresh tunes."
 	icon_state = "minimoogbroken"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 
 /obj/structure/device/piano
 	name = "space minimoog"
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "minimoog"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 	var/datum/song/song
 	var/playing = 0

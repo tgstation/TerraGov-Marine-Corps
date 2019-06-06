@@ -822,7 +822,7 @@
 	name = "Supply Drop Pad"
 	desc = "Place unanchored supplies on here to allow bridge Overwatch officers to drop them on people's heads."
 	icon = 'icons/effects/warning_stripes.dmi'
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
@@ -917,7 +917,7 @@
 		squad.sbeacon = src
 		user.transferItemToLoc(src, user.loc)
 		activated = 1
-		anchored = 1
+		anchored = TRUE
 		w_class = 10
 		icon_state = "[icon_activated]"
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)

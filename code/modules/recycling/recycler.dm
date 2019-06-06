@@ -5,7 +5,7 @@
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_MOB_LAYER
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 	var/recycle_dir = NORTH
 	var/list/stored_matter =  list("metal" = 0, "glass" = 0)

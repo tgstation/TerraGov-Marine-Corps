@@ -31,7 +31,7 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "autodoc_open"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	var/locked = FALSE
 	var/mob/living/carbon/human/occupant = null
@@ -842,7 +842,7 @@
 	var/release_notice = TRUE //Are notifications for patient discharges turned on?
 	var/locked = FALSE //Medics, Doctors and so on can lock this.
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
-	anchored = 1 //About time someone fixed this.
+	anchored = TRUE //About time someone fixed this.
 	density = 0
 
 	use_power = 1

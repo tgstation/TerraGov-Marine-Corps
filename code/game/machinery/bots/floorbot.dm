@@ -241,7 +241,7 @@
 			repair(src.target)
 		else if(CHECK_BITFIELD(obj_flags, EMAGGED) && istype(src.target,/turf/open/floor))
 			var/turf/open/floor/F = src.target
-			src.anchored = 1
+			src.anchored = TRUE
 			src.repairing = 1
 			if(prob(90))
 				F.break_tile_to_plating()
@@ -267,7 +267,7 @@
 		return
 	if(src.amount <= 0)
 		return
-	src.anchored = 1
+	src.anchored = TRUE
 	src.icon_state = "floorbot-c"
 	if(isspaceturf(target))
 		visible_message("<span class='warning'> [src] begins to repair the hole</span>")

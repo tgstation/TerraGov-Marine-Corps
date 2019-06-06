@@ -8,7 +8,7 @@
 	density = TRUE
 	max_integrity = 200
 	opacity = 1
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/cargo_container/attack_hand(mob/user as mob)
 

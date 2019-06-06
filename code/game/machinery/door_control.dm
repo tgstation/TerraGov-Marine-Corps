@@ -15,7 +15,7 @@
 	var/desiredstate = 0 // Zero is closed, 1 is open.
 	var/specialfunctions = 1
 
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4

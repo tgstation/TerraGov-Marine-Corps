@@ -11,7 +11,7 @@
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
@@ -565,7 +565,7 @@
 	icon = 'icons/obj/pipes/disposal.dmi'
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
-	anchored = 1
+	anchored = TRUE
 	density = 0
 
 	level = 1			//Underfloor only
@@ -806,7 +806,7 @@
 			C.ptype = 14
 	C.setDir(dir)
 	C.density = 0
-	C.anchored = 1
+	C.anchored = TRUE
 	C.update()
 	qdel(src)
 
@@ -1292,7 +1292,7 @@
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "outlet"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	var/active = 0
 	var/turf/target	//This will be where the output objects are 'thrown' to.
 	var/mode = 0

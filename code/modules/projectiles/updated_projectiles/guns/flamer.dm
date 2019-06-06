@@ -463,7 +463,7 @@
 /obj/flamer_fire
 	name = "fire"
 	desc = "Ouch!"
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
