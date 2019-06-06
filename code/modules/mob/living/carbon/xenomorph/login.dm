@@ -22,3 +22,9 @@
 	. = ..()
 
 	mind.assigned_role = ROLE_XENO_QUEEN
+
+
+/mob/living/carbon/xenomorph/shrike/Login()
+	. = ..()
+
+	mind.assigned_role = ROLE_XENO_QUEEN	

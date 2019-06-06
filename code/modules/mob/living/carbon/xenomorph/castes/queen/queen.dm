@@ -58,9 +58,8 @@
 // ***************************************
 /mob/living/carbon/xenomorph/queen/Initialize()
 	. = ..()
-	if(!is_centcom_level(z))//so admins can safely spawn Queens in Thunderdome for tests.
-		hive.update_queen()
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
+
 
 /mob/living/carbon/xenomorph/queen/Destroy()
 	. = ..()

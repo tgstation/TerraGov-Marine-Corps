@@ -750,6 +750,73 @@
 
 	X.recurring_injection(A, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
+
+// ***************************************
+// *********** Psychic Whisper
+// ***************************************
+/datum/action/xeno_action/psychic_whisper
+	name = "Psychic Whisper"
+	action_icon_state = "psychic_whisper"
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
+
+
+/datum/action/xeno_action/psychic_whisper/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/list/target_list = list()
+	for(var/mob/living/possible_target in view(world.view, X))
+		if(possible_target == X || !possible_target.client || isxeno(X))
+			continue
+		target_list += possible_target
+
+	if(!length(target_list))
+		to_chat(X, "<span class='warning'>There's nobody nearby to whisper to.</span>")
+		return
+
+	var/mob/living/L = input("Target", "Send a Psychic Whisper to whom?") as null|anything in target_list
+	if(!L)
+		return
+
+	if(!X.check_state())
+		return
+
+	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
+	if(!msg)
+		return
+
+	log_directed_talk(X, L, msg, LOG_SAY, "psychic whisper")
+	to_chat(L, "<span class='alien'>You hear a strange, alien voice in your head. \italic \"[msg]\"</span>")
+	to_chat(X, "<span class='xenonotice'>You said: \"[msg]\" to [L]</span>")
+
+
+// ***************************************
+// *********** Lay Egg
+// ***************************************
+/datum/action/xeno_action/lay_egg
+	name = "Lay Egg"
+	action_icon_state = "lay_egg"
+	plasma_cost = 400
+	cooldown_timer = 12 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
+
+
+/datum/action/xeno_action/xeno_action/lay_egg/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+
+	var/turf/current_turf = get_turf(X)
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
+	if(!alien_weeds)
+		to_chat(X, "<span class='warning'>Your eggs wouldn't grow well enough here. Lay them on resin.</span>")
+		return FALSE
+
+	if(!current_turf.check_alien_construction(X))
+		return FALSE
+	
+	X.visible_message("<span class='xenowarning'>\The [X] has laid an egg!</span>", \
+		"<span class='xenowarning'>You have laid an egg!</span>")
+
+	new /obj/effect/alien/egg(current_turf)
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()

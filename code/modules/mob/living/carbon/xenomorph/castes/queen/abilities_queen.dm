@@ -414,33 +414,6 @@
 	reset_perspective()
 
 // ***************************************
-// *********** Psychic Whisper
-// ***************************************
-/datum/action/xeno_action/psychic_whisper
-	name = "Psychic Whisper"
-	action_icon_state = "psychic_whisper"
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
-
-/datum/action/xeno_action/psychic_whisper/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	var/list/target_list = list()
-	for(var/mob/living/possible_target in view(7, X))
-		if(possible_target == X || !possible_target.client) continue
-		target_list += possible_target
-
-	var/mob/living/M = input("Target", "Send a Psychic Whisper to whom?") as null|anything in target_list
-	if(!M) return
-
-	if(!X.check_state())
-		return
-
-	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
-	if(msg)
-		log_directed_talk(X, M, msg, LOG_SAY, "psychic whisper")
-		to_chat(M, "<span class='alien'>You hear a strange, alien voice in your head. \italic \"[msg]\"</span>")
-		to_chat(X, "<span class='xenonotice'>You said: \"[msg]\" to [M]</span>")
-
-// ***************************************
 // *********** Queen zoom
 // ***************************************
 /datum/action/xeno_action/toggle_queen_zoom

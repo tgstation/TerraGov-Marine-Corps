@@ -418,6 +418,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
+#define MIN_HIVE_SIZE_FOR_QUEEN 6
+
 #define FRENZY_DAMAGE_BONUS(Xenomorph) ((Xenomorph.frenzy_aura * 2))
 
 #define XENO_SLOWDOWN_REGEN 0.4

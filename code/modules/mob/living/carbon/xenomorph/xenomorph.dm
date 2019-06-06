@@ -28,6 +28,9 @@
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
 
+	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)//so admins can safely spawn xenos in Thunderdome for tests.
+		hivenumber = XENO_HIVE_ZETA
+	
 	set_initial_hivenumber()
 
 	generate_nicknumber()

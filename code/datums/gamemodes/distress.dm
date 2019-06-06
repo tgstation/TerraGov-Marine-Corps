@@ -38,11 +38,11 @@
 
 /datum/game_mode/distress/pre_setup()
 	. = ..()
-
+	var/number_of_xenos = length(xenomorphs)
 	for(var/i in xenomorphs)
 		var/datum/mind/M = i
 		if(M.assigned_role == ROLE_XENO_QUEEN)
-			transform_queen(M)
+			transform_queen(M, number_of_xenos)
 		else
 			transform_xeno(M)
 
@@ -251,8 +251,12 @@
 	X.update_icons()
 
 
-/datum/game_mode/distress/proc/transform_queen(datum/mind/M)
-	var/mob/living/carbon/xenomorph/queen/X = new (pick(GLOB.xeno_spawn))
+/datum/game_mode/distress/proc/transform_queen(datum/mind/M, number_of_xenos)
+	var/mob/living/carbon/xenomorph/X
+	if(number_of_xenos < MIN_HIVE_SIZE_FOR_QUEEN)
+		X = new /mob/living/carbon/xenomorph/shrike(pick(GLOB.xeno_spawn))
+	else
+		X = new /mob/living/carbon/xenomorph/queen(pick(GLOB.xeno_spawn))
 
 	if(isnewplayer(M.current))
 		var/mob/new_player/N = M.current
@@ -260,7 +264,7 @@
 
 	M.transfer_to(X, TRUE)
 
-	to_chat(X, "<B>You are now the alien queen!</B>")
+	to_chat(X, "<B>You are now the alien ruler!</B>")
 	to_chat(X, "<B>Your job is to spread the hive.</B>")
 	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
 
@@ -706,7 +710,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	queen_death_countdown = 0
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
-	if(!round_finished && !hive.living_xeno_queen)
+	if(!round_finished && !hive.living_xeno_ruler)
 		round_finished = MODE_INFESTATION_M_MINOR
 
 
@@ -731,6 +735,6 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	return HS.can_spawn_larva(xeno_candidate)
 
 
-/datum/game_mode/distress/spawn_larva(mob/xeno_candidate)
+/datum/game_mode/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.spawn_larva(xeno_candidate)
+	return HS.spawn_larva(xeno_candidate, mother)

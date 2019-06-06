@@ -138,6 +138,14 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 				G.forceMove(T)
 		if(NOTIFY_ORBIT)
 			G.ManualFollow(target)
+		if(NOTIFY_JOIN_AS_LARVA)
+			var/mob/living/carbon/xenomorph/X = target
+			if(!istype(X))
+				return FALSE
+			if(!X.is_burrowed_larva_host())
+				to_chat(G, "<span class='warning'>This mother is no longer able to receive us.</span>")
+				return FALSE
+			SSticker.mode.spawn_larva(G, X)
 
 //OBJECT-BASED
 

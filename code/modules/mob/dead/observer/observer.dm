@@ -809,9 +809,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(new_xeno)
 				SSticker.mode.transfer_xeno(src, new_xeno)
 		if("Larva")
-			if(!SSticker.mode.attempt_to_join_as_larva(src))
+			var/mob/living/carbon/xenomorph/mother = SSticker.mode.attempt_to_join_as_larva(src)
+			if(!mother)
 				return
-			SSticker.mode.spawn_larva(src)
+			SSticker.mode.spawn_larva(src, mother)
 
 
 /mob/dead/observer/verb/observe()

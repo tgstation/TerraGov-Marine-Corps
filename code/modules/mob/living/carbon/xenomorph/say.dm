@@ -24,8 +24,8 @@
 	if(!hive)
 		return
 
-	if(!hive.living_xeno_queen && hive.xeno_queen_timer > QUEEN_DEATH_TIMER*0.5 && hivenumber == XENO_HIVE_NORMAL)
-		to_chat(src, "<span class='warning'>The Queen is dead. The hivemind is weakened. Despair!</span>")
+	if(!hive.living_xeno_ruler && hive.xeno_queen_timer > QUEEN_DEATH_TIMER * 0.5 && hivenumber == XENO_HIVE_NORMAL)
+		to_chat(src, "<span class='warning'>The ruler is dead. The hivemind is weakened. Despair!</span>")
 		return
 
 	message = render_hivemind_message(message)

@@ -87,6 +87,10 @@
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
 
+	if(xeno_caste.hardcore)
+		to_chat(src, "<span class='warning'>Nuh-uhh.</span>")
+		return
+
 	// used below
 	var/tierones
 	var/tiertwos
@@ -96,13 +100,7 @@
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
 			return
-		if(xeno_caste.hardcore)
-			to_chat(src, "<span class='warning'>Nuh-uhh.</span>")
-			return
-		if(plasma_stored < 500)
-			to_chat(src, "<span class='warning'>You require more plasma! Currently at: [plasma_stored] / 500.</span>")
-			return
-
+		
 		if(hive.living_xeno_queen)
 			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 			return
@@ -124,6 +122,17 @@
 			if(XENO_HIVE_ZETA)
 				new_caste_type = /mob/living/carbon/xenomorph/queen/Zeta
 
+	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike) //Special case for dealing with shrikes
+		if(is_banned_from(ckey, ROLE_XENO_QUEEN) || jobban_isbanned(src, ROLE_XENO_QUEEN))
+			to_chat(src, "<span class='warning'>You are jobbanned from Queen-like roles.</span>")
+
+		if(hive.living_xeno_shrike)
+			to_chat(src, "<span class='warning'>There already is a living Shrike. The hive cannot contain more than one psychic energy repository.</span>")
+			return
+		
+		if(mind)
+			mind.assigned_role = ROLE_XENO_QUEEN
+
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
@@ -137,14 +146,14 @@
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
-			to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>")
-			return
+		else if(!hive.living_xeno_ruler && potential_queens == 1)
+			if(isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
+				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires you to be a Drone!</span>")
+				return
+			else if(isxenodrone(src) && new_caste_type != /mob/living/carbon/xenomorph/shrike)
+				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires you to be a Shrike!</span>")
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, "<span class='warning'>You must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold].</span>")
-			return
-		else if((!hive.living_xeno_queen) && !isxenolarva(src))
-			to_chat(src, "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>")
 			return
 		else
 			to_chat(src, "<span class='xenonotice'>It looks like the hive can support your evolution to <span style='font-weight: bold'>[castepick]!</span></span>")
@@ -168,6 +177,10 @@
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
 			to_chat(src, "<span class='warning'>There already is a Queen.</span>")
+			return
+	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike)
+		if(hive.living_xeno_shrike)
+			to_chat(src, "<span class='warning'>There already is a Shrike.</span>")
 			return
 	else // these shouldnt be checked if trying to become a queen.
 		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))

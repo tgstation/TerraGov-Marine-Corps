@@ -119,8 +119,8 @@
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		stat(null, "Evolve Progress (FINISHED)")
-	else if(!hive.living_xeno_queen)
-		stat(null, "Evolve Progress (HALTED - NO QUEEN)")
+	else if(!hive.living_xeno_ruler)
+		stat(null, "Evolve Progress (HALTED - NO RULER)")
 	else
 		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
@@ -257,7 +257,7 @@
 /mob/living/carbon/xenomorph/proc/update_progression()
 	if(upgrade_possible()) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
-			if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
+			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
@@ -269,7 +269,7 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(hive?.living_xeno_queen)
+	if(hive?.living_xeno_ruler)
 		evolution_stored++
 		if(evolution_stored == xeno_caste.evolution_threshold - 1)
 			to_chat(src, "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>")
@@ -758,3 +758,12 @@
 
 /mob/living/carbon/xenomorph/proc/hit_and_run_bonus(damage)
 	return damage
+
+/mob/living/carbon/xenomorph/proc/is_burrowed_larva_host()
+	return FALSE
+
+/mob/living/carbon/xenomorph/queen/is_burrowed_larva_host()
+	return ovipositor && !incapacitated(TRUE)
+
+/mob/living/carbon/xenomorph/shrike/is_burrowed_larva_host()
+	return calling_larvas && !incapacitated()

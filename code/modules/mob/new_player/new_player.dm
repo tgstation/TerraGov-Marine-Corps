@@ -203,9 +203,10 @@
 
 			switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 				if("Burrowed Larva")
-					if(SSticker.mode.attempt_to_join_as_larva(src))
+					var/mob/living/carbon/xenomorph/mother = SSticker.mode.attempt_to_join_as_larva(src)
+					if(mother)
 						close_spawn_windows()
-						SSticker.mode.spawn_larva(src)
+						SSticker.mode.spawn_larva(src, mother)
 				if("Living Xenomorph")
 					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
 					if(new_xeno)

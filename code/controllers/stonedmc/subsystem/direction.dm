@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(direction)
 	init_squad(null, null, "marine-sl")
 	for (var/hivenumber in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-		init_squad(null, HS.living_xeno_queen, hivenumber)
+		init_squad(null, HS.living_xeno_ruler, hivenumber)
 
 /datum/controller/subsystem/direction/stat_entry()
 	var/mobcount = 0

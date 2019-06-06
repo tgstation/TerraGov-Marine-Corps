@@ -293,6 +293,27 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
+/datum/keybinding/xeno/lay_egg
+	key = "Unbound"
+	name = "lay_egg"
+	full_name = "Lay Egg"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
+
+/datum/keybinding/xeno/lay_egg
+	key = "Unbound"
+	name = "call_of_the_burrowed"
+	full_name = "Call of the Burrowed"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
+
+/datum/keybinding/xeno/psychic_fling
+	key = "Unbound"
+	name = "psychic_fling"
+	full_name = "Psychic Fling"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
+
 /datum/keybinding/xeno/toggle_queen_zoom
 	key = "Unbound"
 	name = "toggle_queen_zoom"
