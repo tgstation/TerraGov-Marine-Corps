@@ -56,7 +56,6 @@
 	icon_state = "jensenshades"
 	item_state = "jensenshades"
 	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING // the define name is just misleading, don't worry
 	toggleable = 0
 	actions_types = list()
 
