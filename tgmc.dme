@@ -472,6 +472,7 @@
 #include "code\game\objects\effects\spawners\spawner.dm"
 #include "code\game\objects\effects\spawners\vaultspawner.dm"
 #include "code\game\objects\effects\temporary_visuals\temporary_visual.dm"
+#include "code\game\objects\gamemode\crash.dm"
 #include "code\game\objects\items\ashtray.dm"
 #include "code\game\objects\items\autopsy_scanner.dm"
 #include "code\game\objects\items\binoculars.dm"

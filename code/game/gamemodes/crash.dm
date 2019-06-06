@@ -1,3 +1,11 @@
+#define GAMEMODE_CRASH_MUSIC list(\
+	MODE_CRASH_X_MAJOR = list('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg'),\
+	MODE_CRASH_X_MINOR = list('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg'),\
+	MODE_CRASH_M_MAJOR = list('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg'),\
+	MODE_CRASH_M_MINOR = list('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg'),\
+	MODE_CRASH_DRAW_DEATH = list('sound/theme/sad_loss1.ogg'),\
+)
+
 /datum/game_mode/crash
 	name = "Crash"
 	config_tag = "Crash"
@@ -8,12 +16,16 @@
 	// Round start conditions
 	var/xeno_required_num = 1
 	var/xeno_starting_num = 0
-	var/list/xenomorphs = list()
+	var/list/xenomorphs
 	
 	// Round end conditions
 	var/marines_evac = FALSE
 	var/planet_nuked = FALSE
 
+/datum/game_mode/crash/New()
+	. = ..()
+
+	xenomorphs = list()
 
 /datum/game_mode/crash/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
@@ -78,30 +90,13 @@
 	to_chat(world, "<span class='round_header'>|[round_finished]|</span>")
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
 	
-	var/musical_track
-	switch(round_finished)
-		if(MODE_CRASH_X_MAJOR) // marines killed
-			musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
-		if(MODE_CRASH_X_MINOR) // marines killed
-			musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
-		if(MODE_CRASH_M_MAJOR) // planet nuked & marines left
-			musical_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
-		if(MODE_CRASH_M_MINOR) // planet nuked & marines left
-			musical_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
-		if(MODE_CRASH_DRAW_DEATH) // everyone died.
-			musical_track = 'sound/theme/sad_loss1.ogg'
-
-
-	SEND_SOUND(world, musical_track)
+	SEND_SOUND(world, GAMEMODE_CRASH_MUSIC[round_finished])
 	
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal humans spawned: [round_statistics.total_humans_created]")
 
 	announce_medal_awards()
 	announce_round_stats()
 	end_of_round_deathmatch()
-
-
-
 
 
 /datum/game_mode/crash/proc/initialize_xeno_leader()

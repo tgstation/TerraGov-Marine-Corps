@@ -11,12 +11,16 @@
 	var/fuel_amount = 100
 	var/attached
 
+/obj/structure/fuel_tank/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
+
 /obj/structure/fuel_tank/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	to_chat(user, "<span class='notice'>It has [fuel_amount] fuel left.</span>")
 
 /obj/structure/fuel_tank/MouseDrop(over_object, src_location, over_location)
-	..()
+	. = ..()
 
 	if(attached)
 		to_chat(usr, "<span>It's already pumping fuel, you can't disconnect it.</span>")
@@ -34,3 +38,7 @@
 		return
 
 	fuel_amount -= 1
+
+	if(fuel_amount == 0)
+		STOP_PROCESSING(SSobj, src)
+		return
