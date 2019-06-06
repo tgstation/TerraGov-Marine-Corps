@@ -349,7 +349,7 @@ proc/check_panel(mob/M)
 		qdel(O)
 	return
 
-GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,\
+GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/disk/nuclear,\
 	/obj/item/clothing/suit/space/uscm, /obj/item/tank))
 
 /proc/fake_attack(var/mob/living/target)
