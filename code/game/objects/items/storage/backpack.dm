@@ -12,6 +12,7 @@
 	storage_slots = null
 	max_storage_space = 30
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
+	var/list/uniform_restricted //Need to wear this uniform to equip this
 
 /obj/item/storage/backpack/attack_hand(mob/user)
 	if(!worn_accessible && ishuman(user))

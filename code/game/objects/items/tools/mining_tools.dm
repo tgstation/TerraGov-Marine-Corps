@@ -99,7 +99,7 @@
 	origin_tech = "materials=4;phorontech=3;engineering=3"
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
-	heat_source = 3800
+	heat = 3800
 	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
@@ -238,7 +238,7 @@
 				to_chat(user, "<span class='warning'>The plasma cutter abruptly shuts down due to a lack of power!</span>")
 		force = 5
 		damtype = "brute"
-		heat_source = 0
+		heat = 0
 		if(user)
 			user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
@@ -247,7 +247,7 @@
 		powered = TRUE
 		force = 40
 		damtype = "fire"
-		heat_source = 3800
+		heat = 3800
 		if(user)
 			user.SetLuminosity(LIGHTER_LUMINOSITY)
 			SetLuminosity(0)

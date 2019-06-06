@@ -127,10 +127,10 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 /obj/machinery/bot/cleanbot/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/card/id))
-		if(allowed(user) && !open && !emagged)
+		if(allowed(user) && !open && !CHECK_BITFIELD(obj_flags, EMAGGED))
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
-		else if(emagged)
+		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>ERROR</span>")
 		else if(open)
 			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")

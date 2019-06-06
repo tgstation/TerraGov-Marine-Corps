@@ -480,7 +480,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/radio/headset/almayer/cmo
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/rank/medical/green
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
 	shoes = /obj/item/clothing/shoes/white

@@ -295,7 +295,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 /obj/item/explosive/grenade/flare/proc/turn_off()
 	fuel = 0
 	icon_state = "[initial(icon_state)]-empty"
-	heat_source = 0
+	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
@@ -311,7 +311,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	throwforce = 10
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
-	heat_source = 1500
+	heat = 1500
 	damtype = "fire"
 	update_brightness()
 	playsound(src,'sound/items/flare.ogg', 15, 1)
@@ -338,7 +338,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 	. = ..()
 	active = TRUE
-	heat_source = 1500
+	heat = 1500
 	update_brightness()
 	force = 5
 	throwforce = 10

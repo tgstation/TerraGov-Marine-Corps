@@ -10,7 +10,6 @@
 	var/network = list("military")
 	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
-	var/emagged = 0
 
 /obj/item/circuitboard/computer/security/construct(var/obj/machinery/computer/security/C)
 	if (..(C))
@@ -166,15 +165,15 @@
 	. = ..()
 
 	if(istype(I, /obj/item/card/emag))
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "Circuit lock is already removed.")
 			return
 		to_chat(user, "<span class='notice'>You override the circuit lock and open controls.</span>")
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		locked = FALSE
 
 	else if(istype(I, /obj/item/card/id))
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>Circuit lock does not respond.</span>")
 			return
 

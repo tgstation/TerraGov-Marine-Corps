@@ -21,7 +21,6 @@
 	var/l_set = 0
 	var/l_setshort = 0
 	var/l_hacking = 0
-	var/emagged = 0
 	var/open = 0
 	w_class = 3.0
 	max_w_class = 2
@@ -44,9 +43,9 @@
 		user.set_interaction(src)
 		var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
 		var/message = "Code"
-		if ((src.l_set == 0) && (!src.emagged) && (!src.l_setshort))
+		if ((src.l_set == 0) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!src.l_setshort))
 			dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>")
-		if (src.emagged)
+		if (CHECK_BITFIELD(obj_flags, EMAGGED))
 			dat += text("<p>\n<font color=red><b>LOCKING SYSTEM ERROR - 1701</b></font>")
 		if (src.l_setshort)
 			dat += text("<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>")
@@ -65,7 +64,7 @@
 				if ((src.l_set == 0) && (length(src.code) == 5) && (!src.l_setshort) && (src.code != "ERROR"))
 					src.l_code = src.code
 					src.l_set = 1
-				else if ((src.code == src.l_code) && (src.emagged == 0) && (src.l_set == 1))
+				else if ((src.code == src.l_code) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (src.l_set == 1))
 					src.locked = 0
 					src.overlays = null
 					overlays += image('icons/obj/items/storage/storage.dmi', icon_opened)
@@ -73,7 +72,7 @@
 				else
 					src.code = "ERROR"
 			else
-				if ((href_list["type"] == "R") && (src.emagged == 0) && (!src.l_setshort))
+				if ((href_list["type"] == "R") && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!src.l_setshort))
 					src.locked = 1
 					src.overlays = null
 					src.code = null
@@ -93,8 +92,8 @@
 	if(!locked)
 		return ..()
 
-	else if(istype(I, /obj/item/card/emag) && !emagged)
-		emagged = TRUE
+	else if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		flick(src, icon_sparking)
 		overlays += image('icons/obj/items/storage/storage.dmi', icon_locking)
 		locked = FALSE
