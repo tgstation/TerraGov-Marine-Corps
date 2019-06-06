@@ -350,6 +350,39 @@
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
 
 
+/datum/game_mode/proc/transform_xeno(datum/mind/M, list/xeno_spawn = GLOB.xeno_spawn)
+	var/mob/living/carbon/xenomorph/larva/X = new (pick(xeno_spawn))
+
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
+
+	M.transfer_to(X, TRUE)
+
+	to_chat(X, "<B>You are now an alien!</B>")
+	to_chat(X, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')")
+
+	X.update_icons()
+
+
+/datum/game_mode/proc/transform_queen(datum/mind/M, list/xeno_spawn = GLOB.xeno_spawn)
+	var/mob/living/carbon/xenomorph/queen/X = new (pick(xeno_spawn))
+
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
+
+	M.transfer_to(X, TRUE)
+
+	to_chat(X, "<B>You are now the alien queen!</B>")
+	to_chat(X, "<B>Your job is to spread the hive.</B>")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
+
+	X.update_icons()
+
+
+
 /datum/game_mode/proc/check_queen_status(queen_time)
 	return
 

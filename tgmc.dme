@@ -271,6 +271,7 @@
 #include "code\game\area\sulaco.dm"
 #include "code\game\area\whiskeyoutpost.dm"
 #include "code\game\area\areas\shuttles.dm"
+#include "code\game\gamemodes\crash.dm"
 #include "code\game\gamemodes\distress.dm"
 #include "code\game\gamemodes\extended.dm"
 #include "code\game\gamemodes\game_mode.dm"
