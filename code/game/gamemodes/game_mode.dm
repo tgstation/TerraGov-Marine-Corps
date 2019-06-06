@@ -350,6 +350,60 @@
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
 
 
+/datum/game_mode/distress/proc/transform_survivor(datum/mind/M)
+	var/mob/living/carbon/human/H = new (pick(GLOB.surv_spawn))
+
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
+
+	M.transfer_to(H, TRUE)
+	H.client.prefs.copy_to(H)
+
+	var/survivor_job = pick(subtypesof(/datum/job/survivor))
+	var/datum/job/J = new survivor_job
+
+	H.set_rank(J.title)
+	J.equip(H)
+
+	H.mind.assigned_role = "Survivor"
+
+	if(SSmapping.config.map_name == MAP_ICE_COLONY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
+
+	var/weapons = pick(SURVIVOR_WEAPONS)
+	var/obj/item/weapon/W = weapons[1]
+	var/obj/item/ammo_magazine/A = weapons[2]
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+
+	H.put_in_hands(new W(H))
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
+
+	to_chat(H, "<h2>You are a survivor!</h2>")
+	switch(SSmapping.config.map_name)
+		if(MAP_PRISON_STATION)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_ICE_COLONY)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_BIG_RED)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+		if(MAP_LV_624)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
+		else
+			to_chat(H, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
+
+
+
 /datum/game_mode/proc/transform_xeno(datum/mind/M, list/xeno_spawn = GLOB.xeno_spawn)
 	var/mob/living/carbon/xenomorph/larva/X = new (pick(xeno_spawn))
 
