@@ -40,7 +40,7 @@ They also control the general "perspective" of the game - how sprites should gen
 
 **Maintainers**
 
-Maintainers are the volunteer quality control. If a proposed pull request doesn't meet the following specifications, they can request a change, and if a proper reason is not provided or the request becomes stale, they may close it. Maintainers are required to give a reason for closing the pull request.
+Maintainers are the quality control. If a proposed pull request doesn't meet the following specifications, they can request a change, and if a proper reason is not provided or the request becomes stale, they may close it. Maintainers are required to give a reason for closing the pull request.
 
 Maintainers can revert changes if they feel they are not worth maintaining or if they did not live up to the quality specifications.
 
@@ -124,7 +124,7 @@ This wouldn't preserve the return value of the parent proc, instead, you should 
 	. = ..()
 ```
 `.` is the current return value of the current proc.
-If you have the parent call at the end of the proc, use `return ..()` instead, it's slightly faster.
+If you have the parent call at the end of the proc, use `return ..()` instead, it's slightly faster and more readable.
 
 ### No overriding type safety checks
 The use of the : operator to override type safety checks is not allowed. You must cast the variable to the proper type.
