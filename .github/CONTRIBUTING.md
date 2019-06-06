@@ -275,6 +275,8 @@ This prevents nesting levels from getting deeper then they need to be.
 
 * Calls to the database must be escaped properly - use sanitizeSQL to escape text based database entries from players or admins, and isnum() for number based database entries from players or admins.
 
+* Do not expose private player information - IPs and CIDs. Ckeys should only be exposed by actions the player can choose to partake in - like using OOC.
+
 * All calls to topics must be checked for correctness. Topic href calls can be easily faked by clients, so you should ensure that the call is valid for the state the item is in. Do not rely on the UI code to provide only valid topic calls, because it won't.
 
 * Information that players could use to metagame (that is, to identify round information and/or antagonist type via information that would not be available to them in character) should be kept as administrator only.
