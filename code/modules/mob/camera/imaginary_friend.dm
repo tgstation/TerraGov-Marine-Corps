@@ -57,8 +57,7 @@
 	if(!client)
 		return
 
-	if(owner.client)
-		owner.client.images.Remove(current_image)
+	owner.client?.images.Remove(current_image)
 
 	client.images.Remove(current_image)
 
@@ -75,11 +74,9 @@
 
 
 /mob/camera/imaginary_friend/Destroy()
-	if(owner.client)
-		owner.client.images.Remove(human_image)
+	owner.client?.images.Remove(human_image)
 
-	if(client)
-		client.images.Remove(human_image)
+	client?.images.Remove(human_image)
 
 	return ..()
 
