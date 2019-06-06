@@ -68,6 +68,8 @@
 	var/list/alerts = list() // contains /obj/screen/alert only, used by alerts.dm
 	var/list/light_sources = list()
 	var/luminosity_total = 0 //For max luminosity stuff.
+	var/list/datum/action/actions = list()
+	var/list/actions_by_path = list()
 
 
 	//Interaction
