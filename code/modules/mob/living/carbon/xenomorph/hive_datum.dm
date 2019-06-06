@@ -448,10 +448,9 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate))
-		if(!DEATHTIME_CHECK(xeno_candidate))
-			DEATHTIME_MESSAGE(xeno_candidate)
-			return FALSE
+	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))
+		DEATHTIME_MESSAGE(xeno_candidate)
+		return FALSE
 
 	return TRUE
 

@@ -77,7 +77,7 @@
 		qdel(query_round_game_mode)
 
 
-/datum/game_mode/proc/new_player_topic(mob/M, href, href_list[])
+/datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE
 
 
@@ -109,12 +109,13 @@
 	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/N = i
 		var/mob/living/carbon/human/player = N.new_character
-		if(istype(player) && player.mind && player.mind.assigned_role)
-			var/datum/job/J = SSjob.GetJob(player.mind.assigned_role)
-			if(istype(J, /datum/job/command/captain))
-				captainless = FALSE
-			if(player.mind.assigned_role)
-				SSjob.EquipRank(N, player.mind.assigned_role, 0)
+		if(!istype(player) || !player?.mind.assigned_role)
+			continue
+		var/datum/job/J = SSjob.GetJob(player.mind.assigned_role)
+		if(istype(J, /datum/job/command/captain))
+			captainless = FALSE
+		if(player.mind.assigned_role)
+			SSjob.EquipRank(N, player.mind.assigned_role, 0)
 		CHECK_TICK
 	if(captainless)
 		for(var/i in GLOB.new_player_list)
