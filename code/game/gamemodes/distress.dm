@@ -236,29 +236,6 @@
 
 	return TRUE
 
-	H.put_in_hands(new W(H))
-	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
-
-	to_chat(H, "<h2>You are a survivor!</h2>")
-	switch(SSmapping.config.map_name)
-		if(MAP_PRISON_STATION)
-			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
-		if(MAP_ICE_COLONY)
-			to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
-		if(MAP_BIG_RED)
-			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
-		if(MAP_LV_624)
-			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
-		else
-			to_chat(H, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
-
-
 /datum/game_mode/distress/proc/scale_gear()
 	var/marine_pop_size = 0
 
