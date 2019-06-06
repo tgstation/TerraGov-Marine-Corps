@@ -77,7 +77,6 @@
 		//Add hidden inventory
 	src.build_inventory(contraband, 1)
 	src.build_inventory(premium, 0, 1)
-	start_processing()
 	return INITIALIZE_HINT_LATELOAD
 
 

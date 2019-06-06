@@ -12,7 +12,6 @@
 
 /obj/machinery/computer/Initialize()
 	. = ..()
-	start_processing()
 	return INITIALIZE_HINT_LATELOAD
 
 

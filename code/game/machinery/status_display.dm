@@ -98,7 +98,7 @@
 /// Update the display and, if necessary, re-enable processing.
 /obj/machinery/status_display/proc/update()
 	if(process() != PROCESS_KILL)
-		start_processing()
+		START_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/status_display/power_change()

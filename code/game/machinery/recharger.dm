@@ -54,7 +54,7 @@ obj/machinery/recharger
 		return
 
 	charging = I
-	start_processing()
+	START_PROCESSING(SSmachines, src)
 	update_icon()
 
 
@@ -66,7 +66,7 @@ obj/machinery/recharger/attack_hand(mob/user as mob)
 		charging.update_icon()
 		user.put_in_hands(charging)
 		charging = null
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		percent_charge_complete = 0
 		update_icon()
 

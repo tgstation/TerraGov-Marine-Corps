@@ -20,7 +20,6 @@
 	//if(!input1 || !input2)
 	//	machine_stat |= BROKEN
 	updateicon()
-	start_processing()
 
 
 /obj/machinery/power/generator_type2/proc/updateicon()

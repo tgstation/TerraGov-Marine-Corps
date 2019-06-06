@@ -23,8 +23,8 @@ var/bomb_set
 
 
 
-/obj/machinery/nuclearbomb/New()
-	..()
+/obj/machinery/nuclearbomb/Initialize(mapload, ...)
+	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
 
 /obj/machinery/nuclearbomb/process()
@@ -293,7 +293,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					src.safety = !( src.safety )
 					if(safety)
 						src.timing = 0
-						stop_processing()
+						STOP_PROCESSING(SSmachines, src)
 						bomb_set = 0
 				if (href_list["anchor"])
 
@@ -323,7 +323,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 /obj/machinery/nuclearbomb/proc/explode()
 	if(safety)
 		timing = 0
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		return FALSE
 	timing = -1.0
 	yes_code = 0

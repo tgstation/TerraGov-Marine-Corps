@@ -14,6 +14,7 @@
 	var/power_channel = EQUIP
 	var/list/component_parts = list() //list of all the parts used to build it, if made from certain kinds of frames.
 
+	var/speed_process = FALSE
 	var/wrenchable = FALSE
 	var/damage = 0
 	var/damage_cap = 1000 //The point where things start breaking down.
@@ -28,10 +29,18 @@
 	if(A)
 		A.area_machines += src
 
+	if(!speed_process)
+		START_PROCESSING(SSmachines, src)
+	else
+		START_PROCESSING(SSfastprocess, src)
+
 
 /obj/machinery/Destroy()
 	GLOB.machines -= src
-	STOP_PROCESSING(SSmachines, src)
+	if(!speed_process)
+		STOP_PROCESSING(SSmachines, src)
+	else
+		STOP_PROCESSING(SSfastprocess, src)
 	var/area/A = get_area(src)
 	if(A)
 		A.area_machines -= src
@@ -80,14 +89,6 @@
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
 	return
-
-
-/obj/machinery/proc/start_processing()
-	START_PROCESSING(SSmachines, src)
-
-
-/obj/machinery/proc/stop_processing()
-	STOP_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/process()//If you dont use process or power why are you here

@@ -108,9 +108,9 @@
 	else
 		on = !on
 		if(on)
-			start_processing()
+			START_PROCESSING(SSmachines, src)
 		else
-			stop_processing()
+			STOP_PROCESSING(SSmachines, src)
 		user.visible_message("<span class='notice'> [user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'> You switch [on ? "on" : "off"] the [src].</span>")
 		update_icon()
 	return
@@ -167,5 +167,5 @@
 
 		else
 			on = 0
-			stop_processing()
 			update_icon()
+			return PROCESS_KILL

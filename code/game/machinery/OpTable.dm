@@ -145,7 +145,7 @@
 			icon_state = M.pulse ? "table2-active" : "table2-idle"
 			return 1
 	victim = null
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 	icon_state = "table2-idle"
 	return 0
 
@@ -163,7 +163,7 @@
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		victim = H
-		start_processing()
+		START_PROCESSING(SSmachines, src)
 		icon_state = H.pulse ? "table2-active" : "table2-idle"
 	else
 		icon_state = "table2-idle"

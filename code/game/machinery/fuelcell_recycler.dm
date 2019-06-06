@@ -19,11 +19,11 @@
 		if(!cell_left)
 			if(user.transferItemToLoc(I, src))
 				cell_left = I
-				start_processing()
+				START_PROCESSING(SSmachines, src)
 		else if(!cell_right)
 			if(user.transferItemToLoc(I, src))
 				cell_right = I
-				start_processing()
+				START_PROCESSING(SSmachines, src)
 		else
 			to_chat(user, "<span class='notice'>The recycler is full!</span>")
 		update_icon()
@@ -63,29 +63,29 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		update_use_power(NO_POWER_USE)
 		update_icon()
-		return
+		return PROCESS_KILL
+		
 	if(!cell_left && !cell_right)
 		update_use_power(IDLE_POWER_USE)
 		update_icon()
-		stop_processing()
-		return
-	else
-		var/active = FALSE
-		if(cell_left != null)
-			if(!cell_left.is_regenerated())
-				active = TRUE
-				cell_left.give(active_power_usage*(GLOB.CELLRATE * 0.1))
-		if(cell_right != null)
-			if(!cell_right.is_regenerated())
-				active = TRUE
-				cell_right.give(active_power_usage*(GLOB.CELLRATE * 0.1))
-		if(active)
-			update_use_power(ACTIVE_POWER_USE)
-		else
-			update_use_power(IDLE_POWER_USE)
-			stop_processing()
+		return PROCESS_KILL
 
-		update_icon()
+	var/active = FALSE
+	if(cell_left != null)
+		if(!cell_left.is_regenerated())
+			active = TRUE
+			cell_left.give(active_power_usage*(GLOB.CELLRATE * 0.1))
+	if(cell_right != null)
+		if(!cell_right.is_regenerated())
+			active = TRUE
+			cell_right.give(active_power_usage*(GLOB.CELLRATE * 0.1))
+	if(active)
+		update_use_power(ACTIVE_POWER_USE)
+	else
+		update_use_power(IDLE_POWER_USE)
+		. = PROCESS_KILL
+
+	update_icon()
 
 /obj/machinery/fuelcell_recycler/power_change()
 	..()

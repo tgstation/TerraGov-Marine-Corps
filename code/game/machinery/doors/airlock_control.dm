@@ -195,7 +195,6 @@ obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 obj/machinery/airlock_sensor/Initialize()
 	. = ..()
 	set_frequency(frequency)
-	start_processing()
 
 obj/machinery/airlock_sensor/New()
 	..()

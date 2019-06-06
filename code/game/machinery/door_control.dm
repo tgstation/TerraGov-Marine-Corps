@@ -239,11 +239,10 @@
 	var/triggered = 0
 	use_power = 0
 
-/obj/machinery/door_control/timed_automatic/New()
-		..()
+/obj/machinery/door_control/timed_automatic/Initialize(mapload, ...)
+		. = ..()
 		trigger_time = world.time + trigger_delay*600
-		START_PROCESSING(SSobj, src)
-		//start_processing()  // should really be using this -spookydonut
+
 
 /obj/machinery/door_control/timed_automatic/process()
 	if (!triggered && world.time >= trigger_time)
@@ -259,8 +258,7 @@
 
 		desiredstate = !desiredstate
 		triggered = 1
-		STOP_PROCESSING(SSobj, src)
-		//stop_processing()
+		. = PROCESS_KILL
 		spawn(15)
 			if(!(machine_stat & NOPOWER))
 				icon_state = "doorctrl0"

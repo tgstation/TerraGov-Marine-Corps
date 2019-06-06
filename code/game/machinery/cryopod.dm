@@ -223,9 +223,8 @@
 
 /obj/machinery/cryopod/process()
 	if(QDELETED(occupant))
-		stop_processing()
 		update_icon()
-		return
+		return PROCESS_KILL
 
 	if(occupant.stat == DEAD) //Occupant is dead, abort.
 		go_out()
@@ -236,8 +235,8 @@
 		return
 
 	occupant.despawn(src)
-	stop_processing()
 	update_icon()
+	return PROCESS_KILL
 
 /mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 
@@ -470,7 +469,7 @@
 	to_chat(user, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 	to_chat(user, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
 	time_entered = world.time
-	start_processing()
+	START_PROCESSING(SSmachines, src)
 	log_admin("[key_name(user)] has entered a stasis pod.")
 	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
 
@@ -487,5 +486,5 @@
 		A.forceMove(get_turf(src))
 
 	occupant = null
-	stop_processing()
+	STOP_PROCESSING(SSmachines, src)
 	update_icon()

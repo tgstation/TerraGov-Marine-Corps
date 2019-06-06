@@ -65,7 +65,7 @@
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = 0
-		stop_processing()
+		STOP_PROCESSING(SSmachines, src)
 		return
 
 	if(!operable || (machine_stat & NOPOWER))
@@ -73,10 +73,10 @@
 
 	if(operating)
 		if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
-			start_processing()
+			START_PROCESSING(SSmachines, src)
 	else
 		if(CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
-			stop_processing()
+			STOP_PROCESSING(SSmachines, src)
 
 	icon_state = "conveyor[operating]"
 
@@ -155,7 +155,8 @@
 	if(id != match_id)
 		return
 	operable = op
-	if(operable) start_processing()
+	if(operable) 
+		START_PROCESSING(SSmachines, src)
 
 	update()
 	var/obj/machinery/conveyor/C = locate() in get_step(src, stepdir)
@@ -193,16 +194,18 @@
 
 
 
-/obj/machinery/conveyor_switch/New()
-	..()
+/obj/machinery/conveyor_switch/Initialize(mapload, ...)
+	. = ..()
 	update()
 
-	spawn(5)		// allow map load
-		conveyors = list()
-		for(var/obj/machinery/conveyor/C in GLOB.machines)
-			if(C.id == id)
-				conveyors += C
-	start_processing()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/conveyor_switch/LateInitialize()
+	conveyors = list()
+	for(var/obj/machinery/conveyor/C in GLOB.machines)
+		if(C.id == id)
+			conveyors += C
 
 // update the icon depending on the position
 

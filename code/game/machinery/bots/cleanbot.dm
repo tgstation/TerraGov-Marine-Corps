@@ -28,7 +28,7 @@
 	var/next_dest
 	var/next_dest_loc
 
-/obj/machinery/bot/cleanbot/New()
+/obj/machinery/bot/cleanbot/Initialize(mapload, ...)
 	..()
 	src.get_targets()
 	src.icon_state = "cleanbot[src.on]"
@@ -42,8 +42,6 @@
 
 	if(SSradio)
 		SSradio.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
-
-	start_processing()
 
 
 /obj/machinery/bot/cleanbot/turn_on()

@@ -25,10 +25,9 @@
 	var/targetdirection
 
 
-/obj/machinery/bot/floorbot/New()
-	..()
+/obj/machinery/bot/floorbot/Initialize(mapload, ...)
+	. = ..()
 	src.updateicon()
-	start_processing()
 
 /obj/machinery/bot/floorbot/turn_on()
 	. = ..()

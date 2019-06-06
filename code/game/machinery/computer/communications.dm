@@ -38,10 +38,6 @@
 	var/stat_msg2
 
 
-/obj/machinery/computer/communications/New()
-	. = ..()
-	start_processing()
-
 /obj/machinery/computer/communications/process()
 	if(..())
 		if(state != STATE_STATUSDISPLAY)

@@ -704,8 +704,8 @@
 		var/mob/living/carbon/human/H = occupant
 		var/doc_dat
 		med_scan(H, doc_dat, implants, TRUE)
-		start_processing()
-		connected.start_processing()
+		START_PROCESSING(SSmachines, src)
+		START_PROCESSING(SSmachines, connected)
 		for(var/obj/O in src)
 			qdel(O)
 
@@ -737,8 +737,8 @@
 	surgery_todo_list = list()
 	update_use_power(1)
 	update_icon()
-	stop_processing()
-	connected.stop_processing()
+	STOP_PROCESSING(SSmachines, src)
+	STOP_PROCESSING(SSmachines, connected)
 	connected.process() // one last update
 
 /obj/machinery/autodoc/attackby(obj/item/I, mob/user, params)
@@ -828,8 +828,8 @@
 	var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
-	start_processing()
-	connected.start_processing()
+	START_PROCESSING(SSmachines, src)
+	START_PROCESSING(SSmachines, connected)
 
 /////////////////////////////////////////////////////////////
 

@@ -58,7 +58,7 @@
 
 	src.botcard = new /obj/item/card/id(src)
 	botcard.access = ALL_MARINE_ACCESS
-	start_processing()
+
 
 /obj/machinery/bot/medbot/turn_on()
 	. = ..()
