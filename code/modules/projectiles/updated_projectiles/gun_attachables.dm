@@ -269,6 +269,11 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = ""
 	icon_state = ""
 
+
+/obj/item/attachable/suppressor/unremovable/invisible/Initialize(mapload, ...)
+	. = ..()
+	attach_icon = ""
+
 /obj/item/attachable/suppressor/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
@@ -603,6 +608,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
+	attach_icon = "slavicscope"
 
 /obj/item/attachable/scope/pmc
 	icon_state = "pmcscope"
