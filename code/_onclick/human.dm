@@ -57,6 +57,7 @@
 		return
 
 	changeNext_move(CLICK_CD_MELEE)
+	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
 	A.attack_hand(src)
 
 

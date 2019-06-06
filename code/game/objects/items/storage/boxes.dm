@@ -255,7 +255,7 @@
 	if(istype(I, /obj/item/tool/match))
 		var/obj/item/tool/match/M = I
 
-		if(M.heat_source || M.burnt)
+		if(M.heat || M.burnt)
 			return ..()
 
 		if(prob(50))

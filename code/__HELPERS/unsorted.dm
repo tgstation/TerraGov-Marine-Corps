@@ -835,7 +835,7 @@ var/global/list/common_tools = list(
 
 
 /proc/is_hot(obj/item/I)
-	return I.heat_source
+	return I.heat
 
 
 //Whether or not the given item counts as sharp in terms of dealing damage
@@ -877,7 +877,7 @@ var/global/list/common_tools = list(
 /proc/can_puncture(obj/item/I)
 	if(!istype(I)) 
 		return FALSE
-	return (I.sharp || I.heat_source >= 400 	|| \
+	return (I.sharp || I.heat >= 400 	|| \
 		isscrewdriver(I)	 || \
 		istype(I, /obj/item/tool/pen) 		 || \
 		istype(I, /obj/item/tool/shovel) \

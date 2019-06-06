@@ -36,13 +36,13 @@
 		force = 150
 		icon_state = "axe1"
 		w_class = 5
-		heat_source = 3500
+		heat = 3500
 	else
 		to_chat(user, "<span class='notice'>The axe can now be concealed.</span>")
 		force = 40
 		icon_state = "axe0"
 		w_class = 5
-		heat_source = 0
+		heat = 0
 
 
 
@@ -77,7 +77,7 @@
 	active = !active
 	if (active)
 		force = 30
-		heat_source = 3500
+		heat = 3500
 		if(base_sword_icon != "sword")
 			icon_state = "[base_sword_icon]1"
 		else
@@ -88,7 +88,7 @@
 
 	else
 		force = 3
-		heat_source = 0
+		heat = 0
 		icon_state = "[base_sword_icon]0"
 		w_class = 2
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
