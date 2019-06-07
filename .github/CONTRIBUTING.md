@@ -193,7 +193,7 @@ Our game controller is pretty good at handling long operations and lag, but it c
 While we normally encourage (and in some cases, even require) bringing out of date code up to date when you make unrelated changes near the out of date code, that is not the case for `New` -> `Initialize` conversions. These systems are generally more dependant on parent and children procs so unrelated random conversions of existing things can cause bugs that take months to figure out.
 
 ### `Initialize()` must be used properly
-`Initialize()` must always call the parent proc and preserve the return value or return a valid hint like `return INITIALIZE_HINT_*`
+`Initialize()` must always call the parent proc `..()` to ensure the atom initializes and must return a valid value either by using `. = ..()` or `return ..()` or `return INITIALIZE_HINT_*`
 This ensures atoms initialize correctly and there are not false positives of failures.
 You also must not use `qdel(src)` inside `Initialize()`, use `return INITIALIZE_HINT_QDEL` instead.
 
