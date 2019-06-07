@@ -284,11 +284,8 @@
 /turf/open/floor/plating,
 /area/sulaco/disposal)
 "aR" = (
-/obj/machinery/mass_driver{
-	dir = 1;
-	icon_state = "mass_driver";
-	id = "garbage";
-	tag = "icon-mass_driver (NORTH)"
+/obj/machinery/computer{
+	name = "Mass Driver - Remove Me"
 	},
 /turf/open/floor/plating/airless,
 /area/sulaco/disposal)
@@ -388,7 +385,7 @@
 /area/sulaco/cargo)
 "be" = (
 /turf/open/floor/plating,
-/area/supply/station)
+/area/sulaco/supply/station)
 "bf" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
@@ -536,8 +533,7 @@
 "by" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/sulaco/disposal)
@@ -953,8 +949,7 @@
 /area/sulaco/medbay/storage2)
 "cv" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -1381,15 +1376,11 @@
 	},
 /area/sulaco/showers)
 "dt" = (
-/obj/machinery/status_display/supply_display{
-	pixel_x = -30
-	},
+/obj/machinery/status_display,
 /turf/open/floor/plating,
 /area/sulaco/cargo)
 "du" = (
-/obj/machinery/status_display/supply_display{
-	pixel_x = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor/plating,
 /area/sulaco/cargo)
 "dv" = (
@@ -1723,9 +1714,8 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/air_sensor{
-	frequency = 1440;
-	id_tag = "mix_sensor"
+/obj/machinery/computer{
+	name = "Air Sensor - Remove Me"
 	},
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
@@ -1751,9 +1741,8 @@
 	},
 /area/sulaco/engineering/atmos)
 "em" = (
-/obj/machinery/air_sensor{
-	frequency = 1441;
-	id_tag = "nit_sensor"
+/obj/machinery/computer{
+	name = "Air Sensor - Remove Me"
 	},
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/engine/nitrogen,
@@ -1771,9 +1760,8 @@
 /turf/open/floor/engine/nitrogen,
 /area/sulaco/engineering/atmos)
 "eo" = (
-/obj/machinery/air_sensor{
-	frequency = 1442;
-	id_tag = "oxy_sensor"
+/obj/machinery/computer{
+	name = "Air Sensor - Remove Me"
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/engine,
@@ -2043,9 +2031,7 @@
 	},
 /area/sulaco/cryosleep)
 "eR" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /obj/machinery/door/firedoor/border_only{
 	dir = 2
 	},
@@ -2471,9 +2457,7 @@
 	},
 /area/sulaco/cryosleep)
 "fL" = (
-/obj/mecha/working/ripley{
-	name = "Mark IV Powerloader"
-	},
+/obj/vehicle/powerloader,
 /turf/open/floor/plating,
 /area/sulaco/cargo)
 "fM" = (
@@ -2525,7 +2509,7 @@
 	icon_state = "table"
 	},
 /obj/item/clothing/glasses/meson,
-/obj/item/paper/monitorkey,
+/obj/item/paper,
 /obj/item/tool/pen,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor{
@@ -2561,10 +2545,8 @@
 "fU" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -2574,10 +2556,8 @@
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -2586,10 +2566,8 @@
 "fW" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -2597,10 +2575,8 @@
 /area/sulaco/engineering/atmos)
 "fX" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -3509,8 +3485,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -3531,8 +3506,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -3557,8 +3531,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -3916,9 +3889,8 @@
 /turf/open/floor,
 /area/sulaco/engineering/atmos)
 "ij" = (
-/obj/machinery/air_sensor{
-	frequency = 1443;
-	id_tag = "waste_sensor"
+/obj/machinery/computer{
+	name = "Air Sensor - Remove Me"
 	},
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
@@ -4094,9 +4066,7 @@
 	icon_state = "tube1"
 	},
 /obj/structure/closet/emcloset,
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -4281,8 +4251,7 @@
 "iT" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -4441,9 +4410,7 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/engineering)
 "jh" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /obj/machinery/vending/tool,
 /turf/open/floor{
 	dir = 4;
@@ -4748,8 +4715,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -5110,14 +5076,10 @@
 	},
 /area/sulaco/engineering/atmos)
 "ku" = (
-/obj/structure/grille{
-	health = 1000
-	},
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -5288,8 +5250,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -5402,8 +5363,7 @@
 /area/sulaco/maintenance/north_solar_maint)
 "kV" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -5528,16 +5488,13 @@
 "lm" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
 	},
-/obj/machinery/status_display/supply_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
 	id = "ROoffice";
@@ -5699,9 +5656,8 @@
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
 "lC" = (
-/obj/machinery/air_sensor{
-	frequency = 1446;
-	id_tag = "co2_sensor"
+/obj/machinery/computer{
+	name = "Air Sensor - Remove Me"
 	},
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
@@ -5718,9 +5674,8 @@
 /turf/open/floor/engine/nitrogen,
 /area/sulaco/engineering/atmos)
 "lE" = (
-/obj/machinery/air_sensor{
-	frequency = 1445;
-	id_tag = "n2o_sensor"
+/obj/machinery/computer{
+	name = "Air Sensor - Remove Me"
 	},
 /turf/open/floor/engine/nitrogen,
 /area/sulaco/engineering/atmos)
@@ -5737,9 +5692,8 @@
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
 "lG" = (
-/obj/machinery/air_sensor{
-	frequency = 1444;
-	id_tag = "pho_sensor"
+/obj/machinery/computer{
+	name = "Air Sensor - Remove Me"
 	},
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
@@ -5879,8 +5833,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -6310,8 +6263,7 @@
 /area/sulaco/cargo)
 "mI" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable/yellow{
@@ -6595,8 +6547,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -6675,8 +6626,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -6702,8 +6652,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -6729,8 +6678,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -6948,8 +6896,7 @@
 "nP" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -6994,8 +6941,7 @@
 /area/sulaco/cargo/office)
 "nS" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 4
@@ -7120,8 +7066,7 @@
 /area/sulaco/bridge)
 "of" = (
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -7137,12 +7082,10 @@
 	req_access_txt = "19"
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 250
+	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -7170,9 +7113,7 @@
 "oh" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "oi" = (
@@ -7374,9 +7315,7 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "oK" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor,
 /area/sulaco/briefing)
 "oL" = (
@@ -7535,8 +7474,7 @@
 /area/sulaco/cargo/office)
 "pe" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
@@ -7733,9 +7671,7 @@
 	},
 /area/sulaco/bridge)
 "pB" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor{
 	tag = "icon-whitered (NORTH)";
 	icon_state = "whitered";
@@ -8150,9 +8086,7 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "qr" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /obj/machinery/vending/engivend,
 /obj/effect/landmark/shuttle_loc/marine_crs{
 	name = "Dropship 2"
@@ -8191,8 +8125,7 @@
 /area/sulaco/cargo/office)
 "qw" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5
@@ -8585,8 +8518,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -8849,9 +8781,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/status_display/supply_display{
-	pixel_x = -30
-	},
+/obj/machinery/status_display,
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "rM" = (
@@ -8865,8 +8795,7 @@
 /area/sulaco/cargo/office)
 "rN" = (
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 1;
@@ -9084,8 +9013,8 @@
 	},
 /area/sulaco/engineering/engine)
 "sf" = (
-/obj/machinery/power/rad_collector{
-	anchored = 1
+/obj/machinery/computer{
+	name = "Rad Collector - Remove Me"
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
@@ -9219,8 +9148,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -9244,8 +9172,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/poddoor{
@@ -9265,8 +9192,7 @@
 	dir = 2
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -9390,8 +9316,7 @@
 /area/sulaco/hallway/central_hall3)
 "sK" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/firedoor/border_only{
@@ -9425,9 +9350,7 @@
 	icon_state = "ladderdown";
 	id = "hall3"
 	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /obj/machinery/camera/autoname,
 /turf/open/floor,
 /area/sulaco/hallway/central_hall2)
@@ -9468,8 +9391,7 @@
 /area/sulaco/hallway/central_hall2)
 "sQ" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -9592,8 +9514,7 @@
 "tb" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 2
@@ -9745,8 +9666,7 @@
 "to" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -9781,8 +9701,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/machinery/computer/station_alert,
 /turf/open/floor{
@@ -10636,9 +10555,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 2
 	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /obj/machinery/door/poddoor{
 	density = 0;
 	icon_state = "pdoor0";
@@ -10705,9 +10622,7 @@
 /obj/effect/landmark/start{
 	name = "Maintenance Tech"
 	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
@@ -10878,8 +10793,7 @@
 "vc" = (
 /obj/machinery/computer/overwatch,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whiteredfull";
@@ -11415,8 +11329,7 @@
 "wa" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/poddoor{
@@ -11471,8 +11384,7 @@
 	dir = 2
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -11659,27 +11571,23 @@
 	layer = 3.3;
 	name = "Engine Blast Doors"
 	},
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
 "wv" = (
-/obj/machinery/air_sensor{
-	frequency = 1438;
-	id_tag = "core_sensor"
+/obj/machinery/computer{
+	name = "Air Sensor - Remove Me"
 	},
 /turf/open/floor/plating/airless,
 /area/sulaco/engineering/engine)
 "ww" = (
-/obj/machinery/power/supermatter{
-	layer = 4
+/obj/machinery/computer{
+	name = "Supermatter - Remove Me"
 	},
-/obj/machinery/mass_driver{
-	dir = 4;
-	id = "enginecore"
+/obj/machinery/computer{
+	name = "Mass Driver - Remove Me"
 	},
 /obj/machinery/portable_atmospherics/canister/empty{
 	anchored = 1;
@@ -11693,8 +11601,7 @@
 /obj/machinery/door/poddoor{
 	icon_state = "pdoor1";
 	id = "enginecore";
-	name = "Engine Core Vent";
-	p_open = 0
+	name = "Engine Core Vent"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
@@ -11702,8 +11609,7 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/security,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whiteredfull";
@@ -13247,8 +13153,7 @@
 /area/sulaco/bridge)
 "yD" = (
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor{
 	icon_state = "cafeteria";
@@ -13277,8 +13182,7 @@
 	dir = 2
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -13303,8 +13207,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -13324,8 +13227,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -13945,8 +13847,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -14042,9 +13943,7 @@
 	},
 /area/sulaco/hallway/central_hall)
 "Ad" = (
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 1
@@ -14514,8 +14413,8 @@
 	},
 /area/sulaco/engineering/engine)
 "AV" = (
-/obj/machinery/power/rad_collector{
-	anchored = 1
+/obj/machinery/computer{
+	name = "Rad Collector - Remove Me"
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -14713,8 +14612,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -15050,7 +14948,9 @@
 	},
 /area/sulaco/engineering/storage)
 "BV" = (
-/obj/machinery/shieldgen,
+/obj/machinery/computer{
+	name = "Shield Generator - Remove Me"
+	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -15086,13 +14986,17 @@
 	},
 /area/sulaco/engineering/storage)
 "Ca" = (
-/obj/machinery/shieldwallgen,
+/obj/machinery/computer{
+	name = "Shield Wall Generator - Remove Me"
+	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
 /area/sulaco/engineering/storage)
 "Cb" = (
-/obj/machinery/shieldwallgen,
+/obj/machinery/computer{
+	name = "Shield Wall Generator - Remove Me"
+	},
 /obj/item/radio/intercom{
 	anyai = 1;
 	freerange = 1;
@@ -15297,10 +15201,7 @@
 	},
 /area/sulaco/engineering/engine)
 "Cv" = (
-/obj/machinery/telecomms/server{
-	produces_heat = 0;
-	use_power = 0
-	},
+/obj/machinery/telecomms/server,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -15313,9 +15214,7 @@
 	},
 /area/sulaco/bridge)
 "Cw" = (
-/obj/machinery/telecomms/relay/preset/station{
-	listening_level = 3
-	},
+/obj/machinery/telecomms/relay/preset/station,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -15374,8 +15273,7 @@
 	icon_state = "1-8"
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor{
@@ -15387,8 +15285,7 @@
 "CA" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor{
 	tag = "icon-whiteredfull";
@@ -15399,12 +15296,10 @@
 "CB" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor{
 	tag = "icon-whiteredfull";
@@ -15654,7 +15549,9 @@
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
 "Da" = (
-/obj/machinery/shieldgen,
+/obj/machinery/computer{
+	name = "Shield Generator - Remove Me"
+	},
 /obj/machinery/light/small,
 /turf/open/floor{
 	icon_state = "dark"
@@ -15698,7 +15595,9 @@
 	},
 /area/sulaco/engineering/storage)
 "Dg" = (
-/obj/machinery/shieldwallgen,
+/obj/machinery/computer{
+	name = "Shield Wall Generator - Remove Me"
+	},
 /obj/machinery/light,
 /turf/open/floor{
 	icon_state = "dark"
@@ -16155,9 +16054,7 @@
 /area/sulaco/marine)
 "DU" = (
 /obj/machinery/vending/marine,
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor,
 /area/sulaco/marine)
 "DV" = (
@@ -16707,8 +16604,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 1;
@@ -16720,12 +16616,10 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 1;
@@ -16737,12 +16631,10 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 1;
@@ -16752,12 +16644,10 @@
 "Fk" = (
 /obj/machinery/atmospherics/pipe/manifold4w/yellow/hidden,
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 1;
@@ -16769,8 +16659,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 1;
@@ -16910,10 +16799,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 8
@@ -17398,10 +17285,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
@@ -17529,8 +17414,7 @@
 /area/sulaco/brig)
 "GP" = (
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -17744,8 +17628,7 @@
 	opacity = 0
 	},
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -17829,10 +17712,8 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 5;
-	health = 4000;
-	name = "ultra-strong window"
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
@@ -17998,8 +17879,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -18421,8 +18301,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -18770,9 +18649,7 @@
 	icon_state = "pipe-t";
 	dir = 4
 	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
 "Jp" = (
@@ -19058,8 +18935,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/structure/cable/yellow,
@@ -19436,8 +19312,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -19734,8 +19609,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -19800,8 +19674,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 4;
-	health = 80
+	dir = 4
 	},
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
@@ -19954,8 +19827,7 @@
 "LC" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -19968,8 +19840,7 @@
 "LD" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -19981,8 +19852,7 @@
 "LE" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -19994,8 +19864,7 @@
 "LF" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -20509,8 +20378,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 80
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/structure/cable/yellow{
@@ -20968,9 +20836,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -20990,9 +20856,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -21012,9 +20876,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -21295,8 +21157,7 @@
 /area/shuttle/escape_pod1/station)
 "On" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /turf/open/floor/plating{

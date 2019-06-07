@@ -125,6 +125,9 @@
 	name = "\improper Sulaco Cargo Office"
 	icon_state = "quartoffice"
 
+/area/sulaco/supply/station
+	name = "\improper Sulaco Supply Station"
+
 /area/sulaco/maintenance
 	name = "\improper Sulaco Maintenance"
 	icon_state = "fmaint"

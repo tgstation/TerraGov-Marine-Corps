@@ -12,8 +12,7 @@
 "ac" = (
 /obj/machinery/door/poddoor{
 	id = "ASSAULT0";
-	name = "Launch Bay #0";
-	p_open = 0
+	name = "Launch Bay #0"
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
@@ -268,8 +267,7 @@
 /obj/machinery/door/poddoor{
 	icon_state = "pdoor1";
 	id = "ASSAULT0";
-	name = "Launch Bay #0";
-	p_open = 0
+	name = "Launch Bay #0"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
@@ -337,8 +335,7 @@
 /area/sulaco/morgue)
 "aY" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -399,8 +396,7 @@
 /area/shuttle/drop2/sulaco)
 "be" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -550,10 +546,7 @@
 	},
 /area/shuttle/drop2/sulaco)
 "bx" = (
-/obj/machinery/computer/shuttle_control/ert{
-	onboard = 1;
-	req_one_access_txt = "12;22;200"
-	},
+/obj/machinery/computer/shuttle_control,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
@@ -612,8 +605,7 @@
 /area/sulaco/medbay/hangar)
 "bC" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /turf/open/floor/plating{
@@ -769,8 +761,7 @@
 /area/shuttle/drop1/sulaco)
 "bY" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -1113,8 +1104,7 @@
 /area/sulaco/hangar)
 "cH" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -1136,9 +1126,7 @@
 	},
 /area/shuttle/drop1/sulaco)
 "cI" = (
-/obj/machinery/computer/shuttle_control/ert{
-	onboard = 1
-	},
+/obj/machinery/computer/shuttle_control,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -1146,8 +1134,7 @@
 /area/shuttle/drop1/sulaco)
 "cJ" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -1421,8 +1408,7 @@
 /area/shuttle/drop2/sulaco)
 "do" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -1645,8 +1631,7 @@
 /area/sulaco/medbay/hangar)
 "dN" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 6
@@ -2156,8 +2141,7 @@
 /area/sulaco/maintenance/lower_maint)
 "eX" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /turf/open/floor/plating{
@@ -2363,9 +2347,7 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "fu" = (
-/obj/machinery/computer/shuttle_control/ert{
-	req_one_access_txt = "12;22;200"
-	},
+/obj/machinery/computer/shuttle_control,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "fv" = (
@@ -2379,8 +2361,7 @@
 /area/sulaco/hangar)
 "fx" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
@@ -2391,8 +2372,7 @@
 "fy" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating{
@@ -2422,8 +2402,7 @@
 "fB" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -2482,8 +2461,7 @@
 /area/shuttle/drop1/sulaco)
 "fH" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /turf/open/shuttle{
@@ -2847,8 +2825,7 @@
 /area/sulaco/maintenance/lower_maint)
 "gy" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/firedoor,
@@ -3546,9 +3523,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/computer/shuttle_control/ert{
-	req_one_access_txt = "22;200"
-	},
+/obj/machinery/computer/shuttle_control,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
@@ -4242,8 +4217,7 @@
 "jk" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -4269,8 +4243,7 @@
 "jl" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -4558,27 +4531,19 @@
 	},
 /area/space)
 "jN" = (
-/obj/machinery/telecomms/bus/preset_one{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "jO" = (
-/obj/machinery/telecomms/bus/preset_two{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "jP" = (
-/obj/machinery/telecomms/bus/preset_three{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "jQ" = (
-/obj/machinery/telecomms/bus/preset_four{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "jR" = (
@@ -4600,27 +4565,19 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
 "jT" = (
-/obj/machinery/telecomms/processor/preset_one{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "jU" = (
-/obj/machinery/telecomms/processor/preset_two{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "jV" = (
-/obj/machinery/telecomms/processor/preset_three{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "jW" = (
-/obj/machinery/telecomms/processor/preset_four{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/processor/preset_four,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
@@ -4692,9 +4649,7 @@
 /area/sulaco/liaison)
 "kh" = (
 /obj/structure/bed/chair,
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "ki" = (
@@ -5220,34 +5175,25 @@
 /turf/open/space,
 /area/space)
 "lC" = (
-/obj/machinery/telecomms/server/presets/medical{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "lD" = (
-/obj/machinery/telecomms/relay/preset/telecomms{
-	listening_level = 6
-	},
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "lE" = (
-/obj/machinery/telecomms/hub/preset{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/hub/preset,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "lF" = (
-/obj/machinery/telecomms/relay/preset/telecomms{
-	listening_level = 4
-	},
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "lG" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/poddoor{
 	density = 1;
@@ -5264,8 +5210,7 @@
 "lH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/machinery/door/poddoor{
 	density = 1;
@@ -5492,8 +5437,7 @@
 /area/sulaco/hangar/two)
 "mh" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor{
@@ -5509,18 +5453,14 @@
 	},
 /area/sulaco/maintenance/lower_maint)
 "mi" = (
-/obj/machinery/telecomms/server/presets/security{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/security,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mj" = (
-/obj/machinery/telecomms/server/presets/command{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mk" = (
@@ -5837,33 +5777,26 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
 "mQ" = (
-/obj/machinery/telecomms/server/presets/squads{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/requisitions,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mR" = (
-/obj/machinery/message_server{
-	icon_state = "server-on";
-	name = "M.O.T.H.E.R. Control Box"
+/obj/machinery/computer{
+	name = "M.O.T.H.E.R. Control Box - Remove me"
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mS" = (
-/obj/machinery/r_n_d/server/core{
-	produces_heat = 0
-	},
+/obj/machinery/r_n_d/server/core,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mT" = (
-/obj/machinery/telecomms/server/presets/common{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "mU" = (
-/obj/machinery/computer/message_monitor{
-	req_one_access_txt = "19;200"
+/obj/machinery/computer{
+	name = "Message Monitor - Remove me"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -5993,8 +5926,7 @@
 /area/sulaco/hangar)
 "no" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
@@ -6004,8 +5936,7 @@
 /area/sulaco/hangar/two)
 "np" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
@@ -6018,9 +5949,7 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
 "nr" = (
-/obj/machinery/telecomms/server/presets/engineering{
-	produces_heat = 0
-	},
+/obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "ns" = (
@@ -6155,14 +6084,13 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "nM" = (
-/obj/machinery/telecomms/receiver/preset,
+/obj/machinery/telecomms/receiver/preset_right,
 /obj/machinery/light/small,
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "nN" = (
-/obj/machinery/computer/telecomms/traffic{
-	req_access = null;
-	req_one_access_txt = "19;200"
+/obj/machinery/computer{
+	name = "Telecomms Traffic - Remove me"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -6233,9 +6161,7 @@
 /area/sulaco/liaison/quarters)
 "nX" = (
 /obj/structure/table/woodentable,
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
+/obj/machinery/status_display,
 /obj/machinery/faxmachine{
 	density = 0;
 	req_one_access_txt = "200"
@@ -6466,7 +6392,7 @@
 	},
 /area/sulaco/hangar)
 "oF" = (
-/obj/structure/closet/crate/secure/loot,
+/obj/structure/largecrate/guns,
 /turf/open/floor/plating,
 /area/sulaco/liaison/quarters)
 "oG" = (
