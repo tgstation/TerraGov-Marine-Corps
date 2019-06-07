@@ -175,7 +175,7 @@
 			roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
-	for(var/i in GLOB.player_list)
+	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/player = i
 		if(!(player.client?.prefs?.be_special & role) || !player.ready)
 			continue
