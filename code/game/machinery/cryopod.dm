@@ -239,7 +239,7 @@
 	stop_processing()
 	update_icon()
 
-/mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
+/mob/living/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 
 	//Handle job slot/tater cleanup.
 	if(job in JOBS_REGULAR_ALL)

@@ -49,9 +49,11 @@
 
 		var/status
 		var/health
+		var/job
 
 		if(isliving(M))
 			var/mob/living/L = M
+			job = L.job
 			switch(L.stat)
 				if(CONSCIOUS)
 					status = "Alive"
@@ -62,7 +64,7 @@
 			health = "Oxy: [L.getOxyLoss()]  Tox: [L.getToxLoss()]  Fire: [L.getFireLoss()]  Brute: [L.getBruteLoss()]  Clone: [L.getCloneLoss()]  Brain: [L.getBrainLoss()]"
 
 		to_chat(usr, {"<span class='notice'><hr><b>Info about [M.real_name]:</b>
-Type: [M.type] | Gender: [M.gender] | Job: [M.job]
+Type: [M.type] | Gender: [M.gender] |[job ? " Job: [job]" : ""]
 Location: [AREACOORD(M.loc)]
 Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 <span class='admin'><span class='message'>[ADMIN_FULLMONTY(M)]</span></span><hr></span>"})
@@ -550,19 +552,19 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/mob/M = locate(href_list["cryo"])
-		if(!istype(M))
+		var/mob/living/L = locate(href_list["cryo"])
+		if(!istype(L))
 			return
 
-		if(alert("Cryo [key_name(M)]?", "Cryosleep", "Yes", "No") != "Yes")
+		if(alert("Cryo [key_name(L)]?", "Cryosleep", "Yes", "No") != "Yes")
 			return
 
-		var/client/C = M.client
+		var/client/C = L.client
 		if(C && alert("They have a client attached, are you sure?", "Cryosleep", "Yes", "No") != "Yes")
 			return
 
-		var/old_name = M.real_name
-		M.despawn()
+		var/old_name = L.real_name
+		L.despawn()
 
 		var/lobby
 		if(C?.mob?.mind && alert("Do you also want to send them to the lobby?", "Cryosleep", "Yes", "No") == "Yes")

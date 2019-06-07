@@ -43,3 +43,6 @@
 	var/obj/item/tank/internal = null//Human/Monkey
 
 	var/blood_type
+
+	var/lastpuke = 0
+	var/overeatduration = 0		// How long this guy is overeating

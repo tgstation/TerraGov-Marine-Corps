@@ -150,10 +150,13 @@
 
 //Attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user)
-	if(user.stat || user.stunned || user.knocked_down || flushing)
+	if(!isliving(user))
 		return
-	if(user.loc == src)
-		go_out(user)
+	var/mob/living/L = user
+	if(L.stat || L.stunned || L.knocked_down || flushing)
+		return
+	if(L.loc == src)
+		go_out(L)
 
 //Leave the disposal
 /obj/machinery/disposal/proc/go_out(mob/user)
@@ -162,8 +165,10 @@
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
-	user.stunned = max(user.stunned, 2)  //Action delay when going out of a bin
 	user.update_canmove() //Force the delay to go in action immediately
+	if(isliving(user))
+		var/mob/living/L = user
+		L.Stun(2)
 	if(!user.lying)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
@@ -267,13 +272,15 @@
 	for(var/atom/movable/AM in src)
 		AM.loc = loc
 		AM.pipe_eject(0)
-		if(ismob(AM))
+		if(isliving(AM))
 			var/mob/M = AM
-			M.stunned = max(M.stunned, 2)  //Action delay when going out of a bin
 			M.update_canmove() //Force the delay to go in action immediately
 			if(!M.lying)
 				M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
+			if(isliving(M))
+				var/mob/living/L = M
+				L.Stun(2)
 	update()
 
 //Pipe affected by explosion

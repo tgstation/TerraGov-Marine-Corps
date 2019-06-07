@@ -1,6 +1,6 @@
 /mob/Login()
 	GLOB.player_list |= src
-	lastKnownIP	= client.address
+	ip_address	= client.address
 	computer_id	= client.computer_id
 	log_message("[src] has logged in.", LOG_OOC)
 	world.update_status()

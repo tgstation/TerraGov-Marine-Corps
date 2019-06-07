@@ -27,7 +27,7 @@
 
 			for(var/mob/M in viewers(5, location))
 				to_chat(M, "<span class='warning'>The solution violently explodes.</span>")
-			for(var/mob/M in viewers(1, location))
+			for(var/mob/living/M in viewers(1, location))
 				if (prob (50 * amount))
 					to_chat(M, "<span class='warning'>The explosion knocks you down.</span>")
 					M.KnockDown(rand(1,5))

@@ -718,3 +718,15 @@ below 100 is not dizzy
 		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 	return TRUE
+
+
+/mob/living/proc/point_to_atom(atom/A, turf/T)
+	//Squad Leaders and above have reduced cooldown and get a bigger arrow
+	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
+		recently_pointed_to = world.time + 50
+		new /obj/effect/overlay/temp/point(T)
+	else
+		recently_pointed_to = world.time + 10
+		new /obj/effect/overlay/temp/point/big(T)
+	visible_message("<b>[src]</b> points to [A]")
+	return TRUE
