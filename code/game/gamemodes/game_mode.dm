@@ -492,7 +492,7 @@
 /datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
 	if(!isnewplayer(M))
 		return
-	var/mob/new_player/NP
+	var/mob/new_player/NP = M
 	if(!NP.IsJobAvailable(rank))
 		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
 		return
