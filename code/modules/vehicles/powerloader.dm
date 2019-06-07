@@ -262,3 +262,14 @@
 	density = TRUE
 	anchored = 0
 	opacity = 0
+
+
+/obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent == INTENT_HARM)
+		X.animation_attack_on(src)
+		X.flick_attack_overlay(src, "slash")
+		playsound(loc, "alien_claw_metal", 25, 1)
+		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
+		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
+	else
+		attack_hand(X)
