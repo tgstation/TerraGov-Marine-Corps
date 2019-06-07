@@ -1,6 +1,7 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 
+	var/living_flags = NONE
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
 
 	//Health and life related vars
