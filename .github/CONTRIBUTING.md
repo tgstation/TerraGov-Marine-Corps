@@ -285,7 +285,7 @@ This prevents nesting levels from getting deeper then they need to be.
 ### Files
 * Because runtime errors do not give the full path, try to avoid having files with the same name across folders.
 
-* File names should not be mixed case, or contain spaces or any character that would require escaping in a URI.
+* File names and directory names should not contain upper case letters, spaces or any character that would require escaping in a URI.
 
 * Files and path accessed and referenced by code above simply being #included should be strictly lowercase to avoid issues on filesystems where case matters.
 
