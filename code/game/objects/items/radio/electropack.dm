@@ -38,7 +38,7 @@
 	if(.)
 		return
 	var/mob/living/carbon/C = usr
-	if(C.stat != CONSCIOUS || C.restrained() || C.back == src)
+	if(C.incapacitated() || C.back == src)
 		return
 
 	if(!(ishuman(C) || C.contents.Find(src)) && !C.contents.Find(master) && !(in_range(src, C) || isturf(loc)))
