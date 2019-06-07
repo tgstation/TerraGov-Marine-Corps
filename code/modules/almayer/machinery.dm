@@ -73,7 +73,7 @@
 	name = "map table"
 	desc = "A table that displays a map of the current target location"
 
-	density = 1
+	density = TRUE
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 20
@@ -86,7 +86,7 @@
 /obj/structure/prop/almayer
 	name = "GENERIC THESEUS PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
-	density = 1
+	density = TRUE
 	anchored = 1
 
 /obj/structure/prop/almayer/minigun_crate
@@ -222,7 +222,7 @@
 	desc = "A connector for the large cannon cables."
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "cannon_cable_connector"
-	density = 1
+	density = TRUE
 
 /obj/structure/prop/almayer/cannon_cable_connector/ex_act()
 	return

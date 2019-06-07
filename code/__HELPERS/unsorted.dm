@@ -526,7 +526,7 @@ var/global/image/busy_indicator_hostile
 						// Spawn a new shuttle corner object
 						var/obj/corner = new()
 						corner.loc = X
-						corner.density = 1
+						corner.density = TRUE
 						corner.anchored = 1
 						corner.icon = X.icon
 						corner.icon_state = oldreplacetext(X.icon_state, "_s", "_f")

@@ -29,4 +29,4 @@
 	icon_state = "laz_sign"
 	bound_width = 64
 	bound_height = 64
-	density = 1
+	density = TRUE

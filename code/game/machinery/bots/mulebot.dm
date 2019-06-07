@@ -9,7 +9,7 @@
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	density = 1
+	density = TRUE
 	anchored = 1
 	animate_movement=1
 	max_integrity = 150

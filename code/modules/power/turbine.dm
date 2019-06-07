@@ -4,7 +4,7 @@
 	icon = 'icons/obj/pipes.dmi'
 	icon_state = "compressor"
 	anchored = 1
-	density = 1
+	density = TRUE
 
 /obj/machinery/power/turbine
 	name = "gas turbine generator"
@@ -12,7 +12,7 @@
 	icon = 'icons/obj/pipes.dmi'
 	icon_state = "turbine"
 	anchored = 1
-	density = 1
+	density = TRUE
 
 /obj/machinery/computer/turbine_computer
 	name = "Gas turbine control computer"
@@ -20,7 +20,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "turbinecomp"
 	anchored = 1
-	density = 1
+	density = TRUE
 
 /obj/machinery/power/turbinemotor
 	name = "motor"
@@ -28,4 +28,4 @@
 	icon = 'icons/obj/pipeturbine.dmi'
 	icon_state = "motor"
 	anchored = 0
-	density = 1
+	density = TRUE

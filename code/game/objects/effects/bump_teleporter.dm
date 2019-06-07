@@ -8,7 +8,7 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 	var/id_target = null	//id of bump_teleporter which this moves you to.
 	invisibility = INVISIBILITY_MAXIMUM 		//nope, can't see this
 	anchored = 1
-	density = 1
+	density = TRUE
 	opacity = 0
 
 /obj/effect/bump_teleporter/New()

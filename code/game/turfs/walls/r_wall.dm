@@ -3,7 +3,7 @@
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon_state = "rwall"
 	opacity = 1
-	density = 1
+	density = TRUE
 
 	damage_cap = 3000
 	max_temperature = 6000

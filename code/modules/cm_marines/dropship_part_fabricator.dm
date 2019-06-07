@@ -4,7 +4,7 @@
 /obj/machinery/dropship_part_fabricator
 	name = "dropship part fabricator"
 	desc = "A large automated 3D printer for producing new dropship parts."
-	density = 1
+	density = TRUE
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 20

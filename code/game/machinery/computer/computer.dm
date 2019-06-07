@@ -1,7 +1,7 @@
 /obj/machinery/computer
 	name = "computer"
 	icon = 'icons/obj/machines/computer.dmi'
-	density = 1
+	density = TRUE
 	anchored = 1.0
 	use_power = 1
 	layer = BELOW_OBJ_LAYER

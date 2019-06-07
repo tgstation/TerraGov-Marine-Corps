@@ -5,6 +5,6 @@
 	name = "unloading machine"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "unloader"
-	density = 1
+	density = TRUE
 	anchored = 1
 

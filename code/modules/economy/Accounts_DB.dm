@@ -4,7 +4,7 @@
 	desc = "Access transaction logs, account data and all kinds of other financial records."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "aiupload"
-	density = 1
+	density = TRUE
 	req_one_access = list(ACCESS_MARINE_CAPTAIN)
 	var/receipt_num
 	var/machine_id = ""

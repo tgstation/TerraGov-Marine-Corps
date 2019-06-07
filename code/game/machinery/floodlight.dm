@@ -4,7 +4,7 @@
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
-	density = 1
+	density = TRUE
 	anchored = 1
 	var/on = 0
 	var/obj/item/cell/cell = null

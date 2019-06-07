@@ -4,7 +4,7 @@
 	name = "computer"
 	icon = 'icons/obj/machines/computer3.dmi'
 	icon_state = "frame"
-	density = 1
+	density = TRUE
 	anchored = 1.0
 
 /obj/machinery/computer3/powermonitor
@@ -45,10 +45,10 @@
 	icon_state = "robotics"
 	layer = BELOW_OBJ_LAYER
 	anchored = 1
-	density = 1
+	density = TRUE
 
 /obj/structure/computer3frame
-	density = 1
+	density = TRUE
 	anchored = 0
 	name = "computer frame"
 	icon = 'icons/obj/stock_parts.dmi'
@@ -58,7 +58,7 @@
 	name = "\improper Central Atmospherics Computer"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_generic"
-	density = 1
+	density = TRUE
 	anchored = 1.0
 
 /obj/item/computer3_part

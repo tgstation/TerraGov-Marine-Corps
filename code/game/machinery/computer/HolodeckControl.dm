@@ -3,7 +3,7 @@
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon_state = "table"
-	density = 1
+	density = TRUE
 	anchored = 1.0
 	throwpass = 1	//You can throw objects over this, despite it's density.
 
@@ -50,7 +50,7 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "rwindow"
 	desc = "A window."
-	density = 1
+	density = TRUE
 	layer = WINDOW_LAYER
 	anchored = 1.0
 	flags_atom = ON_BORDER
@@ -82,7 +82,7 @@
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "hoop"
 	anchored = 1
-	density = 1
+	density = TRUE
 	throwpass = 1
 	var/side = ""
 	var/id = ""

@@ -4,7 +4,7 @@
 	name = "hydroponics tray"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = 1
+	density = TRUE
 	anchored = 1
 	volume = 100
 	throwpass = 1

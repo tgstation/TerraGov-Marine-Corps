@@ -6,7 +6,7 @@
 	icon = 'icons/obj/surgery.dmi'
 
 	anchored = 1
-	density = 1
+	density = TRUE
 
 	icon_state = "bioprinter"
 

@@ -5,7 +5,7 @@
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = 1
-	density = 1
+	density = TRUE
 	luminosity = 5
 	move_delay = 8
 	max_integrity = 200
@@ -259,6 +259,6 @@
 	desc = "Remains of some unfortunate Cargo Loader. Completely unrepairable."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
-	density = 1
+	density = TRUE
 	anchored = 0
 	opacity = 0

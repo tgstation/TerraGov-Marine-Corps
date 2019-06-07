@@ -5,7 +5,7 @@ var/bomb_set
 	desc = "Uh oh. RUN!!!!"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
-	density = 1
+	density = TRUE
 	resistance_flags = UNACIDABLE
 	var/deployable = 0.0
 	var/extended = 0.0

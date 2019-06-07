@@ -137,7 +137,7 @@
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
 	anchored = 1
 	opacity = 1
-	density = 1
+	density = TRUE
 	icon = 'icons/Marine/apc.dmi'
 	icon_state = "apc"
 

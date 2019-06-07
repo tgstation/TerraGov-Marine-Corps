@@ -1,7 +1,7 @@
 /obj/structure/girder
 	icon_state = "girder"
 	anchored = 1
-	density = 1
+	density = TRUE
 	layer = OBJ_LAYER
 	var/state = 0
 	var/dismantlectr = 0
@@ -290,7 +290,7 @@
 		var/new_state = copytext(icon_state, 1, underscore_position)
 		icon_state = new_state
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
-		density = 1
+		density = TRUE
 	buildctr = 0
 	repair_state = 0
 
