@@ -477,7 +477,7 @@
 					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 			qdel(query_get_new_polls)
 			if(QDELETED(src))
-				return
+				return FALSE
 
 	output += "</div>"
 
@@ -486,10 +486,13 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
+	return TRUE
+
+
 /datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
-	if(src != usr || !isnewplayer(M))
+	if(!isnewplayer(M))
 		return
-	var/mob/new_player/NP
+	var/mob/new_player/NP = M
 	if(!NP.IsJobAvailable(rank))
 		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
 		return
