@@ -602,7 +602,7 @@
 					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 			qdel(query_get_new_polls)
 			if(QDELETED(src))
-				return
+				return FALSE
 
 	output += "</div>"
 
@@ -610,6 +610,9 @@
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
 	popup.open(FALSE)
+
+	return TRUE
+
 
 /datum/game_mode/distress/proc/announce_bioscans(delta = 2)
 	var/list/xenoLocationsP = list()
