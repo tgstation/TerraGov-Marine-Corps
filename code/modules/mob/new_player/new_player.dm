@@ -101,6 +101,9 @@
 	if(!client)
 		return
 
+	if(src != usr)
+		return
+
 	if (SSticker?.mode?.new_player_topic(src, href, href_list))
 		return // Delegate to the gamemode to handle if they want to
 

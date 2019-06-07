@@ -490,7 +490,7 @@
 
 
 /datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
-	if(src != usr || !isnewplayer(M))
+	if(!isnewplayer(M))
 		return
 	var/mob/new_player/NP
 	if(!NP.IsJobAvailable(rank))
