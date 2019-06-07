@@ -12,9 +12,14 @@
 
 #define TK_MAXRANGE 15
 
-
-/mob/living/carbon/human/proc/on_ranged_attack_tk(atom/target)
-    target.attack_tk(src)
+/*
+To add TK to a living mob, just make it register this proc on ranged attacks and enable the TK flag:
+	RegisterSignal(src, COMSIG_MOB_ATTACK_RANGED, .proc/on_ranged_attack_tk)
+	ENABLE_BITFIELD(living_flags, LIVING_TK_USER)
+Redefine as needed.
+*/
+/mob/living/proc/on_ranged_attack_tk(mob/user, atom/target)
+    target.attack_tk(user)
 
 
 /atom/proc/attack_tk(mob/user)
@@ -23,6 +28,7 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(src))
 	user.UnarmedAttack(src, FALSE) // attack_hand, attack_paw, etc
 	add_fingerprint(user, "attack_tk")
+
 
 /obj/attack_tk(mob/user)
 	if(user.incapacitated())
