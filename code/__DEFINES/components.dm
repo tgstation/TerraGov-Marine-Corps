@@ -224,6 +224,7 @@
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"
 #define COMSIG_XENOABILITY_CALL_OF_THE_BURROWED "xenoability_call_of_the_burrowed"
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
+#define COMSIG_XENOABILITY_PSYCHIC_CHOKE "xenoability_psychic_choke"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"

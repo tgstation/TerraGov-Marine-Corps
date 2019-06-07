@@ -799,7 +799,7 @@
 	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
 
 
-/datum/action/xeno_action/xeno_action/lay_egg/action_activate()
+/datum/action/xeno_action/lay_egg/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	var/turf/current_turf = get_turf(X)
@@ -815,6 +815,10 @@
 		"<span class='xenowarning'>You have laid an egg!</span>")
 
 	new /obj/effect/alien/egg(current_turf)
+	playsound(X.loc, 'sound/effects/alien_egg_move.ogg', 25)
+
+	succeed_activate()
+	add_cooldown()
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
