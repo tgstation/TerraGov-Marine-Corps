@@ -159,7 +159,6 @@
 		return
 
 	pickup(user)
-	add_fingerprint(user)
 	if(!user.put_in_active_hand(src))
 		dropped(user)
 
