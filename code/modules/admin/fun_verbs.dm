@@ -88,8 +88,9 @@
 	if(!check_rights(R_FUN))
 		return
 
+	var/customname = input("What do you want the AI to be called?.", "AI Report", "AI") as text|null
 	var/input = input("This should be a message from the ship's AI.", "AI Report") as message|null
-	if(!input)
+	if(!input || !customname)
 		return
 
 	var/paper
@@ -99,10 +100,10 @@
 		if("Cancel")
 			return
 
-	priority_announce(input, MAIN_AI_SYSTEM, sound = "sound/misc/interference.ogg")
+	priority_announce(input, customname, sound = "sound/misc/interference.ogg")
 
 	if(paper)
-		print_command_report(input, "[MAIN_AI_SYSTEM] Update", announce = FALSE)
+		print_command_report(input, "[customname] Update", announce = FALSE)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
