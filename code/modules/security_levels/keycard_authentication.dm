@@ -14,7 +14,7 @@
 	var/mob/event_confirmed_by
 	//1 = select event
 	//2 = authenticate
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6
@@ -28,21 +28,24 @@
 	to_chat(user, "You are too primitive to use this device.")
 	return
 
-/obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/keycard_auth/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
-		return
-	if(istype(W,/obj/item/card/id))
-		var/obj/item/card/id/ID = W
-		if(ACCESS_MARINE_BRIDGE in ID.access)
-			if(active == 1)
-				//This is not the device that made the initial request. It is the device confirming the request.
-				if(event_source)
-					event_source.confirmed = 1
-					event_source.event_confirmed_by = usr
-			else if(screen == 2)
-				event_triggered_by = usr
-				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
+
+	else if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/ID = I
+		if(!(ACCESS_MARINE_BRIDGE in ID.access))
+			return
+
+		if(active && event_source)
+			event_source.confirmed = TRUE
+			event_source.event_confirmed_by = user
+			
+		else if(screen == 2)
+			event_triggered_by = user
+			broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
 /obj/machinery/keycard_auth/power_change()
 	. = ..()
@@ -99,7 +102,6 @@
 		reset()
 
 	updateUsrDialog()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/keycard_auth/proc/reset()
@@ -157,11 +159,11 @@ var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	command_announcement.Announce("The maintenance access requirement has been revoked on all airlocks.", "Attention!", new_sound = 'sound/misc/notice1.ogg')
+	priority_announce("The maintenance access requirement has been revoked on all airlocks.", "Attention!", sound = 'sound/misc/notice1.ogg')
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	command_announcement.Announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!", new_sound = 'sound/misc/notice2.ogg')
+	priority_announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!", sound = 'sound/misc/notice2.ogg')
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(ACCESS_MARINE_ENGINEERING)))

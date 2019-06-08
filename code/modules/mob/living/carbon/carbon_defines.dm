@@ -9,15 +9,13 @@
 
 	var/obj/item/handcuffed //Whether or not the mob is handcuffed
 	var/obj/item/legcuffed  //Same as handcuffs but for legs. Bear traps use this.
-	//Active emote/pose
-	var/pose = null
 
 	var/failed_last_breath = FALSE //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
 
-	var/oxygen_alert = 0
-	var/phoron_alert = 0
-	var/fire_alert = 0
-	var/pressure_alert = 0
+	var/oxygen_alert = FALSE
+	var/phoron_alert = FALSE
+	var/fire_alert = FALSE
+	var/pressure_alert = FALSE
 
 	var/pulse = PULSE_NORM	//current pulse level
 	var/list/internal_organs = list()
@@ -37,14 +35,14 @@
 	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
 	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.
 
-	var/disabilities = 0	//Carbon
-	var/monkeyizing			//Carbon
-	var/losebreath = 0		//Carbon
-	var/nutrition = 400		//Carbon
+	var/disabilities = 0
+	var/losebreath = 0
+	var/nutrition = 400
 
 	var/obj/item/back //Human/Monkey
 	var/obj/item/tank/internal = null//Human/Monkey
 
-	var/datum/dna/dna //Carbon
-	var/list/viruses = list()
-	//see: setup.dm for list of mutations
+	var/blood_type
+
+	var/lastpuke = 0
+	var/overeatduration = 0		// How long this guy is overeating

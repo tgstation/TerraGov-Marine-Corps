@@ -14,10 +14,12 @@
 	else
 		return FALSE
 
-/obj/machinery/door/poddoor/attackby(obj/item/W, mob/user)
-	add_fingerprint(user)
-	if(!W.pry_capable)
+/obj/machinery/door/poddoor/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!I.pry_capable)
 		return
+
 	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		operating = TRUE
 		addtimer(CALLBACK(src, .proc/pry_open), 15)

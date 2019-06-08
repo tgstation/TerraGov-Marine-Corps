@@ -2,8 +2,8 @@
 	name = "photocopier"
 	icon = 'icons/obj/machines/library.dmi'
 	icon_state = "bigscanner"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200
@@ -118,26 +118,6 @@
 			if(copies < maxcopies)
 				copies++
 				updateUsrDialog()
-		else if(href_list["aipic"])
-			if(!istype(usr,/mob/living/silicon)) return
-			if(toner >= 5)
-				var/mob/living/silicon/tempAI = usr
-				var/obj/item/camera/siliconcam/camera = tempAI.aiCamera
-
-				if(!camera)
-					return
-				var/datum/picture/selection = camera.selectpicture()
-				if (!selection)
-					return
-
-				var/obj/item/photo/p = new /obj/item/photo (src.loc)
-				p.construct(selection)
-				if (p.desc == "")
-					p.desc += "Copied by [tempAI.name]"
-				else
-					p.desc += " - Copied by [tempAI.name]"
-				toner -= 5
-				sleep(15)
 			updateUsrDialog()
 
 	attackby(obj/item/O as obj, mob/user as mob)
@@ -176,7 +156,7 @@
 			else
 				to_chat(user, "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
 		else if(iswrench(O))
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			anchored = !anchored
 			to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 		return

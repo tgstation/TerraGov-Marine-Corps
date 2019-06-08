@@ -159,7 +159,7 @@
 			to_chat(user, "<span class='warning'>[W] appears to be stuck to your hands.</span>")
 	else if(iscrowbar(W) && machine_stat & (NOPOWER|BROKEN) && !QDELETED(loaded_mod))
 		user.visible_message("<span class='warning'>[user] starts to pry [src]'s maintenance slot open.</span>", "<span class='notice'>You start to pry [loaded_mod] out of [src]'s maintenance slot...</span>")
-		if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD) || QDELETED(src) || QDELETED(loaded_mod))
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_GENERIC) || QDELETED(loaded_mod))
 			return
 		user.visible_message("[user] pries [loaded_mod] out of [src].", "<span class='notice'>You retrieve [loaded_mod] from [src].</span>")
 		eject_tank_part()
@@ -258,7 +258,6 @@
 		return
 
 	usr.set_interaction(src)
-	add_fingerprint(usr)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>[src] is busy. Please wait for completion of previous operation.</span>")

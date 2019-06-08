@@ -24,8 +24,8 @@ FLOOR SAFES
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "safe"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/spawnkey = 1 //Spawn safe code on top of it?
@@ -168,21 +168,24 @@ FLOOR SAFES
 				updateUsrDialog()
 
 
-/obj/structure/safe/attackby(obj/item/I as obj, mob/user as mob)
-	if(open)
-		if(I.w_class + space <= maxspace)
-			space += I.w_class
-			if(user.transferItemToLoc(I, src))
-				to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
-			updateUsrDialog()
-			return
-		else
-			to_chat(user, "<span class='notice'>[I] won't fit in [src].</span>")
-			return
+/obj/structure/safe/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!open)
+		return
+
+	else if(istype(I, /obj/item/clothing/tie/stethoscope))
+		to_chat(user, "Hold [I] in one of your hands while you manipulate the dial.")
+
+	else if(I.w_class + space <= maxspace)
+		space += I.w_class
+		if(user.transferItemToLoc(I, src))
+			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		updateUsrDialog()
+
 	else
-		if(istype(I, /obj/item/clothing/tie/stethoscope))
-			to_chat(user, "Hold [I] in one of your hands while you manipulate the dial.")
-			return
+		to_chat(user, "<span class='notice'>[I] won't fit in [src].</span>")
+
 
 //FLOOR SAFES
 /obj/structure/safe/floor

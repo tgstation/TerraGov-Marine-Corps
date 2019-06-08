@@ -3,10 +3,13 @@
 	display_name = "Runner"
 	upgrade_name = ""
 	caste_desc = "A fast, four-legged terror, but weak in sustained combat."
-	caste_type_path = /mob/living/carbon/Xenomorph/Runner
+	caste_type_path = /mob/living/carbon/xenomorph/runner
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "runner" //used to match appropriate wound overlays
+
+	gib_anim = "gibbed-a-corpse-runner"
+	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 10
@@ -19,7 +22,7 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -1.8
+	speed = -1.7
 
 	// *** Plasma *** //
 	plasma_max = 100
@@ -32,7 +35,7 @@
 	evolution_threshold = 100
 	upgrade_threshold = 100
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Hunter)
+	evolves_to = list(/mob/living/carbon/xenomorph/hunter)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -65,7 +68,7 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1.9
+	speed = -1.8
 
 	// *** Plasma *** //
 	plasma_max = 150
@@ -99,7 +102,7 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -2.0
+	speed = -1.9
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -134,7 +137,7 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -2.1
+	speed = -2
 
 	// *** Plasma *** //
 	plasma_max = 200

@@ -19,7 +19,7 @@ log transactions
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "atm"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
 	var/datum/money_account/authenticated_account
@@ -63,56 +63,61 @@ log transactions
 			playsound(loc, 'sound/items/polaroid2.ogg', 15, 1)
 		break
 
-/obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/card))
-		if(emagged > 0)
-			//prevent inserting id into an emagged ATM
+/obj/machinery/atm/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/emag))
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>[icon2html(src, user)] CARD READER ERROR. This system has been compromised!</span>")
 			return
-		else if(istype(I,/obj/item/card/emag))
-			//short out the machine, shoot sparks, spew money!
-			emagged = 1
-			spark_system.start()
-			spawn_money(rand(100,500),src.loc)
-			//we don't want to grief people by locking their id in an emagged ATM
-			release_held_id(user)
 
-			//display a message to the user
-			var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.","PIN Code accepted! Emptying account balance.", "Jackpot!")
-			to_chat(user, "<span class='warning'>[icon2html(src, user)] The [src] beeps: \"[response]\"</span>")
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
+		spark_system.start()
+		spawn_money(rand(100,500), loc)
+		release_held_id(user)
+
+		var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.","PIN Code accepted! Emptying account balance.", "Jackpot!")
+		to_chat(user, "<span class='warning'>[icon2html(src, user)] The [src] beeps: \"[response]\"</span>")
+
+
+	else if(istype(I, /obj/item/card))
+		var/obj/item/card/id/idcard = I
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
+			to_chat(user, "<span class='warning'>[icon2html(src, user)] CARD READER ERROR. This system has been compromised!</span>")
 			return
 
-		var/obj/item/card/id/idcard = I
-		if(!held_card)
-			usr.drop_held_item()
-			idcard.loc = src
-			held_card = idcard
-			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
-				authenticated_account = null
-	else if(authenticated_account)
-		if(istype(I,/obj/item/spacecash))
-			//consume the money
-			authenticated_account.money += I:worth
-			if(prob(50))
-				playsound(loc, 'sound/items/polaroid1.ogg', 15, 1)
-			else
-				playsound(loc, 'sound/items/polaroid2.ogg', 15, 1)
+		if(held_card)
+			return
 
-			//create a transaction log entry
-			var/datum/transaction/T = new()
-			T.target_name = authenticated_account.owner_name
-			T.purpose = "Credit deposit"
-			T.amount = I:worth
-			T.source_terminal = machine_id
-			T.date = GLOB.current_date_string
-			T.time = worldtime2text()
-			authenticated_account.transaction_log.Add(T)
+		user.drop_held_item()
+		idcard.forceMove(src)
+		held_card = idcard
+		if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
+			authenticated_account = null
 
-			to_chat(user, "<span class='info'>You insert [I] into [src].</span>")
-			src.attack_hand(user)
-			qdel(I)
-	else
-		..()
+	else if(istype(I, /obj/item/spacecash) && authenticated_account)
+		var/obj/item/spacecash/S = I
+		//consume the money
+		authenticated_account.money += S.worth
+		if(prob(50))
+			playsound(loc, 'sound/items/polaroid1.ogg', 15, 1)
+		else
+			playsound(loc, 'sound/items/polaroid2.ogg', 15, 1)
+
+		//create a transaction log entry
+		var/datum/transaction/T = new()
+		T.target_name = authenticated_account.owner_name
+		T.purpose = "Credit deposit"
+		T.amount = S.worth
+		T.source_terminal = machine_id
+		T.date = GLOB.current_date_string
+		T.time = worldtime2text()
+		authenticated_account.transaction_log += T
+
+		to_chat(user, "<span class='info'>You insert [I] into [src].</span>")
+		attack_hand(user)
+		qdel(I)
+
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
 	if(issilicon(user))
@@ -125,7 +130,7 @@ log transactions
 		dat += "For all your monetary needs!<br>"
 		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Nanotrasen IT Support</i><br/>"
 
-		if(emagged > 0)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			dat += "Card: <span style='color: red;'>LOCKED</span><br><br><span style='color: red;'>Unauthorized terminal access detected! This ATM has been locked. Please contact Nanotrasen IT Support.</span>"
 		else
 			dat += "Card: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
@@ -423,7 +428,7 @@ log transactions
 			if("insert_card")
 				if(!held_card)
 					//this might happen if the user had the browser window open when somebody emagged it
-					if(emagged > 0)
+					if(CHECK_BITFIELD(obj_flags, EMAGGED))
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] The ATM card reader rejected your ID because this machine has been sabotaged!</span>")
 					else
 						var/obj/item/I = usr.get_active_held_item()

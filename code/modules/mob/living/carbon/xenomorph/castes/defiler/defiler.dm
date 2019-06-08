@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Defiler
-	caste_base_type = /mob/living/carbon/Xenomorph/Defiler
+/mob/living/carbon/xenomorph/Defiler
+	caste_base_type = /mob/living/carbon/xenomorph/Defiler
 	name = "Defiler"
 	desc = "A large, powerfully muscled xeno replete with dripping spines and gas leaking dorsal vents."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -26,21 +26,21 @@
 		/datum/action/xeno_action/neuroclaws
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl
+		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)
 
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Defiler/throw_item(atom/target)
+/mob/living/carbon/xenomorph/Defiler/throw_item(atom/target)
 	throw_mode_off()
 
-/mob/living/carbon/Xenomorph/Defiler/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+/mob/living/carbon/xenomorph/Defiler/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))
 		return
 	return ..()
 
-/mob/living/carbon/Xenomorph/Defiler/Bumped(atom/movable/AM as mob|obj)
+/mob/living/carbon/xenomorph/Defiler/Bumped(atom/movable/AM as mob|obj)
 	if(emitting_gas) //We don't get bumped around
 		return
 	return ..()
@@ -48,7 +48,7 @@
 // ***************************************
 // *********** Neuroclaws router
 // ***************************************
-/mob/living/carbon/Xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
+/mob/living/carbon/xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
 	if(!check_plasma(50) || !neuro_claws || !H)
 		return
 	use_plasma(50)
@@ -58,6 +58,6 @@
 // ***************************************
 // *********** Datum override
 // ***************************************
-/mob/living/carbon/Xenomorph/Defiler/set_datum()
+/mob/living/carbon/xenomorph/Defiler/set_datum()
 	. = ..()
 	neuro_claws_dose = xeno_caste.neuro_claws_amount

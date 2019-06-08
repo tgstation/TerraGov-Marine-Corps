@@ -23,7 +23,6 @@ LINEN BINS
 		layer = ABOVE_MOB_LAYER
 	else
 		layer = initial(layer)
-	add_fingerprint(user)
 
 
 /obj/item/bedsheet/blue
@@ -82,7 +81,7 @@ LINEN BINS
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "linenbin-full"
-	anchored = 1
+	anchored = TRUE
 	var/amount = 20
 	var/list/sheets = list()
 	var/obj/item/hidden = null
@@ -105,18 +104,25 @@ LINEN BINS
 		else				icon_state = "linenbin-full"
 
 
-/obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/bedsheetbin/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/bedsheet))
-		if(user.drop_held_item())
-			I.forceMove(src)
-			sheets.Add(I)
-			amount++
-			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		if(!user.drop_held_item())
+			return
+
+		I.forceMove(src)
+		sheets += I
+		amount++
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+	
 	else if(amount && !hidden && I.w_class < 4)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
-		if(user.drop_held_item())
-			I.forceMove(src)
-			hidden = I
-			to_chat(user, "<span class='notice'>You hide [I] among the sheets.</span>")
+		if(!user.drop_held_item())
+			return
+
+		I.forceMove(src)
+		hidden = I
+		to_chat(user, "<span class='notice'>You hide [I] among the sheets.</span>")
 
 
 
@@ -146,27 +152,3 @@ LINEN BINS
 			hidden = null
 
 
-	add_fingerprint(user)
-
-/obj/structure/bedsheetbin/attack_tk(mob/user as mob)
-	if(amount >= 1)
-		amount--
-
-		var/obj/item/bedsheet/B
-		if(sheets.len > 0)
-			B = sheets[sheets.len]
-			sheets.Remove(B)
-
-		else
-			B = new /obj/item/bedsheet(loc)
-
-		B.loc = loc
-		to_chat(user, "<span class='notice'>You telekinetically remove [B] from [src].</span>")
-		update_icon()
-
-		if(hidden)
-			hidden.loc = loc
-			hidden = null
-
-
-	add_fingerprint(user)

@@ -1,16 +1,8 @@
 /obj/item/clothing
 	name = "clothing"
-	var/list/species_restricted = null //Only these species can wear this kit.
-
-	/*
-		Sprites used when the clothing item is refit. This is done by setting icon_override.
-		For best results, if this is set then sprite_sheets should be null and vice versa, but that is by no means necessary.
-		Ideally, sprite_sheets_refit should be used for "hard" clothing items that can't change shape very well to fit the wearer (e.g. helmets, hardsuits),
-		while sprite_sheets should be used for "flexible" clothing items that do not need to be refitted (e.g. vox wearing jumpsuits).
-	*/
-	var/list/sprite_sheets_refit = null
 	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/tint = TINT_NONE // headgear, mask and glasses, forvision impairment overlays
+	var/list/uniform_restricted //Need to wear this uniform to equip this
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -34,67 +26,7 @@
 			to_chat(H, "<span class='warning'>Your [U ? "[U.name]":"naked body"] doesn't allow you to wear this [name].</span>")
 			return 0
 
-		if(species_restricted)
-
-			var/wearable = null
-			var/exclusive = null
-
-			if("exclude" in species_restricted)
-				exclusive = 1
-
-			if(H.species)
-				if(exclusive)
-					if(!(H.species.name in species_restricted))
-						wearable = 1
-				else
-					if(H.species.name in species_restricted)
-						wearable = 1
-
-				if(!wearable && (slot != SLOT_L_STORE && slot != SLOT_R_STORE)) //Pockets.
-					to_chat(M, "<span class='warning'>Your species cannot wear [src].</span>")
-					return 0
-
 	return 1
-
-/obj/item/clothing/proc/refit_for_species(var/target_species)
-	//Set species_restricted list
-	switch(target_species)
-		if("Human", "Skrell")	//humanoid bodytypes
-			species_restricted = list("exclude","Unathi","Tajara","Vox")
-		else
-			species_restricted = list(target_species)
-
-	//Set icon
-	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		icon_override = sprite_sheets_refit[target_species]
-	else
-		icon_override = initial(icon_override)
-
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
-
-/obj/item/clothing/head/helmet/refit_for_species(var/target_species)
-	//Set species_restricted list
-	switch(target_species)
-		if("Skrell")
-			species_restricted = list("exclude","Unathi","Tajara","Vox")
-		if("Human")
-			species_restricted = list("exclude","Skrell","Unathi","Tajara","Vox")
-		else
-			species_restricted = list(target_species)
-
-	//Set icon
-	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		icon_override = sprite_sheets_refit[target_species]
-	else
-		icon_override = initial(icon_override)
-
-	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
-		icon = sprite_sheets_obj[target_species]
-	else
-		icon = initial(icon)
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -197,17 +129,18 @@
 /obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
 	return 0 // return 1 to cancel attack_hand()
 
-/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
-	if(iswirecutter(W) || istype(W, /obj/item/tool/surgery/scalpel))
-		if (clipped)
+/obj/item/clothing/gloves/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
+		if(clipped)
 			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
 			update_icon()
 			return
 
-		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='warning'> [user] cuts the fingertips off of the [src].</span>","<span class='warning'> You cut the fingertips off of the [src].</span>")
 
-		clipped = 1
+		clipped = TRUE
 		name = "mangled [name]"
 		desc = "[desc]<br>They have had the fingertips cut off of them."
 

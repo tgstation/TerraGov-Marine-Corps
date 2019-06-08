@@ -3,8 +3,8 @@
 	desc = ""
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogen-stand"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 40
 	var/processing = 0
@@ -31,44 +31,55 @@
 			icon_state = "biogen-work"
 		return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/reagent_container/glass))
+/obj/machinery/biogenerator/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/reagent_container/glass))
 		if(beaker)
 			to_chat(user, "<span class='warning'>The biogenerator is already loaded.</span>")
-		else
-			user.transferItemToLoc(O, src)
-			beaker = O
-			updateUsrDialog()
+			return
+
+		user.transferItemToLoc(I, src)
+		beaker = I
+		updateUsrDialog()
+
 	else if(processing)
 		to_chat(user, "<span class='warning'>The biogenerator is currently processing.</span>")
-	else if(istype(O, /obj/item/storage/bag/plants))
+		return
+
+	else if(istype(I, /obj/item/storage/bag/plants))
 		var/i = 0
 		for(var/obj/item/reagent_container/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			to_chat(user, "<span class='warning'>The biogenerator is already full! Activate it.</span>")
-		else
-			for(var/obj/item/reagent_container/food/snacks/grown/G in O.contents)
-				G.loc = src
-				i++
-				if(i >= 10)
-					to_chat(user, "<span class='notice'>You fill the biogenerator to its capacity.</span>")
-					break
-			if(i<10)
-				to_chat(user, "<span class='notice'>You empty the plant bag into the biogenerator.</span>")
+			return
 
-
-	else if(!istype(O, /obj/item/reagent_container/food/snacks/grown))
-		to_chat(user, "<span class='warning'>You cannot put this in [src.name]</span>")
-	else
-		var/i = 0
-		for(var/obj/item/reagent_container/food/snacks/grown/G in contents)
+		for(var/obj/item/reagent_container/food/snacks/grown/G in I.contents)
+			G.forceMove(src)
 			i++
-		if(i >= 10)
-			to_chat(user, "<span class='warning'>The biogenerator is full! Activate it.</span>")
-		else
-			if(user.transferItemToLoc(O, src))
-				to_chat(user, "<span class='notice'>You put [O.name] in [src.name]</span>")
+			if(i >= 10)
+				to_chat(user, "<span class='notice'>You fill the biogenerator to its capacity.</span>")
+				break
+		if(i < 10)
+			to_chat(user, "<span class='notice'>You empty the plant bag into the biogenerator.</span>")
+
+
+	else if(!istype(I, /obj/item/reagent_container/food/snacks/grown))
+		to_chat(user, "<span class='warning'>You cannot put this in [src]</span>")
+		return
+
+	var/i = 0
+	for(var/obj/item/reagent_container/food/snacks/grown/G in contents)
+		i++
+
+	if(i >= 10)
+		to_chat(user, "<span class='warning'>The biogenerator is full! Activate it.</span>")
+		return
+
+	else if(user.transferItemToLoc(I, src))
+		to_chat(user, "<span class='notice'>You put [I] in [src]</span>")
+
 	update_icon()
 
 

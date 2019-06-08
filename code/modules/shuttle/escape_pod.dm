@@ -154,7 +154,7 @@
 		M.cryopods += src
 		linked_to_shuttle = TRUE
 
-/obj/machinery/cryopod/evacuation/ex_act(severity) 
+/obj/machinery/cryopod/evacuation/ex_act(severity)
 	return FALSE
 
 /obj/machinery/cryopod/evacuation/attackby(obj/item/grab/G, mob/user)
@@ -172,8 +172,7 @@
 
 		visible_message("<span class='warning'>[user] starts putting [M.name] into the cryo pod.</span>", 3)
 
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC))
-			if(!M || !G || !G.grabbed_thing || !G.grabbed_thing.loc || G.grabbed_thing != M) return FALSE
+		if(do_after(user, 20, TRUE, M, BUSY_ICON_GENERIC) && !QDELETED(src))
 			move_mob_inside(M)
 
 /obj/machinery/cryopod/evacuation/eject()
@@ -187,7 +186,6 @@
 		//The occupant is actually automatically ejected once the evac is canceled.
 		if(occupant != usr) to_chat(usr, "<span class='warning'>You are unable to eject the occupant unless the evacuation is canceled.</span>")
 
-	add_fingerprint(usr)
 
 /obj/machinery/cryopod/evacuation/go_out() //When the system ejects the occupant.
 	if(occupant)
@@ -215,11 +213,11 @@
 
 	visible_message("<span class='warning'>[user] starts climbing into the cryo pod.</span>", 3)
 
-	if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
+	if(do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC))
 		user.stop_pulling()
 		move_mob_inside(user)
 
-/obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/xenomorph/user)
 	if(being_forced)
 		to_chat(user, "<span class='xenowarning'>It's being forced open already!</span>")
 		return FALSE
@@ -231,7 +229,8 @@
 	being_forced = !being_forced
 	visible_message("<span class='warning'>[user] begins to pry the [src]'s cover!</span>", 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(do_after(user, 20, FALSE, 5, BUSY_ICON_HOSTILE)) go_out() //Force the occupant out.
+	if(do_after(user, 20, FALSE, src, BUSY_ICON_HOSTILE))
+		go_out() //Force the occupant out.
 	being_forced = !being_forced
 
 /obj/machinery/cryopod/evacuation/proc/move_mob_inside(mob/M)
@@ -243,7 +242,6 @@
 	to_chat(M, "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>")
 	occupant = M
 	occupant.in_stasis = STASIS_IN_CRYO_CELL
-	add_fingerprint(M)
 	icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"
 
 /obj/machinery/door/airlock/evacuation

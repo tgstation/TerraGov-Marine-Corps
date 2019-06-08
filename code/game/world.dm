@@ -23,10 +23,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	SetupExternalRSC()
 	
-	//make_datum_references_lists()	//Port this from /tg/
 	populate_seed_list()
 	populate_gear_list()
-	makeDatumRefLists() //Legacy
+	make_datum_references_lists()
 	loadShuttleInfoDatums()
 
 	//SetupLogs depends on the RoundID, so lets check
@@ -37,6 +36,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	world.log = file("[GLOB.log_directory]/runtime.log")
 
+	LoadVerbs(/datum/verbs/menu)
 	load_admins()
 
 	if(fexists(RESTART_COUNTER_PATH))
@@ -221,3 +221,13 @@ var/world_topic_spam_protect_time = world.timeofday
 	if(!CONFIG_GET(string/resource_url))
 		return
 	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)
+
+
+/world/proc/update_hub_visibility(new_visibility)
+	if(new_visibility == GLOB.hub_visibility)
+		return
+	GLOB.hub_visibility = new_visibility
+	if(GLOB.hub_visibility)
+		hub_password = "kMZy3U5jJHSiBQjr"
+	else
+		hub_password = "SORRYNOPASSWORD"

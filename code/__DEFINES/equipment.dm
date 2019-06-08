@@ -5,9 +5,6 @@
 #define PASSBLOB	(1<<3)
 #define PASSMOB		(1<<4)
 
-//FLAGS
-#define NOFLAGS		0		//Nothing.
-
 //==========================================================================================
 
 //flags_atom

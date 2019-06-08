@@ -8,8 +8,8 @@
 	var/round_finished
 
 	var/round_time_fog
-	var/flags_round_type = NOFLAGS
-	var/flags_landmarks = NOFLAGS
+	var/flags_round_type = NONE
+	var/flags_landmarks = NONE
 
 	var/distress_cancelled = FALSE
 
@@ -39,6 +39,7 @@
 		spawn_fog_blockers()
 		addtimer(CALLBACK(src, .proc/disperse_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-2500, 2500))
 
+	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
 	while(GLOB.landmarks_round_start.len)
 		L = GLOB.landmarks_round_start[GLOB.landmarks_round_start.len]
@@ -47,10 +48,20 @@
 
 	return TRUE
 
+/datum/game_mode/proc/setup()
+	SSjob.DivideOccupations() 
+	create_characters() //Create player characters
+	collect_minds()
+	reset_squads()
+	equip_characters()
+
+	transfer_characters()	//transfer keys to the new mobs
+
+	return TRUE
+
 
 /datum/game_mode/proc/post_setup()
-	spawn(ROUNDSTART_LOGOUT_REPORT_TIME)
-		display_roundstart_logout_report()
+	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
 	if(!SSdbcore.Connect())
 		return
 	var/sql
@@ -66,8 +77,74 @@
 		qdel(query_round_game_mode)
 
 
+/datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
+	return FALSE
+
+
 /datum/game_mode/process()
 	return TRUE
+
+
+/datum/game_mode/proc/create_characters()
+	for(var/i in GLOB.new_player_list)
+		var/mob/new_player/player = i
+		if(player.ready && player.mind)
+			GLOB.joined_player_list += player.ckey
+			player.create_character(FALSE)
+		else
+			player.new_player_panel()
+		CHECK_TICK
+
+
+/datum/game_mode/proc/collect_minds()
+	for(var/i in GLOB.new_player_list)
+		var/mob/new_player/P = i
+		if(P.new_character && P.new_character.mind)
+			SSticker.minds += P.new_character.mind
+		CHECK_TICK
+
+
+/datum/game_mode/proc/equip_characters()
+	var/captainless = TRUE
+	for(var/i in GLOB.new_player_list)
+		var/mob/new_player/N = i
+		var/mob/living/carbon/human/player = N.new_character
+		if(!istype(player) || !player?.mind.assigned_role)
+			continue
+		var/datum/job/J = SSjob.GetJob(player.mind.assigned_role)
+		if(istype(J, /datum/job/command/captain))
+			captainless = FALSE
+		if(player.mind.assigned_role)
+			SSjob.EquipRank(N, player.mind.assigned_role, 0)
+		CHECK_TICK
+	if(captainless)
+		for(var/i in GLOB.new_player_list)
+			var/mob/new_player/N = i
+			if(N.new_character)
+				to_chat(N, "Marine Captain position not forced on anyone.")
+			CHECK_TICK
+
+
+/datum/game_mode/proc/transfer_characters()
+	var/list/livings = list()
+	for(var/i in GLOB.new_player_list)
+		var/mob/new_player/player = i
+		var/mob/living = player.transfer_character()
+		if(!living)
+			continue
+
+		qdel(player)
+		living.notransform = TRUE
+		livings += living
+
+	if(length(livings))
+		addtimer(CALLBACK(src, .proc/release_characters, livings), 3 SECONDS, TIMER_CLIENT_TIME)
+
+
+/datum/game_mode/proc/release_characters(list/livings)
+	for(var/I in livings)
+		var/mob/living/L = I
+		L.notransform = FALSE
 
 
 /datum/game_mode/proc/check_finished()
@@ -98,7 +175,8 @@
 			roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
-	for(var/mob/new_player/player in GLOB.player_list)
+	for(var/i in GLOB.new_player_list)
+		var/mob/new_player/player = i
 		if(!(player.client?.prefs?.be_special & role) || !player.ready)
 			continue
 		else if(jobban_isbanned(player, roletext) || is_banned_from(player.ckey, roletext))
@@ -258,7 +336,7 @@
 		L.revive()
 
 		if(isxeno(L))
-			var/mob/living/carbon/Xenomorph/X = L
+			var/mob/living/carbon/xenomorph/X = L
 			X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
 
 		else if(ishuman(L))
@@ -351,7 +429,7 @@
 		num_humans++
 
 	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
+		var/mob/living/carbon/xenomorph/X = i
 		if(!X.client)
 			continue
 		if(!(X.z in z_levels) || isspaceturf(X.loc))
@@ -369,6 +447,90 @@
 		qdel(i)
 		sleep(1)
 
+/datum/game_mode/proc/mode_new_player_panel(mob/new_player/NP)
+
+	var/output = "<div align='center'>"
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A></p>"
+
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
+		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
+	else
+		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the TGMC!</A></p>"
+
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
+
+	if(!IsGuestKey(NP.key))
+		if(SSdbcore.Connect())
+			var/isadmin = FALSE
+			if(check_rights(R_ADMIN, FALSE))
+				isadmin = TRUE
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
+			if(query_get_new_polls.Execute())
+				var/newpoll = FALSE
+				if(query_get_new_polls.NextRow())
+					newpoll = TRUE
+
+				if(newpoll)
+					output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				else
+					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
+			qdel(query_get_new_polls)
+			if(QDELETED(NP))
+				return FALSE
+
+	output += "</div>"
+
+	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
+
+	return TRUE
+
+
+/datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
+	if(!isnewplayer(M))
+		return
+	var/mob/new_player/NP = M
+	if(!NP.IsJobAvailable(rank))
+		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
+		return
+	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
+		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
+		return
+	if(!GLOB.enter_allowed)
+		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
+		return
+
+	if(!SSjob.AssignRole(NP, rank, TRUE))
+		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
+		return
+
+	NP.close_spawn_windows()
+	NP.spawning = TRUE
+
+	var/mob/living/character = NP.create_character(TRUE)	//creates the human and transfers vars and mind
+	var/equip = SSjob.EquipRank(character, rank, TRUE)
+	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
+		character = equip
+
+	var/datum/job/job = SSjob.GetJob(rank)
+
+	if(job && !job.override_latejoin_spawn(character))
+		SSjob.SendToLateJoin(character)
+
+	GLOB.datacore.manifest_inject(character)
+	SSticker.minds += character.mind
+
+	handle_late_spawn(character)
+
+	qdel(NP)
+
+
+/datum/game_mode/proc/handle_late_spawn(mob/C)
+	return
+
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
@@ -379,7 +541,7 @@
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
 	return FALSE
 
-/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/Xenomorph/X)
+/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
@@ -399,7 +561,7 @@
 	if(instant_join)
 		return pick(available_xenos) //Just picks something at random.
 
-	var/mob/living/carbon/Xenomorph/new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
+	var/mob/living/carbon/xenomorph/new_xeno = input("Available Xenomorphs") as null|anything in available_xenos
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 

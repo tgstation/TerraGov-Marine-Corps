@@ -2,7 +2,7 @@
 /obj/machinery/computer/dropship_weapons
 	name = "abstract dropship weapons controls"
 	desc = "A computer to manage equipments and weapons installed on the dropship."
-	density = 1
+	density = TRUE
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleright"
 	circuit = null
@@ -22,6 +22,10 @@
 
 	user.set_interaction(src)
 	ui_interact(user)
+
+
+/obj/machinery/computer/dropship_weapons/attack_ai(mob/user)
+	return attack_hand(user)
 
 
 /obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
@@ -92,8 +96,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
-
 	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
 		return
@@ -111,7 +113,8 @@
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use the automated targeting system.</span>",
 			"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
 			var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot
-			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return FALSE
 		for(var/X in active_laser_targets)
 			var/obj/effect/overlay/temp/laser_target/LT = X
 			if(LT.target_id == targ_id)

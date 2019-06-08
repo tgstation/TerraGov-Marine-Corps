@@ -24,16 +24,16 @@
 			cards += P
 
 
-/obj/item/toy/deck/attackby(obj/item/O, mob/user)
-	if(istype(O,/obj/item/toy/handcard))
-		var/obj/item/toy/handcard/H = O
+/obj/item/toy/deck/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/toy/handcard))
+		var/obj/item/toy/handcard/H = I
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		update_icon()
-		qdel(O)
+		qdel(I)
 		to_chat(user, "You place your cards on the bottom of the deck.")
-		return
-	..()
 
 /obj/item/toy/deck/update_icon()
 	switch(cards.len)
@@ -157,18 +157,19 @@
 	var/list/cards = list()
 
 
-/obj/item/toy/handcard/attackby(obj/item/O, mob/user)
-	if(istype(O,/obj/item/toy/handcard))
-		var/obj/item/toy/handcard/H = O
+/obj/item/toy/handcard/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/toy/handcard))
+		var/obj/item/toy/handcard/H = I
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
-		src.concealed = H.concealed
-		qdel(O)
+		concealed = H.concealed
+		qdel(I)
 		if(loc != user)
 			user.put_in_hands(src)
 		update_icon()
-		return
-	..()
+
 
 /obj/item/toy/handcard/verb/discard()
 

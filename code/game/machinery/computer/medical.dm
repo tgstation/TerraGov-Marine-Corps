@@ -33,13 +33,15 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/med_data/attackby(obj/item/O as obj, user as mob)
-	if(istype(O, /obj/item/card/id) && !scan)
-		if(usr.drop_held_item())
-			O.forceMove(src)
-			scan = O
-			to_chat(user, "You insert [O].")
-	..()
+/obj/machinery/computer/med_data/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/card/id) && !scan)
+		if(!user.drop_held_item())
+			return
+		I.forceMove(src)
+		scan = I
+		to_chat(user, "You insert [I].")
 
 /obj/machinery/computer/med_data/attack_ai(user as mob)
 	return src.attack_hand(user)
@@ -186,14 +188,6 @@
 				src.active2 = null
 				src.authenticated = usr.name
 				src.rank = "AI"
-				src.screen = 1
-
-			else if (iscyborg(usr))
-				src.active1 = null
-				src.active2 = null
-				src.authenticated = usr.name
-				var/mob/living/silicon/robot/R = usr
-				src.rank = "[R.modtype] [R.braintype]"
 				src.screen = 1
 
 			else if (istype(src.scan, /obj/item/card/id))
@@ -477,7 +471,6 @@
 					P.info += "</TT>"
 					src.printing = null
 
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
 

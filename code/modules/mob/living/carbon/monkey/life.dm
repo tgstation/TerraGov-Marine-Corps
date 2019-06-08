@@ -1,10 +1,4 @@
 /mob/living/carbon/monkey/Life()
-
-	if (monkeyizing)
-		return
-	if (update_muts)
-		update_muts=0
-		domutcheck(src,null,MUTCHK_FORCED)
 	..()
 
 	life_tick++
@@ -27,7 +21,7 @@
 
 		if(prob(33) && canmove && !buckled && isturf(loc) && !pulledby) //won't move if being pulled
 
-			step(src, pick(cardinal))
+			step(src, pick(GLOB.cardinals))
 
 		if(prob(1))
 			emote(pick("scratch","jump","roll","tail"))
@@ -58,18 +52,12 @@
 /mob/living/carbon/monkey/proc/handle_mutations_and_radiation()
 
 	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || prob(50))
+		if(prob(50))
 			switch(getFireLoss())
 				if(1 to 50)
 					adjustFireLoss(-1)
 				if(51 to 100)
 					adjustFireLoss(-5)
-
-	if ((HULK in mutations) && health <= 25)
-		mutations.Remove(HULK)
-		to_chat(src, "<span class='warning'>You suddenly feel very weak.</span>")
-		KnockDown(3)
-		emote("collapse")
 
 	if (radiation)
 
@@ -101,8 +89,6 @@
 				adjustToxLoss(3)
 				if(prob(1))
 					to_chat(src, "<span class='warning'>You mutate!</span>")
-					randmutb(src)
-					domutcheck(src,null)
 					emote("gasp")
 
 /mob/living/carbon/monkey/handle_breath(list/air_info)
@@ -171,7 +157,7 @@
 
 	var/breath_temp = air_info[2]
 
-	if(!ISINRANGE_EX(breath_temp, BODYTEMP_COLD_DAMAGE_LIMIT_ONE, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE) && !(COLD_RESISTANCE in mutations))
+	if(!ISINRANGE_EX(breath_temp, BODYTEMP_COLD_DAMAGE_LIMIT_ONE, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE))
 		if(prob(20))
 			if(air_info[2] < BODYTEMP_COLD_DAMAGE_LIMIT_ONE)
 				to_chat(src, "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>")
@@ -240,11 +226,8 @@
 		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
 			pressure_alert = -1
 		else
-			if( !(COLD_RESISTANCE in mutations) )
-				adjustBruteLoss( LOW_PRESSURE_DAMAGE )
-				pressure_alert = -2
-			else
-				pressure_alert = -1
+			adjustBruteLoss( LOW_PRESSURE_DAMAGE )
+			pressure_alert = -2
 
 	return
 
@@ -321,9 +304,8 @@
 
 		if(interactee)
 			interactee.check_eye(src)
-		else
-			if(client && !client.adminobs)
-				reset_view(null)
+		else if(client)
+			reset_view(null)
 
 	return 1
 

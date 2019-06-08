@@ -17,10 +17,6 @@
 
 	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
 
-	if(CONFIG_GET(flag/husking_on) && ((species.total_health - total_burn) < get_death_threshold() * 4))
-		ChangeToHusk()
-
-
 	update_stat()
 	med_hud_set_health()
 	med_hud_set_status()

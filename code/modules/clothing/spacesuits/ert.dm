@@ -5,22 +5,7 @@
 	item_state = "helm-command"
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 100, "rad" = 60, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.6
-	var/obj/machinery/camera/camera
 
-/obj/item/clothing/head/helmet/space/rig/ert/attack_self(mob/user)
-	if(camera)
-		..(user)
-	else
-		camera = new /obj/machinery/camera(src)
-		camera.network = list("ERT")
-		cameranet.removeCamera(camera)
-		camera.c_tag = user.name
-		to_chat(user, "<span class='notice'>User scanned as [camera.c_tag]. Camera activated.</span>")
-
-/obj/item/clothing/head/helmet/space/rig/ert/examine(mob/user)
-	..()
-	if(get_dist(user,src) <= 1)
-		to_chat(user, "This helmet has a built-in camera. It's [camera ? "" : "in"]active.")
 
 /obj/item/clothing/suit/space/rig/ert
 	name = "emergency response team suit"

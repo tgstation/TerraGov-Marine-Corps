@@ -3,7 +3,7 @@
 	name = "web"
 	desc = "it's stringy and sticky"
 	icon = 'icons/effects/effects.dmi'
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	max_integrity = 15
 
@@ -20,20 +20,21 @@
 				qdel(src)
 	return
 
-/obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
-	if(W.attack_verb.len)
-		visible_message("<span class='danger'>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
-	else
-		visible_message("<span class='danger'>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+/obj/effect/spider/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	var/damage = W.force / 4.0
+	visible_message("<span class='danger'>[user] has [pick(I.attack_verb)] [src] with \the [I].</span>")
 
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+	var/damage = I.force / 4
 
-		if(WT.remove_fuel(0, user))
-			damage = 15
-			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+
+		if(!WT.remove_fuel(0, user))
+			return
+
+		damage = 15
+		playsound(loc, 'sound/items/welder.ogg', 25, 1)
 
 	obj_integrity -= damage
 	healthcheck()

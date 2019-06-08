@@ -117,7 +117,6 @@
 			open_door()
 		update_icon()
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 
 	return TRUE
@@ -198,7 +197,6 @@
 		update_icon()
 
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 
 	return TRUE

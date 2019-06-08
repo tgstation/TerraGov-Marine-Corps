@@ -12,6 +12,7 @@
 	storage_slots = null
 	max_storage_space = 30
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
+	var/list/uniform_restricted //Need to wear this uniform to equip this
 
 /obj/item/storage/backpack/attack_hand(mob/user)
 	if(!worn_accessible && ishuman(user))
@@ -19,7 +20,6 @@
 		if(H.back == src)
 /*			if(user.dropItemToGround(src))
 				pickup(user)
-				add_fingerprint(user)
 				if(!user.put_in_active_hand(src))
 					dropped(user)
 */
@@ -27,16 +27,12 @@
 			return
 	..()
 
-/obj/item/storage/backpack/attackby(obj/item/W, mob/user)
-/*	if(!worn_accessible && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.back == src)
-			to_chat(H, "<span class='notice'>You can't access [src] while it's on your back.</span>")
-			return TRUE
-*/
-	if (use_sound)
-		playsound(src.loc, src.use_sound, 15, 1, 6)
-	..()
+/obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(use_sound)
+		playsound(loc, use_sound, 15, 1, 6)
+
 
 /obj/item/storage/backpack/mob_can_equip(M as mob, slot)
 	if (!..())
@@ -91,16 +87,6 @@
 	max_w_class = 4
 	max_storage_space = 28
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(crit_fail)
-			to_chat(user, "<span class='warning'>The Bluespace generator isn't working.</span>")
-			return
-		if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
-			to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
-			qdel(W)
-			return
-		..()
-
 	proc/failcheck(mob/user as mob)
 		if (prob(src.reliability)) return 1 //No failure
 		if (prob(src.reliability))
@@ -111,6 +97,18 @@
 				qdel(O)
 			crit_fail = 1
 			icon_state = "brokenpack"
+
+/obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
+	if(crit_fail)
+		to_chat(user, "<span class='warning'>The Bluespace generator isn't working.</span>")
+
+	else if(istype(I, /obj/item/storage/backpack/holding) && !I.crit_fail)
+		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
+		qdel(I)
+
+	else
+		return ..()
+
 
 
 /obj/item/storage/backpack/santabag
@@ -482,13 +480,13 @@
 	if (M.smokecloaked)
 		M.smokecloaked = FALSE
 	else
-		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(M)
-		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(M)
 
 	spawn(1)
-		anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
+		anim(M.loc, M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
 	START_PROCESSING(SSfastprocess, src)
 	wearer.cloaking = TRUE
@@ -511,13 +509,13 @@
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
-	var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+	var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	SA.add_to_hud(user)
-	var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 	XI.add_to_hud(user)
 
 	spawn(1)
-		anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
+		anim(user.loc, user, 'icons/mob/mob.dmi', , "uncloak", , user.dir)
 
 	var/cooldown = round( (initial(camo_energy) - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
 	if(cooldown)
@@ -636,29 +634,34 @@
 	R.add_reagent("fuel", max_fuel)
 
 
-/obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/W, mob/living/user)
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/T = W
+/obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/I, mob/user, params)
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")
 			return
-		if(!(T.get_fuel()==T.max_fuel) && reagents.total_volume)
-			reagents.trans_to(W, T.max_fuel)
-			to_chat(user, "<span class='notice'>Welder refilled!</span>")
-			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			return
-	else if(istype(W, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/FT = W
-		if(!FT.current_rounds && reagents.total_volume)
-			var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
-			reagents.remove_reagent("fuel", fuel_available)
-			FT.current_rounds = fuel_available
-			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			FT.caliber = "Fuel"
-			to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
-			FT.update_icon()
-			return
-	. = ..()
+		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
+			return ..()
+
+		reagents.trans_to(I, T.max_fuel)
+		to_chat(user, "<span class='notice'>Welder refilled!</span>")
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+
+	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
+		var/obj/item/ammo_magazine/flamer_tank/FT = I
+		if(FT.current_rounds || !reagents.total_volume)
+			return ..()
+
+		var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
+		reagents.remove_reagent("fuel", fuel_available)
+		FT.current_rounds = fuel_available
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		FT.caliber = "Fuel"
+		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
+		FT.update_icon()
+
+	else
+		return ..()
 
 /obj/item/storage/backpack/marine/engineerpack/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
@@ -685,25 +688,27 @@
 	max_fuel = 500
 
 
-/obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/W, mob/living/user)
-	if(!istype(W, /obj/item/ammo_magazine/flamer_tank))
+/obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine/flamer_tank))
+		var/obj/item/ammo_magazine/flamer_tank/FTL = I
+		if(FTL.default_ammo != /datum/ammo/flamethrower)
+			return ..()
+		if(FTL.max_rounds == FTL.current_rounds)
+			return ..()
+		if(reagents.total_volume <= 0)
+			to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
+			return ..()
+		var/fuel_refill = FTL.max_rounds - FTL.current_rounds
+		if(reagents.total_volume < fuel_refill)
+			fuel_refill = reagents.total_volume
+		reagents.remove_reagent("fuel", fuel_refill)
+		FTL.current_rounds = FTL.current_rounds + fuel_refill
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")
+		FTL.update_icon()
+
+	else
 		return ..()
-	var/obj/item/ammo_magazine/flamer_tank/FTL = W
-	if(FTL.default_ammo != /datum/ammo/flamethrower)
-		return ..()
-	if(FTL.max_rounds == FTL.current_rounds)
-		return ..()
-	if(reagents.total_volume <= 0)
-		to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
-		return ..()
-	var/fuel_refill = FTL.max_rounds - FTL.current_rounds
-	if(reagents.total_volume < fuel_refill)
-		fuel_refill = reagents.total_volume
-	reagents.remove_reagent("fuel", fuel_refill)
-	FTL.current_rounds = FTL.current_rounds + fuel_refill
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")
-	FTL.update_icon()
 
 
 /obj/item/storage/backpack/lightpack
@@ -725,3 +730,10 @@
 	icon_state = "marinepack"
 	storage_slots = null
 	max_storage_space = 30
+
+
+/obj/item/storage/backpack/lightpack/som
+	name = "mining rucksack"
+	desc = "A rucksack with origins dating back to the mining colonies."
+	icon_state = "som_lightpack"
+	item_state = "som_lightpack"

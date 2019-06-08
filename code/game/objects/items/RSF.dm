@@ -19,20 +19,19 @@ RSF
 	..()
 	to_chat(user, "It currently holds [stored_matter]/30 fabrication-units.")
 
-/obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (istype(W, /obj/item/ammo_rcd))
+/obj/item/rsf/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-		if ((stored_matter + 10) > 30)
+	if(istype(I, /obj/item/ammo_rcd))
+		if((stored_matter + 10) > 30)
 			to_chat(user, "The RSF can't hold any more matter.")
 			return
 
-		qdel(W)
+		qdel(I)
 
 		stored_matter += 10
-		playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
+		playsound(loc, 'sound/machines/click.ogg', 15, 1)
 		to_chat(user, "The RSF now holds [stored_matter]/30 fabrication-units.")
-		return
 
 /obj/item/rsf/attack_self(mob/user as mob)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
@@ -66,48 +65,31 @@ RSF
 
 	if(!proximity) return
 
-	if(istype(user,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = user
-		if(R.stat || !R.cell || R.cell.charge <= 0)
-			return
-	else
-		if(stored_matter <= 0)
-			return
+	if(stored_matter <= 0)
+		return
 
 	if(!istype(A, /obj/structure/table) && !isfloorturf(A))
 		return
 
 	playsound(src.loc, 'sound/machines/click.ogg', 25, 1)
-	var/used_energy = 0
 	var/obj/product
 
 	switch(mode)
 		if(1)
 			product = new /obj/item/spacecash/c10()
-			used_energy = 200
 		if(2)
 			product = new /obj/item/reagent_container/food/drinks/drinkingglass()
-			used_energy = 50
 		if(3)
 			product = new /obj/item/paper()
-			used_energy = 10
 		if(4)
 			product = new /obj/item/tool/pen()
-			used_energy = 50
 		if(5)
 			product = new /obj/item/storage/pill_bottle/dice()
-			used_energy = 200
 		if(6)
 			product = new /obj/item/clothing/mask/cigarette()
-			used_energy = 10
 
 	to_chat(user, "Dispensing [product ? product : "product"]...")
 	product.loc = get_turf(A)
 
-	if(iscyborg(user))
-		var/mob/living/silicon/robot/R = user
-		if(R.cell)
-			R.cell.use(used_energy)
-	else
-		stored_matter--
-		to_chat(user, "The RSF now holds [stored_matter]/30 fabrication-units.")
+	stored_matter--
+	to_chat(user, "The RSF now holds [stored_matter]/30 fabrication-units.")

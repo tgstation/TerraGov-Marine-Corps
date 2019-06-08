@@ -122,12 +122,12 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/update_icon()
 	if(on)
-		if(panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			icon_state = "[initial(icon_state)]_o"
 		else
 			icon_state = initial(icon_state)
 	else
-		if(panel_open)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			icon_state = "[initial(icon_state)]_o_off"
 		else
 			icon_state = "[initial(icon_state)]_off"

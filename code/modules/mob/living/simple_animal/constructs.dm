@@ -13,7 +13,6 @@
 	a_intent = INTENT_HARM
 	stop_automated_movement = 1
 	status_flags = CANPUSH
-	universal_speak = 1
 	attack_sound = 'sound/weapons/punch1.ogg'
 	min_oxy = 0
 	max_oxy = 0
@@ -69,22 +68,6 @@
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 			adjustBruteLoss(damage)
 
-/mob/living/simple_animal/construct/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(O.force)
-		var/damage = O.force
-		if (O.damtype == HALLOSS)
-			damage = 0
-		adjustBruteLoss(damage)
-		for(var/mob/M in viewers(src, null))
-			if ((M.client && !is_blind(M)))
-				M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
-	else
-		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
-		for(var/mob/M in viewers(src, null))
-			if ((M.client && !is_blind(M)))
-				M.show_message("<span class='warning'> [user] gently taps [src] with [O]. </span>")
-
-
 
 /////////////////Juggernaut///////////////
 
@@ -108,26 +91,6 @@
 	wall_smash = 1
 	attack_sound = 'sound/weapons/punch3.ogg'
 	status_flags = 0
-
-/mob/living/simple_animal/construct/armoured/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(O.force)
-		if(O.force >= 11)
-			var/damage = O.force
-			if (O.damtype == HALLOSS)
-				damage = 0
-			adjustBruteLoss(damage)
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
-		else
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='danger'> [O] bounces harmlessly off of [src]. </span>")
-	else
-		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
-		for(var/mob/M in viewers(src, null))
-			if ((M.client && !is_blind(M)))
-				M.show_message("<span class='warning'> [user] gently taps [src] with [O]. </span>")
 
 
 /mob/living/simple_animal/construct/armoured/Life()
@@ -229,27 +192,6 @@
 	attack_sound = 'sound/weapons/punch4.ogg'
 	var/energy = 0
 	var/max_energy = 1000
-
-/mob/living/simple_animal/construct/behemoth/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(O.force)
-		if(O.force >= 11)
-			var/damage = O.force
-			if (O.damtype == HALLOSS)
-				damage = 0
-			adjustBruteLoss(damage)
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
-		else
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='danger'> [O] bounces harmlessly off of [src]. </span>")
-	else
-		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
-		for(var/mob/M in viewers(src, null))
-			if ((M.client && !is_blind(M)))
-				M.show_message("<span class='warning'> [user] gently taps [src] with [O]. </span>")
-
 
 
 ////////////////Powers//////////////////

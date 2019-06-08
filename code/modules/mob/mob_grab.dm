@@ -3,10 +3,11 @@
 /obj/item/grab
 	name = "grab"
 	icon_state = "reinforce"
-	icon = 'icons/mob/screen1.dmi'
-	flags_atom = NOFLAGS
+	icon = 'icons/mob/screen/generic.dmi'
+	flags_atom = NONE
 	flags_item = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
 	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	item_state = "nothing"
 	w_class = 5
 	var/atom/movable/grabbed_thing
@@ -52,7 +53,7 @@
 
 	if(!ishuman(user)) //only humans can reinforce a grab.
 		if (isxeno(user))
-			var/mob/living/carbon/Xenomorph/X = user
+			var/mob/living/carbon/xenomorph/X = user
 			X.pull_power(grabbed_thing)
 		return
 	var/mob/victim = grabbed_thing
@@ -79,7 +80,7 @@
 
 /obj/item/grab/attack(mob/living/M, mob/living/user, def_zone)
 	if(M == user && user.pulling && isxeno(user))
-		var/mob/living/carbon/Xenomorph/X = user
+		var/mob/living/carbon/xenomorph/X = user
 		var/mob/living/carbon/pulled = X.pulling
 		if(!istype(pulled))
 			return
@@ -104,7 +105,7 @@
 						return */
 		X.visible_message("<span class='danger'>[X] starts to devour [pulled]!</span>", \
 		"<span class='danger'>You start to devour [pulled]!</span>", null, 5)
-		if(do_after(X, 50, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(do_after(X, 50, FALSE, pulled, BUSY_ICON_DANGER))
 			if(X.pulling == pulled && !pulled.buckled && pulled.stat != DEAD && !X.stomach_contents.len) //make sure you've still got them in your claws, and alive
 				X.visible_message("<span class='warning'>[X] devours [pulled]!</span>", \
 				"<span class='warning'>You devour [pulled]!</span>", null, 5)

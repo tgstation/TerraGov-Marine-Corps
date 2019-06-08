@@ -15,7 +15,6 @@
 
 	var/turns_per_move = 1
 	var/turns_since_move = 0
-	universal_speak = 0		//No, just no.
 	var/meat_amount = 0
 	var/meat_type
 	var/stop_automated_movement = 0 //Use this to temporarely stop random movement or to if you write special movement code for animals.
@@ -85,7 +84,7 @@
 	. = ..()
 	icon_state = icon_living
 	density = initial(density)
-	resting = FALSE
+	set_resting(FALSE)
 
 /mob/living/simple_animal/Life()
 	..()
@@ -101,7 +100,7 @@
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-					Move(get_step(src,pick(cardinal)))
+					Move(get_step(src,pick(GLOB.cardinals)))
 					turns_since_move = 0
 
 	//Speaking
@@ -220,7 +219,7 @@
 	health = 0
 	icon_state = icon_dead
 	density = FALSE
-	resting = TRUE
+	set_resting(TRUE)
 
 
 /mob/living/simple_animal/gib()
@@ -292,41 +291,46 @@
 	return
 
 
-/mob/living/simple_animal/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
-	if(istype(O, /obj/item/stack/medical))
+/mob/living/simple_animal/attackby(obj/item/I, mob/user, params)  //Marker -Agouri
+	. = ..()
 
-		if(stat != DEAD)
-			var/obj/item/stack/medical/MED = O
-			if(health < maxHealth)
-				if(MED.get_amount() >= 1)
-					adjustBruteLoss(-MED.heal_brute)
-					MED.use(1)
-					for(var/mob/M in viewers(src, null))
-						if ((M.client && !is_blind(M)))
-							M.show_message("<span class='notice'> [user] applies the [MED] on [src]</span>")
+	if(istype(I, /obj/item/stack/medical))
+		var/obj/item/stack/medical/MED = I
+
+		if(stat == DEAD)
+			to_chat(user, "<span class='notice'>[src] is dead, medical items won't bring it back to life.</span>")
+			return
+
+		if(health >= maxHealth)
+			return
+
+		if(MED.get_amount() < 1)
+			return
+
+		adjustBruteLoss(-MED.heal_brute)
+		MED.use(1)
+		visible_message("<span class='notice'>[user] applies \the [MED] on [src]</span>")
+
+	else if(istype(I, /obj/item/tool/kitchen/knife) || istype(I, /obj/item/tool/kitchen/knife/butcher))
+		if(!meat_type || stat != DEAD)
+			return
+
+		new meat_type(loc)
+		if(prob(95))
+			qdel(src)
 		else
-			to_chat(user, "<span class='notice'>this [src] is dead, medical items won't bring it back to life.</span>")
-	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
-		if(istype(O, /obj/item/tool/kitchen/knife) || istype(O, /obj/item/tool/kitchen/knife/butcher))
-			new meat_type (get_turf(src))
-			if(prob(95))
-				qdel(src)
-				return
 			gib()
+
+	else if(I.force)
+		var/damage = I.force
+		if(I.damtype == HALLOSS)
+			damage = 0
+		adjustBruteLoss(damage)
+		visible_message("<span class='danger'>[src] has been attacked with \the [I] by [user]. </span>")
+		
 	else
-		if(O.force)
-			var/damage = O.force
-			if (O.damtype == HALLOSS)
-				damage = 0
-			adjustBruteLoss(damage)
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='danger'> [src] has been attacked with the [O] by [user]. </span>")
-		else
-			to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='warning'> [user] gently taps [src] with the [O]. </span>")
+		to_chat(user, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
+		visible_message("<span class='warning'>[user] gently taps [src] with \the [I]. </span>")
 
 
 
@@ -362,10 +366,6 @@
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
 		if(!L.stat)
-			return (0)
-	if (istype(target_mob,/obj/mecha))
-		var/obj/mecha/M = target_mob
-		if (M.occupant)
 			return (0)
 	if (istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob

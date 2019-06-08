@@ -4,8 +4,8 @@
 	name = "hydroponics tray"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	volume = 100
 	throwpass = 1
 	layer = BELOW_OBJ_LAYER
@@ -142,7 +142,7 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/CanPass(atom/movable/mover, turf/target)
 	if(!density) return 1
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	else
 		return 0
@@ -517,13 +517,13 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (O.is_open_container())
-		return 0
+	if(I.is_open_container())
+		return
 
-	if(iswirecutter(O) || istype(O, /obj/item/tool/surgery/scalpel))
-
+	else if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
 		if(!seed)
 			to_chat(user, "There is nothing to take a sample from in \the [src].")
 			return
@@ -537,143 +537,106 @@
 			return
 
 		// Create a sample.
-		seed.harvest(user,yield_mod,1)
-		health -= (rand(3,5)*10)
+		seed.harvest(user, yield_mod, 1)
+		health -= (rand(3, 5) * 10)
 
 		if(prob(30))
-			sampled = 1
+			sampled = TRUE
 
 		// Bookkeeping.
 		check_level_sanity()
-		force_update = 1
+		force_update = TRUE
 		process()
 
-		return
-
-	else if(istype(O, /obj/item/reagent_container/syringe))
-
-		var/obj/item/reagent_container/syringe/S = O
-
-		if (S.mode == 1)
+	else if(istype(I, /obj/item/reagent_container/syringe))
+		var/obj/item/reagent_container/syringe/S = I
+		if(S.mode == 1)
 			if(seed)
-				return ..()
-			else
-				to_chat(user, "There's no plant to inject.")
-				return 1
+				return FALSE
+			to_chat(user, "There's no plant to inject.")
+			return TRUE
 		else
 			if(seed)
-				//Leaving this in in case we want to extract from plants later.
 				to_chat(user, "You can't get any extract out of this plant.")
 			else
 				to_chat(user, "There's nothing to draw something from.")
-			return 1
+			return TRUE
 
-	else if (istype(O, /obj/item/seeds))
+	else if(istype(I, /obj/item/seeds))
+		var/obj/item/seeds/S = I
 
-		if(!seed)
-
-			var/obj/item/seeds/S = O
-			user.drop_held_item()
-
-			if(!S.seed)
-				to_chat(user, "The packet seems to be empty. You throw it away.")
-				qdel(O)
-				return
-
-			to_chat(user, "You plant the [S.seed.seed_name] [S.seed.seed_noun].")
-
-			if(S.seed.spread == 1)
-				msg_admin_attack("[key_name(user)] has planted a creeper packet.")
-				var/obj/effect/plant_controller/creeper/PC = new(get_turf(src))
-				if(PC)
-					PC.seed = S.seed
-			else if(S.seed.spread == 2)
-				msg_admin_attack("[key_name(user)] has planted a spreading vine packet.")
-				var/obj/effect/plant_controller/PC = new(get_turf(src))
-				if(PC)
-					PC.seed = S.seed
-			else
-				seed = S.seed //Grab the seed datum.
-				dead = 0
-				age = 1
-				//Snowflakey, maybe move this to the seed datum
-				health = seed.endurance
-
-				lastcycle = world.time
-
-			qdel(O)
-
-			check_level_sanity()
-			update_icon()
-
-		else
+		if(seed)
 			to_chat(user, "<span class='warning'>\The [src] already has seeds in it!</span>")
+			return
 
-	else if (istype(O, /obj/item/tool/minihoe))  // The minihoe
-
-		if(weedlevel > 0)
-			user.visible_message("<span class='warning'> [user] starts uprooting the weeds.</span>", "<span class='warning'> You remove the weeds from the [src].</span>")
-			weedlevel = 0
-			update_icon()
-		else
-			to_chat(user, "<span class='warning'>This plot is completely devoid of weeds. It doesn't need uprooting.</span>")
-
-	else if (istype(O, /obj/item/storage/bag/plants))
-
-		attack_hand(user)
-
-		var/obj/item/storage/bag/plants/S = O
-		for (var/obj/item/reagent_container/food/snacks/grown/G in locate(user.x,user.y,user.z))
-			if(!S.can_be_inserted(G))
-				return
-			S.handle_item_insertion(G, TRUE, user)
-
-	else if ( istype(O, /obj/item/tool/plantspray) )
-
-		var/obj/item/tool/plantspray/spray = O
 		user.drop_held_item()
-		toxins += spray.toxicity
-		pestlevel -= spray.pest_kill_str
-		weedlevel -= spray.weed_kill_str
-		to_chat(user, "You spray [src] with [O].")
-		playsound(loc, 'sound/effects/spray3.ogg', 25, 1, 3)
-		qdel(O)
+
+		if(!S.seed)
+			to_chat(user, "The packet seems to be empty. You throw it away.")
+			qdel(I)
+			return
+
+		to_chat(user, "You plant the [S.seed.seed_name] [S.seed.seed_noun].")
+
+		if(S.seed.spread == 1)
+			msg_admin_attack("[key_name(user)] has planted a creeper packet.")
+			var/obj/effect/plant_controller/creeper/PC = new(get_turf(src))
+			if(PC)
+				PC.seed = S.seed
+		else if(S.seed.spread == 2)
+			msg_admin_attack("[key_name(user)] has planted a spreading vine packet.")
+			var/obj/effect/plant_controller/PC = new(get_turf(src))
+			if(PC)
+				PC.seed = S.seed
+		else
+			seed = S.seed //Grab the seed datum.
+			dead = FALSE
+			age = 1
+			//Snowflakey, maybe move this to the seed datum
+			health = seed.endurance
+			lastcycle = world.time
+
+		qdel(I)
 
 		check_level_sanity()
 		update_icon()
 
-	else if(iswrench(O))
+	else if(istype(I, /obj/item/tool/minihoe))  // The minihoe
+		if(weedlevel <= 0)
+			to_chat(user, "<span class='warning'>This plot is completely devoid of weeds. It doesn't need uprooting.</span>")
+			return
 
-		//If there's a connector here, the portable_atmospherics setup can handle it.
-//		if(locate(/obj/machinery/atmospherics/components/unary/portables_connector/) in loc)
-//			return ..()
+		user.visible_message("<span class='warning'> [user] starts uprooting the weeds.</span>", "<span class='warning'> You remove the weeds from the [src].</span>")
+		weedlevel = 0
+		update_icon()
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+	else if(istype(I, /obj/item/storage/bag/plants))
+		var/obj/item/storage/bag/plants/S = I
+
+		attack_hand(user)
+		for(var/obj/item/reagent_container/food/snacks/grown/G in user.loc)
+			if(!S.can_be_inserted(G))
+				return
+			S.handle_item_insertion(G, TRUE, user)
+
+	else if(istype(I, /obj/item/tool/plantspray))
+		var/obj/item/tool/plantspray/spray = I
+		user.drop_held_item()
+		toxins += spray.toxicity
+		pestlevel -= spray.pest_kill_str
+		weedlevel -= spray.weed_kill_str
+		to_chat(user, "You spray [src] with [I].")
+		playsound(loc, 'sound/effects/spray3.ogg', 25, 1, 3)
+		qdel(I)
+
+		check_level_sanity()
+		update_icon()
+
+	else if(iswrench(I))
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
 
-	else if(istype(O, /obj/item/frame/apiary))
-
-		if(seed)
-			to_chat(user, "<span class='warning'>[src] is already occupied!</span>")
-		else
-			user.drop_held_item()
-			qdel(O)
-
-			var/obj/machinery/apiary/A = new(src.loc)
-			A.icon = src.icon
-			A.icon_state = src.icon_state
-			A.hydrotray_type = src.type
-			qdel(src)
-	return
-
-/obj/machinery/portable_atmospherics/hydroponics/attack_tk(mob/user as mob)
-
-	if(harvest)
-		harvest(user)
-
-	else if(dead)
-		remove_dead(user)
 
 /obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/user as mob)
 
@@ -732,14 +695,12 @@
 	use_power = 0
 	draw_warnings = 0
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/tool/shovel))
+/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/shovel))
 		to_chat(user, "You clear up [src]!")
 		qdel(src)
-	else if(istype(O,/obj/item/tool/shovel) || istype(O,/obj/item/tank))
-		return
-	else
-		..()
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/New()
 	..()

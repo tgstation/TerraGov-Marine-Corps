@@ -28,7 +28,6 @@
 			var/obj/item/I = new gift_type(M)
 			M.temporarilyRemoveItemFromInventory(src)
 			M.put_in_hands(I)
-			I.add_fingerprint(M)
 			qdel(src)
 			return
 		else if(exFancy == 10)
@@ -37,7 +36,6 @@
 			var/obj/item/I = new gift_type(M)
 			M.temporarilyRemoveItemFromInventory(src)
 			M.put_in_hands(I)
-			I.add_fingerprint(M)
 			qdel(src)
 			return
 		else if(exFancy == 20)
@@ -46,7 +44,6 @@
 			var/obj/item/I = new gift_type(M)
 			M.temporarilyRemoveItemFromInventory(src)
 			M.put_in_hands(I)
-			I.add_fingerprint(M)
 			qdel(src)
 			return
 		else
@@ -64,7 +61,6 @@
 			var/obj/item/I = new gift_type(M)
 			M.temporarilyRemoveItemFromInventory(src)
 			M.put_in_hands(I)
-			I.add_fingerprint(M)
 			qdel(src)
 			return
 	else if (fancy <=5)
@@ -92,7 +88,6 @@
 	var/obj/item/I = new gift_type(M)
 	M.temporarilyRemoveItemFromInventory(src)
 	M.put_in_hands(I)
-	I.add_fingerprint(M)
 	qdel(src)
 	return
 

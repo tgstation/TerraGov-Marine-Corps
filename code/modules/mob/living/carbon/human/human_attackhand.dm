@@ -5,29 +5,6 @@
 		visible_message("<span class='danger'>[M] attempted to touch [src]!</span>", null, null, 5)
 		return 0
 
-	if(M.gloves && istype(M.gloves, /obj/item/clothing/gloves/boxing/hologlove))
-
-		var/damage = rand(0, 9)
-		if(!damage)
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-			visible_message("<span class='danger'>[M] has attempted to punch [src]!</span>")
-			return 0
-		var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
-		var/armor_block = run_armor_check(affecting, "melee")
-
-		if(HULK in M.mutations)			damage += 5
-
-		playsound(loc, "punch", 25, 1)
-
-		visible_message("<span class='danger'>[M] has punched [src]!</span>")
-
-		apply_damage(damage, HALLOSS, affecting, armor_block)
-		if(damage >= 9)
-			visible_message("<span class='danger'>[M] has weakened [src]!</span>")
-			apply_effect(4, WEAKEN, armor_block)
-
-		return
-
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
 	switch(M.a_intent)
 		if(INTENT_HELP)
@@ -60,7 +37,7 @@
 				return 1
 			M.visible_message("<span class='danger'>[M] is trying perform CPR on [src]!</span>", null, null, 4)
 
-			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
+			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				if(health > get_death_threshold() && health < get_crit_threshold())
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
@@ -75,8 +52,6 @@
 		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
-			if(w_uniform)
-				w_uniform.add_fingerprint(M)
 
 			M.start_pulling(src)
 
@@ -106,7 +81,6 @@
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(HULK in M.mutations) damage += 5
 			playsound(loc, attack.attack_sound, 25, 1)
 
 			visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
@@ -126,8 +100,6 @@
 
 			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
 
-			if(w_uniform)
-				w_uniform.add_fingerprint(M)
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 
 			//Accidental gun discharge
@@ -247,6 +219,4 @@
 					treat += "(Salved)"
 
 				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>")
-			if((SKELETON in mutations) && !w_uniform && !wear_suit)
-				play_xylophone()
 	return ..()

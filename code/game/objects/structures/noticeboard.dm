@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	var/notices = 0
 
 /obj/structure/noticeboard/Initialize()
@@ -17,18 +17,19 @@
 	icon_state = "nboard0[notices]"
 
 //attaching papers!!
-/obj/structure/noticeboard/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/paper))
-		if(notices < 5)
-			O.add_fingerprint(user)
-			add_fingerprint(user)
-			user.drop_held_item()
-			O.loc = src
-			notices++
-			icon_state = "nboard0[notices]"	//update sprite
-			to_chat(user, "<span class='notice'>You pin the paper to the noticeboard.</span>")
-		else
+/obj/structure/noticeboard/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/paper))
+		if(notices >= 5)
 			to_chat(user, "<span class='notice'>You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached.</span>")
+			return
+
+		user.drop_held_item()
+		I.forceMove(src)
+		notices++
+		icon_state = "nboard0[notices]"	//update sprite
+		to_chat(user, "<span class='notice'>You pin the paper to the noticeboard.</span>")
 
 /obj/structure/noticeboard/attack_hand(user as mob)
 	var/dat = "<B>Noticeboard</B><BR>"
@@ -47,8 +48,6 @@
 		var/obj/item/P = locate(href_list["remove"])
 		if((P && P.loc == src))
 			P.loc = get_turf(src)	//dump paper on the floor because you're a clumsy fuck
-			P.add_fingerprint(usr)
-			add_fingerprint(usr)
 			notices--
 			icon_state = "nboard0[notices]"
 
@@ -59,11 +58,9 @@
 
 		if((P && P.loc == src)) //ifthe paper's on the board
 			if(istype(usr.r_hand, /obj/item/tool/pen)) //and you're holding a pen
-				add_fingerprint(usr)
 				P.attackby(usr.r_hand, usr) //then do ittttt
 			else
 				if(istype(usr.l_hand, /obj/item/tool/pen)) //check other hand for pen
-					add_fingerprint(usr)
 					P.attackby(usr.l_hand, usr)
 				else
 					to_chat(usr, "<span class='notice'>You'll need something to write with!</span>")

@@ -4,8 +4,8 @@
 /obj/machinery/dropship_part_fabricator
 	name = "dropship part fabricator"
 	desc = "A large automated 3D printer for producing new dropship parts."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 20
 	icon = 'icons/obj/machines/drone_fab.dmi'
@@ -76,7 +76,6 @@
 		return
 
 	usr.set_interaction(src)
-	add_fingerprint(usr)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")

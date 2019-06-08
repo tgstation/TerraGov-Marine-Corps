@@ -4,7 +4,7 @@ obj/machinery/recharger
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
@@ -12,45 +12,55 @@ obj/machinery/recharger
 	var/percent_charge_complete = 0
 	var/list/allowed_devices = list(/obj/item/weapon/baton, /obj/item/cell, /obj/item/weapon/gun/energy/taser, /obj/item/defibrillator)
 
-obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
-	if(istype(user,/mob/living/silicon))
+/obj/machinery/recharger/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(issilicon(user))
 		return
 
-	var/allowed = 0
-	for (var/allowed_type in allowed_devices)
-		if (istype(G, allowed_type)) allowed = 1
+	var/allowed = FALSE
+	for(var/allowed_type in allowed_devices)
+		if(istype(I, allowed_type)) 
+			allowed = TRUE
+			break
 
-	if(allowed)
-		if(charging)
-			to_chat(user, "<span class='warning'>\A [charging] is already charging here.</span>")
-			return
-		// Checks to make sure he's not in space doing it, and that the area got proper power.
-		var/area/a = get_area(src)
-		if(!isarea(a) || (a.power_equip == 0 && !a.unlimited_power))
-			to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
-			return
-		if(istype(G, /obj/item/defibrillator))
-			var/obj/item/defibrillator/D = G
-			if(D.ready)
-				to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
-				return
-		if(user.transferItemToLoc(G, src))
-			charging = G
-			start_processing()
-			update_icon()
-	else if(iswrench(G))
+	if(iswrench(I))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
+	if(!allowed)
+		return
+
+	if(charging)
+		to_chat(user, "<span class='warning'>\A [charging] is already charging here.</span>")
+		return
+	// Checks to make sure he's not in space doing it, and that the area got proper power.
+	var/area/A = get_area(src)
+	if(!isarea(A) || (A.power_equip == 0 && A.requires_power))
+		to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
+		return
+
+	if(istype(I, /obj/item/defibrillator))
+		var/obj/item/defibrillator/D = I
+		if(D.ready)
+			to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
+			return
+
+	if(!user.transferItemToLoc(I, src))
+		return
+
+	charging = I
+	start_processing()
+	update_icon()
+
 
 obj/machinery/recharger/attack_hand(mob/user as mob)
 	if(istype(user,/mob/living/silicon))
 		return
-
-	add_fingerprint(user)
 
 	if(charging)
 		charging.update_icon()

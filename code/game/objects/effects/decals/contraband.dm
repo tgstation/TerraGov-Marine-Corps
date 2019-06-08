@@ -29,7 +29,7 @@ obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband.dmi'
-	anchored = 1
+	anchored = TRUE
 	var/serial_number	//Will hold the value of src.loc if nobody initialises it
 	var/ruined = 0
 
@@ -48,16 +48,16 @@ obj/structure/sign/poster/New(var/serial)
 	icon_state = design.icon_state // poster[serial_number]
 	..()
 
-obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswirecutter(W))
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+/obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswirecutter(I))
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(ruined)
 			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
 			qdel(src)
 		else
 			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
 			roll_and_drop(user.loc)
-		return
 
 
 /obj/structure/sign/poster/attack_hand(mob/user as mob)
@@ -74,7 +74,6 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 			icon_state = "poster_ripped"
 			name = "ripped poster"
 			desc = "You can't make out anything from the poster's original print. It's ruined."
-			add_fingerprint(user)
 		if("No")
 			return
 

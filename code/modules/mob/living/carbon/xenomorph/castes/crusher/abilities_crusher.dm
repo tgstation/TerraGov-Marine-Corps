@@ -7,10 +7,12 @@
 	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
 	plasma_cost = 80
-	cooldown_timer = CRUSHER_STOMP_COOLDOWN
+	cooldown_timer = 20 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_STOMP
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Crusher/X = owner
+	var/mob/living/carbon/xenomorph/crusher/X = owner
 	succeed_activate()
 	add_cooldown()
 
@@ -22,7 +24,7 @@
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(2,X.loc))
-		if(isxeno(M) || M.stat == DEAD || (CHECK_BITFIELD(M.status_flags, XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
+		if(isxeno(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
@@ -54,9 +56,10 @@
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
 	mechanics_text = "Toggles the Crusher’s movement based charge on and off."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
 
 /datum/action/xeno_action/ready_charge/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	X.is_charging = !X.is_charging
 	to_chat(X, "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>")
 
@@ -68,8 +71,9 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = CRUSHER_CRESTTOSS_COST
-	cooldown_timer = CRUSHER_CRESTTOSS_COOLDOWN
+	plasma_cost = 40
+	cooldown_timer = 6 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")
@@ -83,7 +87,7 @@
 	if(!owner.Adjacent(A) || !isliving(A))
 		return FALSE
 	var/mob/living/L = A
-	if(L.stat == DEAD || (CHECK_BITFIELD(L.status_flags, XENO_HOST) && istype(L.buckled, /obj/structure/bed/nest) ) ) //no bully
+	if(L.stat == DEAD || isnestedhost(L)) //no bully
 		return FALSE
 	if(L.mob_size >= MOB_SIZE_BIG)
 		if(!silent)
@@ -91,7 +95,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/cresttoss/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/L = A
 	X.face_atom(L) //Face towards the target so we don't look silly
 

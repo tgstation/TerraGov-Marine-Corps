@@ -117,9 +117,10 @@
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
 
-/obj/item/reagent_container/spray/cleaner/New()
-	..()
-	reagents.add_reagent("cleaner", src.volume)
+
+/obj/item/reagent_container/spray/cleaner/Initialize()
+	. = ..()
+	reagents.add_reagent("cleaner", volume)
 
 
 /obj/item/reagent_container/spray/surgery

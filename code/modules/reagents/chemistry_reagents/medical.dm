@@ -56,15 +56,10 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/medicine/ryetalyn/on_mob_life(mob/living/L, metabolism)
-	var/update = LAZYLEN(L.mutations)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.disabilities = 0
-	L.mutations = list()
 	L.sdisabilities = 0
-	if(update && ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.update_mutations()
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
@@ -331,7 +326,6 @@
 	L.SetKnockeddown(0)
 	L.SetStunned(0)
 	L.SetKnockedout(0)
-	L.silent = 0
 	L.dizziness = 0
 	L.drowsyness = 0
 	L.stuttering = 0
@@ -342,12 +336,6 @@
 		var/mob/living/carbon/C = L
 		C.drunkenness = 0
 		C.disabilities = 0
-		for(var/A in C.viruses)
-			var/datum/disease/D = A
-			D.spread = "Remissive"
-			D.stage--
-			if(D.stage < 1)
-				D.cure()
 	return ..()
 
 
@@ -734,7 +722,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(10))
 		to_chat(L, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
 	if(prob(5))
-		L.custom_emote(EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
+		L.emote(EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustHalLoss(35)
 		L.Stun(2)
 	if(prob(20))
@@ -746,7 +734,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(10))
 		to_chat(L, "<span class='warning'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
 	if(prob(5))
-		L.custom_emote(EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
+		L.emote(EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.adjustHalLoss(50)
 		L.Stun(3)
 	if(prob(20))
@@ -760,7 +748,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(10))
 		to_chat(L, "<span class='danger'>[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]</span>")
 	if(prob(5))
-		L.custom_emote(EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
+		L.emote(EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
 		L.adjustHalLoss(65)
 		L.Stun(4)
 		L.do_jitter_animation(200)

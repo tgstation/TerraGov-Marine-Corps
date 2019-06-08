@@ -25,8 +25,10 @@
 /obj/item/weapon/gun/flamer/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
+
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
-	toggle_flame(user)
+	return toggle_flame(user)
+
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	to_chat(user, "It's turned [lit? "on" : "off"].")
@@ -41,6 +43,7 @@
 		if(!current_mag || !current_mag.current_rounds)
 			return
 
+
 /obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
 	playsound(user,'sound/weapons/flipblade.ogg', 25, 1)
 	lit = !lit
@@ -53,6 +56,9 @@
 	else
 		overlays -= I
 		qdel(I)
+
+	return TRUE
+
 
 /obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 	set waitfor = 0
@@ -104,7 +110,7 @@
 		if(user)
 			if(magazine.reload_delay > 1)
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -121,7 +127,7 @@
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
 	if(!current_mag)
-		return //no magazine to unload
+		return FALSE //no magazine to unload
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
 	else
@@ -134,6 +140,9 @@
 	current_mag = null
 
 	update_icon()
+
+	return TRUE
+
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
@@ -239,7 +248,7 @@
 		fire_mod = 1
 
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
@@ -380,7 +389,8 @@
 		if(user)
 			if(magazine.reload_delay > 1)
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
+				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+					replace_magazine(user, magazine)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
@@ -426,7 +436,7 @@
 		last_use = world.time
 		return
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, TRUE, src))
 			return
 	return ..()
 
@@ -453,7 +463,7 @@
 /obj/flamer_fire
 	name = "fire"
 	desc = "Ouch!"
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
@@ -462,7 +472,7 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/Initialize(loc, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 
 	if(f_color)
@@ -500,7 +510,7 @@
 			show_message(text("Your suit protects you from most of the flames."), 1)
 			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
 
-/mob/living/carbon/Xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
+/mob/living/carbon/xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
 	if(attack_flag == "fire" && (xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		return 1
 	return ..()
@@ -524,10 +534,10 @@
 		return
 	. = ..()
 	if(isxeno(pulledby))
-		var/mob/living/carbon/Xenomorph/X = pulledby
+		var/mob/living/carbon/xenomorph/X = pulledby
 		X.flamer_fire_crossed(burnlevel, firelevel)
 
-/mob/living/carbon/Xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	fire_mod = fire_resist
@@ -589,16 +599,16 @@
 		return
 	return ..()
 
-/mob/living/carbon/Xenomorph/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	updatehealth()
 
-/mob/living/carbon/Xenomorph/Queen/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
 	to_chat(src, "<span class='xenowarning'>Your extra-thick exoskeleton protects you from the flames.</span>")
 
-/mob/living/carbon/Xenomorph/Ravager/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)
 		return
 	plasma_stored = xeno_caste.plasma_max

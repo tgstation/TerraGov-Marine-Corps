@@ -19,7 +19,7 @@
 	gun_skill_category = GUN_SKILL_SMGS
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
-	cock(user)
+	return cock(user)
 
 /obj/item/weapon/gun/smg/get_ammo_type()
 	if(!ammo)

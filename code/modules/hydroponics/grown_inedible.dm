@@ -40,7 +40,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "logs"
 	force = 5
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	throwforce = 5
 	w_class = 3.0
 	throw_speed = 3
@@ -49,9 +49,12 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 
-/obj/item/grown/log/attackby(obj/item/W, mob/user)
-	if(W.sharp != IS_SHARP_ITEM_BIG)
+/obj/item/grown/log/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(I.sharp != IS_SHARP_ITEM_BIG)
 		return
+		
 	user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 	var/obj/item/stack/sheet/wood/NG = new(user.loc, 2)
 	NG.add_to_stacks(user)
@@ -66,7 +69,7 @@
 	icon_state = "sunflower"
 	damtype = "fire"
 	force = 0
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	throwforce = 1
 	w_class = 1.0
 	throw_speed = 1
@@ -84,7 +87,7 @@
 	icon_state = "nettle"
 	damtype = "fire"
 	force = 15
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	throwforce = 1
 	w_class = 2.0
 	throw_speed = 1
@@ -173,10 +176,10 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/corncob/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.sharp == IS_SHARP_ITEM_ACCURATE)
-		to_chat(user, "<span class='notice'>You use [W] to fashion a pipe out of the corn cob!</span>")
-		new /obj/item/clothing/mask/cigarette/pipe/cobpipe (user.loc)
+/obj/item/corncob/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(I.sharp == IS_SHARP_ITEM_ACCURATE)
+		to_chat(user, "<span class='notice'>You use [I] to fashion a pipe out of the corn cob!</span>")
+		new /obj/item/clothing/mask/cigarette/pipe/cobpipe(user.loc)
 		qdel(src)
-	else
-		return ..()

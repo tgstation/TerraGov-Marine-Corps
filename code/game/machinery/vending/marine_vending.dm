@@ -64,14 +64,12 @@
 	. = ..()
 	GLOB.marine_vendors.Remove(src)
 
-/obj/machinery/vending/marine/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/gun))
-		stock(W, user)
-		return TRUE
-	if(istype(W, /obj/item/ammo_magazine))
-		stock(W, user)
-		return TRUE
+/obj/machinery/vending/marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+
+	if(istype(I, /obj/item/weapon/gun) || istype(I, /obj/item/ammo_magazine))
+		stock(I, user)
+		return TRUE
 
 //What do grenade do against candy machine?
 /obj/machinery/vending/marine/ex_act(severity)
@@ -295,11 +293,12 @@
 			if(0.25 to 0.01)
 				icon_state = "lascharger_25"
 
-/obj/machinery/vending/lasgun/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/cell/lasgun))
-		stock(W, user, TRUE)
+/obj/machinery/vending/lasgun/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/cell/lasgun))
+		stock(I, user, TRUE)
 		return TRUE
-	return ..()
 
 /obj/machinery/vending/lasgun/examine(mob/user)
 	. = ..()

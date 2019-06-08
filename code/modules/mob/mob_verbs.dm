@@ -3,7 +3,7 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha) || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	if(hand)
@@ -19,37 +19,6 @@
 	if(next_move < world.time)
 		next_move = world.time + 2
 	return
-
-/mob/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
-	set name = "Point To"
-	set category = "Object"
-
-	if(!isturf(loc))
-		return FALSE
-
-	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
-		return FALSE
-
-	if(!A.mouse_opacity) //Can't click it? can't point at it.
-		return FALSE
-
-	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
-		return FALSE
-
-	var/tile = get_turf(A)
-	if(!tile)
-		return FALSE
-
-	if(next_move > world.time)
-		return FALSE
-
-	if(recently_pointed_to > world.time)
-		return FALSE
-
-	next_move = world.time + 2
-
-	point_to_atom(A, tile)
-	return TRUE
 
 
 /mob/verb/memory()
@@ -160,24 +129,8 @@
 	return facedir(SOUTH)
 
 
-/mob/verb/stop_pulling()
+/mob/verb/stop_pulling1()
 	set name = "Stop Pulling"
 	set category = "IC"
 
-	if(pulling)
-		var/mob/M = pulling
-		pulling.pulledby = null
-		pulling = null
-		grab_level = 0
-		if(hud_used && hud_used.pull_icon)
-			hud_used.pull_icon.icon_state = "pull0"
-		if(istype(r_hand, /obj/item/grab))
-			temporarilyRemoveItemFromInventory(r_hand)
-		else if(istype(l_hand, /obj/item/grab))
-			temporarilyRemoveItemFromInventory(l_hand)
-		if(istype(M))
-			if(M.client)
-				//resist_grab uses long movement cooldown durations to prevent message spam
-				//so we must undo it here so the victim can move right away
-				M.client.next_movement = world.time
-			M.update_canmove()
+	stop_pulling()

@@ -74,6 +74,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 				return
 			keyslot2 = I
 
+			I.forceMove(src)
+			keyslot2 = I
 
 		recalculateChannels()
 	else
@@ -128,13 +130,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		to_chat(user, "<span class='notice'>You toggle high-volume mode [use_command ? "on" : "off"].</span>")
 
 
-/obj/item/radio/headset/can_receive(freq, level, AIuser)
+/obj/item/radio/headset/can_receive(freq, level)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(H.wear_ear == src)
-			return ..(freq, level)
-	else if(AIuser)
-		return ..(freq, level)
+			return ..()
+	else if(issilicon(loc))
+		return ..()
 	return FALSE
 
 
@@ -146,7 +148,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	item_state = "headset"
 	frequency = FREQ_COMMON
 	var/obj/machinery/camera/camera
-	var/datum/mob_hud/squadhud = null
+	var/datum/atom_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
@@ -154,14 +156,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/Initialize()
 	. = ..()
-	camera = new /obj/machinery/camera(src)
-	camera.network = list("LEADER")
+	camera = new /obj/machinery/camera/headset(src)
 
 
 /obj/item/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		wearer = user
-		squadhud = huds[MOB_HUD_SQUAD]
+		squadhud = GLOB.huds[DATA_HUD_SQUAD]
 		headset_hud_on = FALSE //So we always activate on equip.
 		sl_direction = FALSE
 		toggle_squadhud(wearer)
@@ -229,7 +230,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	else
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 128
-			SSdirection.start_tracking(user.assigned_squad.tracking_id, user)
+			var/tracking_id = user.assigned_squad.squad_leader == user ? user.assigned_squad.tracking_id : "marine-sl"
+			SSdirection.start_tracking(tracking_id, user)
 		sl_direction = TRUE
 		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
 		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
@@ -284,21 +286,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		usr << browse(null, "window=radio")
 
 
-/obj/item/radio/headset/almayer/ce
-	name = "chief ship engineer's headset"
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/ce
-	use_command = TRUE
-	command = TRUE
-
-
-/obj/item/radio/headset/almayer/cmo
-	name = "chief medical officer's headset"
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/cmo
-	use_command = TRUE
-	command = TRUE
-
 
 /obj/item/radio/headset/almayer/mt
 	name = "engineering radio headset"
@@ -334,7 +321,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	command = TRUE
 
 
-/obj/item/radio/headset/almayer/mcom/ai
+/obj/item/radio/headset/almayer/mcom/silicon
+	name = "silicon radio"
 	keyslot = new /obj/item/encryptionkey/mcom/ai
 
 
@@ -480,3 +468,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/imperial
 	name = "Imperial headset"
 	keyslot = new /obj/item/encryptionkey/imperial
+
+
+/obj/item/radio/headset/distress/som
+	name = "\improper Sons of Mars headset"
+	keyslot = new /obj/item/encryptionkey/som

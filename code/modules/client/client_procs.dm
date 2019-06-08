@@ -1,15 +1,5 @@
-////////////////
-//  SECURITY  //
-////////////////
 #define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
-
-GLOBAL_LIST_INIT(blacklisted_builds, list(
-	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
-	"1408" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
-	"1428" = "bug causing right-click menus to show too many verbs that's been fixed in version 1429",
-
-	))
 
 	/*
 	When somebody clicks a link in game, this Topic is called first.
@@ -24,7 +14,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		- If so, does it have checks to see if the person who called it (usr.client) is an admin?
 		- Are the processes being called by Topic() particularly laggy?
 		- If so, is there any protection against somebody spam-clicking a link?
-	If you have any  questions about this stuff feel free to ask. ~Carn
 	*/
 
 /client/Topic(href, href_list, hsrc)
@@ -44,15 +33,36 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			src << browse("...", "window=asset_cache_browser")
 
 
-	if(href_list["_src_"] == "chat") // Oh god the ping hrefs.
-		return chatOutput.Topic(href, href_list)
+	var/mtl = CONFIG_GET(number/minute_topic_limit)
+	if(mtl && !check_rights(R_ADMIN, FALSE))
+		var/minute = round(world.time, 600)
+		if(!topiclimiter)
+			topiclimiter = new(5)
+		if(minute != topiclimiter[3])
+			topiclimiter[3] = minute
+			topiclimiter[4] = 0
+		topiclimiter[4] += 1
+		if(topiclimiter[4] > mtl)
+			var/msg = "Your previous action was ignored because you've done too many in a minute."
+			if(minute != topiclimiter[5]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
+				topiclimiter[5] = minute
+				log_admin("[key_name(src)] has hit the per-minute topic limit of [mtl] topic calls.")
+				message_admins("[ADMIN_LOOKUP(src)] has hit the per-minute topic limit of [mtl] topic calls.")
+			to_chat(src, "<span class='danger'>[msg]</span>")
+			return
 
-
-	//Search the href for script injection.
-	if(findtext(href,"<script", 1, 0))
-		log_world("[key_name(usr)] attempted use of scripts within a topic call.")
-		message_admins("[ADMIN_TPMONTY(usr)] attempted use of scripts within a topic call.")
-		return
+	var/stl = CONFIG_GET(number/second_topic_limit)
+	if(stl && !check_rights(R_ADMIN, FALSE))
+		var/second = round(world.time, 10)
+		if(!topiclimiter)
+			topiclimiter = new(5)
+		if(second != topiclimiter[1])
+			topiclimiter[1] = second
+			topiclimiter[2] = 0
+		topiclimiter[2] += 1
+		if(topiclimiter[2] > stl)
+			to_chat(src, "<span class='danger'>Your previous action was ignored because you've done too many in a second</span>")
+			return
 
 
 	//Logs all hrefs, except chat pings
@@ -79,49 +89,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			return chatOutput.Topic(href, href_list)
 
 
-	switch(href_list["action"])
-		if("openLink")
-			src << link(href_list["link"])
-
 	if(hsrc)
 		var/datum/real_src = hsrc
 		if(QDELETED(real_src))
 			return
 
 	return ..()	//redirect to hsrc.Topic()
-
-
-/client/proc/handle_spam_prevention(message, mute_type)
-	if(CONFIG_GET(flag/automute_on) && !check_rights(R_ADMIN, FALSE) && last_message == message)
-		last_message_count++
-		if(last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, "<span class='danger'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
-			mute(src, mute_type, TRUE)
-			return TRUE
-		else if(last_message_count >= SPAM_TRIGGER_WARNING)
-			to_chat(src, "<span class='danger'>You are nearing the spam filter limit for identical messages.</span>")
-			return TRUE
-	else
-		last_message = message
-		last_message_count = 0
-		return FALSE
-
-
-//This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
-/client/AllowUpload(filename, filelength)
-	if(!check_rights(R_ADMIN, FALSE) && filelength > UPLOAD_LIMIT)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
-		return FALSE
-	else if(filelength > UPLOAD_LIMIT_ADMIN)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB. Stop trying to break the server.</font>")
-		return FALSE
-	return TRUE
-
-
-///////////////
-//  CONNECT  //
-///////////////
-GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 
 /client/New(TopicData)
@@ -168,6 +141,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
+	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
 
 	if(CONFIG_GET(flag/log_access))
 		for(var/I in GLOB.clients)
@@ -193,7 +167,19 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 						message_admins("<span class='danger'><B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)] (no longer logged in). </span>")
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)] (no longer logged in).")
 
+	if(GLOB.player_details[ckey])
+		player_details = GLOB.player_details[ckey]
+		player_details.byond_version = full_version
+	else
+		player_details = new
+		player_details.byond_version = full_version
+		GLOB.player_details[ckey] = player_details
+
 	. = ..()	//calls mob.Login()
+
+	if(SSinput.initialized)
+		set_macros()
+		
 	chatOutput.start() // Starts the chat
 
 	if(byond_version < 512)
@@ -224,6 +210,12 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 
 	preload_rsc = GLOB.external_rsc_url
 
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
+	
+	winset(src, null, "command=\".configure graphics-hwmode on\"")
+
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
 	if(isnum(cached_player_age) && cached_player_age == -1) //first connection
 		player_age = 0
@@ -248,7 +240,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
+		winset(src, "infowindow.changelog", "background-color=#ED9F9B;font-style=bold")
 
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])
@@ -264,15 +256,36 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		else if(holder.rank.rights & R_MENTOR)
 			message_staff("Mentor login: [key_name_admin(src)].")
 
-	if(GLOB.player_details[ckey])
-		player_details = GLOB.player_details[ckey]
-		player_details.byond_version = full_version
-	else
-		player_details = new
-		player_details.byond_version = full_version
-		GLOB.player_details[ckey] = player_details
+	var/list/topmenus = GLOB.menulist[/datum/verbs/menu]
+	for(var/thing in topmenus)
+		var/datum/verbs/menu/topmenu = thing
+		var/topmenuname = "[topmenu]"
+		if(topmenuname == "[topmenu.type]")
+			var/list/tree = splittext(topmenuname, "/")
+			topmenuname = tree[length(tree)]
+		winset(src, "[topmenu.type]", "parent=menu;name=[url_encode(topmenuname)]")
+		var/list/entries = topmenu.Generate_list(src)
+		for(var/child in entries)
+			winset(src, "[child]", "[entries[child]]")
+			if(!ispath(child, /datum/verbs/menu))
+				var/procpath/verbpath = child
+				if(copytext(verbpath.name, 1, 2) != "@")
+					new child(src)
+
+	for(var/thing in prefs.menuoptions)
+		var/datum/verbs/menu/menuitem = GLOB.menulist[thing]
+		if(menuitem)
+			menuitem.Load_checked(src)
+
+	
+	//This is down here because of the browse() calls in tooltip/New()
+	if(!tooltips && prefs.tooltips)
+		tooltips = new /datum/tooltip(src)
+
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
+
+	Master.UpdateTickRate()
 
 
 
@@ -280,6 +293,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 //  DISCONNECT  //
 //////////////////
 /client/Del()
+	log_access("Logout: [key_name(src)]")
 	if(isliving(mob))
 		var/mob/living/L = mob
 		L.begin_away()
@@ -294,9 +308,8 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
-	GLOB.directory -= ckey
-	GLOB.clients -= src
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
+	Master.UpdateTickRate()
 	return ..()
 
 
@@ -348,6 +361,7 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 		O.appearance = MA
 		O.dir = D
 		O.screen_loc = "character_preview_map:0,[pos]"
+
 
 /client/proc/clear_character_previews()
 	for(var/index in char_render_holders)
@@ -484,31 +498,6 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 				CRASH("Key check regex failed for [ckey]")
 
 
-/client/proc/add_system_note(system_ckey, message)
-	var/sql_system_ckey = sanitizeSQL(system_ckey)
-	var/sql_ckey = sanitizeSQL(ckey)
-	//check to see if we noted them in the last day.
-	var/datum/DBQuery/query_get_notes = SSdbcore.NewQuery("SELECT id FROM [format_table_name("messages")] WHERE type = 'note' AND targetckey = '[sql_ckey]' AND adminckey = '[sql_system_ckey]' AND timestamp + INTERVAL 1 DAY < NOW() AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)")
-	if(!query_get_notes.Execute())
-		qdel(query_get_notes)
-		return
-	if(query_get_notes.NextRow())
-		qdel(query_get_notes)
-		return
-	qdel(query_get_notes)
-	//regardless of above, make sure their last note is not from us, as no point in repeating the same note over and over.
-	query_get_notes = SSdbcore.NewQuery("SELECT adminckey FROM [format_table_name("messages")] WHERE targetckey = '[sql_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC LIMIT 1")
-	if(!query_get_notes.Execute())
-		qdel(query_get_notes)
-		return
-	if(query_get_notes.NextRow())
-		if (query_get_notes.item[1] == system_ckey)
-			qdel(query_get_notes)
-			return
-	qdel(query_get_notes)
-	create_message("note", key, system_ckey, message, null, null, 0, 0, null, 0, 0)
-
-
 /client/proc/change_view(new_size)
 	if(isnull(new_size))
 		CRASH("change_view called without argument.")
@@ -529,3 +518,30 @@ GLOBAL_VAR_INIT(external_rsc_url, TRUE)
 	generate_clickcatcher()
 	var/list/actualview = getviewsize(view)
 	void.UpdateGreed(actualview[1], actualview[2])
+
+
+//This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
+/client/AllowUpload(filename, filelength)
+	if(!check_rights(R_ADMIN, FALSE) && filelength > UPLOAD_LIMIT)
+		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
+		return FALSE
+	else if(filelength > UPLOAD_LIMIT_ADMIN)
+		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB. Stop trying to break the server.</font>")
+		return FALSE
+	return TRUE
+
+
+/client/proc/handle_spam_prevention(message, mute_type)
+	if(CONFIG_GET(flag/automute_on) && !check_rights(R_ADMIN, FALSE) && last_message == message)
+		last_message_count++
+		if(last_message_count >= SPAM_TRIGGER_AUTOMUTE)
+			to_chat(src, "<span class='danger'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
+			mute(src, mute_type, TRUE)
+			return TRUE
+		else if(last_message_count >= SPAM_TRIGGER_WARNING)
+			to_chat(src, "<span class='danger'>You are nearing the spam filter limit for identical messages.</span>")
+			return TRUE
+	else
+		last_message = message
+		last_message_count = 0
+		return FALSE

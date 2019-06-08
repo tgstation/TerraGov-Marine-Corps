@@ -24,12 +24,13 @@
 	else
 		state = 0 //fine
 
-/obj/item/stack/tile/light/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	..()
-	if(istype(O,/obj/item/tool/crowbar))
-		new/obj/item/stack/sheet/metal(user.loc)
+/obj/item/stack/tile/light/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/crowbar))
+		new /obj/item/stack/sheet/metal(user.loc)
 		amount--
-		new/obj/item/stack/light_w(user.loc)
+		new /obj/item/stack/light_w(user.loc)
 		if(amount <= 0)
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)

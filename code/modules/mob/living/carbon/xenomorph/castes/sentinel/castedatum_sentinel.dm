@@ -3,7 +3,7 @@
 	display_name = "Sentinel"
 	upgrade_name = ""
 	caste_desc = "A weak ranged combat alien."
-	caste_type_path = /mob/living/carbon/Xenomorph/Sentinel
+	caste_type_path = /mob/living/carbon/xenomorph/sentinel
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
 
@@ -28,7 +28,7 @@
 	evolution_threshold = 100
 	upgrade_threshold = 100
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Spitter)
+	evolves_to = list(/mob/living/carbon/xenomorph/spitter)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

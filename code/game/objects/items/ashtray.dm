@@ -14,43 +14,47 @@
 	src.pixel_x = rand(-6, 6)
 	return
 
-/obj/item/ashtray/attackby(obj/item/W as obj, mob/user as mob)
-	if (obj_integrity < 1)
+/obj/item/ashtray/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(obj_integrity < 1)
 		return
-	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/cigarette) || istype(W, /obj/item/tool/match))
-		if (contents.len >= max_butts)
+
+	else if(istype(I, /obj/item/trash/cigbutt) || istype(I, /obj/item/clothing/mask/cigarette) || istype(I, /obj/item/tool/match))
+		if(length(contents) >= max_butts)
 			to_chat(user, "This ashtray is full.")
 			return
-		user.transferItemToLoc(W, src)
 
-		if (istype(W,/obj/item/clothing/mask/cigarette))
-			var/obj/item/clothing/mask/cigarette/cig = W
-			if (cig.heat_source)
-				src.visible_message("[user] crushes [cig] in [src], putting it out.")
-				STOP_PROCESSING(SSobj, cig)
-				var/obj/item/butt = new cig.type_butt(src)
-				cig.transfer_fingerprints_to(butt)
-				qdel(cig)
-				W = butt
-			else if (cig.heat_source == 0)
+		user.transferItemToLoc(I, src)
+
+		if(istype(I, /obj/item/clothing/mask/cigarette))
+			var/obj/item/clothing/mask/cigarette/cig = I
+			if(!cig.heat)
 				to_chat(user, "You place [cig] in [src] without even smoking it. Why would you do that?")
+				return
 
-		src.visible_message("[user] places [W] in [src].")
+			visible_message("[user] crushes [cig] in [src], putting it out.")
+			STOP_PROCESSING(SSobj, cig)
+			new cig.type_butt(src)
+			qdel(cig)
+
+		visible_message("[user] places [I] in [src].")
 		user.update_inv_l_hand(0)
 		user.update_inv_r_hand()
-		add_fingerprint(user)
-		if (contents.len == max_butts)
+
+		if(length(contents) >= max_butts)
 			icon_state = icon_full
 			desc = empty_desc + " It's stuffed full."
-		else if (contents.len > max_butts/2)
+
+		else if(length(contents) >= max_butts / 2)
 			icon_state = icon_half
 			desc = empty_desc + " It's half-filled."
+
 	else
-		obj_integrity = max(0,obj_integrity - W.force)
-		to_chat(user, "You hit [src] with [W].")
-		if (obj_integrity < 1)
+		obj_integrity = max(0, obj_integrity - I.force)
+		to_chat(user, "You hit [src] with [I].")
+		if(obj_integrity < 1)
 			die()
-	return
 
 /obj/item/ashtray/throw_impact(atom/hit_atom)
 	if (obj_integrity > 0)

@@ -15,9 +15,6 @@ HOSTEDBY yournamehere
 ## The title of the main window.
 TITLE Change Me
 
-## Password to make your server appear on the hub.
-HUBPASSWORD kMZy3U5jJHSiBQjr
-
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
 
@@ -88,11 +85,7 @@ LOG_MANIFEST
 
 GUEST_JOBBAN
 
-ALLOW_METADATA
-
 LOOC_ENABLED
-
-JOBS_HAVE_MINIMAL_ACCESS
 
 BONES_CAN_BREAK
 LIMBS_CAN_BREAK

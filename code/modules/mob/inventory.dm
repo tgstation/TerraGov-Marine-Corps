@@ -23,6 +23,7 @@
 		W.forceMove(src)
 		l_hand = W
 		W.layer = ABOVE_HUD_LAYER
+		W.plane = ABOVE_HUD_PLANE
 		W.equipped(src,SLOT_L_HAND)
 		update_inv_l_hand()
 		return TRUE
@@ -38,6 +39,7 @@
 		W.forceMove(src)
 		r_hand = W
 		W.layer = ABOVE_HUD_LAYER
+		W.plane = ABOVE_HUD_PLANE
 		W.equipped(src,SLOT_R_HAND)
 		update_inv_r_hand()
 		return TRUE
@@ -68,9 +70,9 @@
 	else
 		W.forceMove(get_turf(src))
 		W.layer = initial(W.layer)
+		W.plane = initial(W.plane)
 		W.dropped(src)
 		return FALSE
-
 
 
 /mob/proc/drop_item_v()		//this is dumb.
@@ -130,6 +132,7 @@
 	if (client)
 		client.screen -= I
 	I.layer = initial(I.layer)
+	I.plane = initial(I.plane)
 	if(newloc)
 		if(!nomoveupdate)
 			I.forceMove(newloc)
@@ -201,16 +204,11 @@
 
 //proc to get the item in the active hand.
 /mob/proc/get_held_item()
-	if(issilicon(src))
-		if(iscyborg(src))
-			if(src:module_active)
-				return src:module_active
+	if (hand)
+		return l_hand
 	else
-		if (hand)
-			return l_hand
-		else
-			return r_hand
-		return
+		return r_hand
+	return
 
 /mob/living/carbon/human/proc/equip_if_possible(obj/item/W, slot, del_on_fail = 1) // since byond doesn't seem to have pointers, this seems like the best way to do this :/
 	//warning: icky code
@@ -293,6 +291,7 @@
 
 	if(equipped)
 		W.layer = ABOVE_HUD_LAYER
+		W.plane = ABOVE_HUD_PLANE
 		if(src.back && W.loc != src.back)
 			W.loc = src
 	else

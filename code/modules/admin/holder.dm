@@ -278,11 +278,13 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
+	/datum/admins/proc/log_panel,
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/mcdb,
+	/datum/admins/proc/check_fingerprints,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -299,6 +301,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
+	/datum/admins/proc/imaginary_friend,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -352,7 +355,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 
 /world/proc/AVfun()
 	return list(
-	/datum/admins/proc/select_rank,
+	/datum/admins/proc/edit_rank,
 	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/change_squad,
 	/datum/admins/proc/set_view_range,
@@ -370,7 +373,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/announce,
 	/datum/admins/proc/force_distress,
 	/datum/admins/proc/force_dropship,
-	/datum/admins/proc/force_ert_shuttle,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,
@@ -381,6 +383,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
+	/datum/admins/proc/launch_pod,
 	/client/proc/toggle_buildmode
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
@@ -616,3 +619,17 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	var/stealth = "@[num2text(num)]"
 	GLOB.stealthminID["IRCKEY"] = stealth
 	return	stealth
+
+
+/proc/IsAdminGhost(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(!user.client)
+		return FALSE
+	if(!isobserver(user))
+		return FALSE
+	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
+		return FALSE
+	if(!user.client.ai_interact)
+		return FALSE
+	return TRUE

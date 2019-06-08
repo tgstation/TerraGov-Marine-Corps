@@ -1,5 +1,4 @@
 /datum/job/command
-	department_flag = J_FLAG_SHIP
 	selection_color = "#ddddff"
 	supervisors = "the acting captain"
 	faction = "Marine"
@@ -11,8 +10,6 @@
 	title = "Captain"
 	paygrade = "O6"
 	comm_title = "CPT"
-	flag = SHIP_CO
-	prefflag = PREF_JOB_CO
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
 	skills_type = /datum/skills/captain
@@ -55,8 +52,6 @@ Godspeed, captain! And remember, you are not above the law."})
 	title = "Field Commander"
 	paygrade = "MO4"
 	comm_title = "FCDR"
-	flag = SHIP_XO
-	prefflag = PREF_JOB_FC
 	skills_type = /datum/skills/FO
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
@@ -64,6 +59,10 @@ Godspeed, captain! And remember, you are not above the law."})
 	outfit = /datum/outfit/job/command/fieldcommander
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
+
+/datum/job/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
+	. = ..()
+	SSdirection.set_leader("marine-sl", L)
 
 
 /datum/job/command/fieldcommander/radio_help_message(mob/M)
@@ -97,11 +96,9 @@ Make the TGMC proud!"})
 	title = "Intelligence Officer"
 	paygrade = "O3"
 	comm_title = "IO"
-	flag = SHIP_SO
-	prefflag = PREF_JOB_SO
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
+	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/intelligenceofficer
@@ -135,11 +132,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	title = "Pilot Officer"
 	paygrade = "WO"
 	comm_title = "PO"
-	flag = SHIP_PO
-	prefflag = PREF_JOB_PO
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
@@ -174,11 +169,9 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	title = "Tank Crewman"
 	paygrade = "E7"
 	comm_title = "TC"
-	flag = SHIP_TC
-	prefflag = PREF_JOB_TC
 	total_positions = 2
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/tank_crew
 	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
 	outfit = /datum/outfit/job/command/tank_crew
@@ -215,12 +208,10 @@ You could use MTs help to repair and replace hardpoints."})
 	title = "Master at Arms"
 	paygrade = "PO"
 	comm_title = "MA"
-	flag = SHIP_MP
-	prefflag = PREF_JOB_MP
 	total_positions = 5
 	selection_color = "#ffdddd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
 	outfit = /datum/outfit/job/command/masteratarms
@@ -257,11 +248,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	title = "Command Master at Arms"
 	paygrade = "O3"
 	comm_title = "CMA"
-	flag = SHIP_CMP
-	prefflag = PREF_JOB_CMP
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RO)
 	skills_type = /datum/skills/CMP
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
 	outfit = /datum/outfit/job/command/warrant
@@ -273,7 +262,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
-You lead the Military Police, ensure your officers uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>,, and maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+You lead the Military Police, ensure your officers uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>, and maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"})
 
 
@@ -297,7 +286,6 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 /datum/job/logistics
-	department_flag = J_FLAG_SHIP
 	supervisors = "the acting captain"
 	total_positions = 1
 	faction = "Marine"
@@ -308,11 +296,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	title = "Chief Ship Engineer"
 	paygrade = "O3"
 	comm_title = "CSE"
-	flag = SHIP_CE
-	prefflag = PREF_JOB_CE
 	selection_color = "#ffeeaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/logistics/engineering
@@ -349,11 +335,9 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	title = "Requisitions Officer"
 	paygrade = "CPO"
 	comm_title = "RO"
-	flag = SHIP_RO
-	prefflag = PREF_JOB_RO
 	selection_color = "#9990B2"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/logistics/requisition
@@ -390,13 +374,11 @@ A happy ship is a well-functioning ship."})
 	title = "Ship Engineer"
 	comm_title = "SE"
 	paygrade = "PO"
-	flag = SHIP_MT
-	prefflag = PREF_JOB_MT
 	total_positions = 4
 	supervisors = "the chief ship engineer"
 	selection_color = "#fff5cc"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO)
 	skills_type = /datum/skills/MT
 	display_order = JOB_DISPLAY_ORDER_MAINTENANCE_TECH
 	outfit = /datum/outfit/job/logistics/tech/maint
@@ -431,13 +413,11 @@ Start with the ship's engine, and don't forget radiation equipment."})
 	title = "Cargo Technician"
 	paygrade = "PO"
 	comm_title = "CT"
-	flag = SHIP_CT
-	prefflag = PREF_JOB_CT
 	total_positions = 2
 	supervisors = "the requisitions officer"
 	selection_color = "#BAAFD9"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/CT
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECH
 	outfit = /datum/outfit/job/logistics/tech/cargo
@@ -468,7 +448,6 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 
 /datum/job/medical
-	department_flag = J_FLAG_SHIP
 	faction = "Marine"
 
 
@@ -476,13 +455,11 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	title = "Chief Medical Officer"
 	comm_title = "CMO"
 	paygrade = "O3"
-	flag = SHIP_CMO
-	prefflag = PREF_JOB_CMO
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
@@ -503,7 +480,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/radio/headset/almayer/cmo
+	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/rank/medical/green
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
 	shoes = /obj/item/clothing/shoes/white
@@ -522,13 +499,11 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	title = "Medical Officer"
 	comm_title = "MO"
 	paygrade = "O1"
-	flag = SHIP_DOCTOR
-	prefflag = PREF_JOB_DOCTOR
 	total_positions = 6
 	supervisors = "the chief medical officer"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
 	outfit = /datum/outfit/job/medical/medicalofficer
@@ -568,9 +543,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	supervisors = "the NT corporate office"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
-	flag = SHIP_RESEARCHER
-	prefflag = PREF_JOB_RESEARCHER
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_MEDIAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
@@ -604,7 +577,6 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 
 /datum/job/civilian
-	department_flag = J_FLAG_SHIP
 	total_positions = 1
 	faction = "Marine"
 
@@ -614,12 +586,10 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	title = "Corporate Liaison"
 	paygrade = "NT"
 	comm_title = "CL"
-	flag = SHIP_CL
-	prefflag = PREF_JOB_CL
 	supervisors = "the NT corporate office"
 	selection_color = "#ffeedd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison
@@ -648,8 +618,6 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 /datum/job/civilian/synthetic
 	title = "Synthetic"
 	comm_title = "Syn"
-	flag = SHIP_SYNTH
-	prefflag = PREF_JOB_SYNTH
 	supervisors = "the acting captain"
 	selection_color = "#aaee55"
 	skills_type = /datum/skills/synthetic

@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Larva
-	caste_base_type = /mob/living/carbon/Xenomorph/Larva
+/mob/living/carbon/xenomorph/larva
+	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
 	amount_grown = 0
@@ -11,12 +11,13 @@
 	tier = XENO_TIER_ZERO  //Larva's don't count towards Pop limits
 	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
+	hud_type = /datum/hud/larva
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/xenohide,
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl
+		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)
 
 	var/base_icon_state = "Larva"
@@ -24,20 +25,20 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
+/mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A)
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	. = ..()
 
-/mob/living/carbon/Xenomorph/Larva/start_pulling(atom/movable/AM)
+/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM)
 	return
 
-/mob/living/carbon/Xenomorph/Larva/pull_response(mob/puller)
+/mob/living/carbon/xenomorph/larva/pull_response(mob/puller)
 	return TRUE
 
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Larva/Stat()
+/mob/living/carbon/xenomorph/larva/Stat()
 	. = ..()
 
 	if(statpanel("Stats"))
@@ -45,7 +46,7 @@
 
 
 //Larva Progression.. Most of this stuff is obsolete.
-/mob/living/carbon/Xenomorph/Larva/update_progression()
+/mob/living/carbon/xenomorph/larva/update_progression()
 	if(amount_grown < max_grown)
 		amount_grown++
 	if(!isnull(src.loc) && amount_grown < max_grown)
@@ -55,7 +56,7 @@
 // ***************************************
 // *********** Name
 // ***************************************
-/mob/living/carbon/Xenomorph/Larva/generate_name()
+/mob/living/carbon/xenomorph/larva/generate_name()
 	var/progress = "" //Naming convention, three different names
 
 	switch(amount_grown)
@@ -74,7 +75,7 @@
 // ***************************************
 // *********** Icon
 // ***************************************
-/mob/living/carbon/Xenomorph/Larva/update_icons()
+/mob/living/carbon/xenomorph/larva/update_icons()
 	generate_name()
 	
 	var/bloody = ""
@@ -99,7 +100,7 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/Xenomorph/Larva/death(gibbed, deathmessage)
+/mob/living/carbon/xenomorph/larva/death(gibbed, deathmessage)
 	log_admin("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()

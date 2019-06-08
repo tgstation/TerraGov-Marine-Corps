@@ -44,14 +44,17 @@
 	..()
 	to_chat(user, "It contains [reagents.total_volume] unit\s of water!")
 
-/obj/structure/mopbucket/attackby(obj/item/I, mob/user)
+/obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
 			to_chat(user, "<span class='warning'>[src] is out of water!</span>")
-		else
-			reagents.trans_to(I, 5)
-			to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			return
+
+		reagents.trans_to(I, 5)
+		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/structure/shipmast
 	name = "\the Ships Mast"
@@ -148,11 +151,11 @@ obj/item/alienjar
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	layer = MOB_LAYER
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
-	if(istype(A) && A.checkpass(PASSGLASS))
+	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
 		return prob(60)
 
 	var/obj/structure/bed/B = A
@@ -164,7 +167,7 @@ obj/item/alienjar
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse) && !ismaintdrone(M))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse))  //If your not laying down, or a small creature, no pass.
 			return 0
 	return ..()
 

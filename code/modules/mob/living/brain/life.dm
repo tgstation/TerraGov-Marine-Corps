@@ -91,7 +91,6 @@
 		if(!container && (health < get_death_threshold() || ((world.time - timeofhostdeath) > CONFIG_GET(number/revival_brain_life))) )
 			death()
 			blind_eyes(1)
-			silent = 0
 			return 1
 
 		//Handling EMP effect in the Life(), it's made VERY simply, and has some additional effects handled elsewhere
@@ -106,7 +105,6 @@
 				if(21 to 30)//High level of EMP damage, unable to see, hear, or speak
 					set_blindness(2)
 					ear_deaf = 1
-					silent = 1
 					if(!alert)//Sounds an alarm, but only once per 'level'
 						emote("alarm")
 						to_chat(src, "<span class='warning'>Major electrical distruption detected: System rebooting.</span>")
@@ -117,7 +115,6 @@
 					alert = 0
 					adjust_blindness(-1)
 					ear_deaf = 0
-					silent = 0
 					emp_damage -= 1
 				if(11 to 19)//Moderate level of EMP damage, resulting in nearsightedness and ear damage
 					blur_eyes(1)
@@ -178,9 +175,8 @@
 
 		if (interactee)
 			interactee.check_eye(src)
-		else
-			if(client && !client.adminobs)
-				reset_view(null)
+		else if(client)
+			reset_view(null)
 
 	return 1
 

@@ -14,47 +14,56 @@
 	var/page = 1
 	var/screen = 0
 
-/obj/item/paper_bundle/attackby(obj/item/W, mob/user)
-	..()
-	var/obj/item/paper/P
-	if(istype(W, /obj/item/paper))
-		P = W
-		if (istype(P, /obj/item/paper/carbon))
+/obj/item/paper_bundle/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+
+	if(istype(I, /obj/item/paper))
+		var/obj/item/paper/P = I
+
+		if(istype(P, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = P
-			if (!C.iscopy && !C.copied)
+			if(!C.iscopy && !C.copied)
 				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
-				add_fingerprint(user)
 				return
-		if(loc == user)
-			user.dropItemToGround(P)
-			attach_doc(P, user)
-	else if(istype(W, /obj/item/photo))
-		if(loc == user)
-			user.dropItemToGround(W)
-			attach_doc(W, user)
-	else if(W.heat_source >= 400)
-		burnpaper(W, user)
-	else if(istype(W, /obj/item/paper_bundle))
-		if(loc == user)
-			user.dropItemToGround(W)
-			for(var/obj/O in W)
-				attach_doc(O, user, TRUE)
-			to_chat(user, "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>")
-			qdel(W)
-	else
-		if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/toy/crayon))
-			usr << browse("", "window=[name]") //Closes the dialog
-		P = contents[page]
-		P.attackby(W, user)
+
+		if(loc != user)
+			return
+
+		user.dropItemToGround(P)
+		attach_doc(P, user)
+
+	else if(istype(I, /obj/item/photo))
+		if(loc != user)
+			return
+
+		user.dropItemToGround(I)
+		attach_doc(I, user)
+
+	else if(I.heat >= 400)
+		burnpaper(I, user)
+
+	else if(istype(I, /obj/item/paper_bundle))
+		if(loc != user)
+			return
+
+		user.dropItemToGround(I)
+		for(var/obj/O in I)
+			attach_doc(O, user, TRUE)
+		to_chat(user, "<span class='notice'>You add \the [I] to [src].</span>")
+		qdel(I)
+
+	else if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
+		user << browse(null, "window=[name]") //Closes the dialog
 
 	update_icon()
 	attack_self(user) //Update the browsed page.
-	add_fingerprint(user)
+
 
 /obj/item/paper_bundle/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.heat_source >= 400 && !user.restrained())
+	if(P.heat >= 400 && !user.restrained())
 		if(istype(P, /obj/item/tool/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -62,7 +71,7 @@
 		"[class]You hold \the [P] up to \the [src], burning it slowly.")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat_source)
+			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat)
 				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
@@ -106,7 +115,6 @@
 			else
 				dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
 			human_user << browse(dat, "window=[name]")
-			P.add_fingerprint(usr)
 		else if(istype(src[page], /obj/item/photo))
 			var/obj/item/photo/P = src[page]
 			human_user << browse_rsc(P.img, "tmp_photo.png")
@@ -115,8 +123,6 @@
 			+ "<div> <img src='tmp_photo.png' width = '180'" \
 			+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : ""]"\
 			+ "</body></html>", "window=[name]")
-			P.add_fingerprint(usr)
-		add_fingerprint(usr)
 		update_icon()
 	return
 
@@ -173,7 +179,6 @@
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the bundle?", "Bundle Labelling", null)  as text), 1, MAX_NAME_LEN)
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
-	add_fingerprint(usr)
 
 /obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
@@ -183,7 +188,6 @@
 	to_chat(usr, "<span class='notice'>You loosen the bundle.</span>")
 	for(var/obj/O in src)
 		O.forceMove(usr.loc)
-		O.add_fingerprint(usr)
 	usr.dropItemToGround(src)
 	qdel(src)
 
@@ -222,7 +226,6 @@
 	if(I.loc == user)
 		user.dropItemToGround(I)
 	I.forceMove(src)
-	I.add_fingerprint(user)
 	amount++
 	if(!no_message)
 		to_chat(user, "<span class='notice'>You add [I] to [src].</span>")

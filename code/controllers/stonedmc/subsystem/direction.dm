@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(direction)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	wait = 1 SECONDS
 
-	// this is a map of defines to mob references, eg; list(CHARLIE_SL = <mob ref>, XENO_NORMAL_QUEEN = <mob ref>)
+	// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
 	var/list/leader_mapping = list()
 
 	// this is a two d list of defines to lists of mobs tracking that leader
@@ -19,15 +19,16 @@ SUBSYSTEM_DEF(direction)
 
 	var/list/currentrun
 
+	var/last_faction_id = 0 // use to create unique faction ids
+
+
 /datum/controller/subsystem/direction/Initialize(start_timeofday)
-	leader_mapping = list(
-		TRACK_ALPHA_SQUAD,TRACK_BRAVO_SQUAD,TRACK_CHARLIE_SQUAD,TRACK_DELTA_SQUAD, // Squads
-		XENO_HIVE_NORMAL,XENO_HIVE_CORRUPTED,XENO_HIVE_ALPHA,XENO_HIVE_BETA,XENO_HIVE_ZETA // Hives
-	)
-	for(var/a in leader_mapping)
-		processing_mobs.Add(a)
-		processing_mobs[a] = list()
-	return ..()
+	. = ..()
+	// Static squads/factions can be defined here for tracking
+	init_squad(null, null, "marine-sl")
+	for (var/hivenumber in GLOB.hive_datums)
+		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
+		init_squad(null, HS.living_xeno_queen, hivenumber)
 
 /datum/controller/subsystem/direction/stat_entry()
 	var/mobcount = 0
@@ -98,3 +99,12 @@ SUBSYSTEM_DEF(direction)
 
 /datum/controller/subsystem/direction/proc/clear_leader(squad_id)
 	leader_mapping[squad_id] = null
+
+/datum/controller/subsystem/direction/proc/init_squad(datum/squad/S, mob/L, tracking_id)
+	if(!tracking_id)
+		tracking_id = "faction_[last_faction_id++]"
+	processing_mobs[tracking_id] = list()
+	leader_mapping[tracking_id] = L // Unassigned squad leader by default
+
+	return tracking_id
+

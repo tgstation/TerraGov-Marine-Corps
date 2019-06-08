@@ -125,12 +125,6 @@
 	toxpwr = 0
 	taste_description = "mint"
 
-/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/L, metabolism)
-	if(FAT in L.mutations)
-		L.gib()
-	else
-		return ..()
-
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	id = "carpotoxin"
@@ -155,7 +149,6 @@
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
 	L.KnockDown(10)
-	L.silent = max(L.silent, 10)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
@@ -219,10 +212,9 @@
 	taste_multi = 1
 
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/effect/alien/weeds/))
-		var/obj/effect/alien/weeds/alien_weeds = O
-		alien_weeds.obj_integrity -= rand(15,35) // Kills alien weeds pretty fast
-		alien_weeds.healthcheck()
+	if(istype(O,/obj/effect/alien/weeds))
+		var/obj/effect/alien/A = O
+		A.take_damage(min(0.5 * volume))
 	else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
 	else if(istype(O,/obj/effect/plantsegment))
@@ -445,7 +437,7 @@
 				to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
 			return
 
-	if(!L.unacidable)
+	if(!isxeno(L))
 		if(ishuman(L) && volume >= 10)
 			var/mob/living/carbon/human/H = L
 			var/datum/limb/affecting = H.get_limb("head")

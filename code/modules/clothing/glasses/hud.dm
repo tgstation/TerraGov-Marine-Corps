@@ -8,14 +8,14 @@
 
 /obj/item/clothing/glasses/hud/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_GLASSES && active)
-		var/datum/mob_hud/H = huds[hud_type]
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
 	..()
 
 /obj/item/clothing/glasses/hud/dropped(mob/living/carbon/human/user)
 	if(istype(user) && active)
 		if(src == user.glasses) //dropped is called before the inventory reference is updated.
-			var/datum/mob_hud/H = huds[hud_type]
+			var/datum/atom_hud/H = GLOB.huds[hud_type]
 			H.remove_hud_from(user)
 	..()
 
@@ -24,7 +24,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(toggleable && H.glasses == src) //toggleable and worn
-			var/datum/mob_hud/MH = huds[hud_type]
+			var/datum/atom_hud/MH = GLOB.huds[hud_type]
 			if(active)
 				MH.add_hud_to(user)
 			else
@@ -37,7 +37,7 @@
 	icon_state = "healthhud"
 	flags_armor_protection = 0
 	toggleable = 1
-	hud_type = MOB_HUD_MEDICAL_ADVANCED
+	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
 /obj/item/clothing/glasses/hud/security
@@ -46,7 +46,7 @@
 	icon_state = "securityhud"
 	toggleable = 1
 	flags_armor_protection = 0
-	hud_type = MOB_HUD_SECURITY_ADVANCED
+	hud_type = DATA_HUD_SECURITY_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 	var/global/list/jobs[0]
 
@@ -56,7 +56,6 @@
 	icon_state = "jensenshades"
 	item_state = "jensenshades"
 	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING // the define name is just misleading, don't worry
 	toggleable = 0
 	actions_types = list()
 
@@ -66,5 +65,5 @@
 	icon_state = "securityhud"
 	flags_armor_protection = 0
 	toggleable = TRUE
-	hud_type = MOB_HUD_XENO_STATUS
+	hud_type = DATA_HUD_XENO_STATUS
 	actions_types = list(/datum/action/item_action/toggle)

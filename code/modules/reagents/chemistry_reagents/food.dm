@@ -143,7 +143,7 @@
 		if(agony_start to INFINITY)
 			L.apply_effect(agony_amount,AGONY,0)
 			if(prob(5))
-				L.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
+				L.emote(pick("dry heaves!", "coughs!", "splutters!"))
 				to_chat(L, discomfort_message)
 	return ..()
 

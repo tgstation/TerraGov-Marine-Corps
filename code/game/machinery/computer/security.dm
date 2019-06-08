@@ -39,13 +39,15 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
-	if(istype(O, /obj/item/card/id) && !scan)
-		if(usr.drop_held_item())
-			O.forceMove(src)
-			scan = O
-			to_chat(user, "You insert [O].")
-	..()
+/obj/machinery/computer/secure_data/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/card/id) && !scan)
+		if(!user.drop_held_item())
+			return
+		I.forceMove(src)
+		scan = I
+		to_chat(user, "You insert [I].")
 
 /obj/machinery/computer/secure_data/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -264,13 +266,6 @@ What a mess.*/
 					src.active2 = null
 					src.authenticated = usr.name
 					src.rank = "AI"
-					src.screen = 1
-				else if (iscyborg(usr))
-					src.active1 = null
-					src.active2 = null
-					src.authenticated = usr.name
-					var/mob/living/silicon/robot/R = usr
-					src.rank = "[R.modtype] [R.braintype]"
 					src.screen = 1
 				else if (istype(scan, /obj/item/card/id))
 					active1 = null
@@ -567,7 +562,6 @@ What a mess.*/
 					else
 						temp = "This function does not appear to be working at the moment. Our apologies."
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 	return
 
@@ -578,11 +572,6 @@ What a mess.*/
 	if(istype(user.get_active_held_item(), /obj/item/photo))
 		var/obj/item/photo/photo = user.get_active_held_item()
 		return photo.img
-	if(issilicon(user))
-		var/mob/living/silicon/tempAI = usr
-		var/datum/picture/selection = tempAI.GetPicture()
-		if (selection)
-			return selection.fields["img"]
 
 /obj/machinery/computer/secure_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
