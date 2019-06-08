@@ -143,7 +143,7 @@
 /obj/structure/flora/tree/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/m_gift
+	var/gift_type = /obj/item/gift/marine
 	var/list/ckeys_that_took = list()
 
 /obj/structure/flora/tree/xmas/presents/attack_hand(mob/living/user)

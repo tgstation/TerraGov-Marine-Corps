@@ -121,9 +121,9 @@
 /obj/structure/closet/secure_closet/animal/Initialize()
 	. = ..()
 	new /obj/item/assembly/signaler(src)
-	new /obj/item/radio/electropack(src)
-	new /obj/item/radio/electropack(src)
-	new /obj/item/radio/electropack(src)
+	new /obj/item/electropack(src)
+	new /obj/item/electropack(src)
+	new /obj/item/electropack(src)
 
 
 
