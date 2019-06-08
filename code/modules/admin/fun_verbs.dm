@@ -1042,13 +1042,7 @@
 
 	if(istype(usr, /mob/camera/imaginary_friend))
 		var/mob/camera/imaginary_friend/IF = usr
-		var/mob/living/L = IF.owner
-		IF.icon = IF.human_image
-		var/mob/observer/O = IF.ghostize()
-		qdel(IF)
-
-		log_admin("[key_name(O)] stopped being imaginary friend of [key_name(L)].")
-		message_admins("[ADMIN_TPMONTY(O)] stopped being imaginary friend of [ADMIN_TPMONTY(L)].")
+		IF.deactivate()
 		return
 
 	if(is_mentor(usr.client) && !isobserver(usr))

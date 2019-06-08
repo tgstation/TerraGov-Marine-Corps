@@ -3,10 +3,10 @@
 	real_name = "imaginary friend"
 	desc = "A wonderful yet fake friend."
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	see_invisible = SEE_INVISIBLE_LIVING
+	see_invisible = SEE_INVISIBLE_MINIMUM
 	invisibility = INVISIBILITY_MAXIMUM
-	sight = NONE
-	see_in_dark = 0
+	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
+	see_in_dark = 8
 	move_on_shuttle = TRUE
 
 	var/icon/human_image
@@ -27,11 +27,7 @@
 
 /mob/camera/imaginary_friend/Logout()
 	. = ..()
-	icon = human_image
-	log_admin("[key_name(src)] stopped being imaginary friend of [key_name(owner)].")
-	message_admins("[ADMIN_TPMONTY(src)] stopped being imaginary friend of [ADMIN_TPMONTY(owner)].")
-	ghostize()
-	qdel(src)
+	deactivate()
 
 
 /mob/camera/imaginary_friend/Initialize(mapload, mob/owner)
@@ -146,9 +142,20 @@
 
 
 /mob/camera/imaginary_friend/proc/recall()
-	if(!owner || loc == owner)
+	if(QDELETED(owner))
+		deactivate()
+		return FALSE
+	if(loc == owner)
 		return FALSE
 	forceMove(owner)
+
+
+/mob/camera/imaginary_friend/proc/deactivate()
+	icon = human_image
+	log_admin("[key_name(src)] stopped being imaginary friend of [key_name(owner)].")
+	message_admins("[ADMIN_TPMONTY(src)] stopped being imaginary friend of [ADMIN_TPMONTY(owner)].")
+	ghostize()
+	qdel(src)
 
 
 /datum/action/innate/imaginary_join
