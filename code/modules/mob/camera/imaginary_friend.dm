@@ -110,11 +110,9 @@
 	to_chat(owner, "[rendered]")
 	to_chat(src, "[rendered]")
 
-	//speech bubble
-	if(owner.client)
-		var/mutable_appearance/MA = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
-		MA.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, MA, list(owner.client), 30)
+	var/image/I = image('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i
@@ -156,6 +154,10 @@
 	message_admins("[ADMIN_TPMONTY(src)] stopped being imaginary friend of [ADMIN_TPMONTY(owner)].")
 	ghostize()
 	qdel(src)
+
+
+/mob/camera/imaginary_friend/toggle_typing_indicator(emoting)
+	return
 
 
 /datum/action/innate/imaginary_join
