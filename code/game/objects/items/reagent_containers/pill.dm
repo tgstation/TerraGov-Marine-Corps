@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	. = ..()
 	if(!LAZYLEN(GLOB.randomized_pill_icons))
 		var/list/allowed_numbers = shuffle(list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21))
-		for(var/i = 1 to allowed_numbers.len)
+		for(var/i in 1 to allowed_numbers.len)
 			GLOB.randomized_pill_icons += "pill[allowed_numbers[i]]"
 	if(!icon_state)
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : "pill[rand(1,21)]"
