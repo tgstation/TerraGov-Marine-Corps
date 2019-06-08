@@ -283,14 +283,15 @@
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 
-	else if(!istype(I, /obj/item/grab))
-		return
-
 	else if(isxeno(user))
 		return
 
 	else if(occupant)
 		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
+		return
+
+
+	if(!istype(I, /obj/item/grab))
 		return
 
 	var/obj/item/grab/G = I
