@@ -710,7 +710,7 @@
 			qdel(O)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	for(var/atom/movable/A in contents)
+	for(var/atom/movable/A in contents - radio)
 		A.forceMove(loc)
 	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
@@ -813,14 +813,14 @@
 
 	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
-		
+
 	if(occupant)
 		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
-	if(!M || !G) 
+	if(!M || !G)
 		return
-		
+
 	M.forceMove(src)
 	update_use_power(2)
 	occupant = M
