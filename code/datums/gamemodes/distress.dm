@@ -253,7 +253,8 @@
 
 /datum/game_mode/distress/proc/transform_queen(datum/mind/M, number_of_xenos)
 	var/mob/living/carbon/xenomorph/X
-	if(number_of_xenos < MIN_HIVE_SIZE_FOR_QUEEN)
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(number_of_xenos < HN.xenos_per_queen)
 		X = new /mob/living/carbon/xenomorph/shrike(pick(GLOB.xeno_spawn))
 	else
 		X = new /mob/living/carbon/xenomorph/queen(pick(GLOB.xeno_spawn))

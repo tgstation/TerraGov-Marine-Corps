@@ -34,7 +34,7 @@
 	name = "Psychic Fling"
 	action_icon_state = "lay_egg"
 	mechanics_text = "Knock a target flying up to 3 tiles. Ranged ability."
-	cooldown_timer = 30 SECONDS
+	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
 
@@ -70,7 +70,9 @@
 	"<span class='xenowarning'>You violently fling [H] with the power of your mind!</span>")
 	H.visible_message("<span class='xenowarning'>[H] is violently flung to the side by an unseen force!</span>", \
 	"<span class='xenowarning'>You are violently flung to the side by an unseen force!</span>")
-	//playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
+	playsound(S,'sound/effects/magic.ogg', 75, 1)
+	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
+
 	succeed_activate()
 	H.apply_effects(1, 2) 	// Stun
 	shake_camera(H, 2, 1)
@@ -133,7 +135,8 @@
 	"<span class='xenowarning'>You choke [H] with the power of your mind!</span>")
 	H.visible_message("<span class='xenowarning'>[H] is suddenly grabbed by the neck by an unseen force!</span>", \
 	"<span class='xenowarning'>Your is suddenly grabbed by an unseen force!</span>")
-	//playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
+	playsound(S,'sound/effects/magic.ogg', 75, 1)
+	playsound(H,'sound/effects/blobattack.ogg', 75, 1)
 
 	succeed_activate()
 	S.using_psychic_choke = TRUE

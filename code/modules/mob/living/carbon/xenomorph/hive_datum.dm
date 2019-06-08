@@ -7,6 +7,7 @@
 	var/slashing_allowed = XENO_SLASHING_ALLOWED //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
 	var/queen_time = QUEEN_DEATH_TIMER //5 minutes between queen deaths
 	var/xeno_queen_timer
+	var/xenos_per_queen = 6 //Minimum number of xenos to support a queen.
 	var/hive_orders = "" //What orders should the hive have
 	var/color = null
 	var/prefix = ""
