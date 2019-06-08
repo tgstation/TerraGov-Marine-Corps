@@ -334,7 +334,7 @@
 		visible_message("<span class='danger'>[src] grabs [T]!</span>")
 		setDir(SOUTH)
 		T.KnockDown(10)
-		T.anchored = 1
+		T.anchored = TRUE
 		var/original_y = T.pixel_y
 		T.pixel_y = 10
 		murdering = 1
@@ -375,7 +375,7 @@
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-					Move(get_step(src,pick(cardinal)))
+					Move(get_step(src,pick(GLOB.cardinals)))
 					turns_since_move = 0
 
 	//Speaking
@@ -490,9 +490,3 @@
 	visible_message("<span class='danger'>[src] is staggered by the explosion!</span>")
 	adjustBruteLoss(damage)
 	return 1
-
-/mob/living/simple_animal/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
-	..()
-	if(O.force)
-		visible_message("<span class='danger'>[src] is staggered by [O]!</span>")
-		adjustBruteLoss(O.force)

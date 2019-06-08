@@ -40,13 +40,15 @@
 /obj/item/photo/attack_self(mob/user)
 	examine(user)
 
-/obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/tool/pen) || istype(P, /obj/item/toy/crayon))
-		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text)
+/obj/item/photo/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
+		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null) as text)
 		txt = copytext(txt, 1, 128)
-		if(loc == user && user.stat == 0)
-			scribble = txt
-	..()
+		if(loc != user || user.stat != CONSCIOUS)
+			return
+		scribble = txt
 
 /obj/item/photo/examine(mob/user)
 	if(in_range(user, src))
@@ -75,7 +77,6 @@
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "photo")]"
-	add_fingerprint(usr)
 	return
 
 
@@ -104,7 +105,6 @@
 				if("l_hand")
 					M.dropItemToGround(src)
 					M.put_in_l_hand(src)
-			add_fingerprint(usr)
 			return
 		if(over_object == usr && in_range(src, usr) || usr.contents.Find(src))
 			if(usr.s_active)
@@ -153,17 +153,20 @@
 	to_chat(user, "You switch the camera [on ? "on" : "off"].")
 	return
 
-/obj/item/camera/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/camera/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
 			to_chat(user, "<span class='notice'>[src] still has some film in it!</span>")
 			return
+
+		if(!user.temporarilyRemoveItemFromInventory(I))
+			return
+
 		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
-		if(user.temporarilyRemoveItemFromInventory(I))
-			qdel(I)
-			pictures_left = pictures_max
-		return
-	..()
+		qdel(I)
+		pictures_left = pictures_max
 
 
 /obj/item/camera/proc/get_icon(list/turfs, turf/center)
@@ -197,7 +200,7 @@
 				// Check if we're looking at a mob that's lying down
 				if(isliving(A))
 					var/mob/living/L = A
-					if(!istype(L, /mob/living/carbon/Xenomorph)) //xenos don't use icon rotatin for lying.
+					if(!istype(L, /mob/living/carbon/xenomorph)) //xenos don't use icon rotatin for lying.
 						if(L.lying)
 							// If they are, apply that effect to their picture.
 							IM.BecomeLying()

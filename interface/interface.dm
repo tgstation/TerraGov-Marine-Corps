@@ -62,24 +62,30 @@
 	src << link(CONFIG_GET(string/discordurl))
 
 
-/client/verb/submitbug()
-	set name = "Submit Bug"
-	set desc = "Submit a bug."
+/client/verb/github()
+	set name = "Github"
+	set desc = "View the repository."
 	set hidden = TRUE
-	if(CONFIG_GET(string/githuburl))
-		if(alert("This will open our bug tracker page in your browser. Are you sure?",,"Yes","No")=="No")
-			return
-		src << link(CONFIG_GET(string/githuburl))
-	else
+
+	if(!CONFIG_GET(string/githuburl))
 		to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
-	return
+		return
+
+	if(alert("This will open our bug tracker page in your browser. Are you sure?", "Github", "Yes", "No") != "Yes")
+		return
+	
+	src << link(CONFIG_GET(string/githuburl))
+		
+
 
 /client/verb/webmap()
-	var/ship_link = CONFIG_GET(string/shipurl)
-	var/ground_link
 	set name = "webmap"
 	set desc = "Opens the webmap"
 	set hidden = TRUE
+
+	var/ship_link = CONFIG_GET(string/shipurl)
+	var/ground_link
+	
 	var/choice = alert("Do you want to view the ground or the ship?",,"Ship","Ground","Cancel")
 	switch(choice)
 		if("Ship")

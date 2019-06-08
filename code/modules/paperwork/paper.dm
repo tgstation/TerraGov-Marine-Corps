@@ -77,20 +77,16 @@
 	set category = "Object"
 	set src in usr
 
-	if((CLUMSY in usr.mutations) && prob(50))
-		to_chat(usr, "<span class='warning'>You cut yourself on the paper.</span>")
-		return
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text), 1, MAX_NAME_LEN)
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
-	add_fingerprint(usr)
 	return
 
 
 /obj/item/paper/attack_ai(var/mob/living/silicon/ai/user as mob)
 	var/dist
-	if(istype(user) && user.camera) //is AI
-		dist = get_dist(src, user.camera)
+	if(istype(user) && user.current) //is AI
+		dist = get_dist(src, user.current)
 	else //cyborg or AI not seeing through a camera
 		dist = get_dist(src, user)
 	if(dist < 2)
@@ -278,7 +274,7 @@
 /obj/item/paper/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.heat_source >= 400 && !user.restrained())
+	if(P.heat >= 400 && !user.restrained())
 		if(istype(P, /obj/item/tool/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -286,7 +282,7 @@
 		"[class]You hold \the [P] up to \the [src], burning it slowly.</span>")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat_source)
+			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat)
 				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
@@ -339,47 +335,42 @@
 		update_icon()
 
 
-/obj/item/paper/attackby(obj/item/P, mob/user)
-	..()
-	var/clown = 0
-	if(user.mind && (user.mind.assigned_role == "Clown"))
-		clown = 1
+/obj/item/paper/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(P, /obj/item/paper) || istype(P, /obj/item/photo))
-		if (istype(P, /obj/item/paper/carbon))
-			var/obj/item/paper/carbon/C = P
-			if (!C.iscopy && !C.copied)
+	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
+		if(istype(I, /obj/item/paper/carbon))
+			var/obj/item/paper/carbon/C = I
+			if(!C.iscopy && !C.copied)
 				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
-				add_fingerprint(user)
 				return
-		if(loc != user) return
+		if(loc != user) 
+			return
 		var/obj/item/paper_bundle/B = new(get_turf(user))
-		if (name != "paper")
+		if(name != "paper")
 			B.name = name
-		else if (P.name != "paper" && P.name != "photo")
-			B.name = P.name
-		user.dropItemToGround(P)
+		else if(I.name != "paper" && I.name != "photo")
+			B.name = I.name
+		user.dropItemToGround(I)
 		user.dropItemToGround(src)
-		to_chat(user, "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>")
+		to_chat(user, "<span class='notice'>You clip \the [I] to [src].</span>")
 		B.attach_doc(src, user, TRUE)
-		B.attach_doc(P, user, TRUE)
+		B.attach_doc(I, user, TRUE)
 		user.put_in_hands(B)
 
-	else if(istype(P, /obj/item/tool/pen) || istype(P, /obj/item/toy/crayon))
+	else if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
-		//openhelp(user)
-		return
 
-	else if(istype(P, /obj/item/tool/stamp))
-		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_held_item() != P))
+	else if(istype(I, /obj/item/tool/stamp))
+		if((!in_range(src, user) && loc != user && !(istype(loc, /obj/item/clipboard)) && loc.loc != user && user.get_active_held_item() != I))
 			return
 
-		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
+		stamps += (stamps == "" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with \the [I].</i>"
 
 		var/image/stampoverlay = image('icons/obj/items/paper.dmi')
 		var/x
 		var/y
-		if(istype(P, /obj/item/tool/stamp/captain) || istype(P, /obj/item/tool/stamp/centcomm))
+		if(istype(I, /obj/item/tool/stamp/captain) || istype(I, /obj/item/tool/stamp/centcomm))
 			x = rand(-2, 0)
 			y = rand(-1, 2)
 		else
@@ -390,29 +381,22 @@
 		stampoverlay.pixel_x = x
 		stampoverlay.pixel_y = y
 
-		if(istype(P, /obj/item/tool/stamp/clown))
-			if(!clown)
-				to_chat(user, "<span class='notice'>You are totally unable to use the stamp. HONK!</span>")
-				return
-
 		if(!ico)
 			ico = new
-		ico += "paper_[P.icon_state]"
-		stampoverlay.icon_state = "paper_[P.icon_state]"
+		ico += "paper_[I.icon_state]"
+		stampoverlay.icon_state = "paper_[I.icon_state]"
 
 		if(!stamped)
 			stamped = new
-		stamped += P.type
+		stamped += I.type
 		overlays += stampoverlay
 
 		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
 		playsound(src, 'sound/items/stamp.ogg', 15, 1)
 
-	else if(P.heat_source >= 400)
-		burnpaper(P, user)
+	else if(I.heat >= 400)
+		burnpaper(I, user)
 
-	add_fingerprint(user)
-	return
 
 /*
  * Premade paper
@@ -456,7 +440,7 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/flag
 	icon_state = "flag_neutral"
 	item_state = "paper"
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/item/paper/jobs
 	name = "Job Information"

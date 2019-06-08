@@ -75,7 +75,7 @@
 
 /turf/open/floor/plating/ground/mars/random/Initialize()
 	. = ..()
-	dir = pick(alldirs)
+	dir = pick(GLOB.alldirs)
 
 /turf/open/floor/plating/ground/mars/dirttosand
 	name = "sand"

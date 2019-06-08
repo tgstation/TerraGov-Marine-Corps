@@ -7,9 +7,10 @@
 	action_icon_state = "toggle_long_range"
 	mechanics_text = "Activates your weapon sight in the direction you are facing. Must remain stationary to use."
 	plasma_cost = 20
+	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.is_zoomed)
 		X.zoom_out()
 		X.visible_message("<span class='notice'>[X] stops looking off into the distance.</span>", \
@@ -31,9 +32,10 @@
 	action_icon_state = "toggle_bomb0"
 	mechanics_text = "Switches Boiler Bombard type between Corrosive Acid and Neurotoxin."
 	use_state_flags = XACT_USE_BUSY
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	to_chat(X, "<span class='notice'>You will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive acid. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>")
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
@@ -42,7 +44,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	button.overlays.Cut()
 	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas)
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
@@ -68,20 +70,21 @@
 	mechanics_text = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
 	plasma_cost = 200
 	ability_name = "bombard"
+	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	return X.xeno_caste.bomb_delay
 
 /datum/action/xeno_action/activable/bombard/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>You feel your toxin glands swell. You are able to bombard an area again.</span>")
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.selected_ability == src)
 		X.set_bombard_pointer()
 	return ..()
 
 /datum/action/xeno_action/activable/bombard/on_activation()
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	X.visible_message("<span class='notice'>\The [X] begins digging their claws into the ground.</span>", \
 	"<span class='notice'>You begin digging yourself into place.</span>", null, 5)
 	if(!do_after(X, 30, FALSE, null, BUSY_ICON_HOSTILE))
@@ -96,12 +99,12 @@
 	X.set_bombard_pointer()
 
 /datum/action/xeno_action/activable/bombard/on_deactivation()
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.selected_ability == src)
 		X.reset_bombard_pointer()
 		to_chat(X, "<span class='notice'>You relax your stance.</span>")
 
-/mob/living/carbon/Xenomorph/Boiler/Moved(atom/OldLoc,Dir)
+/mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
 	. = ..()
 	if(selected_ability?.type == /datum/action/xeno_action/activable/bombard)
 		var/datum/action/xeno_action/activable/bomb = actions_by_path[/datum/action/xeno_action/activable/bombard]
@@ -110,11 +113,11 @@
 		selected_ability = null
 		update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/Boiler/proc/set_bombard_pointer()
+/mob/living/carbon/xenomorph/boiler/proc/set_bombard_pointer()
 	if(client)
 		client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
 
-/mob/living/carbon/Xenomorph/Boiler/proc/reset_bombard_pointer()
+/mob/living/carbon/xenomorph/boiler/proc/reset_bombard_pointer()
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 
@@ -134,7 +137,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Boiler/X = owner
+	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/turf/T = get_turf(A)
 	var/offset_x = rand(-1, 1)
 	var/offset_y = rand(-1, 1)

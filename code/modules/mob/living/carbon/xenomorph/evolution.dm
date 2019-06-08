@@ -9,7 +9,7 @@
 #define TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC) ( (tierB + tierC) > tierA ) )
 #define TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC) ( (tierC * 3) > (tierA + tierB) )
 
-/mob/living/carbon/Xenomorph/verb/Evolve()
+/mob/living/carbon/xenomorph/verb/Evolve()
 	set name = "Evolve"
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
@@ -92,7 +92,7 @@
 	var/tiertwos
 	var/tierthrees
 
-	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen) //Special case for dealing with queenae
+	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN) || jobban_isbanned(src, ROLE_XENO_QUEEN))
 			to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
 			return
@@ -116,16 +116,16 @@
 
 		switch(hivenumber) // because it causes issues otherwise
 			if(XENO_HIVE_CORRUPTED)
-				new_caste_type = /mob/living/carbon/Xenomorph/Queen/Corrupted
+				new_caste_type = /mob/living/carbon/xenomorph/queen/Corrupted
 			if(XENO_HIVE_ALPHA)
-				new_caste_type = /mob/living/carbon/Xenomorph/Queen/Alpha
+				new_caste_type = /mob/living/carbon/xenomorph/queen/Alpha
 			if(XENO_HIVE_BETA)
-				new_caste_type = /mob/living/carbon/Xenomorph/Queen/Beta
+				new_caste_type = /mob/living/carbon/xenomorph/queen/Beta
 			if(XENO_HIVE_ZETA)
-				new_caste_type = /mob/living/carbon/Xenomorph/Queen/Zeta
+				new_caste_type = /mob/living/carbon/xenomorph/queen/Zeta
 
 	else
-		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/Xenomorph/Drone])
+		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
 		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
 		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
@@ -137,7 +137,7 @@
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/Xenomorph/Drone)
+		else if(!hive.living_xeno_queen && potential_queens == 1 && isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
 			to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>")
 			return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
@@ -165,7 +165,7 @@
 	tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
 	tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
 
-	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen)
+	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
 			to_chat(src, "<span class='warning'>There already is a Queen.</span>")
 			return
@@ -182,7 +182,7 @@
 
 
 	//From there, the new xeno exists, hopefully
-	var/mob/living/carbon/Xenomorph/new_xeno = new new_caste_type(get_turf(src))
+	var/mob/living/carbon/xenomorph/new_xeno = new new_caste_type(get_turf(src))
 
 	if(!istype(new_xeno))
 		//Something went horribly wrong!
@@ -209,7 +209,7 @@
 		new_xeno.updatehealth()
 
 	if(xeno_mobhud)
-		var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
+		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 
@@ -226,7 +226,7 @@
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 
-	if(queen_chosen_lead && new_caste_type != /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Destroy()
+	if(queen_chosen_lead && new_caste_type != /mob/living/carbon/xenomorph/queen) // xeno leader is removed by Destroy()
 		new_xeno.queen_chosen_lead = TRUE
 		hive.xeno_leader_list += new_xeno
 		new_xeno.hud_set_queen_overwatch()

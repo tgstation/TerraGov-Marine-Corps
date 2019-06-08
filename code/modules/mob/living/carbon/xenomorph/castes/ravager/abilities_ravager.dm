@@ -2,12 +2,13 @@
 // *********** Charge
 // ***************************************
 /datum/action/xeno_action/activable/charge
-	name = "Eviscerating Charge (80)"
+	name = "Eviscerating Charge"
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 7 tiles and viciously attack your target."
 	ability_name = "charge"
-	cooldown_timer = RAV_CHARGECOOLDOWN
+	cooldown_timer = 30 SECONDS
 	plasma_cost = 80
+	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
 /datum/action/xeno_action/activable/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -19,12 +20,12 @@
 /datum/action/xeno_action/activable/charge/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</span>")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 	X.usedPounce = FALSE
 	return ..()
 
 /datum/action/xeno_action/activable/charge/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
 	"<span class='danger'>You charge towards \the [A]!</span>" )
@@ -46,7 +47,8 @@
 	ability_name = "ravage"
 	plasma_cost = 40
 	var/last_victim_count = 0
-	cooldown_timer = RAV_RAVAGE_COOLDOWN
+	cooldown_timer = 10 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_RAVAGE
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You gather enough strength to Ravage again.</span>")
@@ -57,7 +59,7 @@
 	return CLAMP(cooldown_timer - (last_victim_count * 30),10,100) //10 second cooldown base, minus 3 seconds per victim
 
 /datum/action/xeno_action/activable/ravage/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
 	round_statistics.ravager_ravages++
@@ -75,7 +77,7 @@
 		target_facing = get_dir(X, H)
 		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
 			continue
-		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && CHECK_BITFIELD(H.status_flags, XENO_HOST)) ) //No bully
+		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
 			var/extra_dam = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) * round(RAV_RAVAGE_DAMAGE_MULITPLIER + X.rage * RAV_RAVAGE_RAGE_MULITPLIER, 0.01)
 			H.attack_alien(X, extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
@@ -99,8 +101,10 @@
 	name = "Second Wind"
 	action_icon_state = "second_wind"
 	mechanics_text = "A channeled ability to restore health that uses plasma and rage. Must stand still for it to work."
-	cooldown_timer = RAV_SECOND_WIND_COOLDOWN
+	cooldown_timer = 240 SECONDS
 	var/last_rage = 0
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_SECOND_WIND
 
 /datum/action/xeno_action/activable/second_wind/get_cooldown()
 	return cooldown_timer * round((1 - (last_rage * 0.015) ),0.01)
@@ -111,7 +115,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/second_wind/action_activate(atom/A)
-	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	to_chat(X, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")
 	var/current_rage = CLAMP(X.rage,0,RAVAGER_MAX_RAGE) //lock in the value at the time we use it; min 0, max 50.

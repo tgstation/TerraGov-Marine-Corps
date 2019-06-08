@@ -24,7 +24,7 @@
 /obj/item/debugger/is_used_on(obj/O, mob/user)
 	if(istype(O, /obj/machinery/power/apc))
 		var/obj/machinery/power/apc/A = O
-		if(A.emagged)
+		if(CHECK_BITFIELD(A.obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>There is a software error with the device.</span>")
 		else
 			to_chat(user, "<span class='notice'>The device's software appears to be fine.</span>")
@@ -38,7 +38,7 @@
 		return 1
 	else if(istype(O, /obj/machinery))
 		var/obj/machinery/A = O
-		if(A.emagged)
+		if(CHECK_BITFIELD(A.obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>There is a software error with the device.</span>")
 		else
 			to_chat(user, "<span class='notice'>The device's software appears to be fine.</span>")

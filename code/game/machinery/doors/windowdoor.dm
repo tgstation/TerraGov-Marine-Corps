@@ -32,16 +32,8 @@
 				open()
 				sleep(50)
 				close()
-		else if(istype(AM, /obj/mecha))
-			var/obj/mecha/mecha = AM
-			if(density)
-				if(mecha.occupant && src.allowed(mecha.occupant))
-					open()
-					sleep(50)
-					close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
-	add_fingerprint(M)
 	if (!( SSticker ))
 		return
 	if (src.operating)
@@ -56,7 +48,7 @@
 	return
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		return !density
@@ -64,7 +56,7 @@
 		return TRUE
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir)
 		return !density
@@ -107,10 +99,8 @@
 /obj/machinery/door/window/take_damage(var/damage)
 	src.obj_integrity = max(0, src.obj_integrity - damage)
 	if (src.obj_integrity <= 0)
-		var/obj/item/shard/S = new(loc)
-		transfer_fingerprints_to(S)
+		new /obj/item/shard(loc)
 		var/obj/item/stack/cable_coil/CC = new(loc)
-		transfer_fingerprints_to(CC)
 		CC.amount = 2
 		var/obj/item/circuitboard/airlock/ae
 		if(!electronics)
@@ -126,7 +116,6 @@
 			ae = electronics
 			electronics = null
 			ae.loc = src.loc
-		transfer_fingerprints_to(ae)
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
@@ -159,7 +148,7 @@
 	return src.attack_hand(user)
 
 //Slashing windoors
-/obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/window/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
@@ -179,67 +168,70 @@
 			return
 	return try_to_activate_door(user)
 
-/obj/machinery/door/window/attackby(obj/item/I, mob/user)
+/obj/machinery/door/window/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	//If it's in the process of opening/closing, ignore the click
-	if (src.operating == 1)
-		return
-
-	//Emags and ninja swords? You may pass.
-	if (density && istype(I, /obj/item/card/emag))
-		operating = -1
-		flick("[src.base_state]spark", src)
-		sleep(6)
-		open()
+	if(operating)
 		return TRUE
 
-	//If it's emagged, crowbar can pry electronics out.
-	if (src.operating == -1 && iscrowbar(I))
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-		user.visible_message("[user] starts removing the electronics from \the [src].", "You start to remove electronics from \the [src].", null, 5)
-		if (do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
-			user.visible_message("[user] removes \the [src]'s electronics.", "You remove \the [src]'s electronics.", null, 5)
+	else if(density && istype(I, /obj/item/card/emag))
+		operating = -1
+		flick("[base_state]spark", src)
+		addtimer(CALLBACK(src, .proc/open), 6)
+		return TRUE
 
-			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
-			if (istype(src, /obj/machinery/door/window/brigdoor))
-				wa.secure = "secure_"
-				wa.name = "Secure Wired Windoor Assembly"
-			else
-				wa.name = "Wired Windoor Assembly"
-			if (src.base_state == "right" || src.base_state == "rightsecure")
-				wa.facing = "r"
-			wa.setDir(dir)
-			wa.state = "02"
-			wa.update_icon()
+	else if(operating == -1 && iscrowbar(I))
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
+		
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
 
-			var/obj/item/circuitboard/airlock/ae
-			if(!electronics)
-				ae = new/obj/item/circuitboard/airlock( src.loc )
-				if(!src.req_access)
-					src.check_access()
-				if(src.req_access.len)
-					ae.conf_access = src.req_access
-				else if (src.req_one_access.len)
-					ae.conf_access = src.req_one_access
-					ae.one_access = TRUE
-			else
-				ae = electronics
-				electronics = null
-				ae.loc = src.loc
-			ae.icon_state = "door_electronics_smoked"
+		to_chat(user, "<span class='notice'>You removed the windoor electronics!</span>")
 
-			operating = 0
-			qdel(src)
-			return
+		var/obj/structure/windoor_assembly/WA = new(loc)
 
-	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
+		if(istype(src, /obj/machinery/door/window/brigdoor))
+			WA.secure = "secure_"
+			WA.name = "Secure Wired Windoor Assembly"
+		else
+			WA.name = "Wired Windoor Assembly"
+
+		if(base_state == "right" || base_state == "rightsecure")
+			WA.facing = "r"
+
+		WA.setDir(dir)
+		WA.state = "02"
+		WA.update_icon()
+
+		var/obj/item/circuitboard/airlock/E
+		if(!electronics)
+			E = new(loc)
+			if(!req_access)
+				check_access()
+			if(length(req_access))
+				E.conf_access = req_access
+			else if(length(req_one_access))
+				E.conf_access = req_one_access
+				E.one_access = TRUE
+		else
+			E = electronics
+			electronics = null
+			E.forceMove(loc)
+			
+		E.icon_state = "door_electronics_smoked"
+		operating = 0
+		qdel(src)
+
+	else if(!(I.flags_item & NOBLUDGEON) && I.force && density)
 		var/aforce = I.force
 		user.changeNext_move(I.attack_speed)
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		visible_message("<span class='danger'>[src] was hit by [I].</span>")
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return TRUE
+
 	else
 		return try_to_activate_door(user)
 

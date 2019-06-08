@@ -28,7 +28,6 @@
 	user.drop_held_item()
 	if(gift)
 		user.put_in_active_hand(gift)
-		gift.add_fingerprint(user)
 	else
 		to_chat(user, "<span class='notice'>The gift was empty!</span>")
 	qdel(src)
@@ -43,18 +42,18 @@
 		return
 	to_chat(user, "<span class='notice'>You cant move.</span>")
 
-/obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+/obj/effect/spresent/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (!iswirecutter(W))
-		to_chat(user, "<span class='notice'>I need wirecutters for that.</span>")
+	if(!iswirecutter(I))
+		to_chat(user, "<span class='notice'>You need wirecutters for that.</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You cut open the present.</span>")
 
 	for(var/mob/M in src) //Should only be one but whatever.
-		M.loc = src.loc
-		if (M.client)
+		M.forceMove(loc)
+		if(M.client)
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
 
@@ -107,7 +106,6 @@
 	var/obj/item/I = new gift_type(M)
 	M.temporarilyRemoveItemFromInventory(src)
 	M.put_in_hands(I)
-	I.add_fingerprint(M)
 	qdel(src)
 	return
 
@@ -121,40 +119,39 @@
 	icon_state = "wrap_paper"
 	var/amount = 20.0
 
-/obj/item/wrapping_paper/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (!( locate(/obj/structure/table, src.loc) ))
-		to_chat(user, "<span class='notice'>You MUST put the paper on a table!</span>")
-	if (W.w_class < 4)
-		if (iswirecutter(user.l_hand) || iswirecutter(user.r_hand))
-			var/a_used = 2 ** (src.w_class - 1)
-			if (src.amount < a_used)
-				to_chat(user, "<span class='notice'>You need more paper!</span>")
-				return
-			else
-				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/gift)) //No gift wrapping gifts!
-					return
+/obj/item/wrapping_paper/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-				if(user.drop_held_item())
-					amount -= a_used
-					var/obj/item/gift/G = new /obj/item/gift( src.loc )
-					G.size = W.w_class
-					G.w_class = G.size + 1
-					G.icon_state = text("gift[]", G.size)
-					G.gift = W
-					W.forceMove(G)
-					G.add_fingerprint(user)
-					W.add_fingerprint(user)
-					add_fingerprint(user)
-			if (src.amount <= 0)
-				new /obj/item/trash/c_tube( src.loc )
-				qdel(src)
-				return
-		else
-			to_chat(user, "<span class='notice'>You need scissors!</span>")
-	else
-		to_chat(user, "<span class='notice'>The object is FAR too large!</span>")
-	return
+	var/a_used = 2 ** (w_class - 1)
+
+	if(!(locate(/obj/structure/table) in loc))
+		to_chat(user, "<span class='notice'>You must put the paper on a table!</span>")
+
+	else if(I.w_class >= 4)
+		to_chat(user, "<span class='notice'>The object is far too large!</span>")
+
+
+	else if(!iswirecutter(user.l_hand) && !iswirecutter(user.r_hand))
+		to_chat(user, "<span class='notice'>You need scissors!</span>")
+
+	else if (amount < a_used)
+		to_chat(user, "<span class='notice'>You need more paper!</span>")
+
+	else if(istype(I, /obj/item/smallDelivery) || istype(I, /obj/item/gift)) //No gift wrapping gifts!
+		return
+
+	else if(user.drop_held_item())
+		amount -= a_used
+		var/obj/item/gift/G = new(loc)
+		G.size = I.w_class
+		G.w_class = G.size + 1
+		G.icon_state = text("gift[]", G.size)
+		G.gift = I
+		I.forceMove(G)
+
+		if(amount <= 0)
+			new /obj/item/trash/c_tube(loc)
+			qdel(src)
 
 
 /obj/item/wrapping_paper/examine(mob/user)

@@ -35,6 +35,7 @@
 	var/obj/screen/zone_sel
 	var/obj/screen/pull_icon
 	var/obj/screen/throw_icon
+	var/obj/screen/rest_icon
 	var/obj/screen/oxygen_icon
 	var/obj/screen/pressure_icon
 	var/obj/screen/toxin_icon
@@ -133,8 +134,16 @@
 	. = ..()
 
 
-/mob/proc/create_hud()
-	return
+/mob/proc/create_mob_hud()
+	if(!client || hud_used)
+		return
+	var/ui_style = ui_style2icon(client.prefs.ui_style)
+	var/ui_color = client.prefs.ui_style_color
+	var/ui_alpha = client.prefs.ui_style_alpha
+	hud_used = new hud_type(src, ui_style, ui_color, ui_alpha)
+	update_sight()
+	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
+
 
 /datum/hud/proc/plane_masters_update()
 	// Plane masters are always shown to OUR mob, never to observers
@@ -144,14 +153,16 @@
 		mymob.client.screen += PM
 
 //Version denotes which style should be displayed. blank or 0 means "next version"
-/datum/hud/proc/show_hud(version = 0)
+/datum/hud/proc/show_hud(version = 0, mob/viewmob)
 	if(!ismob(mymob))
-		return 0
-	if(!mymob.client)
-		return 0
+		return FALSE
 
-	mymob.client.screen = list()
-	mymob.client.apply_clickcatcher()
+	var/mob/screenmob = viewmob || mymob
+	if(!screenmob.client)
+		return FALSE
+
+	screenmob.client.screen = list()
+	screenmob.client.apply_clickcatcher()
 
 	var/display_hud_version = version
 	if(!display_hud_version)	//If 0 or blank, display the next hud version
@@ -163,51 +174,59 @@
 		if(HUD_STYLE_STANDARD)	//Default HUD
 			hud_shown = 1	//Governs behavior of other procs
 			if(static_inventory.len)
-				mymob.client.screen += static_inventory
+				screenmob.client.screen += static_inventory
 			if(toggleable_inventory.len && inventory_shown)
-				mymob.client.screen += toggleable_inventory
+				screenmob.client.screen += toggleable_inventory
 			if(hotkeybuttons.len && !hotkey_ui_hidden)
-				mymob.client.screen += hotkeybuttons
+				screenmob.client.screen += hotkeybuttons
 			if(infodisplay.len)
-				mymob.client.screen += infodisplay
+				screenmob.client.screen += infodisplay
 			if(action_intent)
 				action_intent.screen_loc = initial(action_intent.screen_loc) //Restore intent selection to the original position
 
 		if(HUD_STYLE_REDUCED)	//Reduced HUD
 			hud_shown = 0	//Governs behavior of other procs
 			if(static_inventory.len)
-				mymob.client.screen -= static_inventory
+				screenmob.client.screen -= static_inventory
 			if(toggleable_inventory.len)
-				mymob.client.screen -= toggleable_inventory
+				screenmob.client.screen -= toggleable_inventory
 			if(hotkeybuttons.len)
-				mymob.client.screen -= hotkeybuttons
+				screenmob.client.screen -= hotkeybuttons
 			if(infodisplay.len)
-				mymob.client.screen += infodisplay
+				screenmob.client.screen += infodisplay
 
 			//These ones are a part of 'static_inventory', 'toggleable_inventory' or 'hotkeybuttons' but we want them to stay
 			if(l_hand_hud_object)
-				mymob.client.screen += l_hand_hud_object	//we want the hands to be visible
+				screenmob.client.screen += l_hand_hud_object	//we want the hands to be visible
 			if(r_hand_hud_object)
-				mymob.client.screen += r_hand_hud_object	//we want the hands to be visible
+				screenmob.client.screen += r_hand_hud_object	//we want the hands to be visible
 			if(action_intent)
-				mymob.client.screen += action_intent		//we want the intent switcher visible
+				screenmob.client.screen += action_intent		//we want the intent switcher visible
 				action_intent.screen_loc = ui_acti_alt	//move this to the alternative position, where zone_select usually is.
 
 		if(HUD_STYLE_NOHUD)	//No HUD
 			hud_shown = 0	//Governs behavior of other procs
 			if(static_inventory.len)
-				mymob.client.screen -= static_inventory
+				screenmob.client.screen -= static_inventory
 			if(toggleable_inventory.len)
-				mymob.client.screen -= toggleable_inventory
+				screenmob.client.screen -= toggleable_inventory
 			if(hotkeybuttons.len)
-				mymob.client.screen -= hotkeybuttons
+				screenmob.client.screen -= hotkeybuttons
 			if(infodisplay.len)
-				mymob.client.screen -= infodisplay
+				screenmob.client.screen -= infodisplay
 
 	hud_version = display_hud_version
 	persistant_inventory_update()
 	mymob.update_action_buttons(TRUE)
 	mymob.reload_fullscreens()
+
+	// ensure observers get an accurate and up-to-date view
+	if(!viewmob)
+		plane_masters_update()
+		for(var/M in mymob.observers)
+			show_hud(hud_version, M)
+	else if(viewmob.hud_used)
+		viewmob.hud_used.plane_masters_update()
 
 
 /datum/hud/human/show_hud(version = 0)
@@ -227,12 +246,16 @@
 	return
 
 
-/mob/proc/add_click_catcher()
-	client.screen += client.void
+/obj/screen/action_button/MouseEntered(location, control, params)
+	if (!usr.client?.prefs?.tooltips)
+		return
+	openToolTip(usr, src, params, title = name, content = desc)
 
 
-/mob/new_player/add_click_catcher()
-	return
+/obj/screen/action_button/MouseExited()
+	if (!usr.client?.prefs?.tooltips)
+		return
+	closeToolTip(usr)
 
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)

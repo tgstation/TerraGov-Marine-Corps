@@ -51,12 +51,11 @@
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 		if (flag)
 			return
-		src.add_fingerprint(user)
 		if (src.bullets < 1)
 			user.show_message("<span class='warning'> *click* *click*</span>", 2)
 			playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
 			return
-		playsound(user, 'sound/weapons/Gunshot.ogg', 15, 1)
+		playsound(user, 'sound/weapons/gunshot.ogg', 15, 1)
 		src.bullets--
 		for(var/mob/O in viewers(user, null))
 			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "<span class='warning'> You hear a gunshot</span>", 2)
@@ -149,14 +148,14 @@
 					qdel(D)
 
 			return
-		else if (bullets == 0)
-			user.KnockDown(5)
+		else if(!bullets && isliving(user))
+			var/mob/living/L = user
+			L.KnockDown(5)
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("<span class='warning'> [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
 
 
 	attack(mob/M as mob, mob/user as mob)
-		src.add_fingerprint(user)
 
 // ******* Check
 
@@ -170,10 +169,10 @@
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/crossbow_ammo(M.loc)
 			src.bullets--
-		else if (M.lying && src.bullets == 0)
-			for(var/mob/O in viewers(M, null))
-				if (O.client)	O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), 1, "<span class='warning'> You hear someone fall</span>", 2)
-			user.KnockDown(5)
+		else if(M.lying && !bullets && isliving(M))
+			var/mob/living/L = M
+			L.visible_message("<span class='danger'>[user] casually lines up a shot with [L]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>")
+			L.KnockDown(5)
 		return
 
 /obj/item/toy/crossbow_ammo
@@ -188,7 +187,7 @@
 	desc = ""
 	icon = 'icons/obj/items/toy.dmi'
 	icon_state = "null"
-	anchored = 1
+	anchored = TRUE
 	density = 0
 
 
@@ -226,7 +225,6 @@
 			H.update_inv_l_hand(0)
 			H.update_inv_r_hand()
 
-		src.add_fingerprint(user)
 		return
 
 /obj/item/toy/katana

@@ -106,7 +106,7 @@
 
 /datum/surgery_step/cavity/place_item/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(..())
-		return !istype(user,/mob/living/silicon/robot) && !affected.hidden && affected.cavity && tool.w_class <= get_max_wclass(affected)
+		return !affected.hidden && affected.cavity && tool.w_class <= get_max_wclass(affected)
 
 /datum/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
@@ -183,9 +183,6 @@
 		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 		"<span class='notice'> You take something out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
 		affected.hidden.loc = get_turf(target)
-		if(!affected.hidden.blood_DNA)
-			affected.hidden.blood_DNA = list()
-		affected.hidden.blood_DNA[target.dna.unique_enzymes] = target.dna.b_type
 		affected.hidden.update_icon()
 		affected.hidden = null
 

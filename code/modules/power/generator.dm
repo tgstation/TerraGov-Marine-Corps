@@ -3,7 +3,7 @@
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
 	icon_state = "teg"
-	density = 1
+	density = TRUE
 	anchored = 0
 
 	use_power = 1
@@ -80,17 +80,16 @@
 	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
-/obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswrench(W))
+/obj/machinery/power/generator/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 		use_power = anchored
 		reconnect()
-	else
-		..()
 
 /obj/machinery/power/generator/attack_hand(mob/user)
-	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
 	interact(user)
 

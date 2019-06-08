@@ -33,7 +33,7 @@
 	..()
 	if(!terminal)
 		to_chat(user, "<span class='warning'>This SMES has no power terminal!</span>")
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
 /obj/machinery/power/smes/Initialize()
@@ -42,7 +42,7 @@
 		connect_to_network()
 
 	dir_loop:
-		for(var/d in cardinal)
+		for(var/d in GLOB.cardinals)
 			var/turf/T = get_step(src, d)
 			for(var/obj/machinery/power/terminal/term in T)
 				if(term && term.dir == turn(d, 180))
@@ -67,7 +67,7 @@
 	if(machine_stat & BROKEN)
 		return
 
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 
 		return
 
@@ -186,32 +186,32 @@
 
 
 /obj/machinery/power/smes/attack_ai(mob/user)
-	add_fingerprint(user)
 	ui_interact(user)
 
 
 /obj/machinery/power/smes/attack_hand(mob/user)
-	add_fingerprint(user)
 	ui_interact(user)
 
 
-/obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if(isscrewdriver(W))
-		if(!panel_open)
-			panel_open = TRUE
+/obj/machinery/power/smes/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(isscrewdriver(I))
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
 			icon_state = "[initial(icon_state)]_o"
-			update_icon()
-			return FALSE
 		else
-			panel_open = FALSE
 			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
 			icon_state = "[initial(icon_state)]"
-			update_icon()
-			return FALSE
 
-	if(iscablecoil(W))
-		var/dir = get_dir(user,src)
+		update_icon()
+
+	else if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
+
+		var/dir = get_dir(user, src)
 		if(ISDIAGONALDIR(dir))//we don't want diagonal click
 			return
 
@@ -219,29 +219,28 @@
 			to_chat(user, "<span class='warning'>This SMES already has a power terminal!</span>")
 			return
 
-		if(!panel_open)
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='warning'>You must open the maintenance panel first!</span>")
 			return
 
 		var/turf/T = get_turf(user)
-		if (T.intact_tile) //is the floor plating removed ?
+		if(T.intact_tile) //is the floor plating removed ?
 			to_chat(user, "<span class='warning'>You must first remove the floor plating!</span>")
 			return
 
-		var/obj/item/stack/cable_coil/C = W
 		if(C.get_amount() < 10)
 			to_chat(user, "<span class='warning'>You need more wires!</span>")
 			return
 
 		to_chat(user, "<span class='notice'>You start building the power terminal...</span>")
-		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
+		playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 
-		//var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || C.get_amount() < 10)
 			return
+
 		var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one
-		if (prob(50))
-			electrocute_mob(usr, N, N, 1, TRUE)
+		if(prob(50))
+			electrocute_mob(user, N, N, 1, TRUE)
 
 		C.use(10)
 		user.visible_message(\
@@ -252,14 +251,11 @@
 		make_terminal(T)
 		terminal.connect_to_network()
 		connect_to_network()
-		return FALSE
 
-	else if(iswirecutter(W))
-		if(terminal && panel_open)
-			terminal.dismantle(user)
-			return FALSE
 
-	return ..()
+	else if(iswirecutter(I) && terminal && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		terminal.deconstruct(user)
+
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
@@ -398,6 +394,6 @@
 
 
 /obj/machinery/power/smes/can_terminal_dismantle()
-	. = panel_open ? TRUE : FALSE
+	return CHECK_BITFIELD(machine_stat, PANEL_OPEN)
 
 #undef SMESRATE

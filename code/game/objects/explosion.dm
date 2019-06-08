@@ -54,12 +54,20 @@
 		var/close = trange(world.view + round(devastation_range, 1), epicenter)
 		//To all distanced mobs play a different sound
 		for(var/mob/M in GLOB.mob_list)
-			if(M.z == epicenter.z)
-				if(!(M in close))
-					// check if the mob can hear
-					if(M.ear_deaf <= 0 || !M.ear_deaf)
-						if(!isspaceturf(M.loc))
-							M << 'sound/effects/explosionfar.ogg'
+			if(M.z != epicenter.z)
+				continue
+
+			if(M in close)
+				continue
+
+			if(isliving(M))
+				var/mob/living/L = M
+				if(L.ear_deaf > 0 || isspaceturf(L.loc))
+					continue
+			
+			SEND_SOUND(M, 'sound/effects/explosionfar.ogg')
+
+
 		if(adminlog)
 			log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
@@ -69,10 +77,6 @@
 		if(approximate_intensity > 30)
 			lighting_controller.processing = 0
 
-		var/powernet_rebuild_was_deferred_already = defer_powernet_rebuild
-		// Large enough explosion. For performance reasons, powernets will be rebuilt manually
-		if(!defer_powernet_rebuild && (approximate_intensity > 25))
-			defer_powernet_rebuild = TRUE
 
 		if(heavy_impact_range > 1)
 			var/datum/effect_system/explosion/E = new/datum/effect_system/explosion()
@@ -125,9 +129,7 @@
 			lighting_controller.processing = 1
 			lighting_controller.process() //Restart the lighting controller
 
-		if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
-			SSmachines.makepowernets()
-			defer_powernet_rebuild = FALSE
+		SSmachines.makepowernets()
 
 	return 1
 

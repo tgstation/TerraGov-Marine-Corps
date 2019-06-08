@@ -26,28 +26,24 @@
 /obj/structure/proc/update_health()
 	return
 
-/obj/structure/attack_hand(mob/user)
+/obj/structure/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-		destroy_structure()
 
-/obj/structure/attackby(obj/item/C as obj, mob/user as mob)
-	. = ..()
-	if(!istype(C, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if(!istype(I, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		return
-	var/obj/item/tool/pickaxe/plasmacutter/P = C
+
+	var/obj/item/tool/pickaxe/plasmacutter/P = I
 	if(!P.start_cut(user, name, src))
 		return
-	if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-		P.cut_apart(user, name, src)
-		qdel(src)
+		
+	if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
+		return
+
+	P.cut_apart(user, name, src)
+	qdel(src)
 
 //Default "structure" proc. This should be overwritten by sub procs.
-/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/attack_alien(mob/living/carbon/xenomorph/M)
 	return FALSE
 
 /obj/structure/attack_animal(mob/living/user)
@@ -59,9 +55,6 @@
 /obj/structure/attack_paw(mob/user)
 	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		attack_hand(user)
-
-/obj/structure/attack_tk()
-	return
 
 /obj/structure/ex_act(severity)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))

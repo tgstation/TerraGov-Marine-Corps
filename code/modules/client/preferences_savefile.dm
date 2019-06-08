@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	22
+#define SAVEFILE_VERSION_MAX	30
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -20,8 +20,45 @@
 				break
 		return FALSE
 
+	if(savefile_version < 30)
+		WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.keybinding_list_by_key))
+
+	if(savefile_version < 29)
+		WRITE_FILE(S["metadata"], null)
+		WRITE_FILE(S["jobs_low"], null)
+		WRITE_FILE(S["jobs_medium"], null)
+		WRITE_FILE(S["jobs_high"], null)
+		WRITE_FILE(S["job_preferences"], list())
+
+	if(savefile_version < 28)
+		WRITE_FILE(S["tooltips"], TRUE)
+
+	if(savefile_version < 27)
+		switch(S["ui_style"])
+			if("Orange")
+				WRITE_FILE(S["ui_style"], "Plasmafire")
+			if("old")
+				WRITE_FILE(S["ui_style"], "Retro")
+		if(S["ui_style_alpha"] > 230)
+			WRITE_FILE(S["ui_style_alpha"], 230)
+
+	if(savefile_version < 26)
+		WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.keybinding_list_by_key))
+
+	if(savefile_version < 25)
+		WRITE_FILE(S["ghost_vision"], TRUE)
+		WRITE_FILE(S["ghost_orbit"], GHOST_ORBIT_CIRCLE)
+		WRITE_FILE(S["ghost_form"], GHOST_DEFAULT_FORM)
+		WRITE_FILE(S["ghost_others"], GHOST_OTHERS_DEFAULT_OPTION)
+
+	if(savefile_version < 24)
+		WRITE_FILE(S["menuoptions"], list())
+
+	if(savefile_version < 23)
+		WRITE_FILE(S["hotkeys"], TRUE)
+
 	if(savefile_version < 22)
-		S["windowflashing"]	<< TRUE
+		WRITE_FILE(S["windowflashing"], TRUE)
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
@@ -34,7 +71,7 @@
 	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
 
 	if(savefile_version < 21)
-		muted << NOFLAGS
+		muted << NONE
 
 	savefile_version = SAVEFILE_VERSION_MAX
 
@@ -49,7 +86,7 @@
 		return FALSE
 	S.cd = "/"
 
-	S["version"] >> savefile_version
+	READ_FILE(S["version"], savefile_version)
 	if(!savefile_version || !isnum(savefile_version) || savefile_version != SAVEFILE_VERSION_MAX)
 		if(!savefile_update(S))
 			savefile_version = SAVEFILE_VERSION_MAX
@@ -57,34 +94,50 @@
 			save_character()
 			return FALSE
 
-	S["default_slot"]		>> default_slot
-	S["lastchangelog"]		>> lastchangelog
-	S["ooccolor"]			>> ooccolor
+	READ_FILE(S["default_slot"], default_slot)
+	READ_FILE(S["lastchangelog"], lastchangelog)
+	READ_FILE(S["ooccolor"], ooccolor)
 
-	S["ui_style"]			>> ui_style
-	S["ui_style_color"]		>> ui_style_color
-	S["ui_style_alpha"]		>> ui_style_alpha
+	READ_FILE(S["ui_style"], ui_style)
+	READ_FILE(S["ui_style_color"], ui_style_color)
+	READ_FILE(S["ui_style_alpha"], ui_style_alpha)
 
-	S["toggles_chat"]		>> toggles_chat
-	S["toggles_sound"]		>> toggles_sound
-	S["show_typing"]		>> show_typing
-	S["ghost_hud"]			>> ghost_hud
-	S["windowflashing"]		>> windowflashing
+	READ_FILE(S["toggles_chat"], toggles_chat)
+	READ_FILE(S["toggles_sound"], toggles_sound)
+	READ_FILE(S["show_typing"], show_typing)
+	READ_FILE(S["ghost_hud"], ghost_hud)
+	READ_FILE(S["windowflashing"], windowflashing)
+	READ_FILE(S["menuoptions"], menuoptions)
+	READ_FILE(S["ghost_vision"], ghost_vision)
+	READ_FILE(S["ghost_orbit"], ghost_orbit)
+	READ_FILE(S["ghost_form"], ghost_form)
+	READ_FILE(S["ghost_others"], ghost_others)
+	READ_FILE(S["hotkeys"], hotkeys)
+	READ_FILE(S["tooltips"], tooltips)
+	READ_FILE(S["key_bindings"], key_bindings)
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
-	be_special		= sanitize_integer(be_special, 0, 8388608, initial(be_special))
+	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
 	ui_style		= sanitize_inlist(ui_style, UI_STYLES, initial(ui_style))
 	ui_style_color	= sanitize_hexcolor(ui_style_color, initial(ui_style_color))
 	ui_style_alpha	= sanitize_integer(ui_style_alpha, 0, 255, initial(ui_style_alpha))
 
-	toggles_chat	= sanitize_integer(toggles_chat, 0, 8388608, initial(toggles_chat))
-	toggles_sound	= sanitize_integer(toggles_sound, 0, 8388608, initial(toggles_sound))
-	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
-	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
-	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+	toggles_chat	= sanitize_integer(toggles_chat, NONE, MAX_BITFLAG, initial(toggles_chat))
+	toggles_sound	= sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
+	show_typing		= sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
+	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
+	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
+	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
+	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
+	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
+	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
+	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
+	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
+
+	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
 
 	return TRUE
 
@@ -97,7 +150,7 @@
 		return FALSE
 
 	S.cd = "/"
-	S["version"] << savefile_version
+	WRITE_FILE(S["version"], savefile_version)
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -107,25 +160,40 @@
 	ui_style_color	= sanitize_hexcolor(ui_style_color, initial(ui_style_color))
 	ui_style_alpha	= sanitize_integer(ui_style_alpha, 0, 255, initial(ui_style_alpha))
 
-	toggles_chat	= sanitize_integer(toggles_chat, 0, 8388608, initial(toggles_chat))
-	toggles_sound	= sanitize_integer(toggles_sound, 0, 8388608, initial(toggles_sound))
-	show_typing		= sanitize_integer(show_typing, 0, 1, initial(show_typing))
-	ghost_hud 		= sanitize_integer(ghost_hud, 0, 8388608, initial(ghost_hud))
-	windowflashing	= sanitize_integer(windowflashing, 0, 1, initial(windowflashing))
+	toggles_chat	= sanitize_integer(toggles_chat, NONE, MAX_BITFLAG, initial(toggles_chat))
+	toggles_sound	= sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
+	show_typing		= sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
+	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
+	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
+	key_bindings	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
+	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
+	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
+	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
+	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
+	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
+	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
-	S["default_slot"]		<< default_slot
-	S["lastchangelog"]		<< lastchangelog
-	S["ooccolor"]			<< ooccolor
+	WRITE_FILE(S["default_slot"], default_slot)
+	WRITE_FILE(S["lastchangelog"], lastchangelog)
+	WRITE_FILE(S["ooccolor"], ooccolor)
 
-	S["ui_style"]			<< ui_style
-	S["ui_style_color"]		<< ui_style_color
-	S["ui_style_alpha"]		<< ui_style_alpha
+	WRITE_FILE(S["ui_style"], ui_style)
+	WRITE_FILE(S["ui_style_color"], ui_style_color)
+	WRITE_FILE(S["ui_style_alpha"], ui_style_alpha)
 
-	S["toggles_chat"]		<< toggles_chat
-	S["toggles_sound"]		<< toggles_sound
-	S["show_typing"]		<< show_typing
-	S["ghost_hud"]			<< ghost_hud
-	S["windowflashing"]		<< windowflashing
+	WRITE_FILE(S["toggles_chat"], toggles_chat)
+	WRITE_FILE(S["toggles_sound"], toggles_sound)
+	WRITE_FILE(S["show_typing"], show_typing)
+	WRITE_FILE(S["ghost_hud"], ghost_hud)
+	WRITE_FILE(S["windowflashing"], windowflashing)
+	WRITE_FILE(S["menuoptions"], menuoptions)
+	WRITE_FILE(S["key_bindings"], key_bindings)
+	WRITE_FILE(S["ghost_vision"], ghost_vision)
+	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
+	WRITE_FILE(S["ghost_form"], ghost_form)
+	WRITE_FILE(S["ghost_others"], ghost_others)
+	WRITE_FILE(S["hotkeys"], hotkeys)
+	WRITE_FILE(S["tooltips"], tooltips)
 
 	return TRUE
 
@@ -144,64 +212,61 @@
 	slot = sanitize_integer(slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	if(slot != default_slot)
 		default_slot = slot
-		S["default_slot"] << slot
+		WRITE_FILE(S["default_slot"], slot)
 	S.cd = "/character[slot]"
 
-	S["be_special"]			>> be_special
+	READ_FILE(S["be_special"], be_special)
 
-	S["synthetic_name"]		>> synthetic_name
-	S["synthetic_type"]		>> synthetic_type
+	READ_FILE(S["synthetic_name"], synthetic_name)
+	READ_FILE(S["synthetic_type"], synthetic_type)
 
-	S["xeno_name"]			>> xeno_name
+	READ_FILE(S["xeno_name"], xeno_name)
 
-	S["real_name"]			>> real_name
-	S["random_name"]		>> random_name
-	S["gender"]				>> gender
-	S["age"]				>> age
-	S["species"]			>> species
-	S["ethnicity"]			>> ethnicity
-	S["body_type"]			>> body_type
-	S["good_eyesight"]		>> good_eyesight
-	S["preferred_squad"]	>> preferred_squad
-	S["alternate_option"]	>> alternate_option
-	S["jobs_high"]			>> jobs_high
-	S["jobs_medium"]		>> jobs_medium
-	S["jobs_low"]			>> jobs_low
-	S["preferred_slot"] 	>> preferred_slot
-	S["gear"]				>> gear
-	S["underwear"]			>> underwear
-	S["undershirt"]			>> undershirt
-	S["backpack"]			>> backpack
+	READ_FILE(S["real_name"], real_name)
+	READ_FILE(S["random_name"], random_name)
+	READ_FILE(S["gender"], gender)
+	READ_FILE(S["age"], age)
+	READ_FILE(S["species"], species)
+	READ_FILE(S["ethnicity"], ethnicity)
+	READ_FILE(S["body_type"], body_type)
+	READ_FILE(S["good_eyesight"], good_eyesight)
+	READ_FILE(S["preferred_squad"], preferred_squad)
+	READ_FILE(S["alternate_option"], alternate_option)
+	READ_FILE(S["job_preferences"], job_preferences)
+	READ_FILE(S["preferred_slot"], preferred_slot)
+	READ_FILE(S["gear"], gear)
+	READ_FILE(S["underwear"], underwear)
+	READ_FILE(S["undershirt"], undershirt)
+	READ_FILE(S["backpack"], backpack)
 
-	S["h_style"]			>> h_style
-	S["r_hair"]				>> r_hair
-	S["g_hair"]				>> g_hair
-	S["b_hair"]				>> b_hair
+	READ_FILE(S["h_style"], h_style)
+	READ_FILE(S["r_hair"], r_hair)
+	READ_FILE(S["g_hair"], g_hair)
+	READ_FILE(S["b_hair"], b_hair)
 
-	S["f_style"]			>> f_style
-	S["r_facial"]			>> r_facial
-	S["g_facial"]			>> g_facial
-	S["b_facial"]			>> b_facial
+	READ_FILE(S["f_style"], f_style)
+	READ_FILE(S["r_facial"], r_facial)
+	READ_FILE(S["g_facial"], g_facial)
+	READ_FILE(S["b_facial"], b_facial)
 
-	S["r_eyes"]				>> r_eyes
-	S["g_eyes"]				>> g_eyes
-	S["b_eyes"]				>> b_eyes
+	READ_FILE(S["r_eyes"], r_eyes)
+	READ_FILE(S["g_eyes"], g_eyes)
+	READ_FILE(S["b_eyes"], b_eyes)
 
-	S["moth_wings"]			>> moth_wings
+	READ_FILE(S["moth_wings"], moth_wings)
 
-	S["citizenship"] 		>> citizenship
-	S["religion"] 			>> religion
-	S["nanotrasen_relation"]>> nanotrasen_relation
+	READ_FILE(S["citizenship"], citizenship)
+	READ_FILE(S["religion"], religion)
+	READ_FILE(S["nanotrasen_relation"], nanotrasen_relation)
 
-	S["med_record"]			>> med_record
-	S["sec_record"]			>> sec_record
-	S["gen_record"]			>> gen_record
-	S["exploit_record"]		>> exploit_record
-	S["metadata"]			>> metadata
-	S["flavor_text"]		>> flavor_text
+	READ_FILE(S["med_record"], med_record)
+	READ_FILE(S["sec_record"], sec_record)
+	READ_FILE(S["gen_record"], gen_record)
+	READ_FILE(S["exploit_record"], exploit_record)
+	READ_FILE(S["flavor_text"], flavor_text)
 
 
-	be_special		= sanitize_integer(be_special, 0, 8388608, initial(be_special))
+	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
 	synthetic_name	= reject_bad_name(synthetic_name)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
@@ -209,18 +274,16 @@
 	xeno_name		= reject_bad_name(xeno_name)
 
 	real_name		= reject_bad_name(real_name)
-	random_name		= sanitize_integer(random_name, 0, 1, initial(random_name))
+	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity		= sanitize_ethnicity(ethnicity)
 	body_type		= sanitize_body_type(body_type)
-	good_eyesight	= sanitize_integer(good_eyesight, 0, 1, initial(good_eyesight))
+	good_eyesight	= sanitize_integer(good_eyesight, FALSE, TRUE, initial(good_eyesight))
 	preferred_squad	= sanitize_inlist(preferred_squad, SELECTABLE_SQUADS, initial(preferred_squad))
 	alternate_option= sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
-	jobs_high 		= sanitize_integer(jobs_high, 0, 8388608, initial(jobs_high))
-	jobs_medium 	= sanitize_integer(jobs_medium, 0, 8388608, initial(jobs_medium))
-	jobs_low 		= sanitize_integer(jobs_low, 0, 8388608, initial(jobs_low))
+	job_preferences = SANITIZE_LIST(job_preferences)
 	preferred_slot	= sanitize_inlist(preferred_slot, SLOT_DRAW_ORDER, initial(preferred_slot))
 	if(gender == MALE)
 		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
@@ -253,7 +316,6 @@
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
 	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
-	metadata		= sanitize_text(metadata, initial(metadata))
 	flavor_text		= sanitize_text(flavor_text, initial(flavor_text))
 
 	if(!synthetic_name)
@@ -277,7 +339,7 @@
 		return FALSE
 	S.cd = "/character[default_slot]"
 
-	be_special		= sanitize_integer(be_special, 0, 8388608, initial(be_special))
+	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
 	synthetic_name	= reject_bad_name(synthetic_name)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
@@ -285,18 +347,16 @@
 	xeno_name		= reject_bad_name(xeno_name)
 
 	real_name		= reject_bad_name(real_name)
-	random_name		= sanitize_integer(random_name, 0, 1, initial(random_name))
+	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity		= sanitize_ethnicity(ethnicity)
 	body_type		= sanitize_body_type(body_type)
-	good_eyesight	= sanitize_integer(good_eyesight, 0, 1, initial(good_eyesight))
+	good_eyesight	= sanitize_integer(good_eyesight, FALSE, TRUE, initial(good_eyesight))
 	preferred_squad	= sanitize_inlist(preferred_squad, SELECTABLE_SQUADS, initial(preferred_squad))
 	alternate_option= sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
-	jobs_high 		= sanitize_integer(jobs_high, 0, 8388608, initial(jobs_high))
-	jobs_medium 	= sanitize_integer(jobs_medium, 0, 8388608, initial(jobs_medium))
-	jobs_low 		= sanitize_integer(jobs_low, 0, 8388608, initial(jobs_low))
+	job_preferences = SANITIZE_LIST(job_preferences)
 	preferred_slot	= sanitize_inlist(preferred_slot, SLOT_DRAW_ORDER, initial(preferred_slot))
 	if(gender == MALE)
 		underwear		= sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
@@ -329,70 +389,64 @@
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
 	exploit_record	= sanitize_text(exploit_record, initial(exploit_record))
-	metadata		= sanitize_text(metadata, initial(metadata))
 	flavor_text		= sanitize_text(flavor_text, initial(flavor_text))
 
-	S["be_special"]			<< be_special
+	WRITE_FILE(S["be_special"], be_special)
 
-	S["synthetic_name"]		<< synthetic_name
-	S["synthetic_type"]		<< synthetic_type
+	WRITE_FILE(S["synthetic_name"], synthetic_name)
+	WRITE_FILE(S["synthetic_type"], synthetic_type)
 
-	S["xeno_name"]			<< xeno_name
+	WRITE_FILE(S["xeno_name"], xeno_name)
 
-	S["real_name"]			<< real_name
-	S["random_name"]		<< random_name
-	S["gender"]				<< gender
-	S["age"]				<< age
-	S["species"]			<< species
-	S["ethnicity"]			<< ethnicity
-	S["body_type"]			<< body_type
-	S["good_eyesight"]		<< good_eyesight
-	S["preferred_squad"]	<< preferred_squad
-	S["alternate_option"]	<< alternate_option
-	S["jobs_high"]			<< jobs_high
-	S["jobs_medium"]		<< jobs_medium
-	S["jobs_low"]			<< jobs_low
-	S["preferred_slot"] 	<< preferred_slot
-	S["gear"]				<< gear
-	S["underwear"]			<< underwear
-	S["undershirt"]			<< undershirt
-	S["backpack"]			<< backpack
+	WRITE_FILE(S["real_name"], real_name)
+	WRITE_FILE(S["random_name"], random_name)
+	WRITE_FILE(S["gender"], gender)
+	WRITE_FILE(S["age"], age)
+	WRITE_FILE(S["species"], species)
+	WRITE_FILE(S["ethnicity"], ethnicity)
+	WRITE_FILE(S["body_type"], body_type)
+	WRITE_FILE(S["good_eyesight"], good_eyesight)
+	WRITE_FILE(S["preferred_squad"], preferred_squad)
+	WRITE_FILE(S["alternate_option"], alternate_option)
+	WRITE_FILE(S["job_preferences"], job_preferences)
+	WRITE_FILE(S["preferred_slot"], preferred_slot)
+	WRITE_FILE(S["gear"], gear)
+	WRITE_FILE(S["underwear"], underwear)
+	WRITE_FILE(S["undershirt"], undershirt)
+	WRITE_FILE(S["backpack"], backpack)
 
-	S["h_style"]			<< h_style
-	S["r_hair"]				<< r_hair
-	S["g_hair"]				<< g_hair
-	S["b_hair"]				<< b_hair
+	WRITE_FILE(S["h_style"], h_style)
+	WRITE_FILE(S["r_hair"], r_hair)
+	WRITE_FILE(S["g_hair"], g_hair)
+	WRITE_FILE(S["b_hair"], b_hair)
 
-	S["f_style"]			<< f_style
-	S["r_facial"]			<< r_facial
-	S["g_facial"]			<< g_facial
-	S["b_facial"]			<< b_facial
+	WRITE_FILE(S["f_style"], f_style)
+	WRITE_FILE(S["r_facial"], r_facial)
+	WRITE_FILE(S["g_facial"], g_facial)
+	WRITE_FILE(S["b_facial"], b_facial)
 
-	S["r_eyes"]				<< r_eyes
-	S["g_eyes"]				<< g_eyes
-	S["b_eyes"]				<< b_eyes
+	WRITE_FILE(S["r_eyes"], r_eyes)
+	WRITE_FILE(S["g_eyes"], g_eyes)
+	WRITE_FILE(S["b_eyes"], b_eyes)
 
-	S["moth_wings"]			<< moth_wings
+	WRITE_FILE(S["moth_wings"], moth_wings)
 
-	S["citizenship"] 		<< citizenship
-	S["religion"] 			<< religion
-	S["nanotrasen_relation"]<< nanotrasen_relation
+	WRITE_FILE(S["citizenship"], citizenship)
+	WRITE_FILE(S["religion"], religion)
+	WRITE_FILE(S["nanotrasen_relation"], nanotrasen_relation)
 
-	S["med_record"]			<< med_record
-	S["sec_record"]			<< sec_record
-	S["gen_record"]			<< gen_record
-	S["exploit_record"]		<< exploit_record
-	S["metadata"]			<< metadata
-	S["flavor_text"]		<< flavor_text
+	WRITE_FILE(S["med_record"], med_record)
+	WRITE_FILE(S["sec_record"], sec_record)
+	WRITE_FILE(S["gen_record"], gen_record)
+	WRITE_FILE(S["exploit_record"], exploit_record)
+	WRITE_FILE(S["flavor_text"], flavor_text)
 
 	return TRUE
 
 
 /datum/preferences/proc/save()
-	save_preferences()
-	save_character()
-	
+	return (save_preferences() && save_character())
+
 
 /datum/preferences/proc/load()
-	load_preferences()
-	load_character()
+	return (load_preferences() && load_character())

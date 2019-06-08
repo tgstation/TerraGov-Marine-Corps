@@ -24,10 +24,6 @@
 	if (!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
-	if ((CLUMSY in usr.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>Uh ... how do those things work?!</span>")
-		place_handcuffs(user, user)
-		return
 	if(!C.handcuffed)
 		place_handcuffs(C, user)
 
@@ -105,17 +101,19 @@
 /obj/item/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
-	..()
+/obj/item/handcuffs/cable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
-		if (R.use(1))
-			var/obj/item/weapon/wirerod/W = new /obj/item/weapon/wirerod
+		if(!R.use(1))
+			return
 
-			user.put_in_hands(W)
-			to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
-			qdel(src)
-			update_icon(user)
+		var/obj/item/weapon/wirerod/W = new
+		user.put_in_hands(W)
+		to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
+		qdel(src)
+		update_icon(user)
 
 
 /obj/item/handcuffs/cyborg
@@ -162,7 +160,7 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 
 /obj/item/restraints/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(!istype(C, /mob/living/carbon/Xenomorph))
+	if(!istype(C, /mob/living/carbon/xenomorph))
 		to_chat(user, "<span class='warning'>The cuffs do not fit!</span>")
 		return
 	if(!C.handcuffed)

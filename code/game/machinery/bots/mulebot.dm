@@ -9,8 +9,8 @@
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	animate_movement=1
 	max_integrity = 150
 	fire_dam_coeff = 0.7
@@ -87,50 +87,38 @@
 // screwdriver: open/close hatch
 // cell: insert it
 // other: chance to knock rider off bot
-/obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I,/obj/item/card/emag))
+/obj/machinery/bot/mulebot/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/emag))
 		locked = !locked
 		to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
 		flick("mulebot-emagged", src)
-		playsound(src.loc, 'sound/effects/sparks1.ogg', 25, 0)
-	else if(istype(I,/obj/item/cell) && open && !cell)
+		playsound(loc, 'sound/effects/sparks1.ogg', 25, 0)
+
+	else if(istype(I, /obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
-		if(user.transferItemToLoc(C, src))
-			cell = C
-			updateDialog()
-	else if(istype(I,/obj/item/tool/screwdriver))
-		if(locked)
-			to_chat(user, "<span class='notice'>The maintenance hatch cannot be opened or closed while the controls are locked.</span>")
+		if(!user.transferItemToLoc(C, src))
 			return
 
-		open = !open
-		if(open)
-			src.visible_message("[user] opens the maintenance hatch of [src]", "<span class='notice'> You open [src]'s maintenance hatch.</span>")
-			on = 0
-			icon_state="mulebot-hatch"
-		else
-			src.visible_message("[user] closes the maintenance hatch of [src]", "<span class='notice'> You close [src]'s maintenance hatch.</span>")
-			icon_state = "mulebot0"
-
+		cell = C
 		updateDialog()
-	else if (iswrench(I))
-		if (src.obj_integrity < max_integrity)
-			src.obj_integrity = min(max_integrity, src.obj_integrity+25)
-			user.visible_message(
-				"<span class='warning'> [user] repairs [src]!</span>",
-				"<span class='notice'> You repair [src]!</span>"
-			)
-		else
+
+	else if(iswrench(I))
+		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
+			return
+
+		obj_integrity = min(max_integrity, obj_integrity + 25)
+		user.visible_message("<span class='warning'> [user] repairs [src]!</span>", "<span class='notice'> You repair [src]!</span>")
+
 	else if(load && ismob(load))  // chance to knock off rider
-		if(prob(1+I.force * 2))
-			unload(0)
-			user.visible_message("<span class='warning'> [user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'> You knock [load] off [src] with \the [I]!</span>")
-		else
+		if(!prob(1 + I.force * 2))
 			to_chat(user, "You hit [src] with \the [I] but to no effect.")
-	else
-		..()
-	return
+			return
+
+		unload(0)
+		user.visible_message("<span class='warning'> [user] knocks [load] off [src] with \the [I]!</span>", "<span class='warning'> You knock [load] off [src] with \the [I]!</span>")
 
 
 /obj/machinery/bot/mulebot/ex_act(var/severity)
@@ -274,7 +262,6 @@
 				if(open && cell && !usr.get_active_held_item())
 					cell.updateicon()
 					usr.put_in_active_hand(cell)
-					cell.add_fingerprint(usr)
 					cell = null
 
 					usr.visible_message("<span class='notice'> [usr] removes the power cell from [src].</span>", "<span class='notice'> You remove the power cell from [src].</span>")
@@ -287,7 +274,6 @@
 						if(usr.drop_held_item())
 							cell = C
 							C.forceMove(src)
-							C.add_fingerprint(usr)
 
 							usr.visible_message("<span class='notice'> [usr] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
 							updateDialog()
@@ -695,19 +681,19 @@
 	return
 
 // called when bot bumps into anything
-/obj/machinery/bot/mulebot/Bump(var/atom/obs)
-	if(wires.is_cut(WIRE_AVOIDANCE))		//usually just bumps, but if avoidance disabled knock over mobs
-		var/mob/M = obs
-		if(ismob(M))
-			if(istype(M,/mob/living/silicon/robot))
-				src.visible_message("<span class='warning'> [src] bumps into [M]!</span>")
-			else
-				src.visible_message("<span class='warning'> [src] knocks over [M]!</span>")
-				M.stop_pulling()
-				M.Stun(8)
-				M.KnockDown(5)
-				M.lying = 1
-	..()
+/obj/machinery/bot/mulebot/Bump(atom/A)
+	if(!wires.is_cut(WIRE_AVOIDANCE))		//usually just bumps, but if avoidance disabled knock over mobs
+		return ..()
+
+	if(!isliving(A))
+		return ..()
+		
+	var/mob/living/L = A
+	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
+	L.stop_pulling()
+	L.Stun(8)
+	L.KnockDown(5)
+	L.lying = TRUE
 
 /obj/machinery/bot/mulebot/alter_health()
 	return get_turf(src)

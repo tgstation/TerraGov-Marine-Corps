@@ -54,15 +54,16 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	action_icon_state = "toggle_speed"
 	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
+	keybind_signal = COMSIG_XENOABILITY_RESIN_WALKER
 
 /datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
+	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	if(X.speed_activated)
 		return TRUE
 
 /datum/action/xeno_action/toggle_speed/action_activate()
-	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
+	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	if(X.speed_activated)
 		to_chat(X, "<span class='warning'>You feel less in tune with the resin.</span>")
 		X.speed_activated = FALSE
@@ -80,7 +81,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	action_icon_state = "build_tunnel"
 	mechanics_text = "Create a tunnel entrance. Use again to create the tunnel exit."
 	plasma_cost = 200
-	cooldown_timer = HIVELORD_TUNNEL_COOLDOWN
+	cooldown_timer = 120 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
 
 /datum/action/xeno_action/build_tunnel/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -115,7 +117,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
+	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	if(!X.start_dig) //Let's start a new one.
 		X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
 		"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>", null, 5)

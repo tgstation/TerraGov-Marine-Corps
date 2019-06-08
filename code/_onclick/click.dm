@@ -32,10 +32,43 @@
 		usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
-/client/Click(object, location, control, params)
+/client/Click(atom/object, atom/location, control, params)
 	if(!control)
 		return
+		
+	var/mcl = CONFIG_GET(number/minute_click_limit)
+	if(mcl && !check_rights(R_ADMIN, FALSE))
+		var/minute = round(world.time, 600)
+		if(!clicklimiter)
+			clicklimiter = new(5)
+		if(minute != clicklimiter[3])
+			clicklimiter[3] = minute
+			clicklimiter[4] = 0
+		clicklimiter[4] += 1
+		if(clicklimiter[4] > mcl)
+			var/msg = "Your previous click was ignored because you've done too many in a minute."
+			if(minute != clicklimiter[5]) //only one admin message per-minute
+				clicklimiter[5] = minute
+				log_game("[key_name(src)] has hit the per-minute click limit of [mcl].")
+				message_admins("[ADMIN_TPMONTY(mob)] has hit the per-minute click limit of [mcl].")
+			to_chat(src, "<span class='danger'>[msg]</span>")
+			return
+
+	var/scl = CONFIG_GET(number/second_click_limit)
+	if(scl && !check_rights(R_ADMIN, FALSE))
+		var/second = round(world.time, 10)
+		if(!clicklimiter)
+			clicklimiter = new(5)
+		if(second != clicklimiter[1])
+			clicklimiter[1] = second
+			clicklimiter[2] = 0
+		clicklimiter[2] += 1
+		if(clicklimiter[2] > scl)
+			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
+			return
+
 	return ..()
+
 
 /*
 	Standard mob ClickOn()
@@ -121,8 +154,7 @@
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			if(!A.attackby(W, src, params))
-				W.afterattack(A, src, TRUE, params)
+			W.melee_attack_chain(src, A, params)
 		else
 			UnarmedAttack(A)
 		return
@@ -134,8 +166,7 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A, W))
 		if(W)
-			if(!A.attackby(W, src, params))
-				W.afterattack(A, src, TRUE, params)
+			W.melee_attack_chain(src, A, params)
 		else
 			UnarmedAttack(A, 1)
 	else
@@ -359,9 +390,12 @@
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
-	src.point_to(A)
 	return
 
+
+/mob/living/ShiftMiddleClickOn(atom/A)
+	point_to(A)
+		
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
@@ -413,7 +447,7 @@
 
 
 /obj/screen/click_catcher
-	icon = 'icons/mob/screen_gen.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "catcher"
 	plane = CLICKCATCHER_PLANE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
@@ -425,7 +459,7 @@
 
 
 /obj/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
-	var/icon/newicon = icon('icons/mob/screen_gen.dmi', "catcher")
+	var/icon/newicon = icon('icons/mob/screen/generic.dmi', "catcher")
 	var/ox = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_x)
 	var/oy = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_y)
 	var/px = view_size_x * world.icon_size
@@ -446,7 +480,7 @@
 		var/mob/living/carbon/human/H = usr
 		H.swap_hand()
 	else
-		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
+		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client?.eye ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"
 		T?.Click(location, control, params)
 	. = TRUE

@@ -353,12 +353,13 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	trigger(emote, mob/source as mob)
 		if (src.uses < 1)	return 0
-		if (emote == "pale")
+		if (emote == "pale" && isliving(source))
+			var/mob/living/L = source
 			src.uses--
 			to_chat(source, "<span class='notice'>You feel a sudden surge of energy!</span>")
-			source.SetStunned(0)
-			source.SetKnockeddown(0)
-			source.SetKnockedout(0)
+			L.SetStunned(0)
+			L.SetKnockeddown(0)
+			L.SetKnockedout(0)
 
 		return
 

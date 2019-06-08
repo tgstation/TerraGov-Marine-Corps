@@ -1,8 +1,7 @@
 /datum/emergency_call/deathsquad
 	name = "Deathsquad"
 	probability = 0
-	shuttle_id = "Distress_PMC"
-	name_of_spawn = "Distress_PMC"
+	shuttle_id = "distress_pmc"
 
 
 /datum/emergency_call/deathsquad/print_backstory(mob/living/carbon/human/H)
@@ -22,7 +21,6 @@
 
 	H.name = pick(names)
 	H.real_name = H.name
-	H.voice_name = H.name
 
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)
@@ -41,6 +39,6 @@
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/deathsquad/standard)
-		SSjob.AssignRole(H, J.title)
+	SSjob.AssignRole(H, J.title)
 	J.equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the elite Death Squad commando!</span>")

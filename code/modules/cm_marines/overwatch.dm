@@ -18,7 +18,7 @@
 
 	var/state = OW_MAIN
 	var/obj/machinery/camera/cam = null
-	var/list/network = list("LEADER")
+	var/list/network = list("marine")
 	var/x_offset_s = 0
 	var/y_offset_s = 0
 	var/living_marines_sorting = FALSE
@@ -52,7 +52,7 @@
 	name = "Delta Overwatch Console"
 	squad_console = DELTA_SQUAD
 
-/obj/machinery/computer/overwatch/attackby(var/obj/I as obj, var/mob/user as mob)  //Can't break or disassemble.
+/obj/machinery/computer/overwatch/attackby(obj/item/I, mob/user, params)
 	return
 
 /obj/machinery/computer/overwatch/bullet_act(var/obj/item/projectile/Proj) //Can't shoot it
@@ -236,21 +236,21 @@
 				operator = usr
 				var/mob/living/carbon/human/H = operator
 				var/obj/item/card/id/ID = H.get_idcard()
-				state("<span class='boldnotice'>Basic overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]. Please select a squad.</span>")
+				visible_message("<span class='boldnotice'>Basic overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]. Please select a squad.</span>")
 				current_squad?.message_squad("Attention. Your Overwatch officer is now [ID ? "[ID.rank] ":""][operator.name].")
 		if("change_main_operator")
 			if(operator != usr)
 				operator = usr
 				var/mob/living/carbon/human/H = operator
 				var/obj/item/card/id/ID = H.get_idcard()
-				state("<span class='boldnotice'>Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name].</span>")
+				visible_message("<span class='boldnotice'>Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name].</span>")
 		if("logout")
 			if(current_squad)
 				current_squad.overwatch_officer = null //Reset the squad's officer.
 			var/mob/living/carbon/human/H = operator
 			var/obj/item/card/id/ID = H.get_idcard()
 			current_squad?.message_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
-			state("<span class='boldnotice'>Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
+			visible_message("<span class='boldnotice'>Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
 			operator = null
 			current_squad = null
 			if(cam)
@@ -260,7 +260,7 @@
 		if("logout_main")
 			var/mob/living/carbon/human/H = operator
 			var/obj/item/card/id/ID = H.get_idcard()
-			state("<span class='boldnotice'>Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
+			visible_message("<span class='boldnotice'>Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
 			operator = null
 			current_squad = null
 			selected_target = null
@@ -291,7 +291,7 @@
 						current_squad = selected
 						current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
 						current_squad.message_squad("Your Overwatch officer is: [operator.name].")
-						state("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
+						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
 						if(!current_squad.drop_pad) //Why the hell did this not link?
 							for(var/obj/structure/supply_drop/S in GLOB.item_list)
@@ -304,25 +304,25 @@
 				var/input = stripped_input(usr, "Please write a message to announce to the squad:", "Squad Message")
 				if(input)
 					current_squad.message_squad(input, usr) //message, adds username
-					state("<span class='boldnotice'>Message sent to all Marines of squad '[current_squad]'.</span>")
+					visible_message("<span class='boldnotice'>Message sent to all Marines of squad '[current_squad]'.</span>")
 		if("sl_message")
 			if(current_squad && operator == usr)
 				var/input = stripped_input(usr, "Please write a message to announce to the squad leader:", "SL Message")
 				if(input)
 					current_squad.message_leader(input, usr)
-					state("<span class='boldnotice'>Message sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'.</span>")
+					visible_message("<span class='boldnotice'>Message sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'.</span>")
 		if("set_primary")
 			var/input = stripped_input(usr, "What will be the squad's primary objective?", "Primary Objective")
 			if(input)
 				current_squad.primary_objective = input + " ([worldtime2text()])"
 				current_squad.message_squad("Your primary objective has changed. See Status pane for details.")
-				state("<span class='boldnotice'>Primary objective of squad '[current_squad]' set.</span>")
+				visible_message("<span class='boldnotice'>Primary objective of squad '[current_squad]' set.</span>")
 		if("set_secondary")
 			var/input = stripped_input(usr, "What will be the squad's secondary objective?", "Secondary Objective")
 			if(input)
 				current_squad.secondary_objective = input + " ([worldtime2text()])"
 				current_squad.message_squad("Your secondary objective has changed. See Status pane for details.")
-				state("<span class='boldnotice'>Secondary objective of squad '[current_squad]' set.</span>")
+				visible_message("<span class='boldnotice'>Secondary objective of squad '[current_squad]' set.</span>")
 		if("supply_x")
 			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
 			input = CLAMP(round(input), -5, 5)
@@ -392,13 +392,13 @@
 			if(!new_cam || !new_cam.can_use())
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No camera view found associated with [cam_target]...</span>")
 			else if(new_cam == cam)//click the camera you're watching a second time to stop watching.
-				state("<span class='boldnotice'>Stopping camera view of [cam_target].</span>")
+				visible_message("<span class='boldnotice'>Stopping camera view of [cam_target].</span>")
 				cam = null
 				usr.reset_view(null)
 			else if(usr.client.view != world.view)
 				to_chat(usr, "<span class='warning'>You're too busy peering through binoculars.</span>")
 			else
-				state("<span class='boldnotice'>Searching for [cam_target]... Camera view found and linked.</span>")
+				visible_message("<span class='boldnotice'>Searching for [cam_target]... Camera view found and linked.</span>")
 				cam = new_cam
 				usr.reset_view(cam)
 
@@ -538,7 +538,7 @@
 	if(A)
 		log_attack("[key_name(usr)] fired an orbital bombardment in for squad [current_squad] in [AREACOORD(T)].")
 		message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
-	state("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
+	visible_message("<span class='boldnotice'>Orbital bombardment request accepted. Orbital cannons are now calibrating.</span>")
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
 		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //Placeholder
@@ -547,7 +547,7 @@
 	addtimer(CALLBACK(src, .do_fire_bombard, T, usr), 4.1 SECONDS)
 
 /obj/machinery/computer/overwatch/proc/do_fire_bombard(var/turf/T, var/user)
-	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
+	visible_message("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
 	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	addtimer(CALLBACK(src, .do_land_bombard, T, user), 2.5 SECONDS)
 
@@ -584,16 +584,18 @@
 		return
 	if(current_squad.squad_leader)
 		current_squad.message_squad("Attention: [current_squad.squad_leader] is [current_squad.squad_leader.stat == DEAD ? "stepping down" : "demoted"]. A new Squad Leader has been set: [H.real_name].")
-		state("<span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files.</span>")
+		visible_message("<span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files.</span>")
 		current_squad.demote_squad_leader(current_squad.squad_leader.stat != DEAD)
 	else
 		current_squad.message_squad("Attention: A new Squad Leader has been set: [H.real_name].")
-		state("<span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")
+		visible_message("<span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")
 
 	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.squad_leader = H
 	SSdirection.set_leader(current_squad.tracking_id, H)
+	SSdirection.start_tracking("marine-sl", H)
+
 	if(H.mind.assigned_role == "Squad Leader")
 		H.mind.comm_title = "SL"
 	else
@@ -611,7 +613,7 @@
 		R.recalculateChannels()
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
-		ID.access += ACCESS_MARINE_LEADER
+		ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	H.hud_set_squad()
 	H.update_inv_head() //updating marine helmet leader overlays
 	H.update_inv_wear_suit()
@@ -638,7 +640,7 @@
 							R.fields["ma_crim"]	= "Insubordination."
 						else
 							R.fields["ma_crim"] += "Insubordination."
-						state("<span class='boldnotice'>[wanted_marine] has been reported for insubordination. Logging to enlistment file.</span>")
+						visible_message("<span class='boldnotice'>[wanted_marine] has been reported for insubordination. Logging to enlistment file.</span>")
 						to_chat(wanted_marine, "[icon2html(src, wanted_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been reported for insubordination by your overwatch officer.</font>")
 						wanted_marine.sec_hud_set_security_status()
 					return
@@ -724,7 +726,7 @@
 		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_squad()
-	state("<span class='boldnotice'>[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file.</span>")
+	visible_message("<span class='boldnotice'>[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file.</span>")
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
 
@@ -773,7 +775,7 @@
 	x_offset = CLAMP(round(x_offset), -5, 5)
 	y_offset = CLAMP(round(y_offset), -5, 5)
 
-	state("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
+	visible_message("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
 	current_squad.drop_pad.visible_message("<span class='warning'>\The [current_squad.drop_pad] whirrs as it beings to load the supply drop into a launch tube. Stand clear!</span>")
 	for(var/obj/C in supplies)
 		C.anchored = TRUE //to avoid accidental pushes
@@ -820,7 +822,7 @@
 	name = "Supply Drop Pad"
 	desc = "Place unanchored supplies on here to allow bridge Overwatch officers to drop them on people's heads."
 	icon = 'icons/effects/warning_stripes.dmi'
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
@@ -915,7 +917,7 @@
 		squad.sbeacon = src
 		user.transferItemToLoc(src, user.loc)
 		activated = 1
-		anchored = 1
+		anchored = TRUE
 		w_class = 10
 		icon_state = "[icon_activated]"
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
@@ -1137,17 +1139,6 @@
 			var/datum/action/skill/issue_order/A = new path()
 			A.give_action(H)
 
-
-/mob/living/carbon/human/Initialize()
-	. = ..()
-	var/datum/action/skill/toggle_orders/toggle_orders_action = new
-	toggle_orders_action.give_action(src)
-	var/datum/action/skill/issue_order/move/issue_order_move = new
-	issue_order_move.give_action(src)
-	var/datum/action/skill/issue_order/hold/issue_order_hold = new
-	issue_order_hold.give_action(src)
-	var/datum/action/skill/issue_order/focus/issue_order_focus = new
-	issue_order_focus.give_action(src)
 
 /obj/machinery/computer/overwatch/proc/get_squad_by_id(id)
 	if(!squads || !length(squads))

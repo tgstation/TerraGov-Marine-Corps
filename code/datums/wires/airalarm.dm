@@ -15,7 +15,7 @@
 
 /datum/wires/airalarm/interactable(mob/user)
 	var/obj/machinery/alarm/A = holder
-	if(A.panel_open && A.buildstage == 2)
+	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && A.buildstage == 2)
 		return TRUE
 
 
@@ -29,10 +29,6 @@
 
 
 /datum/wires/airalarm/on_pulse(wire)
-	. = ..()
-	if(!.)
-		return
-		
 	var/obj/machinery/alarm/A = holder
 	switch(wire)
 		if(WIRE_POWER) // Short out for a long time.
@@ -61,10 +57,6 @@
 
 
 /datum/wires/airalarm/on_cut(wire, mend)
-	. = ..()
-	if(!.)
-		return
-
 	var/obj/machinery/alarm/A = holder
 	switch(wire)
 		if(WIRE_POWER) // Short out forever.

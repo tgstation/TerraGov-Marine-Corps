@@ -168,57 +168,35 @@
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	explosion(src.loc, 2, 5, 2, -1)
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, sheet_path))
-		var/obj/item/stack/addstack = O
+/obj/machinery/power/port_gen/pacman/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, sheet_path))
+		var/obj/item/stack/addstack = I
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
-			to_chat(user, "<span class='notice'>The [src.name] is full!</span>")
+			to_chat(user, "<span class='notice'>\The [src] is full!</span>")
 			return
-		to_chat(user, "<span class='notice'>You add [amount] sheets to the [src.name].</span>")
+		to_chat(user, "<span class='notice'>You add [amount] sheets to \the [src].</span>")
 		sheets += amount
 		addstack.use(amount)
-		return
-	else if (istype(O, /obj/item/card/emag))
-		emagged = TRUE
-		emp_act(1)
-		return
-	else if(!active)
-		if(iswrench(O))
-			anchored = !anchored
 
-			if(anchored)
-				connect_to_network()
-				to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")
-			else
-				disconnect_from_network()
-				to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
+	else if(istype(I, /obj/item/card/emag))
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
+		emp_act(TRUE)
 
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			return
-		/*else if(isscrewdriver(O))
-			panel_open = !panel_open
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			if(panel_open)
-				to_chat(user, "<span class='notice'>You open the access panel.</span>")
-			else
-				to_chat(user, "<span class='notice'>You close the access panel.</span>")
-		else if(iscrowbar(O) && panel_open)
-			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
-			for(var/obj/item/I in component_parts)
-				I.loc = loc
-			while ( sheets > 0 )
-				var/obj/item/stack/sheet/G = new sheet_path(src.loc)
-				if ( sheets > 50 )
-					G.amount = 50
-				else
-					G.amount = sheets
+	else if(!active && iswrench(I))
+		anchored = !anchored
 
-				sheets -= G.amount
+		if(anchored)
+			connect_to_network()
+			to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")
+		else
+			disconnect_from_network()
+			to_chat(user, "<span class='notice'>You unsecure the generator from the floor.</span>")
 
-			new_frame.state = 2
-			new_frame.icon_state = "box_1"
-			qdel(src)*/
+		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
 	ui_interact(user)
@@ -259,7 +237,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
 	if(href_list["toggle_power"])
 		TogglePower()
 		. = TRUE
@@ -272,12 +249,9 @@
 			power_output--
 			. = TRUE
 	if (href_list["higher_power"])
-		if (power_output < 4 || emagged)
+		if (power_output < 4 || CHECK_BITFIELD(obj_flags, EMAGGED))
 			power_output++
 			. = TRUE
-
-/obj/machinery/power/port_gen/pacman/inoperable(var/additional_flags)
-	. = (machine_stat & (BROKEN|additional_flags))
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"

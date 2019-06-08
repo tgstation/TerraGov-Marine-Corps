@@ -10,10 +10,10 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	if(M.gloves)
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.transfer_blood) //bloodied gloves transfer blood to touched objects
-			if(add_blood(G.blood_DNA, G.blood_color)) //only reduces the bloodiness of our gloves if the item wasn't already bloody
+			if(add_blood(G.blood_color)) //only reduces the bloodiness of our gloves if the item wasn't already bloody
 				G.transfer_blood--
 	else if(M.bloody_hands)
-		if(add_blood(M.blood_DNA, M.blood_color))
+		if(add_blood(M.blood_color))
 			M.bloody_hands--
 
 	if(!suit_fibers) suit_fibers = list()
@@ -44,9 +44,8 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	uid = "\ref [A]"
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
-	fields["fprints"] = A.return_fingerprints()
+	fields["fprints"] = "unavailable"
 	fields["fibers"] = A.suit_fibers ? A.suit_fibers.Copy() : list()
-	fields["blood"] = A.blood_DNA ? A.blood_DNA.Copy() : list()
 	fields["time"] = world.time
 
 /datum/data/record/forensic/proc/merge(var/datum/data/record/other)
@@ -71,41 +70,3 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 
 	fields["area"] = other.fields["area"]
 	fields["time"] = other.fields["time"]
-
-
-/atom/proc/add_fingerprint(mob/M, ignoregloves = FALSE)
-	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
-	. = D.add_fingerprint(M, ignoregloves)
-
-
-/atom/proc/add_fingerprint_list(list/fingerprints)
-	if(length(fingerprints))
-		. = AddComponent(/datum/component/forensics, fingerprints)
-
-
-/atom/proc/add_hiddenprint_list(list/hiddenprints)
-	if(length(hiddenprints))
-		. = AddComponent(/datum/component/forensics, null, hiddenprints)
-
-
-/atom/proc/add_hiddenprint(mob/M)
-	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
-	. = D.add_hiddenprint(M)
-
-
-/atom/proc/return_fingerprints()
-	GET_COMPONENT(D, /datum/component/forensics)
-	if(D)
-		. = D.fingerprints
-
-
-/atom/proc/return_hiddenprints()
-	GET_COMPONENT(D, /datum/component/forensics)
-	if(D)
-		. = D.hiddenprints
-
-
-/atom/proc/transfer_fingerprints_to(atom/A)
-	A.add_fingerprint_list(return_fingerprints())
-	A.add_hiddenprint_list(return_hiddenprints())
-	A.fingerprintslast = fingerprintslast

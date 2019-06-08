@@ -41,7 +41,7 @@
 	if(A)
 		user.visible_message("<span class='warning'>[user] rips a wriggling parasite out of [target]'s ribcage!</span>",
 							 "<span class='warning'>You rip a wriggling parasite out of [target]'s ribcage!</span>")
-		var/mob/living/carbon/Xenomorph/Larva/L = locate() in target //the larva was fully grown, ready to burst.
+		var/mob/living/carbon/xenomorph/larva/L = locate() in target //the larva was fully grown, ready to burst.
 		if(L)
 			L.forceMove(target.loc)
 			qdel(A)
@@ -391,13 +391,11 @@
 		if(!transplant_blood)
 			O.organ_data.transplant_data = list()
 			O.organ_data.transplant_data["species"]    = target.species.name
-			O.organ_data.transplant_data["blood_type"] = target.dna.b_type
-			O.organ_data.transplant_data["blood_DNA"]  = target.dna.unique_enzymes
+			O.organ_data.transplant_data["blood_type"] = target.blood_type
 		else
 			O.organ_data.transplant_data = list()
 			O.organ_data.transplant_data["species"]    = transplant_blood.data["species"]
 			O.organ_data.transplant_data["blood_type"] = transplant_blood.data["blood_type"]
-			O.organ_data.transplant_data["blood_DNA"]  = transplant_blood.data["blood_DNA"]
 
 		O.organ_data.organ_holder = null
 		O.organ_data.owner = target

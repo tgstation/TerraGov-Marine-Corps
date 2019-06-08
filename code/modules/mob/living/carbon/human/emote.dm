@@ -1,5 +1,5 @@
 /datum/emote/living/carbon/human
-	mob_type_allowed_typecache = list(/mob/living/carbon/human)
+	mob_type_allowed_typecache = /mob/living/carbon/human
 
 
 /datum/emote/living/carbon/human/run_emote(mob/living/carbon/human/user, params, type_override, intentional = FALSE, prefix)

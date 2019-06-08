@@ -3,7 +3,7 @@
 	mob_type_blacklist_typecache = list()
 
 
-/datum/emote/brain/can_run_emote(mob/user, status_check = TRUE)
+/datum/emote/brain/can_run_emote(mob/user, status_check = TRUE, intentional = FALSE)
 	. = ..()
 	var/mob/living/brain/B = user
 	if(!istype(B) || (!(B.container && istype(B.container, /obj/item/mmi))))

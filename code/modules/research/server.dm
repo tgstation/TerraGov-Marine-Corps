@@ -93,34 +93,36 @@
 /obj/machinery/r_n_d/server/proc/produce_heat()
 
 
-/obj/machinery/r_n_d/server/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (disabled)
+/obj/machinery/r_n_d/server/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(disabled)
 		return
-	if (shocked)
-		shock(user,50)
-	if (isscrewdriver(O))
-		if (!opened)
-			opened = 1
+
+	else if(shocked)
+		shock(user, 50)
+
+	else if(isscrewdriver(I))
+		opened = !opened
+		if(opened)
 			icon_state = "server_o"
 			to_chat(user, "You open the maintenance hatch of [src].")
 		else
-			opened = 0
 			icon_state = "server"
 			to_chat(user, "You close the maintenance hatch of [src].")
-		return
-	if (opened)
-		if(iscrowbar(O))
-			griefProtection()
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
-			M.state = 2
-			M.icon_state = "box_1"
-			for(var/obj/I in component_parts)
-				if(I.reliability != 100 && crit_fail)
-					I.crit_fail = 1
-				I.loc = src.loc
-			qdel(src)
-			return 1
+
+	else if(opened && iscrowbar(I))
+		griefProtection()
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
+		M.state = 2
+		M.icon_state = "box_1"
+		for(var/obj/O in component_parts)
+			if(O.reliability != 100 && crit_fail)
+				O.crit_fail = TRUE
+			O.forceMove(loc)
+		qdel(src)
+		return TRUE
 
 /obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
 	if (disabled)
@@ -177,9 +179,8 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
 	usr.set_interaction(src)
-	if(!src.allowed(usr) && !emagged)
+	if(!src.allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(usr, "<span class='warning'>You do not have the required access level</span>")
 		return
 
@@ -308,13 +309,15 @@
 	onclose(user, "server_control")
 
 
-/obj/machinery/computer/rdservercontrol/attackby(var/obj/item/D as obj, var/mob/user as mob)
-	if(istype(D, /obj/item/card/emag) && !emagged)
-		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
-		emagged = 1
+/obj/machinery/computer/rdservercontrol/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
+		playsound(loc, 'sound/effects/sparks4.ogg', 25, 1)
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
-	src.updateUsrDialog()
-	return ..()
+	
+	updateUsrDialog()
 
 
 /obj/machinery/r_n_d/server/robotics

@@ -6,13 +6,13 @@
 
 //#define DEBUG_ATTACK_ALIEN
 
-/mob/living/carbon/Xenomorph/proc/reset_critical_hit()
+/mob/living/carbon/xenomorph/proc/reset_critical_hit()
 	critical_proc = FALSE
 
-/mob/living/carbon/Xenomorph/proc/process_rage_attack()
+/mob/living/carbon/xenomorph/proc/process_rage_attack()
 	return FALSE
 
-/mob/living/proc/attack_alien_grab(mob/living/carbon/Xenomorph/X)
+/mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(X == src || anchored || buckled)
 		return FALSE
 
@@ -20,11 +20,9 @@
 		return FALSE
 
 	X.start_pulling(src)
-	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 	return TRUE
 
-/mob/living/carbon/human/attack_alien_grab(mob/living/carbon/Xenomorph/X)
+/mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
 		X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Your grab was blocked by [src]'s shield!</span>", null, 5)
@@ -32,18 +30,18 @@
 		return FALSE
 	return ..()
 
-/mob/living/proc/attack_alien_disarm(mob/living/carbon/Xenomorph/X, dam_bonus)
+/mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>", \
 	"<span class='warning'>You shove [src]!</span>", null, 5)
 	return TRUE
 
-/mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/Xenomorph/X, dam_bonus)
+/mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	. = ..()
 	KnockDown(8)
 
-/mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/Xenomorph/X, dam_bonus)
-	if((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) //No more memeing nested and infected hosts
+/mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
+	if(isnestedhost(src)) //No more memeing nested and infected hosts
 		to_chat(X, "<span class='xenodanger'>You reconsider your mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
 	X.animation_attack_on(src)
@@ -88,7 +86,9 @@
 			KnockOut(knockout_stacks)
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src)
+
 	X.neuroclaw_router(src) //if we have neuroclaws...
 	if(dam_bonus)
 		tackle_pain += dam_bonus
@@ -107,7 +107,7 @@
 	"[throttle_message2]", null, 5)
 	return TRUE
 
-/mob/living/proc/can_xeno_slash(mob/living/carbon/Xenomorph/X)
+/mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
 	
@@ -123,7 +123,7 @@
 			to_chat(X, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>")
 			return FALSE
 
-	else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
+	else if(isnestedhost(src))
 		for(var/obj/item/alien_embryo/embryo in src)
 			if(!embryo.issamexenohive(X))
 				continue
@@ -131,7 +131,7 @@
 			return FALSE
 	return TRUE
 
-/mob/living/carbon/human/can_xeno_slash(mob/living/carbon/Xenomorph/X)
+/mob/living/carbon/human/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -139,10 +139,10 @@
 		to_chat(X, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
 		return FALSE
 
-/mob/living/proc/get_xeno_slash_zone(mob/living/carbon/Xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
+/mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
 
-/mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/Xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
+/mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	var/datum/limb/affecting
 	if(set_location)
 		affecting = get_limb(set_location)
@@ -158,7 +158,7 @@
 		affecting = get_limb("chest") //Gotta have a torso?!
 	return affecting
 
-/mob/living/proc/attack_alien_harm(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(!can_xeno_slash(X))
 		return FALSE
 
@@ -181,7 +181,7 @@
 		attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
 		log = "bit"
 		X.critical_proc = TRUE
-		addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
+		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
 
 	//Check for a special bite attack
 	if(prob(X.xeno_caste.tail_chance) && !X.critical_proc && !no_crit && !X.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
@@ -192,7 +192,7 @@
 		attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
 		log = "tail-stabbed"
 		X.critical_proc = TRUE
-		addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
+		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)
@@ -239,13 +239,18 @@
 			KnockOut(knockout_stacks) //...And we knock 
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
-		X.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-	damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
-	apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
+	if(dam_bonus)
+		damage += dam_bonus
+	else //We avoid stacking, like hit-and-run and savage.
+		damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
+
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src)
+
+	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
 	updatehealth()
 
-/mob/living/silicon/attack_alien_harm(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		var/datum/effect_system/spark_spread/spark_system
 		spark_system = new /datum/effect_system/spark_spread()
@@ -255,14 +260,14 @@
 		playsound(loc, "alien_claw_metal", 25, 1)
 	return ..()
 
-/mob/living/carbon/Xenomorph/attack_alien_harm(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(issamexenohive(X))
 		X.visible_message("<span class='warning'>\The [X] nibbles [src].</span>", \
 		"<span class='warning'>You nibble [src].</span>", null, 5)
 		return TRUE
 	return ..()
 
-/mob/living/carbon/human/attack_alien_harm(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD)
 		if(luminosity > 0)
 			playsound(loc, "alien_claw_metal", 25, 1)
@@ -286,7 +291,7 @@
 	X.process_rage_attack() //Process Ravager rage gains on attack
 
 //Every other type of nonhuman mob
-/mob/living/attack_alien(mob/living/carbon/Xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/attack_alien(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if (X.fortify)
 		return FALSE
 
@@ -308,9 +313,9 @@
 			return attack_alien_disarm(X, dam_bonus)
 	return FALSE
 
-/mob/living/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
 	"<span class='danger'>You nudge your head against [src].</span>", null, 5)
 
-/obj/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return //larva can't do anything by default

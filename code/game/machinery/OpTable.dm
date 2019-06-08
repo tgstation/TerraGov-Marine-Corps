@@ -3,9 +3,9 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	density = 1
+	density = TRUE
 	layer = TABLE_LAYER
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	use_power = 1
 	idle_power_usage = 1
@@ -47,11 +47,6 @@
 	return
 
 /obj/machinery/optable/attack_paw(mob/user as mob)
-	if ((HULK in usr.mutations))
-		to_chat(usr, text("<span class='notice'> You destroy the operating table.</span>"))
-		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
-		src.density = 0
-		qdel(src)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
 		step(user, get_dir(user, src))
 		if (user.loc == src.loc)
@@ -67,12 +62,6 @@
 		to_chat(user, "<span class='information'>It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa.</span>")
 
 /obj/machinery/optable/attack_hand(mob/living/user)
-	if (HULK in usr.mutations)
-		to_chat(usr, text("<span class='notice'> You destroy the table.</span>"))
-		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
-		src.density = 0
-		qdel(src)
-		return
 	if(buckled_mob)
 		unbuckle(user)
 		return
@@ -130,7 +119,7 @@
 
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	else
 		return 0
@@ -168,10 +157,9 @@
 		user.visible_message("<span class='notice'>[user] climbs on the operating table.","You climb on the operating table.</span>", null, null, 4)
 	else
 		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, 4)
-	C.resting = 1
+	C.set_resting(TRUE)
 	C.forceMove(loc)
 
-	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		victim = H
@@ -190,36 +178,42 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tank/anesthetic))
-		if(!anes_tank)
-			user.transferItemToLoc(W, src)
-			anes_tank = W
-			to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
+/obj/machinery/optable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/tank/anesthetic))
+		if(anes_tank)
 			return
-	if (istype(W, /obj/item/grab))
-		var/obj/item/grab/G = W
-		if(victim && victim != G.grabbed_thing)
-			to_chat(user, "<span class='warning'>The table is already occupied!</span>")
-			return
-		var/mob/living/carbon/M
-		if(iscarbon(G.grabbed_thing))
-			M = G.grabbed_thing
-			if(M.buckled)
-				to_chat(user, "<span class='warning'>Unbuckle first!</span>")
-				return
-		else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
-			var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-			if(!C.stasis_mob)
-				return
-			M = C.stasis_mob
-			C.open()
-			user.stop_pulling()
-			user.start_pulling(M)
-		else
-			return
+		user.transferItemToLoc(I, src)
+		anes_tank = I
+		to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
 
-		take_victim(M,user)
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+	if(victim && victim != G.grabbed_thing)
+		to_chat(user, "<span class='warning'>The table is already occupied!</span>")
+		return
+	var/mob/living/carbon/M
+	if(iscarbon(G.grabbed_thing))
+		M = G.grabbed_thing
+		if(M.buckled)
+			to_chat(user, "<span class='warning'>Unbuckle first!</span>")
+			return
+	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
+		if(!C.stasis_mob)
+			return
+		M = C.stasis_mob
+		C.open()
+		user.stop_pulling()
+		user.start_pulling(M)
+
+	if(!M)
+		return
+
+	take_victim(M, user)
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(victim)

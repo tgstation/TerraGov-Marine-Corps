@@ -1,7 +1,7 @@
 /datum/xeno_caste/queen
 	caste_name = "Queen"
 	display_name = "Queen"
-	caste_type_path = /mob/living/carbon/Xenomorph/Queen
+	caste_type_path = /mob/living/carbon/xenomorph/queen
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
 	tier = XENO_TIER_FOUR

@@ -79,7 +79,7 @@
 	apply_overlay(LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/apply_laser()
+/mob/living/carbon/xenomorph/apply_laser()
 	overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
 	apply_overlay(X_LASER_LAYER)
 	return TRUE
@@ -96,7 +96,7 @@
 	remove_overlay(LASER_LAYER)
 	return TRUE
 
-/mob/living/carbon/Xenomorph/remove_laser()
+/mob/living/carbon/xenomorph/remove_laser()
 	remove_overlay(X_LASER_LAYER)
 	return TRUE
 
@@ -107,9 +107,9 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/unique_action(mob/user)
 	if(!targetmarker_primed && !targetmarker_on)
-		laser_on(user)
+		return laser_on(user)
 	else
-		laser_off(user)
+		return laser_off(user)
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Destroy()
@@ -157,12 +157,14 @@
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
 	if(!zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
-		return
+		return TRUE
 	targetmarker_primed = TRUE //We prime the target laser
 	if(user?.client)
 		user.client.click_intercept = src
 		to_chat(user, "<span class='notice'><b>You activate your target marker and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
+	return TRUE
+
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user)
 	if(targetmarker_on)
@@ -176,6 +178,8 @@
 		user.client.click_intercept = null
 		to_chat(user, "<span class='notice'><b>You deactivate your target marker.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
+	return TRUE
+
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
@@ -275,7 +279,6 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
-						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
@@ -298,7 +301,7 @@
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	burst_accuracy_mult = CONFIG_GET(number/combat_define/min_burst_accuracy_penalty)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
@@ -318,7 +321,7 @@
 	fire_sound = "gun_smartgun"
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	w_class = 5
 	force = 20
 	wield_delay = 16
@@ -337,7 +340,7 @@
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
 /obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
@@ -358,8 +361,9 @@
 
 /obj/item/weapon/gun/smartgun/unique_action(mob/living/carbon/user)
 	var/obj/item/smartgun_powerpack/power_pack = user.back
-	if(istype(power_pack))
-		power_pack.attack_self(user)
+	if(!istype(power_pack))
+		return FALSE
+	return power_pack.attack_self(user)
 
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
@@ -462,7 +466,8 @@
 	var/max_grenades = 6
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
@@ -489,20 +494,22 @@
 	to_chat(user, "<span class='notice'> It is loaded with <b>[length(grenades)] / [max_grenades]</b> grenades.</span>")
 
 
-/obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/explosive/grenade)))
-		if(grenades.len < max_grenades)
-			if(user.transferItemToLoc(I, src))
-				grenades += I
-				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
-				to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
-				to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
-		else
+/obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade))
+		if(length(grenades) >= max_grenades)
 			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
+			return
 
-	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user))
-			attach_to_gun(user,I)
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		grenades += I
+		playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
+		to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
+
+	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
@@ -531,8 +538,8 @@
 
 
 /obj/item/weapon/gun/launcher/m92/unload(mob/user)
-	if(grenades.len)
-		var/obj/item/explosive/grenade/nade = grenades[grenades.len] //Grab the last one.
+	if(length(grenades))
+		var/obj/item/explosive/grenade/nade = grenades[length(grenades)] //Grab the last one.
 		if(user)
 			user.put_in_hands(nade)
 			playsound(user, unload_sound, 25, 1)
@@ -541,6 +548,7 @@
 		grenades -= nade
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
+	return TRUE
 
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
@@ -599,7 +607,7 @@
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/m81/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(!spawn_empty)
 		if(riot_version)
@@ -620,20 +628,24 @@
 	to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
 
 
-/obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
-	if((istype(I, /obj/item/explosive/grenade)))
-		if((istype(I, grenade_type_allowed)))
-			if(!grenade)
-				if(user.transferItemToLoc(I, src))
-					grenade = I
-					to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
-			else
-				to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
-		else
+/obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade))
+		if(!istype(I, grenade_type_allowed))
 			to_chat(user, "<span class='warning'>[src] can't use this type of grenade!</span>")
+			return
 
-	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) attach_to_gun(user,I)
+		if(grenade)
+			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
+			return
+
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		grenade = I
+		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
+
+	else if(istype(I, /obj/item/attachable) && check_inactive_hand(user))
+		attach_to_gun(user, I)
 
 
 /obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)
@@ -662,10 +674,12 @@
 		if(user)
 			user.put_in_hands(nade)
 			playsound(user, unload_sound, 25, 1)
-		else nade.loc = get_turf(src)
+		else
+			nade.loc = get_turf(src)
 		grenade = null
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
+	return TRUE
 
 
 /obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
@@ -712,7 +726,7 @@
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	w_class = 5
 	force = 15
 	wield_delay = 12
@@ -729,7 +743,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
-/obj/item/weapon/gun/launcher/rocket/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
 	smoke = new(src, FALSE)
 
@@ -799,6 +813,7 @@
 /obj/item/weapon/gun/launcher/rocket/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
 	user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
+	ammo = GLOB.ammo_list[current_mag.default_ammo]
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
 	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
 	if(reload_sound)
@@ -808,14 +823,14 @@
 
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
 	if(!user)
-		return
+		return FALSE
 	if(!current_mag || current_mag.loc != src)
 		to_chat(user, "<span class='warning'>[src] is already empty!</span>")
-		return
+		return TRUE
 	to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
 	if(!do_after(user, current_mag.reload_delay * 0.5, TRUE, src, BUSY_ICON_GENERIC))
 		to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
-		return
+		return TRUE
 	if(!user) //If we want to drop it on the ground or there's no user.
 		current_mag.loc = get_turf(src) //Drop it on the ground.
 	else
@@ -826,6 +841,9 @@
 	"<span class='notice'>You unload [current_mag] from [src].</span>", null, 4)
 	current_mag.update_icon()
 	current_mag = null
+
+	return TRUE
+
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
 /obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)

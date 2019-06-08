@@ -546,6 +546,11 @@
 	return "<a href='?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 
+/client/proc/get_asay()
+	var/msg = input(src, null, "asay \"text\"") as text|null
+	asay(msg)
+
+
 /client/proc/asay(msg as text)
 	set category = "Admin"
 	set name = "asay"
@@ -569,6 +574,11 @@
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C, msg)
+
+
+/client/proc/get_msay()
+	var/msg = input(src, null, "msay \"text\"") as text|null
+	msay(msg)
 
 
 /client/proc/msay(msg as text)
@@ -602,6 +612,11 @@
 			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
 		else if(is_mentor(C))
 			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
+
+
+/client/proc/get_dsay()
+	var/msg = input(src, null, "dsay \"text\"") as text|null
+	dsay(msg)
 
 
 /client/proc/dsay(msg as text)
@@ -643,14 +658,6 @@
 			to_chat(C, msg)
 
 
-/mob/proc/on_mob_jump()
-	return
-
-
-/mob/dead/observer/on_mob_jump()
-	unfollow()
-
-
 /datum/admins/proc/jump()
 	set category = "Admin"
 	set name = "Jump"
@@ -667,7 +674,7 @@
 	var/selection = input("Jump to:", "Jump") as null|anything in list("Area", "Turf", "Coords", "Mob", "Key")
 	switch(selection)
 		if("Area")
-			var/area/A = input("Area", "Jump") as null|anything in return_sorted_areas()
+			var/area/A = input("Area", "Jump") as null|anything in GLOB.sorted_areas
 			target = pick(get_area_turfs(A))
 		if("Turf")
 			var/turf/T = input("Turf", "Jump") as null|anything in GLOB.turfs
@@ -689,7 +696,6 @@
 	if(!istype(target))
 		return
 
-	N.on_mob_jump()
 	N.forceMove(target)
 
 	log_admin("[key_name(usr)] jumped to [selection] at [AREACOORD(target)].")
@@ -729,7 +735,6 @@
 
 	var/turf/T = get_turf(N)
 
-	M.on_mob_jump()
 	M.forceMove(T)
 
 	log_admin("[key_name(usr)] teleported [key_name(M)] to themselves [AREACOORD(M.loc)].")
@@ -762,7 +767,7 @@
 	var/turf/target
 	switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
 		if("Area")
-			var/area/A = input("Pick an area.", "Send Mob") as null|anything in return_sorted_areas()
+			var/area/A = input("Pick an area.", "Send Mob") as null|anything in GLOB.sorted_areas
 			if(!A)
 				return
 			target = pick(get_area_turfs(A))
@@ -780,14 +785,13 @@
 	if(!istype(M))
 		return
 
-	M.on_mob_jump()
 	M.forceMove(target)
 
 	log_admin("[key_name(usr)] teleported [key_name(M)] to [AREACOORD(target)].")
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(target)].")
 
 
-/datum/admins/proc/jump_area(area/A in return_sorted_areas())
+/datum/admins/proc/jump_area(area/A in GLOB.sorted_areas)
 	set category = null
 	set name = "Jump to Area"
 
@@ -796,7 +800,6 @@
 
 	var/mob/M = usr
 	var/target = pick(get_area_turfs(A))
-	M.on_mob_jump()
 	M.forceMove(target)
 
 	log_admin("[key_name(usr)] jumped to [AREACOORD(M)].")
@@ -815,7 +818,6 @@
 		return
 
 	var/mob/M = usr
-	M.on_mob_jump()
 	M.forceMove(T)
 
 	log_admin("[key_name(M)] jumped to turf [AREACOORD(T)].")
@@ -831,7 +833,6 @@
 		return
 
 	var/mob/M = usr
-	M.on_mob_jump()
 	M.x = tx
 	M.y = ty
 	M.z = tz
@@ -858,7 +859,6 @@
 	var/mob/N = usr
 	var/turf/T = get_turf(M)
 
-	N.on_mob_jump()
 	N.forceMove(T)
 
 	log_admin("[key_name(N)] jumped to [key_name(M)]'s mob [AREACOORD(T)]")
@@ -884,7 +884,6 @@
 	var/mob/N = usr
 	var/turf/T = get_turf(M)
 
-	N.on_mob_jump()
 	N.forceMove(T)
 
 	log_admin("[key_name(usr)] jumped to [key_name(M)]'s key [AREACOORD(T)].")
@@ -1001,6 +1000,24 @@
 
 	else if(istype(whom, /client))
 		recipient = whom
+		
+
+
+	if(irc)
+		if(!ircreplyamount)	//to prevent people from spamming irc
+			return
+
+		if(!msg)
+			msg = input(src, "Message:", "Private message to Administrator") as message|null
+
+		if(!msg)
+			return
+
+		if(holder)
+			to_chat(src, "<span class='danger'>Use the admin IRC channel.</span>")
+			return
+
+	else
 		if(!recipient)
 			if(holder)
 				to_chat(src, "<span class='warning'>Error: Client not found.</span>")
@@ -1011,24 +1028,24 @@
 				current_ticket.MessageNoRecipient(msg)
 				return
 
-	//get message text, limit it's length.and clean/escape html
-	if(!msg)
-		msg = input("Message:", "Private message to [key_name(recipient, FALSE, FALSE)]") as message|null
-		msg = trim(msg)
+		//get message text, limit it's length.and clean/escape html
 		if(!msg)
-			return
+			msg = input("Message:", "Private message to [key_name(recipient, FALSE, FALSE)]") as message|null
+			msg = trim(msg)
+			if(!msg)
+				return
 
-		if(prefs.muted & MUTE_ADMINHELP)
-			to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
-			return
+			if(prefs.muted & MUTE_ADMINHELP)
+				to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
+				return
 
-		if(!recipient && !irc)
-			if(holder)
-				to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
-				to_chat(src, "<span class='notice'>[msg]</span><br>")
-			else
-				current_ticket.MessageNoRecipient(msg)
-			return
+			if(!recipient && !irc)
+				if(holder)
+					to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
+					to_chat(src, "<span class='notice'>[msg]</span><br>")
+				else
+					current_ticket.MessageNoRecipient(msg)
+				return
 
 	if(handle_spam_prevention(msg, MUTE_ADMINHELP))
 		return
@@ -1046,6 +1063,7 @@
 	if(irc)
 		to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
+		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || is_mentor(recipient))
@@ -1058,8 +1076,8 @@
 				to_chat(recipient, "<font size='3' color='red'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				to_chat(src, "<font size='3' color='blue'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 
-				window_flash(recipient)
-				window_flash(src)
+				window_flash(recipient, TRUE)
+				window_flash(src, TRUE)
 
 				var/interaction_message = "<font color='#cea7f1'>PM from-<b>[key_name(src, recipient, TRUE)]</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [keywordparsedmsg]</font>"
 				admin_ticket_log(src, interaction_message)
@@ -1069,7 +1087,7 @@
 			else //Recipient is a staff member, sender is not.
 				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
-				window_flash(recipient)
+				window_flash(recipient, TRUE)
 				to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></font>")
 
 			//Play the bwoink if enabled.
@@ -1090,14 +1108,15 @@
 					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
 					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+					window_flash(recipient, TRUE)
 				else if(is_mentor(src))
 					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
 					to_chat(recipient, "<font color='blue'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 					to_chat(recipient, "<font color='blue'><i>Click on the mentor's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
+					window_flash(recipient)
 
-				window_flash(recipient)
 				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 
 
@@ -1241,6 +1260,8 @@
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')
 
+	C.ircreplyamount = IRCREPLYCOUNT
+
 	return "Message Successful"
 
 
@@ -1260,7 +1281,7 @@
 		return
 
 	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
+		var/mob/living/carbon/xenomorph/X = i
 		if(!X.client)
 			continue
 		X.forceMove(get_turf(usr))
@@ -1356,3 +1377,23 @@
 		return
 
 	usr << link(CONFIG_GET(string/dburl))
+
+
+/datum/admins/proc/check_fingerprints(atom/A)
+	set category = null
+	set name = "Check Fingerprints"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/dat
+
+	if(!A.fingerprints)
+		dat += "No fingerprints detected."
+
+	for(var/i in A.fingerprints)
+		dat += "[i] - [A.fingerprints[i]]<br>"
+
+	var/datum/browser/browser = new(usr, "fingerprints_[A]", "Fingerprints on [A]")
+	browser.set_content(dat)
+	browser.open(FALSE)

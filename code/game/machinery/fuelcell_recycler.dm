@@ -3,8 +3,8 @@
 	desc = "A large machine with whirring fans and two cylindrical holes in the top. Used to regenerate fuel cells."
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "recycler"
-	anchored = 1.0
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	idle_power_usage = 5
 	active_power_usage = 15000
 	bound_height = 32
@@ -13,7 +13,8 @@
 	var/obj/item/fuelCell/cell_right = null
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-/obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user)
+/obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(istype(I, /obj/item/fuelCell))
 		if(!cell_left)
 			if(user.transferItemToLoc(I, src))
@@ -25,18 +26,16 @@
 				start_processing()
 		else
 			to_chat(user, "<span class='notice'>The recycler is full!</span>")
-			return
 		update_icon()
-	else
-		to_chat(user, "<span class='notice'>You can't see how you'd use [I] with [src]...</span>")
 		return
+
+	to_chat(user, "<span class='notice'>You can't see how you'd use [I] with [src]...</span>")
+	return
 
 /obj/machinery/fuelcell_recycler/attack_hand(mob/M)
 	if(cell_left == null && cell_right == null)
 		to_chat(M, "<span class='notice'>The recycler is empty.</span>")
 		return
-
-	add_fingerprint(M)
 
 	if(cell_right == null)
 		cell_left.update_icon()

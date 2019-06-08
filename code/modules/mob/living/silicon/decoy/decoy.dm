@@ -1,8 +1,9 @@
-/mob/living/silicon/decoy/ship_ai //For the moment, pending better pathing.
-
-/mob/living/silicon/decoy/ship_ai/Initialize()
-	. = ..()
+/mob/living/silicon/decoy/ship_ai
 	name = MAIN_AI_SYSTEM
+
+
+/mob/living/silicon/decoy/ship_ai/Initialize(mapload, ...)
+	. = ..()
 	desc = "This is the artificial intelligence system for the [CONFIG_GET(string/ship_name)]. Like many other military-grade AI systems, this one was manufactured by NanoTrasen."
 
 
@@ -11,18 +12,13 @@
 	name = "AI"
 	icon = 'icons/Marine/ai.dmi'
 	icon_state = "hydra"
-	voice_name = "ARES v3.2"
-	anchored = 1
+	anchored = TRUE
 	canmove = FALSE
 	density = TRUE //Do not want to see past it.
 	bound_height = 64 //putting this in so we can't walk through our machine.
 	bound_width = 96
-	var/obj/item/radio/headset/almayer/mcom/ai/radio //The thing it speaks into.
 	var/sound/ai_sound //The lines that it plays when speaking.
 
-/mob/living/silicon/decoy/Initialize()
-	. = ..()
-	radio = new(src)
 
 /mob/living/silicon/decoy/Life()
 	if(stat == DEAD)

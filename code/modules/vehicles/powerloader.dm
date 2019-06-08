@@ -4,8 +4,8 @@
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	luminosity = 5
 	move_delay = 8
 	max_integrity = 200
@@ -21,9 +21,13 @@
 /obj/vehicle/powerloader/relaymove(mob/user, direction)
 	if(user.incapacitated())
 		return
-	if(world.time > l_move_time + move_delay)
+	if(direction in GLOB.diagonals)
+		return
+	if(!direction)
+		return
+	if(world.time > last_move_time + move_delay)
 		if(dir != direction)
-			l_move_time = world.time
+			last_move_time = world.time
 			setDir(direction)
 			pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
 			. = TRUE
@@ -51,29 +55,35 @@
 			to_chat(usr, "There is no cell in the [src].")
 
 
-/obj/vehicle/powerloader/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = W
-		if(PC.linked_powerloader == src)
-			unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
-			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
-			return TRUE
-	else if(isscrewdriver(W))
+/obj/vehicle/powerloader/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(PC.linked_powerloader != src)
+			return
+		
+		unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		return TRUE
+
+	else if(isscrewdriver(I))
 		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
-	else if(istype(W, /obj/item/cell) && panel_open)
-		if(!cell)
-			var/obj/item/cell/C = W
-			cell = C
-			qdel(C)
-			visible_message("[user] puts a new power cell in the [src].")
-			to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
-			playsound(src,'sound/machines/click.ogg', 25, 1)
-		else
+
+	else if(istype(I, /obj/item/cell) && panel_open)
+		var/obj/item/cell/C = I
+
+		if(cell)
 			to_chat(user, "There already is a power cell in the [src].")
-	else
-		return ..()
+			return
+
+		cell = C
+		C.forceMove(src)
+		visible_message("[user] puts a new power cell in the [src].")
+		to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
+		playsound(src,'sound/machines/click.ogg', 25, 1)
 
 /obj/vehicle/powerloader/examine(mob/user)
 	. = ..()
@@ -154,7 +164,7 @@
 		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
 		return 1
 	else if(isxeno(M) && user.a_intent == INTENT_HELP)
-		var/mob/living/carbon/Xenomorph/X = M
+		var/mob/living/carbon/xenomorph/X = M
 		if(X.stat == DEAD)
 			if(!X.anchored)
 				if(linked_powerloader)
@@ -249,6 +259,17 @@
 	desc = "Remains of some unfortunate Cargo Loader. Completely unrepairable."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
-	density = 1
+	density = TRUE
 	anchored = 0
 	opacity = 0
+
+
+/obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent == INTENT_HARM)
+		X.animation_attack_on(src)
+		X.flick_attack_overlay(src, "slash")
+		playsound(loc, "alien_claw_metal", 25, 1)
+		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
+		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
+	else
+		attack_hand(X)

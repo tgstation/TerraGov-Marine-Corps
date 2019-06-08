@@ -10,49 +10,39 @@
 	l_color = "#47A3FF" //Blue
 	var/s_color = "blue"
 
-	Crossed(var/mob/living/O)
-		if(anchored && prob(20))
-			if(!istype(O,/mob/living/carbon/Xenomorph/Larva))
-				visible_message("<span class='danger'>[O] tramples the [src]!</span>")
-				playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
-				if(istype(O,/mob/living/carbon/Xenomorph))
-					if(prob(40))
-						qdel(src)
-					else
-						anchored = 0
-						icon_state = "lightstick_[s_color][anchored]"
-						SetLuminosity(0)
-						pixel_x = 0
-						pixel_y = 0
-				else
-					anchored = 0
-					icon_state = "lightstick_[s_color][anchored]"
-					SetLuminosity(0)
-					pixel_x = 0
-					pixel_y = 0
+/obj/item/lightstick/Crossed(mob/living/L)
+	. = ..()
+	if(!anchored || !istype(L) || isxenolarva(L) || prob(80))
+		return
+	visible_message("<span class='danger'>[L] tramples the [src]!</span>")
+	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+	if(isxeno(L) && prob(40))
+		qdel(src)
+		return
+	anchored = FALSE
+	icon_state = "lightstick_[s_color][anchored]"
+	SetLuminosity(0)
 
 	//Removing from turf
-	attack_hand(mob/user)
-		..()
-		if(!anchored)//If planted
-			return
+/obj/item/lightstick/attack_hand(mob/user)
+	. = ..()
+	if(!anchored)//If planted
+		return
 
-		to_chat(user, "You start pulling out \the [src].")
-		if(!do_after(user,20, TRUE, src, BUSY_ICON_GENERIC))
-			return
+	to_chat(user, "You start pulling out \the [src].")
+	if(!do_after(user,20, TRUE, src, BUSY_ICON_GENERIC))
+		return
 
-		anchored = 0
-		user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
-		icon_state = "lightstick_[s_color][anchored]"
-		SetLuminosity(0)
-		pixel_x = 0
-		pixel_y = 0
-		playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
+	anchored = FALSE
+	user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
+	icon_state = "lightstick_[s_color][anchored]"
+	SetLuminosity(0)
+	playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 	//Remove lightsource
-	Destroy()
-		SetLuminosity(0)
-		. = ..()
+/obj/item/lightstick/Destroy()
+	SetLuminosity(0)
+	return ..()
 
 /obj/item/lightstick/anchored
 	icon_state = "lightstick_blue1"

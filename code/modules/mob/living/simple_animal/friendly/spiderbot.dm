@@ -19,7 +19,6 @@
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
-	universal_speak = 1 //Temp until these are rewritten.
 
 	wander = 0
 
@@ -42,104 +41,94 @@
 	mob_size = MOB_SIZE_SMALL
 	speak_emote = list("beeps","clicks","chirps")
 
-/mob/living/simple_animal/spiderbot/attackby(var/obj/item/O as obj, var/mob/user as mob)
-
-	if(istype(O, /obj/item/mmi))
-		var/obj/item/mmi/B = O
-		if(src.mmi) //There's already a brain in it.
+/mob/living/simple_animal/spiderbot/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/mmi))
+		var/obj/item/mmi/B = I
+		if(mmi) //There's already a brain in it.
 			to_chat(user, "<span class='warning'>There's already a brain in [src]!</span>")
 			return
+
 		if(!B.brainmob)
 			to_chat(user, "<span class='warning'>Sticking an empty MMI into the frame would sort of defeat the purpose.</span>")
 			return
+
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
 			if(B.brainmob.mind)
 				for(var/mob/dead/observer/G in GLOB.player_list)
 					if(G.can_reenter_corpse && G.mind == B.brainmob.mind)
-						ghost_can_reenter = 1
+						ghost_can_reenter = TRUE
 						break
 			if(!ghost_can_reenter)
-				to_chat(user, "<span class='notice'>[O] is completely unresponsive; there's no point.</span>")
+				to_chat(user, "<span class='notice'>[B] is completely unresponsive; there's no point.</span>")
 				return
 
 		if(B.brainmob.stat == DEAD)
-			to_chat(user, "<span class='warning'>[O] is dead. Sticking it into the frame would sort of defeat the purpose.</span>")
+			to_chat(user, "<span class='warning'>[B] is dead. Sticking it into the frame would sort of defeat the purpose.</span>")
 			return
 
-
-
-		user.transferItemToLoc(O, src)
-		to_chat(user, "<span class='notice'>You install [O] in [src]!</span>")
-		mmi = O
-		transfer_personality(O)
+		user.transferItemToLoc(I, src)
+		to_chat(user, "<span class='notice'>You install [I] in [src]!</span>")
+		mmi = I
+		transfer_personality(I)
 		update_icon()
-		return 1
+		return TRUE
 
-	if (iswelder(O))
-		var/obj/item/tool/weldingtool/WT = O
-		if (WT.remove_fuel(0))
-			if(health < maxHealth)
-				health += pick(1,1,1,2,2,3)
-				if(health > maxHealth)
-					health = maxHealth
-				add_fingerprint(user)
-				for(var/mob/W in viewers(user, null))
-					W.show_message(text("<span class='warning'> [user] has spot-welded some of the damage to [src]!</span>"), 1)
-			else
-				to_chat(user, "<span class='notice'>[src] is undamaged!</span>")
-		else
+	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.remove_fuel(0))
 			to_chat(user, "Need more welding fuel!")
 			return
-	else if(istype(O, /obj/item/card/id))
-		if (!mmi)
+
+		if(health >= maxHealth)
+			to_chat(user, "<span class='notice'>[src] is undamaged!</span>")
+			return
+
+		health += pick(1,1,1,2,2,3)
+		if(health > maxHealth)
+			health = maxHealth
+
+		visible_message("<span class='warning'> [user] has spot-welded some of the damage to [src]!</span>")
+
+	else if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/id_card = I
+
+		if(!mmi)
 			to_chat(user, "<span class='warning'>There's no reason to swipe your ID - the spiderbot has no brain to remove.</span>")
-			return 0
+			return
 
-		var/obj/item/card/id/id_card
-
-		if(istype(O, /obj/item/card/id))
-			id_card = O
-
-		if(ACCESS_MARINE_RESEARCH in id_card.access)
-			to_chat(user, "<span class='notice'>You swipe your access card and pop the brain out of [src].</span>")
-			eject_brain()
-
-			if(held_item)
-				held_item.loc = src.loc
-				held_item = null
-
-			return 1
-		else
+		if(!(ACCESS_MARINE_RESEARCH in id_card.access))
 			to_chat(user, "<span class='warning'>You swipe your card, with no effect.</span>")
-			return 0
-	else if (istype(O, /obj/item/card/emag))
-		if (emagged)
+			return
+
+		to_chat(user, "<span class='notice'>You swipe your access card and pop the brain out of [src].</span>")
+		eject_brain()
+
+		if(held_item)
+			held_item.forceMove(loc)
+			held_item = null
+
+		return TRUE
+
+	else if(istype(I, /obj/item/card/emag))
+		var/obj/item/card/emag/emag = I
+
+		if(emagged)
 			to_chat(user, "<span class='warning'>[src] is already overloaded - better run.</span>")
-			return 0
-		else
-			var/obj/item/card/emag/emag = O
-			emag.uses--
-			emagged = 1
-			to_chat(user, "<span class='notice'>You short out the security protocols and overload [src]'s cell, priming it to explode in a short time.</span>")
-			spawn(100)	to_chat(src, "<span class='warning'>Your cell seems to be outputting a lot of power...</span>")
-			spawn(200)	to_chat(src, "<span class='warning'>Internal heat sensors are spiking! Something is badly wrong with your cell!</span>")
-			spawn(300)	src.explode()
+			return
+
+		emag.uses--
+		emagged = TRUE
+		to_chat(user, "<span class='notice'>You short out the security protocols and overload [src]'s cell, priming it to explode in a short time.</span>")
+		spawn(100)	
+			to_chat(src, "<span class='warning'>Your cell seems to be outputting a lot of power...</span>")
+		spawn(200)	
+			to_chat(src, "<span class='warning'>Internal heat sensors are spiking! Something is badly wrong with your cell!</span>")
+		spawn(300)	
+			explode()
 
 	else
-		if(O.force)
-			var/damage = O.force
-			if (O.damtype == HALLOSS)
-				damage = 0
-			adjustBruteLoss(damage)
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='danger'> [src] has been attacked with the [O] by [user]. </span>")
-		else
-			to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='warning'> [user] gently taps [src] with the [O]. </span>")
+		return ..()
 
 /mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/mmi/M as obj)
 

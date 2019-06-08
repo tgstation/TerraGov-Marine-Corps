@@ -95,7 +95,6 @@
 
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		/obj/item/dnainjector,
 		/obj/item/reagent_container/dropper,
 		/obj/item/reagent_container/glass/beaker,
 		/obj/item/reagent_container/glass/bottle,
@@ -183,6 +182,14 @@
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
 	icon_state = "medicalbag_u"
 	item_state = "medicbag_u"
+
+
+/obj/item/storage/belt/combatLifesaver/som
+	name = "\improper S17 lifesaver bag"
+	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
+	icon_state = "medicbag_som"
+	item_state = "medicbag_som"
+
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
@@ -282,6 +289,12 @@
 	new /obj/item/ammo_magazine/rifle/type71(src)
 
 
+/obj/item/storage/belt/marine/som
+	name = "\improper S18 ammo belt"
+	desc = "A belt with origins traced to the M276 ammo belt and some old colony security."
+	icon_state = "som_belt"
+	item_state = "som_belt"
+
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
@@ -293,25 +306,32 @@
 	max_storage_space = 20
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
-/obj/item/storage/belt/shotgun/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/ammo_magazine/shotgun))
-		var/obj/item/ammo_magazine/shotgun/M = W
-		if(M.current_rounds)
-			if(contents.len < storage_slots)
-				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, src))
-					return
-				for(var/x = 1 to (storage_slots - contents.len))
-					var/cont = handle_item_insertion(M.create_handful(), 1, user)
-					if(!cont)
-						break
-				playsound(user.loc, "rustle", 15, 1, 6)
-				to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
-			else
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
+
+/obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine/shotgun))
+		var/obj/item/ammo_magazine/shotgun/M = I
+		if(!M.current_rounds)
 			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+			return
+
+		if(length(contents) >= storage_slots)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
+
+
+		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		for(var/x in 1 to (storage_slots - length(contents)))
+			var/cont = handle_item_insertion(M.create_handful(), 1, user)
+			if(!cont)
+				break
+
+		playsound(user.loc, "rustle", 15, 1, 6)
+		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
 		return TRUE
+
 	else
 		return ..()
 
@@ -535,6 +555,14 @@
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new_gun.on_enter_storage(src)
+
+
+/obj/item/storage/belt/gun/m4a3/som
+	name = "\improper S19 holster rig"
+	desc = "A belt with origins to old colony security holster rigs."
+	icon_state = "som_belt_pistol"
+	item_state = "som_belt_pistol"
+
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"

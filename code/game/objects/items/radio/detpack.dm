@@ -65,25 +65,32 @@
 		icon_state = "[icon_state]off"
 
 
-/obj/item/radio/detpack/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/radio/detpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(ismultitool(W))
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+
+	if(ismultitool(I) && armed)
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = 30
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
+
 			if(prob((SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer) * 20))
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
-		user.visible_message("<span class='notice'>[user] begins disarming [src] with [W].</span>",
-		"<span class='notice'>You begin disarming [src] with [W].</span>")
-		if(do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
-			user.visible_message("<span class='notice'>[user] disarms [src].</span>",
-			"<span class='notice'>You disarm [src].</span>")
-			armed = FALSE
-			update_icon()
+		
+		user.visible_message("<span class='notice'>[user] begins disarming [src] with [I].</span>",
+		"<span class='notice'>You begin disarming [src] with [I].</span>")
+		
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
+			return
+
+		user.visible_message("<span class='notice'>[user] disarms [src].</span>",
+		"<span class='notice'>You disarm [src].</span>")
+		armed = FALSE
+		update_icon()
+
 
 /obj/item/radio/detpack/attack_hand(mob/user as mob)
 	if(armed)
@@ -255,7 +262,6 @@
 
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
-	bombers += "[key_name(user)] attached [src] to [target.name]."
 
 	if(do_after(user, 3 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		user.drop_held_item()
@@ -266,6 +272,8 @@
 
 		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
 		message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
+	
+		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
 		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
@@ -335,6 +343,7 @@
 			if(!istype(plant_target,/obj/vehicle/multitile/root/cm_armored))
 				qdel(plant_target)
 	qdel(src)
+
 
 /obj/item/radio/detpack/attack(mob/M as mob, mob/user as mob, def_zone)
 	return

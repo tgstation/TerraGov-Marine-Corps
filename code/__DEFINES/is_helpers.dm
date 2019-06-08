@@ -29,6 +29,8 @@
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
+#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && istype(A.buckled, /obj/structure/bed/nest)))
+
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
 
@@ -60,31 +62,29 @@
 #define ismonkeyunathi(M) (istype(M, /mob/living/carbon/monkey/unathi))
 #define ismonkeyyiren(M) (istype(M, /mob/living/carbon/monkey/yiren))
 
-#define isxeno(A) (istype(A, /mob/living/carbon/Xenomorph))
+#define isxeno(A) (istype(A, /mob/living/carbon/xenomorph))
 
 //Xeno castes
-#define isxenoboiler(A) (istype(A, /mob/living/carbon/Xenomorph/Boiler))
-#define isxenocarrier(A) (istype(A, /mob/living/carbon/Xenomorph/Carrier))
-#define isxenocrusher(A) (istype(A, /mob/living/carbon/Xenomorph/Crusher))
-#define isxenodrone(A) (istype(A, /mob/living/carbon/Xenomorph/Drone))
-#define isxenohivelord(A) (istype(A, /mob/living/carbon/Xenomorph/Hivelord))
-#define isxenohunter(A) (istype(A, /mob/living/carbon/Xenomorph/Hunter))
-#define isxenodefender(A) (istype(A, /mob/living/carbon/Xenomorph/Defender))
-#define isxenopraetorian(A) (istype(A, /mob/living/carbon/Xenomorph/Praetorian))
-#define isxenoravager(A) (istype(A, /mob/living/carbon/Xenomorph/Ravager))
-#define isxenorunner(A) (istype(A, /mob/living/carbon/Xenomorph/Runner))
-#define isxenospitter(A) (istype(A, /mob/living/carbon/Xenomorph/Spitter))
-#define isxenosentinel(A) (istype(A, /mob/living/carbon/Xenomorph/Sentinel))
-#define isxenowarrior(A) (istype(A, /mob/living/carbon/Xenomorph/Warrior))
-#define isxenolarva(A) (istype(A, /mob/living/carbon/Xenomorph/Larva))
-#define isxenoqueen(A) (istype(A, /mob/living/carbon/Xenomorph/Queen))
+#define isxenoboiler(A) (istype(A, /mob/living/carbon/xenomorph/boiler))
+#define isxenocarrier(A) (istype(A, /mob/living/carbon/xenomorph/carrier))
+#define isxenocrusher(A) (istype(A, /mob/living/carbon/xenomorph/crusher))
+#define isxenodrone(A) (istype(A, /mob/living/carbon/xenomorph/drone))
+#define isxenohivelord(A) (istype(A, /mob/living/carbon/xenomorph/hivelord))
+#define isxenohunter(A) (istype(A, /mob/living/carbon/xenomorph/hunter))
+#define isxenodefender(A) (istype(A, /mob/living/carbon/xenomorph/defender))
+#define isxenopraetorian(A) (istype(A, /mob/living/carbon/xenomorph/praetorian))
+#define isxenoravager(A) (istype(A, /mob/living/carbon/xenomorph/ravager))
+#define isxenorunner(A) (istype(A, /mob/living/carbon/xenomorph/runner))
+#define isxenospitter(A) (istype(A, /mob/living/carbon/xenomorph/spitter))
+#define isxenosentinel(A) (istype(A, /mob/living/carbon/xenomorph/sentinel))
+#define isxenowarrior(A) (istype(A, /mob/living/carbon/xenomorph/warrior))
+#define isxenolarva(A) (istype(A, /mob/living/carbon/xenomorph/larva))
+#define isxenoqueen(A) (istype(A, /mob/living/carbon/xenomorph/queen))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
-
-#define ismaintdrone(A) (istype(A, /mob/living/silicon/robot/drone))
 
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
@@ -144,8 +144,6 @@
 #define ispowermachinery(A) (istype(A, /obj/machinery/power))
 
 #define isAPC(A) (istype(A, /obj/machinery/power/apc))
-
-#define ismecha(A) (istype(A, /obj/mecha))
 
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 

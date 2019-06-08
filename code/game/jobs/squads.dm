@@ -42,7 +42,6 @@
 /datum/squad/alpha
 	name = "Alpha"
 	id = ALPHA_SQUAD
-	tracking_id = TRACK_ALPHA_SQUAD
 	color = "#e61919" // rgb(230,25,25)
 	access = list(ACCESS_MARINE_ALPHA)
 	usable = TRUE
@@ -52,7 +51,6 @@
 /datum/squad/bravo
 	name = "Bravo"
 	id = BRAVO_SQUAD
-	tracking_id = TRACK_BRAVO_SQUAD
 	color = "#ffc32d" // rgb(255,195,45)
 	access = list(ACCESS_MARINE_BRAVO)
 	usable = 1
@@ -62,7 +60,6 @@
 /datum/squad/charlie
 	name = "Charlie"
 	id = CHARLIE_SQUAD
-	tracking_id = TRACK_CHARLIE_SQUAD
 	color = "#c864c8" // rgb(200,100,200)
 	access = list(ACCESS_MARINE_CHARLIE)
 	usable = TRUE
@@ -71,7 +68,6 @@
 /datum/squad/delta
 	name = "Delta"
 	id = DELTA_SQUAD
-	tracking_id = TRACK_DELTA_SQUAD
 	color = "#4148c8" // rgb(65,72,200)
 	access = list(ACCESS_MARINE_DELTA)
 	usable = TRUE
@@ -97,6 +93,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	helmetsl.color = color
 	GLOB.helmetmarkings[type] = helmet
 	GLOB.helmetmarkings_sl[type] = helmetsl
+
+	tracking_id = SSdirection.init_squad(src)
 
 /datum/squad/proc/get_all_members()
 	return marines_list
@@ -138,6 +136,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				demote_squad_leader() //replaced by the real one
 			squad_leader = H
 			SSdirection.set_leader(tracking_id, H)
+			SSdirection.start_tracking("marine-sl", H)
 			if(H.mind.assigned_role == "Squad Leader") //field promoted SL don't count as real ones
 				num_leaders++
 
@@ -150,7 +149,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	if(istype(H.wear_ear, /obj/item/radio/headset/almayer)) // they've been transferred
 		var/obj/item/radio/headset/almayer/headset = H.wear_ear
-		if(headset.sl_direction)
+		if(headset.sl_direction && H.assigned_squad.squad_leader != H)
 			SSdirection.start_tracking(tracking_id, H)
 
 	var/c_oldass = C.assignment
@@ -186,6 +185,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		else
 			H.assigned_squad.squad_leader = null
 			SSdirection.clear_leader(tracking_id)
+			SSdirection.stop_tracking("marine-sl", H)
 
 	H.assigned_squad = null
 
@@ -216,6 +216,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(squad_leader == src)
 		squad_leader = null
 		SSdirection.clear_leader(tracking_id)
+		SSdirection.stop_tracking("marine-sl", src)
 	H.assigned_squad = null
 	return TRUE
 
@@ -224,6 +225,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
 	SSdirection.clear_leader(tracking_id)
+	SSdirection.stop_tracking("marine-sl", old_lead)
+
 	if(old_lead.mind.assigned_role)
 		if(old_lead.mind.cm_skills)
 			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Corpsman" || "Squad Smartgunner"))
@@ -249,7 +252,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 			R.recalculateChannels()
 		if(istype(old_lead.wear_id, /obj/item/card/id))
 			var/obj/item/card/id/ID = old_lead.wear_id
-			ID.access -= ACCESS_MARINE_LEADER
+			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	old_lead.hud_set_squad()
 	old_lead.update_inv_head() //updating marine helmet leader overlays
 	old_lead.update_inv_wear_suit()

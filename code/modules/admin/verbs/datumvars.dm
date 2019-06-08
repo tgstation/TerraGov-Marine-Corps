@@ -202,8 +202,12 @@
 
 	if(istype(D, /atom))
 		var/atom/A = D
-		if(isliving(A))
+		if(ismob(A))
 			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];rename=[refid]'><b id='name'>[D]</b></a>"
+		else
+			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
+			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+		if(isliving(A))
 			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 			var/mob/living/M = A
 			atomsnowflake += {"
@@ -217,9 +221,6 @@
 					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getBrainLoss()]</a>
 				</font>
 			"}
-		else
-			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
-			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 	else if("name" in D.vars)
 		atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
 	else
@@ -1136,7 +1137,7 @@
 
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
 				if(!AR || !A)
 					return
 				target = pick(get_area_turfs(AR))

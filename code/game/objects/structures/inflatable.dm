@@ -8,9 +8,7 @@
 /obj/item/inflatable/attack_self(mob/user)
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
 	to_chat(user, "<span class='notice'>You inflate [src].</span>")
-	var/obj/structure/inflatable/R = new /obj/structure/inflatable(user.loc)
-	src.transfer_fingerprints_to(R)
-	R.add_fingerprint(user)
+	new /obj/structure/inflatable(user.loc)
 	qdel(src)
 
 
@@ -24,9 +22,7 @@
 	attack_self(mob/user)
 		playsound(loc, 'sound/items/zip.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>You inflate [src].</span>")
-		var/obj/structure/inflatable/door/R = new /obj/structure/inflatable/door(user.loc)
-		src.transfer_fingerprints_to(R)
-		R.add_fingerprint(user)
+		new /obj/structure/inflatable/door(user.loc)
 		qdel(src)
 
 
@@ -36,8 +32,8 @@
 /obj/structure/inflatable
 	name = "inflatable wall"
 	desc = "An inflated membrane. Do not puncture."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	opacity = 0
 
 	icon = 'icons/obj/inflatable.dmi'
@@ -75,7 +71,6 @@
 	return attack_generic(user, 15)
 
 /obj/structure/inflatable/attack_hand(mob/user as mob)
-	add_fingerprint(user)
 	return
 
 
@@ -94,20 +89,20 @@
 	if(M.melee_damage_upper <= 0) return
 	attack_generic(M, M.melee_damage_upper)
 
-/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/inflatable/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	deflate(1)
 
-/obj/structure/inflatable/attackby(obj/item/W as obj, mob/user as mob)
-	if(!istype(W)) return
+/obj/structure/inflatable/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (can_puncture(W))
-		visible_message("<span class='danger'>[user] pierces [src] with [W]!</span>")
-		deflate(1)
-	if(W.damtype == BRUTE || W.damtype == BURN)
-		hit(W.force)
-		..()
-	return
+	if(can_puncture(I))
+		visible_message("<span class='danger'>[user] pierces [src] with [I]!</span>")
+		deflate(TRUE)
+
+	if(I.damtype == BRUTE || I.damtype == BURN)
+		hit(I.force)
+
 
 /obj/structure/inflatable/proc/hit(var/damage, var/sound_effect = 1)
 	obj_integrity = max(0, obj_integrity - damage)
@@ -129,15 +124,13 @@
 		sleep(10)
 		new /obj/structure/inflatable/popped(loc)
 		//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
-		//src.transfer_fingerprints_to(R)
 		qdel(src)
 	else
 		//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
 		visible_message("[src] slowly deflates.")
 		flick("wall_deflating", src)
 		spawn(50)
-			var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
-			src.transfer_fingerprints_to(R)
+			new /obj/item/inflatable(loc)
 			qdel(src)
 
 /obj/structure/inflatable/verb/hand_deflate()
@@ -163,7 +156,7 @@
 	name = "popped inflatable wall"
 	desc = "It used to be an inflatable wall, now it's just a mess of plastic."
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	deflated = TRUE
 
 	icon = 'icons/obj/inflatable.dmi'
@@ -186,8 +179,8 @@
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	opacity = 0
 
 	icon = 'icons/obj/inflatable.dmi'
@@ -214,7 +207,7 @@
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
-		if(world.time - user.last_bumped <= 60) return //NOTE do we really need that?
+		if(world.time - M.last_bumped <= 60) return //NOTE do we really need that?
 		if(M.client)
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
@@ -222,8 +215,6 @@
 					SwitchState()
 			else
 				SwitchState()
-	else if(istype(user, /obj/mecha))
-		SwitchState()
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)
@@ -248,7 +239,7 @@
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_closing",src)
 	sleep(10)
-	density = 1
+	density = TRUE
 	opacity = 0
 	state = 0
 	update_icon()
@@ -269,15 +260,13 @@
 		sleep(10)
 		new /obj/structure/inflatable/popped/door(loc)
 		//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
-		//src.transfer_fingerprints_to(R)
 		qdel(src)
 	else
 		//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
 		visible_message("[src] slowly deflates.")
 		flick("door_deflating", src)
 		spawn(50)
-			var/obj/item/inflatable/door/R = new /obj/item/inflatable/door(loc)
-			src.transfer_fingerprints_to(R)
+			new /obj/item/inflatable/door(loc)
 			qdel(src)
 
 

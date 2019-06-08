@@ -44,7 +44,7 @@
 	. = FALSE
 
 
-/obj/machinery/power/terminal/dismantle(mob/living/user)
+/obj/machinery/power/terminal/deconstruct(mob/living/user)
 	var/turf/T = get_turf(src)
 	if(T.intact_tile)
 		to_chat(user, "<span class='warning'>You must first expose the power terminal!</span>")

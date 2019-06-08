@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(evacuation)
 	GLOB.enter_allowed = FALSE
 	evac_time = world.time
 	evac_status = EVACUATION_STATUS_INITIATING
-	command_announcement.Announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", new_sound='sound/AI/evacuate.ogg', to_xenos = 0)
+	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 	pod_list = SSshuttle.escape_pods.Copy()
 	for(var/i in pod_list)
@@ -90,7 +90,7 @@ SUBSYSTEM_DEF(evacuation)
 	if(evac_status != EVACUATION_STATUS_INITIATING)
 		return FALSE
 	evac_status = EVACUATION_STATUS_IN_PROGRESS
-	command_announcement.Announce("WARNING: Evacuation order confirmed. Launching escape pods.", "Priority Alert", new_sound = 'sound/AI/evacuation_confirmed.ogg')
+	priority_announce("WARNING: Evacuation order confirmed. Launching escape pods.", "Priority Alert", sound = 'sound/AI/evacuation_confirmed.ogg')
 	return TRUE
 
 
@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(evacuation)
 	GLOB.enter_allowed = TRUE
 	evac_time = null
 	evac_status = EVACUATION_STATUS_STANDING_BY
-	command_announcement.Announce("Evacuation has been cancelled.", "Priority Alert", new_sound='sound/AI/evacuate_cancelled.ogg')
+	priority_announce("Evacuation has been cancelled.", "Priority Alert", sound = 'sound/AI/evacuate_cancelled.ogg')
 	for(var/i in pod_list)
 		var/obj/docking_port/mobile/escape_pod/P = i
 		P.unprep_for_launch()
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(evacuation)
 			. = "NOW"
 
 /datum/controller/subsystem/evacuation/proc/announce_evac_completion()
-	command_announcement.Announce("ATTENTION: Evacuation complete.", "Priority Alert", new_sound='sound/AI/evacuation_complete.ogg')
+	priority_announce("ATTENTION: Evacuation complete.", "Priority Alert", sound = 'sound/AI/evacuation_complete.ogg')
 	evac_status = EVACUATION_STATUS_COMPLETE
 
 
@@ -139,7 +139,7 @@ SUBSYSTEM_DEF(evacuation)
 	for(i in SSevacuation.dest_rods)
 		I = i
 		if(I.active_state == SELF_DESTRUCT_MACHINE_ARMED && !override)
-			dest_master.state("<span class='warning'>WARNING: Unable to cancel detonation. Please disarm all control rods.</span>")
+			dest_master.visible_message("<span class='warning'>WARNING: Unable to cancel detonation. Please disarm all control rods.</span>")
 			return FALSE
 
 	dest_status = NUKE_EXPLOSION_INACTIVE
@@ -149,7 +149,7 @@ SUBSYSTEM_DEF(evacuation)
 			I.toggle(TRUE)
 	dest_master.toggle(TRUE)
 	dest_index = 1
-	command_announcement.Announce("The emergency destruct system has been deactivated.", "Priority Alert", new_sound='sound/AI/selfdestruct_deactivated.ogg')
+	priority_announce("The emergency destruct system has been deactivated.", "Priority Alert", sound = 'sound/AI/selfdestruct_deactivated.ogg')
 	if(evac_status == EVACUATION_STATUS_STANDING_BY)
 		set_security_level(SEC_LEVEL_RED, TRUE)
 	return TRUE
@@ -163,13 +163,13 @@ SUBSYSTEM_DEF(evacuation)
 	for(var/i in dest_rods)
 		I = i
 		if(I.active_state != SELF_DESTRUCT_MACHINE_ARMED && !override)
-			dest_master.state("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
+			dest_master.visible_message("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
 			return FALSE
 	
-	command_announcement.Announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
+	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
 	GLOB.enter_allowed = FALSE
 	dest_status = NUKE_EXPLOSION_IN_PROGRESS
-	playsound(dest_master, 'sound/machines/Alarm.ogg', 75, 0, 30)
+	playsound(dest_master, 'sound/machines/alarm.ogg', 75, 0, 30)
 	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
 
 	var/list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))

@@ -63,7 +63,7 @@
 /obj/structure/grille/attack_paw(mob/user as mob)
 	attack_hand(user)
 
-/obj/structure/grille/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/grille/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	var/damage_dealt = 5
@@ -101,10 +101,7 @@
 	if(shock(user, 70))
 		return
 
-	if(HULK in user.mutations)
-		damage_dealt += 5
-	else
-		damage_dealt += 1
+	damage_dealt += 1
 
 	obj_integrity -= damage_dealt
 	healthcheck()
@@ -125,7 +122,7 @@
 
 
 /obj/structure/grille/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGRILLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	else
 		if(istype(mover, /obj/item/projectile))
@@ -143,72 +140,86 @@
 	healthcheck()
 	return TRUE
 
-/obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswirecutter(W))
-		if(!shock(user, 100))
-			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			new /obj/item/stack/rods(loc, 2)
-			qdel(src)
-	else if(isscrewdriver(W) && isopenturf(loc))
-		if(!shock(user, 90))
-			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			anchored = !anchored
-			user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
-								 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
+/obj/structure/grille/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswirecutter(I))
+		if(shock(user, 100))
 			return
 
-//window placing begin
-	else if(istype(W,/obj/item/stack/sheet/glass))
-		var/obj/item/stack/sheet/glass/ST = W
-		var/dir_to_set = 1
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		new /obj/item/stack/rods(loc, 2)
+		qdel(src)
+
+	else if(isscrewdriver(I) && isopenturf(loc))
+		if(shock(user, 90))
+			return
+
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		anchored = !anchored
+		user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
+							 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
+
+
+	else if(istype(I, /obj/item/stack/sheet/glass))
+		var/obj/item/stack/sheet/glass/ST = I
+		var/dir_to_set = NORTH
+
 		if(loc == user.loc)
 			dir_to_set = user.dir
+
 		else
-			if( ( x == user.x ) || (y == user.y) ) //Only supposed to work for cardinal directions.
-				if( x == user.x )
-					if( y > user.y )
-						dir_to_set = 2
-					else
-						dir_to_set = 1
-				else if( y == user.y )
-					if( x > user.x )
-						dir_to_set = 8
-					else
-						dir_to_set = 4
-			else
+			if(x != user.x  && y != user.y) //Only supposed to work for cardinal directions.
 				to_chat(user, "<span class='notice'>You can't reach.</span>")
-				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
-		for(var/obj/structure/window/WINDOW in loc)
-			if(WINDOW.dir == dir_to_set)
+				return
+
+			else if(x == user.x)
+				if(y > user.y)
+					dir_to_set = SOUTH
+				else
+					dir_to_set = NORTH
+			else if(y == user.y)
+				if(x > user.x)
+					dir_to_set = EAST
+				else
+					dir_to_set = WEST
+
+
+		for(var/obj/structure/window/W in loc)
+			if(W.dir == dir_to_set)
 				to_chat(user, "<span class='notice'>There is already a window facing this way there.</span>")
 				return
+
 		to_chat(user, "<span class='notice'>You start placing the window.</span>")
-		if(do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
-			for(var/obj/structure/window/WINDOW in loc)
-				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
-					to_chat(user, "<span class='notice'>There is already a window facing this way there.</span>")
-					return
 
-			var/wtype = ST.created_window
-			if (ST.use(1))
-				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
-				to_chat(user, "<span class='notice'>You place the [WD] on [src].</span>")
-				WD.update_icon()
-		return
-//window placing end
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			return
 
-	else if(istype(W, /obj/item/shard))
-		obj_integrity -= W.force * 0.1
+		for(var/obj/structure/window/W in loc)
+			if(W.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
+				to_chat(user, "<span class='notice'>There is already a window facing this way there.</span>")
+				return
+
+		var/wtype = ST.created_window
+		if(!ST.use(1))
+			return
+			
+		var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
+		to_chat(user, "<span class='notice'>You place the [WD] on [src].</span>")
+		WD.update_icon()
+
+	else if(istype(I, /obj/item/shard))
+		obj_integrity -= I.force * 0.1
+
 	else if(!shock(user, 70))
 		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
-		switch(W.damtype)
+		switch(I.damtype)
 			if("fire")
-				obj_integrity -= W.force
+				obj_integrity -= I.force
 			if("brute")
-				obj_integrity -= W.force * 0.1
+				obj_integrity -= I.force * 0.1
+
 	healthcheck()
-	..()
-	return
 
 
 /obj/structure/grille/proc/healthcheck()

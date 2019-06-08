@@ -1,7 +1,7 @@
 /obj/machinery/gear
 	name = "\improper gear"
 	icon_state = "gear"
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	resistance_flags = UNACIDABLE
 	use_power = 0
@@ -17,7 +17,7 @@
 /obj/machinery/elevator_strut
 	name = "\improper strut"
 	icon = 'icons/obj/elevator_strut.dmi'
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	density = 0
 	use_power = 0

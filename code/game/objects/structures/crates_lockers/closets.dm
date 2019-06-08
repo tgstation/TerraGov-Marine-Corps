@@ -58,7 +58,7 @@
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src && !closet.wall_mounted)
 			return FALSE
-	for(var/mob/living/carbon/Xenomorph/Xeno in get_turf(src))
+	for(var/mob/living/carbon/xenomorph/Xeno in get_turf(src))
 		return FALSE
 	return TRUE
 
@@ -67,11 +67,11 @@
 	for(var/obj/I in src)
 		I.forceMove(loc)
 
-	for(var/mob/M in src)
-		M.forceMove(loc)
-		M.Stun(closet_stun_delay)//Action delay when going out of a closet
-		if(!M.lying && M.stunned)
-			M.visible_message("<span class='warning'>[M] suddenly gets out of [src]!",
+	for(var/mob/living/L in src)
+		L.forceMove(loc)
+		L.Stun(closet_stun_delay)//Action delay when going out of a closet
+		if(!L.lying && L.stunned)
+			L.visible_message("<span class='warning'>[L] suddenly gets out of [src]!",
 			"<span class='warning'>You get out of [src] and get your bearings!")
 
 /obj/structure/closet/proc/open()
@@ -182,7 +182,7 @@
 			A.loc = loc
 		qdel(src)
 
-/obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		M.animation_attack_on(src)
 		if(!opened && prob(70))
@@ -192,57 +192,51 @@
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
 			"<span class='danger'>You smash \the [src]!</span>", null, 5)
-		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
 		return attack_paw(M)
 
-/obj/structure/closet/attackby(obj/item/W, mob/living/user)
-	if(src.opened)
-		if(istype(W, /obj/item/grab))
+/obj/structure/closet/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(opened)
+		if(istype(I, /obj/item/grab))
 			if(isxeno(user))
 				return
-			var/obj/item/grab/G = W
-			if(G.grabbed_thing)
-				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
-			return
-		if(W.flags_item & ITEM_ABSTRACT)
+			var/obj/item/grab/G = I
+			if(!G.grabbed_thing)
+				return
+
+			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
+
+		else if(I.flags_item & ITEM_ABSTRACT)
 			return FALSE
-		if(iswelder(W))
-			var/obj/item/tool/weldingtool/WT = W
-			if(!WT.remove_fuel(0,user))
+
+		else if(iswelder(I))
+			var/obj/item/tool/weldingtool/WT = I
+			if(!WT.remove_fuel(0, user))
 				to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 				return
 			new /obj/item/stack/sheet/metal(loc)
-			for(var/mob/M in viewers(src))
-				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with [WT].</span>", 3, "You hear welding.", 2)
+			visible_message("<span class='notice'>\The [src] has been cut apart by [user] with [WT].</span>", "You hear welding.")
 			qdel(src)
-			return
-		if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
-			var/obj/item/tool/pickaxe/plasmacutter/P = W
-			if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, null, null, SFX = FALSE))
-				return
-			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Window frames require half the normal power
-			P.debris(loc, 1, 0) //Generate some metal
-			qdel(src)
-			return
 
-		user.transferItemToLoc(W,loc)
+		user.transferItemToLoc(I, loc)
 
-	else if(istype(W, /obj/item/packageWrap))
+	else if(istype(I, /obj/item/packageWrap))
 		return
-	else if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
+
+	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 			return
 		welded = !welded
 		update_icon()
-		for(var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
+		visible_message("<span class='warning'>[src] has been [welded ? "welded shut" : "unwelded"] by [user.name].</span>", "You hear welding.")
 	else
-		src.attack_hand(user)
-	return
+		return attack_hand(user)
+
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O, mob/user)
 	if(!opened)
@@ -262,7 +256,6 @@
 	else if(!istype(O, /obj/item))
 		return
 
-	add_fingerprint(user)
 	if(user == O)
 		if(climbable)
 			do_climb(user)
@@ -273,18 +266,21 @@
 
 
 
-/obj/structure/closet/relaymove(mob/user)
+/obj/structure/closet/relaymove(mob/user, direct)
 	if(!isturf(loc))
 		return
 	if(user.incapacitated(TRUE))
 		return
-	user.next_move = world.time + 5
+	if(!direct)
+		return
 
-	if(!src.open())
+	user.changeNext_move(5)
+
+	if(!open())
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		if(!lastbang)
 			lastbang = TRUE
-			for (var/mob/M in hearers(src, null))
+			for(var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
 			spawn(30)
 				lastbang = FALSE
@@ -294,14 +290,7 @@
 	return attack_hand(user)
 
 /obj/structure/closet/attack_hand(mob/living/user)
-	add_fingerprint(user)
 	return toggle(user)
-
-// tk grab then use on self
-/obj/structure/closet/attack_self_tk(mob/user as mob)
-	src.add_fingerprint(user)
-	if(!src.toggle())
-		to_chat(usr, "<span class='notice'>It won't budge!</span>")
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
@@ -312,7 +301,6 @@
 		return
 
 	if(ishuman(usr))
-		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")

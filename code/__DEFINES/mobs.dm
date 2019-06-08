@@ -64,39 +64,6 @@
 #define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
 
-// mob/var/list/mutations
-var/list/global_mutations = list() // list of hidden mutation things
-
-#define STRUCDNASIZE 27
-#define UNIDNASIZE 13
-
-	// Generic mutations:
-#define	TK				1
-#define COLD_RESISTANCE	2
-#define XRAY			3
-#define HULK			4
-#define CLUMSY			5
-#define FAT				6
-#define HUSK			7
-#define NOCLONE			8
-//=================================================
-
-	//2spooky
-#define SKELETON 29
-#define PLANT 30
-
-// Other Mutations:
-#define mNobreath		100 	// no need to breathe
-#define mRemote			101 	// remote viewing
-#define mRegen			102 	// health regen
-#define mRun			103 	// no slowdown
-#define mRemotetalk		104 	// remote talking
-#define mMorph			105 	// changing appearance
-#define mBlend			106 	// nothing (seriously nothing)
-#define mHallucination	107 	// hallucinations
-#define mFingerprints	108 	// no fingerprints
-#define mShock			109 	// insulated hands
-#define mSmallsize		110 	// table climbing
 //=================================================
 
 //disabilities
@@ -117,6 +84,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CONSCIOUS	0
 #define UNCONSCIOUS	1
 #define DEAD		2
+
+#define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period)))
 
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
@@ -199,6 +168,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SLASHING_ALLOWED 1
 #define XENO_SLASHING_RESTRICTED 2
 
+
+#define XENO_NIGHTVISION_ENABLED 8
+#define XENO_NIGHTVISION_DISABLED 4
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////
@@ -320,9 +292,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define LIMB_PRINTING_TIME 550
 #define LIMB_METAL_AMOUNT 125
-
-#define EMOTE_VISIBLE  1
-#define EMOTE_AUDIBLE  2
 
 
 //species_flags
@@ -465,19 +434,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
 #define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
 
-#define QUEEN_DEATH_LARVA_MULTIPLIER(Xenomorph) ((Xenomorph.upgrade_as_number() + 1) * 0.17)) // 85/68/51/34 for ancient/elder emp/elder queen/queen
+#define QUEEN_DEATH_LARVA_MULTIPLIER(Xenomorph) ((Xenomorph.upgrade_as_number() + 1) * 0.17) // 85/68/51/34 for ancient/elder emp/elder queen/queen
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
 #define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
 
-#define XENO_LARVAL_ADVANCEMENT_COOLDOWN	15 SECONDS
-
-#define XENO_LARVAL_GROWTH_COOLDOWN			12 SECONDS
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
 
-#define XENO_NEURO_STING_COOLDOWN			12 SECONDS
 #define XENO_NEURO_AMOUNT_RECURRING			15
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 
@@ -497,6 +462,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
 
+// Xeno charge types
+#define CHARGE_TYPE_SMALL			1
+#define CHARGE_TYPE_MEDIUM			2
+#define CHARGE_TYPE_LARGE			3
+#define CHARGE_TYPE_MASSIVE			4
+
+
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
 #define HUNTER_STEALTH_WALK_PLASMADRAIN			2
@@ -508,7 +480,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK					1
-#define HANDLE_STEALTH_CODE_CANCEL				2
 #define HANDLE_SNEAK_ATTACK_CHECK				3
 #define HUNTER_SNEAK_TACKLE_ARMOR_PEN			0.5 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration
@@ -528,29 +499,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAV_CHARGESPEED					100
 #define RAV_CHARGESTRENGTH				3
 #define RAV_CHARGEDISTANCE				7
-#define RAV_CHARGECOOLDOWN				30 SECONDS
 #define RAV_CHARGE_TYPE					3
-#define RAV_SECOND_WIND_COOLDOWN		240 SECONDS
-#define RAV_RAVAGE_COOLDOWN				10 SECONDS
 #define RAV_RAVAGE_DAMAGE_MULITPLIER	0.25 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
 #define RAV_RAVAGE_RAGE_MULITPLIER		0.03 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
 #define RAV_DAMAGE_RAGE_MULITPLIER		0.25  //Gain Rage stacks equal to 25% of damage received.
 #define RAV_HANDLE_CHARGE				1
 
-//defender defines
-
-#define DEFENDER_HEADBUTT_COST			25
-#define DEFENDER_TAILSWIPE_COST			35
-#define DEFENDER_HEADBUTT_COOLDOWN		6 SECONDS
-#define DEFENDER_TAILSWIPE_COOLDOWN		12 SECONDS
-#define DEFENDER_FORTIFY_COOLDOWN		1 SECONDS
-#define DEFENDER_CREST_DEFENSE_COOLDOWN	1 SECONDS
-
 //crusher defines
-#define CRUSHER_CRESTTOSS_COST			40
-#define CRUSHER_CRESTTOSS_COOLDOWN		6 SECONDS
-#define CRUSHER_STOMP_COST				80
-#define CRUSHER_STOMP_COOLDOWN 			20 SECONDS
 #define CRUSHER_STOMP_LOWER_DMG			80
 #define CRUSHER_STOMP_UPPER_DMG			100
 #define CRUSHER_CHARGE_BARRICADE_MULTI	60
@@ -564,24 +519,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARGE_SPEED_MAX				2.1 	//Can only gain this much speed before capping
 
 //carrier defines
-
-#define CARRIER_SPAWN_HUGGER_COST 100
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
 
-//Warrior defines
-
-#define WARRIOR_LUNGE_COOLDOWN 10 SECONDS
-#define WARRIOR_PUNCH_COOLDOWN 6 SECONDS
-#define WARRIOR_FLING_COOLDOWN 6 SECONDS
-#define WARRIOR_AGILITY_COOLDOWN 0.5 SECONDS
-
 //Defiler defines
-
-#define DEFILER_STING_COOLDOWN				20 SECONDS
-#define DEFILER_GAS_COOLDOWN				40 SECONDS
-#define DEFILER_CLAWS_COOLDOWN				1 SECONDS
-
 #define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
 #define DEFILER_GAS_DELAY					1 SECONDS
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
@@ -590,7 +531,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GROWTH_TOXIN_METARATE		0.2
 
 //Boiler defines
-
 #define BOILER_LUMINOSITY					3
 
 //Hivelord defines
@@ -601,7 +541,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT				4
-#define HIVELORD_TUNNEL_COOLDOWN				120 SECONDS
 
 //misc
 
@@ -616,11 +555,22 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARLIE_SQUAD 3
 #define DELTA_SQUAD 4
 
-// tracking map ID, add more squads/ert leaders/hives etc to track via SSdirection here
-#define TRACK_ALPHA_SQUAD "alpha_squad"
-#define TRACK_BRAVO_SQUAD "bravo_squad"
-#define TRACK_CHARLIE_SQUAD "charlie_squad"
-#define TRACK_DELTA_SQUAD "delta_squad"
-
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
+
+
+#define BODY_ZONE_HEAD		"head"
+#define BODY_ZONE_CHEST		"chest"
+#define BODY_ZONE_L_ARM		"l_arm"
+#define BODY_ZONE_R_ARM		"r_arm"
+#define BODY_ZONE_L_LEG		"l_leg"
+#define BODY_ZONE_R_LEG		"r_leg"
+
+
+#define BODY_ZONE_PRECISE_EYES		"eyes"
+#define BODY_ZONE_PRECISE_MOUTH		"mouth"
+#define BODY_ZONE_PRECISE_GROIN		"groin"
+#define BODY_ZONE_PRECISE_L_HAND	"l_hand"
+#define BODY_ZONE_PRECISE_R_HAND	"r_hand"
+#define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
+#define BODY_ZONE_PRECISE_R_FOOT	"r_foot"

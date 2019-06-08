@@ -150,8 +150,8 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	flags_inventory = NOFLAGS
-	flags_inv_hide = NOFLAGS
+	flags_inventory = NONE
+	flags_inv_hide = NONE
 	flags_armor_protection = CHEST|ARMS
 
 
@@ -193,7 +193,6 @@
 		to_chat(user, "<span class='notice'>The reactive armor is now inactive.</span>")
 		src.icon_state = "reactiveoff"
 		src.item_state = "reactiveoff"
-		src.add_fingerprint(user)
 	return
 
 /obj/item/clothing/suit/armor/reactive/emp_act(severity)
@@ -218,7 +217,7 @@
 	w_class = 4//bulky item
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
-	flags_inventory = NOFLAGS
+	flags_inventory = NONE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -341,7 +340,7 @@
 	item_state = "hos"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list("melee" = 65, "bullet" = 30, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
-	flags_inventory = NOFLAGS
+	flags_inventory = NONE
 	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
 
@@ -350,6 +349,6 @@
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "jensencoat"
 	item_state = "jensencoat"
-	flags_inv_hide = NOFLAGS
+	flags_inv_hide = NONE
 	siemens_coefficient = 0.6
 	flags_armor_protection = CHEST|ARMS

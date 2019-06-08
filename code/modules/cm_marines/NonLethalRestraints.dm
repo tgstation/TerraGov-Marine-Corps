@@ -24,14 +24,6 @@
 		icon_state = "stunbaton"
 
 /obj/item/weapon/stunprod/attack_self(mob/user as mob)
-	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You grab the [src] on the wrong side.</span>")
-		user.KnockDown(30)
-		charges--
-		if(charges < 1)
-			status = 0
-			update_icon()
-		return
 	if(charges > 0)
 		status = !status
 		to_chat(user, "<span class='notice'>\The [src] is now [status ? "on" : "off"].</span>")
@@ -40,37 +32,27 @@
 	else
 		status = 0
 		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
-	add_fingerprint(user)
 
 /obj/item/weapon/stunprod/attack(mob/M, mob/user)
-	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='danger'>You accidentally hit yourself with the [src]!</span>")
-		user.KnockDown(30)
-		charges--
-		if(charges < 1)
-			status = 0
-			update_icon()
-		return
-
 	if(user.a_intent == INTENT_HARM)
 		return
 	else if(!status)
 		M.visible_message("<span class='warning'>[M] has been poked with [src] whilst it's turned off by [user].</span>")
 		return
 
-	if(status)
-		M.KnockDown(6)
+	if(status && isliving(M))
+		var/mob/living/L = M
+		L.KnockDown(6)
 		charges -= 2
-		M.visible_message("<span class='danger'>[M] has been prodded with the [src] by [user]!</span>")
+		L.visible_message("<span class='danger'>[L] has been prodded with the [src] by [user]!</span>")
 
-		log_combat(user, M, "stunned", src)
+		log_combat(user, L, "stunned", src)
 
-		playsound(src.loc, 'sound/weapons/Egloves.ogg', 25, 1)
+		playsound(src.loc, 'sound/weapons/egloves.ogg', 25, 1)
 		if(charges < 1)
 			status = 0
 			update_icon()
 
-	add_fingerprint(user)
 
 
 /obj/item/weapon/stunprod/emp_act(severity)
@@ -92,7 +74,10 @@
 
 	attack(mob/M, mob/user)
 		..()
-		M.KnockDown(14)
+		if(!isliving(M))
+			return
+		var/mob/living/L = M
+		L.KnockDown(14)
 
 	examine(mob/user)
 		..()

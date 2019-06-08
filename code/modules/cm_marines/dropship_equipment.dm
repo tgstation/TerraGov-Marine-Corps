@@ -24,38 +24,41 @@
 		installed_equipment = null
 	return ..()
 
-/obj/effect/attach_point/attackby(obj/item/I, mob/user)
+/obj/effect/attach_point/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/powerloader_clamp))
 		var/obj/item/powerloader_clamp/PC = I
-		if(istype(PC.loaded, /obj/structure/dropship_equipment))
-			var/obj/structure/dropship_equipment/SE = PC.loaded
-			if(SE.equip_category != base_category)
-				to_chat(user, "<span class='warning'>[SE] doesn't fit on [src].</span>")
-				return TRUE
-			if(installed_equipment)
-				return TRUE
-			playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-			if(!do_after(user, 70, FALSE, src))
-				return TRUE
-			if(installed_equipment || PC.loaded != SE)
-				return TRUE
-			to_chat(user, "<span class='notice'>You install [SE] on [src].</span>")
-			SE.forceMove(loc)
-			PC.loaded = null
-			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-			PC.update_icon()
-			installed_equipment = SE
-			SE.ship_base = src
+		if(!istype(PC.loaded, /obj/structure/dropship_equipment))
+			return TRUE
 
-			for(var/datum/shuttle/ferry/marine/S in shuttle_controller.process_shuttles)
-				if(S.shuttle_tag == ship_tag)
-					SE.linked_shuttle = S
-					S.equipments += SE
-					break
+		var/obj/structure/dropship_equipment/SE = PC.loaded
+		if(SE.equip_category != base_category)
+			to_chat(user, "<span class='warning'>[SE] doesn't fit on [src].</span>")
+			return TRUE
+		if(installed_equipment)
+			return TRUE
+		playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+		if(!do_after(user, 70, FALSE, src))
+			return TRUE
+		if(installed_equipment || PC.loaded != SE)
+			return TRUE
+		to_chat(user, "<span class='notice'>You install [SE] on [src].</span>")
+		SE.forceMove(loc)
+		PC.loaded = null
+		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		PC.update_icon()
+		installed_equipment = SE
+		SE.ship_base = src
 
-			SE.update_equipment()
+		for(var/datum/shuttle/ferry/marine/S in shuttle_controller.process_shuttles)
+			if(S.shuttle_tag == ship_tag)
+				SE.linked_shuttle = S
+				S.equipments += SE
+				break
+
+		SE.update_equipment()
 		return TRUE
-	return ..()
 
 
 /obj/effect/attach_point/weapon
@@ -187,76 +190,88 @@
 		linked_console = null
 	return ..()
 
-/obj/structure/dropship_equipment/attackby(obj/item/I, mob/user)
-	if(!istype(I, /obj/item/powerloader_clamp))
-		return ..()
-	var/obj/item/powerloader_clamp/PC = I
-	if(PC.loaded)
-		if(!ship_base || !uses_ammo || ammo_equipped || !istype(PC.loaded, /obj/structure/ship_ammo))
-			return FALSE
-		var/obj/structure/ship_ammo/SA = PC.loaded
-		if(SA.equipment_type != type)
-			to_chat(user, "<span class='warning'>[SA] doesn't fit in [src].</span>")
-			return FALSE
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
-			return FALSE
-		if(ammo_equipped || PC.loaded != SA || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
-			return FALSE
-		SA.forceMove(src)
-		PC.loaded = null
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		PC.update_icon()
-		to_chat(user, "<span class='notice'>You load [SA] into [src].</span>")
-		ammo_equipped = SA
-		update_equipment()
-		return TRUE //refilled dropship ammo
-	else if(uses_ammo && ammo_equipped)
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
-			return FALSE
-		if(!ammo_equipped || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
-			return FALSE
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!ammo_equipped.ammo_count)
-			ammo_equipped.loc = null
-			to_chat(user, "<span class='notice'>You've discarded the empty [ammo_equipped.name] in [src].</span>")
-			qdel(ammo_equipped)
-		else
-			ammo_equipped.forceMove(PC.linked_powerloader)
-			PC.loaded = ammo_equipped
-			PC.update_icon()
-			to_chat(user, "<span class='notice'>You've removed [ammo_equipped] from [src] and loaded it into [PC].</span>")
-		ammo_equipped = null
-		update_icon()
-		return TRUE //emptied or removed dropship ammo
-	else
-		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
-		if(!do_after(user, duration_time, FALSE, src))
-			return FALSE
-		if(!(PC.linked_powerloader?.buckled_mob == user) || PC.loaded)
-			return FALSE
-		forceMove(PC.linked_powerloader)
-		PC.loaded = src
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		PC.update_icon()
-		to_chat(user, "<span class='notice'>You've [ship_base ? "uninstalled" : "grabbed"] [PC.loaded] with [PC].</span>")
-		if(ship_base)
-			ship_base.installed_equipment = null
-			ship_base = null
-			if(linked_shuttle)
-				linked_shuttle.equipments -= src
-				linked_shuttle = null
-				if(linked_console && linked_console.selected_equipment == src)
-					linked_console.selected_equipment = null
-		update_equipment()
-		return TRUE //removed or uninstalled equipment
+/obj/structure/dropship_equipment/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(PC.loaded)
+			if(!ship_base || !uses_ammo || ammo_equipped || !istype(PC.loaded, /obj/structure/ship_ammo))
+				return FALSE
+			var/obj/structure/ship_ammo/SA = PC.loaded
+			if(SA.equipment_type != type)
+				to_chat(user, "<span class='warning'>[SA] doesn't fit in [src].</span>")
+				return FALSE
+			playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+			if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
+				return FALSE
+			if(ammo_equipped || PC.loaded != SA || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
+				return FALSE
+			SA.forceMove(src)
+			PC.loaded = null
+			playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+			PC.update_icon()
+			to_chat(user, "<span class='notice'>You load [SA] into [src].</span>")
+			ammo_equipped = SA
+			update_equipment()
+			return TRUE //refilled dropship ammo
+		else if(uses_ammo && ammo_equipped)
+			playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+			if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
+				return FALSE
+			if(!ammo_equipped || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
+				return FALSE
+			playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+			if(!ammo_equipped.ammo_count)
+				ammo_equipped.loc = null
+				to_chat(user, "<span class='notice'>You've discarded the empty [ammo_equipped.name] in [src].</span>")
+				qdel(ammo_equipped)
+			else
+				ammo_equipped.forceMove(PC.linked_powerloader)
+				PC.loaded = ammo_equipped
+				PC.update_icon()
+				to_chat(user, "<span class='notice'>You've removed [ammo_equipped] from [src] and loaded it into [PC].</span>")
+			ammo_equipped = null
+			update_icon()
+			return TRUE //emptied or removed dropship ammo
+		else
+			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+			var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
+			if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
+				return FALSE
+			if(!PC.linked_powerloader || PC.loaded || PC.linked_powerloader.buckled_mob != user)
+				return FALSE
+			forceMove(PC.linked_powerloader)
+			PC.loaded = src
+			playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+			PC.update_icon()
+			to_chat(user, "<span class='notice'>You've [ship_base ? "uninstalled" : "grabbed"] [PC.loaded] with [PC].</span>")
+			if(ship_base)
+				ship_base.installed_equipment = null
+				ship_base = null
+				if(linked_shuttle)
+					linked_shuttle.equipments -= src
+					linked_shuttle = null
+					if(linked_console && linked_console.selected_equipment == src)
+						linked_console.selected_equipment = null
+			update_equipment()
+			return TRUE //removed or uninstalled equipment
 
 
 /obj/structure/dropship_equipment/update_icon()
 	return
+
+/obj/structure/dropship_equipment/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent == INTENT_HARM)
+		X.animation_attack_on(src)
+		X.flick_attack_overlay(src, "slash")
+		playsound(loc, "alien_claw_metal", 25, 1)
+		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
+		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
+	else
+		attack_hand(X)
+
+
 
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
@@ -351,7 +366,7 @@
 			deployed_turret.pixel_x = 0
 			deployed_turret.loc = src
 			deployed_turret.setDir(dir)
-			deployed_turret.on = 0
+			DISABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
 		else
 			icon_state = "sentry_system_destroyed"
 
@@ -359,7 +374,8 @@
 	if(deployed_turret)
 		playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 		deployment_cooldown = world.time + 50
-		deployed_turret.on = 1
+		ENABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
+		deployed_turret.update_icon()
 		deployed_turret.loc = get_step(src, dir)
 		icon_state = "sentry_system_deployed"
 
@@ -368,7 +384,8 @@
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		deployment_cooldown = world.time + 50
 		deployed_turret.loc = src
-		deployed_turret.on = 0
+		DISABLE_BITFIELD(deployed_turret.turret_flags, TURRET_ON)
+		deployed_turret.update_icon()
 		icon_state = "sentry_system_installed"
 
 

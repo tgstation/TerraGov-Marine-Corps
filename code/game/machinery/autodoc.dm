@@ -30,8 +30,8 @@
 	desc = "A fancy machine developed to be capable of operating on people with minimal human intervention. However, the interface is rather complex and most of it would only be useful to trained medical personnel."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "autodoc_open"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	var/locked = FALSE
 	var/mob/living/carbon/human/occupant = null
@@ -112,7 +112,7 @@
 			if(blood_transfer)
 				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
 					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
-						blood_pack.reagents.add_reagent("blood", 195, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null))
+						blood_pack.reagents.add_reagent("blood", 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
 						visible_message("\ [src] speaks: Blood reserves depleted, switching to fresh bag.")
 					occupant.inject_blood(blood_pack, 8) // double iv stand rate
 					if(prob(10))
@@ -500,7 +500,7 @@
 								for(A in occupant)
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
 									occupant.visible_message("<span class='warning'> [src] defty extracts a wriggling parasite from [occupant]'s ribcage!</span>");
-									var/mob/living/carbon/Xenomorph/Larva/L = locate() in occupant //the larva was fully grown, ready to burst.
+									var/mob/living/carbon/xenomorph/larva/L = locate() in occupant //the larva was fully grown, ready to burst.
 									if(L)
 										L.forceMove(get_turf(src))
 									else
@@ -639,7 +639,6 @@
 			log_admin("[key_name(usr)] ejected [key_name(occupant)] from the autodoc.")
 			message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc.")
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
-			add_fingerprint(usr)
 			return
 		if(!ishuman(usr))
 			return
@@ -664,7 +663,6 @@
 				message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc during surgery causing damage.")
 				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
 		go_out()
-		add_fingerprint(usr)
 
 /obj/machinery/autodoc/verb/move_inside()
 	set name = "Enter Med-Pod"
@@ -710,11 +708,11 @@
 		connected.start_processing()
 		for(var/obj/O in src)
 			qdel(O)
-		add_fingerprint(usr)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	for(var/atom/movable/A in contents)
-		A.forceMove(loc)
+	for(var/A in contents - radio)
+		var/atom/movable/B = A
+		B.forceMove(loc)
 	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
@@ -744,86 +742,95 @@
 	connected.stop_processing()
 	connected.process() // one last update
 
-/obj/machinery/autodoc/attackby(obj/item/W, mob/living/user)
+/obj/machinery/autodoc/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(!ishuman(user))
 		return // no
-	if(istype(W, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/M = W
-		if(stored_metal == stored_metal_max)
+
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/M = I
+		if(stored_metal >= stored_metal_max)
 			to_chat(user, "<span class='warning'>\ [src]'s metal reservoir is full; it can't hold any more material!</span>")
 			return
 		stored_metal = min(stored_metal_max,stored_metal + M.amount * 100)
-		to_chat(user, "<span class='notice'>\ [src] processes \the [W]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units.</span>")
+		to_chat(user, "<span class='notice'>\ [src] processes \the [I]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units.</span>")
 		user.drop_held_item()
-		qdel(W)
-		return
+		qdel(I)
 
-	if(istype(W, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/healthanalyzer/J = W
+	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
-	if(istype(W, /obj/item/grab))
+	else if(!istype(I, /obj/item/grab))
+		return
 
-		if(machine_stat & (NOPOWER|BROKEN))
-			to_chat(user, "<span class='notice'>\ [src] is non-functional!</span>")
+	if(machine_stat & (NOPOWER|BROKEN))
+		to_chat(user, "<span class='notice'>\ [src] is non-functional!</span>")
+		return
+
+	else if(occupant)
+		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
+		return
+
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+
+	var/mob/M
+	if(ismob(G.grabbed_thing))
+		M = G.grabbed_thing
+	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
+		if(!C.stasis_mob)
+			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
+			return
+		M = C.stasis_mob
+		C.open()
+		user.start_pulling(M)
+
+
+	if(!M)
+		return
+
+	else if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
+		to_chat(user, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
+		return
+
+	else if(M.abiotic())
+		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
+		return
+
+	if(user.mind?.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
-		if(src.occupant)
-			to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
-			return
+	visible_message("[user] starts putting [M] into [src].", 3)
 
-		var/obj/item/grab/G = W
-		var/mob/M
-		if(ismob(G.grabbed_thing))
-			M = G.grabbed_thing
-		else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
-			var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-			if(!C.stasis_mob)
-				to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
-				return
-			M = C.stasis_mob
-			C.open()
-			user.start_pulling(M)
-		else
-			return
+	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
+		return
 
-		if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
-			to_chat(user, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
-			return
+	if(occupant)
+		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
+		return
 
-		if (M.abiotic())
-			to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
-			return
+	if(!M || !G)
+		return
 
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
-			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-			if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
-				return
-
-		user.visible_message("<span class='notice'>[user] starts putting [M] into [src].</span>",
-		"<span class='notice'>You start putting [M] into [src].</span>")
-
-		if(do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) && !QDELETED(src))
-			if(src.occupant)
-				to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
-				return
-			if(!G)
-				return
-			M.forceMove(src)
-			update_use_power(2)
-			occupant = M
-			icon_state = "autodoc_closed"
-			var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
-			var/mob/living/carbon/human/H = occupant
-			var/doc_dat
-			med_scan(H, doc_dat, implants, TRUE)
-			start_processing()
-			connected.start_processing()
-
-			add_fingerprint(user)
+	M.forceMove(src)
+	update_use_power(2)
+	occupant = M
+	icon_state = "autodoc_closed"
+	var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/mob/living/carbon/human/H = occupant
+	med_scan(H, null, implants, TRUE)
+	start_processing()
+	connected.start_processing()
 
 /////////////////////////////////////////////////////////////
 
@@ -836,7 +843,7 @@
 	var/release_notice = TRUE //Are notifications for patient discharges turned on?
 	var/locked = FALSE //Medics, Doctors and so on can lock this.
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
-	anchored = 1 //About time someone fixed this.
+	anchored = TRUE //About time someone fixed this.
 	density = 0
 
 	use_power = 1
@@ -1210,7 +1217,6 @@
 		if(href_list["ejectify"])
 			connected.eject()
 			updateUsrDialog()
-		add_fingerprint(usr)
 
 /obj/machinery/autodoc/event
 	event = 1

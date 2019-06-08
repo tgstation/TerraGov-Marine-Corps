@@ -1,131 +1,157 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-
 /obj/machinery/computer/security
-	name = "Security Cameras"
+	name = "security camera console"
 	desc = "Used to access the various cameras on the station."
 	icon_state = "cameras"
-	var/obj/machinery/camera/current = null
-	var/last_pic = 1.0
-	var/list/network = list("military")
-	var/mapping = 0//For the overview file, interesting bit of code.
+
 	circuit = /obj/item/circuitboard/computer/security
 
-
-	attack_ai(var/mob/user as mob)
-		return attack_hand(user)
-
-
-	attack_paw(var/mob/user as mob)
-		return attack_hand(user)
+	var/list/network = list("marinemainship")
+	var/list/watchers = list() //who's using the console, associated with the camera they're on.
+	var/long_ranged = FALSE
 
 
-	check_eye(mob/user)
-		if (user.incapacitated() || ((get_dist(user, src) > 1 || !( user.canmove ) || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
+/obj/machinery/computer/security/Initialize()
+	. = ..()
+	for(var/i in network)
+		network -= i
+		network += lowertext(i)
+
+
+/obj/machinery/computer/security/check_eye(mob/living/user)
+	if(!istype(user))
+		return
+	if((machine_stat & (NOPOWER|BROKEN)) || user.incapacitated() || user.eye_blind )
+		user.unset_interaction()
+		return
+	if(!(user in watchers))
+		user.unset_interaction()
+		return
+	if(!watchers[user])
+		user.unset_interaction()
+		return
+	var/obj/machinery/camera/C = watchers[user]
+	if(!C.can_use())
+		user.unset_interaction()
+		return
+	if(long_ranged)
+		var/list/viewing = viewers(src)
+		if(!viewing.Find(user))
 			user.unset_interaction()
-			return
-		else if ( !current || !current.can_use() ) //camera doesn't work
-			current = null
-		user.reset_view(current)
-
-
-	on_set_interaction(mob/user)
-		..()
-		if(current && current.can_use())
-			user.reset_view(current)
-
-
-	on_unset_interaction(mob/user)
-		..()
-		user.reset_view(null)
-
-
-	attack_hand(mob/user)
-		if (src.z > 6)
-			to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
-			return
-		if(machine_stat & (NOPOWER|BROKEN))	return
-
-		if(!isAI(user))
-			user.set_interaction(src)
-
-		var/list/L = list()
-		for (var/obj/machinery/camera/C in cameranet.cameras)
-			L.Add(C)
-
-		camera_sort(L)
-
-		var/list/D = list()
-		D["Cancel"] = "Cancel"
-		for(var/obj/machinery/camera/C in L)
-			if(can_access_camera(C))
-				D["[C.c_tag][C.can_use() ? null : " (Deactivated)"]"] = C
-
-		var/t = input(user, "Which camera should you change to?") as null|anything in D
-		if(!t)
-			user.unset_interaction()
-			return 0
-
-		var/obj/machinery/camera/C = D[t]
-		if(t == "Cancel")
-			user.unset_interaction()
-			return 0
-
-		if(C)
-			if(!can_access_camera(C)) return
-			switch_to_camera(user, C)
-			spawn(5)
-				attack_hand(user)
+		return
+	if(!issilicon(user) && !Adjacent(user))
+		user.unset_interaction()
 		return
 
-	proc/can_access_camera(obj/machinery/camera/C)
-		var/list/shared_networks = src.network & C.network
-		if(shared_networks.len)
-			return 1
-		return 0
 
-	proc/switch_to_camera(mob/user, obj/machinery/camera/C)
-		//don't need to check if the camera works for AI because the AI jumps to the camera location and doesn't actually look through cameras.
+/obj/machinery/computer/security/on_unset_interaction(mob/user)
+	watchers.Remove(user)
+	user.reset_perspective(null)
+
+
+/obj/machinery/computer/security/Destroy()
+	if(length(watchers))
+		for(var/mob/M in watchers)
+			M.unset_interaction() //to properly reset the view of the users if the console is deleted.
+	return ..()
+
+
+/obj/machinery/computer/security/attack_hand(mob/living/carbon/human/user)
+	if(machine_stat)
+		return
+
+	if(!istype(user))
+		return
+
+	if(!network)
+		user.unset_interaction()
+		CRASH("No camera network")
+		return
+
+	if(!(islist(network)))
+		user.unset_interaction()
+		CRASH("Camera network is not a list")
+		return
+
+	var/list/camera_list = get_available_cameras()
+	if(!(user in watchers))
+		for(var/Num in camera_list)
+			var/obj/machinery/camera/CAM = camera_list[Num]
+			if(istype(CAM))
+				if(CAM.can_use())
+					watchers[user] = CAM //let's give the user the first usable camera, and then let him change to the camera he wants.
+					break
+		if(!(user in watchers))
+			user.unset_interaction() // no usable camera on the network, we disconnect the user from the computer.
+			return
+	playsound(src, 'sound/machines/terminal_prompt.ogg', 25, 0)
+	use_camera_console(user)
+
+
+/obj/machinery/computer/security/proc/use_camera_console(mob/living/user)
+	if(!istype(user))
+		return
+	var/list/camera_list = get_available_cameras()
+	var/t = input(user, "Which camera should you change to?") as null|anything in camera_list
+	if(!t)
+		user.unset_interaction()
+		playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
+		return
+
+	var/obj/machinery/camera/C = camera_list[t]
+
+	if(C)
+		var/camera_fail = FALSE
+		if(!C.can_use() || user.eye_blind || user.incapacitated())
+			camera_fail = TRUE
+		else if(long_ranged)
+			var/list/viewing = viewers(src)
+			if(!viewing.Find(user))
+				camera_fail = TRUE
+		else if(!issilicon(user) && !Adjacent(user))
+			camera_fail = TRUE
+
+		if(camera_fail)
+			user.unset_interaction()
+			return FALSE
+
+		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 25, 0)
 		if(isAI(user))
 			var/mob/living/silicon/ai/A = user
 			A.eyeobj.setLoc(get_turf(C))
 			A.client.eye = A.eyeobj
-			return 1
-
-		if (!C.can_use() || user.incapacitated() || (get_dist(user, src) > 1 || user.interactee != src || is_blind(user) || !( user.canmove ) && !issilicon(user)))
-			return 0
-		src.current = C
+		else
+			user.reset_perspective(C)
+			user.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/noise)
+			user.clear_fullscreen("flash", 5)
+		watchers[user] = C
 		use_power(50)
-		user.reset_view(C)
-		return 1
+		addtimer(CALLBACK(src, .proc/use_camera_console, user), 5)
+	else
+		user.unset_interaction()
 
-//Camera control: moving.
-	proc/jump_on_click(var/mob/user,var/A)
-		if(user.interactee != src)
-			return
-		var/obj/machinery/camera/jump_to
-		if(istype(A,/obj/machinery/camera))
-			jump_to = A
-		else if(ismob(A))
-			if(ishuman(A))
-				jump_to = locate() in A:head
-		else if(isobj(A))
-			jump_to = locate() in A
-		else if(isturf(A))
-			var/best_dist = INFINITY
-			for(var/obj/machinery/camera/camera in get_area(A))
-				if(!camera.can_use())
-					continue
-				if(!can_access_camera(camera))
-					continue
-				var/dist = get_dist(camera,A)
-				if(dist < best_dist)
-					best_dist = dist
-					jump_to = camera
-		if(isnull(jump_to))
-			return
-		if(can_access_camera(jump_to))
-			switch_to_camera(user,jump_to)
+
+//returns the list of cameras accessible from this computer
+/obj/machinery/computer/security/proc/get_available_cameras()
+	var/list/L = list()
+	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
+		if((is_away_level(z) || is_away_level(C.z)) && (C.z != z))//if on away mission, can only receive feed from same z_level cameras
+			continue
+		L.Add(C)
+
+	camera_sort(L)
+
+	var/list/D = list()
+	for(var/obj/machinery/camera/C in L)
+		if(!C.network)
+			stack_trace("Camera in a cameranet has no camera network")
+			continue
+		if(!(islist(C.network)))
+			stack_trace("Camera in a cameranet has a non-list camera network")
+			continue
+		var/list/tempnetwork = C.network & network
+		if(length(tempnetwork))
+			D["[C.c_tag][(C.status ? null : " (Deactivated)")]"] = C
+	return D
 
 
 /obj/machinery/computer/security/telescreen
@@ -136,6 +162,7 @@
 	network = list("thunder")
 	density = 0
 	circuit = null
+
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)
@@ -179,19 +206,20 @@
 	circuit = null
 
 
-/obj/machinery/computer/security/almayer
-	density = 0
+/obj/machinery/computer/security/marinemainship
+	density = FALSE
 	icon_state = "security_cam"
-	network = list("almayer")
+	network = list("marinemainship")
 
-/obj/machinery/computer/security/almayer_network
-	network = list("almayer")
+
+/obj/machinery/computer/security/marinemainship_network
+	network = list("marinemainship")
 
 
 /obj/machinery/computer/security/dropship
 	name = "abstract dropship camera computer"
 	desc = "A computer to monitor cameras linked to the dropship."
-	density = 1
+	density = TRUE
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleleft"
 	circuit = null
@@ -202,7 +230,7 @@
 	name = "\improper 'Alamo' camera controls"
 	network = list("dropship1")
 
+
 /obj/machinery/computer/security/dropship/two
 	name = "\improper 'Normandy' camera controls"
 	network = list("dropship2")
-

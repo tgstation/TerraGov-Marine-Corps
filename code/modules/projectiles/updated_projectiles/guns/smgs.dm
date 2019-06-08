@@ -19,7 +19,7 @@
 	gun_skill_category = GUN_SKILL_SMGS
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
-	cock(user)
+	return cock(user)
 
 /obj/item/weapon/gun/smg/get_ammo_type()
 	if(!ammo)
@@ -43,6 +43,7 @@
 	item_state = "m39"
 	caliber = "10x20mm caseless" //codex
 	max_shells = 40 //codex
+	flags_equip_slot = ITEM_SLOT_BACK
 	current_mag = /obj/item/ammo_magazine/smg/m39
 	type_of_casings = null
 	attachable_allowed = list(

@@ -32,8 +32,10 @@
 			T = get_turf(M)
 			if(T && T.z == turf_source.z) M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global)
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, var/falloff, is_global)
-	if(!client || ear_deaf > 0)	return FALSE
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global)
+	if(!client)	
+		return FALSE
+
 	soundin = get_sfx(soundin)
 
 	var/sound/S = sound(soundin)
@@ -99,6 +101,13 @@
 	if(!is_global) S.environment = 2
 	SEND_SOUND(src, S)
 
+
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global)
+	if(ear_deaf > 0)
+		return FALSE
+	return ..()
+
+
 /client/proc/playtitlemusic()
 	if(!SSticker?.login_music)	return FALSE
 	if(prefs.toggles_sound & SOUND_LOBBY)
@@ -119,7 +128,7 @@
 		switch(S)
 			// General effects
 			if("shatter")
-				S = pick('sound/effects/Glassbr1.ogg','sound/effects/Glassbr2.ogg','sound/effects/Glassbr3.ogg')
+				S = pick('sound/effects/glassbr1.ogg','sound/effects/glassbr2.ogg','sound/effects/glassbr3.ogg')
 			if("explosion")
 				S = pick('sound/effects/Explosion1.ogg','sound/effects/Explosion2.ogg')
 			if("sparks")

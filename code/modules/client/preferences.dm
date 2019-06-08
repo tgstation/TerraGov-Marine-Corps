@@ -10,8 +10,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/savefile_version = 0
 
 	//Admin
-	var/warns = 0
-	var/muted = NOFLAGS
+	var/muted = NONE
 	var/last_ip
 	var/last_id
 	var/updating_icon = FALSE
@@ -22,12 +21,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/be_special = BE_SPECIAL_DEFAULT	//Special role selection
 	var/ui_style = "Midnight"
 	var/ui_style_color = "#ffffff"
-	var/ui_style_alpha = 255
+	var/ui_style_alpha = 230
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
+
 	var/ghost_hud = TOGGLES_GHOSTHUD_DEFAULT
+	var/ghost_vision = TRUE
+	var/ghost_orbit = GHOST_ORBIT_CIRCLE
+	var/ghost_form = GHOST_DEFAULT_FORM
+	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
+
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
+	var/hotkeys = TRUE
+
+	// Custom Keybindings
+	var/list/key_bindings = null
 
 	//Synthetic specific preferences
 	var/synthetic_name = "David"
@@ -47,11 +56,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/good_eyesight = TRUE
 	var/preferred_squad = "None"
 	var/alternate_option = RETURN_TO_LOBBY
-	var/jobs_high = NOFLAGS
-	var/jobs_medium = NOFLAGS
-	var/jobs_low = NOFLAGS
 	var/preferred_slot = SLOT_S_STORE
 	var/list/gear = list()
+	var/list/job_preferences = list()
 
 	//Clothing
 	var/underwear = 1
@@ -87,15 +94,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
-	var/metadata = ""
-	var/slot_name = ""
-
-	//Mob preview
-	var/icon/preview_icon = null
-	var/icon/preview_icon_front = null
-	var/icon/preview_icon_side = null
 
 	var/list/exp = list()
+	var/list/menuoptions = list()
+
+	// Hud tooltip
+	var/tooltips = TRUE
 
 
 /datum/preferences/New(client/C)
@@ -109,11 +113,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(load_preferences() && load_character())
 			return
 
-	gender = pick(MALE, FEMALE)
-	var/datum/species/S = GLOB.all_species[species]
-	real_name = S.random_name(gender)
-	age = rand(18, 36)
-	h_style = pick("Crewcut", "Bald", "Short Hair")
+	random_character()
 
 
 /datum/preferences/proc/ShowChoices(mob/user)
@@ -122,60 +122,107 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	update_preview_icon()
 
-	var/dat = "<html><head><style>"
-	dat += "#wrapper 		{position: relative; width: 625px; height: 200px; margin: 0 auto;}"
-	dat += "#preview		{position: absolute; top: 30px; left: 400px;}"
-	dat += "#right			{position: absolute; top: 201px; left: 400px;}"
-	dat += "</style></head>"
-	dat += "<body>"
+	var/dat
+
+	dat += {"
+	<style>
+	.column {
+	  float: left;
+	  width: 50%;
+	}
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	</style>
+	"}
+
+	dat += "<center>"
+
+	if(!path)
+		dat += "<div class='notice'>Please create an account to save your preferences.</div>"
+
+	dat += "</center>"
 
 	if(path)
-		dat += "<center>"
-		dat += "Slot <b>[slot_name]</b> - "
-		dat += "<a href ='?_src_=prefs;preference=slot_open'>Load slot</a> - "
-		dat += "<a href ='?_src_=prefs;preference=slot_save'>Save slot</a> - "
-		dat += "<a href ='?_src_=prefs;preference=slot_reload'>Reload slot</a>"
-		dat += "</center>"
-	else
-		dat += "Please create an account to save your preferences."
+		var/savefile/S = new (path)
+		if(S)
+			dat += "<center>"
+			var/name
+			var/unspaced_slots = 0
+			for(var/i = 1, i <= MAX_SAVE_SLOTS, i++)
+				unspaced_slots++
+				if(unspaced_slots > 4)
+					dat += "<br>"
+					unspaced_slots = 0
+				S.cd = "/character[i]"
+				S["real_name"] >> name
+				if(!name)
+					name = "Character[i]"
+				dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=changeslot;num=[i];' [i == default_slot ? "class='linkOn'" : ""]>[name]</a> "
+			dat += "</center>"
 
-	dat += "<div id='wrapper'>"
-
-	dat += "<br><b>Synthetic Name:</b> <a href='?_src_=prefs;preference=synth_name'>[synthetic_name]</a><br>"
-	dat += "<b>Synthetic Type:</b> <a href='?_src_=prefs;preference=synth_type'>[synthetic_type]</a><br>"
-
-	dat +="<br><b>Xenomorph name:</b> <a href='?_src_=prefs;preference=xeno_name'>[xeno_name]</a><br><br>"
-
-	dat += "<big><big><b>Name:</b> "
-	dat += "<a href='?_src_=prefs;preference=name_real'><b>[real_name]</b></a>"
-	dat += " (<a href='?_src_=prefs;preference=name_randomize'>&reg</A>)</big></big>"
 	dat += "<br>"
-	dat += "Always Pick Random Name: <a href='?_src_=prefs;preference=name_random'>[random_name ? "Yes" : "No"]</a>"
-	dat += "<br>"
+
+	dat += "<center>"
+	dat += "<a href='?_src_=prefs;preference=jobmenu'>Set Marine Role Preferences</a><br>"
+	dat += "<a href='?_src_=prefs;preference=keybindings_menu'>Keybindings</a>"
+	dat += "</center>"
+
+	dat += "<div class='row'>"
+	dat += "<div class='column'>"
+
+
+
+	dat += "<h2>Identity</h2>"
 
 	if(is_banned_from(user.ckey, "Appearance"))
 		dat += "You are banned from using custom names and appearances.<br>"
-	dat += "<br>"
 
-	dat += "<big><b><u>Physical Information:</u></b>"
-	dat += " (<a href='?_src_=prefs;preference=random'>&reg;</A>)</big>"
+	dat += "<b>Name:</b> "
+	dat += "<a href='?_src_=prefs;preference=name_real'><b>[real_name]</b></a>"
+	dat += "<a href='?_src_=prefs;preference=randomize_name'>(R)</a>"
 	dat += "<br>"
+	dat += "Always Pick Random Name: <a href='?_src_=prefs;preference=random_name'>[random_name ? "Yes" : "No"]</a>"
+	dat += "<br><br>"
+	dat += "<b>Synthetic Name:</b>"
+	dat += "<a href='?_src_=prefs;preference=synth_name'>[synthetic_name]</a>"
+	dat += "<br>"
+	dat += "<b>Synthetic Type:</b>"
+	dat += "<a href='?_src_=prefs;preference=synth_type'>[synthetic_type]</a>"
+	dat += "<br><br>"
+	dat += "<b>Xenomorph name:</b>"
+	dat += "<a href='?_src_=prefs;preference=xeno_name'>[xeno_name]</a>"
+	dat += "<br><br>"
+
+
+
+	dat += "<h2>Body</h2>"
+
 	dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age'>[age]</a><br>"
-	dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[gender == MALE ? "Male" : "Female"]</a><br>"
+	dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[gender == MALE ? MALE : FEMALE]</a><br>"
 	dat += "<b>Ethnicity:</b> <a href='?_src_=prefs;preference=ethnicity'>[ethnicity]</a><br>"
 	dat += "<b>Species:</b> <a href='?_src_=prefs;preference=species'>[species]</a><br>"
 	dat += "<b>Body Type:</b> <a href='?_src_=prefs;preference=body_type'>[body_type]</a><br>"
 	dat += "<b>Good Eyesight:</b> <a href='?_src_=prefs;preference=eyesight'>[good_eyesight ? "Yes" : "No"]</a><br>"
 	dat += "<br>"
+	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=hairstyle'>[h_style]</a> | <a href='?_src_=prefs;preference=haircolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
+	dat += "<br>"
+	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=facialstyle'>[f_style]</a> | <a href='?_src_=prefs;preference=facialcolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
+	dat += "<br>"
+	dat += "<b>Eye:</b> <a href='?_src_=prefs;preference=eyecolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
 
 	var/datum/species/current_species = GLOB.all_species[species]
 	if(current_species.preferences)
 		for(var/preference_id in current_species.preferences)
 			dat += "<b>[current_species.preferences[preference_id]]:</b> <a href='?_src_=prefs;preference=[preference_id]'><b>[vars[preference_id]]</b></a><br>"
-		dat += "<br>"
 
-	dat += "<big><b><u>Occupation Choices:</u></b></big>"
-	dat += "<br>"
+	dat += "<a href='?_src_=prefs;preference=random'>Randomize</a>"
+
+
+
+	dat += "<h2>Occupation Choices:</h2>"
 
 	var/n = 0
 	for(var/role in BE_SPECIAL_FLAGS)
@@ -199,11 +246,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<br><b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=squad'>[preferred_squad]</a><br>"
 
-	dat += "<br>"
-	dat += "<a href='?_src_=prefs;preference=jobmenu'>Set Marine Role Preferences</a><br>"
-	dat += "<br>"
 
-	dat += "<big><b><u>Marine Gear:</u></b></big><br>"
+
+
+	dat += "</div>"
+	dat += "<div class='column'>"
+
+
+
+
+	dat += "<h2>Marine Gear:</h2>"
 	if(gender == MALE)
 		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear'>[GLOB.underwear_m[underwear]]</a><br>"
 	else
@@ -237,26 +289,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(length(gear))
 			dat += " <a href ='?_src_=prefs;preference=loadoutclear'>\[clear\]</a>"
 
-	dat += "<br><br>"
 
 
-	dat += "<div id='preview'>"
-	dat += "<br>"
-	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=hairstyle'>[h_style]</a> | <a href='?_src_=prefs;preference=haircolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
-	dat += "<br>"
+	dat += "<h2>Background Information:</h2>"
 
-	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=facialstyle'>[f_style]</a> | <a href='?_src_=prefs;preference=facialcolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
-	dat += "<br>"
-
-	dat += "<b>Eye:</b> <a href='?_src_=prefs;preference=eyecolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
-	dat += "</div>"
-
-	dat += "<div id='right'>"
-	dat += "<big><b><u>Background Information:</u></b></big><br>"
 	dat += "<b>Citizenship</b>: <a href ='?_src_=prefs;preference=citizenship'>[citizenship]</a><br/>"
 	dat += "<b>Religion</b>: <a href ='?_src_=prefs;preference=religion'>[religion]</a><br/>"
 	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=corporation'>[nanotrasen_relation]</a><br>"
-
 	dat += "<br>"
 
 	if(jobban_isbanned(user, "Records"))
@@ -265,119 +304,155 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
 
 	dat += "<a href ='?_src_=prefs;preference=flavor_text'>Character Description</a><br>"
-	dat += "<br>"
 
-	dat += "<big><b><u>Game Settings:</u></b></big><br>"
-	dat += "<b>Play Admin Midis:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles_sound & SOUND_MIDI) ? "Yes" : "No"]</a><br>"
-	dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles_sound & SOUND_LOBBY) ? "Yes" : "No"]</a><br>"
-	dat += "<b>Ghost Ears:</b> <a href='?_src_=prefs;preference=ghost_ears'>[(toggles_chat & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
-	dat += "<b>Ghost Sight:</b> <a href='?_src_=prefs;preference=ghost_sight'>[(toggles_chat & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</a><br>"
-	dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</a><br>"
-	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show" : "Hide"]</a><br>"
+
+
+	dat += "<h2>Game Settings:</h2>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
+	dat += "<b>Hotkey mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 
-	if(CONFIG_GET(flag/allow_metadata))
-		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata'> Edit </a><br>"
 
-	dat += "<big><b><u>UI Customization:</u></b></big><br>"
+
+	dat += "<h2>UI Customization:</h2>"
 	dat += "<b>Style:</b> <a href='?_src_=prefs;preference=ui'>[ui_style]</a><br>"
 	dat += "<b>Color</b>: <a href='?_src_=prefs;preference=uicolor'>[ui_style_color]</a> <table style='display:inline;' bgcolor='[ui_style_color]'><tr><td>__</td></tr></table><br>"
 	dat += "<b>Alpha</b>: <a href='?_src_=prefs;preference=uialpha'>[ui_style_alpha]</a>"
 
-	dat += "<br>"
-	dat += "</div>"
 
-	dat += "<br>"
 
-	dat += "</div></body></html>"
+	dat += "</div></div>"
 
 
 	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_window", "<div align='center'>Character Setup</div>", 670, 830)
+	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Setup</div>", 640, 770)
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
 
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 22, list/splitJobs = list(), width = 450, height = 650)
+/datum/preferences/proc/SetChoices(mob/user, limit = 16, list/splitJobs, widthPerColumn = 305, height = 620)
 	if(!SSjob)
 		return
 
-	//limit 	 - The amount of jobs allowed per column.
-	//splitJobs	 - Allows you split the table by job. You can make different tables for each department by including their heads.
-	//width		 - Screen' width.
-	//height 	 - Screen's height.
+	//limit - The amount of jobs allowed per column.
+	//splitJobs - Allows you split the table by job. You can make different tables for each department by including their heads.
+	//widthPerColumn - Screen's width for every column.
+	//height - Screen's height.
 
-	var/HTML = "<body>"
-	HTML += "<center>"
-	HTML += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br><br>"
-	HTML += "<center><a href='?_src_=prefs;preference=jobclose'>\[Done\]</a></center><br>" // Easier to press up here.
-	HTML += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
-	HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
-	var/index = -1
+	var/width = widthPerColumn
 
-	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
-	var/datum/job/lastJob
-	var/datum/job/job
-	for(var/i in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-		job = i
-		if(!job.prefflag)
-			continue
-		index += 1
-		if((index >= limit) || (job.title in splitJobs))
-			if((index < limit) && (lastJob != null))
-				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
-				//the last job's selection color. Creating a rather nice effect.
-				for(var/j = 0, j < (limit - index), j++)
-					HTML += "<tr style='color:black' bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
-			HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
-			index = 0
+	var/HTML = "<center>"
+	if(!length(SSjob.occupations))
+		HTML += "The job subsystem hasn't initialized yet, please try again later."
+		HTML += "<center><a href='?_src_=prefs;preference=jobclose'>Done</a></center><br>" // Easier to press up here.
 
-		HTML += "<tr style='color:black' bgcolor='[job.selection_color]'><td width='60%' align='right'>"
-		lastJob = job
-		var/required_playtime_remaining = job.required_playtime_remaining(user.client)
-		if(required_playtime_remaining)
-			HTML += "<del>[job.title]</del></td><td><b> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \] </b></td></tr>"
-			continue
-		else if(jobban_isbanned(user, job.title) || is_banned_from(user.ckey, job.title))
-			HTML += "<del>[job.title]</del></td><td><b> \[BANNED]</b></td></tr>"
-			continue
-		else if(!job.player_old_enough(user.client))
-			var/available_in_days = job.available_in_days(user.client)
-			HTML += "<del>[job.title]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
-			continue
-		else HTML += (job.title in JOBS_COMMAND) || job.title == "AI" ? "<b>[job.title]</b>" : "[job.title]"
+	else
+		HTML += "<b>Choose marine role preferences.</b><br>"
+		HTML += "<div align='center'>Left-click to raise the preference, right-click to lower it.<br></div>"
+		HTML += "<center><a href='?_src_=prefs;preference=jobclose'>Done</a></center><br>" // Easier to press up here.
+		HTML += "<script type='text/javascript'>function setJobPrefRedirect(level, job) { window.location.href='?_src_=prefs;preference=jobselect;level=' + level + ';job=' + encodeURIComponent(job); return false; }</script>"
+		HTML += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
+		HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
+		var/index = -1
 
-		HTML += "</td><td width='40%'> "
+		//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
+		var/datum/job/lastJob
+		var/datum/job/overflow = SSjob.GetJob(SSjob.overflow_role)
 
-		if(GetJobDepartment(job, JOBS_PRIORITY_HIGH) & job.prefflag)
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_NEVER]'><font color=blue>\[High]</font></a>"
-		else if(GetJobDepartment(job, JOBS_PRIORITY_MEDIUM) & job.prefflag)
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_HIGH]'><font color='#9adb83'>\[Medium]</font></a>"
-		else if(GetJobDepartment(job, JOBS_PRIORITY_LOW) & job.prefflag)
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_MEDIUM]'><font color=orange>\[Low]</font></a>"
-		else
-			HTML += "<a href='?_src_=prefs;preference=jobselect;job=[job.title];level=[JOBS_PRIORITY_LOW]'><font color=red>\[NEVER]</font></a>"
-		HTML += "</td></tr>"
+		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+			if(!(job.title in JOBS_REGULAR_ALL))
+				continue
 
-	HTML += "</td'></tr></table>"
-	HTML += "</center></table>"
+			index += 1
+			if(index >= limit || (job.title in splitJobs))
+				width += widthPerColumn
+				if(index < limit && !isnull(lastJob))
+					//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
+					//the last job's selection color. Creating a rather nice effect.
+					for(var/i = 0, i < (limit - index), i += 1)
+						HTML += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'>&nbsp</td><td>&nbsp</td></tr>"
+				HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
+				index = 0
 
-	switch(alternate_option)
-		if(GET_RANDOM_JOB)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'>Get random job if preferences unavailable</a></u></center><br>"
-		if(BE_MARINE)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'>Be marine if preference unavailable</a></u></center><br>"
-		if(RETURN_TO_LOBBY)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=jobalternative'>Return to lobby if preference unavailable</a></u></center><br>"
+			HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
+			var/rank = job.title
+			lastJob = job
+			if(is_banned_from(user.ckey, rank))
+				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
+				continue
+			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
+			if(required_playtime_remaining)
+				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \] </font></td></tr>"
+				continue
+			if(!job.player_old_enough(user.client))
+				var/available_in_days = job.available_in_days(user.client)
+				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[IN [(available_in_days)] DAYS\]</font></td></tr>"
+				continue
+			if((rank in JOBS_COMMAND) || rank == "AI")//Bold head jobs
+				HTML += "<b><span class='dark'>[rank]</span></b>"
+			else
+				HTML += "<span class='dark'>[rank]</span>"
 
-	HTML += "<center><a href='?_src_=prefs;preference=jobreset'>\[Reset\]</a></center>"
+			HTML += "</td><td width='40%'>"
 
-	winshow(user, "mob_occupation", TRUE)
-	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Choices</div>", width, height)
+			var/prefLevelLabel = "NEVER"
+			var/prefLevelColor = "red"
+			var/prefUpperLevel = JOBS_PRIORITY_LOW // level to assign on left click
+			var/prefLowerLevel = JOBS_PRIORITY_HIGH // level to assign on right click
+
+			switch(job_preferences[job.title])
+				if(JOBS_PRIORITY_HIGH)
+					prefLevelLabel = "High"
+					prefLevelColor = "slateblue"
+					prefUpperLevel = JOBS_PRIORITY_NEVER
+					prefLowerLevel = JOBS_PRIORITY_MEDIUM
+				if(JOBS_PRIORITY_MEDIUM)
+					prefLevelLabel = "Medium"
+					prefLevelColor = "green"
+					prefUpperLevel = JOBS_PRIORITY_HIGH
+					prefLowerLevel = JOBS_PRIORITY_LOW
+				if(JOBS_PRIORITY_LOW)
+					prefLevelLabel = "Low"
+					prefLevelColor = "orange"
+					prefUpperLevel = JOBS_PRIORITY_MEDIUM
+					prefLowerLevel = JOBS_PRIORITY_NEVER
+
+			HTML += "<a class='white' href='?_src_=prefs;preference=jobselect;level=[prefUpperLevel];job=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
+
+			if(rank == SSjob.overflow_role) //Overflow is special
+				if(job_preferences[overflow.title] == JOBS_PRIORITY_LOW)
+					HTML += "<font color=green>Yes</font>"
+				else
+					HTML += "<font color=red>No</font>"
+				HTML += "</a></td></tr>"
+				continue
+
+			HTML += "<font color=[prefLevelColor]>[prefLevelLabel]</font>"
+			HTML += "</a></td></tr>"
+
+		for(var/i = 1, i < (limit - index), i += 1) // Finish the column so it is even
+			HTML += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'>&nbsp</td><td>&nbsp</td></tr>"
+
+		HTML += "</td'></tr></table>"
+		HTML += "</center></table>"
+
+		var/message
+		switch(alternate_option)
+			if(BE_OVERFLOW)
+				message = "Be [SSjob.overflow_role] if preferences unavailable"
+			if(GET_RANDOM_JOB)
+				message = "Get random job if preferences unavailable"
+			if(RETURN_TO_LOBBY)
+				message = "Return to lobby if preferences unavailable"
+
+		HTML += "<center><br><a href='?_src_=prefs;preference=jobalternative'>[message]</a></center>"
+		HTML += "<center><a href='?_src_=prefs;preference=jobreset'>Reset Preferences</a></center>"
+
+	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Preferences</div>", width, height)
+	popup.set_window_options("can_close=0")
 	popup.set_content(HTML)
 	popup.open(FALSE)
-	onclose(user, "mob_occupation", src)
 
 
 /datum/preferences/proc/SetRecords(mob/user)
@@ -402,7 +477,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	HTML += TextPreview(exploit_record, 40)
 
 	HTML += "<br>"
-	HTML += "<a href ='?_src_=prefs;preference=recordsclose'>\[Done\]</a>"
+	HTML += "<a href ='?_src_=prefs;preference=recordsclose'>Done</a>"
 	HTML += "</center>"
 
 
@@ -413,45 +488,67 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	onclose(user, "records", src)
 
 
-/datum/preferences/proc/ResetJobs()
-	jobs_high = NOFLAGS
-	jobs_medium = NOFLAGS
-	jobs_low = NOFLAGS
+
+/datum/preferences/proc/ShowKeybindings(mob/user)
+	// Create an inverted list of keybindings -> key
+	var/list/user_binds = list()
+	for(var/key in key_bindings)
+		for(var/kb_name in key_bindings[key])
+			user_binds[kb_name] = key
+
+	var/list/kb_categories = list()
+	// Group keybinds by category
+	for(var/name in GLOB.keybindings_by_name)
+		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
+		if(!(kb.category in kb_categories))
+			kb_categories[kb.category] = list()
+		kb_categories[kb.category] += list(kb)
+
+	var/HTML = "<style>label { display: inline-block; width: 200px; }</style><body>"
+
+	for(var/category in kb_categories)
+		HTML += "<h3>[category]</h3>"
+		for(var/i in kb_categories[category])
+			var/datum/keybinding/kb = i
+			var/bound_key = user_binds[kb.name]
+			bound_key = (bound_key) ? bound_key : "Unbound"
+
+			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [kb.key] )</a>"
+			HTML += "<br>"
+
+	HTML += "<br><br>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_done'>Close</a>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_reset'>Reset to default</a>"
+	HTML += "</body>"
+
+	winshow(user, "keybindings", TRUE)
+	var/datum/browser/popup = new(user, "keybindings", "<div align='center'>Keybindings</div>", 500, 900)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "keybindings", src)
 
 
-/datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
-	if(!job?.prefflag || !level)
-		return FALSE
-	switch(level)
-		if(JOBS_PRIORITY_HIGH)
-			return jobs_high
-		if(JOBS_PRIORITY_MEDIUM)
-			return jobs_medium
-		if(JOBS_PRIORITY_LOW)
-			return jobs_low
-	return FALSE
-
-
-/datum/preferences/proc/SetJobDepartment(var/datum/job/job, var/level)
-	if(!job || !level)
-		return FALSE
-	if(!job.prefflag)
-		return FALSE
-	if(jobs_high && level == JOBS_PRIORITY_HIGH)
-		jobs_medium |= jobs_high
-		jobs_high = NOFLAGS
-	switch(level)
-		if(JOBS_PRIORITY_HIGH)
-			jobs_high = job.prefflag
-			jobs_medium &= ~job.prefflag
-		if(JOBS_PRIORITY_MEDIUM)
-			jobs_medium |= job.prefflag
-			jobs_low &= ~job.prefflag
-		if(JOBS_PRIORITY_LOW)
-			jobs_low |= job.prefflag
-		if(JOBS_PRIORITY_NEVER)
-			jobs_high = NOFLAGS
-	return TRUE
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
+	var/HTML = {"
+	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
+	<script>
+	document.onkeyup = function(e) {
+		var shift = e.shiftKey ? 1 : 0;
+		var alt = e.altKey ? 1 : 0;
+		var ctrl = e.ctrlKey ? 1 : 0;
+		var numpad = (95 < e.keyCode && e.keyCode < 112) ? 1 : 0;
+		var escPressed = e.keyCode == 27 ? 1 : 0;
+		var url = 'byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb.name];old_key=[old_key];clear_key='+escPressed+';key='+e.key+';shift='+shift+';alt='+alt+';ctrl='+ctrl+';numpad='+numpad+';key_code='+e.keyCode;
+		window.location=url;
+	}
+	document.getElementById('focus').focus();
+	</script>
+	"}
+	winshow(user, "capturekeypress", TRUE)
+	var/datum/browser/popup = new(user, "capturekeypress", "<div align='center'>Keybindings</div>", 350, 300)
+	popup.set_content(HTML)
+	popup.open(FALSE)
+	onclose(user, "capturekeypress", src)
 
 
 /datum/preferences/Topic(href, href_list, hsrc)
@@ -467,30 +564,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	switch(href_list["preference"])
-		if("slot_open")
-			if(IsGuestKey(user.key))
-				return
-			open_load_dialog(user)
-			return
-
-		if("slot_save")
-			save_preferences()
-			save_character()
-			return
-
-		if("slot_reload")
-			load_preferences()
-			load_character()
-			return
-
-		if("slot_close")
-			close_load_dialog(user)
-			return
-
-		if("slot_change")
-			load_character(text2num(href_list["num"]))
-			load_preferences()
-			close_load_dialog(user)
+		if("changeslot")
+			if(!load_character(text2num(href_list["num"])))
+				random_character()
+				real_name = random_unique_name(gender)
+				save_character()
 
 		if("synth_name")
 			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name") as text|null
@@ -522,11 +600,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				return
 			real_name = newname
 
-		if("name_randomize")
+		if("randomize_name")
 			var/datum/species/S = GLOB.all_species[species]
 			real_name = S.random_name(gender)
 
-		if("name_random")
+		if("random_name")
 			random_name = !random_name
 
 		if("random")
@@ -554,7 +632,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			ethnicity = new_ethnicity
 
 		if("species")
-			var/new_species = input(user, "Choose your species:", "Species") as null|anything in get_playable_species()
+			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.all_species[DEFAULT_SPECIES]
 			if(!new_species)
 				return
 			species = new_species
@@ -588,18 +666,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=mob_occupation")
 
 		if("jobselect")
-			if(!href_list["job"] || !href_list["level"])
-				return
-			var/datum/job/job = SSjob.GetJob(href_list["job"])
-			var/level = text2num(href_list["level"])
-			SetJobDepartment(job, level)
-			SetChoices(user)
+			UpdateJobPreference(user, href_list["job"], text2num(href_list["level"]))
 			return
 
 		if("jobalternative")
 			if(alternate_option == GET_RANDOM_JOB)
-				alternate_option = BE_MARINE
-			else if(alternate_option == BE_MARINE)
+				alternate_option = BE_OVERFLOW
+			else if(alternate_option == BE_OVERFLOW)
 				alternate_option = RETURN_TO_LOBBY
 			else if(alternate_option == RETURN_TO_LOBBY)
 				alternate_option = GET_RANDOM_JOB
@@ -607,7 +680,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 
 		if("jobreset")
-			ResetJobs()
+			job_preferences = list()
 			SetChoices(user)
 			return
 
@@ -685,11 +758,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			ui_style_color = ui_style_color_new
 
 		if("uialpha")
-			var/ui_style_alpha_new = input(user, "Select a new alpha(transparence) parametr for UI, between 50 and 255", "UI Alpha") as null|num
+			var/ui_style_alpha_new = input(user, "Select a new alpha(transparence) parametr for UI, between 50 and 230", "UI Alpha") as null|num
 			if(!ui_style_alpha_new)
 				return
 			ui_style_alpha_new = round(ui_style_alpha_new)
-			ui_style_alpha = CLAMP(ui_style_alpha_new, 55, 255)
+			ui_style_alpha = CLAMP(ui_style_alpha_new, 55, 230)
 
 		if("hairstyle")
 			var/list/valid_hairstyles = list()
@@ -826,36 +899,89 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 			flavor_text = msg
 
-		if("metadata")
-			var/new_metadata = input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "OOC Notes", sanitize(metadata)) as null|message
-			if(!new_metadata)
-				return
-			metadata = copytext(sanitize(new_metadata), 1, MAX_MESSAGE_LEN)
-
-		if("hear_midis")
-			toggles_sound ^= SOUND_MIDI
-
-		if("lobby_music")
-			toggles_sound ^= SOUND_LOBBY
-			if(toggles_sound & SOUND_LOBBY && (isobserver(user) || isnewplayer(user)))
-				user << sound(SSticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
-			else
-				user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
-
-		if("ghost_ears")
-			toggles_chat ^= CHAT_GHOSTEARS
-
-		if("ghost_sight")
-			toggles_chat ^= CHAT_GHOSTSIGHT
-
-		if("ghost_radio")
-			toggles_chat ^= CHAT_GHOSTRADIO
-
-		if("ghost_hivemind")
-			toggles_chat ^= CHAT_GHOSTHIVEMIND
-
 		if("windowflashing")
 			windowflashing = !windowflashing
+
+		if("hotkeys")
+			hotkeys = !hotkeys
+			if(hotkeys)
+				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default")
+			else
+				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+
+		if("tooltips")
+			tooltips = !tooltips
+			if(!tooltips)
+				closeToolTip(usr)
+			else if(!usr.client.tooltips && tooltips)
+				usr.client.tooltips = new /datum/tooltip(usr.client)
+
+		if("keybindings_menu")
+			ShowKeybindings(user)
+			return
+
+		if("keybindings_capture")
+			var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
+			var/old_key = href_list["old_key"]
+			CaptureKeybinding(user, kb, old_key)
+			return
+
+		if("keybindings_set")
+			var/kb_name = href_list["keybinding"]
+			if(!kb_name)
+				user << browse(null, "window=capturekeypress")
+				ShowKeybindings(user)
+				return
+
+			var/clear_key = text2num(href_list["clear_key"])
+			var/old_key = href_list["old_key"]
+			if(clear_key)
+				if(old_key != "Unbound") // if it was already set
+					key_bindings[old_key] -= kb_name
+					key_bindings["Unbound"] += list(kb_name)
+				user << browse(null, "window=capturekeypress")
+				save_preferences()
+				ShowKeybindings(user)
+				return
+
+			var/key = href_list["key"]
+			var/numpad = text2num(href_list["numpad"])
+			var/AltMod = text2num(href_list["alt"]) ? "Alt-" : ""
+			var/CtrlMod = text2num(href_list["ctrl"]) ? "Ctrl-" : ""
+			var/ShiftMod = text2num(href_list["shift"]) ? "Shift-" : ""
+			// var/key_code = text2num(href_list["key_code"])
+
+			var/new_key = uppertext(key)
+
+			// This is a mapping from JS keys to Byond - ref: https://keycode.info/
+			var/list/_kbMap = list(
+				"INSERT" = "Insert", "HOME" = "Northwest", "PAGEUP" = "Northeast",
+				"DEL" = "Delete", "END" = "Southwest",  "PAGEDOWN" = "Southeast",
+				"SPACEBAR" = "Space", "ALT" = "Alt", "SHIFT" = "Shift", "CONTROL" = "Ctrl"
+			)
+			new_key = _kbMap[new_key] ? _kbMap[new_key] : new_key
+
+			if (numpad)
+				new_key = "Numpad[new_key]"
+
+			var/full_key = "[AltMod][CtrlMod][ShiftMod][new_key]"
+			key_bindings[old_key] -= kb_name
+			key_bindings[full_key] += list(kb_name)
+			key_bindings[full_key] = sortList(key_bindings[full_key])
+
+			user << browse(null, "window=capturekeypress")
+			save_preferences()
+			ShowKeybindings(user)
+			return
+
+		if("keybindings_done")
+			user << browse(null, "window=keybindings")
+
+		if("keybindings_reset")
+			key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
+			save_preferences()
+			ShowKeybindings(user)
+			return
 
 	save_preferences()
 	save_character()
@@ -863,92 +989,37 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	return TRUE
 
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
-	if(random_name)
-		var/datum/species/S = GLOB.all_species[species]
-		real_name = S.random_name(gender)
+/datum/preferences/proc/UpdateJobPreference(mob/user, role, desiredLvl)
+	if(!SSjob || !length(SSjob.occupations))
+		return
+
+	var/datum/job/job = SSjob.GetJob(role)
+
+	if(!job)
+		user << browse(null, "window=mob_occupation")
+		ShowChoices(user)
+		return
+
+	if(role == SSjob.overflow_role)
+		if(job_preferences[job.title] == JOBS_PRIORITY_LOW)
+			desiredLvl = JOBS_PRIORITY_NEVER
+		else
+			desiredLvl = JOBS_PRIORITY_LOW
+
+	SetJobPreferenceLevel(job, desiredLvl)
+	SetChoices(user)
+
+	return TRUE
 
 
-	if(CONFIG_GET(flag/humans_need_surnames) && species == "Human")
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
-		if(!firstspace || firstspace == name_length)
-			real_name += " " + pick(GLOB.last_names)
+/datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
+	if(!job)
+		return FALSE
 
-	character.real_name = real_name
-	character.name = character.real_name
-	character.voice_name = character.real_name
-	if(character.dna)
-		character.dna.real_name = character.real_name
+	if(level == JOBS_PRIORITY_HIGH)
+		for(var/j in job_preferences)
+			if(job_preferences[j] == JOBS_PRIORITY_HIGH)
+				job_preferences[j] = JOBS_PRIORITY_MEDIUM
 
-	character.flavor_text = flavor_text
-
-	character.med_record = med_record
-	character.sec_record = sec_record
-	character.gen_record = gen_record
-	character.exploit_record = exploit_record
-
-	character.age = age
-	character.gender = gender
-	character.ethnicity = ethnicity
-	character.body_type = body_type
-
-	character.r_eyes = r_eyes
-	character.g_eyes = g_eyes
-	character.b_eyes = b_eyes
-
-	character.r_hair = r_hair
-	character.g_hair = g_hair
-	character.b_hair = b_hair
-
-	character.r_facial = r_facial
-	character.g_facial = g_facial
-	character.b_facial = b_facial
-
-	character.h_style = h_style
-	character.f_style = f_style
-
-	character.citizenship = citizenship
-	character.religion = religion
-
-	character.moth_wings = moth_wings
-	character.underwear = underwear
-	character.undershirt = undershirt
-	character.backpack = backpack
-
-	character.update_body()
-	character.update_hair()
-
-
-/datum/preferences/proc/open_load_dialog(mob/user)
-	var/dat = "<html><head><title>Load Character Slot</title></head>"
-
-	dat += "<body><center>"
-
-	var/savefile/S = new /savefile(path)
-	if(S)
-		dat += "<b>Select a character slot to load</b><hr>"
-		var/name
-		for(var/i = 1 to MAX_SAVE_SLOTS)
-			S.cd = "/character[i]"
-			S["real_name"] >> name
-			if(!name)
-				name = "Character[i]"
-			if(i == default_slot)
-				name = "<b>[name]</b>"
-			dat += "<a href='?_src_=prefs;preference=slot_change;num=[i];'>[name]</a><br>"
-
-	dat += "<hr>"
-	dat += "<a href ='?_src_=prefs;preference=slot_close'>Close</a><br>"
-	dat += "</center>"
-
-
-	winshow(user, "saves", TRUE)
-	var/datum/browser/popup = new(user, "saves", "<div align='center'>Character Slots</div>", 300, 390)
-	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "saves", src)
-
-
-/datum/preferences/proc/close_load_dialog(mob/user)
-	user << browse(null, "window=saves")
+	job_preferences[job.title] = level
+	return TRUE

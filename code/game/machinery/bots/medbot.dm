@@ -13,7 +13,7 @@
 	max_integrity = 20
 	req_access =list(ACCESS_MARINE_MEDBAY)
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
-//var/emagged = 0
+//var/DISABLE_BITFIELD(obj_flags, EMAGGED)
 	var/list/botcard_access = list(ACCESS_MARINE_MEDBAY)
 	var/obj/item/reagent_container/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
@@ -34,7 +34,6 @@
 	var/treatment_oxy = "tricordrazine"
 	var/treatment_fire = "tricordrazine"
 	var/treatment_tox = "tricordrazine"
-	var/treatment_virus = "spaceacillin"
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 	var/shut_up = 0 //self explanatory :)
 
@@ -129,7 +128,6 @@
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	if ((href_list["power"]) && (src.allowed(usr)))
 		if (src.on)
 			turn_off()
@@ -174,38 +172,35 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/bot/medbot/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/card/id))
-		if (src.allowed(user) && !open && !emagged)
-			src.locked = !src.locked
-			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")
-			src.updateUsrDialog()
-		else
-			if(emagged)
-				to_chat(user, "<span class='warning'>ERROR</span>")
-			if(open)
-				to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
-			else
-				to_chat(user, "<span class='warning'>Access denied.</span>")
+/obj/machinery/bot/medbot/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	else if (istype(W, /obj/item/reagent_container/glass))
-		if(src.locked)
+	if(istype(I, /obj/item/card/id))
+		if(allowed(user) && !open && !CHECK_BITFIELD(obj_flags, EMAGGED))
+			locked = !locked
+			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")
+			updateUsrDialog()
+		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
+			to_chat(user, "<span class='warning'>ERROR</span>")
+		else if(open)
+			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
+		else
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+
+	else if(istype(I, /obj/item/reagent_container/glass))
+		if(locked)
 			to_chat(user, "<span class='notice'>You cannot insert a beaker because the panel is locked.</span>")
 			return
-		if(!isnull(src.reagent_glass))
+		if(!isnull(reagent_glass))
 			to_chat(user, "<span class='notice'>There is already a beaker loaded.</span>")
 			return
+		if(user.transferItemToLoc(I, src))
+			reagent_glass = I
+			to_chat(user, "<span class='notice'>You insert [I].</span>")
+			updateUsrDialog()
 
-		if(user.transferItemToLoc(W, src))
-			reagent_glass = W
-			to_chat(user, "<span class='notice'>You insert [W].</span>")
-			src.updateUsrDialog()
-		return
-
-	else
-		..()
-		if (obj_integrity < max_integrity && !isscrewdriver(W) && W.force)
-			step_to(src, (get_step_away(src,user)))
+	if(obj_integrity < max_integrity && !isscrewdriver(I) && I.force)
+		step_to(src, (get_step_away(src, user)))
 
 /obj/machinery/bot/medbot/Emag(mob/user as mob)
 	..()
@@ -220,7 +215,7 @@
 		src.currently_healing = 0
 		src.last_found = world.time
 		src.anchored = 0
-		src.emagged = 2
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		src.safety_checks = 0
 		src.on = 1
 		src.icon_state = "medibot[src.on]"
@@ -325,7 +320,7 @@
 	if(C.suiciding)
 		return 0 //Kevorkian school of robotic medical assistants.
 
-	if(src.emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED)) //Everyone needs our medicine. (Our medicine is toxins)
 		return 1
 
 	if(safety_checks)
@@ -353,13 +348,6 @@
 
 	if((C.getToxLoss() >= heal_threshold) && (!C.reagents.has_reagent(src.treatment_tox)))
 		return 1
-
-
-	for(var/datum/disease/D in C.viruses)
-		if((D.stage > 1) || (D.spread_type == AIRBORNE))
-
-			if (!C.reagents.has_reagent(src.treatment_virus))
-				return 1 //STOP DISEASE FOREVER
 
 	return 0
 
@@ -395,16 +383,8 @@
 		if(!safety_fail)
 			reagent_id = "internal_beaker"
 
-	if(emagged == 2) //Emagged! Time to poison everybody.
+	if(CHECK_BITFIELD(obj_flags, EMAGGED) == 2) //Emagged! Time to poison everybody.
 		reagent_id = "toxin"
-
-	var/virus = 0
-	for(var/datum/disease/D in C.viruses)
-		virus = 1
-
-	if (!reagent_id && (virus))
-		if(!C.reagents.has_reagent(src.treatment_virus))
-			reagent_id = src.treatment_virus
 
 	if (!reagent_id && (C.getBruteLoss() >= heal_threshold))
 		if(!C.reagents.has_reagent(src.treatment_brute))
@@ -506,26 +486,25 @@
  *	Medbot Assembly -- Can be made out of all three medkits.
  */
 
-/obj/item/storage/firstaid/attackby(var/obj/item/robot_parts/S, mob/user as mob)
-
-	if ((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
-		..()
-		return
+/obj/item/storage/firstaid/attackby(obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/robot_parts/l_arm) && !istype(I, /obj/item/robot_parts/r_arm))
+		return ..()
 
 	//Making a medibot!
-	if(src.contents.len >= 1)
+	if(length(contents) >= 1)
 		to_chat(user, "<span class='notice'>You need to empty [src] out first.</span>")
 		return
 
-	var/obj/item/frame/firstaid_arm_assembly/A = new /obj/item/frame/firstaid_arm_assembly
-	if(istype(src,/obj/item/storage/firstaid/fire))
+	var/obj/item/frame/firstaid_arm_assembly/A = new
+
+	if(istype(src, /obj/item/storage/firstaid/fire))
 		A.skin = "ointment"
-	else if(istype(src,/obj/item/storage/firstaid/toxin))
+	else if(istype(src, /obj/item/storage/firstaid/toxin))
 		A.skin = "tox"
-	else if(istype(src,/obj/item/storage/firstaid/o2))
+	else if(istype(src, /obj/item/storage/firstaid/o2))
 		A.skin = "o2"
 
-	qdel(S)
+	qdel(I)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
 	user.temporarilyRemoveItemFromInventory(src)

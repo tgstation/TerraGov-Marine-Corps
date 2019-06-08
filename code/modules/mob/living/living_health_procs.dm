@@ -139,7 +139,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 
 
-/mob/living/proc/revive(keep_viruses)
+/mob/living/proc/revive()
 	rejuvenate()
 
 /mob/living/proc/on_revive()
@@ -151,7 +151,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	GLOB.alive_human_list += src
 	GLOB.dead_human_list -= src
 
-/mob/living/carbon/Xenomorph/on_revive()
+/mob/living/carbon/xenomorph/on_revive()
 	. = ..()
 	GLOB.alive_xeno_list += src
 	GLOB.dead_xeno_list -= src
@@ -215,10 +215,9 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
 	chestburst = 0
-	mutations?.Remove(HUSK)
 	return ..()
 
-/mob/living/carbon/Xenomorph/rejuvenate()
+/mob/living/carbon/xenomorph/rejuvenate()
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	slowdown = 0

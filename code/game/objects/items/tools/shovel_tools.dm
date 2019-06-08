@@ -47,7 +47,6 @@
 		to_chat(user, "It holds [dirt_amt] layer\s of [dirt_name].")
 
 /obj/item/tool/shovel/attack_self(mob/user)
-	add_fingerprint(user)
 
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"

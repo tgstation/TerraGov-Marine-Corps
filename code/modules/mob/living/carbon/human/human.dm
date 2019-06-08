@@ -3,7 +3,6 @@
 /mob/living/carbon/human
 	name = "unknown"
 	real_name = "unknown"
-	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD)
@@ -13,119 +12,12 @@
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
-
-	if(!dna)
-		dna = new /datum/dna(b_type)
-		// Species name is handled by set_species()
+	blood_type = b_type
 
 	if(!species)
 		set_species()
 
-	switch(pick("female", "male"))
-		if("female")
-			gender = FEMALE
-			name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
-			real_name = name
-			voice_name = name
-
-		if("male")
-			gender = MALE
-			name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
-			real_name = name
-			voice_name = name
-
-
-	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
-		if("black")
-			r_hair = 10
-			g_hair = 10
-			b_hair = 10
-			r_facial = 10
-			g_facial = 10
-			b_facial = 10
-		if("grey")
-			r_hair = 50
-			g_hair = 50
-			b_hair = 50
-			r_facial = 50
-			g_facial = 50
-			b_facial = 50
-		if("brown")
-			r_hair = 70
-			g_hair = 35
-			b_hair = 0
-			r_facial = 70
-			g_facial = 35
-			b_facial = 0
-		if("lightbrown")
-			r_hair = 100
-			g_hair = 50
-			b_hair = 0
-			r_facial = 100
-			g_facial = 50
-			b_facial = 0
-		if("white")
-			r_hair = 235
-			g_hair = 235
-			b_hair = 235
-			r_facial = 235
-			g_facial = 235
-			b_facial = 235
-		if("blonde")
-			r_hair = 240
-			g_hair = 240
-			b_hair = 0
-			r_facial = 240
-			g_facial = 240
-			b_facial = 0
-		if("red")
-			r_hair = 128
-			g_hair = 0
-			b_hair = 0
-			r_facial = 128
-			g_facial = 0
-			b_facial = 0
-
-	h_style = random_hair_style(gender)
-
-	switch(pick("none", "some"))
-		if("none")
-			f_style = "Shaved"
-		if("some")
-			f_style = random_facial_hair_style(gender)
-
-	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
-		if("black")
-			r_eyes = 10
-			g_eyes = 10
-			b_eyes = 10
-		if("green")
-			r_eyes = 200
-			g_eyes = 0
-			b_eyes = 0
-		if("brown")
-			r_eyes = 100
-			g_eyes = 50
-			b_eyes = 0
-		if("blue")
-			r_eyes = 0
-			g_eyes = 0
-			b_eyes = 200
-		if("lightblue")
-			r_eyes = 0
-			g_eyes = 150
-			b_eyes = 255
-		if("red")
-			r_eyes = 220
-			g_eyes = 0
-			b_eyes = 0
-
-	ethnicity = random_ethnicity()
-	body_type = random_body_type()
-
-	age = rand(17,55)
-
-	var/datum/reagents/R = new/datum/reagents(1000)
+	var/datum/reagents/R = new /datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
 
@@ -135,16 +27,24 @@
 	GLOB.alive_human_list += src
 	round_statistics.total_humans_created++
 
-	if(dna)
-		dna.real_name = real_name
-
-	prev_gender = gender // Debug for plural genders
-
+	var/datum/action/skill/toggle_orders/toggle_orders_action = new
+	toggle_orders_action.give_action(src)
+	var/datum/action/skill/issue_order/move/issue_order_move = new
+	issue_order_move.give_action(src)
+	var/datum/action/skill/issue_order/hold/issue_order_hold = new
+	issue_order_hold.give_action(src)
+	var/datum/action/skill/issue_order/focus/issue_order_focus = new
+	issue_order_focus.give_action(src)
 
 	//makes order hud visible
-	var/datum/mob_hud/H = huds[MOB_HUD_ORDER]
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
 	H.add_hud_to(usr)
 
+	randomize_appearance()
+
+	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
+	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
+	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
@@ -397,7 +297,7 @@
 
 //gets paygrade from ID
 //paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
-/mob/living/carbon/human/proc/get_paygrade(size = 1)
+/mob/living/carbon/human/get_paygrade(size = 1)
 	if(species.show_paygrade)
 		var/obj/item/card/id/id = wear_id
 		if(istype(id))
@@ -406,7 +306,7 @@
 
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
-/mob/living/carbon/human/proc/get_visible_name()
+/mob/living/carbon/human/get_visible_name()
 	if( wear_mask && (wear_mask.flags_inv_hide & HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
 	if( head && (head.flags_inv_hide & HIDEFACE) )
@@ -420,7 +320,7 @@
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name()
 	var/datum/limb/head/head = get_limb("head")
-	if( !head || head.disfigured || (head.limb_status & LIMB_DESTROYED) || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
+	if( !head || head.disfigured || (head.limb_status & LIMB_DESTROYED) || !real_name )	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
 
@@ -566,7 +466,6 @@
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
 				if (internal)
-					internal.add_fingerprint(usr)
 					internal = null
 					if (hud_used && hud_used.internals)
 						hud_used.internals.icon_state = "internal0"
@@ -581,7 +480,6 @@
 							internal = belt
 						if (internal)
 							visible_message("<span class='notice'>[src] is now running on internals.</span>", null, null, 1)
-							internal.add_fingerprint(usr)
 							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
@@ -611,8 +509,7 @@
 							o.limb_status &= ~LIMB_SPLINTED
 							limbcount++
 					if(limbcount)
-						var/obj/item/W = new /obj/item/stack/medical/splint(loc, limbcount)
-						W.add_fingerprint(usr)
+						new /obj/item/stack/medical/splint(loc, limbcount)
 
 	if(href_list["tie"])
 		if(!usr.action_busy)
@@ -803,9 +700,6 @@
 										if(istype(usr,/mob/living/carbon/human))
 											var/mob/living/carbon/human/U = usr
 											U.handle_regular_hud_updates()
-										if(istype(usr,/mob/living/silicon/robot))
-											var/mob/living/silicon/robot/U = usr
-											U.handle_regular_hud_updates()
 
 			if(!modified)
 				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
@@ -968,169 +862,19 @@
 
 	return 0
 
-
-/mob/living/carbon/human/proc/check_dna()
-	dna.check_integrity(src)
-	return
-
 /mob/living/carbon/human/get_species()
 
 	if(!species)
 		set_species()
 
-	if(dna && dna.mutantrace == "golem")
-		return "Animated Construct"
-
 	return species.name
 
+
 /mob/living/carbon/human/proc/play_xylophone()
-	if(!src.xylophone)
-		visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
-		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
-		playsound(loc, song, 25, 1)
-		xylophone = TRUE
-		addtimer(CALLBACK(src, .xylophone_cooldown), 1200)
-	return
+	visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
+	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
+	playsound(loc, song, 25, 1)
 
-/mob/living/carbon/human/proc/xylophone_cooldown()
-	xylophone = FALSE
-
-/mob/living/carbon/human/proc/morph()
-	set name = "Morph"
-	set category = "Superpower"
-
-	if(stat!=CONSCIOUS)
-		reset_view(0)
-		remoteview_target = null
-		return
-
-	if(!(mMorph in mutations))
-		src.verbs -= /mob/living/carbon/human/proc/morph
-		return
-
-	var/new_facial = input("Please select facial hair color.", "Character Generation",rgb(r_facial,g_facial,b_facial)) as color
-	if(new_facial)
-		r_facial = hex2num(copytext(new_facial, 2, 4))
-		g_facial = hex2num(copytext(new_facial, 4, 6))
-		b_facial = hex2num(copytext(new_facial, 6, 8))
-
-	var/new_hair = input("Please select hair color.", "Character Generation",rgb(r_hair,g_hair,b_hair)) as color
-	if(new_facial)
-		r_hair = hex2num(copytext(new_hair, 2, 4))
-		g_hair = hex2num(copytext(new_hair, 4, 6))
-		b_hair = hex2num(copytext(new_hair, 6, 8))
-
-	var/new_eyes = input("Please select eye color.", "Character Generation",rgb(r_eyes,g_eyes,b_eyes)) as color
-	if(new_eyes)
-		r_eyes = hex2num(copytext(new_eyes, 2, 4))
-		g_eyes = hex2num(copytext(new_eyes, 4, 6))
-		b_eyes = hex2num(copytext(new_eyes, 6, 8))
-
-
-	// hair
-	var/list/hairs = list()
-
-	// loop through potential hairs
-	for(var/x in subtypesof(/datum/sprite_accessory/hair))
-		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
-		hairs.Add(H.name) // add hair name to hairs
-		qdel(H) // delete the hair after it's all done
-
-	var/new_style = input("Please select hair style", "Character Generation",h_style)  as null|anything in hairs
-
-	// if new style selected (not cancel)
-	if (new_style)
-		h_style = new_style
-
-	// facial hair
-	var/list/fhairs = list()
-
-	for(var/x in subtypesof(/datum/sprite_accessory/facial_hair))
-		var/datum/sprite_accessory/facial_hair/H = new x
-		fhairs.Add(H.name)
-		qdel(H)
-
-	new_style = input("Please select facial style", "Character Generation",f_style)  as null|anything in fhairs
-
-	if(new_style)
-		f_style = new_style
-
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
-	if (new_gender)
-		if(new_gender == "Male")
-			gender = MALE
-		else
-			gender = FEMALE
-	regenerate_icons()
-	check_dna()
-
-	visible_message("<span class='notice'> \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!</span>", "<span class='notice'> You change your appearance!</span>", "<span class='warning'> Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!</span>")
-
-/mob/living/carbon/human/proc/remotesay()
-	set name = "Project mind"
-	set category = "Superpower"
-
-	if(stat!=CONSCIOUS)
-		reset_view(0)
-		remoteview_target = null
-		return
-
-	if(!(mRemotetalk in src.mutations))
-		src.verbs -= /mob/living/carbon/human/proc/remotesay
-		return
-	var/list/creatures = list()
-	for(var/mob/living/carbon/h in GLOB.player_list)
-		creatures += h
-	var/mob/target = input ("Who do you want to project your mind to ?") as null|anything in creatures
-	if (isnull(target))
-		return
-
-	var/say = input ("What do you wish to say")
-	if(mRemotetalk in target.mutations)
-		target.show_message("<span class='notice'> You hear [src.real_name]'s voice: [say]</span>")
-	else
-		target.show_message("<span class='notice'> You hear a voice that seems to echo around the room: [say]</span>")
-	usr.show_message("<span class='notice'> You project your mind into [target.real_name]: [say]</span>")
-	log_directed_talk(usr, target, say, LOG_SAY, "project mind")
-	for(var/mob/dead/observer/G in GLOB.dead_mob_list)
-		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
-
-/mob/living/carbon/human/proc/remoteobserve()
-	set name = "Remote View"
-	set category = "Superpower"
-
-	if(stat!=CONSCIOUS)
-		remoteview_target = null
-		reset_view(0)
-		return
-
-	if(!(mRemote in src.mutations))
-		remoteview_target = null
-		reset_view(0)
-		src.verbs -= /mob/living/carbon/human/proc/remoteobserve
-		return
-
-	if(client.eye != client.mob)
-		remoteview_target = null
-		reset_view(0)
-		return
-
-	var/list/mob/creatures = list()
-
-	for(var/mob/living/carbon/h in GLOB.player_list)
-		var/turf/temp_turf = get_turf(h)
-		if(!is_ground_level(temp_turf.z) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
-			continue
-		creatures += h
-
-	var/mob/target = input ("Who do you want to project your mind to ?") as mob in creatures
-
-	if (target)
-		remoteview_target = target
-		reset_view(target)
-	else
-		remoteview_target = null
-		reset_view(0)
 
 /mob/living/carbon/human/proc/get_visible_gender()
 	if(wear_suit && wear_suit.flags_inv_hide & HIDEJUMPSUIT && ((head && head.flags_inv_hide & HIDEMASK) || wear_mask))
@@ -1144,12 +888,12 @@
 		germ_level += n
 
 
-/mob/living/carbon/human/revive(keep_viruses)
+/mob/living/carbon/human/revive()
 	for (var/datum/limb/O in limbs)
 		if(O.limb_status & LIMB_ROBOT)
 			O.limb_status = LIMB_ROBOT
 		else
-			O.limb_status = NOFLAGS
+			O.limb_status = NONE
 		O.perma_injury = 0
 		O.germ_level = 0
 		O.wounds.Cut()
@@ -1174,10 +918,6 @@
 
 	for(var/datum/internal_organ/I in internal_organs)
 		I.damage = 0
-
-	if(!keep_viruses)
-		for (var/datum/disease/virus in viruses)
-			virus.cure(0)
 
 	undefibbable = FALSE
 	
@@ -1256,7 +996,7 @@
 	to_chat(usr, "Don't move until counting is finished.")
 	var/time = world.time
 	sleep(60)
-	if(usr.l_move_time >= time)	//checks if our mob has moved during the sleep()
+	if(usr.last_move_time >= time)	//checks if our mob has moved during the sleep()
 		to_chat(usr, "You moved while counting. Try again.")
 	else
 		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
@@ -1281,14 +1021,8 @@
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
-	if(!dna)
-		if(!new_species)
-			new_species = "Human"
-	else
-		if(!new_species)
-			new_species = dna.species
-		else
-			dna.species = new_species
+	if(!new_species)
+		new_species = "Human"
 
 	if(species)
 
@@ -1338,9 +1072,9 @@
 
 	species.handle_post_spawn(src)
 
-	spawn(0)
-		regenerate_icons()
-		restore_blood()
+	INVOKE_ASYNC(src, .proc/regenerate_icons)
+	INVOKE_ASYNC(src, .proc/update_body)
+	INVOKE_ASYNC(src, .proc/restore_blood)
 
 	if(species)
 		return 1
@@ -1400,53 +1134,6 @@
 		W.basecolor = (blood_color) ? blood_color : "#A10808"
 		W.update_icon()
 		W.message = message
-		W.add_fingerprint(src)
-
-/mob/living/carbon/human/print_flavor_text()
-	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
-	var/head_exposed = 1
-	var/face_exposed = 1
-	var/eyes_exposed = 1
-	var/torso_exposed = 1
-	var/arms_exposed = 1
-	var/legs_exposed = 1
-	var/hands_exposed = 1
-	var/feet_exposed = 1
-
-	for(var/obj/item/clothing/C in equipment)
-		if(C.flags_armor_protection & HEAD)
-			head_exposed = 0
-		if(C.flags_armor_protection & FACE)
-			face_exposed = 0
-		if(C.flags_armor_protection & EYES)
-			eyes_exposed = 0
-		if(C.flags_armor_protection & CHEST)
-			torso_exposed = 0
-		if(C.flags_armor_protection & ARMS)
-			arms_exposed = 0
-		if(C.flags_armor_protection & HANDS)
-			hands_exposed = 0
-		if(C.flags_armor_protection & LEGS)
-			legs_exposed = 0
-		if(C.flags_armor_protection & FEET)
-			feet_exposed = 0
-
-	for (var/T in flavor_texts)
-		if(flavor_texts[T] && flavor_texts[T] != "")
-			if((T == "head" && head_exposed) || (T == "face" && face_exposed) || (T == "eyes" && eyes_exposed) || (T == "torso" && torso_exposed) || (T == "arms" && arms_exposed) || (T == "hands" && hands_exposed) || (T == "legs" && legs_exposed) || (T == "feet" && feet_exposed))
-				flavor_text += flavor_texts[T]
-				flavor_text += "\n\n"
-	return ..()
-
-/mob/living/carbon/human/getDNA()
-	if(species.species_flags & NO_SCAN)
-		return null
-	..()
-
-/mob/living/carbon/human/setDNA()
-	if(species.species_flags & NO_SCAN)
-		return
-	..()
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
@@ -1536,30 +1223,17 @@
 		return initial(pixel_y)
 
 
-/mob/proc/update_sight()
-	return
-
 /mob/living/carbon/human/update_sight()
 	if(!client)
 		return
 	if(stat == DEAD)
 		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 		return
 
 	sight = initial(sight)
 	see_in_dark = species.darksight
-	see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
-	if(dna)
-		switch(dna.mutantrace)
-			if("slime")
-				see_in_dark = 3
-				see_invisible = SEE_INVISIBLE_LEVEL_ONE
-			if("shadow")
-				see_in_dark = 8
-				see_invisible = SEE_INVISIBLE_LEVEL_ONE
-
+	see_invisible = SEE_INVISIBLE_LIVING
 
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
@@ -1573,15 +1247,10 @@
 				clear_fullscreen("glasses_vision", 0)
 			if(G.see_invisible)
 				see_invisible = min(G.see_invisible, see_invisible)
+		else
+			clear_fullscreen("glasses_vision", 0)
 	else
 		clear_fullscreen("glasses_vision", 0)
-
-
-	if(XRAY in mutations)
-		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = max(see_in_dark, 8)
-
-
 
 /mob/living/carbon/human/get_total_tint()
 	. = ..()
@@ -1597,9 +1266,110 @@
 		. += C.tint
 
 
-/mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
-	screen_num = 20
-	return ..()
+/mob/living/carbon/human/proc/randomize_appearance()
+	if(prob(50))
+		gender = FEMALE
+		name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
+		real_name = name
+	else
+		gender = MALE
+		name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
+		real_name = name
+
+
+	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
+		if("black")
+			r_hair = 10
+			g_hair = 10
+			b_hair = 10
+			r_facial = 10
+			g_facial = 10
+			b_facial = 10
+		if("grey")
+			r_hair = 50
+			g_hair = 50
+			b_hair = 50
+			r_facial = 50
+			g_facial = 50
+			b_facial = 50
+		if("brown")
+			r_hair = 70
+			g_hair = 35
+			b_hair = 0
+			r_facial = 70
+			g_facial = 35
+			b_facial = 0
+		if("lightbrown")
+			r_hair = 100
+			g_hair = 50
+			b_hair = 0
+			r_facial = 100
+			g_facial = 50
+			b_facial = 0
+		if("white")
+			r_hair = 235
+			g_hair = 235
+			b_hair = 235
+			r_facial = 235
+			g_facial = 235
+			b_facial = 235
+		if("blonde")
+			r_hair = 240
+			g_hair = 240
+			b_hair = 0
+			r_facial = 240
+			g_facial = 240
+			b_facial = 0
+		if("red")
+			r_hair = 128
+			g_hair = 0
+			b_hair = 0
+			r_facial = 128
+			g_facial = 0
+			b_facial = 0
+
+	h_style = random_hair_style(gender)
+
+	switch(pick("none", "some"))
+		if("none")
+			f_style = "Shaved"
+		if("some")
+			f_style = random_facial_hair_style(gender)
+
+	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
+		if("black")
+			r_eyes = 10
+			g_eyes = 10
+			b_eyes = 10
+		if("green")
+			r_eyes = 200
+			g_eyes = 0
+			b_eyes = 0
+		if("brown")
+			r_eyes = 100
+			g_eyes = 50
+			b_eyes = 0
+		if("blue")
+			r_eyes = 0
+			g_eyes = 0
+			b_eyes = 200
+		if("lightblue")
+			r_eyes = 0
+			g_eyes = 150
+			b_eyes = 255
+		if("red")
+			r_eyes = 220
+			g_eyes = 0
+			b_eyes = 0
+
+	ethnicity = random_ethnicity()
+	body_type = random_body_type()
+
+	age = rand(17, 55)
+
+	update_hair()
+	update_body()
+	regenerate_icons()
 
 
 /mob/living/carbon/human/verb/check_skills()
@@ -1758,3 +1528,49 @@
 	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 		return TRUE
 	return ..()
+
+/mob/living/carbon/human/fully_replace_character_name(oldname, newname)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(istype(wear_id))
+		var/obj/item/card/id/C = wear_id
+		C.registered_name = real_name
+		C.update_label()
+
+	if(!GLOB.datacore.manifest_update(oldname, newname, job))
+		GLOB.datacore.manifest_inject(src)
+
+	return TRUE
+
+
+/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+	. = ..()
+	if(!Adjacent(AM) && (AM.loc != src))
+		if(!proximity)
+			return TRUE
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return TRUE
+
+
+/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/almayer/H)
+	if(QDELETED(H?.camera) || oldloc == get_turf(src))
+		return
+
+	GLOB.cameranet.updatePortableCamera(H.camera)
+
+
+/mob/living/carbon/human/update_camera_location(oldloc)
+	oldloc = get_turf(oldloc)
+
+	if(!wear_ear || !istype(wear_ear, /obj/item/radio/headset/almayer) || oldloc == get_turf(src))
+		return
+
+	var/obj/item/radio/headset/almayer/H = wear_ear
+
+	if(QDELETED(H.camera))
+		return
+
+	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)

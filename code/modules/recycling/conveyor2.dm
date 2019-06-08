@@ -7,7 +7,7 @@
 	name = "conveyor belt"
 	desc = "A conveyor belt."
 	layer = CONVEYOR_LAYER // so they appear under stuff
-	anchored = 1
+	anchored = TRUE
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
@@ -72,10 +72,10 @@
 		operating = 0
 
 	if(operating)
-		if(!machine_processing)
+		if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 			start_processing()
 	else
-		if(machine_processing)
+		if(CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 			stop_processing()
 
 	icon_state = "conveyor[operating]"
@@ -101,14 +101,18 @@
 				break
 
 // attack with item, place item on conveyor
-/obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
-	var/obj/item/grab/G = I
-	if(istype(G))	// handle grabbed mob
+/obj/machinery/conveyor/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
+		
 		if(ismob(G.grabbed_thing))
 			var/mob/GM = G.grabbed_thing
 			step(GM, get_dir(GM, src))
-			return
-	user.transferItemToLoc(I, loc)
+			
+	else
+		user.transferItemToLoc(I, loc)
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)
@@ -185,7 +189,7 @@
 	var/id = "" 				// must match conveyor IDs to control them
 
 	var/list/conveyors		// the list of converyors that are controlled by this switch
-	anchored = 1
+	anchored = TRUE
 
 
 

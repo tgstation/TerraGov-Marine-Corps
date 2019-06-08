@@ -247,10 +247,9 @@
 	update_icon()
 
 
-/obj/machinery/atmospherics/components/unary/vent_pump/plasmacutter_act(mob/living/user, obj/item/W)
+/obj/machinery/atmospherics/components/unary/vent_pump/weld_cut_act(mob/living/user, obj/item/W)
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
-
 		if(!welded)
 			to_chat(user, "<span class='warning'>\The [P] can only cut open welds!</span>")
 			return FALSE
@@ -264,7 +263,6 @@
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/welder_act(mob/living/user, obj/item/I)
-	add_fingerprint(user)
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
 		if(WT.remove_fuel(1, user))
@@ -272,7 +270,7 @@
 			"<span class='notice'>You start welding [src] with [WT].</span>")
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
-				playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
+				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message("<span class='notice'>[user] welds [src] shut.</span>", \
 					"<span class='notice'>You weld [src] shut.</span>")
@@ -291,6 +289,7 @@
 		else
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return TRUE
+	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
 	. = ..()

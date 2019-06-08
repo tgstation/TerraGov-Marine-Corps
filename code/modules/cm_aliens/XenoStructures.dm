@@ -45,6 +45,13 @@
 		if(3.0)
 			take_damage((rand(50, 100)))
 
+/obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
+		take_damage(rand(0.2, 2))
+
 /*
  * Resin
  */
@@ -56,7 +63,7 @@
 
 /obj/effect/alien/resin/hitby(AM as mob|obj)
 	..()
-	if(istype(AM,/mob/living/carbon/Xenomorph))
+	if(istype(AM,/mob/living/carbon/xenomorph))
 		return
 	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
 	"<span class='danger'>You hit \the [src].</span>")
@@ -71,7 +78,7 @@
 		playsound(loc, "alien_resin_break", 25)
 	take_damage(tforce)
 
-/obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
@@ -97,29 +104,34 @@
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
 
-/obj/effect/alien/resin/attackby(obj/item/W, mob/user)
-	if(!(W.flags_item & NOBLUDGEON))
-		user.changeNext_move(W.attack_speed)
-		var/damage = W.force
-		var/multiplier = 1
-		if(W.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
-			multiplier += 1
-			if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
-				var/obj/item/tool/pickaxe/plasmacutter/P = W
-				if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD, null, null, SFX = FALSE))
-					return
-				multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD) //Minimal energy cost.
+/obj/effect/alien/resin/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(I.flags_item & NOBLUDGEON)
+		return
 
-		else if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
-			multiplier *= 0.25
-		damage *= max(0,multiplier)
-		take_damage(round(damage))
-		if(istype(src, /obj/effect/alien/resin/sticky))
-			playsound(loc, "alien_resin_move", 25)
-		else
-			playsound(loc, "alien_resin_break", 25)
-	return ..()
+	var/damage = I.force
+	var/multiplier = 1
+	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+		multiplier += 1
+
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter))
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD, null, null, SFX = FALSE))
+			return
+		multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
+		P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD) //Minimal energy cost.
+
+	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate
+		multiplier *= 0.25
+
+	damage *= max(0,multiplier)
+	obj_integrity -= max(0, round(damage))
+
+	if(istype(src, /obj/effect/alien/resin/sticky))
+		playsound(loc, "alien_resin_move", 25)
+	else
+		playsound(loc, "alien_resin_break", 25)
+	healthcheck()
 
 
 
@@ -155,7 +167,7 @@
 	icon_state = "trap0"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
@@ -221,7 +233,7 @@
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
 
-/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent != INTENT_HARM)
 		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			if(!hugger)
@@ -235,21 +247,25 @@
 		return
 	..()
 
-/obj/effect/alien/resin/trap/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/clothing/mask/facehugger) && isxeno(user))
-		var/obj/item/clothing/mask/facehugger/FH = W
+/obj/effect/alien/resin/trap/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/clothing/mask/facehugger) && isxeno(user))
+		var/obj/item/clothing/mask/facehugger/FH = I
 		if(hugger)
 			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
-		else if(FH.stat == DEAD)
+			return
+
+		if(FH.stat == DEAD)
 			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
-		else
-			user.transferItemToLoc(FH, src)
-			FH.GoIdle(TRUE)
-			hugger = FH
-			icon_state = "trap1"
-			to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
-	else
-		return ..()
+			return
+
+		user.transferItemToLoc(FH, src)
+		FH.GoIdle(TRUE)
+		hugger = FH
+		icon_state = "trap1"
+		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
+
 
 /obj/effect/alien/resin/trap/Crossed(atom/A)
 	if(iscarbon(A))
@@ -302,7 +318,7 @@
 	else
 		return TryToSwitchState(user)
 
-/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE
@@ -310,7 +326,7 @@
 	return TRUE
 
 //clicking on resin doors attacks them, or opens them without harm intent
-/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
@@ -376,7 +392,7 @@
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]closing",src)
 	sleep(10)
-	density = 1
+	density = TRUE
 	opacity = 1
 	state = 0
 	update_icon()
@@ -398,7 +414,7 @@
 	var/turf/U = loc
 	spawn(0)
 		var/turf/T
-		for(var/i in cardinal)
+		for(var/i in GLOB.cardinals)
 			T = get_step(U, i)
 			if(!istype(T))
 				continue
@@ -414,7 +430,7 @@
 //do we still have something next to us to support us?
 /obj/structure/mineral_door/resin/proc/check_resin_support()
 	var/turf/T
-	for(var/i in cardinal)
+	for(var/i in GLOB.cardinals)
 		T = get_step(src, i)
 		if(T.density)
 			. = TRUE
@@ -492,11 +508,11 @@
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
-/obj/effect/alien/egg/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/effect/alien/egg/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	to_chat(M, "<span class='xenowarning'>You nudge [src], but nothing happens.</span>")
 	return
 
-/obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/effect/alien/egg/attack_alien(mob/living/carbon/xenomorph/M)
 
 	if(!istype(M))
 		return attack_hand(M)
@@ -578,47 +594,47 @@
 	if(on_fire)
 		overlays += "alienegg_fire"
 
-/obj/effect/alien/egg/attackby(obj/item/W, mob/living/user)
+/obj/effect/alien/egg/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(W,/obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/F = W
-		if(F.stat != DEAD)
-			if(status == EGG_DESTROYED)
-				to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
-			else if(!hugger)
-				visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
-				user.transferItemToLoc(F, src)
-				F.GoIdle(TRUE)
-				hugger = F
-				update_status(EGG_GROWN)
-				deploy_egg_triggers()
-			else
-				to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
-		else
+	if(istype(I, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/F = I
+		if(F.stat == DEAD)
 			to_chat(user, "<span class='xenowarning'>This child is dead.</span>")
+			return
+
+		if(status == EGG_DESTROYED)
+			to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
+			return
+
+		if(hugger)
+			to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
+			return
+
+		visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
+		user.transferItemToLoc(F, src)
+		F.GoIdle(TRUE)
+		hugger = F
+		update_status(EGG_GROWN)
+		deploy_egg_triggers()
+
+	else if(I.flags_item & NOBLUDGEON || !isliving(user))
 		return
 
-	if(W.flags_item & NOBLUDGEON)
-		return
-
-	user.changeNext_move(W.attack_speed)
-
-	user.animation_attack_on(src)
-	if(W.attack_verb.len)
-		visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
-	else
-		visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
-	var/damage = W.force
-	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
+	var/mob/living/L = user
+	L.animation_attack_on(src)
+	visible_message("<span class='danger'>\The [src] has been [length(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with \the [I] by [user].</span>")
+	var/damage = I.force
+	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate
 		damage /= 4
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-
-		if(WT.remove_fuel(0, user))
-			damage = 15
-			playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.remove_fuel(0, user))
+			return
+		damage = 15
+		playsound(loc, 'sound/items/welder.ogg', 25, 1)
 	else
-		playsound(src.loc, "alien_resin_break", 25)
+		playsound(loc, "alien_resin_break", 25)
 
 	take_damage(damage)
 
@@ -681,14 +697,14 @@ TUNNEL
 
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 
 	var/tunnel_desc = "" //description added by the hivelord.
 
 	max_integrity = 140
-	var/mob/living/carbon/Xenomorph/Hivelord/creator = null
+	var/mob/living/carbon/xenomorph/hivelord/creator = null
 	var/obj/structure/tunnel/other = null
 	var/id = null //For mapping
 
@@ -740,12 +756,12 @@ TUNNEL
 			obj_integrity -= 70
 	healthcheck()
 
-/obj/structure/tunnel/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
 
-/obj/structure/tunnel/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!istype(M) || M.stat || M.lying)
 		return
 

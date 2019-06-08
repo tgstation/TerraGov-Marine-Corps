@@ -36,14 +36,13 @@
 		force = 150
 		icon_state = "axe1"
 		w_class = 5
-		heat_source = 3500
+		heat = 3500
 	else
 		to_chat(user, "<span class='notice'>The axe can now be concealed.</span>")
 		force = 40
 		icon_state = "axe0"
 		w_class = 5
-		heat_source = 0
-	add_fingerprint(user)
+		heat = 0
 
 
 
@@ -75,13 +74,10 @@
 		sword_color = pick("red","blue","green","purple")
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You accidentally cut yourself with [src].</span>")
-		user.take_limb_damage(5,5)
 	active = !active
 	if (active)
 		force = 30
-		heat_source = 3500
+		heat = 3500
 		if(base_sword_icon != "sword")
 			icon_state = "[base_sword_icon]1"
 		else
@@ -92,7 +88,7 @@
 
 	else
 		force = 3
-		heat_source = 0
+		heat = 0
 		icon_state = "[base_sword_icon]0"
 		w_class = 2
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
@@ -103,7 +99,6 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	add_fingerprint(user)
 	return
 
 

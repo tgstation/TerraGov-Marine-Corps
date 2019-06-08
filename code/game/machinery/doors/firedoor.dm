@@ -57,7 +57,7 @@
 	A.all_doors.Add(src)
 	areas_added = list(A)
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinals)
 		A = get_area(get_step(src,direction))
 		if(istype(A) && !(A in areas_added))
 			A.all_doors.Add(src)
@@ -112,21 +112,13 @@
 		to_chat(user, "These people have opened \the [src] during an alert: [users_to_open_string].")
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
-	if(panel_open || operating)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || operating)
 		return
 	if(!density)
 		return ..()
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
-		if(mecha.occupant)
-			var/mob/M = mecha.occupant
-			if(world.time - M.last_bumped <= 10)
-				return //Can bump-open one airlock per second. This is to prevent popup message spam.
-			M.last_bumped = world.time
-			attack_hand(M)
 	return FALSE
 
-/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(blocked)
 		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
@@ -152,7 +144,6 @@
 				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/user as mob)
-	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
 
@@ -206,50 +197,48 @@
 				nextstate = CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attackby(obj/item/C as obj, mob/user as mob)
-	add_fingerprint(user)
+/obj/machinery/door/firedoor/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(operating)
-		return//Already doing something.
-	if(iswelder(C))
-		var/obj/item/tool/weldingtool/W = C
-		if(W.remove_fuel(0, user))
-			blocked = !blocked
-			user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
-			"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
-			"You hear something being welded.")
-			update_icon()
+		return
+
+	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/W = I
+		if(!W.remove_fuel(0, user))
 			return
 
-	else if(C.pry_capable)
-		if(operating)
-			return
+		blocked = !blocked
+		user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
+		"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
+		"You hear something being welded.")
+		update_icon()
 
-		if(blocked)
-			user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
-			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
-			"You hear someone struggle and metal straining.")
-			return
+	else if(blocked)
+		user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [I], but \the [src] is welded in place!</span>",\
+		"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
+		"You hear someone struggle and metal straining.")
 
-		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
-				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!</span>",\
+	else if(I.pry_capable)
+		user.visible_message("<span class='danger'>\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [I]!</span>",\
+				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [I]!</span>",\
 				"You hear metal strain.")
 		var/old_density = density
-		if(do_after(user,30, TRUE, src, BUSY_ICON_HOSTILE))
-			if(blocked || density != old_density)
-				return
-			user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\
-				"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [C]!</span>",\
-				"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
-			spawn(0)
-				if(density)
-					open(1)
-				else
-					close()
-		return TRUE //no afterattack call
-	else
-		if(blocked)
-			to_chat(user, "<span class='danger'>\The [src] is welded solid!</span>")
+		
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
 			return
+
+		if(blocked || density != old_density)
+			return
+
+		user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [I]!</span>",\
+			"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [I]!</span>",\
+			"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")
+
+		if(density)
+			open(TRUE)
+		else
+			close()
 
 
 /obj/machinery/door/firedoor/try_to_activate_door(mob/user)
@@ -304,7 +293,7 @@
 			overlays += "palert"
 		if(dir_alerts)
 			for(var/d=1;d<=4;d++)
-				var/cdir = cardinal[d]
+				var/cdir = GLOB.cardinals[d]
 				for(var/i=1;i<=ALERT_STATES.len;i++)
 					if(dir_alerts[d] & (1<<(i-1)))
 						overlays += new/icon(icon,"alert_[ALERT_STATES[i]]", dir=cdir)
@@ -340,7 +329,7 @@
 
 
 /obj/machinery/door/firedoor/border_only/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && (mover.checkpass(PASSGLASS)))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		return !density
@@ -349,7 +338,7 @@
 
 
 /obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
-	if(istype(mover) && (mover.checkpass(PASSGLASS)))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 	if(get_dir(loc, target) == dir)
 		return !density

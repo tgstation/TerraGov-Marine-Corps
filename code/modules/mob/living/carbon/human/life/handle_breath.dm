@@ -95,7 +95,7 @@
 
 	var/breath_temp = air_info[2]
 
-	if(!ISINRANGE_EX(breath_temp, species.cold_level_1, species.heat_level_1) && !(COLD_RESISTANCE in mutations))
+	if(!ISINRANGE_EX(breath_temp, species.cold_level_1, species.heat_level_1))
 		if(prob(20))
 			if(breath_temp < species.cold_level_1)
 				to_chat(src, "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>")

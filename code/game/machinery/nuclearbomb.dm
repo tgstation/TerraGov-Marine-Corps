@@ -5,12 +5,11 @@ var/bomb_set
 	desc = "Uh oh. RUN!!!!"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
-	density = 1
+	density = TRUE
 	resistance_flags = UNACIDABLE
 	var/deployable = 0.0
 	var/extended = 0.0
 	var/lighthack = 0
-	var/opened = 0.0
 	var/timeleft = 60.0
 	var/timing = 0.0
 	var/r_code = "ADMIN"
@@ -39,105 +38,122 @@ var/bomb_set
 				src.attack_hand(M)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (isscrewdriver(O))
-		src.add_fingerprint(user)
-		if (src.auth)
-			if (src.opened == 0)
-				src.opened = 1
+	if(isscrewdriver(I))
+		if(auth)
+			TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				overlays += image(icon, "npanel_open")
 				to_chat(user, "You unscrew the control panel of [src].")
-
 			else
-				src.opened = 0
 				overlays -= image(icon, "npanel_open")
 				to_chat(user, "You screw the control panel of [src] back on.")
 		else
-			if (src.opened == 0)
+			if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				to_chat(user, "The [src] emits a buzzing noise, the panel staying locked in.")
-			if (src.opened == 1)
-				src.opened = 0
+			else
+				DISABLE_BITFIELD(machine_stat, PANEL_OPEN)
 				overlays -= image(icon, "npanel_open")
 				to_chat(user, "You screw the control panel of [src] back on.")
 			flick("nuclearbombc", src)
 
-		return
-	if (iswirecutter(O) || ismultitool(O))
-		if (src.opened == 1)
-			nukehack_win(user)
-		return
-
-	if (extended)
-		if (istype(O, /obj/item/disk/nuclear))
-			if(user.transferItemToLoc(O, src))
-				auth = O
-				add_fingerprint(user)
+	else if(iswirecutter(I) || ismultitool(I))
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			return
 
-	if(anchored)
-		switch(removal_stage)
-			if(0)
-				if(iswelder(O))
-					var/obj/item/tool/weldingtool/WT = O
-					if(!WT.isOn()) return
-					if(WT.get_fuel() < 5) // uses up 5 fuel.
-						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
-						return
-					user.visible_message("<span class='notice'>[user] starts cutting loose the anchoring bolt covers on [src].</span>",
-					"<span class='notice'>You start cutting loose the anchoring bolt covers with [O].</span>")
-					if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(5, user))
-						user.visible_message("<span class='notice'>[user] cuts through the bolt covers on [src].</span>",
-						"<span class='notice'>You cut through the bolt cover.</span>")
-						removal_stage = 1
+		nukehack_win(user)
+
+	else if(extended && istype(I, /obj/item/disk/nuclear))
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		auth = I
+
+	if(!anchored)
+		return
+
+	switch(removal_stage)
+		if(0)
+			if(!iswelder(I))
 				return
 
-			if(1)
-				if(iscrowbar(O))
-					user.visible_message("<span class='notice'>[user] starts forcing open the bolt covers on [src].</span>",
-					"<span class='notice'>You start forcing open the anchoring bolt covers with [O].</span>")
-					if(do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
-						user.visible_message("<span class='notice'>[user] forces open the bolt covers on [src].</span>",
-						"<span class='notice'>You force open the bolt covers.</span>")
-						removal_stage = 2
+			var/obj/item/tool/weldingtool/WT = I
+			if(!WT.isOn()) 
 				return
 
-			if(2)
-				if(iswelder(O))
-					var/obj/item/tool/weldingtool/WT = O
-					if(!WT.isOn()) return
-					if(WT.get_fuel() < 5) //Uses up 5 fuel.
-						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
-						return
-					user.visible_message("<span class='notice'>[user] starts cutting apart the anchoring system sealant on [src].</span>",
-					"<span class='notice'>You start cutting apart the anchoring system's sealant with [O].</span>")
-					if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(5, user))
-						user.visible_message("<span class='notice'>[user] cuts apart the anchoring system sealant on [src].</span>",
-						"<span class='notice'>You cut apart the anchoring system's sealant.</span>")
-						removal_stage = 3
+			if(WT.get_fuel() < 5) // uses up 5 fuel.
+				to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 				return
 
-			if(3)
-				if(iswrench(O))
-					user.visible_message("<span class='notice'>[user] begins unwrenching the anchoring bolts on [src].</span>",
-					"<span class='notice'>You begin unwrenching the anchoring bolts.</span>")
-					if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
-						user.visible_message("<span class='notice'>[user] unwrenches the anchoring bolts on [src].</span>",
-						"<span class='notice'>You unwrench the anchoring bolts.</span>")
-						removal_stage = 4
+			user.visible_message("<span class='notice'>[user] starts cutting loose the anchoring bolt covers on [src].</span>",
+			"<span class='notice'>You start cutting loose the anchoring bolt covers with [I].</span>")
+			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(5, user))
 				return
 
-			if(4)
-				if(iscrowbar(O))
-					user.visible_message("<span class='notice'>[user] begins lifting [src] off of the anchors.",
-					"<span class='notice'>You begin lifting the device off the anchors...")
-					if(!do_after(user, 80, TRUE, src, BUSY_ICON_BUILD))
-						user.visible_message("<span class='notice'>[user] crowbars [src] off of the anchors. It can now be moved.",
-						"<span class='notice'>You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
-						anchored = 0
-						removal_stage = 5
+			user.visible_message("<span class='notice'>[user] cuts through the bolt covers on [src].</span>",
+			"<span class='notice'>You cut through the bolt cover.</span>")
+			removal_stage = 1
+
+		if(1)
+			if(!iscrowbar(I))
 				return
-	..()
+
+			user.visible_message("<span class='notice'>[user] starts forcing open the bolt covers on [src].</span>",
+			"<span class='notice'>You start forcing open the anchoring bolt covers with [I].</span>")
+			
+			if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			user.visible_message("<span class='notice'>[user] forces open the bolt covers on [src].</span>",
+			"<span class='notice'>You force open the bolt covers.</span>")
+			removal_stage = 2
+
+		if(2)
+			if(!iswelder(I))
+				return
+
+			var/obj/item/tool/weldingtool/WT = I
+
+			user.visible_message("<span class='notice'>[user] starts cutting apart the anchoring system sealant on [src].</span>",
+			"<span class='notice'>You start cutting apart the anchoring system's sealant with [I].</span>")
+
+			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(5, user))
+				return
+
+			user.visible_message("<span class='notice'>[user] cuts apart the anchoring system sealant on [src].</span>",
+			"<span class='notice'>You cut apart the anchoring system's sealant.</span>")
+			removal_stage = 3
+
+		if(3)
+			if(!iswrench(I))
+				return
+			user.visible_message("<span class='notice'>[user] begins unwrenching the anchoring bolts on [src].</span>",
+			"<span class='notice'>You begin unwrenching the anchoring bolts.</span>")
+
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			user.visible_message("<span class='notice'>[user] unwrenches the anchoring bolts on [src].</span>",
+			"<span class='notice'>You unwrench the anchoring bolts.</span>")
+			removal_stage = 4
+
+		if(4)
+			if(!iscrowbar(I))
+				return
+
+			user.visible_message("<span class='notice'>[user] begins lifting [src] off of the anchors.",
+			"<span class='notice'>You begin lifting the device off the anchors...")
+			
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			user.visible_message("<span class='notice'>[user] crowbars [src] off of the anchors. It can now be moved.",
+			"<span class='notice'>You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
+			anchored = FALSE
+			removal_stage = 5
+
 
 /obj/machinery/nuclearbomb/attack_paw(mob/user as mob)
 	return attack_hand(user)
@@ -175,7 +191,7 @@ var/bomb_set
 		onclose(user, "nuclearbomb")
 	else if (src.deployable)
 		if(removal_stage < 5)
-			src.anchored = 1
+			src.anchored = TRUE
 			visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
 			visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
@@ -292,7 +308,6 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					else
 						visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
 
-		src.add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src))
 			if ((M.client && M.interactee == src))
 				src.attack_hand(M)

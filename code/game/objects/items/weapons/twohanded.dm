@@ -173,10 +173,6 @@
 
 /obj/item/weapon/twohanded/dualsaber/attack(target as mob, mob/living/user as mob)
 	..()
-	if((CLUMSY in user.mutations) && (flags_item & WIELDED) &&prob(40))
-		to_chat(user, "<span class='highdanger'>You twirl around a bit before losing your balance and impaling yourself on [src].</span>")
-		user.take_limb_damage(20,25)
-		return
 	if((flags_item & WIELDED) && prob(50))
 		spawn(0)
 			for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2))

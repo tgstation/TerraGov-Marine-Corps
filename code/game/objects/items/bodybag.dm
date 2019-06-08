@@ -27,7 +27,6 @@
 			to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
 			return FALSE
 	var/obj/structure/closet/bodybag/R = new unfolded_path(location, src)
-	R.add_fingerprint(user)
 	R.open(user)
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
@@ -84,26 +83,28 @@
 		else
 			name = "[bag_name] (empty)"
 
-/obj/structure/closet/bodybag/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/tool/pen))
+/obj/structure/closet/bodybag/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen))
 		var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
-		if (user.get_active_held_item() != W)
+		if(user.get_active_held_item() != I)
 			return
-		if (!in_range(src, user) && src.loc != user)
+
+		if(!in_range(src, user) && loc != user)
 			return
-		if (t)
-			src.name = "body bag - "
-			src.name += t
-			src.overlays += image(src.icon, "bodybag_label")
+
+		if(t)
+			name = "body bag - "
+			name += t
+			overlays += image(icon, "bodybag_label")
 		else
-			src.name = "body bag"
-	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
-		return
-	else if(iswirecutter(W))
+			name = "body bag"
+
+	else if(iswirecutter(I))
 		to_chat(user, "<span class='notice'>You cut the tag off the bodybag.</span>")
-		src.name = "body bag"
-		src.overlays.Cut()
-		return
+		name = "body bag"
+		overlays.Cut()
 
 
 /obj/structure/closet/bodybag/store_mobs(var/stored_units) // overriding this
@@ -117,7 +118,7 @@
 			dead_mobs += M
 			continue
 		var/mob/living/carbon/human/H = M
-		if(H.check_tod() || issynth(H)) // revivable
+		if(check_tod(H) || issynth(H)) // revivable
 			if(H.is_revivable() && H.get_ghost()) // definitely revivable
 				continue
 		dead_mobs += M
@@ -200,21 +201,23 @@
 	if(CB)
 		used = CB.used
 
-/obj/structure/closet/bodybag/cryobag/attackby(obj/item/I, mob/living/user)
+/obj/structure/closet/bodybag/cryobag/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(!istype(I, /obj/item/healthanalyzer))
 		return
+
 	if(!stasis_mob)
 		to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 		return
+
 	var/obj/item/healthanalyzer/J = I
 	J.attack(stasis_mob, user) // yes this is awful -spookydonut
-	return
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/M)
 	if(opened)
 		return FALSE // stop xeno closing things
 	M.animation_attack_on(src)
-	add_fingerprint(M)
 	open()
 	M.visible_message("<span class='danger'>\The [M] slashes \the [src] open!</span>", \
 		"<span class='danger'>You slash \the [src] open!</span>", null, 5)

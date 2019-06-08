@@ -6,21 +6,8 @@
 	reagent_state = LIQUID
 	color = "#A10808"
 	taste_description = "iron"
-	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808","viruses"=null,"resistances"=null, "trace_chem"=null)
+	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808", "trace_chem"=null)
 
-
-/datum/reagent/blood/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
-	if(!iscarbon(L) || !data || !data["viruses"])
-		return
-	var/mob/living/carbon/C = L
-	for(var/A in data["viruses"])
-		var/datum/disease/D = A
-		if(D.spread_type == SPECIAL || D.spread_type == NON_CONTAGIOUS)
-			continue
-		if(method == INJECT)
-			C.contract_disease(D, TRUE, FALSE)
-		else
-			C.contract_disease(D)
 
 /datum/reagent/blood/reaction_turf(turf/T, volume)//splash the blood all over the place
 	if(volume < 3)
@@ -44,28 +31,6 @@
 	taste_description = "acid"
 	description = "A corrosive yellow-ish liquid..."
 
-
-/datum/reagent/vaccine
-	//data must contain virus type
-	name = "Vaccine"
-	id = "vaccine"
-	reagent_state = LIQUID
-	taste_description = "slime"
-	color = "#C81040" // rgb: 200, 16, 64
-
-/datum/reagent/vaccine/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
-	if(!iscarbon(L) || !data || (method in list(TOUCH, PATCH)))
-		return
-	var/mob/living/carbon/C = L
-	for(var/V in C.viruses)
-		var/datum/disease/D = V
-		if(istype(D, /datum/disease/advance))
-			var/datum/disease/advance/A = D
-			if(A.GetDiseaseID() == data)
-				D.cure()
-		else if(D.type == data)
-			D.cure()
-	C.resistances |= data
 
 /datum/reagent/water
 	name = "Water"
@@ -135,7 +100,7 @@
 /datum/reagent/space_drugs/on_mob_life(mob/living/L, metabolism)
 	L.set_drugginess(15)
 	if(prob(10) && !L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
-		step(L, pick(cardinal))
+		step(L, pick(GLOB.cardinals))
 	if(prob(7))
 		L.emote(pick("twitch","drool","moan","giggle"))
 	return ..()
@@ -246,7 +211,7 @@
 
 /datum/reagent/mercury/on_mob_life(mob/living/L, metabolism)
 	if(!L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
-		step(L, pick(cardinal))
+		step(L, pick(GLOB.cardinals))
 	if(prob(5))
 		L.emote(pick("twitch","drool","moan"))
 	L.adjustBrainLoss(1, TRUE)
@@ -345,7 +310,7 @@
 
 /datum/reagent/lithium/on_mob_life(mob/living/L, metabolism)
 	if(!L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
-		step(L, pick(cardinal))
+		step(L, pick(GLOB.cardinals))
 	if(prob(5))
 		L.emote(pick("twitch","drool","moan"))
 	return ..()
@@ -624,13 +589,6 @@
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
-/datum/reagent/nanites/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
-	if(!iscarbon(L))
-		return
-	var/mob/living/carbon/C = L
-	if(method in list(INJECT, INGEST) || prob(5 * volume))
-		C.contract_disease(new /datum/disease/robotic_transformation(FALSE), TRUE)
-
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
 	id = "xenomicrobes"
@@ -638,13 +596,6 @@
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 	taste_description = "sludge"
-
-/datum/reagent/xenomicrobes/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
-	if(!iscarbon(L))
-		return
-	var/mob/living/carbon/C = L
-	if(method in list(INJECT, INGEST) || prob(5 * volume))
-		C.contract_disease(new /datum/disease/xeno_transformation(FALSE), TRUE)
 
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"

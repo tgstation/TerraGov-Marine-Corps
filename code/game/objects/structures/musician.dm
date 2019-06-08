@@ -10,23 +10,23 @@
 	icon = 'icons/obj/musician.dmi'
 	desc = "What a shame. This piano looks like it'll never play again. Ever. Don't even ask about it."
 	icon_state = "pianobroken"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/device/broken_moog
 	name = "broken vintage synthesizer"
 	icon = 'icons/obj/musician.dmi'
 	desc = "This spacemoog synthesizer is vintage, but trashed. Seems someone didn't like its hot fresh tunes."
 	icon_state = "minimoogbroken"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/device/piano
 	name = "space minimoog"
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "minimoog"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/datum/song/song
 	var/playing = 0
 	var/help = 0
@@ -423,20 +423,31 @@
 				song.tempo = tempo
 				updateUsrDialog()
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 	return
 
-/obj/structure/device/piano/attackby(obj/item/O as obj, mob/user as mob)
-	if (iswrench(O) && user.a_intent != INTENT_HARM)
-		if (!user.action_busy)
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			var/ratchet = anchored ? "loosen" : "tighten"
-			to_chat(user, "<span class='notice'>You begin to [ratchet] \the [src] to the floor...</span>")
-			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-				user.visible_message("[user] [ratchet]s \the [src]'s casters.",
-									"<span class='notice'> You have [ratchet]ed \the [src]'s casters. Now it can be played again.</span>",
-									"You hear ratchet.")
-				anchored = !anchored
-	else
-		..()
+/obj/structure/device/piano/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
+		if(anchored)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			to_chat(user, "<span class='notice'>You begin to loosen \the [src]'s casters...</span>")
+			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			user.visible_message("[user] loosens \the [src]'s casters.", \
+				"<span class='notice'> You have loosened \the [src]. Now it can be pulled somewhere else.</span>", \
+				"You hear ratchet.")
+			anchored = FALSE
+			
+		else
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			to_chat(user, "<span class='notice'>You begin to tighten \the [src] to the floor...</span>")
+			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+				return
+
+			user.visible_message("[user] tightens \the [src]'s casters.", \
+				"<span class='notice'> You have tightened \the [src]'s casters. Now it can be played again.</span>", \
+				"You hear ratchet.")
+			anchored = TRUE

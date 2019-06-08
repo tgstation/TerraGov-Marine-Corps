@@ -15,7 +15,7 @@
 	icon_state = "frame"
 	desc = "A remote control for a door."
 	req_access = list(ACCESS_MARINE_BRIG)
-	anchored = 1.0    		// can't pick it up
+	anchored = TRUE    		// can't pick it up
 	density = 0       		// can walk through it.
 	var/id = null     		// id of door it controls.
 	var/releasetime = 0		// when world.timeofday reaches it - release the prisoner
@@ -243,7 +243,6 @@
 		if(href_list["change"])
 			src.timer_start()
 
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	src.update_icon()
 

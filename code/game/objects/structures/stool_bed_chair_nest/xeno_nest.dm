@@ -15,25 +15,25 @@
 	var/resisting_time = 0
 	layer = RESIN_STRUCTURE_LAYER
 
-
-/obj/structure/bed/nest/Initialize()
+/obj/structure/bed/nest/Initialize(mapload)
 	. = ..()
-	if(!locate(/obj/effect/alien/weeds) in loc)
+	if(!locate(/obj/effect/alien/weeds) in loc) 
 		new /obj/effect/alien/weeds(loc)
 
+/obj/structure/bed/nest/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-/obj/structure/bed/nest/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
+		if(!ismob(G.grabbed_thing))
 			return
-		var/mob/living/L = G.grabbed_thing
-		to_chat(user, "<span class='notice'>You place [L] on [src].</span>")
-		L.forceMove(loc)
-		return TRUE
-	if(I.flags_item & NOBLUDGEON)
+		var/mob/M = G.grabbed_thing
+		to_chat(user, "<span class='notice'>You place [M] on [src].</span>")
+		M.forceMove(loc)
+
+	else if(I.flags_item & NOBLUDGEON) 
 		return
-	user.changeNext_move(I.attack_speed)
+
 	obj_integrity = max(0, obj_integrity - I.force)
 	playsound(loc, "alien_resin_break", 25)
 	user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [I]!</span>", \
@@ -45,7 +45,6 @@
 	if(!buckled_mob || buckled_mob.buckled != src)
 		return
 
-	add_fingerprint(user)
 
 	if(buckled_mob != user)
 		if(user.incapacitated())
@@ -167,7 +166,7 @@
 	obj_integrity -= 50
 	healthcheck()
 
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return
 	if(M.a_intent == INTENT_HARM)
@@ -176,8 +175,7 @@
 		playsound(loc, "alien_resin_break", 25)
 		obj_integrity -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()
-		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_NEST)
 	else
 		attack_hand(M)
 

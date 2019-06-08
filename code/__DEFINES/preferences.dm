@@ -5,8 +5,13 @@
 #define AGE_MAX 85
 
 #define GET_RANDOM_JOB 0
-#define BE_MARINE 1
+#define BE_OVERFLOW 1
 #define RETURN_TO_LOBBY 2
+
+#define JOBS_PRIORITY_HIGH   3
+#define JOBS_PRIORITY_MEDIUM 2
+#define JOBS_PRIORITY_LOW    1
+#define JOBS_PRIORITY_NEVER  0
 
 #define MAX_GEAR_COST 5 //Custom loadout point limit.
 
@@ -103,8 +108,8 @@
 
 #define UI_STYLES list(\
 	"Midnight",\
-	"Orange",\
-	"old",\
+	"Plasmafire",\
+	"Retro",\
 	"White",\
 	"Slimecore",\
 	"Operative",\

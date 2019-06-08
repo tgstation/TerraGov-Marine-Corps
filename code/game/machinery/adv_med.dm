@@ -7,8 +7,8 @@
 	name = "Body Scanner"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scanner_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	use_power = 1
 	idle_power_usage = 60
@@ -28,7 +28,6 @@
 	if (usr.stat != 0)
 		return
 	src.go_out()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/bodyscanner/verb/move_inside()
@@ -52,7 +51,6 @@
 		//O = null
 		qdel(O)
 		//Foreach goto(124)
-	src.add_fingerprint(usr)
 	return
 
 /obj/machinery/bodyscanner/proc/go_out()
@@ -70,43 +68,48 @@
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
 	go_out()
 
-/obj/machinery/bodyscanner/attackby(obj/item/I, mob/living/user)
+
+/obj/machinery/bodyscanner/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out; this is here mainly for consistency's sake.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
+		
 	var/mob/M
-	if (istype(I, /obj/item/grab))
-		if (occupant)
-			to_chat(user, "<span class='warning'>The scanner is already occupied!</span>")
-			return
-		var/obj/item/grab/G = I
-		if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
-			var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-			if(!C.stasis_mob)
-				to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
-				return
-			M = C.stasis_mob
-			C.open()
-			user.start_pulling(M)
-		else if(ismob(G.grabbed_thing))
-			M = G.grabbed_thing
-		else
-			return
-	else
+	if(!istype(I, /obj/item/grab))
 		return
-	if (M.abiotic())
+
+	else if(occupant)
+		to_chat(user, "<span class='warning'>The scanner is already occupied!</span>")
+		return
+
+	var/obj/item/grab/G = I
+	if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
+		if(!C.stasis_mob)
+			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
+			return
+		M = C.stasis_mob
+		C.open()
+		user.start_pulling(M)
+	else if(ismob(G.grabbed_thing))
+		M = G.grabbed_thing
+
+	if(!M)
+		return
+
+	if(M.abiotic())
 		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
 		return
+
 	M.forceMove(src)
 	occupant = M
 	update_use_power(2)
 	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
-		O.loc = loc
-		//Foreach goto(154)
-	add_fingerprint(user)
-	//G = null
+		O.forceMove(loc)
 
 
 /obj/machinery/bodyscanner/ex_act(severity)
@@ -175,7 +178,7 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 
 
 /obj/machinery/body_scanconsole/Initialize()

@@ -18,9 +18,6 @@
 	var/cmp_proc = /proc/cmp_list_asc
 	var/sortkey = "name"
 
-/obj/machinery/computer/crew/New()
-	tracked = list()
-	..()
 
 /obj/machinery/computer/crew/attack_ai(mob/living/user)
 	attack_hand(user)
@@ -28,7 +25,6 @@
 
 
 /obj/machinery/computer/crew/attack_hand(mob/living/user)
-	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)

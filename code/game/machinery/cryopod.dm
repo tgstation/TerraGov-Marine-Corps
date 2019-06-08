@@ -61,7 +61,6 @@
 		return
 
 	user.set_interaction(src)
-	src.add_fingerprint(usr)
 
 	if(!(SSticker))
 		return
@@ -127,7 +126,6 @@
 		return
 
 	usr.set_interaction(src)
-	add_fingerprint(usr)
 
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])
@@ -241,10 +239,10 @@
 	stop_processing()
 	update_icon()
 
-/mob/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
+/mob/living/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 
 	//Handle job slot/tater cleanup.
-	if(job)
+	if(job in JOBS_REGULAR_ALL)
 		var/datum/job/J = SSjob.name_occupations[job]
 		J.current_positions--
 		if((J.title in JOBS_REGULAR_ALL) && isdistress(SSticker?.mode))
@@ -283,14 +281,10 @@
 	GLOB.cryoed_mob_list += data
 	GLOB.cryoed_mob_list[data] = list(real_name, job ? job : "Unassigned", gameTimestamp())
 
-	var/obj/item/radio/radio
 	if(pod)
-		radio = pod.radio
 		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 		pod.occupant = null
-	else
-		radio = new(src)
-	radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", FREQ_COMMON)
+		pod.radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", FREQ_COMMON)
 
 	qdel(src)
 
@@ -307,17 +301,17 @@
 				dept_console = CRYO_DELTA
 		if(job)
 			var/datum/job/J = SSjob.name_occupations[job]
-			if(J.flag & SQUAD_SPECIALIST && specset && !available_specialist_sets.Find(specset))
+			if(istype(J, /datum/job/marine/specialist) && specset && !available_specialist_sets.Find(specset))
 				available_specialist_sets += specset //we make the set this specialist took if any available again
-			if(J.flag & SQUAD_ENGINEER)
+			if(istype(J, /datum/job/marine/engineer))
 				assigned_squad.num_engineers--
-			if(J.flag & SQUAD_CORPSMAN)
+			if(istype(J, /datum/job/marine/corpsman))
 				assigned_squad.num_medics--
-			if(J.flag & SQUAD_SPECIALIST)
+			if(istype(J, /datum/job/marine/specialist))
 				assigned_squad.num_specialists--
-			if(J.flag & SQUAD_SMARTGUNNER)
+			if(istype(J, /datum/job/marine/smartgunner))
 				assigned_squad.num_smartgun--
-			if(J.flag & SQUAD_LEADER)
+			if(istype(J, /datum/job/marine/leader))
 				assigned_squad.num_leaders--
 		assigned_squad.count--
 		assigned_squad.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
@@ -385,14 +379,19 @@
 		holstered = null
 		update_icon()
 
-/obj/machinery/cryopod/attackby(obj/item/W, mob/living/user)
-	if(!istype(W, /obj/item/grab))
-		return ..()
-	if(isxeno(user))
+/obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!istype(I, /obj/item/grab))
 		return
-	var/obj/item/grab/G = W
+
+	else if(isxeno(user))
+		return
+
+	var/obj/item/grab/G = I
 	if(!isliving(G.grabbed_thing))
 		return
+
 	if(!QDELETED(occupant))
 		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
 		return
@@ -408,7 +407,7 @@
 		return
 
 	if(M.client)
-		if(alert(M,"Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
+		if(alert(M, "Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
 			if(QDELETED(M) || !(G?.grabbed_thing == M))
 				return
 		else
@@ -426,7 +425,6 @@
 		return
 
 	go_out()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/cryopod/verb/move_inside()
@@ -475,7 +473,6 @@
 	start_processing()
 	log_admin("[key_name(user)] has entered a stasis pod.")
 	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
-	add_fingerprint(user)
 
 /obj/machinery/cryopod/proc/go_out()
 

@@ -29,7 +29,6 @@
 					M.dropItemToGround(src)
 					M.put_in_l_hand(src)
 
-			add_fingerprint(usr)
 			return
 
 /obj/item/clipboard/update_icon()
@@ -42,21 +41,21 @@
 	overlays += "clipboard_over"
 	return
 
-/obj/item/clipboard/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clipboard/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
+	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		user.drop_held_item()
-		W.forceMove(src)
-		if(istype(W, /obj/item/paper))
-			toppaper = W
-		to_chat(user, "<span class='notice'>You clip the [W] onto \the [src].</span>")
+		I.forceMove(src)
+		if(istype(I, /obj/item/paper))
+			toppaper = I
+		to_chat(user, "<span class='notice'>You clip the [I] onto \the [src].</span>")
 		update_icon()
 
-	else if(istype(toppaper) && istype(W, /obj/item/tool/pen))
-		toppaper.attackby(W, usr)
+	else if(istype(toppaper) && istype(I, /obj/item/tool/pen))
+		toppaper.attackby(I, user, params)
 		update_icon()
 
-	return
 
 /obj/item/clipboard/attack_self(mob/user as mob)
 	var/dat = "<title>Clipboard</title>"
@@ -79,7 +78,6 @@
 
 	user << browse(dat, "window=clipboard")
 	onclose(user, "clipboard")
-	add_fingerprint(usr)
 	return
 
 /obj/item/clipboard/Topic(href, href_list)

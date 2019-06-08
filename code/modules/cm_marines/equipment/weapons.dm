@@ -36,29 +36,29 @@
 	. = ..()
 	pcell = new /obj/item/cell(src)
 
-/obj/item/smartgun_powerpack/attack_self(mob/user, automatic = FALSE)
-	if(!ishuman(user) || user.stat)
+/obj/item/smartgun_powerpack/attack_self(mob/living/carbon/human/user, automatic = FALSE)
+	if(!istype(user) || user.incapacitated())
 		return FALSE
 
 	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()
 
 	if(!istype(mygun))
 		to_chat(user, "You must be holding an M56 Smartgun to begin the reload process.")
-		return
+		return TRUE
 	if(rounds_remaining < 1)
 		to_chat(user, "Your powerpack is completely devoid of spare ammo belts! Looks like you're up shit creek, maggot!")
-		return
+		return TRUE
 	if(!pcell)
 		to_chat(user, "Your powerpack doesn't have a battery! Slap one in there!")
-		return
+		return TRUE
 
 	mygun.shells_fired_now = 0 //If you attempt a reload, the shells reset. Also prevents double reload if you fire off another 20 bullets while it's loading.
 
 	if(reloading)
-		return
+		return TRUE
 	if(pcell.charge <= 50)
 		to_chat(user, "Your powerpack's battery is too drained! Get a new battery and install it!")
-		return
+		return TRUE
 
 	reloading = TRUE
 	if(!automatic)
@@ -77,7 +77,6 @@
 			to_chat(user, "Your reloading was interrupted!")
 			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
 			reloading = FALSE
-			return
 	else
 		if(autoload_check(user, reload_duration, mygun, src))
 			reload(user, mygun, TRUE)
@@ -86,7 +85,6 @@
 			to_chat(user, "The automated reload process was interrupted!")
 			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
 			reloading = FALSE
-			return
 	return TRUE
 
 /obj/item/smartgun_powerpack/attack_hand(mob/user)
@@ -100,14 +98,18 @@
 	to_chat(user, "You take out the [pcell] out of the [src].")
 	pcell = null
 
-/obj/item/smartgun_powerpack/attackby(obj/item/A, mob/user)
-	if(!istype(A, /obj/item/cell))
-		return ..()
-	if(!QDELETED(pcell))
-		to_chat(user, "There already is a cell in the [src].")
-		return
-	var/obj/item/cell/C = A
-	if(user.transferItemToLoc(C, src))
+/obj/item/smartgun_powerpack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/cell))
+		var/obj/item/cell/C = I
+
+		if(!QDELETED(pcell))
+			to_chat(user, "There already is a cell in the [src].")
+			return
+
+		if(!user.transferItemToLoc(C, src))
+			return
+			
 		pcell = C
 		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)

@@ -80,7 +80,6 @@
 		if(instant || do_after(user, 50, TRUE, target, BUSY_ICON_GENERIC))
 			new /obj/effect/decal/cleanable/crayon(target,colour,shadeColour,drawtype)
 			to_chat(user, "You finish drawing.")
-			target.add_fingerprint(user)		// Adds their fingerprints to the floor the crayon is drawn on.
 			if(uses)
 				uses--
 				if(!uses)
