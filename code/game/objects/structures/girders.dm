@@ -153,7 +153,7 @@
 				
 			to_chat(user, "<span class='notice'>Now adding plating...</span>")
 				
-			if(!do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 				return
 
 			if(buildctr != old_buildctr) 
