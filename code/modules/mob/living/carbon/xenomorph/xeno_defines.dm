@@ -167,7 +167,7 @@
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"claw", "armor", "regen", "speed"
+	var/current_aura = null //"frenzy", "warding", "recovery"
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0
@@ -243,7 +243,7 @@
 
 	//Hunter vars
 	var/sneak_bonus = 0.00
-	
+
 	//Larva Growth
 	var/last_larva_growth_used = 0
 
