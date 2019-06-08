@@ -1031,3 +1031,49 @@
 		return
 
 	togglebuildmode(usr)
+
+
+/datum/admins/proc/imaginary_friend()
+	set category = "Fun"
+	set name = "Imaginary Friend"
+
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+
+	if(istype(usr, /mob/camera/imaginary_friend))
+		var/mob/camera/imaginary_friend/IF = usr
+		IF.deactivate()
+		return
+
+	if(is_mentor(usr.client) && !isobserver(usr))
+		to_chat(usr, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
+		return
+
+	if(!isobserver(usr))
+		usr.client.holder.admin_ghost()
+
+	var/mob/living/L
+	switch(input("Select by:", "Imaginary Friend") as null|anything in list("Key", "Mob"))
+		if("Key")
+			var/client/C = input("Please, select a key.", "Imaginary Friend") as null|anything in sortKey(GLOB.clients)
+			if(!C)
+				return
+			L = C.mob
+		if("Mob")
+			var/mob/M = input("Please, select a mob.", "Imaginary Friend") as null|anything in sortNames(GLOB.mob_living_list)
+			if(!M)
+				return
+			L = M
+
+	if(!isobserver(usr))
+		return
+
+	if(!istype(L))
+		to_chat("<span class='warning'>Selected mob is not alive.</span>")
+		return
+
+	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
+	usr.mind.transfer_to(IF)
+
+	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
