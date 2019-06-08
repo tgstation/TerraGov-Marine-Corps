@@ -75,7 +75,6 @@
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/obj/control_object //Used by admins to possess objects.
 	var/atom/movable/remote_control //Calls relaymove() to whatever it is
-	var/obj/machinery/machine
 	var/obj/buckled //Living
 	var/obj/item/l_hand //Living
 	var/obj/item/r_hand //Living
