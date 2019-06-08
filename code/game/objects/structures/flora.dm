@@ -202,7 +202,7 @@
 /obj/structure/flora/grass
 	name = "grass"
 	icon = 'icons/obj/flora/snowflora.dmi'
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/grass/brown
 	icon_state = "snowgrass1bb"
@@ -230,7 +230,7 @@
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/bush/New()
 	icon_state = "snowbush[rand(1, 6)]"
@@ -250,7 +250,7 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/ausbushes/New()
 	icon_state = "firstbush_[rand(1, 4)]"
@@ -367,7 +367,7 @@
 // Generic undergrowth //
 //*********************//
 /obj/structure/flora/desert
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/obj/flora/dam.dmi'
 	var/icon_tag = null
 	var/variations = null
@@ -420,7 +420,7 @@
 	name = "jungle foliage"
 	icon = 'icons/turf/ground_map.dmi'
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 

@@ -13,7 +13,7 @@
 /obj/item/tape
 	name = "tape"
 	icon = 'icons/obj/policetape.dmi'
-	anchored = 1
+	anchored = TRUE
 	var/lifted = 0
 	var/crumpled = 0
 	var/icon_base

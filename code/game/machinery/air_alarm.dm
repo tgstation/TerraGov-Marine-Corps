@@ -27,7 +27,7 @@
 	icon_state = "alarm0"
 	pixel_x = -16
 	pixel_y = -16
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 80
 	active_power_usage = 1000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.

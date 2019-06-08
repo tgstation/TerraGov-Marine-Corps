@@ -7,7 +7,7 @@
 	var/height = 0							//The 'height' of the ladder. higher numbers are considered physically higher
 	var/obj/structure/ladder/down = null	//The ladder below this one
 	var/obj/structure/ladder/up = null		//The ladder above this one
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = LADDER_LAYER
 	var/is_watching = 0

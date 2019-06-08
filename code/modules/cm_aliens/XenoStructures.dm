@@ -167,7 +167,7 @@
 	icon_state = "trap0"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
@@ -697,7 +697,7 @@ TUNNEL
 
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 

@@ -3,7 +3,7 @@
 	desc = "A large machine with whirring fans and two cylindrical holes in the top. Used to regenerate fuel cells."
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "recycler"
-	anchored = 1.0
+	anchored = TRUE
 	density = TRUE
 	idle_power_usage = 5
 	active_power_usage = 15000

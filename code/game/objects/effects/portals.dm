@@ -7,7 +7,7 @@
 	var/failchance = 5
 	var/obj/item/target = null
 	var/creator = null
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
 	spawn(0)

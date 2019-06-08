@@ -5,7 +5,7 @@
 	icon_state = "table2-idle"
 	density = TRUE
 	layer = TABLE_LAYER
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	use_power = 1
 	idle_power_usage = 1

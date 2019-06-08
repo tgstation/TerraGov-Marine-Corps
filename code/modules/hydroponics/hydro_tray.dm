@@ -5,7 +5,7 @@
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	volume = 100
 	throwpass = 1
 	layer = BELOW_OBJ_LAYER

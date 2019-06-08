@@ -28,7 +28,7 @@
 	desc = "A small computer hooked up into the ship's systems."
 
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 20
 
@@ -74,7 +74,7 @@
 	desc = "A table that displays a map of the current target location"
 
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 20
 
@@ -87,7 +87,7 @@
 	name = "GENERIC THESEUS PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/prop/almayer/minigun_crate
 	name = "30mm ammo crate"

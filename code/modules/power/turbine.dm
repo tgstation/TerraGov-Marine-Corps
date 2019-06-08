@@ -3,7 +3,7 @@
 	desc = "The compressor stage of a gas turbine generator."
 	icon = 'icons/obj/pipes.dmi'
 	icon_state = "compressor"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 
 /obj/machinery/power/turbine
@@ -11,7 +11,7 @@
 	desc = "A gas turbine used for backup power generation."
 	icon = 'icons/obj/pipes.dmi'
 	icon_state = "turbine"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 
 /obj/machinery/computer/turbine_computer
@@ -19,7 +19,7 @@
 	desc = "A computer to remotely control a gas turbine"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "turbinecomp"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 
 /obj/machinery/power/turbinemotor

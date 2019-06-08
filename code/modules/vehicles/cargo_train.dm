@@ -221,5 +221,5 @@
 		else
 			verbs += /atom/movable/verb/pull
 	else
-		anchored = 1
+		anchored = TRUE
 		verbs -= /atom/movable/verb/pull

@@ -35,7 +35,7 @@
 	open_sound = 'sound/effects/vegetation_walk_1.ogg'
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
 	item_path = /obj/item/bodybag/tarp
-	anchored = 1
+	anchored = TRUE
 	closet_stun_delay = 0
 	var/process_count = 0
 
@@ -135,7 +135,7 @@
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
-	anchored = 1
+	anchored = TRUE
 	opacity = 1
 	density = TRUE
 	icon = 'icons/Marine/apc.dmi'

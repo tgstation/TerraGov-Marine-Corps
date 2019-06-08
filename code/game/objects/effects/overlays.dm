@@ -17,7 +17,7 @@
 	icon_state = "palm1"
 	density = TRUE
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/palmtree_l
 	name = "Palm tree"
@@ -25,7 +25,7 @@
 	icon_state = "palm2"
 	density = TRUE
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/coconut
 	name = "Coconuts"
@@ -45,7 +45,7 @@
 	icon_state = "electricity"
 
 /obj/effect/overlay/temp
-	anchored = 1
+	anchored = TRUE
 	layer = ABOVE_FLY_LAYER //above mobs
 	mouse_opacity = 0 //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
@@ -65,7 +65,7 @@
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "arrow"
-	anchored = 1
+	anchored = TRUE
 	effect_duration = 25
 
 /obj/effect/overlay/temp/point/big

@@ -3,7 +3,7 @@
 	desc = "A rune drawn in crayon."
 	icon = 'icons/obj/rune.dmi'
 	layer = ABOVE_TURF_LAYER
-	anchored = 1
+	anchored = TRUE
 
 	New(location,main = "#FFFFFF",shade = "#000000",var/type = "rune")
 		..()

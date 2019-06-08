@@ -24,7 +24,7 @@ FLOOR SAFES
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "safe"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE

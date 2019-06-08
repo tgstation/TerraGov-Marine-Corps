@@ -8,4 +8,4 @@
 	name = "Exosuit Fabricator"
 	desc = "Nothing is being built."
 	density = TRUE
-	anchored = 1
+	anchored = TRUE

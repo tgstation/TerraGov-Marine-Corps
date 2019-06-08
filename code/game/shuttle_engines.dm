@@ -8,7 +8,7 @@
 	icon_state = "1"
 	density = TRUE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = WINDOW_LAYER
 
@@ -18,7 +18,7 @@
 /obj/structure/shuttle/engine
 	name = "engine"
 	density = TRUE
-	anchored = 1.0
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/structure/shuttle/engine/heater

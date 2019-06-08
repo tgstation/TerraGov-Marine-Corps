@@ -225,7 +225,7 @@ proc/check_panel(mob/M)
 	name = ""
 	desc = ""
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
 	var/mob/living/carbon/human/my_target = null
 	var/weapon_name = null
