@@ -940,6 +940,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					key_bindings[old_key] -= kb_name
 					key_bindings["Unbound"] += list(kb_name)
 				user << browse(null, "window=capturekeypress")
+				save_preferences()
+				save_character()
 				ShowKeybindings(user)
 				return
 
@@ -969,6 +971,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
 
 			user << browse(null, "window=capturekeypress")
+			save_preferences()
+			save_character()
 			ShowKeybindings(user)
 			return
 
@@ -977,6 +981,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("keybindings_reset")
 			key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
+			save_preferences()
+			save_character()
 			ShowKeybindings(user)
 			return
 
