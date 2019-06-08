@@ -710,8 +710,9 @@
 			qdel(O)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	for(var/atom/movable/A in contents - radio)
-		A.forceMove(loc)
+	for(var/A in contents - radio)
+		var/atom/movable/B = A
+		B.forceMove(loc)
 	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
