@@ -594,10 +594,10 @@
 				return
 			//if(effectAnnounce)
 			//	deadchat_broadcast("<span class='deadsay'>A special package is being launched at the station!</span>", turf_target = target)
-			var/list/bouttaDie = list()
+			var/list/targets = list()
 			for(var/mob/living/M in target)
-				bouttaDie.Add(M)
-			supplypod_punish_log(bouttaDie)
+				targets.Add(M)
+			supplypod_log(targets, target)
 			if(!effectBurst)
 				launch(target)
 			else
@@ -713,25 +713,27 @@
 		qdel(M)
 
 
-/datum/podlauncher/proc/supplypod_punish_log(list/whoDyin)
+/datum/podlauncher/proc/supplypod_log(list/targets, atom/target)
 	var/podString = effectBurst ? "5 pods" : "a pod"
 	var/whomString = ""
-	if(LAZYLEN(whoDyin))
-		for(var/mob/living/M in whoDyin)
+	if(LAZYLEN(targets))
+		for(var/mob/living/M in targets)
 			whomString += "[key_name(M)], "
 
 	var/delayString = temp_pod.landingDelay == initial(temp_pod.landingDelay) ? "" : " Delay=[temp_pod.landingDelay*0.1]s"
 	var/damageString = temp_pod.damage == 0 ? "" : " Dmg=[temp_pod.damage]"
 	var/explosionString = ""
-	var/areaString = specificTarget ? "in [AREACOORD(specificTarget)]" : ""
+	var/playerString = specificTarget ? "Target=[ADMIN_TPMONTY(specificTarget)]" : ""
 	var/explosion_sum = temp_pod.explosionSize[1] + temp_pod.explosionSize[2] + temp_pod.explosionSize[3] + temp_pod.explosionSize[4]
+	var/areaString = "[ADMIN_VERBOSEJMP(target)]"
 	if(explosion_sum != 0)
 		explosionString = " Boom=|"
 		for(var/X in temp_pod.explosionSize)
 			explosionString += "[X]|"
 
-	var/msg = "launched [podString][whomString].[delayString][damageString][explosionString][areaString]"
-	message_admins("[key_name_admin(usr)] [msg].")
-	if(!isemptylist(whoDyin))
-		for(var/mob/living/M in whoDyin)
+	var/msg = "launched [podString][whomString][delayString][damageString][explosionString][playerString][areaString]."
+	log_admin("[key_name(usr)] [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] [msg]")
+	if(!isemptylist(targets))
+		for(var/mob/M in targets)
 			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
