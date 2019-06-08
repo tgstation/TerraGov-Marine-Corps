@@ -286,6 +286,13 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/flare/process()
 	fuel = max(fuel - 1, 0)
+
+	// Flares have a 25% chance to remove weeds under them.
+	var/obj/effect/alien/weeds/A = locate() in loc
+	if(A && prob(25))
+		A.fire_act()
+		fuel = max(fuel - 5, 0)
+
 	if(!fuel || !active)
 		turn_off()
 		if(!fuel)
