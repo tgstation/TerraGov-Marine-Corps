@@ -476,7 +476,7 @@
 				else
 					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 			qdel(query_get_new_polls)
-			if(QDELETED(src))
+			if(QDELETED(NP))
 				return FALSE
 
 	output += "</div>"
@@ -503,7 +503,7 @@
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return
 
-	if(!SSjob.AssignRole(src, rank, TRUE))
+	if(!SSjob.AssignRole(NP, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
 
@@ -525,7 +525,7 @@
 
 	handle_late_spawn(character)
 
-	qdel(src)
+	qdel(NP)
 
 
 /datum/game_mode/proc/handle_late_spawn(mob/C)
