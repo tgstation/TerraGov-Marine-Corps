@@ -262,7 +262,7 @@
 	if(interactee)
 		interactee.check_eye(src)
 	else
-		reset_view(null)
+		reset_perspective(null)
 
 	return TRUE
 

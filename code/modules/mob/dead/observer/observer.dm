@@ -824,20 +824,25 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Observe"
 	set category = "Ghost"
 
-	if(client.eye != client.mob)
-		client.perspective = MOB_PERSPECTIVE
-		client.eye = client.mob
-		observetarget = null
-		return
+	reset_perspective(null)
 
 	var/mob/target = input("Please select a mob:", "Observe", null, null) as null|anything in GLOB.mob_list
 	if(!target)
 		return
 
-	if(client && target)
-		client.perspective = EYE_PERSPECTIVE
-		client.eye = target
-		observetarget = target
+	if(!client)
+		return
+
+	client.eye = target
+
+	if(!target.hud_used)
+		return
+
+	client.screen = list()
+	LAZYINITLIST(target.observers)
+	target.observers |= src
+	target.hud_used.show_hud(target.hud_used.hud_version, src)
+	observetarget = target
 
 
 /mob/dead/observer/verb/dnr()

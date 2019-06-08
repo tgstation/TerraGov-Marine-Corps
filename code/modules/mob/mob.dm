@@ -347,21 +347,6 @@
 		return TRUE
 
 
-/mob/proc/reset_view(atom/A)
-	if (client)
-		if (ismovableatom(A))
-			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
-		else
-			if (isturf(loc))
-				client.eye = client.mob
-				client.perspective = MOB_PERSPECTIVE
-			else
-				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-	return
-
-
 /mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
 	var/dat = {"
@@ -713,7 +698,7 @@ mob/proc/yank_out_object()
 		buckled.unbuckle()
 	. = ..()
 	if(.)
-		reset_view(destination)
+		reset_perspective(destination)
 
 /mob/proc/trainteleport(atom/destination)
 	if(!destination || anchored)
@@ -784,7 +769,7 @@ mob/proc/yank_out_object()
 			AM.Moved(oldLoc)
 		var/mob/M = AM
 		if(istype(M))
-			M.reset_view(destination)
+			M.reset_perspective(destination)
 	return TRUE
 
 

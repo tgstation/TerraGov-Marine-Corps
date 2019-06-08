@@ -139,7 +139,7 @@
 		canmove = FALSE
 		return canmove
 
-/mob/living/carbon/xenomorph/queen/reset_view(atom/A)
+/mob/living/carbon/xenomorph/queen/reset_perspective(atom/A)
 	if (!client)
 		return
 

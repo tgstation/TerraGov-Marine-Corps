@@ -131,7 +131,6 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(client)
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
-		client.eye = src
 
 	pipes_shown.len = 0
 
