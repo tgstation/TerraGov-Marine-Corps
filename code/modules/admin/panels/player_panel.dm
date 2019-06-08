@@ -250,8 +250,8 @@
 		var/M_name = html_encode(M.name)
 		var/M_rname = html_encode(M.real_name)
 		var/M_key = html_encode(M.key)
-		var/M_cid = html_encode(M.cid)
-		var/M_ip = html_encode(M.ip)
+		var/M_cid = html_encode(M.computer_id)
+		var/M_ip = html_encode(M.ip_address)
 
 		var/previous_names = ""
 		var/datum/player_details/P = GLOB.player_details[M.ckey]
