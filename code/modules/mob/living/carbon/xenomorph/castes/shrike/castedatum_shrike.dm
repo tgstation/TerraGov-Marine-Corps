@@ -41,7 +41,7 @@
 	armor_deflection = 10
 
 	// *** Pheromones *** //
-	aura_strength = 1 //The Shrike's aura is decent.
+	aura_strength = 2 //The Shrike's aura is decent.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/shrike/young
@@ -79,7 +79,7 @@
 	armor_deflection = 25
 
 	// *** Pheromones *** //
-	aura_strength = 2
+	aura_strength = 2.5
 
 /datum/xeno_caste/shrike/elder
 	upgrade_name = "Elite"
@@ -111,7 +111,7 @@
 	armor_deflection = 35
 
 	// *** Pheromones *** //
-	aura_strength = 3.5
+	aura_strength = 2.8
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2.6
@@ -136,7 +136,7 @@
 	plasma_gain = 45
 
 	// *** Health *** //
-	max_health = 375
+	max_health = 275
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
