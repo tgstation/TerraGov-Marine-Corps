@@ -224,7 +224,7 @@
 		if(!i)
 			break
 		if(M.can_be_facehugged(src))
-			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, 4)
+			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, null, 4)
 			leaping = TRUE
 			throw_at(M, 4, 1)
 			break
