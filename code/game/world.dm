@@ -215,6 +215,7 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/incrementMaxZ()
 	maxz++
 	SSmobs.MaxZChanged()
+	SSidlenpcpool.MaxZChanged()
 
 
 /world/proc/SetupExternalRSC()

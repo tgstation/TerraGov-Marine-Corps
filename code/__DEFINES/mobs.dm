@@ -574,3 +574,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_PRECISE_R_HAND	"r_hand"
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
+
+
+//Hostile simple animals
+#define AI_ON		1
+#define AI_IDLE		2
+#define AI_OFF		3
+#define AI_Z_OFF	4
