@@ -84,6 +84,12 @@
 	mob_size = MOB_SIZE_SMALL
 
 
+/mob/living/simple_animal/corgi/puppy/mrwiggles
+	name = " Mr. Wiggles"
+	real_name = "Mr. Wiggles"
+	desc = "It's Mr. Wiggles!"
+
+
 /mob/living/simple_animal/corgi/puppy/void
 	name = "\improper void puppy"
 	real_name = "voidy"
