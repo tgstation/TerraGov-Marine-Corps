@@ -51,6 +51,9 @@
 	if(!A)
 		return FALSE
 	var/mob/living/carbon/xenomorph/shrike/S = owner
+	if(S.is_ventcrawling)
+		to_chat(S, "<span class='warning'>The place is way too cramped, you can't focus!</span>")
+		return FALSE
 	var/max_dist = (S == S.hive.living_xeno_ruler) ? 6 : 3 //We can fling targets further away if we are the ruler.
 	if(get_dist(S, A) > max_dist)
 		return FALSE
@@ -116,6 +119,9 @@
 	if(!A)
 		return FALSE
 	var/mob/living/carbon/xenomorph/shrike/S = owner
+	if(S.is_ventcrawling)
+		to_chat(S, "<span class='warning'>The place is way too cramped, you can't focus!</span>")
+		return FALSE
 	var/dist = get_dist(S, A)
 	switch(dist)
 		if(-1 to 1)
