@@ -8,9 +8,6 @@
 
 		L.alpha = 0
 
-	if(mind?.cm_skills)
-		qdel(mind.cm_skills)
-
 	if(!isdistress(SSticker.mode))
 		return 
 
