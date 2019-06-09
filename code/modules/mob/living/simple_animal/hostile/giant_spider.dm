@@ -168,37 +168,38 @@
 
 
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/handle_automated_action()
-	if(..())
-		var/list/can_see = view(src, 10)
-		if(!busy && prob(30))	//30% chance to stop wandering and do something
-			for(var/mob/living/C in can_see)
-				if(C.stat && !istype(C, /mob/living/simple_animal/hostile/poison/giant_spider) && !C.anchored)
-					cocoon_target = C
-					busy = MOVING_TO_TARGET
-					Goto(C, move_to_delay)
-					//give up if we can't reach them after 10 seconds
-					GiveUp(C)
-					return
-
-			for(var/obj/O in can_see)
-				if(O.anchored)
-					continue
-
-				if(isitem(O) || isstructure(O) || ismachinery(O))
-					cocoon_target = O
-					busy = MOVING_TO_TARGET
-					stop_automated_movement = 1
-					Goto(O, move_to_delay)
-					//give up if we can't reach them after 10 seconds
-					GiveUp(O)
-
-		else if(busy == MOVING_TO_TARGET && cocoon_target)
-			if(get_dist(src, cocoon_target) <= 1)
-				cocoon()
-
-	else
+	. = ..()
+	if(!.)
 		busy = SPIDER_IDLE
 		stop_automated_movement = FALSE
+		return
+
+	var/list/can_see = view(src, 10)
+	if(!busy && prob(30))	//30% chance to stop wandering and do something
+		for(var/mob/living/C in can_see)
+			if(C.stat != CONSCIOUS && !istype(C, /mob/living/simple_animal/hostile/poison/giant_spider) && !C.anchored)
+				cocoon_target = C
+				busy = MOVING_TO_TARGET
+				Goto(C, move_to_delay)
+				//give up if we can't reach them after 10 seconds
+				GiveUp(C)
+				return
+
+		for(var/obj/O in can_see)
+			if(O.anchored)
+				continue
+
+			if(isitem(O) || isstructure(O) || ismachinery(O))
+				cocoon_target = O
+				busy = MOVING_TO_TARGET
+				stop_automated_movement = 1
+				Goto(O, move_to_delay)
+				//give up if we can't reach them after 10 seconds
+				GiveUp(O)
+
+	else if(busy == MOVING_TO_TARGET && cocoon_target)
+		if(get_dist(src, cocoon_target) <= 1)
+			cocoon()
 
 
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/proc/cocoon()
@@ -218,7 +219,7 @@
 		busy = SPINNING_COCOON
 		visible_message("<span class='notice'>[src] begins to secrete a sticky substance around [cocoon_target].</span>","<span class='notice'>You begin wrapping [cocoon_target] into a cocoon.</span>")
 		stop_automated_movement = TRUE
-		walk(src,0)
+		walk(src, 0)
 		if(do_after(src, 50, target = cocoon_target))
 			if(busy == SPINNING_COCOON)
 				var/obj/structure/spider/cocoon/C = new(cocoon_target.loc)

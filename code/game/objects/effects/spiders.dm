@@ -53,10 +53,10 @@
 /obj/structure/spider/eggcluster/process()
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
-		var/num = rand(3,12)
-		for(var/i = 0, i < num, i++)
+		var/num = rand(3, 12)
+		for(var/i in 1 to num)
 			var/obj/structure/spider/spiderling/S = new(loc)
-			S.faction = faction.Copy()
+			S.faction = faction
 		qdel(src)
 
 
