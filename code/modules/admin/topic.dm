@@ -1571,43 +1571,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] has limited the [slot] job.")
 
 
-	else if(href_list["setsquad"])
+	else if(href_list["rankequip"])
 		if(!check_rights(R_FUN))
 			return
 
-		var/mob/living/carbon/human/H = locate(href_list["setsquad"])
+		var/mob/living/carbon/human/H = locate(href_list["rankequip"])
 
 		if(!istype(H))
 			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
-		usr.client.holder.change_squad(H)
-
-
-	else if(href_list["setrank"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["setrank"])
-
-		if(!istype(H))
-			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-			return
-
-		usr.client.holder.edit_rank(H)
-
-
-	else if(href_list["setequipment"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["setequipment"])
-
-		if(!istype(H))
-			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-			return
-
-		usr.client.holder.select_equipment(H)
+		usr.client.holder.rank_and_equipment(H)
 
 
 	else if(href_list["sleep"])
@@ -1856,12 +1830,53 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!istype(H) || H.wear_id)
 					return
 				H.equip_to_slot_or_del(new /obj/item/card/id(H), SLOT_WEAR_ID)
+			if("squad")
+				previous = H.assigned_squad
+				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+				if(!change || !istype(H) || !(H.job in JOBS_MARINES))
+					return
 
-		usr.client.holder.edit_rank(H)
+				H.change_squad(change)
+			if("equipment")
+				var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
+				if(!dresscode)
+					return
+
+				if(dresscode == "{Job}")
+					var/list/job_paths = subtypesof(/datum/outfit/job)
+					var/list/job_outfits = list()
+					for(var/path in job_paths)
+						var/datum/outfit/O = path
+						if(initial(O.can_be_admin_equipped))
+							job_outfits[initial(O.name)] = path
+
+					dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
+					dresscode = job_outfits[dresscode]
+
+				else if(dresscode == "{Custom}")
+					var/list/custom_names = list()
+					for(var/datum/outfit/D in GLOB.custom_outfits)
+						custom_names[D.name] = D
+					var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
+					dresscode = custom_names[selected_name]
+
+				if(!dresscode || !istype(H))
+					return
+
+				var/datum/outfit/O
+				H.delete_equipment(TRUE)
+				if(dresscode != "{Naked}")
+					O = new dresscode
+					H.equipOutfit(O, FALSE)
+
+				H.regenerate_icons()
+				change = istype(O) ?  O.name : dresscode
+
+		usr.client.holder.rank_and_equipment(H)
 
 		if(change)
-			log_admin("[key_name(usr)] updated the [href_list["rank"]] from [previous] to [change] of [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]] from [previous] to [change] of [ADMIN_TPMONTY(H)].")
+			log_admin("[key_name(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change] of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change] of [ADMIN_TPMONTY(H)].")
 		else
 			log_admin("[key_name(usr)] updated the rank: [href_list["rank"]] of [key_name(H)].")
 			message_admins("[ADMIN_TPMONTY(usr)] updated the rank: [href_list["rank"]] of [ADMIN_TPMONTY(H)].")

@@ -250,6 +250,8 @@
 		var/M_name = html_encode(M.name)
 		var/M_rname = html_encode(M.real_name)
 		var/M_key = html_encode(M.key)
+		var/M_cid = html_encode(M.computer_id)
+		var/M_ip = html_encode(M.ip_address)
 
 		var/previous_names = ""
 		var/datum/player_details/P = GLOB.player_details[M.ckey]
@@ -267,7 +269,7 @@
 					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.ip_address]","[M.computer_id]","[REF(M)]")'
 					>
 					<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
-					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [previous_names]</span>
+					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [M_cid] [M_ip] [previous_names]</span>
 					</a>
 					<br><span id='item[i]'></span>
 				</td>
@@ -395,6 +397,8 @@
 
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
+
+	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
 		
 	if(M.client)
 		body += "<a href='?src=[ref];playtime=[REF(M)]'>Playtime</a> | "
@@ -479,9 +483,7 @@
 
 			if(ishuman(M))
 				body += "<br>"
-				body += "<a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
-				body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "
-				body += "<a href='?src=[ref];setsquad=[REF(M)]'>Select Squad</a> | "
+				body += "<a href='?src=[ref];rankequip=[REF(M)]'>Rank and Equipment</a> | "
 				body += "<a href='?src=[ref];randomname=[REF(M)]'>Randomize Name</a>"
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
