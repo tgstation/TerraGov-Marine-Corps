@@ -88,8 +88,9 @@
 	if(!check_rights(R_FUN))
 		return
 
+	var/customname = input("What do you want the AI to be called?.", "AI Report", "AI") as text|null
 	var/input = input("This should be a message from the ship's AI.", "AI Report") as message|null
-	if(!input)
+	if(!input || !customname)
 		return
 
 	var/paper
@@ -99,10 +100,10 @@
 		if("Cancel")
 			return
 
-	priority_announce(input, MAIN_AI_SYSTEM, sound = "sound/misc/interference.ogg")
+	priority_announce(input, customname, sound = "sound/misc/interference.ogg")
 
 	if(paper)
-		print_command_report(input, "[MAIN_AI_SYSTEM] Update", announce = FALSE)
+		print_command_report(input, "[customname] Update", announce = FALSE)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
@@ -639,14 +640,14 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/edit_rank(mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/rank_and_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
-	set name = "Edit Rank"
+	set name = "Rank and Equipment"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/dat
+	var/dat = "<br>"
 	var/obj/item/card/id/C = H.wear_id
 
 	if(!H.mind)
@@ -656,6 +657,8 @@
 		dat += "<br>"
 		dat += "Skillset: [H.mind.cm_skills.name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=skills;mob=[REF(H)]'>Edit</a><br>"
 		dat += "Comms title: [H.mind.comm_title] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=commstitle;mob=[REF(H)]'>Edit</a><br>"
+		if(H.job in JOBS_MARINES)
+			dat += "Squad: [H.assigned_squad] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=squad;mob=[REF(H)]'>Edit</a><br>"
 	if(istype(C))
 		dat += "<br>"
 		dat += "Chat title: [C.paygrade] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=chattitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
@@ -664,74 +667,13 @@
 	else
 		dat += "No ID! <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=createid;mob=[REF(H)]'>Give ID</a><br>"
 
+	dat += "<br>"
+	dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=equipment;mob=[REF(H)]'>Select Equipment</a>"
+
 
 	var/datum/browser/browser = new(usr, "edit_rank_[key_name(H)]", "<div align='center'>Edit Rank [key_name(H)]</div>")
 	browser.set_content(dat)
 	browser.open(FALSE)
-
-
-/datum/admins/proc/select_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = "Fun"
-	set name = "Select Equipment"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
-	if(!dresscode)
-		return
-
-	if(dresscode == "{Job}")
-		var/list/job_paths = subtypesof(/datum/outfit/job)
-		var/list/job_outfits = list()
-		for(var/path in job_paths)
-			var/datum/outfit/O = path
-			if(initial(O.can_be_admin_equipped))
-				job_outfits[initial(O.name)] = path
-
-		dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
-		dresscode = job_outfits[dresscode]
-
-	else if(dresscode == "{Custom}")
-		var/list/custom_names = list()
-		for(var/datum/outfit/D in GLOB.custom_outfits)
-			custom_names[D.name] = D
-		var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
-		dresscode = custom_names[selected_name]
-
-	if(!dresscode)
-		return
-
-	var/datum/outfit/O
-	H.delete_equipment(TRUE)
-	if(dresscode != "{Naked}")
-		O = new dresscode
-		H.equipOutfit(O, FALSE)
-
-	H.regenerate_icons()
-
-	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
-
-
-/datum/admins/proc/change_squad(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = "Fun"
-	set name = "Change Squad"
-
-	if(!check_rights(R_FUN))
-		return
-
-	if(!istype(H) || !(H.job in JOBS_MARINES))
-		return
-
-	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
-	if(!squad || !istype(H) || !(H.job in JOBS_MARINES))
-		return
-
-	H.change_squad(squad)
-
-	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
-	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
 
 
 /datum/admins/proc/create_outfit()
@@ -1031,3 +973,49 @@
 		return
 
 	togglebuildmode(usr)
+
+
+/datum/admins/proc/imaginary_friend()
+	set category = "Fun"
+	set name = "Imaginary Friend"
+
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+
+	if(istype(usr, /mob/camera/imaginary_friend))
+		var/mob/camera/imaginary_friend/IF = usr
+		IF.deactivate()
+		return
+
+	if(is_mentor(usr.client) && !isobserver(usr))
+		to_chat(usr, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
+		return
+
+	if(!isobserver(usr))
+		usr.client.holder.admin_ghost()
+
+	var/mob/living/L
+	switch(input("Select by:", "Imaginary Friend") as null|anything in list("Key", "Mob"))
+		if("Key")
+			var/client/C = input("Please, select a key.", "Imaginary Friend") as null|anything in sortKey(GLOB.clients)
+			if(!C)
+				return
+			L = C.mob
+		if("Mob")
+			var/mob/M = input("Please, select a mob.", "Imaginary Friend") as null|anything in sortNames(GLOB.mob_living_list)
+			if(!M)
+				return
+			L = M
+
+	if(!isobserver(usr))
+		return
+
+	if(!istype(L))
+		to_chat("<span class='warning'>Selected mob is not alive.</span>")
+		return
+
+	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
+	usr.mind.transfer_to(IF)
+
+	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")

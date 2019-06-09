@@ -2,7 +2,7 @@
 	icon = 'icons/obj/mining_drill.dmi'
 	anchored = 0
 	use_power = 0 //The drill takes power directly from a cell.
-	density = 1
+	density = TRUE
 	layer = ABOVE_MOB_LAYER //So it draws over mobs in the tile north of it.
 
 /obj/machinery/mining/drill

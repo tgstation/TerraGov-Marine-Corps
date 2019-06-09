@@ -51527,7 +51527,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/item/radio/electropack,
+/obj/item/electropack,
 /obj/item/clothing/head/helmet,
 /turf/open/floor/prison,
 /area/prison/execution)

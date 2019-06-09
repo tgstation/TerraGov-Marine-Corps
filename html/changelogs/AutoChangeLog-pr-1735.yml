@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "Create a new locator hud that points to the field commander for squad leaders, and acting squad leaders."

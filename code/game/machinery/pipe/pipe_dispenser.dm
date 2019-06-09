@@ -2,8 +2,8 @@
 	name = "Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
@@ -111,8 +111,8 @@
 	name = "Disposal Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 /obj/machinery/pipedispenser/disposal
 	name = "disposal pipe dispenser"
 	icon = 'icons/obj/stationobjs.dmi'

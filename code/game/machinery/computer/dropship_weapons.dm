@@ -2,7 +2,7 @@
 /obj/machinery/computer/dropship_weapons
 	name = "abstract dropship weapons controls"
 	desc = "A computer to manage equipments and weapons installed on the dropship."
-	density = 1
+	density = TRUE
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleright"
 	circuit = null

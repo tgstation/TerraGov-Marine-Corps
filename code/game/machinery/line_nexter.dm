@@ -3,9 +3,9 @@
 	name = "Turnstile"
 	desc = "a one way barrier combined with a bar to pull people out of line."
 	icon = 'icons/Marine/barricades.dmi'
-	density = 1
+	density = TRUE
 	icon_state = "turnstile"
-	anchored = 1
+	anchored = TRUE
 	dir = 8
 	var/last_use
 	var/id

@@ -3,9 +3,9 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	density = 1
+	density = TRUE
 	layer = TABLE_LAYER
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	use_power = 1
 	idle_power_usage = 1

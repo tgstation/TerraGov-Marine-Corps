@@ -8,7 +8,7 @@
 	icon = 'icons/obj/structures/jungle.dmi'
 	icon_state = "bush1"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	layer = BUSH_LAYER
 	var/indestructable = 0
 	var/stump = 0

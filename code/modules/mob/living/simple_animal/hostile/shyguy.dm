@@ -334,7 +334,7 @@
 		visible_message("<span class='danger'>[src] grabs [T]!</span>")
 		setDir(SOUTH)
 		T.KnockDown(10)
-		T.anchored = 1
+		T.anchored = TRUE
 		var/original_y = T.pixel_y
 		T.pixel_y = 10
 		murdering = 1

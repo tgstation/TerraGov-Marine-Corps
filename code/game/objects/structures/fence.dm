@@ -127,7 +127,7 @@
 		R.use(amount_needed)
 		obj_integrity = max_integrity
 		cut = 0
-		density = 1
+		density = TRUE
 		update_icon()
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] repairs [src] with [R].</span>",

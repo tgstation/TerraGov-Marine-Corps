@@ -301,6 +301,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
+	/datum/admins/proc/imaginary_friend,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -354,9 +355,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 
 /world/proc/AVfun()
 	return list(
-	/datum/admins/proc/edit_rank,
-	/datum/admins/proc/select_equipment,
-	/datum/admins/proc/change_squad,
+	/datum/admins/proc/rank_and_equipment,
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,

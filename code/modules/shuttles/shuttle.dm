@@ -162,8 +162,9 @@
 					to_chat(M, "<span class='warning'>The floor lurches beneath you!</span>")
 					shake_camera(M, iselevator? 2 : 10, 1)
 		if(iscarbon(M) && !iselevator)
-			if(!M.buckled)
-				M.KnockDown(3)
+			var/mob/living/carbon/C = M
+			if(!C.buckled)
+				C.KnockDown(3)
 
 	for(var/turf/T in origin) // WOW so hacky - who cares. Abby
 		if(iselevator)

@@ -524,26 +524,49 @@
 	else if(!issilicon(user) && isElectrified())
 		shock(user, 75)
 
-	if(iswelder(I) && !operating && density)
+	else if(iswelder(I) && !operating && density)
 		var/obj/item/tool/weldingtool/W = I
 
 		if(not_weldable)
 			to_chat(user, "<span class='warning'>\The [src] would require something a lot stronger than [W] to weld!</span>")
 			return
 
-		if(!W.remove_fuel(0,user))
-			return
+		if(user.a_intent != INTENT_HELP)
+			if(!W.tool_start_check(user, amount = 0))
+				return
 
-		user.visible_message("<span class='notice'>[user] starts working on \the [src] with [W].</span>", \
-		"<span class='notice'>You start working on \the [src] with [W].</span>", \
-		"<span class='notice'>You hear welding.</span>")
-		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || density)
-			return
+			user.visible_message("<span class='notice'>[user] is [welded ? "unwelding":"welding"] the airlock.</span>", \
+							"<span class='notice'>You begin [welded ? "unwelding":"welding"] the airlock...</span>", \
+							"<span class='italics'>You hear welding.</span>")
 
-		welded = !welded
-		update_icon()
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+				return
+
+			welded = !welded
+			user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
+								"<span class='notice'>You [welded ? "weld the airlock shut":"unweld the airlock"].</span>")
+			update_icon()
+		else
+			if(obj_integrity >= max_integrity)
+				to_chat(user, "<span class='notice'>The airlock doesn't need repairing.</span>")
+				return
+
+			if(!W.tool_start_check(user, amount=0))
+				return
+
+			user.visible_message("<span class='notice'>[user] is welding the airlock.</span>", \
+							"<span class='notice'>You begin repairing the airlock...</span>", \
+							"<span class='italics'>You hear welding.</span>")
+
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+				return
+
+			obj_integrity = max_integrity
+			DISABLE_BITFIELD(machine_stat, BROKEN)
+			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
+								"<span class='notice'>You finish repairing the airlock.</span>")
+			update_icon()
+				
 
 	else if(isscrewdriver(I))
 		if(no_panel)
@@ -919,3 +942,7 @@
 	playsound(src, 'sound/machines/boltsup.ogg', 30, 0, 3)
 	audible_message("<span class='notice'>You hear a click from the bottom of the door.</span>", null,  1)
 	update_icon()
+
+
+/obj/machinery/door/airlock/proc/weld_checks()
+	return !operating && density

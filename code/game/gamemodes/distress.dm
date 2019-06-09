@@ -518,7 +518,7 @@
 					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 			qdel(query_get_new_polls)
 			if(QDELETED(src))
-				return
+				return FALSE
 
 	output += "</div>"
 
@@ -526,6 +526,9 @@
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
 	popup.open(FALSE)
+
+	return TRUE
+
 
 /datum/game_mode/distress/proc/announce_bioscans(delta = 2)
 	var/list/xenoLocationsP = list()
@@ -609,8 +612,8 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 [numHostsPlanet] human\s on the planet.
 [numHostsShip] human\s on the ship.</span>"})
 
-	message_admins("Bioscan - Humans received: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[numHostsShipr && hostLocationS ? " Location: [hostLocationS].":""]")
-	message_admins("Bioscan - Xenos received: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]")
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[numHostsShipr && hostLocationS ? " Location: [hostLocationS].":""]")
+	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]")
 
 
 

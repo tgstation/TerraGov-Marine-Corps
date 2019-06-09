@@ -97,6 +97,15 @@
 
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 
+	to_chat(src, msg)
+
+
+/mob/living/show_message(msg, type, alt_msg, alt_type)
+	if(!client)
+		return
+
+	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+
 	if(type)
 		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
 			if(!alt_msg)
@@ -370,51 +379,10 @@
 	return
 
 
-
-/mob/proc/point_to_atom(atom/A, turf/T)
-	//Squad Leaders and above have reduced cooldown and get a bigger arrow
-	if(!mind || !mind.cm_skills || mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
-		recently_pointed_to = world.time + 50
-		new /obj/effect/overlay/temp/point(T)
-
-	else
-		recently_pointed_to = world.time + 10
-		new /obj/effect/overlay/temp/point/big(T)
-	visible_message("<b>[src]</b> points to [A]", null, null, 5)
-	return 1
-
-
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
 	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
-
-
-/mob/proc/update_flavor_text()
-	set src in usr
-	if(usr != src)
-		to_chat(usr, "No.")
-	var/msg = input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null
-
-	if(msg != null)
-		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-		msg = html_encode(msg)
-
-		flavor_text = msg
-
-/mob/proc/warn_flavor_changed()
-	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
-		to_chat(src, "<h2 class='alert'>OOC Warning:</h2>")
-		to_chat(src, "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>")
-
-/mob/proc/print_flavor_text()
-	if (flavor_text && flavor_text != "")
-		var/msg = oldreplacetext(flavor_text, "\n", " ")
-		if(lentext(msg) <= 40)
-			return "<span class='notice'> [msg]</span>"
-		else
-			return "<span class='notice'> [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></span>"
-
 
 
 /client/verb/changes()
@@ -465,12 +433,6 @@
 		var/t1 = text("window=[href_list["mach_close"]]")
 		unset_interaction()
 		src << browse(null, t1)
-
-	else if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, oldreplacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(usr, "[name]")
-	else if(href_list["flavor_change"])
-		update_flavor_text()
 
 	else if(href_list["default_language"])
 		var/language = text2path(href_list["default_language"])

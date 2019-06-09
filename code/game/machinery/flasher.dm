@@ -11,7 +11,7 @@
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
 	var/strength = 10 //How knocked down targets are when flashed.
 	var/base_state = "mflash"
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
@@ -20,7 +20,7 @@
 	strength = 8
 	anchored = 0
 	base_state = "pflash"
-	density = 1
+	density = TRUE
 
 
 /obj/machinery/flasher/power_change()
@@ -55,27 +55,26 @@
 	last_flash = world.time
 	use_power(1500)
 
-	for (var/mob/O in viewers(src, null))
-		if (get_dist(src, O) > range)
+	for(var/mob/living/L in viewers(src, null))
+		if (get_dist(src, L) > range)
 			continue
 
-		if (ishuman(O))
-			var/mob/living/carbon/human/H = O
+		if(isxeno(L))
+			continue
+
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
 			if(H.get_eye_protection() > 0)
 				continue
-
-		if (istype(O, /mob/living/carbon/xenomorph))//So aliens don't get flashed (they have no external eyes)/N
-			continue
-
-		O.KnockDown(strength)
-		if (ishuman(O))
-			var/mob/living/carbon/human/H = O
 			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
-			if (E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
+			if(E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				H.flash_eyes()
 				E.damage += rand(1, 5)
 		else
-			O.flash_eyes()
+			L.flash_eyes()
+
+
+		L.KnockDown(strength)			
 
 
 /obj/machinery/flasher/emp_act(severity)

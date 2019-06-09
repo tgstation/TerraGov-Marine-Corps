@@ -204,7 +204,7 @@
 	force = 8.0
 	w_class = 8.0
 	max_w_class = 8
-	anchored = 1.0
+	anchored = TRUE
 	density = 0
 	cant_hold = list(/obj/item/storage/secure/briefcase)
 

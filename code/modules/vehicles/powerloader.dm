@@ -4,8 +4,8 @@
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	luminosity = 5
 	move_delay = 8
 	max_integrity = 200
@@ -259,6 +259,17 @@
 	desc = "Remains of some unfortunate Cargo Loader. Completely unrepairable."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
-	density = 1
+	density = TRUE
 	anchored = 0
 	opacity = 0
+
+
+/obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent == INTENT_HARM)
+		X.animation_attack_on(src)
+		X.flick_attack_overlay(src, "slash")
+		playsound(loc, "alien_claw_metal", 25, 1)
+		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
+		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
+	else
+		attack_hand(X)

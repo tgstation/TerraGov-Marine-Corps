@@ -1269,7 +1269,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 		var/mob_key = M.ckey
 		var/mob_id = M.computer_id
-		var/mob_ip = M.lastKnownIP
+		var/mob_ip = M.ip_address
 		var/client/mob_client = M.client
 		if(!check_if_greater_rights_than(mob_client))
 			return

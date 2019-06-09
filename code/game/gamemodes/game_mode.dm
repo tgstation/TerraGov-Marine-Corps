@@ -175,7 +175,7 @@
 			roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
-	for(var/i in GLOB.player_list)
+	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/player = i
 		if(!(player.client?.prefs?.be_special & role) || !player.ready)
 			continue
@@ -563,8 +563,8 @@
 				else
 					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 			qdel(query_get_new_polls)
-			if(QDELETED(src))
-				return
+			if(QDELETED(NP))
+				return FALSE
 
 	output += "</div>"
 
@@ -573,10 +573,13 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
+	return TRUE
+
+
 /datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
-	if(src != usr || !isnewplayer(M))
+	if(!isnewplayer(M))
 		return
-	var/mob/new_player/NP
+	var/mob/new_player/NP = M
 	if(!NP.IsJobAvailable(rank))
 		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
 		return
@@ -587,7 +590,7 @@
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return
 
-	if(!SSjob.AssignRole(src, rank, TRUE))
+	if(!SSjob.AssignRole(NP, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
 
@@ -609,7 +612,7 @@
 
 	handle_late_spawn(character)
 
-	qdel(src)
+	qdel(NP)
 
 
 /datum/game_mode/proc/handle_late_spawn(mob/C)

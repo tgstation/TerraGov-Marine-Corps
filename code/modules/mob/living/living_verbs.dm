@@ -307,3 +307,35 @@
 	var/mob/dead/observer/ghost = ghostize(FALSE)
 	if(ghost)
 		ghost.timeofdeath = world.time
+
+
+/mob/living/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
+	set name = "Point To"
+	set category = "Object"
+
+	if(!isturf(loc))
+		return FALSE
+
+	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
+		return FALSE
+
+	if(!A.mouse_opacity) //Can't click it? can't point at it.
+		return FALSE
+
+	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
+		return FALSE
+
+	var/tile = get_turf(A)
+	if(!tile)
+		return FALSE
+
+	if(next_move > world.time)
+		return FALSE
+
+	if(recently_pointed_to > world.time)
+		return FALSE
+
+	next_move = world.time + 2
+
+	point_to_atom(A, tile)
+	return TRUE

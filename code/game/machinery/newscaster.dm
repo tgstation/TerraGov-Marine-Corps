@@ -94,7 +94,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	var/hitstaken = 0      //Death at 3 hits from an item with force>=15
 	var/datum/feed_channel/viewing_channel = null
 	luminosity = 0
-	anchored = 1
+	anchored = TRUE
 
 
 /obj/machinery/newscaster/security_unit                   //Security unit

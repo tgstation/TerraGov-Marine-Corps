@@ -35,9 +35,9 @@
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
-		if(ismob(A))
-			var/mob/M = A
-			M.SetKnockeddown(1)
+		if(isliving(A))
+			var/mob/living/L = A
+			L.SetKnockeddown(1)
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
 	. = ..()
@@ -160,10 +160,8 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(CALLBACK(src, .proc/do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(VARSET_CALLBACK(src, lastpuke, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
-/mob/living/carbon/proc/do_vomit_cooldown()
-	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(health >= get_crit_threshold())
@@ -324,11 +322,11 @@
 	set name = "Sleep"
 	set category = "IC"
 
-	if(usr.sleeping)
-		to_chat(usr, "<span class='warning'>You are already sleeping</span>")
+	if(sleeping)
+		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		usr.sleeping = 20 //Short nap
+		sleeping = 20 //Short nap
 
 
 /mob/living/carbon/Bump(atom/movable/AM, yes)

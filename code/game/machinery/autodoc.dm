@@ -30,8 +30,8 @@
 	desc = "A fancy machine developed to be capable of operating on people with minimal human intervention. However, the interface is rather complex and most of it would only be useful to trained medical personnel."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "autodoc_open"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	var/locked = FALSE
 	var/mob/living/carbon/human/occupant = null
@@ -710,8 +710,9 @@
 			qdel(O)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	for(var/atom/movable/A in contents)
-		A.forceMove(loc)
+	for(var/A in contents - radio)
+		var/atom/movable/B = A
+		B.forceMove(loc)
 	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
@@ -813,14 +814,14 @@
 
 	if(!do_after(user, 10, FALSE, M, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
-		
+
 	if(occupant)
 		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
-	if(!M || !G) 
+	if(!M || !G)
 		return
-		
+
 	M.forceMove(src)
 	update_use_power(2)
 	occupant = M
@@ -842,7 +843,7 @@
 	var/release_notice = TRUE //Are notifications for patient discharges turned on?
 	var/locked = FALSE //Medics, Doctors and so on can lock this.
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
-	anchored = 1 //About time someone fixed this.
+	anchored = TRUE //About time someone fixed this.
 	density = 0
 
 	use_power = 1

@@ -167,7 +167,7 @@
 	icon_state = "trap0"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
@@ -392,7 +392,7 @@
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]closing",src)
 	sleep(10)
-	density = 1
+	density = TRUE
 	opacity = 1
 	state = 0
 	update_icon()
@@ -697,7 +697,7 @@ TUNNEL
 
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 

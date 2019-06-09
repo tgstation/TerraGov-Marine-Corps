@@ -1,5 +1,0 @@
-author: "Shadow-Quill"
-delete-after: True
-changes: 
-  - tweak: "CMO now starts with a command headset"
-  - rscdel: "Removed now unused command headsets and encryption keys."

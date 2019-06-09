@@ -7,8 +7,8 @@
 	icon_state = "power"
 
 	//computer stuff
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/circuitboard/computer/powermonitor
 	use_power = 1
 	idle_power_usage = 300

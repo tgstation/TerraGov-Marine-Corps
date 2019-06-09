@@ -3,8 +3,8 @@
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon_state = "table"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	throwpass = 1	//You can throw objects over this, despite it's density.
 
 
@@ -24,17 +24,17 @@
 
 	else if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
-		if(!ismob(G.grabbed_thing))
+		if(!isliving(G.grabbed_thing))
 			return
 
-		var/mob/M = G.grabbed_thing
+		var/mob/living/L = G.grabbed_thing
 		if(user.grab_level < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 
-		M.forceMove(loc)
-		M.KnockDown(5)
-		user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
+		L.forceMove(loc)
+		L.KnockDown(5)
+		user.visible_message("<span class='danger'>[user] puts [L] on the table.</span>")
 
 	else
 		return ..()
@@ -50,9 +50,9 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "rwindow"
 	desc = "A window."
-	density = 1
+	density = TRUE
 	layer = WINDOW_LAYER
-	anchored = 1.0
+	anchored = TRUE
 	flags_atom = ON_BORDER
 
 
@@ -81,8 +81,8 @@
 	desc = "Boom, Shakalaka!"
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "hoop"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	throwpass = 1
 	var/side = ""
 	var/id = ""
@@ -92,20 +92,20 @@
 	
 	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
-		if(!ismob(G.grabbed_thing))
+		if(!isliving(G.grabbed_thing))
 			return
 
-		var/mob/M = G.grabbed_thing
+		var/mob/living/L = G.grabbed_thing
 		if(user.grab_level < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
-		M.forceMove(loc)
-		M.KnockDown(5)
+		L.forceMove(loc)
+		L.KnockDown(5)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob
 				// no break, to update multiple scoreboards
-		visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
+		visible_message("<span class='danger'>[user] dunks [L] into the [src]!</span>")
 
 	else if(get_dist(src, user) < 2)
 		user.transferItemToLoc(I, loc)

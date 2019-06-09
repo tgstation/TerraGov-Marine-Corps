@@ -5,7 +5,7 @@
 	icon = 'icons/obj/machines/holosign.dmi'
 	icon_state = "sign_off"
 	layer = MOB_LAYER
-	anchored = 1
+	anchored = TRUE
 	var/lit = 0
 	var/id = null
 	var/on_icon = "sign_on"
@@ -40,7 +40,7 @@
 	desc = "A remote control switch for holosign."
 	var/id = null
 	var/active = 0
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4

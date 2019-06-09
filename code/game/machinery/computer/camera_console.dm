@@ -17,7 +17,9 @@
 		network += lowertext(i)
 
 
-/obj/machinery/computer/security/check_eye(mob/user)
+/obj/machinery/computer/security/check_eye(mob/living/user)
+	if(!istype(user))
+		return
 	if((machine_stat & (NOPOWER|BROKEN)) || user.incapacitated() || user.eye_blind )
 		user.unset_interaction()
 		return
@@ -85,11 +87,11 @@
 	use_camera_console(user)
 
 
-/obj/machinery/computer/security/proc/use_camera_console(mob/user)
+/obj/machinery/computer/security/proc/use_camera_console(mob/living/user)
+	if(!istype(user))
+		return
 	var/list/camera_list = get_available_cameras()
 	var/t = input(user, "Which camera should you change to?") as null|anything in camera_list
-	if(user.machine != src) //while we were choosing we got disconnected from our computer or are using another machine.
-		return
 	if(!t)
 		user.unset_interaction()
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
@@ -97,10 +99,6 @@
 
 	var/obj/machinery/camera/C = camera_list[t]
 
-	if(t == "Cancel")
-		user.unset_interaction()
-		playsound(src, 'sound/machines/terminal_off.ogg', 25, 0)
-		return
 	if(C)
 		var/camera_fail = FALSE
 		if(!C.can_use() || user.eye_blind || user.incapacitated())
@@ -143,7 +141,6 @@
 	camera_sort(L)
 
 	var/list/D = list()
-	D["Cancel"] = "Cancel"
 	for(var/obj/machinery/camera/C in L)
 		if(!C.network)
 			stack_trace("Camera in a cameranet has no camera network")

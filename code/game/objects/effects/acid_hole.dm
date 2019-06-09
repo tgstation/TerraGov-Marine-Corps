@@ -3,7 +3,7 @@
 	desc = "What could have done this?"
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_0"
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
