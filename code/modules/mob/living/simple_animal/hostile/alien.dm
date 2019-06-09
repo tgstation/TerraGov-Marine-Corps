@@ -23,6 +23,7 @@
 
 /mob/living/simple_animal/hostile/alien/drone
 	name = "alien drone"
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Drone Running"
 	icon_living = "Drone Running"
 	icon_dead = "Drone Dead"

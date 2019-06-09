@@ -2,8 +2,8 @@
 	name = "crate"
 	desc = "A rectangular steel crate."
 	icon = 'icons/obj/structures/crates.dmi'
-	icon_state = "crate"
-	icon_living = "crate"
+	icon_state = "closed_basic"
+	icon_living = "closed_basic"
 
 	response_help = "touches"
 	response_disarm = "pushes"
@@ -47,7 +47,7 @@
 /mob/living/simple_animal/hostile/mimic/crate/DestroyPathToTarget()
 	. = ..()
 	if(prob(90))
-		icon_state = "[initial(icon_state)]open"
+		icon_state = "open_basic"
 	else
 		icon_state = initial(icon_state)
 

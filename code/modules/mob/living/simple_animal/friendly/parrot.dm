@@ -500,7 +500,7 @@
 			if(I.w_class < WEIGHT_CLASS_SMALL)
 				item = I
 		if(item)
-			if(!AStar(src, get_turf(item), /turf/proc/Distance_cardinal))
+			if(!AStar(get_turf(src), get_turf(item), dist = /turf/proc/Distance_cardinal))
 				item = null
 				continue
 			return item
