@@ -1,0 +1,5 @@
+author: "MoXuT0"
+delete-after: True
+changes: 
+  - bugfix: "Blood overlay for boots shouldn't obscure knife anymore."
+  - imageadd: "Pyro boots now have slighly different icon from default marine boots."
