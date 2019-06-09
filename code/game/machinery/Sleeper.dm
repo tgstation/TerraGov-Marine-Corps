@@ -278,19 +278,22 @@
 		beaker = I
 		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
 		updateUsrDialog()
+		return
 
-	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
-
-	else if(!istype(I, /obj/item/grab))
 		return
 
-	else if(isxeno(user))
+	if(isxeno(user))
 		return
 
-	else if(occupant)
+	if(occupant)
 		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
+		return
+
+
+	if(!istype(I, /obj/item/grab))
 		return
 
 	var/obj/item/grab/G = I
