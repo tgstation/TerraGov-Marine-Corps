@@ -764,7 +764,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(world.view, X))
-		if(possible_target == X || !possible_target.client || isxeno(X))
+		if(possible_target == X || !possible_target.client || isxeno(possible_target))
 			continue
 		target_list += possible_target
 
