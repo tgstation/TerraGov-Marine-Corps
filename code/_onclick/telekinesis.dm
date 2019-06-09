@@ -268,7 +268,7 @@ Redefine as needed.
 	var/mob/living/carbon/xenomorph/shrike/S = tk_user
 	var/mob/living/carbon/human/H = focus
 
-	if(!S.check_state() || !S.psychic_victim || S.loc != starting_master_loc || H.loc != starting_victim_loc || isnestedhost(H))
+	if(!S.check_state() || S.stagger || !S.psychic_victim || S.loc != starting_master_loc || H.loc != starting_victim_loc || isnestedhost(H))
 		STOP_PROCESSING(SSfastprocess, src)
 		qdel(src)
 		return FALSE
