@@ -98,9 +98,16 @@
 
 			if(T)
 				T.ex_act(dist)
-				for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
-					var/atom/movable/AM = atom_movable
-					if(AM)	AM.ex_act(dist)
+				var/list/items = list()
+				for(var/I in T)
+					var/atom/A = I
+					if(A.prevent_content_explosion())
+						continue
+					items += A.GetAllContents()
+				for(var/O in items)
+					var/atom/A = O
+					if(!QDELETED(A))
+						A.ex_act(dist)
 
 
 			//------- TURF FIRES -------
