@@ -197,6 +197,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	// make the icons look correct
 	regenerate_icons()
 	med_hud_set_status()
+	med_pain_set_perceived_health()
 	med_hud_set_health()
 	handle_regular_hud_updates()
 	reload_fullscreens()

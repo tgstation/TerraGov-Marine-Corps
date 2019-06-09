@@ -20,6 +20,7 @@
 #define STATUS_HUD_OBSERVER_INFECTION "16" //gives observers the xeno larval stage
 #define ORDER_HUD "17" //shows what orders are applied to marines
 #define AI_DETECT_HUD "18"
+#define PAIN_HUD "19" //A HUD to display human pain.
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
@@ -39,6 +40,7 @@
 #define DATA_HUD_SQUAD				8
 #define DATA_HUD_ORDER				9
 #define DATA_HUD_AI_DETECT			10
+#define DATA_HUD_MEDICAL_PAIN		11
 
 
 // Notification action types
