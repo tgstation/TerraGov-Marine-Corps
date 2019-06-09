@@ -183,7 +183,7 @@
 			if(Q.observed_xeno)
 				//The reason why we don't check the hive of observed_xeno is just in case the watched xeno isn't of the same hive for whatever reason
 				for(var/xenos in Q.hive.get_all_xenos())
-					var/mob/living/carbon/Xenomorph/Z = xenos
+					var/mob/living/carbon/xenomorph/Z = xenos
 					if(get_dist(Q.observed_xeno, Z) <= phero_range && (Q.observed_xeno.z == Z.z) && !Z.on_fire) //We don't need to check to see if it's dead or if it's the same hive as the list we're pulling from only contain alive xenos of the same hive
 						switch(current_aura)
 							if("frenzy")
@@ -198,7 +198,7 @@
 
 		else
 			for(var/xenos in hive.get_all_xenos())
-				var/mob/living/carbon/Xenomorph/Z = xenos
+				var/mob/living/carbon/xenomorph/Z = xenos
 				if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
 					switch(current_aura)
 						if("frenzy")
@@ -213,7 +213,7 @@
 	if(leader_current_aura)
 		var/phero_range = round(6 + leader_aura_strength * 2)
 		for(var/xenos in hive.get_all_xenos())
-			var/mob/living/carbon/Xenomorph/Z = xenos
+			var/mob/living/carbon/xenomorph/Z = xenos
 			if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
 				switch(leader_current_aura)
 					if("frenzy")
