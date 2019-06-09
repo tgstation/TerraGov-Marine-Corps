@@ -37,8 +37,6 @@
 	if(!attached)
 		return
 
-	fuel_amount -= 1
-
-	if(fuel_amount == 0)
+	if(!--fuel_amount)
 		STOP_PROCESSING(SSobj, src)
 		return

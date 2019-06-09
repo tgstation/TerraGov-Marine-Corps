@@ -10,3 +10,4 @@
 	desc = "Better keep this safe."
 	icon_state = "nucleardisk"
 	w_class = WEIGHT_CLASS_TINY
+	resistance_flags = UNACIDABLE | INDESTRUCTIBLE

@@ -1,5 +1,3 @@
-var/bomb_set
-
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
 	desc = "Uh oh. RUN!!!!"
@@ -7,19 +5,19 @@ var/bomb_set
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	resistance_flags = UNACIDABLE
-	var/deployable = 0.0
-	var/extended = 0.0
-	var/lighthack = 0
+	var/deployable = FALSE
+	var/extended = FALSE
+	var/lighthack = FALSE
 	var/timeleft = 60.0
 	var/timing = 0.0
 	var/r_code = "ADMIN"
 	var/code = ""
-	var/yes_code = 0.0
-	var/safety = 1.0
+	var/yes_code = FALSE
+	var/safety = TRUE
 	var/obj/item/disk/nuclear/auth = null
 	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open,
 	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
-	use_power = 0
+	use_power = FALSE
 
 
 
@@ -28,14 +26,14 @@ var/bomb_set
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
 
 /obj/machinery/nuclearbomb/process()
-	if (src.timing)
-		bomb_set = 1 //So long as there is one nuke timing, it means one nuke is armed.
-		src.timeleft--
-		if (src.timeleft <= 0)
+	if (timing)
+		timeleft--
+		if (timeleft <= 0)
 			explode()
+			return
 		for(var/mob/M in viewers(1, src))
 			if ((M.client && M.interactee == src))
-				src.attack_hand(M)
+				attack_hand(M)
 	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
@@ -159,7 +157,7 @@ var/bomb_set
 	return attack_hand(user)
 
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
-	if (src.extended)
+	if (extended)
 		if (!ishuman(user))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return 1
@@ -168,45 +166,83 @@ var/bomb_set
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return 1
 		user.set_interaction(src)
-		var/dat = text("<B>Nuclear Fission Explosive</B><BR>\nAuth. Disk: <A href='?src=\ref[];auth=1'>[]</A><HR>", src, (src.auth ? "++++++++++" : "----------"))
-		if (src.auth)
-			if (src.yes_code)
-				dat += text("\n<B>Status</B>: []-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] <A href='?src=\ref[];timer=1'>Toggle</A><BR>\nTime: <A href='?src=\ref[];time=-10'>-</A> <A href='?src=\ref[];time=-1'>-</A> [] <A href='?src=\ref[];time=1'>+</A> <A href='?src=\ref[];time=10'>+</A><BR>\n<BR>\nSafety: [] <A href='?src=\ref[];safety=1'>Toggle</A><BR>\nAnchor: [] <A href='?src=\ref[];anchor=1'>Toggle</A><BR>\n", (src.timing ? "Func/Set" : "Functional"), (src.safety ? "Safe" : "Engaged"), src.timeleft, (src.timing ? "On" : "Off"), src, src, src, src.timeleft, src, src, (src.safety ? "On" : "Off"), src, (src.anchored ? "Engaged" : "Off"), src)
+
+
+		var/safe_text = (safety) ? "Safe" : "Engaged"
+		var/status
+		if (auth)
+			if (yes_code)
+				status = "[timing ? "Func/Set" : "Functional"]-[safe_text]"
 			else
-				dat += text("\n<B>Status</B>: Auth. S2-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\n[] Safety: Toggle<BR>\nAnchor: [] Toggle<BR>\n", (src.safety ? "Safe" : "Engaged"), src.timeleft, (src.timing ? "On" : "Off"), src.timeleft, (src.safety ? "On" : "Off"), (src.anchored ? "Engaged" : "Off"))
+				status = "Auth. S2-[safe_text]"
 		else
-			if (src.timing)
-				dat += text("\n<B>Status</B>: Set-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\nSafety: [] Toggle<BR>\nAnchor: [] Toggle<BR>\n", (src.safety ? "Safe" : "Engaged"), src.timeleft, (src.timing ? "On" : "Off"), src.timeleft, (src.safety ? "On" : "Off"), (src.anchored ? "Engaged" : "Off"))
+			if (timing)
+				status = "Set-[safe_text]"
 			else
-				dat += text("\n<B>Status</B>: Auth. S1-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\nSafety: [] Toggle<BR>\nAnchor: [] Toggle<BR>\n", (src.safety ? "Safe" : "Engaged"), src.timeleft, (src.timing ? "On" : "Off"), src.timeleft, (src.safety ? "On" : "Off"), (src.anchored ? "Engaged" : "Off"))
-		var/message = "AUTH"
-		if (src.auth)
-			message = text("[]", src.code)
-			if (src.yes_code)
-				message = "*****"
-		dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n", message, src, src, src, src, src, src, src, src, src, src, src, src)
+				status = "Auth. S1-[safe_text]"
+		
+		var/html = {"
+		<b>Nuclear Fission Explosive</b><br />
+		Auth. Disk: <a href='?src=[REF(src)];auth=1'>[auth ? "++++++++++" : "----------"]</a>
+		<hr />
+		<b>Status</b>: [status]<br />
+		<b>Timer</b>: [timeleft]<br />
+		<br />
+		Timer: [timing ? "On" : "Off"] [yes_code ? "<a href='?src=[REF(src)];timer=1'>Toggle</a>" : "Toggle"] <br />
+		Time: [yes_code ? "<a href='?src=[REF(src)];time=-10'>--</a> <a href='?src=[REF(src)];time=-1'>-</a> [timeleft] <a href='?src=[REF(src)];time=1'>+</a> <a href='?src=[REF(src)];time=10'>++</a>" : "- - [timeleft] + +"] <br />
+		<br />
+		Safety: [safety ? "On" : "Off"] [yes_code ? "<a href='?src=[REF(src)];safety=1'>Toggle</a>" : "Toggle"] <br />
+		Anchor: [anchored ? "Engaged" : "Off"] [yes_code ? "<a href='?src=[REF(src)];anchor=1'>Toggle</a>" : "Toggle"] <br />
+		<hr />
+		> [yes_code ? "*****" : code]<br />
+		<a href='?src=[REF(src)];type=1'>1</a> - <a href='?src=[REF(src)];type=2'>2</a> - <a href='?src=[REF(src)];type=3'>3</a> <br />
+		<a href='?src=[REF(src)];type=4'>4</a> - <a href='?src=[REF(src)];type=5'>5</a> - <a href='?src=[REF(src)];type=6'>6</a> <br />
+		<a href='?src=[REF(src)];type=7'>7</a> - <a href='?src=[REF(src)];type=8'>8</a> - <a href='?src=[REF(src)];type=9'>9</a> <br />
+		<a href='?src=[REF(src)];type=R'>R</a> - <a href='?src=[REF(src)];type=0'>0</a> - <a href='?src=[REF(src)];type=E'>E</a> <br />
+		"}
+
+		// if (auth)
+		// 	if (yes_code)
+		// 		dat += text("\n<B>Status</B>: []-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] <A href='?src=\ref[];timer=1'>Toggle</A><BR>\nTime: <A href='?src=\ref[];time=-10'>-</A> <A href='?src=\ref[];time=-1'>-</A> [] <A href='?src=\ref[];time=1'>+</A> <A href='?src=\ref[];time=10'>+</A><BR>\n<BR>\nSafety: [] <A href='?src=\ref[];safety=1'>Toggle</A><BR>\nAnchor: [] <A href='?src=\ref[];anchor=1'>Toggle</A><BR>\n", (timing ? "Func/Set" : "Functional"), (safety ? "Safe" : "Engaged"), timeleft, (timing ? "On" : "Off"), src, src, src, timeleft, src, src, (safety ? "On" : "Off"), src, (anchored ? "Engaged" : "Off"), src)
+		// 	else
+		// 		dat += text("\n<B>Status</B>: Auth. S2-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\n[] Safety: Toggle<BR>\nAnchor: [] Toggle<BR>\n", (safety ? "Safe" : "Engaged"), timeleft, (timing ? "On" : "Off"), timeleft, (safety ? "On" : "Off"), (anchored ? "Engaged" : "Off"))
+		// else
+		// 	if (timing)
+		// 		dat += text("\n<B>Status</B>: Set-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\nSafety: [] Toggle<BR>\nAnchor: [] Toggle<BR>\n", (safety ? "Safe" : "Engaged"), timeleft, (timing ? "On" : "Off"), timeleft, (safety ? "On" : "Off"), (anchored ? "Engaged" : "Off"))
+		// 	else
+		// 		dat += text("\n<B>Status</B>: Auth. S1-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\nSafety: [] Toggle<BR>\nAnchor: [] Toggle<BR>\n", (safety ? "Safe" : "Engaged"), timeleft, (timing ? "On" : "Off"), timeleft, (safety ? "On" : "Off"), (anchored ? "Engaged" : "Off"))
+		// var/message = "AUTH"
+		// if (auth)
+		// 	message = text("[]", code)
+		// 	if (yes_code)
+		// 		message = "*****"
+		// dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n", message, src, src, src, src, src, src, src, src, src, src, src, src)
 		var/datum/browser/popup = new(user, "nuclearbomb", "<div align='center'>Nuclear Bomb</div>", 300, 400)
-		popup.set_content(dat)
+		popup.set_content(html)
 		popup.open(FALSE)
 		onclose(user, "nuclearbomb")
-	else if (src.deployable)
+	else if (deployable)
+		if (!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			return
 		if(removal_stage < 5)
-			src.anchored = TRUE
+			anchored = TRUE
 			visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
 			visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
-		if(!src.lighthack)
+		if(!lighthack)
 			flick("nuclearbombc", src)
-			src.icon_state = "nuclearbomb1"
-		src.extended = 1
+			icon_state = "nuclearbomb1"
+		extended = TRUE
 	return
 
 obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
-	var/dat
-	dat += "<B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
-	dat += text("<HR>The device is [src.timing ? "shaking!" : "still"]<BR>")
-	dat += text("The device is [src.safety ? "quiet" : "whirring"].<BR>")
-	dat += text("The lights are [src.lighthack ? "static" : "functional"].<BR>")
+	var/dat = {"
+	<b>Nuclear Fission Explosive</b><br>
+	Nuclear Device Wires:<hr>
+	<hr>The device is [timing ? "shaking!" : "still"]<br>
+	The device is [safety ? "quiet" : "whirring"].<br>
+	The lights are [lighthack ? "static" : "functional"].<br>
+	"}
 	var/datum/browser/popup = new(user, "nukebomb_hack", "<div align='center'>Bomb Defusion</div>")
 	popup.set_content(dat)
 	popup.open(FALSE)
@@ -222,100 +258,94 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 		return
 	if (!ishuman(usr))
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return 1
+		return
 
-	if (src.deployable)
+	if (deployable)
 		to_chat(usr, "<span class='warning'>You close several panels to make [src] undeployable.</span>")
-		src.deployable = 0
+		deployable = FALSE
 	else
 		to_chat(usr, "<span class='warning'>You adjust some panels to make [src] deployable.</span>")
-		src.deployable = 1
+		deployable = TRUE
 	return
 
 
 /obj/machinery/nuclearbomb/Topic(href, href_list)
-	..()
+	. = ..()
 	if (!usr.canmove || usr.stat || usr.restrained())
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
-		usr.set_interaction(src)
-		if (href_list["auth"])
-			if (src.auth)
-				src.auth.loc = src.loc
-				src.yes_code = 0
-				src.auth = null
-			else
-				var/obj/item/I = usr.get_active_held_item()
-				if (istype(I, /obj/item/disk/nuclear))
-					if(usr.drop_held_item())
-						I.forceMove(src)
-						auth = I
-		if (src.auth)
-			if (href_list["type"])
-				if (href_list["type"] == "E")
-					if (src.code == src.r_code)
-						src.yes_code = 1
-						src.code = null
-					else
-						src.code = "ERROR"
-				else
-					if (href_list["type"] == "R")
-						src.yes_code = 0
-						src.code = null
-					else
-						src.code += text("[]", href_list["type"])
-						if (length(src.code) > 5)
-							src.code = "ERROR"
-			if (src.yes_code)
-				if (href_list["time"])
-					var/time = text2num(href_list["time"])
-					src.timeleft += time
-					src.timeleft = min(max(round(src.timeleft), 60), 600)
-				if (href_list["timer"])
-					if (src.timing == -1.0)
-						return
-					if (src.safety)
-						to_chat(usr, "<span class='warning'>The safety is still on.</span>")
-						return
-					src.timing = !( src.timing )
-					if (src.timing)
-						if(!src.lighthack)
-							src.icon_state = "nuclearbomb2"
-						if(!src.safety)
-							bomb_set = 1//There can still be issues with this reseting when there are multiple bombs. Not a big deal tho for Nuke/N
-						else
-							bomb_set = 0
-					else
-						bomb_set = 0
-						if(!src.lighthack)
-							src.icon_state = "nuclearbomb1"
-				if (href_list["safety"])
-					src.safety = !( src.safety )
-					if(safety)
-						src.timing = 0
-						stop_processing()
-						bomb_set = 0
-				if (href_list["anchor"])
-
-					if(removal_stage == 5)
-						src.anchored = 0
-						visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
-						return
-
-					src.anchored = !( src.anchored )
-					if(src.anchored)
-						visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
-					else
-						visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
-
-		for(var/mob/M in viewers(1, src))
-			if ((M.client && M.interactee == src))
-				src.attack_hand(M)
-	else
+	if (!(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
 		usr << browse(null, "window=nuclearbomb")
 		return
-	return
 
+	usr.set_interaction(src)
+
+	if (href_list["auth"])
+		if (auth)
+			auth.loc = loc
+			yes_code = FALSE
+			auth = null
+		else
+			var/obj/item/I = usr.get_active_held_item()
+			if (istype(I, /obj/item/disk/nuclear))
+				if(usr.drop_held_item())
+					I.forceMove(src)
+					auth = I
+	if (auth)
+		if (href_list["type"])
+			if (href_list["type"] == "E")
+				if (code == r_code)
+					yes_code = TRUE
+					code = null
+				else
+					code = "ERROR"
+			else
+				if (href_list["type"] == "R")
+					yes_code = FALSE
+					code = null
+				else
+					code += text("[]", href_list["type"])
+					if (length(code) > 5)
+						code = "ERROR"
+		if (yes_code)
+			if (href_list["time"])
+				var/time = text2num(href_list["time"])
+				timeleft += time
+				timeleft = min(max(round(timeleft), 60), 600)
+			if (href_list["timer"])
+				if (timing == -1.0)
+					return
+				if (safety)
+					to_chat(usr, "<span class='warning'>The safety is still on.</span>")
+					return
+				timing = !timing
+				if(timing)
+					start_processing()
+				if(!lighthack)
+					icon_state = (timing) ? "nuclearbomb2" : "nuclearbomb1"
+			if (href_list["safety"])
+				safety = !safety
+				if(safety)
+					timing = FALSE
+					stop_processing()
+				else
+					start_processing()
+			if (href_list["anchor"])
+
+				if(removal_stage == 5)
+					anchored = FALSE
+					visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+					return
+
+				anchored = !anchored
+				if(anchored)
+					visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
+				else
+					visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
+
+	for(var/mob/M in viewers(1, src))
+		if ((M.client && M.interactee == src))
+			attack_hand(M)
+		
 
 /obj/machinery/nuclearbomb/ex_act(severity)
 	return
@@ -324,11 +354,11 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	if(safety)
 		timing = 0
 		stop_processing()
-		return FALSE
+		return
 	timing = -1.0
-	yes_code = 0
-	safety = 1
-	if(!lighthack) icon_state = "nuclearbomb3"
+	yes_code = FALSE
+	safety = TRUE
+	if(!lighthack) 
+		icon_state = "nuclearbomb3"
 
 	SSevacuation.initiate_self_destruct(TRUE) //The round ends as soon as this happens, or it should.
-	return TRUE
