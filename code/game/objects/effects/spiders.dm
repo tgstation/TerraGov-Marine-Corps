@@ -123,29 +123,7 @@
 				visible_message("<B>[src] scrambles into the ventilation ducts!</B>", \
 								"<span class='italics'>You hear something scampering through the ventilation ducts.</span>")
 
-			spawn(rand(20,60))
-				forceMove(exit_vent)
-				var/travel_time = round(get_dist(loc, exit_vent.loc) / 2)
-				spawn(travel_time)
-
-					if(!exit_vent || exit_vent.welded)
-						forceMove(entry_vent)
-						entry_vent = null
-						return
-
-					if(prob(50))
-						audible_message("<span class='italics'>You hear something scampering through the ventilation ducts.</span>")
-					sleep(travel_time)
-
-					if(!exit_vent || exit_vent.welded)
-						forceMove(entry_vent)
-						entry_vent = null
-						return
-					forceMove(exit_vent.loc)
-					entry_vent = null
-					var/area/new_area = get_area(loc)
-					if(new_area)
-						new_area.Entered(src)
+			addtimer(CALLBACK(src, .proc/move_to_vent, exit_vent), rand(2 SECONDS, 6 SECONDS))
 
 	else if(prob(33))
 		var/list/nearby = oview(10, src)
@@ -171,6 +149,36 @@
 			var/mob/living/simple_animal/hostile/poison/giant_spider/S = new grow_as(loc)
 			S.faction = faction.Copy()
 			qdel(src)
+
+
+/obj/structure/spider/spiderling/proc/move_to_vent(obj/machinery/atmospherics/components/unary/vent_pump/exit_vent)
+	forceMove(exit_vent)
+	var/travel_time = round(get_dist(loc, exit_vent.loc) / 2)
+	addtimer(CALLBACK(src, .proc/travel_delay, exit_vent, travel_time), travel_time)
+
+
+/obj/structure/spider/spiderling/proc/travel_delay(obj/machinery/atmospherics/components/unary/vent_pump/exit_vent, travel_time)
+	if(!exit_vent || exit_vent.welded)
+		forceMove(entry_vent)
+		entry_vent = null
+		return
+
+	if(prob(50))
+		audible_message("<span class='italics'>You hear something scampering through the ventilation ducts.</span>")
+
+	addtimer(CALLBACK(src, .proc/exit_vent, exit_vent), travel_time)
+
+
+/obj/structure/spider/spiderling/proc/exit_vent(obj/machinery/atmospherics/components/unary/vent_pump/exit_vent)
+	if(!exit_vent || exit_vent.welded)
+		forceMove(entry_vent)
+		entry_vent = null
+		return
+	forceMove(exit_vent.loc)
+	entry_vent = null
+	var/area/new_area = get_area(loc)
+	if(new_area)
+		new_area.Entered(src)
 
 
 /obj/structure/spider/cocoon
