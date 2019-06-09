@@ -567,8 +567,7 @@
 					return
 				qdel(query_message_read)
 			if("watchlist entry")
-				message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(target_ckey)] has been on the watchlist since [timestamp] and has just connected - Reason: [text]</font>")
-				send2irc_adminless_only("Watchlist", "[key_name(target_ckey)] is on the watchlist and has just connected - Reason: [text]")
+				addtimer(CALLBACK(GLOBAL_PROC, .print_watchlist, key_name(target_ckey), timestamp, text), 2 SECONDS)
 			if("memo")
 				output += "<span class='memo'>Memo by <span class='prefix'>[admin_key]</span> on [timestamp]"
 				if(editor_key)
@@ -576,3 +575,8 @@
 				output += "<br>[text]</span><br>"
 	qdel(query_get_message_output)
 	return output
+
+
+/proc/print_watchlist(ckey, timestamp, text)
+	message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[ckey] has been on the watchlist since [timestamp] and has just connected - Reason: [text]</font>")
+	send2irc_adminless_only("Watchlist", "[ckey] is on the watchlist and has just connected - Reason: [text]")
