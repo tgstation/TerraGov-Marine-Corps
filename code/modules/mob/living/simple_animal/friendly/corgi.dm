@@ -2,6 +2,7 @@
 	name = "\improper corgi"
 	real_name = "corgi"
 	desc = "It's a corgi."
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
@@ -21,7 +22,6 @@
 	name = "\improper pug"
 	real_name = "pug"
 	desc = "It's a pug."
-	icon = 'icons/mob/pets.dmi'
 	icon_state = "pug"
 	icon_living = "pug"
 	icon_dead = "pug_dead"
@@ -30,7 +30,6 @@
 /mob/living/simple_animal/corgi/exoticcorgi
 	name = "Exotic Corgi"
 	desc = "As cute as it is colorful!"
-	icon = 'icons/mob/pets.dmi'
 	icon_state = "corgigrey"
 	icon_living = "corgigrey"
 	icon_dead = "corgigrey_dead"
