@@ -160,10 +160,8 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(CALLBACK(src, .proc/do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(VARSET_CALLBACK(src, lastpuke, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
-/mob/living/carbon/proc/do_vomit_cooldown()
-	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(health >= get_crit_threshold())
