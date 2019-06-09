@@ -3,7 +3,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //randomizing pill icons
-GLOBAL_LIST_EMPTY(randomized_pill_icons)
+GLOBAL_LIST_INIT(randomized_pill_icons, shuffle(list("pill1","pill2","pill3","pill4","pill5","pill6","pill7",
+													"pill8","pill9","pill10","pill11","pill12","pill13","pill14",
+													"pill15","pill16","pill17","pill18","pill19","pill20","pill21")))
 
 
 /obj/item/reagent_container/pill
@@ -20,12 +22,8 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 /obj/item/reagent_container/pill/Initialize()
 	. = ..()
-	if(!LAZYLEN(GLOB.randomized_pill_icons))
-		var/list/allowed_numbers = shuffle(list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21))
-		for(var/i in 1 to length(allowed_numbers))
-			GLOB.randomized_pill_icons += "pill[allowed_numbers[i]]"
 	if(!icon_state)
-		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : "pill[rand(1,21)]"
+		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
 
 /obj/item/reagent_container/pill/attack_self(mob/user as mob)
 	return
