@@ -195,8 +195,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return TRUE
 
 
-/mob/proc/ghostize(var/can_reenter_corpse = TRUE)
-	if(!key)
+/mob/proc/ghostize(can_reenter_corpse = TRUE)
+	if(!key || isaghost(src))
 		return FALSE
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)

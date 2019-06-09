@@ -11,6 +11,6 @@
 
 	. = ..()
 
-	spawn(0)
-		if(src && (!key || isaghost(src)))	//we've transferred to another mob. This ghost should be deleted.
+	spawn(1)
+		if(!QDELETED(src) && (!key || isaghost(src)))	//we've transferred to another mob. This ghost should be deleted.
 			qdel(src)
