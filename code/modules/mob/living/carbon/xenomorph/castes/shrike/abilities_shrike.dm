@@ -32,7 +32,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/psychic_fling
 	name = "Psychic Fling"
-	action_icon_state = "lay_egg"
+	action_icon_state = "fling"
 	mechanics_text = "Knock a target flying up to 3 tiles. Ranged ability."
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
@@ -62,11 +62,11 @@
 
 
 /datum/action/xeno_action/activable/psychic_fling/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/shrike/S = owner
 	var/mob/living/carbon/human/H = A
 	round_statistics.psychic_flings++
 
-	X.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [X]!</span>", \
+	S.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [S]!</span>", \
 	"<span class='xenowarning'>You violently fling [H] with the power of your mind!</span>")
 	H.visible_message("<span class='xenowarning'>[H] is violently flung to the side by an unseen force!</span>", \
 	"<span class='xenowarning'>You are violently flung to the side by an unseen force!</span>")
@@ -77,7 +77,7 @@
 	H.apply_effects(1, 2) 	// Stun
 	shake_camera(H, 2, 1)
 
-	var/facing = get_dir(X, H)
+	var/facing = get_dir(S, H)
 	var/fling_distance = 3
 	var/turf/T = H.loc
 	var/turf/temp
@@ -87,7 +87,7 @@
 		if(!temp)
 			break
 		T = temp
-	H.throw_at(T, fling_distance, 1, X, TRUE)
+	H.throw_at(T, fling_distance, 1, S, TRUE)
 
 	add_cooldown()
 
@@ -97,7 +97,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/psychic_choke
 	name = "Psychic Choke"
-	action_icon_state = "lay_egg"
+	action_icon_state = "screech"
 	mechanics_text = "Stun and start choking a target. Ranged ability."
 	cooldown_timer = 30 SECONDS
 	plasma_cost = 100
@@ -118,42 +118,33 @@
 	var/mob/living/carbon/xenomorph/shrike/S = owner
 	var/dist = get_dist(S, A)
 	switch(dist)
-		if(-1 to 1, 6 to INFINITY)
-			return FALSE //Neither close enough to choke them
+		if(-1 to 1)
+			to_chat(S, "<span class='warning'>The target is too close, you need some room to focus!</span>")
+			return FALSE
+		if(6 to INFINITY)
+			to_chat(S, "<span class='warning'>Too far, our mind power does not reach it...</span>")
+			return FALSE
 	if(!ishuman(A))
 		return FALSE
 	var/mob/living/carbon/human/H = A
-	if(H.stat == DEAD)
+	if(H.stat == DEAD || !isturf(A.loc))
 		return FALSE
 
 
 /datum/action/xeno_action/activable/psychic_choke/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/shrike/S = owner
 	var/mob/living/carbon/human/H = A
-	round_statistics.psychic_chokes++
-	S.visible_message("<span class='xenowarning'>\A strange and violent psychic aura is suddenly emitted from \the [S]!</span>", \
-	"<span class='xenowarning'>You choke [H] with the power of your mind!</span>")
-	H.visible_message("<span class='xenowarning'>[H] is suddenly grabbed by the neck by an unseen force!</span>", \
-	"<span class='xenowarning'>Your is suddenly grabbed by an unseen force!</span>")
-	playsound(S,'sound/effects/magic.ogg', 75, 1)
-	playsound(H,'sound/effects/blobattack.ogg', 75, 1)
+
+	if(S.psychic_victim) //We are already using the ability.
+		if(S.psychic_victim == H)
+			S.swap_psychic_grab() //If we are clicking on the same mob, just swap the grab level.
+			return TRUE
+		S.stop_psychic_grab() //Else let's end the ongoing one before we start the next.
+
+	S.psychic_victim = H
+
+	if(!S.start_psychic_grab(H))
+		return FALSE //Something happend, halp!
 
 	succeed_activate()
-	S.using_psychic_choke = TRUE
-
-	H.SetStunned(2) 	// Stun
-	S.start_pulling(H, TRUE)
-
-	while(do_mob(S, H, 2 SECONDS, extra_checks = /mob/living/carbon/xenomorph/shrike.proc/psychic_choke_check, H))
-		H.SetStunned(2)
-
-	S.using_psychic_choke = FALSE
 	add_cooldown()
-
-
-/mob/living/carbon/xenomorph/shrike/proc/psychic_choke_check(mob/living/carbon/human/H)
-	if(lying || buckled)
-		return FALSE
-	if(H.pulledby != src)
-		return FALSE
-	return TRUE

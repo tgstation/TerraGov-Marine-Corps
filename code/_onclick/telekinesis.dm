@@ -217,6 +217,114 @@ Redefine as needed.
 	add_overlay(focus) //this is kind of ick, but it's better than using icon()
 	focus.layer = old_layer
 	focus.plane = old_plane
+	
+
+//===// Shrike TK Grab //===//
+
+
+/obj/item/tk_grab/shrike
+	var/grab_level = TKGRAB_UNSET
+	var/last_grab_change = 0 //Time
+	var/last_life_tick = 0
+	var/turf/starting_master_loc
+	var/turf/starting_victim_loc
+
+
+/obj/item/tk_grab/shrike/Initialize()
+	var/mob/living/carbon/xenomorph/shrike/S = loc
+	if(!istype(S) || QDELETED(S.psychic_victim) || !S.put_in_hands(src))
+		return INITIALIZE_HINT_QDEL
+
+	tk_user = S
+	focus = S.psychic_victim
+	grab_level = TKGRAB_NONLETHAL
+	starting_master_loc = get_turf(tk_user)
+	starting_victim_loc = get_turf(focus)
+	last_life_tick = S.psychic_victim.life_tick
+
+	return ..() //Starts processing.
+
+
+/obj/item/tk_grab/shrike/Destroy()
+	if(tk_user)
+		var/mob/living/carbon/xenomorph/shrike/S = tk_user
+		S.stop_psychic_grab()
+		tk_user = null
+	if(focus)
+		focus = null
+
+	starting_master_loc = null
+	starting_victim_loc = null
+
+	return ..() //Stops processing, if it hasn't by now.
+
+
+/obj/item/tk_grab/shrike/process()
+	if(QDELETED(tk_user) || QDELETED(focus) || loc != tk_user)
+		STOP_PROCESSING(SSfastprocess, src)
+		qdel(src)
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/shrike/S = tk_user
+	var/mob/living/carbon/human/H = focus
+
+	if(!S.check_state() || !S.psychic_victim || S.loc != starting_master_loc || H.loc != starting_victim_loc || isnestedhost(H))
+		STOP_PROCESSING(SSfastprocess, src)
+		qdel(src)
+		return FALSE
+
+	if(H.life_tick <= last_life_tick) //One per life tick, no more.
+		return FALSE
+
+	switch(grab_level)
+		if(TKGRAB_NONLETHAL)
+			H.SetStunned(2)
+		if(TKGRAB_LETHAL)
+			H.SetKnockeddown(2)
+			H.Losebreath(3)
+
+	last_life_tick = H.life_tick
+
+
+/obj/item/tk_grab/shrike/proc/swap_psychic_grab()
+	var/mob/living/carbon/xenomorph/shrike/S = tk_user
+	var/mob/living/carbon/human/H = focus //Typecasting merely for clarity, because it's free.
+
+	if(last_grab_change + 3 SECONDS > world.time)
+		return FALSE
+
+	playsound(H, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+
+	switch(grab_level)
+		if(TKGRAB_NONLETHAL)
+			grab_level = TKGRAB_LETHAL
+			log_combat(S, H, "psychically strangled", addition="(kill intent)")
+			msg_admin_attack("[key_name(S)] psychically strangled (kill intent) [key_name(H)]")
+			to_chat(S, "<span class='danger'>We tighten our psychic grip on [H]'s neck!</span>")
+			H.visible_message("<span class='danger'>The invisible force has tightened its grip on [H]'s neck!</span>", null, null, 5)
+			S.do_attack_animation(H, "bite")
+			playsound(H,'sound/effects/blobattack.ogg', 75, 1)
+		if(TKGRAB_LETHAL)
+			grab_level = TKGRAB_NONLETHAL
+			log_combat(S, H, "neck grabbed")
+			msg_admin_attack("[key_name(S)] grabbed the neck of [key_name(H)]")
+			to_chat(S, "<span class='warning'>We loosen our psychic grip on [H]'s neck!</span>")
+			H.visible_message("<span class='warning'>The invisible force has loosened its grip on [H]'s neck...</span>", null, null, 5)
+			S.flick_attack_overlay(H, "grab")
+			playsound(H,'sound/effects/magic.ogg', 75, 1)
+
+	last_grab_change = world.time
+
+
+/obj/item/tk_grab/shrike/afterattack(atom/target, mob/living/carbon/user, proximity, params)
+	if(target != focus)
+		return FALSE
+
+	swap_psychic_grab()
+
+
+/obj/item/tk_grab/shrike/attack_self(mob/user)
+	swap_psychic_grab()
 
 
 #undef TK_MAXRANGE

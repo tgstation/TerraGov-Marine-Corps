@@ -15,6 +15,11 @@
 #define GRAB_NECK		2
 #define GRAB_KILL		3
 
+//TK Grab levels
+#define TKGRAB_UNSET		0
+#define TKGRAB_NONLETHAL	1
+#define TKGRAB_LETHAL		2
+
 //intent defines
 #define INTENT_HELP   "help"
 #define INTENT_GRAB   "grab"

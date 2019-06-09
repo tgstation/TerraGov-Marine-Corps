@@ -20,8 +20,7 @@
 	xeno_explosion_resistance = 2 //some resistance against explosion stuns.
 	job = ROLE_XENO_QUEEN
 	var/calling_larvas = FALSE
-	var/using_psychic_choke = FALSE
-	var/last_choke_change = 0 //Time
+	var/mob/living/carbon/human/psychic_victim
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -74,64 +73,61 @@
 
 
 // ***************************************
-// *********** Mob overrides
+// *********** Psychic Grab Procs
 // ***************************************
 
-/mob/living/carbon/xenomorph/shrike/stop_pulling()
-	if(isliving(pulling))
-		var/mob/living/L = pulling
-		grab_resist_level = 0 //zero it out
-		L.SetStunned(0)
-	return ..()
-
-
-/mob/living/carbon/xenomorph/shrike/start_pulling(atom/movable/AM, lunge, no_msg)
-	if(!check_state() || !isliving(AM))
+/mob/living/carbon/xenomorph/shrike/proc/start_psychic_grab(mob/living/carbon/human/H) //I find your lack of faith disturbing.
+	if(!check_state() || !istype(H) || QDELETED(psychic_victim))
 		return FALSE
 
-	var/mob/living/L = AM
+	if(get_active_held_item())
+		drop_held_item() //Do we have a hugger? No longer.
 
-	if(ishuman(L) && using_psychic_choke)
-		if(..(L, TRUE))
-			return neck_grab(L)
-		return FALSE
+	round_statistics.psychic_chokes++
+	visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [src]!</span>", \
+	"<span class='xenowarning'>You choke [H] with the power of your mind!</span>")
+	H.visible_message("<span class='xenowarning'>[H] is suddenly grabbed by the neck by an unseen force!</span>", \
+	"<span class='xenowarning'>Your is suddenly grabbed by an unseen force!</span>")
+	playsound(H,'sound/effects/magic.ogg', 75, 1)
+	
+	H.drop_all_held_items()
+	H.Stun(2)
 
-	return ..()
+	new /obj/item/tk_grab/shrike(src) //Grab starts "inside" us. It will auto-equip to our hands, set us as its master and our victim as its target, and then start processing the grab.
 
+	changeNext_move(CLICK_CD_RANGE)
 
-/mob/living/carbon/xenomorph/shrike/proc/neck_grab(mob/living/L)
-	grab_level = GRAB_NECK
-	L.drop_all_held_items()
-	L.Stun(1)
+	flick_attack_overlay(H, "grab")
+
+	log_combat(src, H, "psychically grabbed")
+	msg_admin_attack("[key_name(src)] psychically grabbed [key_name(H)]" )
+
 	return TRUE
 
 
-/mob/living/carbon/xenomorph/shrike/pull_power(atom/movable/grabbed_thing)
-	if(!using_psychic_choke)
+/mob/living/carbon/xenomorph/shrike/proc/stop_psychic_grab()
+	if(QDELETED(psychic_victim))
 		return FALSE
 
-	if(last_choke_change + 3 SECONDS > world.time)
-		return FALSE
-	last_choke_change = world.time
-
-	playsound(grabbed_thing.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+	psychic_victim.SetStunned(0)
+	psychic_victim.update_canmove()
+	psychic_victim = null
 
 	var/obj/item/grab/G = get_active_held_item()
-	if(!G) //Somehow we stopped grabbing.
+	if(!istype(G))
+		G = get_active_held_item()
+		if(!istype(G))
+			return FALSE //Grab is no longer on us, it will auto-delete, nothing else for us to do.
+
+	temporarilyRemoveItemFromInventory(G)
+
+
+/mob/living/carbon/xenomorph/shrike/proc/swap_psychic_grab()
+	if(QDELETED(psychic_victim))
 		return FALSE
 
-	switch(grab_level)
-		if(GRAB_NECK)
-			grab_level = GRAB_KILL
-			G.icon_state = "disarm/kill"
-			log_combat(src, grabbed_thing, "psychically strangled", addition="(kill intent)")
-			msg_admin_attack("[key_name(src)] psychically strangled (kill intent) [key_name(grabbed_thing)]")
-			to_chat(src, "<span class='danger'>We tighten our psychic grip on [grabbed_thing]'s neck!</span>")
-			grabbed_thing.visible_message("<span class='danger'>The invisible force has tightened its grip on [grabbed_thing]'s neck!</span>", null, null, 5)
-		if(GRAB_KILL)
-			grab_level = GRAB_KILL
-			G.icon_state = "disarm/kill1"
-			log_combat(src, grabbed_thing, "neck grabbed")
-			msg_admin_attack("[key_name(src)] grabbed the neck of [key_name(grabbed_thing)]")
-			to_chat(src, "<span class='warning'>We loosen our psychic grip on [grabbed_thing]'s neck!</span>")
-			grabbed_thing.visible_message("<span class='warning'>The invisible force has loosened its grip on [grabbed_thing]'s neck...</span>", null, null, 5)
+	var/obj/item/tk_grab/shrike/TKG = get_active_held_item()
+	if(QDELETED(TKG))
+		return FALSE
+
+	TKG.swap_psychic_grab()

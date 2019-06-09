@@ -328,7 +328,7 @@
 		return TRUE
 
 	if(announce)
-		xeno_message("<span class='xenoannounce'>[successor] has risen to lead the Hive! Rejoice!</span>", 3)
+		xeno_message("<span class='xenoannounce'>\A [successor] has risen to lead the Hive! Rejoice!</span>", 3)
 		notify_ghosts("\The [successor] has risen to lead the Hive!", source = successor, action = NOTIFY_ORBIT)
 
 
