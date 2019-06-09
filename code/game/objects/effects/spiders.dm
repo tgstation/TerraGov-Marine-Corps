@@ -36,8 +36,6 @@
 	desc = "They seem to pulse slightly with an inner life."
 	icon_state = "eggs"
 	var/amount_grown = 0
-	var/player_spiders = 0
-	var/directive = "" //Message from the mother
 	var/poison_type = /datum/reagent/toxin
 	var/poison_per_bite = 5
 	var/list/faction = list("spiders")
@@ -65,7 +63,7 @@
 	desc = "It never stays still for long."
 	icon_state = "spiderling"
 	anchored = FALSE
-	layer = MOB_LAYER
+	layer = BELOW_TABLE_LAYER
 	max_integrity = 3
 	var/amount_grown = 0
 	var/grow_as = null

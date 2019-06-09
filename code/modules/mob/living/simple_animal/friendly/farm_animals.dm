@@ -29,7 +29,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/Initialize()
 	udder = new()
-	. = ..()
+	return ..()
 
 
 /mob/living/simple_animal/hostile/retaliate/goat/Destroy()
@@ -93,7 +93,7 @@
 
 /mob/living/simple_animal/cow/Initialize()
 	udder = new()
-	. = ..()
+	return ..()
 
 
 /mob/living/simple_animal/cow/Destroy()
@@ -104,7 +104,7 @@
 /mob/living/simple_animal/cow/attackby(obj/item/I, mob/user, params)
 	if(stat == CONSCIOUS && istype(I, /obj/item/reagent_container/glass))
 		udder.milkAnimal(I, user)
-		return 1
+		return TRUE
 	else
 		return ..()
 
@@ -181,7 +181,7 @@
 	if(!stat && !ckey)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
-			new /mob/living/simple_animal/chicken(src.loc)
+			new /mob/living/simple_animal/chicken(loc)
 			qdel(src)
 
 
