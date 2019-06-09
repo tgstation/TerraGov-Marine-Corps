@@ -184,7 +184,7 @@
 				//The reason why we don't check the hive of observed_xeno is just in case the watched xeno isn't of the same hive for whatever reason
 				for(var/xenos in Q.hive.get_all_xenos())
 					var/mob/living/carbon/Xenomorph/Z = xenos
-					if(get_dist(Q, Z) <= phero_range && (z == Z.z) && !Z.on_fire) //We don't need to check to see if it's dead or if it's the same hive as the list we're pulling from only contain alive xenos of the same hive
+					if(get_dist(Q.observed_xeno, Z) <= phero_range && (Q.observed_xeno.z == Z.z) && !Z.on_fire) //We don't need to check to see if it's dead or if it's the same hive as the list we're pulling from only contain alive xenos of the same hive
 						switch(current_aura)
 							if("frenzy")
 								if(xeno_caste.aura_strength > Z.frenzy_new)
