@@ -716,9 +716,9 @@
 /datum/podlauncher/proc/supplypod_log(list/targets, atom/target)
 	var/podString = effectBurst ? "5 pods" : "a pod"
 	var/whomString = ""
-	if(LAZYLEN(targets))
-		for(var/mob/living/M in targets)
-			whomString += "[key_name(M)], "
+	for(var/i in targets)
+		var/mob/M = i
+		whomString += "[key_name(M)], "
 
 	var/delayString = temp_pod.landingDelay == initial(temp_pod.landingDelay) ? "" : " Delay=[temp_pod.landingDelay*0.1]s"
 	var/damageString = temp_pod.damage == 0 ? "" : " Dmg=[temp_pod.damage]"
@@ -734,6 +734,6 @@
 	var/msg = "launched [podString][whomString][delayString][damageString][explosionString][playerString][areaString]."
 	log_admin("[key_name(usr)] [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] [msg]")
-	if(!isemptylist(targets))
-		for(var/mob/M in targets)
-			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
+	for(var/i in targets)
+		var/mob/M = i
+		admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
