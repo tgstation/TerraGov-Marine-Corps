@@ -59,8 +59,10 @@
 
 	xenoinfo += xeno_status_output(hive.xeno_leader_list, can_overwatch, FALSE, user)
 
+	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike], can_overwatch, TRUE, user)
+
 	for(var/typepath in hive.xenos_by_typepath)
-		if(typepath == /mob/living/carbon/xenomorph/queen)
+		if(typepath == /mob/living/carbon/xenomorph/queen || typepath == /mob/living/carbon/xenomorph/shrike)
 			continue
 		var/mob/living/carbon/xenomorph/T = typepath
 		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][XENO_UPGRADE_BASETYPE]

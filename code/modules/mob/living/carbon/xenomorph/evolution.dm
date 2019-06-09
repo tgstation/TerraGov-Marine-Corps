@@ -105,6 +105,10 @@
 			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 			return
 
+		if(hive.get_total_xeno_number() < hive.xenos_per_queen)
+			to_chat(src, "<span class='warning'>The hivemind is too weak to sustain a Queen. Gather more xenos. [hive.xenos_per_queen] are required.</span>")
+			return FALSE
+
 		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
 			to_chat(src, "<span class='warning'>You must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>")
 			return

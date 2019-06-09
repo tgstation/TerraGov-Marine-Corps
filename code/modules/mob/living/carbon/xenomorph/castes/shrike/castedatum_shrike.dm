@@ -5,7 +5,7 @@
 	caste_desc = "A psychically unstable xeno. The Shrike controls the hive when there's no Queen and acts as its successor when there is."
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
-	tier = XENO_TIER_TWO
+	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "shrike" //used to match appropriate wound overlays
 

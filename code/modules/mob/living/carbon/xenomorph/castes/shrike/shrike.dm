@@ -15,7 +15,7 @@
 	pixel_x = -16
 	old_x = -16
 	drag_delay = 3 //pulling a medium dead xeno is hard
-	tier = XENO_TIER_TWO
+	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_ZERO
 	xeno_explosion_resistance = 2 //some resistance against explosion stuns.
 	job = ROLE_XENO_QUEEN
