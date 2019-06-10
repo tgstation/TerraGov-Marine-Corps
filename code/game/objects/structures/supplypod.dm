@@ -169,6 +169,11 @@
 		addtimer(CALLBACK(src, .proc/open, src), openingDelay)
 
 
+
+/obj/structure/closet/supplypod/prevent_content_explosion()
+	return TRUE
+
+
 /obj/structure/closet/supplypod/open(atom/movable/holder, broken = FALSE, forced = FALSE)
 	if(!holder)
 		return
