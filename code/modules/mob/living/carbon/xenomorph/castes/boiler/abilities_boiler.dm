@@ -97,7 +97,7 @@
 	X.visible_message("<span class='notice'>\The [X] digs itself into the ground!</span>", \
 		"<span class='notice'>You dig yourself into place! If you move, you must wait again to fire.</span>", null, 5)
 	X.set_bombard_pointer()
-	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.signal_use)
+	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.on_ranged_attack)
 
 
 /datum/action/xeno_action/activable/bombard/on_deactivation()
@@ -108,7 +108,7 @@
 	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
 
 
-/datum/action/xeno_action/activable/bombard/proc/signal_use(mob/living/carbon/xenomorph/X, atom/A, params)
+/datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
     if(!X.selected_ability)
         return
     if(X.selected_ability.can_use_ability(A))
