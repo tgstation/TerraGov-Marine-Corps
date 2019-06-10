@@ -254,7 +254,7 @@
 			operator = null
 			current_squad = null
 			if(cam)
-				usr.reset_view(null)
+				usr.reset_perspective(null)
 			cam = null
 			state = OW_MAIN
 		if("logout_main")
@@ -265,7 +265,7 @@
 			current_squad = null
 			selected_target = null
 			if(cam)
-				usr.reset_view(null)
+				usr.reset_perspective(null)
 			cam = null
 			state = OW_MAIN
 		if("pick_squad")
@@ -394,13 +394,13 @@
 			else if(new_cam == cam)//click the camera you're watching a second time to stop watching.
 				visible_message("<span class='boldnotice'>Stopping camera view of [cam_target].</span>")
 				cam = null
-				usr.reset_view(null)
+				usr.reset_perspective(null)
 			else if(usr.client.view != world.view)
 				to_chat(usr, "<span class='warning'>You're too busy peering through binoculars.</span>")
 			else
 				visible_message("<span class='boldnotice'>Searching for [cam_target]... Camera view found and linked.</span>")
 				cam = new_cam
-				usr.reset_view(cam)
+				usr.reset_perspective(cam)
 
 	attack_hand(usr) //The above doesn't ever seem to work.
 
@@ -493,7 +493,7 @@
 /obj/machinery/computer/overwatch/on_unset_interaction(mob/user)
 	. = ..()
 	cam = null
-	user.reset_view(null)
+	user.reset_perspective(null)
 
 /atom/proc/get_camera()
 	return FALSE

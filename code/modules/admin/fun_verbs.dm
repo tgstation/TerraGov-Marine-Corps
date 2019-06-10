@@ -938,9 +938,9 @@
 		var/mob/living/carbon/human/H = M
 		H.name = H.get_visible_name()
 
-	M.loc = O.loc
+	M.loc = get_turf(M.control_object)
+	M.reset_perspective()
 	M.control_object = null
-	M.client.eye = M
 
 	log_admin("[key_name(usr)] has released [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
@@ -958,8 +958,8 @@
 	M.loc = O
 	M.real_name = O.name
 	M.name = O.name
+	M.reset_perspective()
 	M.control_object = O
-	M.client.eye = O
 
 	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")

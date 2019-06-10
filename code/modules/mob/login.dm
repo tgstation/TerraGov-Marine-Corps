@@ -21,7 +21,7 @@
 
 	reload_fullscreens()
 
-	reset_view(loc)
+	reset_perspective(loc)
 
 	add_click_catcher()
 

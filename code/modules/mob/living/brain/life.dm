@@ -176,7 +176,7 @@
 		if (interactee)
 			interactee.check_eye(src)
 		else if(client)
-			reset_view(null)
+			reset_perspective(null)
 
 	return 1
 
