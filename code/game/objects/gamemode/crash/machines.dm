@@ -67,6 +67,9 @@
 		// TODO: Add timer and launch the shuttle.
 		to_chat(world, "launch pushed")
 		visible_message("Shuttle launching, please stand clear of the airlocks.")
+		if(iscrashgamemode(SSticker.mode))
+			var/datum/game_mode/crash/C = SSticker.mode
+			C.marines_evac = TRUE
 		return
 
 
@@ -78,7 +81,7 @@
 	if (world.time < (last_announce + 1 MINUTES))	
 		return
 
-	var/engine_alert = "[src] Beeps*: \"Fuel status - "
+	var/engine_alert = "<b>[src]</b> beeps, \"Fuel status - "
 	var/engine_count = 1
 	for(var/i in ship_engines)
 		var/obj/structure/shuttle/engine/E = i
