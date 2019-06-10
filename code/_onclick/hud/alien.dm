@@ -125,7 +125,7 @@
 	zone_sel.update_icon(owner)
 	static_inventory += zone_sel
 
-/datum/hud/alien/persistant_inventory_update()
+/datum/hud/alien/persistent_inventory_update()
 	if(!mymob)
 		return
 	var/mob/living/carbon/xenomorph/H = mymob

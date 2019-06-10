@@ -5,7 +5,7 @@
 
 	if(stat != CONSCIOUS)
 		cameraFollow = null
-		reset_view(null)
+		reset_perspective(null)
 		unset_interaction()
 
 	updatehealth()

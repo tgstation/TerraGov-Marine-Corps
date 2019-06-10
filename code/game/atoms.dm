@@ -268,6 +268,10 @@ directive is properly returned.
 	return
 
 
+/atom/proc/prevent_content_explosion()
+	return FALSE
+
+
 //Generalized Fire Proc.
 /atom/proc/flamer_fire_act()
 	return

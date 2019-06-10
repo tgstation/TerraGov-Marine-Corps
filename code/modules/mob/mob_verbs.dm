@@ -101,7 +101,7 @@
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "Object"
-	reset_view(null)
+	reset_perspective(null)
 	unset_interaction()
 	if(isliving(src))
 		var/mob/living/M = src

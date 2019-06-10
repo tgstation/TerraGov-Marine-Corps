@@ -1065,7 +1065,7 @@
 			return null
 		if(!linked_turret || isnull(linked_turret.camera))
 			return null
-		user.reset_view(linked_turret.camera)
+		user.reset_perspective(linked_turret.camera)
 		return 1
 
 	attack_self(mob/living/user as mob)

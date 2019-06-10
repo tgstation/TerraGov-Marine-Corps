@@ -469,6 +469,10 @@
 			close(M)
 
 
+/obj/item/storage/attack_ghost(mob/user)
+	open(user)
+
+
 /obj/item/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
 	set category = "Object"

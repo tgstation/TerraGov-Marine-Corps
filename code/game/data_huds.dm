@@ -102,6 +102,10 @@
 	hud_icons = list(HEALTH_HUD, STATUS_HUD_OBSERVER_INFECTION, STATUS_HUD)
 
 
+/datum/atom_hud/medical/pain
+	hud_icons = list(PAIN_HUD)
+
+
 /mob/proc/med_hud_set_health()
 	return
 
@@ -252,6 +256,42 @@
 		if(!holder2_set)
 			holder2.icon_state = "hudhealthy"
 			holder3.icon_state = ""
+
+
+/mob/proc/med_pain_set_perceived_health()
+	return
+
+
+/mob/living/carbon/human/med_pain_set_perceived_health()
+	if(species && species.species_flags & NO_PAIN)
+		return FALSE
+
+	var/image/holder = hud_list[PAIN_HUD]
+	if(stat == DEAD)
+		holder.icon_state = "hudhealth-100"
+		return TRUE
+
+	var/perceived_health = health - traumatic_shock
+
+	switch(perceived_health)
+		if(100 to INFINITY)
+			holder.icon_state = "hudhealth100"
+		if(80 to 100)
+			holder.icon_state = "hudhealth80"
+		if(60 to 80)
+			holder.icon_state = "hudhealth60"
+		if(40 to 60)
+			holder.icon_state = "hudhealth40"
+		if(20 to 40)
+			holder.icon_state = "hudhealth20"
+		if(0 to 20)
+			holder.icon_state = "hudhealth0"
+		if(-50 to 0)
+			holder.icon_state = "hudhealth-0"
+		else
+			holder.icon_state = "hudhealth-50"
+
+	return TRUE
 
 
 //infection status that appears on humans, viewed by xenos only.

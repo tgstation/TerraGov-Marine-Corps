@@ -334,7 +334,7 @@
 	caliber = "7.62x38mm Rimmed" //codex
 	max_shells = 7 //codex
 	origin_tech = "combat=3;materials=1;syndicate=3"
-	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
+	fire_sound = 'sound/weapons/gun_ny.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
 	attachable_allowed = list(
@@ -365,7 +365,7 @@
 	item_state = "sw357"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/gun_pistol_medium.ogg'
+	fire_sound = 'sound/weapons/gun_revolver.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	attachable_allowed = list(
@@ -449,7 +449,7 @@
 	item_state = "cmb"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/gun_44mag2.ogg'
+	fire_sound = 'sound/weapons/gun_revolver_small.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
 	attachable_allowed = list(

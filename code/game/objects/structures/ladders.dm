@@ -114,11 +114,11 @@
 /obj/structure/ladder/on_set_interaction(mob/user)
 	if (is_watching == 1)
 		if (down || down.cam || down.cam.can_use()) //Camera works
-			user.reset_view(down.cam)
+			user.reset_perspective(down.cam)
 			return
 	else if (is_watching == 2)
 		if (up || up.cam || up.cam.can_use())
-			user.reset_view(up.cam)
+			user.reset_perspective(up.cam)
 			return
 
 	user.unset_interaction() //No usable cam, we stop interacting right away
@@ -128,7 +128,7 @@
 /obj/structure/ladder/on_unset_interaction(mob/user)
 	..()
 	is_watching = 0
-	user.reset_view(null)
+	user.reset_perspective(null)
 
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)

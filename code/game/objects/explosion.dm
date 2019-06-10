@@ -42,14 +42,20 @@
 					var/dist = get_dist(M_turf, epicenter)
 					// If inside the blast radius + world.view - 2
 					if(dist <= round(max_range + world.view - 2, 1))
-						M.playsound_local(epicenter, get_sfx("explosion"), 75, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
+						if(devastation_range > 0)
+							M.playsound_local(epicenter, get_sfx("explosion"), 75, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
+						else
+							M.playsound_local(epicenter, get_sfx("explosion_small"), 75, 1, frequency, falloff = 5)
 
 						//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 
 					else if(dist <= far_dist)
 						var/far_volume = CLAMP(far_dist, 30, 50) // Volume is based on explosion size and dist
 						far_volume += (dist <= far_dist * 0.5 ? 75 : 75) // add 50 volume if the mob is pretty close to the explosion
-						M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', far_volume, 1, frequency, falloff = 5)
+						if(devastation_range > 0)
+							M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', far_volume, 1, frequency, falloff = 5)
+						else
+							M.playsound_local(epicenter, 'sound/effects/explosionsmallfar.ogg', far_volume, 1, frequency, falloff = 5)
 
 		var/close = trange(world.view + round(devastation_range, 1), epicenter)
 		//To all distanced mobs play a different sound
@@ -98,9 +104,16 @@
 
 			if(T)
 				T.ex_act(dist)
-				for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
-					var/atom/movable/AM = atom_movable
-					if(AM)	AM.ex_act(dist)
+				var/list/items = list()
+				for(var/I in T)
+					var/atom/A = I
+					if(A.prevent_content_explosion())
+						continue
+					items += A.GetAllContents()
+				for(var/O in items)
+					var/atom/A = O
+					if(!QDELETED(A))
+						A.ex_act(dist)
 
 
 			//------- TURF FIRES -------
@@ -114,7 +127,7 @@
 
 		var/took = (world.timeofday-start)/10
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
-		if(GLOB.Debug2)	
+		if(GLOB.Debug2)
 			log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
 
 		//Machines which report explosions.

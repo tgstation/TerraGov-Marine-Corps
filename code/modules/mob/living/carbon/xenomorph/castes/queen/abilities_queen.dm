@@ -406,7 +406,7 @@
 			old_xeno.hud_set_queen_overwatch()
 	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
-	reset_view()
+	reset_perspective()
 
 // ***************************************
 // *********** Psychic Whisper

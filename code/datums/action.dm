@@ -98,11 +98,13 @@
 /datum/action/item_action/update_button_icon()
 	button.overlays.Cut()
 	var/obj/item/I = target
+	var/old_layer = I.layer
+	var/old_plane = I.plane
 	I.layer = ABOVE_HUD_LAYER
 	I.plane = ABOVE_HUD_PLANE
 	button.overlays += I
-	I.layer = initial(I.layer)
-	I.plane = initial(I.plane)
+	I.layer = old_layer
+	I.plane = old_plane
 
 
 /datum/action/item_action/toggle/New(Target)
@@ -194,6 +196,7 @@
 	var/keybind_flags
 	var/image/cooldown_image
 	var/keybind_signal
+	var/cooldown_id
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -213,6 +216,8 @@
 	. = ..()
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
+	if(cooldown_id)
+		deltimer(cooldown_id)
 
 /datum/action/xeno_action/proc/keybind_activation()
 	if(can_use_action())
@@ -307,7 +312,7 @@
 	if(!length(active_timers)) // stop doubling up
 		last_use = world.time
 		on_cooldown = TRUE
-		addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown())
+		cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
 		button.overlays += cooldown_image
 		update_button_icon()
 

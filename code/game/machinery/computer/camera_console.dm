@@ -84,6 +84,7 @@
 			user.unset_interaction() // no usable camera on the network, we disconnect the user from the computer.
 			return
 	playsound(src, 'sound/machines/terminal_prompt.ogg', 25, 0)
+	user.set_interaction(src)
 	use_camera_console(user)
 
 

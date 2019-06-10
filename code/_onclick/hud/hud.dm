@@ -216,7 +216,7 @@
 				screenmob.client.screen -= infodisplay
 
 	hud_version = display_hud_version
-	persistant_inventory_update()
+	persistent_inventory_update(screenmob)
 	mymob.update_action_buttons(TRUE)
 	mymob.reload_fullscreens()
 
@@ -228,10 +228,15 @@
 	else if(viewmob.hud_used)
 		viewmob.hud_used.plane_masters_update()
 
+	return TRUE
 
-/datum/hud/human/show_hud(version = 0)
+
+/datum/hud/human/show_hud(version = 0, mob/viewmob)
 	. = ..()
-	hidden_inventory_update()
+	if(!.)
+		return
+	var/mob/screenmob = viewmob || mymob
+	hidden_inventory_update(screenmob)
 
 	if(hud_version == HUD_STYLE_STANDARD)
 		mymob.client.screen += ammo
@@ -239,10 +244,10 @@
 		A.update_hud(mymob)
 
 
-/datum/hud/proc/hidden_inventory_update()
+/datum/hud/proc/hidden_inventory_update(mob/viewer)
 	return
 
-/datum/hud/proc/persistant_inventory_update()
+/datum/hud/proc/persistent_inventory_update(mob/viewer)
 	return
 
 

@@ -694,9 +694,7 @@
 			to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
 			return
 		usr.stop_pulling()
-		usr.client.perspective = EYE_PERSPECTIVE
-		usr.client.eye = src
-		usr.loc = src
+		usr.forceMove(src)
 		update_use_power(2)
 		occupant = usr
 		icon_state = "autodoc_closed"

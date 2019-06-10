@@ -59,6 +59,9 @@
 			state = STATE_DEFAULT
 
 		if("login")
+			if(isAI(usr))
+				authenticated = 2
+				return
 			var/mob/living/carbon/human/C = usr
 			var/obj/item/card/id/I = C.get_active_held_item()
 			if(istype(I))
