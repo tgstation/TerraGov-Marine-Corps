@@ -60,11 +60,3 @@
 	if(!is_charging)
 		return
 	stop_momentum(charge_dir)
-
-
-/mob/living/carbon/xenomorph/boiler/ClickOn(atom/A, params)
-	. = ..()
-	if(!selected_ability || !istype(selected_ability, /datum/action/xeno_action/activable/bombard))
-		return
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)

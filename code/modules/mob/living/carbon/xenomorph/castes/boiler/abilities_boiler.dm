@@ -97,12 +97,20 @@
 	X.visible_message("<span class='notice'>\The [X] digs itself into the ground!</span>", \
 		"<span class='notice'>You dig yourself into place! If you move, you must wait again to fire.</span>", null, 5)
 	X.set_bombard_pointer()
+	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.signal_use)
+
 
 /datum/action/xeno_action/activable/bombard/on_deactivation()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.selected_ability == src)
 		X.reset_bombard_pointer()
 		to_chat(X, "<span class='notice'>You relax your stance.</span>")
+	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
+
+
+/datum/action/xeno_action/activable/bombard/proc/signal_use(mob/living/carbon/xenomorph/X, atom/A, params)
+	use_ability(A)
+
 
 /mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
 	. = ..()
