@@ -1,0 +1,5 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Fixes more ammo datum smokes stuff, such as some borked rockets, apologises for the inconvenience."
+  - bugfix: "Fixes the halloss from dirty smartgun bullets."
