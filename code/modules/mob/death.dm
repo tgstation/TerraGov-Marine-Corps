@@ -67,6 +67,7 @@
 	GLOB.dead_mob_list |= src
 	GLOB.offered_mob_list -= src
 
+	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
 

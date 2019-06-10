@@ -67,3 +67,11 @@
 	toggleable = TRUE
 	hud_type = DATA_HUD_XENO_STATUS
 	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/hud/painhud
+	name = "Pain HUD"
+	desc = "A heads-up display that scans human pain and perceived health."
+	icon_state = "securityhud"
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_PAIN
+	actions_types = list(/datum/action/item_action/toggle)
