@@ -1,0 +1,6 @@
+author: "MoXuT0"
+delete-after: True
+changes: 
+  - soundadd: "Added new firing sounds for various weapons."
+  - soundadd: "Added new firing sounds when empty for pulse rifles, flamer and shotgun."
+  - soundadd: "Added sounds for litting/unlitting flamethrower."
