@@ -64,7 +64,7 @@
 		if(PARALYZE)
 			KnockOut(effect/(blocked+1))
 		if(AGONY)
-			adjustHalLoss(effect/blocked+1)
+			adjustHalLoss(effect/(blocked+1))
 		if(IRRADIATE)
 			var/rad_protection = getarmor(null, "rad")/100
 			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
