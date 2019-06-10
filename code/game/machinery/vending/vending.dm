@@ -409,6 +409,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/vending/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.incapacitated())

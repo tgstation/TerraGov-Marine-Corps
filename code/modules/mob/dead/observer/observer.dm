@@ -135,6 +135,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["reentercorpse"])
 		if(!isobserver(usr))
 			return

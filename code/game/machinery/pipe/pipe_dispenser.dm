@@ -34,8 +34,9 @@
 	return
 
 /obj/machinery/pipedispenser/Topic(href, href_list)
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 	var/mob/living/L = usr
 	if(!anchored || !istype(L) || L.incapacitated() || !in_range(loc, usr))
 		usr << browse(null, "window=pipedispenser")
@@ -157,8 +158,9 @@
 
 
 /obj/machinery/pipedispenser/disposal/Topic(href, href_list)
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 	if(href_list["dmake"])
 		if(wait < world.time)
 			var/p_type = text2path(href_list["dmake"])

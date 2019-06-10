@@ -290,8 +290,9 @@
 
 
 /obj/machinery/power/smes/Topic(href, href_list)
-	..()
-
+	. = ..()
+	if(.)
+		return
 	if (usr.stat || usr.restrained() )
 		return
 

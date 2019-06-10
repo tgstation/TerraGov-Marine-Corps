@@ -154,7 +154,8 @@
 I can't be bothered to look more of the actual code outside of switch but that probably needs revising too.
 What a mess.*/
 /obj/machinery/computer/skills/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if (!( GLOB.datacore.general.Find(active1) ))
 		active1 = null

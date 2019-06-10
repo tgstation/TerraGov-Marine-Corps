@@ -1045,7 +1045,8 @@
 
 
 /obj/machinery/autodoc_console/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))))
 		usr.set_interaction(src)
@@ -1252,6 +1253,9 @@
 		break
 
 /obj/machinery/autodoc/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (!href_list["scanreport"])
 		return
 	if(!hasHUD(usr,"medical"))

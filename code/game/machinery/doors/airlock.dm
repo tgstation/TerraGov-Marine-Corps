@@ -319,8 +319,9 @@
 	return ..()
 
 /obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
-	if(!nowindow)
-		..()
+	. = ..()
+	if(.)
+		return
 	if(usr.stat || usr.restrained()|| usr.mob_size == MOB_SIZE_SMALL)
 		return
 	if(href_list["close"])

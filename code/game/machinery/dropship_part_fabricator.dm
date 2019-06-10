@@ -72,7 +72,8 @@
 	update_icon()
 
 /obj/machinery/dropship_part_fabricator/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

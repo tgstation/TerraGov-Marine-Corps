@@ -100,7 +100,8 @@
 
 
 /obj/machinery/computer/atmos_alert/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["priority_clear"])

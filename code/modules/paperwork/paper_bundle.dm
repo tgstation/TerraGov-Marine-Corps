@@ -127,7 +127,9 @@
 	return
 
 /obj/item/paper_bundle/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)))
 		if(href_list["next_page"])
 			if(page == amount-1)

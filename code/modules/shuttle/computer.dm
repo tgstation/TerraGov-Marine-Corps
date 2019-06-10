@@ -43,8 +43,9 @@
 	popup.open()
 
 /obj/machinery/computer/shuttle/Topic(href, href_list)
-	if(..())
-		return TRUE
+	. = ..()
+	if(.)
+		return
 
 	if(isxeno(usr))
 		return

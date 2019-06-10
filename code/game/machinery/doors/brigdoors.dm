@@ -212,8 +212,9 @@
 // 	"change" resets the timer to the timetoset amount while the timer is counting down
 // Also updates dialog window and timer icon
 /obj/machinery/door_timer/Topic(href, href_list)
-	if(..())
-		return 0
+	. = ..()
+	if(.)
+		return
 	if(!src.allowed(usr))
 		return 0
 

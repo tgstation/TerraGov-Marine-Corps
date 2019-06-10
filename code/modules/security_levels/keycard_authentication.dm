@@ -89,6 +89,8 @@
 
 /obj/machinery/keycard_auth/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(busy)
 		to_chat(usr, "This device is busy.")
 		return

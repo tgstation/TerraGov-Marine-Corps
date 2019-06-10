@@ -89,6 +89,9 @@
 
 
 /obj/machinery/faxmachine/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["send"])
 		if(message)
 			send_fax(usr, src, selected, message.name, message.info, FALSE)

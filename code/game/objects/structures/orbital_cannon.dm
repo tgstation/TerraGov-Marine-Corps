@@ -496,7 +496,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 
 /obj/machinery/computer/orbital_cannon_console/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["load_tray"])

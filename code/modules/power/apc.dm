@@ -875,6 +875,9 @@
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
+	. = ..()
+	if(.)
+		return
 	if(href_list["lock"])
 		coverlocked = !coverlocked
 

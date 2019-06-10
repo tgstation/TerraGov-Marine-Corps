@@ -555,6 +555,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/Topic(href, href_list, hsrc)
 	. = ..()
+	if(.)
+		return
 	if(href_list["close"])
 		var/client/C = usr.client
 		if(C)

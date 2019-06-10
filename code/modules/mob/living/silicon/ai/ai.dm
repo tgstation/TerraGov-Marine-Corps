@@ -83,10 +83,12 @@
 
 
 /mob/living/silicon/ai/Topic(href, href_list)
-	if(usr != src || incapacitated())
+	. = ..()
+	if(.)
 		return
 
-	. = ..()
+	if(usr != src || incapacitated())
+		return
 
 	if(href_list["switchcamera"])
 		switchCamera(locate(href_list["switchcamera"]) in GLOB.cameranet.cameras)

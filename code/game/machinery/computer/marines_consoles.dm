@@ -225,7 +225,8 @@
 	return
 
 /obj/machinery/computer/marine_card/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	switch(href_list["choice"])
@@ -433,7 +434,8 @@
 
 
 /obj/machinery/computer/squad_changer/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if (get_dist(src, usr) <= 1 && istype(src.loc, /turf))

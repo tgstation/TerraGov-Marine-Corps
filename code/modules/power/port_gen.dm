@@ -234,7 +234,8 @@
 		ui.set_auto_update(TRUE)
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["toggle_power"])

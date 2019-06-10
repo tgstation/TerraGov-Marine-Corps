@@ -300,7 +300,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 
 /obj/machinery/computer/ordercomp/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if( isturf(loc) && (in_range(src, usr) || issilicon(usr)) )
@@ -459,7 +460,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(isturf(loc) && ( in_range(src, usr) || issilicon(usr) ) )

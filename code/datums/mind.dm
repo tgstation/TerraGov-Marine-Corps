@@ -124,6 +124,9 @@
 
 
 /datum/mind/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!check_rights(R_ADMIN))
 		return
 

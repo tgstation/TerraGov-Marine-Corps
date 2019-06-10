@@ -377,6 +377,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/marine_turret/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr.stat)
 		return
 

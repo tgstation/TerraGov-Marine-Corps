@@ -297,7 +297,9 @@
 
 
 /obj/item/paper/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if(!usr || (usr.stat || usr.restrained()))
 		return
 

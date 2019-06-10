@@ -41,7 +41,8 @@
 		machine_stat &= ~NOPOWER
 
 /obj/machinery/computer/crew/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if( href_list["close"] )
 		var/mob/user = usr

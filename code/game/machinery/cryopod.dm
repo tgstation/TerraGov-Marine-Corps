@@ -120,7 +120,6 @@
 
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
-
 	. =..()
 	if(.)
 		return

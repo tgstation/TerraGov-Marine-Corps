@@ -11,6 +11,8 @@
 
 /datum/admins/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 
 	if(usr.client != owner || !check_rights(NONE))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")

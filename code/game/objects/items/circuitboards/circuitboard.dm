@@ -139,6 +139,8 @@
 
 /obj/item/circuitboard/airlock/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if (usr.stat || usr.restrained() || (!ishuman(usr) && !issilicon(usr)))
 		return
 	if (href_list["close"])

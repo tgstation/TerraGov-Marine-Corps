@@ -182,7 +182,9 @@
 		ui.open()
 
 /obj/machinery/smartfridge/Topic(href, href_list)
-	if (..()) return 0
+	. = ..()
+	if(.) 
+		return
 
 	var/mob/user = usr
 	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")

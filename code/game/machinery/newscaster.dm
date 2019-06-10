@@ -431,7 +431,8 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 
 /obj/machinery/newscaster/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || issilicon(usr))
 		usr.set_interaction(src)
@@ -851,8 +852,10 @@ obj/item/newspaper/attack_self(mob/user as mob)
 
 
 obj/item/newspaper/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	var/mob/living/U = usr
-	..()
 	if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ))
 		U.set_interaction(src)
 		if(href_list["next_page"])

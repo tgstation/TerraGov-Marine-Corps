@@ -116,7 +116,6 @@
 
 /obj/machinery/holopad/Topic(href, href_list)
 	. = ..()
-
 	if(. || isAI(usr))
 		return
 
