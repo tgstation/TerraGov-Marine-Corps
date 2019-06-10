@@ -70,9 +70,6 @@
 /obj/structure/inflatable/attack_paw(mob/user as mob)
 	return attack_generic(user, 15)
 
-/obj/structure/inflatable/attack_hand(mob/user as mob)
-	return
-
 
 /obj/structure/inflatable/proc/attack_generic(mob/living/user, damage = 0)	//used by attack_animal
 	obj_integrity -= damage
@@ -194,6 +191,9 @@
 	return TryToSwitchState(user)
 
 /obj/structure/inflatable/door/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	return TryToSwitchState(user)
 
 /obj/structure/inflatable/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)

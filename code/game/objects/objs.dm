@@ -102,8 +102,11 @@
 	else . = ..()
 
 /obj/attack_hand(mob/user)
-	if(can_buckle) manual_unbuckle(user)
-	else . = ..()
+	. = ..()
+	if(.)
+		return
+	if(can_buckle) 
+		manual_unbuckle(user)
 
 
 /obj/proc/handle_rotation()

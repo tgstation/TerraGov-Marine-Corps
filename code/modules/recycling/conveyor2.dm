@@ -116,6 +116,9 @@
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
 		return
 	if (user.pulling.anchored)
@@ -229,6 +232,9 @@
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
@@ -259,6 +265,9 @@
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/oneway/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(position == 0)
 		position = convdir
 	else

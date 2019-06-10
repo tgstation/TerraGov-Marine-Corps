@@ -15,7 +15,7 @@
 	return attack_hand(user)
 
 /obj/structure/table/holotable/attack_hand(mob/user as mob)
-	return // HOLOTABLE DOES NOT GIVE A FUCK
+	return TRUE
 
 
 /obj/structure/table/holotable/attackby(obj/item/I, mob/user, params)

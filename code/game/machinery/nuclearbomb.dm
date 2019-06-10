@@ -159,6 +159,9 @@ var/bomb_set
 	return attack_hand(user)
 
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (src.extended)
 		if (!ishuman(user))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")

@@ -128,6 +128,9 @@
 	return
 
 /obj/machinery/biogenerator/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	interact(user)
 
 /obj/machinery/biogenerator/proc/activate()

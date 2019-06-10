@@ -10,6 +10,8 @@
 
 /obj/item/moneybag/attack_hand(mob/user)
 	. = ..()
+	if(.)
+		return
 	var/amt_gold = 0
 	var/amt_silver = 0
 	var/amt_diamond = 0

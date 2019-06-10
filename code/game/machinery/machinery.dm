@@ -209,6 +209,9 @@
 
 
 /obj/machinery/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!is_operational())
 		return TRUE
 

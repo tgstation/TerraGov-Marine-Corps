@@ -141,6 +141,9 @@
 	return 0
 
 /obj/machinery/microwave/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	interact(user)
 

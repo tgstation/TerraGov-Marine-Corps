@@ -307,10 +307,6 @@
 				take_damage(rand(25, 75))
 				return
 
-/turf/closed/wall/attack_hand(mob/user as mob)
-	return
-
-
 
 /turf/closed/wall/attackby(obj/item/I, mob/user, params)
 	. = ..()

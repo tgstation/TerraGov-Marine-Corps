@@ -93,6 +93,9 @@
 	return FALSE //Nope, all fine
 
 /obj/machinery/power/geothermal/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(!anchored) //Shouldn't actually be possible
 		return FALSE
 	if(user.incapacitated())
@@ -266,6 +269,9 @@
 	return src.attack_hand(user)
 
 /obj/machinery/colony_floodlight_switch/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(user))
 		to_chat(user, "Nice try.")
 		return FALSE
@@ -409,13 +415,15 @@
 		return TRUE
 
 /obj/machinery/colony_floodlight/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(ishuman(user))
 		if(damaged)
 			to_chat(user, "<span class='warning'>[src] is damaged.</span>")
 		else if(!is_lit)
 			to_chat(user, "<span class='warning'>Nothing happens. Looks like it's powered elsewhere.</span>")
 		return FALSE
-	..()
 
 /obj/machinery/colony_floodlight/examine(mob/user)
 	..()

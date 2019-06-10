@@ -151,7 +151,8 @@
 // Allows altering timer and the timing boolean.
 // Flasher activation limited to 150 seconds
 /obj/machinery/door_timer/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	// Used for the 'time left' display

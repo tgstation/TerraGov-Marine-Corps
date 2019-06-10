@@ -78,7 +78,7 @@
 	if ((ishuman(usr) || ismonkey(usr)) && src.loc == user)	//make it harder to accidentally undress yourself
 		return
 
-	..()
+	return ..()
 
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
 	if (ishuman(usr) || ismonkey(usr))

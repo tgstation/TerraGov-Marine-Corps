@@ -47,12 +47,13 @@
 		mybag = I
 
 /obj/structure/bed/chair/janicart/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(mybag)
 		mybag.loc = get_turf(user)
 		user.put_in_hands(mybag)
 		mybag = null
-	else
-		..()
 
 
 /obj/structure/bed/chair/janicart/relaymove(mob/user, direction)

@@ -288,6 +288,9 @@
 	return attack_hand(user)
 
 /obj/structure/closet/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	return toggle(user)
 
 /obj/structure/closet/verb/verb_toggleopen()

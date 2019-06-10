@@ -419,9 +419,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	update_icon()
 
 /obj/item/ammobox/attack_hand(mob/user)
-	if(deployed == FALSE)
-		user.put_in_hands(src)
-		return
+	if(!deployed)
+		return ..()
 	if(magazine_amount == 0)
 		to_chat(user, "<span class='warning'>The [src] is empty.")
 		return
@@ -485,15 +484,12 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	to_chat(user, "It contains [current_rounds] out of [max_rounds] shotgun shells.")
 
 /obj/item/ammo_magazine/shotgunbox/attack_hand(mob/user)
-	if(deployed == FALSE)
-		user.put_in_hands(src)
-		return
+	if(!deployed == FALSE)
+		return ..()
 	if(!(flags_magazine & AMMUNITION_REFILLABLE) || current_rounds < 1)
 		to_chat(user, "<span class='warning'>The [src] is empty.")
-		return ..()
 	if(create_handful(user))
 		update_icon()
-		return ..()
 
 /obj/item/ammo_magazine/shotgunbox/attackby(obj/item/I, mob/user, params)
 	if(deployed == FALSE)

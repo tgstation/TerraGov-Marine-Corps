@@ -860,6 +860,9 @@
 
 
 /obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(isxeno(user))
 		return
 

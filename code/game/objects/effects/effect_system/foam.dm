@@ -198,6 +198,7 @@
 
 /obj/structure/foamedmetal/attack_hand(var/mob/user)
 	to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
+	return TRUE
 
 /obj/structure/foamedmetal/attackby(obj/item/I, mob/user, params)
 	. = ..()

@@ -60,8 +60,10 @@
 		to_chat(user, "<span class='warning'>The baton does not have a power source installed.</span>")
 
 /obj/item/weapon/baton/attack_hand(mob/user)
-	if(check_user_auth(user))
-		..()
+	. = ..()
+	if(.)
+		return
+	check_user_auth(user)
 
 
 /obj/item/weapon/baton/equipped(mob/user, slot)

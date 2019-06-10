@@ -78,6 +78,9 @@
 				INVOKE_ASYNC(M, /obj/machinery/door/.proc/close)
 
 /obj/machinery/door_control/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -133,7 +136,9 @@
 		return attack_hand(user)
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)

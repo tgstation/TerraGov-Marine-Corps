@@ -22,6 +22,9 @@
 	. = ..()
 
 /obj/item/clothing/shoes/marine/attack_hand(var/mob/living/M)
+	. = ..()
+	if(.)
+		return
 	if(knife && src.loc == M && !M.incapacitated()) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 		if(M.put_in_active_hand(knife))
 			to_chat(M, "<span class='notice'>You slide [knife] out of [src].</span>")
@@ -29,7 +32,6 @@
 			knife = 0
 			update_icon()
 		return
-	..()
 
 /obj/item/clothing/shoes/marine/attackby(obj/item/I, mob/user, params)
 	. = ..()

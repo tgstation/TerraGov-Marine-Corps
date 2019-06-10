@@ -270,7 +270,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return attack_hand(user)
 
 /obj/machinery/computer/ordercomp/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat
@@ -399,6 +400,9 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return

@@ -152,6 +152,9 @@ FIRE ALARM
 		update_icon()
 
 /obj/machinery/firealarm/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		return
 

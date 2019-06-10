@@ -464,7 +464,7 @@
 		else
 			open(user)
 	else
-		..()
+		. = ..()
 		for(var/mob/M in content_watchers)
 			close(M)
 

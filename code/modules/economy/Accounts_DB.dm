@@ -58,6 +58,9 @@
 	attack_hand(user)
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 

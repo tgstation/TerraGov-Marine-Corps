@@ -85,7 +85,9 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/card/attack_hand(mob/user as mob)
-	if(..()) return
+	. = ..()
+	if(.) 
+		return
 	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
