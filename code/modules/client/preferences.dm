@@ -113,6 +113,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(load_preferences() && load_character())
 			return
 
+	key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
+
 	random_character()
 
 
