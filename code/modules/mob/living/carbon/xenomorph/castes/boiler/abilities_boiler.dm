@@ -36,7 +36,7 @@
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	to_chat(X, "<span class='notice'>You will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive acid. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>")
+	to_chat(X, "<span class='notice'>You will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive ? "corrosive acid. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>")
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 	else
@@ -46,7 +46,7 @@
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	button.overlays.Cut()
-	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas)
+	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas/corrosive)
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
 	else
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
