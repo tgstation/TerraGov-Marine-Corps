@@ -22486,8 +22486,7 @@
 	},
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
 	dir = 4
@@ -27481,8 +27480,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/item/radio/intercom{
 	anyai = 1;
@@ -27531,8 +27529,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
@@ -27540,8 +27537,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 2;
