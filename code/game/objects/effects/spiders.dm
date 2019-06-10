@@ -115,7 +115,7 @@
 			var/datum/pipeline/entry_vent_parent = entry_vent.parents[1]
 			for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in entry_vent_parent.other_atmosmch)
 				vents.Add(temp_vent)
-			if(!vents.len)
+			if(!length(vents))
 				entry_vent = null
 				return
 			var/obj/machinery/atmospherics/components/unary/vent_pump/exit_vent = pick(vents)
