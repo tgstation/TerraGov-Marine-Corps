@@ -1838,27 +1838,26 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 				H.change_squad(change)
 			if("equipment")
-				var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
-				if(!dresscode)
-					return
+				var/list/job_paths = subtypesof(/datum/outfit/job)
+				var/list/job_outfits = list()
+				for(var/path in job_paths)
+					var/datum/outfit/O = path
+					if(initial(O.can_be_admin_equipped))
+						job_outfits[initial(O.name)] = path
 
-				if(dresscode == "{Job}")
-					var/list/job_paths = subtypesof(/datum/outfit/job)
-					var/list/job_outfits = list()
-					for(var/path in job_paths)
-						var/datum/outfit/O = path
-						if(initial(O.can_be_admin_equipped))
-							job_outfits[initial(O.name)] = path
+				var/list/picker = sortList(job_outfits)
+				picker.Insert(1, "{Custom}", "{Naked}")
 
-					dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
-					dresscode = job_outfits[dresscode]
+				var/dresscode = input("Select job equipment", "Select Equipment") as null|anything in picker
 
-				else if(dresscode == "{Custom}")
+				if(dresscode == "{Custom}")
 					var/list/custom_names = list()
 					for(var/datum/outfit/D in GLOB.custom_outfits)
 						custom_names[D.name] = D
 					var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
 					dresscode = custom_names[selected_name]
+				else if(dresscode != "{Naked}")
+					dresscode = job_outfits[dresscode]
 
 				if(!dresscode || !istype(H))
 					return
