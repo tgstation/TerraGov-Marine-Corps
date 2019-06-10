@@ -109,10 +109,10 @@
 
 
 /datum/action/xeno_action/activable/bombard/proc/signal_use(mob/living/carbon/xenomorph/X, atom/A, params)
-    if(!selected_ability)
+    if(!X.selected_ability)
         return
-    if(selected_ability.can_use_ability(A))
-        selected_ability.use_ability(A)
+    if(X.selected_ability.can_use_ability(A))
+        X.selected_ability.use_ability(A)
 
 
 /mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
