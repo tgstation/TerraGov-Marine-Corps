@@ -386,6 +386,8 @@
 		if("back")
 			state = OW_MAIN
 		if("use_cam")
+			if(isAI(usr))
+				return
 			selected_target = locate(href_list["selected_target"])
 			var/atom/cam_target = locate(href_list["cam_target"])
 			var/obj/machinery/camera/new_cam = cam_target.get_camera(current_squad)
