@@ -595,7 +595,7 @@
 			//if(effectAnnounce)
 			//	deadchat_broadcast("<span class='deadsay'>A special package is being launched at the station!</span>", turf_target = target)
 			var/list/targets = list()
-			for(var/mob/living/M in target)
+			for(var/mob/living/M in viewers(0, target))
 				targets.Add(M)
 			supplypod_log(targets, target)
 			if(!effectBurst)
