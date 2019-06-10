@@ -194,6 +194,7 @@
 	var/keybind_flags
 	var/image/cooldown_image
 	var/keybind_signal
+	var/cooldown_id
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -213,6 +214,8 @@
 	. = ..()
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
+	if(cooldown_id)
+		deltimer(cooldown_id)
 
 /datum/action/xeno_action/proc/keybind_activation()
 	if(can_use_action())
@@ -307,7 +310,7 @@
 	if(!length(active_timers)) // stop doubling up
 		last_use = world.time
 		on_cooldown = TRUE
-		addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown())
+		cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
 		button.overlays += cooldown_image
 		update_button_icon()
 
