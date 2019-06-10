@@ -62,16 +62,12 @@
 
 /obj/machinery/computer/pilot_computer/Topic(href, href_list)
 	. = ..()
-	if(.)
-		to_chat("returning bad")
-		return
 
 	if(href_list["launch"])
 		// TODO: Add timer and launch the shuttle.
 		to_chat(world, "launch pushed")
 		visible_message("Shuttle launching, please stand clear of the airlocks.")
 		return
-	return
 
 
 /obj/machinery/computer/pilot_computer/process()
@@ -82,12 +78,13 @@
 	if (world.time < (last_announce + 1 MINUTES))	
 		return
 
-	var/engine_alert = "Fuel status: "
+	var/engine_alert = "[src] Beeps*: \"Fuel status - "
 	var/engine_count = 1
 	for(var/i in ship_engines)
 		var/obj/structure/shuttle/engine/E = i
 		var/fuel_level = max(0, min(100, round((E.fuel_current / E.fuel_max) * 100)))
 		engine_alert += "Engine #[engine_count++]: [fuel_level]%. "
+	engine_alert += "\""
 
 	last_announce = world.time
 	visible_message(engine_alert)
