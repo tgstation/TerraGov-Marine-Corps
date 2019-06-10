@@ -76,7 +76,7 @@
 		if(PRcounts[id] > PR_ANNOUNCEMENTS_PER_ROUND)
 			return
 
-	var/final_composed = "<span class='announce'>PR: [input[keyword]]</span>"
+	var/final_composed = "<span class='boldnotice'>PR: [input[keyword]]</span>"
 	to_chat(world, final_composed)
 
 
