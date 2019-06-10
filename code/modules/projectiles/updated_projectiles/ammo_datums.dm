@@ -1287,7 +1287,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "acid splash"
 	added_spit_delay = 8
 	spit_cost = 75
-	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_EXPLOSIVE
+	flags_ammo_behavior = AMMO_XENO_ACID
 
 /datum/ammo/xeno/acid/heavy/New()
 	. = ..()
