@@ -70,7 +70,7 @@
 	if(!planet_nuked && num_humans == 0 && num_xenos > 0) // XENO Major (All marines killed)
 		message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
 		round_finished = MODE_CRASH_X_MAJOR 
-	else if(marines_evac && planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) // Marine minor (Planet nuked, no human left on planet)
+	else if(marines_evac && planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) // Marine minor (Planet nuked, some human left on planet)
 		message_admins("Round finished: [MODE_CRASH_M_MINOR]")
 		round_finished = MODE_CRASH_M_MINOR 
 	else if(marines_evac && planet_nuked) // Marine Major (Planet nuked, marines evac)
@@ -79,7 +79,7 @@
 	else if(marines_evac && !planet_nuked) // Xeno minor (Marines evac, planet intact)
 		message_admins("Round finished: [MODE_CRASH_X_MINOR]")
 		round_finished = MODE_CRASH_X_MINOR 
-	else if(num_humans == 0 && num_xenos == 0) // Draw, for some unknown reason
+	else if(num_humans == 0 && num_xenos == 0 || (planet_nuked && !marines_evac)) // Draw, for all other reasons
 		message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
 		round_finished = MODE_CRASH_DRAW_DEATH 
 
