@@ -239,7 +239,7 @@
 	max_shells = 10 //codex
 	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
-	fire_sound = 'sound/weapons/gun_kt42.ogg'
+	fire_sound = 'sound/weapons/gun_svd.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -738,8 +738,9 @@
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
-	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
-	unload_sound = 'sound/weapons/gun_mortar_reload.ogg'
+	dry_fire_sound = 'sound/weapons/gun_launcher_empty.ogg'
+	reload_sound = 'sound/weapons/gun_launcher_reload.ogg'
+	unload_sound = 'sound/weapons/gun_launcher_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
@@ -764,7 +765,7 @@
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
-	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
+	playsound(loc,'sound/weapons/gun_launcher.ogg', 50, 1)
 	. = ..()
 
 
@@ -910,7 +911,7 @@
 	caliber = "12 gauge shotgun shells" //codex
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
+	fire_sound = 'sound/weapons/gun_shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
