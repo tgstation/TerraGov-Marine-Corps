@@ -260,7 +260,7 @@
 	set name = "Rest"
 	set category = "IC"
 
-	if(incapacitated(TRUE))
+	if(incapacitated(TRUE) || is_ventcrawling)
 		return
 
 	if(!resting)
