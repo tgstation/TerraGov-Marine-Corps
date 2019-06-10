@@ -98,11 +98,13 @@
 /datum/action/item_action/update_button_icon()
 	button.overlays.Cut()
 	var/obj/item/I = target
+	var/old_layer = I.layer
+	var/old_plane = I.plane
 	I.layer = ABOVE_HUD_LAYER
 	I.plane = ABOVE_HUD_PLANE
 	button.overlays += I
-	I.layer = initial(I.layer)
-	I.plane = initial(I.plane)
+	I.layer = old_layer
+	I.plane = old_plane
 
 
 /datum/action/item_action/toggle/New(Target)
