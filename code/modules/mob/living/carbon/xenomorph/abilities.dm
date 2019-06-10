@@ -462,7 +462,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
@@ -472,7 +472,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
