@@ -39,10 +39,6 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	return TRUE
 
 
-/mob/living/simple_animal/spiderbot/can_ventcrawl()
-	return TRUE
-
-
 //VENTCRAWLING
 /mob/proc/handle_ventcrawl(atom/A)
 	if(!can_ventcrawl() || !Adjacent(A))
