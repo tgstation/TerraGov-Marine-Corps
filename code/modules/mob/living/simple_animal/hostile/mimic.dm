@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 /mob/living/simple_animal/hostile/mimic/copy/proc/CheckObject(obj/O)
 	if((isitem(O) || isstructure(O)) && !is_type_in_list(O, GLOB.protected_objects))
 		return TRUE
-	return 0
+	return FALSE
 
 
 /mob/living/simple_animal/hostile/mimic/copy/proc/CopyObject(obj/O, mob/living/user, destroy_original = 0)
