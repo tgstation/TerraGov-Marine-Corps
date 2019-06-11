@@ -17,6 +17,11 @@
 				next_move = world.time + 3
 				return
 	else
+		if(s_active)
+			if(!s_active.can_be_inserted(I))
+				return
+			s_active.handle_item_insertion(I, FALSE, src)
+			return 
 		if(client?.prefs?.preferred_slot)
 			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
 				return
