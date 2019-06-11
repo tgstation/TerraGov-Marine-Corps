@@ -53,15 +53,6 @@
 	return ..()
 
 // ***************************************
-// *********** Super strong acid
-// ***************************************
-
-/datum/action/xeno_action/activable/corrosive_acid/boiler
-	name = "Corrosive Acid"
-	plasma_cost = 200
-	acid_type = /obj/effect/xenomorph/acid/strong
-
-// ***************************************
 // *********** Gas cloud bombs
 // ***************************************
 /datum/action/xeno_action/activable/bombard
