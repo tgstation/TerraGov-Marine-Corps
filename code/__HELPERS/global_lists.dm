@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 	for(var/i in 1 to 21)
 		GLOB.randomized_pill_icons += "pill[i]"
-	shuffle(GLOB.randomized_pills_icons)
+	shuffle(GLOB.randomized_pill_icons)
 
 	return TRUE
 
