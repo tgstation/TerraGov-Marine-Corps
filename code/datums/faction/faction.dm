@@ -18,7 +18,7 @@
 
 
 /datum/faction/proc/friendly_check(datum/faction/other)
-	return (other in friendly_factions)
+	return (other in friendly_factions) || type == other.type
 
 
 /datum/faction/marine
