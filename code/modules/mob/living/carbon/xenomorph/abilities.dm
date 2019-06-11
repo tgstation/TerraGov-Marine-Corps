@@ -800,22 +800,24 @@
 
 
 /datum/action/xeno_action/lay_egg/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
+	var/turf/current_turf = get_turf(owner)
 
-	var/turf/current_turf = get_turf(X)
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 	if(!alien_weeds)
-		to_chat(X, "<span class='warning'>Your eggs wouldn't grow well enough here. Lay them on resin.</span>")
+		to_chat(owner, "<span class='warning'>Your eggs wouldn't grow well enough here. Lay them on resin.</span>")
 		return FALSE
 
-	if(!current_turf.check_alien_construction(X))
+	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
 		return FALSE
-	
-	X.visible_message("<span class='xenowarning'>\The [X] has laid an egg!</span>", \
+
+	if(!current_turf.check_alien_construction(owner))
+		return FALSE
+
+	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
 		"<span class='xenowarning'>You have laid an egg!</span>")
 
 	new /obj/effect/alien/egg(current_turf)
-	playsound(X.loc, 'sound/effects/alien_egg_move.ogg', 25)
+	playsound(owner.loc, 'sound/effects/alien_egg_move.ogg', 25)
 
 	succeed_activate()
 	add_cooldown()
