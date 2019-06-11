@@ -158,6 +158,7 @@
 
 
 /mob/living/carbon/xenomorph/shrike/add_to_hive(datum/hive_status/HS, force = FALSE) // override to ensure proper queen/hive behaviour
+
 	. = ..()
 	if(HS.living_xeno_shrike) // theres already a shrike
 		return
@@ -225,6 +226,9 @@
 
 	if(queen_chosen_lead || src in hive.xeno_leader_list)
 		hive.remove_leader(src)
+
+	if(hive.living_xeno_ruler)
+		hive.update_ruler()
 
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
