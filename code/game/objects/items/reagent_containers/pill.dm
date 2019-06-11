@@ -2,12 +2,6 @@
 /// Pills.
 ////////////////////////////////////////////////////////////////////////////////
 
-//randomizing pill icons
-GLOBAL_LIST_INIT(randomized_pill_icons, shuffle(list("pill1","pill2","pill3","pill4","pill5","pill6","pill7",
-													"pill8","pill9","pill10","pill11","pill12","pill13","pill14",
-													"pill15","pill16","pill17","pill18","pill19","pill20","pill21")))
-
-
 /obj/item/reagent_container/pill
 	name = "pill"
 	icon = 'icons/obj/items/chemistry.dmi'
