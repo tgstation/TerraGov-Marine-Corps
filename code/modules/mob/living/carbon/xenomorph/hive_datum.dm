@@ -493,7 +493,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	qdel(L)
 
 
-/datum/hive_status/normal/proc/can_spawn_larva(mob/xeno_candidate)
+// This proc checks for available mothers and offers a choice if there's more than one.
+/datum/hive_status/normal/proc/attempt_to_spawn_larva(mob/xeno_candidate)
 	if(!xeno_candidate?.client)
 		return FALSE
 
@@ -512,30 +513,35 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/chosen_mother = input("Available Mothers") as null|anything in possible_mothers
-	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
-		return FALSE
+	if(length(possible_mothers) > 1)
+		chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+	else
+		chosen_mother = possible_mothers[1]
 
-	if(!CHECK_BITFIELD(SEND_SIGNAL(chosen_mother, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
-		to_chat(xeno_candidate, "<span class='warning'>This mother is no longer in a state to receive us.</span>")
+	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
 	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 
-	return chosen_mother
+	return spawn_larva(xeno_candidate, chosen_mother)
 
 
 /datum/hive_status/normal/proc/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	if(!xeno_candidate?.mind)
 		return FALSE
 
+	if(QDELETED(mother) || !istype(mother))
+		to_chat(xeno_candidate, "<span class='warning'>Something went awry with mom. Can't spawn at the moment.</span>")
+		return FALSE
+
 	if(!stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
 		return FALSE
 
-	if(QDELETED(mother) || !istype(mother))
-		to_chat(xeno_candidate, "<span class='warning'>Something went awry with mom. Can't spawn at the moment.</span>")
+	if(!CHECK_BITFIELD(SEND_SIGNAL(mother, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
+		to_chat(xeno_candidate, "<span class='warning'>This mother is no longer in a state to receive us.</span>")
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(mother.loc)
@@ -549,6 +555,8 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	log_game("[key_name(new_xeno)] has joined as [new_xeno].")
 	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
+
+	return TRUE
 
 
 // ***************************************

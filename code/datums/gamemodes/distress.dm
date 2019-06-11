@@ -733,7 +733,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 /datum/game_mode/distress/attempt_to_join_as_larva(mob/xeno_candidate)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.can_spawn_larva(xeno_candidate)
+	return HS.attempt_to_spawn_larva(xeno_candidate)
 
 
 /datum/game_mode/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
