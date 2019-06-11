@@ -142,7 +142,7 @@
 	assailant.psychic_victim = victim
 
 	if(assailant.get_active_held_item())
-		drop_held_item() //Do we have a hugger? No longer.
+		assailant.drop_held_item() //Do we have a hugger? No longer.
 
 	round_statistics.psychic_chokes++
 	assailant.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [assailant]!</span>", \
@@ -159,27 +159,10 @@
 
 	assailant.changeNext_move(CLICK_CD_RANGE)
 
-	assailantflick_attack_overlay(victim, "grab")
+	assailant.flick_attack_overlay(victim, "grab")
 
 	log_combat(assailant, victim, "psychically grabbed")
 	msg_admin_attack("[key_name(assailant)] psychically grabbed [key_name(victim)]" )
 
 	succeed_activate()
 	add_cooldown()
-
-
-/mob/living/carbon/xenomorph/shrike/proc/stop_psychic_grab()
-	if(QDELETED(psychic_victim))
-		return FALSE
-
-	psychic_victim.SetStunned(0)
-	psychic_victim.update_canmove()
-	psychic_victim = null
-
-	var/obj/item/grab/G = get_active_held_item()
-	if(!istype(G))
-		G = get_active_held_item()
-		if(!istype(G))
-			return FALSE //Grab is no longer on us, it will auto-delete, nothing else for us to do.
-
-	temporarilyRemoveItemFromInventory(G)
