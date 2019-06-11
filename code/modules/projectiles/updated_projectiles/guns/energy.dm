@@ -150,8 +150,8 @@
 	name = "\improper M43 Sunfury Lasgun MK1"
 	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. Uses power cells."
 	force = 20 //Large and hefty! Includes stock bonus.
-	icon_state = "m43"
-	item_state = "m43"
+	icon_state = "m43_0"
+	item_state = "m43_0"
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
