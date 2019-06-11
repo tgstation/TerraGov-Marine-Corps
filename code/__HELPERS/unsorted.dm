@@ -870,6 +870,9 @@ var/global/list/common_tools = list(
 /proc/params2turf(scr_loc, turf/origin, client/C)
 	if(!scr_loc)
 		return
+	if(!origin)
+		var/atom/A = C.eye
+		CRASH("params2turf called with a null origin on client [C]. More information: [C.eye ? "Client eye: [C.eye]" : "no client eye"] [A.loc ? "Client eye loc:[A.loc] [A.loc.x] [A.loc.y] [A.loc.z]" : "in nullspace"]")
 	var/tX = splittext(scr_loc, ",")
 	var/tY = splittext(tX[2], ":")
 	var/tZ = origin.z

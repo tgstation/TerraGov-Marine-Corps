@@ -123,6 +123,8 @@
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(atom/neighbor)
+	if(!loc?.loc)
+		CRASH("adjacent invalid loc.loc, more information: [loc ? "[loc] [loc.x] [loc.y] [loc.z]" : "base loc is null"]")
 	if(neighbor == loc || neighbor == loc.loc) //Item is in the neighbor or something that it holds.
 		return TRUE
 
