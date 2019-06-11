@@ -695,9 +695,6 @@
 	L.KnockDown(5)
 	L.lying = TRUE
 
-/obj/machinery/bot/mulebot/alter_health()
-	return get_turf(src)
-
 
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc

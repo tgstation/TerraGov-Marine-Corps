@@ -170,26 +170,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define B18_PAIN_MIN					50
 #define B18_PAIN_MAX					150
 
-//Obj skill check defines
-
-#define OBJ_SKILL_CQC			1
-#define OBJ_SKILL_MELEE_WEAPONS	2
-#define OBJ_SKILL_FIREARMS		3
-#define OBJ_SKILL_PISTOLS		4
-#define OBJ_SKILL_RIFLES		5
-#define OBJ_SKILL_SMG			6
-#define OBJ_SKILL_SHOTGUNS		7
-#define OBJ_SKILL_HEAVYWEAPONS	8
-#define OBJ_SKILL_SMARTGUN		9
-#define OBJ_SKILL_SPEC_WEAPONS	10
-#define OBJ_SKILL_LEADERSHIP	11
-#define OBJ_SKILL_MEDICAL		12
-#define OBJ_SKILL_SURGERY		13
-#define OBJ_SKILL_PILOT			14
-#define OBJ_SKILL_ENGINEER		15
-#define OBJ_SKILL_CONSTRUCTION	16
-#define OBJ_SKILL_POLICE		17
-#define OBJ_SKILL_POWERLOADER	18
 
 //Razor wire
 
