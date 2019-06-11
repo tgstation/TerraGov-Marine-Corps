@@ -188,8 +188,9 @@
 	do_buckle(M, user)
 
 //the actual buckling proc
-/obj/proc/do_buckle(mob/M, mob/user)
-	send_buckling_message(M, user)
+/obj/proc/do_buckle(mob/M, mob/user, silent = FALSE)
+	if(!silent)
+		send_buckling_message(M, user)
 	M.buckled = src
 	M.loc = src.loc
 	M.setDir(dir)
