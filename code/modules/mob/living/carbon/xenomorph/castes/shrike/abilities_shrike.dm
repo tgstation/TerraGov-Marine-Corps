@@ -118,7 +118,7 @@
 			if(!silent)
 				to_chat(S, "<span class='warning'>The target is too close, you need some room to focus!</span>")
 			return FALSE
-		if(5 to INFINITY)
+		if(4 to INFINITY)
 			if(!silent)
 				to_chat(S, "<span class='warning'>Too far, our mind power does not reach it...</span>")
 			return FALSE
