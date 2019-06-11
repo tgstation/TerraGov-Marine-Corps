@@ -109,10 +109,8 @@
 
 
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
-    if(!X.selected_ability)
-        return
-    if(X.selected_ability.can_use_ability(A))
-        X.selected_ability.use_ability(A)
+    if(can_use_ability(A))
+        use_ability(A)
 
 
 /mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
