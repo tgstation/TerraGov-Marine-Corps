@@ -14,7 +14,6 @@
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	faction = "Neutral"
 	attack_same = TRUE
 	attacktext = "kicks"
 	attack_sound = 'sound/weapons/punch1.ogg'

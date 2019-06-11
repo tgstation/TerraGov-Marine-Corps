@@ -798,7 +798,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(isliving(P.firer))
 		var/mob/living/firingMob = P.firer
 		var/turf/T = get_turf(firingMob)
-		if(ishuman(firingMob) && ishuman(src) && !firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
+		if(ishuman(firingMob) && ishuman(src) && !firingMob.mind?.bypass_ff && !mind?.bypass_ff && !firingMob.faction.friendly_check(faction))
 			log_combat(firingMob, src, "shot", P)
 			log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
 			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")

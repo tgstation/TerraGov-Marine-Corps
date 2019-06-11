@@ -1851,7 +1851,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				H.equip_to_slot_or_del(new /obj/item/card/id(H), SLOT_WEAR_ID)
 			if("squad")
 				previous = H.assigned_squad
-				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
+				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in H.faction.squads
 				if(!change || !istype(H) || !(H.job in JOBS_MARINES))
 					return
 

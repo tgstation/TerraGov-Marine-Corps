@@ -121,7 +121,7 @@
 	if(user.mind.cm_skills)
 		acquisition_time = max(15, acquisition_time - 25*user.mind.cm_skills.leadership)
 
-	var/datum/squad/S = user.assigned_squad
+	var/datum/squad/marine/S = user.assigned_squad
 
 	var/laz_name = ""
 	laz_name += user.get_paygrade()

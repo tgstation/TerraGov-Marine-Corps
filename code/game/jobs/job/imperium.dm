@@ -1,6 +1,6 @@
 /datum/job/imperial
 	comm_title = "IMP"
-	faction = "Imperium of Mankind"
+	faction = /datum/faction/imperium
 	skills_type = /datum/skills/imperial
 	supervisors = "the sergeant"
 	access = ALL_ANTAGONIST_ACCESS

@@ -1,7 +1,7 @@
 /datum/job/command
 	selection_color = "#ddddff"
 	supervisors = "the acting captain"
-	faction = "Marine"
+	faction = /datum/faction/marine
 	total_positions = 1
 
 
@@ -288,7 +288,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 /datum/job/logistics
 	supervisors = "the acting captain"
 	total_positions = 1
-	faction = "Marine"
+	faction = /datum/faction/marine
 
 
 //Chief Ship Engineer
@@ -578,7 +578,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 /datum/job/civilian
 	total_positions = 1
-	faction = "Marine"
+	faction = /datum/faction/marine
 
 
 //Liaison

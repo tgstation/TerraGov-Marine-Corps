@@ -1,5 +1,4 @@
-/datum/squad
-	var/name = ""
+/datum/squad/marine
 	var/id = NO_SQUAD
 	var/tracking_id = null // for use with SSdirection
 	var/color = 0 //Color for helmets, etc.
@@ -39,7 +38,7 @@
 	var/list/squad_laser_targets = list()
 
 
-/datum/squad/alpha
+/datum/squad/marine/alpha
 	name = "Alpha"
 	id = ALPHA_SQUAD
 	color = "#e61919" // rgb(230,25,25)
@@ -48,7 +47,7 @@
 	radio_freq = FREQ_ALPHA
 
 
-/datum/squad/bravo
+/datum/squad/marine/bravo
 	name = "Bravo"
 	id = BRAVO_SQUAD
 	color = "#ffc32d" // rgb(255,195,45)
@@ -57,7 +56,7 @@
 	radio_freq = FREQ_BRAVO
 
 
-/datum/squad/charlie
+/datum/squad/marine/charlie
 	name = "Charlie"
 	id = CHARLIE_SQUAD
 	color = "#c864c8" // rgb(200,100,200)
@@ -65,7 +64,7 @@
 	usable = TRUE
 	radio_freq = FREQ_CHARLIE
 
-/datum/squad/delta
+/datum/squad/marine/delta
 	name = "Delta"
 	id = DELTA_SQUAD
 	color = "#4148c8" // rgb(65,72,200)
@@ -78,7 +77,7 @@ GLOBAL_LIST_EMPTY(armormarkings_sl)
 GLOBAL_LIST_EMPTY(helmetmarkings)
 GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
-/datum/squad/New()
+/datum/squad/marine/New()
 	. = ..()
 	var/image/armor = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
 	var/image/armorsl = image('icons/mob/suit_1.dmi',icon_state = "sql-armor")
@@ -96,13 +95,13 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	tracking_id = SSdirection.init_squad(src)
 
-/datum/squad/proc/get_all_members()
+/datum/squad/marine/proc/get_all_members()
 	return marines_list
 
-/datum/squad/proc/get_total_members()
+/datum/squad/marine/proc/get_total_members()
 	return length(marines_list)
 
-/datum/squad/proc/put_marine_in_squad(mob/living/carbon/human/H)
+/datum/squad/marine/proc/put_marine_in_squad(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
 	if(!usable)
@@ -159,7 +158,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	return TRUE
 
 
-/datum/squad/proc/remove_marine_from_squad(mob/living/carbon/human/H)
+/datum/squad/marine/proc/remove_marine_from_squad(mob/living/carbon/human/H)
 	if(!H.mind)
 		return FALSE
 
@@ -203,7 +202,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 //proc used by human dispose to clean the mob from squad lists
-/datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
+/datum/squad/marine/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
 	marines_list -= src
@@ -223,7 +222,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	return TRUE
 
 
-/datum/squad/proc/demote_squad_leader(leader_killed)
+/datum/squad/marine/proc/demote_squad_leader(leader_killed)
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
 	SSdirection.clear_leader(tracking_id)
@@ -260,7 +259,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	old_lead.update_inv_wear_suit()
 	to_chat(old_lead, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
 
-/datum/squad/proc/format_message(message, mob/living/carbon/human/sender)
+/datum/squad/marine/proc/format_message(message, mob/living/carbon/human/sender)
 	var/nametext = ""
 	var/text = copytext(sanitize(message), 1, MAX_MESSAGE_LEN)
 	if(ishuman(sender))
@@ -269,17 +268,17 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		text = "<font size='3'><b>[text]<b></font>"
 	return "[nametext][text]"
 
-/datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
+/datum/squad/marine/proc/message_squad(message, mob/living/carbon/human/sender)
 	var/text = "<font color='blue'><B>\[Overwatch\]:</b> [format_message(message, sender)]</font>"
 	for(var/mob/living/L in marines_list)
 		message_member(L, text, sender)
 
-/datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
+/datum/squad/marine/proc/message_leader(message, mob/living/carbon/human/sender)
 	if(!squad_leader || squad_leader.stat || !squad_leader.client)
 		return FALSE
 	return message_member(squad_leader, "<font color='blue'><B>\[SL Overwatch\]:</b> [format_message(message, sender)]</font>", sender)
 
-/datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
+/datum/squad/marine/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
 	if(!target.client)
 		return
 	if(sender)
@@ -287,7 +286,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	to_chat(target, message)
 
 
-/datum/squad/proc/check_entry(rank)
+/datum/squad/marine/proc/check_entry(rank)
 	switch(rank)
 		if("Squad Marine")
 			return TRUE
@@ -315,7 +314,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 			return FALSE
 
 
-/datum/squad/proc/assign(mob/M, rank, latejoin = FALSE)
+/datum/squad/marine/proc/assign(mob/M, rank, latejoin = FALSE)
 	if(!rank || !M?.mind)
 		return FALSE
 	switch(rank)
@@ -353,8 +352,9 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 /proc/handle_squad(mob/M, rank, latejoin = FALSE)
 	var/strict = FALSE
-	var/datum/squad/P = SSjob.squads[M.client.prefs.preferred_squad]
-	var/datum/squad/R = SSjob.squads[pick(SSjob.squads)]
+	var/datum/faction/marine/F = SSjob.GetFactionType(/datum/faction/marine)
+	var/datum/squad/marine/P = F.squads[M.client.prefs.preferred_squad]
+	var/datum/squad/marine/R = F.squads[pick(F.squads)]
 	if(M.client?.prefs?.be_special && (M.client.prefs.be_special & BE_SQUAD_STRICT))
 		strict = TRUE
 	switch(rank)
@@ -364,76 +364,76 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 			else if(R.assign(M, rank))
 				return TRUE
 		if("Squad Engineer")
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				else if(S.assign(M, rank, latejoin))
 					return TRUE
 		if("Squad Corpsman")
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				else if(S.assign(M, rank, latejoin))
 					return TRUE
 		if("Squad Smartgunner")
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank, latejoin))
 					continue
 				else if(S.assign(M, rank, latejoin))
 					return TRUE
 		if("Squad Specialist")
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				else if(S.assign(M, rank, latejoin))
 					return TRUE
 		if("Squad Leader")
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(F.squads))
+				var/datum/squad/marine/S = F.squads[i]
 				if(!S.check_entry(rank))
 					continue
 				else if(S.assign(M, rank, latejoin))
@@ -442,8 +442,9 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 /proc/reset_squads()
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
+	var/datum/faction/marine/F = SSjob.GetFactionType(/datum/faction/marine)
+	for(var/i in F.squads)
+		var/datum/squad/marine/S = F.squads[i]
 		S.num_engineers = 0
 		S.num_medics = 0
 		S.num_smartgun = 0

@@ -151,8 +151,9 @@
 	var/datum/job/SP = SSjob.GetJobType(/datum/job/marine/specialist)
 	SP.total_positions = maximum_specialists
 
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
+	var/datum/faction/F = SSjob.GetFactionType(/datum/faction/marine)
+	for(var/i in F.squads)
+		var/datum/squad/marine/S = F.squads[i]
 		if(current_specialists >= maximum_specialists)
 			S.max_specialists = 0
 		else

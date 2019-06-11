@@ -2,7 +2,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/SL/pmc
-	faction = "Deathsquad"
+	faction = /datum/faction/deathsquad
 
 
 //Deathsquad Standard

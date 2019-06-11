@@ -22,7 +22,6 @@
 	speak_emote = list("creaks")
 	taunt_chance = 30
 
-	faction = list("mimic")
 	move_to_delay = 9
 	del_on_death = TRUE
 

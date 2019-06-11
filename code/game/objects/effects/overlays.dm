@@ -102,7 +102,7 @@
 	var/target_id
 	var/obj/item/binoculars/tactical/source_binoc
 	var/obj/machinery/camera/laser_cam/linked_cam
-	var/datum/squad/squad
+	var/datum/squad/marine/squad
 
 /obj/effect/overlay/temp/laser_target/New(loc, named, assigned_squad = null)
 	. = ..()

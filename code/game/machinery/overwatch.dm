@@ -26,7 +26,7 @@
 	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
 	var/z_hidden = 0 //which z level is ignored when showing marines.
 	var/squad_console = NO_SQUAD //Is this associated to a specific squad?
-	var/datum/squad/current_squad = null //Squad being currently overseen
+	var/datum/squad/marine/current_squad = null //Squad being currently overseen
 	var/list/squads = list() //All the squads available
 	var/obj/selected_target //Selected target for bombarding
 //	var/console_locked = 0
@@ -65,7 +65,7 @@
 /obj/machinery/computer/overwatch/attack_paw(var/mob/user as mob) //why monkey why
 	return attack_hand(user)
 
-/obj/machinery/computer/overwatch/squad/attack_hand(mob/user)
+/obj/machinery/computer/overwatch/squad/attack_hand(mob/living/user)
 	. = ..()
 	if(.)  //Checks for power outages
 		return
@@ -73,8 +73,8 @@
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!length(squads))
-		for(var/i in SSjob.squads)
-			var/datum/squad/S = SSjob.squads[i]
+		for(var/i in user.faction.squads)
+			var/datum/squad/marine/S = user.faction.squads[i]
 			squads += S
 	if(!current_squad && !(current_squad = get_squad_by_id(squad_console)))
 		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
@@ -274,8 +274,8 @@
 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 				else
 					var/list/squad_choices = list()
-					for(var/i in SSjob.squads)
-						var/datum/squad/S = SSjob.squads[i]
+					for(var/i in operator.faction.squads)
+						var/datum/squad/marine/S = operator.faction.squads[i]
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
@@ -285,7 +285,7 @@
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = SSjob.squads[squad_name]
+					var/datum/squad/marine/selected = operator.faction.squads[squad_name]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -406,7 +406,7 @@
 
 	attack_hand(usr) //The above doesn't ever seem to work.
 
-/obj/machinery/computer/overwatch/main/attack_hand(mob/user)
+/obj/machinery/computer/overwatch/main/attack_hand(mob/living/user)
 	. = ..()
 	if(.)  //Checks for power outages
 		return
@@ -414,8 +414,8 @@
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!length(squads))
-		for(var/i in SSjob.squads)
-			var/datum/squad/S = SSjob.squads[i]
+		for(var/i in user.faction.squads)
+			var/datum/squad/marine/S = user.faction.squads[i]
 			squads += S
 	user.set_interaction(src)
 	var/dat
@@ -427,7 +427,7 @@
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
-				for(var/datum/squad/S in squads)
+				for(var/datum/squad/marine/S in squads)
 					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
@@ -513,7 +513,7 @@
 	return beacon_cam
 
 /obj/machinery/computer/overwatch/proc/send_to_squads(txt)
-	for(var/datum/squad/S in squads)
+	for(var/datum/squad/marine/S in squads)
 		S.message_squad(txt)
 
 /obj/machinery/computer/overwatch/proc/handle_bombard()
@@ -653,7 +653,7 @@
 	if(!current_squad)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No squad selected!</span>")
 		return
-	var/datum/squad/S = current_squad
+	var/datum/squad/marine/S = current_squad
 	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.get_all_members()
 	if(!transfer_marine)
 		return
@@ -668,12 +668,12 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.squads
+	var/choice = input(usr, "Choose the marine's new squad") as null|anything in operator.faction.squads
 	if(!choice)
 		return
 	if(S != current_squad)
 		return
-	var/datum/squad/new_squad = SSjob.squads[choice]
+	var/datum/squad/marine/new_squad = operator.faction.squads[choice]
 
 	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
@@ -683,7 +683,7 @@
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/datum/squad/old_squad = transfer_marine.assigned_squad
+	var/datum/squad/marine/old_squad = transfer_marine.assigned_squad
 	if(new_squad == old_squad)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is already in [new_squad]!</span>")
 		return
@@ -786,7 +786,7 @@
 	current_squad.sbeacon.visible_message("[icon2html(current_squad.sbeacon, viewers(current_squad.sbeacon))] <span class='boldnotice'>The [current_squad.sbeacon.name] begins to beep!</span>")
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, current_squad, supplies, x_offset, y_offset), 10 SECONDS)
 
-/obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/S, list/supplies, x_offset, y_offset)
+/obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/marine/S, list/supplies, x_offset, y_offset)
 	if(QDELETED(S.sbeacon))
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Launch aborted! Supply beacon signal lost.</span>")
 		busy = FALSE
@@ -836,7 +836,8 @@
 	force_link()
 
 /obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
-	var/datum/squad/S = SSjob.squads[squad_name]
+	var/datum/faction/F = SSjob.GetFactionType(/datum/faction/marine)
+	var/datum/squad/marine/S = F.squads[squad_name]
 	if(S)
 		S.drop_pad = src
 	else
@@ -865,7 +866,7 @@
 	w_class = 2
 	var/activated = 0
 	var/activation_time = 60
-	var/datum/squad/squad = null
+	var/datum/squad/marine/squad = null
 	var/icon_activated = "motion2"
 	var/obj/machinery/camera/beacon_cam = null
 
@@ -1145,7 +1146,7 @@
 /obj/machinery/computer/overwatch/proc/get_squad_by_id(id)
 	if(!squads || !length(squads))
 		return FALSE
-	var/datum/squad/S
+	var/datum/squad/marine/S
 	for(S in squads)
 		if(S.id == id)
 			return S

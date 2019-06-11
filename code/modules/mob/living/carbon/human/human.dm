@@ -1417,7 +1417,7 @@
 		qdel(wear_id)
 
 	job = rank
-	faction = J.faction
+	faction = SSjob.GetFactionType(J.faction)
 
 	equip_to_slot_or_del(I, SLOT_WEAR_ID)
 
@@ -1480,7 +1480,7 @@
 	if(!squad || !(job in JOBS_MARINES))
 		return FALSE
 
-	var/datum/squad/S = SSjob.squads[squad]
+	var/datum/squad/marine/S = faction.squads[squad]
 
 	if(!mind)
 		assigned_squad = S

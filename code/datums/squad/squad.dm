@@ -1,0 +1,2 @@
+/datum/squad
+	var/name = ""

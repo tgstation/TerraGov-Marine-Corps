@@ -7,7 +7,9 @@ SUBSYSTEM_DEF(job)
 	var/list/name_occupations = list()	//Dict of all jobs, keys are titles.
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
-	var/list/squads = list()			//List of squads.
+	var/list/factions = list()
+	var/list/name_factions = list()
+	var/list/type_factions = list()
 
 	var/list/unassigned = list()		//Players who need jobs.
 	var/initial_players_to_assign = 0 	//Used for checking against population caps.
@@ -19,18 +21,21 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/Initialize(timeofday)
-	if(!length(occupations))
+	if(!length(occupations) || !length(factions))
 		SetupOccupations()
 	return ..()
 
 
 /datum/controller/subsystem/job/proc/SetupOccupations()
 	occupations = list()
-	squads = list()
+	factions = list()
 	var/list/all_jobs = subtypesof(/datum/job)
-	var/list/all_squads = subtypesof(/datum/squad)
+	var/list/all_factions = subtypesof(/datum/faction)
 	if(!length(all_jobs))
 		to_chat(world, "<span class='boldnotice'>Error setting up jobs, no job datums found</span>")
+		return FALSE
+	if(!length(all_factions))
+		to_chat(world, "<span class='boldnotice'>Error setting up factions, no faction datums found</span>")
 		return FALSE
 
 	for(var/J in all_jobs)
@@ -41,11 +46,15 @@ SUBSYSTEM_DEF(job)
 		name_occupations[job.title] = job
 		type_occupations[J] = job
 
-	for(var/S in all_squads)
-		var/datum/squad/squad = new S()
-		if(!squad)
+
+	for(var/F in all_factions)
+		var/datum/faction/faction = new F()
+		if(!faction)
 			continue
-		squads[squad.name] = squad
+		factions += faction
+		name_factions[faction.name] = faction
+		type_factions[F] = faction
+
 	return TRUE
 
 
@@ -59,6 +68,18 @@ SUBSYSTEM_DEF(job)
 	if(!length(occupations))
 		SetupOccupations()
 	return type_occupations[jobtype]
+
+
+/datum/controller/subsystem/job/proc/GetFaction(faction)
+	if(!length(factions))
+		SetupOccupations()
+	return name_factions[faction]
+
+
+/datum/controller/subsystem/job/proc/GetFactionType(factiontype)
+	if(!length(factions))
+		SetupOccupations()
+	return type_factions[factiontype]
 
 
 /datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, rank, latejoin = FALSE)
@@ -237,7 +258,7 @@ SUBSYSTEM_DEF(job)
 				M = L
 		if(rank in JOBS_MARINES)
 			if(L.mind.assigned_squad)
-				var/datum/squad/S = L.mind.assigned_squad
+				var/datum/squad/marine/S = L.mind.assigned_squad
 				S.put_marine_in_squad(L)
 			else
 				JobDebug("Failed to put marine role in squad. Player: [L.key] Rank: [rank]")

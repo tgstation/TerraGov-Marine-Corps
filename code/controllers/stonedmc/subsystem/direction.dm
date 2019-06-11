@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/proc/clear_leader(squad_id)
 	leader_mapping[squad_id] = null
 
-/datum/controller/subsystem/direction/proc/init_squad(datum/squad/S, mob/L, tracking_id)
+/datum/controller/subsystem/direction/proc/init_squad(datum/squad/marine/S, mob/L, tracking_id)
 	if(!tracking_id)
 		tracking_id = "faction_[last_faction_id++]"
 	processing_mobs[tracking_id] = list()

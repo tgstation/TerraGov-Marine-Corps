@@ -2,7 +2,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/pfc/crafty
-	faction = "Colonial Liberation Force"
+	faction = /datum/faction/clf
 
 
 //CLF Standard
