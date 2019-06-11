@@ -150,8 +150,8 @@
 	name = "\improper M43 Sunfury Lasgun MK1"
 	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. Uses power cells."
 	force = 20 //Large and hefty! Includes stock bonus.
-	icon_state = "m43_0"
-	item_state = "m43_0"
+	icon_state = "m43"
+	item_state = "m43"
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
@@ -190,6 +190,11 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
 	return toggle_chargemode(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
+	. = ..()
+	update_icon()
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
