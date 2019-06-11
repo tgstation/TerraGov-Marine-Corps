@@ -58,6 +58,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/queen/Initialize()
 	RegisterSignal(src, COMSIG_HIVE_BECOME_RULER, .proc/on_becoming_ruler)
+	RegisterSignal(src, COMSIG_HIVE_XENO_MOTHER_CHECK, .proc/is_burrowed_larva_host)
 	. = ..()
 	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, /datum/hive_status.proc/on_queen_death)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
@@ -231,3 +232,13 @@
 		set_queen_overwatch(observed_xeno, TRUE)
 	if(ovipositor)
 		dismount_ovipositor(TRUE)
+
+
+// ***************************************
+// *********** Larva Mother
+// ***************************************
+
+/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host()
+	if(!ovipositor || incapacitated(TRUE))
+		return COMSIG_HIVE_XENO_MOTHER_FALSE
+	return COMSIG_HIVE_XENO_MOTHER_TRUE

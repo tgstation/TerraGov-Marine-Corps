@@ -760,12 +760,3 @@
 
 /mob/living/carbon/xenomorph/proc/hit_and_run_bonus(damage)
 	return damage
-
-/mob/living/carbon/xenomorph/proc/is_burrowed_larva_host()
-	return FALSE
-
-/mob/living/carbon/xenomorph/queen/is_burrowed_larva_host()
-	return ovipositor && !incapacitated(TRUE)
-
-/mob/living/carbon/xenomorph/shrike/is_burrowed_larva_host()
-	return calling_larvas && !incapacitated()

@@ -502,9 +502,9 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	var/list/possible_mothers = list()
-	if(living_xeno_queen?.is_burrowed_larva_host())
+	if(living_xeno_queen && CHECK_BITFIELD(SEND_SIGNAL(living_xeno_queen, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
 		possible_mothers += living_xeno_queen
-	if(living_xeno_shrike?.is_burrowed_larva_host())
+	if(living_xeno_shrike && CHECK_BITFIELD(SEND_SIGNAL(living_xeno_shrike, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
 		possible_mothers += living_xeno_shrike
 
 	if(!length(possible_mothers))
@@ -515,7 +515,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!chosen_mother?.is_burrowed_larva_host())
+	if(!CHECK_BITFIELD(SEND_SIGNAL(chosen_mother, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
 		to_chat(xeno_candidate, "<span class='warning'>This mother is no longer in a state to receive us.</span>")
 		return FALSE
 

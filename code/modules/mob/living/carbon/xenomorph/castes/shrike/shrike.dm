@@ -44,6 +44,7 @@
 // *********** Init
 // ***************************************
 /mob/living/carbon/xenomorph/shrike/Initialize()
+	RegisterSignal(src, COMSIG_HIVE_XENO_MOTHER_CHECK, .proc/is_burrowed_larva_host)
 	. = ..()
 	if(is_centcom_level(z))//so admins can safely spawn queens in Thunderdome for tests.
 		return
@@ -104,3 +105,13 @@
 		return FALSE
 
 	TKG.swap_psychic_grab()
+
+
+// ***************************************
+// *********** Larva Mother
+// ***************************************
+
+/mob/living/carbon/xenomorph/shrike/proc/is_burrowed_larva_host()
+	if(!calling_larvas || incapacitated())
+		return COMSIG_HIVE_XENO_MOTHER_FALSE
+	return COMSIG_HIVE_XENO_MOTHER_TRUE

@@ -142,7 +142,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 			var/mob/living/carbon/xenomorph/X = target
 			if(!istype(X))
 				return FALSE
-			if(!X.is_burrowed_larva_host())
+			if(!CHECK_BITFIELD(SEND_SIGNAL(X, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
 				to_chat(G, "<span class='warning'>This mother is no longer able to receive us.</span>")
 				return FALSE
 			SSticker.mode.spawn_larva(G, X)
