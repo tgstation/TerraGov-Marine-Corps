@@ -59,23 +59,23 @@
 
 
 /datum/action/xeno_action/activable/psychic_fling/use_ability(atom/A)
-	var/mob/living/carbon/human/H = A
+	var/mob/living/victim = A
 	round_statistics.psychic_flings++
 
 	owner.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [owner]!</span>", \
-	"<span class='xenowarning'>You violently fling [H] with the power of your mind!</span>")
-	H.visible_message("<span class='xenowarning'>[H] is violently flung to the side by an unseen force!</span>", \
+	"<span class='xenowarning'>You violently fling [victim] with the power of your mind!</span>")
+	victim.visible_message("<span class='xenowarning'>[victim] is violently flung to the side by an unseen force!</span>", \
 	"<span class='xenowarning'>You are violently flung to the side by an unseen force!</span>")
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
-	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
+	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 	succeed_activate()
-	H.apply_effects(1, 2) 	// Stun
-	shake_camera(H, 2, 1)
+	victim.apply_effects(1, 2) 	// Stun
+	shake_camera(victim, 2, 1)
 
-	var/facing = get_dir(owner, H)
+	var/facing = get_dir(owner, victim)
 	var/fling_distance = 3
-	var/turf/T = H.loc
+	var/turf/T = victim.loc
 	var/turf/temp
 
 	for(var/x in 1 to fling_distance)
@@ -83,7 +83,7 @@
 		if(!temp)
 			break
 		T = temp
-	H.throw_at(T, fling_distance, 1, owner, TRUE)
+	victim.throw_at(T, fling_distance, 1, owner, TRUE)
 
 	add_cooldown()
 
