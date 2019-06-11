@@ -114,9 +114,6 @@
 	// *** Pheromones *** //
 	aura_strength = 2.8
 
-	// *** Queen Abilities *** //
-	queen_leader_limit = 2.6
-
 /datum/xeno_caste/shrike/ancient
 	caste_desc = "A barely contained repository of the hive's psychic power."
 	ancient_message = "You are psychic repository of the hive, and you are ready to unleash your fury."

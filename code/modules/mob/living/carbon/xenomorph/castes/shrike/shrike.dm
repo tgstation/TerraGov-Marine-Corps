@@ -3,7 +3,7 @@
 	name = "Shrike"
 	desc = "A large, lanky alien creature. It seems psychically unstable."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
-	icon_state = "Queen Walking"
+	icon_state = "Shrike Walking"
 	attacktext = "bites"
 	attack_sound = null
 	friendly = "nuzzles"
@@ -75,34 +75,6 @@
 // ***************************************
 // *********** Psychic Grab Procs
 // ***************************************
-
-/mob/living/carbon/xenomorph/shrike/proc/start_psychic_grab(mob/living/carbon/human/H) //I find your lack of faith disturbing.
-	if(!check_state() || !istype(H) || QDELETED(psychic_victim))
-		return FALSE
-
-	if(get_active_held_item())
-		drop_held_item() //Do we have a hugger? No longer.
-
-	round_statistics.psychic_chokes++
-	visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [src]!</span>", \
-	"<span class='xenowarning'>You choke [H] with the power of your mind!</span>")
-	H.visible_message("<span class='xenowarning'>[H] is suddenly grabbed by the neck by an unseen force!</span>", \
-	"<span class='xenowarning'>Your is suddenly grabbed by an unseen force!</span>")
-	playsound(H,'sound/effects/magic.ogg', 75, 1)
-	
-	H.drop_all_held_items()
-	H.Stun(2)
-
-	new /obj/item/tk_grab/shrike(src) //Grab starts "inside" us. It will auto-equip to our hands, set us as its master and our victim as its target, and then start processing the grab.
-
-	changeNext_move(CLICK_CD_RANGE)
-
-	flick_attack_overlay(H, "grab")
-
-	log_combat(src, H, "psychically grabbed")
-	msg_admin_attack("[key_name(src)] psychically grabbed [key_name(H)]" )
-
-	return TRUE
 
 
 /mob/living/carbon/xenomorph/shrike/proc/stop_psychic_grab()

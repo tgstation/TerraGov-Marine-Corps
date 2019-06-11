@@ -293,10 +293,12 @@ Redefine as needed.
 	if(last_grab_change + 3 SECONDS > world.time)
 		return FALSE
 
-	playsound(H, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-
 	switch(grab_level)
 		if(TKGRAB_NONLETHAL)
+			if(S.action_busy)
+				return FALSE
+			if(!do_mob(S, H, 2 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+				return FALSE
 			grab_level = TKGRAB_LETHAL
 			log_combat(S, H, "psychically strangled", addition="(kill intent)")
 			msg_admin_attack("[key_name(S)] psychically strangled (kill intent) [key_name(H)]")
