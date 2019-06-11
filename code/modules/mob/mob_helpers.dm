@@ -461,3 +461,12 @@ mob/proc/get_standard_bodytemperature()
 		if(!O.client)
 			continue
 		notify_ghost(O, message, ghost_sound, enter_link, enter_text, source, alert_overlay, action, flashwindow, ignore_mapload, ignore_key, header, notify_volume, extra_large)
+
+
+/mob/proc/set_m_intent(var/intent)
+	if (intent != MOVE_INTENT_WALK && intent != MOVE_INTENT_RUN)
+		return 0
+	m_intent = intent
+	if(hud_used)
+		if (hud_used.move_intent)
+			hud_used.move_intent.icon_state = intent == MOVE_INTENT_WALK ? "walking" : "running"
