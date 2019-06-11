@@ -489,7 +489,7 @@
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
 			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M]!</span>")
 			return
-		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null, 5)
+		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null , null, 5)
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC))
 			if(!M.get_item_by_slot(slot_to_process))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
