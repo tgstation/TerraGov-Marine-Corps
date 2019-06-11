@@ -263,7 +263,9 @@
 	if(incapacitated(TRUE))
 		return
 
-	if(!resting && !is_ventcrawling)
+	if(!resting)
+		if(is_ventcrawling)
+			return FALSE
 		set_resting(TRUE, FALSE)
 	else if(action_busy)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
