@@ -550,7 +550,7 @@
 	if(!length(xenomorphs))
 		return
 
-	var/dat = "<span class='round_body'>The xenomorph Queen(s) were:</span>"
+	var/dat = "<span class='round_body'>The xenomorph ruler(s) were:</span>"
 
 	for(var/i in xenomorphs)
 		var/datum/mind/M = i

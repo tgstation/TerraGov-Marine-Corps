@@ -153,7 +153,7 @@
 
 	victim.drop_all_held_items()
 	victim.Stun(2)
-	assailant.Stun(1) //It briefly stuns us as well.
+	assailant.changeNext_move(1 SECOND) //We get a tiny stun as well. In part so we don't accidentally break the grab by moving.
 
 	new /obj/item/tk_grab/shrike(assailant) //Grab starts "inside" the shrike. It will auto-equip to her hands, set her as its master and her victim as its target, and then start processing the grab.
 
