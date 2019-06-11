@@ -524,7 +524,7 @@
 	else if(!issilicon(user) && isElectrified())
 		shock(user, 75)
 
-	else if(iswelder(I) && !operating && density)
+	if(iswelder(I) && !operating && density)
 		var/obj/item/tool/weldingtool/W = I
 
 		if(not_weldable)
