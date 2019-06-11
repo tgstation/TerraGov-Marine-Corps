@@ -715,11 +715,12 @@ TUNNEL
 
 /obj/structure/tunnel/Destroy()
     GLOB.xeno_tunnels -= src
-    creator.tunnels -= src
+    if(creator)
+    	creator.tunnels -= src
     if(other)
         other.other = null
         qdel(other)
-    . = ..()
+    return ..()
 
 /obj/structure/tunnel/examine(mob/user)
 	..()
