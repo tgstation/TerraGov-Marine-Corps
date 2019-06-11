@@ -51,6 +51,7 @@
 		hive.living_xeno_shrike = src
 	if(!hive.living_xeno_ruler)
 		hive.update_ruler()
+	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, /datum/hive_status.proc/on_shrike_death)
 
 // ***************************************
 // *********** Life overrides

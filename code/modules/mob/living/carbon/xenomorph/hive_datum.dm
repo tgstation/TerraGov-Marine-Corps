@@ -272,10 +272,8 @@
 	remove_from_lists(X)
 	dead_xenos += X
 
-	if(isxenoqueen(X))
-		on_queen_death(X)
-	if(isxenoshrike(X))
-		on_shrike_death(X)
+	SEND_SIGNAL(X, COMSIG_HIVE_XENO_DEATH)
+
 	if(X == living_xeno_ruler)
 		on_ruler_death(X)
 
@@ -340,15 +338,11 @@
 	SSdirection.clear_leader(hivenumber)
 	if(successor != null)
 		SSdirection.set_leader(hivenumber, successor)
-		successor.on_becoming_ruler()
+		SEND_SIGNAL(successor, COMSIG_HIVE_BECOME_RULER)
 	living_xeno_ruler = successor
 
 
-/mob/living/carbon/xenomorph/proc/on_becoming_ruler()
-	return
-
-
-/mob/living/carbon/xenomorph/queen/on_becoming_ruler()
+/mob/living/carbon/xenomorph/queen/proc/on_becoming_ruler()
 	hive.update_leader_pheromones()
 
 

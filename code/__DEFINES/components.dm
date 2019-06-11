@@ -123,6 +123,9 @@
 
 
 // xeno stuff
+#define COMSIG_HIVE_BECOME_RULER "hive_become_ruler"
+#define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
+
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
 #define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"
 	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
