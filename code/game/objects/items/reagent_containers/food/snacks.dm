@@ -2264,7 +2264,7 @@
 		update_icon()
 		return
 
-	if( boxes.len > 0 )
+	else if( boxes.len > 0 )
 		if( user.get_inactive_held_item() != src )
 			return ..()
 
@@ -2275,6 +2275,9 @@
 		to_chat(user, "<span class='warning'>You remove the topmost [src] from your hand.</span>")
 		box.update_icon()
 		update_icon()
+
+	else
+		return ..()
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 
