@@ -183,7 +183,7 @@
 		AdjustKnockedout(-2)
 	return knocked_out
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, no_msg)
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, supress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM
