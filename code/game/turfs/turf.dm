@@ -753,4 +753,3 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		var/atom/A = i
 		if(!QDELETED(A) && A.level >= severity)
 			A.ex_act(severity, target)
-			CHECK_TICK

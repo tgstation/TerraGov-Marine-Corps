@@ -329,4 +329,3 @@
 	for(var/i in contents)
 		var/atom/A = i
 		A.ex_act(severity, target)
-		CHECK_TICK
