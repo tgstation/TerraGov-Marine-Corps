@@ -12,6 +12,7 @@
 	storage_slots = null
 	max_storage_space = 30
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
+	var/list/uniform_restricted //Need to wear this uniform to equip this
 
 /obj/item/storage/backpack/attack_hand(mob/user)
 	if(!worn_accessible && ishuman(user))
@@ -19,7 +20,6 @@
 		if(H.back == src)
 /*			if(user.dropItemToGround(src))
 				pickup(user)
-				add_fingerprint(user)
 				if(!user.put_in_active_hand(src))
 					dropped(user)
 */
@@ -480,9 +480,9 @@
 	if (M.smokecloaked)
 		M.smokecloaked = FALSE
 	else
-		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(M)
-		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(M)
 
 	spawn(1)
@@ -509,9 +509,9 @@
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
-	var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+	var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	SA.add_to_hud(user)
-	var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 	XI.add_to_hud(user)
 
 	spawn(1)

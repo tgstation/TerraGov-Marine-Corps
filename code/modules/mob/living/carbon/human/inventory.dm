@@ -1,4 +1,6 @@
-/mob/living/carbon/human/proc/quick_equip()
+/mob/living/carbon/human/proc/do_quick_equip()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	
 	if(incapacitated() || lying || istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
@@ -15,6 +17,11 @@
 				next_move = world.time + 3
 				return
 	else
+		if(s_active)
+			if(!s_active.can_be_inserted(I))
+				return
+			s_active.handle_item_insertion(I, FALSE, src)
+			return 
 		if(client?.prefs?.preferred_slot)
 			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
 				return
@@ -462,7 +469,6 @@
 
 	M.visible_message("<span class='danger'>[src] tries to remove [M]'s [I.name].</span>", \
 					"<span class='userdanger'>[src] tries to remove [M]'s [I.name].</span>", null, 5)
-	I.add_fingerprint(src)
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)

@@ -4,8 +4,8 @@
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
-	density = 1
-	anchored = 1
+	anchored = TRUE
+	density = TRUE
 	var/on = 0
 	var/obj/item/cell/cell = null
 	var/use = 0
@@ -45,7 +45,6 @@
 		else
 			cell.loc = loc
 
-		cell.add_fingerprint(user)
 		cell.updateicon()
 
 		src.cell = null

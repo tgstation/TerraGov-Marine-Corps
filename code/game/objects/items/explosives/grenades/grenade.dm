@@ -37,7 +37,6 @@
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 
-	add_fingerprint(user)
 	activate(user)
 
 	user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \

@@ -14,7 +14,7 @@
 	switch(state)
 		if(0)
 			if(iswrench(I))
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
@@ -28,7 +28,7 @@
 					to_chat(user, "[WT] must be on to complete this task.")
 					return
 					
-				playsound(loc, 'sound/items/Welder.ogg', 25, 1)
+				playsound(loc, 'sound/items/welder.ogg', 25, 1)
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
 
@@ -37,7 +37,7 @@
 				qdel(src)
 		if(1)
 			if(iswrench(I))
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
@@ -49,20 +49,20 @@
 				if(!user.drop_held_item())
 					return
 
-				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You place the circuit board inside the frame.</span>")
 				icon_state = "1"
 				circuit = I
 				I.forceMove(src)
 
 			else if(isscrewdriver(I) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You screw the circuit board into place.</span>")
 				state = 2
 				icon_state = "2"
 
 			else if(iscrowbar(I) && circuit)
-				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You remove the circuit board.</span>")
 				state = 1
 				icon_state = "0"
@@ -70,7 +70,7 @@
 				circuit = null
 		if(2)
 			if(isscrewdriver(I) && circuit)
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You unfasten the circuit board.</span>")
 				state = 1
 				icon_state = "1"
@@ -82,7 +82,7 @@
 					return
 				to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
 
-				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 			
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 2 || !C.use(5))
 					return FALSE
@@ -92,7 +92,7 @@
 				icon_state = "3"
 		if(3)
 			if(iswirecutter(I))
-				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You remove the cables.</span>")
 				state = 2
 				icon_state = "2"
@@ -104,7 +104,7 @@
 				if(G.get_amount() < 2)
 					to_chat(user, "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>")
 					return
-				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
 
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 3 || !G.use(2))
@@ -115,14 +115,14 @@
 				icon_state = "4"
 		if(4)
 			if(iscrowbar(I))
-				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You remove the glass panel.</span>")
 				state = 3
 				icon_state = "3"
 				new /obj/item/stack/sheet/glass(loc, 2)
 
 			else if(isscrewdriver(I))
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You connect the monitor.</span>")
 				var/B = new circuit.build_path(loc)
 				circuit.construct(B)

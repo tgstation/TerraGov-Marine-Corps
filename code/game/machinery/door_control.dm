@@ -15,7 +15,7 @@
 	var/desiredstate = 0 // Zero is closed, 1 is open.
 	var/specialfunctions = 1
 
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -154,7 +154,6 @@
 					M.close()
 
 /obj/machinery/door_control/attack_hand(mob/user)
-	src.add_fingerprint(user)
 	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -168,7 +167,6 @@
 
 	use_power(5)
 	icon_state = "doorctrl1"
-	add_fingerprint(user)
 
 	switch(normaldoorcontrol)
 		if(CONTROL_NORMAL_DOORS)
@@ -206,12 +204,10 @@
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
 
-	src.add_fingerprint(usr)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return
-	add_fingerprint(user)
 
 	use_power(5)
 
@@ -223,12 +219,6 @@
 			spawn(0)
 				M.open()
 				return
-
-	sleep(20)
-
-	for(var/obj/machinery/mass_driver/M in GLOB.machines)
-		if(M.id == src.id)
-			M.drive()
 
 	sleep(50)
 

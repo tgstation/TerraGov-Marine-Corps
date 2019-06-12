@@ -27,7 +27,6 @@
 			to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
 			return FALSE
 	var/obj/structure/closet/bodybag/R = new unfolded_path(location, src)
-	R.add_fingerprint(user)
 	R.open(user)
 	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
@@ -219,7 +218,6 @@
 	if(opened)
 		return FALSE // stop xeno closing things
 	M.animation_attack_on(src)
-	add_fingerprint(M)
 	open()
 	M.visible_message("<span class='danger'>\The [M] slashes \the [src] open!</span>", \
 		"<span class='danger'>You slash \the [src] open!</span>", null, 5)

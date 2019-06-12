@@ -25,7 +25,7 @@
 
 
 /mob/camera/aiEye/proc/update_ai_detect_hud()
-	var/datum/atom_hud/ai_detector/hud = huds[DATA_HUD_AI_DETECT]
+	var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
 	var/list/old_images = hud_list[AI_DETECT_HUD]
 	if(!ai_detector_visible)
 		hud.remove_from_hud(src)
@@ -115,10 +115,8 @@
 		c.remove(src)
 	GLOB.aiEyes -= src
 	if(ai_detector_visible)
-		var/datum/atom_hud/ai_detector/hud = huds[DATA_HUD_AI_DETECT]
+		var/datum/atom_hud/ai_detector/hud = GLOB.huds[DATA_HUD_AI_DETECT]
 		hud.remove_from_hud(src)
-		var/list/L = hud_list[AI_DETECT_HUD]
-		QDEL_LIST(L)
 	return ..()
 
 
@@ -192,16 +190,6 @@
 		return
 	eyeobj.mouse_opacity = state ? MOUSE_OPACITY_ICON : initial(eyeobj.mouse_opacity)
 	eyeobj.invisibility = state ? INVISIBILITY_OBSERVER : initial(eyeobj.invisibility)
-
-
-/mob/living/silicon/ai/verb/toggle_acceleration()
-	set category = "AI Commands"
-	set name = "Toggle Camera Acceleration"
-
-	if(incapacitated())
-		return
-	acceleration = !acceleration
-	to_chat(usr, "Camera acceleration has been toggled [acceleration ? "on" : "off"].")
 
 
 /mob/camera/aiEye/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)

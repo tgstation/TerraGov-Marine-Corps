@@ -84,7 +84,7 @@
 		to_chat(src, "<span class='warning'>You must wait a bit before you can toggle this again.</span>")
 		return
 
-	addtimer(CALLBACK(src, .slash_toggle_delay), 300)
+	addtimer(VARSET_CALLBACK(src, pslash_delay, FALSE), 30 SECONDS)
 
 	pslash_delay = TRUE
 
@@ -103,8 +103,6 @@
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
 		hive.slashing_allowed = XENO_SLASHING_FORBIDDEN
 
-/mob/living/carbon/xenomorph/proc/slash_toggle_delay()
-	pslash_delay = FALSE
 
 // ***************************************
 // *********** Screech
@@ -253,6 +251,9 @@
 	if(X.check_plasma(plasma_cost))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
+
+		notify_ghosts("\The <b>[X]</b> has started growing an ovipositor!", source = X, action = NOTIFY_ORBIT)
+
 		if(!do_after(X, 200, TRUE, alien_weeds, BUSY_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
 			return
 
@@ -405,7 +406,7 @@
 			old_xeno.hud_set_queen_overwatch()
 	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
-	reset_view()
+	reset_perspective()
 
 // ***************************************
 // *********** Psychic Whisper
@@ -697,7 +698,7 @@
 	new_xeno.generate_name()
 
 	if(T.xeno_mobhud)
-		var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
+		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 

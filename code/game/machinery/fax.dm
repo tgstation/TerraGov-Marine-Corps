@@ -94,7 +94,7 @@
 			send_fax(usr, src, selected, message.name, message.info, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
 			sendcooldown = TRUE
-			addtimer(CALLBACK(src, .proc/end_cooldown), 2 MINUTES)
+			addtimer(VARSET_CALLBACK(src, sendcooldown, FALSE), 2 MINUTES)
 			updateUsrDialog()
 	if(href_list["remove"])
 		if(message)
@@ -158,13 +158,9 @@
 			idscan = idcard
 
 	else if(iswrench(I))
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
-
-
-/obj/machinery/faxmachine/proc/end_cooldown()
-	sendcooldown = FALSE
 
 
 /obj/machinery/faxmachine/cic

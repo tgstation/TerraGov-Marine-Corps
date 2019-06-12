@@ -12,7 +12,7 @@
 
 		/snow - snow is one type of non-floor open turf
 
-	/closed - all turfs with density = 1 are turf/closed
+	/closed - all turfs with density = TRUE are turf/closed
 
 		/wall - walls are constructed walls as opposed to natural solid turfs
 
@@ -124,7 +124,6 @@
 
 		if(!isspaceturf(src))
 			M.inertia_dir = 0
-			M.make_floating(0)
 	..()
 
 /turf/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -171,6 +170,13 @@
 	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
 	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
 		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
+
+	var/list/transferring_comps = list()
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, flags, transferring_comps)
+	for(var/i in transferring_comps)
+		var/datum/component/comp = i
+		comp.RemoveComponent()
+
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
@@ -251,6 +257,15 @@
 		return get_dist(src,t)
 
 
+//  This Distance proc assumes that only cardinal movement is
+//  possible. It results in more efficient (CPU-wise) pathing
+//  for bots and anything else that only moves in cardinal dirs.
+/turf/proc/Distance_cardinal(turf/T)
+	if(!src || !T)
+		return FALSE
+	return abs(x - T.x) + abs(y - T.y)
+
+
 //Blood stuff------------
 /turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	if(!can_bloody)
@@ -304,7 +319,7 @@
 
 	switch(A.ceiling)
 		if(CEILING_GLASS)
-			playsound(src, "sound/effects/Glassbr1.ogg", 60, 1)
+			playsound(src, "sound/effects/glassbr1.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
 					visible_message("<span class='boldnotice'>Shards of glass rain down from above!</span>")
@@ -727,3 +742,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			vis_contents += GLOB.cameranet.vis_contents_objects
 		else
 			vis_contents -= GLOB.cameranet.vis_contents_objects
+
+
+/turf/AllowDrop()
+	return TRUE

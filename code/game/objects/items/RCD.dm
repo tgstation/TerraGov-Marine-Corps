@@ -1,180 +1,19 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
-/*
-CONTAINS:
-RCD
-*/
 /obj/item/rcd
 	name = "rapid-construction-device (RCD)"
 	desc = "A device used to rapidly build walls/floor."
 	icon_state = "rcd"
-	opacity = 0
-	density = 0
-	anchored = 0.0
+	opacity = FALSE
+	density = FALSE
+	anchored = FALSE
 	flags_atom = CONDUCT
-	force = 10.0
-	throwforce = 10.0
+	force = 10
+	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	matter = list("metal" = 50000)
 	origin_tech = "engineering=4;materials=2"
-	var/datum/effect_system/spark_spread/spark_system
-	var/stored_matter = 0
-	var/working = 0
-	var/mode = 1
-	var/canRwall = 0
-	var/disabled = 0
 
-
-	New()
-		desc = "A RCD. It currently holds [stored_matter]/30 matter-units."
-		src.spark_system = new /datum/effect_system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		return
-
-
-	attackby(obj/item/W, mob/user)
-		..()
-		if(istype(W, /obj/item/ammo_rcd))
-			if((stored_matter + 10) > 30)
-				to_chat(user, "<span class='notice'>The RCD cant hold any more matter-units.</span>")
-				return
-			user.drop_held_item()
-			qdel(W)
-			stored_matter += 10
-			playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-			to_chat(user, "<span class='notice'>The RCD now holds [stored_matter]/30 matter-units.</span>")
-			desc = "A RCD. It currently holds [stored_matter]/30 matter-units."
-			return
-
-
-	attack_self(mob/user)
-		//Change the mode
-		playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
-		switch(mode)
-			if(1)
-				mode = 2
-				to_chat(user, "<span class='notice'>Changed mode to 'Airlock'</span>")
-				if(prob(20))
-					src.spark_system.start()
-				return
-			if(2)
-				mode = 3
-				to_chat(user, "<span class='notice'>Changed mode to 'Deconstruct'</span>")
-				if(prob(20))
-					src.spark_system.start()
-				return
-			if(3)
-				mode = 1
-				to_chat(user, "<span class='notice'>Changed mode to 'Floor & Walls'</span>")
-				if(prob(20))
-					src.spark_system.start()
-				return
-
-	proc/activate()
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-
-
-	afterattack(atom/A, mob/user, proximity)
-		if(!proximity) return
-		if(disabled)
-			return 0
-		if(istype(A,/area/shuttle) || istype(A,/turf/open/space/transit))
-			return 0
-		if(!(istype(A, /turf) || istype(A, /obj/machinery/door/airlock)))
-			return 0
-
-		switch(mode)
-			if(1)
-				if(isspaceturf(A))
-					if(useResource(1, user))
-						to_chat(user, "Building Floor...")
-						activate()
-						A:ChangeTurf(/turf/open/floor/plating/airless)
-						return 1
-					return 0
-
-				if(isfloorturf(A))
-					var/turf/open/floor/T = A
-					if(checkResource(3, user))
-						to_chat(user, "Building Wall ...")
-						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-						if(do_after(user, 20, TRUE, T, BUSY_ICON_BUILD, extra_checks = CALLBACK(src, .proc/checkResource, 3, user)))
-							useResource(3, user)
-							activate()
-							T.ChangeTurf(/turf/closed/wall)
-							return TRUE
-					return FALSE
-
-			if(2)
-				if(isfloorturf(A))
-					if(checkResource(10, user))
-						to_chat(user, "Building Airlock...")
-						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-						if(do_after(user, 50, TRUE, A, BUSY_ICON_BUILD, extra_checks = CALLBACK(src, .proc/checkResource, 10, user)))
-							useResource(10, user)
-							activate()
-							var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(A)
-							T.autoclose = 1
-							return TRUE
-						return FALSE
-					return FALSE
-
-			if(3)
-				if(iswallturf(A))
-					var/turf/closed/wall/WL = A
-					if(WL.hull)
-						return 0
-					if(isrwallturf(A) && !canRwall)
-						return 0
-					if(checkResource(5, user))
-						to_chat(user, "Deconstructing Wall...")
-						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-						if(do_after(user, 40, TRUE, WL, BUSY_ICON_BUILD, extra_checks = CALLBACK(src, .proc/checkResource, 5, user)))
-							useResource(5, user)
-							activate()
-							WL.ChangeTurf(/turf/open/floor/plating/airless)
-							return TRUE
-					return FALSE
-
-				if(isfloorturf(A))
-					var/turf/open/floor/F = A
-					if(checkResource(5, user) && !F.is_plating())
-						to_chat(user, "Deconstructing Floor...")
-						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-						if(do_after(user, 50, TRUE, F, BUSY_ICON_BUILD, extra_checks = CALLBACK(src, .proc/checkResource, 5, user)))
-							useResource(5, user)
-							activate()
-							F.ChangeTurf(/turf/open/floor/plating/airless)
-							return TRUE
-					return FALSE
-
-				if(istype(A, /obj/machinery/door/airlock))
-					if(checkResource(10, user))
-						to_chat(user, "Deconstructing Airlock...")
-						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-						if(do_after(user, 50, TRUE, A, BUSY_ICON_BUILD, extra_checks = CALLBACK(src, .proc/checkResource, 10, user)))
-							useResource(10, user)
-							activate()
-							qdel(A)
-							return TRUE
-					return FALSE
-				return FALSE
-			else
-				to_chat(user, "ERROR: RCD in MODE: [mode] attempted use by [user]. Send this text #coderbus or an admin.")
-				return 0
-
-/obj/item/rcd/proc/useResource(var/amount, var/mob/user)
-	if(stored_matter < amount)
-		return 0
-	stored_matter -= amount
-	desc = "A RCD. It currently holds [stored_matter]/30 matter-units."
-	return 1
-
-/obj/item/rcd/proc/checkResource(var/amount, var/mob/user)
-	return stored_matter >= amount
 
 /obj/item/ammo_rcd
 	name = "compressed matter cartridge"
@@ -182,8 +21,8 @@ RCD
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "rcd"
 	item_state = "rcdammo"
-	opacity = 0
-	density = 0
-	anchored = 0.0
+	opacity = FALSE
+	density = FALSE
+	anchored = FALSE
 	origin_tech = "materials=2"
-	matter = list("metal" = 30000,"glass" = 15000)
+	matter = list("metal" = 30000, "glass" = 15000)

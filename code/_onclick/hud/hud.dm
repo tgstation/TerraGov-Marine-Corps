@@ -134,8 +134,16 @@
 	. = ..()
 
 
-/mob/proc/create_hud()
-	return
+/mob/proc/create_mob_hud()
+	if(!client || hud_used)
+		return
+	var/ui_style = ui_style2icon(client.prefs.ui_style)
+	var/ui_color = client.prefs.ui_style_color
+	var/ui_alpha = client.prefs.ui_style_alpha
+	hud_used = new hud_type(src, ui_style, ui_color, ui_alpha)
+	update_sight()
+	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
+
 
 /datum/hud/proc/plane_masters_update()
 	// Plane masters are always shown to OUR mob, never to observers
@@ -208,7 +216,7 @@
 				screenmob.client.screen -= infodisplay
 
 	hud_version = display_hud_version
-	persistant_inventory_update()
+	persistent_inventory_update(screenmob)
 	mymob.update_action_buttons(TRUE)
 	mymob.reload_fullscreens()
 
@@ -220,10 +228,15 @@
 	else if(viewmob.hud_used)
 		viewmob.hud_used.plane_masters_update()
 
+	return TRUE
 
-/datum/hud/human/show_hud(version = 0)
+
+/datum/hud/human/show_hud(version = 0, mob/viewmob)
 	. = ..()
-	hidden_inventory_update()
+	if(!.)
+		return
+	var/mob/screenmob = viewmob || mymob
+	hidden_inventory_update(screenmob)
 
 	if(hud_version == HUD_STYLE_STANDARD)
 		mymob.client.screen += ammo
@@ -231,18 +244,10 @@
 		A.update_hud(mymob)
 
 
-/datum/hud/proc/hidden_inventory_update()
+/datum/hud/proc/hidden_inventory_update(mob/viewer)
 	return
 
-/datum/hud/proc/persistant_inventory_update()
-	return
-
-
-/mob/proc/add_click_catcher()
-	client.screen += client.void
-
-
-/mob/new_player/add_click_catcher()
+/datum/hud/proc/persistent_inventory_update(mob/viewer)
 	return
 
 

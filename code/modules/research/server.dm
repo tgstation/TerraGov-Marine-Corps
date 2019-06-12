@@ -113,7 +113,7 @@
 
 	else if(opened && iscrowbar(I))
 		griefProtection()
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
 		M.state = 2
 		M.icon_state = "box_1"
@@ -179,9 +179,8 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
 	usr.set_interaction(src)
-	if(!src.allowed(usr) && !emagged)
+	if(!src.allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(usr, "<span class='warning'>You do not have the required access level</span>")
 		return
 
@@ -313,9 +312,9 @@
 /obj/machinery/computer/rdservercontrol/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag) && !emagged)
+	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		playsound(loc, 'sound/effects/sparks4.ogg', 25, 1)
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 	
 	updateUsrDialog()

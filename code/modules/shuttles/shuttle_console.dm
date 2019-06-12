@@ -15,7 +15,6 @@
 /obj/machinery/computer/shuttle_control/attack_hand(mob/user)
 	if(..(user))
 		return
-	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user) && !isxeno(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return 1
@@ -39,6 +38,11 @@
 				shuttle.last_door_override = world.time
 				shuttle.door_override = FALSE
 	ui_interact(user)
+
+
+/obj/machinery/computer/shuttle_control/attack_ai(mob/user)
+	return attack_hand(user)
+
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/data[0]
@@ -131,8 +135,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
-
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
 		return
@@ -165,8 +167,7 @@
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
 					shuttle1.transit_gun_mission = 0
 					shuttle1.launch_crash()
-					command_announcement.Announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", \
-					"Dropship Alert", new_sound = 'sound/AI/hijack.ogg')
+					priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 					shuttle.alerts_allowed--
 					to_chat(usr, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
 					var/mob/living/carbon/xenomorph/queen/Q = usr // typechecked above

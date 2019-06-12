@@ -88,10 +88,10 @@
 		updateicon()
 
 	else if(istype(W, /obj/item/card/id))
-		if(allowed(user) && !open && !emagged)
+		if(allowed(user) && !open && !CHECK_BITFIELD(obj_flags, EMAGGED))
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
-		else if(emagged)
+		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>ERROR</span>")
 		else if(open)
 			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
@@ -109,7 +109,6 @@
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	switch(href_list["operation"])
 		if("start")
 			if (src.on)
@@ -169,7 +168,7 @@
 	if(prob(5))
 		visible_message("[src] makes an excited booping beeping sound!")
 
-	if((!src.target || src.target == null) && emagged < 2)
+	if((!src.target || src.target == null) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		if(targetdirection != null)
 			/*
 			for (var/turf/open/space/D in view(7,src))
@@ -202,7 +201,7 @@
 					src.target = T
 					break
 
-	if((!src.target || src.target == null) && emagged == 2)
+	if((!src.target || src.target == null) && CHECK_BITFIELD(obj_flags, EMAGGED))
 		if(!src.target || src.target == null)
 			for (var/turf/open/floor/D in view(7,src))
 				if(!(D in floorbottargets) && D != src.oldtarget && D.floor_tile)
@@ -238,11 +237,11 @@
 			src.eattile(src.target)
 		else if(istype(src.target, /obj/item/stack/sheet/metal))
 			src.maketile(src.target)
-		else if(istype(src.target, /turf/) && emagged < 2)
+		else if(istype(src.target, /turf/) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 			repair(src.target)
-		else if(emagged == 2 && istype(src.target,/turf/open/floor))
+		else if(CHECK_BITFIELD(obj_flags, EMAGGED) && istype(src.target,/turf/open/floor))
 			var/turf/open/floor/F = src.target
-			src.anchored = 1
+			src.anchored = TRUE
 			src.repairing = 1
 			if(prob(90))
 				F.break_tile_to_plating()
@@ -268,7 +267,7 @@
 		return
 	if(src.amount <= 0)
 		return
-	src.anchored = 1
+	src.anchored = TRUE
 	src.icon_state = "floorbot-c"
 	if(isspaceturf(target))
 		visible_message("<span class='warning'> [src] begins to repair the hole</span>")

@@ -135,7 +135,7 @@ obj/machinery/airlock_sensor
 	icon_state = "airlock_sensor_off"
 	name = "airlock sensor"
 
-	anchored = 1
+	anchored = TRUE
 	power_channel = ENVIRON
 
 	var/id_tag
@@ -211,7 +211,7 @@ obj/machinery/access_button
 	icon_state = "access_button_standby"
 	name = "access button"
 
-	anchored = 1
+	anchored = TRUE
 	power_channel = ENVIRON
 
 	var/master_tag
@@ -236,7 +236,6 @@ obj/machinery/access_button/update_icon()
 		attack_hand(user)
 
 obj/machinery/access_button/attack_hand(mob/user)
-	add_fingerprint(usr)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied</span>")
 

@@ -14,7 +14,7 @@
 	var/mob/event_confirmed_by
 	//1 = select event
 	//2 = authenticate
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6
@@ -102,7 +102,6 @@
 		reset()
 
 	updateUsrDialog()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/keycard_auth/proc/reset()
@@ -160,11 +159,11 @@ var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	command_announcement.Announce("The maintenance access requirement has been revoked on all airlocks.", "Attention!", new_sound = 'sound/misc/notice1.ogg')
+	priority_announce("The maintenance access requirement has been revoked on all airlocks.", "Attention!", sound = 'sound/misc/notice1.ogg')
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	command_announcement.Announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!", new_sound = 'sound/misc/notice2.ogg')
+	priority_announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!", sound = 'sound/misc/notice2.ogg')
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(ACCESS_MARINE_ENGINEERING)))

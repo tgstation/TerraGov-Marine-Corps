@@ -5,7 +5,7 @@
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
-	density = 1
+	density = TRUE
 	anchored = 0
 	var/tank_volume = 1000
 	var/amount_per_transfer_from_this = 10

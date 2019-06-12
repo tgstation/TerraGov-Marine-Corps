@@ -1,7 +1,7 @@
 /obj/structure/girder
 	icon_state = "girder"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = OBJ_LAYER
 	var/state = 0
 	var/dismantlectr = 0
@@ -87,7 +87,7 @@
 				to_chat(user, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
 				return
 
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now securing the girder</span>")
 
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -106,7 +106,7 @@
 			to_chat(user, "<span class='notice'>You unfasten a bolt from the girder!</span>")
 
 	else if(isscrewdriver(I) && state == 2 && istype(src, /obj/structure/girder/reinforced))
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now unsecuring support struts</span>")
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
@@ -115,7 +115,7 @@
 		state = 1
 
 	else if(iswirecutter(I) && istype(src, /obj/structure/girder/reinforced) && state == 1)
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now removing support struts</span>")
 		
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -126,7 +126,7 @@
 		qdel(src)
 
 	else if(iscrowbar(I) && state == 0 && anchored)
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>Now dislodging the girder...</span>")
 
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -153,7 +153,7 @@
 				
 			to_chat(user, "<span class='notice'>Now adding plating...</span>")
 				
-			if(!do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 				return
 
 			if(buildctr != old_buildctr) 
@@ -198,7 +198,7 @@
 		if(!WT.remove_fuel(0,user))
 			return
 
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
 
@@ -242,7 +242,6 @@
 		else
 			Tsrc.ChangeTurf(/turf/closed/wall)
 		for(var/turf/closed/wall/X in Tsrc.loc)
-			if(X)	X.add_hiddenprint(usr)
 		qdel(src)
 
 /obj/structure/girder/examine(mob/user)
@@ -291,7 +290,7 @@
 		var/new_state = copytext(icon_state, 1, underscore_position)
 		icon_state = new_state
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
-		density = 1
+		density = TRUE
 	buildctr = 0
 	repair_state = 0
 

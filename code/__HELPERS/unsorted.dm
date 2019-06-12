@@ -202,6 +202,12 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	return "[round(frequency / 10)].[frequency % 10]"
 
 
+//Opposite of format, returns as a number
+/proc/unformat_frequency(frequency)
+	frequency = text2num(frequency)
+	return frequency * 10
+
+
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
@@ -338,16 +344,25 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	qdel(animation)
 
 
-//Will return the contents of an atom recursivly to a depth of 'searchDepth'
-/atom/proc/GetAllContents(searchDepth = 5)
-	var/list/toReturn = list()
-
-	for(var/atom/part in contents)
-		toReturn += part
-		if(length(part.contents) && searchDepth)
-			toReturn += part.GetAllContents(searchDepth - 1)
-
-	return toReturn
+/atom/proc/GetAllContents(T)
+	var/list/processing_list = list(src)
+	var/list/assembled = list()
+	if(T)
+		while(length(processing_list))
+			var/atom/A = processing_list[1]
+			processing_list.Cut(1, 2)
+			//Byond does not allow things to be in multiple contents, or double parent-child hierarchies, so only += is needed
+			//This is also why we don't need to check against assembled as we go along
+			processing_list += A.contents
+			if(istype(A, T))
+				assembled += A
+	else
+		while(length(processing_list))
+			var/atom/A = processing_list[1]
+			processing_list.Cut(1, 2)
+			processing_list += A.contents
+			assembled += A
+	return assembled
 
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
@@ -420,55 +435,27 @@ var/global/image/busy_indicator_hostile
 	return FALSE
 
 
-//Returns: all the areas in the world
-/proc/return_areas()
-	var/list/area/areas = list()
-	for(var/area/A in all_areas)
-		areas += A
-	return areas
-
-
-//Returns: all the areas in the world, sorted.
-/proc/return_sorted_areas()
-	return sortNames(return_areas())
-
-
-//Takes: Area type as text string or as typepath OR an instance of the area.
-//Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype)
-	if(!areatype) 
-		return
-	if(istext(areatype)) 
-		areatype = text2path(areatype)
-	if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
-
-	var/list/areas = list()
-	for(var/area/N in all_areas)
-		if(!istype(N, areatype)) 
-			continue
-		areas += N
-	return areas
-
-
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
 /proc/get_area_turfs(areatype)
 	if(!areatype) 
 		return
+
 	if(istext(areatype)) 
 		areatype = text2path(areatype)
+
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
 	var/list/turfs = list()
-	for(var/area/N in all_areas)
-		if(!istype(N, areatype))
-			return
-		for(var/turf/T in N) 
+	for(var/i in GLOB.all_areas)
+		var/area/A = i
+		if(!istype(A, areatype))
+			continue
+		for(var/turf/T in A)
 			turfs += T
+
 	return turfs
 
 
@@ -548,8 +535,8 @@ var/global/image/busy_indicator_hostile
 						// Spawn a new shuttle corner object
 						var/obj/corner = new()
 						corner.loc = X
-						corner.density = 1
-						corner.anchored = 1
+						corner.density = TRUE
+						corner.anchored = TRUE
 						corner.icon = X.icon
 						corner.icon_state = oldreplacetext(X.icon_state, "_s", "_f")
 						corner.tag = "delete me"
@@ -578,7 +565,7 @@ var/global/image/busy_indicator_hostile
 							continue
 						O.loc = X
 					for(var/mob/M in T)
-						if(!ismob(M) || istype(M, /mob/aiEye)) 
+						if(!ismob(M)) 
 							continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
 
@@ -746,7 +733,7 @@ var/global/image/busy_indicator_hostile
 
 					for(var/mob/M in T)
 
-						if(!ismob(M) || istype(M, /mob/aiEye)) 
+						if(!ismob(M)) 
 							continue // If we need to check for more mobs, I'll add a variable
 						mobs += M
 
@@ -857,7 +844,7 @@ var/global/list/common_tools = list(
 
 
 /proc/is_hot(obj/item/I)
-	return I.heat_source
+	return I.heat
 
 
 //Whether or not the given item counts as sharp in terms of dealing damage
@@ -899,7 +886,7 @@ var/global/list/common_tools = list(
 /proc/can_puncture(obj/item/I)
 	if(!istype(I)) 
 		return FALSE
-	return (I.sharp || I.heat_source >= 400 	|| \
+	return (I.sharp || I.heat >= 400 	|| \
 		isscrewdriver(I)	 || \
 		istype(I, /obj/item/tool/pen) 		 || \
 		istype(I, /obj/item/tool/shovel) \
@@ -1103,12 +1090,12 @@ var/list/WALLITEMS = list(
 
 //Repopulates sortedAreas list
 /proc/repopulate_sorted_areas()
-	GLOB.sortedAreas = list()
+	GLOB.sorted_areas = list()
 
 	for(var/area/A in world)
-		GLOB.sortedAreas.Add(A)
+		GLOB.sorted_areas.Add(A)
 
-	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+	sortTim(GLOB.sorted_areas, /proc/cmp_name_asc)
 
 
 // Format a power value in W, kW, MW, or GW.

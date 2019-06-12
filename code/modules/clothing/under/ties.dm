@@ -31,7 +31,6 @@
 
 	if(user)
 		to_chat(user, "<span class='notice'>You attach [src] to [has_suit].</span>")
-		src.add_fingerprint(user)
 
 /obj/item/clothing/tie/proc/on_removed()
 	if(!has_suit)
@@ -278,7 +277,6 @@
 
 	holstered = W
 	user.transferItemToLoc(holstered, src)
-	holstered.add_fingerprint(user)
 	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
@@ -296,7 +294,6 @@
 			user.visible_message("<span class='notice'>[user] draws the [holstered], pointing it at the ground.</span>", \
 			"<span class='notice'>You draw the [holstered], pointing it at the ground.</span>")
 		user.put_in_hands(holstered)
-		holstered.add_fingerprint(user)
 		holstered = null
 		return TRUE
 
@@ -361,10 +358,11 @@
 
 
 //For the holster hotkey
-/mob/living/carbon/human/proc/holster()
-	if(stat != CONSCIOUS) 
-		return
+/mob/living/carbon/human/proc/do_holster()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
+	if(incapacitated() || lying) 
+		return
 	
 	if(!istype(w_uniform, /obj/item/clothing/under))
 		return
@@ -377,11 +375,10 @@
 	var/obj/item/clothing/tie/holster/H = S.hastie
 
 	if(!H.holstered)
-		if(!istype(get_active_held_item(), /obj/item/weapon/gun))
-			to_chat(src, "<span class='notice'>You need your gun equiped to holster it.</span>")
+		var/obj/item/weapon/gun/G = get_active_held_item()
+		if(!istype(G))
 			return
-		var/obj/item/weapon/gun/W = get_active_held_item()
-		H.holster(W, src)
+		H.holster(G, src)
 	else
 		H.unholster(src)
 
@@ -491,7 +488,6 @@
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)
 		hold.remove_from_storage(I, T)
-	src.add_fingerprint(user)
 
 /obj/item/clothing/tie/storage/webbing
 	name = "webbing"
@@ -615,7 +611,6 @@
 	icon_state = "holobadge"
 	flags_equip_slot = ITEM_SLOT_BELT
 
-	var/emagged = 0 //Emagging removes Sec check.
 	var/stored_name = null
 
 /obj/item/clothing/tie/holobadge/cord
@@ -633,17 +628,17 @@
 	. = ..()
 
 	if(istype(I, /obj/item/card/emag))
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>[src] is already cracked.</span>")
 			return
 
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "<span class='warning'>You swipe [I] and crack the holobadge security checks.</span>")
 
 	else if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/id_card = I
 
-		if(!(ACCESS_MARINE_BRIG in id_card.access) || !emagged)
+		if(!(ACCESS_MARINE_BRIG in id_card.access) || !CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "[src] rejects your insufficient access rights.")
 			return
 

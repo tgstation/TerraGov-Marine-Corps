@@ -4,8 +4,8 @@
 	name = "hydroponics tray"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	volume = 100
 	throwpass = 1
 	layer = BELOW_OBJ_LAYER
@@ -633,7 +633,7 @@
 		update_icon()
 
 	else if(iswrench(I))
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
 

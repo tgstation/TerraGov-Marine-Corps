@@ -2,7 +2,9 @@ SUBSYSTEM_DEF(machines)
 	name = "Machines"
 	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
-	var/list/currentrunmachines = list()
+
+	var/list/currentrun = list()
+	var/list/processing = list()
 	var/list/powernets = list()
 	var/list/cable_list = list()
 	var/list/zlevel_cables = list() //up or down cables
@@ -25,31 +27,32 @@ SUBSYSTEM_DEF(machines)
 			propagate_network(PC,PC.powernet)
 
 /datum/controller/subsystem/machines/stat_entry()
-	..("AA:[active_areas.len]|PN:[powernets.len]|PM:[processing_machines.len]")
+	..("PA:[length(currentrunareas)]|PN:[length(powernets)]|PM:[length(processing)]")
 
 /datum/controller/subsystem/machines/fire(resumed = FALSE)
 	if (!resumed)
 		for(var/datum/powernet/Powernet in powernets)
 			Powernet.reset() //reset the power state.
-		currentrunmachines = processing_machines.Copy()
-		currentrunareas = active_areas.Copy()
+		src.currentrun = processing.Copy()
+		src.currentrunareas = active_areas.Copy()
 
 	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrunmachines
+	var/list/currentrun = src.currentrun
+	var/list/currentrunareas = src.currentrunareas
 
 	var/seconds = wait * 0.1
 	while(length(currentrun))
-		var/obj/machinery/thing = currentrun[currentrun.len]
+		var/obj/machinery/thing = currentrun[length(currentrun)]
 		currentrun.len--
 		if(QDELETED(thing) || thing.process(seconds) == PROCESS_KILL)
-			processing_machines -= thing
+			processing -= thing
 			if(!QDELETED(thing))
 				thing.datum_flags &= ~DF_ISPROCESSING
 		if(MC_TICK_CHECK)
 			return
 
-	while (currentrunareas.len)
-		var/area/A = currentrunareas[currentrunareas.len]
+	while(length(currentrunareas))
+		var/area/A = currentrunareas[length(currentrunareas)]
 		currentrunareas.len--
 
 		if(A.master == A)
@@ -65,7 +68,7 @@ SUBSYSTEM_DEF(machines)
 						if(!(M.machine_stat & NOPOWER) && M.use_power)
 							M.auto_use_power()
 
-			if(A.apc.len)
+			if(length(A.apc))
 				if (MC_TICK_CHECK)
 					return
 				continue
@@ -82,3 +85,11 @@ SUBSYSTEM_DEF(machines)
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
+
+
+/datum/controller/subsystem/machines/Recover()
+	if(istype(SSmachines.processing))
+		processing = SSmachines.processing
+
+	if(istype(SSmachines.powernets))
+		powernets = SSmachines.powernets

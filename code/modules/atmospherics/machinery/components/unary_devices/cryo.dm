@@ -268,7 +268,6 @@
 		if (usr.stat != CONSCIOUS)
 			return
 		go_out()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
@@ -375,7 +374,6 @@
 	occupant = M
 	update_use_power(2)
 //	M.metabslow = 1
-	add_fingerprint(usr)
 	update_icon()
 	return 1
 
@@ -507,7 +505,6 @@
 	if(href_list["noticeOff"])
 		release_notice = FALSE
 
-	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
 

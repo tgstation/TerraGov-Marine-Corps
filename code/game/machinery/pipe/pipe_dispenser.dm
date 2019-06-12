@@ -2,8 +2,8 @@
 	name = "Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
@@ -41,7 +41,6 @@
 		usr << browse(null, "window=pipedispenser")
 		return 1
 
-	add_fingerprint(usr)
 	if(href_list["makepipe"])
 		if(wait < world.time)
 			var/p_type = text2path(href_list["makepipe"])
@@ -50,7 +49,6 @@
 			var/p_dir = text2num(href_list["dir"])
 			var/obj/item/pipe/P = new (loc, p_type, p_dir)
 			P.setPipingLayer(piping_layer)
-			P.add_fingerprint(usr)
 			wait = world.time + 10
 	if(href_list["makemeter"])
 		if(wait < world.time )
@@ -72,7 +70,7 @@
 
 	else if(iswrench(I))
 		if(anchored)
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
 
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -87,7 +85,7 @@
 			if(user.interactee == src)
 				usr << browse(null, "window=pipedispenser")
 		else
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
 			
 			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
@@ -113,8 +111,8 @@
 	name = "Disposal Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 /obj/machinery/pipedispenser/disposal
 	name = "disposal pipe dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -161,7 +159,6 @@
 /obj/machinery/pipedispenser/disposal/Topic(href, href_list)
 	if(..())
 		return 1
-	add_fingerprint(usr)
 	if(href_list["dmake"])
 		if(wait < world.time)
 			var/p_type = text2path(href_list["dmake"])
@@ -175,7 +172,6 @@
 			//	return
 			if(href_list["dir"])
 				C.setDir(text2num(href_list["dir"]))
-			C.add_fingerprint(usr)
 			C.update_icon()
 			wait = world.time + 15
 	return

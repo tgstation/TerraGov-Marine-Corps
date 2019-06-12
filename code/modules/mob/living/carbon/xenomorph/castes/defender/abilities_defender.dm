@@ -151,6 +151,44 @@
 	add_cooldown()
 
 // ***************************************
+// *********** Forward Charge
+// ***************************************
+/datum/action/xeno_action/activable/forward_charge
+	name = "Forward Charge"
+	action_icon_state = "charge"
+	mechanics_text = "Charge up to 4 tiles and knockdown any targets in your way."
+	ability_name = "charge"
+	cooldown_timer = 15 SECONDS
+	plasma_cost = 80
+	use_state_flags = XACT_USE_CRESTED
+/datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!A)
+		return FALSE
+
+/datum/action/xeno_action/activable/forward_charge/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Forward Charge again.</span>")
+	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+		return fail_activate()
+
+	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
+	"<span class='danger'>You charge towards \the [A]!</span>" )
+	X.emote("roar")
+	succeed_activate()
+
+	X.throw_at(A, 4, 70, X)
+
+	add_cooldown()
+
+// ***************************************
 // *********** Crest defense
 // ***************************************
 /datum/action/xeno_action/activable/toggle_crest_defense

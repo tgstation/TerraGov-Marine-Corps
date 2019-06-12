@@ -3,7 +3,7 @@
 	desc = "Central Command's iconic chefbot."
 	icon = 'goon/icons/obj/aibots.dmi'
 	icon_state = "chefbot-idle"
-	density = 1
+	density = TRUE
 	anchored = 0
 	on = 1 // ACTION
 	health = 100
@@ -54,9 +54,9 @@
 				continue
 			if(probablyshitfood.reagents)
 				var/datum/reagents/R = probablyshitfood.reagents
-				if((R.has_any_reagents(shit_reagents) || R.has_reagent(CORNOIL, 10)) && !emagged) // FUCK OFF ARE YOU TRYING TO KILL SOMEONE? || THIS SHIT IS SO GREASY IT COULD BE USED TO FUEL A ESCAPE SHUTTLE TRIP TO BACK TO CENTOMM
+				if((R.has_any_reagents(shit_reagents) || R.has_reagent(CORNOIL, 10)) && !CHECK_BITFIELD(obj_flags, EMAGGED)) // FUCK OFF ARE YOU TRYING TO KILL SOMEONE? || THIS SHIT IS SO GREASY IT COULD BE USED TO FUEL A ESCAPE SHUTTLE TRIP TO BACK TO CENTOMM
 					shitfood = probablyshitfood
-				if(!R.has_any_reagents(shit_reagents) && emagged)
+				if(!R.has_any_reagents(shit_reagents) && CHECK_BITFIELD(obj_flags, EMAGGED))
 					shitfood = probablyshitfood
 					break
 		if(shitfood)
@@ -148,9 +148,9 @@
 		walk(src,0)
 
 /obj/machinery/bot/chefbot/emag_act(var/mob/user, var/obj/item/card/emag/E)
-	if(!src.emagged)
+	if(!CHECK_BITFIELD(obj_flags, EMAGGED))
 		spark(src, 1)
-		src.emagged = 1
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		icon_state = "chefbot-anim1"
 		if(user)
 			to_chat(user, "<span class = 'warning'>You short out the restraining bolt on [src].</span>")
@@ -209,7 +209,7 @@
 		if(raging)
 			icon_state = "chefbot-mad"
 		else
-			if(src.emagged)
+			if(CHECK_BITFIELD(obj_flags, EMAGGED))
 				icon_state = "chefbot-anim2"
 			else
 				icon_state = "chefbot-idle"
@@ -220,7 +220,7 @@
 	src.on = 0
 	spark(src)
 	src.visible_message("<span class = 'warning'><B>[src] blows apart!</B></span>", 1)
-	if(src.emagged)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		explosion(get_turf(src), -1, 0, 2)
 	robogibs(get_turf(src))
 	qdel(src)

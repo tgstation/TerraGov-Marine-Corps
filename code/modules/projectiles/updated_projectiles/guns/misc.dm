@@ -72,6 +72,8 @@
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
+	return TRUE
+
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -211,7 +213,7 @@
 	desc = ""
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "null"
-	anchored = 1
+	anchored = TRUE
 	density = 0
 
 /obj/effect/syringe_gun_dummy/Initialize()

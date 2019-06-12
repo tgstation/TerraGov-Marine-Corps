@@ -307,11 +307,12 @@ should be alright.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
-	return
+	return FALSE
 
 
-/mob/living/carbon/human/proc/unique_action()
-	if(stat != CONSCIOUS)
+/mob/living/carbon/human/proc/do_unique_action()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	if(incapacitated() || lying)
 		return
 
 	var/obj/item/weapon/gun/G = get_active_held_item()

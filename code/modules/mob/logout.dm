@@ -6,8 +6,7 @@
 		remove_emote_overlay(null, typing, viewers())
 		typing = null
 	GLOB.player_list -= src
-	log_access("Logout: [key_name(src)]")
-	log_message("[key_name(src)] has logged out.", LOG_OOC)
+	log_message("[key_name(src)] has left mob [src]([type]).", LOG_OOC)
 	if(s_active)
 		s_active.hide_from(src)
 	if(client)

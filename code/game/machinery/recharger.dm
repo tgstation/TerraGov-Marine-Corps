@@ -4,7 +4,7 @@ obj/machinery/recharger
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 4
 	active_power_usage = 15000	//15 kW
@@ -30,7 +30,7 @@ obj/machinery/recharger
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 	if(!allowed)
 		return
@@ -40,7 +40,7 @@ obj/machinery/recharger
 		return
 	// Checks to make sure he's not in space doing it, and that the area got proper power.
 	var/area/A = get_area(src)
-	if(!isarea(A) || (A.power_equip == 0 && !A.unlimited_power))
+	if(!isarea(A) || (A.power_equip == 0 && A.requires_power))
 		to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
 		return
 
@@ -61,8 +61,6 @@ obj/machinery/recharger
 obj/machinery/recharger/attack_hand(mob/user as mob)
 	if(istype(user,/mob/living/silicon))
 		return
-
-	add_fingerprint(user)
 
 	if(charging)
 		charging.update_icon()

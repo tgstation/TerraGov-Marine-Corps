@@ -25,7 +25,7 @@
 		return
 
 	codex_on_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/reset_codex_cooldown), 3 SECONDS)
+	addtimer(VARSET_CALLBACK(src, codex_on_cooldown, FALSE), 3 SECONDS)
 
 	var/list/all_entries = SScodex.retrieve_entries_for_string(searching)
 
@@ -60,7 +60,7 @@
 		to_chat(src, "<span class='warning'>You cannot perform codex actions currently.</span>")
 		return
 	codex_on_cooldown = TRUE
-	addtimer(CALLBACK(src, .proc/reset_codex_cooldown), 10 SECONDS)
+	addtimer(VARSET_CALLBACK(src, codex_on_cooldown, FALSE), 10 SECONDS)
 
 	to_chat(mob, "<span class='notice'>The codex forwards you an index file.</span>")
 
@@ -84,6 +84,3 @@
 	codex_data += "</table>"
 	popup.set_content(jointext(codex_data, null))
 	popup.open()
-
-/client/proc/reset_codex_cooldown()
-	codex_on_cooldown = FALSE

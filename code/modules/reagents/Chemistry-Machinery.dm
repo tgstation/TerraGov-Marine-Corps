@@ -1,7 +1,7 @@
 /obj/machinery/chem_dispenser
 	name = "chem dispenser"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "dispenser"
 	use_power = 0
@@ -146,7 +146,6 @@
 			B.loc = loc
 			beaker = null
 
-	add_fingerprint(usr)
 	attack_hand(usr)
 	return TRUE // update UIs attached to this object
 
@@ -233,8 +232,8 @@
 
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "mixer0"
 	use_power = 1
@@ -314,7 +313,6 @@
 	if(!in_range(src, user))
 		return
 
-	add_fingerprint(user)
 	user.set_interaction(src)
 
 
@@ -613,8 +611,8 @@
 	name = "Disease Analyser"
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "analyser"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 
 /obj/machinery/computer/pandemic

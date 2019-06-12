@@ -214,6 +214,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	for(var/M in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
 		SEND_SOUND(M, 'sound/effects/OB_incoming.ogg')
 
+	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
+
 	addtimer(CALLBACK(src, /obj/structure/orbital_cannon.proc/impact_callback, target, inaccurate_fuel), WARHEAD_FLY_TIME)
 
 /obj/structure/orbital_cannon/proc/impact_callback(target,inaccurate_fuel)
@@ -233,8 +235,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	desc = "The orbital cannon's loading tray."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "cannon_tray"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	layer = LADDER_LAYER + 0.01
@@ -334,8 +336,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 /obj/structure/ob_ammo
 	name = "theoretical ob ammo"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/almayer_props.dmi'
@@ -516,7 +518,6 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		usr << browse(null, "window=orbital_console")
 		usr.unset_interaction()
 
-	add_fingerprint(usr)
 //	updateUsrDialog()
 	attack_hand(usr)
 

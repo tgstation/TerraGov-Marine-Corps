@@ -67,11 +67,11 @@
 	for(var/obj/I in src)
 		I.forceMove(loc)
 
-	for(var/mob/M in src)
-		M.forceMove(loc)
-		M.Stun(closet_stun_delay)//Action delay when going out of a closet
-		if(!M.lying && M.stunned)
-			M.visible_message("<span class='warning'>[M] suddenly gets out of [src]!",
+	for(var/mob/living/L in src)
+		L.forceMove(loc)
+		L.Stun(closet_stun_delay)//Action delay when going out of a closet
+		if(!L.lying && L.stunned)
+			L.visible_message("<span class='warning'>[L] suddenly gets out of [src]!",
 			"<span class='warning'>You get out of [src] and get your bearings!")
 
 /obj/structure/closet/proc/open()
@@ -256,7 +256,6 @@
 	else if(!istype(O, /obj/item))
 		return
 
-	add_fingerprint(user)
 	if(user == O)
 		if(climbable)
 			do_climb(user)
@@ -291,7 +290,6 @@
 	return attack_hand(user)
 
 /obj/structure/closet/attack_hand(mob/living/user)
-	add_fingerprint(user)
 	return toggle(user)
 
 /obj/structure/closet/verb/verb_toggleopen()
@@ -303,7 +301,6 @@
 		return
 
 	if(ishuman(usr))
-		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")

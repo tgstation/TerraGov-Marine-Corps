@@ -6,7 +6,7 @@
 	var/flags_atom = NONE
 	var/datum/reagents/reagents = null
 
-	var/fingerprintslast
+	var/list/fingerprints
 	var/blood_color
 	var/list/blood_DNA
 
@@ -27,6 +27,7 @@
 	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
 
 	var/datum/component/orbiter/orbiters
+	var/datum/proximity_monitor/proximity_monitor
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -45,6 +46,9 @@ directive is properly returned.
 	LAZYCLEARLIST(priority_overlays)
 
 	QDEL_NULL(light)
+
+	if(isturf(loc))
+		loc.fingerprints = fingerprints
 
 	return ..()
 
@@ -240,6 +244,8 @@ directive is properly returned.
 				else
 					to_chat(user, "<span class='notice'>\The [src] is full!</span>")
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user)
+
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -260,6 +266,10 @@ directive is properly returned.
 
 /atom/proc/GenerateTag()
 	return
+
+
+/atom/proc/prevent_content_explosion()
+	return FALSE
 
 
 //Generalized Fire Proc.
@@ -303,8 +313,6 @@ directive is properly returned.
 			log_admin_private(log_text)
 		if(LOG_ASAY)
 			log_admin_private_asay(log_text)
-		if(LOG_OWNERSHIP)
-			log_game(log_text)
 		if(LOG_GAME)
 			log_game(log_text)
 		else
@@ -576,3 +584,45 @@ Proc for attack log creation, because really why not
 //if they are not check_eye() usually reset the mob's view.
 /atom/proc/check_eye(mob/user)
 	return
+
+
+/atom/proc/drop_location()
+	var/atom/L = loc
+	if(!L)
+		return null
+	return L.AllowDrop() ? L : L.drop_location()
+
+
+/atom/proc/AllowDrop()
+	return FALSE
+
+
+/atom/proc/add_fingerprint(mob/M, type, special)
+	if(!islist(fingerprints))
+		fingerprints = list()
+
+	if(!type)
+		CRASH("Attempted to add fingerprint without an action type.")
+
+	if(!istype(M))
+		CRASH("Invalid mob type [M]([M.type]) when attempting to add fingerprint of type [type].")
+
+	if(!M.key)
+		return
+
+	var/current_time = stationTimestamp()
+
+	if(!LAZYACCESS(fingerprints, M.key))
+		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] [special ? "| [special]" : ""]")
+	else
+		var/laststamppos = findtext(LAZYACCESS(fingerprints, M.key), " Last: ")
+		if(laststamppos)
+			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
+		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] [special ? " | [special]" : ""]"
+	
+	return TRUE
+
+
+/atom/Topic(href, href_list)
+	. = ..()
+	add_fingerprint(usr, "topic")

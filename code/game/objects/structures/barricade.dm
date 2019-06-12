@@ -178,10 +178,10 @@
 		user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 		"<span class='notice'>You begin removing the barbed wire on [src].</span>")
 
-		if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
 		"<span class='notice'>You remove the barbed wire on [src].</span>")
 		overlays -= wired_overlay
@@ -522,7 +522,7 @@
 
 		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 		"<span class='notice'>You begin repairing the damage to [src].</span>")
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 		var/old_loc = loc
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
@@ -532,7 +532,7 @@
 		"<span class='notice'>You repair [src].</span>")
 		obj_integrity += 150
 		update_health()
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	switch(build_state)
 		if(2) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
@@ -547,7 +547,7 @@
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 
 				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
@@ -566,7 +566,7 @@
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 
@@ -585,7 +585,7 @@
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 
@@ -611,7 +611,7 @@
 						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
 						return
 
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
 					
@@ -635,13 +635,13 @@
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 
-				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 					return
 
 				user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 				"<span class='notice'>You take [src]'s panels apart.</span>")
-				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				destroy_structure(TRUE) //Note : Handles deconstruction too !
 
 
@@ -743,10 +743,10 @@
 
 		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 		"<span class='notice'>You begin repairing the damage to [src].</span>")
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		busy = TRUE
 
-		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
 			busy = FALSE
 			return
 
@@ -755,7 +755,7 @@
 		"<span class='notice'>You repair [src].</span>")
 		obj_integrity += 150
 		update_health()
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	switch(build_state)
 		if(2) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
@@ -781,7 +781,7 @@
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				build_state = 1
 		if(1) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(isscrewdriver(I))
@@ -796,7 +796,7 @@
 						return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
-				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				build_state = 2
 
 			else if(iswrench(I))
@@ -811,7 +811,7 @@
 						return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				anchored = FALSE
 				build_state = 0
 				update_icon() //unanchored changes layer
@@ -828,7 +828,7 @@
 						return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				anchored = TRUE
 				build_state = 1
 				update_icon() //unanchored changes layer
@@ -845,7 +845,7 @@
 						return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
-				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				busy = TRUE
 
 				if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
@@ -855,7 +855,7 @@
 				busy = FALSE
 				user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 				"<span class='notice'>You take [src]'s panels apart.</span>")
-				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				destroy_structure(TRUE) //Note : Handles deconstruction too !
 
 
@@ -863,7 +863,7 @@
 	if(isxeno(user))
 		return
 
-	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+	playsound(src.loc, 'sound/items/ratchet.ogg', 25, 1)
 	closed = !closed
 	density = !density
 
@@ -909,7 +909,7 @@
 	barricade_resistance = 15
 	max_integrity = 400
 	stack_type = /obj/item/stack/sandbags
-	barricade_hitsound = "sound/weapons/Genhit.ogg"
+	barricade_hitsound = "sound/weapons/genhit.ogg"
 	barricade_type = "sandbag"
 	can_wire = TRUE
 

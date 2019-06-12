@@ -12,25 +12,26 @@
 	var/list/network = list("marinemainship")
 	var/c_tag = null
 	var/status = TRUE
-	var/start_active = FALSE //If it ignores the random chance to start broken on round start
 	var/area/myarea = null
 
 	var/view_range = 7
 	var/short_range = 2
 
-	var/busy = FALSE
 	var/in_use_lights = FALSE
 	var/internal_light = TRUE //Whether it can light up when an AI views it
 
 
-/obj/machinery/camera/Initialize(mapload, ...)
+/obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
+
+	if(newDir)
+		setDir(newDir)
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = 16 
+			pixel_y = -16 
 		if(SOUTH)
-			pixel_y = -16
+			pixel_y = 16
 		if(EAST)
 			pixel_x = -16
 		if(WEST)
@@ -43,14 +44,11 @@
 	GLOB.cameranet.cameras += src
 	GLOB.cameranet.addCamera(src)
 
-	if(isturf(loc))
-		myarea = get_area(src)
+	myarea = get_area(src)
+	if(myarea)
 		LAZYADD(myarea.cameras, src)
 
-	if(mapload && is_station_level(z) && prob(3) && !start_active)
-		toggle_cam()
-	else //this is handled by toggle_camera, so no need to update it twice.
-		update_icon()
+	update_icon()
 
 
 /obj/machinery/camera/Destroy()
@@ -108,7 +106,104 @@
 				O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 
 
-/obj/machinery/camera/proc/toggle_cam(mob/user)
+/obj/machinery/camera/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(.)
+		return TRUE
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	to_chat(user, "<span class='notice'>You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"].</span>")
+	I.play_tool_sound(src)
+	update_icon()
+	return TRUE
+
+
+/obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return FALSE
+	toggle_cam(user, TRUE)
+	obj_integrity = max_integrity
+	I.play_tool_sound(src)
+	update_icon()
+	return TRUE
+
+
+/obj/machinery/camera/multitool_act(mob/living/user, obj/item/I)
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return FALSE
+
+	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
+	to_chat(user, "<span class='notice'>You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus.</span>")
+	return TRUE
+
+
+/obj/machinery/camera/welder_act(mob/living/user, obj/item/I)
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return FALSE
+
+	if(!I.tool_start_check(user, amount = 0))
+		return TRUE
+
+	to_chat(user, "<span class='notice'>You start to weld [src]...</span>")
+
+	if(I.use_tool(src, user, 100, volume = 50))
+		user.visible_message("<span class='warning'>[user] unwelds [src], leaving it as just a frame bolted to the wall.</span>",
+			"<span class='warning'>You unweld [src], leaving it as just a frame bolted to the wall</span>")
+		deconstruct(TRUE)
+
+	return TRUE
+
+
+/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/X)
+	if(obj_integrity <= 0)
+		to_chat(X, "<span class='warning'>The camera is already disabled.</span>")
+		return
+
+	X.animation_attack_on(src)
+	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
+	"<span class='danger'>You slash \the [src]!</span>")
+	playsound(loc, "alien_claw_metal", 25, 1)
+
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
+		update_icon()
+		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>")
+		return
+
+	var/datum/effect_system/spark_spread/sparks = new
+	sparks.set_up(2, 0, src)
+	sparks.attach(src)
+	sparks.start()
+
+	deactivate()
+	visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>")
+
+
+/obj/machinery/camera/proc/deactivate(mob/user)
+	status = FALSE
+	obj_integrity = 0
+	SetLuminosity(0)
+	GLOB.cameranet.removeCamera(src)
+	if(isarea(myarea))
+		LAZYREMOVE(myarea.cameras, src)
+	GLOB.cameranet.updateChunk(x, y, z)
+	update_icon()
+
+	for(var/i in GLOB.player_list)
+		var/mob/M = i
+		if(M.client?.eye && M.client.eye == src)
+			M.unset_interaction()
+			M.reset_perspective(null)
+			to_chat(M, "The screen bursts into static.")
+
+
+/obj/machinery/camera/update_icon()
+	if(obj_integrity <= 0)
+		icon_state = "camera_assembly"
+	else
+		icon_state = "camera"
+
+
+/obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
 	if(can_use())
 		GLOB.cameranet.addCamera(src)
@@ -123,6 +218,17 @@
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
 	GLOB.cameranet.updateChunk(x, y, z)
+
+	var/change_msg = "deactivates"
+	if(status)
+		change_msg = "reactivates"
+
+	if(displaymessage)
+		if(user)
+			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
+		else
+			visible_message("<span class='danger'>\The [src] [change_msg]!</span>")
+
 	update_icon() //update Initialize() if you remove this.
 
 	// now disconnect anyone using the camera
@@ -147,19 +253,9 @@
 	return get_hear(view_range, get_turf(src))
 
 
-/atom/proc/auto_turn()
-	//Automatically turns based on nearby walls.
-	var/turf/closed/wall/T = null
-	for(var/i in GLOB.cardinals)
-		T = get_ranged_target_turf(src, i, 1)
-		if(istype(T))
-			setDir(turn(i, 180))
-			break
-
-
 //Return a working camera that can see a given mob
 //or null if none
-/proc/seen_by_camera(var/mob/M)
+/proc/seen_by_camera(mob/M)
 	for(var/obj/machinery/camera/C in oview(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
@@ -167,7 +263,7 @@
 	return null
 
 
-/proc/near_range_camera(var/mob/M)
+/proc/near_range_camera(mob/M)
 	for(var/obj/machinery/camera/C in range(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
@@ -225,6 +321,11 @@
 	network = list("marinemainship")
 
 
+/obj/machinery/camera/headset
+	name = "headset camera"
+	network = list("marine")
+
+
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam
 	name = "laser camera"
@@ -261,11 +362,17 @@
 /obj/machinery/camera/autoname/lz_camera
 	name = "landing zone camera"
 	icon_state = ""
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("landing zones")
 
-	emp_act(severity)
-		return //immune to EMPs, just in case
 
-	ex_act()
-		return
+/obj/machinery/camera/autoname/lz_camera/emp_act(severity)
+	return
+
+
+/obj/machinery/camera/autoname/lz_camera/ex_act()
+	return
+
+
+/obj/machinery/camera/autoname/lz_camera/update_icon()
+	return

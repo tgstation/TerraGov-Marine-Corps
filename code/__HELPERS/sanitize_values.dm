@@ -29,6 +29,14 @@
 		return L[1]
 
 
+/proc/sanitize_inlist_assoc(value, list/L, default)
+	for(var/i in L)
+		if(L[i] == value)
+			return value
+	if(default)			
+		return default
+
+
 //more specialised stuff
 /proc/sanitize_gender(gender, neuter = FALSE, plural = FALSE, default = MALE)
 	switch(gender)

@@ -9,7 +9,8 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 15
-	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
+	fire_sound = "gun_flamethrower"
+	dry_fire_sound = 'sound/weapons/gun_flamethrower_empty.ogg'
 	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
@@ -25,8 +26,10 @@
 /obj/item/weapon/gun/flamer/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
+
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
-	toggle_flame(user)
+	return toggle_flame(user)
+
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	to_chat(user, "It's turned [lit? "on" : "off"].")
@@ -41,8 +44,9 @@
 		if(!current_mag || !current_mag.current_rounds)
 			return
 
+
 /obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user,'sound/weapons/flipblade.ogg', 25, 1)
+	playsound(user, lit ? 'sound/weapons/gun_flamethrower_off.ogg' : 'sound/weapons/gun_flamethrower_on.ogg', 25, 1)
 	lit = !lit
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
@@ -53,6 +57,9 @@
 	else
 		overlays -= I
 		qdel(I)
+
+	return TRUE
+
 
 /obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 	set waitfor = 0
@@ -121,7 +128,7 @@
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
 	if(!current_mag)
-		return //no magazine to unload
+		return FALSE //no magazine to unload
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
 	else
@@ -134,6 +141,9 @@
 	current_mag = null
 
 	update_icon()
+
+	return TRUE
+
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
@@ -454,7 +464,7 @@
 /obj/flamer_fire
 	name = "fire"
 	desc = "Ouch!"
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"

@@ -114,9 +114,6 @@
 	if(can_buckle) manual_unbuckle(user)
 	else . = ..()
 
-/obj/attack_ai(mob/user)
-	if(can_buckle) manual_unbuckle(user)
-	else . = ..()
 
 /obj/proc/handle_rotation()
 	return
@@ -162,7 +159,6 @@
 					"<span class='notice'>You unbuckle yourself from [src].</span>",\
 					"<span class='notice'>You hear metal clanking</span>")
 			unbuckle()
-			src.add_fingerprint(user)
 			return 1
 
 	return 0
@@ -183,9 +179,9 @@
 	if(density)
 		density = 0
 		if(!step(M, get_dir(M, src)) && loc != M.loc)
-			density = 1
+			density = TRUE
 			return
-		density = 1
+		density = TRUE
 	else
 		if(M.loc != src.loc)
 			return
@@ -199,7 +195,6 @@
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
-	src.add_fingerprint(user)
 	afterbuckle(M)
 
 /obj/proc/send_buckling_message(mob/M, mob/user)

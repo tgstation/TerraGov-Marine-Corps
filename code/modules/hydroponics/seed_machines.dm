@@ -32,8 +32,8 @@
 /obj/machinery/botany
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 
 	var/obj/item/seeds/seed // Currently loaded seed packet.
@@ -102,7 +102,7 @@
 		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 
 	else if(iscrowbar(I) && open)
-		dismantle()
+		deconstruct()
 
 	else if(istype(I, /obj/item/disk/botany))
 		var/obj/item/disk/botany/B = I
@@ -198,7 +198,6 @@
 		loaded_disk = null
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 
 /obj/machinery/botany/extractor/Topic(href, href_list)
 
@@ -206,7 +205,6 @@
 		return 1
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 
 	if(href_list["scan_genome"])
 
@@ -330,4 +328,3 @@
 			seed.modified += rand(5,10)
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)

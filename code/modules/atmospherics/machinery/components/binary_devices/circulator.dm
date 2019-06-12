@@ -87,7 +87,7 @@
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
 	anchored = !anchored
-	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	//if(generator)
 	//	disconnectFromGenerator()
 	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
@@ -148,7 +148,7 @@
 	if(..())
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+	playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1)
 	to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src].</span>")
 	return TRUE
 

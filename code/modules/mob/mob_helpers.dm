@@ -356,8 +356,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /mob/proc/restrained()
 	return
 
+
 /mob/proc/incapacitated(ignore_restrained)
-	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && restrained()))
+	return (stat || (!ignore_restrained && restrained()))
+
+
+
 
 //returns how many non-destroyed legs the mob has (currently only useful for humans)
 /mob/proc/has_legs()
@@ -399,3 +403,61 @@ mob/proc/get_standard_bodytemperature()
 		client.player_details.logging[smessage_type] += timestamped_message
 
 	return ..()
+
+
+/proc/notify_ghost(mob/dead/observer/O, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.
+	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
+		return
+	if(!O.client)
+		return
+	var/track_link
+	if (source && action == NOTIFY_ORBIT)
+		track_link = " <a href='byond://?src=[REF(O)];track=[REF(source)]'>(Follow)</a>"
+	if (source && action == NOTIFY_JUMP)
+		var/turf/T = get_turf(source)
+		track_link = " <a href='byond://?src=[REF(O)];jump=1;x=[T.x];y=[T.y];z=[T.z]'>(Jump)</a>"
+	var/full_enter_link
+	if (enter_link)
+		full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
+	to_chat(O, "[(extra_large) ? "<br><hr>" : ""]<span class='deadsay'>[message][(enter_link) ? " [full_enter_link]" : ""][track_link]</span>[(extra_large) ? "<hr><br>" : ""]")
+	if(ghost_sound)
+		SEND_SOUND(O, sound(ghost_sound, volume = notify_volume))
+	if(flashwindow)
+		window_flash(O.client)
+
+	if(!source)
+		return
+
+	var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+	if(!A)
+		return
+	if (header)
+		A.name = header
+	A.desc = message
+	A.action = action
+	A.target = source
+	if(!alert_overlay)
+		alert_overlay = new(source)
+		var/icon/i = icon(source.icon)
+		var/higher_power = (i.Height() > i.Width()) ? i.Height() : i.Width()
+		if (higher_power > 32)
+			var/diff = 32 / higher_power
+			alert_overlay.transform = alert_overlay.transform.Scale(diff, diff)
+			alert_overlay.pixel_y = -32 * diff
+			alert_overlay.pixel_x = -32 * diff
+
+
+	alert_overlay.layer = FLOAT_LAYER
+	alert_overlay.plane = FLOAT_PLANE
+
+	A.add_overlay(alert_overlay)
+    
+
+/proc/notify_ghosts(message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of ghosts.
+	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
+		return
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/O = i
+		if(!O.client)
+			continue
+		notify_ghost(O, message, ghost_sound, enter_link, enter_text, source, alert_overlay, action, flashwindow, ignore_mapload, ignore_key, header, notify_volume, extra_large)

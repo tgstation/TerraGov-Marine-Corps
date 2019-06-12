@@ -6,7 +6,7 @@
 	icon_state = "fireaxe1000"
 	icon_closed = "fireaxe1000"
 	icon_opened = "fireaxe1100"
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	var/localopened = 0 //Setting this to keep it from behaviouring like a normal closet and obstructing movement in the map. -Agouri
 	opened = 1
@@ -45,7 +45,7 @@
 				else
 					src.hitstaken++
 					if(src.hitstaken == 4)
-						playsound(user, 'sound/effects/Glassbr3.ogg', 50, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
+						playsound(user, 'sound/effects/glassbr3.ogg', 50, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
 						src.smashed = 1
 						src.locked = 0
 						src.localopened = 1
@@ -117,7 +117,6 @@
 				user.put_in_hands(fireaxe)
 				fireaxe = null
 				to_chat(user, "<span class='notice'>You take the fire axe from the [name].</span>")
-				src.add_fingerprint(user)
 				update_icon()
 			else
 				if(src.smashed)

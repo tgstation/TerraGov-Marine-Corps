@@ -4,7 +4,7 @@
 	icon = 'icons/obj/structures/window_frames.dmi'
 	icon_state = "window0_frame"
 	layer = WINDOW_FRAME_LAYER
-	density = 1
+	density = TRUE
 	throwpass = TRUE
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
@@ -66,7 +66,7 @@
 			return
 		user.visible_message("<span class='notice'>[user] starts installing a new glass window on the frame.</span>", \
 		"<span class='notice'>You start installing a new window on the frame.</span>")
-		playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
+		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return

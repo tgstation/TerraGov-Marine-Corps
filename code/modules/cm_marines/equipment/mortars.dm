@@ -6,9 +6,9 @@
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	density = 1
+	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/targ_x = 0 //Initial target coordinates
 	var/targ_y = 0
@@ -35,7 +35,6 @@
 	if(firing)
 		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
 		return
-	add_fingerprint(user)
 
 	var/choice = alert(user, "Would you like to set the mortar's target coordinates, or dial the mortar? Setting coordinates will make you lose your fire adjustment.", "Mortar Dialing", "Target", "Dial", "Cancel")
 	if(choice == "Cancel")
@@ -59,7 +58,7 @@
 		user.visible_message("<span class='notice'>[user] starts adjusting [src]'s firing angle and distance.</span>",
 		"<span class='notice'>You start adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
 		busy = 1
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		if(do_after(user, 30, TRUE, src, BUSY_ICON_GENERIC))
 			user.visible_message("<span class='notice'>[user] finishes adjusting [src]'s firing angle and distance.</span>",
 			"<span class='notice'>You finish adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
@@ -96,7 +95,7 @@
 		user.visible_message("<span class='notice'>[user] starts dialing [src]'s firing angle and distance.</span>",
 		"<span class='notice'>You start dialing [src]'s firing angle and distance to match the new coordinates.</span>")
 		busy = 1
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		if(do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 			user.visible_message("<span class='notice'>[user] finishes dialing [src]'s firing angle and distance.</span>",
 			"<span class='notice'>You finish dialing [src]'s firing angle and distance to match the new coordinates.</span>")
@@ -195,7 +194,7 @@
 			to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
 			return
 
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] starts undeploying [src].",
 		"<span class='notice'>You start undeploying [src].")
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
@@ -203,7 +202,7 @@
 		
 		user.visible_message("<span class='notice'>[user] undeploys [src].",
 		"<span class='notice'>You undeploy [src].")
-		playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 		new /obj/item/mortar_kit(loc)
 		qdel(src)
 
@@ -239,7 +238,7 @@
 		return
 	user.visible_message("<span class='notice'>[user] starts deploying [src].",
 	"<span class='notice'>You start deploying [src].")
-	playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message("<span class='notice'>[user] deploys [src].",
 		"<span class='notice'>You deploy [src].")

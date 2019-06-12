@@ -184,6 +184,37 @@
 	to_chat(user, "It contains [get_fuel()]/[max_fuel] units of fuel!")
 
 
+/obj/item/tool/weldingtool/use(used = 0)
+	if(!isOn() || !check_fuel())
+		return FALSE
+
+	if(get_fuel() < used)
+		return FALSE
+
+	reagents.remove_reagent("fuel", used)
+	check_fuel()
+	return TRUE
+
+
+// When welding is about to start, run a normal tool_use_check, then flash a mob if it succeeds.
+/obj/item/tool/weldingtool/tool_start_check(mob/living/user, amount = 0)
+	. = tool_use_check(user, amount)
+	if(. && user)
+		eyecheck(user)
+
+
+// If welding tool ran out of fuel during a construction task, construction fails.
+/obj/item/tool/weldingtool/tool_use_check(mob/living/user, amount)
+	if(!isOn() || !check_fuel())
+		to_chat(user, "<span class='warning'>[src] has to be on to complete this task!</span>")
+		return FALSE
+
+	if(get_fuel() < amount)
+		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task!</span>")
+		return FALSE
+
+	return TRUE
+
 
 /obj/item/tool/weldingtool/process()
 	if(gc_destroyed)
@@ -221,7 +252,7 @@
 			user.visible_message("<span class='warning'>\The [user] patches some dents on \the [H]'s [S.display_name] with \the [src].</span>", \
 								"<span class='warning'>You patch some dents on \the [H]'s [S.display_name] with \the [src].</span>")
 			remove_fuel(1,user)
-			playsound(user.loc, 'sound/items/Welder2.ogg', 25, 1)
+			playsound(user.loc, 'sound/items/welder2.ogg', 25, 1)
 			return
 		else
 			to_chat(user, "<span class='warning'>Nothing to fix!</span>")
@@ -301,7 +332,7 @@
 			damtype = "fire"
 			icon_state = "welder1"
 			w_class = 4
-			heat_source = 3800
+			heat = 3800
 			START_PROCESSING(SSobj, src)
 		else
 			if(M)
@@ -314,7 +345,7 @@
 		icon_state = "welder"
 		welding = 0
 		w_class = initial(w_class)
-		heat_source = 0
+		heat = 0
 		if(M)
 			if(!message)
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")

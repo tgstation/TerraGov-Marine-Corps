@@ -177,7 +177,6 @@
 	attackby(var/obj/item/I, var/mob/user)
 		var/nicetype = "pipe"
 		var/ispipe = 0 // Indicates if we should change the level of this pipe
-		src.add_fingerprint(user)
 		switch(ptype)
 			if(6)
 				nicetype = "disposal bin"
@@ -212,7 +211,7 @@
 					level = 2
 					density = 0
 				else
-					density = 1
+					density = TRUE
 				to_chat(user, "You detach the [nicetype] from the underfloor.")
 			else
 				if(ptype>=6 && ptype <= 8) // Disposal or outlet
@@ -233,21 +232,21 @@
 							to_chat(user, "There is already a [nicetype] at that location.")
 							return
 
-				anchored = 1
+				anchored = TRUE
 				if(ispipe)
 					level = 1 // We don't want disposal bins to disappear under the floors
 					density = 0
 				else
-					density = 1 // We don't want disposal bins or outlets to go density 0
+					density = TRUE // We don't want disposal bins or outlets to go density 0
 				to_chat(user, "You attach the [nicetype] to the underfloor.")
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(src.loc, 'sound/items/ratchet.ogg', 25, 1)
 			update()
 
 		else if(iswelder(I))
 			if(anchored)
 				var/obj/item/tool/weldingtool/W = I
 				if(W.remove_fuel(0,user))
-					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+					playsound(src.loc, 'sound/items/welder2.ogg', 25, 1)
 					to_chat(user, "Welding the [nicetype] in place.")
 					if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 						to_chat(user, "The [nicetype] has been welded in place!")
@@ -256,7 +255,6 @@
 
 							var/pipetype = dpipetype()
 							var/obj/structure/disposalpipe/P = new pipetype(src.loc)
-							src.transfer_fingerprints_to(P)
 							P.base_icon_state = base_state
 							P.setDir(dir)
 							P.dpdir = dpdir
@@ -269,13 +267,11 @@
 
 						else if(ptype==6) // Disposal bin
 							var/obj/machinery/disposal/P = new /obj/machinery/disposal(src.loc)
-							src.transfer_fingerprints_to(P)
 							P.mode = 0 // start with pump off
 
 						else if(ptype==7) // Disposal outlet
 
 							var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
-							src.transfer_fingerprints_to(P)
 							P.setDir(dir)
 							var/obj/structure/disposalpipe/trunk/Trunk = CP
 							Trunk.linked = P
@@ -283,7 +279,6 @@
 						else if(ptype==8) // Disposal outlet
 
 							var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
-							src.transfer_fingerprints_to(P)
 							P.setDir(dir)
 
 						qdel(src)

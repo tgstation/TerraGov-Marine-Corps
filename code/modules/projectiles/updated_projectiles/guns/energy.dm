@@ -79,7 +79,7 @@
 	icon_state = "taser"
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/taser.ogg'
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
@@ -119,7 +119,7 @@
 	desc = "A laser based firearm. Uses power cells."
 	origin_tech = "combat=5;materials=4"
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_sound = 'sound/weapons/laser.ogg'
 	matter = list("metal" = 2000)
 	load_method = CELL //codex
 
@@ -189,7 +189,7 @@
 	starting_attachment_types = list()
 
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
-	toggle_chargemode(user)
+	return toggle_chargemode(user)
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
@@ -218,7 +218,7 @@
 		charge_cost = M43_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-		fire_sound = 'sound/weapons/Laser.ogg'
+		fire_sound = 'sound/weapons/laser.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 
@@ -227,6 +227,9 @@
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
+	
+	return TRUE
+
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
@@ -342,10 +345,10 @@
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
-		return
+		return FALSE
 
 	if(!cell || cell.loc != src)
-		return
+		return FALSE
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		cell.loc = get_turf(src) //Drop it on the ground.
@@ -359,3 +362,5 @@
 	cell = null
 
 	update_icon(user)
+
+	return TRUE

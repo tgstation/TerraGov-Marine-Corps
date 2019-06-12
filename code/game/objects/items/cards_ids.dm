@@ -38,7 +38,6 @@
 		src.name = text("data disk- '[]'", t)
 	else
 		src.name = "data disk"
-	src.add_fingerprint(usr)
 	return
 
 /obj/item/card/data/clown
@@ -107,8 +106,7 @@
 	if(uses<1)
 		user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
 		user.drop_held_item()
-		var/obj/item/card/emag_broken/junk = new(user.loc)
-		junk.add_fingerprint(user)
+		new /obj/item/card/emag_broken(user.loc)
 		qdel(src)
 		return
 
@@ -145,7 +143,6 @@
 /obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")
 
-	src.add_fingerprint(user)
 	return
 
 /obj/item/card/id/GetAccess()

@@ -75,7 +75,6 @@
 	amount = 25
 
 /obj/item/stack/sandbags/attack_self(mob/living/user)
-	add_fingerprint(user)
 
 	if(!istype(user.loc,/turf)) return 0
 
@@ -117,5 +116,4 @@
 	user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
 	"<span class='notice'>You assemble a sandbag barricade.</span>")
 	SB.setDir(user.dir)
-	SB.add_fingerprint(user)
 	use(5)

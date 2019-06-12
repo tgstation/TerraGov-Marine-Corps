@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 /mob/proc/ventcrawl_carry()
 	for(var/atom/A in src.contents)
-		if(!(is_type_in_list(A, canEnterVentWith)))
+		if(!istype(A, /obj/item/clothing/mask/facehugger))
 			to_chat(src, "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>")
 			return FALSE
 	return TRUE
@@ -36,10 +36,6 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	return TRUE
 
 /mob/living/simple_animal/mouse/can_ventcrawl()
-	return TRUE
-
-
-/mob/living/simple_animal/spiderbot/can_ventcrawl()
 	return TRUE
 
 
@@ -121,17 +117,20 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			client.images += A.pipe_vision_img
 			pipes_shown += A.pipe_vision_img
 	is_ventcrawling = TRUE
+	return TRUE
+
 
 /mob/living/carbon/xenomorph/hunter/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	. = ..()
-	cancel_stealth()
+	if(.)
+		cancel_stealth()
+
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = FALSE
 	if(client)
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
-		client.eye = src
 
 	pipes_shown.len = 0
 

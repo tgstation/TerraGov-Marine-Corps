@@ -91,7 +91,6 @@
 
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
-	add_fingerprint(user)
 	if(on && user.zone_selected == "eyes")
 
 		if((user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
@@ -228,7 +227,7 @@
 /obj/item/flashlight/flare/proc/turn_off()
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
 	on = 0
-	heat_source = 0
+	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
@@ -251,7 +250,7 @@
 	if(.)
 		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 		force = on_damage
-		heat_source = 1500
+		heat = 1500
 		damtype = "fire"
 		START_PROCESSING(SSobj, src)
 
@@ -261,7 +260,7 @@
 
 		..()
 		on = 1
-		heat_source = 1500
+		heat = 1500
 		update_brightness()
 		force = on_damage
 		damtype = "fire"

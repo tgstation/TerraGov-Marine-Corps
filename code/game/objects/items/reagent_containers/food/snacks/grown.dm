@@ -384,14 +384,6 @@
 	potency = 30
 	plantname = "killertomato"
 
-/obj/item/reagent_container/food/snacks/grown/killertomato/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	new /mob/living/simple_animal/tomato(user.loc)
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You plant the killer-tomato.</span>")
-
 /obj/item/reagent_container/food/snacks/grown/bloodtomato
 	name = "blood-tomato"
 	desc = "So bloody...so...very...bloody....AHHHH!!!!"
@@ -518,14 +510,6 @@
 	filling_color = "#FFBFEF"
 	potency = 30
 	plantname = "walkingmushroom"
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	new /mob/living/simple_animal/mushroom(user.loc)
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/chanterelle
 	name = "chanterelle cluster"

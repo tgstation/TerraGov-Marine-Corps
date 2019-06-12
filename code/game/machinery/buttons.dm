@@ -41,7 +41,6 @@
 	. = ..()
 	if(.)
 		return
-	add_fingerprint(user)
 
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return
@@ -109,7 +108,7 @@
 	desc = "A remote control switch for a mass driver."
 	var/id = null
 	var/active = 0
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -121,7 +120,7 @@
 	desc = "A remote control switch for a mounted igniter."
 	var/id = null
 	var/active = 0
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -133,7 +132,7 @@
 	icon_state = "launcherbtt"
 	var/id = null
 	var/active = 0
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -143,7 +142,7 @@
 	name = "crematorium igniter"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "crema_switch"
-	anchored = 1.0
+	anchored = TRUE
 	req_access = list(ACCESS_MARINE_MEDBAY)
 	var/on = 0
 	var/area/area = null
@@ -159,7 +158,7 @@
 	icon_state = "doorctrl0"
 	desc = "A button for alerting doctors that you require assistance."
 	var/active = FALSE
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -176,7 +175,6 @@
 /obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	add_fingerprint(user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='warning'>[src] doesn't seem to be working.</span>")
 		return

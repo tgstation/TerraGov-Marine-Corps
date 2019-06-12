@@ -145,7 +145,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
 	icon_state = "molotov"
 	item_state = "molotov"
-	arm_sound = 'sound/items/Welder2.ogg'
+	arm_sound = 'sound/items/welder2.ogg'
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/incendiary/molotov/New()
@@ -295,7 +295,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 /obj/item/explosive/grenade/flare/proc/turn_off()
 	fuel = 0
 	icon_state = "[initial(icon_state)]-empty"
-	heat_source = 0
+	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
@@ -311,7 +311,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	throwforce = 10
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
-	heat_source = 1500
+	heat = 1500
 	damtype = "fire"
 	update_brightness()
 	playsound(src,'sound/items/flare.ogg', 15, 1)
@@ -338,7 +338,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 	. = ..()
 	active = TRUE
-	heat_source = 1500
+	heat = 1500
 	update_brightness()
 	force = 5
 	throwforce = 10

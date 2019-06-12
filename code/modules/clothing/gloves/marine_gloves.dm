@@ -90,7 +90,7 @@
 /obj/item/clothing/gloves/marine/specialist
 	name = "\improper B18 defensive gauntlets"
 	desc = "A pair of heavily armored gloves."
-	icon_state = "black"
+	icon_state = "armored"
 	item_state = "bgloves"
 	armor = list("melee" = 80, "bullet" = 95, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 20, "rad" = 20, "fire" = 80, "acid" = 80)
 	resistance_flags = UNACIDABLE

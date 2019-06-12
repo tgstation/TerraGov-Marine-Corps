@@ -148,7 +148,4 @@
 						hud_used.bodytemp_icon.icon_state = "temp0"
 
 
-		if(interactee)
-			interactee.check_eye(src)
-
-	return 1
+		interactee?.check_eye(src)

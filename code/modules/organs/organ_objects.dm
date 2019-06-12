@@ -217,7 +217,5 @@
 	// Pass over the blood.
 	reagents.trans_to(O, reagents.total_volume)
 
-	transfer_fingerprints_to(O)
-
 	user.put_in_active_hand(O)
 	qdel(src)

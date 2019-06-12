@@ -144,7 +144,6 @@
 				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/user as mob)
-	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
 

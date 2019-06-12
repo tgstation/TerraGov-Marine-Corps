@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "Tooltips now appear on certain things to help with readability, first pass adds tooltips to on screen actions."

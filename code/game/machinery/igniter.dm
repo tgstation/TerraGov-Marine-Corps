@@ -5,7 +5,7 @@
 	icon_state = "igniter1"
 	var/id = null
 	var/on = 1.0
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -19,7 +19,6 @@
 /obj/machinery/igniter/attack_hand(mob/user as mob)
 	if(..())
 		return
-	add_fingerprint(user)
 
 	use_power(50)
 	src.on = !( src.on )
@@ -55,7 +54,7 @@
 	var/disable = 0
 	var/last_spark = 0
 	var/base_state = "migniter"
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/sparker/New()
 	..()

@@ -3,8 +3,8 @@
 	desc = "A large machine with whirring fans and two cylindrical holes in the top. Used to regenerate fuel cells."
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "recycler"
-	anchored = 1.0
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	idle_power_usage = 5
 	active_power_usage = 15000
 	bound_height = 32
@@ -36,8 +36,6 @@
 	if(cell_left == null && cell_right == null)
 		to_chat(M, "<span class='notice'>The recycler is empty.</span>")
 		return
-
-	add_fingerprint(M)
 
 	if(cell_right == null)
 		cell_left.update_icon()

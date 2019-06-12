@@ -202,10 +202,10 @@
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		puller.KnockDown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
-		playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1)
-		puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
-		puller.stop_pulling()
+		H.KnockDown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
+		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
+		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
+		H.stop_pulling()
 		return FALSE
 	return TRUE
 
@@ -225,7 +225,7 @@
 	hud_set_pheromone()
 	//and display them
 	add_to_all_mob_huds()
-	var/datum/mob_hud/MH = huds[MOB_HUD_XENO_INFECTION]
+	var/datum/atom_hud/MH = GLOB.huds[DATA_HUD_XENO_INFECTION]
 	MH.add_hud_to(src)
 
 

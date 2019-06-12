@@ -7,8 +7,8 @@
 	icon_state = "power"
 
 	//computer stuff
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/circuitboard/computer/powermonitor
 	use_power = 1
 	idle_power_usage = 300
@@ -24,15 +24,11 @@
 		powernet = attached.powernet
 
 /obj/machinery/power/monitor/attack_ai(mob/user)
-	add_fingerprint(user)
-
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
 
 /obj/machinery/power/monitor/attack_hand(mob/user)
-	add_fingerprint(user)
-
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
@@ -116,7 +112,7 @@
 	. = ..()
 
 	if(isscrewdriver(I) && circuit)
-		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 

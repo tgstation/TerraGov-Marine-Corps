@@ -112,7 +112,6 @@
 	if(.)
 		return
 
-	add_fingerprint(usr)
 	usr.set_interaction(src)
 
 	if(href_list["viewserver"])
@@ -143,7 +142,7 @@
 					screen = 0
 
 	else if(href_list["delete"])
-		if(!allowed(usr) && !(obj_flags & EMAGGED))
+		if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(usr, "<span class='danger'>ACCESS DENIED.</span>")
 			return
 

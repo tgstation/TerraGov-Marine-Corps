@@ -11,7 +11,6 @@
 	var/brute_dam_coeff = 1.0
 	var/open = FALSE //Maint panel
 	var/locked = TRUE
-	//var/emagged = 0 //Urist: Moving that var to the general /bot tree as it's used by most bots
 
 
 /obj/machinery/bot/proc/turn_on()
@@ -39,12 +38,12 @@
 /obj/machinery/bot/proc/Emag(mob/user as mob)
 	if(locked)
 		locked = FALSE
-		emagged = 1
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>")
 		log_admin("[key_name(user)] emagged [src]'s maintenance hatch lock.")
 		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s maintenance hatch lock.")
 	if(!locked && open)
-		emagged = 2
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		log_admin("[key_name(user)] emagged [src]'s inner circuits.")
 		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s inner circuits.")
 
@@ -101,7 +100,7 @@
 		obj_integrity = min(max_integrity, obj_integrity + 10)
 		user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
 
-	else if(istype(I, /obj/item/card/emag) && emagged < 2)
+	else if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		Emag(user)
 
 	else if(I.force && I.damtype)

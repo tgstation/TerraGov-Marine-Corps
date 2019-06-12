@@ -10,7 +10,6 @@
 	var/network = list("military")
 	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
-	var/emagged = 0
 
 /obj/item/circuitboard/computer/security/construct(var/obj/machinery/computer/security/C)
 	if (..(C))
@@ -155,10 +154,6 @@
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/HolodeckControl // Not going to let people get this, but it's just here for future
-	name = "Circuit board (Holodeck Control)"
-	build_path = /obj/machinery/computer/HolodeckControl
-	origin_tech = "programming=4"
 
 /obj/item/circuitboard/computer/area_atmos
 	name = "Circuit board (Area Air Control)"
@@ -170,15 +165,15 @@
 	. = ..()
 
 	if(istype(I, /obj/item/card/emag))
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "Circuit lock is already removed.")
 			return
 		to_chat(user, "<span class='notice'>You override the circuit lock and open controls.</span>")
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		locked = FALSE
 
 	else if(istype(I, /obj/item/card/id))
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>Circuit lock does not respond.</span>")
 			return
 
@@ -213,7 +208,7 @@
 
 	if(isscrewdriver(I))
 		user.visible_message("<span class='notice'> \the [user] adjusts the jumper on the [src]'s access protocol pins.</span>", "<span class='notice'> You adjust the jumper on the access protocol pins.</span>")
-		
+
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = "Circuit Board (RD Console - Robotics)"
 			build_path = /obj/machinery/computer/rdconsole/robotics

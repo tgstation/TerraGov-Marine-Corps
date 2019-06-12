@@ -4,8 +4,8 @@
 	desc = "The name isn't descriptive enough?"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
-	density = 1
-	anchored = 1
+	anchored = TRUE
+	density = TRUE
 	var/operating = 0 //Is it on?
 	var/dirty = 0 // Does it need cleaning?
 	var/gibtime = 40 // Time from starting until meat appears
@@ -91,7 +91,6 @@
 	if (usr.stat != 0)
 		return
 	src.go_out()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/gibber/proc/go_out()

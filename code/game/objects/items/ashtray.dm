@@ -29,7 +29,7 @@
 
 		if(istype(I, /obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/cig = I
-			if(!cig.heat_source)
+			if(!cig.heat)
 				to_chat(user, "You place [cig] in [src] without even smoking it. Why would you do that?")
 				return
 

@@ -27,7 +27,7 @@
 	icon_state = "alarm0"
 	pixel_x = -16
 	pixel_y = -16
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 80
 	active_power_usage = 1000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
@@ -612,7 +612,6 @@ table tr:first-child th:first-child { border: none;}
 		usr << browse(null, "window=AAlarmwires")
 		return
 
-	add_fingerprint(usr)
 	usr.set_interaction(src)
 
 	// hrefs that can always be called -walter0o
@@ -777,7 +776,7 @@ table tr:first-child th:first-child { border: none;}
 				user.visible_message("<span class='notice'>[user] starts prying out [src]'s circuits.</span>",
 				"<span class='notice'>You start prying out [src]'s circuits.</span>")
 
-				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
@@ -805,7 +804,7 @@ table tr:first-child th:first-child { border: none;}
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
 				frame.forceMove(user.loc)
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				qdel(src)
 
 /obj/machinery/alarm/power_change()

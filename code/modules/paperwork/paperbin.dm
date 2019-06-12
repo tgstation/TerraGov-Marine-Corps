@@ -29,7 +29,6 @@
 	if(!papers.len > 0)
 		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon-Copy", "Cancel")
 		if (response != "Regular" && response != "Carbon-Copy")
-			add_fingerprint(user)
 			return
 	if(amount >= 1)
 		amount--
@@ -52,7 +51,6 @@
 	else
 		to_chat(user, "<span class='notice'>[src] is empty!</span>")
 
-	add_fingerprint(user)
 	return
 
 

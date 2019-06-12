@@ -462,6 +462,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
 
+// Xeno charge types
+#define CHARGE_TYPE_SMALL			1
+#define CHARGE_TYPE_MEDIUM			2
+#define CHARGE_TYPE_LARGE			3
+#define CHARGE_TYPE_MASSIVE			4
+
+
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
 #define HUNTER_STEALTH_WALK_PLASMADRAIN			2
@@ -548,12 +555,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARLIE_SQUAD 3
 #define DELTA_SQUAD 4
 
-// tracking map ID, add more squads/ert leaders/hives etc to track via SSdirection here
-#define TRACK_ALPHA_SQUAD "alpha_squad"
-#define TRACK_BRAVO_SQUAD "bravo_squad"
-#define TRACK_CHARLIE_SQUAD "charlie_squad"
-#define TRACK_DELTA_SQUAD "delta_squad"
-
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
 
@@ -573,3 +574,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_PRECISE_R_HAND	"r_hand"
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
+
+
+//Hostile simple animals
+#define AI_ON		1
+#define AI_IDLE		2
+#define AI_OFF		3
+#define AI_Z_OFF	4

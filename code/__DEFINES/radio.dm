@@ -79,7 +79,8 @@
 // Only the 1441 to 1489 range is freely available for general conversation.
 // This represents 1/8th of the available spectrum.
 
-
+#define FREQ_ELECTROPACK 1449
+#define FREQ_SIGNALER	1457  // the default for new signalers
 #define FREQ_COMMON		1461
 
 #define FREQ_CIV_GENERAL	1469

@@ -7,8 +7,8 @@
 	name = "Body Scanner"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scanner_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	use_power = 1
 	idle_power_usage = 60
@@ -28,7 +28,6 @@
 	if (usr.stat != 0)
 		return
 	src.go_out()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/bodyscanner/verb/move_inside()
@@ -52,7 +51,6 @@
 		//O = null
 		qdel(O)
 		//Foreach goto(124)
-	src.add_fingerprint(usr)
 	return
 
 /obj/machinery/bodyscanner/proc/go_out()
@@ -112,7 +110,6 @@
 	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		O.forceMove(loc)
-	add_fingerprint(user)
 
 
 /obj/machinery/bodyscanner/ex_act(severity)
@@ -181,7 +178,7 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 
 
 /obj/machinery/body_scanconsole/Initialize()

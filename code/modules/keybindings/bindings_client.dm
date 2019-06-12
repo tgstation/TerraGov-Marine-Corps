@@ -11,13 +11,19 @@
 
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
-	for (var/i in prefs.key_bindings[_key])
-		var/datum/keybinding/kb = i
+	var/AltMod = keys_held["Alt"] ? "Alt-" : ""
+	var/CtrlMod = keys_held["Ctrl"] ? "Ctrl-" : ""
+	var/ShiftMod = keys_held["Shift"] ? "Shift-" : ""
+	var/full_key = "[_key]"
+	if (!(_key in list("Alt", "Ctrl", "Shift")))
+		full_key = "[AltMod][CtrlMod][ShiftMod][_key]"
+	for (var/kb_name in prefs.key_bindings[full_key])
+		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
 		if (kb.down(src))
 			break
 
-	holder?.key_down(_key, src)
-	mob.focus?.key_down(_key, src)
+	holder?.key_down(full_key, src)
+	mob.focus?.key_down(full_key, src)
 
 
 /client/verb/keyUp(_key as text)
@@ -29,8 +35,10 @@
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
 
-	for (var/i in prefs.key_bindings[_key])
-		var/datum/keybinding/kb = i
+	// We don't do full key for release, because for mod keys you
+	// can hold different keys and releasing any should be handled by the key binding specifically
+	for (var/kb_name in prefs.key_bindings[_key])
+		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
 		if (kb.up(src))
 			break
 

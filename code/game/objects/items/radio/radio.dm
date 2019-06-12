@@ -66,7 +66,6 @@
 /obj/item/radio/interact(mob/user)
 	if(unscrewed && !isAI(user))
 		wires.interact(user)
-		add_fingerprint(user)
 		return
 
 	if(!on)
@@ -149,7 +148,6 @@
 			interact(master.loc)
 		else
 			updateDialog()
-	add_fingerprint(usr)
 
 
 /obj/item/radio/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language)

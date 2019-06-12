@@ -149,7 +149,6 @@
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
 	L.KnockDown(10)
-	L.silent = max(L.silent, 10)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
@@ -438,7 +437,7 @@
 				to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
 			return
 
-	if(!L.unacidable)
+	if(!isxeno(L))
 		if(ishuman(L) && volume >= 10)
 			var/mob/living/carbon/human/H = L
 			var/datum/limb/affecting = H.get_limb("head")

@@ -34,7 +34,6 @@
 				close()
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
-	add_fingerprint(M)
 	if (!( SSticker ))
 		return
 	if (src.operating)
@@ -100,10 +99,8 @@
 /obj/machinery/door/window/take_damage(var/damage)
 	src.obj_integrity = max(0, src.obj_integrity - damage)
 	if (src.obj_integrity <= 0)
-		var/obj/item/shard/S = new(loc)
-		transfer_fingerprints_to(S)
+		new /obj/item/shard(loc)
 		var/obj/item/stack/cable_coil/CC = new(loc)
-		transfer_fingerprints_to(CC)
 		CC.amount = 2
 		var/obj/item/circuitboard/airlock/ae
 		if(!electronics)
@@ -119,7 +116,6 @@
 			ae = electronics
 			electronics = null
 			ae.loc = src.loc
-		transfer_fingerprints_to(ae)
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
@@ -185,7 +181,7 @@
 		return TRUE
 
 	else if(operating == -1 && iscrowbar(I))
-		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))

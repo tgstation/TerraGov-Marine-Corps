@@ -5,7 +5,7 @@ var/bomb_set
 	desc = "Uh oh. RUN!!!!"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
-	density = 1
+	density = TRUE
 	resistance_flags = UNACIDABLE
 	var/deployable = 0.0
 	var/extended = 0.0
@@ -191,7 +191,7 @@ var/bomb_set
 		onclose(user, "nuclearbomb")
 	else if (src.deployable)
 		if(removal_stage < 5)
-			src.anchored = 1
+			src.anchored = TRUE
 			visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
 			visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
@@ -308,7 +308,6 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					else
 						visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
 
-		src.add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src))
 			if ((M.client && M.interactee == src))
 				src.attack_hand(M)
