@@ -35,10 +35,7 @@
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
-		if(isliving(A))
-			var/mob/living/L = A
-			L.SetKnockeddown(1)
-			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
+		SEND_SIGNAL(A, COMSIG_LIVING_RELEASED_FROM_STOMACH, src)
 
 	. = ..()
 

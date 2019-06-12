@@ -32,6 +32,7 @@
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
+		SEND_SIGNAL(A, COMSIG_LIVING_RELEASED_FROM_STOMACH, src)
 
 	round_statistics.total_xeno_deaths++
 
