@@ -1048,29 +1048,7 @@
 
 	if(targets.len) . = pick(targets)
 
-/*
-/obj/item/turret_laptop
-	name = "UA 571-C Turret Control Laptop"
-	desc = "A small device used for remotely controlling sentry turrets."
-	w_class = 4
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "turret_off"
-	var/linked_turret = null
-	var/on = 0
-	var/mob/living/carbon/human/user = null
-	var/obj/machinery/camera/current = null
 
-	check_eye(var/mob/user as mob)
-		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
-			return null
-		if(!linked_turret || isnull(linked_turret.camera))
-			return null
-		user.reset_perspective(linked_turret.camera)
-		return 1
-
-	attack_self(mob/living/user as mob)
-		if(!linked_turret)
-*/
 /obj/machinery/marine_turret/premade
 	name = "UA-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."

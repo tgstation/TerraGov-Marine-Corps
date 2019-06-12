@@ -302,10 +302,7 @@
 
 	if(stat != DEAD) //the dead get zero fullscreens
 
-		if(interactee)
-			interactee.check_eye(src)
-		else if(client)
-			reset_perspective(null)
+		interactee?.check_eye(src)
 
 	return 1
 

@@ -217,7 +217,7 @@
 	if(.)
 		update_camera_location(destination)
 		if(client)
-			reset_perspective(null)
+			reset_perspective()
 
 
 /mob/living/proc/do_camera_update(oldLoc)
