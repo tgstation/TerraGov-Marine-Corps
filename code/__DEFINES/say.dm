@@ -22,8 +22,8 @@
 #define MODE_HOLOPAD "holopad"
 
 #define MODE_BINARY "binary"
-#define MODE_KEY_BINARY "b"
-#define MODE_TOKEN_BINARY ":b"
+#define MODE_KEY_BINARY "n"
+#define MODE_TOKEN_BINARY ":n"
 
 //Spans. Robot speech, italics, etc. Applied in compose_message().
 #define SPAN_YELL "yell"
