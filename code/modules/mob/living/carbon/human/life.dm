@@ -14,9 +14,15 @@
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
-	if(stat == DEAD)
-		if(!check_tod(src))
-			SSmobs.stop_processing(src)
+	if(stat == DEAD && undefibbable)
+		SSmobs.stop_processing(src) //Last round of processing.
+		if(CHECK_BITFIELD(status_flags, XENO_HOST))
+			var/obj/item/alien_embryo/parasite = locate(/obj/item/alien_embryo) in src
+			if(parasite) //The larva cannot survive without a host.
+				qdel(parasite)
+			DISABLE_BITFIELD(status_flags, XENO_HOST)
+		med_hud_set_status()
+		return TRUE
 	//No need to update all of these procs if the guy is dead.
 
 	if(!in_stasis)
@@ -49,7 +55,7 @@
 
 		else //Dead
 			if(!undefibbable && timeofdeath && life_tick > 5 && life_tick % 2 == 0)
-				if(timeofdeath < 5 || !check_tod(src))	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
+				if(timeofdeath < 5 || !check_tod(src) || !is_revivable())	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
 					undefibbable = TRUE
 					med_hud_set_status()
 				else if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
