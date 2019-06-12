@@ -10,7 +10,7 @@
 #define IMPCHEM_HUD					"chemical_implant_hud" // chemical implant
 #define IMPTRACK_HUD				"tracking_implant_hud" // tracking implant
 #define SPECIALROLE_HUD				"antag_hud" // AntagHUD image
-#define STATUS_HUD_XENO_INFECTION	"xeno_embryo_hud" // xeno larval stage.
+#define XENO_EMBRYO_HUD				"xeno_embryo_hud" // xeno larval stage.
 #define HEALTH_HUD_XENO				"xeno_health_hud" //health HUD for xenos
 #define SQUAD_HUD					"squad_hud" //squad hud showing who's leader, corpsman, etc for each squad.
 #define PLASMA_HUD					"xeno_plasma_hud" //indicates the plasma level of xenos.

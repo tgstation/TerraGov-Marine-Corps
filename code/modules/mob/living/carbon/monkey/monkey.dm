@@ -6,7 +6,7 @@
 	gender = NEUTER
 	flags_pass = PASSTABLE
 	hud_type = /datum/hud/monkey
-	hud_possible = list(STATUS_HUD_XENO_INFECTION)
+	hud_possible = list(XENO_EMBRYO_HUD)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/greaterform_type = /datum/species/human

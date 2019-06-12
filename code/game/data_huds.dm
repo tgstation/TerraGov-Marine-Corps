@@ -95,7 +95,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, STATUS_HUD_XENO_INFECTION, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, STATUS_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -176,7 +176,7 @@
 
 
 /mob/living/carbon/monkey/med_hud_set_status()
-	var/image/holder = hud_list[STATUS_HUD_XENO_INFECTION]
+	var/image/holder = hud_list[XENO_EMBRYO_HUD]
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
@@ -191,7 +191,7 @@
 
 /mob/living/carbon/human/med_hud_set_status()
 	var/image/status_hud = hud_list[STATUS_HUD]
-	var/image/infection_hud = hud_list[STATUS_HUD_XENO_INFECTION]
+	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD]
 
 	if(species.species_flags & IS_SYNTHETIC)
 		status_hud.icon_state = "hudsynth"
@@ -259,7 +259,7 @@
 
 //infection status that appears on humans and monkeys, viewed by xenos only.
 /datum/atom_hud/xeno_infection
-	hud_icons = list(STATUS_HUD_XENO_INFECTION)
+	hud_icons = list(XENO_EMBRYO_HUD)
 
 
 //Xeno status hud, for xenos
