@@ -113,9 +113,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(load_preferences() && load_character())
 			return
 
-	key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
-
+	// We don't have a savefile or we failed to load them
 	random_character()
+	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 3 SECONDS)
+	
+
+/datum/preferences/proc/load_default_keybindings(client/C = usr)
+	to_chat(C, "Empty keybindings, setting defaults")
+
+	var/choice = alert(C, "Would you prefer 'normal' or 'hotkey' defaults?", "Setup keybindings", "normal", "hotkey")
+	hotkeys = (choice == "hotkey")
+	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+	save_preferences()
 
 
 /datum/preferences/proc/ShowChoices(mob/user)
@@ -507,7 +516,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		kb_categories[kb.category] += list(kb)
 
 	var/HTML = "<style>label { display: inline-block; width: 200px; }</style><body>"
-
+	HTML += "<br>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_done'>Close</a>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_reset'>Reset to default</a>"
+	HTML += "<br><br>"
 	for(var/category in kb_categories)
 		HTML += "<h3>[category]</h3>"
 		for(var/i in kb_categories[category])
@@ -515,7 +527,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/bound_key = user_binds[kb.name]
 			bound_key = (bound_key) ? bound_key : "Unbound"
 
-			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [kb.key] )</a>"
+			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [hotkeys ? kb.hotkey_key : kb.classic_key] )</a>"
 			HTML += "<br>"
 
 	HTML += "<br><br>"
@@ -980,7 +992,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=keybindings")
 
 		if("keybindings_reset")
-			key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
+			var/choice = alert("Setting up keybindings, would you prefer 'normal' or 'hotkey' defaults?", "Setup keybindings", "normal", "hotkey")
+			hotkeys = (choice == "hotkey")
+			key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 			save_preferences()
 			ShowKeybindings(user)
 			return

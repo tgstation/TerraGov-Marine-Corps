@@ -97,6 +97,7 @@
 
 /datum/keybinding/mob/activate_inhand
 	key = "Z"
+	classic_key = "PAGEDOWN"
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
 	description = "Uses whatever item you have inhand"
