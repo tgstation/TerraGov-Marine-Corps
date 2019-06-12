@@ -16,7 +16,7 @@
 
 	S.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [S]!</span>", \
 	"<span class='xenowarning'>You call forth the larvas to rise from their slumber!</span>")
-	notify_ghosts("\The <b>[S]</b> is calling for the burrowed larvas to wake up!", source = S, action = NOTIFY_JOIN_AS_LARVA)
+	notify_ghosts("\The <b>[S]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = S, action = NOTIFY_JOIN_AS_LARVA)
 
 	addtimer(CALLBACK(S, /mob/living/carbon/xenomorph/shrike.proc/calling_larvas_end), CALLING_BURROWED_DURATION)
 
