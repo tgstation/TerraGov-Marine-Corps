@@ -253,7 +253,6 @@ directive is properly returned.
 	return
 
 /atom/proc/ex_act(severity, target)
-	set waitfor = FALSE
 	contents_explosion(severity, target)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
 
