@@ -56,6 +56,9 @@
 		return FALSE
 	if(!ishuman(A))
 		return FALSE
+	var/mob/living/carbon/human/target = A
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && target.stat == DEAD)
+		return FALSE
 
 
 /datum/action/xeno_action/activable/psychic_fling/use_ability(atom/A)
@@ -124,8 +127,8 @@
 			return FALSE
 	if(!ishuman(A))
 		return FALSE
-	var/mob/living/carbon/human/H = A
-	if(H.stat == DEAD || !isturf(A.loc))
+	var/mob/living/carbon/human/target = A
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && target.stat == DEAD)
 		return FALSE
 
 

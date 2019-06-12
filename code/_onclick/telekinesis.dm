@@ -265,55 +265,55 @@ Redefine as needed.
 		qdel(src)
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/shrike/S = tk_user
-	var/mob/living/carbon/human/H = focus
+	var/mob/living/carbon/xenomorph/shrike/assailant = tk_user
+	var/mob/living/carbon/human/victim = focus
 
-	if(!S.check_state() || S.stagger || !S.psychic_victim || S.loc != starting_master_loc || H.loc != starting_victim_loc || isnestedhost(H))
+	if(!assailant.check_state() || assailant.stagger || !assailant.psychic_victim || assailant.loc != starting_master_loc || victim.loc != starting_victim_loc || victim.stat == DEAD || isnestedhost(victim))
 		STOP_PROCESSING(SSfastprocess, src)
 		qdel(src)
 		return FALSE
 
-	if(H.life_tick <= last_life_tick) //One per life tick, no more.
+	if(victim.life_tick <= last_life_tick) //One per life tick, no more.
 		return FALSE
 
 	switch(grab_level)
 		if(TKGRAB_NONLETHAL)
-			H.SetStunned(2)
+			victim.SetStunned(2)
 		if(TKGRAB_LETHAL)
-			H.SetKnockeddown(2)
-			H.Losebreath(3)
+			victim.SetKnockeddown(2)
+			victim.Losebreath(3)
 
-	last_life_tick = H.life_tick
+	last_life_tick = victim.life_tick
 
 
 /obj/item/tk_grab/shrike/proc/swap_psychic_grab()
-	var/mob/living/carbon/xenomorph/shrike/S = tk_user
-	var/mob/living/carbon/human/H = focus //Typecasting merely for clarity, because it's free.
+	var/mob/living/carbon/xenomorph/shrike/assailant = tk_user
+	var/mob/living/carbon/human/victim = focus //Typecasting merely for clarity, because it's free.
 
 	if(last_grab_change + 3 SECONDS > world.time)
 		return FALSE
 
 	switch(grab_level)
 		if(TKGRAB_NONLETHAL)
-			if(S.action_busy)
+			if(assailant.action_busy)
 				return FALSE
-			if(!do_mob(S, H, 2 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+			if(!do_mob(assailant, victim, 2 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 				return FALSE
 			grab_level = TKGRAB_LETHAL
-			log_combat(S, H, "psychically strangled", addition="(kill intent)")
-			msg_admin_attack("[key_name(S)] psychically strangled (kill intent) [key_name(H)]")
-			to_chat(S, "<span class='danger'>We tighten our psychic grip on [H]'s neck!</span>")
-			H.visible_message("<span class='danger'>The invisible force has tightened its grip on [H]'s neck!</span>", null, null, 5)
-			S.do_attack_animation(H, "bite")
-			playsound(H,'sound/effects/blobattack.ogg', 75, 1)
+			log_combat(assailant, victim, "psychically strangled", addition="(kill intent)")
+			msg_admin_attack("[key_name(assailant)] psychically strangled (kill intent) [key_name(victim)]")
+			to_chat(assailant, "<span class='danger'>We tighten our psychic grip on [victim]'s neck!</span>")
+			victim.visible_message("<span class='danger'>The invisible force has tightened its grip on [victim]'s neck!</span>", null, null, 5)
+			assailant.do_attack_animation(victim, "bite")
+			playsound(victim,'sound/effects/blobattack.ogg', 75, 1)
 		if(TKGRAB_LETHAL)
 			grab_level = TKGRAB_NONLETHAL
-			log_combat(S, H, "neck grabbed")
-			msg_admin_attack("[key_name(S)] grabbed the neck of [key_name(H)]")
-			to_chat(S, "<span class='warning'>We loosen our psychic grip on [H]'s neck!</span>")
-			H.visible_message("<span class='warning'>The invisible force has loosened its grip on [H]'s neck...</span>", null, null, 5)
-			S.flick_attack_overlay(H, "grab")
-			playsound(H,'sound/effects/magic.ogg', 75, 1)
+			log_combat(assailant, victim, "neck grabbed")
+			msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(victim)]")
+			to_chat(assailant, "<span class='warning'>We loosen our psychic grip on [victim]'s neck!</span>")
+			victim.visible_message("<span class='warning'>The invisible force has loosened its grip on [victim]'s neck...</span>", null, null, 5)
+			assailant.flick_attack_overlay(victim, "grab")
+			playsound(victim,'sound/effects/magic.ogg', 75, 1)
 
 	last_grab_change = world.time
 
