@@ -4,6 +4,10 @@
 	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
 	GLOB.offered_mob_list -= src
+	if(length(observers))
+		for(var/i in observers)
+			var/mob/dead/D = i
+			D.reset_perspective(null)
 	ghostize()
 	clear_fullscreens()
 	return ..()

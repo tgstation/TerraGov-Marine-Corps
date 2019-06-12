@@ -216,6 +216,8 @@
 	//Only bother updating the camera if we actually managed to move
 	if(.)
 		update_camera_location(destination)
+		if(client)
+			reset_perspective(null)
 
 
 /mob/living/proc/do_camera_update(oldLoc)
