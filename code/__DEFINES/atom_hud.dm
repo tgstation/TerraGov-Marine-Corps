@@ -17,8 +17,8 @@
 #define PHEROMONE_HUD				"xeno_pheromone_hud" //indicates which pheromone is active on a xeno.
 #define QUEEN_OVERWATCH_HUD			"xeno_overwatch_hud" //indicates which xeno the queen is overwatching.
 #define ORDER_HUD					"human_order_hud" //shows what orders are applied to marines
-#define AI_DETECT_HUD				"ai_detect_hud"
-#define PAIN_HUD					"pain_hud" //A HUD to display human pain.
+#define AI_DETECT_HUD				"ai_detect_hud" //hud for displaying the AI eye's location
+#define PAIN_HUD					"pain_hud" //displays human pain / preceived health.
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
