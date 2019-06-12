@@ -5,26 +5,26 @@
 // ***************************************
 /datum/action/xeno_action/call_of_the_burrowed
 	name = "Call of the Burrowed"
-	action_icon_state = "lay_egg"
+	action_icon_state = "larva_growth"
 	cooldown_timer = 3 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
 
 
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
-	var/mob/living/carbon/xenomorph/shrike/S = owner
-	S.calling_larvas = TRUE
+	var/mob/living/carbon/xenomorph/shrike/caller = owner
+	ENABLE_BITFIELD(caller.shrike_flags, SHRIKE_FLAG_CALLING_LARVAS)
 
-	S.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [S]!</span>", \
+	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
 	"<span class='xenowarning'>You call forth the larvas to rise from their slumber!</span>")
-	notify_ghosts("\The <b>[S]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = S, action = NOTIFY_JOIN_AS_LARVA)
+	notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 
-	addtimer(CALLBACK(S, /mob/living/carbon/xenomorph/shrike.proc/calling_larvas_end), CALLING_BURROWED_DURATION)
+	addtimer(CALLBACK(caller, /mob/living/carbon/xenomorph/shrike.proc/calling_larvas_end), CALLING_BURROWED_DURATION)
 
 	add_cooldown()
 
 
 /mob/living/carbon/xenomorph/shrike/proc/calling_larvas_end()
-    calling_larvas = FALSE
+	DISABLE_BITFIELD(shrike_flags, SHRIKE_FLAG_CALLING_LARVAS)
 
 
 // ***************************************
