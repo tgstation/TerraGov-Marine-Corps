@@ -69,6 +69,10 @@
 	return
 
 
+/mob/living/silicon/contents_explosion(severity, target)
+	return
+
+
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)

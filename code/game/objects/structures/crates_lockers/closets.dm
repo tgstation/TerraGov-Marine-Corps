@@ -323,3 +323,10 @@
 		density = FALSE
 		welded = FALSE
 		update_icon()
+
+
+/obj/structure/closet/contents_explosion(severity, target)
+	for(var/i in contents)
+		var/atom/A = i
+		A.ex_act(severity, target)
+		CHECK_TICK

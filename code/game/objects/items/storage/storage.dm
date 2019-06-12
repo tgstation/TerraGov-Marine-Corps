@@ -694,3 +694,10 @@
 	for(var/X in lookers)
 		var/mob/M = X //There is no need to typecast here, really, but for clarity.
 		show_to(M)
+
+
+/obj/item/storage/contents_explosion(severity, target)
+	for(var/i in contents)
+		var/atom/A = i
+		A.ex_act(severity, target)
+		CHECK_TICK
