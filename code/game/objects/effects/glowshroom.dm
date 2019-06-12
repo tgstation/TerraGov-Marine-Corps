@@ -2,7 +2,7 @@
 
 /obj/effect/glowshroom
 	name = "glowshroom"
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
 	density = 0
 	icon = 'icons/obj/lighting.dmi'
@@ -52,7 +52,7 @@
 	set background = 1
 	var/direction = 16
 
-	for(var/wallDir in cardinal)
+	for(var/wallDir in GLOB.cardinals)
 		var/turf/newTurf = get_step(location,wallDir)
 		if(iswallturf(newTurf))
 			direction |= wallDir
@@ -81,10 +81,10 @@
 	floor = 1
 	return 1
 
-/obj/effect/glowshroom/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+/obj/effect/glowshroom/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	endurance -= W.force
+	endurance -= I.force
 
 	CheckEndurance()
 

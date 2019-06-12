@@ -17,7 +17,7 @@
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
-	var/drill_sound = 'sound/weapons/Genhit.ogg'
+	var/drill_sound = 'sound/weapons/genhit.ogg'
 	var/drill_verb = "picking"
 	sharp = IS_SHARP_ITEM_SIMPLE
 	var/excavation_amount = 100
@@ -99,11 +99,12 @@
 	origin_tech = "materials=4;phorontech=3;engineering=3"
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
-	heat_source = 3800
-	var/cutting_sound = 'sound/items/Welder2.ogg'
+	heat = 3800
+	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+	tool_behaviour = TOOL_WELD_CUTTER
 
 /obj/item/tool/pickaxe/plasmacutter/Initialize()
 	. = ..()
@@ -237,7 +238,7 @@
 				to_chat(user, "<span class='warning'>The plasma cutter abruptly shuts down due to a lack of power!</span>")
 		force = 5
 		damtype = "brute"
-		heat_source = 0
+		heat = 0
 		if(user)
 			user.SetLuminosity(-LIGHTER_LUMINOSITY)
 		SetLuminosity(0)
@@ -246,7 +247,7 @@
 		powered = TRUE
 		force = 40
 		damtype = "fire"
-		heat_source = 3800
+		heat = 3800
 		if(user)
 			user.SetLuminosity(LIGHTER_LUMINOSITY)
 			SetLuminosity(0)
@@ -275,18 +276,21 @@
 	SetLuminosity(0)
 	return ..()
 
-/obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/W, mob/user)
-	if(!istype(W, /obj/item/cell))
-		return ..()
-	if(user.drop_held_item())
-		W.loc = src
+/obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/cell))
+		if(!user.drop_held_item())
+			return
+
+		I.forceMove(src)
 		var/replace_install = "You replace the cell in [src]"
 		if(!cell)
 			replace_install = "You install a cell in [src]"
 		else
 			cell.updateicon()
 			user.put_in_hands(cell)
-		cell = W
+		cell = I
 		to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 		playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
 		update_plasmacutter()
@@ -339,7 +343,7 @@
 			return
 		if(!start_cut(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "<span class='notice'>You start melting the [target.name] with [src].</span>"))
 			return
-		playsound(user.loc, 'sound/items/Welder.ogg', 25, 1)
+		playsound(user.loc, 'sound/items/welder.ogg', 25, 1)
 		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, T, BUSY_ICON_BUILD))
 			return
 		if(!cell.charge >= PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD || !powered)

@@ -1,67 +1,11 @@
-/* Gifts and wrapping paper
- * Contains:
- *		Gifts
- *		Wrapping Paper
- */
-
-/*
- * Gifts
- */
-/obj/item/a_gift
+/obj/item/gift
 	name = "gift"
-	desc = "PRESENTS!!!! eek!"
+	desc = "Presents!"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift1"
 	item_state = "gift1"
 
-/obj/item/a_gift/New()
-	..()
-	pixel_x = rand(-10,10)
-	pixel_y = rand(-10,10)
-	if(w_class > 0 && w_class < 4)
-		icon_state = "gift[w_class]"
-	else
-		icon_state = "gift[pick(1, 2, 3)]"
-	return
-
-/obj/item/gift/attack_self(mob/user as mob)
-	user.drop_held_item()
-	if(gift)
-		user.put_in_active_hand(gift)
-		gift.add_fingerprint(user)
-	else
-		to_chat(user, "<span class='notice'>The gift was empty!</span>")
-	qdel(src)
-	return
-
-/obj/item/a_gift/ex_act()
-	qdel(src)
-	return
-
-/obj/effect/spresent/relaymove(mob/user)
-	if (user.stat)
-		return
-	to_chat(user, "<span class='notice'>You cant move.</span>")
-
-/obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-
-	if (!iswirecutter(W))
-		to_chat(user, "<span class='notice'>I need wirecutters for that.</span>")
-		return
-
-	to_chat(user, "<span class='notice'>You cut open the present.</span>")
-
-	for(var/mob/M in src) //Should only be one but whatever.
-		M.loc = src.loc
-		if (M.client)
-			M.client.eye = M.client.mob
-			M.client.perspective = MOB_PERSPECTIVE
-
-	qdel(src)
-
-/obj/item/a_gift/attack_self(mob/M as mob)
-	var/gift_type = pick(
+	var/list/gift_types = list(
 		/obj/item/storage/wallet,
 		/obj/item/storage/photo_album,
 		/obj/item/storage/box/snappops,
@@ -102,85 +46,212 @@
 		/obj/item/violin,
 		/obj/item/clothing/tie/horrible)
 
-	if(!ispath(gift_type,/obj/item))	return
 
-	var/obj/item/I = new gift_type(M)
-	M.temporarilyRemoveItemFromInventory(src)
-	M.put_in_hands(I)
-	I.add_fingerprint(M)
+/obj/item/gift/Initialize(mapload, ...)
+	. = ..()
+	pixel_x = rand(-10, 10)
+	pixel_y = rand(-10, 10)
+
+
+/obj/item/gift/ex_act()
 	qdel(src)
-	return
 
-/*
- * Wrapping Paper
- */
+
+/obj/item/gift/attack_self(mob/user)
+	var/gift_type = pick(gift_types)
+	var/obj/item/I = new gift_type
+	user.put_in_hands(I)
+	qdel(src)
+
+
+/obj/item/gift/marine
+	name = "Present"
+	desc = "One, standard issue TGMC Present"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "gift1"
+	item_state = "gift1"
+
+	var/fancy_chance = 0
+	var/fancy_type = 0
+
+	gift_types = list(
+		/obj/item/clothing/tie/horrible,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/stock/rifle,
+		/obj/item/attachable/scope)
+
+
+/obj/item/gift/marine/Initialize(mapload, ...)
+	. = ..()
+	fancy_chance = rand(1, 30)
+	fancy_type = rand(1, 20)
+
+
+/obj/item/gift/marine/attack_self(mob/user)
+	if(!prob(fancy_chance))
+		return ..()
+
+	var/gift_type
+	var/gift_message
+
+	switch(fancy_type)
+		if(1)
+			gift_message = "<span class='notice'>It's a brand new, un-restricted, THERMOBARIC ROCKET LAUNCHER!  What are the chances?</span>"
+			gift_type = /obj/item/weapon/gun/launcher/rocket/m57a4/xmas
+		if(10)
+			gift_message = "<span class='notice'>It's a brand new, un-restricted, ANTI-MATERIAL SNIPER RIFLE!  What are the chances?</span>"
+			gift_type = /obj/item/weapon/gun/rifle/sniper/elite/xmas
+		if(20)
+			gift_message = "<span class='notice'>Just what the fuck is it?</span>"
+			gift_type = /obj/item/clothing/mask/facehugger/lamarr
+		else
+			gift_message = "<span class='notice'>It's a REAL gift!</span>"
+			gift_type = pick(
+			/obj/item/weapon/gun/revolver/mateba,
+			/obj/item/weapon/gun/pistol/heavy,
+			/obj/item/weapon/claymore,
+			/obj/item/weapon/energy/sword/green,
+			/obj/item/weapon/energy/sword/red,
+			/obj/item/attachable/heavy_barrel,
+			/obj/item/attachable/extended_barrel,
+			/obj/item/attachable/burstfire_assembly,
+			)
+
+	to_chat(user, gift_message)
+	var/obj/item/I = new gift_type
+	user.put_in_hands(I)
+	qdel(src)
+
+
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas
+	flags_gun_features = GUN_INTERNAL_MAG
+
+
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas/able_to_fire(mob/living/user)
+	var/turf/current_turf = get_turf(user)
+	if(is_mainship_or_low_orbit_level(current_turf.z))
+		click_empty(user)
+		to_chat(user, "<span class='warning'>You can't fire that here!</span>")
+		return FALSE
+	return TRUE
+
+
+/obj/item/weapon/gun/rifle/sniper/elite/xmas
+	flags_gun_features = GUN_INTERNAL_MAG
+
+
+/obj/item/weapon/gun/rifle/sniper/elite/xmas/able_to_fire(mob/living/user)
+	return TRUE
+
+
+/obj/effect/spresent/relaymove(mob/user)
+	if(user.stat != CONSCIOUS)
+		return
+	to_chat(user, "<span class='notice'>You can't move.</span>")
+
+
+/obj/effect/spresent/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!iswirecutter(I))
+		to_chat(user, "<span class='notice'>You need wirecutters for that.</span>")
+		return
+
+	to_chat(user, "<span class='notice'>You cut open the present.</span>")
+
+	for(var/mob/M in src) //Should only be one but whatever.
+		M.forceMove(loc)
+		if(M.client)
+			M.client.eye = M.client.mob
+			M.client.perspective = MOB_PERSPECTIVE
+
+	qdel(src)
+
+
+
 /obj/item/wrapping_paper
 	name = "wrapping paper"
 	desc = "You can use this to wrap items in."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrap_paper"
-	var/amount = 20.0
+	var/amount = 20
 
-/obj/item/wrapping_paper/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (!( locate(/obj/structure/table, src.loc) ))
-		to_chat(user, "<span class='notice'>You MUST put the paper on a table!</span>")
-	if (W.w_class < 4)
-		if (iswirecutter(user.l_hand) || iswirecutter(user.r_hand))
-			var/a_used = 2 ** (src.w_class - 1)
-			if (src.amount < a_used)
-				to_chat(user, "<span class='notice'>You need more paper!</span>")
-				return
-			else
-				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/gift)) //No gift wrapping gifts!
-					return
 
-				if(user.drop_held_item())
-					amount -= a_used
-					var/obj/item/gift/G = new /obj/item/gift( src.loc )
-					G.size = W.w_class
-					G.w_class = G.size + 1
-					G.icon_state = text("gift[]", G.size)
-					G.gift = W
-					W.forceMove(G)
-					G.add_fingerprint(user)
-					W.add_fingerprint(user)
-					add_fingerprint(user)
-			if (src.amount <= 0)
-				new /obj/item/trash/c_tube( src.loc )
-				qdel(src)
-				return
-		else
-			to_chat(user, "<span class='notice'>You need scissors!</span>")
-	else
-		to_chat(user, "<span class='notice'>The object is FAR too large!</span>")
-	return
+/obj/item/wrapping_paper/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	var/a_used = 2 ** (w_class - 1)
+
+	if(!(locate(/obj/structure/table) in loc))
+		to_chat(user, "<span class='notice'>You must put the paper on a table!</span>")
+		return
+
+	if(I.w_class >= WEIGHT_CLASS_BULKY)
+		to_chat(user, "<span class='notice'>The object is far too large!</span>")
+		return
+
+
+	if(!iswirecutter(user.l_hand) && !iswirecutter(user.r_hand))
+		to_chat(user, "<span class='notice'>You need scissors!</span>")
+		return
+
+	if(amount < a_used)
+		to_chat(user, "<span class='notice'>You need more paper!</span>")
+		return
+
+	if(istype(I, /obj/item/smallDelivery) || istype(I, /obj/item/gift)) //No gift wrapping gifts!
+		return
+
+	if(!user.drop_held_item())
+		return
+
+	amount -= a_used
+	var/obj/item/gift/G = new(loc)
+	G.size = I.w_class
+	G.w_class = G.size + 1
+	G.icon_state = "gift[G.size]"
+	G.gift = I
+	I.forceMove(G)
+
+	if(amount <= 0)
+		new /obj/item/trash/c_tube(loc)
+		qdel(src)
 
 
 /obj/item/wrapping_paper/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "There is about [amount] square units of paper left!")
 
 
-/obj/item/wrapping_paper/attack(mob/target as mob, mob/user as mob)
-	if (!ishuman(target)) return
+/obj/item/wrapping_paper/attack(mob/target, mob/user)
+	if(!ishuman(target)) 
+		return
+
 	var/mob/living/carbon/human/H = target
 
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || H.stat)
-		if (src.amount > 2)
-			var/obj/effect/spresent/present = new /obj/effect/spresent (H.loc)
-			src.amount -= 2
-
-			if (H.client)
-				H.client.perspective = EYE_PERSPECTIVE
-				H.client.eye = present
-
-			H.loc = present
-
-			log_combat(user, H, "wrapped")
-			msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")
-
-		else
-			to_chat(user, "<span class='notice'>You need more paper.</span>")
-	else
+	if(!istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) && H.stat == CONSCIOUS)
 		to_chat(user, "They are moving around too much. A straightjacket would help.")
+		return
+
+	if(amount <= 2)
+		to_chat(user, "<span class='notice'>You need more paper.</span>")
+		return
+
+	var/obj/effect/spresent/present = new(H.loc)
+	amount -= 2
+
+	if(H.client)
+		H.client.perspective = EYE_PERSPECTIVE
+		H.client.eye = present
+
+	H.forceMove(present)
+
+	log_combat(user, H, "wrapped")
+	msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")

@@ -18,31 +18,6 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/structure/flora/attackby(obj/item/W, mob/living/user)
-	if(!W || !user || (W.flags_item & NOBLUDGEON))
-		return FALSE
-
-	user.changeNext_move(W.attack_speed)
-
-	var/damage = W.force
-	if(W.w_class < 3 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
-		damage *= 0.25
-
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-
-		if(WT.remove_fuel(5))
-			damage = 25
-			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
-
-	else
-		playsound(loc, "alien_resin_break", 25)
-	user.animation_attack_on(src)
-
-	var/multiplier = 1
-	if(W.damtype == "fire") //Burn damage deals extra
-		multiplier += 1
-
 /obj/structure/flora/update_icon()
 	return
 
@@ -88,27 +63,31 @@
 	START_PROCESSING(SSobj, src)
 	return TRUE
 
-/obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
-	if(W.sharp && W.force > 0)
-		user.changeNext_move(W.attack_speed)
-		if(W.hitsound)
-			playsound(get_turf(src), W.hitsound, 50, 0, 0)
-		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
-		var/cut_force = min(1, W.force)
-		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
-		if(do_after(usr, cutting_time , TRUE, src, BUSY_ICON_BUILD))
-			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
-			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
-			for(var/i=1 to log_amount)
-				new /obj/item/grown/log(get_turf(src))
 
-			var/obj/structure/flora/stump/S = new(loc)
-			S.name = "[name] stump"
+/obj/structure/flora/tree/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-			qdel(src)
+	if(!I.sharp && I.force <= 0)
+		return
 
-	else
-		return ..()
+	if(I.hitsound)
+		playsound(get_turf(src), I.hitsound, 50, 0, 0)
+
+	user.visible_message("<span class='notice'>[user] begins to cut down [src] with [I].</span>","<span class='notice'>You begin to cut down [src] with [I].</span>", "You hear the sound of sawing.")
+	var/cut_force = min(1, I.force)
+	var/cutting_time = CLAMP(10, 20, 100 / cut_force) SECONDS
+	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
+		return
+
+	user.visible_message("<span class='notice'>[user] fells [src] with the [I].</span>","<span class='notice'>You fell [src] with the [I].</span>", "You hear the sound of a tree falling.")
+	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
+	for(var/i in 1 to log_amount)
+		new /obj/item/grown/log(get_turf(src))
+
+	var/obj/structure/flora/stump/S = new(loc)
+	S.name = "[name] stump"
+
+	qdel(src)
 
 /obj/structure/flora/tree/flamer_fire_act()
 	if(on_fire == FALSE)
@@ -164,7 +143,7 @@
 /obj/structure/flora/tree/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/m_gift
+	var/gift_type = /obj/item/gift/marine
 	var/list/ckeys_that_took = list()
 
 /obj/structure/flora/tree/xmas/presents/attack_hand(mob/living/user)
@@ -223,7 +202,7 @@
 /obj/structure/flora/grass
 	name = "grass"
 	icon = 'icons/obj/flora/snowflora.dmi'
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/grass/brown
 	icon_state = "snowgrass1bb"
@@ -251,7 +230,7 @@
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/bush/New()
 	icon_state = "snowbush[rand(1, 6)]"
@@ -271,7 +250,7 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/ausbushes/New()
 	icon_state = "firstbush_[rand(1, 4)]"
@@ -388,7 +367,7 @@
 // Generic undergrowth //
 //*********************//
 /obj/structure/flora/desert
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/obj/flora/dam.dmi'
 	var/icon_tag = null
 	var/variations = null
@@ -441,7 +420,7 @@
 	name = "jungle foliage"
 	icon = 'icons/turf/ground_map.dmi'
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 
@@ -469,15 +448,18 @@
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
 
-/obj/structure/jungle/vines/attackby(obj/item/W, mob/living/user)
-	if(W.sharp == IS_SHARP_ITEM_BIG)
-		user.changeNext_move(W.attack_speed)
-		to_chat(user, "<span class='warning'>You cut \the [src] away with \the [W].</span>")
-		user.animation_attack_on(src)
-		playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
-		qdel(src)
-	else
-		. = ..()
+/obj/structure/jungle/vines/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(I.sharp != IS_SHARP_ITEM_BIG || !isliving(user))
+		return
+
+	var/mob/living/L = user
+
+	to_chat(L, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
+	L.animation_attack_on(src)
+	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
+	qdel(src)
 
 /obj/structure/jungle/vines/Initialize()
 	. = ..()

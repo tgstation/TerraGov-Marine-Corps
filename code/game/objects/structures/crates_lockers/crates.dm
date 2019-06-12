@@ -22,7 +22,7 @@
 	return 1
 
 /obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
@@ -38,7 +38,7 @@
 	if(!can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/radio/electropack) in src)
+	if(rigged && locate(/obj/item/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -82,34 +82,36 @@
 	update_icon()
 	return 1
 
-/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.flags_item & ITEM_ABSTRACT) return
-	if(opened)
-		user.transferItemToLoc(W, loc)
-	else if(istype(W, /obj/item/packageWrap))
-		return
-	else if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/C = W
+/obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
 		if(rigged)
 			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
 			return
-		if (C.use(1))
-			user  << "<span class='notice'>You rig [src].</span>"
-			rigged = 1
+		if(!C.use(1))
 			return
-	else if(istype(W, /obj/item/radio/electropack))
-		if(rigged)
-			user  << "<span class='notice'>You attach [W] to [src].</span>"
-			user.drop_held_item()
-			W.loc = src
+
+		to_chat(user, "<span class='notice'>You rig [src].</span>")
+		rigged = TRUE
+
+	else if(istype(I, /obj/item/electropack))
+		if(!rigged)
 			return
-	else if(iswirecutter(W))
-		if(rigged)
-			user  << "<span class='notice'>You cut away the wiring.</span>"
-			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			rigged = 0
+
+		to_chat(user, "<span class='notice'>You attach [I] to [src].</span>")
+		user.drop_held_item()
+		I.forceMove(src)
+
+	else if(iswirecutter(I))
+		if(!rigged)
 			return
-	else return attack_hand(user)
+
+		to_chat(user, "<span class='notice'>You cut away the wiring.</span>")
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		rigged = FALSE
+
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
@@ -197,14 +199,11 @@
 	icon_opened = "open_hydro"
 	icon_closed = "closed_hydro"
 
-/obj/structure/closet/crate/hydroponics/prespawned
-	//This exists so the prespawned hydro crates spawn with their contents.
-
-	New()
-		..()
-		new /obj/item/reagent_container/spray/plantbgone(src)
-		new /obj/item/reagent_container/spray/plantbgone(src)
-		new /obj/item/tool/minihoe(src)
+/obj/structure/closet/crate/hydroponics/prespawned/Initialize()
+	. = ..()
+	new /obj/item/reagent_container/spray/plantbgone(src)
+	new /obj/item/reagent_container/spray/plantbgone(src)
+	new /obj/item/tool/minihoe(src)
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"
@@ -247,8 +246,8 @@
 	name = "RCD crate"
 	desc = "A crate for the storage of the RCD."
 
-/obj/structure/closet/crate/rcd/New()
-	..()
+/obj/structure/closet/crate/rcd/Initialize()
+	. = ..()
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
@@ -257,39 +256,13 @@
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"
 
-/obj/structure/closet/crate/solar/New()
-	..()
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/frame/solar_assembly(src)
-	new /obj/item/circuitboard/computer/solar_control(src)
-	new /obj/item/circuitboard/solar_tracker(src)
-	new /obj/item/paper/solar(src)
 
 /obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
 	desc = "A crate of emergency rations."
 	name = "Emergency Rations"
 
-/obj/structure/closet/crate/freezer/rations/New()
-	..()
+/obj/structure/closet/crate/freezer/rations/Initialize()
+	. = ..()
 	new /obj/item/storage/box/donkpockets(src)
 	new /obj/item/storage/box/donkpockets(src)
 
@@ -309,8 +282,8 @@
 	icon_opened = "open_radioactive"
 	icon_closed = "closed_radioactive"
 
-/obj/structure/closet/crate/radiation/New()
-	..()
+/obj/structure/closet/crate/radiation/Initialize()
+	. = ..()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
 	new /obj/item/clothing/suit/radiation(src)
@@ -361,7 +334,7 @@
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
 	icon_state = "miningcar"
-	density = 1
+	density = TRUE
 	icon_opened = "miningcaropen"
 	icon_closed = "miningcar"
 

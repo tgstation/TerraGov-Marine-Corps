@@ -11,7 +11,7 @@
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
 	var/strength = 10 //How knocked down targets are when flashed.
 	var/base_state = "mflash"
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
@@ -20,72 +20,61 @@
 	strength = 8
 	anchored = 0
 	base_state = "pflash"
-	density = 1
+	density = TRUE
 
-/*
-/obj/machinery/flasher/New()
-	sleep(4)					//<--- What the fuck are you doing? D=
-	src.sd_SetLuminosity(2)
-*/
+
 /obj/machinery/flasher/power_change()
 	..()
 	if ( !(machine_stat & NOPOWER) )
 		icon_state = "[base_state]1"
-//		src.sd_SetLuminosity(2)
 	else
 		icon_state = "[base_state]1-p"
-//		src.sd_SetLuminosity(0)
 
-//Don't want to render prison breaks impossible
-/obj/machinery/flasher/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswirecutter(W))
-		add_fingerprint(user)
-		src.disable = !src.disable
-		if (src.disable)
-			user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")
-		if (!src.disable)
-			user.visible_message("<span class='warning'> [user] has connected the [src]'s flashbulb!</span>", "<span class='warning'> You connect the [src]'s flashbulb!</span>")
 
-//Let the AI trigger them directly.
+/obj/machinery/flasher/wirecutter_act(mob/living/user, obj/item/W)
+	disable = !disable
+	if (disable)
+		user.visible_message("<span class='warning'> [user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'> You disconnect the [src]'s flashbulb!</span>")
+	if (!disable)
+		user.visible_message("<span class='warning'> [user] has connected the [src]'s flashbulb!</span>", "<span class='warning'> You connect the [src]'s flashbulb!</span>")
+
 /obj/machinery/flasher/attack_ai()
-	if (src.anchored)
-		return src.flash()
+	if (anchored)
+		return flash()
 	else
 		return
 
 /obj/machinery/flasher/proc/flash()
 	if (!(powered()))
 		return
-
-	if ((src.disable) || (src.last_flash && world.time < src.last_flash + 150))
+	if ((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
-	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/flash.ogg', 25, 1)
 	flick("[base_state]_flash", src)
-	src.last_flash = world.time
+	last_flash = world.time
 	use_power(1500)
 
-	for (var/mob/O in viewers(src, null))
-		if (get_dist(src, O) > src.range)
+	for(var/mob/living/L in viewers(src, null))
+		if (get_dist(src, L) > range)
 			continue
 
-		if (ishuman(O))
-			var/mob/living/carbon/human/H = O
+		if(isxeno(L))
+			continue
+
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
 			if(H.get_eye_protection() > 0)
 				continue
-
-		if (istype(O, /mob/living/carbon/Xenomorph))//So aliens don't get flashed (they have no external eyes)/N
-			continue
-
-		O.KnockDown(strength)
-		if (ishuman(O))
-			var/mob/living/carbon/human/H = O
 			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
-			if (E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
+			if(E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				H.flash_eyes()
 				E.damage += rand(1, 5)
 		else
-			O.flash_eyes()
+			L.flash_eyes()
+
+
+		L.KnockDown(strength)			
 
 
 /obj/machinery/flasher/emp_act(severity)
@@ -97,35 +86,35 @@
 	..(severity)
 
 /obj/machinery/flasher/portable/HasProximity(atom/movable/AM as mob|obj)
-	if ((src.disable) || (src.last_flash && world.time < src.last_flash + 150))
+	if ((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
-		if ((M.m_intent != MOVE_INTENT_WALK) && (src.anchored))
-			src.flash()
+		if ((M.m_intent != MOVE_INTENT_WALK) && (anchored))
+			flash()
 
-/obj/machinery/flasher/portable/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswrench(W))
-		add_fingerprint(user)
-		src.anchored = !src.anchored
+/obj/machinery/flasher/portable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswrench(I))
+		anchored = !anchored
 
-		if (!src.anchored)
-			user.show_message(text("<span class='warning'> [src] can now be moved.</span>"))
-			src.overlays.Cut()
-
-		else if (src.anchored)
+		if(!anchored)
 			user.show_message(text("<span class='warning'> [src] is now secured.</span>"))
-			src.overlays += "[base_state]-s"
+			overlays += "[base_state]-s"
+		else
+			user.show_message(text("<span class='warning'> [src] can now be moved.</span>"))
+			overlays.Cut()
 
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
-/obj/machinery/flasher_button/attackby(obj/item/W, mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_hand(mob/user as mob)
 
@@ -144,7 +133,7 @@
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
-		if(M.id == src.id)
+		if(M.id == id)
 			spawn()
 				M.flash()
 

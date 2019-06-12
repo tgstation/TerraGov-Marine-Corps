@@ -94,7 +94,7 @@
 			send_fax(usr, src, selected, message.name, message.info, FALSE)
 			to_chat(usr, "Message transmitted successfully.")
 			sendcooldown = TRUE
-			addtimer(CALLBACK(src, .proc/end_cooldown), 2 MINUTES)
+			addtimer(VARSET_CALLBACK(src, sendcooldown, FALSE), 2 MINUTES)
 			updateUsrDialog()
 	if(href_list["remove"])
 		if(message)
@@ -139,31 +139,28 @@
 	updateUsrDialog()
 
 
-/obj/machinery/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/paper))
+/obj/machinery/faxmachine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/paper))
 		if(!message)
-			user.transferItemToLoc(O, src)
-			message = O
+			user.transferItemToLoc(I, src)
+			message = I
 			to_chat(user, "<span class='notice'>You insert the paper into \the [src].</span>")
 			flick("faxsend", src)
 			updateUsrDialog()
 		else
 			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
 
-	else if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/idcard = O
+	else if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/idcard = I
 		if(!idscan)
 			user.transferItemToLoc(idcard, src)
 			idscan = idcard
 
-	else if(iswrench(O))
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+	else if(iswrench(I))
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
-
-
-/obj/machinery/faxmachine/proc/end_cooldown()
-	sendcooldown = FALSE
 
 
 /obj/machinery/faxmachine/cic

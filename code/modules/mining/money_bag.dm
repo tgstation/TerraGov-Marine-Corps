@@ -46,25 +46,25 @@
 		dat += text("Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=uranium'>Remove one</A><br>")
 	user << browse("[dat]", "window=moneybag")
 
-/obj/item/moneybag/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (istype(W, /obj/item/coin))
-		var/obj/item/coin/C = W
+/obj/item/moneybag/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/coin))
+		var/obj/item/coin/C = I
 		to_chat(user, "<span class='notice'>You add the [C.name] into the bag.</span>")
-		usr.drop_held_item()
-		contents += C
-	if (istype(W, /obj/item/moneybag))
-		var/obj/item/moneybag/C = W
-		for (var/obj/O in C.contents)
-			contents += O;
+		user.drop_held_item()
+		C.forceMove(src)
+
+	else if(istype(I, /obj/item/moneybag))
+		var/obj/item/moneybag/C = I
+		for(var/obj/O in C.contents)
+			O.forceMove(src)
 		to_chat(user, "<span class='notice'>You empty the [C.name] into the bag.</span>")
-	return
 
 /obj/item/moneybag/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	if(href_list["remove"])
 		var/obj/item/coin/COIN
 		switch(href_list["remove"])

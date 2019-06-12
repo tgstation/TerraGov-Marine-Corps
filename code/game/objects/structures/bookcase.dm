@@ -3,8 +3,8 @@
 	name = "bookcase"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "book-0"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	opacity = 1
 
 /obj/structure/bookcase/Initialize()
@@ -14,19 +14,20 @@
 			I.loc = src
 	update_icon()
 
-/obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/book))
+/obj/structure/bookcase/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/book))
 		user.drop_held_item()
-		O.loc = src
+		I.forceMove(src)
 		update_icon()
-	else if(istype(O, /obj/item/tool/pen))
-		var/newname = stripped_input(usr, "What would you like to title this bookshelf?")
+
+	else if(istype(I, /obj/item/tool/pen))
+		var/newname = stripped_input(user, "What would you like to title this bookshelf?")
 		if(!newname)
 			return
-		else
-			name = ("bookcase ([sanitize(newname)])")
-	else
-		..()
+
+		name = ("bookcase ([sanitize(newname)])")
 
 /obj/structure/bookcase/attack_hand(var/mob/user as mob)
 	if(contents.len)

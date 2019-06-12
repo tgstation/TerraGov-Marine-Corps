@@ -18,10 +18,10 @@
 		if(O.level == 1)
 			O.hide(FALSE)
 
-/turf/open/space/New()
+/turf/open/space/Initialize(mapload, ...)
+	. = ..()
 	if(!istype(src, /turf/open/space/transit))
 		icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
-	..()
 
 /turf/open/space/attack_paw(mob/user)
 	return src.attack_hand(user)
@@ -43,33 +43,34 @@
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return
 
-/turf/open/space/attackby(obj/item/C, mob/user)
+/turf/open/space/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (istype(C, /obj/item/stack/rods))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+	if(istype(I, /obj/item/stack/rods))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
 		if(L)
 			return
-		var/obj/item/stack/rods/R = C
-		if (R.use(1))
-			to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
-			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
-			ReplaceWithLattice()
-		return
-
-	if (istype(C, /obj/item/stack/tile/plasteel))
-		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(L)
-			var/obj/item/stack/tile/plasteel/S = C
-			if (S.get_amount() < 1)
-				return
-			qdel(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
-			S.build(src)
-			S.use(1)
+		var/obj/item/stack/rods/R = I
+		if(!R.use(1))
 			return
-		else
+
+		to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+		ReplaceWithLattice()
+
+	else if(istype(I, /obj/item/stack/tile/plasteel))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
+		if(!L)
 			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
-	return
+			return
+
+		var/obj/item/stack/tile/plasteel/S = I
+		if(S.get_amount() < 1)
+			return
+		qdel(L)
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+		S.build(src)
+		S.use(1)
 
 
 // Ported from unstable r355
@@ -77,8 +78,6 @@
 /turf/open/space/Entered(atom/movable/A)
 	..()
 	if ((!(A) || src != A.loc))	return
-
-	inertial_drift(A)
 
 	if(SSticker?.mode)
 
@@ -164,7 +163,7 @@
 	var/pushdirection // push things that get caught in the transit tile this direction
 
 //Overwrite because we dont want people building rods in space.
-/turf/open/space/transit/attackby(obj/O as obj, mob/user as mob)
+/turf/open/space/transit/attackby(obj/item/I, mob/user, params)
 	return
 
 /turf/open/space/transit/north // moving to the north

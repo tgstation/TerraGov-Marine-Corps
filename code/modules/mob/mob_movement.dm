@@ -1,78 +1,10 @@
 /mob/CanPass(atom/movable/mover, turf/target)
-	if(mover.checkpass(PASSMOB)) return 1
-	if(ismob(mover))
-		if(checkpass(PASSMOB))
-			return 1
+	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB)) 
+		return TRUE
+	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
+		return TRUE
 	return (!mover.density || !density || lying)
 
-
-
-/client/verb/fastNorth()
-	set instant = TRUE
-	set hidden = TRUE
-	set name = ".fastNorth"
-	Move(get_step(mob, NORTH), NORTH)
-
-
-/client/verb/fastSouth()
-	set instant = TRUE
-	set hidden = TRUE
-	set name = ".fastSouth"
-	Move(get_step(mob, SOUTH), SOUTH)
-
-
-/client/verb/fastWest()
-	set instant = TRUE
-	set hidden = TRUE
-	set name = ".fastWest"
-	Move(get_step(mob, WEST), WEST)
-
-
-/client/verb/fastEast()
-	set instant = TRUE
-	set hidden = TRUE
-	set name = ".fastEast"
-	Move(get_step(mob, EAST), EAST)
-
-
-/client/Northeast()
-	swap_hand()
-	return
-
-
-/client/Southeast()
-	attack_self()
-	return
-
-
-/client/Southwest()
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
-		C.toggle_throw_mode()
-	else
-		to_chat(usr, "<span class='warning'>This mob type cannot throw items.</span>")
-	return
-
-
-/client/Northwest()
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
-		if(!C.get_active_held_item())
-			to_chat(usr, "<span class='warning'>You have nothing to drop in your hand.</span>")
-			return
-		C.drop_held_item()
-	else
-		to_chat(usr, "<span class='warning'>This mob type cannot drop items.</span>")
-	return
-
-//This gets called when you press the delete button.
-/client/verb/delete_key_pressed()
-	set hidden = 1
-
-	if(!usr.pulling)
-		to_chat(usr, "<span class='notice'>You are not pulling anything.</span>")
-		return
-	usr.stop_pulling()
 
 /client/verb/swap_hand()
 	set hidden = 1
@@ -126,76 +58,87 @@
 
 
 /client/Move(n, direct)
-	if(mob.control_object)
-		return Move_object(direct) //admins possessing object
+	if(world.time < move_delay) //do not move anything ahead of this check please
+		return FALSE
+	else
+		next_move_dir_add = 0
+		next_move_dir_sub = 0
 
-	if(isobserver(mob) || isAI(mob))
-		return mob.Move(n,direct)
+	if(!mob?.loc)
+		return FALSE
 
-	var/start_move_time = world.time
-	if(next_movement > world.time)
-		return
+	if(!n || !direct)
+		return FALSE
+
+	if(mob.notransform)
+		return FALSE	//This is sota the goto stop mobs from moving var
+
+	if(!isliving(mob))
+		return mob.Move(n, direct)
 
 	if(mob.stat == DEAD)
-		return
+		mob.ghostize()
+		return FALSE
 
-	// There should be a var/is_zoomed in mob code not this mess
-	if(isxeno(mob))
-		if(mob:is_zoomed)
-			mob:zoom_out()
+	var/mob/living/L = mob  //Already checked for isliving earlier
 
-	// If mob moves while zoomed in with device, unzoom them.
-	if(view != world.view || pixel_x || pixel_y)
-		for(var/obj/item/item in mob.contents)
-			if(item.zoom)
-				item.zoom(mob)
-				click_intercept = null
-				break
+	var/double_delay = FALSE
+	if(direct in GLOB.diagonals)
+		double_delay = TRUE
+
+	if(L.remote_control) //we're controlling something, our movement is relayed to it
+		return L.remote_control.relaymove(L, direct)
+
+	if(isAI(L))
+		return AIMove(n, direct, L)
 
 	//Check if you are being grabbed and if so attemps to break it
-	if(mob.pulledby)
-		if(mob.incapacitated(TRUE))
+	if(L.pulledby)
+		if(L.incapacitated(TRUE))
 			return
-		else if(mob.restrained(0))
-			next_movement = world.time + 20 //to reduce the spam
+		else if(L.restrained(TRUE))
+			move_delay = world.time + 10 //to reduce the spam
 			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
 			return
-		else if(!mob.resist_grab(TRUE))
-			return
+		else
+			return L.resist_grab(TRUE)
 
-	if(mob.buckled)
-		return mob.buckled.relaymove(mob, direct)
+	if(L.buckled)
+		return L.buckled.relaymove(L, direct)
 
-	if(!mob.canmove)
+	if(!L.canmove)
 		return
 
-	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
-		var/atom/O = mob.loc
-		return O.relaymove(mob, direct)
+	if(isobj(L.loc) || ismob(L.loc))//Inside an object, tell it we moved
+		var/atom/O = L.loc
+		return O.relaymove(L, direct)
 
-	if(isturf(mob.loc))
-		mob.last_move_intent = world.time + 10
-		switch(mob.m_intent)
+	if(isturf(L.loc))
+		if(double_delay && L.cadecheck()) //Hacky
+			direct = get_cardinal_dir(n, L.loc)
+			direct = DIRFLIP(direct)
+			n = get_step(L.loc, direct)
+
+		L.last_move_intent = world.time + 10
+		switch(L.m_intent)
 			if(MOVE_INTENT_RUN)
 				move_delay = 2 + CONFIG_GET(number/movedelay/run_delay)
 			if(MOVE_INTENT_WALK)
 				move_delay = 7 + CONFIG_GET(number/movedelay/walk_delay)
-		move_delay += mob.movement_delay()
+		move_delay += L.movement_delay(direct)
 		//We are now going to move
-		moving = 1
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
 
-		var/mob/living/L = mob
 		if(L.confused)
-			step(L, pick(cardinal))
+			step(L, pick(GLOB.cardinals))
 		else
 			. = ..()
 
-		moving = 0
-		next_movement = start_move_time + move_delay
+		if(double_delay)
+			move_delay = world.time + (move_delay * SQRTWO)
+		else
+			move_delay = world.time + move_delay
 		return .
-
-	return
 
 ///Process_Spacemove
 ///Called by /client/Move()
@@ -204,17 +147,7 @@
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
-		make_floating(1)
 		return 0
-
-	if(istype(src,/mob/living/carbon/human/))
-		var/mob/living/carbon/human/H = src
-		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING))  //magboots + dense_object = no floaty effect
-			make_floating(0)
-		else
-			make_floating(1)
-	else
-		make_floating(1)
 
 	if(restrained()) //Check to see if we can do things
 		return 0
@@ -222,7 +155,6 @@
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
 		to_chat(src, "<span class='boldnotice'>You slipped!</span>")
-		src.inertia_dir = src.last_move_dir
 		step(src, src.inertia_dir)
 		return 0
 	//If not then we can reset inertia and move
@@ -280,3 +212,138 @@
 
 	prob_slip = round(prob_slip)
 	return(prob_slip)
+
+
+/client/proc/check_has_body_select()
+	return mob?.hud_used?.zone_sel && istype(mob.hud_used.zone_sel, /obj/screen/zone_sel)
+
+
+/client/verb/body_toggle_head()
+	set name = "body-toggle-head"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_HEAD)
+			next_in_line = BODY_ZONE_PRECISE_EYES
+		if(BODY_ZONE_PRECISE_EYES)
+			next_in_line = BODY_ZONE_PRECISE_MOUTH
+		else
+			next_in_line = BODY_ZONE_HEAD
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/client/verb/body_r_arm()
+	set name = "body-r-arm"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_R_ARM)
+			next_in_line = BODY_ZONE_PRECISE_R_HAND
+		else
+			next_in_line = BODY_ZONE_R_ARM
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/client/verb/body_chest()
+	set name = "body-chest"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(BODY_ZONE_CHEST, mob)
+
+
+/client/verb/body_l_arm()
+	set name = "body-l-arm"
+	set hidden = TRUE
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_L_ARM)
+			next_in_line = BODY_ZONE_PRECISE_L_HAND
+		else
+			next_in_line = BODY_ZONE_L_ARM
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/client/verb/body_r_leg()
+	set name = "body-r-leg"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_R_LEG)
+			next_in_line = BODY_ZONE_PRECISE_R_FOOT
+		else
+			next_in_line = BODY_ZONE_R_LEG
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/client/verb/body_groin()
+	set name = "body-groin"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(BODY_ZONE_PRECISE_GROIN, mob)
+
+
+/client/verb/body_l_leg()
+	set name = "body-l-leg"
+	set hidden = TRUE
+
+	if(!check_has_body_select())
+		return
+
+	var/next_in_line
+	switch(mob.zone_selected)
+		if(BODY_ZONE_L_LEG)
+			next_in_line = BODY_ZONE_PRECISE_L_FOOT
+		else
+			next_in_line = BODY_ZONE_L_LEG
+
+	var/obj/screen/zone_sel/selector = mob.hud_used.zone_sel
+	selector.set_selected_zone(next_in_line, mob)
+
+
+/mob/proc/toggle_move_intent(mob/user)
+	if(m_intent == MOVE_INTENT_RUN)
+		m_intent = MOVE_INTENT_WALK
+	else
+		m_intent = MOVE_INTENT_RUN
+	if(hud_used && hud_used.static_inventory)
+		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
+			selector.update_icon(src)
+
+
+/mob/proc/cadecheck()
+	var/list/coords = list(list(x + 1, y, z), list(x, y + 1, z), list(x - 1, y, z), list(x, y - 1, z))
+	for(var/i in coords)
+		var/list/L = i
+		var/turf/T = locate(L[1], L[2], L[3])
+		for(var/obj/structure/barricade/B in T.contents)
+			return TRUE
+	return FALSE

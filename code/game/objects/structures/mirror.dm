@@ -82,7 +82,7 @@
 
 		H.update_hair()
 
-/obj/structure/mirror/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/mirror/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	if(shattered)
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
@@ -115,17 +115,19 @@
 	return TRUE
 
 
-/obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/mirror/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(shattered)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
+		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 		return
 
-	if(prob(I.force * 2))
+	else if(prob(I.force * 2))
 		visible_message("<span class='warning'>[user] smashes [src] with [I]!</span>")
 		shatter()
 	else
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/structure/mirror/attack_animal(mob/user as mob)
 	if(!isanimal(user))

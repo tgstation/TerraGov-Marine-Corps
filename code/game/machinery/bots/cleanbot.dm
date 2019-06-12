@@ -96,7 +96,6 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	if(..())
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	switch(href_list["operation"])
 		if("start")
 			if (src.on)
@@ -125,20 +124,18 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 			to_chat(usr, "<span class='notice'>You press the weird button.</span>")
 			src.updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/attackby(obj/item/W, mob/user as mob)
-	if (istype(W, /obj/item/card/id))
-		if(src.allowed(usr) && !open && !emagged)
-			src.locked = !src.locked
-			to_chat(user, "<span class='notice'>You [ src.locked ? "lock" : "unlock"] the [src] behaviour controls.</span>")
+/obj/machinery/bot/cleanbot/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/card/id))
+		if(allowed(user) && !open && !CHECK_BITFIELD(obj_flags, EMAGGED))
+			locked = !locked
+			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
+		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
+			to_chat(user, "<span class='warning'>ERROR</span>")
+		else if(open)
+			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 		else
-			if(emagged)
-				to_chat(user, "<span class='warning'>ERROR</span>")
-			if(open)
-				to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
-			else
-				to_chat(user, "<span class='notice'>This [src] doesn't seem to respect your authority.</span>")
-	else
-		return ..()
+			to_chat(user, "<span class='notice'>This [src] doesn't seem to respect your authority.</span>")
 
 /obj/machinery/bot/cleanbot/Emag(mob/user as mob)
 	..()
@@ -282,7 +279,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		target_types += /obj/effect/decal/cleanable/blood/
 
 /obj/machinery/bot/cleanbot/proc/clean(var/obj/effect/decal/cleanable/target)
-	anchored = 1
+	anchored = TRUE
 	icon_state = "cleanbot-c"
 	visible_message("<span class='warning'> [src] begins to clean up the [target]</span>")
 	cleaning = 1

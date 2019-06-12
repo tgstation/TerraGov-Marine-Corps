@@ -268,7 +268,6 @@
 		if (usr.stat != CONSCIOUS)
 			return
 		go_out()
-	add_fingerprint(usr)
 	return
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
@@ -281,50 +280,53 @@
 	else
 		to_chat(user, "[src] seems empty.")
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/reagent_container/glass))
+/obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/reagent_container/glass))
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
-		if(istype(W, /obj/item/reagent_container/glass/bucket))
+		if(istype(I, /obj/item/reagent_container/glass/bucket))
 			to_chat(user, "<span class='warning'>That's too big to fit!</span>")
 			return
 
-		beaker =  W
+		beaker =  I
 
 		var/reagentnames = ""
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			reagentnames += ";[R.name]"
+			reagentnames += ", [R.name]"
 
-		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(src.loc)].")
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
 
+		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
 
-		if(user.transferItemToLoc(W, src))
-			user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
-		return
-
-	else if(istype(W, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/healthanalyzer/J = W
+	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
-		return
 
-	if(!istype(W, /obj/item/grab))
+	if(!istype(I, /obj/item/grab))
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "<span class='notice'>\ [src] is non-functional!</span>")
 		return
 
-	if(src.occupant)
+	if(occupant)
 		to_chat(user, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
-	var/obj/item/grab/G = W
+	var/obj/item/grab/G = I
 	var/mob/M
+
 	if(ismob(G.grabbed_thing))
 		M = G.grabbed_thing
+
 	else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
 		if(!C.stasis_mob)
@@ -333,14 +335,15 @@
 		M = C.stasis_mob
 		C.open()
 		user.start_pulling(M)
-	else
+
+	if(!M)
 		return
 
 	if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
 		to_chat(user, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
 		return
 
-	if (M.abiotic())
+	if(M.abiotic())
 		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
 		return
 
@@ -371,7 +374,6 @@
 	occupant = M
 	update_use_power(2)
 //	M.metabslow = 1
-	add_fingerprint(usr)
 	update_icon()
 	return 1
 
@@ -503,7 +505,6 @@
 	if(href_list["noticeOff"])
 		release_notice = FALSE
 
-	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
 

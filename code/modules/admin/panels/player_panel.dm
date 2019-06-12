@@ -213,7 +213,8 @@
 		if(isliving(M))
 			if(iscarbon(M)) //Carbon stuff
 				if(ishuman(M))
-					M_job = M.job
+					var/mob/living/carbon/human/H = M
+					M_job = H.job
 				else if(ismonkey(M))
 					M_job = "Monkey"
 				else if(isxeno(M))
@@ -249,6 +250,8 @@
 		var/M_name = html_encode(M.name)
 		var/M_rname = html_encode(M.real_name)
 		var/M_key = html_encode(M.key)
+		var/M_cid = html_encode(M.computer_id)
+		var/M_ip = html_encode(M.ip_address)
 
 		var/previous_names = ""
 		var/datum/player_details/P = GLOB.player_details[M.ckey]
@@ -263,10 +266,10 @@
 				<td align='center' bgcolor='[color]'>
 					<span id='notice_span[i]'></span>
 					<a id='link[i]'
-					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[M.computer_id]","[REF(M)]")'
+					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.ip_address]","[M.computer_id]","[REF(M)]")'
 					>
 					<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
-					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [previous_names]</span>
+					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [M_cid] [M_ip] [previous_names]</span>
 					</a>
 					<br><span id='item[i]'></span>
 				</td>
@@ -334,7 +337,7 @@
 
 		dat += {"<td align=center><a href='?src=[ref];playerpanel=[REF(M)]'>PP</a></td>
 		<td>[M.computer_id]</td>
-		<td>[M.lastKnownIP]</td>
+		<td>[M.ip_address]</td>
 		<td><a href='?src=[ref];observejump=[REF(M)]'>JMP</a></td>
 		<td><a href='?src=[ref];observefollow=[REF(M)]'>FLW</a></td>
 		<td><a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a></td>
@@ -386,11 +389,16 @@
 		<a href='?src=[ref];observefollow=[REF(M)]'>FLW</a> -
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a></b><br>
 		<b>Mob Type:</b> [M.type]<br>
-		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>
-		<b>Mob Faction:</b> [M.faction]<br>"}
+		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>"}
+
+	if(isliving(M))
+		var/mob/living/L = M
+		body += "<b>Mob Faction:</b> [L.faction]<br>"
 
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
+
+	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
 		
 	if(M.client)
 		body += "<a href='?src=[ref];playtime=[REF(M)]'>Playtime</a> | "
@@ -429,8 +437,9 @@
 
 
 	body += {"<br>
-		<b>Transformation:</b><br>
-		 Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a>
+		<b>Transformation:</b>
+		<br> Special: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
+		<a href='?src=[ref];transform=ai;mob=[REF(M)]'>AI</a>
 		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a>
@@ -474,9 +483,7 @@
 
 			if(ishuman(M))
 				body += "<br>"
-				body += "<a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
-				body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "
-				body += "<a href='?src=[ref];setsquad=[REF(M)]'>Select Squad</a> | "
+				body += "<a href='?src=[ref];rankequip=[REF(M)]'>Rank and Equipment</a> | "
 				body += "<a href='?src=[ref];randomname=[REF(M)]'>Randomize Name</a>"
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")

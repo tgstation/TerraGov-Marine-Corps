@@ -56,13 +56,6 @@ REAGENT SCANNER
 							O.invisibility = INVISIBILITY_MAXIMUM
 							O.alpha = 255
 
-		var/mob/living/M = locate() in T
-		if(M && M.invisibility == INVISIBILITY_LEVEL_TWO)
-			M.invisibility = 0
-			spawn(2)
-				if(M)
-					M.invisibility = INVISIBILITY_LEVEL_TWO
-
 
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
@@ -83,7 +76,7 @@ REAGENT SCANNER
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
-	if(( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
+	if((user.getBrainLoss() >= 60) && prob(50))
 		to_chat(user, "<span class='warning'>You try to analyze the floor's vitals!</span>")
 		for(var/mob/O in viewers(M, null))
 			O.show_message("<span class='warning'>[user] has analyzed the floor's vitals!</span>", 1)
@@ -208,9 +201,6 @@ REAGENT SCANNER
 			dat += "\t<span class='scanner'> *Ionizing radiation detected.</span>\n"
 	if (M.getCloneLoss())
 		dat += "\t<span class='scanner'> *Subject appears to have been imperfectly cloned.</span>\n"
-	for(var/datum/disease/D in M.viruses)
-		if(!D.hidden[SCANNER])
-			dat += "\t<span class='scannerb'> *Warning: [D.form] Detected</span><span class='scanner'>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</span>\n"
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
 		dat += "\t<span class='scanner'> *Subject is <b>brain dead</b></span>.\n"
 	else if (M.getBrainLoss() >= 60)
@@ -314,7 +304,7 @@ REAGENT SCANNER
 			blood_volume = round(H.blood_volume)
 
 			var/blood_percent =  blood_volume / 560
-			var/blood_type = H.dna.b_type
+			var/blood_type = H.blood_type
 			blood_percent *= 100
 			if(blood_volume <= 500 && blood_volume > 336)
 				dat += "\t<span class='scanner'> <b>Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span><font color='blue;'> Type: [blood_type]</font>\n"
@@ -488,7 +478,6 @@ REAGENT SCANNER
 		user << browse(dat, "window=handscanner;size=500x400")
 	else
 		user.show_message(dat, 1)
-	src.add_fingerprint(user)
 	return
 
 /obj/item/healthanalyzer/verb/toggle_mode()
@@ -554,7 +543,6 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'> Gas Type: [env_gas]</span>", 1)
 		user.show_message("<span class='notice'> Temperature: [round(env_temp-T0C)]&deg;C</span>", 1)
 
-	src.add_fingerprint(user)
 	return
 
 /obj/item/mass_spectrometer

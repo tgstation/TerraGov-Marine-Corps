@@ -48,8 +48,6 @@
 	icon_state = "chest"
 	construction_time = 350
 	construction_cost = list("metal"=40000)
-	var/wires_attached = FALSE
-	var/obj/item/cell/cell = null
 
 /obj/item/robot_parts/head
 	name = "robot head"
@@ -57,8 +55,6 @@
 	icon_state = "head"
 	construction_time = 350
 	construction_cost = list("metal"=25000)
-	var/obj/item/flash/flash1 = null
-	var/obj/item/flash/flash2 = null
 
 /obj/item/robot_parts/robot_suit
 	name = "robot endoskeleton"
@@ -66,10 +62,3 @@
 	icon_state = "robo_suit"
 	construction_time = 500
 	construction_cost = list("metal"=50000)
-	var/obj/item/robot_parts/l_arm/l_arm = null
-	var/obj/item/robot_parts/r_arm/r_arm = null
-	var/obj/item/robot_parts/l_leg/l_leg = null
-	var/obj/item/robot_parts/r_leg/r_leg = null
-	var/obj/item/robot_parts/chest/chest = null
-	var/obj/item/robot_parts/head/head = null
-	var/created_name = ""

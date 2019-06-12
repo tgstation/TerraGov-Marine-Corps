@@ -8,6 +8,7 @@
 	icon_state = "smoke"
 	opacity = TRUE
 	anchored = TRUE
+	layer = FLY_LAYER
 	mouse_opacity = 0
 	var/amount = 3
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
@@ -127,7 +128,7 @@
 		var/obj/effect/particle_effect/smoke/S = new type(T, null, null, cloud)
 		reagents.copy_to(S, reagents.total_volume)
 		S.copy_stats(src)
-		S.setDir(pick(cardinal))
+		S.setDir(pick(GLOB.cardinals))
 		if(S.amount > 0)
 			newsmokes.Add(S)
 		else
@@ -224,20 +225,14 @@
 	smoke_traits = SMOKE_COUGH|SMOKE_SLEEP|SMOKE_OXYLOSS
 
 /////////////////////////////////////////////
-// Mustard Gas
-/////////////////////////////////////////////
-
-/obj/effect/particle_effect/smoke/mustard
-	name = "mustard gas"
-	icon_state = "mustard"
-	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS
-
-/////////////////////////////////////////////
 // Phosphorus Gas
 /////////////////////////////////////////////
 
-/obj/effect/particle_effect/smoke/bad/phosphorus
-	smoke_traits = SMOKE_BLISTERING
+/obj/effect/particle_effect/smoke/phosphorus
+	alpha = 145
+	opacity = FALSE
+	color = "#DBCBB9"
+	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -285,11 +280,8 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/sleepy
 	smoke_type = /obj/effect/particle_effect/smoke/sleepy
 
-/datum/effect_system/smoke_spread/mustard
-	smoke_type = /obj/effect/particle_effect/smoke/mustard
-
 /datum/effect_system/smoke_spread/phosphorus
-	smoke_type = /obj/effect/particle_effect/smoke/bad/phosphorus
+	smoke_type = /obj/effect/particle_effect/smoke/phosphorus
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno
@@ -345,14 +337,8 @@ datum/effect_system/smoke_spread/tactical
 		if(contained)
 			contained = "\[[contained]\]"
 
-		var/where = "[AREACOORD(location)]"
-		if(carry.my_atom.fingerprintslast)
-			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
-			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Last associated key: [M ? ADMIN_TPMONTY(M) : carry.my_atom.fingerprintslast].")
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
-		else
-			message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. No associated key.")
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
+		message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained].")
+		log_game("A chemical smoke reaction has taken place in ([AREACOORD(location)])[contained].")
 
 /datum/effect_system/smoke_spread/chem/start()
 	var/mixcolor = mix_color_from_reagents(chemholder.reagents.reagent_list)

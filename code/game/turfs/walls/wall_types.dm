@@ -13,7 +13,7 @@
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
 	opacity = 1
-	density = 1
+	density = TRUE
 
 /turf/closed/wall/almayer/handle_icon_junction(junction)
 	if (!walltype)
@@ -151,7 +151,7 @@
 /turf/closed/wall/sulaco/unmeltable/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/closed/wall/sulaco/unmeltable/attackby() //This should fix everything else. No cables, etc
+/turf/closed/wall/sulaco/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
 /turf/closed/wall/sulaco/unmeltable/can_be_dissolved()
@@ -172,7 +172,7 @@
 /turf/closed/wall/indestructible/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/closed/wall/indestructible/attackby()
+/turf/closed/wall/indestructible/attackby(obj/item/I, mob/user, params)
 	return
 
 /turf/closed/wall/indestructible/can_be_dissolved()
@@ -278,9 +278,9 @@
 	radiate()
 	..()
 
-/turf/closed/wall/mineral/uranium/attackby(obj/item/W as obj, mob/user as mob)
+/turf/closed/wall/mineral/uranium/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	radiate()
-	..()
 
 /turf/closed/wall/mineral/uranium/Bumped(AM as mob|obj)
 	radiate()
@@ -440,7 +440,7 @@
 
 /turf/closed/wall/resin/hitby(AM as mob|obj)
 	..()
-	if(istype(AM,/mob/living/carbon/Xenomorph))
+	if(istype(AM,/mob/living/carbon/xenomorph))
 		return
 	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
 	"<span class='danger'>You hit \the [src].</span>")
@@ -453,7 +453,7 @@
 	take_damage(max(0, damage_cap - tforce))
 
 
-/turf/closed/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.animation_attack_on(src)
@@ -479,28 +479,25 @@
 	return attack_hand(user)
 
 
-/turf/closed/wall/resin/attackby(obj/item/W, mob/living/user)
-	if(!(W.flags_item & NOBLUDGEON))
-		user.changeNext_move(W.attack_speed)
-		user.animation_attack_on(src)
-		var/damage = W.force
-		var/multiplier = 1
-		if(W.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
-			multiplier += 1
-			if(istype(W, /obj/item/tool/pickaxe/plasmacutter)) //Plasma cutters are particularly good at destroying resin structures.
-				var/obj/item/tool/pickaxe/plasmacutter/P = W
-				if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, null, null, SFX = FALSE))
-					return
-				multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-		damage *= max(0,multiplier)
-		take_damage(damage)
-		playsound(src, "alien_resin_break", 25)
-	else
+/turf/closed/wall/resin/attackby(obj/item/I, mob/user, params)
+	if(I.flags_item & NOBLUDGEON || !isliving(user))
 		return attack_hand(user)
 
+	var/mob/living/L = user
+
+	user.changeNext_move(I.attack_speed)
+	L.animation_attack_on(src)
+	var/damage = I.force
+	var/multiplier = 1
+	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+		multiplier += 1
+	damage *= max(0, multiplier)
+	take_damage(damage)
+	playsound(src, "alien_resin_break", 25)
+
+
 /turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return !opacity
 	return !density
 
@@ -515,7 +512,7 @@
 	. = ..()
 	if(.)
 		var/turf/T
-		for(var/i in cardinal)
+		for(var/i in GLOB.cardinals)
 			T = get_step(src, i)
 			if(!istype(T)) continue
 			for(var/obj/structure/mineral_door/resin/R in T)

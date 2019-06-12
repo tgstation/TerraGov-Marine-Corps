@@ -5,10 +5,11 @@
 	name = "Toggle Neuroinjectors"
 	action_icon_state = "neuroclaws_off"
 	mechanics_text = "Toggle on to add neurotoxin to your melee slashes."
-	cooldown_timer = DEFILER_CLAWS_COOLDOWN
+	cooldown_timer = 1 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_NEUROCLAWS
 
 /datum/action/xeno_action/neuroclaws/action_activate()
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	add_cooldown()
 	X.neuro_claws = !X.neuro_claws
@@ -21,7 +22,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/neuroclaws/update_button_icon()
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	button.overlays.Cut()
 	if(X.neuro_claws)
 		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
@@ -38,7 +39,7 @@
 	mechanics_text = "Channel to inject an adjacent target with larval growth serum. At the end of the channel your target will be infected."
 	ability_name = "defiler sting"
 	plasma_cost = 150
-	cooldown_timer = DEFILER_STING_COOLDOWN
+	cooldown_timer = 20 SECONDS
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -46,7 +47,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	var/mob/living/carbon/C = A
 	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
 		return ..()
@@ -79,7 +80,9 @@
 	mechanics_text = "Channel for 3 seconds to emit a cloud of noxious smoke that follows the Defiler. You must remain stationary while channeling; moving will cancel the ability but will still cost plasma."
 	ability_name = "emit neurogas"
 	plasma_cost = 200
-	cooldown_timer = DEFILER_GAS_COOLDOWN
+	cooldown_timer = 40 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
@@ -87,7 +90,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	//give them fair warning
 	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X]!</span>", \
@@ -122,7 +125,7 @@
 	dispense_gas()
 
 /datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
-	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
 	while(count)
 		if(X.stagger) //If we got staggered, return

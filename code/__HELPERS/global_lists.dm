@@ -1,28 +1,25 @@
-var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
-
-var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
-var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
-
-var/global/list/active_areas = list()
-var/global/list/all_areas = list()
-var/global/list/processing_machines = list()
-var/global/list/active_diseases = list()
-var/global/list/events = list()
-
-//tips
 GLOBAL_LIST_EMPTY(metatips)
 GLOBAL_LIST_EMPTY(marinetips)
 GLOBAL_LIST_EMPTY(xenotips)
 GLOBAL_LIST_EMPTY(joketips)
 #define ALLTIPS (GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
 
+#define SYNTH_TYPES list("Synthetic","Early Synthetic")
+
+var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
+var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
+
+var/global/list/active_areas = list()
+GLOBAL_LIST_EMPTY(all_areas)
+var/global/list/processing_machines = list()
+var/global/list/active_diseases = list()
+var/global/list/events = list()
+
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
 
 //used by the main overwatch console
 var/global/list/active_orbital_beacons = list()
-
-#define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
 // Posters
 var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
@@ -31,7 +28,7 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 /////Initial Building/////
 //////////////////////////
 
-/proc/makeDatumRefLists()
+/proc/make_datum_references_lists()
 	// Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
 	for(var/path in subtypesof(/datum/sprite_accessory/hair))
 		var/datum/sprite_accessory/hair/H = new path()
@@ -109,76 +106,22 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 		var/datum/emote/E = new path()
 		E.emote_list[E.key] = E
 
+	// Keybindings
+	for(var/KB in subtypesof(/datum/keybinding))
+		var/datum/keybinding/keybinding = KB
+		if(!initial(keybinding.key))
+			continue
+		var/datum/keybinding/instance = new keybinding
+		GLOB.keybindings_by_name[initial(instance.name)] = instance
+		if (!(initial(instance.key) in GLOB.keybinding_list_by_key))
+			GLOB.keybinding_list_by_key[initial(instance.key)] = list()
+		GLOB.keybinding_list_by_key[initial(instance.key)] += instance.name
+	// Sort all the keybindings by their weight
+	for(var/key in GLOB.keybinding_list_by_key)
+		GLOB.keybinding_list_by_key[key] = sortList(GLOB.keybinding_list_by_key[key])
+
 	return TRUE
 
-/* // Uncomment to debug chemical reaction list.
-/client/verb/debug_chemical_list()
-
-	for (var/reaction in GLOB.chemical_reactions_list)
-		. += "GLOB.chemical_reactions_list\[\"[reaction]\"\] = \"[GLOB.chemical_reactions_list[reaction]]\"\n"
-		if(islist(GLOB.chemical_reactions_list[reaction]))
-			var/list/L = GLOB.chemical_reactions_list[reaction]
-			for(var/t in L)
-				. += "    has: [t]\n"
-	to_chat(world, .)
-*/
-
-//////////////////////////
-/////Initial Building/////
-//////////////////////////
-/*
-/proc/make_datum_references_lists()
-	hair
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/hair, GLOB.hair_styles_list, GLOB.hair_styles_male_list, GLOB.hair_styles_female_list)
-	facial hair
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/facial_hair, GLOB.facial_hair_styles_list, GLOB.facial_hair_styles_male_list)
-	underwear
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/underwear, GLOB.underwear_list, GLOB.underwear_m, GLOB.underwear_f)
-	undershirt
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/undershirt, GLOB.undershirt_list, GLOB.undershirt_m, GLOB.undershirt_f)
-	socks
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/socks, GLOB.socks_list)
-	bodypart accessories (blizzard intensifies)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings, GLOB.body_markings_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard, GLOB.tails_list_lizard)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/lizard, GLOB.animated_tails_list_lizard)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, GLOB.tails_list_human)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/human, GLOB.animated_tails_list_human)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/snouts, GLOB.snouts_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/horns,GLOB.horns_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/ears, GLOB.ears_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.wings_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings_open, GLOB.wings_open_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/frills, GLOB.frills_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/spines, GLOB.spines_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/spines_animated, GLOB.animated_spines_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/legs, GLOB.legs_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/wings, GLOB.r_wings_list,roundstart = TRUE)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/caps, GLOB.caps_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list)
-
-
-	//Species
-	for(var/spath in subtypesof(/datum/species))
-		var/datum/species/S = new spath()
-		GLOB.species_list[S.id] = spath
-
-	//Surgeries
-	for(var/path in subtypesof(/datum/surgery))
-		GLOB.surgeries_list += new path()
-
-	//Materials
-	for(var/path in subtypesof(/datum/material))
-		var/datum/material/D = new path()
-		GLOB.materials_list[D.id] = D
-
-	//Emotes
-	for(var/path in subtypesof(/datum/emote))
-		var/datum/emote/E = new path()
-		E.emote_list[E.key] = E
-
-	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
-*/
 
 //creates every subtype of prototype (excluding prototype) and adds it to list L.
 //if no list/L is provided, one is created.
@@ -188,12 +131,3 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 	for(var/path in subtypesof(prototype))
 		L += new path()
 	return L
-
-//returns a list of paths to every subtype of prototype (excluding prototype)
-//if no list/L is provided, one is created.
-/proc/init_paths(prototype, list/L)
-	if(!istype(L))
-		L = list()
-		for(var/path in subtypesof(prototype))
-			L+= path
-		return L

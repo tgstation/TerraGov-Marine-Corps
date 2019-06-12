@@ -108,7 +108,6 @@
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)
 		attack_verb = initial(attack_verb)
-		add_fingerprint(user)
 
 /obj/item/weapon/butterfly/switchblade
 	name = "switchblade"
@@ -138,23 +137,23 @@
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
 
 
-/obj/item/weapon/wirerod/attackby(var/obj/item/I, mob/user as mob)
-	..()
+/obj/item/weapon/wirerod/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/shard))
-		var/obj/item/weapon/twohanded/spear/S = new /obj/item/weapon/twohanded/spear
+		var/obj/item/weapon/twohanded/spear/S = new
 
 		user.put_in_hands(S)
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
 		qdel(I)
 		qdel(src)
-		update_icon(user)
 
 	else if(iswirecutter(I))
-		var/obj/item/weapon/baton/cattleprod/P = new /obj/item/weapon/baton/cattleprod
+		var/obj/item/weapon/baton/cattleprod/P = new
 
 		user.put_in_hands(P)
 		to_chat(user, "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>")
 		qdel(I)
 		qdel(src)
-		update_icon(user)
+
 	update_icon(user)

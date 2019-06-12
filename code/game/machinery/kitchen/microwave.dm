@@ -4,8 +4,8 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 	layer = ABOVE_TABLE_LAYER
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -50,89 +50,94 @@
 *   Item Adding
 ********************/
 
-/obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(src.broken > 0)
-		if(src.broken == 2 && isscrewdriver(O)) // If it's broken and they're using a screwdriver
-			user.visible_message( \
-				"<span class='notice'> [user] starts to fix part of the microwave.</span>", \
-				"<span class='notice'> You start to fix part of the microwave.</span>" \
-			)
-			if (do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
-				user.visible_message( \
-					"<span class='notice'> [user] fixes part of the microwave.</span>", \
-					"<span class='notice'> You have fixed part of the microwave.</span>" \
-				)
-				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && iswrench(O)) // If it's broken and they're doing the wrench
-			user.visible_message( \
-				"<span class='notice'> [user] starts to fix part of the microwave.</span>", \
-				"<span class='notice'> You start to fix part of the microwave.</span>" \
-			)
-			if (do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
-				user.visible_message( \
-					"<span class='notice'> [user] fixes the microwave.</span>", \
-					"<span class='notice'> You have fixed the microwave.</span>" \
-				)
-				icon_state = "mw"
-				broken = 0 // Fix it!
-				dirty = 0 // just to be sure
-				ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
-		else
-			to_chat(user, "<span class='warning'>It's broken!</span>")
-			return 1
-	else if(src.dirty==100) // The microwave is all dirty so can't be used!
-		if(istype(O, /obj/item/reagent_container/spray/cleaner)) // If they're trying to clean it then let them
-			user.visible_message( \
-				"<span class='notice'> [user] starts to clean the microwave.</span>", \
-				"<span class='notice'> You start to clean the microwave.</span>" \
-			)
-			if (do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
-				user.visible_message( \
-					"<span class='notice'> [user]  has cleaned  the microwave.</span>", \
-					"<span class='notice'> You have cleaned the microwave.</span>" \
-				)
-				dirty = 0 // It's clean!
-				broken = 0 // just to be sure
-				icon_state = "mw"
-				ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
-		else //Otherwise bad luck!!
+/obj/machinery/microwave/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(broken == 2 && isscrewdriver(I))
+		user.visible_message( "<span class='notice'>[user] starts to fix part of the microwave.</span>", \
+			"<span class='notice'>You start to fix part of the microwave.</span>")
+
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
+
+		user.visible_message("<span class='notice'>[user] fixes part of the microwave.</span>", \
+			"<span class='notice'>You have fixed part of the microwave.</span>")
+		broken = 1
+
+	else if(broken == 1 && iswrench(I))
+		user.visible_message("<span class='notice'>[user] starts to fix part of the microwave.</span>", \
+			"<span class='notice'>You start to fix part of the microwave.</span>")
+
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
+
+		user.visible_message( "<span class='notice'>[user] fixes the microwave.</span>", \
+			"<span class='notice'>You have fixed the microwave.</span>")
+		icon_state = "mw"
+		broken = 0
+		dirty = 0
+		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+
+	else if(broken > 2)
+		to_chat(user, "<span class='warning'>It's broken!</span>")
+		return TRUE
+
+	else if(dirty == 100)
+		if(!istype(I, /obj/item/reagent_container/spray/cleaner))
 			to_chat(user, "<span class='warning'>It's dirty!</span>")
-			return 1
-	else if(is_type_in_list(O,acceptable_items))
-		if (contents.len>=max_n_of_items)
+			return TRUE
+
+		user.visible_message("<span class='notice'>[user] starts to clean \the [src].</span>", \
+			"<span class='notice'>You start to clean \the [src].</span>")
+
+		if(!do_after(user,20, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
+
+		user.visible_message("<span class='notice'>[user] has cleaned \the [src].</span>", \
+			"<span class='notice'>You have cleaned \the [src].</span>")
+		dirty = 0
+		broken = 0
+		icon_state = "mw"
+		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+
+	else if(is_type_in_list(I, acceptable_items))
+		if(length(contents) >= max_n_of_items)
 			to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
-			return 1
-		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
-			var/obj/item/stack/S = O
-			new O.type (src)
+			return TRUE
+
+		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
+			var/obj/item/stack/S = I
+			new S.type(src)
 			S.use(1)
-			user.visible_message( \
-				"<span class='notice'> [user] has added one of [O] to \the [src].</span>", \
-				"<span class='notice'> You add one of [O] to \the [src].</span>")
-		else
-		//	user.before_take_item(O)	//This just causes problems so far as I can tell. -Pete
-			if(user.drop_held_item())
-				O.forceMove(src)
-				user.visible_message( \
-					"<span class='notice'> [user] has added \the [O] to \the [src].</span>", \
-					"<span class='notice'> You add \the [O] to \the [src].</span>")
-	else if(istype(O,/obj/item/reagent_container/glass) || \
-	        istype(O,/obj/item/reagent_container/food/drinks) || \
-	        istype(O,/obj/item/reagent_container/food/condiment) \
-		)
-		if (!O.reagents)
-			return 1
-		for (var/datum/reagent/R in O.reagents.reagent_list)
-			if (!(R.id in acceptable_reagents))
-				to_chat(user, "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>")
-				return 1
-		//G.reagents.trans_to(src,G.amount_per_transfer_from_this)
-	else if(istype(O,/obj/item/grab))
-		return 1
+			user.visible_message("<span class='notice'>[user] has added one of [I] to \the [src].</span>", \
+				"<span class='notice'>You add one of [I] to \the [src].</span>")
+
+		else if(user.drop_held_item())
+			I.forceMove(src)
+			user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].</span>", \
+				"<span class='notice'>You add \the [I] to \the [src].</span>")
+
+	else if(istype(I,/obj/item/reagent_container/glass) || \
+	        istype(I,/obj/item/reagent_container/food/drinks) || \
+	        istype(I,/obj/item/reagent_container/food/condiment))
+	
+		if(!I.reagents)
+			return TRUE
+
+		for(var/i in I.reagents.reagent_list)
+			var/datum/reagent/R = i
+			if(!(R.id in acceptable_reagents))
+				to_chat(user, "<span class='warning'>Your [I] contains components unsuitable for cookery.</span>")
+				return TRUE
+
+	else if(istype(I, /obj/item/grab))
+		return TRUE
+
 	else
-		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [O].</span>")
-		return 1
-	src.updateUsrDialog()
+		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [I].</span>")
+		
+	updateUsrDialog()
+	return TRUE
 
 /obj/machinery/microwave/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

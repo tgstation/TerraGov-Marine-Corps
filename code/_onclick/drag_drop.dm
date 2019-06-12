@@ -18,3 +18,13 @@
 /atom/proc/MouseDrop_T(atom/dropping, mob/user)
 	if (dropping.flags_atom & NOINTERACT)
 		return
+
+
+/client/MouseDown(object, location, control, params)
+	if(mouse_down_icon)
+		mouse_pointer_icon = mouse_down_icon
+
+
+/client/MouseUp(object, location, control, params)
+	if(mouse_up_icon)
+		mouse_pointer_icon = mouse_up_icon

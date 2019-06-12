@@ -84,10 +84,10 @@
 		icon_state = "circ-off-[flipped]"
 
 /obj/machinery/atmospherics/components/binary/circulator/wrench_act(mob/living/user, obj/item/I)
-	if(!panel_open)
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
 	anchored = !anchored
-	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	//if(generator)
 	//	disconnectFromGenerator()
 	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
@@ -147,9 +147,9 @@
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
 	if(..())
 		return TRUE
-	panel_open = !panel_open
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-	to_chat(user, "<span class='notice'>You [panel_open?"open":"close"] the panel on [src].</span>")
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1)
+	to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src].</span>")
 	return TRUE
 
 ///obj/machinery/atmospherics/components/binary/circulator/crowbar_act(mob/user, obj/item/I)

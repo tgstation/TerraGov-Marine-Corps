@@ -1,7 +1,4 @@
-
 /mob/living/carbon/Destroy()
-	for(var/datum/disease/virus in viruses)
-		virus.cure()
 	. = ..()
 	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
 
@@ -21,13 +18,13 @@
 	if(user.incapacitated(TRUE)) return
 	if(user in src.stomach_contents)
 		if(user.client)
-			user.client.next_movement = world.time + 20
+			user.client.move_delay = world.time + 20
 		if(prob(30))
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
 					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
 	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
-		var/mob/living/carbon/Xenomorph/Larva/L = user
+		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
 
 
@@ -38,9 +35,9 @@
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
-		if(ismob(A))
-			var/mob/M = A
-			M.SetKnockeddown(1)
+		if(isliving(A))
+			var/mob/living/L = A
+			L.SetKnockeddown(1)
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
 	. = ..()
@@ -54,21 +51,13 @@
 	if (legcuffed && !initial(legcuffed))
 		dropItemToGround(legcuffed)
 	legcuffed = initial(legcuffed)
-	
+
 	return ..()
 
 
 /mob/living/carbon/human/attack_hand(mob/living/carbon/M)
 	if(!iscarbon(M))
 		return
-
-	for(var/datum/disease/D in viruses)
-		if(D.spread_by_touch())
-			M.contract_disease(D, 0, 1, CONTACT_HANDS)
-
-	for(var/datum/disease/D in M.viruses)
-		if(D.spread_by_touch())
-			contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	next_move += 7 //Adds some lag to the 'attack'
 	return
@@ -77,16 +66,6 @@
 /mob/living/carbon/attack_paw(mob/living/carbon/M)
 	if(!iscarbon(M))
 		return
-
-	for(var/datum/disease/D in viruses)
-
-		if(D.spread_by_touch())
-			M.contract_disease(D, 0, 1, CONTACT_HANDS)
-
-	for(var/datum/disease/D in M.viruses)
-
-		if(D.spread_by_touch())
-			contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	next_move += 7 //Adds some lag to the 'attack'
 	return
@@ -138,16 +117,12 @@
 		wielded_item.zoom(src)
 	hand = !hand
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
+		hud_used.l_hand_hud_object.update_icon(hand)
+		hud_used.r_hand_hud_object.update_icon(!hand)
 		if(hand)	//This being 1 means the left hand is in use
-			hud_used.l_hand_hud_object.icon_state = "hand_active"
-			hud_used.r_hand_hud_object.icon_state = "hand_inactive"
+			hud_used.l_hand_hud_object.add_overlay("hand_active")
 		else
-			hud_used.l_hand_hud_object.icon_state = "hand_inactive"
-			hud_used.r_hand_hud_object.icon_state = "hand_active"
-	/*if (!( src.hand ))
-		src.hands.setDir(NORTH)
-	else
-		src.hands.setDir(SOUTH)*/
+			hud_used.r_hand_hud_object.add_overlay("hand_active")
 	return
 
 /mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
@@ -185,10 +160,8 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(CALLBACK(src, .proc/do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(VARSET_CALLBACK(src, lastpuke, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
-/mob/living/carbon/proc/do_vomit_cooldown()
-	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(health >= get_crit_threshold())
@@ -202,8 +175,7 @@
 				if(client)
 					AdjustSleeping(-5)
 				if(sleeping == 0)
-					resting = 0
-					update_canmove()
+					set_resting(FALSE)
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
 				AdjustKnockedout(-3)
@@ -228,21 +200,6 @@
 								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>", null, 4)
 
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 5)
-
-
-
-
-// ++++ROCKDTBEN++++ MOB PROCS -- Ask me before touching.
-// Stop! ... Hammertime! ~Carn
-
-/mob/living/carbon/proc/getDNA()
-	return dna
-
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
-	dna = newDNA
-
-// ++++ROCKDTBEN++++ MOB PROCS //END
-
 
 //Throwing stuff
 
@@ -365,11 +322,11 @@
 	set name = "Sleep"
 	set category = "IC"
 
-	if(usr.sleeping)
-		to_chat(usr, "<span class='warning'>You are already sleeping</span>")
+	if(sleeping)
+		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		usr.sleeping = 20 //Short nap
+		sleeping = 20 //Short nap
 
 
 /mob/living/carbon/Bump(atom/movable/AM, yes)
@@ -423,10 +380,10 @@
 		LL_dir.transform = 0 //Reset and 0 out
 		LL_dir.transform = turn(LL_dir.transform, Get_Angle(src, C))
 
-/mob/living/carbon/clear_leader_tracking()	
+/mob/living/carbon/clear_leader_tracking()
 	var/obj/screen/LL_dir = hud_used.SL_locator
 	LL_dir.icon_state = "SL_locator_off"
-	
+
 
 /mob/living/carbon/proc/equip_preference_gear(client/C)
 	if(!C?.prefs || !istype(back, /obj/item/storage/backpack))

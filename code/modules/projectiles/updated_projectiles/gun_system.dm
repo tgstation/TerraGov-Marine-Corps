@@ -19,7 +19,8 @@
 	var/muzzle_flash 	= "muzzle_flash"
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
-	var/fire_sound 		= 'sound/weapons/Gunshot.ogg'
+	var/fire_sound 		= 'sound/weapons/gunshot.ogg'
+	var/dry_fire_sound	= 'sound/weapons/gun_empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
 	var/empty_sound 	= 'sound/weapons/smg_empty_alarm.ogg'
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
@@ -107,7 +108,7 @@
 				//					\\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/Initialize(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
+/obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
 	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
@@ -409,11 +410,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
-		return
+		return FALSE
 
 	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !flags_gun_features & GUN_ENERGY)
-		cock(user)
-		return
+		return cock(user)
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.loc = get_turf(src) //Drop it on the ground.
@@ -428,14 +428,17 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 
 	update_icon(user)
 
+	return TRUE
+
+
 //Manually cock the gun
 //This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG or ENERGY
 /obj/item/weapon/gun/proc/cock(mob/user)
 
 	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG|GUN_ENERGY))
-		return
+		return FALSE
 	if(cock_cooldown > world.time)
-		return
+		return FALSE
 
 	cock_cooldown = world.time + cock_delay
 	cock_gun(user)
@@ -481,6 +484,9 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
 		"<span class='notice'>You cock [src].</span>", null, 4)
 	ready_in_chamber() //This will already check for everything else, loading the next bullet.
+
+	return TRUE
+
 
 //Since reloading and casings are closely related, placing this here ~N
 /obj/item/weapon/gun/proc/make_casing(casing_type) //Handle casings is set to discard them.
@@ -800,12 +806,12 @@ and you're good to go.
 		return TRUE
 
 
-	if(user.zone_selected != "mouth")
+	if(M != user || user.zone_selected != "mouth")
 		return ..()
 
 	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
 
-	M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
+	user.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
 	log_game("[key_name(user)] is trying to commit suicide.")
 	var/u = "[key_name(user)] is trying to commit suicide."
 	user.log_message(u, LOG_ATTACK, "red")
@@ -929,9 +935,9 @@ and you're good to go.
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
 		to_chat(user, "<span class='warning'><b>*click*</b></span>")
-		playsound(user, 'sound/weapons/gun_empty.ogg', 25, 1, 5) //5 tile range
+		playsound(user, dry_fire_sound, 25, 1, 5) //5 tile range
 	else
-		playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
+		playsound(src, dry_fire_sound, 25, 1, 5)
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, reflex = 0, dual_wield = 0)
@@ -944,7 +950,7 @@ and you're good to go.
 		gun_accuracy_mult = accuracy_mult
 		gun_scatter = scatter
 
-	else if(user && world.time - user.l_move_time < 5) //moved during the last half second
+	else if(user && world.time - user.last_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
 		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))

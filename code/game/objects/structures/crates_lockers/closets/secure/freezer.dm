@@ -23,49 +23,37 @@
 	name = "Kitchen Cabinet"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
-	New()
-		..()
-		sleep(2)
-		for(var/i = 0, i < 6, i++)
-			new /obj/item/reagent_container/food/snacks/flour(src)
-		new /obj/item/reagent_container/food/condiment/sugar(src)
-		for(var/i = 0, i < 3, i++)
-			new /obj/item/reagent_container/food/snacks/meat/monkey(src)
-		return
+/obj/structure/closet/secure_closet/freezer/kitchen/Initialize()
+	. = ..()
+	for(var/i in 1 to 6)
+		new /obj/item/reagent_container/food/snacks/flour(src)
+	new /obj/item/reagent_container/food/condiment/sugar(src)
+	for(var/i in 1 to 3)
+		new /obj/item/reagent_container/food/snacks/meat/monkey(src)
+		
+/obj/structure/closet/secure_closet/freezer/meat/Initialize()
+	. = ..()
+	for(var/i in 1 to 4)
+		new /obj/item/reagent_container/food/snacks/meat/monkey(src)
 
-/obj/structure/closet/secure_closet/freezer/meat
-
-	New()
-		..()
-		sleep(2)
-		for(var/i = 0, i < 4, i++)
-			new /obj/item/reagent_container/food/snacks/meat/monkey(src)
-		return
-
-/obj/structure/closet/secure_closet/freezer/fridge
-
-	New()
-		..()
-		sleep(2)
-		for(var/i = 0, i < 5, i++)
-			new /obj/item/reagent_container/food/drinks/milk(src)
-		for(var/i = 0, i < 3, i++)
-			new /obj/item/reagent_container/food/drinks/soymilk(src)
-		for(var/i = 0, i < 2, i++)
-			new /obj/item/storage/fancy/egg_box(src)
-		return
+/obj/structure/closet/secure_closet/freezer/fridge/Initialize()
+	. = ..()
+	for(var/i in 1 to 5)
+		new /obj/item/reagent_container/food/drinks/milk(src)
+	for(var/i in 1 to 3)
+		new /obj/item/reagent_container/food/drinks/soymilk(src)
+	for(var/i in 1 to 2)
+		new /obj/item/storage/fancy/egg_box(src)
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "Freezer"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
-	New()
-		..()
-		sleep(2)
-		for(var/i = 0, i < 3, i++)
-			new /obj/item/spacecash/c1000(src)
-		for(var/i = 0, i < 5, i++)
-			new /obj/item/spacecash/c500(src)
-		for(var/i = 0, i < 6, i++)
-			new /obj/item/spacecash/c200(src)
-		return
+/obj/structure/closet/secure_closet/freezer/money/Initialize()
+	. = ..()
+	for(var/i in 1 to 3)
+		new /obj/item/spacecash/c1000(src)
+	for(var/i in 1 to 5)
+		new /obj/item/spacecash/c500(src)
+	for(var/i in 1 to 6)
+		new /obj/item/spacecash/c200(src)

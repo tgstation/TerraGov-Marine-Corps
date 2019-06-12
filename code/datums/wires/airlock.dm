@@ -23,7 +23,7 @@
 	var/obj/machinery/door/airlock/A = holder
 	if(!issilicon(user) && A.isElectrified() && A.shock(user, 100))
 		return FALSE
-	if(A.panel_open)
+	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN))
 		return TRUE
 
 
@@ -32,7 +32,7 @@
 	var/status
 	status += "The door bolts [A.locked ? "have fallen!" : "look up."]<br>"
 	status += "The test light is [A.hasPower() ? "on" : "off"].<br>"
-	status += "The AI connection light is [A.aiControlDisabled || (A.obj_flags & EMAGGED) ? "off" : "on"].<br>"
+	status += "The AI connection light is [A.aiControlDisabled || (CHECK_BITFIELD(A.obj_flags, EMAGGED)) ? "off" : "on"].<br>"
 	status += "The check wiring light is [A.safe ? "off" : "on"].<br>"
 	status += "The timer is powered [A.autoclose ? "on" : "off"].<br>"
 	status += "The speed light is [A.normalspeed ? "on" : "off"].<br>"
@@ -43,10 +43,6 @@
 /datum/wires/airlock/on_pulse(wire)
 	set waitfor = FALSE
 
-	. = ..()
-	if(!.)
-		return
-
 	var/obj/machinery/door/airlock/A = holder
 	switch(wire)
 		if(WIRE_POWER1, WIRE_POWER2) // Pulse to loose power.
@@ -54,7 +50,7 @@
 		if(WIRE_BACKUP1, WIRE_BACKUP2) // Pulse to loose backup power.
 			A.loseBackupPower()
 		if(WIRE_OPEN) // Pulse to open door (only works not emagged and ID wire is cut or no access is required).
-			if(A.obj_flags & EMAGGED)
+			if(CHECK_BITFIELD(A.obj_flags, EMAGGED))
 				return
 			if(!A.requiresID() || A.check_access(null))
 				if(A.density)
@@ -100,10 +96,6 @@
 
 
 /datum/wires/airlock/on_cut(wire, mend)
-	. = ..()
-	if(!.)
-		return
-		
 	var/obj/machinery/door/airlock/A = holder
 	switch(wire)
 		if(WIRE_POWER1, WIRE_POWER2) // Cut to loose power, repair all to gain power.

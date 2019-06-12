@@ -7,33 +7,31 @@
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
 						//e.g. most headsets have different icon_state but they all use the same sprite when shown on the mob's ears.
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
-	var/r_speed = 1.0
 	var/force = 0
-	var/damtype = "brute"
-	var/attack_speed = 11  //+3, Adds up to 10.  Added an extra 4 removed from /mob/proc/do_click()
+	var/damtype = BRUTE
+	var/attack_speed = 11
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/sharp = FALSE		// whether this item cuts
 	var/edge = FALSE		// whether this item is more likely to dismember
 	var/pry_capable = FALSE //whether this item can be used to pry things open.
-	var/heat_source = FALSE //whether this item is a source of heat, and how hot it is (in Kelvin).
+	var/heat = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
 
 	var/hitsound = null
 	var/w_class = WEIGHT_CLASS_NORMAL
-	var/storage_cost = null
-	var/flags_item = NOFLAGS	//flags for item stuff that isn't clothing/equipping specific.
-	var/flags_equip_slot = NOFLAGS		//This is used to determine on which slots an item can fit.
+	var/flags_item = NONE	//flags for item stuff that isn't clothing/equipping specific.
+	var/flags_equip_slot = NONE		//This is used to determine on which slots an item can fit.
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/flags_inventory = NOFLAGS //This flag is used for various clothing/equipment item stuff
-	var/flags_inv_hide = NOFLAGS //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/flags_inventory = NONE //This flag is used for various clothing/equipment item stuff
+	var/flags_inv_hide = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	flags_pass = PASSTABLE
 
 	var/obj/item/master = null
 
 	var/flags_armor_protection = NONE //see setup.dm for appropriate bit flags
-	var/flags_heat_protection = NOFLAGS //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/flags_cold_protection = NOFLAGS //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/flags_heat_protection = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/flags_cold_protection = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
 
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
@@ -41,18 +39,15 @@
 	var/list/actions = list() //list of /datum/action's that this item has.
 	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
-	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 
 	var/list/allowed = null //suit storage stuff.
-	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
-	var/list/uniform_restricted //Need to wear this uniform to equip this
 
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
@@ -71,13 +66,16 @@
 	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
 	var/sprite_sheet_id = 0 //Select which sprite sheet ID to use due to the sprite limit per .dmi. 0 is default, 1 is the new one.
 
-	/* Species-specific sprite sheets for inventory sprites
-	Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
-	*/
-	var/list/sprite_sheets_obj = null
 
-/obj/item/New(loc)
-	..()
+	//TOOL RELATED VARS
+	var/tool_behaviour = FALSE
+	var/toolspeed = 1
+	var/usesound = null
+
+
+/obj/item/Initialize()
+	. = ..()
+
 	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
@@ -89,12 +87,10 @@
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	for(var/X in actions)
-		actions -= X
 		qdel(X)
 	master = null
 	GLOB.item_list -= src
-	. = ..()
-
+	return ..()
 
 
 /obj/item/ex_act(severity)
@@ -104,11 +100,13 @@
 		if(1)
 			qdel(src)
 		if(2)
-			if(prob(50))
-				qdel(src)
+			if(!prob(50))
+				return
+			qdel(src)
 		if(3)
-			if(prob(5))
-				qdel(src)
+			if(!prob(5))
+				return
+			qdel(src)
 
 
 //user: The mob that is suiciding
@@ -121,30 +119,32 @@
 /obj/item/proc/suicide_act(mob/user)
 	return
 
+
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
+	if(!isturf(loc) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T = src.loc
+	var/turf/T = loc
+	loc = null
+	loc = T
 
-	src.loc = null
 
-	src.loc = T
+/obj/item/attack_hand(mob/user)
+	. = ..()
 
-/obj/item/attack_hand(mob/user as mob)
-	if (!user)
+	if(!user)
 		return
 
 	if(anchored)
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
-	if (istype(src.loc, /obj/item/storage))
-		var/obj/item/storage/S = src.loc
+	if(istype(loc, /obj/item/storage))
+		var/obj/item/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
 	throwing = FALSE
@@ -153,54 +153,59 @@
 		if(!user.dropItemToGround(src))
 			return
 	else
-		user.next_move = max(user.next_move+2,world.time + 2)
-	if(!gc_destroyed) //item may have been cdel'd by the drop above.
-		pickup(user)
-		add_fingerprint(user)
-		if(!user.put_in_active_hand(src))
-			dropped(user)
+		user.changeNext_move(CLICK_CD_RAPID)
+
+	if(QDELETED(src))
+		return
+
+	pickup(user)
+	if(!user.put_in_active_hand(src))
+		dropped(user)
 
 
-/obj/item/attack_paw(mob/user as mob)
+/obj/item/attack_paw(mob/user)
 	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/storage))
-		var/obj/item/storage/S = W
-		if(S.use_to_pickup && isturf(loc))
-			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
-				var/list/rejections = list()
-				var/success = FALSE
-				var/failure = FALSE
+/obj/item/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-				for(var/obj/item/I in src.loc)
-					if(I.type in rejections) // To limit bag spamming: any given type only complains once
-						continue
-					if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
-						rejections += I.type	// therefore full bags are still a little spammy
-						failure = TRUE
-						continue
-					success = TRUE
-					S.handle_item_insertion(I, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
-				if(success && !failure)
-					to_chat(user, "<span class='notice'>You put everything in [S].</span>")
-				else if(success)
-					to_chat(user, "<span class='notice'>You put some things in [S].</span>")
-				else
-					to_chat(user, "<span class='notice'>You fail to pick anything up with [S].</span>")
+	if(!istype(I, /obj/item/storage))
+		return
 
-			else if(S.can_be_inserted(src))
-				S.handle_item_insertion(src, FALSE, user)
+	var/obj/item/storage/S = I
 
-	return
+	if(!S.use_to_pickup || !isturf(loc))
+		return
 
-/obj/item/proc/talk_into(mob/M as mob, text)
-	return
+	if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
+		var/list/rejections = list()
+		var/success = FALSE
+		var/failure = FALSE
 
-/obj/item/proc/moved(mob/user as mob, old_loc as turf)
-	return
+		for(var/obj/item/IM in loc)
+			if(IM.type in rejections) // To limit bag spamming: any given type only complains once
+				continue
+			if(!S.can_be_inserted(IM))	// Note can_be_inserted still makes noise when the answer is no
+				rejections += IM.type	// therefore full bags are still a little spammy
+				failure = TRUE
+				continue
+			success = TRUE
+			S.handle_item_insertion(IM, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
+		if(success && !failure)
+			to_chat(user, "<span class='notice'>You put everything in [S].</span>")
+		else if(success)
+			to_chat(user, "<span class='notice'>You put some things in [S].</span>")
+		else
+			to_chat(user, "<span class='notice'>You fail to pick anything up with [S].</span>")
+
+	else if(S.can_be_inserted(src))
+		S.handle_item_insertion(src, FALSE, user)
+
+/obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
+	return ITALICS | REDUCE_RANGE
+
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
@@ -217,6 +222,7 @@
 
 	if(flags_item & DELONDROP)
 		qdel(src)
+
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -247,13 +253,16 @@
 	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
+
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	return
 
+
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	return
+
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
@@ -271,17 +280,20 @@
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
 
+
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
+
 
 // The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
-/obj/item/proc/mob_can_equip(M as mob, slot, warning = TRUE)
+/obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE)
 	if(!slot)
 		return FALSE
+	
 	if(!M)
 		return FALSE
 
@@ -289,7 +301,7 @@
 		//START HUMAN
 		var/mob/living/carbon/human/H = M
 		var/list/mob_equip = list()
-		if(H.species.hud && H.species.hud.equip_slots)
+		if(H.species.hud?.equip_slots)
 			mob_equip = H.species.hud.equip_slots
 
 		if(H.species && !(slot in mob_equip))
@@ -549,54 +561,25 @@
 	set category = "Object"
 	set name = "Pick up"
 
-	if(!(usr)) //BS12 EDIT
+	if(usr.incapacitated() || !Adjacent(usr))
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+
+	if(usr.get_active_held_item())
 		return
-	if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
-		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
-		return
-	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
-		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
-		return
-	if(src.anchored) //Object isn't anchored
-		to_chat(usr, "<span class='warning'>You can't pick that up!</span>")
-		return
-	if(!usr.hand && usr.r_hand) //Right hand is not full
-		to_chat(usr, "<span class='warning'>Your right hand is full.</span>")
-		return
-	if(usr.hand && usr.l_hand) //Left hand is not full
-		to_chat(usr, "<span class='warning'>Your left hand is full.</span>")
-		return
-	if(!istype(src.loc, /turf)) //Object is on a turf
-		to_chat(usr, "<span class='warning'>You can't pick that up!</span>")
-		return
-	//All checks are done, time to pick it up!
+
 	usr.UnarmedAttack(src)
-	return
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click()
-	if( src in usr )
-		attack_self(usr)
+/obj/item/proc/ui_action_click(mob/user)
+	attack_self(user)
 
 
 /obj/item/proc/IsShield()
 	return FALSE
 
-/obj/item/proc/get_loc_turf()
-	var/atom/L = loc
-	while(L && !istype(L, /turf/))
-		L = L.loc
-	return loc
-
-
-/obj/item/proc/showoff(mob/user)
-	for (var/mob/M in view(user))
-		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
@@ -604,7 +587,7 @@
 
 	var/obj/item/I = get_active_held_item()
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
-		I.showoff(src)
+		visible_message("[src] holds up [I]. <a HREF=?src=[REF(usr)];lookitem=[REF(I)]>Take a closer look.</a>")
 
 /*
 For zooming with scope or binoculars. This is called from
@@ -713,16 +696,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/item/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/attack_alien(mob/living/carbon/xenomorph/X)
 	return FALSE
+
 
 /obj/item/proc/update_action_button_icons()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
 
-/obj/item/proc/extinguish(atom/target, mob/user)
 
+/obj/item/proc/extinguish(atom/target, mob/user)
 	if (reagents.total_volume < 1)
 		to_chat(user, "<span class='warning'>\The [src]'s water reserves are empty.</span>")
 		return
@@ -820,4 +804,71 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(isspaceturf(user.loc) || user.lastarea.has_gravity == 0)
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
-	return
+
+
+// Called when a mob tries to use the item as a tool.
+// Handles most checks.
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks)
+	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
+	// Run the start check here so we wouldn't have to call it manually.
+	if(!delay && !tool_start_check(user, amount))
+		return
+
+	delay *= toolspeed
+
+	// Play tool sound at the beginning of tool usage.
+	play_tool_sound(target, volume)
+
+	if(delay)
+		// Create a callback with checks that would be called every tick by do_after.
+		var/datum/callback/tool_check = CALLBACK(src, .proc/tool_check_callback, user, amount, extra_checks)
+
+		if(ismob(target))
+			if(do_mob(user, target, delay, extra_checks=tool_check))
+				return
+
+		else if(!do_after(user, delay, target=target, extra_checks=tool_check))
+			return
+
+	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
+		return
+
+	// Use tool's fuel, stack sheets or charges if amount is set.
+	if(amount && !use(amount))
+		return
+
+	// Play tool sound at the end of tool usage,
+	// but only if the delay between the beginning and the end is not too small
+	if(delay >= MIN_TOOL_SOUND_DELAY)
+		play_tool_sound(target, volume)
+
+	return TRUE
+
+
+// Called before use_tool if there is a delay, or by use_tool if there isn't.
+// Only ever used by welding tools and stacks, so it's not added on any other use_tool checks.
+/obj/item/proc/tool_start_check(mob/living/user, amount = 0)
+	return tool_use_check(user, amount)
+
+
+// A check called by tool_start_check once, and by use_tool on every tick of delay.
+/obj/item/proc/tool_use_check(mob/living/user, amount)
+	return !amount
+
+
+// Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
+// Returns TRUE on success, FALSE on failure.
+/obj/item/proc/use(used)
+	return !used
+
+
+// Plays item's usesound, if any.
+/obj/item/proc/play_tool_sound(atom/target, volume)
+	if(!target || !usesound || !volume)
+		return
+	playsound(target, usesound, volume, 1)
+
+
+// Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
+/obj/item/proc/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
+	return tool_use_check(user, amount) && (!extra_checks || extra_checks.Invoke())

@@ -48,7 +48,6 @@
 	var/slogan_delay = 600 //How long until we can pitch again?
 	var/icon_vend //Icon_state when vending!
 	var/icon_deny //Icon_state when vending!
-	//var/emagged = 0 //Ignores if somebody doesn't have card access to that machine.
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
 	var/shut_up = FALSE //Stop spouting those godawful pitches!
@@ -78,8 +77,14 @@
 		//Add hidden inventory
 	src.build_inventory(contraband, 1)
 	src.build_inventory(premium, 0, 1)
-	power_change()
 	start_processing()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/vending/LateInitialize()
+	. = ..()
+	power_change()
+
 
 /obj/machinery/vending/Destroy()
 	QDEL_NULL(wires)
@@ -142,7 +147,7 @@
 		R.product_name = initial(temp_path.name)
 
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/M)
 	if(tipped_level)
 		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
 		return FALSE
@@ -167,7 +172,7 @@
 	var/shove_time = 100
 	if(M.mob_size == MOB_SIZE_BIG)
 		shove_time = 50
-	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
+	if(istype(M,/mob/living/carbon/xenomorph/crusher))
 		shove_time = 15
 	if(do_after(M, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
@@ -192,66 +197,74 @@
 	transform = A
 	machine_stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
 
-/obj/machinery/vending/attackby(obj/item/W, mob/user)
+/obj/machinery/vending/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
-		return
 
-	if (istype(W, /obj/item/card/emag))
-		src.emagged = 1
+	else if(istype(I, /obj/item/card/emag))
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "You short out the product lock on [src]")
-		return
-	else if(isscrewdriver(W))
-		src.panel_open = !src.panel_open
-		to_chat(user, "You [src.panel_open ? "open" : "close"] the maintenance panel.")
-		src.overlays.Cut()
-		if(src.panel_open)
-			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
-		src.updateUsrDialog()
-		return
-	else if(ismultitool(W)||iswirecutter(W))
-		if(src.panel_open)
-			attack_hand(user)
-		return
-	else if(istype(W, /obj/item/coin))
-		var/obj/item/coin/C = W
+
+	else if(isscrewdriver(I))
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
+		overlays.Cut()
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			overlays += image(icon, "[initial(icon_state)]-panel")
+		updateUsrDialog()
+
+	else if(ismultitool(I) || iswirecutter(I))
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			return
+
+		attack_hand(user)
+
+	else if(istype(I, /obj/item/coin))
+		var/obj/item/coin/C = I
+
 		if(coin)
 			to_chat(user, "<span class='warning'>[src] already has [coin] inserted</span>")
-			return
-		if(!premium.len && !isshared)
+
+		else if(!length(premium) && !isshared)
 			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
-			return
-		if(C.flags_token & tokensupport)
-			if(user.transferItemToLoc(W, src))
-				coin = W
-				to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
+
+		else if(C.flags_token & tokensupport)
+			if(!user.transferItemToLoc(C, src))
+				return
+
+			coin = C
+			to_chat(user, "<span class='notice'>You insert \the [C] into \the [src]</span>")
+
 		else
-			to_chat(user, "<span class='warning'>\The [src] rejects the [W].</span>")
+			to_chat(user, "<span class='warning'>\The [src] rejects \the [C].</span>")
+
+	else if(istype(I, /obj/item/card))
+		var/obj/item/card/C = I
+		scan_card(C)
+
+	else if(istype(I, /obj/item/spacecash/ewallet))
+		if(!user.transferItemToLoc(I, src))
 			return
-		return
-	else if(istype(W, /obj/item/card))
-		var/obj/item/card/I = W
-		scan_card(I)
-		return
-	else if (istype(W, /obj/item/spacecash/ewallet))
-		if(user.transferItemToLoc(W, src))
-			ewallet = W
-			to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
-		return
 
-	else if(iswrench(W))
-		if(wrenchable && do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			switch (anchored)
-				if (0)
-					anchored = 1
-					user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
-				if (1)
-					user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
-					anchored = 0
-		return
+		ewallet = I
+		to_chat(user, "<span class='notice'>You insert the [I] into the [src]</span>")
 
-	..()
+	else if(iswrench(I))
+		if(!wrenchable) 
+			return
+
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		anchored = !anchored
+		if(anchored)
+			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
+		else
+			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
+
 
 /obj/machinery/vending/proc/scan_card(var/obj/item/card/I)
 	if(!currently_vending) return
@@ -426,7 +439,7 @@
 		usr.set_interaction(src)
 		if ((href_list["vend"]) && vend_ready && !currently_vending)
 
-			if(!allowed(usr) && !emagged && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
+			if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				flick(src.icon_deny,src)
 				return
@@ -459,10 +472,9 @@
 			src.updateUsrDialog()
 			return
 
-		else if ((href_list["togglevoice"]) && (src.panel_open))
+		else if ((href_list["togglevoice"]) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			src.shut_up = !src.shut_up
 
-		src.add_fingerprint(usr)
 		ui_interact(usr) //updates the nanoUI window
 		updateUsrDialog() //updates the wires window
 	else
@@ -470,7 +482,7 @@
 
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if(!allowed(user) && !emagged && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
+	if(!allowed(user) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		flick(src.icon_deny,src)
 		return

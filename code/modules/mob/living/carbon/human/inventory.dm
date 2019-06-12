@@ -1,8 +1,7 @@
-/mob/living/carbon/human/verb/quick_equip()
-	set name = "quick-equip"
-	set hidden = TRUE
-
-	if(incapacitated() || lying || istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+/mob/living/carbon/human/proc/do_quick_equip()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	
+	if(incapacitated() || lying || istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	var/obj/item/I = get_active_held_item()
@@ -244,6 +243,7 @@
 	W.screen_loc = null
 	W.loc = src
 	W.layer = ABOVE_HUD_LAYER
+	W.plane = ABOVE_HUD_PLANE
 
 	switch(slot)
 		if(SLOT_BACK)
@@ -464,7 +464,6 @@
 
 	M.visible_message("<span class='danger'>[src] tries to remove [M]'s [I.name].</span>", \
 					"<span class='userdanger'>[src] tries to remove [M]'s [I.name].</span>", null, 5)
-	I.add_fingerprint(src)
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)

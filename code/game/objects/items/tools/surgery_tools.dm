@@ -195,7 +195,7 @@
 					to_chat(usr, "System Reset completed")
 					resetting = 0
 
-/obj/item/tool/surgery/NTautopsy/attack(mob/living/carbon/Xenomorph/T, mob/living/user)
+/obj/item/tool/surgery/NTautopsy/attack(mob/living/carbon/xenomorph/T, mob/living/user)
 /*	set category = "Autopsy"
 	set name = "Perform Alien Autopsy"
 	set src in usr*/
@@ -210,7 +210,7 @@
 	if(active)
 		to_chat(usr, "Your already performing an autopsy")
 		return
-	if(istype(T, /mob/living/carbon/Xenomorph/Larva))
+	if(istype(T, /mob/living/carbon/xenomorph/larva))
 		to_chat(usr, "It's too young... (This will be in a future update)")
 		return
 	active = 1
@@ -219,7 +219,7 @@
 	to_chat(usr, "You begin to cut into the alien... This might take some time...")
 	if(T.health >-100)
 		to_chat(usr, "HOLY SHIT IT'S STILL ALIVE.  It knocks you down as it jumps up.")
-		usr.KnockDown(20)
+		user.KnockDown(20)
 		to_chat(T, "You feel TREMENDOUS pain and jump back up to use the last of your strength to kill [usr] with your final moments of life. (~10 seconds)")
 		T.health = T.maxHealth*2 //It's hulk levels of angry.
 		active = 0

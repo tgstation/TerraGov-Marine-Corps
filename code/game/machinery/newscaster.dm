@@ -94,7 +94,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	var/hitstaken = 0      //Death at 3 hits from an item with force>=15
 	var/datum/feed_channel/viewing_channel = null
 	luminosity = 0
-	anchored = 1
+	anchored = TRUE
 
 
 /obj/machinery/newscaster/security_unit                   //Security unit
@@ -697,32 +697,32 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			src.updateUsrDialog()
 
 
-/obj/machinery/newscaster/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/newscaster/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (src.isbroken)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
-		for (var/mob/O in hearers(5, src.loc))
-			O.show_message("<EM>[user.name]</EM> further abuses the shattered [src.name].")
+	if(isbroken)
+		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
+		visible_message("<b>[user.name]</b> further abuses the shattered [name].")
+		return
+
+	if(I.flags_item & NOBLUDGEON || !I.force)
+		return
+
+	if(I.force <15)
+		visible_message("[user] hits \the [src] with \the [I] with no visible effect." )
+		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
+		return
+
+	hitstaken++
+	if(hitstaken == 3)
+		visible_message("[user] smashes \the [src]!")
+		isbroken = TRUE
+		playsound(loc, 'sound/effects/glassbr3.ogg', 50, 1)
 	else
-		if(!(I.flags_item & NOBLUDGEON) && I.force)
-			if(I.force <15)
-				for (var/mob/O in hearers(5, src.loc))
-					O.show_message("[user.name] hits the [src.name] with the [I.name] with no visible effect." )
-					playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-			else
-				src.hitstaken++
-				if(src.hitstaken==3)
-					for (var/mob/O in hearers(5, src.loc))
-						O.show_message("[user.name] smashes the [src.name]!" )
-					src.isbroken=1
-					playsound(src.loc, 'sound/effects/Glassbr3.ogg', 50, 1)
-				else
-					for (var/mob/O in hearers(5, src.loc))
-						O.show_message("[user.name] forcefully slams the [src.name] with the [I.name]!" )
-					playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		else
-			to_chat(user, "<FONT COLOR='blue'>This does nothing.</FONT>")
-	src.update_icon()
+		visible_message("[user] forcefully slams \the [src] with \the [I]!" )
+		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
+
+	update_icon()
 
 /obj/machinery/newscaster/attack_ai(mob/user as mob)
 	return src.attack_hand(user) //or maybe it'll have some special functions? No idea.
@@ -882,21 +882,22 @@ obj/item/newspaper/Topic(href, href_list)
 			src.attack_self(src.loc)
 
 
-obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/pen))
-		if(src.scribble_page == src.curr_page)
+/obj/item/newspaper/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/tool/pen))
+		if(scribble_page == curr_page)
 			to_chat(user, "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>")
-		else
-			var/s = strip_html( input(user, "Write something", "Newspaper", "") )
-			s = copytext(sanitize(s), 1, MAX_MESSAGE_LEN)
-			if (!s)
-				return
-			if (!in_range(src, usr) && src.loc != usr)
-				return
-			src.scribble_page = src.curr_page
-			src.scribble = s
-			src.attack_self(user)
-		return
+			return
+
+		var/s = strip_html( input(user, "Write something", "Newspaper", "") )
+		s = copytext(sanitize(s), 1, MAX_MESSAGE_LEN)
+		if(!s)
+			return
+		if(!in_range(src, usr) && loc != usr)
+			return
+		scribble_page = curr_page
+		scribble = s
+		attack_self(user)
 
 
 ////////////////////////////////////helper procs

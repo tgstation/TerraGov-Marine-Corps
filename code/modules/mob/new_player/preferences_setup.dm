@@ -118,32 +118,88 @@
 
 
 /datum/preferences/proc/update_preview_icon()
-	if(!SSatoms.initialized)
-		return // clothing wont work properly
-		
+	// Determine what job is marked as 'High' priority, and dress them up as such.
+	var/datum/job/previewJob
+	var/highest_pref = JOBS_PRIORITY_NEVER
+	for(var/job in job_preferences)
+		if(job_preferences[job] > highest_pref)
+			previewJob = SSjob.GetJob(job)
+			highest_pref = job_preferences[job]
+
 	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	copy_to(mannequin)
 
-	// Determine what job is marked as 'High' priority, and dress them up as such.
-	var/datum/job/previewJob
-
-
-	for(var/datum/job/job in SSjob.occupations)
-		if(!jobs_high)
-			break
-		if(job.prefflag == jobs_high)
-			previewJob = job
-			break
-
 	if(previewJob)
 		mannequin.job = previewJob.title
-		previewJob.equip(mannequin, TRUE)
+		previewJob.equip(mannequin, TRUE, preference_source = parent)
+
 	COMPILE_OVERLAYS(mannequin)
-	if(parent)
-		parent.show_character_previews(new /mutable_appearance(mannequin))
+	parent.show_character_previews(new /mutable_appearance(mannequin))
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 
 
 /datum/preferences/proc/randomize_species_specific()
 	moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
+
+
+/datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
+	if(random_name)
+		var/datum/species/S = GLOB.all_species[species]
+		real_name = S.random_name(gender)
+
+
+	if(CONFIG_GET(flag/humans_need_surnames) && species == "Human")
+		var/firstspace = findtext(real_name, " ")
+		var/name_length = length(real_name)
+		if(!firstspace || firstspace == name_length)
+			real_name += " " + pick(GLOB.last_names)
+
+	character.real_name = real_name
+	character.name = character.real_name
+
+	character.flavor_text = flavor_text
+
+	character.med_record = med_record
+	character.sec_record = sec_record
+	character.gen_record = gen_record
+	character.exploit_record = exploit_record
+
+	character.age = age
+	character.gender = gender
+	character.ethnicity = ethnicity
+	character.body_type = body_type
+
+	character.r_eyes = r_eyes
+	character.g_eyes = g_eyes
+	character.b_eyes = b_eyes
+
+	character.r_hair = r_hair
+	character.g_hair = g_hair
+	character.b_hair = b_hair
+
+	character.r_facial = r_facial
+	character.g_facial = g_facial
+	character.b_facial = b_facial
+
+	character.h_style = h_style
+	character.f_style = f_style
+
+	character.citizenship = citizenship
+	character.religion = religion
+
+	character.moth_wings = moth_wings
+	character.underwear = underwear
+	character.undershirt = undershirt
+	character.backpack = backpack
+
+	character.update_body()
+	character.update_hair()
+
+
+/datum/preferences/proc/random_character()
+	gender = pick(MALE, FEMALE)
+	var/datum/species/S = GLOB.all_species[DEFAULT_SPECIES]
+	real_name = S.random_name(gender)
+	age = rand(AGE_MIN, AGE_MAX)
+	h_style = pick("Crewcut", "Bald", "Short Hair")

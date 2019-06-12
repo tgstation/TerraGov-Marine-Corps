@@ -10,18 +10,18 @@
 	var/obj/machinery/light/newlight = null
 	var/sheets_refunded = 2
 
-/obj/item/frame/light_fixture/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswrench(W))
-		new /obj/item/stack/sheet/metal( get_turf(src.loc), sheets_refunded )
+/obj/item/frame/light_fixture/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
+		new /obj/item/stack/sheet/metal(loc, sheets_refunded)
 		qdel(src)
-		return
-	..()
 
 /obj/item/frame/light_fixture/proc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)
 		return
 	var/ndir = get_dir(usr,on_wall)
-	if (!(ndir in cardinal))
+	if (!(ndir in GLOB.cardinals))
 		return
 	var/turf/loc = get_turf(usr)
 	if (!isfloorturf(loc))
@@ -39,7 +39,6 @@
 		if("tube")
 			newlight = new /obj/machinery/light_construct(constrloc)
 	newlight.setDir(constrdir)
-	transfer_fingerprints_to(newlight)
 
 	usr.visible_message("[usr.name] attaches [src] to the wall.", \
 		"You attach [src] to the wall.")

@@ -50,7 +50,7 @@
 	var/total = rand(3,6)
 	
 	for(var/i = 1 to total)
-		drop_spawn = get_spawn_point(1)
+		drop_spawn = get_spawn_point(TRUE)
 
 		if(!istype(drop_spawn))
 			return

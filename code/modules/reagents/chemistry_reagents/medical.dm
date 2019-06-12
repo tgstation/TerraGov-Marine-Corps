@@ -56,15 +56,10 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/medicine/ryetalyn/on_mob_life(mob/living/L, metabolism)
-	var/update = LAZYLEN(L.mutations)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.disabilities = 0
-	L.mutations = list()
 	L.sdisabilities = 0
-	if(update && ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.update_mutations()
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
@@ -331,7 +326,6 @@
 	L.SetKnockeddown(0)
 	L.SetStunned(0)
 	L.SetKnockedout(0)
-	L.silent = 0
 	L.dizziness = 0
 	L.drowsyness = 0
 	L.stuttering = 0
@@ -342,12 +336,6 @@
 		var/mob/living/carbon/C = L
 		C.drunkenness = 0
 		C.disabilities = 0
-		for(var/A in C.viruses)
-			var/datum/disease/D = A
-			D.spread = "Remissive"
-			D.stage--
-			if(D.stage < 1)
-				D.cure()
 	return ..()
 
 

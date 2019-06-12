@@ -60,7 +60,7 @@
 
 
 /obj/screen/fullscreen
-	icon = 'icons/mob/screen1_full.dmi'
+	icon = 'icons/mob/screen/full.dmi'
 	icon_state = "default"
 	screen_loc = "CENTER-7,CENTER-7"
 	layer = FULLSCREEN_LAYER
@@ -101,40 +101,40 @@
 	layer = FULLSCREEN_IMPAIRED_LAYER
 
 /obj/screen/fullscreen/blurry
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "blurry"
 	layer = FULLSCREEN_BLURRY_LAYER
 
 /obj/screen/fullscreen/flash
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "flash"
 	layer = FULLSCREEN_FLASH_LAYER
 
 /obj/screen/fullscreen/flash/noise
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "noise"
 
 /obj/screen/fullscreen/high
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "druggy"
 	layer = FULLSCREEN_DRUGGY_LAYER
 
 /obj/screen/fullscreen/nvg
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "nvg_hud"
 
 /obj/screen/fullscreen/thermal
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "thermal_hud"
 
 /obj/screen/fullscreen/meson
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "meson_hud"
 
@@ -143,3 +143,22 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
+
+/obj/screen/fullscreen/lighting_backdrop
+	icon = 'icons/mob/screen/generic.dmi'
+	icon_state = "flash"
+	transform = matrix(200, 0, 0, 0, 200, 0)
+	plane = LIGHTING_PLANE
+	blend_mode = BLEND_OVERLAY
+
+
+//Provides darkness to the back of the lighting plane
+/obj/screen/fullscreen/lighting_backdrop/lit
+	invisibility = SEE_INVISIBLE_LIVING + 1
+	layer = BACKGROUND_LAYER + 21
+	color = "#000"
+
+
+//Provides whiteness in case you don't see lights so everything is still visible
+/obj/screen/fullscreen/lighting_backdrop/unlit
+	layer = BACKGROUND_LAYER + 20

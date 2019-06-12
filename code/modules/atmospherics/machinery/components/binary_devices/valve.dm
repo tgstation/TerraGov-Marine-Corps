@@ -44,7 +44,6 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 		//investigate_log("was opened by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
 
 /obj/machinery/atmospherics/components/binary/valve/interact(mob/user)
-	add_fingerprint(usr)
 	if(switching)
 		return
 	update_icon_nopipes(TRUE)

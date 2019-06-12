@@ -2,8 +2,8 @@
 	name = "\improper autolathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 100
@@ -127,40 +127,41 @@
 	onclose(user, "autolathe")
 
 
-/obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (machine_stat)
+	if(machine_stat)
 		return
 
-	if (busy)
+	if(busy)
 		to_chat(user, "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
-	if(isscrewdriver(O))
-		panel_open = !panel_open
-		icon_state = (panel_open ? "autolathe_t": "autolathe")
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance hatch of [src].")
+	if(isscrewdriver(I))
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
+		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance hatch of [src].")
 		updateUsrDialog()
 		return
 
-	if (panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		//Don't eat multitools or wirecutters used on an open lathe.
-		if(ismultitool(O) || iswirecutter(O))
+		if(ismultitool(I) || iswirecutter(I))
 			attack_hand(user)
 			return
 
 		//Dismantle the frame.
-		if(iscrowbar(O))
-			dismantle()
+		if(iscrowbar(I))
+			deconstruct()
 			return
 
 	//Resources are being loaded.
-	var/obj/item/eating = O
+	var/obj/item/eating = I
 	if(!eating.matter)
 		to_chat(user, "<span class='warning'>\The [eating] does not contain significant amounts of useful materials and cannot be accepted.</span>")
 		return
 
-	if (eating.flags_item & (NODROP|DELONDROP))
+	if(eating.flags_item & (NODROP|DELONDROP))
 		to_chat(user, "<span class='warning'>\The [eating] is stuck to you and cannot be placed into [src].</span>")
 		return
 
@@ -206,9 +207,8 @@
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
-	else
-		if(user.temporarilyRemoveItemFromInventory(O))
-			qdel(O)
+	else if(user.temporarilyRemoveItemFromInventory(I))
+		qdel(I)
 
 	updateUsrDialog()
 	return TRUE //so the item's afterattack isn't called
@@ -229,7 +229,6 @@
 		return
 
 	usr.set_interaction(src)
-	add_fingerprint(usr)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")
@@ -304,7 +303,7 @@
 	storage_capacity["metal"] = tot_rating  * 25000
 	storage_capacity["glass"] = tot_rating  * 12500
 
-/obj/machinery/autolathe/dismantle()
+/obj/machinery/autolathe/deconstruct()
 	var/list/sheets = list("metal" = /obj/item/stack/sheet/metal, "glass" = /obj/item/stack/sheet/glass)
 
 	for(var/mat in stored_material)

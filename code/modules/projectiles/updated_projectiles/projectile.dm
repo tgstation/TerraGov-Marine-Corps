@@ -211,25 +211,33 @@
 /obj/item/projectile/proc/scan_a_turf(turf/T)
 	// Not a turf, keep moving
 	if(!istype(T))
-		return 0
+		return FALSE
 
 	if(T.density) // Handle wall hit
 		ammo.on_hit_turf(T,src)
 
-		if(T && T.loc)
+		if(T?.loc)
 			T.bullet_act(src)
 
-		return 1
+		return TRUE
 
 	// Firer's turf, keep moving
 	if(firer && T == firer.loc)
 		return FALSE
 
+	// Explosive ammo always explodes on the turf of the clicked target
+	if(!QDELETED(src) && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
+		ammo.on_hit_turf(T,src)
+		if(T?.loc)
+			T.bullet_act(src)
+		return TRUE
+
 	// Empty turf, keep moving
-	if(!T.contents.len)
+	if(!length(T.contents))
 		return FALSE
 
-	for(var/atom/movable/A in T)
+	for(var/a in T)
+		var/atom/movable/A = a
 		// If we've already handled this atom, don't do it again
 		if(A in permutated)
 			continue
@@ -238,73 +246,65 @@
 
 		var/hit_chance = A.get_projectile_hit_chance(src) // Calculated from combination of both ammo accuracy and gun accuracy
 
-		if(hit_chance)
-			if(isliving(A))
-				if(shot_from && shot_from.sniper_target(A) && A != shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
-					continue
-				var/mob_is_hit = FALSE
-				var/mob/living/L = A
+		if(!hit_chance)
+			continue
 
-				var/hit_roll
-				var/critical_miss = rand(CONFIG_GET(number/combat_define/critical_chance_low), CONFIG_GET(number/combat_define/critical_chance_high))
-				var/i = 0
-				while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
-					hit_roll 					= rand(0, 99) //Our randomly generated roll
-					#if DEBUG_HIT_CHANCE
-					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
-					#endif
-					if(hit_roll < 25) //Sniper targets more likely to hit
-						if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
-							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+		if(isobj(A))
+			ammo.on_hit_obj(A,src)
+			if(A?.loc)
+				A.bullet_act(src)
+			return TRUE
 
-					if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
-						hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
-						#if DEBUG_HIT_CHANCE
-						to_chat(world, "Hit Chance 2: [hit_chance]")
-						#endif
+		if(!isliving(A))
+			continue
 
-					switch(i)
-						if(1)
-							if(hit_chance > hit_roll)
-								mob_is_hit = TRUE
-								break //Hit
-							if( hit_chance < (hit_roll - 20) )
-								break //Outright miss.
-							def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
-							hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
-						if(2)
-							if(prob(critical_miss) )
-								break //Critical miss on the second go around.
-							if(hit_chance > hit_roll)
-								mob_is_hit = TRUE
-								break
-				if(mob_is_hit)
-					ammo.on_hit_mob(L,src)
-					if(L?.loc)
-						L.bullet_act(src)
-					return TRUE
-				else if (!L.lying)
-					animatation_displace_reset(L)
-					if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
-					L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
+		if(shot_from?.sniper_target(A) && A != shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
+			continue
+		var/mob_is_hit = FALSE
+		var/mob/living/L = A
 
-			else if(isobj(A))
-				ammo.on_hit_obj(A,src)
-				if(A && A.loc)
-					A.bullet_act(src)
-				return TRUE
+		var/hit_roll
+		var/critical_miss = rand(CONFIG_GET(number/combat_define/critical_chance_low), CONFIG_GET(number/combat_define/critical_chance_high))
+		var/i = 0
+		while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
+			hit_roll 					= rand(0, 99) //Our randomly generated roll
+			#if DEBUG_HIT_CHANCE
+			to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
+			#endif
+			if(hit_roll < 25) //Sniper targets more likely to hit
+				if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
+					def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
 
-	// Explosive ammo always explodes on the turf of the clicked target
-	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
-		ammo.on_hit_turf(T,src)
-		if(T?.loc)
-			T.bullet_act(src)
-		return TRUE
+			if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
+				hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+				#if DEBUG_HIT_CHANCE
+				to_chat(world, "Hit Chance 2: [hit_chance]")
+				#endif
 
-		if(T?.loc)
-			T.bullet_act(src)
-
-		return TRUE
+			switch(i)
+				if(1)
+					if(hit_chance > hit_roll)
+						mob_is_hit = TRUE
+						break //Hit
+					if( hit_chance < (hit_roll - 20) )
+						break //Outright miss.
+					def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+					hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
+				if(2)
+					if(prob(critical_miss) )
+						break //Critical miss on the second go around.
+					if(hit_chance > hit_roll)
+						mob_is_hit = TRUE
+						break
+		if(mob_is_hit)
+			ammo.on_hit_mob(L,src)
+			if(L?.loc)
+				L.bullet_act(src)
+			return TRUE
+		else if (!L.lying)
+			animatation_displace_reset(L)
+			if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
+			L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 //----------------------------------------------------------
 		    	//				    	\\
@@ -384,7 +384,7 @@
 		return 0
 
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		if(((status_flags & XENO_HOST) && istype(buckled, /obj/structure/bed/nest)) || stat == DEAD)
+		if(isnestedhost(src) || stat == DEAD)
 			return FALSE
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
@@ -444,17 +444,13 @@
 				. -= 15
 
 
-/mob/living/carbon/Xenomorph/get_projectile_hit_chance(obj/item/projectile/P)
+/mob/living/carbon/xenomorph/get_projectile_hit_chance(obj/item/projectile/P)
 	. = ..()
 	if(.)
 		if(P.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 			return 0
 		if(mob_size == MOB_SIZE_BIG)	. += 10
 		else							. -= 10
-
-
-/mob/living/silicon/robot/drone/get_projectile_hit_chance(obj/item/projectile/P)
-	return 0 // just stop them getting hit by projectiles completely
 
 
 /obj/item/projectile/proc/play_damage_effect(mob/M)
@@ -598,7 +594,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		return 1
 
 //Deal with xeno bullets.
-/mob/living/carbon/Xenomorph/bullet_act(obj/item/projectile/P)
+/mob/living/carbon/xenomorph/bullet_act(obj/item/projectile/P)
 	if(!P || !istype(P))
 		return
 	if(issamexenohive(P.firer)) //Aliens won't be harming allied aliens.
@@ -627,7 +623,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
-			var/mob/living/carbon/Xenomorph/charger = src
+			var/mob/living/carbon/xenomorph/charger = src
 			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
 			#if DEBUG_CREST_DEFENSE
 			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
@@ -790,7 +786,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
 
-/mob/proc/bullet_message(obj/item/projectile/P)
+/mob/living/proc/bullet_message(obj/item/projectile/P)
 	if(!P) return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
@@ -799,8 +795,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", \
 						"<span class='highdanger'>You are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)
 
-	if(ismob(P.firer))
-		var/mob/firingMob = P.firer
+	if(isliving(P.firer))
+		var/mob/living/firingMob = P.firer
 		var/turf/T = get_turf(firingMob)
 		if(ishuman(firingMob) && ishuman(src) && !firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
 			log_combat(firingMob, src, "shot", P)

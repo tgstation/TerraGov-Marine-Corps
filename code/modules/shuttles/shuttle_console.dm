@@ -15,7 +15,6 @@
 /obj/machinery/computer/shuttle_control/attack_hand(mob/user)
 	if(..(user))
 		return
-	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user) && !isxeno(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return 1
@@ -39,6 +38,11 @@
 				shuttle.last_door_override = world.time
 				shuttle.door_override = FALSE
 	ui_interact(user)
+
+
+/obj/machinery/computer/shuttle_control/attack_ai(mob/user)
+	return attack_hand(user)
+
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
 	var/data[0]
@@ -131,8 +135,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
-
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
 		return
@@ -165,11 +167,10 @@
 					var/datum/shuttle/ferry/marine/shuttle1 = shuttle
 					shuttle1.transit_gun_mission = 0
 					shuttle1.launch_crash()
-					command_announcement.Announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", \
-					"Dropship Alert", new_sound = 'sound/AI/hijack.ogg')
+					priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 					shuttle.alerts_allowed--
 					to_chat(usr, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
-					var/mob/living/carbon/Xenomorph/Queen/Q = usr // typechecked above
+					var/mob/living/carbon/xenomorph/queen/Q = usr // typechecked above
 					xeno_message("<span class='xenoannounce'>The Queen has commanded the metal bird to depart for the metal hive in the sky! Rejoice!</span>",3,Q.hivenumber)
 					playsound(src, 'sound/misc/queen_alarm.ogg')
 					SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
@@ -334,17 +335,16 @@
 	ui_interact(usr)
 
 
-/obj/machinery/computer/shuttle_control/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/computer/shuttle_control/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (istype(W, /obj/item/card/emag))
-		src.req_access = list()
-		src.req_one_access = list()
-		hacked = 1
-		to_chat(usr, "You short out the console's ID checking system. It's now available to everyone!")
-	else
-		..()
+	if(istype(I, /obj/item/card/emag))
+		req_access = list()
+		req_one_access = list()
+		hacked = TRUE
+		to_chat(user, "You short out the console's ID checking system. It's now available to everyone!")
 
-/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/xenomorph/M)
 	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
 		attack_hand(M)

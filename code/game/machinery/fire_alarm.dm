@@ -17,7 +17,7 @@ FIRE ALARM
 	var/timing = 0.0
 	var/lockdownbyai = 0
 	var/obj/item/circuitboard/firealarm/electronics = null
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6
@@ -83,71 +83,68 @@ FIRE ALARM
 	if(prob(50/severity)) alarm()
 	..()
 
-/obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
-	src.add_fingerprint(user)
+/obj/machinery/firealarm/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (isscrewdriver(W) && buildstage == 2)
+	if(isscrewdriver(I) && buildstage == 2)
 		wiresexposed = !wiresexposed
 		update_icon()
 		return
 
-	if(wiresexposed)
-		switch(buildstage)
-			if(2)
-				if (ismultitool(W))
-					src.detecting = !( src.detecting )
-					if (src.detecting)
-						user.visible_message("<span class='warning'> [user] has reconnected [src]'s detecting unit!</span>", "You have reconnected [src]'s detecting unit.")
-					else
-						user.visible_message("<span class='warning'> [user] has disconnected [src]'s detecting unit!</span>", "You have disconnected [src]'s detecting unit.")
-				else if (iswirecutter(W))
-					user.visible_message("<span class='warning'> [user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
-					playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-					buildstage = 1
-					update_icon()
-			if(1)
-				if(iscablecoil(W))
-					var/obj/item/stack/cable_coil/C = W
-					if (C.use(5))
-						to_chat(user, "<span class='notice'>You wire \the [src].</span>")
-						buildstage = 2
-						return
-					else
-						to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
-						return
-				else if(iscrowbar(W))
-					to_chat(user, "You pry out the circuit!")
-					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-					spawn(20)
-						var/obj/item/circuitboard/firealarm/circuit
-						if(!electronics)
-							circuit = new/obj/item/circuitboard/firealarm( src.loc )
-						else
-							circuit = new electronics( src.loc )
-							if(electronics.is_general_board)
-								circuit.set_general()
-						electronics = null
-						buildstage = 0
-						update_icon()
-			if(0)
-				if(istype(W, /obj/item/circuitboard/firealarm))
-					to_chat(user, "You insert the circuit!")
-					electronics = W
-					qdel(W)
-					buildstage = 1
-					update_icon()
-
-				else if(iswrench(W))
-					to_chat(user, "You remove the fire alarm assembly from the wall!")
-					var/obj/item/frame/fire_alarm/frame = new /obj/item/frame/fire_alarm()
-					frame.loc = user.loc
-					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-					qdel(src)
+	if(!wiresexposed)
 		return
 
-	//src.alarm() // why was this even a thing?
-	..()
-	return
+	switch(buildstage)
+		if(2)
+			if(ismultitool(I))
+				detecting = !detecting
+				if(detecting)
+					user.visible_message("<span class='warning'> [user] has reconnected [src]'s detecting unit!</span>", "You have reconnected [src]'s detecting unit.")
+				else
+					user.visible_message("<span class='warning'> [user] has disconnected [src]'s detecting unit!</span>", "You have disconnected [src]'s detecting unit.")
+			else if(iswirecutter(I))
+				user.visible_message("<span class='warning'> [user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+				buildstage = 1
+				update_icon()
+		if(1)
+			if(iscablecoil(I))
+				var/obj/item/stack/cable_coil/C = I
+				if(C.use(5))
+					to_chat(user, "<span class='notice'>You wire \the [src].</span>")
+					buildstage = 2
+					return
+				else
+					to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
+					return
+			else if(iscrowbar(I))
+				to_chat(user, "You pry out the circuit!")
+				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+				spawn(20)
+					var/obj/item/circuitboard/firealarm/circuit
+					if(!electronics)
+						circuit = new/obj/item/circuitboard/firealarm(loc)
+					else
+						circuit = new electronics(loc)
+						if(electronics.is_general_board)
+							circuit.set_general()
+					electronics = null
+					buildstage = 0
+					update_icon()
+		if(0)
+			if(istype(I, /obj/item/circuitboard/firealarm))
+				to_chat(user, "You insert the circuit!")
+				electronics = I
+				qdel(I)
+				buildstage = 1
+				update_icon()
+
+			else if(iswrench(I))
+				to_chat(user, "You remove the fire alarm assembly from the wall!")
+				var/obj/item/frame/fire_alarm/frame = new /obj/item/frame/fire_alarm
+				frame.forceMove(user.loc)
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+				qdel(src)
 
 /obj/machinery/firealarm/power_change()
 	..()
@@ -228,7 +225,6 @@ FIRE ALARM
 
 		src.updateUsrDialog()
 
-		src.add_fingerprint(usr)
 	else
 		usr << browse(null, "window=firealarm")
 		return

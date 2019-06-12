@@ -2,7 +2,7 @@
 	name = "station intercom"
 	desc = "Talk through this. To speak directly into an intercom next to you, use :i."
 	icon_state = "intercom"
-	anchored = 1
+	anchored = TRUE
 	w_class = 4.0
 	canhear_range = 2
 	flags_atom = CONDUCT|NOBLOODY
@@ -27,7 +27,6 @@
 
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)
-	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 
@@ -36,7 +35,6 @@
 
 
 /obj/item/radio/intercom/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 

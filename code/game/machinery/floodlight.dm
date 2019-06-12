@@ -4,8 +4,8 @@
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
-	density = 1
-	anchored = 1
+	anchored = TRUE
+	density = TRUE
 	var/on = 0
 	var/obj/item/cell/cell = null
 	var/use = 0
@@ -45,7 +45,6 @@
 		else
 			cell.loc = loc
 
-		cell.add_fingerprint(user)
 		cell.updateicon()
 
 		src.cell = null
@@ -71,46 +70,50 @@
 	updateicon()
 
 
-/obj/machinery/floodlight/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/floodlight/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(!ishuman(user))
 		return
 
-	if (iswrench(W))
-		if (!anchored)
-			anchored = 1
+	if(iswrench(I))
+		anchored = !anchored
+		if(anchored)
 			to_chat(user, "You anchor the [src] in place.")
 		else
-			anchored = 0
 			to_chat(user, "You remove the bolts from the [src].")
 
-	if (isscrewdriver(W))
-		if (!open)
-			if(unlocked)
-				unlocked = 0
-				to_chat(user, "You screw the battery panel in place.")
-			else
-				unlocked = 1
-				to_chat(user, "You unscrew the battery panel.")
-
-	if (iscrowbar(W))
-		if(unlocked)
-			if(open)
-				open = 0
-				overlays = null
-				to_chat(user, "You crowbar the battery panel in place.")
-			else
-				if(unlocked)
-					open = 1
-					to_chat(user, "You remove the battery panel.")
-
-	if (istype(W, /obj/item/cell))
+	else if(isscrewdriver(I))
 		if(open)
-			if(cell)
-				to_chat(user, "There is a power cell already installed.")
-			else
-				if(user.transferItemToLoc(W, src))
-					cell = W
-					to_chat(user, "You insert the power cell.")
+			return
+		unlocked = !unlocked
+		if(unlocked)
+			to_chat(user, "You unscrew the battery panel.")
+		else
+			to_chat(user, "You screw the battery panel in place.")
+
+	else if(iscrowbar(I))
+		if(!unlocked)
+			return
+		open = !open
+		if(open)
+			to_chat(user, "You remove the battery panel.")
+		else if(unlocked)
+			overlays.Cut()
+			to_chat(user, "You crowbar the battery panel in place.")
+
+	else if(istype(I, /obj/item/cell))
+		if(!open)
+			return
+
+		if(cell)
+			to_chat(user, "There is a power cell already installed.")
+			return
+
+		if(user.transferItemToLoc(I, src))
+			cell = I
+			to_chat(user, "You insert the power cell.")
+
 	updateicon()
 
 //Magical floodlight that cannot be destroyed or interacted with.

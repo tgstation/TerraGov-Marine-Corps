@@ -306,3 +306,32 @@
 	desc = "A simple uniform made for Synthetic crewmembers."
 	icon_state = "rdalt"
 	rollable_sleeves = FALSE
+
+
+/obj/item/clothing/under/som
+	name = "\improper SoM uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
+	icon_state = "som_uniform"
+	item_state = "som_uniform"
+	has_sensor = FALSE
+
+
+/obj/item/clothing/under/som/medic
+	name = "\improper SoM medical uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Has medical markings."
+	icon_state = "som_uniform_medic"
+	item_state = "som_uniform_medic"
+
+
+/obj/item/clothing/under/som/veteran
+	name = "\improper SoM veteran uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
+	icon_state = "som_uniform_veteran"
+	item_state = "som_uniform_veteran"
+
+
+/obj/item/clothing/under/som/leader
+	name = "\improper SoM leader uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
+	icon_state = "som_uniform_leader"
+	item_state = "som_uniform_leader"

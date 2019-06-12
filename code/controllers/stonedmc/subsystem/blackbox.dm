@@ -13,16 +13,16 @@ SUBSYSTEM_DEF(blackbox)
 		return
 
 	if(!SSdbcore.IsConnected(TRUE))
-		log_admin("Database not connected! Attempting to reconnect.")
+		log_sql("Database not connected! Attempting to reconnect.")
 		message_admins("Database not connected! Attempting to reconnect.")
 
 		SSdbcore.Disconnect()
 
 		if(SSdbcore.Connect())
-			log_admin("Database connection re-established!")
+			log_sql("Database connection re-established!")
 			message_admins("Database connection re-established!")
 		else
-			log_admin("Database connection failed: " + SSdbcore.ErrorMsg())
+			log_sql("Database connection failed: " + SSdbcore.ErrorMsg())
 			message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
 			return
 

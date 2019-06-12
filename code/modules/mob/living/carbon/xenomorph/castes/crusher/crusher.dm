@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Crusher
-	caste_base_type = /mob/living/carbon/Xenomorph/Crusher
+/mob/living/carbon/xenomorph/crusher
+	caste_base_type = /mob/living/carbon/xenomorph/crusher
 	name = "Crusher"
 	desc = "A huge alien with an enormous armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -29,22 +29,22 @@
 		/datum/action/xeno_action/activable/cresttoss,
 		)
 
-/mob/living/carbon/Xenomorph/Crusher/add_slowdown(amount)
+/mob/living/carbon/xenomorph/crusher/add_slowdown(amount)
 	if(charge_speed > CHARGE_SPEED_MAX * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
 		return FALSE
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
 
-/mob/living/carbon/Xenomorph/Crusher/adjust_stagger(amount)
+/mob/living/carbon/xenomorph/crusher/adjust_stagger(amount)
 	if(amount > 0 && (charge_speed > CHARGE_SPEED_MAX * 0.5) ) //If we're over half the max charge speed, we don't accumulate more stagger stacks.
 		return FALSE
 	stagger = max(stagger + amount,0)
-	return stagger 
+	return stagger
 
 //The atom collided with is passed to this proc, all types of collisions are dealt with here.
 //The atom does not tell the Crusher how to handle a collision, the Crusher is an independant
 //Xeno who don't need no atom. ~Bmc777
-/mob/living/carbon/Xenomorph/proc/handle_collision(atom/target)
+/mob/living/carbon/xenomorph/proc/handle_collision(atom/target)
 	if(!target)
 		return FALSE
 
@@ -94,11 +94,11 @@
 			stop_momentum(charge_dir)
 			return FALSE
 
-/atom/proc/charge_act(mob/living/carbon/Xenomorph/X)
+/atom/proc/charge_act(mob/living/carbon/xenomorph/X)
 	return TRUE
 
 //Catch-all, basically. Bump() isn't going to catch anything non-dense, so this is fine.
-/obj/charge_act(mob/living/carbon/Xenomorph/X)
+/obj/charge_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(.)
 		if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
@@ -142,7 +142,7 @@
 //should handle it's own damage (and deletion if needed) through it's
 //Bumped() proc. ~Bmc777
 
-/obj/structure/window/charge_act(mob/living/carbon/Xenomorph/X)
+/obj/structure/window/charge_act(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir)
 		return FALSE
@@ -156,7 +156,7 @@
 
 	return TRUE
 
-/obj/structure/grille/charge_act(mob/living/carbon/Xenomorph/X)
+/obj/structure/grille/charge_act(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir)
 		return FALSE
@@ -170,7 +170,7 @@
 
 	return TRUE
 
-/obj/machinery/vending/charge_act(mob/living/carbon/Xenomorph/X)
+/obj/machinery/vending/charge_act(mob/living/carbon/xenomorph/X)
 	if(X.charge_speed > CHARGE_SPEED_MAX/2) //Halfway to full speed or more
 		if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 			X.stop_momentum(X.charge_dir, TRUE)
@@ -188,24 +188,7 @@
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 
-/obj/mecha/charge_act(mob/living/carbon/Xenomorph/X)
-	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		X.stop_momentum(X.charge_dir, TRUE)
-		return FALSE
-	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
-		X.stop_momentum(X.charge_dir)
-		return FALSE
-	take_damage(X.charge_speed * 80)
-	X.visible_message("<span class='danger'>[X] rams [src]!</span>",
-	"<span class='xenodanger'>You ram [src]!</span>")
-	playsound(loc, "punch", 25, 1)
-	if(X.charge_speed > CHARGE_SPEED_MAX/2) //Halfway to full speed or more
-		X.diagonal_step(src, X.dir, 50) //Occasionally fling it diagonally.
-		step_away(src, X)
-		X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
-	return TRUE
-
-/obj/machinery/marine_turret/charge_act(mob/living/carbon/Xenomorph/X)
+/obj/machinery/marine_turret/charge_act(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
 		X.stop_momentum(X.charge_dir, TRUE)
 		return FALSE
@@ -216,13 +199,13 @@
 	"<span class='xenodanger'>You ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
 	machine_stat = 1
-	on = 0
+	DISABLE_BITFIELD(turret_flags, TURRET_ON)
 	update_icon()
 	update_health(X.charge_speed * 20)
 	X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
 	return TRUE
 
-/obj/structure/mineral_door/resin/charge_act(mob/living/carbon/Xenomorph/X)
+/obj/structure/mineral_door/resin/charge_act(mob/living/carbon/xenomorph/X)
 	TryToSwitchState(X)
 
 	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
@@ -232,11 +215,11 @@
 		X.charge_speed -= CHARGE_SPEED_BUILDUP * 2 //Lose two turfs worth of speed
 		return TRUE
 
-/obj/structure/table/charge_act(mob/living/carbon/Xenomorph/X)
+/obj/structure/table/charge_act(mob/living/carbon/xenomorph/X)
 	Crossed(X)
 	return TRUE
 
-/mob/living/carbon/charge_act(mob/living/carbon/Xenomorph/X)
+/mob/living/carbon/charge_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(. && X.charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		playsound(loc, "punch", 25, 1)
@@ -248,7 +231,7 @@
 					count++
 			if(count)
 				X.charge_speed -= CHARGE_SPEED_BUILDUP / (count * 2) // half normal slowdown regardless of number of corpses.
-		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
+		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest)) // neither
 			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 40, BRUTE)
 			X.visible_message("<span class='danger'>[X] rams [src]!</span>",
@@ -261,7 +244,7 @@
 		return TRUE
 
 //Special override case.
-/mob/living/carbon/Xenomorph/charge_act(mob/living/carbon/Xenomorph/X)
+/mob/living/carbon/xenomorph/charge_act(mob/living/carbon/xenomorph/X)
 	if(X.charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		playsound(loc, "punch", 25, 1)
 		if(!issamexenohive(X))
@@ -278,7 +261,7 @@
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 
-/turf/charge_act(mob/living/carbon/Xenomorph/X)
+/turf/charge_act(mob/living/carbon/xenomorph/X)
 	. = ..()
 	if(. && density) //We don't care if it's non dense.
 		if(X.charge_speed < CHARGE_SPEED_MAX)
@@ -290,7 +273,7 @@
 			return TRUE
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
-/mob/living/carbon/Xenomorph/Crusher/Bump(atom/A, yes)
+/mob/living/carbon/xenomorph/crusher/Bump(atom/A, yes)
 	set waitfor = 0
 
 	if(charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE || !is_charging) return ..()
@@ -299,7 +282,7 @@
 
 	if(now_pushing) return FALSE //Just a plain ol turf, let's return.
 
-	if(dir != charge_dir) //We aren't facing the way we're charging.
+	if(dir != charge_dir || moving_diagonally) //We aren't facing the way we're charging.
 		stop_momentum()
 		return ..()
 
@@ -314,7 +297,7 @@
 	lastturf = null //Reset this so we can properly continue with momentum.
 	return TRUE
 
-/mob/living/carbon/Xenomorph/Crusher/ex_act(severity)
+/mob/living/carbon/xenomorph/crusher/ex_act(severity)
 
 	flash_eyes()
 
@@ -322,7 +305,7 @@
 		adjustBruteLoss(rand(200, 300))
 		updatehealth()
 
-/mob/living/carbon/Xenomorph/Crusher/handle_special_state()
+/mob/living/carbon/xenomorph/crusher/handle_special_state()
 	if(m_intent == MOVE_INTENT_RUN)
 		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Let it build up a bit so we're not changing icons every single turf
 			icon_state = "Crusher Charging"

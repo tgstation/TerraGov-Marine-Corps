@@ -40,64 +40,68 @@ Note: Must be placed within 3 tiles of the R&D Console
 	return temp_list
 
 
-/obj/machinery/r_n_d/destructive_analyzer/attackby(var/obj/O as obj, var/mob/user as mob)
-	if (shocked)
-		shock(user,50)
-	if (isscrewdriver(O))
-		if (!opened)
-			opened = 1
+/obj/machinery/r_n_d/destructive_analyzer/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(shocked)
+		shock(user, 50)
+
+	else if(isscrewdriver(I))
+		opened = !opened
+		if(opened)
 			if(linked_console)
 				linked_console.linked_destroy = null
 				linked_console = null
 			icon_state = "d_analyzer_t"
 			to_chat(user, "You open the maintenance hatch of [src].")
 		else
-			opened = 0
 			icon_state = "d_analyzer"
 			to_chat(user, "You close the maintenance hatch of [src].")
-		return
-	if (opened)
-		if(iscrowbar(O))
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
+
+	else if(opened)
+		if(iscrowbar(I))
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+			var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
 			M.state = 2
 			M.icon_state = "box_1"
-			for(var/obj/I in component_parts)
-				I.loc = src.loc
+			for(var/obj/O in component_parts)
+				O.forceMove(loc)
 			qdel(src)
-			return 1
+			return TRUE
 		else
 			to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened.</span>")
-			return 1
-	if (disabled)
+			return TRUE
+
+	else if(disabled)
 		return
-	if (!linked_console)
+
+	else if(!linked_console)
 		to_chat(user, "<span class='warning'>The destructive analyzer must be linked to an R&D console first!</span>")
-		return
-	if (busy)
+
+	else if(busy)
 		to_chat(user, "<span class='warning'>The destructive analyzer is busy right now.</span>")
-		return
-	if (istype(O, /obj/item) && !loaded_item)
-		if(!O.origin_tech)
+
+	else if(!loaded_item)
+		if(!I.origin_tech)
 			to_chat(user, "<span class='warning'>This doesn't seem to have a tech origin!</span>")
 			return
-		var/list/temp_tech = ConvertReqString2List(O.origin_tech)
-		if (temp_tech.len == 0)
+
+		var/list/temp_tech = ConvertReqString2List(I.origin_tech)
+		if(!length(temp_tech))
 			to_chat(user, "<span class='warning'>You cannot deconstruct this item!</span>")
 			return
-		if(O.reliability < 90 && O.crit_fail == 0)
-			to_chat(usr, "<span class='warning'>Item is neither reliable enough nor broken enough to learn from.</span>")
+		if(I.reliability < 90 && !I.crit_fail)
+			to_chat(user, "<span class='warning'>Item is neither reliable enough nor broken enough to learn from.</span>")
 			return
-		busy = 1
-		loaded_item = O
-		user.transferItemToLoc(O, src)
-		to_chat(user, "<span class='notice'>You add the [O.name] to the machine!</span>")
+		busy = TRUE
+		loaded_item = I
+		user.transferItemToLoc(I, src)
+		to_chat(user, "<span class='notice'>You add \the [I] to the machine!</span>")
 		flick("d_analyzer_la", src)
 		spawn(10)
 			icon_state = "d_analyzer_l"
-			busy = 0
-		return 1
-	return
+			busy = FALSE
+		return TRUE
 
 //For testing purposes only.
 /*/obj/item/deconstruction_test

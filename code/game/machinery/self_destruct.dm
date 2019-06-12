@@ -62,7 +62,7 @@
 		if("dest_start")
 			to_chat(usr, "<span class='notice'>You press a few keys on the panel.</span>")
 			to_chat(usr, "<span class='notice'>The system must be booting up the self-destruct sequence now.</span>")
-			command_announcement.Announce("Danger. The emergency destruct system is now activated. The ship will detonate in T-minus 20 minutes. Automatic detonation is unavailable. Manual detonation is required.", "Priority Alert", 'sound/AI/selfdestruct.ogg')
+			priority_announce("Danger. The emergency destruct system is now activated. The ship will detonate in T-minus 20 minutes. Automatic detonation is unavailable. Manual detonation is required.", "Priority Alert", sound = 'sound/AI/selfdestruct.ogg')
 			active_state = SELF_DESTRUCT_MACHINE_ARMED
 			var/obj/machinery/self_destruct/rod/I = SSevacuation.dest_rods[SSevacuation.dest_index]
 			I.activate_time = world.time

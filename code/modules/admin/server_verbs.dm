@@ -215,18 +215,26 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(SSticker?.current_state != GAME_STATE_PREGAME)
-		to_chat(usr, "<span class='warning'>The round cannot be started early in this state.</span>")
+	if(SSticker.current_state != GAME_STATE_STARTUP && SSticker.current_state != GAME_STATE_PREGAME)
+		to_chat(usr, "<span class='warning'>The round has already started.</span>")
 		return
 
 	if(SSticker.start_immediately)
 		SSticker.start_immediately = FALSE
 		log_admin("[key_name(usr)] has cancelled the early round start.")
 		message_admins("[ADMIN_TPMONTY(usr)] has cancelled the early round start.")
-	else if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "Yes")
-		SSticker.start_immediately = TRUE
-		log_admin("[key_name(usr)] has started the round early[SSticker.current_state == GAME_STATE_STARTUP ? ". The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again." : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has started the round early[SSticker.current_state == GAME_STATE_STARTUP ? ". The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again." : ""].")
+		return
+
+	if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "No")
+		return
+
+	var/startup_msg = ""
+	if(SSticker.current_state == GAME_STATE_STARTUP)
+		startup_msg = " The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again."
+
+	SSticker.start_immediately = TRUE
+	log_admin("[key_name(usr)] has started the round early.[startup_msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] has started the round early.[startup_msg]")
 
 
 /datum/admins/proc/toggle_join()

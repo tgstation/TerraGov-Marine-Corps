@@ -1,9 +1,9 @@
 //There has to be a better way to define this shit. ~ Z
 //can't equip anything
-/mob/living/carbon/Xenomorph/attack_ui(slot_id)
+/mob/living/carbon/xenomorph/attack_ui(slot_id)
 	return
 
-/mob/living/carbon/Xenomorph/attack_animal(mob/living/M as mob)
+/mob/living/carbon/xenomorph/attack_animal(mob/living/M as mob)
 
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
@@ -18,7 +18,7 @@
 			log_combat(S, src, "attacked")
 			updatehealth()
 
-/mob/living/carbon/Xenomorph/attack_paw(mob/living/carbon/monkey/M as mob)
+/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/M as mob)
 	if(!ismonkey(M)) //Fix for aliens receiving double messages when attacking other aliens
 		return 0
 
@@ -41,7 +41,7 @@
 				updatehealth()
 
 
-/mob/living/carbon/Xenomorph/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/xenomorph/attack_hand(mob/living/carbon/human/M)
 
 	..()
 	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
@@ -72,12 +72,6 @@
 
 			var/damage = rand(1, 3)
 			if(prob(85))
-				if(HULK in M.mutations)
-					damage += 5
-					spawn(0)
-						step_away(src, M, 15)
-						sleep(3)
-						step_away(src, M, 15)
 				damage += attack.damage > 5 ? attack.damage : 0
 
 				playsound(loc, attack.attack_sound, 25, 1)
@@ -92,7 +86,7 @@
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
-/mob/living/carbon/Xenomorph/attack_alien(mob/living/carbon/Xenomorph/M)
+/mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/M)
 	if(src != M)
 		if(isxenolarva(M)) //Larvas can't eat people
 			M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \

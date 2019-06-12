@@ -23,13 +23,14 @@
 			var/atom/movable/mob_container
 			mob_container = M
 			mob_container.forceMove(get_turf(src))
-			M.reset_view()
+			M.reset_perspective()
 
 		qdel(src)
 
-/obj/item/holder/attackby(obj/item/W as obj, mob/user as mob)
-	for(var/mob/M in src.contents)
-		M.attackby(W,user)
+/obj/item/holder/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	for(var/mob/M in contents)
+		M.attackby(I, user, params)
 
 /obj/item/holder/proc/show_message(var/message, var/m_type)
 	for(var/mob/living/M in contents)

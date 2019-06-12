@@ -88,13 +88,6 @@
 	spawn_number = 7
 	w_class = 3
 
-/obj/item/storage/box/injectors
-	name = "box of DNA injectors"
-	desc = "This box contains injectors it seems."
-	spawn_type = /obj/item/dnainjector/h2m
-	spawn_number = 6
-	w_class = 3
-
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
@@ -121,7 +114,6 @@
 		new /obj/item/implantcase/tracking(src)
 	new /obj/item/implanter(src)
 	new /obj/item/implantpad(src)
-	new /obj/item/locator(src)
 
 /obj/item/storage/box/chemimp
 	name = "boxed chemical implant kit"
@@ -258,15 +250,21 @@
 	spawn_type = /obj/item/tool/match
 	spawn_number = 14
 
-/obj/item/storage/box/matches/attackby(obj/item/tool/match/W as obj, mob/user as mob)
-	if(istype(W) && !W.heat_source && !W.burnt)
+/obj/item/storage/box/matches/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/tool/match))
+		var/obj/item/tool/match/M = I
+
+		if(M.heat || M.burnt)
+			return ..()
+
 		if(prob(50))
 			playsound(loc, 'sound/items/matchstick_lit.ogg', 15, 1)
-			W.light_match()
+			M.light_match()
 		else
 			playsound(loc, 'sound/items/matchstick_hit.ogg', 15, 1)
 		return TRUE
-	return ..()
+	else
+		return ..()
 
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"

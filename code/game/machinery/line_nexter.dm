@@ -3,9 +3,9 @@
 	name = "Turnstile"
 	desc = "a one way barrier combined with a bar to pull people out of line."
 	icon = 'icons/Marine/barricades.dmi'
-	density = 1
+	density = TRUE
 	icon_state = "turnstile"
-	anchored = 1
+	anchored = TRUE
 	dir = 8
 	var/last_use
 	var/id
@@ -44,12 +44,10 @@
 	var/id
 
 /obj/machinery/line_nexter_control/attack_hand(mob/user)
-	add_fingerprint(user)
-	if(istype(user,/mob/living/carbon/Xenomorph))
+	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 
 	icon_state = "doorctrl1"
-	add_fingerprint(user)
 
 	for(var/obj/machinery/line_nexter/L in GLOB.machines)
 		if(id == L.id)

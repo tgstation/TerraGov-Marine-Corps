@@ -7,12 +7,14 @@
 	init_reagent_flags = AMOUNT_ESTIMEE
 	var/blood_type
 
-/obj/item/reagent_container/blood/New()
+
+/obj/item/reagent_container/blood/Initialize()
 	. = ..()
 	if(blood_type)
 		name = "BloodPack [blood_type]"
-		reagents.add_reagent("blood", 200, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=blood_type,"resistances"=null))
+		reagents.add_reagent("blood", 200, list("donor"=null,"blood_DNA"=null,"blood_type"=blood_type))
 		update_icon()
+
 
 /obj/item/reagent_container/blood/on_reagent_change()
 	update_icon()

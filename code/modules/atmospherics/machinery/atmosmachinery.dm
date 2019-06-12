@@ -170,38 +170,31 @@
 	nodes[nodes.Find(reference)] = null
 	update_icon()
 
-/obj/machinery/atmospherics/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/pipe)) //lets you autodrop
-		var/obj/item/pipe/pipe = W
-		if(user.dropItemToGround(pipe))
-			pipe.setPipingLayer(piping_layer) //align it with us
-			return TRUE
-	else if(iswrench(W)) // this is just until someone ports the tg tool handling code
-		. = wrench_act(user, W)
-	else if(ismultitool(W))
-		. = multitool_act(user, W)
-	else if(isscrewdriver(W))
-		. = screwdriver_act(user,W)
-	else if(iswelder(W))
-		. = welder_act(user, W)
-	else if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
-		. = plasmacutter_act(user, W)
+/obj/machinery/atmospherics/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pipe)) //lets you autodrop
+		var/obj/item/pipe/pipe = I
+		if(!user.dropItemToGround(pipe))
+			return
+
+		pipe.setPipingLayer(piping_layer) //align it with us
+		return TRUE
+
+	else if(iswrench(I)) // this is just until someone ports the tg tool handling code
+		. = wrench_act(user, I)
+
+	else if(ismultitool(I))
+		. = multitool_act(user, I)
+
+	else if(isscrewdriver(I))
+		. = screwdriver_act(user, I)	
+
+	else if(iswelder(I))
+		. = welder_act(user, I)
+		
 	if(!.)
 		return ..()
 
-/obj/machinery/atmospherics/proc/plasmacutter_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/obj/machinery/atmospherics/proc/welder_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/obj/machinery/atmospherics/proc/screwdriver_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/obj/machinery/atmospherics/proc/multitool_act(mob/living/user, obj/item/I)
-	return FALSE
-
-/obj/machinery/atmospherics/proc/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/I)
 	if(!can_unwrench(user))
 		return ..()
 
@@ -212,7 +205,6 @@
 
 	//var/datum/gas_mixture/int_air = return_air()
 	//var/datum/gas_mixture/env_air = loc.return_air()
-	add_fingerprint(user)
 
 	//var/unsafe_wrenching = FALSE
 	//var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
@@ -265,7 +257,6 @@
 			stored.setPipingLayer(piping_layer)
 //			if(!disassembled)
 //				stored.obj_integrity = stored.max_integrity * 0.5
-			transfer_fingerprints_to(stored)
 			qdel(src)
 	..()
 
@@ -322,7 +313,7 @@
 	if(!isxenohunter(user) )
 		pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 	if(user.client)
-		user.client.next_movement += 1
+		user.client.move_delay += 1
 
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
 	direction &= initialize_directions

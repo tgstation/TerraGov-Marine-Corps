@@ -12,19 +12,19 @@ Code shamelessly copied from apc_frame
 	icon_state = "alarm_bitem"
 	flags_atom = CONDUCT
 
-/obj/item/frame/air_alarm/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswrench(W))
-		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
+/obj/item/frame/air_alarm/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
+		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
-		return
-	..()
 
 /obj/item/frame/air_alarm/proc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)
 		return
 
 	var/ndir = get_dir(on_wall,usr)
-	if (!(ndir in cardinal))
+	if (!(ndir in GLOB.cardinals))
 		return
 
 	var/turf/loc = get_turf(usr)
@@ -55,19 +55,19 @@ Code shamelessly copied from apc_frame
 	icon_state = "fire_bitem"
 	flags_atom = CONDUCT
 
-/obj/item/frame/fire_alarm/attackby(obj/item/W as obj, mob/user as mob)
-	if (iswrench(W))
-		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
+/obj/item/frame/fire_alarm/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
+		new /obj/item/stack/sheet/metal(loc, 2)
 		qdel(src)
-		return
-	..()
 
 /obj/item/frame/fire_alarm/proc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)
 		return
 
 	var/ndir = get_dir(on_wall,usr)
-	if (!(ndir in cardinal))
+	if (!(ndir in GLOB.cardinals))
 		return
 
 	var/turf/loc = get_turf(usr)

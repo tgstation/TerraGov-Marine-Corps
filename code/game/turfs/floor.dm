@@ -44,8 +44,8 @@ var/list/plating_icons = list("plating", "platingdmg1", "platingdmg2", "platingd
 var/list/wood_icons = list("wood", "wood-broken")
 
 
-/turf/open/floor/New()
-	..()
+/turf/open/floor/Initialize(mapload, ...)
+	. = ..()
 	if(icon_state in icons_to_ignore_at_floor_init)//So damaged/burned tiles or plating icons aren't saved as the default
 		icon_regular_floor = "floor"
 	else
@@ -115,7 +115,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		if(!broken && !burnt)
 			if(icon_state != "carpetsymbol")
 				var/connectdir = 0
-				for(var/direction in cardinal)
+				for(var/direction in GLOB.cardinals)
 					if(isfloorturf(get_step(src, direction)))
 						var/turf/open/floor/FF = get_step(src, direction)
 						if(FF.is_carpet_floor())
@@ -164,7 +164,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	..()
 	if(is_grass_floor())
 		var/dir_sum = 0
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinals)
 			var/turf/T = get_step(src,direction)
 			if(!(T.is_grass_floor()))
 				dir_sum += direction
@@ -267,7 +267,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 /turf/open/floor/proc/make_plating()
 
 	if(is_grass_floor())
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinals)
 			if(istype(get_step(src,direction),/turf/open/floor))
 				var/turf/open/floor/FF = get_step(src,direction)
 				FF.update_icon() //So siding get updated properly
@@ -382,120 +382,132 @@ var/list/wood_icons = list("wood", "wood-broken")
 	update_icon()
 	levelupdate()
 
-/turf/open/floor/attackby(obj/item/C, mob/user)
+/turf/open/floor/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
 	if(hull_floor) //no interaction for hulls
 		return
 
-	user.changeNext_move(C.attack_speed)
-
-	if(istype(C,/obj/item/light_bulb/bulb)) //Only for light tiles
+	else if(istype(I, /obj/item/light_bulb/bulb)) //Only for light tiles
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile
-			if(T.state)
-				user.drop_held_item(C)
-				qdel(C)
-				T.state = C //Fixing it by bashing it with a light bulb, fun eh?
-				update_icon()
-				to_chat(user, "<span class='notice'>You replace the light bulb.</span>")
-			else
+			if(!T.state)
 				to_chat(user, "<span class='notice'>The lightbulb seems fine, no need to replace it.</span>")
+				return
 
-	if(iscrowbar(C) && !is_plating())
+			user.drop_held_item(I)
+			qdel(I)
+			T.state = I //Fixing it by bashing it with a light bulb, fun eh?
+			update_icon()
+			to_chat(user, "<span class='notice'>You replace the light bulb.</span>")
+
+	else if(iscrowbar(I) && !is_plating())
 		if(broken || burnt)
 			to_chat(user, "<span class='warning'>You remove the broken plating.</span>")
+			return
+
+		if(is_wood_floor())
+			to_chat(user, "<span class='warning'>You forcefully pry off the planks, destroying them in the process.</span>")
 		else
-			if(is_wood_floor())
-				to_chat(user, "<span class='warning'>You forcefully pry off the planks, destroying them in the process.</span>")
-			else
-				to_chat(user, "<span class='warning'>You remove the [floor_tile.name].</span>")
-				new floor_tile.type(src)
+			to_chat(user, "<span class='warning'>You remove the [floor_tile.name].</span>")
+			new floor_tile.type(src)
 
 		make_plating()
-		playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
-		return
+		playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
-	if(isscrewdriver(C) && is_wood_floor())
+	else if(isscrewdriver(I) && is_wood_floor())
 		if(broken || burnt)
 			return
-		else
-			if(is_wood_floor())
-				to_chat(user, "<span class='warning'>You unscrew the planks.</span>")
-				new floor_tile.type(src)
+
+		if(is_wood_floor())
+			to_chat(user, "<span class='warning'>You unscrew the planks.</span>")
+			new floor_tile.type(src)
 
 		make_plating()
-		playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
-		return
+		playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		if(is_plating())
-			if(R.get_amount() < 2)
-				to_chat(user, "<span class='warning'>You need more rods.</span>")
-				return
-			to_chat(user, "<span class='notice'>Reinforcing the floor.</span>")
-			if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(src, .proc/is_plating)) && R.use(2))
-				ChangeTurf(/turf/open/floor/engine)
-				playsound(src, 'sound/items/Deconstruct.ogg', 25, 1)
-				return
-			else
-		else
+
+	else if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = I
+		if(!is_plating())
 			to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
-		return
+			return
 
-	if(istype(C, /obj/item/stack/tile))
-		if(is_plating())
-			if(!broken && !burnt)
-				var/obj/item/stack/tile/T = C
-				if(T.get_amount() < 1)
-					return
-				floor_tile = new T.type
-				intact_tile = 1
-				if(istype(T, /obj/item/stack/tile/light))
-					var/obj/item/stack/tile/light/L = T
-					var/obj/item/stack/tile/light/F = floor_tile
-					F.state = L.state
-					F.on = L.on
-				if(istype(T, /obj/item/stack/tile/grass))
-					for(var/direction in cardinal)
-						if(isfloorturf(get_step(src, direction)))
-							var/turf/open/floor/FF = get_step(src,direction)
-							FF.update_icon() //so siding gets updated properly
-				else if(istype(T, /obj/item/stack/tile/carpet))
-					for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-						if(isfloorturf(get_step(src, direction)))
-							var/turf/open/floor/FF = get_step(src,direction)
-							FF.update_icon() //so siding gets updated properly
-				T.use(1)
-				update_icon()
-				levelupdate()
-				playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
-			else
-				to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
+		if(R.get_amount() < 2)
+			to_chat(user, "<span class='warning'>You need more rods.</span>")
+			return
 
-	if(istype(C, /obj/item/tool/shovel))
-		if(is_grass_floor())
-			new /obj/item/ore/glass(src)
-			new /obj/item/ore/glass(src) //Make some sand if you shovel grass
-			to_chat(user, "<span class='notice'>You shovel the grass.</span>")
-			make_plating()
-		else
+		to_chat(user, "<span class='notice'>Reinforcing the floor.</span>")
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || !is_plating())
+			return
+
+		if(!R?.use(2)) 
+			return
+
+		ChangeTurf(/turf/open/floor/engine)
+		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
+
+	if(istype(I, /obj/item/stack/tile))
+		if(!is_plating())
+			return
+
+		if(broken || burnt)
+			to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
+			return
+
+		var/obj/item/stack/tile/T = I
+		if(T.get_amount() < 1)
+			return
+
+		floor_tile = new T.type
+		intact_tile = 1
+		if(istype(T, /obj/item/stack/tile/light))
+			var/obj/item/stack/tile/light/L = T
+			var/obj/item/stack/tile/light/F = floor_tile
+			F.state = L.state
+			F.on = L.on
+		else if(istype(T, /obj/item/stack/tile/grass))
+			for(var/direction in GLOB.cardinals)
+				if(isfloorturf(get_step(src, direction)))
+					var/turf/open/floor/FF = get_step(src,direction)
+					FF.update_icon() //so siding gets updated properly
+		else if(istype(T, /obj/item/stack/tile/carpet))
+			for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
+				if(isfloorturf(get_step(src, direction)))
+					var/turf/open/floor/FF = get_step(src,direction)
+					FF.update_icon() //so siding gets updated properly
+		T.use(1)
+		update_icon()
+		levelupdate()
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+
+	else if(istype(I, /obj/item/tool/shovel))
+		if(!is_grass_floor())
 			to_chat(user, "<span class='warning'>You cannot shovel this.</span>")
+			return
 
-	if(iswelder(C))
-		var/obj/item/tool/weldingtool/welder = C
-		if(welder.isOn() && (is_plating()))
-			if(broken || burnt)
-				if(welder.remove_fuel(0, user))
-					to_chat(user, "<span class='warning'>You fix some dents on the broken plating.</span>")
-					playsound(src, 'sound/items/Welder.ogg', 25, 1)
-					icon_state = "plating"
-					burnt = 0
-					broken = 0
-				else
-					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+		new /obj/item/ore/glass(src)
+		new /obj/item/ore/glass(src) //Make some sand if you shovel grass
+		to_chat(user, "<span class='notice'>You shovel the grass.</span>")
+		make_plating()
 
-	. = ..()
+	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/welder = I
+		if(!welder.isOn() || !is_plating())
+			return
+
+		if(!broken && !burnt)
+			return
+
+		if(!welder.remove_fuel(0, user))
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+			return
+
+		to_chat(user, "<span class='warning'>You fix some dents on the broken plating.</span>")
+		playsound(src, 'sound/items/welder.ogg', 25, 1)
+		icon_state = "plating"
+		burnt = FALSE
+		broken = FALSE
 
 /turf/open/floor/wet_floor(wet_level = FLOOR_WET_WATER)
 	if(wet >= wet_level) return

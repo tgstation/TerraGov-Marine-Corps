@@ -12,21 +12,10 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 	return STATUS_CLOSE // By default no mob can do anything with NanoUI
 
 
-/mob/observer/ghost/default_can_use_topic(src_object)
+/mob/dead/observer/default_can_use_topic(src_object)
 	if(!client || get_dist(src_object, src)	> client.view)	// Preventing ghosts from having a million windows open by limiting to objects in range
 		return STATUS_CLOSE
 	return STATUS_UPDATE									// Ghosts can view updates
-
-
-/mob/living/silicon/robot/default_can_use_topic(src_object)
-	. = shared_nano_interaction()
-	if(. <= STATUS_DISABLED)
-		return
-
-	// robots can interact with things they can see within their view range
-	if((src_object in view(src)) && get_dist(src_object, src) <= client.view)
-		return STATUS_INTERACTIVE	// interactive (green visibility)
-	return STATUS_DISABLED			// no updates, completely disabled (red visibility)
 
 
 /mob/living/silicon/ai/default_can_use_topic(src_object)
@@ -42,6 +31,9 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 
 	// If an object is in view then we can interact with it
 	if(src_object in view(client.view, src))
+		return STATUS_INTERACTIVE
+
+	else if(src_object in view(client.view, eyeobj))
 		return STATUS_INTERACTIVE
 
 	else if(get_dist(src_object, src) <= client.view)	// View does not return what one would expect while installed in an inteliCard
@@ -83,7 +75,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 		return STATUS_UPDATE
 
 
-/mob/living/carbon/Xenomorph/default_can_use_topic(src_object)
+/mob/living/carbon/xenomorph/default_can_use_topic(src_object)
 	. = shared_nano_interaction(src_object)
 	if(. != STATUS_CLOSE)
 		if(loc)

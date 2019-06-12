@@ -251,7 +251,7 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
-	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
+	. = ..()
 
 	if(istype(I,/obj/item/attachable) && check_inactive_hand(user))
 		attach_to_gun(user, I)
@@ -307,7 +307,19 @@ should be alright.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
-	return
+	return FALSE
+
+
+/mob/living/carbon/human/proc/do_unique_action()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	if(incapacitated() || lying)
+		return
+
+	var/obj/item/weapon/gun/G = get_active_held_item()
+	if(!istype(G))
+		return
+
+	G.unique_action(src)
 
 
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
@@ -456,7 +468,7 @@ should be alright.
 			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
 
 
-/obj/item/weapon/gun/proc/get_active_firearm(mob/user)
+/proc/get_active_firearm(mob/user)
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return

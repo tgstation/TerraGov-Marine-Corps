@@ -35,7 +35,7 @@
 	open_sound = 'sound/effects/vegetation_walk_1.ogg'
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
 	item_path = /obj/item/bodybag/tarp
-	anchored = 1
+	anchored = TRUE
 	closet_stun_delay = 0
 	var/process_count = 0
 
@@ -124,7 +124,7 @@
 	icon_state = "coin_adamantine"
 	flags_token = TOKEN_MARINE|TOKEN_GENERAL //when you do prefer a premium smoke over else.
 
-/obj/item/coin/marine/attackby(obj/item/W as obj, mob/user as mob) //To remove attaching a string functionality
+/obj/item/coin/marine/attackby(obj/item/I, mob/user, params) //To remove attaching a string functionality
 	return
 
 /obj/item/coin/marine/specialist
@@ -135,9 +135,9 @@
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
-	anchored = 1
+	anchored = TRUE
 	opacity = 1
-	density = 1
+	density = TRUE
 	icon = 'icons/Marine/apc.dmi'
 	icon_state = "apc"
 

@@ -164,9 +164,9 @@
 			icon_state = "door_locked"
 		else
 			icon_state = "door_closed"
-		if(panel_open || welded)
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || welded)
 			overlays = list()
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				overlays += image(icon, "panel_open")
 			if(welded)
 				overlays += image(icon, "welded")
@@ -179,14 +179,14 @@
 	switch(animation)
 		if("opening")
 			if(overlays) overlays.Cut()
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				spawn(2) // The only work around that works. Downside is that the door will be gone for a millisecond.
 					flick("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
 			else
 				flick("door_opening", src)
 		if("closing")
 			if(overlays) overlays.Cut()
-			if(panel_open)
+			if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 				flick("o_door_closing", src)
 			else
 				flick("door_closing", src)
@@ -200,13 +200,7 @@
 
 
 /obj/machinery/door/airlock/attack_ai(mob/user)
-	if(!canAIControl(user))
-		if(canAIHack())
-			hack(user)
-			return
-		else
-			to_chat(user, "<span class='warning'>Airlock AI control has been blocked with a firewall. Unable to hack.</span>")
-	if(obj_flags & EMAGGED)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(user, "<span class='warning'>Unable to interface: Airlock is unresponsive.</span>")
 		return
 
@@ -270,7 +264,7 @@
 	return src.attack_hand(user)
 
 //Prying open doors
-/obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/door/airlock/attack_alien(mob/living/carbon/xenomorph/M)
 	var/turf/cur_loc = M.loc
 	if(isElectrified())
 		if(shock(M, 70))
@@ -307,7 +301,7 @@
 				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
 				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
-/obj/machinery/door/airlock/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+/obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	for(var/atom/movable/AM in get_turf(src))
 		if(AM != src && AM.density && !AM.CanPass(M, M.loc))
 			to_chat(M, "<span class='warning'>\The [AM] prevents you from squeezing under \the [src]!</span>")
@@ -329,14 +323,13 @@
 		..()
 	if(usr.stat || usr.restrained()|| usr.mob_size == MOB_SIZE_SMALL)
 		return
-	add_fingerprint(usr)
 	if(href_list["close"])
 		usr << browse(null, "window=airlock")
 		if(usr.interactee==src)
 			usr.unset_interaction()
 			return
 
-	if((in_range(src, usr) && istype(src.loc, /turf)) && src.panel_open)
+	if((in_range(src, usr) && istype(src.loc, /turf)) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		usr.set_interaction(src)
 		if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out [src]'s wiring.</span>",
@@ -516,149 +509,163 @@
 					else
 						to_chat(usr, "The door bolt lights are already enabled!")
 
-	add_fingerprint(usr)
 	update_icon()
 	if(!nowindow)
 		updateUsrDialog()
 	return
 
-/obj/machinery/door/airlock/attackby(obj/item/C, mob/user)
-	//to_chat(world, text("airlock attackby src [] obj [] mob []", src, C, user))
-	if(istype(C, /obj/item/clothing/mask/cigarette))
-		if(isElectrified())
-			var/obj/item/clothing/mask/cigarette/L = C
-			L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
-			return
-	if(!issilicon(user))
-		if(isElectrified())
-			if(shock(user, 75))
-				return
-	add_fingerprint(user)
-	if((istype(C, /obj/item/tool/pickaxe/plasmacutter) && !operating && density && !user.action_busy))
-		var/obj/item/tool/pickaxe/plasmacutter/P = C
+/obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-		if(not_weldable)
-			to_chat(user, "<span class='warning'>\The [src] would require something a lot stronger than [P] to cut!</span>")
-			return
+	if(istype(I, /obj/item/clothing/mask/cigarette) && isElectrified())
+		var/obj/item/clothing/mask/cigarette/L = I
+		L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
 
-		if(!src.welded) //Cut apart the airlock if it isn't welded shut.
-			if(!(P.start_cut(user, src.name, src)))
-				return
-			if(do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-				P.cut_apart(user, src.name, src) //Airlocks cost as much as a wall to fully cut apart.
-				P.debris(loc, 1, 1, 0, 3) //Metal sheet, some rods and wires.
-				qdel(src)
-			return
+	else if(!issilicon(user) && isElectrified())
+		shock(user, 75)
 
-		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
-			return
-		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, src, BUSY_ICON_BUILD))
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Airlocks require much less power to unweld.
-			welded = FALSE
-			update_icon()
-		return
-
-
-	if(iswelder(C) && !operating && density)
-		var/obj/item/tool/weldingtool/W = C
+	else if(iswelder(I) && !operating && density)
+		var/obj/item/tool/weldingtool/W = I
 
 		if(not_weldable)
 			to_chat(user, "<span class='warning'>\The [src] would require something a lot stronger than [W] to weld!</span>")
 			return
 
-		if(W.remove_fuel(0,user))
-			user.visible_message("<span class='notice'>[user] starts working on \the [src] with [W].</span>", \
-			"<span class='notice'>You start working on \the [src] with [W].</span>", \
-			"<span class='notice'>You hear welding.</span>")
-			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) && density)
-				welded = !welded
-				update_icon()
-		return
-	else if(isscrewdriver(C))
+		if(user.a_intent != INTENT_HELP)
+			if(!W.tool_start_check(user, amount = 0))
+				return
+
+			user.visible_message("<span class='notice'>[user] is [welded ? "unwelding":"welding"] the airlock.</span>", \
+							"<span class='notice'>You begin [welded ? "unwelding":"welding"] the airlock...</span>", \
+							"<span class='italics'>You hear welding.</span>")
+
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+				return
+
+			welded = !welded
+			user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
+								"<span class='notice'>You [welded ? "weld the airlock shut":"unweld the airlock"].</span>")
+			update_icon()
+		else
+			if(obj_integrity >= max_integrity)
+				to_chat(user, "<span class='notice'>The airlock doesn't need repairing.</span>")
+				return
+
+			if(!W.tool_start_check(user, amount=0))
+				return
+
+			user.visible_message("<span class='notice'>[user] is welding the airlock.</span>", \
+							"<span class='notice'>You begin repairing the airlock...</span>", \
+							"<span class='italics'>You hear welding.</span>")
+
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+				return
+
+			obj_integrity = max_integrity
+			DISABLE_BITFIELD(machine_stat, BROKEN)
+			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
+								"<span class='notice'>You finish repairing the airlock.</span>")
+			update_icon()
+				
+
+	else if(isscrewdriver(I))
 		if(no_panel)
 			to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
 			return
 
-		panel_open = !panel_open
-		to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] [src]'s panel.</span>")
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] [src]'s panel.</span>")
 		update_icon()
-	else if(iswirecutter(C))
-		return src.attack_hand(user)
-	else if(ismultitool(C))
-		return src.attack_hand(user)
-	else if(istype(C, /obj/item/assembly/signaler))
-		return src.attack_hand(user)
-	else if(C.pry_capable)
-		if(C.pry_capable == IS_PRY_CAPABLE_CROWBAR && src.panel_open && (operating == -1 || (density && welded && operating != 1 && hasPower() && !src.locked)) )
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
-				"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
-				var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer)
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-					return FALSE
-			if(width > 1)
-				to_chat(user, "<span class='warning'>Large doors seem impossible to disassemble.</span>")
-				return
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
-			if(do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
-				to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
+		
+	else if(iswirecutter(I))
+		return attack_hand(user)
 
-				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
-				if (istype(da, /obj/structure/door_assembly/multi_tile))
-					da.setDir(dir)
+	else if(ismultitool(I))
+		return attack_hand(user)
 
-				da.anchored = TRUE
-				if(mineral)
-					da.glass = mineral
-				//else if(glass)
-				else if(glass && !da.glass)
-					da.glass = 1
-				da.state = 1
-				da.created_name = src.name
-				da.update_state()
+	else if(istype(I, /obj/item/assembly/signaler))
+		return attack_hand(user)
 
-				var/obj/item/circuitboard/airlock/ae
-				if(!electronics)
-					ae = new/obj/item/circuitboard/airlock( src.loc )
-					if(!src.req_access)
-						src.check_access()
-					if(src.req_access.len)
-						ae.conf_access = src.req_access
-					else if (src.req_one_access.len)
-						ae.conf_access = src.req_one_access
-						ae.one_access = 1
-				else
-					ae = electronics
-					if(electronics.is_general_board)
-						ae.set_general()
-					electronics = null
-					ae.loc = src.loc
-				if(operating == -1)
-					ae.icon_state = "door_electronics_smoked"
-					operating = 0
+	else if(!I.pry_capable)
+		return TRUE
 
-				qdel(src)
+	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
+
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		else if(hasPower() && C.pry_capable != IS_PRY_CAPABLE_FORCE)
-			to_chat(user, "<span class='warning'>The airlock's motors resist your efforts to force it.</span>")
-		else if(locked)
-			to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced.</span>")
-		else if(welded)
-			to_chat(user, "<span class='warning'>The airlock is welded shut.</span>")
-		else if(C.pry_capable == IS_PRY_CAPABLE_FORCE)
-			return FALSE //handled by the item's afterattack
-		else if(!operating )
-			spawn(0)
-				if(density)
-					open(1)
-				else
-					close(1)
-		return TRUE //no afterattack call
-	else
-		return ..()
+		if(width > 1)
+			to_chat(user, "<span class='warning'>Large doors seem impossible to disassemble.</span>")
+			return
+
+		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
+		
+		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
+
+		var/obj/structure/door_assembly/DA = new assembly_type(loc)
+		if(istype(DA, /obj/structure/door_assembly/multi_tile))
+			DA.setDir(dir)
+			DA.anchored = TRUE
+
+		if(mineral)
+			DA.glass = mineral
+
+		else if(glass && !DA.glass)
+			DA.glass = TRUE
+
+		DA.state = 1
+		DA.created_name = name
+		DA.update_state()
+
+		var/obj/item/circuitboard/airlock/AE
+		if(!electronics)
+			AE = new(loc)
+			if(!req_access)
+				check_access()
+			if(length(req_access))
+				AE.conf_access = req_access
+			else if(length(req_one_access))
+				AE.conf_access = req_one_access
+				AE.one_access = TRUE
+		else
+			AE = electronics
+			if(electronics.is_general_board)
+				AE.set_general()
+			AE.forceMove(loc)
+			electronics = null
+
+		if(operating == -1)
+			AE.icon_state = "door_electronics_smoked"
+			operating = FALSE
+		qdel(src)
+
+	else if(hasPower() && I.pry_capable != IS_PRY_CAPABLE_FORCE)
+		to_chat(user, "<span class='warning'>The airlock's motors resist your efforts to force it.</span>")
+
+	else if(locked)
+		to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced.</span>")
+
+	else if(welded)
+		to_chat(user, "<span class='warning'>The airlock is welded shut.</span>")
+
+	else if(I.pry_capable == IS_PRY_CAPABLE_FORCE)
+		return FALSE //handled by the item's afterattack
+
+	else if(!operating)
+		if(density)
+			open(1)
+		else
+			close(1)
+
+	return TRUE
 
 
 ///obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
@@ -791,7 +798,6 @@
 				message = "temp shocked for [secondsElectrified] seconds"
 		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])"))
 		log_combat(user, src, message)
-		add_hiddenprint(user)
 
 
 /obj/machinery/door/airlock/proc/electrified_loop()
@@ -808,3 +814,135 @@
 	else
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT)
 	updateDialog()
+
+
+/obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(welded)
+		to_chat(user, "<span class='warning'>The airlock has been welded shut.</span>")
+		return
+
+	if(locked)
+		to_chat(user, "<span class='warning'>The door bolts are down.</span>")
+		return
+
+	if(!density)
+		close()
+	else
+		open()
+
+
+/obj/machinery/door/airlock/proc/shock_restore(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	if(isElectrified())
+		set_electrified(MACHINE_NOT_ELECTRIFIED, user)
+
+
+/obj/machinery/door/airlock/proc/shock_temp(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME, user)
+
+
+/obj/machinery/door/airlock/proc/shock_perm(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	set_electrified(MACHINE_ELECTRIFIED_PERMANENT, user)
+
+
+/obj/machinery/door/airlock/proc/emergency_on(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(emergency)
+		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")		
+		return
+
+	emergency = TRUE
+	update_icon()
+
+
+
+/obj/machinery/door/airlock/proc/emergency_off(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(!emergency)
+		to_chat(user, "<span class='warning'>Emergency access is already disabled.</span>")
+		return
+
+	emergency = FALSE
+	update_icon()
+
+
+/obj/machinery/door/airlock/proc/bolt_raise(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_BOLTS))
+		to_chat(user, "<span class='warning'>The door bolt wire is cut.</span>")
+		return
+
+	if(!locked)
+		to_chat(user, "<span class='warning'>The door bolts are already up.</span>")
+		return
+
+	if(!hasPower())
+		to_chat(user, "<span class='warning'>Cannot raise door bolts due to power failure.</span>")
+		return
+
+	unbolt()
+		
+
+
+/obj/machinery/door/airlock/proc/bolt_drop(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_BOLTS))
+		to_chat(user, "<span class='warning'>The door bolt wire is cut.</span>")
+		return
+
+	bolt()
+
+
+/obj/machinery/door/airlock/proc/bolt()
+	if(locked)
+		return
+
+	locked = TRUE
+	playsound(src, 'sound/machines/boltsdown.ogg', 30, 0, 3)
+	audible_message("<span class='notice'>You hear a click from the bottom of the door.</span>", null,  1)
+	update_icon()
+
+
+/obj/machinery/door/airlock/proc/unbolt()
+	if(!locked)
+		return
+
+	locked = FALSE
+	playsound(src, 'sound/machines/boltsup.ogg', 30, 0, 3)
+	audible_message("<span class='notice'>You hear a click from the bottom of the door.</span>", null,  1)
+	update_icon()
+
+
+/obj/machinery/door/airlock/proc/weld_checks()
+	return !operating && density

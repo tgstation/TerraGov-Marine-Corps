@@ -18,6 +18,7 @@
 	action_icon_state = "regurgitate"
 	mechanics_text = "Vomit whatever you have devoured."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
+	keybind_signal = COMSIG_XENOABILITY_REGURGITATE
 
 /datum/action/xeno_action/regurgitate/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -31,13 +32,13 @@
 
 /datum/action/xeno_action/regurgitate/action_activate()
 	var/mob/living/carbon/C = owner
-	for(var/mob/M in C.stomach_contents)
-		C.stomach_contents.Remove(M)
-		if(M.loc != C)
+	for(var/mob/living/L in C.stomach_contents)
+		C.stomach_contents.Remove(L)
+		if(L.loc != C)
 			continue
-		M.forceMove(C.loc)
-		M.SetKnockeddown(1)
-		M.adjust_blindness(-1)
+		L.forceMove(C.loc)
+		L.SetKnockeddown(1)
+		L.adjust_blindness(-1)
 
 	C.visible_message("<span class='xenowarning'>\The [C] hurls out the contents of their stomach!</span>", \
 	"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
@@ -51,6 +52,7 @@
 	action_icon_state = "plant_weeds"
 	plasma_cost = 75
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
+	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
@@ -65,8 +67,7 @@
 
 	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
-	var/obj/effect/alien/weeds/node/N = new (owner.loc, src, owner)
-	owner.transfer_fingerprints_to(N)
+	new /obj/effect/alien/weeds/node (owner.loc, src, owner)
 	playsound(owner.loc, "alien_resin_build", 25)
 	round_statistics.weeds_planted++
 	return succeed_activate()
@@ -76,6 +77,7 @@
 	name = "Choose Resin Structure"
 	action_icon_state = "resin wall"
 	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin,
 		/obj/structure/bed/nest,
@@ -83,14 +85,14 @@
 		/obj/structure/mineral_door/resin)
 
 /datum/action/xeno_action/choose_resin/update_button_icon()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/atom/A = X.selected_resin
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
 	return ..()
 
 /datum/action/xeno_action/choose_resin/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/i = buildable_structures.Find(X.selected_resin)
 	if(length(buildable_structures) == i)
 		X.selected_resin = buildable_structures[1]
@@ -108,13 +110,14 @@
 	mechanics_text = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	ability_name = "secrete resin"
 	plasma_cost = 75
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
-	var/mob/living/carbon/Xenomorph/X = owner
-	var/mob/living/carbon/Xenomorph/blocker = locate() in T
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != X && blocker.stat != DEAD)
 		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
 		return fail_activate()
@@ -134,7 +137,7 @@
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
 		var/wall_support = FALSE
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinals)
 			var/turf/TS = get_step(T,D)
 			if(TS)
 				if(TS.density)
@@ -171,7 +174,7 @@
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
 		var/wall_support = FALSE
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinals)
 			var/turf/TS = get_step(T,D)
 			if(TS)
 				if(TS.density)
@@ -195,8 +198,9 @@
 		new_resin = T
 	else
 		new_resin = new X.selected_resin(T)
-	new_resin.add_hiddenprint(X) //so admins know who placed it
-	succeed_activate()
+
+	if(new_resin)
+		succeed_activate()
 
 
 /datum/action/xeno_action/toggle_pheromones
@@ -210,7 +214,7 @@
 	return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
 
 /datum/action/xeno_action/toggle_pheromones/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(PheromonesOpen)
 		PheromonesOpen = FALSE
 		to_chat(X, "<span class ='xenonotice'>You collapse the pheromone button choices.</span>")
@@ -232,7 +236,7 @@
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
 
 /datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!aura_type)
 		return FALSE
 
@@ -259,18 +263,21 @@
 	action_icon_state = "emit_recovery"
 	mechanics_text = "Increases healing for yourself and nearby teammates."
 	aura_type = "recovery"
+	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones"
 	action_icon_state = "emit_warding"
 	mechanics_text = "Increases armor for yourself and nearby teammates."
 	aura_type = "warding"
+	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
 
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones"
 	action_icon_state = "emit_frenzy"
 	mechanics_text = "Increases damage for yourself and nearby teammates."
 	aura_type = "frenzy"
+	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
 
 /datum/action/xeno_action/activable/transfer_plasma
@@ -281,6 +288,7 @@
 	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
 	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
+	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
 
 /datum/action/xeno_action/activable/transfer_plasma/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -290,7 +298,7 @@
 	if(!isxeno(A) || A == owner || !owner.issamexenohive(A))
 		return FALSE
 
-	var/mob/living/carbon/Xenomorph/target = A
+	var/mob/living/carbon/xenomorph/target = A
 
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
@@ -298,8 +306,8 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
-	var/mob/living/carbon/Xenomorph/target = A
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/target = A
 
 	to_chat(X, "<span class='notice'>You start focusing your plasma towards [target].</span>")
 	if(!do_after(X, transfer_delay, TRUE, null, BUSY_ICON_FRIENDLY))
@@ -329,7 +337,8 @@
 	mechanics_text = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	ability_name = "larval growth sting"
 	plasma_cost = 150
-	cooldown_timer = XENO_LARVAL_GROWTH_COOLDOWN
+	cooldown_timer = 12 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -350,20 +359,20 @@
 		return FALSE
 
 	if(!owner.Adjacent(A))
-		var/mob/living/carbon/Xenomorph/X = owner
+		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay))
 			to_chat(X, "<span class='warning'>You can't reach this target!</span>")
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 
 	var/mob/living/carbon/C = A
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+	if (isnestedhost(C))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/larval_growth_sting/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	succeed_activate()
 
@@ -381,14 +390,15 @@
 	action_icon_state = "shift_spit_neurotoxin"
 	mechanics_text = "Switch from neurotoxin to acid spit."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
+	keybind_signal = COMSIG_XENOABILITY_SHIFT_SPITS
 
 /datum/action/xeno_action/shift_spits/update_button_icon()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
 
 /datum/action/xeno_action/shift_spits/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
 		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
 			if(i == X.xeno_caste.spit_types.len)
@@ -401,12 +411,13 @@
 
 // Corrosive Acid
 /datum/action/xeno_action/activable/corrosive_acid
-	name = "Corrosive Acid (100)"
+	name = "Corrosive Acid"
 	action_icon_state = "corrosive_acid"
 	mechanics_text = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	ability_name = "corrosive acid"
 	plasma_cost = 100
 	var/acid_type = /obj/effect/xenomorph/acid
+	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
 
 /datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE)
 	. = ..()
@@ -451,7 +462,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
@@ -461,12 +472,12 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/corrosive_acid/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	X.face_atom(A)
 
@@ -541,7 +552,6 @@
 		return fail_activate()
 
 	newacid.name = newacid.name + " (on [A.name])" //Identify what the acid is on
-	newacid.add_hiddenprint(X)
 
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")
@@ -568,6 +578,9 @@
 		return
 	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
 	qdel(current_acid)
+
+/datum/action/xeno_action/activable/spray_acid
+	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
 
 /datum/action/xeno_action/activable/spray_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -602,19 +615,20 @@
 	action_icon_state = "xeno_spit"
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
+	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
 			to_chat(src, "<span class='warning'>You need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/xeno_spit/get_cooldown()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	return (X.xeno_caste.spit_delay + X.ammo?.added_spit_delay)
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
@@ -622,7 +636,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	var/turf/current_turf = get_turf(owner)
 
@@ -650,9 +664,10 @@
 	name = "Hide"
 	action_icon_state = "xenohide"
 	mechanics_text = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
+	keybind_signal = COMSIG_XENOABILITY_HIDE
 
 /datum/action/xeno_action/xenohide/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
 		to_chat(X, "<span class='notice'>You are now hiding.</span>")
@@ -667,8 +682,9 @@
 	action_icon_state = "neuro_sting"
 	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	ability_name = "neurotoxin sting"
-	cooldown_timer = XENO_NEURO_STING_COOLDOWN
+	cooldown_timer = 12 SECONDS
 	plasma_cost = 150
+	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -680,13 +696,13 @@
 			to_chat(owner, "<span class='warning'>Your sting won't affect this target!</span>")
 		return FALSE
 	if(!owner.Adjacent(A))
-		var/mob/living/carbon/Xenomorph/X = owner
+		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
 			to_chat(X, "<span class='warning'>You can't reach this target!</span>")
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 	var/mob/living/carbon/C = A
-	if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
+	if (isnestedhost(C))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return FALSE
@@ -697,7 +713,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	succeed_activate()
 
@@ -709,7 +725,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-/mob/living/carbon/Xenomorph/proc/add_abilities()
+/mob/living/carbon/xenomorph/proc/add_abilities()
 	if(actions && actions.len)
 		for(var/action_path in actions)
 			if(ispath(action_path))

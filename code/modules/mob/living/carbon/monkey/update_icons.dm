@@ -38,10 +38,10 @@
 /mob/living/carbon/monkey/update_inv_wear_mask()
 	remove_overlay(M_MASK_LAYER)
 	if(wear_mask)
-		if(client && hud_used && hud_used.hud_shown && hud_used.inventory_shown)
+		if(client && hud_used?.hud_shown && hud_used?.inventory_shown)
 			wear_mask.screen_loc = ui_monkey_mask
 			client.screen += wear_mask
-		overlays_standing[M_MASK_LAYER]	= image("icon" = 'icons/mob/monkey.dmi', "icon_state" = "[wear_mask.icon_state]", "layer" =-M_MASK_LAYER)
+		overlays_standing[M_MASK_LAYER] = image("icon" = 'icons/mob/mask.dmi', "icon_state" = "[wear_mask.icon_state]", "layer" =-M_MASK_LAYER)
 		apply_overlay(M_MASK_LAYER)
 
 
@@ -54,7 +54,7 @@
 		var/t_state = r_hand.item_state
 		if(!t_state)	t_state = r_hand.icon_state
 		overlays_standing[M_R_HAND_LAYER]	= image("icon" = r_hand.sprite_sheet_id?'icons/mob/items_righthand_1.dmi':'icons/mob/items_righthand_0.dmi', "icon_state" = t_state, "layer" =-M_R_HAND_LAYER)
-		apply_overlay(M_MASK_LAYER)
+		apply_overlay(M_R_HAND_LAYER)
 
 
 /mob/living/carbon/monkey/update_inv_l_hand()

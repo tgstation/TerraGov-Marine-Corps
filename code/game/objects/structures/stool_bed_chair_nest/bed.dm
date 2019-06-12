@@ -62,7 +62,6 @@ obj/structure/bed/Destroy()
 	update_icon()
 	if(buckling_y)
 		buckled_bodybag.pixel_y = buckling_y
-	add_fingerprint(user)
 
 /obj/structure/bed/unbuckle()
 	if(buckled_bodybag)
@@ -77,7 +76,6 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/manual_unbuckle(mob/user)
 	if(buckled_bodybag)
 		unbuckle()
-		add_fingerprint(user)
 		return TRUE
 	else
 		. = ..()
@@ -98,7 +96,6 @@ obj/structure/bed/Destroy()
 	if(!(direct & (direct - 1))) //Not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled bodybag's movement.
 		if(!buckled_bodybag.Move(NewLoc, direct))
 			loc = buckled_bodybag.loc
-			last_move_dir = buckled_bodybag.last_move_dir
 			return 0
 	return 1
 
@@ -153,7 +150,7 @@ obj/structure/bed/Destroy()
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
 
-/obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(src, hit_bed_sound, 25, 1)
@@ -161,30 +158,33 @@ obj/structure/bed/Destroy()
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 		unbuckle()
 		destroy_structure()
-		if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-			M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
 	else attack_hand(M)
 
-/obj/structure/bed/attackby(obj/item/W, mob/user)
-	if(iswrench(W))
-		if(buildstacktype)
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-			new buildstacktype(loc, buildstackamount)
-			qdel(src)
+/obj/structure/bed/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	else if(istype(W, /obj/item/grab) && !buckled_mob)
-		var/obj/item/grab/G = W
-		if(ismob(G.grabbed_thing))
-			var/mob/M = G.grabbed_thing
-			to_chat(user, "<span class='notice'>You place [M] on [src].</span>")
-			M.forceMove(loc)
+	if(iswrench(I))
+		if(!buildstacktype)
+			return
+
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		new buildstacktype(loc, buildstackamount)
+		qdel(src)
+
+	else if(istype(I, /obj/item/grab) && !buckled_mob)
+		var/obj/item/grab/G = I
+		if(!ismob(G.grabbed_thing))
+			return
+
+		var/mob/M = G.grabbed_thing
+		to_chat(user, "<span class='notice'>You place [M] on [src].</span>")
+		M.forceMove(loc)
 		return TRUE
 
-	else
-		. = ..()
 
 /obj/structure/bed/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return TRUE
 	. = ..()
 
@@ -211,16 +211,18 @@ obj/structure/bed/Destroy()
 	accepts_bodybag = TRUE
 	base_bed_icon = "roller"
 
-/obj/structure/bed/roller/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/roller_holder) && !buckled_bodybag)
+/obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/roller_holder) && !buckled_bodybag)
 		if(buckled_mob || buckled_bodybag)
 			manual_unbuckle()
-		else
-			visible_message("<span class='notice'>[user] collapses [name].</span>")
-			new/obj/item/roller(get_turf(src))
-			qdel(src)
-		return
-	. = ..()
+			return
+
+		visible_message("<span class='notice'>[user] collapses [name].</span>")
+		new /obj/item/roller(loc)
+		qdel(src)
+
 
 /obj/item/roller
 	name = "roller bed"
@@ -242,19 +244,21 @@ obj/structure/bed/Destroy()
 		if(!T.density)
 			deploy_roller(user, target)
 
-/obj/item/roller/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
-		var/obj/item/roller_holder/RH = W
-		if(!RH.held)
-			to_chat(user, "<span class='notice'>You pick up [src].</span>")
-			loc = RH
-			RH.held = src
-			return
+/obj/item/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()
+
+	if(istype(I, /obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
+		var/obj/item/roller_holder/RH = I
+		if(RH.held)
+			return
+
+		to_chat(user, "<span class='notice'>You pick up [src].</span>")
+		forceMove(RH)
+		RH.held = src
+
 
 /obj/item/roller/proc/deploy_roller(mob/user, atom/location)
 	var/obj/structure/bed/roller/R = new rollertype(location)
-	R.add_fingerprint(user)
 	user.temporarilyRemoveItemFromInventory(src)
 	if(istype(R,/obj/structure/bed/medevac_stretcher)) //We need to preserve key variables like linked beacons and cooldowns.
 		var/obj/item/roller/medevac/I = src
@@ -287,7 +291,6 @@ obj/structure/bed/Destroy()
 
 	var/obj/structure/bed/roller/R = new(user.loc)
 	to_chat(user, "<span class='notice'>You deploy [R].</span>")
-	R.add_fingerprint(user)
 	qdel(held)
 	held = null
 
@@ -318,7 +321,7 @@ var/global/list/activated_medevac_stretchers = list()
 	. = ..()
 	radio = new(src)
 
-/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/M)
 	unbuckle()
 
 /obj/structure/bed/medevac_stretcher/Destroy()
@@ -479,24 +482,25 @@ var/global/list/activated_medevac_stretchers = list()
 	linked_beacon.medvac_alert(M) //We warn med channel about the mob, not what was teleported.
 	last_teleport = world.time + MEDEVAC_COOLDOWN
 
-/obj/structure/bed/medevac_stretcher/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/medevac_beacon))
-		var/obj/item/medevac_beacon/B = W
+/obj/structure/bed/medevac_stretcher/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/medevac_beacon))
+		var/obj/item/medevac_beacon/B = I
 		linked_beacon = B
 		B.linked_bed = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
-		return
-	else if(istype(W, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
+
+	else if(istype(I, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
 		var/mob/living/occupant
 		if(buckled_mob)
 			occupant = buckled_mob
 		else if(buckled_bodybag)
 			occupant = locate(/mob/living) in buckled_bodybag.contents
-		var/obj/item/healthanalyzer/J = W
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
-		return
-	return ..()
+
 
 /obj/structure/bed/medevac_stretcher/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
@@ -544,15 +548,15 @@ var/global/list/activated_medevac_stretchers = list()
 	to_chat(user, "<span class='notice'>[details.Join(" ")]</span>")
 
 
-/obj/item/roller/medevac/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/medevac_beacon))
-		var/obj/item/medevac_beacon/B = W
+/obj/item/roller/medevac/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/medevac_beacon))
+		var/obj/item/medevac_beacon/B = I
 		linked_beacon = B
 		B.linked_bed = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
-		return
-	return ..()
 
 /obj/item/medevac_beacon
 	name = "medevac beacon"
@@ -622,14 +626,10 @@ var/global/list/activated_medevac_stretchers = list()
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
 	return ..()
 
-/obj/item/medevac_beacon/attackby(var/obj/item/O as obj, mob/user as mob) //Corpsmen can lock their beacons.
-	if(!ishuman(user))
-		return ..()
+/obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
+	. = ..()
 
-	if(isnull(O))
-	 return
-
-	if(istype(O, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(!allowed(user))
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
@@ -637,18 +637,17 @@ var/global/list/activated_medevac_stretchers = list()
 		locked = !locked
 		user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s interface.</span>",
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
-	else if(istype(O,/obj/item/roller/medevac))
+	else if(istype(I, /obj/item/roller/medevac))
 		if(locked)
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 			return
-		var/obj/item/roller/medevac/R = O
+
+		var/obj/item/roller/medevac/R = I
 		linked_bed = R
 		R.linked_beacon = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
-		return
-	return ..()
 
 
 /obj/item/medevac_beacon/proc/check_power()
@@ -657,13 +656,14 @@ var/global/list/activated_medevac_stretchers = list()
 		return FALSE
 	return(A.master.powered(1))
 
-/obj/structure/bed/roller/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/roller_holder) && !buckled_bodybag)
+/obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/roller_holder) && !buckled_bodybag)
 		if(buckled_mob || buckled_bodybag)
 			manual_unbuckle()
-		else
-			visible_message("<span class='notice'>[user] collapses [name].</span>")
-			new/obj/item/roller(get_turf(src))
-			qdel(src)
-		return
-	. = ..()
+			return
+
+		visible_message("<span class='notice'>[user] collapses [name].</span>")
+		new /obj/item/roller(loc)
+		qdel(src)

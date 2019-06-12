@@ -128,9 +128,17 @@ SUBSYSTEM_DEF(job)
 
 	initial_players_to_assign = length(unassigned)
 
-	JobDebug("DO, Len: [unassigned.len]")
+	JobDebug("DO, Len: [length(unassigned)]")
 	if(length(unassigned) == 0)
 		return FALSE
+
+	//Jobs will use the default access unless the population is below a certain level.
+	var/mat = CONFIG_GET(number/minimal_access_threshold)
+	if(mat)
+		if(length(unassigned) > mat)
+			CONFIG_SET(flag/jobs_have_minimal_access, FALSE)
+		else
+			CONFIG_SET(flag/jobs_have_minimal_access, TRUE)
 
 	//Shuffle players and jobs
 	unassigned = shuffle(unassigned)
@@ -144,14 +152,16 @@ SUBSYSTEM_DEF(job)
 
 	// Loop through all levels from high to low
 	var/list/shuffledoccupations = shuffle(occupations)
-	for(var/level = JOBS_PRIORITY_HIGH to JOBS_PRIORITY_LOW)
+	var/list/levels = list(JOBS_PRIORITY_HIGH, JOBS_PRIORITY_MEDIUM, JOBS_PRIORITY_LOW)
+
+	for(var/level in levels)
 		// Loop through all unassigned players
 		for(var/mob/new_player/player in unassigned)
 
 			// Loop through all jobs
 			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
 				// If the player wants that job on this level, then try give it to him.
-				if(player.client.prefs.GetJobDepartment(job, level) & job.prefflag)
+				if(player.client.prefs.job_preferences[job.title] == level)
 					// If the job isn't filled
 					if((job.current_positions < job.total_positions) || job.total_positions == -1)
 						JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
@@ -170,7 +180,7 @@ SUBSYSTEM_DEF(job)
 
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/new_player/player)
-	if(player.client.prefs.alternate_option == BE_MARINE)
+	if(player.client.prefs.alternate_option == BE_OVERFLOW)
 		if(!AssignRole(player, SSjob.overflow_role))
 			RejectPlayer(player)
 	else if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
@@ -253,6 +263,9 @@ SUBSYSTEM_DEF(job)
 		job.radio_help_message(M)
 		if(job.req_admin_notify)
 			to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
+		if(CONFIG_GET(number/minimal_access_threshold))
+			to_chat(M, "<span class='notice'><b>As this ship was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "skeleton crew, additional access may" : "full crew, only your job's necessities"] have been added to your ID card.</b></span>")
+	
 	if(job && L)
 		job.after_spawn(L, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
 

@@ -46,21 +46,19 @@
 		num_flares++
 	return TRUE
 
-/obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user)
-	if(istype(I,/obj/item/explosive/grenade/flare))
+/obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade/flare))
 		var/obj/item/explosive/grenade/flare = I
 		if(num_flares >= max_flares)
 			to_chat(user, "It's already full.")
 			return
 		num_flares++
 		user.temporarilyRemoveItemFromInventory(flare)
-		sleep(-1)
 		qdel(flare)
 		to_chat(user, "<span class='notice'>You insert the flare.</span>")
 		update_icon()
-		return
-
-	return ..()
+	else
+		return ..()
 
 /obj/item/weapon/gun/flare/unload(mob/user)
 	if(num_flares)
@@ -74,6 +72,8 @@
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
+	return TRUE
+
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -105,20 +105,22 @@
 	if(user == loc)
 		to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
-/obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/weapon/gun/syringe/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_container/syringe))
 		var/obj/item/reagent_container/syringe/S = I
-		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
-			if(syringes.len < max_syringes)
-				user.transferItemToLoc(I, src)
-				syringes += I
-				update_icon()
-				to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
-				to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
-			else
-				to_chat(usr, "<span class='warning'>[src] cannot hold more syringes.</span>")
-		else
-			to_chat(usr, "<span class='warning'>This syringe is broken!</span>")
+		if(S.mode == 2)
+			to_chat(user, "<span class='warning'>This syringe is broken!</span>")
+			return
+
+		if(length(syringes) >= max_syringes)
+			to_chat(user, "<span class='warning'>[src] cannot hold more syringes.</span>")
+			return
+
+		user.transferItemToLoc(I, src)
+		syringes += I
+		update_icon()
+		to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
+		to_chat(user, "<span class='notice'>[length(syringes)] / [max_syringes] syringes.</span>")
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -211,7 +213,7 @@
 	desc = ""
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "null"
-	anchored = 1
+	anchored = TRUE
 	density = 0
 
 /obj/effect/syringe_gun_dummy/Initialize()

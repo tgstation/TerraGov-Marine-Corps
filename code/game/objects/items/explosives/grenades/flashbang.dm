@@ -23,7 +23,7 @@
 
 
 	for(var/mob/living/carbon/M in hear(7, T))
-		if(!istype(M,/mob/living/carbon/Xenomorph))
+		if(!istype(M,/mob/living/carbon/xenomorph))
 			bang(T, M)
 
 
@@ -48,8 +48,6 @@
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_ear, /obj/item/clothing/ears/earmuffs))
 				ear_safety += 2
-			if(HULK in H.mutations)
-				ear_safety += 1
 			if(istype(H.head, /obj/item/clothing/head/helmet/riot))
 				ear_safety += 2
 

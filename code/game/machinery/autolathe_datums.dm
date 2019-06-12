@@ -198,22 +198,7 @@
 	name = "syringe"
 	path = /obj/item/reagent_container/syringe
 	category = "Medical"
-/*
-/datum/autolathe/recipe/shotgun_blanks
-	name = "ammunition (shotgun, blanks)"
-	path = /obj/item/ammo_casing/shotgun/blank
-	category = "Arms and Ammunition"
 
-/datum/autolathe/recipe/shotgun_beanbag
-	name = "ammunition (shotgun, beanbag)"
-	path = /obj/item/ammo_casing/shotgun/beanbag
-	category = "Arms and Ammunition"
-
-/datum/autolathe/recipe/magazine_rubber
-	name = "ammunition (rubber)"
-	path = /obj/item/ammo_magazine/c45r
-	category = "Arms and Ammunition"
-*/
 /datum/autolathe/recipe/consolescreen
 	name = "console screen"
 	path = /obj/item/stock_parts/console_screen
@@ -259,50 +244,9 @@
 	path = /obj/item/ashtray/glass
 	category = "General"
 
-/datum/autolathe/recipe/camera_assembly
-	name = "camera assembly"
-	path = /obj/item/frame/camera
-	category = "Engineering"
-/*
-/datum/autolathe/recipe/flamethrower
-	name = "flamethrower"
-	path = /obj/item/weapon/gun/flamer
-	hidden = 1
-	category = "Arms and Ammunition"
-
-/datum/autolathe/recipe/magazine_revolver_1
-	name = "ammunition (.357)"
-	path = /obj/item/ammo_magazine/a357
-	hidden = 1
-	category = "Arms and Ammunition"
-
-/datum/autolathe/recipe/magazine_revolver_2
-	name = "ammunition (.45)"
-	path = /obj/item/ammo_magazine/c45m
-	hidden = 1
-	category = "Arms and Ammunition"
-
-/datum/autolathe/recipe/shotgun
-	name = "ammunition (shell, shotgun)"
-	path = /obj/item/ammo_casing/shotgun
-	hidden = 1
-	category = "Arms and Ammunition"
-
-/datum/autolathe/recipe/shotgun_dart
-	name = "ammunition (dart, shotgun)"
-	path = /obj/item/ammo_casing/shotgun/dart
-	hidden = 1
-	category = "Arms and Ammunition"
-
-/datum/autolathe/recipe/rcd
-	name = "rapid construction device"
-	path = /obj/item/rcd
-	hidden = 1
-	category = "Engineering"
-*/
 /datum/autolathe/recipe/electropack
 	name = "electropack"
-	path = /obj/item/radio/electropack
+	path = /obj/item/electropack
 	hidden = 1
 	category = "Devices and Components"
 
@@ -317,3 +261,9 @@
 	path = /obj/item/handcuffs
 	hidden = 1
 	category = "General"
+
+
+/datum/autolathe/recipe/camera_assembly
+	name = "camera assembly"
+	path = /obj/item/frame/camera
+	category = "Devices and Components"

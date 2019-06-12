@@ -3,8 +3,8 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "labcage1"
 	desc = "A glass lab container for storing interesting creatures."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	max_integrity = 30
 	var/occupied = 1
@@ -58,11 +58,12 @@
 	return
 
 
-/obj/structure/lamarr/attackby(obj/item/W as obj, mob/user as mob)
-	src.obj_integrity -= W.force
-	src.healthcheck()
-	..()
-	return
+/obj/structure/lamarr/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	obj_integrity -= I.force
+	healthcheck()
+
 
 /obj/structure/lamarr/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

@@ -2,8 +2,8 @@
 	name = "photocopier"
 	icon = 'icons/obj/machines/library.dmi'
 	icon_state = "bigscanner"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200
@@ -156,7 +156,7 @@
 			else
 				to_chat(user, "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
 		else if(iswrench(O))
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			anchored = !anchored
 			to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 		return

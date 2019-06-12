@@ -7,12 +7,12 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morgue1"
 	dir = EAST
-	density = 1
+	density = TRUE
 	var/obj/structure/morgue_tray/connected = null
 	var/morgue_type = "morgue"
 	var/tray_path = /obj/structure/morgue_tray
 	var/morgue_open = 0
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/morgue/New()
 	..()
@@ -65,7 +65,6 @@
 			return FALSE
 
 /obj/structure/morgue/proc/toggle_morgue(mob/user)
-	add_fingerprint(user)
 	if(!connected) return
 	if(morgue_open)
 		for(var/atom/movable/A in connected.loc)
@@ -81,24 +80,26 @@
 			connected.loc = src
 			return
 	morgue_open = !morgue_open
-	playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	update_icon()
 
 
-/obj/structure/morgue/attackby(obj/item/P, mob/user)
-	if (istype(P, /obj/item/tool/pen))
-		var/t = copytext(stripped_input(user, "What would you like the label to be?", name, null),1,MAX_MESSAGE_LEN)
-		if (user.get_active_held_item() != P)
+/obj/structure/morgue/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen))
+		var/t = copytext(stripped_input(user, "What would you like the label to be?", name, null), 1, MAX_MESSAGE_LEN)
+		if(!t)
 			return
-		if ((!in_range(src, user) && src.loc != user))
+
+		if(user.get_active_held_item() != I)
 			return
-		if (t)
-			name = "[initial(name)]- '[t]'"
-		else
-			name = initial(name)
-		add_fingerprint(user)
-	else
-		. = ..()
+
+		if((!in_range(src, user) && loc != user))
+			return
+
+		name = "[initial(name)] - '[t]'"
+
 
 /obj/structure/morgue/relaymove(mob/user)
 	if(user.incapacitated(TRUE))
@@ -115,10 +116,10 @@
 	desc = "Apply corpse before closing."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
-	density = 1
+	density = TRUE
 	layer = OBJ_LAYER
 	var/obj/structure/morgue/linked_morgue = null
-	anchored = 1
+	anchored = TRUE
 	throwpass = 1
 
 /obj/structure/morgue_tray/New(loc, obj/structure/morgue/morgue_source)
