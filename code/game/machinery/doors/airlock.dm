@@ -517,79 +517,87 @@
 /obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/clothing/mask/cigarette) && isElectrified())
-		var/obj/item/clothing/mask/cigarette/L = I
-		L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
-
-	else if(!issilicon(user) && isElectrified())
+	if(!issilicon(user) && isElectrified())
+		if(istype(I, /obj/item/clothing/mask/cigarette))
+			var/obj/item/clothing/mask/cigarette/L = I
+			L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
 		shock(user, 75)
-
-	else if(iswelder(I) && !operating && density)
-		var/obj/item/tool/weldingtool/W = I
-
-		if(not_weldable)
-			to_chat(user, "<span class='warning'>\The [src] would require something a lot stronger than [W] to weld!</span>")
-			return
-
-		if(user.a_intent != INTENT_HELP)
-			if(!W.tool_start_check(user, amount = 0))
-				return
-
-			user.visible_message("<span class='notice'>[user] is [welded ? "unwelding":"welding"] the airlock.</span>", \
-							"<span class='notice'>You begin [welded ? "unwelding":"welding"] the airlock...</span>", \
-							"<span class='italics'>You hear welding.</span>")
-
-			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
-				return
-
-			welded = !welded
-			user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
-								"<span class='notice'>You [welded ? "weld the airlock shut":"unweld the airlock"].</span>")
-			update_icon()
-		else
-			if(obj_integrity >= max_integrity)
-				to_chat(user, "<span class='notice'>The airlock doesn't need repairing.</span>")
-				return
-
-			if(!W.tool_start_check(user, amount=0))
-				return
-
-			user.visible_message("<span class='notice'>[user] is welding the airlock.</span>", \
-							"<span class='notice'>You begin repairing the airlock...</span>", \
-							"<span class='italics'>You hear welding.</span>")
-
-			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
-				return
-
-			obj_integrity = max_integrity
-			DISABLE_BITFIELD(machine_stat, BROKEN)
-			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
-								"<span class='notice'>You finish repairing the airlock.</span>")
-			update_icon()
-				
-
-	else if(isscrewdriver(I))
-		if(no_panel)
-			to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
-			return
-
-		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] [src]'s panel.</span>")
-		update_icon()
-		
-	else if(iswirecutter(I))
-		return attack_hand(user)
-
-	else if(ismultitool(I))
-		return attack_hand(user)
 
 	else if(istype(I, /obj/item/assembly/signaler))
 		return attack_hand(user)
 
-	else if(!I.pry_capable)
-		return TRUE
 
-	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
+	return TRUE
+
+
+/obj/machinery/door/airlock/welder_act(mob/living/user, obj/item/I)
+	var/obj/item/tool/weldingtool/W = I
+
+	if(not_weldable)
+		to_chat(user, "<span class='warning'>\The [src] would require something a lot stronger than [W] to weld!</span>")
+		return
+
+	if(user.a_intent != INTENT_HELP)
+		if(!W.tool_start_check(user, amount = 0))
+			return
+
+		user.visible_message("<span class='notice'>[user] is [welded ? "unwelding":"welding"] the airlock.</span>", \
+						"<span class='notice'>You begin [welded ? "unwelding":"welding"] the airlock...</span>", \
+						"<span class='italics'>You hear welding.</span>")
+
+		if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+			return
+
+		welded = !welded
+		user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
+							"<span class='notice'>You [welded ? "weld the airlock shut":"unweld the airlock"].</span>")
+		update_icon()
+	else
+		if(obj_integrity >= max_integrity)
+			to_chat(user, "<span class='notice'>The airlock doesn't need repairing.</span>")
+			return
+
+		if(!W.tool_start_check(user, amount=0))
+			return
+
+		user.visible_message("<span class='notice'>[user] is welding the airlock.</span>", \
+						"<span class='notice'>You begin repairing the airlock...</span>", \
+						"<span class='italics'>You hear welding.</span>")
+
+		if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+			return
+
+		obj_integrity = max_integrity
+		DISABLE_BITFIELD(machine_stat, BROKEN)
+		user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
+							"<span class='notice'>You finish repairing the airlock.</span>")
+		update_icon()
+
+
+/obj/machinery/door/airlock/screwdriver_act(mob/living/user, obj/item/I)
+	if(no_panel)
+		to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
+		return
+
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] [src]'s panel.</span>")
+	update_icon()
+
+/obj/machinery/door/airlock/wirecutter_act(mob/living/user, obj/item/I)
+	return attack_hand(user)
+
+/obj/machinery/door/airlock/multitool_act(mob/living/user, obj/item/I)
+	return attack_hand(user)
+
+/obj/machinery/door/airlock/crowbar_act(mob/living/user, obj/item/I)
+	if(locked)
+		to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced.</span>")
+
+	if(welded)
+		to_chat(user, "<span class='warning'>The airlock is welded shut.</span>")
+
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
+
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
@@ -604,7 +612,7 @@
 
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
-		
+
 		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
@@ -647,33 +655,18 @@
 			operating = FALSE
 		qdel(src)
 
-	else if(hasPower() && I.pry_capable != IS_PRY_CAPABLE_FORCE)
-		to_chat(user, "<span class='warning'>The airlock's motors resist your efforts to force it.</span>")
-
-	else if(locked)
-		to_chat(user, "<span class='warning'>The airlock's bolts prevent it from being forced.</span>")
-
-	else if(welded)
-		to_chat(user, "<span class='warning'>The airlock is welded shut.</span>")
-
-	else if(I.pry_capable == IS_PRY_CAPABLE_FORCE)
-		return FALSE //handled by the item's afterattack
-
+	else if(hasPower())
+		to_chat(user, "<span class='warning'>The airlock's motors resist your efforts to force it!</span>")
+		return
 	else if(!operating)
 		if(density)
-			open(1)
+			open(TRUE)
 		else
-			close(1)
-
-	return TRUE
+			close(TRUE)
 
 
-///obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
-//	if(C)
-//		ignite(is_hot(C))
-//	..()
 
-/obj/machinery/door/airlock/open(var/forced=0)
+/obj/machinery/door/airlock/open(var/forced=FALSE)
 	if( operating || welded || locked || !loc)
 		return 0
 	if(!forced)
@@ -873,7 +866,7 @@
 		return
 
 	if(emergency)
-		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")		
+		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")
 		return
 
 	emergency = TRUE
@@ -910,7 +903,7 @@
 		return
 
 	unbolt()
-		
+
 
 
 /obj/machinery/door/airlock/proc/bolt_drop(mob/user)

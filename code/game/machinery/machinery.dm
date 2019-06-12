@@ -43,19 +43,6 @@
 	return ..()
 
 
-/obj/machinery/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
-			return
-
-		if(!do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
-			return
-		P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
-		qdel(src)
-
-
 /obj/machinery/proc/dropContents(list/subset)
 	var/turf/T = get_turf(src)
 	for(var/i in contents)
