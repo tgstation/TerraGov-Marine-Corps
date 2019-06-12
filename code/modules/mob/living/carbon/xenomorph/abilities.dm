@@ -409,7 +409,11 @@
 	to_chat(X, "<span class='notice'>You will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
 	update_button_icon()
 
-// Corrosive Acid
+
+// ***************************************
+// *********** Corrosive Acid
+// ***************************************
+
 /datum/action/xeno_action/activable/corrosive_acid
 	name = "Corrosive Acid"
 	action_icon_state = "corrosive_acid"
@@ -578,6 +582,17 @@
 		return
 	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
 	qdel(current_acid)
+
+
+// ***************************************
+// *********** Super strong acid
+// ***************************************
+
+/datum/action/xeno_action/activable/corrosive_acid/strong
+	name = "Corrosive Acid"
+	plasma_cost = 200
+	acid_type = /obj/effect/xenomorph/acid/strong
+
 
 /datum/action/xeno_action/activable/spray_acid
 	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
