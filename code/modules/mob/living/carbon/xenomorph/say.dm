@@ -6,11 +6,19 @@
 	return "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span>"
 
 
+/mob/living/carbon/xenomorph/shrike/hivemind_name()
+	return "<font size='2' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span>"
+
+
 /mob/living/carbon/xenomorph/proc/hivemind_end()
 	return ""
 
 
 /mob/living/carbon/xenomorph/queen/hivemind_end()
+	return "</font>"
+
+
+/mob/living/carbon/xenomorph/shrike/hivemind_end()
 	return "</font>"
 
 

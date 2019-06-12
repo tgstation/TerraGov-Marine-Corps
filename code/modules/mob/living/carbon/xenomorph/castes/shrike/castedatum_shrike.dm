@@ -83,7 +83,7 @@
 	aura_strength = 2.5
 
 /datum/xeno_caste/shrike/elder
-	upgrade_name = "Elite"
+	upgrade_name = "Elder"
 	caste_desc = "The psychic xeno. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_TWO
