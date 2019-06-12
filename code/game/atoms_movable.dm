@@ -33,6 +33,7 @@
 
 	loc?.on_stored_atom_del(src) //things that container need to do when a movable atom inside it is deleted
 
+	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
 
 	. = ..()
