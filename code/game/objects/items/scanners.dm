@@ -72,7 +72,7 @@ REAGENT SCANNER
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1
 	var/hud_mode = 1
-	var/skill_treshhold = SKILL_MEDICAL_PRACTICED
+	var/skill_threshold = SKILL_MEDICAL_PRACTICED
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
@@ -85,7 +85,7 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if(user.mind?.cm_skills && user.mind.cm_skills.medical < skill_treshhold)
+	if(user.mind?.cm_skills && user.mind.cm_skills.medical < skill_threshold)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
 		var/fduration = max(SKILL_TASK_AVERAGE - (user.mind.cm_skills.medical * 10), 0)
 		if(!do_after(user, fduration, TRUE, M, BUSY_ICON_UNSKILLED))
@@ -503,7 +503,7 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/integrated
 	name = "\improper HF2 integrated health analyzer"
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
-	skill_treshhold = SKILL_MEDICAL_UNTRAINED
+	skill_threshold = SKILL_MEDICAL_UNTRAINED
 
 /obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
