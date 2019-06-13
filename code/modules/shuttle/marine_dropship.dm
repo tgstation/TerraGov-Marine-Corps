@@ -186,6 +186,11 @@
 	hijack_state = HIJACK_STATE_CALLED_DOWN
 	request(S)
 
+/obj/docking_port/mobile/marine_dropship/on_prearrival()
+	. = ..()
+	if(crashing)
+		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+
 /mob/living/carbon/xenomorph/queen/proc/calldown_dropship()
 	set category = "Alien"
 	set name = "Call Down Dropship"
