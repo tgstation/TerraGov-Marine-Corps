@@ -596,7 +596,7 @@
 	icon_state = "gun_burst"
 	screen_loc = ui_gun_burst
 
-/obj/screen/firearms/bustfire/Click()
+/obj/screen/firearms/burstfire/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
 	G?.toggle_burst()
