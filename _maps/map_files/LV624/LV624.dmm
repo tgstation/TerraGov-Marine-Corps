@@ -2881,6 +2881,12 @@
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/ground/river,
 /area/lv624/ground/river3)
+"akx" = (
+/obj/structure/sign/botany,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle7)
 "aky" = (
 /obj/structure/inflatable,
 /turf/open/floor/plating/ground/dirt,
@@ -2975,6 +2981,15 @@
 	dir = 4
 	},
 /area/lv624/ground/river3)
+"akR" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/sign/botany,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
+"akS" = (
+/obj/structure/sign/redcross,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "akT" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/plantbot1/alien,
@@ -3185,6 +3200,13 @@
 /obj/item/ammo_casing,
 /turf/open/floor,
 /area/lv624/ground/sand8)
+"alD" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/sign/botany{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "alE" = (
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
@@ -3195,6 +3217,13 @@
 	dir = 6
 	},
 /area/lv624/ground/river2)
+"alG" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/structure/sign/botany{
+	dir = 8
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "alH" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/vault{
@@ -3233,6 +3262,14 @@
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
+"alO" = (
+/obj/structure/sign/redcross{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle6)
 "alP" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/red/yellowfull,
@@ -3256,6 +3293,12 @@
 "alS" = (
 /turf/closed/wall,
 /area/lv624/ground/river2)
+"alT" = (
+/obj/structure/sign/redcross{
+	dir = 8
+	},
+/turf/open/floor,
+/area/lv624/ground/compound/n)
 "alU" = (
 /obj/structure/fence,
 /turf/open/floor/plating,
@@ -3367,6 +3410,12 @@
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/river3)
+"amm" = (
+/obj/structure/sign/botany{
+	dir = 4
+	},
+/turf/open/floor,
+/area/lv624/ground/compound/n)
 "amn" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
@@ -3604,12 +3653,28 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
+"amW" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/sign/botany{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle7)
 "amX" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
+"amY" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/sign/redcross{
+	dir = 4
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle6)
 "amZ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -3730,9 +3795,21 @@
 	dir = 2
 	},
 /area/lv624/lazarus/atmos)
+"anq" = (
+/obj/structure/sign/redcross{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/n)
 "anr" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle8)
+"ans" = (
+/obj/structure/sign/botany{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/n)
 "ant" = (
 /turf/open/ground/grass/beach/corner{
 	dir = 8
@@ -4008,6 +4085,15 @@
 	dir = 2
 	},
 /area/lv624/ground/sand9)
+"aok" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/sign/redcross{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/n)
 "aol" = (
 /turf/closed/wall,
 /area/lv624/ground/sand9)
@@ -4151,6 +4237,15 @@
 "aoJ" = (
 /turf/open/floor/plating,
 /area/lv624/ground/jungle7)
+"aoK" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/almayer{
+	dir = 2;
+	id = "science_blast";
+	name = "\improper Science Wing Blast Door"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/research)
 "aoL" = (
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -4224,6 +4319,21 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
+"apa" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 2;
+	id = "science_blast";
+	name = "\improper Science Wing Blast Door"
+	},
+/obj/machinery/door/airlock/almayer/research{
+	dir = 1;
+	locked = 1;
+	name = "\improper Research Dome";
+	req_access_txt = "0"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/research)
 "apc" = (
 /obj/effect/decal/mecha_wreckage/ripley/lv624,
 /turf/open/floor/plating/ground/dirt,
@@ -4330,6 +4440,32 @@
 "apv" = (
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle8)
+"apw" = (
+/obj/structure/window_frame/colony/reinforced,
+/obj/machinery/door/poddoor/almayer{
+	dir = 2;
+	id = "science_blast";
+	name = "\improper Science Wing Blast Door"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/research)
+"apx" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 2;
+	id = "science_blast";
+	name = "\improper Science Wing Blast Door"
+	},
+/obj/machinery/door/airlock/colony/research/dome{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/research)
 "apy" = (
 /obj/item/analyzer,
 /turf/open/floor/plating/ground/dirt,
@@ -4422,6 +4558,30 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle8)
+"apL" = (
+/obj/structure/sign/atmosplaque{
+	dir = 1
+	},
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
+"apM" = (
+/obj/structure/sign/electricshock{
+	dir = 2
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/warning{
+	dir = 1
+	},
+/area/lv624/lazarus/engineering)
 "apN" = (
 /turf/open/ground/coast/corner,
 /area/lv624/ground/sand4)
@@ -5773,11 +5933,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
-"avD" = (
-/obj/structure/sign/botany,
-/obj/structure/jungle/vines,
-/turf/closed/wall,
-/area/lv624/lazarus/hydroponics)
 "avE" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -5789,10 +5944,6 @@
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
 	},
-/area/lv624/lazarus/hydroponics)
-"avG" = (
-/obj/structure/sign/botany,
-/turf/closed/wall,
 /area/lv624/lazarus/hydroponics)
 "avH" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -5861,10 +6012,6 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle6)
-"avU" = (
-/obj/structure/sign/redcross,
-/turf/closed/wall/r_wall,
-/area/lv624/lazarus/medbay)
 "avV" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/medbay)
@@ -6161,22 +6308,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
-"awU" = (
-/obj/machinery/door/poddoor/almayer{
-	id = "science_blast";
-	name = "\improper Science Wing Blast Door"
-	},
-/obj/machinery/door/airlock/colony/research/dome{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/research)
 "awV" = (
 /obj/machinery/door_control{
 	id = "science_blast";
@@ -8187,28 +8318,6 @@
 "aEN" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/research)
-"aEO" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
-	id = "science_blast";
-	name = "\improper Science Wing Blast Door"
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/research)
-"aEP" = (
-/obj/machinery/door/poddoor/almayer{
-	id = "science_blast";
-	name = "\improper Science Wing Blast Door"
-	},
-/obj/machinery/door/airlock/almayer/research{
-	dir = 1;
-	locked = 1;
-	name = "\improper Research Dome";
-	req_access_txt = "0"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/research)
 "aES" = (
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
@@ -8289,14 +8398,6 @@
 /obj/structure/jungle/planttop1,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
-"aFo" = (
-/obj/structure/window_frame/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
-	id = "science_blast";
-	name = "\improper Science Wing Blast Door"
-	},
-/turf/open/floor/plating,
-/area/lv624/lazarus/research)
 "aFp" = (
 /obj/structure/table,
 /turf/open/floor/tile/purple/whitepurple{
@@ -17799,10 +17900,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
-"bks" = (
-/obj/structure/sign/atmosplaque,
-/turf/closed/wall,
-/area/lv624/lazarus/comms)
 "bkt" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/brown{
@@ -19342,22 +19439,6 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
-/area/lv624/lazarus/engineering)
-"boG" = (
-/obj/structure/sign/electricshock{
-	dir = 8
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -38674,8 +38755,8 @@ bhh
 bhX
 biT
 bjE
-bks
-bnN
+bjF
+apL
 blK
 bnN
 bjF
@@ -38874,11 +38955,11 @@ awk
 avd
 avd
 axx
-awi
+alO
 awi
 ayp
 auk
-axb
+amY
 avx
 aBk
 auH
@@ -38888,7 +38969,7 @@ axR
 ayo
 auH
 aLo
-aFo
+apw
 aFW
 aGd
 aHe
@@ -38900,7 +38981,7 @@ aGb
 aLv
 aMp
 aLw
-aEO
+aoK
 aMm
 aPX
 aNk
@@ -39131,11 +39212,11 @@ awl
 arW
 arW
 arW
-avU
+avV
 ayq
 azb
 ayq
-avU
+avV
 axx
 awi
 auk
@@ -39145,7 +39226,7 @@ axR
 axR
 auH
 avd
-aFo
+apw
 aFX
 amQ
 amS
@@ -39157,7 +39238,7 @@ aHM
 aLw
 aMq
 aLw
-aEO
+aoK
 aMm
 aMm
 aNk
@@ -39402,7 +39483,7 @@ axR
 axR
 auH
 avd
-aFo
+apw
 aFY
 aGx
 aHf
@@ -39414,7 +39495,7 @@ aGb
 aLx
 aLw
 awI
-aEO
+aoK
 aMm
 aMm
 aNk
@@ -39915,7 +39996,7 @@ aAb
 aAb
 aAb
 aAb
-aEO
+aoK
 aFp
 aFp
 aGz
@@ -39929,7 +40010,7 @@ aLy
 aGd
 aNo
 aOm
-aEO
+aoK
 aMm
 aNk
 aMm
@@ -40172,7 +40253,7 @@ aAb
 aDB
 aDa
 aDa
-aEP
+apa
 aFq
 aFq
 aFq
@@ -40186,7 +40267,7 @@ aLz
 aKd
 aKd
 aOn
-awU
+apx
 aOi
 aQR
 aMm
@@ -40410,8 +40491,8 @@ atI
 atX
 arW
 arW
-arW
-avU
+akS
+avV
 avV
 awJ
 awJ
@@ -40425,11 +40506,11 @@ awn
 aBm
 awJ
 avV
-avU
-aDC
+avV
+aok
 aAb
 aAb
-aEO
+aoK
 aFr
 aGa
 aGA
@@ -40443,7 +40524,7 @@ aLA
 auy
 auW
 aOo
-aEO
+aoK
 aPZ
 aMm
 aMm
@@ -40944,7 +41025,7 @@ aDD
 aAb
 aAb
 aAb
-aFo
+apw
 aFp
 aGB
 aHh
@@ -40956,7 +41037,7 @@ aEN
 aLB
 aGd
 auX
-aEO
+aoK
 aES
 aES
 aES
@@ -41201,7 +41282,7 @@ aDC
 aAb
 aAb
 aAb
-aFo
+apw
 aGc
 aGC
 aHi
@@ -41213,7 +41294,7 @@ aHM
 aGd
 aMt
 avr
-aEO
+aoK
 aES
 aES
 aES
@@ -41438,8 +41519,8 @@ atl
 atl
 arW
 arW
-arW
-avU
+akS
+avV
 avV
 awJ
 axi
@@ -41453,12 +41534,12 @@ awn
 aBm
 awJ
 avV
-avU
-aDC
+avV
+aok
 aAb
 aAb
 aAb
-aEO
+aoK
 aGd
 aGd
 aHj
@@ -41470,7 +41551,7 @@ aEN
 aLC
 aFp
 aFp
-aEO
+aoK
 aES
 aFB
 aES
@@ -42729,11 +42810,11 @@ auS
 auS
 auS
 axF
-avU
+avV
 ayB
 azf
 ayq
-avU
+avV
 aAN
 aAN
 aAN
@@ -42986,11 +43067,11 @@ awo
 arl
 auT
 arl
-aoC
+alT
 apG
 apI
 aoC
-aAb
+anq
 aAb
 aAb
 aAb
@@ -43049,7 +43130,7 @@ blR
 bmJ
 bmJ
 bmJ
-boG
+apM
 bkA
 bkA
 bkA
@@ -43499,11 +43580,11 @@ aro
 asU
 asU
 aus
-auT
+alD
 aoC
 apG
 apI
-aoC
+amm
 aAb
 aAO
 aBs
@@ -43756,11 +43837,11 @@ avo
 arW
 arW
 aut
-avG
+avZ
 avE
 ayF
 azj
-avG
+avZ
 aAd
 aAP
 aBt
@@ -45035,8 +45116,8 @@ arp
 atP
 aur
 arl
-arp
-avD
+akx
+avX
 avZ
 aws
 awQ
@@ -45050,8 +45131,8 @@ axn
 awR
 aBw
 avZ
-avG
-aAb
+avZ
+ans
 aDC
 aAb
 aAb
@@ -46063,8 +46144,8 @@ arq
 atS
 aut
 arV
-avm
-avG
+akR
+avZ
 avZ
 awt
 awR
@@ -46078,8 +46159,8 @@ axm
 awP
 aBy
 avZ
-avG
-aAb
+avZ
+ans
 aDC
 aAb
 axu
@@ -47354,11 +47435,11 @@ atX
 arW
 arW
 arW
-avG
+avZ
 avE
 ayL
 avE
-avG
+avZ
 arY
 arY
 arY
@@ -47611,11 +47692,11 @@ atX
 arW
 arW
 arW
-auO
+alG
 arY
 arY
 atY
-atn
+amW
 auS
 arZ
 arW
