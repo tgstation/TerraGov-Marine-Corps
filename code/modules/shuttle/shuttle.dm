@@ -177,6 +177,8 @@
 		id = "[SSshuttle.stationary.len]"
 	if(name == "dock")
 		name = "dock[SSshuttle.stationary.len]"
+	var/area/A = get_area(src)
+	area_type = A.type
 
 //	if(mapload)
 //		for(var/turf/T in return_turfs())
