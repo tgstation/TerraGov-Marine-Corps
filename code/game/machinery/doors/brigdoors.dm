@@ -27,8 +27,21 @@
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/Initialize()
+/obj/machinery/door_timer/Initialize(mapload, newDir)
 	. = ..()
+
+	if(newDir)
+		setDir(newDir)
+
+	switch(dir)
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = 32
+		if(WEST)
+			pixel_x = -32
 
 	for(var/obj/machinery/door/window/brigdoor/M in GLOB.machines)
 		if (M.id == src.id)
