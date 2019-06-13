@@ -352,7 +352,6 @@
 
 /obj/item/storage/belt/knifepouch/Initialize()
 	. = ..()
-	item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
