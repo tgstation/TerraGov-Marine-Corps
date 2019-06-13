@@ -184,7 +184,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!can_use_hp(usr))
 		return
 
-	HP.ammo.Move(entrance.loc)
+	HP.ammo.forceMove(get_turf(entrance))
 	HP.ammo.update_icon()
 	HP.ammo = A
 	HP.backup_clips.Remove(A)
