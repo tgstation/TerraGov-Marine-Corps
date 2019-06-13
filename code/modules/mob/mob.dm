@@ -439,7 +439,7 @@
 	show_inv(M)
 
 
-/mob/living/start_pulling(atom/movable/AM, supress_message = FALSE)
+/mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
@@ -486,7 +486,7 @@
 		log_combat(src, M, "grabbed")
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
-		if(!supress_message)
+		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))

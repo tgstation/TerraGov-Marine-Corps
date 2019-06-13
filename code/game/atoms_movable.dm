@@ -644,7 +644,7 @@
 	return throw_at(target, range, speed, thrower, spin)
 
 
-/atom/movable/proc/start_pulling(atom/movable/AM, supress_message = FALSE)
+/atom/movable/proc/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	if(QDELETED(AM))
 		return FALSE
 
@@ -666,7 +666,7 @@
 	if(ismob(AM))
 		var/mob/M = AM
 		log_combat(src, M, "grabbed", addition = "passive grab")
-		if(!supress_message)
+		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 	return TRUE
 

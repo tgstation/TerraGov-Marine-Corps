@@ -48,7 +48,7 @@
 		L.SetStunned(0)
 	..()
 
-/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, supress_message = TRUE)
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, suppress_message = TRUE)
 	if(!check_state() || agility || !isliving(AM))
 		return FALSE
 
@@ -57,13 +57,13 @@
 	if(isxeno(L))
 		return ..()
 
-	if(lunge && ..(L, supress_message))
+	if(lunge && ..(L, suppress_message))
 		return neck_grab(L)
 
 	if(SEND_SIGNAL(src, COMSIG_WARRIOR_NECKGRAB, L) & COMSIG_WARRIOR_CANT_NECKGRAB)
 		return FALSE
 
-	. = ..(L, supress_message)
+	. = ..(L, suppress_message)
 
 	if(.) //successful pull
 		neck_grab(L)

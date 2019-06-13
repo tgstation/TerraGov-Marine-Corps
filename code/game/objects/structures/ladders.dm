@@ -109,7 +109,7 @@
 			pulling.forceMove(get_turf(ladder_dest))
 	user.forceMove(get_turf(ladder_dest))
 	if(pulling)
-		user.start_pulling(pulling, supress_message = TRUE)
+		user.start_pulling(pulling, suppress_message = TRUE)
 	if(buckled && pulling_mob)
 		buckled.do_buckle(pulling_mob, silent = TRUE)
 	visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
