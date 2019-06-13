@@ -214,6 +214,26 @@
 "aaE" = (
 /turf/open/floor/plating,
 /area/almayer/hull/upper_hull)
+"aaF" = (
+/obj/machinery/vending/wallmed1{
+	pixel_y = 25
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "blue";
+	tag = "icon-blue"
+	},
+/area/almayer/hallways/aft_hallway)
+"aaG" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/open/floor/almayer/mono,
+/area/almayer/living/captain_mess)
 "aaI" = (
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -14179,11 +14199,6 @@
 	tag = "icon-red"
 	},
 /area/almayer/hallways/aft_hallway)
-"aEK" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/almayer/mono,
-/area/almayer/living/captain_mess)
 "aEL" = (
 /obj/machinery/power/apc/almayer,
 /obj/structure/cable{
@@ -18262,21 +18277,6 @@
 /turf/open/floor/almayer{
 	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
-	},
-/area/almayer/hallways/aft_hallway)
-"aNg" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = 25
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/almayer{
-	dir = 1;
-	icon_state = "blue";
-	tag = "icon-blue"
 	},
 /area/almayer/hallways/aft_hallway)
 "aNh" = (
@@ -70362,7 +70362,7 @@ afm
 azR
 ann
 aDk
-aEK
+aaG
 azP
 aDk
 aDk
@@ -71129,7 +71129,7 @@ ajY
 ajY
 ajY
 ahA
-aNg
+aaF
 azR
 ann
 aDk

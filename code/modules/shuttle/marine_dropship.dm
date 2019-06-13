@@ -276,8 +276,9 @@
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [CONFIG_GET(string/ship_name)]</A><br>"
+		M.hijack_state = HIJACK_STATE_CALLED_DOWN
+		M.unlock_all()
 	dat += "<a href='?src=[REF(X)];mach_close=computer'>Close</a>"
-	M.unlock_all()
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(X.browse_rsc_icon(src.icon, src.icon_state))
@@ -316,10 +317,18 @@
 	. = ..()
 	if(!Adjacent(usr))
 		return
+	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
+	if(!M)
+		return
+	if(M.hijack_state == HIJACK_STATE_CRASHING)
+		return
+
 	if(ishuman(usr))
 		if(!allowed(usr))
 			return
-		var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
+		if(M.hijack_state == HIJACK_STATE_CALLED_DOWN)
+			to_chat(usr, "<span class='warning'>The shuttle isn't responding to commands.</span>")
+			return
 		if(href_list["lockdown"])
 			M.lockdown_all()
 		else if(href_list["release"])
@@ -332,13 +341,12 @@
 	
 	else if(!isxeno(usr))
 		return
+	if(!is_ground_level(M.z))
+		return
 	var/mob/living/carbon/xenomorph/X = usr
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	if(href_list["hijack"])
-		var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
-		if(!M)
-			return
 		if(M.mode == SHUTTLE_RECHARGING)
 			to_chat(X, "<span class='xenowarning'>The birb is still cooling down.</span>")
 			return
@@ -416,7 +424,7 @@
 	D = port
 
 /obj/machinery/door_control/dropship/attack_hand(mob/living/user)
-	src.add_fingerprint(user)
+	. = ..()
 	if(isxeno(user))
 		return
 	if(!is_operational())
@@ -431,11 +439,10 @@
 	use_power(5)
 	pressed = TRUE
 	update_icon()
-	add_fingerprint(user)
 
 	D.lockdown_all()
 
-	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 // half-tile structure pieces
 /obj/structure/dropship_piece
