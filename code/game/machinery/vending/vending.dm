@@ -624,18 +624,15 @@
 	if (!message)
 		return
 
-	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"",2)
+	visible_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span>")
 
-/obj/machinery/vending/power_change()
-	..()
+/obj/machinery/vending/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else if( !(machine_stat & NOPOWER) )
 		icon_state = initial(icon_state)
 	else
-		spawn(rand(0, 15))
-			icon_state = "[initial(icon_state)]-off"
+		icon_state = "[initial(icon_state)]-off"
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()

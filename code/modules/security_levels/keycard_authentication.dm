@@ -47,8 +47,7 @@
 			event_triggered_by = user
 			broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
-/obj/machinery/keycard_auth/power_change()
-	. = ..()
+/obj/machinery/keycard_auth/update_icon()
 	if(machine_stat &NOPOWER)
 		icon_state = "auth_off"
 

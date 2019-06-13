@@ -54,13 +54,11 @@
 
 	var/list/listed_products
 
-/obj/machinery/marine_selector/power_change()
-	. = ..()
-	if( !(machine_stat & NOPOWER) )
+/obj/machinery/marine_selector/update_icon()
+	if(is_operational())
 		icon_state = initial(icon_state)
 	else
-		spawn(rand(0, 15))
-			icon_state = "[initial(icon_state)]-off"
+		icon_state = "[initial(icon_state)]-off"
 
 
 

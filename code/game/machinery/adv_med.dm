@@ -161,17 +161,6 @@
 		else
 	return
 
-/obj/machinery/body_scanconsole/power_change()
-	..()
-	if(machine_stat & BROKEN)
-		icon_state = "body_scannerconsole-p"
-	else
-		if (machine_stat & NOPOWER)
-			spawn(rand(0, 15))
-				src.icon_state = "body_scannerconsole-p"
-		else
-			icon_state = initial(icon_state)
-
 /obj/machinery/body_scanconsole
 	var/obj/machinery/bodyscanner/connected
 	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
@@ -187,6 +176,14 @@
 /obj/machinery/body_scanconsole/Initialize()
 	. = ..()
 	connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
+
+/obj/machinery/body_scanconsole/update_icon()
+	if(machine_stat & BROKEN)
+		icon_state = "body_scannerconsole-p"
+	else if(machine_stat & NOPOWER)
+		icon_state = "body_scannerconsole-p"
+	else
+		icon_state = initial(icon_state)
 
 /*
 

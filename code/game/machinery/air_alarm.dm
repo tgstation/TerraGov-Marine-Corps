@@ -808,11 +808,6 @@ table tr:first-child th:first-child { border: none;}
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				qdel(src)
 
-/obj/machinery/alarm/power_change()
-	..()
-	spawn(rand(0,15))
-		update_icon()
-
 /obj/machinery/alarm/examine(mob/user)
 	..()
 	if (buildstage < 2)

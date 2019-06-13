@@ -23,8 +23,7 @@
 	density = TRUE
 
 
-/obj/machinery/flasher/power_change()
-	..()
+/obj/machinery/flasher/update_icon()
 	if ( !(machine_stat & NOPOWER) )
 		icon_state = "[base_state]1"
 	else

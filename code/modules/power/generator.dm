@@ -47,7 +47,7 @@
 				circ1 = null
 				circ2 = null
 
-/obj/machinery/power/generator/proc/updateicon()
+/obj/machinery/power/generator/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		overlays.Cut()
 	else
@@ -73,7 +73,7 @@
 		genlev = 1
 	if(genlev != lastgenlev)
 		lastgenlev = genlev
-		updateicon()
+		update_icon()
 	add_avail(lastgen)
 
 /obj/machinery/power/generator/attack_ai(mob/user)
@@ -146,11 +146,6 @@
 
 	updateDialog()
 	return 1
-
-
-/obj/machinery/power/generator/power_change()
-	..()
-	updateicon()
 
 
 /obj/machinery/power/generator/verb/rotate_clock()

@@ -161,10 +161,6 @@ obj/machinery/recharger/process()
 			return
 		*/
 
-/obj/machinery/recharger/power_change()
-	..()
-	update_icon()
-
 obj/machinery/recharger/emp_act(severity)
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)

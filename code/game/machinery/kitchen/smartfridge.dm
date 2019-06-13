@@ -15,8 +15,6 @@
 	var/icon_off = "smartfridge-off"
 	var/icon_panel = "smartfridge-panel"
 	var/item_quants = list()
-	var/ispowered = 1 //starts powered
-	var/isbroken = 0
 	var/is_secure_fridge = 0
 	var/seconds_electrified = 0;
 	var/shoot_inventory = 0
@@ -33,24 +31,18 @@
 	return 0
 
 /obj/machinery/smartfridge/process()
-	if(!src.ispowered)
+	if(machine_stat & NOPOWER)
 		return
 	if(src.seconds_electrified > 0)
 		src.seconds_electrified--
 	if(src.shoot_inventory && prob(2))
 		src.throw_item()
 
-/obj/machinery/smartfridge/power_change()
-	..()
+/obj/machinery/smartfridge/update_icon()
 	if( !(machine_stat & NOPOWER) )
-		src.ispowered = 1
-		if(!isbroken)
-			icon_state = icon_on
+		icon_state = icon_on
 	else
-		spawn(rand(0, 15))
-			src.ispowered = 0
-			if(!isbroken)
-				icon_state = icon_off
+		icon_state = icon_off
 
 /*******************
 *   Item Adding
@@ -81,7 +73,7 @@
 		
 		attack_hand(user)
 
-	else if(!ispowered)
+	else if(machine_stat & NOPOWER)
 		to_chat(user, "<span class='notice'>\The [src] is unpowered and useless.</span>")
 		return
 
@@ -144,7 +136,7 @@
 	. = ..()
 	if(.)
 		return
-	if(!ispowered)
+	if(machine_stat & NOPOWER)
 		to_chat(user, "<span class='warning'>[src] has no power.</span>")
 		return
 	if(seconds_electrified != 0)
@@ -199,7 +191,7 @@
 		return 0
 
 	if (href_list["vend"])
-		if(!ispowered)
+		if(machine_stat & NOPOWER)
 			to_chat(usr, "<span class='warning'>[src] has no power.</span>.")
 			return 0
 		if (!in_range(src, usr))

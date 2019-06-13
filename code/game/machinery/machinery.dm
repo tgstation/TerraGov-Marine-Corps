@@ -141,6 +141,7 @@
 		machine_stat |= NOPOWER
 	else
 		machine_stat &= ~NOPOWER
+	update_icon()
 
 
 /obj/machinery/proc/auto_use_power()
