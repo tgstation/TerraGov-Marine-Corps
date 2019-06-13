@@ -66,13 +66,13 @@
 
 	//Deal with devoured things and people
 	if(length(stomach_contents))
-		for(var/mob/M in stomach_contents)
-			if(world.time > devour_timer && ishuman(M) && !is_ventcrawling)
-				stomach_contents.Remove(M)
-				if(M.loc != src)
+		for(var/mob/living/L in stomach_contents)
+			if(world.time > devour_timer && ishuman(L) && !is_ventcrawling)
+				stomach_contents.Remove(L)
+				if(L.loc != src)
 					continue
-				M.forceMove(loc)
-				M.SetKnockeddown(1)
+				L.forceMove(loc)
+				L.SetKnockeddown(1)
 	return TRUE
 
 
@@ -259,10 +259,8 @@
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
-	if(interactee)
-		interactee.check_eye(src)
-	else
-		reset_view(null)
+
+	interactee?.check_eye(src)
 
 	return TRUE
 

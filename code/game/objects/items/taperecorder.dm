@@ -7,7 +7,6 @@
 
 	matter = list("metal" = 60,"glass" = 30)
 
-	var/emagged = 0.0
 	var/recording = 0.0
 	var/playing = 0.0
 	var/timerecorded = 0.0
@@ -32,11 +31,11 @@
 	. = ..()
 	
 	if(istype(I, /obj/item/card/emag))
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>It is already emagged!</span>")
 			return
 
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		recording = FALSE
 		to_chat(user, "<span class='warning'>PZZTTPFFFT</span>")
 		icon_state = "taperecorderidle"
@@ -57,7 +56,7 @@
 
 	if(usr.stat)
 		return
-	if(emagged == 1)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	icon_state = "taperecorderrecording"
@@ -84,7 +83,7 @@
 
 	if(usr.stat)
 		return
-	if(emagged == 1)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(recording == 1)
@@ -108,7 +107,7 @@
 
 	if(usr.stat)
 		return
-	if(emagged == 1)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(recording == 1 || playing == 1)
@@ -128,7 +127,7 @@
 
 	if(usr.stat)
 		return
-	if(emagged == 1)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(recording == 1)
@@ -162,7 +161,7 @@
 		i++
 	icon_state = "taperecorderidle"
 	playing = 0
-	if(emagged == 1.0)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		var/turf/T = get_turf(src)
 		T.visible_message("<font color=Maroon><B>[src]</B>: Device will self-destruct in... Five.</font>")
 		sleep(10)
@@ -187,7 +186,7 @@
 
 	if(usr.stat)
 		return
-	if(emagged == 1)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(!canprint)
@@ -212,7 +211,7 @@
 	if(recording == 0 && playing == 0)
 		if(usr.stat)
 			return
-		if(emagged == 1)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 			return
 		icon_state = "taperecorderrecording"

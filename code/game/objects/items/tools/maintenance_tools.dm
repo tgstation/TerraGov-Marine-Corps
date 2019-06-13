@@ -332,7 +332,7 @@
 			damtype = "fire"
 			icon_state = "welder1"
 			w_class = 4
-			heat_source = 3800
+			heat = 3800
 			START_PROCESSING(SSobj, src)
 		else
 			if(M)
@@ -345,7 +345,7 @@
 		icon_state = "welder"
 		welding = 0
 		w_class = initial(w_class)
-		heat_source = 0
+		heat = 0
 		if(M)
 			if(!message)
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")

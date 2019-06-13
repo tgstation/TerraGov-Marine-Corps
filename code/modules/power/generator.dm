@@ -3,7 +3,7 @@
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
 	icon_state = "teg"
-	density = 1
+	density = TRUE
 	anchored = 0
 
 	use_power = 1
@@ -90,7 +90,6 @@
 		reconnect()
 
 /obj/machinery/power/generator/attack_hand(mob/user)
-	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
 	interact(user)
 

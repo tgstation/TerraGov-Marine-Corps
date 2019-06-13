@@ -200,13 +200,7 @@
 
 
 /obj/machinery/door/airlock/attack_ai(mob/user)
-	if(!canAIControl(user))
-		if(canAIHack())
-			hack(user)
-			return
-		else
-			to_chat(user, "<span class='warning'>Airlock AI control has been blocked with a firewall. Unable to hack.</span>")
-	if(obj_flags & EMAGGED)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(user, "<span class='warning'>Unable to interface: Airlock is unresponsive.</span>")
 		return
 
@@ -329,7 +323,6 @@
 		..()
 	if(usr.stat || usr.restrained()|| usr.mob_size == MOB_SIZE_SMALL)
 		return
-	add_fingerprint(usr)
 	if(href_list["close"])
 		usr << browse(null, "window=airlock")
 		if(usr.interactee==src)
@@ -516,7 +509,6 @@
 					else
 						to_chat(usr, "The door bolt lights are already enabled!")
 
-	add_fingerprint(usr)
 	update_icon()
 	if(!nowindow)
 		updateUsrDialog()
@@ -539,19 +531,42 @@
 			to_chat(user, "<span class='warning'>\The [src] would require something a lot stronger than [W] to weld!</span>")
 			return
 
-		if(!W.remove_fuel(0,user))
-			return
+		if(user.a_intent != INTENT_HELP)
+			if(!W.tool_start_check(user, amount = 0))
+				return
 
-		user.visible_message("<span class='notice'>[user] starts working on \the [src] with [W].</span>", \
-		"<span class='notice'>You start working on \the [src] with [W].</span>", \
-		"<span class='notice'>You hear welding.</span>")
-		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || density)
-			return
+			user.visible_message("<span class='notice'>[user] is [welded ? "unwelding":"welding"] the airlock.</span>", \
+							"<span class='notice'>You begin [welded ? "unwelding":"welding"] the airlock...</span>", \
+							"<span class='italics'>You hear welding.</span>")
 
-		welded = !welded
-		update_icon()
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+				return
+
+			welded = !welded
+			user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
+								"<span class='notice'>You [welded ? "weld the airlock shut":"unweld the airlock"].</span>")
+			update_icon()
+		else
+			if(obj_integrity >= max_integrity)
+				to_chat(user, "<span class='notice'>The airlock doesn't need repairing.</span>")
+				return
+
+			if(!W.tool_start_check(user, amount=0))
+				return
+
+			user.visible_message("<span class='notice'>[user] is welding the airlock.</span>", \
+							"<span class='notice'>You begin repairing the airlock...</span>", \
+							"<span class='italics'>You hear welding.</span>")
+
+			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
+				return
+
+			obj_integrity = max_integrity
+			DISABLE_BITFIELD(machine_stat, BROKEN)
+			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
+								"<span class='notice'>You finish repairing the airlock.</span>")
+			update_icon()
+				
 
 	else if(isscrewdriver(I))
 		if(no_panel)
@@ -783,7 +798,6 @@
 				message = "temp shocked for [secondsElectrified] seconds"
 		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)] - ([uppertext(message)])"))
 		log_combat(user, src, message)
-		add_hiddenprint(user)
 
 
 /obj/machinery/door/airlock/proc/electrified_loop()
@@ -800,3 +814,135 @@
 	else
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT)
 	updateDialog()
+
+
+/obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(welded)
+		to_chat(user, "<span class='warning'>The airlock has been welded shut.</span>")
+		return
+
+	if(locked)
+		to_chat(user, "<span class='warning'>The door bolts are down.</span>")
+		return
+
+	if(!density)
+		close()
+	else
+		open()
+
+
+/obj/machinery/door/airlock/proc/shock_restore(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	if(isElectrified())
+		set_electrified(MACHINE_NOT_ELECTRIFIED, user)
+
+
+/obj/machinery/door/airlock/proc/shock_temp(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME, user)
+
+
+/obj/machinery/door/airlock/proc/shock_perm(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_SHOCK))
+		to_chat(user, "<span class='warning'>The electrification wire is cut.</span>")
+		return
+
+	set_electrified(MACHINE_ELECTRIFIED_PERMANENT, user)
+
+
+/obj/machinery/door/airlock/proc/emergency_on(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(emergency)
+		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")		
+		return
+
+	emergency = TRUE
+	update_icon()
+
+
+
+/obj/machinery/door/airlock/proc/emergency_off(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(!emergency)
+		to_chat(user, "<span class='warning'>Emergency access is already disabled.</span>")
+		return
+
+	emergency = FALSE
+	update_icon()
+
+
+/obj/machinery/door/airlock/proc/bolt_raise(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_BOLTS))
+		to_chat(user, "<span class='warning'>The door bolt wire is cut.</span>")
+		return
+
+	if(!locked)
+		to_chat(user, "<span class='warning'>The door bolts are already up.</span>")
+		return
+
+	if(!hasPower())
+		to_chat(user, "<span class='warning'>Cannot raise door bolts due to power failure.</span>")
+		return
+
+	unbolt()
+		
+
+
+/obj/machinery/door/airlock/proc/bolt_drop(mob/user)
+	if(!canAIControl(user))
+		return
+
+	if(wires.is_cut(WIRE_BOLTS))
+		to_chat(user, "<span class='warning'>The door bolt wire is cut.</span>")
+		return
+
+	bolt()
+
+
+/obj/machinery/door/airlock/proc/bolt()
+	if(locked)
+		return
+
+	locked = TRUE
+	playsound(src, 'sound/machines/boltsdown.ogg', 30, 0, 3)
+	audible_message("<span class='notice'>You hear a click from the bottom of the door.</span>", null,  1)
+	update_icon()
+
+
+/obj/machinery/door/airlock/proc/unbolt()
+	if(!locked)
+		return
+
+	locked = FALSE
+	playsound(src, 'sound/machines/boltsup.ogg', 30, 0, 3)
+	audible_message("<span class='notice'>You hear a click from the bottom of the door.</span>", null,  1)
+	update_icon()
+
+
+/obj/machinery/door/airlock/proc/weld_checks()
+	return !operating && density

@@ -311,7 +311,6 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
 
 	if(!cell || cell.charge <= 0)
 		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
@@ -397,14 +396,14 @@
 
 			if(CHECK_BITFIELD(turret_flags, TURRET_BURSTFIRE))
 				DISABLE_BITFIELD(turret_flags, TURRET_BURSTFIRE)
-				state("A green light on [src] blinks slowly.")
+				visible_message("A green light on [src] blinks slowly.")
 				to_chat(usr, "<span class='notice'>You deactivate the burst fire mode.</span>")
 			else
 				ENABLE_BITFIELD(turret_flags, TURRET_BURSTFIRE)
 				fire_delay = burst_delay
 				user.visible_message("<span class='notice'>[user] activates [src]'s burst fire mode.</span>",
 				"<span class='notice'>You activate [src]'s burst fire mode.</span>")
-				state("<span class='notice'>A green light on [src] blinks rapidly.</span>")
+				visible_message("<span class='notice'>A green light on [src] blinks rapidly.</span>")
 
 		if("burstup")
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
@@ -430,7 +429,7 @@
 			var/safe = CHECK_BITFIELD(turret_flags, TURRET_SAFETY)
 			user.visible_message("<span class='warning'>[user] [safe ? "" : "de"]activates [src]'s safety lock.</span>",
 			"<span class='warning'>You [safe ? "" : "de"]activate [src]'s safety lock.</span>")
-			state("<span class='warning'>A red light on [src] blinks brightly!")
+			visible_message("<span class='warning'>A red light on [src] blinks brightly!")
 
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
 			if(!CHECK_BITFIELD(turret_flags, TURRET_MANUAL))
@@ -441,21 +440,21 @@
 					operator = user
 					user.visible_message("<span class='notice'>[user] takes manual control of [src]</span>",
 					"<span class='notice'>You take manual control of [src]</span>")
-					state("<span class='warning'>The [name] buzzes: <B>WARNING!</B> MANUAL OVERRIDE INITIATED.</span>")
+					visible_message("<span class='warning'>The [name] buzzes: <B>WARNING!</B> MANUAL OVERRIDE INITIATED.</span>")
 					user.set_interaction(src)
 					ENABLE_BITFIELD(turret_flags, TURRET_MANUAL)
 				else
 					if(user.interactee)
 						user.visible_message("<span class='notice'>[user] lets go of [src]</span>",
 						"<span class='notice'>You let go of [src]</span>")
-						state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
+						visible_message("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 						user.unset_interaction()
 					else
 						to_chat(user, "<span class='warning'>You are not currently overriding this turret.</span>")
 				if(machine_stat == 2)
 					machine_stat = 0 //Weird bug goin on here
 			else //Seems to be a bug where the manual override isn't properly deactivated; this toggle should fix that.
-				state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
+				visible_message("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 				DISABLE_BITFIELD(turret_flags, TURRET_MANUAL)
 				operator = null
 				user.unset_interaction()
@@ -464,8 +463,8 @@
 			if(!CHECK_BITFIELD(turret_flags, TURRET_ON))
 				user.visible_message("<span class='notice'>[user] activates [src].</span>",
 				"<span class='notice'>You activate [src].</span>")
-				state("<span class='notice'>The [name] hums to life and emits several beeps.</span>")
-				state("<span class='notice'>The [name] buzzes in a monotone voice: 'Default systems initiated'.</span>'")
+				visible_message("<span class='notice'>The [name] hums to life and emits several beeps.</span>")
+				visible_message("<span class='notice'>The [name] buzzes in a monotone voice: 'Default systems initiated'.</span>'")
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
 				SetLuminosity(7)
@@ -478,7 +477,7 @@
 				DISABLE_BITFIELD(turret_flags, TURRET_ON)
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
-				state("<span class='notice'>The [name] powers down and goes silent.</span>")
+				visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 				update_icon()
 
 		if("toggle_alert")
@@ -486,14 +485,14 @@
 			var/alert = CHECK_BITFIELD(turret_flags, TURRET_ALERTS)
 			user.visible_message("<span class='notice'>[user] [alert ? "" : "de"]activates [src]'s alert notifications.</span>",
 			"<span class='notice'>You [alert ? "" : "de"]activate [src]'s alert notifications.</span>")
-			state("<span class='notice'>The [name] buzzes in a monotone voice: 'Alert notification system [alert ? "initiated" : "deactivated"]'.</span>")
+			visible_message("<span class='notice'>The [name] buzzes in a monotone voice: 'Alert notification system [alert ? "initiated" : "deactivated"]'.</span>")
 			update_icon()
 
 		if("toggle_radial")
 			TOGGLE_BITFIELD(turret_flags, TURRET_RADIAL)
 			var/rad_msg = CHECK_BITFIELD(turret_flags, TURRET_RADIAL) ? "activate" : "deactivate"
 			user.visible_message("<span class='notice'>[user] [rad_msg]s [src]'s radial mode.</span>", "<span class='notice'>You [rad_msg] [src]'s radial mode.</span>")
-			state("The [name] buzzes in a monotone voice: 'Radial mode [rad_msg]d'.'")
+			visible_message("The [name] buzzes in a monotone voice: 'Radial mode [rad_msg]d'.'")
 			range = CHECK_BITFIELD(turret_flags, TURRET_RADIAL) ? 3 : 7
 			update_icon()
 
@@ -746,7 +745,7 @@
 
 	if(health <= 0 && machine_stat != 2)
 		machine_stat = 2
-		state("<span class='warning'>The [name] starts spitting out sparks and smoke!")
+		visible_message("<span class='warning'>The [name] starts spitting out sparks and smoke!")
 		playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 		for(var/i in 1 to 6)
 			setDir(pick(NORTH, SOUTH, EAST, WEST))
@@ -762,7 +761,7 @@
 		if(prob(10))
 			spark_system.start()
 		if(damage > knockdown_threshold) //Knockdown is certain if we deal this much in one hit; no more RNG nonsense, the fucking thing is bolted.
-			state("<span class='danger'>The [name] is knocked over!</span>")
+			visible_message("<span class='danger'>The [name] is knocked over!</span>")
 			machine_stat = 1
 			if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && CHECK_BITFIELD(turret_flags, TURRET_ON))
 				sentry_alert(SENTRY_ALERT_FALLEN)
@@ -776,7 +775,7 @@
 	if(cell.charge - power <= 0)
 		cell.charge = 0
 		sentry_alert(SENTRY_ALERT_BATTERY)
-		state("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
+		visible_message("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
 		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
 		SetLuminosity(0)
 		update_icon()
@@ -790,7 +789,7 @@
 		check_power(-(rand(100, 500)))
 	if(CHECK_BITFIELD(turret_flags, TURRET_ON))
 		if(prob(50))
-			state("<span class='danger'>[src] beeps and buzzes wildly, flashing odd symbols on its screen before shutting down!</span>")
+			visible_message("<span class='danger'>[src] beeps and buzzes wildly, flashing odd symbols on its screen before shutting down!</span>")
 			playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
 			for(var/i in 1 to 6)
 				setDir(pick(NORTH, SOUTH, EAST, WEST))
@@ -967,7 +966,7 @@
 			in_chamber = null
 			rounds--
 			if(rounds == 0)
-				state("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
+				visible_message("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
 				playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 50, FALSE)
 				if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
 					sentry_alert(SENTRY_ALERT_AMMO)
@@ -1049,29 +1048,7 @@
 
 	if(targets.len) . = pick(targets)
 
-/*
-/obj/item/turret_laptop
-	name = "UA 571-C Turret Control Laptop"
-	desc = "A small device used for remotely controlling sentry turrets."
-	w_class = 4
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "turret_off"
-	var/linked_turret = null
-	var/on = 0
-	var/mob/living/carbon/human/user = null
-	var/obj/machinery/camera/current = null
 
-	check_eye(var/mob/user as mob)
-		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
-			return null
-		if(!linked_turret || isnull(linked_turret.camera))
-			return null
-		user.reset_view(linked_turret.camera)
-		return 1
-
-	attack_self(mob/living/user as mob)
-		if(!linked_turret)
-*/
 /obj/machinery/marine_turret/premade
 	name = "UA-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
@@ -1105,7 +1082,6 @@
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
 
 	if(!cell || cell.charge <= 0)
 		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
@@ -1118,7 +1094,7 @@
 	if(!CHECK_BITFIELD(turret_flags, TURRET_ON))
 		to_chat(user, "You turn on the [src].")
 		visible_message("<span class='notice'> [src] hums to life and emits several beeps.</span>")
-		state("[src] buzzes in a monotone: 'Default systems initiated.'")
+		visible_message("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		ENABLE_BITFIELD(turret_flags, TURRET_ON)
 		SetLuminosity(7)
@@ -1127,7 +1103,7 @@
 		DISABLE_BITFIELD(turret_flags, TURRET_ON)
 		user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 		"<span class='notice'>You deactivate [src].</span>")
-		state("<span class='notice'>The [name] powers down and goes silent.</span>")
+		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 		update_icon()
 
 /obj/item/ammo_magazine/sentry/premade/dumb

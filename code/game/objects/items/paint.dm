@@ -141,7 +141,6 @@ var/global/list/cached_icons = list()
 			if("black")
 				color = "333333"
 		icon_state = "paint_[t1]"
-		add_fingerprint(user)
 		return
 
 

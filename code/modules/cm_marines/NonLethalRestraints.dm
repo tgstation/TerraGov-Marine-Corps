@@ -32,7 +32,6 @@
 	else
 		status = 0
 		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
-	add_fingerprint(user)
 
 /obj/item/weapon/stunprod/attack(mob/M, mob/user)
 	if(user.a_intent == INTENT_HARM)
@@ -41,19 +40,19 @@
 		M.visible_message("<span class='warning'>[M] has been poked with [src] whilst it's turned off by [user].</span>")
 		return
 
-	if(status)
-		M.KnockDown(6)
+	if(status && isliving(M))
+		var/mob/living/L = M
+		L.KnockDown(6)
 		charges -= 2
-		M.visible_message("<span class='danger'>[M] has been prodded with the [src] by [user]!</span>")
+		L.visible_message("<span class='danger'>[L] has been prodded with the [src] by [user]!</span>")
 
-		log_combat(user, M, "stunned", src)
+		log_combat(user, L, "stunned", src)
 
 		playsound(src.loc, 'sound/weapons/egloves.ogg', 25, 1)
 		if(charges < 1)
 			status = 0
 			update_icon()
 
-	add_fingerprint(user)
 
 
 /obj/item/weapon/stunprod/emp_act(severity)
@@ -75,7 +74,10 @@
 
 	attack(mob/M, mob/user)
 		..()
-		M.KnockDown(14)
+		if(!isliving(M))
+			return
+		var/mob/living/L = M
+		L.KnockDown(14)
 
 	examine(mob/user)
 		..()

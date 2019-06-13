@@ -48,12 +48,14 @@
 			if(H.has_limb_for_slot(SLOT_HANDCUFFED))
 				user.dropItemToGround(src)
 				H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
+				return TRUE
 
 	else if (ismonkey(target))
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
 		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, .Adjacent, target)) && !target.handcuffed)
 			user.dropItemToGround(src)
 			target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
+			return TRUE
 
 /obj/item/handcuffs/zip
 	name = "zip cuffs"
@@ -64,9 +66,12 @@
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 	cuff_delay = 20
 
-	place_handcuffs(mob/living/carbon/target, mob/user)
-		..()
-		flags_item |= DELONDROP
+
+/obj/item/handcuffs/zip/place_handcuffs(mob/living/carbon/target, mob/user)
+	. = ..()
+	if(!.)
+		return
+	flags_item |= DELONDROP
 
 
 

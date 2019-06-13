@@ -206,6 +206,28 @@
 		s_active.close(src)
 
 
+/mob/living/Moved(oldLoc, dir)
+	. = ..()
+	update_camera_location(oldLoc)
+
+
+/mob/living/forceMove(atom/destination)
+	. = ..()
+	//Only bother updating the camera if we actually managed to move
+	if(.)
+		update_camera_location(destination)
+		if(client)
+			reset_perspective()
+
+
+/mob/living/proc/do_camera_update(oldLoc)
+	return
+
+
+/mob/living/proc/update_camera_location(oldLoc)
+	return
+
+
 /mob/living/vv_get_dropdown()
 	. = ..()
 	. += "---"
@@ -697,4 +719,16 @@ below 100 is not dizzy
 	if(!dexterity)
 		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
+	return TRUE
+
+
+/mob/living/proc/point_to_atom(atom/A, turf/T)
+	//Squad Leaders and above have reduced cooldown and get a bigger arrow
+	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
+		recently_pointed_to = world.time + 50
+		new /obj/effect/overlay/temp/point(T)
+	else
+		recently_pointed_to = world.time + 10
+		new /obj/effect/overlay/temp/point/big(T)
+	visible_message("<b>[src]</b> points to [A]")
 	return TRUE

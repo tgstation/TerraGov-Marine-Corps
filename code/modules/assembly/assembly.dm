@@ -109,7 +109,6 @@
 		to_chat(user, "<span class='notice'>\The [src] is ready!</span>")
 	else
 		to_chat(user, "<span class='notice'>\The [src] can now be attached!</span>")
-	add_fingerprint(user)
 	return TRUE
 
 

@@ -950,7 +950,7 @@
 
 	var/datum/admin_help/AH = C.current_ticket
 
-	if(AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
+	if(AH && AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 
 	if(AH && !AH.marked)
@@ -1377,3 +1377,23 @@
 		return
 
 	usr << link(CONFIG_GET(string/dburl))
+
+
+/datum/admins/proc/check_fingerprints(atom/A)
+	set category = null
+	set name = "Check Fingerprints"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/dat
+
+	if(!A.fingerprints)
+		dat += "No fingerprints detected."
+
+	for(var/i in A.fingerprints)
+		dat += "[i] - [A.fingerprints[i]]<br>"
+
+	var/datum/browser/browser = new(usr, "fingerprints_[A]", "Fingerprints on [A]")
+	browser.set_content(dat)
+	browser.open(FALSE)

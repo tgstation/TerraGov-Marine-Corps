@@ -115,22 +115,11 @@
 		return
 	alpha = initial(alpha) //Sniper variant has *no* mobility stealth, but no drain on movement either
 
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
-	//Can we act
-	if(restrained())	return 0
+/mob/living/carbon/human/Process_Spacemove()
+	if(restrained())	
+		return FALSE
 
-	//Do we have a working jetpack
-	if(istype(back, /obj/item/tank/jetpack))
-		var/obj/item/tank/jetpack/J = back
-		if(((!check_drift) || (check_drift && J.stabilization_on)) && (!lying) && (J.allow_thrust(0.01, src)))
-			inertia_dir = 0
-			return 1
-//		if(!check_drift && J.allow_thrust(0.01, src))
-//			return 1
-
-	//If no working jetpack then use the other checks
-	if(..())	return 1
-	return 0
+	return ..()
 
 
 /mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)

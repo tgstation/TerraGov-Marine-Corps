@@ -12,7 +12,7 @@
 
 		/snow - snow is one type of non-floor open turf
 
-	/closed - all turfs with density = 1 are turf/closed
+	/closed - all turfs with density = TRUE are turf/closed
 
 		/wall - walls are constructed walls as opposed to natural solid turfs
 
@@ -255,6 +255,15 @@
 		return cost
 	else
 		return get_dist(src,t)
+
+
+//  This Distance proc assumes that only cardinal movement is
+//  possible. It results in more efficient (CPU-wise) pathing
+//  for bots and anything else that only moves in cardinal dirs.
+/turf/proc/Distance_cardinal(turf/T)
+	if(!src || !T)
+		return FALSE
+	return abs(x - T.x) + abs(y - T.y)
 
 
 //Blood stuff------------

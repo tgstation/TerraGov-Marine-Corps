@@ -23,16 +23,6 @@
 	icon_state = "med_cypherkey"
 	channels = list(RADIO_CHANNEL_MEDICAL = TRUE)
 
-/obj/item/encryptionkey/ce
-	name = "Chief Ship Engineer's Encryption Key"
-	icon_state = "ce_cypherkey"
-	channels = list(RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_COMMAND = TRUE)
-
-/obj/item/encryptionkey/cmo
-	name = "Chief Medical Officer's Encryption Key"
-	icon_state = "cmo_cypherkey"
-	channels = list(RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_COMMAND = TRUE)
-
 /obj/item/encryptionkey/req
 	name = "Supply Radio Encryption Key"
 	icon_state = "cargo_cypherkey"

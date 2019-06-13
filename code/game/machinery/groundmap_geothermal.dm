@@ -101,8 +101,6 @@
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE
 
-	add_fingerprint(user)
-
 	if(buildstate == GEOTHERMAL_HEAVY_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
 		return FALSE
@@ -155,7 +153,7 @@
 		update_icon()
 		return TRUE
 	else if(iswirecutter(I))
-		if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE && is_on)
+		if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 			return
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
@@ -177,7 +175,7 @@
 		update_icon()
 		return TRUE
 	else if(iswrench(I))
-		if(buildstate != GEOTHERMAL_LIGHT_DAMAGE && is_on)
+		if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 			return
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",

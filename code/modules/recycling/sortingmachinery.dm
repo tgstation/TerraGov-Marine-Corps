@@ -6,7 +6,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
-	density = 1
+	density = TRUE
 	var/sortTag = null
 	var/examtext = null
 	var/nameset = 0
@@ -269,9 +269,6 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				if(i > 5)
 					P.icon_state = "deliverycrate5"
 					P.name = "huge parcel"
-				P.add_fingerprint(usr)
-				O.add_fingerprint(usr)
-				src.add_fingerprint(usr)
 				src.amount -= 1
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
 				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
@@ -349,7 +346,6 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		return
 
 	Topic(href, href_list)
-		src.add_fingerprint(usr)
 		if(href_list["nextTag"] && href_list["nextTag"] in GLOB.tagger_locations)
 			src.currTag = href_list["nextTag"]
 		openwindow(usr)
@@ -357,7 +353,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"
 	desc = "A chute for big and small packages alike!"
-	density = 1
+	density = TRUE
 	icon_state = "intake"
 
 	var/c_mode = 0

@@ -211,7 +211,7 @@
 
 		to_chat(user, "You're securing the M56D into place")
 
-		if(!do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
@@ -316,12 +316,12 @@
 				to_chat(user, "<span class='warning'>You only know how to swap the ammo drum when it's empty.</span>")
 				return
 
-			if(user.action_busy) 
+			if(user.action_busy)
 				return
 
 			if(!do_after(user, 25, TRUE, src, BUSY_ICON_FRIENDLY))
 				return
-				
+
 		user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
 		playsound(loc, 'sound/weapons/gun_minigun_cocked.ogg', 25, 1)
 		if(rounds)
@@ -438,7 +438,7 @@
 			in_chamber.original = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
-			playsound(src.loc, 'sound/weapons/gun_rifle.ogg', 75, 1)
+			playsound(src.loc, 'sound/weapons/gun_hmg.ogg', 75, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
@@ -471,7 +471,6 @@
 	var/mob/living/carbon/human/user = usr //this is us
 	if(user.incapacitated())
 		return
-	src.add_fingerprint(usr)
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
 		if(user.interactee == src)
 			user.unset_interaction()

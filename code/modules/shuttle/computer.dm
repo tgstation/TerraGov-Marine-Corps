@@ -45,8 +45,10 @@
 /obj/machinery/computer/shuttle/Topic(href, href_list)
 	if(..())
 		return TRUE
-//	usr.set_machine(src)
-	src.add_fingerprint(usr)
+
+	if(isxeno(usr))
+		return
+
 	if(!allowed(usr))
 		to_chat(usr, "<span class='danger'>Access denied.</span>")
 		return TRUE

@@ -38,7 +38,7 @@
 	if(!can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/radio/electropack) in src)
+	if(rigged && locate(/obj/item/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -96,7 +96,7 @@
 		to_chat(user, "<span class='notice'>You rig [src].</span>")
 		rigged = TRUE
 
-	else if(istype(I, /obj/item/radio/electropack))
+	else if(istype(I, /obj/item/electropack))
 		if(!rigged)
 			return
 
@@ -334,7 +334,7 @@
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
 	icon_state = "miningcar"
-	density = 1
+	density = TRUE
 	icon_opened = "miningcaropen"
 	icon_closed = "miningcar"
 

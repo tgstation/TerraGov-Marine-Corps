@@ -13,7 +13,7 @@
 	force = 6
 	movement_acc_penalty_mult = 2
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
-	fire_sound = 'sound/weapons/gun_servicepistol.ogg'
+	fire_sound = 'sound/weapons/gun_pistol.ogg'
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list(
@@ -54,6 +54,7 @@
 	item_state = "m4a3"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 12 //codex
+	fire_sound = 'sound/weapons/gun_pistol_service.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -90,7 +91,7 @@
 	caliber = ".45 ACP" //codex
 	max_shells = 7 //codex
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_glock.ogg'
+	fire_sound = 'sound/weapons/gun_colt.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -135,6 +136,7 @@
 	item_state = "b92fs"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 15 //codex
+	fire_sound = 'sound/weapons/gun_beretta.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/b92fs
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -206,7 +208,7 @@
 	item_state = "deagle"
 	caliber = ".50 AE" //codex
 	max_shells = 7 //codex
-	fire_sound = 'sound/weapons/gun_44mag.ogg'
+	fire_sound = 'sound/weapons/gun_deagle.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/heavy
 	force = 13
 	attachable_allowed = list(
@@ -350,7 +352,7 @@
 	item_state = "highpower"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 13 //codex
-	fire_sound = 'sound/weapons/gun_kt42.ogg'
+	fire_sound = 'sound/weapons/gun_hp.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -446,7 +448,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 50 //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_pistol_large.ogg'
+	fire_sound = 'sound/weapons/gun_auto9.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
 	attachable_allowed = list()
@@ -506,8 +508,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	w_class = 3
 	force = 25
 	movement_acc_penalty_mult = 10
-	wield_delay = WIELD_DELAY_VERY_FAST 
-	fire_sound = 'sound/weapons/gun_servicepistol.ogg'
+	wield_delay = WIELD_DELAY_VERY_FAST
+	fire_sound = 'sound/weapons/gun_pistol_service.ogg'
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 14,"rail_x" = 9, "rail_y" = 17, "under_x" = 23, "under_y" = 11, "stock_x" = 23, "stock_y" = 10)

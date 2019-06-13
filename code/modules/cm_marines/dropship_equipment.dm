@@ -50,12 +50,8 @@
 		PC.update_icon()
 		installed_equipment = SE
 		SE.ship_base = src
-
-		for(var/datum/shuttle/ferry/marine/S in shuttle_controller.process_shuttles)
-			if(S.shuttle_tag == ship_tag)
-				SE.linked_shuttle = S
-				S.equipments += SE
-				break
+		
+		// linking code goes here
 
 		SE.update_equipment()
 		return TRUE
@@ -178,16 +174,16 @@
 	if(ammo_equipped)
 		qdel(ammo_equipped)
 		ammo_equipped = null
-	if(linked_shuttle)
+/*	if(linked_shuttle)
 		linked_shuttle.equipments -= src
-		linked_shuttle = null
+		linked_shuttle = null*/
 	if(ship_base)
 		ship_base.installed_equipment = null
-		ship_base = null
+		ship_base = null/*
 	if(linked_console)
 		if(linked_console.selected_equipment && linked_console.selected_equipment == src)
 			linked_console.selected_equipment = null
-		linked_console = null
+		linked_console = null*/
 	return ..()
 
 /obj/structure/dropship_equipment/attackby(obj/item/I, mob/user, params)
@@ -249,17 +245,25 @@
 			if(ship_base)
 				ship_base.installed_equipment = null
 				ship_base = null
-				if(linked_shuttle)
-					linked_shuttle.equipments -= src
-					linked_shuttle = null
-					if(linked_console && linked_console.selected_equipment == src)
-						linked_console.selected_equipment = null
+				// linking code goes here
 			update_equipment()
 			return TRUE //removed or uninstalled equipment
 
 
 /obj/structure/dropship_equipment/update_icon()
 	return
+
+/obj/structure/dropship_equipment/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent == INTENT_HARM)
+		X.animation_attack_on(src)
+		X.flick_attack_overlay(src, "slash")
+		playsound(loc, "alien_claw_metal", 25, 1)
+		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
+		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
+	else
+		attack_hand(X)
+
+
 
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
@@ -315,7 +319,7 @@
 		to_chat(user, "<span class='warning'>[src] is busy.</span>")
 		return //prevents spamming deployment/undeployment
 	if(deployed_turret.loc == src) //not deployed
-		if(is_low_orbit_level(z))
+		if(is_reserved_level(z))
 			to_chat(user, "<span class='warning'>[src] can't deploy mid-flight.</span>")
 		else
 			to_chat(user, "<span class='notice'>You deploy [src].</span>")
@@ -331,11 +335,11 @@
 		icon_state = "sentry_system_installed"
 		if(deployed_turret)
 			deployed_turret.setDir(dir)
-			if(linked_shuttle && deployed_turret.camera)
+/*			if(linked_shuttle && deployed_turret.camera)
 				if(linked_shuttle.shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 1")
 					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
 				else
-					deployed_turret.camera.network.Add("dropship2")
+					deployed_turret.camera.network.Add("dropship2")*/
 			switch(dir)
 				if(SOUTH) deployed_turret.pixel_y = 8
 				if(NORTH) deployed_turret.pixel_y = -8
@@ -662,12 +666,12 @@
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	last_fired = world.time
-	if(linked_shuttle)
+/*	if(linked_shuttle)
 		for(var/obj/structure/dropship_equipment/electronics/targeting_system/TS in linked_shuttle.equipments)
 			ammo_accuracy_range = max(ammo_accuracy_range-2, 0) //targeting system increase accuracy and reduce travelling time.
 			ammo_max_inaccuracy = max(ammo_max_inaccuracy -3, 1)
 			ammo_travelling_time = max(ammo_travelling_time - 20, 10)
-			break
+			break*/
 
 	if(ammo_travelling_time)
 		var/total_seconds = max(round(ammo_travelling_time/10),1)
@@ -822,7 +826,7 @@
 
 
 /obj/structure/dropship_equipment/medevac_system/equipment_interact(mob/user)
-	if(!linked_shuttle)
+/*	if(!linked_shuttle)
 		return
 
 	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
@@ -924,7 +928,7 @@
 	linked_stretcher.linked_medevac = src
 	linked_stretcher.visible_message("<span class='notice'>[linked_stretcher] detects a dropship overhead.</span>")
 
-
+*/
 
 
 //on arrival we break any link
@@ -946,7 +950,7 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-	if(!linked_shuttle)
+/*	if(!linked_shuttle)
 		return
 
 	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
@@ -975,10 +979,10 @@
 		to_chat(user, "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>")
 		return
 
-	activate_winch(user)
+	activate_winch(user)*/
 
 
-/obj/structure/dropship_equipment/medevac_system/proc/activate_winch(mob/user)
+/obj/structure/dropship_equipment/medevac_system/proc/activate_winch(mob/user)/*
 	set waitfor = 0
 	var/old_stretcher = linked_stretcher
 	busy_winch = TRUE
@@ -1027,4 +1031,4 @@
 
 	medevac_cooldown = world.time + 600
 	linked_stretcher.linked_medevac = null
-	linked_stretcher = null
+	linked_stretcher = null*/

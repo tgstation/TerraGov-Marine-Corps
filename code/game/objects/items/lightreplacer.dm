@@ -53,7 +53,6 @@
 
 	var/max_uses = 50
 	var/uses = 0
-	var/emagged = 0
 	var/failmsg = ""
 	var/charge = 1
 
@@ -69,7 +68,7 @@
 /obj/item/lightreplacer/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I,  /obj/item/card/emag) && !emagged)
+	if(istype(I,  /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		Emag()
 
 	else if(istype(I, /obj/item/stack/sheet/glass))
@@ -105,7 +104,7 @@
 	to_chat(usr, "It has [uses] lights remaining.")
 
 /obj/item/lightreplacer/update_icon()
-	icon_state = "lightreplacer[emagged]"
+	icon_state = "lightreplacer[CHECK_BITFIELD(obj_flags, EMAGGED)]"
 
 
 /obj/item/lightreplacer/proc/Use(var/mob/user)
@@ -148,7 +147,7 @@
 
 			target.status = L2.status
 			target.switchcount = L2.switchcount
-			target.rigged = emagged
+			target.rigged = CHECK_BITFIELD(obj_flags, EMAGGED)
 			target.brightness = L2.brightness
 			target.on = target.has_power()
 			target.update()
@@ -166,9 +165,9 @@
 		return
 
 /obj/item/lightreplacer/proc/Emag()
-	emagged = !emagged
+	TOGGLE_BITFIELD(obj_flags, EMAGGED)
 	playsound(src.loc, "sparks", 25, 1)
-	if(emagged)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		name = "Shortcircuited [initial(name)]"
 	else
 		name = initial(name)
@@ -177,7 +176,6 @@
 //Can you use it?
 
 /obj/item/lightreplacer/proc/CanUse(var/mob/living/user)
-	src.add_fingerprint(user)
 	//Not sure what else to check for. Maybe if clumsy?
 	if(uses > 0)
 		return 1

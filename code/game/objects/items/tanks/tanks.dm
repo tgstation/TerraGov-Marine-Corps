@@ -138,7 +138,6 @@
 				else
 					to_chat(usr, "<span class='notice'>You need something to connect to \the [src].</span>")
 
-	src.add_fingerprint(usr)
 	return 1
 
 

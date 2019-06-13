@@ -95,7 +95,6 @@
 					if("l_hand")
 						usr.dropItemToGround(src)
 						usr.put_in_l_hand(src)
-				add_fingerprint(usr)
 
 
 /obj/item/clothing/under/examine(mob/user)
@@ -204,7 +203,6 @@
 	hastie.on_removed()
 	if(user)
 		user.put_in_hands(hastie)
-		hastie.add_fingerprint(user)
 	hastie = null
 	update_clothing_icon()
 

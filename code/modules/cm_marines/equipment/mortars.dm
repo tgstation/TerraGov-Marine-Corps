@@ -6,9 +6,9 @@
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	density = 1
+	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/targ_x = 0 //Initial target coordinates
 	var/targ_y = 0
@@ -35,7 +35,6 @@
 	if(firing)
 		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
 		return
-	add_fingerprint(user)
 
 	var/choice = alert(user, "Would you like to set the mortar's target coordinates, or dial the mortar? Setting coordinates will make you lose your fire adjustment.", "Mortar Dialing", "Target", "Dial", "Cancel")
 	if(choice == "Cancel")

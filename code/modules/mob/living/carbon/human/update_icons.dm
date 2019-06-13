@@ -334,11 +334,6 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_targeted()
 	remove_overlay(TARGETED_LAYER)
 	var/image/I
-	if (targeted_by && target_locked)
-		I = image("icon" = target_locked, "layer" =-TARGETED_LAYER)
-	else if (!targeted_by && target_locked)
-		qdel(target_locked)
-		target_locked = null
 	if(holo_card_color)
 		if(I)
 			I.overlays += image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "holo_card_[holo_card_color]")
@@ -647,7 +642,6 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[SUIT_LAYER]	= standing
 
 	update_tail_showing()
-	update_collar()
 
 	species?.update_inv_wear_suit(src)
 
@@ -769,22 +763,6 @@ var/global/list/damage_icon_parts = list()
 			overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
 
 			apply_overlay(TAIL_LAYER)
-
-//Adds a collar overlay above the helmet layer if the suit has one
-//	Suit needs an identically named sprite in icons/mob/collar.dmi
-/mob/living/carbon/human/proc/update_collar()
-	remove_overlay(COLLAR_LAYER)
-	var/icon/C = new('icons/mob/collar.dmi')
-	var/image/standing = null
-
-	if(wear_suit)
-		if(wear_suit.icon_state in C.IconStates())
-			standing = image("icon" = C, "icon_state" = "[wear_suit.icon_state]", "layer" =-COLLAR_LAYER)
-
-	overlays_standing[COLLAR_LAYER]	= standing
-
-	apply_overlay(COLLAR_LAYER)
-
 
 
 // Used mostly for creating head items

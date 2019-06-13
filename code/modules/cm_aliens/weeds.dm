@@ -6,7 +6,7 @@
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "base"
 
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	plane = FLOOR_PLANE
 	layer = TURF_LAYER
@@ -202,9 +202,6 @@
 	// Generate our full graph before adding to SSweeds
 	generate_weed_graph()
 	SSweeds.add_node(src)
-
-	if(X)
-		add_hiddenprint(X)
 
 
 /obj/effect/alien/weeds/node/proc/generate_weed_graph()

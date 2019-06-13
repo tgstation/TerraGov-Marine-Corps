@@ -136,6 +136,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				demote_squad_leader() //replaced by the real one
 			squad_leader = H
 			SSdirection.set_leader(tracking_id, H)
+			SSdirection.start_tracking("marine-sl", H)
 			if(H.mind.assigned_role == "Squad Leader") //field promoted SL don't count as real ones
 				num_leaders++
 
@@ -148,7 +149,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	if(istype(H.wear_ear, /obj/item/radio/headset/almayer)) // they've been transferred
 		var/obj/item/radio/headset/almayer/headset = H.wear_ear
-		if(headset.sl_direction)
+		if(headset.sl_direction && H.assigned_squad.squad_leader != H)
 			SSdirection.start_tracking(tracking_id, H)
 
 	var/c_oldass = C.assignment
@@ -184,6 +185,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		else
 			H.assigned_squad.squad_leader = null
 			SSdirection.clear_leader(tracking_id)
+			SSdirection.stop_tracking("marine-sl", H)
 
 	H.assigned_squad = null
 
@@ -204,7 +206,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
-	SSdirection.stop_tracking(tracking_id, H)// failsafe
 	marines_list -= src
 	if(!wipe)
 		var/role = "unknown"
@@ -214,6 +215,10 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(squad_leader == src)
 		squad_leader = null
 		SSdirection.clear_leader(tracking_id)
+		SSdirection.stop_tracking("marine-sl", src)
+	else
+		SSdirection.stop_tracking(tracking_id, H)
+
 	H.assigned_squad = null
 	return TRUE
 
@@ -222,6 +227,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
 	SSdirection.clear_leader(tracking_id)
+	SSdirection.stop_tracking("marine-sl", old_lead)
+
 	if(old_lead.mind.assigned_role)
 		if(old_lead.mind.cm_skills)
 			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Corpsman" || "Squad Smartgunner"))

@@ -2,6 +2,11 @@
 	category = CATEGORY_XENO
 	weight = WEIGHT_MOB
 
+/datum/keybinding/xeno/New()
+	. = ..()
+	if(!keybind_signal)
+		CRASH("Keybind [src] called unredefined down() without a keybind_signal.")
+
 /datum/keybinding/xeno/down(client/user)
 	if(SEND_SIGNAL(user.mob, keybind_signal) & COMSIG_KB_ACTIVATED)
 		return TRUE

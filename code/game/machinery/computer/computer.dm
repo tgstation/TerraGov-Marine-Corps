@@ -1,8 +1,8 @@
 /obj/machinery/computer
 	name = "computer"
 	icon = 'icons/obj/machines/computer.dmi'
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	layer = BELOW_OBJ_LAYER
 	idle_power_usage = 300

@@ -9,8 +9,8 @@
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	animate_movement=1
 	max_integrity = 150
 	fire_dam_coeff = 0.7
@@ -262,7 +262,6 @@
 				if(open && cell && !usr.get_active_held_item())
 					cell.updateicon()
 					usr.put_in_active_hand(cell)
-					cell.add_fingerprint(usr)
 					cell = null
 
 					usr.visible_message("<span class='notice'> [usr] removes the power cell from [src].</span>", "<span class='notice'> You remove the power cell from [src].</span>")
@@ -275,7 +274,6 @@
 						if(usr.drop_held_item())
 							cell = C
 							C.forceMove(src)
-							C.add_fingerprint(usr)
 
 							usr.visible_message("<span class='notice'> [usr] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
 							updateDialog()
@@ -683,19 +681,19 @@
 	return
 
 // called when bot bumps into anything
-/obj/machinery/bot/mulebot/Bump(var/atom/obs)
-	if(wires.is_cut(WIRE_AVOIDANCE))		//usually just bumps, but if avoidance disabled knock over mobs
-		var/mob/M = obs
-		if(ismob(M))
-			visible_message("<span class='warning'> [src] knocks over [M]!</span>")
-			M.stop_pulling()
-			M.Stun(8)
-			M.KnockDown(5)
-			M.lying = 1
-	..()
+/obj/machinery/bot/mulebot/Bump(atom/A)
+	if(!wires.is_cut(WIRE_AVOIDANCE))		//usually just bumps, but if avoidance disabled knock over mobs
+		return ..()
 
-/obj/machinery/bot/mulebot/alter_health()
-	return get_turf(src)
+	if(!isliving(A))
+		return ..()
+		
+	var/mob/living/L = A
+	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
+	L.stop_pulling()
+	L.Stun(8)
+	L.KnockDown(5)
+	L.lying = TRUE
 
 
 // called from mob/living/carbon/human/Crossed()

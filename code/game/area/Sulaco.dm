@@ -6,7 +6,6 @@
 /area/sulaco/bridge
 	name = "\improper Sulaco Bridge"
 	icon_state = "bridge"
-	music = "signal"
 
 /area/sulaco/bridge/quarters
 	name = "\improper Sulaco Officer's Quarters"
@@ -105,7 +104,6 @@
 /area/sulaco/briefing
 	name = "\improper Sulaco Briefing Room"
 	icon_state = "law"
-	music = null
 
 /area/sulaco/cryosleep
 	name = "\improper Sulaco Cryogenic Storage"
@@ -126,6 +124,9 @@
 /area/sulaco/cargo/office
 	name = "\improper Sulaco Cargo Office"
 	icon_state = "quartoffice"
+
+/area/sulaco/supply/station
+	name = "\improper Sulaco Supply Station"
 
 /area/sulaco/maintenance
 	name = "\improper Sulaco Maintenance"

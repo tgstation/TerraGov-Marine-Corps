@@ -15,9 +15,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	max_shells = 9 //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/gun_shotgun_empty.ogg'
 	reload_sound = 'sound/weapons/gun_shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/gun_shotgun_reload.ogg'
-	var/opened_sound = 'sound/weapons/gun_shotgun_open2.ogg'
+	var/opened_sound = 'sound/weapons/gun_shotgun_open.ogg'
 	type_of_casings = "shell"
 	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
@@ -324,7 +325,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	current_mag.chamber_closed = !current_mag.chamber_closed
 	update_icon()
-	playsound(user, reload_sound, 25, 1)
+	playsound(user, opened_sound, 25, 1)
 	return TRUE
 
 
@@ -500,7 +501,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A nine-round pump action shotgun. A sporterized version of a classic shotgun used for hunting, home defence and police work, modified and used by Colonial Marshals"
 	icon_state = "pal12"
 	item_state = "pal12"
-	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
+	fire_sound = 'sound/weapons/gun_shotgun_cmb.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -563,7 +564,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already."
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist
-	fire_sound = 'sound/weapons/gun_sniper.ogg'
+	fire_sound = 'sound/weapons/gun_mosin.ogg'
+	dry_fire_sound = 'sound/weapons/gun_empty.ogg'
 	caliber = "7.62x54mm Rimmed" //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex

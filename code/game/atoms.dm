@@ -6,7 +6,7 @@
 	var/flags_atom = NONE
 	var/datum/reagents/reagents = null
 
-	var/fingerprintslast
+	var/list/fingerprints
 	var/blood_color
 	var/list/blood_DNA
 
@@ -46,6 +46,9 @@ directive is properly returned.
 	LAZYCLEARLIST(priority_overlays)
 
 	QDEL_NULL(light)
+
+	if(isturf(loc))
+		loc.fingerprints = fingerprints
 
 	return ..()
 
@@ -263,6 +266,10 @@ directive is properly returned.
 
 /atom/proc/GenerateTag()
 	return
+
+
+/atom/proc/prevent_content_explosion()
+	return FALSE
 
 
 //Generalized Fire Proc.
@@ -588,3 +595,34 @@ Proc for attack log creation, because really why not
 
 /atom/proc/AllowDrop()
 	return FALSE
+
+
+/atom/proc/add_fingerprint(mob/M, type, special)
+	if(!islist(fingerprints))
+		fingerprints = list()
+
+	if(!type)
+		CRASH("Attempted to add fingerprint without an action type.")
+
+	if(!istype(M))
+		CRASH("Invalid mob type [M]([M.type]) when attempting to add fingerprint of type [type].")
+
+	if(!M.key)
+		return
+
+	var/current_time = stationTimestamp()
+
+	if(!LAZYACCESS(fingerprints, M.key))
+		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] [special ? "| [special]" : ""]")
+	else
+		var/laststamppos = findtext(LAZYACCESS(fingerprints, M.key), " Last: ")
+		if(laststamppos)
+			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
+		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] [special ? " | [special]" : ""]"
+	
+	return TRUE
+
+
+/atom/Topic(href, href_list)
+	. = ..()
+	add_fingerprint(usr, "topic")

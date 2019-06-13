@@ -62,7 +62,6 @@ obj/structure/bed/Destroy()
 	update_icon()
 	if(buckling_y)
 		buckled_bodybag.pixel_y = buckling_y
-	add_fingerprint(user)
 
 /obj/structure/bed/unbuckle()
 	if(buckled_bodybag)
@@ -77,7 +76,6 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/manual_unbuckle(mob/user)
 	if(buckled_bodybag)
 		unbuckle()
-		add_fingerprint(user)
 		return TRUE
 	else
 		. = ..()
@@ -261,7 +259,6 @@ obj/structure/bed/Destroy()
 
 /obj/item/roller/proc/deploy_roller(mob/user, atom/location)
 	var/obj/structure/bed/roller/R = new rollertype(location)
-	R.add_fingerprint(user)
 	user.temporarilyRemoveItemFromInventory(src)
 	if(istype(R,/obj/structure/bed/medevac_stretcher)) //We need to preserve key variables like linked beacons and cooldowns.
 		var/obj/item/roller/medevac/I = src
@@ -294,7 +291,6 @@ obj/structure/bed/Destroy()
 
 	var/obj/structure/bed/roller/R = new(user.loc)
 	to_chat(user, "<span class='notice'>You deploy [R].</span>")
-	R.add_fingerprint(user)
 	qdel(held)
 	held = null
 

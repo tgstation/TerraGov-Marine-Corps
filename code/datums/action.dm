@@ -1,6 +1,7 @@
 
 /datum/action
 	var/name = "Generic Action"
+	var/desc
 	var/obj/target = null
 	var/obj/screen/action_button/button = null
 	var/mob/living/owner
@@ -19,6 +20,8 @@
 		button.overlays += IMG
 	button.source_action = src
 	button.name = name
+	if(desc)
+		button.desc = desc
 
 /datum/action/Destroy()
 	if(owner)
@@ -95,16 +98,72 @@
 /datum/action/item_action/update_button_icon()
 	button.overlays.Cut()
 	var/obj/item/I = target
-	var/old = I.layer
-	I.layer = FLOAT_LAYER
+	var/old_layer = I.layer
+	var/old_plane = I.plane
+	I.layer = ABOVE_HUD_LAYER
+	I.plane = ABOVE_HUD_PLANE
 	button.overlays += I
-	I.layer = old
+	I.layer = old_layer
+	I.plane = old_plane
 
 
 /datum/action/item_action/toggle/New(Target)
 	..()
 	name = "Toggle [target]"
 	button.name = name
+
+
+//Preset for general and toggled actions
+/datum/action/innate
+	var/active = FALSE
+	var/icon_icon = 'icons/mob/actions.dmi' //This is the file for the ACTION icon
+	var/icon_icon_state = "default" //And this is the state for the action icon
+	var/button_icon_state = "template" //The state for the button background
+
+
+/datum/action/innate/action_activate()
+	if(!can_use_action())
+		return FALSE
+	if(!active)
+		Activate()
+	else
+		Deactivate()
+	return TRUE
+
+
+/datum/action/innate/update_button_icon()
+	if(!button)
+		return
+
+	button.name = name
+	button.desc = desc
+
+	if(icon_icon && icon_icon_state)
+		button.cut_overlays(TRUE)
+		button.add_overlay(mutable_appearance(icon_icon, icon_icon_state))
+
+	if(button_icon_state)
+		button.icon_state = button_icon_state
+
+	if(can_use_action())
+		button.color = rgb(255, 255, 255, 255)
+	else
+		button.color = rgb(128, 0, 0, 128)
+	
+	return TRUE
+
+
+/datum/action/innate/give_action()
+	. = ..()
+	update_button_icon()
+
+
+/datum/action/innate/proc/Activate()
+	return
+
+
+/datum/action/innate/proc/Deactivate()
+	return
 
 
 
@@ -137,6 +196,7 @@
 	var/keybind_flags
 	var/image/cooldown_image
 	var/keybind_signal
+	var/cooldown_id
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -156,6 +216,8 @@
 	. = ..()
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
+	if(cooldown_id)
+		deltimer(cooldown_id)
 
 /datum/action/xeno_action/proc/keybind_activation()
 	if(can_use_action())
@@ -250,7 +312,7 @@
 	if(!length(active_timers)) // stop doubling up
 		last_use = world.time
 		on_cooldown = TRUE
-		addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown())
+		cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
 		button.overlays += cooldown_image
 		update_button_icon()
 
@@ -372,9 +434,6 @@
 
 //This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen)
-	return
-
-/mob/living/update_action_buttons(reload_screen)
 	if(!hud_used || !client)
 		return
 

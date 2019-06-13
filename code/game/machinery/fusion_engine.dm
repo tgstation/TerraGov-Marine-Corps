@@ -92,7 +92,6 @@
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE
-	add_fingerprint(user)
 	switch(buildstate)
 		if(FUSION_ENGINE_HEAVY_DAMAGE)
 			to_chat(user, "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.</span>")

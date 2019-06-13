@@ -4,6 +4,10 @@
 	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
 	GLOB.offered_mob_list -= src
+	if(length(observers))
+		for(var/i in observers)
+			var/mob/dead/D = i
+			D.reset_perspective(null)
 	ghostize()
 	clear_fullscreens()
 	return ..()
@@ -40,7 +44,6 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
-				shuttle_controller?.stat_entry()
 				lighting_controller.stat_entry()
 				stat(null)
 				if(Master)
@@ -92,6 +95,15 @@
 
 
 /mob/proc/show_message(msg, type, alt_msg, alt_type)
+	if(!client)
+		return
+
+	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+
+	to_chat(src, msg)
+
+
+/mob/living/show_message(msg, type, alt_msg, alt_type)
 	if(!client)
 		return
 
@@ -258,7 +270,7 @@
 /mob/proc/equip_to_slot(obj/item/W as obj, slot)
 	return
 
-//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
+//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
 
@@ -338,21 +350,6 @@
 		return TRUE
 
 
-/mob/proc/reset_view(atom/A)
-	if (client)
-		if (ismovableatom(A))
-			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
-		else
-			if (isturf(loc))
-				client.eye = client.mob
-				client.perspective = MOB_PERSPECTIVE
-			else
-				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-	return
-
-
 /mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
 	var/dat = {"
@@ -370,51 +367,10 @@
 	return
 
 
-
-/mob/proc/point_to_atom(atom/A, turf/T)
-	//Squad Leaders and above have reduced cooldown and get a bigger arrow
-	if(!mind || !mind.cm_skills || mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
-		recently_pointed_to = world.time + 50
-		new /obj/effect/overlay/temp/point(T)
-
-	else
-		recently_pointed_to = world.time + 10
-		new /obj/effect/overlay/temp/point/big(T)
-	visible_message("<b>[src]</b> points to [A]", null, null, 5)
-	return 1
-
-
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
 	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
-
-
-/mob/proc/update_flavor_text()
-	set src in usr
-	if(usr != src)
-		to_chat(usr, "No.")
-	var/msg = input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null
-
-	if(msg != null)
-		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-		msg = html_encode(msg)
-
-		flavor_text = msg
-
-/mob/proc/warn_flavor_changed()
-	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
-		to_chat(src, "<h2 class='alert'>OOC Warning:</h2>")
-		to_chat(src, "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>")
-
-/mob/proc/print_flavor_text()
-	if (flavor_text && flavor_text != "")
-		var/msg = oldreplacetext(flavor_text, "\n", " ")
-		if(lentext(msg) <= 40)
-			return "<span class='notice'> [msg]</span>"
-		else
-			return "<span class='notice'> [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></span>"
-
 
 
 /client/verb/changes()
@@ -466,12 +422,6 @@
 		unset_interaction()
 		src << browse(null, t1)
 
-	else if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, oldreplacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(usr, "[name]")
-	else if(href_list["flavor_change"])
-		update_flavor_text()
-
 	else if(href_list["default_language"])
 		var/language = text2path(href_list["default_language"])
 		var/datum/language_holder/H = get_language_holder()
@@ -521,9 +471,6 @@
 	var/mob/M
 	if(ismob(AM))
 		M = AM
-
-	else if(istype(AM, /obj))
-		AM.add_fingerprint(src)
 
 	if(AM.pulledby && AM.pulledby.grab_level < GRAB_NECK)
 		if(M)
@@ -752,9 +699,7 @@ mob/proc/yank_out_object()
 		pulledby.stop_pulling()
 	if(buckled)
 		buckled.unbuckle()
-	. = ..()
-	if(.)
-		reset_view(destination)
+	return ..()
 
 /mob/proc/trainteleport(atom/destination)
 	if(!destination || anchored)
@@ -825,7 +770,7 @@ mob/proc/yank_out_object()
 			AM.Moved(oldLoc)
 		var/mob/M = AM
 		if(istype(M))
-			M.reset_view(destination)
+			M.reset_perspective(destination)
 	return TRUE
 
 

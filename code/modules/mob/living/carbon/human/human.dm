@@ -5,7 +5,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD)
+	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD, PAIN_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
@@ -49,7 +49,6 @@
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
@@ -57,6 +56,7 @@
 /mob/living/carbon/human/prepare_huds()
 	..()
 	//updating all the mob's hud images
+	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
 	sec_hud_set_ID()
@@ -466,7 +466,6 @@
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
 				if (internal)
-					internal.add_fingerprint(usr)
 					internal = null
 					if (hud_used && hud_used.internals)
 						hud_used.internals.icon_state = "internal0"
@@ -481,7 +480,6 @@
 							internal = belt
 						if (internal)
 							visible_message("<span class='notice'>[src] is now running on internals.</span>", null, null, 1)
-							internal.add_fingerprint(usr)
 							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
@@ -511,8 +509,7 @@
 							o.limb_status &= ~LIMB_SPLINTED
 							limbcount++
 					if(limbcount)
-						var/obj/item/W = new /obj/item/stack/medical/splint(loc, limbcount)
-						W.add_fingerprint(usr)
+						new /obj/item/stack/medical/splint(loc, limbcount)
 
 	if(href_list["tie"])
 		if(!usr.action_busy)
@@ -1076,6 +1073,7 @@
 	species.handle_post_spawn(src)
 
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
+	INVOKE_ASYNC(src, .proc/update_body)
 	INVOKE_ASYNC(src, .proc/restore_blood)
 
 	if(species)
@@ -1136,43 +1134,6 @@
 		W.basecolor = (blood_color) ? blood_color : "#A10808"
 		W.update_icon()
 		W.message = message
-		W.add_fingerprint(src)
-
-/mob/living/carbon/human/print_flavor_text()
-	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
-	var/head_exposed = 1
-	var/face_exposed = 1
-	var/eyes_exposed = 1
-	var/torso_exposed = 1
-	var/arms_exposed = 1
-	var/legs_exposed = 1
-	var/hands_exposed = 1
-	var/feet_exposed = 1
-
-	for(var/obj/item/clothing/C in equipment)
-		if(C.flags_armor_protection & HEAD)
-			head_exposed = 0
-		if(C.flags_armor_protection & FACE)
-			face_exposed = 0
-		if(C.flags_armor_protection & EYES)
-			eyes_exposed = 0
-		if(C.flags_armor_protection & CHEST)
-			torso_exposed = 0
-		if(C.flags_armor_protection & ARMS)
-			arms_exposed = 0
-		if(C.flags_armor_protection & HANDS)
-			hands_exposed = 0
-		if(C.flags_armor_protection & LEGS)
-			legs_exposed = 0
-		if(C.flags_armor_protection & FEET)
-			feet_exposed = 0
-
-	for (var/T in flavor_texts)
-		if(flavor_texts[T] && flavor_texts[T] != "")
-			if((T == "head" && head_exposed) || (T == "face" && face_exposed) || (T == "eyes" && eyes_exposed) || (T == "torso" && torso_exposed) || (T == "arms" && arms_exposed) || (T == "hands" && hands_exposed) || (T == "legs" && legs_exposed) || (T == "feet" && feet_exposed))
-				flavor_text += flavor_texts[T]
-				flavor_text += "\n\n"
-	return ..()
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
@@ -1268,12 +1229,11 @@
 	if(stat == DEAD)
 		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 		return
 
 	sight = initial(sight)
 	see_in_dark = species.darksight
-	see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+	see_invisible = SEE_INVISIBLE_LIVING
 
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
@@ -1287,6 +1247,8 @@
 				clear_fullscreen("glasses_vision", 0)
 			if(G.see_invisible)
 				see_invisible = min(G.see_invisible, see_invisible)
+		else
+			clear_fullscreen("glasses_vision", 0)
 	else
 		clear_fullscreen("glasses_vision", 0)
 
@@ -1591,3 +1553,24 @@
 		to_chat(src, "<span class='warning'>You are too far away!</span>")
 		return FALSE
 	return TRUE
+
+
+/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/almayer/H)
+	if(QDELETED(H?.camera) || oldloc == get_turf(src))
+		return
+
+	GLOB.cameranet.updatePortableCamera(H.camera)
+
+
+/mob/living/carbon/human/update_camera_location(oldloc)
+	oldloc = get_turf(oldloc)
+
+	if(!wear_ear || !istype(wear_ear, /obj/item/radio/headset/almayer) || oldloc == get_turf(src))
+		return
+
+	var/obj/item/radio/headset/almayer/H = wear_ear
+
+	if(QDELETED(H.camera))
+		return
+
+	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)

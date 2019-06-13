@@ -1,195 +1,111 @@
-//Corgi
 /mob/living/simple_animal/corgi
 	name = "\improper corgi"
 	real_name = "corgi"
 	desc = "It's a corgi."
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
+	response_help  = "pets"
+	response_disarm = "bops"
+	response_harm   = "kicks"
 	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
 	speak_emote = list("barks", "woofs")
-	emote_hear = list("barks", "woofs", "yaps","pants")
-	emote_see = list("shakes its head", "shivers")
+	emote_hear = list("barks!", "woofs!", "yaps.","pants.")
+	emote_see = list("shakes its head.", "chases its tail.","shivers.")
+	see_in_dark = 5
 	speak_chance = 1
 	turns_per_move = 10
-	meat_type = /obj/item/reagent_container/food/snacks/meat/corgi
-	meat_amount = 3
-	response_help  = "pets the"
-	response_disarm = "bops the"
-	response_harm   = "kicks the"
-	see_in_dark = 5
-	mob_size = MOB_SIZE_SMALL
-	var/obj/item/inventory_head
-	var/obj/item/inventory_back
-	var/facehugger
 
-//IAN! SQUEEEEEEEEE~
+
+/mob/living/simple_animal/corgi/pug
+	name = "\improper pug"
+	real_name = "pug"
+	desc = "It's a pug."
+	icon_state = "pug"
+	icon_living = "pug"
+	icon_dead = "pug_dead"
+
+
+/mob/living/simple_animal/corgi/exoticcorgi
+	name = "Exotic Corgi"
+	desc = "As cute as it is colorful!"
+	icon_state = "corgigrey"
+	icon_living = "corgigrey"
+	icon_dead = "corgigrey_dead"
+
+
+/mob/living/simple_animal/corgi/exoticcorgi/Initialize()
+	. = ..()
+	var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
+	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+
+
 /mob/living/simple_animal/corgi/Ian
 	name = "Ian"
-	real_name = "Ian"	//Intended to hold the name without altering it.
+	real_name = "Ian"
 	gender = MALE
-	desc = "It's a corgi."
-	var/turns_since_scan = 0
-	var/obj/movement_target
+	desc = "It's the HoP's beloved corgi."
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
 
-/mob/living/simple_animal/corgi/Ian/Life()
-	..()
 
-	//Feeding, chasing food, FOOOOODDDD
-	if(!stat && !resting && !buckled)
-		turns_since_scan++
-		if(turns_since_scan > 5)
-			turns_since_scan = 0
-			if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
-				movement_target = null
-				stop_automated_movement = 0
-			if( !movement_target || !(movement_target.loc in oview(src, 3)) )
-				movement_target = null
-				stop_automated_movement = 0
-				for(var/obj/item/reagent_container/food/snacks/S in oview(src,3))
-					if(isturf(S.loc) || ishuman(S.loc))
-						movement_target = S
-						break
-			if(movement_target)
-				stop_automated_movement = 1
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-				sleep(3)
-				step_to(src,movement_target,1)
-
-				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
-						setDir(WEST)
-					else if (movement_target.loc.x > src.x)
-						setDir(EAST)
-					else if (movement_target.loc.y < src.y)
-						setDir(SOUTH)
-					else if (movement_target.loc.y > src.y)
-						setDir(NORTH)
-					else
-						setDir(SOUTH)
-
-					if(isturf(movement_target.loc) )
-						movement_target.attack_animal(src)
-					else if(ishuman(movement_target.loc) )
-						if(prob(20))
-							emote("stares at the [movement_target] that [movement_target.loc] has with a sad puppy-face")
-
-		if(prob(1))
-			emote(pick("dances around","chases its tail"))
-			spawn(0)
-				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
-					setDir(i)
-					sleep(1)
-
-/obj/item/reagent_container/food/snacks/meat/corgi
-	name = "Corgi meat"
-	desc = "Tastes like... well you know..."
+/mob/living/simple_animal/corgi/narsie
+	name = "Nars-Ian"
+	desc = "Ia! Ia!"
+	icon_state = "narsian"
+	icon_living = "narsian"
+	icon_dead = "narsian_dead"
 
 
-/mob/living/simple_animal/corgi/regenerate_icons()
-	overlays = list()
+/mob/living/simple_animal/corgi/narsie/Life()
+	. = ..()
+	for(var/mob/living/simple_animal/P in range(1, src))
+		if(P == src || !prob(5))
+			continue
 
-	if(inventory_head)
-		var/head_icon_state = inventory_head.icon_state
-		if(health <= 0)
-			head_icon_state += "2"
-
-		var/icon/head_icon = image('icons/mob/corgi_head.dmi',head_icon_state)
-		if(head_icon)
-			overlays += head_icon
-
-	if(inventory_back)
-		var/back_icon_state = inventory_back.icon_state
-		if(health <= 0)
-			back_icon_state += "2"
-
-		var/icon/back_icon = image('icons/mob/corgi_back.dmi',back_icon_state)
-		if(back_icon)
-			overlays += back_icon
-
-	if(facehugger)
-		if(istype(src, /mob/living/simple_animal/corgi/puppy))
-			overlays += image('icons/mob/mask.dmi',"facehugger_corgipuppy")
-		else
-			overlays += image('icons/mob/mask.dmi',"facehugger_corgi")
-
-	return
+		visible_message("<span class='warning'>[src] devours [P]!</span>", \
+		"<span class='cult big bold'>DELICIOUS SOULS</span>")
+		playsound(src, 'sound/effects/phasein.ogg', 75, TRUE)
+		P.gib()
 
 
 /mob/living/simple_animal/corgi/puppy
 	name = "\improper corgi puppy"
 	real_name = "corgi"
-	desc = "It's a corgi puppy."
+	desc = "It's a corgi puppy!"
 	icon_state = "puppy"
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
+	density = FALSE
+	flags_pass = PASSMOB
+	mob_size = MOB_SIZE_SMALL
 
-//pupplies cannot wear anything.
-/mob/living/simple_animal/corgi/puppy/Topic(href, href_list)
-	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, "<span class='warning'>You can't fit this on [src]</span>")
-		return
-	..()
 
 /mob/living/simple_animal/corgi/puppy/mrwiggles
-	name = "\improper Mister Wiggles"
-	desc = "It's a corgi puppy. MISTER WIGGLES!! HE IS THE GREATEST!"
+	name = " Mr. Wiggles"
+	real_name = "Mr. Wiggles"
+	desc = "It's Mr. Wiggles!"
 
-//LISA! SQUEEEEEEEEE~
+
+/mob/living/simple_animal/corgi/puppy/void
+	name = "\improper void puppy"
+	real_name = "voidy"
+	desc = "A corgi puppy that has been infused with deep space energy. It's staring back..."
+	icon_state = "void_puppy"
+	icon_living = "void_puppy"
+	icon_dead = "void_puppy_dead"
+
+
 /mob/living/simple_animal/corgi/Lisa
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE
-	desc = "It's a corgi with a cute pink bow."
+	desc = "She's tearing you apart."
 	icon_state = "lisa"
 	icon_living = "lisa"
 	icon_dead = "lisa_dead"
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
-	var/turns_since_scan = 0
-	var/puppies = 0
-
-//Lisa already has a cute bow!
-/mob/living/simple_animal/corgi/Lisa/Topic(href, href_list)
-	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, "<span class='warning'>[src] already has a cute bow!</span>")
-		return
-	..()
-
-/mob/living/simple_animal/corgi/Lisa/Life()
-	..()
-
-	if(!stat && !resting && !buckled)
-		turns_since_scan++
-		if(turns_since_scan > 15)
-			turns_since_scan = 0
-			var/alone = 1
-			var/ian = 0
-			for(var/mob/M in oviewers(7, src))
-				if(istype(M, /mob/living/simple_animal/corgi/Ian))
-					if(M.client)
-						alone = 0
-						break
-					else
-						ian = M
-				else
-					alone = 0
-					break
-			if(alone && ian && puppies < 4)
-				if(near_camera(src) || near_camera(ian))
-					return
-				new /mob/living/simple_animal/corgi/puppy(loc)
-
-
-		if(prob(1))
-			emote(pick("dances around","chases her tail"))
-			spawn(0)
-				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
-					setDir(i)
-					sleep(1)

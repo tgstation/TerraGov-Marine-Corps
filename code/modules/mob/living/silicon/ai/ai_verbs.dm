@@ -150,7 +150,7 @@
 		return
 
 	last_announcement = world.time
-	priority_announce(input, "AI Announcement", sound = 'sound/AI/aireport.ogg')
+	priority_announce(input, "[src] Announcement", sound = 'sound/AI/aireport.ogg')
 
 
 /mob/living/silicon/ai/verb/ai_core_display()

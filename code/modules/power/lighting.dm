@@ -114,7 +114,6 @@
 				newlight = new /obj/machinery/light/small/built(loc)
 
 		newlight.setDir(dir)
-		transfer_fingerprints_to(newlight)
 		qdel(src)
 
 
@@ -349,7 +348,6 @@
 					newlight.icon_state = "bulb-construct-stage2"
 			newlight.setDir(dir)
 			newlight.stage = 2
-			transfer_fingerprints_to(newlight)
 			qdel(src)
 
 		else if(has_power() && (I.flags_atom & CONDUCT))
@@ -415,8 +413,6 @@
 
 /obj/machinery/light/attack_hand(mob/user)
 
-	add_fingerprint(user)
-
 	if(status == LIGHT_EMPTY)
 		to_chat(user, "There is no [fitting] in this light.")
 		return
@@ -464,9 +460,7 @@
 
 	L.update()
 
-	if(user.put_in_active_hand(L))	//succesfully puts it in our active hand
-		L.add_fingerprint(user)
-	else
+	if(!user.put_in_active_hand(L))	//succesfully puts it in our active hand
 		L.forceMove(loc) //if not, put it on the ground
 	status = LIGHT_EMPTY
 	update()

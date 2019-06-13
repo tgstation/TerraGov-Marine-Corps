@@ -142,8 +142,6 @@ Buildable meters
 	if(!isturf(loc))
 		return TRUE
 
-	add_fingerprint(user)
-
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	var/flags = initial(fakeA.pipe_flags)
 	for(var/obj/machinery/atmospherics/M in loc)
@@ -160,7 +158,6 @@ Buildable meters
 	var/obj/machinery/atmospherics/A = new pipe_type(loc)
 	build_pipe(A)
 	A.on_construction(color, piping_layer)
-	transfer_fingerprints_to(A)
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	user.visible_message( \

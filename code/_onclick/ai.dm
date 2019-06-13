@@ -118,7 +118,39 @@
 /* Holopads */
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
 	hangup_all_calls()
-	add_hiddenprint(usr)
+
+
+/* Airlocks */
+/obj/machinery/door/airlock/AICtrlClick() // Bolts doors
+	if(obj_flags & EMAGGED)
+		return
+
+	if(locked)
+		bolt_raise(usr)
+	else
+		bolt_drop(usr)
+
+
+/obj/machinery/door/airlock/AIAltClick() // Eletrifies doors.
+	if(obj_flags & EMAGGED)
+		return
+
+	if(!secondsElectrified)
+		shock_perm(usr)
+	else
+		shock_restore(usr)
+
+
+/obj/machinery/door/airlock/AIShiftClick()  // Opens and closes doors!
+	if(obj_flags & EMAGGED)
+		return
+
+	user_toggle_open(usr)
+
+
+/* APC */
+/obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
+	toggle_breaker(usr)
 
 
 //

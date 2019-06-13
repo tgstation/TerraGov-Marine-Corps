@@ -32,13 +32,13 @@
 
 /datum/action/xeno_action/regurgitate/action_activate()
 	var/mob/living/carbon/C = owner
-	for(var/mob/M in C.stomach_contents)
-		C.stomach_contents.Remove(M)
-		if(M.loc != C)
+	for(var/mob/living/L in C.stomach_contents)
+		C.stomach_contents.Remove(L)
+		if(L.loc != C)
 			continue
-		M.forceMove(C.loc)
-		M.SetKnockeddown(1)
-		M.adjust_blindness(-1)
+		L.forceMove(C.loc)
+		L.SetKnockeddown(1)
+		L.adjust_blindness(-1)
 
 	C.visible_message("<span class='xenowarning'>\The [C] hurls out the contents of their stomach!</span>", \
 	"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
@@ -67,8 +67,7 @@
 
 	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
-	var/obj/effect/alien/weeds/node/N = new (owner.loc, src, owner)
-	owner.transfer_fingerprints_to(N)
+	new /obj/effect/alien/weeds/node (owner.loc, src, owner)
 	playsound(owner.loc, "alien_resin_build", 25)
 	round_statistics.weeds_planted++
 	return succeed_activate()
@@ -199,8 +198,9 @@
 		new_resin = T
 	else
 		new_resin = new X.selected_resin(T)
-	new_resin.add_hiddenprint(X) //so admins know who placed it
-	succeed_activate()
+
+	if(new_resin)
+		succeed_activate()
 
 
 /datum/action/xeno_action/toggle_pheromones
@@ -409,7 +409,11 @@
 	to_chat(X, "<span class='notice'>You will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
 	update_button_icon()
 
-// Corrosive Acid
+
+// ***************************************
+// *********** Corrosive Acid
+// ***************************************
+
 /datum/action/xeno_action/activable/corrosive_acid
 	name = "Corrosive Acid"
 	action_icon_state = "corrosive_acid"
@@ -462,7 +466,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
@@ -472,7 +476,7 @@
 	if(!current_acid)
 		return FALSE
 
-	if(initial(new_acid.acid_strength) >= current_acid.acid_strength)
+	if(initial(new_acid.acid_strength) < current_acid.acid_strength)
 		return FALSE
 	return TRUE
 
@@ -552,7 +556,6 @@
 		return fail_activate()
 
 	newacid.name = newacid.name + " (on [A.name])" //Identify what the acid is on
-	newacid.add_hiddenprint(X)
 
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")
@@ -580,6 +583,17 @@
 	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
 	qdel(current_acid)
 
+
+// ***************************************
+// *********** Super strong acid
+// ***************************************
+
+/datum/action/xeno_action/activable/corrosive_acid/strong
+	name = "Corrosive Acid"
+	plasma_cost = 200
+	acid_type = /obj/effect/xenomorph/acid/strong
+
+
 /datum/action/xeno_action/activable/spray_acid
 	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
 
@@ -589,10 +603,26 @@
 		return FALSE
 	if(!A)
 		return FALSE
-	if(get_turf(owner) == get_turf(A))
+
+	var/turf/T = get_turf(owner)
+	var/turf/T2 = get_turf(A)
+	if(T == T2)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>That's far too close!</span>")
 		return FALSE
+
+	var/facing = get_cardinal_dir(T, T2)
+	for(var/i in 1 to get_dist(T2, T))
+		var/turf/next_T = get_step(T, facing)
+		T = next_T
+		if(!T.density)
+			continue
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>There is something in the way!</span>")
+
+		return FALSE
+
+
 
 /datum/action/xeno_action/activable/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)

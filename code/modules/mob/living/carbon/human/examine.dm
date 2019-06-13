@@ -523,7 +523,7 @@
 				msg += "<a href='?src=\ref[src];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 
-	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
+	msg += "[flavor_text]<br>"
 
 	msg += "*---------*</span>"
 

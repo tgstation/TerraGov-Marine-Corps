@@ -198,7 +198,6 @@
 
 		if(isitem(O))
 			usr.put_in_hands(O)
-		O.add_fingerprint(usr)
 
 		//BubbleWrap - so newly formed boxes are empty
 		if(istype(O, /obj/item/storage))
@@ -283,7 +282,6 @@
 		return
 	var/max_transfer = loc.max_stack_merging(S) //We don't want to bypass the max size the container allows.
 	var/transfer = min(get_amount(), (max_transfer ? max_transfer : S.max_amount) - S.amount)
-	transfer_fingerprints_to(S)
 	S.add(transfer)
 	use(transfer)
 	return transfer
@@ -297,7 +295,6 @@
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/stack/attack_hand(mob/user)
-	add_fingerprint(user)
 	if(user.get_inactive_held_item() == src)
 		return change_stack(user, 1)
 	return ..()
@@ -319,7 +316,6 @@
 		stack_trace("[src] tried to change_stack() by [new_amount] amount for [user] user, while having [amount] amount itself.")
 		return
 	var/obj/item/stack/S = new type(user, new_amount)
-	transfer_fingerprints_to(S)
 	use(new_amount)
 	user.put_in_hands(S)
 

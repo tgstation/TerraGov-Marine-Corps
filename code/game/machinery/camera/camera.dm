@@ -8,6 +8,7 @@
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
 	resistance_flags = FIRE_PROOF
+	anchored = TRUE
 
 	var/list/network = list("marinemainship")
 	var/c_tag = null
@@ -29,9 +30,9 @@
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = 16 
+			pixel_y = -16 
 		if(SOUTH)
-			pixel_y = -16
+			pixel_y = 16
 		if(EAST)
 			pixel_x = -16
 		if(WEST)
@@ -45,7 +46,8 @@
 	GLOB.cameranet.addCamera(src)
 
 	myarea = get_area(src)
-	LAZYADD(myarea.cameras, src)
+	if(myarea)
+		LAZYADD(myarea.cameras, src)
 
 	update_icon()
 
@@ -225,7 +227,6 @@
 	if(displaymessage)
 		if(user)
 			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
-			add_hiddenprint(user)
 		else
 			visible_message("<span class='danger'>\The [src] [change_msg]!</span>")
 
@@ -319,6 +320,11 @@
 /obj/machinery/camera/autoname/almayer
 	name = "military-grade camera"
 	network = list("marinemainship")
+
+
+/obj/machinery/camera/headset
+	name = "headset camera"
+	network = list("marine")
 
 
 //used by the laser camera dropship equipment

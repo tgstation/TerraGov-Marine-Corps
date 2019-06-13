@@ -178,7 +178,7 @@
 		user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 		"<span class='notice'>You begin removing the barbed wire on [src].</span>")
 
-		if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -746,7 +746,7 @@
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		busy = TRUE
 
-		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
 			busy = FALSE
 			return
 

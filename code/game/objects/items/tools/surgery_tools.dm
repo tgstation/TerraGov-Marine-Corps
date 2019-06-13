@@ -219,7 +219,7 @@
 	to_chat(usr, "You begin to cut into the alien... This might take some time...")
 	if(T.health >-100)
 		to_chat(usr, "HOLY SHIT IT'S STILL ALIVE.  It knocks you down as it jumps up.")
-		usr.KnockDown(20)
+		user.KnockDown(20)
 		to_chat(T, "You feel TREMENDOUS pain and jump back up to use the last of your strength to kill [usr] with your final moments of life. (~10 seconds)")
 		T.health = T.maxHealth*2 //It's hulk levels of angry.
 		active = 0

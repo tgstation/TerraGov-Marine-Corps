@@ -141,7 +141,6 @@
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
 /obj/structure/window/attack_hand(mob/user as mob)
-	add_fingerprint(user)
 	if(user.a_intent == INTENT_HARM)
 
 		if(istype(user,/mob/living/carbon/human))
@@ -267,20 +266,17 @@
 
 
 /obj/structure/window/proc/disassemble_window()
-	var/obj/item/stack/sheet/glass/reinforced/R = new (loc, 2)
-	transfer_fingerprints_to(R)
+	new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 	qdel(src)
 
 
 /obj/structure/window/proc/shatter_window(create_debris)
 	if(create_debris)
-		var/atom/A = new shardtype(loc)
-		transfer_fingerprints_to(A)
+		new shardtype(loc)
 		if(is_full_window())
 			new shardtype(loc)
 		if(reinf)
-			var/obj/item/stack/rods/R = new(loc)
-			transfer_fingerprints_to(R)
+			new /obj/item/stack/rods(loc)
 	qdel(src)
 
 
@@ -465,7 +461,6 @@
 /obj/structure/window/framed/disassemble_window()
 	if(window_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc)
-		transfer_fingerprints_to(WF)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)
 	return ..()
@@ -474,7 +469,6 @@
 /obj/structure/window/framed/shatter_window(create_debris)
 	if(window_frame)
 		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
-		transfer_fingerprints_to(new_window_frame)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 		new_window_frame.setDir(dir)
 	return ..()
@@ -483,7 +477,6 @@
 /obj/structure/window/framed/proc/drop_window_frame()
 	if(window_frame)
 		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
-		transfer_fingerprints_to(new_window_frame)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 		new_window_frame.setDir(dir)
 	qdel(src)

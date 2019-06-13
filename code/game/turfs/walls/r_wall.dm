@@ -3,7 +3,7 @@
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon_state = "rwall"
 	opacity = 1
-	density = 1
+	density = TRUE
 
 	damage_cap = 3000
 	max_temperature = 6000
@@ -11,8 +11,7 @@
 	walltype = "rwall"
 
 /turf/closed/wall/r_wall/attack_hand(mob/user)
-	add_fingerprint(user)
-
+	return
 
 /turf/closed/wall/r_wall/can_be_dissolved()
 	if(hull)

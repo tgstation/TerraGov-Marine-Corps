@@ -108,7 +108,6 @@
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)
 		attack_verb = initial(attack_verb)
-		add_fingerprint(user)
 
 /obj/item/weapon/butterfly/switchblade
 	name = "switchblade"

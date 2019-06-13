@@ -153,7 +153,7 @@
 
 /obj/effect/mine_tripwire
 	name = "claymore tripwire"
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = UNACIDABLE

@@ -11,8 +11,8 @@
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -78,7 +78,6 @@
 
 			to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
 			var/obj/structure/disposalconstruct/C = new(loc)
-			transfer_fingerprints_to(C)
 			C.ptype = 6 //6 = disposal unit
 			C.anchored = TRUE
 			C.density = TRUE
@@ -123,7 +122,6 @@
 	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
-	add_fingerprint(user)
 
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
@@ -146,16 +144,15 @@
 	flush()
 	update()
 
-//Can breath normally in the disposal
-/obj/machinery/disposal/alter_health()
-	return get_turf(src)
-
 //Attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user)
-	if(user.stat || user.stunned || user.knocked_down || flushing)
+	if(!isliving(user))
 		return
-	if(user.loc == src)
-		go_out(user)
+	var/mob/living/L = user
+	if(L.stat || L.stunned || L.knocked_down || flushing)
+		return
+	if(L.loc == src)
+		go_out(L)
 
 //Leave the disposal
 /obj/machinery/disposal/proc/go_out(mob/user)
@@ -164,8 +161,10 @@
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
-	user.stunned = max(user.stunned, 2)  //Action delay when going out of a bin
 	user.update_canmove() //Force the delay to go in action immediately
+	if(isliving(user))
+		var/mob/living/L = user
+		L.Stun(2)
 	if(!user.lying)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
@@ -194,7 +193,6 @@
 //User interaction
 /obj/machinery/disposal/interact(mob/user, var/ai=0)
 
-	add_fingerprint(user)
 	if(machine_stat & BROKEN)
 		user.unset_interaction()
 		return
@@ -235,7 +233,6 @@
 		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
 		return
 	..()
-	add_fingerprint(usr)
 	if(machine_stat & BROKEN)
 		return
 	if(usr.stat || usr.restrained() || flushing)
@@ -271,13 +268,15 @@
 	for(var/atom/movable/AM in src)
 		AM.loc = loc
 		AM.pipe_eject(0)
-		if(ismob(AM))
+		if(isliving(AM))
 			var/mob/M = AM
-			M.stunned = max(M.stunned, 2)  //Action delay when going out of a bin
 			M.update_canmove() //Force the delay to go in action immediately
 			if(!M.lying)
 				M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
+			if(isliving(M))
+				var/mob/living/L = M
+				L.Stun(2)
 	update()
 
 //Pipe affected by explosion
@@ -569,7 +568,7 @@
 	icon = 'icons/obj/pipes/disposal.dmi'
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
-	anchored = 1
+	anchored = TRUE
 	density = 0
 
 	level = 1			//Underfloor only
@@ -808,10 +807,9 @@
 			C.ptype = 13
 		if("pipe-tagger-partial")
 			C.ptype = 14
-	transfer_fingerprints_to(C)
 	C.setDir(dir)
 	C.density = 0
-	C.anchored = 1
+	C.anchored = TRUE
 	C.update()
 	qdel(src)
 
@@ -1296,8 +1294,8 @@
 	desc = "An outlet for the pneumatic disposal system."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "outlet"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/active = 0
 	var/turf/target	//This will be where the output objects are 'thrown' to.
 	var/mode = 0
@@ -1353,7 +1351,6 @@
 
 		to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
 		var/obj/structure/disposalconstruct/C = new(loc)
-		transfer_fingerprints_to(C)
 		C.ptype = 7 //7 =  outlet
 		C.update()
 		C.anchored = TRUE

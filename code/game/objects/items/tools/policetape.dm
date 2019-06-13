@@ -13,7 +13,7 @@
 /obj/item/tape
 	name = "tape"
 	icon = 'icons/obj/policetape.dmi'
-	anchored = 1
+	anchored = TRUE
 	var/lifted = 0
 	var/crumpled = 0
 	var/icon_base
@@ -116,7 +116,6 @@
 /obj/item/tape/Crossed(atom/movable/AM)
 	if(!lifted && ismob(AM))
 		var/mob/M = AM
-		add_fingerprint(M)
 		if(!allowed(M))	//only select few learn art of not crumpling the tape
 			if(ishuman(M))
 				to_chat(M, "<span class='warning'>You are not supposed to go past [src]...</span>")

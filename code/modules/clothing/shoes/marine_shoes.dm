@@ -55,6 +55,7 @@
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
 	desc = "Protects you from fire and even contains a pouch for your knife!"
+	icon_state = "marine_armored"
 
 
 /obj/item/clothing/shoes/marinechief

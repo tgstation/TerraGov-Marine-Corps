@@ -5,7 +5,7 @@
 	desc = "An extremely expansionistic species of vine."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	layer = FLY_LAYER
 	flags_pass = PASSTABLE|PASSGRILLE
@@ -42,7 +42,7 @@
 
 		qdel(src)
 
-	else if(I.heat_source >= 3500)
+	else if(I.heat >= 3500)
 		qdel(src)
 
 	else if(I.sharp)

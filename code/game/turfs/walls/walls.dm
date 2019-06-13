@@ -223,7 +223,6 @@
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
-	transfer_fingerprints_to(G)
 	G.icon_state = "girder[junctiontype]"
 	G.original = src.type
 
@@ -273,8 +272,8 @@
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "2"
-	O.anchored = 1
-	O.density = 1
+	O.anchored = TRUE
+	O.density = TRUE
 	O.layer = FLY_LAYER
 
 	to_chat(user, "<span class='warning'>The thermite starts melting through [src].</span>")
@@ -309,7 +308,7 @@
 				return
 
 /turf/closed/wall/attack_hand(mob/user as mob)
-	add_fingerprint(user)
+	return
 
 
 
@@ -321,7 +320,7 @@
 		return
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
-	if(thermite && I.heat_source >= 1000)
+	if(thermite && I.heat >= 1000)
 		if(hull)
 			to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [I]</span>.")
 			return
@@ -512,8 +511,7 @@
 					if(!iswallturf(src) || !WT?.isOn())
 						return
 
-					var/obj/item/stack/rods/R = new(src)
-					transfer_fingerprints_to(R)
+					new /obj/item/stack/rods(src)
 					user.visible_message("<span class='notice'>The support rods drop out as [user] slices through the final layer.</span>",
 					"<span class='notice'>The support rods drop out as you slice through the final layer.</span>")
 					dismantle_wall()

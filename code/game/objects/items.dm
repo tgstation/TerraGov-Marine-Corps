@@ -7,20 +7,18 @@
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
 						//e.g. most headsets have different icon_state but they all use the same sprite when shown on the mob's ears.
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
-	var/r_speed = 1.0
 	var/force = 0
-	var/damtype = "brute"
-	var/attack_speed = 11  //+3, Adds up to 10.  Added an extra 4 removed from /mob/proc/do_click()
+	var/damtype = BRUTE
+	var/attack_speed = 11
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/sharp = FALSE		// whether this item cuts
 	var/edge = FALSE		// whether this item is more likely to dismember
 	var/pry_capable = FALSE //whether this item can be used to pry things open.
-	var/heat_source = FALSE //whether this item is a source of heat, and how hot it is (in Kelvin).
+	var/heat = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
 
 	var/hitsound = null
 	var/w_class = WEIGHT_CLASS_NORMAL
-	var/storage_cost = null
 	var/flags_item = NONE	//flags for item stuff that isn't clothing/equipping specific.
 	var/flags_equip_slot = NONE		//This is used to determine on which slots an item can fit.
 
@@ -41,18 +39,15 @@
 	var/list/actions = list() //list of /datum/action's that this item has.
 	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
-	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 
 	var/list/allowed = null //suit storage stuff.
-	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
-	var/list/uniform_restricted //Need to wear this uniform to equip this
 
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
@@ -71,16 +66,12 @@
 	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
 	var/sprite_sheet_id = 0 //Select which sprite sheet ID to use due to the sprite limit per .dmi. 0 is default, 1 is the new one.
 
-	/* Species-specific sprite sheets for inventory sprites
-	Works similarly to worn sprite_sheets, except the alternate sprites are used when the clothing/refit_for_species() proc is called.
-	*/
-	var/list/sprite_sheets_obj = null
-
 
 	//TOOL RELATED VARS
 	var/tool_behaviour = FALSE
 	var/toolspeed = 1
 	var/usesound = null
+
 
 /obj/item/Initialize()
 	. = ..()
@@ -96,12 +87,10 @@
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	for(var/X in actions)
-		actions -= X
 		qdel(X)
 	master = null
 	GLOB.item_list -= src
-	. = ..()
-
+	return ..()
 
 
 /obj/item/ex_act(severity)
@@ -111,11 +100,13 @@
 		if(1)
 			qdel(src)
 		if(2)
-			if(prob(50))
-				qdel(src)
+			if(!prob(50))
+				return
+			qdel(src)
 		if(3)
-			if(prob(5))
-				qdel(src)
+			if(!prob(5))
+				return
+			qdel(src)
 
 
 //user: The mob that is suiciding
@@ -128,30 +119,32 @@
 /obj/item/proc/suicide_act(mob/user)
 	return
 
+
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(src.loc, /turf) || usr.stat || usr.restrained() )
+	if(!isturf(loc) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T = src.loc
+	var/turf/T = loc
+	loc = null
+	loc = T
 
-	src.loc = null
 
-	src.loc = T
+/obj/item/attack_hand(mob/user)
+	. = ..()
 
-/obj/item/attack_hand(mob/user as mob)
-	if (!user)
+	if(!user)
 		return
 
 	if(anchored)
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
-	if (istype(src.loc, /obj/item/storage))
-		var/obj/item/storage/S = src.loc
+	if(istype(loc, /obj/item/storage))
+		var/obj/item/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
 	throwing = FALSE
@@ -160,15 +153,17 @@
 		if(!user.dropItemToGround(src))
 			return
 	else
-		user.next_move = max(user.next_move+2,world.time + 2)
-	if(!gc_destroyed) //item may have been cdel'd by the drop above.
-		pickup(user)
-		add_fingerprint(user)
-		if(!user.put_in_active_hand(src))
-			dropped(user)
+		user.changeNext_move(CLICK_CD_RAPID)
+
+	if(QDELETED(src))
+		return
+
+	pickup(user)
+	if(!user.put_in_active_hand(src))
+		dropped(user)
 
 
-/obj/item/attack_paw(mob/user as mob)
+/obj/item/attack_paw(mob/user)
 	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.
@@ -208,11 +203,9 @@
 	else if(S.can_be_inserted(src))
 		S.handle_item_insertion(src, FALSE, user)
 
-/obj/item/proc/talk_into(mob/M as mob, text)
-	return
+/obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language)
+	return ITALICS | REDUCE_RANGE
 
-/obj/item/proc/moved(mob/user as mob, old_loc as turf)
-	return
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
@@ -229,6 +222,7 @@
 
 	if(flags_item & DELONDROP)
 		qdel(src)
+
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -259,13 +253,16 @@
 	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
+
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	return
 
+
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	return
+
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
 /obj/item/proc/on_found(mob/finder as mob)
@@ -283,17 +280,20 @@
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
 
+
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
+
 
 // The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
-/obj/item/proc/mob_can_equip(M as mob, slot, warning = TRUE)
+/obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE)
 	if(!slot)
 		return FALSE
+	
 	if(!M)
 		return FALSE
 
@@ -301,7 +301,7 @@
 		//START HUMAN
 		var/mob/living/carbon/human/H = M
 		var/list/mob_equip = list()
-		if(H.species.hud && H.species.hud.equip_slots)
+		if(H.species.hud?.equip_slots)
 			mob_equip = H.species.hud.equip_slots
 
 		if(H.species && !(slot in mob_equip))
@@ -561,54 +561,25 @@
 	set category = "Object"
 	set name = "Pick up"
 
-	if(!(usr)) //BS12 EDIT
+	if(usr.incapacitated() || !Adjacent(usr))
 		return
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+
+	if(usr.get_active_held_item())
 		return
-	if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
-		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
-		return
-	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
-		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
-		return
-	if(src.anchored) //Object isn't anchored
-		to_chat(usr, "<span class='warning'>You can't pick that up!</span>")
-		return
-	if(!usr.hand && usr.r_hand) //Right hand is not full
-		to_chat(usr, "<span class='warning'>Your right hand is full.</span>")
-		return
-	if(usr.hand && usr.l_hand) //Left hand is not full
-		to_chat(usr, "<span class='warning'>Your left hand is full.</span>")
-		return
-	if(!istype(src.loc, /turf)) //Object is on a turf
-		to_chat(usr, "<span class='warning'>You can't pick that up!</span>")
-		return
-	//All checks are done, time to pick it up!
+
 	usr.UnarmedAttack(src)
-	return
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click()
-	if( src in usr )
-		attack_self(usr)
+/obj/item/proc/ui_action_click(mob/user)
+	attack_self(user)
 
 
 /obj/item/proc/IsShield()
 	return FALSE
 
-/obj/item/proc/get_loc_turf()
-	var/atom/L = loc
-	while(L && !istype(L, /turf/))
-		L = L.loc
-	return loc
-
-
-/obj/item/proc/showoff(mob/user)
-	for (var/mob/M in view(user))
-		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
@@ -616,7 +587,7 @@
 
 	var/obj/item/I = get_active_held_item()
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
-		I.showoff(src)
+		visible_message("[src] holds up [I]. <a HREF=?src=[REF(usr)];lookitem=[REF(I)]>Take a closer look.</a>")
 
 /*
 For zooming with scope or binoculars. This is called from
@@ -725,16 +696,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
-/obj/item/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/item/attack_alien(mob/living/carbon/xenomorph/X)
 	return FALSE
+
 
 /obj/item/proc/update_action_button_icons()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.update_button_icon()
 
-/obj/item/proc/extinguish(atom/target, mob/user)
 
+/obj/item/proc/extinguish(atom/target, mob/user)
 	if (reagents.total_volume < 1)
 		to_chat(user, "<span class='warning'>\The [src]'s water reserves are empty.</span>")
 		return
@@ -832,12 +804,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(isspaceturf(user.loc) || user.lastarea.has_gravity == 0)
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
-	return
 
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
@@ -873,19 +844,23 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	return TRUE
 
+
 // Called before use_tool if there is a delay, or by use_tool if there isn't.
 // Only ever used by welding tools and stacks, so it's not added on any other use_tool checks.
-/obj/item/proc/tool_start_check(mob/living/user, amount=0)
+/obj/item/proc/tool_start_check(mob/living/user, amount = 0)
 	return tool_use_check(user, amount)
+
 
 // A check called by tool_start_check once, and by use_tool on every tick of delay.
 /obj/item/proc/tool_use_check(mob/living/user, amount)
 	return !amount
 
+
 // Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
 // Returns TRUE on success, FALSE on failure.
 /obj/item/proc/use(used)
 	return !used
+
 
 // Plays item's usesound, if any.
 /obj/item/proc/play_tool_sound(atom/target, volume)
@@ -893,12 +868,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 	playsound(target, usesound, volume, 1)
 
+
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
 /obj/item/proc/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
 	return tool_use_check(user, amount) && (!extra_checks || extra_checks.Invoke())
-
-
-
-
-
-

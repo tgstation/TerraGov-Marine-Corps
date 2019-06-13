@@ -1,18 +1,15 @@
-
-///////////////////////////////////////Stock Parts /////////////////////////////////
-
-//stock parts for constructable machines
-
 /obj/item/stock_parts
 	name = "stock part"
 	desc = "What?"
 	gender = PLURAL
 	icon = 'icons/obj/items/stock_parts.dmi'
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/rating = 1
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+
+
+/obj/item/stock_parts/Initialize(mapload, ...)
+	pixel_x = rand(-5, 5)
+	pixel_y = rand(-5, 5)
 
 //Rank 1
 

@@ -66,7 +66,6 @@
 
 /*
 /obj/item/cell/attack_self(mob/user as mob)
-	src.add_fingerprint(user)
 //	if(ishuman(user))
 //		var/mob/living/carbon/human/H = user
 //		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
@@ -77,7 +76,6 @@
 */
 
 /obj/item/cell/attack_self(mob/user as mob)
-	add_fingerprint(user)
 	if(rigged)
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts using rigged power cells.</span>")

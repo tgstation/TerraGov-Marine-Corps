@@ -9,7 +9,7 @@
 		#include "map_files\LV624\LV624.dmm"
 		#include "map_files\Prison_Station_FOP\Prison_Station_FOP.dmm"
 		#include "map_files\Theseus\TGS_Theseus.dmm"
-		#include "map_files\Low_Orbit\Low_Orbit.dmm"
+		#include "map_files\Sulaco\Sulaco.dmm"
 		#ifdef TRAVISBUILDING
 		#endif
 	#endif

@@ -2,8 +2,8 @@
 	name = "\improper autolathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 100
@@ -130,7 +130,7 @@
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(machine_stat)
+	if(!is_operational())
 		return
 
 	if(busy)
@@ -152,7 +152,7 @@
 
 		//Dismantle the frame.
 		if(iscrowbar(I))
-			dismantle()
+			deconstruct()
 			return
 
 	//Resources are being loaded.
@@ -229,7 +229,6 @@
 		return
 
 	usr.set_interaction(src)
-	add_fingerprint(usr)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")
@@ -304,7 +303,7 @@
 	storage_capacity["metal"] = tot_rating  * 25000
 	storage_capacity["glass"] = tot_rating  * 12500
 
-/obj/machinery/autolathe/dismantle()
+/obj/machinery/autolathe/deconstruct()
 	var/list/sheets = list("metal" = /obj/item/stack/sheet/metal, "glass" = /obj/item/stack/sheet/glass)
 
 	for(var/mat in stored_material)

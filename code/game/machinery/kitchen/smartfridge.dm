@@ -5,8 +5,8 @@
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "smartfridge"
 	layer = BELOW_OBJ_LAYER
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -60,10 +60,10 @@
 	. = ..()
 
 	if(istype(I, /obj/item/card/emag))
-		if(!is_secure_fridge || emagged)
+		if(!is_secure_fridge || CHECK_BITFIELD(obj_flags, EMAGGED))
 			return
 
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		locked = FALSE
 		to_chat(user, "You short out the product lock on [src].")
 
@@ -187,7 +187,6 @@
 	var/mob/user = usr
 	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
 
-	src.add_fingerprint(user)
 
 	if (href_list["close"])
 		user.unset_interaction()
@@ -201,7 +200,7 @@
 		if (!in_range(src, usr))
 			return 0
 		if(is_secure_fridge)
-			if(!allowed(usr) && !emagged && locked != -1)
+			if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED) && locked != -1)
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				return 0
 		var/index = text2num(href_list["vend"])

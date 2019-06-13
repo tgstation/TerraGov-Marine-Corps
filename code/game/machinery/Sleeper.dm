@@ -7,7 +7,7 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/connected = null
-	anchored = 1 //About time someone fixed this.
+	anchored = TRUE //About time someone fixed this.
 	density = 0
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
@@ -145,7 +145,6 @@
 	if (href_list["ejectify"])
 		connected.eject()
 	attack_hand(user)
-	add_fingerprint(usr)
 	return
 
 
@@ -165,8 +164,8 @@
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "bicaridine" = "Bicaridine", "kelotane" = "Kelotane", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine", "spaceacillin" = "Spaceacillin")
@@ -279,19 +278,22 @@
 		beaker = I
 		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
 		updateUsrDialog()
+		return
 
-	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
-
-	else if(!istype(I, /obj/item/grab))
 		return
 
-	else if(isxeno(user))
+	if(isxeno(user))
 		return
 
-	else if(occupant)
+	if(occupant)
 		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
+		return
+
+
+	if(!istype(I, /obj/item/grab))
 		return
 
 	var/obj/item/grab/G = I
@@ -427,7 +429,6 @@
 		icon_state = "sleeper_0-r"
 	icon_state = "sleeper_0"
 	go_out()
-	add_fingerprint(usr)
 
 
 /obj/machinery/sleeper/verb/remove_beaker()
@@ -440,7 +441,6 @@
 		filtering = FALSE
 		beaker.loc = usr.loc
 		beaker = null
-	add_fingerprint(usr)
 
 
 /obj/machinery/sleeper/verb/move_inside()
@@ -474,4 +474,3 @@
 
 	for(var/obj/O in src)
 		qdel(O)
-	add_fingerprint(usr)

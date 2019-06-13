@@ -151,7 +151,7 @@ obj/item/alienjar
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	layer = MOB_LAYER
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)

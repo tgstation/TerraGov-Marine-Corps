@@ -182,7 +182,7 @@
 		addstack.use(amount)
 
 	else if(istype(I, /obj/item/card/emag))
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		emp_act(TRUE)
 
 	else if(!active && iswrench(I))
@@ -237,7 +237,6 @@
 	if(..())
 		return
 
-	add_fingerprint(usr)
 	if(href_list["toggle_power"])
 		TogglePower()
 		. = TRUE
@@ -250,12 +249,9 @@
 			power_output--
 			. = TRUE
 	if (href_list["higher_power"])
-		if (power_output < 4 || emagged)
+		if (power_output < 4 || CHECK_BITFIELD(obj_flags, EMAGGED))
 			power_output++
 			. = TRUE
-
-/obj/machinery/power/port_gen/pacman/inoperable(var/additional_flags)
-	. = (machine_stat & (BROKEN|additional_flags))
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"

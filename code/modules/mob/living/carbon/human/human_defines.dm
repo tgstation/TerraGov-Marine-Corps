@@ -70,6 +70,12 @@
 	var/list/flavor_texts = list()
 	var/last_unbuckled = 0 //Unbuckled cooldown.
 
+	var/flavor_text = ""
+	var/med_record = ""
+	var/sec_record = ""
+	var/gen_record = ""
+	var/exploit_record = ""
+
 
 	//Life variables
 

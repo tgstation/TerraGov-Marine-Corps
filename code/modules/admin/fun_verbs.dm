@@ -88,8 +88,9 @@
 	if(!check_rights(R_FUN))
 		return
 
+	var/customname = input("What do you want the AI to be called?.", "AI Report", "AI") as text|null
 	var/input = input("This should be a message from the ship's AI.", "AI Report") as message|null
-	if(!input)
+	if(!input || !customname)
 		return
 
 	var/paper
@@ -99,10 +100,10 @@
 		if("Cancel")
 			return
 
-	priority_announce(input, MAIN_AI_SYSTEM, sound = "sound/misc/interference.ogg")
+	priority_announce(input, customname, sound = "sound/misc/interference.ogg")
 
 	if(paper)
-		print_command_report(input, "[MAIN_AI_SYSTEM] Update", announce = FALSE)
+		print_command_report(input, "[customname] Update", announce = FALSE)
 
 	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
@@ -518,43 +519,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
 
 
-/datum/admins/proc/force_dropship()
-	set category = "Fun"
-	set name = "Force Dropship"
-	set desc = "Force a dropship to launch"
-
-	var/tag = input("Which dropship should be force launched?", "Select a dropship:") as null|anything in list("Dropship 1", "Dropship 2")
-	if(!tag)
-		return
-
-	var/crash = FALSE
-	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
-		if("Yes")
-			crash = TRUE
-		if("No")
-			crash = FALSE
-		else
-			return
-
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[CONFIG_GET(string/ship_name) + " " + tag]
-
-	if(!dropship)
-		return
-
-	if(crash && dropship.location != 1)
-		switch(alert("Error: Shuttle is on the ground. Proceed with standard launch anyways?", , "Yes", "No"))
-			if("Yes")
-				dropship.process_state = WAIT_LAUNCH
-			if("No")
-				return
-	else if(crash)
-		dropship.process_state = FORCE_CRASH
-	else
-		dropship.process_state = WAIT_LAUNCH
-
-	log_admin("[key_name(usr)] force launched [tag][crash ? " making it crash" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] force launched [tag][crash ? " making it crash" : ""].")
-
 /datum/admins/proc/object_sound(atom/O as obj)
 	set category = null
 	set name = "Object Sound"
@@ -639,14 +603,14 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/edit_rank(mob/living/carbon/human/H in GLOB.human_mob_list)
+/datum/admins/proc/rank_and_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
 	set category = "Fun"
-	set name = "Edit Rank"
+	set name = "Rank and Equipment"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/dat
+	var/dat = "<br>"
 	var/obj/item/card/id/C = H.wear_id
 
 	if(!H.mind)
@@ -656,6 +620,8 @@
 		dat += "<br>"
 		dat += "Skillset: [H.mind.cm_skills.name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=skills;mob=[REF(H)]'>Edit</a><br>"
 		dat += "Comms title: [H.mind.comm_title] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=commstitle;mob=[REF(H)]'>Edit</a><br>"
+		if(H.job in JOBS_MARINES)
+			dat += "Squad: [H.assigned_squad] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=squad;mob=[REF(H)]'>Edit</a><br>"
 	if(istype(C))
 		dat += "<br>"
 		dat += "Chat title: [C.paygrade] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=chattitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
@@ -664,74 +630,13 @@
 	else
 		dat += "No ID! <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=createid;mob=[REF(H)]'>Give ID</a><br>"
 
+	dat += "<br>"
+	dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=equipment;mob=[REF(H)]'>Select Equipment</a>"
+
 
 	var/datum/browser/browser = new(usr, "edit_rank_[key_name(H)]", "<div align='center'>Edit Rank [key_name(H)]</div>")
 	browser.set_content(dat)
 	browser.open(FALSE)
-
-
-/datum/admins/proc/select_equipment(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = "Fun"
-	set name = "Select Equipment"
-
-	if(!check_rights(R_FUN))
-		return
-
-	var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
-	if(!dresscode)
-		return
-
-	if(dresscode == "{Job}")
-		var/list/job_paths = subtypesof(/datum/outfit/job)
-		var/list/job_outfits = list()
-		for(var/path in job_paths)
-			var/datum/outfit/O = path
-			if(initial(O.can_be_admin_equipped))
-				job_outfits[initial(O.name)] = path
-
-		dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
-		dresscode = job_outfits[dresscode]
-
-	else if(dresscode == "{Custom}")
-		var/list/custom_names = list()
-		for(var/datum/outfit/D in GLOB.custom_outfits)
-			custom_names[D.name] = D
-		var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
-		dresscode = custom_names[selected_name]
-
-	if(!dresscode)
-		return
-
-	var/datum/outfit/O
-	H.delete_equipment(TRUE)
-	if(dresscode != "{Naked}")
-		O = new dresscode
-		H.equipOutfit(O, FALSE)
-
-	H.regenerate_icons()
-
-	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [istype(O) ?  O.name : dresscode].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(H)] to [istype(O) ? O.name : dresscode].")
-
-
-/datum/admins/proc/change_squad(mob/living/carbon/human/H in GLOB.human_mob_list)
-	set category = "Fun"
-	set name = "Change Squad"
-
-	if(!check_rights(R_FUN))
-		return
-
-	if(!istype(H) || !(H.job in JOBS_MARINES))
-		return
-
-	var/squad = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
-	if(!squad || !istype(H) || !(H.job in JOBS_MARINES))
-		return
-
-	H.change_squad(squad)
-
-	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [squad].")
-	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [squad].")
 
 
 /datum/admins/proc/create_outfit()
@@ -873,7 +778,7 @@
 	var/ecolor = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
 	var/bcolor = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
 
-	var/dat
+	var/dat = "<br>"
 
 	dat += "Hair style: [H.h_style] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=hairstyle;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Hair color: <font face='fixedsys' size='3' color='[hcolor]'><table style='display:inline;' bgcolor='[hcolor]'><tr><td>_.</td></tr></table></font> <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=haircolor;mob=[REF(H)]'>Edit</a><br>"
@@ -886,6 +791,7 @@
 	dat += "<br>"
 	dat += "Gender: [H.gender] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=gender;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Ethnicity: [H.ethnicity] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=ethnicity;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Species: [H.species] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=species;mob=[REF(H)]'>Edit</a><br>"
 
 	var/datum/browser/browser = new(usr, "edit_appearance_[key_name(H)]", "<div align='center'>Edit Appearance [key_name(H)]</div>")
 	browser.set_content(dat)
@@ -996,9 +902,9 @@
 		var/mob/living/carbon/human/H = M
 		H.name = H.get_visible_name()
 
-	M.loc = O.loc
+	M.loc = get_turf(M.control_object)
+	M.reset_perspective()
 	M.control_object = null
-	M.client.eye = M
 
 	log_admin("[key_name(usr)] has released [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
@@ -1016,8 +922,8 @@
 	M.loc = O
 	M.real_name = O.name
 	M.name = O.name
+	M.reset_perspective()
 	M.control_object = O
-	M.client.eye = O
 
 	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
@@ -1031,3 +937,105 @@
 		return
 
 	togglebuildmode(usr)
+
+
+/datum/admins/proc/imaginary_friend()
+	set category = "Fun"
+	set name = "Imaginary Friend"
+
+	if(!check_rights(R_FUN|R_MENTOR))
+		return
+
+	if(istype(usr, /mob/camera/imaginary_friend))
+		var/mob/camera/imaginary_friend/IF = usr
+		IF.deactivate()
+		return
+
+	if(is_mentor(usr.client) && !isobserver(usr))
+		to_chat(usr, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
+		return
+
+	if(!isobserver(usr))
+		usr.client.holder.admin_ghost()
+
+	var/mob/living/L
+	switch(input("Select by:", "Imaginary Friend") as null|anything in list("Key", "Mob"))
+		if("Key")
+			var/client/C = input("Please, select a key.", "Imaginary Friend") as null|anything in sortKey(GLOB.clients)
+			if(!C)
+				return
+			L = C.mob
+		if("Mob")
+			var/mob/M = input("Please, select a mob.", "Imaginary Friend") as null|anything in sortNames(GLOB.mob_living_list)
+			if(!M)
+				return
+			L = M
+
+	if(!isobserver(usr))
+		return
+
+	if(!istype(L))
+		to_chat("<span class='warning'>Selected mob is not alive.</span>")
+		return
+
+	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
+	usr.mind.transfer_to(IF)
+
+	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
+
+
+	
+/datum/admins/proc/force_dropship()
+	set category = "Fun"
+	set name = "Force Dropship"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!length(SSshuttle.dropships))
+		return
+
+	var/obj/docking_port/mobile/marine_dropship/D = SSshuttle.dropships[1]
+
+	if(!istype(D))
+		return
+
+	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Active Shuttle", "Yes", "No") != "Yes")
+		return
+
+	var/instant = FALSE
+
+	if(alert("Move Shuttle instantly??", "Instant Move", "Yes", "No") == "Yes")
+		instant = TRUE
+
+	var/list/possible_destinations = list("lz1", "lz2", "alamo", "normandy")
+	var/list/validdocks = list()
+
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(!possible_destinations.Find(S.id))
+			continue
+		if(!D.check_dock(S, silent=TRUE))
+			continue
+		validdocks += S.name
+
+	if(!length(validdocks))
+		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
+		return
+
+	var/dock = input("Choose the destination.", "Choose Destination") as null|anything in validdocks
+
+	var/obj/docking_port/stationary/target
+
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(S.name != dock)
+			continue
+		target = S
+
+	if(!target)
+		return
+
+	SSshuttle.moveShuttleToDock(D.id, target, !instant)
+
+	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")

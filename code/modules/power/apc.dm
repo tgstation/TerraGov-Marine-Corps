@@ -242,7 +242,7 @@
 		ENABLE_BITFIELD(update_state, UPSTATE_WIREEXP)
 	if(!update_state)
 		ENABLE_BITFIELD(update_state, UPSTATE_ALLGOOD)
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_BLUESCREEN)
 		if(locked)
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LOCKED)
@@ -421,7 +421,7 @@
 
 			update_icon()
 		
-		else if(emagged)
+		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>The interface is broken.</span>")
 		
 		else
@@ -438,7 +438,7 @@
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>The interface is broken.</span>")
 			return
 		
@@ -463,7 +463,7 @@
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
 		update_icon()
 
-	else if(istype(I, /obj/item/card/emag) && !(emagged)) // trying to unlock with an emag card
+	else if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED)) // trying to unlock with an emag card
 		if(opened)
 			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
 			return
@@ -481,7 +481,7 @@
 			return
 
 		if(prob(50))
-			emagged = TRUE
+			ENABLE_BITFIELD(obj_flags, EMAGGED)
 			locked = FALSE
 			to_chat(user, "<span class='warning'>You emag [src]'s interface.</span>")
 			update_icon()
@@ -536,7 +536,7 @@
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
-		terminal.dismantle(user)
+		terminal.deconstruct(user)
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -590,7 +590,7 @@
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(3, user))
 			return
 
-		if(emagged || (machine_stat & BROKEN) || opened == APC_COVER_REMOVED)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED) || (machine_stat & BROKEN) || opened == APC_COVER_REMOVED)
 			new /obj/item/stack/sheet/metal(loc)
 			user.visible_message("<span class='notice'>[user] unwelds [src]'s frame apart.</span>",
 			"<span class='notice'>You unweld [src]'s frame apart.</span>")
@@ -600,7 +600,7 @@
 			"<span class='notice'>You unweld [src]'s frame off the wall.</span>")
 		qdel(src)
 
-	else if(istype(I, /obj/item/frame/apc) && opened && emagged)
+	else if(istype(I, /obj/item/frame/apc) && opened && CHECK_BITFIELD(obj_flags, EMAGGED))
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
@@ -608,7 +608,7 @@
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		emagged = FALSE
+		DISABLE_BITFIELD(obj_flags, EMAGGED)
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
 		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
@@ -661,7 +661,6 @@
 /obj/machinery/power/apc/attack_hand(mob/user)
 	. = ..()
 
-	add_fingerprint(user)
 
 	//Human mob special interaction goes here.
 	if(ishuman(user))
@@ -669,7 +668,7 @@
 		var/datum/species/S = H.species
 
 		if(S.species_flags & IS_SYNTHETIC && H.a_intent == INTENT_GRAB)
-			if(emagged || machine_stat & BROKEN)
+			if(CHECK_BITFIELD(obj_flags, EMAGGED) || machine_stat & BROKEN)
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(3, 1, src)
 				s.start()
@@ -722,7 +721,6 @@
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !cell)
 					return
 			user.put_in_hands(cell)
-			cell.add_fingerprint(user)
 			cell.updateicon()
 
 			src.cell = null
@@ -877,8 +875,6 @@
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
-	add_fingerprint(usr)
-
 	if(href_list["lock"])
 		coverlocked = !coverlocked
 
@@ -927,13 +923,13 @@
 
 /obj/machinery/power/apc/proc/ion_act()
 	//intended to be a bit like an emag
-	if(!emagged)
+	if(!CHECK_BITFIELD(obj_flags, EMAGGED))
 		if(prob(3))
 			locked = FALSE
 			if(cell.charge > 0)
 				cell.charge = 0
 				cell.corrupt()
-				emagged = TRUE
+				ENABLE_BITFIELD(obj_flags, EMAGGED)
 				update_icon()
 				var/datum/effect_system/smoke_spread/smoke = new(src)
 				smoke.set_up(1, loc)
@@ -1198,6 +1194,17 @@
 		if(!do_after(H, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	return TRUE
+
+
+/obj/machinery/power/apc/proc/toggle_breaker(mob/user)
+	if(machine_stat & (NOPOWER|BROKEN|MAINT))
+		return
+
+	operating = !operating
+	log_combat(user, src, "turned [operating ? "on" : "off"]")
+	update()
+	update_icon()
+
 
 //------Various APCs ------//
 

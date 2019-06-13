@@ -84,7 +84,7 @@
 		to_chat(src, "<span class='warning'>You must wait a bit before you can toggle this again.</span>")
 		return
 
-	addtimer(CALLBACK(src, .slash_toggle_delay), 300)
+	addtimer(VARSET_CALLBACK(src, pslash_delay, FALSE), 30 SECONDS)
 
 	pslash_delay = TRUE
 
@@ -103,8 +103,6 @@
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
 		hive.slashing_allowed = XENO_SLASHING_FORBIDDEN
 
-/mob/living/carbon/xenomorph/proc/slash_toggle_delay()
-	pslash_delay = FALSE
 
 // ***************************************
 // *********** Screech
@@ -412,7 +410,7 @@
 			old_xeno.hud_set_queen_overwatch()
 	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
-	reset_view()
+	reset_perspective()
 
 // ***************************************
 // *********** Psychic Whisper

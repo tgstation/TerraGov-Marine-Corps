@@ -4,8 +4,8 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 	layer = ABOVE_TABLE_LAYER
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -40,11 +40,6 @@
 				acceptable_reagents |= reagent
 			if (recipe.items)
 				max_n_of_items = max(max_n_of_items,recipe.items.len)
-
-		// This will do until I can think of a fun recipe to use dionaea in -
-		// will also allow anything using the holder item to be microwaved into
-		// impure carbon. ~Z
-		acceptable_items |= /obj/item/holder
 
 /*******************
 *   Item Adding

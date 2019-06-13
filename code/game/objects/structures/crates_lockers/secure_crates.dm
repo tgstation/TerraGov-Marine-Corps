@@ -54,11 +54,9 @@
 
 	if(usr.incapacitated())
 		return
-	add_fingerprint(usr)
 	togglelock(usr)
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user)
-	add_fingerprint(user)
 	if(locked)
 		togglelock(user)
 	else

@@ -1,0 +1,10 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - rscadd: "Ports dropships to new shuttle system"
+  - rscdel: "Removed last of old shuttle stuff"
+  - tweak: "Queen now has a verb for calling down the shuttle, it will call it down to the closest LZ to the queen no matter what the shuttle is doing, can't calldown before 30 minutes or if more than 10% alive humans are on the ground."
+  - rscdel: "Removed normandy for now"
+  - rscadd: "The Alamo can land at either LZ and fly between LZs"
+  - rscdel: "Removed CAS for now"
+  - imageadd: "half tile shuttle pieces now overlay properly on turfs, no more plating welded to the dropship as it flies."

@@ -5,7 +5,7 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	use_power = 0
 	var/list/components = null
 	var/list/req_components = null

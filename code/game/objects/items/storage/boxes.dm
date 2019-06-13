@@ -114,7 +114,6 @@
 		new /obj/item/implantcase/tracking(src)
 	new /obj/item/implanter(src)
 	new /obj/item/implantpad(src)
-	new /obj/item/locator(src)
 
 /obj/item/storage/box/chemimp
 	name = "boxed chemical implant kit"
@@ -255,7 +254,7 @@
 	if(istype(I, /obj/item/tool/match))
 		var/obj/item/tool/match/M = I
 
-		if(M.heat_source || M.burnt)
+		if(M.heat || M.burnt)
 			return ..()
 
 		if(prob(50))

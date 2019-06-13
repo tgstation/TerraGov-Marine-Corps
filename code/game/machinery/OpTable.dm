@@ -3,9 +3,9 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	density = 1
+	density = TRUE
 	layer = TABLE_LAYER
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	use_power = 1
 	idle_power_usage = 1
@@ -160,7 +160,6 @@
 	C.set_resting(TRUE)
 	C.forceMove(loc)
 
-	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		victim = H

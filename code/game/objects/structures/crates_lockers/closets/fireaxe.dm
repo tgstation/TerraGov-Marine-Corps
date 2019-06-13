@@ -6,7 +6,7 @@
 	icon_state = "fireaxe1000"
 	icon_closed = "fireaxe1000"
 	icon_opened = "fireaxe1100"
-	anchored = 1
+	anchored = TRUE
 	density = 0
 	var/localopened = 0 //Setting this to keep it from behaviouring like a normal closet and obstructing movement in the map. -Agouri
 	opened = 1
@@ -117,7 +117,6 @@
 				user.put_in_hands(fireaxe)
 				fireaxe = null
 				to_chat(user, "<span class='notice'>You take the fire axe from the [name].</span>")
-				src.add_fingerprint(user)
 				update_icon()
 			else
 				if(src.smashed)

@@ -15,7 +15,6 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	eye_protection = 2
-	species_restricted = list("exclude","Vox")
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
@@ -34,4 +33,3 @@
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude","Vox")

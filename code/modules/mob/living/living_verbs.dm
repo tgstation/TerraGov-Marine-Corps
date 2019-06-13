@@ -10,27 +10,6 @@
 	var/mob/living/L = usr
 	usr.next_move = world.time + 20
 
-	//Getting out of someone's inventory.
-	if(istype(src.loc,/obj/item/holder))
-		var/obj/item/holder/H = src.loc //Get our item holder.
-		var/mob/M = H.loc                      //Get our mob holder (if any).
-
-		if(istype(M))
-			M.dropItemToGround(H)
-			to_chat(M, "[H] wriggles out of your grip!")
-			to_chat(src, "You wriggle out of [M]'s grip!")
-		else if(istype(H.loc,/obj/item))
-			to_chat(src, "You struggle free of [H.loc].")
-			H.loc = get_turf(H)
-
-		if(istype(M))
-			for(var/atom/A in M.contents)
-				if(istype(A,/obj/item/holder))
-					return
-
-		M.status_flags &= ~PASSEMOTES
-		return
-
 	//resisting grabs (as if it helps anyone...)
 	if(!restrained(0) && pulledby)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
@@ -264,6 +243,8 @@
 		return
 
 	if(!resting)
+		if(is_ventcrawling)
+			return FALSE
 		set_resting(TRUE, FALSE)
 	else if(action_busy)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
@@ -307,3 +288,35 @@
 	var/mob/dead/observer/ghost = ghostize(FALSE)
 	if(ghost)
 		ghost.timeofdeath = world.time
+
+
+/mob/living/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
+	set name = "Point To"
+	set category = "Object"
+
+	if(!isturf(loc))
+		return FALSE
+
+	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
+		return FALSE
+
+	if(!A.mouse_opacity) //Can't click it? can't point at it.
+		return FALSE
+
+	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
+		return FALSE
+
+	var/tile = get_turf(A)
+	if(!tile)
+		return FALSE
+
+	if(next_move > world.time)
+		return FALSE
+
+	if(recently_pointed_to > world.time)
+		return FALSE
+
+	next_move = world.time + 2
+
+	point_to_atom(A, tile)
+	return TRUE

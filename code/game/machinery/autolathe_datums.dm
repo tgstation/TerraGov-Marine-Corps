@@ -246,7 +246,7 @@
 
 /datum/autolathe/recipe/electropack
 	name = "electropack"
-	path = /obj/item/radio/electropack
+	path = /obj/item/electropack
 	hidden = 1
 	category = "Devices and Components"
 

@@ -4,7 +4,7 @@
 	icon_state = "igniter"
 	matter = list("metal" = 500, "glass" = 50)
 	var/datum/effect_system/spark_spread/sparks
-	heat_source = 1000
+	heat = 1000
 
 
 /obj/item/assembly/igniter/Initialize()
@@ -29,4 +29,3 @@
 
 /obj/item/assembly/igniter/attack_self(mob/user)
 	activate()
-	add_fingerprint(user)
