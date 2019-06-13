@@ -116,6 +116,8 @@
 		return
 
 	else if (href_list["freq"])
+		if(freqlock)
+			return
 		var/new_frequency = (frequency + text2num(href_list["freq"]))
 		set_frequency(new_frequency)
 
@@ -297,11 +299,9 @@
 
 
 /obj/item/radio/off
-	listening = 0
+	listening = FALSE
 
 
-
-//MARINE RADIO
-
-/obj/item/radio/marine
-	frequency = FREQ_COMMON
+/obj/item/radio/survivor
+	freqlock = TRUE
+	frequency = FREQ_CIV_GENERAL

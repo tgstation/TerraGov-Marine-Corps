@@ -34097,7 +34097,7 @@
 /area/almayer/medical/lower_medical)
 "bEE" = (
 /obj/structure/table/almayer,
-/obj/item/radio/marine,
+/obj/item/radio,
 /obj/item/healthanalyzer,
 /obj/item/healthanalyzer,
 /obj/item/reagent_scanner,
@@ -43655,7 +43655,7 @@
 /area/almayer/shipboard/port_point_defense)
 "cdd" = (
 /obj/structure/table/almayer,
-/obj/item/radio/marine,
+/obj/item/radio,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/pilotbunks)
 "cde" = (

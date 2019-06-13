@@ -12104,8 +12104,7 @@
 	pixel_x = 1;
 	pixel_y = 3
 	},
-/obj/item/radio/intercom{
-	frequency = 1463;
+/obj/item/radio/intercom/general/colony{
 	pixel_x = 28;
 	pixel_y = -28
 	},
@@ -12953,8 +12952,7 @@
 /turf/open/floor/wood,
 /area/prison/chapel)
 "aGt" = (
-/obj/item/radio/intercom{
-	frequency = 1463;
+/obj/item/radio/intercom/general/colony{
 	pixel_x = 28;
 	pixel_y = 21
 	},
@@ -36924,7 +36922,7 @@
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bIb" = (
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bIc" = (
@@ -44807,7 +44805,7 @@
 "cat" = (
 /obj/effect/spawner/random/toolbox,
 /obj/structure/table/reinforced,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "cau" = (
@@ -52043,7 +52041,7 @@
 	},
 /area/prison/pirate)
 "crP" = (
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "crQ" = (
