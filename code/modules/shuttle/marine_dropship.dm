@@ -70,6 +70,12 @@
 	id = "normandy"
 	roundstart_template = /datum/map_template/shuttle/dropship/two
 
+#define HIJACK_STATE_NORMAL 0
+#define HIJACK_STATE_CALLED_DOWN 1
+#define HIJACK_STATE_CRASHING 2
+
+#define LOCKDOWN_TIME 10 MINUTES
+
 /obj/docking_port/mobile/marine_dropship
 	name = "marine dropship"
 	dir = SOUTH
@@ -87,11 +93,20 @@
 	var/list/right_airlocks = list()
 	var/list/rear_airlocks = list()
 
+	var/hijack_state = HIJACK_STATE_NORMAL
+
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
 	SSshuttle.dropships += src
 
+/obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
+	lockdown_airlocks("rear")
+	lockdown_airlocks("left")
+	lockdown_airlocks("right")
+
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_airlocks(side)
+	if(hijack_state != HIJACK_STATE_NORMAL)
+		return
 	switch(side)
 		if("left")
 			for(var/i in left_airlocks)
@@ -105,6 +120,11 @@
 			for(var/i in rear_airlocks)
 				var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D = i
 				D.lockdown()
+
+/obj/docking_port/mobile/marine_dropship/proc/unlock_all()
+	unlock_airlocks("rear")
+	unlock_airlocks("left")
+	unlock_airlocks("right")
 
 /obj/docking_port/mobile/marine_dropship/proc/unlock_airlocks(side)
 	switch(side)
@@ -149,20 +169,32 @@
 
 // queen calldown
 
+/obj/docking_port/mobile/marine_dropship/afterShuttleMove(turf/oldT, rotation)
+	. = ..()
+	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
+		addtimer(CALLBACK(src, .proc/reset_hijack), LOCKDOWN_TIME)
+		unlock_all()
+
+/obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
+	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
+		hijack_state = HIJACK_STATE_NORMAL
+
 /obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
+	mode = SHUTTLE_IDLE
 	timer = 0
 	destination = null
-	return request(S)
+	hijack_state = HIJACK_STATE_CALLED_DOWN
+	request(S)
 
 /mob/living/carbon/xenomorph/queen/proc/calldown_dropship()
 	set category = "Alien"
 	set name = "Call Down Dropship"
 	set desc = "Call down the dropship to the closest LZ"
 
-	if(!isdistress(SSticker?.mode))
+	if(!SSticker?.mode)
 		to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
 
-	var/datum/game_mode/distress/D = SSticker.mode
+	var/datum/game_mode/D = SSticker.mode
 
 	if(!D.can_summon_dropship())
 		to_chat(src, "<span class='warning'>You can't call down the shuttle.</span>")
@@ -173,16 +205,18 @@
 		to_chat(src, "<span class='warning'>You stop.</span>")
 		return
 
-	if(!D.summon_dropship(src))
+	var/obj/docking_port/stationary/port = D.summon_dropship(src)
+	if(!port)
 		to_chat(src, "<span class='warning'>Something went wrong.</span>")
 		return
 
-	hive?.xeno_message("The Queen has summoned down the metal bird, gather to her now!")
+	hive?.xeno_message("The Queen has summoned down the metal bird to [port], gather to her now!")
 
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
+#define MIN_CALLDOWN_TIME 30 MINUTES
 
-/datum/game_mode/distress/proc/can_summon_dropship()
-	if(SSticker.round_start_time + 30 MINUTES > world.time)
+/datum/game_mode/proc/can_summon_dropship()
+	if(SSticker.round_start_time + MIN_CALLDOWN_TIME > world.time)
 		return FALSE
 	var/humans_on_ground = 0
 	for(var/i in GLOB.alive_human_list)
@@ -192,7 +226,7 @@
 	return (humans_on_ground/length(GLOB.alive_human_list)) <= ALIVE_HUMANS_FOR_CALLDOWN
 
 // summon dropship to closest lz to A
-/datum/game_mode/distress/proc/summon_dropship(atom/A)
+/datum/game_mode/proc/summon_dropship(atom/A)
 	var/list/lzs = list()
 	for(var/i in SSshuttle.stationary)
 		var/obj/docking_port/stationary/S = i
@@ -212,7 +246,8 @@
 		var/obj/docking_port/mobile/M = k
 		if(M.id == "alamo")
 			D = M
-	return D.summon_dropship_to(closest)
+	D.summon_dropship_to(closest)
+	return closest
 
 // ************************************************	//
 //													//
@@ -234,12 +269,15 @@
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	if(SSticker.round_start_time + MIN_CALLDOWN_TIME > world.time)
+		to_chat(X, "<span class='xenowarning'>It's too early to do this!</span>")
+		return
+	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [CONFIG_GET(string/ship_name)]</A><br>"
 	dat += "<a href='?src=[REF(X)];mach_close=computer'>Close</a>"
-
+	M.unlock_all()
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(X.browse_rsc_icon(src.icon, src.icon_state))
@@ -283,13 +321,9 @@
 			return
 		var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 		if(href_list["lockdown"])
-			M.lockdown_airlocks("rear")
-			M.lockdown_airlocks("left")
-			M.lockdown_airlocks("right")
+			M.lockdown_all()
 		else if(href_list["release"])
-			M.unlock_airlocks("rear")
-			M.unlock_airlocks("left")
-			M.unlock_airlocks("right")
+			M.unlock_all()
 		else if(href_list["lock"])
 			M.lockdown_airlocks(href_list["lock"])
 		else if(href_list["unlock"])
@@ -302,14 +336,22 @@
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	if(href_list["hijack"])
-		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+		var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 		if(!M)
+			return
+		if(M.mode == SHUTTLE_RECHARGING)
+			to_chat(X, "<span class='xenowarning'>The birb is still cooling down.</span>")
+			return
+		if(M.mode != SHUTTLE_IDLE)
+			to_chat(X, "<span class='xenowarning'>You can't do that right now.</span>")
 			return
 		var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
 		if(!CT)
 			return
 		M.callTime = 2 MINUTES
 		M.crashing = TRUE
+		M.hijack_state = HIJACK_STATE_CRASHING
+		M.unlock_all()
 		switch(SSshuttle.moveShuttleToDock(shuttleId, CT, 1))
 			if(0)
 				visible_message("Shuttle departing. Please stand away from the doors.")
@@ -391,9 +433,7 @@
 	update_icon()
 	add_fingerprint(user)
 
-	D.lockdown_airlocks("rear")
-	D.lockdown_airlocks("left")
-	D.lockdown_airlocks("right")
+	D.lockdown_all()
 
 	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE)
 
