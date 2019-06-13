@@ -490,7 +490,11 @@
 
 	addtimer(CALLBACK(src, .proc/on_cloak), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
-	RegisterSignal(M, list(COMSIG_HUMAN_GUN_FIRED, COMSIG_HUMAN_ATTACHMENT_FIRED), .proc/action_taken)
+	RegisterSignal(M, list(
+		COMSIG_HUMAN_GUN_FIRED,
+		COMSIG_HUMAN_ATTACHMENT_FIRED,
+		COMSIG_HUMAN_ITEM_THROW,
+		COMSIG_HUMAN_ITEM_ATTACK), .proc/action_taken)
 
 	START_PROCESSING(SSprocessing, src)
 	wearer.cloaking = TRUE
@@ -536,9 +540,12 @@
 		camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
 		to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		process_camo_cooldown(user, cooldown)
-	
-	UnregisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN)
-	UnregisterSignal(user, COMSIG_HUMAN_GUN_FIRED)
+
+	UnregisterSignal(user, list(
+		COMSIG_HUMAN_DAMAGE_TAKEN, 
+		COMSIG_HUMAN_GUN_FIRED, 
+		COMSIG_HUMAN_ITEM_THROW, 
+		COMSIG_HUMAN_ITEM_ATTACK))
 	STOP_PROCESSING(SSprocessing, src)
 	wearer.cloaking = FALSE
 
