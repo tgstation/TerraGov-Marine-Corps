@@ -10914,6 +10914,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "orange";
@@ -48669,10 +48670,6 @@
 	icon_state = "test_floor4"
 	},
 /area/almayer/hallways/stern_hallway)
-"ufw" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/closed/wall/almayer,
-/area/almayer/engineering/upper_engineering)
 "ugs" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -97861,7 +97858,7 @@ ayR
 aAH
 aCx
 aDK
-ufw
+aoM
 aGS
 aIj
 aJz

@@ -99,6 +99,29 @@
 	. = ..()
 	SSshuttle.dropships += src
 
+/obj/docking_port/mobile/marine_dropship/on_crash()
+	for(var/obj/machinery/power/apc/A in GLOB.machines) //break APCs
+		if(!is_mainship_level(A.z)) 
+			continue
+		if(prob(A.crash_break_probability))
+			A.overload_lighting()
+			A.set_broken()
+		CHECK_TICK
+
+	for(var/mob/living/carbon/M in GLOB.alive_mob_list) //knock down mobs
+		if(!is_mainship_level(M.z)) 
+			continue
+		if(M.buckled)
+			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
+			shake_camera(M, 3, 1)
+		else
+			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
+			shake_camera(M, 10, 1)
+			M.KnockDown(3)
+		CHECK_TICK
+
+	GLOB.enter_allowed = FALSE //No joining after dropship crash
+
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")
 	lockdown_airlocks("left")
@@ -188,7 +211,7 @@
 
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
-	if(crashing)
+	if(hijack_state == HIJACK_STATE_CRASHING)
 		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
 
 /mob/living/carbon/xenomorph/queen/proc/calldown_dropship()

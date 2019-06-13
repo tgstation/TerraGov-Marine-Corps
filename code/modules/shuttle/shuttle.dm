@@ -429,6 +429,9 @@
 	playsound(return_center_turf(), landing_sound, 60, 0)
 	return
 
+/obj/docking_port/mobile/proc/on_crash()
+	return
+
 //recall the shuttle to where it was previously
 /obj/docking_port/mobile/proc/cancel()
 	if(mode != SHUTTLE_CALL)
