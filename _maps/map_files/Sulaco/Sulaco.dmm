@@ -2432,14 +2432,6 @@
 	icon_state = "loadingarea"
 	},
 /area/sulaco/showers)
-"afI" = (
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 1"
-	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
-/area/sulaco/showers)
 "afJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -3783,18 +3775,6 @@
 /obj/structure/closet/crate,
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "vault";
-	dir = 8
-	},
-/area/sulaco/cargo)
-"ahY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 1"
 	},
 /turf/open/floor{
 	icon_state = "vault";
@@ -5882,9 +5862,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 1"
-	},
 /turf/open/floor{
 	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
@@ -6495,12 +6472,6 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/medbay/west)
-"anc" = (
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 1"
-	},
-/turf/closed/wall/sulaco,
-/area/sulaco/medbay)
 "and" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 2
@@ -8040,9 +8011,6 @@
 "aqj" = (
 /obj/machinery/status_display,
 /obj/machinery/vending/engivend,
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "aqk" = (
@@ -13354,9 +13322,6 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 8
 	},
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -13483,9 +13448,6 @@
 	},
 /obj/machinery/light/small{
 	dir = 4
-	},
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -13951,9 +13913,6 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "aAc" = (
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
 /obj/structure/closet/walllocker/emerglocker{
 	dir = 1
 	},
@@ -14360,21 +14319,6 @@
 	},
 /area/sulaco/bridge)
 "aAP" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 1"
-	},
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
-	dir = 2
-	},
-/area/sulaco/bridge)
-"aAQ" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -16783,12 +16727,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
-"aFA" = (
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 1"
-	},
-/turf/open/space,
-/area/space)
 "aFB" = (
 /obj/structure/table/woodentable,
 /obj/item/paper_bin{
@@ -19718,12 +19656,6 @@
 	dir = 8
 	},
 /area/sulaco/marine/alpha)
-"aLo" = (
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
-/turf/open/floor,
-/area/sulaco/hallway/central_hall3)
 "aLp" = (
 /obj/machinery/light,
 /turf/open/floor,
@@ -19984,16 +19916,6 @@
 	},
 /area/sulaco/brig)
 "aLT" = (
-/obj/machinery/light,
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
-	},
-/area/sulaco/brig)
-"aLU" = (
 /obj/machinery/light,
 /turf/open/floor{
 	tag = "icon-floor4";
@@ -20943,9 +20865,6 @@
 /obj/structure/closet/secure_closet/brig{
 	id = "Cell 4";
 	name = "Cell 4"
-	},
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 1"
 	},
 /turf/open/floor{
 	tag = "icon-floor4";
@@ -23512,12 +23431,6 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"aTD" = (
-/obj/effect/landmark/shuttle_loc/marine_src{
-	name = "Dropship 2"
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "aTE" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
@@ -23684,9 +23597,6 @@
 /area/sulaco/research)
 "aTZ" = (
 /obj/structure/closet/walllocker/emerglocker,
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -25043,12 +24953,6 @@
 	icon_state = "vault";
 	dir = 8
 	},
-/area/sulaco/hangar)
-"aWU" = (
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
-/turf/open/floor/plating,
 /area/sulaco/hangar)
 "aWV" = (
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -26680,12 +26584,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hub/bottom)
-"bau" = (
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
-/turf/closed/wall/sulaco,
-/area/sulaco/maintenance/lower_maint)
 "bav" = (
 /obj/structure/rack,
 /obj/item/assembly/infra,
@@ -27547,14 +27445,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
-"bco" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/carpet,
-/area/sulaco/liaison)
 "bcp" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -27895,12 +27785,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
-"bdp" = (
-/obj/effect/landmark/shuttle_loc/marine_src{
-	name = "Dropship 1"
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "bdq" = (
 /turf/closed/shuttle/dropship{
 	tag = "icon-rasputin13";
@@ -28049,9 +27933,6 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 2"
-	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "bdM" = (
@@ -28184,12 +28065,6 @@
 /area/sulaco/hallway/lower_main_hall)
 "bef" = (
 /obj/machinery/light/small,
-/turf/open/floor/plating,
-/area/sulaco/hallway/lower_main_hall)
-"beg" = (
-/obj/effect/landmark/shuttle_loc/marine_crs{
-	name = "Dropship 1"
-	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
 "beh" = (
@@ -47811,7 +47686,7 @@ auZ
 awu
 ase
 azB
-aAQ
+aAP
 aCo
 aaf
 aaa
@@ -48843,7 +48718,7 @@ aAU
 aCq
 aaf
 aaa
-aFA
+aaa
 aaf
 aaf
 aaa
@@ -49353,7 +49228,7 @@ ave
 awA
 ase
 ase
-aAQ
+aAP
 aCs
 aaf
 aaa
@@ -51522,7 +51397,7 @@ aYg
 aTu
 aaf
 aaa
-aFA
+aaa
 aaa
 aaa
 aaa
@@ -54226,7 +54101,7 @@ abH
 ajF
 akH
 alN
-anc
+abH
 aoj
 aoi
 are
@@ -54248,7 +54123,7 @@ aJF
 aKs
 aKU
 aEx
-aLU
+aLT
 aMH
 aEw
 aEw
@@ -55019,7 +54894,7 @@ aJH
 aEx
 aEx
 aEx
-aLU
+aLT
 aMJ
 aEw
 aEw
@@ -55790,7 +55665,7 @@ aJH
 aKw
 aKX
 aEx
-aLU
+aLT
 aML
 aEw
 aEw
@@ -58707,7 +58582,7 @@ aQj
 aQj
 aQj
 aQj
-aTD
+aPZ
 aPZ
 aPZ
 aPZ
@@ -58719,7 +58594,7 @@ aZa
 bac
 baK
 baK
-bco
+bcm
 baf
 bdl
 bdM
@@ -60410,7 +60285,7 @@ aBv
 aDD
 aFU
 aaa
-aFA
+aaa
 aaa
 aaa
 aaa
@@ -61293,7 +61168,7 @@ bct
 bct
 aVY
 baT
-beg
+baT
 aVY
 aaa
 aaa
@@ -62833,7 +62708,7 @@ aPZ
 aPZ
 aPZ
 aPZ
-bdp
+aPZ
 bdS
 aPZ
 aPZ
@@ -64799,7 +64674,7 @@ aKA
 aPD
 aJS
 aaa
-aFA
+aaa
 aaa
 aaa
 aaa
@@ -65908,7 +65783,7 @@ aUn
 aPZ
 aPZ
 aPZ
-aWU
+aPZ
 aPZ
 aPZ
 aPZ
@@ -66555,7 +66430,7 @@ acE
 ads
 adZ
 aea
-afI
+aea
 ads
 ads
 ads
@@ -66597,7 +66472,7 @@ aPs
 aKF
 aPF
 aJX
-aFA
+aaa
 aaa
 aaa
 aaa
@@ -69923,7 +69798,7 @@ aIk
 aJc
 avV
 avV
-aLo
+avV
 aLM
 aMm
 aNe
@@ -72337,7 +72212,7 @@ aXh
 aXZ
 aUX
 aZB
-bau
+aUu
 aqH
 aUt
 aaa
@@ -72982,7 +72857,7 @@ aaK
 aaK
 aaK
 agS
-ahY
+ahW
 ajc
 aki
 aap
