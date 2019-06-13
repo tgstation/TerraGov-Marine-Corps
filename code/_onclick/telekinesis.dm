@@ -283,6 +283,8 @@ Redefine as needed.
 			victim.SetKnockeddown(2)
 			victim.Losebreath(3)
 
+	apply_focus_overlay()
+
 	last_life_tick = victim.life_tick
 
 
