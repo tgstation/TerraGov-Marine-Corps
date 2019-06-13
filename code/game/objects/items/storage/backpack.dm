@@ -675,19 +675,17 @@
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
 			return ..()
 
-		reagents.trans_to(W, T.max_fuel)
+		reagents.trans_to(I, T.max_fuel)
 		to_chat(user, "<span class='notice'>Welder refilled!</span>")
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
-
 		if(FT.current_rounds || !reagents.total_volume)
 			return ..()
 
 		var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
 		reagents.remove_reagent("fuel", fuel_available)
-
 		FT.current_rounds = fuel_available
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = "Fuel"
@@ -770,4 +768,4 @@
 	name = "mining rucksack"
 	desc = "A rucksack with origins dating back to the mining colonies."
 	icon_state = "som_lightpack"
-	item_state = "som_lightpack" 
+	item_state = "som_lightpack"
