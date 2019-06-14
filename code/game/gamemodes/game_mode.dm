@@ -154,6 +154,7 @@
 
 /datum/game_mode/proc/declare_completion()
 	SSdbcore.SetRoundEnd()
+	SSblackbox.send_pr_stats()
 	end_of_round_deathmatch()
 	return TRUE
 

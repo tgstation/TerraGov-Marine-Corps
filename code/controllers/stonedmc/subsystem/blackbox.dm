@@ -38,3 +38,22 @@ SUBSYSTEM_DEF(blackbox)
 
 /datum/controller/subsystem/blackbox/vv_edit_var(var_name, var_value)
 	return FALSE
+
+/datum/controller/subsystem/blackbox/proc/send_pr_stats()
+	var/bot_url = CONFIG_GET(string/github_pr_bot)
+	if(!bot_url)
+		return
+
+	var/round_id = GLOB.round_id
+	var/datum/getrev/revdata = GLOB.revdata
+
+	var/total_runtimes = GLOB.total_runtimes
+	var/unique_runtimes = total_runtimes - GLOB.total_runtimes_skipped
+
+	var/list/prs = list()
+	for(var/line in revdata.testmerge)
+		var/datum/tgs_revision_information/test_merge/tm = line
+		prs.Add(tm.number)
+
+
+	world.Export("http://[bot_url]?roundId=[round_id]&commit=[revdata.commit]&prs=[prs.Join(",")]&totalRuntimes=[total_runtimes]&uniqueRuntimes=[unique_runtimes]")

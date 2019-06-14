@@ -301,6 +301,10 @@ Master controller and performance related.
 
 /datum/config_entry/flag/use_recursive_explosions
 
+/datum/config_entry/string/github_pr_bot
+	// Example: bot.com/<secret>
+	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
+
 /*
 System command that invokes youtube-dl, used by Play Internet Sound.
 You can install youtube-dl with
