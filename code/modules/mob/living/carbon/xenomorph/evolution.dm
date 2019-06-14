@@ -191,6 +191,11 @@
 			qdel(new_xeno)
 		return
 
+	for(var/obj/item/W in contents) //Drop stuff
+		dropItemToGround(W)
+
+	empty_gut()
+
 	if(mind)
 		mind.transfer_to(new_xeno)
 	else
@@ -217,10 +222,6 @@
 
 	update_spits() //Update spits to new/better ones
 
-	for(var/obj/item/W in contents) //Drop stuff
-		dropItemToGround(W)
-
-	empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
 	"<span class='xenodanger'>You emerge in a greater form from the husk of your old body. For the hive!</span>")
 

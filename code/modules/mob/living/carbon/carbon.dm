@@ -1,3 +1,8 @@
+/mob/living/carbon/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
+
+
 /mob/living/carbon/Destroy()
 	. = ..()
 	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
@@ -32,12 +37,7 @@
 	if(legcuffed)
 		dropItemToGround(legcuffed)
 
-	for(var/atom/movable/A in stomach_contents)
-		stomach_contents.Remove(A)
-		A.forceMove(loc)
-		SEND_SIGNAL(A, COMSIG_LIVING_RELEASED_FROM_STOMACH, src)
-
-	. = ..()
+	return ..()
 
 
 /mob/living/carbon/revive()

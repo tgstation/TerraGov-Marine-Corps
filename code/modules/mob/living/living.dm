@@ -89,7 +89,6 @@
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 	GLOB.mob_living_list += src
 	START_PROCESSING(SSmobs, src)
-	RegisterSignal(src, COMSIG_LIVING_RELEASED_FROM_STOMACH, .proc/on_release_from_stomach)
 
 /mob/living/Destroy()
 	if(attack_icon)
@@ -731,8 +730,3 @@ below 100 is not dizzy
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
-
-
-/mob/living/proc/on_release_from_stomach(mob/living/prey, mob/living/predator)
-	prey.SetKnockeddown(1)
-	prey.visible_message("<span class='danger'>[prey] bursts out of [predator]!</span>")
