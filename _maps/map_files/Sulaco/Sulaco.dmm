@@ -22465,7 +22465,6 @@
 	},
 /area/sulaco/research)
 "aRB" = (
-/obj/machinery/r_n_d/organic_analyzer,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -23091,7 +23090,6 @@
 /area/sulaco/research)
 "aST" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/machinery/r_n_d/bioprinter,
 /turf/open/floor{
 	icon_state = "white"
 	},

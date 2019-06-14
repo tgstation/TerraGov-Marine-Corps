@@ -5100,7 +5100,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aoJ" = (
 /obj/structure/table/reinforced,
-/obj/item/XenoBio/Resin,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
@@ -7859,7 +7858,6 @@
 /area/bigredv2/outside/ne)
 "awz" = (
 /obj/structure/table/holotable/wood,
-/obj/item/XenoBio/Chitin,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "awA" = (
@@ -23980,7 +23978,6 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxJ" = (
-/obj/machinery/r_n_d/organic_analyzer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -24116,7 +24113,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byn" = (
-/obj/machinery/r_n_d/bioprinter,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -25175,8 +25171,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCg" = (
 /obj/structure/table,
-/obj/item/XenoBio/Blood,
-/obj/item/XenoBio/Blood,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
@@ -25184,8 +25178,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCh" = (
 /obj/structure/table,
-/obj/item/XenoBio/Blood,
-/obj/item/XenoBio/Blood,
 /obj/item/paper,
 /turf/open/floor{
 	tag = "icon-darkredcorners2";
@@ -25495,7 +25487,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDj" = (
-/obj/machinery/computer/NTresearch,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDk" = (
