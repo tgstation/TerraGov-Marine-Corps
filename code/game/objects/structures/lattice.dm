@@ -6,6 +6,7 @@
 	density = 0
 	anchored = TRUE
 	layer = LATTICE_LAYER
+	plane = FLOOR_PLANE
 	//	flags = CONDUCT
 
 /obj/structure/lattice/New()
@@ -81,6 +82,7 @@
 /obj/structure/catwalk
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk0"
+	plane = FLOOR_PLANE
 
 /obj/structure/catwalk/Initialize()
 	. = ..()

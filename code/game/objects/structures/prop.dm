@@ -186,6 +186,7 @@
 	icon_state = "TGMC1"
 	density = 0
 	resistance_flags = UNACIDABLE
+	plane = FLOOR_PLANE
 
 /obj/structure/prop/almayer/name_stencil/Initialize()
 	. = ..()
@@ -199,6 +200,7 @@
 	icon_state = "dropship1"
 	density = 0
 	layer = ABOVE_TURF_LAYER
+	plane = FLOOR_PLANE
 
 
 /obj/structure/prop/almayer/cannon_cables

@@ -36,6 +36,7 @@
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	var/covered = TRUE
+	plane = FLOOR_PLANE
 
 
 /turf/open/floor/plating/plating_catwalk/Initialize()

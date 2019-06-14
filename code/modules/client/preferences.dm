@@ -34,6 +34,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
 	var/hotkeys = TRUE
+	var/ambientocclusion = TRUE
 
 	// Custom Keybindings
 	var/list/key_bindings = null
@@ -313,7 +314,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
 	dat += "<b>Hotkey mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
-
+	dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
 
 
 	dat += "<h2>UI Customization:</h2>"
@@ -917,6 +918,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				closeToolTip(usr)
 			else if(!usr.client.tooltips && tooltips)
 				usr.client.tooltips = new /datum/tooltip(usr.client)
+
+		if("ambientocclusion")
+			ambientocclusion = !ambientocclusion
+			if(parent && parent.screen && parent.screen.len)
+				var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
+				PM.backdrop(parent.mob)
 
 		if("keybindings_menu")
 			ShowKeybindings(user)

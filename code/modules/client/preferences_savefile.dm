@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	30
+#define SAVEFILE_VERSION_MAX	31
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,9 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 31)
+		WRITE_FILE(S["ambientocclusion"], TRUE)
 
 	if(savefile_version < 30)
 		WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.keybinding_list_by_key))
@@ -114,6 +117,7 @@
 	READ_FILE(S["ghost_others"], ghost_others)
 	READ_FILE(S["hotkeys"], hotkeys)
 	READ_FILE(S["tooltips"], tooltips)
+	READ_FILE(S["ambientocclusion"], ambientocclusion)
 	READ_FILE(S["key_bindings"], key_bindings)
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
@@ -136,6 +140,7 @@
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
+	ambientocclusion		= sanitize_integer(ambientocclusion, FALSE, TRUE, initial(ambientocclusion))
 
 	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
 
@@ -172,6 +177,7 @@
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
+	ambientocclusion		= sanitize_integer(ambientocclusion, FALSE, TRUE, initial(ambientocclusion))
 
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
@@ -194,6 +200,7 @@
 	WRITE_FILE(S["ghost_others"], ghost_others)
 	WRITE_FILE(S["hotkeys"], hotkeys)
 	WRITE_FILE(S["tooltips"], tooltips)
+	WRITE_FILE(S["ambientocclusion"], ambientocclusion)
 
 	return TRUE
 
