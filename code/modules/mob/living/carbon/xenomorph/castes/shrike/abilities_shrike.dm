@@ -101,6 +101,7 @@
 	cooldown_timer = 30 SECONDS
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
+	var/obj/item/tk_grab/shrike/psychic_hold
 
 
 /datum/action/xeno_action/activable/psychic_choke/on_cooldown_finish()
@@ -136,13 +137,11 @@
 	var/mob/living/carbon/xenomorph/shrike/assailant = owner
 	var/mob/living/carbon/human/victim = A
 
-	if(assailant.psychic_victim) //We are already using the ability.
-		if(assailant.psychic_victim == victim)
-			assailant.swap_psychic_grab() //If we are clicking on the same mob, just swap the grab level.
+	if(psychic_hold) //We are already using the ability.
+		if(psychic_hold.focus == victim)
+			psychic_hold.swap_psychic_grab() //If we are clicking on the same mob, just swap the grab level.
 			return TRUE
-		assailant.stop_psychic_grab() //Else let's end the ongoing one before we start the next.
-
-	assailant.psychic_victim = victim
+		qdel(psychic_hold) //Else let's end the ongoing one before we start the next. Their Destroy() will clean up the mess.
 
 	if(assailant.get_active_held_item())
 		assailant.drop_held_item() //Do we have a hugger? No longer.
@@ -157,7 +156,7 @@
 	victim.drop_all_held_items()
 	victim.Stun(2)
 
-	new /obj/item/tk_grab/shrike(assailant) //Grab starts "inside" the shrike. It will auto-equip to her hands, set her as its master and her victim as its target, and then start processing the grab.
+	psychic_hold = new(assailant, victim, src) //Grab starts "inside" the shrike. It will auto-equip to her hands, set her as its master and her victim as its target, and then start processing the grab.
 
 	assailant.changeNext_move(CLICK_CD_RANGE)
 

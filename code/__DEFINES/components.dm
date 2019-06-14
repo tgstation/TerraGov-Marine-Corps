@@ -126,7 +126,6 @@
 #define COMSIG_HIVE_BECOME_RULER "hive_become_ruler"
 #define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"
-	#define COMSIG_HIVE_XENO_MOTHER_FALSE NONE
 	#define COMSIG_HIVE_XENO_MOTHER_TRUE (1<<0)
 
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"

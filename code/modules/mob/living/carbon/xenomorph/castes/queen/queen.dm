@@ -239,6 +239,5 @@
 // ***************************************
 
 /mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host()
-	if(!ovipositor || incapacitated(TRUE))
-		return COMSIG_HIVE_XENO_MOTHER_FALSE
-	return COMSIG_HIVE_XENO_MOTHER_TRUE
+	if(ovipositor && !incapacitated(TRUE))
+		return COMSIG_HIVE_XENO_MOTHER_TRUE

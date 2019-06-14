@@ -228,48 +228,59 @@ Redefine as needed.
 	var/last_life_tick = 0
 	var/turf/starting_master_loc
 	var/turf/starting_victim_loc
+	var/datum/action/xeno_action/activable/psychic_choke/master_action
 
 
-/obj/item/tk_grab/shrike/Initialize()
-	var/mob/living/carbon/xenomorph/shrike/S = loc
-	if(!istype(S) || QDELETED(S.psychic_victim) || !S.put_in_hands(src))
+/obj/item/tk_grab/shrike/Initialize(mapload, mob/living/carbon/human/victim, xeno_action)
+	var/mob/living/carbon/xenomorph/shrike/master = loc
+	if(!istype(master) || QDELETED(victim) || !xeno_action || !master.put_in_hands(src))
 		return INITIALIZE_HINT_QDEL
 
-	tk_user = S
-	focus = S.psychic_victim
+	master_action = xeno_action
+	tk_user = master
+	focus = victim
 	grab_level = TKGRAB_NONLETHAL
 	starting_master_loc = get_turf(tk_user)
-	starting_victim_loc = get_turf(focus)
-	last_life_tick = S.psychic_victim.life_tick
+	starting_victim_loc = get_turf(victim)
+	last_life_tick = victim.life_tick
 
 	return ..() //Starts processing.
 
 
 /obj/item/tk_grab/shrike/Destroy()
-	if(tk_user)
-		var/mob/living/carbon/xenomorph/shrike/S = tk_user
-		S.stop_psychic_grab()
-		tk_user = null
-	if(focus)
-		focus = null
-
+	stop_psychic_grab()
+	tk_user = null
+	focus = null
 	starting_master_loc = null
 	starting_victim_loc = null
 
-	return ..() //Stops processing, if it hasn't by now.
+	return ..() //Stops processing.
+
+
+/obj/item/tk_grab/shrike/proc/stop_psychic_grab()
+	if(!QDELETED(focus))
+		var/mob/living/carbon/human/victim = focus
+		victim.SetStunned(0)
+		victim.update_canmove()
+
+	if(!QDELETED(tk_user))
+		tk_user.temporarilyRemoveItemFromInventory(src)
+	
+	if(master_action && master_action.psychic_hold == src)
+		master_action.psychic_hold = null
 
 
 /obj/item/tk_grab/shrike/process()
 	if(QDELETED(tk_user) || QDELETED(focus) || loc != tk_user)
-		STOP_PROCESSING(SSfastprocess, src)
+		if(QDELING(src)) //This is for local testing, not for the final version.
+			CRASH("Looks like process() is called again before qdel() finishes processing Destroy() after all.")
 		qdel(src)
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/shrike/assailant = tk_user
 	var/mob/living/carbon/human/victim = focus
 
-	if(!assailant.check_state() || assailant.stagger || !assailant.psychic_victim || assailant.loc != starting_master_loc || victim.loc != starting_victim_loc || victim.stat == DEAD || isnestedhost(victim))
-		STOP_PROCESSING(SSfastprocess, src)
+	if(!assailant.check_state() || assailant.stagger || assailant.loc != starting_master_loc || victim.loc != starting_victim_loc || victim.stat == DEAD || isnestedhost(victim))
 		qdel(src)
 		return FALSE
 

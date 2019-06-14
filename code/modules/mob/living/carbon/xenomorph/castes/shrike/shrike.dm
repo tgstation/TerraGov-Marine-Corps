@@ -20,7 +20,6 @@
 	xeno_explosion_resistance = 2 //some resistance against explosion stuns.
 	job = ROLE_XENO_QUEEN
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
-	var/mob/living/carbon/human/psychic_victim
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -68,46 +67,12 @@
 
 
 // ***************************************
-// *********** Psychic Grab Procs
-// ***************************************
-
-
-/mob/living/carbon/xenomorph/shrike/proc/stop_psychic_grab()
-	if(QDELETED(psychic_victim))
-		return FALSE
-
-	psychic_victim.SetStunned(0)
-	psychic_victim.update_canmove()
-	psychic_victim = null
-
-	var/obj/item/grab/G = get_active_held_item()
-	if(!istype(G))
-		G = get_active_held_item()
-		if(!istype(G))
-			return FALSE //Grab is no longer on us, it will auto-delete, nothing else for us to do.
-
-	temporarilyRemoveItemFromInventory(G)
-
-
-/mob/living/carbon/xenomorph/shrike/proc/swap_psychic_grab()
-	if(QDELETED(psychic_victim))
-		return FALSE
-
-	var/obj/item/tk_grab/shrike/TKG = get_active_held_item()
-	if(QDELETED(TKG))
-		return FALSE
-
-	TKG.swap_psychic_grab()
-
-
-// ***************************************
 // *********** Larva Mother
 // ***************************************
 
 /mob/living/carbon/xenomorph/shrike/proc/is_burrowed_larva_host()
-	if(!CHECK_BITFIELD(shrike_flags, SHRIKE_FLAG_CALLING_LARVAS) || incapacitated())
-		return COMSIG_HIVE_XENO_MOTHER_FALSE
-	return COMSIG_HIVE_XENO_MOTHER_TRUE
+	if(CHECK_BITFIELD(shrike_flags, SHRIKE_FLAG_CALLING_LARVAS) && !incapacitated())
+		return COMSIG_HIVE_XENO_MOTHER_TRUE
 
 
 // ***************************************
