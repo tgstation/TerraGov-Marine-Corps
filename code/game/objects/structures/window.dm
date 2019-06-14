@@ -619,6 +619,7 @@
 		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(src,direction) )
 			W.spawn_shutters(turn(direction,180))
 	var/obj/machinery/door/poddoor/shutters/almayer/pressure/P = new(get_turf(src))
+	P.density = TRUE
 	switch(junction)
 		if(4,5,8,9,12)
 			P.setDir(SOUTH)
