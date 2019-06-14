@@ -100,12 +100,6 @@
 	icon_state = "impairedoverlay"
 	layer = FULLSCREEN_IMPAIRED_LAYER
 
-/obj/screen/fullscreen/blurry
-	icon = 'icons/mob/screen/generic.dmi'
-	screen_loc = "WEST,SOUTH to EAST,NORTH"
-	icon_state = "blurry"
-	layer = FULLSCREEN_BLURRY_LAYER
-
 /obj/screen/fullscreen/flash
 	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"

@@ -273,7 +273,8 @@
 		adjust_blindness(-1)
 	if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
-
+		if(client)
+			update_eye_blur()
 
 /mob/living/carbon/proc/handle_impaired_hearing()
 	//Ears
