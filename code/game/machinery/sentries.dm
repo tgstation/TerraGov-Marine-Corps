@@ -335,7 +335,7 @@
 			update_health()
 		return
 
-	if(CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
+	if(CHECK_BITFIELD(turret_flags, TURRET_LOCKED))
 		to_chat(user, "<span class='warning'>[src]'s control panel is locked! Only a Squad Leader or Engineer can unlock it now.</span>")
 		return
 
@@ -521,10 +521,10 @@
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 
-		TOGGLE_BITFIELD(turret_flags, TURRET_RADIAL)
-		user.visible_message("<span class='notice'>[user] [CHECK_BITFIELD(turret_flags, TURRET_RADIAL) ? "locks" : "unlocks"] [src]'s panel.</span>",
-		"<span class='notice'>You [CHECK_BITFIELD(turret_flags, TURRET_RADIAL) ? "lock" : "unlock"] [src]'s panel.</span>")
-		if(CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
+		TOGGLE_BITFIELD(turret_flags, TURRET_LOCKED)
+		user.visible_message("<span class='notice'>[user] [CHECK_BITFIELD(turret_flags, TURRET_LOCKED) ? "locks" : "unlocks"] [src]'s panel.</span>",
+		"<span class='notice'>You [CHECK_BITFIELD(turret_flags, TURRET_LOCKED) ? "lock" : "unlock"] [src]'s panel.</span>")
+		if(CHECK_BITFIELD(turret_flags, TURRET_LOCKED))
 			if(user.interactee == src)
 				user.unset_interaction()
 				user << browse(null, "window=turret")
