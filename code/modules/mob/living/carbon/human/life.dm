@@ -21,7 +21,7 @@
 			if(parasite) //The larva cannot survive without a host.
 				qdel(parasite)
 			DISABLE_BITFIELD(status_flags, XENO_HOST)
-		med_hud_set_status()
+			med_hud_set_status()
 		return TRUE
 	//No need to update all of these procs if the guy is dead.
 
@@ -56,7 +56,7 @@
 		else //Dead
 			if(!undefibbable && timeofdeath && life_tick > 5 && life_tick % 2 == 0)
 				if(timeofdeath < 5 || !check_tod(src) || !is_revivable())	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
-					undefibbable = TRUE
+					set_undefibbable()
 					med_hud_set_status()
 				else if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
 					med_hud_set_status()
@@ -69,3 +69,7 @@
 	handle_environment() //Optimized a good bit.
 
 	pulse = handle_pulse()
+
+
+/mob/living/carbon/human/proc/set_undefibbable()
+	undefibbable = TRUE
