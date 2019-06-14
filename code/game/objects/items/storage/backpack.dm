@@ -27,11 +27,11 @@
 			return TRUE
 	return ..()
 
-/obj/item/storage/backpack/attackby(obj/item/W, mob/user)
+/obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	
 	if (use_sound)
-		playsound(src.loc, src.use_sound, 15, 1, 6)
+		playsound(loc, use_sound, 15, 1, 6)
 
 /obj/item/storage/backpack/mob_can_equip(M as mob, slot)
 	if (!..())
