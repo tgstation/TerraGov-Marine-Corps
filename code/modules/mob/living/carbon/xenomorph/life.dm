@@ -231,11 +231,13 @@
 		frenzy_aura = frenzy_new
 		warding_aura = warding_new
 		recovery_aura = recovery_new
+	hud_set_pheromone()
 	frenzy_new = 0
 	warding_new = 0
 	recovery_new = 0
-	armor_pheromone_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
-	hud_set_pheromone()
+	armor_pheromone_bonus = 0
+	if(warding_aura > 0)
+		armor_pheromone_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)
