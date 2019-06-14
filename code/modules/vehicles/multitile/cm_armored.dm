@@ -890,3 +890,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	hardpoints[old.slot] = null
 	update_damage_distribs()
 	update_icon()
+
+
+
+/obj/vehicle/multitile/root/cm_armored/contents_explosion(severity, target)
+	return

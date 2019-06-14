@@ -252,8 +252,9 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
-/atom/proc/ex_act()
-	return
+/atom/proc/ex_act(severity, target)
+	contents_explosion(severity, target)
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
 
 /atom/proc/fire_act()
 	return
@@ -270,6 +271,10 @@ directive is properly returned.
 
 /atom/proc/prevent_content_explosion()
 	return FALSE
+
+
+/atom/proc/contents_explosion(severity, target)
+	return //For handling the effects of explosions on contents that would not normally be effected
 
 
 //Generalized Fire Proc.
