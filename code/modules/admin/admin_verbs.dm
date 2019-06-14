@@ -950,7 +950,7 @@
 
 	var/datum/admin_help/AH = C.current_ticket
 
-	if(AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
+	if(AH && AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 
 	if(AH && !AH.marked)

@@ -990,29 +990,6 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has used [result] transformation on [A].")
 
 
-	else if(href_list["setspecies"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in GLOB.mob_list
-		if(!istype(H))
-			return
-
-		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.all_species
-
-		if(!H)
-			return
-
-		if(!result)
-			return
-
-		H.set_species(result)
-		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result].")
-
-		log_admin("[key_name(usr)] set the species of [key_name(H)] to [result].")
-		message_admins("[ADMIN_TPMONTY(usr)] set the species of [ADMIN_TPMONTY(H)] to [result].")
-
-
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 		if(!check_rights(R_FUN))
 			return

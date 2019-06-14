@@ -40,8 +40,6 @@
 				continue
 			I.loc = src
 
-/obj/structure/closet/alter_health()
-	return get_turf(src)
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)

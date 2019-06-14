@@ -49,7 +49,6 @@
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 

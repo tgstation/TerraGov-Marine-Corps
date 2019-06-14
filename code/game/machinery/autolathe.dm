@@ -130,7 +130,7 @@
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(machine_stat)
+	if(!is_operational())
 		return
 
 	if(busy)

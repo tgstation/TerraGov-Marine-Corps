@@ -206,7 +206,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
-	SSdirection.stop_tracking(tracking_id, H)// failsafe
 	marines_list -= src
 	if(!wipe)
 		var/role = "unknown"
@@ -217,6 +216,9 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		squad_leader = null
 		SSdirection.clear_leader(tracking_id)
 		SSdirection.stop_tracking("marine-sl", src)
+	else
+		SSdirection.stop_tracking(tracking_id, H)
+
 	H.assigned_squad = null
 	return TRUE
 

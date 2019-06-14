@@ -177,6 +177,8 @@
 		id = "[SSshuttle.stationary.len]"
 	if(name == "dock")
 		name = "dock[SSshuttle.stationary.len]"
+	var/area/A = get_area(src)
+	area_type = A.type
 
 //	if(mapload)
 //		for(var/turf/T in return_turfs())
@@ -427,6 +429,9 @@
 /obj/docking_port/mobile/proc/on_prearrival()
 	playsound(destination.return_center_turf(), landing_sound, 60, 0)
 	playsound(return_center_turf(), landing_sound, 60, 0)
+	return
+
+/obj/docking_port/mobile/proc/on_crash()
 	return
 
 //recall the shuttle to where it was previously
