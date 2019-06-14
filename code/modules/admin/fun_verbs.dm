@@ -889,6 +889,8 @@
 			newhivenumber = XENO_HIVE_BETA
 		if("Zeta")
 			newhivenumber = XENO_HIVE_ZETA
+		if("Admeme")
+			newhivenumber = XENO_HIVE_ADMEME
 		else
 			return
 

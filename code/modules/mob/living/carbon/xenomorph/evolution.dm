@@ -105,7 +105,7 @@
 			to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 			return
 
-		if(hive.get_total_xeno_number() < hive.xenos_per_queen)
+		if(hive.can_hive_have_a_queen())
 			to_chat(src, "<span class='warning'>The hivemind is too weak to sustain a Queen. Gather more xenos. [hive.xenos_per_queen] are required.</span>")
 			return FALSE
 
@@ -125,12 +125,14 @@
 				new_caste_type = /mob/living/carbon/xenomorph/queen/Beta
 			if(XENO_HIVE_ZETA)
 				new_caste_type = /mob/living/carbon/xenomorph/queen/Zeta
+			if(XENO_HIVE_ADMEME)
+				new_caste_type = /mob/living/carbon/xenomorph/queen/admeme
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike) //Special case for dealing with shrikes
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN) || jobban_isbanned(src, ROLE_XENO_QUEEN))
 			to_chat(src, "<span class='warning'>You are jobbanned from Queen-like roles.</span>")
 
-		if(hive.living_xeno_shrike)
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
 			to_chat(src, "<span class='warning'>There already is a living Shrike. The hive cannot contain more than one psychic energy repository.</span>")
 			return
 		
@@ -183,7 +185,7 @@
 			to_chat(src, "<span class='warning'>There already is a Queen.</span>")
 			return
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike)
-		if(hive.living_xeno_shrike)
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
 			to_chat(src, "<span class='warning'>There already is a Shrike.</span>")
 			return
 	else // these shouldnt be checked if trying to become a queen.

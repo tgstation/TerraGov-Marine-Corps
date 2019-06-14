@@ -2,7 +2,6 @@
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
-	var/mob/living/carbon/xenomorph/shrike/living_xeno_shrike
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	var/slashing_allowed = XENO_SLASHING_ALLOWED //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
 	var/queen_time = QUEEN_DEATH_TIMER //5 minutes between queen deaths
@@ -65,6 +64,11 @@
 		remove_from_hive()
 
 	add_to_hive(HS)
+
+
+/datum/hive_status/proc/can_hive_have_a_queen()
+	return get_total_xeno_number() < xenos_per_queen
+
 
 // ***************************************
 // *********** List getters
@@ -158,12 +162,7 @@
 
 
 /mob/living/carbon/xenomorph/shrike/add_to_hive(datum/hive_status/HS, force = FALSE) // override to ensure proper queen/hive behaviour
-
 	. = ..()
-	if(HS.living_xeno_shrike) // theres already a shrike
-		return
-
-	HS.living_xeno_shrike = src
 
 	if(HS.living_xeno_ruler)
 		return
@@ -227,17 +226,31 @@
 	if(queen_chosen_lead || src in hive.xeno_leader_list)
 		hive.remove_leader(src)
 
-	if(hive.living_xeno_ruler)
-		hive.update_ruler()
-
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
-	var/datum/hive_status/HS = hive
-	if(HS.living_xeno_queen == src)
-		HS.living_xeno_queen = null
-	return ..()
+	var/datum/hive_status/hive_removed_from = hive
+	if(hive_removed_from.living_xeno_queen == src)
+		hive_removed_from.living_xeno_queen = null
+		
+	. = ..()
+
+	if(hive_removed_from.living_xeno_ruler == src)
+		set_ruler(null)
+		hive.update_ruler() //Try to find a successor.
+
+
+
+/mob/living/carbon/xenomorph/shrike/remove_from_hive()
+	var/datum/hive_status/hive_removed_from = hive
+		
+	. = ..()
+
+	if(hive_removed_from.living_xeno_ruler == src)
+		set_ruler(null)
+		hive.update_ruler() //Try to find a successor.
+
 
 // ***************************************
 // *********** Xeno leaders
@@ -309,15 +322,18 @@
 
 // This proc attempts to find a new ruler to lead the hive.
 /datum/hive_status/proc/update_ruler()
-	
-	var/mob/living/carbon/xenomorph/successor
-	if(living_xeno_queen)
-		successor = living_xeno_queen
-	else if(living_xeno_shrike)
-		successor = living_xeno_shrike
-
-	if(successor == living_xeno_ruler)
+	if(living_xeno_ruler)
 		return TRUE //No succession required.
+
+	var/mob/living/carbon/xenomorph/successor
+	var/list/candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/queen]
+	
+	if(length(candidates)) //Priority to the queens.
+		successor = pick(candidates)
+	else
+		candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]
+		if(length(candidates)) // pick() from an empty list runtimes.
+			successor = pick(candidates)
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
@@ -354,16 +370,6 @@
 /datum/hive_status/proc/check_queen_timer()
 	if(xeno_queen_timer && --xeno_queen_timer <= 1)
 		xeno_message("The Hive is ready for a new ruler to evolve.", 3, TRUE)
-
-
-// ***************************************
-// *********** Shrike
-// ***************************************
-
-/datum/hive_status/proc/on_shrike_death(mob/living/carbon/xenomorph/shrike/S)
-	if(living_xeno_shrike != S)
-		return
-	living_xeno_shrike = null
 
 
 // ***************************************
@@ -502,11 +508,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 
-	var/list/possible_mothers = list()
-	if(living_xeno_queen && CHECK_BITFIELD(SEND_SIGNAL(living_xeno_queen, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
-		possible_mothers += living_xeno_queen
-	if(living_xeno_shrike && CHECK_BITFIELD(SEND_SIGNAL(living_xeno_shrike, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
-		possible_mothers += living_xeno_shrike
+	var/list/possible_mothers = xenos_by_typepath[/mob/living/carbon/xenomorph/shrike] + xenos_by_typepath[/mob/living/carbon/xenomorph/queen]
 
 	if(!length(possible_mothers))
 		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to recive new larvas.</span>")
@@ -612,6 +614,14 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/queen/Zeta
 	hivenumber = XENO_HIVE_ZETA
+
+/datum/hive_status/admeme
+	name = "Admeme"
+	hivenumber = XENO_HIVE_ADMEME
+	prefix = "Admeme "
+
+/mob/living/carbon/xenomorph/queen/admeme
+	hivenumber = XENO_HIVE_ADMEME
 
 // ***************************************
 // *********** Xeno hive compare helpers
