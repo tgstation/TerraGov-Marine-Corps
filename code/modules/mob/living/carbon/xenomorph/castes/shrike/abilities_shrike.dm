@@ -15,7 +15,7 @@
 	ENABLE_BITFIELD(caller.shrike_flags, SHRIKE_FLAG_CALLING_LARVAS)
 
 	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
-	"<span class='xenowarning'>You call forth the larvas to rise from their slumber!</span>")
+	"<span class='xenowarning'>We call forth the larvas to rise from their slumber!</span>")
 	notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 
 	addtimer(CALLBACK(caller, /mob/living/carbon/xenomorph/shrike.proc/calling_larvas_end), CALLING_BURROWED_DURATION)
@@ -40,7 +40,7 @@
 
 
 /datum/action/xeno_action/activable/psychic_fling/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>You gather enough mental strength to fling something again.</span>")
+	to_chat(owner, "<span class='notice'>We gather enough mental strength to fling something again.</span>")
 	return ..()
 
 
@@ -66,7 +66,7 @@
 	round_statistics.psychic_flings++
 
 	owner.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [owner]!</span>", \
-	"<span class='xenowarning'>You violently fling [victim] with the power of your mind!</span>")
+	"<span class='xenowarning'>We violently fling [victim] with the power of our mind!</span>")
 	victim.visible_message("<span class='xenowarning'>[victim] is violently flung to the side by an unseen force!</span>", \
 	"<span class='xenowarning'>You are violently flung to the side by an unseen force!</span>")
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
@@ -104,7 +104,7 @@
 
 
 /datum/action/xeno_action/activable/psychic_choke/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>You gather enough mental strength to choke something again.</span>")
+	to_chat(owner, "<span class='notice'>We gather enough mental strength to choke something again.</span>")
 	return ..()
 
 
@@ -119,7 +119,7 @@
 	switch(dist)
 		if(-1 to 1)
 			if(!silent)
-				to_chat(S, "<span class='warning'>The target is too close, you need some room to focus!</span>")
+				to_chat(S, "<span class='warning'>The target is too close, we need some room to focus!</span>")
 			return FALSE
 		if(4 to INFINITY)
 			if(!silent)
@@ -149,9 +149,9 @@
 
 	round_statistics.psychic_chokes++
 	assailant.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [assailant]!</span>", \
-	"<span class='xenowarning'>You choke [victim] with the power of your mind!</span>")
+	"<span class='xenowarning'>We choke [victim] with the power of our mind!</span>")
 	victim.visible_message("<span class='xenowarning'>[victim] is suddenly grabbed by the neck by an unseen force!</span>", \
-	"<span class='xenowarning'>Your is suddenly grabbed by an unseen force!</span>")
+	"<span class='xenowarning'>You are suddenly grabbed by an unseen force!</span>")
 	playsound(victim,'sound/effects/magic.ogg', 75, 1)
 
 	victim.drop_all_held_items()

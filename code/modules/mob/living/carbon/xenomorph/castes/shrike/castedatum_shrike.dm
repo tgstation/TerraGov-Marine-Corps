@@ -115,8 +115,9 @@
 	aura_strength = 2.8
 
 /datum/xeno_caste/shrike/ancient
+	upgrade_name = "Ancient"
 	caste_desc = "A barely contained repository of the hive's psychic power."
-	ancient_message = "You are psychic repository of the hive, and you are ready to unleash your fury."
+	ancient_message = "We are psychic repository of the hive, and we are ready to unleash our fury."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
