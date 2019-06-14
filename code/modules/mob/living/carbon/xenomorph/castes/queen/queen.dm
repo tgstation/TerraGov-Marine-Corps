@@ -58,7 +58,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/queen/Initialize()
 	RegisterSignal(src, COMSIG_HIVE_BECOME_RULER, .proc/on_becoming_ruler)
-	RegisterSignal(src, COMSIG_HIVE_XENO_MOTHER_CHECK, .proc/is_burrowed_larva_host)
+	RegisterSignal(src, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 	. = ..()
 	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, /datum/hive_status.proc/on_queen_death)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
