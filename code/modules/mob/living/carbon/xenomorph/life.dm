@@ -329,15 +329,11 @@
 	if(stat == DEAD)
 		return
 
-	var/picked = get_alien_candidate()
+	var/mob/picked = get_alien_candidate()
 	if(!picked)
 		return
 
-	var/mob/xeno_candidate = get_mob_by_key(picked)
-	if(!xeno_candidate)
-		return
-
-	SSticker.mode.transfer_xeno(xeno_candidate, src)
+	SSticker.mode.transfer_xeno(picked, src)
 
 	to_chat(src, "<span class='xenoannounce'>You are an old xenomorph re-awakened from slumber!</span>")
 	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))

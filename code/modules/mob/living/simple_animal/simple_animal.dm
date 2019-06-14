@@ -96,7 +96,7 @@
 	med_hud_set_status()
 
 
-/mob/living/simple_animal/rejuvenate()
+/mob/living/simple_animal/revive()
 	. = ..()
 	icon = initial(icon)
 	icon_state = icon_living

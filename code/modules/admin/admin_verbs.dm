@@ -17,8 +17,6 @@
 		ghost.reenter_corpse()
 		return
 
-	M.client.change_view(world.view)
-
 	var/oldkey = M.key
 
 	M.ghostize(TRUE)
