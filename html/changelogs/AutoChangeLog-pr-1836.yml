@@ -1,4 +1,0 @@
-author: "ma44"
-delete-after: True
-changes: 
-  - refactor: "Made xeno pheromone emitting less worse in terms of performance"
