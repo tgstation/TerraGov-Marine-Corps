@@ -237,8 +237,8 @@
 	. = ..()
 
 	if(hive_removed_from.living_xeno_ruler == src)
-		set_ruler(null)
-		hive.update_ruler() //Try to find a successor.
+		hive_removed_from.set_ruler(null)
+		hive_removed_from.update_ruler() //Try to find a successor.
 
 
 
@@ -248,8 +248,8 @@
 	. = ..()
 
 	if(hive_removed_from.living_xeno_ruler == src)
-		set_ruler(null)
-		hive.update_ruler() //Try to find a successor.
+		hive_removed_from.set_ruler(null)
+		hive_removed_from.update_ruler() //Try to find a successor.
 
 
 // ***************************************
