@@ -606,9 +606,9 @@
 /obj/item/ammo_magazine/rifle/lmg,
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHWEST)";
-	icon_state = "blue";
-	dir = 9
+	dir = 9;
+	icon_state = "red";
+	tag = "icon-blue (NORTHWEST)"
 	},
 /area/centcom)
 "bY" = (
@@ -618,9 +618,9 @@
 /obj/item/ammo_magazine/rocket/m57a4,
 /obj/item/ammo_magazine/rocket/m57a4,
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTH)";
-	icon_state = "blue";
-	dir = 1
+	dir = 1;
+	icon_state = "red";
+	tag = "icon-blue (NORTH)"
 	},
 /area/centcom)
 "bZ" = (
@@ -628,9 +628,9 @@
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/flashbangs,
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTH)";
-	icon_state = "blue";
-	dir = 1
+	dir = 1;
+	icon_state = "red";
+	tag = "icon-blue (NORTH)"
 	},
 /area/centcom)
 "ca" = (
@@ -656,9 +656,9 @@
 /obj/item/storage/box/nade_box/impact,
 /obj/item/storage/box/explosive_mines,
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTH)";
-	icon_state = "blue";
-	dir = 1
+	dir = 1;
+	icon_state = "red";
+	tag = "icon-blue (NORTH)"
 	},
 /area/centcom)
 "cd" = (
@@ -671,9 +671,9 @@
 /obj/item/storage/box/spec/scoutshotgun,
 /obj/item/storage/box/spec/sniper,
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHEAST)";
-	icon_state = "blue";
-	dir = 5
+	dir = 5;
+	icon_state = "red";
+	tag = "icon-blue (NORTHEAST)"
 	},
 /area/centcom)
 "ce" = (
@@ -948,6 +948,13 @@
 	icon_state = "test_floor4"
 	},
 /area/centcom/supply)
+"ip" = (
+/turf/open/floor/almayer{
+	dir = 8;
+	icon_state = "red";
+	tag = "icon-blue (WEST)"
+	},
+/area/centcom)
 "ir" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/supply)
@@ -3162,6 +3169,27 @@
 /obj/item/weapon/baseballbat/metal,
 /turf/open/ground/river,
 /area/deathmatch)
+"sO" = (
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "red";
+	tag = "icon-blue (EAST)"
+	},
+/area/centcom)
+"zQ" = (
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "redcorner";
+	tag = "icon-bluecorner (EAST)"
+	},
+/area/centcom)
+"Pw" = (
+/turf/open/floor/almayer{
+	dir = 1;
+	icon_state = "redcorner";
+	tag = "icon-bluecorner"
+	},
+/area/centcom)
 "TC" = (
 /obj/docking_port/stationary/supply,
 /turf/open/floor/plating{
@@ -10239,9 +10267,9 @@ gw
 gw
 bs
 dX
+gn
 eo
-eo
-eo
+iV
 bS
 bV
 eo
@@ -10341,9 +10369,9 @@ eo
 eo
 iV
 dX
+gn
 eo
-eo
-eo
+iV
 cb
 eo
 eo
@@ -10443,9 +10471,9 @@ eo
 eo
 iV
 dX
+gn
 eo
-eo
-eo
+iV
 bU
 bV
 eo
@@ -10650,10 +10678,10 @@ dX
 eo
 eo
 eo
-eo
-eo
-eo
-eo
+gw
+gw
+gw
+gw
 eo
 dX
 eo
@@ -10752,10 +10780,10 @@ bO
 eo
 eo
 eo
-eo
-eo
-eo
-eo
+gv
+gv
+gv
+gv
 eo
 dX
 eo
@@ -10953,13 +10981,13 @@ bA
 bT
 eo
 dX
+aO
 eo
-eo
-eo
+aO
 dX
 bX
-gw
-oW
+ip
+Pw
 eo
 dX
 eo
@@ -11366,8 +11394,8 @@ bR
 ny
 dX
 cd
-gv
-nk
+sO
+zQ
 eo
 dX
 eo
