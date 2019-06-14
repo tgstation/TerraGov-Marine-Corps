@@ -409,8 +409,8 @@ var/list/wood_icons = list("wood", "wood-broken")
 		if(is_wood_floor())
 			to_chat(user, "<span class='warning'>You forcefully pry off the planks, destroying them in the process.</span>")
 		else
-			new floor_tile.type(src)
 			to_chat(user, "<span class='warning'>You remove the [floor_tile].</span>")
+			new floor_tile.type(src)
 
 		make_plating()
 		playsound(src, 'sound/items/crowbar.ogg', 25, 1)
