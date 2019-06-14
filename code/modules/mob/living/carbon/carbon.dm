@@ -1,6 +1,10 @@
 /mob/living/carbon/Destroy()
-	. = ..()
-	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
+	if(ismob(loc))
+		var/mob/M = loc
+		if(src in M.stomach_contents)
+			M.stomach_contents -= src
+	stomach_contents.Cut()
+	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -351,16 +355,6 @@
 			step(src, slide_dir)
 			sleep(2)
 			if(!lying)
-				break
-
-
-
-/mob/living/carbon/on_stored_atom_del(atom/movable/AM)
-	..()
-	if(stomach_contents.len && ismob(AM))
-		for(var/X in stomach_contents)
-			if(AM == X)
-				stomach_contents -= AM
 				break
 
 

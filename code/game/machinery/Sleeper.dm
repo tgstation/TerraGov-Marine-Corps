@@ -238,7 +238,7 @@
 		break
 
 
-/obj/machinery/sleeper/on_stored_atom_del(atom/movable/AM)
+/obj/machinery/sleeper/handle_atom_del(atom/movable/AM)
 	if(AM == beaker)
 		beaker = null
 

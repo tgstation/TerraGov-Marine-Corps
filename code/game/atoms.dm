@@ -277,9 +277,9 @@ directive is properly returned.
 	return
 
 
-//things that object need to do when a movable atom inside it is deleted
-/atom/proc/on_stored_atom_del(atom/movable/AM)
-	return
+//This proc is called on the location of an atom when the atom is Destroy()'d
+/atom/proc/handle_atom_del(atom/A)
+	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
 
 // Generic logging helper
