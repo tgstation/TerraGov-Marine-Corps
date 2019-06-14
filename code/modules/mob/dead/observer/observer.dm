@@ -329,7 +329,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, "<span class='warning'>You cannot re-enter your body.</span>")
 		return FALSE
 
-	if(isaghost(mind.current))
+	if(mind.current.key && !isaghost(mind.current))
 		to_chat(src, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
 		return FALSE
 
