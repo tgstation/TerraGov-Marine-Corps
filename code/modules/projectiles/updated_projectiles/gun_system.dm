@@ -110,6 +110,8 @@
 
 /obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
+	RegisterSignal(src, COMSIG_MAGAZINE_LOADED, .proc/loading_completed)
+
 	base_gun_icon = icon_state
 	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
 	if(current_mag)
@@ -400,6 +402,10 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		playsound(user, reload_sound, 25, 1, 5)
 	update_icon()
 
+/obj/item/weapon/gun/proc/loading_completed(datum/source, mob/user)
+	if(reload_sound)
+		playsound(user, reload_sound, 25, 1, 5)
+	update_icon()
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.

@@ -212,6 +212,7 @@
 #include "code\datums\weakrefs.dm"
 #include "code\datums\world_topic.dm"
 #include "code\datums\components\component.dm"
+#include "code\datums\components\magazine_receiver.dm"
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\signal_redirect.dm"

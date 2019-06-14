@@ -27,6 +27,11 @@
 #define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
 #define COMSIG_TOPIC "handle_topic"                             //generic topic handler (usr, href_list)
 
+#define COMSIG_MAGAZINE_RECEIVER_HIT "magazine_receiver_hit"
+	#define COMSIG_IS_MAGAZINE 1
+
+#define COMSIG_MAGAZINE_LOADED "magazine_loaded"
+
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
 #define COMSIG_AREA_EXITED "area_exited" 							//from base of area/Exited(): (atom/movable/M)
