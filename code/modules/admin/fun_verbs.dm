@@ -1039,3 +1039,21 @@
 
 	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
 	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
+
+
+
+/datum/admins/proc/play_cinematic()
+	set category = "Fun"
+	set name = "Play Cinematic"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/datum/cinematic/choice = input(usr, "Choose a cinematic to play.", "Play Cinematic") as anything in subtypesof(/datum/cinematic)
+	if(!choice)
+		return
+
+	Cinematic(initial(choice.id), world)
+
+	log_admin("[key_name(usr)] played the [choice] cinematic.")
+	message_admins("[ADMIN_TPMONTY(usr)] played the [choice] cinematic.")
