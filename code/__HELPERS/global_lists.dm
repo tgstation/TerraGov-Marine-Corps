@@ -10,7 +10,7 @@ var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
 var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 
 var/global/list/active_areas = list()
-var/global/list/all_areas = list()
+GLOBAL_LIST_EMPTY(all_areas)
 var/global/list/processing_machines = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
@@ -23,6 +23,9 @@ var/global/list/active_orbital_beacons = list()
 
 // Posters
 var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
+
+// Pill icons
+GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 //////////////////////////
 /////Initial Building/////
@@ -105,6 +108,24 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 	for(var/path in subtypesof(/datum/emote))
 		var/datum/emote/E = new path()
 		E.emote_list[E.key] = E
+
+	// Keybindings
+	for(var/KB in subtypesof(/datum/keybinding))
+		var/datum/keybinding/keybinding = KB
+		if(!initial(keybinding.key))
+			continue
+		var/datum/keybinding/instance = new keybinding
+		GLOB.keybindings_by_name[initial(instance.name)] = instance
+		if (!(initial(instance.key) in GLOB.keybinding_list_by_key))
+			GLOB.keybinding_list_by_key[initial(instance.key)] = list()
+		GLOB.keybinding_list_by_key[initial(instance.key)] += instance.name
+	// Sort all the keybindings by their weight
+	for(var/key in GLOB.keybinding_list_by_key)
+		GLOB.keybinding_list_by_key[key] = sortList(GLOB.keybinding_list_by_key[key])
+
+	for(var/i in 1 to 21)
+		GLOB.randomized_pill_icons += "pill[i]"
+	shuffle(GLOB.randomized_pill_icons)
 
 	return TRUE
 

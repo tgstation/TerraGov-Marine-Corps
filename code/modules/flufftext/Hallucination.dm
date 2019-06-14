@@ -114,27 +114,37 @@ mob/living/carbon/proc/handle_hallucinations()
 				//Strange audio
 				//to_chat(src, "Strange Audio")
 				switch(rand(1,12))
-					if(1) src << 'sound/machines/airlock.ogg'
+					if(1)
+						SEND_SOUND(src, 'sound/machines/airlock.ogg')
 					if(2)
-						if(prob(50))src << 'sound/effects/Explosion1.ogg'
-						else src << 'sound/effects/Explosion2.ogg'
-					if(3) src << 'sound/effects/explosionfar.ogg'
-					if(4) src << 'sound/effects/Glassbr1.ogg'
-					if(5) src << 'sound/effects/Glassbr2.ogg'
-					if(6) src << 'sound/effects/Glassbr3.ogg'
-					if(7) src << 'sound/machines/twobeep.ogg'
-					if(8) src << 'sound/machines/windowdoor.ogg'
+						if(prob(50))
+							SEND_SOUND(src, 'sound/effects/explosion1.ogg')
+						else
+							SEND_SOUND(src, 'sound/effects/explosion2.ogg')
+					if(3)
+						SEND_SOUND(src, 'sound/effects/explosionfar.ogg')
+					if(4)
+						SEND_SOUND(src, 'sound/effects/glassbr1.ogg')
+					if(5)
+						SEND_SOUND(src, 'sound/effects/glassbr2.ogg')
+					if(6)
+						SEND_SOUND(src, 'sound/effects/glassbr3.ogg')
+					if(7)
+						SEND_SOUND(src, 'sound/machines/twobeep.ogg')
+					if(8)
+						SEND_SOUND(src, 'sound/machines/windowdoor.ogg')
 					if(9)
 						//To make it more realistic, I added two gunshots (enough to kill)
-						src << 'sound/weapons/Gunshot.ogg'
+						SEND_SOUND(src, 'sound/weapons/gunshot.ogg')
 						spawn(rand(10,30))
-							src << 'sound/weapons/Gunshot.ogg'
-					if(10) src << 'sound/weapons/smash.ogg'
+							SEND_SOUND(src, 'sound/weapons/gunshot.ogg')
+					if(10)
+						SEND_SOUND(src, 'sound/weapons/smash.ogg')
 					if(11)
 						//Same as above, but with tasers.
-						src << 'sound/weapons/Taser.ogg'
+						src << 'sound/weapons/taser.ogg'
 						spawn(rand(10,30))
-							src << 'sound/weapons/Taser.ogg'
+							SEND_SOUND(src, 'sound/weapons/taser.ogg')
 				//Rare audio
 					if(12)
 //These sounds are (mostly) taken from Hidden: Source
@@ -143,7 +153,7 @@ mob/living/carbon/proc/handle_hallucinations()
 							'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
 							'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
 							'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
-						src << pick(creepyasssounds)
+						SEND_SOUND(src, pick(creepyasssounds))
 			if(66 to 70)
 				//Flashes of danger
 				//to_chat(src, "Danger Flash")
@@ -225,7 +235,7 @@ proc/check_panel(mob/M)
 	name = ""
 	desc = ""
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
 	var/mob/living/carbon/human/my_target = null
 	var/weapon_name = null
@@ -349,9 +359,8 @@ proc/check_panel(mob/M)
 		qdel(O)
 	return
 
-var/list/non_fakeattack_weapons = list(/obj/item/aicard,\
-	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,\
-	/obj/item/clothing/suit/space/uscm, /obj/item/tank)
+GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/disk/nuclear,\
+	/obj/item/clothing/suit/space/uscm, /obj/item/tank))
 
 /proc/fake_attack(var/mob/living/target)
 //	var/list/possible_clones = new/list()
@@ -371,11 +380,11 @@ var/list/non_fakeattack_weapons = list(/obj/item/aicard,\
 	//var/obj/effect/fake_attacker/F = new/obj/effect/fake_attacker(outside_range(target))
 	var/obj/effect/fake_attacker/F = new/obj/effect/fake_attacker(target.loc)
 	if(clone.l_hand)
-		if(!(locate(clone.l_hand) in non_fakeattack_weapons))
+		if(!(locate(clone.l_hand) in GLOB.non_fakeattack_weapons))
 			clone_weapon = clone.l_hand.name
 			F.weap = clone.l_hand
 	else if (clone.r_hand)
-		if(!(locate(clone.r_hand) in non_fakeattack_weapons))
+		if(!(locate(clone.r_hand) in GLOB.non_fakeattack_weapons))
 			clone_weapon = clone.r_hand.name
 			F.weap = clone.r_hand
 

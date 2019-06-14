@@ -37,11 +37,9 @@
 	var/stat_msg1
 	var/stat_msg2
 
-	var/datum/announcement/priority/command/crew_announcement = new
 
 /obj/machinery/computer/communications/New()
 	. = ..()
-	crew_announcement.newscast = TRUE
 	start_processing()
 
 /obj/machinery/computer/communications/process()
@@ -61,6 +59,9 @@
 			state = STATE_DEFAULT
 
 		if("login")
+			if(isAI(usr))
+				authenticated = 2
+				return
 			var/mob/living/carbon/human/C = usr
 			var/obj/item/card/id/I = C.get_active_held_item()
 			if(istype(I))
@@ -68,7 +69,6 @@
 					authenticated = 1
 				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = 2
-					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 			else
 				I = C.wear_id
 				if(istype(I))
@@ -76,10 +76,8 @@
 						authenticated = 1
 					if(ACCESS_MARINE_BRIDGE in I.access)
 						authenticated = 2
-						crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 		if("logout")
 			authenticated = 0
-			crew_announcement.announcer = ""
 
 		if("swipeidseclevel")
 			var/mob/M = usr
@@ -115,7 +113,7 @@
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
-				crew_announcement.Announce(input, to_xenos = 0)
+				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
 				cooldown_message = world.time
 
 		if("award")

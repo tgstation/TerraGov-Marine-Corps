@@ -5,17 +5,15 @@
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
-	density = 1
+	density = TRUE
 	anchored = 0
 	var/tank_volume = 1000
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 	var/list/list_reagents
 
-/obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.is_refillable())
-		return FALSE //so we can refill them via their afterattack.
-	else
+/obj/structure/reagent_dispensers/attackby(obj/item/I, mob/user, params)
+	if(!I.is_refillable())
 		return ..()
 
 /obj/structure/reagent_dispensers/New()
@@ -51,7 +49,7 @@
 	return
 
 /obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
 		return 1
 	else
 		return !density
@@ -99,8 +97,9 @@
 			rig = null
 			overlays = new/list()
 
-/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user)
-	add_fingerprint(user)
+/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(iswrench(I))
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 		"You wrench [src]'s faucet [modded ? "closed" : "open"]")
@@ -109,28 +108,30 @@
 			message_admins("[ADMIN_TPMONTY(usr)] opened fueltank at [ADMIN_VERBOSEJMP(loc)], leaking fuel.")
 			log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
 			leak_fuel(amount_per_transfer_from_this)
-		return
-	if(istype(I,/obj/item/assembly_holder))
+
+	else if(istype(I, /obj/item/assembly_holder))
 		if(rig)
 			to_chat(user, "<span class='warning'>There is another device in the way.</span>")
 			return
-		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
-		if(do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) && !rig)
-			user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
-			var/obj/item/assembly_holder/H = I
-			if (istype(H.a_left,/obj/item/assembly/igniter) || istype(H.a_right,/obj/item/assembly/igniter))
-				message_admins("[ADMIN_TPMONTY(usr)] rigged fueltank at [ADMIN_VERBOSEJMP(loc)] for explosion.")
-				log_game("[key_name(user)] rigged fueltank at [AREACOORD(loc)] for explosion.")
-			rig = I
-			user.transferItemToLoc(I, src)
 
-			var/icon/test = getFlatIcon(I)
-			test.Shift(NORTH,1)
-			test.Shift(EAST,6)
-			overlays += test
+		user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || rig)
 			return
 
-	if(iswelder(I))
+		user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
+		var/obj/item/assembly_holder/H = I
+		if(istype(H.a_left, /obj/item/assembly/igniter) || istype(H.a_right, /obj/item/assembly/igniter))
+			message_admins("[ADMIN_TPMONTY(usr)] rigged fueltank at [ADMIN_VERBOSEJMP(loc)] for explosion.")
+			log_game("[key_name(user)] rigged fueltank at [AREACOORD(loc)] for explosion.")
+		rig = I
+		user.transferItemToLoc(I, src)
+
+		var/icon/test = getFlatIcon(I)
+		test.Shift(NORTH,1)
+		test.Shift(EAST,6)
+		overlays += test
+
+	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 		if(!W.welding)
 			if(W.reagents.has_reagent("welding_fuel", W.max_fuel))
@@ -147,9 +148,7 @@
 			var/self_message = user.a_intent != INTENT_HARM ? "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>" : "<span class='danger'>[src] catastrophically explodes in a wave of flames as you begin to weld it.</span>"
 			user.visible_message("<span class='warning'>[user] catastrophically fails at refilling \his [W.name]!</span>", self_message)
 			explode()
-		return
 
-	return ..()
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/Proj)
 	if(exploding)
@@ -197,7 +196,7 @@
 
 	amount = min(amount, reagents.total_volume)
 	reagents.remove_reagent("fuel",amount)
-	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
+	new /obj/effect/decal/cleanable/liquid_fuel(loc, amount, FALSE)
 
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
 	explode()

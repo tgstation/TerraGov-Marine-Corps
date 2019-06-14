@@ -26,7 +26,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	populate_seed_list()
 	populate_gear_list()
 	make_datum_references_lists()
-	loadShuttleInfoDatums()
 
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
@@ -215,9 +214,20 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/incrementMaxZ()
 	maxz++
 	SSmobs.MaxZChanged()
+	SSidlenpcpool.MaxZChanged()
 
 
 /world/proc/SetupExternalRSC()
 	if(!CONFIG_GET(string/resource_url))
 		return
 	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)
+
+
+/world/proc/update_hub_visibility(new_visibility)
+	if(new_visibility == GLOB.hub_visibility)
+		return
+	GLOB.hub_visibility = new_visibility
+	if(GLOB.hub_visibility)
+		hub_password = "kMZy3U5jJHSiBQjr"
+	else
+		hub_password = "SORRYNOPASSWORD"

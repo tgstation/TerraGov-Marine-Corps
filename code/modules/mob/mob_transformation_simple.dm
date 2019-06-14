@@ -37,7 +37,6 @@
 		if(H.client)
 			H.name = H.client.prefs.real_name
 			H.real_name = H.client.prefs.real_name
-			H.voice_name = H.client.prefs.real_name
 			H.gender = H.client.prefs.gender
 			H.h_style = H.client.prefs.h_style
 			H.f_style = H.client.prefs.f_style
@@ -54,6 +53,9 @@
 			H.ethnicity = H.client.prefs.ethnicity
 			H.body_type = H.client.prefs.body_type
 			H.flavor_text = H.client.prefs.flavor_text
+			H.update_body()
+			H.update_hair()
+			H.regenerate_icons()
 		if(H.mind)
 			H.mind.name = H.real_name
 		

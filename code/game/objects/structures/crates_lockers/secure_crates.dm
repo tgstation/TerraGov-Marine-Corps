@@ -54,34 +54,29 @@
 
 	if(usr.incapacitated())
 		return
-	add_fingerprint(usr)
 	togglelock(usr)
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user)
-	add_fingerprint(user)
 	if(locked)
 		togglelock(user)
 	else
 		toggle(user)
 
-/obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/tool/wirecutters, /obj/item/tool/weldingtool)))
-		return ..()
-	if(locked && istype(W, /obj/item/card/emag))
+/obj/structure/closet/crate/secure/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(locked && istype(I, /obj/item/card/emag))
 		overlays.Cut()
 		overlays += emag
-		overlays += sparks
-		spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-		playsound(src.loc, "sparks", 25, 1)
-		locked = 0
-		broken = 1
+		flick(src, sparks)
+		playsound(loc, "sparks", 25, 1)
+		locked = FALSE
+		broken = TRUE
 		update_icon()
 		to_chat(user, "<span class='notice'>You unlock \the [src].</span>")
-		return
-	if(!opened && user.a_intent != INTENT_HARM)
+
+	else if(!opened)
 		togglelock(user)
-		return
-	return ..()
 
 /obj/structure/closet/crate/secure/emp_act(severity)
 	for(var/obj/O in src)

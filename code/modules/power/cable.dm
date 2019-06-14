@@ -150,7 +150,6 @@ By design, d1 is the smallest direction and d2 is the highest
 		if (shock(user, 50))
 			return
 		user.visible_message("[user] cuts the cable.", "<span class='notice'>You cut the cable.</span>")
-		stored.add_fingerprint(user)
 		deconstruct()
 		return
 
@@ -171,11 +170,10 @@ By design, d1 is the smallest direction and d2 is the highest
 	if (I.flags_atom & CONDUCT)
 		shock(user, 5, 0.7)
 
-	add_fingerprint(user)
 
 // Items usable on a cable :
-/obj/structure/cable/attackby(obj/item/W, mob/user, params)
-	handlecable(W, user, params)
+/obj/structure/cable/attackby(obj/item/I, mob/user, params)
+	handlecable(I, user, params)
 
 // shock the user with probability prb
 /obj/structure/cable/proc/shock(mob/user, prb, siemens_coeff = 1)

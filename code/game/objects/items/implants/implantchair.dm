@@ -5,9 +5,9 @@
 	desc = "Used to implant occupants with loyalty implants."
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
-	density = 1
+	density = TRUE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 
 	var/ready = 1
 	var/malfunction = 0
@@ -70,7 +70,6 @@
 					ready = 1
 
 			src.updateUsrDialog()
-			src.add_fingerprint(usr)
 			return
 
 
@@ -110,7 +109,6 @@
 			return
 		M.forceMove(src)
 		src.occupant = M
-		src.add_fingerprint(usr)
 		icon_state = "implantchair_on"
 		return 1
 
@@ -148,7 +146,6 @@
 			if(usr.stat != 0)
 				return
 			src.go_out(usr)
-			add_fingerprint(usr)
 			return
 
 

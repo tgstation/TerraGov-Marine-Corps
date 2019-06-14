@@ -10,7 +10,6 @@
 	var/network = list("military")
 	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
-	var/emagged = 0
 
 /obj/item/circuitboard/computer/security/construct(var/obj/machinery/computer/security/C)
 	if (..(C))
@@ -36,11 +35,6 @@
 	build_path = "/obj/machinery/computer/cryopod"
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/aiupload
-	name = "Circuit board (AI Upload)"
-	build_path = /obj/machinery/computer/aiupload
-	origin_tech = "programming=4"
-
 /obj/item/circuitboard/computer/med_data
 	name = "Circuit board (Medical Records)"
 	build_path = /obj/machinery/computer/med_data
@@ -48,11 +42,6 @@
 /obj/item/circuitboard/computer/pandemic
 	name = "Circuit board (PanD.E.M.I.C. 2200)"
 	build_path = /obj/machinery/computer/pandemic
-	origin_tech = "programming=2;biotech=2"
-
-/obj/item/circuitboard/computer/scan_consolenew
-	name = "Circuit board (DNA Machine)"
-	build_path = /obj/machinery/computer/scan_consolenew
 	origin_tech = "programming=2;biotech=2"
 
 /obj/item/circuitboard/computer/communications
@@ -126,13 +115,6 @@
 	name = "Circuit board (Arcade)"
 	build_path = /obj/machinery/computer/arcade
 	origin_tech = "programming=1"
-/obj/item/circuitboard/computer/turbine_control
-	name = "Circuit board (Turbine control)"
-	build_path = /obj/machinery/computer/turbine_computer
-/obj/item/circuitboard/computer/solar_control
-	name = "Circuit board (Solar Control)"
-	build_path = /obj/machinery/power/solar_control
-	origin_tech = "programming=2;powerstorage=2"
 /obj/item/circuitboard/computer/powermonitor
 	name = "Circuit board (Power Monitor)"
 	build_path = /obj/machinery/power/monitor
@@ -151,9 +133,6 @@
 /obj/item/circuitboard/computer/rdconsole
 	name = "Circuit Board (RD Console)"
 	build_path = /obj/machinery/computer/rdconsole/core
-/obj/item/circuitboard/computer/mecha_control
-	name = "Circuit Board (Exosuit Control Console)"
-	build_path = /obj/machinery/computer/mecha
 /obj/item/circuitboard/computer/rdservercontrol
 	name = "Circuit Board (R&D Server Control)"
 	build_path = /obj/machinery/computer/rdservercontrol
@@ -161,10 +140,6 @@
 	name = "Circuit board (Crew monitoring computer)"
 	build_path = /obj/machinery/computer/crew
 	origin_tech = "programming=3;biotech=2;magnets=2"
-/obj/item/circuitboard/computer/mech_bay_power_console
-	name = "Circuit board (Mech Bay Power Control Console)"
-	build_path = /obj/machinery/computer/mech_bay_power_console
-	origin_tech = "programming=2;powerstorage=3"
 
 /obj/item/circuitboard/computer/operating
 	name = "Circuit board (Operating Computer)"
@@ -179,86 +154,66 @@
 	build_path = /obj/machinery/computer/telecomms/server
 	origin_tech = "programming=3"
 
-/obj/item/circuitboard/computer/HolodeckControl // Not going to let people get this, but it's just here for future
-	name = "Circuit board (Holodeck Control)"
-	build_path = /obj/machinery/computer/HolodeckControl
-	origin_tech = "programming=4"
-/obj/item/circuitboard/computer/aifixer
-	name = "Circuit board (AI Integrity Restorer)"
-	build_path = /obj/machinery/computer/aifixer
-	origin_tech = "programming=3;biotech=2"
+
 /obj/item/circuitboard/computer/area_atmos
 	name = "Circuit board (Area Air Control)"
 	build_path = /obj/machinery/computer/area_atmos
 	origin_tech = "programming=2"
 
 
-/obj/item/circuitboard/computer/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/multitool))
-		var/catastasis = 0//src.contraband_enabled
-		var/opposite_catastasis
-		if(catastasis)
-			opposite_catastasis = "STANDARD"
-			catastasis = "BROAD"
-		else
-			opposite_catastasis = "BROAD"
-			catastasis = "STANDARD"
+/obj/item/circuitboard/computer/security/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-		switch( alert("Current receiver spectrum is set to: [catastasis]","Multitool-Circuitboard interface","Switch to [opposite_catastasis]","Cancel") )
-		//switch( alert("Current receiver spectrum is set to: " {(src.contraband_enabled) ? ("BROAD") : ("STANDARD")} , "Multitool-Circuitboard interface" , "Switch to " {(src.contraband_enabled) ? ("STANDARD") : ("BROAD")}, "Cancel") )
-			//if("Switch to STANDARD","Switch to BROAD")
-				//src.contraband_enabled = !src.contraband_enabled
-
-			if("Cancel")
-				return
-			else
-				to_chat(user, "DERP! BUG! Report this (And what you were doing to cause it) to Agouri")
-	return
-
-/obj/item/circuitboard/computer/security/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/card/emag))
-		if(emagged)
+	if(istype(I, /obj/item/card/emag))
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "Circuit lock is already removed.")
 			return
 		to_chat(user, "<span class='notice'>You override the circuit lock and open controls.</span>")
-		emagged = 1
-		locked = 0
-	else if(istype(I,/obj/item/card/id))
-		if(emagged)
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
+		locked = FALSE
+
+	else if(istype(I, /obj/item/card/id))
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>Circuit lock does not respond.</span>")
 			return
-		if(check_access(I))
-			locked = !locked
-			to_chat(user, "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>")
-		else
+
+		if(!check_access(I))
 			to_chat(user, "<span class='warning'>Access denied.</span>")
-	else if(istype(I,/obj/item/multitool))
+			return
+
+		locked = !locked
+		to_chat(user, "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>")
+
+	else if(ismultitool(I))
 		if(locked)
 			to_chat(user, "<span class='warning'>Circuit controls are locked.</span>")
 			return
-		var/existing_networks = list2text(network,",")
-		var/input = strip_html(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: military,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
-		if(!input)
-			to_chat(usr, "No input found please hang up and try your call again.")
-			return
-		var/list/tempnetwork = text2list(input, ",")
-		tempnetwork = difflist(tempnetwork,RESTRICTED_CAMERA_NETWORKS,1)
-		if(tempnetwork.len < 1)
-			to_chat(usr, "No network found please hang up and try your call again.")
-			return
-		network = tempnetwork
-	return
 
-/obj/item/circuitboard/computer/rdconsole/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/tool/screwdriver))
+		var/existing_networks = list2text(network, ",")
+		var/input = strip_html(input(user, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: military,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
+		if(!input)
+			to_chat(user, "No input found please hang up and try your call again.")
+			return
+
+		var/list/tempnetwork = text2list(input, ",")
+		tempnetwork = difflist(tempnetwork, RESTRICTED_CAMERA_NETWORKS, 1)
+		if(!length(tempnetwork))
+			to_chat(user, "No network found please hang up and try your call again.")
+			return
+
+		network = tempnetwork
+
+/obj/item/circuitboard/computer/rdconsole/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(isscrewdriver(I))
 		user.visible_message("<span class='notice'> \the [user] adjusts the jumper on the [src]'s access protocol pins.</span>", "<span class='notice'> You adjust the jumper on the access protocol pins.</span>")
-		if(src.build_path == /obj/machinery/computer/rdconsole/core)
-			src.name = "Circuit Board (RD Console - Robotics)"
-			src.build_path = /obj/machinery/computer/rdconsole/robotics
+
+		if(build_path == /obj/machinery/computer/rdconsole/core)
+			name = "Circuit Board (RD Console - Robotics)"
+			build_path = /obj/machinery/computer/rdconsole/robotics
 			to_chat(user, "<span class='notice'>Access protocols set to robotics.</span>")
 		else
-			src.name = "Circuit Board (RD Console)"
-			src.build_path = /obj/machinery/computer/rdconsole/core
+			name = "Circuit Board (RD Console)"
+			build_path = /obj/machinery/computer/rdconsole/core
 			to_chat(user, "<span class='notice'>Access protocols set to default.</span>")
-
-

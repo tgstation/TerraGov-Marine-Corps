@@ -47,9 +47,6 @@
 
 	update_canmove()
 
-	dizziness = 0
-	jitteriness = 0
-
 	if(client)
 		client.change_view(world.view) //just so we never get stuck with a large view somehow
 
@@ -70,6 +67,7 @@
 	GLOB.dead_mob_list |= src
 	GLOB.offered_mob_list -= src
 
+	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
 

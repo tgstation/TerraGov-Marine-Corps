@@ -5,7 +5,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "egg_item"
 	w_class = 6
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = MOB_LAYER
@@ -54,7 +54,7 @@
 	playsound(T, 'sound/effects/splat.ogg', 15, 1)
 	qdel(src)
 
-/obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/Xenomorph/user, turf/T)
+/obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/xenomorph/user, turf/T)
 	if(!T.check_alien_construction(user))
 		return
 	if(!user.check_plasma(30))
@@ -81,9 +81,9 @@
 
 /obj/item/xeno_egg/attack_self(mob/user)
 	if(isxeno(user))
-		var/mob/living/carbon/Xenomorph/X = user
+		var/mob/living/carbon/xenomorph/X = user
 		if(isxenocarrier(X))
-			var/mob/living/carbon/Xenomorph/Carrier/C = X
+			var/mob/living/carbon/xenomorph/carrier/C = X
 			C.store_egg(src)
 		else
 			var/turf/T = get_turf(user)
@@ -92,7 +92,7 @@
 
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
-/obj/item/xeno_egg/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/item/xeno_egg/attack_alien(mob/living/carbon/xenomorph/user)
 	switch(user.xeno_caste.can_hold_eggs)
 		if(CAN_HOLD_ONE_HAND)
 			attack_hand(user)

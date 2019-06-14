@@ -186,7 +186,6 @@
 		//The occupant is actually automatically ejected once the evac is canceled.
 		if(occupant != usr) to_chat(usr, "<span class='warning'>You are unable to eject the occupant unless the evacuation is canceled.</span>")
 
-	add_fingerprint(usr)
 
 /obj/machinery/cryopod/evacuation/go_out() //When the system ejects the occupant.
 	if(occupant)
@@ -218,7 +217,7 @@
 		user.stop_pulling()
 		move_mob_inside(user)
 
-/obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/machinery/cryopod/evacuation/attack_alien(mob/living/carbon/xenomorph/user)
 	if(being_forced)
 		to_chat(user, "<span class='xenowarning'>It's being forced open already!</span>")
 		return FALSE
@@ -243,7 +242,6 @@
 	to_chat(M, "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>")
 	occupant = M
 	occupant.in_stasis = STASIS_IN_CRYO_CELL
-	add_fingerprint(M)
 	icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"
 
 /obj/machinery/door/airlock/evacuation

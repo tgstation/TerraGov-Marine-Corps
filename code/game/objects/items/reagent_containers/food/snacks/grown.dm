@@ -80,17 +80,20 @@
 	filling_color = "#E6E8DA"
 	plantname = "potato"
 
-/obj/item/reagent_container/food/snacks/grown/potato/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/C = W
-		if(C.use(5))
-			to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")
-			var/obj/item/cell/potato/pocell = new /obj/item/cell/potato(user.loc)
-			pocell.maxcharge = src.potency * 10
-			pocell.charge = pocell.maxcharge
-			qdel(src)
+/obj/item/reagent_container/food/snacks/grown/potato/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
+		if(!C.use(5))
 			return
+
+		to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")
+		var/obj/item/cell/potato/pocell = new /obj/item/cell/potato(user.loc)
+		pocell.maxcharge = potency * 10
+		pocell.charge = pocell.maxcharge
+		qdel(src)
+
 
 /obj/item/reagent_container/food/snacks/grown/grapes
 	name = "bunch of grapes"
@@ -285,13 +288,13 @@
 	filling_color = "#FAB728"
 	plantname = "pumpkin"
 
-/obj/item/reagent_container/food/snacks/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.sharp == IS_SHARP_ITEM_ACCURATE || W.sharp == IS_SHARP_ITEM_BIG)
+/obj/item/reagent_container/food/snacks/grown/pumpkin/attackby(obj/item/I, mob/user, param)
+	. = ..()
+
+	if(I.sharp == IS_SHARP_ITEM_ACCURATE || I.sharp == IS_SHARP_ITEM_BIG)
 		to_chat(user, "<span class='notice'>You carve a face into [src]!</span>")
-		new /obj/item/clothing/head/pumpkinhead (user.loc)
+		new /obj/item/clothing/head/pumpkinhead(user.loc)
 		qdel(src)
-	else
-		return ..()
 
 /obj/item/reagent_container/food/snacks/grown/lime
 	name = "lime"
@@ -380,14 +383,6 @@
 	filling_color = "#FF0000"
 	potency = 30
 	plantname = "killertomato"
-
-/obj/item/reagent_container/food/snacks/grown/killertomato/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	new /mob/living/simple_animal/tomato(user.loc)
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You plant the killer-tomato.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/bloodtomato
 	name = "blood-tomato"
@@ -515,14 +510,6 @@
 	filling_color = "#FFBFEF"
 	potency = 30
 	plantname = "walkingmushroom"
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	new /mob/living/simple_animal/mushroom(user.loc)
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/chanterelle
 	name = "chanterelle cluster"

@@ -65,32 +65,35 @@
 		return 1
 	return 0
 
-/obj/item/flashlight/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/tool/screwdriver))
+/obj/item/flashlight/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/screwdriver))
 		if(!raillight_compatible) //No fancy messages, just no
 			return
+
 		if(on)
 			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
 			return
+
 		if(istype(loc, /obj/item/storage))
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
+
 		if(loc == user)
 			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
-		var/obj/item/attachable/flashlight/F = new(src.loc)
+
+		var/obj/item/attachable/flashlight/F = new(loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
 		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
 		qdel(src) //Delete da old flashlight
-		return
-	else
-		..()
+
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
-	add_fingerprint(user)
 	if(on && user.zone_selected == "eyes")
 
-		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
+		if((user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 
@@ -111,9 +114,6 @@
 		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
-			else if(XRAY in M.mutations)	//mob has X-RAY vision
-				M.flash_eyes()
-				to_chat(user, "<span class='notice'>[M] pupils give an eerie glow!</span>")
 			else	//they're okay!
 				M.flash_eyes()
 				to_chat(user, "<span class='notice'>[M]'s pupils narrow.</span>")
@@ -186,7 +186,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(istype(usr, /mob/living/carbon/Xenomorph)) //Sneaky xenos turning off the lights
+	if(istype(usr, /mob/living/carbon/xenomorph)) //Sneaky xenos turning off the lights
 		attack_alien(usr)
 		return
 
@@ -227,7 +227,7 @@
 /obj/item/flashlight/flare/proc/turn_off()
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
 	on = 0
-	heat_source = 0
+	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
@@ -250,7 +250,7 @@
 	if(.)
 		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 		force = on_damage
-		heat_source = 1500
+		heat = 1500
 		damtype = "fire"
 		START_PROCESSING(SSobj, src)
 
@@ -260,7 +260,7 @@
 
 		..()
 		on = 1
-		heat_source = 1500
+		heat = 1500
 		update_brightness()
 		force = on_damage
 		damtype = "fire"

@@ -177,6 +177,8 @@
 		id = "[SSshuttle.stationary.len]"
 	if(name == "dock")
 		name = "dock[SSshuttle.stationary.len]"
+	var/area/A = get_area(src)
+	area_type = A.type
 
 //	if(mapload)
 //		for(var/turf/T in return_turfs())
@@ -254,6 +256,9 @@
 	var/ignitionTime = 55			// time spent "starting the engines". Also rate limits how often we try to reserve transit space if its ever full of transiting shuttles.
 	var/rechargeTime = 0			//time spent after arrival before being able to launch again
 	var/prearrivalTime = 0			//delay after call time finishes for sound effects, explosions, etc.
+
+	var/landing_sound = 'sound/effects/engine_landing.ogg'
+	var/ignition_sound = 'sound/effects/engine_startup.ogg'
 
 	// The direction the shuttle prefers to travel in
 	var/preferred_direction = NORTH
@@ -418,9 +423,15 @@
 
 // called on entering the igniting state
 /obj/docking_port/mobile/proc/on_ignition()
+	playsound(return_center_turf(), ignition_sound, 60, 0)
 	return
 
 /obj/docking_port/mobile/proc/on_prearrival()
+	playsound(destination.return_center_turf(), landing_sound, 60, 0)
+	playsound(return_center_turf(), landing_sound, 60, 0)
+	return
+
+/obj/docking_port/mobile/proc/on_crash()
 	return
 
 //recall the shuttle to where it was previously
@@ -491,14 +502,13 @@
 	// Loop over mobs
 	for(var/t in return_turfs())
 		var/turf/T = t
-		for(var/mob/living/M in T.GetAllContents())
-			// If they have a mind and they're not in the brig, they escaped
-//			if(M.mind && !istype(t, /turf/open/floor/plasteel/shuttle/red) && !istype(t, /turf/open/floor/mineral/plastitanium/red/brig))
-//				M.mind.force_escaped = TRUE
+		for(var/mob/living/L in T.GetAllContents())
 			// Ghostize them and put them in nullspace stasis (for stat & possession checks)
-			M.notransform = TRUE
-			M.ghostize(FALSE)
-			M.moveToNullspace()
+			L.notransform = TRUE
+			var/mob/dead/observer/O = L.ghostize(FALSE)
+			if(O)
+				O.timeofdeath = world.time
+			L.moveToNullspace()
 
 	// Now that mobs are stowed, delete the shuttle
 	jumpToNullSpace()

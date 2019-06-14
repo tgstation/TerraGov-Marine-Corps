@@ -250,23 +250,15 @@
 	name = "spatial agent's sunglasses"
 	desc = "Glasses worn by a spatial agent."
 	eye_protection = 2
+	darkness_view = 8
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
-	var/hud_type = MOB_HUD_MEDICAL_OBSERVER|MOB_HUD_SECURITY_ADVANCED
-
-/obj/item/clothing/glasses/sunglasses/sa/equipped(mob/living/carbon/human/user, slot)
-	if(slot == SLOT_GLASSES)
-		user.see_invisible = SEE_INVISIBLE_MINIMUM
-		user.see_in_dark = 8
-
-/obj/item/clothing/glasses/sunglasses/sa/dropped(mob/living/carbon/human/user)
-	user.see_invisible = initial(user.see_invisible)
-	user.see_in_dark = initial(user.see_in_dark)
+	see_invisible = SEE_INVISIBLE_MINIMUM
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
-	var/hud_type = MOB_HUD_SECURITY_ADVANCED
+	var/hud_type = DATA_HUD_SECURITY_ADVANCED
 
 /obj/item/clothing/glasses/sunglasses/sechud/eyepiece
 	name = "Security HUD Sight"
@@ -277,14 +269,14 @@
 
 /obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_GLASSES)
-		var/datum/mob_hud/H = huds[hud_type]
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
 	..()
 
 /obj/item/clothing/glasses/sunglasses/sechud/dropped(mob/living/carbon/human/user)
 	if(istype(user))
 		if(src == user.glasses) //dropped is called before the inventory reference is updated.
-			var/datum/mob_hud/H = huds[hud_type]
+			var/datum/atom_hud/H = GLOB.huds[hud_type]
 			H.remove_hud_from(user)
 	..()
 

@@ -11,6 +11,8 @@
  * 		Crowbar
  */
 
+//toolspeed is used to change the speed of how fast this tool works lower is faster
+
 /*
  * Wrench
  */
@@ -27,6 +29,8 @@
 	matter = list("metal" = 150)
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
+	tool_behaviour = TOOL_WRENCH
+
 
 
 /*
@@ -46,6 +50,8 @@
 	throw_range = 5
 	matter = list("metal" = 75)
 	attack_verb = list("stabbed")
+	tool_behaviour = TOOL_SCREWDRIVER
+
 
 /obj/item/tool/screwdriver/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is stabbing the [name] into [user.p_their()] [pick("temple","heart")]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
@@ -107,6 +113,8 @@
 	attack_verb = list("pinched", "nipped")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
+	tool_behaviour = TOOL_WIRECUTTER
+
 
 /obj/item/tool/wirecutters/Initialize()
 	. = ..()
@@ -141,6 +149,8 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
+	tool_behaviour = TOOL_WELDER
+
 
 	//Cost to make in the autolathe
 	matter = list("metal" = 70, "glass" = 30)
@@ -174,6 +184,37 @@
 	to_chat(user, "It contains [get_fuel()]/[max_fuel] units of fuel!")
 
 
+/obj/item/tool/weldingtool/use(used = 0)
+	if(!isOn() || !check_fuel())
+		return FALSE
+
+	if(get_fuel() < used)
+		return FALSE
+
+	reagents.remove_reagent("fuel", used)
+	check_fuel()
+	return TRUE
+
+
+// When welding is about to start, run a normal tool_use_check, then flash a mob if it succeeds.
+/obj/item/tool/weldingtool/tool_start_check(mob/living/user, amount = 0)
+	. = tool_use_check(user, amount)
+	if(. && user)
+		eyecheck(user)
+
+
+// If welding tool ran out of fuel during a construction task, construction fails.
+/obj/item/tool/weldingtool/tool_use_check(mob/living/user, amount)
+	if(!isOn() || !check_fuel())
+		to_chat(user, "<span class='warning'>[src] has to be on to complete this task!</span>")
+		return FALSE
+
+	if(get_fuel() < amount)
+		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task!</span>")
+		return FALSE
+
+	return TRUE
+
 
 /obj/item/tool/weldingtool/process()
 	if(gc_destroyed)
@@ -187,10 +228,10 @@
 		toggle(TRUE)
 
 /obj/item/tool/weldingtool/attackby(obj/item/I, mob/user, params)
-	if(istype(I,/obj/item/tool/screwdriver))
+	. = ..()
+
+	if(istype(I, /obj/item/tool/screwdriver))
 		flamethrower_screwdriver(src, user)
-	else
-		. = ..()
 
 /obj/item/tool/weldingtool/attack(mob/M, mob/user)
 
@@ -211,7 +252,7 @@
 			user.visible_message("<span class='warning'>\The [user] patches some dents on \the [H]'s [S.display_name] with \the [src].</span>", \
 								"<span class='warning'>You patch some dents on \the [H]'s [S.display_name] with \the [src].</span>")
 			remove_fuel(1,user)
-			playsound(user.loc, 'sound/items/Welder2.ogg', 25, 1)
+			playsound(user.loc, 'sound/items/welder2.ogg', 25, 1)
 			return
 		else
 			to_chat(user, "<span class='warning'>Nothing to fix!</span>")
@@ -291,7 +332,7 @@
 			damtype = "fire"
 			icon_state = "welder1"
 			w_class = 4
-			heat_source = 3800
+			heat = 3800
 			START_PROCESSING(SSobj, src)
 		else
 			if(M)
@@ -304,7 +345,7 @@
 		icon_state = "welder"
 		welding = 0
 		w_class = initial(w_class)
-		heat_source = 0
+		heat = 0
 		if(M)
 			if(!message)
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")
@@ -391,6 +432,8 @@
 	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
+	tool_behaviour = TOOL_CROWBAR
+
 
 /obj/item/tool/crowbar/red
 	icon = 'icons/obj/items/items.dmi'
@@ -420,27 +463,28 @@
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
 
-/obj/item/tool/weldpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/T = W
+/obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/T = I
 		if(T.welding & prob(50))
 			message_admins("[ADMIN_TPMONTY(user)] triggered a weldpack explosion at [ADMIN_VERBOSEJMP(src.loc)].")
 			log_game("[key_name(user)] triggered a weldpack explosion at [AREACOORD(src.loc)].")
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(get_turf(src),-1,0,2)
-			if(src)
-				qdel(src)
-			return
+			qdel(src)
 		else
 			if(T.welding)
 				to_chat(user, "<span class='warning'>That was close!</span>")
-			src.reagents.trans_to(W, T.max_fuel)
+			reagents.trans_to(T, T.max_fuel)
 			to_chat(user, "<span class='notice'>Welder refilled!</span>")
-			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-			return
-	to_chat(user, "<span class='notice'>The tank scoffs at your insolence.  It only provides services to welders.</span>")
-	return
+			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+
+	else
+		to_chat(user, "<span class='notice'>The tank scoffs at your insolence.  It only provides services to welders.</span>")
+
 
 /obj/item/tool/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously

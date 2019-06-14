@@ -78,39 +78,37 @@
 		to_chat(usr, "<span class='notice'><span class='notice'> You cannot do that.</span>")
 	..()
 
-/obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
-	if(iswirecutter(W) && amount > 1)
-		src.amount--
-		new/obj/item/stack/cable_coil(user.loc, 1,item_color)
+/obj/item/stack/cable_coil/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswirecutter(I) && amount > 1)
+		amount--
+		new /obj/item/stack/cable_coil(user.loc, 1, item_color)
 		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
 		updateicon()
 		update_wclass()
-		return
 
-	else if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/C = W
+	else if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
+
 		if(C.amount >= MAXCOIL)
 			to_chat(user, "The coil is too long, you cannot add any more cable to it.")
 			return
 
-		if( (C.amount + src.amount <= MAXCOIL) )
+		if((C.amount + amount <= MAXCOIL) )
 			to_chat(user, "You join the cable coils together.")
-			C.add(src.amount) // give it cable
-			use(src.amount) // make sure this one cleans up right
+			C.add(amount)
+			use(amount)
 
 		else
 			var/amt = MAXCOIL - C.amount
 			to_chat(user, "You transfer [amt] length\s of cable from one coil to the other.")
 			C.add(amt)
 			use(amt)
-		return
-	..()
 
 /obj/item/stack/cable_coil/attack_hand(mob/user as mob)
-	add_fingerprint(user)
 	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
-		transfer_fingerprints_to(F)
 		user.put_in_hands(F)
 		use(1)
 	else
@@ -193,7 +191,6 @@
 	//set up the new cable
 	C.d1 = CABLE_NODE
 	C.d2 = dirn
-	C.add_fingerprint(user)
 	C.update_icon()
 
 	//create a new powernet with the cable, if needed it will be merged later
@@ -263,7 +260,6 @@
 
 			NC.d1 = CABLE_NODE
 			NC.d2 = fdirn
-			NC.add_fingerprint(user)
 			NC.update_icon()
 
 			//create a new powernet with the cable, if needed it will be merged later
@@ -312,7 +308,6 @@
 		C.update_stored(2, item_color)
 		C.cable_color = item_color
 
-		C.add_fingerprint(user)
 		C.update_icon()
 
 

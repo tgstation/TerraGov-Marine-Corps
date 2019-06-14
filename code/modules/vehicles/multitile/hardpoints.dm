@@ -247,6 +247,9 @@ Currently only has the tank hardpoints
 		return
 
 	next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+	var/obj/item/hardpoint/secondary/towlauncher/HP = owner.hardpoints[HDPT_SECDGUN]
+	if(istype(HP))
+		HP.next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 
 	var/delay = 5
 	var/turf/T = get_turf(A)
@@ -269,7 +272,7 @@ Currently only has the tank hardpoints
 	qdel(TL)
 
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
-		T = get_step(T, pick(cardinal))
+		T = get_step(T, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	log_combat(usr, usr, "fired the [src].")
@@ -335,7 +338,7 @@ Currently only has the tank hardpoints
 
 	next_use = world.time + (chained > length(chain_delays) ? 0.5 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
-		A = get_step(A, pick(cardinal))
+		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
@@ -378,7 +381,7 @@ Currently only has the tank hardpoints
 
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
-		A = get_step(A, pick(cardinal))
+		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
@@ -434,8 +437,12 @@ Currently only has the tank hardpoints
 	qdel(TL)
 
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+	var/obj/item/hardpoint/primary/cannon/HP = owner.hardpoints[HDPT_PRIMARY]
+	if(istype(HP))
+		HP.next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
-		T = get_step(T, pick(cardinal))
+		T = get_step(T, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	log_combat(usr, usr, "fired the [src].")
@@ -475,7 +482,7 @@ Currently only has the tank hardpoints
 
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
-		A = get_step(A, pick(cardinal))
+		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
@@ -513,7 +520,7 @@ Currently only has the tank hardpoints
 
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
-		A = get_step(A, pick(cardinal))
+		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	log_combat(usr, usr, "fired the [src].")
@@ -564,7 +571,7 @@ Currently only has the tank hardpoints
 
 	next_use = world.time + owner.cooldowns["support"] * owner.misc_ratios["supp_cool"]
 	if(!prob(owner.accuracies["support"] * 100 * owner.misc_ratios["supp_acc"]))
-		A = get_step(A, pick(cardinal))
+		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)

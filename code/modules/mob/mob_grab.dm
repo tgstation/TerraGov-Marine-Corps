@@ -3,10 +3,11 @@
 /obj/item/grab
 	name = "grab"
 	icon_state = "reinforce"
-	icon = 'icons/mob/screen1.dmi'
-	flags_atom = NOFLAGS
+	icon = 'icons/mob/screen/generic.dmi'
+	flags_atom = NONE
 	flags_item = NOBLUDGEON|DELONDROP|ITEM_ABSTRACT
 	layer = ABOVE_HUD_LAYER
+	plane = ABOVE_HUD_PLANE
 	item_state = "nothing"
 	w_class = 5
 	var/atom/movable/grabbed_thing
@@ -52,7 +53,7 @@
 
 	if(!ishuman(user)) //only humans can reinforce a grab.
 		if (isxeno(user))
-			var/mob/living/carbon/Xenomorph/X = user
+			var/mob/living/carbon/xenomorph/X = user
 			X.pull_power(grabbed_thing)
 		return
 	var/mob/victim = grabbed_thing
@@ -79,7 +80,7 @@
 
 /obj/item/grab/attack(mob/living/M, mob/living/user, def_zone)
 	if(M == user && user.pulling && isxeno(user))
-		var/mob/living/carbon/Xenomorph/X = user
+		var/mob/living/carbon/xenomorph/X = user
 		var/mob/living/carbon/pulled = X.pulling
 		if(!istype(pulled))
 			return

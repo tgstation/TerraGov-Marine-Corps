@@ -15,49 +15,52 @@
 /obj/item/transfer_valve/IsAssemblyHolder()
 	return 1
 
-/obj/item/transfer_valve/attackby(obj/item/item, mob/user)
-	if(istype(item, /obj/item/tank))
+/obj/item/transfer_valve/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tank))
 		if(tank_one && tank_two)
 			to_chat(user, "<span class='warning'>There are already two tanks attached, remove one first.</span>")
 			return
 
 		if(!tank_one)
-			if(user.drop_held_item())
-				tank_one = item
-				item.forceMove(src)
-				to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
+			if(!user.drop_held_item())
+				return
+
+			tank_one = I
+			I.forceMove(src)
+			to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
+
 		else if(!tank_two)
-			if(user.drop_held_item())
-				tank_two = item
-				item.forceMove(src)
-				to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
-				log_game("[key_name(usr)] attached both tanks to a transfer valve.")
-				message_admins("[ADMIN_TPMONTY(usr)] attached both tanks to a transfer valve.")
+			if(!user.drop_held_item())
+				return
+
+			tank_two = I
+			I.forceMove(src)
+			to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
 
 		update_icon()
 		SSnano.update_uis(src) // update all UIs attached to src
-//TODO: Have this take an assemblyholder
-	else if(isassembly(item))
-		var/obj/item/assembly/A = item
+
+	else if(isassembly(I))
+		var/obj/item/assembly/A = I
 		if(A.secured)
 			to_chat(user, "<span class='notice'>The device is secured.</span>")
 			return
+
 		if(attached_device)
 			to_chat(user, "<span class='warning'>There is already an device attached to the valve, remove it first.</span>")
 			return
+
 		user.temporarilyRemoveItemFromInventory(A)
 		attached_device = A
 		A.forceMove(src)
-		to_chat(user, "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>")
+		to_chat(user, "<span class='notice'>You attach the [I] to the valve controls and secure it.</span>")
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
-		bombers += "[key_name(user)] attached a [item] to a transfer valve."
-		log_admin("[key_name(usr)] attached a [item] to a transfer valve. [AREACOORD(usr.loc)].")
-		message_admins("[ADMIN_TPMONTY(usr)] attached [item] to a transfer valve.")
 		attacher = user
 		SSnano.update_uis(src) // update all UIs attached to src
-	return
 
 
 /obj/item/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
@@ -119,7 +122,6 @@
 			update_icon()
 		if(href_list["device"])
 			attached_device.attack_self(usr)
-	src.add_fingerprint(usr)
 	return 1 // Returning 1 sends an update to attached UIs
 
 /obj/item/transfer_valve/process_activation(var/obj/item/D)
@@ -171,7 +173,6 @@
 		if(attacher)
 			log_str += "(<A HREF='?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
 
-		bombers += log_str
 		log_admin(log_str)
 		message_admins(log_str)
 		merge_gases()

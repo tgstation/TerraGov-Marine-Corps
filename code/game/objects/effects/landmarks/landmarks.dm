@@ -75,9 +75,6 @@
 	GLOB.latejoin_cryo += loc
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/supply_elevator/New()
-	GLOB.supply_elevator = loc
-	return
 
 /obj/effect/landmark/thunderdome/one
 	icon_state = "tdome_t1"
@@ -134,47 +131,9 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/distress/Initialize()
-	. = ..()
-	if(!GLOB.distress_spawns_by_name["Distress"])
-		GLOB.distress_spawns_by_name["Distress"] = list()
-	GLOB.distress_spawns_by_name["Distress"] += loc
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/distress
 
-/obj/effect/landmark/distress_item/Initialize()
-	. = ..()
-	if(!GLOB.distress_spawns_by_name["DistressItem"])
-		GLOB.distress_spawns_by_name["DistressItem"] = list()
-	GLOB.distress_spawns_by_name["DistressItem"] += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/distress_pmc/Initialize()
-	. = ..()
-	if(!GLOB.distress_spawns_by_name["Distress_PMC"])
-		GLOB.distress_spawns_by_name["Distress_PMC"] = list()
-	GLOB.distress_spawns_by_name["Distress_PMC"] += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/distress_pmcitem/Initialize()
-	. = ..()
-	if(!GLOB.distress_spawns_by_name["Distress_PMCItem"])
-		GLOB.distress_spawns_by_name["Distress_PMCItem"] = list()
-	GLOB.distress_spawns_by_name["Distress_PMCItem"] += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/distress_upp/Initialize()
-	. = ..()
-	if(!GLOB.distress_spawns_by_name["Distress_UPP"])
-		GLOB.distress_spawns_by_name["Distress_UPP"] = list()
-	GLOB.distress_spawns_by_name["Distress_UPP"] += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/distress_uppitem/Initialize()
-	. = ..()
-	if(!GLOB.distress_spawns_by_name["Distress_UPPItem"])
-		GLOB.distress_spawns_by_name["Distress_UPPItem"] = list()
-	GLOB.distress_spawns_by_name["Distress_UPPItem"] += loc
-	return INITIALIZE_HINT_QDEL
+/obj/effect/landmark/distress_item
 
 /obj/effect/landmark/prisonwarp
 	icon_state = "prisonwarp"

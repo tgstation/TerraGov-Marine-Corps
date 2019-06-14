@@ -23,6 +23,7 @@
 		W.forceMove(src)
 		l_hand = W
 		W.layer = ABOVE_HUD_LAYER
+		W.plane = ABOVE_HUD_PLANE
 		W.equipped(src,SLOT_L_HAND)
 		update_inv_l_hand()
 		return TRUE
@@ -38,6 +39,7 @@
 		W.forceMove(src)
 		r_hand = W
 		W.layer = ABOVE_HUD_LAYER
+		W.plane = ABOVE_HUD_PLANE
 		W.equipped(src,SLOT_R_HAND)
 		update_inv_r_hand()
 		return TRUE
@@ -68,9 +70,9 @@
 	else
 		W.forceMove(get_turf(src))
 		W.layer = initial(W.layer)
+		W.plane = initial(W.plane)
 		W.dropped(src)
 		return FALSE
-
 
 
 /mob/proc/drop_item_v()		//this is dumb.
@@ -130,6 +132,7 @@
 	if (client)
 		client.screen -= I
 	I.layer = initial(I.layer)
+	I.plane = initial(I.plane)
 	if(newloc)
 		if(!nomoveupdate)
 			I.forceMove(newloc)
@@ -288,6 +291,7 @@
 
 	if(equipped)
 		W.layer = ABOVE_HUD_LAYER
+		W.plane = ABOVE_HUD_PLANE
 		if(src.back && W.loc != src.back)
 			W.loc = src
 	else

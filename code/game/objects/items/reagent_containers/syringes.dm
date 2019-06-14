@@ -50,7 +50,7 @@
 /obj/item/reagent_container/syringe/attack_paw()
 	return attack_hand()
 
-/obj/item/reagent_container/syringe/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/reagent_container/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
 /obj/item/reagent_container/syringe/afterattack(obj/target, mob/user, proximity)
@@ -63,17 +63,16 @@
 		to_chat(user, "<span class='warning'>This syringe is broken!</span>")
 		return
 
-	if (user.a_intent == INTENT_HARM && ismob(target))
-		if((CLUMSY in user.mutations) && prob(50))
-			target = user
+	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
 		var/mob/M = target
-		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
-			user.KnockDown(3)
-			log_combat(M, user, "blocked", addition="using their cqc skill (syringe injection)")
+		var/mob/living/L = user
+		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
+			L.KnockDown(3)
+			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
-			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
-				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
-			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \
+				"<span class='warning'>You knock [L] to the ground before they could inject you!</span>", null, 5)
+			playsound(L.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return
 
 		syringestab(target, user)
@@ -97,10 +96,7 @@
 					if(T.get_blood_id() && reagents.has_reagent(T.get_blood_id()))
 						to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
 						return
-					if(!T.dna)
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-						return
-					if(NOCLONE in T.mutations) //target done been et, no more blood in him
+					if(!T.blood_type)
 						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 						return
 
@@ -274,7 +270,6 @@
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	add_mob_blood(target)
-	add_fingerprint(usr)
 	update_icon()
 
 

@@ -70,6 +70,9 @@
 	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
+	if(isxeno(new_character))
+		QDEL_NULL(cm_skills)
+
 	SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
 	current = new_character								//associate ourself with our new body
@@ -152,14 +155,11 @@
 
 /mob/living/carbon/human/mind_initialize()
 	. = ..()
-	//if not, we give the mind default job_knowledge and assigned_role
-	if(!mind.assigned_role)
-		if(mind.cm_skills)
-			qdel(mind.cm_skills)
+	if(!mind.cm_skills)
 		mind.cm_skills = new /datum/skills/pfc
 
 
-/mob/living/carbon/Xenomorph/mind_initialize()
+/mob/living/carbon/xenomorph/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Xenomorph"
 
@@ -167,6 +167,11 @@
 /mob/living/silicon/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Silicon"
+
+
+/mob/living/silicon/ai/mind_initialize()
+	. = ..()
+	mind.assigned_role = "AI"
 
 
 /mob/living/simple_animal/mind_initialize()

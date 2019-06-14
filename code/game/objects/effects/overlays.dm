@@ -15,17 +15,17 @@
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
-	density = 1
+	density = TRUE
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/palmtree_l
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm2"
-	density = 1
+	density = TRUE
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/coconut
 	name = "Coconuts"
@@ -45,7 +45,7 @@
 	icon_state = "electricity"
 
 /obj/effect/overlay/temp
-	anchored = 1
+	anchored = TRUE
 	layer = ABOVE_FLY_LAYER //above mobs
 	mouse_opacity = 0 //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
@@ -63,9 +63,9 @@
 /obj/effect/overlay/temp/point
 	name = "arrow"
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "arrow"
-	anchored = 1
+	anchored = TRUE
 	effect_duration = 25
 
 /obj/effect/overlay/temp/point/big
@@ -171,7 +171,7 @@
 	effect_duration = 10
 
 	New(loc)
-		setDir(pick(cardinal))
+		setDir(pick(GLOB.cardinals))
 		..()
 
 /obj/effect/overlay/temp/emp_pulse

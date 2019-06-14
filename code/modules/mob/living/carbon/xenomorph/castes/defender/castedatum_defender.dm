@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A sturdy front line combatant."
 
-	caste_type_path = /mob/living/carbon/Xenomorph/Defender
+	caste_type_path = /mob/living/carbon/xenomorph/defender
 
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -31,7 +31,7 @@
 	evolution_threshold = 100
 	upgrade_threshold = 100
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Warrior)
+	evolves_to = list(/mob/living/carbon/xenomorph/warrior)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -40,7 +40,7 @@
 	armor_deflection = 20
 
 	// *** Ranged Attack *** //
-	charge_type = 2 //Pounce - Hunter
+	charge_type = CHARGE_TYPE_LARGE 
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 35

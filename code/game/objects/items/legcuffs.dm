@@ -51,8 +51,8 @@
 								if(O == H)
 									continue
 								O.show_message("<span class='danger'>[H] steps on \the [src].</span>", 1)
-				if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
-					armed = 0
+				if(isanimal(AM))
+					armed = FALSE
 					var/mob/living/simple_animal/SA = AM
 					SA.health -= 20
 	..()

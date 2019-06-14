@@ -1,36 +1,17 @@
 /mob/living/silicon/ai/death(gibbed)
-
 	if(stat == DEAD)
 		return
 
-	icon_state = "ai-crash"
+	. = ..()
 
-	if(src.eyeobj)
-		src.eyeobj.setLoc(get_turf(src))
+	var/old_icon = icon_state
+	if("[icon_state]_dead" in icon_states(icon))
+		icon_state = "[icon_state]_dead"
+	else
+		icon_state = "ai_dead"
+	if("[old_icon]_death_transition" in icon_states(icon))
+		flick("[old_icon]_death_transition", src)
 
-	remove_ai_verbs(src)
-
-	for(var/obj/machinery/computer/communications/commconsole in GLOB.machines)
-		if(is_centcom_level(commconsole.z))
-			continue
-		if(istype(commconsole.loc,/turf))
-			break
-
-	for(var/obj/item/circuitboard/computer/communications/commboard in GLOB.item_list)
-		if(is_centcom_level(commboard.z))
-			continue
-		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/storage))
-			break
-
-
-	if(explosive)
-		spawn(10)
-			explosion(src.loc, 3, 6, 12, 15)
-
-	for(var/obj/machinery/ai_status_display/O in GLOB.machines)
-		spawn( 0 )
-		O.mode = 2
-		if (istype(loc, /obj/item/aicard))
-			loc.icon_state = "aicard-404"
-
-	return ..(gibbed,"gives one shrill beep before falling lifeless.")
+	if(eyeobj)
+		eyeobj.setLoc(get_turf(src))
+		set_eyeobj_visible(FALSE)

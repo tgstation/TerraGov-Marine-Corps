@@ -7,7 +7,7 @@
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/connected = null
-	anchored = 1 //About time someone fixed this.
+	anchored = TRUE //About time someone fixed this.
 	density = 0
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
@@ -81,9 +81,11 @@
 			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getToxLoss())
 			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getFireLoss())
 			dat += text("<HR>Knocked Out Summary %: [] ([] seconds left!)<BR>", occupant.knocked_out, round(occupant.knocked_out / 4))
-			if(occupant.reagents)
-				for(var/chemical in connected.available_chemicals)
-					dat += "[connected.available_chemicals[chemical]]: [occupant.reagents.get_reagent_amount(chemical)] units<br>"
+			for(var/chemical in connected.available_chemicals)
+				dat += "<label style='width:180px; display: inline-block'>[connected.available_chemicals[chemical]] ([round(occupant.reagents.get_reagent_amount(chemical), 0.01)] units)</label> Inject:"
+				for(var/amount in connected.amounts)
+					dat += " <a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a>"
+				dat += "<br>"
 			dat += "<A href='?src=\ref[src];refresh=1'>Refresh Meter Readings</A><BR>"
 			if(connected.beaker)
 				dat += "<HR><A href='?src=\ref[src];removebeaker=1'>Remove Beaker</A><BR>"
@@ -103,18 +105,12 @@
 
 			else
 				dat += "<HR>No Dialysis Output Beaker is present.<BR><HR>"
-
-			for(var/chemical in connected.available_chemicals)
-				dat += "Inject [connected.available_chemicals[chemical]]: "
-				for(var/amount in connected.amounts)
-					dat += "<a href ='?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a><br> "
-
 			dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
 		else
 			dat += "The sleeper is empty."
 	dat += text("<BR><BR><A href='?src=\ref[];mach_close=sleeper'>Close</A>", user)
 
-	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 1000)
+	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 670)
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "sleeper")
@@ -149,7 +145,6 @@
 	if (href_list["ejectify"])
 		connected.eject()
 	attack_hand(user)
-	add_fingerprint(usr)
 	return
 
 
@@ -169,8 +164,8 @@
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "bicaridine" = "Bicaridine", "kelotane" = "Kelotane", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine", "spaceacillin" = "Spaceacillin")
@@ -269,49 +264,56 @@
 	updateUsrDialog()
 
 
-/obj/machinery/sleeper/attackby(var/obj/item/W, var/mob/living/user)
-	if(istype(W, /obj/item/reagent_container/glass))
-		if(!beaker)
-			if(user.transferItemToLoc(W, src))
-				beaker = W
-				user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
-				updateUsrDialog()
-			return
-		else
+/obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/reagent_container/glass))
+		if(beaker)
 			to_chat(user, "<span class='warning'>The sleeper has a beaker already.</span>")
 			return
 
-	else if(istype(W, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
-		var/obj/item/healthanalyzer/J = W
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		beaker = I
+		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
+		updateUsrDialog()
+		return
+
+	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
+		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
-	else if(istype(W, /obj/item/grab))
-		if(isxeno(user))
-			return
-		var/obj/item/grab/G = W
-		if(!ismob(G.grabbed_thing))
-			return
+	if(isxeno(user))
+		return
 
-		if(occupant)
-			to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
-			return
+	if(occupant)
+		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
+		return
 
-		if(!G || !G.grabbed_thing)
-			return
-		var/mob/M = G.grabbed_thing
-		if(!M.forceMove(src))
-			return
-		visible_message("[user] puts [M.name] into the sleeper.", 3)
-		update_use_power(2)
-		occupant = M
-		start_processing()
-		connected.start_processing()
+
+	if(!istype(I, /obj/item/grab))
+		return
+
+	var/obj/item/grab/G = I
+	if(!ismob(G.grabbed_thing))
+		return
+
+	var/mob/M = G.grabbed_thing
+	if(!M.forceMove(src))
+		return
+
+	visible_message("[user] puts [M] into the sleeper.", 3)
+	update_use_power(2)
+	occupant = M
+	start_processing()
+	connected.start_processing()
+
+	if(orient == "RIGHT")
+		icon_state = "sleeper_1-r"
+	else
 		icon_state = "sleeper_1"
-		if(orient == "RIGHT")
-			icon_state = "sleeper_1-r"
-
-		add_fingerprint(user)
 
 
 /obj/machinery/sleeper/ex_act(severity)
@@ -427,7 +429,6 @@
 		icon_state = "sleeper_0-r"
 	icon_state = "sleeper_0"
 	go_out()
-	add_fingerprint(usr)
 
 
 /obj/machinery/sleeper/verb/remove_beaker()
@@ -440,7 +441,6 @@
 		filtering = FALSE
 		beaker.loc = usr.loc
 		beaker = null
-	add_fingerprint(usr)
 
 
 /obj/machinery/sleeper/verb/move_inside()
@@ -474,4 +474,3 @@
 
 	for(var/obj/O in src)
 		qdel(O)
-	add_fingerprint(usr)

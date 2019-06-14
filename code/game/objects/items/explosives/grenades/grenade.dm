@@ -37,28 +37,22 @@
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 
-	add_fingerprint(user)
 	activate(user)
-	if((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
-		spawn(5)
-			prime()
 
-	else
-		user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
-		"<span class='warning'>You prime \a [name]!</span>")
-		if(initial(dangerous) && ishumanbasic(user))
-			var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
+	user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
+	"<span class='warning'>You prime \a [name]!</span>")
+	if(initial(dangerous) && ishumanbasic(user))
+		var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
-			for(var/mob/living/carbon/human/H in hearers(6,user))
-				H.playsound_local(user, nade_sound, 35)
+		for(var/mob/living/carbon/human/H in hearers(6,user))
+			H.playsound_local(user, nade_sound, 35)
 
-			var/image/grenade = image('icons/mob/talk.dmi', user, "grenade")
-			user.add_emote_overlay(grenade)
+		var/image/grenade = image('icons/mob/talk.dmi', user, "grenade")
+		user.add_emote_overlay(grenade)
 
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			C.throw_mode_on()
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		C.throw_mode_on()
 
 
 /obj/item/explosive/grenade/proc/activate(mob/user as mob)
@@ -89,24 +83,23 @@
 /obj/item/explosive/grenade/proc/prime()
 
 
-/obj/item/explosive/grenade/attackby(obj/item/W as obj, mob/user as mob)
-	if(isscrewdriver(W))
+/obj/item/explosive/grenade/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(isscrewdriver(I))
 		switch(det_time)
-			if ("1")
+			if(1)
 				det_time = 10
 				to_chat(user, "<span class='notice'>You set the [name] for 1 second detonation time.</span>")
-			if ("10")
+			if(10)
 				det_time = 30
 				to_chat(user, "<span class='notice'>You set the [name] for 3 second detonation time.</span>")
-			if ("30")
+			if(30)
 				det_time = 50
 				to_chat(user, "<span class='notice'>You set the [name] for 5 second detonation time.</span>")
-			if ("50")
+			if(50)
 				det_time = 1
 				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
-		add_fingerprint(user)
-	..()
-	return
 
 /obj/item/explosive/grenade/attack_hand()
 	walk(src, null, null)

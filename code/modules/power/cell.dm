@@ -25,8 +25,8 @@
 	return (charge == maxcharge)
 
 // use power from a cell
-/obj/item/cell/proc/use(var/amount)
-	if(rigged)
+/obj/item/cell/use(var/amount)
+	if(rigged && amount > 0)
 		explode()
 		return FALSE
 
@@ -66,7 +66,6 @@
 
 /*
 /obj/item/cell/attack_self(mob/user as mob)
-	src.add_fingerprint(user)
 //	if(ishuman(user))
 //		var/mob/living/carbon/human/H = user
 //		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
@@ -77,7 +76,6 @@
 */
 
 /obj/item/cell/attack_self(mob/user as mob)
-	add_fingerprint(user)
 	if(rigged)
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts using rigged power cells.</span>")
@@ -90,7 +88,7 @@
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		spark_system.start(src)
-		playsound(loc, 'sound/items/Welder2.ogg', 25, 1, 6)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1, 6)
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()
@@ -101,50 +99,51 @@
 
 	return ..()
 
-/obj/item/cell/attackby(obj/item/W, mob/user)
+/obj/item/cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(W, /obj/item/reagent_container/syringe))
+
+	if(istype(I, /obj/item/reagent_container/syringe))
+		var/obj/item/reagent_container/syringe/S = I
+
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
 			return
-		var/obj/item/reagent_container/syringe/S = W
 
 		to_chat(user, "You inject the solution into the power cell.")
 
 		if(S.reagents.has_reagent("phoron", 5))
 			rigged = TRUE
 		S.reagents.clear_reagents()
-	else if(ismultitool(W))
+
+	else if(ismultitool(I))
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
 			return
 		var/delay = SKILL_TASK_EASY
 		var/skill
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
 			skill = user.mind.cm_skills.engineer
 			delay -= 5 + skill * 1.25
 
 		if(user.action_busy)
 			return
 		var/obj/effect/overlay/sparks/spark_overlay = new
+
 		if(!rigged)
 			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
 				"<span class='notice'>You fumble around, trying to figure out how to rig [src] to explode.</span>")
 				if(!do_after(user, delay, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
-				//if(prob((SKILL_ENGINEER_PLASTEEL - skill) * 20)) //Not sure if I want to keep this as I do like encouraging out of the box thinking/improvisation; let's test it
-				//	to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
-				//	rigged = TRUE
-				//	explode() //Oops. Now you fucked up (or succeeded only too well). Immediate detonation.
-			user.visible_message("<span class='notice'>[user] begins manipulating [src] with [W].</span>",
-			"<span class='notice'>You begin rigging [src] to detonate with [W].</span>")
+
+			user.visible_message("<span class='notice'>[user] begins manipulating [src] with [I].</span>",
+			"<span class='notice'>You begin rigging [src] to detonate with [I].</span>")
 			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 				return
 			rigged = TRUE
 			overlays += spark_overlay
-			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [W].</span>",
-			"<span class='notice'>You rig [src] to explode on use with [W].</span>")
+			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [I].</span>",
+			"<span class='notice'>You rig [src] to explode on use with [I].</span>")
 		else
 			if(skill < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
@@ -156,16 +155,16 @@
 					to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 					rigged = TRUE
 					explode() //Oops. Now you fucked up (or succeeded only too well). Immediate detonation.
-			user.visible_message("<span class='notice'>[user] begins manipulating [src] with [W].</span>",
-			"<span class='notice'>You begin stabilizing [src] with [W] so it won't detonate on use.</span>")
+			user.visible_message("<span class='notice'>[user] begins manipulating [src] with [I].</span>",
+			"<span class='notice'>You begin stabilizing [src] with [I] so it won't detonate on use.</span>")
 			if(skill > SKILL_ENGINEER_ENGI)
 				delay = max(delay - 10, 0)
 			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 				return
 			rigged = FALSE
 			overlays -= spark_overlay
-			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [W].</span>",
-			"<span class='notice'>You stabilize the [src] with [W]; it will no longer detonate on use.</span>")
+			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [I].</span>",
+			"<span class='notice'>You stabilize the [src] with [I]; it will no longer detonate on use.</span>")
 
 
 /obj/item/cell/proc/explode()

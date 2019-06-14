@@ -7,7 +7,7 @@
 //config.alert_desc_blue_downto
 
 
-/proc/set_security_level(var/level, no_sound=0, announce=1)
+/proc/set_security_level(var/level, announce = TRUE)
 	switch(level)
 		if("green")
 			level = SEC_LEVEL_GREEN
@@ -24,7 +24,7 @@
 		switch(level)
 			if(SEC_LEVEL_GREEN)
 				if(announce)
-					command_announcement.Announce("Attention: Security level lowered to GREEN - all clear.", "Priority Alert", no_sound ? null : 'sound/AI/code_green.ogg')
+					priority_announce("Attention: Security level lowered to GREEN - all clear.", "Priority Alert", sound = 'sound/AI/code_green.ogg')
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
@@ -32,10 +32,10 @@
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
 					if(announce)
-						command_announcement.Announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", "Priority Alert", no_sound ? null : 'sound/AI/code_blue_elevated.ogg')
+						priority_announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", "Priority Alert", sound = 'sound/AI/code_blue_elevated.ogg')
 				else
 					if(announce)
-						command_announcement.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", "Priority Alert", no_sound ? null : 'sound/AI/code_blue_lowered.ogg')
+						priority_announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", "Priority Alert", sound = 'sound/AI/code_blue_lowered.ogg')
 				security_level = SEC_LEVEL_BLUE
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
@@ -43,10 +43,10 @@
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
 					if(announce)
-						command_announcement.Announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_elevated.ogg')
+						priority_announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", "Priority Alert", sound = 'sound/AI/code_red_elevated.ogg')
 				else
 					if(announce)
-						command_announcement.Announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_lowered.ogg')
+						priority_announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", "Priority Alert", sound = 'sound/AI/code_red_lowered.ogg')
 					/*
 					var/area/A
 					for(var/obj/machinery/power/apc/O in machines)
@@ -62,7 +62,7 @@
 						SD.set_picture("redalert")
 			if(SEC_LEVEL_DELTA)
 				if(announce)
-					command_announcement.Announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), "Priority Alert")
+					priority_announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), "Priority Alert")
 				security_level = SEC_LEVEL_DELTA
 				spawn(0)
 					for(var/obj/machinery/door/poddoor/shutters/almayer/D in GLOB.machines)

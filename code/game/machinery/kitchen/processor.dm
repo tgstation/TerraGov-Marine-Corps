@@ -3,8 +3,8 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "processor"
 	layer = ABOVE_TABLE_LAYER
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/broken = 0
 	var/processing = 0
 	use_power = 1
@@ -70,13 +70,6 @@
 				//set reagent data
 				B.data["donor"] = O
 
-				for(var/datum/disease/D in O.viruses)
-					if(D.spread_type != SPECIAL)
-						B.data["viruses"] += D.Copy()
-
-				B.data["blood_DNA"] = copytext(O.dna.unique_enzymes,1,0)
-				if(O.resistances&&O.resistances.len)
-					B.data["resistances"] = O.resistances.Copy()
 				bucket_of_blood.reagents.reagent_list += B
 				bucket_of_blood.reagents.update_total()
 				bucket_of_blood.on_reagent_change()
@@ -94,26 +87,31 @@
 		return P
 	return 0
 
-/obj/machinery/processor/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(src.processing)
-		to_chat(user, "<span class='warning'>The processor is in the process of processing.</span>")
-		return 1
-	if(src.contents.len > 0) //TODO: several items at once? several different items?
-		to_chat(user, "<span class='warning'>Something is already in the processing chamber.</span>")
-		return 1
-	var/obj/what = O
-	if (istype(O, /obj/item/grab))
-		var/obj/item/grab/G = O
-		what = G.grabbed_thing
+/obj/machinery/processor/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	var/datum/food_processor_process/P = select_recipe(what)
-	if (!P)
+	if(processing)
+		to_chat(user, "<span class='warning'>The processor is in the process of processing.</span>")
+		return TRUE
+
+	if(length(contents))
+		to_chat(user, "<span class='warning'>Something is already in the processing chamber.</span>")
+		return TRUE
+
+	var/obj/O = I
+
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
+		O = G.grabbed_thing
+
+	var/datum/food_processor_process/P = select_recipe(O)
+	if(!P)
 		to_chat(user, "<span class='warning'>That probably won't blend.</span>")
-		return 1
-	user.visible_message("[user] put [what] into [src].", \
-		"You put the [what] into [src].")
+		return TRUE
+	user.visible_message("[user] puts [O] into [src].", \
+		"You put the [O] into [src].")
 	user.drop_held_item()
-	what.forceMove(src)
+	O.forceMove(src)
 
 /obj/machinery/processor/attack_hand(var/mob/user as mob)
 	if (src.machine_stat != 0) //NOPOWER etc

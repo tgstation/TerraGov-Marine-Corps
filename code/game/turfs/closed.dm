@@ -2,7 +2,7 @@
 
 //turfs with density = TRUE
 /turf/closed
-	density = 1
+	density = TRUE
 	opacity = 1
 
 
@@ -134,23 +134,28 @@
 /turf/closed/ice/thin/intersection
 	icon_state = "Intersection"
 
-/turf/closed/attackby(obj/item/W, mob/user)
+/turf/closed/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
-		var/obj/item/tool/pickaxe/plasmacutter/P = W
+
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall))
 			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
 			return
-		if(!P.start_cut(user, src.name, src))
+		if(!P.start_cut(user, name, src))
 			return
-		if(do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_BUILD))
-			P.cut_apart(user, src.name, src)
-			if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
-				ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
-			else if(istype(src, /turf/closed/gm/dense))
-				ChangeTurf(/turf/open/ground/jungle/clear)
-			else
-				ChangeTurf(/turf/open/floor/plating/ground/ice)
+
+		if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+			return
+
+		P.cut_apart(user, name, src)
+
+		if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
+			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
+		else if(istype(src, /turf/closed/gm/dense))
+			ChangeTurf(/turf/open/ground/jungle/clear)
+		else
+			ChangeTurf(/turf/open/floor/plating/ground/ice)
 
 
 //Ice Secret Wall

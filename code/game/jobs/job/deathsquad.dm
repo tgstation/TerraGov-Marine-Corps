@@ -1,5 +1,4 @@
 /datum/job/deathsquad
-	department_flag = J_FLAG_PMC
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/SL/pmc
@@ -10,7 +9,6 @@
 /datum/job/deathsquad/standard
 	title = "Deathsquad Standard"
 	paygrade = "DS"
-	flag = PMC_DS_STANDARD
 	outfit = /datum/outfit/job/deathsquad/standard
 
 
@@ -56,7 +54,6 @@
 /datum/job/deathsquad/leader
 	title = "Deathsquad Leader"
 	paygrade = "DSL"
-	flag = PMC_DS_LEADER
 	outfit = /datum/outfit/job/deathsquad/leader
 
 

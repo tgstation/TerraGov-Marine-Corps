@@ -47,7 +47,7 @@
 
 	// how often wounds should be updated, a higher number means less often
 	var/wound_update_accuracy = 1
-	var/limb_status = NOFLAGS //limb status flags
+	var/limb_status = NONE //limb status flags
 
 	var/mob/living/carbon/human/owner = null
 	var/vital //Lose a vital limb, die immediately.
@@ -257,7 +257,7 @@ This function completely restores a damaged organ to perfect condition.
 	if(limb_status & LIMB_ROBOT)	//Robotic organs stay robotic.  Fix because right click rejuvinate makes IPC's organs organic.
 		limb_status = LIMB_ROBOT
 	else
-		limb_status = NOFLAGS
+		limb_status = NONE
 	perma_injury = 0
 	brute_dam = 0
 	burn_dam = 0
@@ -718,7 +718,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 			if(organ)
 				//Throw organs around
-				var/lol = pick(cardinal)
+				var/lol = pick(GLOB.cardinals)
 				step(organ,lol)
 
 		owner.update_body(1, 1)

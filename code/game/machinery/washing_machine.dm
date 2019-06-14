@@ -2,8 +2,8 @@
 	name = "Washing Machine"
 	icon = 'icons/obj/machines/washing_machine.dmi'
 	icon_state = "wm_10"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	var/state = 1
 	//1 = empty, open door
 	//2 = empty, closed door
@@ -70,78 +70,77 @@
 /obj/machinery/washing_machine/update_icon()
 	icon_state = "wm_[state][panel]"
 
-/obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
-	/*if(istype(W,/obj/item/tool/screwdriver))
-		panel = !panel
-		to_chat(user, "<span class='notice'>you [panel ? "open" : "close"] the [src]'s maintenance panel</span>")*/
-	if(istype(W,/obj/item/toy/crayon) ||istype(W,/obj/item/tool/stamp))
-		if( state in list(	1, 3, 6 ) )
-			if(!crayon)
-				if(user.transferItemToLoc(crayon, src))
-					crayon = W
-			else
-				..()
-		else
-			..()
 
-	else if(istype(W,/obj/item/stack/sheet/hairlesshide) || \
-		istype(W,/obj/item/clothing/under) || \
-		istype(W,/obj/item/clothing/mask) || \
-		istype(W,/obj/item/clothing/head) || \
-		istype(W,/obj/item/clothing/gloves) || \
-		istype(W,/obj/item/clothing/shoes) || \
-		istype(W,/obj/item/clothing/suit) || \
-		istype(W,/obj/item/bedsheet))
+/obj/machinery/washing_machine/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
-		if ( istype(W,/obj/item/clothing/suit/space ) )
+	if(istype(I, /obj/item/toy/crayon) || istype(I, /obj/item/tool/stamp))
+		if(!(state in list(1, 3, 6)))
+			return
+
+		if(crayon)
+			return
+
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		crayon = I
+
+	else if(istype(I, /obj/item/stack/sheet/hairlesshide) || \
+		istype(I, /obj/item/clothing/under) || \
+		istype(I, /obj/item/clothing/mask) || \
+		istype(I, /obj/item/clothing/head) || \
+		istype(I, /obj/item/clothing/gloves) || \
+		istype(I, /obj/item/clothing/shoes) || \
+		istype(I, /obj/item/clothing/suit) || \
+		istype(I, /obj/item/bedsheet))
+
+		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item. | lol. someone with more willpower use a typecache
+		if(istype(I, /obj/item/clothing/suit/space))
 			to_chat(user, "This item does not fit.")
 			return
-		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
+		if(istype(I, /obj/item/clothing/suit/syndicatefake))
 			to_chat(user, "This item does not fit.")
 			return
-//		if ( istype(W,/obj/item/clothing/suit/powered ) )
-//			to_chat(user, "This item does not fit.")
-//			return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
+		if(istype(I, /obj/item/clothing/suit/cyborg_suit))
 			to_chat(user, "This item does not fit.")
 			return
-		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
+		if(istype(I, /obj/item/clothing/suit/bomb_suit))
 			to_chat(user, "This item does not fit.")
 			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
+		if(istype(I, /obj/item/clothing/suit/armor))
 			to_chat(user, "This item does not fit.")
 			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
+		if(istype(I, /obj/item/clothing/suit/armor))
 			to_chat(user, "This item does not fit.")
 			return
-		if ( istype(W,/obj/item/clothing/mask/gas ) )
+		if(istype(I, /obj/item/clothing/mask/gas))
 			to_chat(user, "This item does not fit.")
 			return
-		if ( istype(W,/obj/item/clothing/mask/cigarette ) )
+		if(istype(I, /obj/item/clothing/mask/cigarette))
 			to_chat(user, "This item does not fit.")
 			return
-		if ( istype(W,/obj/item/clothing/head/syndicatefake ) )
+		if(istype(I, /obj/item/clothing/head/syndicatefake))
 			to_chat(user, "This item does not fit.")
 			return
-//		if ( istype(W,/obj/item/clothing/head/powered ) )
-//			to_chat(user, "This item does not fit.")
-//			return
-		if ( istype(W,/obj/item/clothing/head/helmet ) )
+		if(istype(I, /obj/item/clothing/head/helmet))
 			to_chat(user, "This item does not fit.")
 			return
 
-		if(contents.len < 5)
-			if ( state in list(1, 3) )
-				if(user.transferItemToLoc(W, src))
-					state = 3
-			else
-				to_chat(user, "<span class='notice'>You can't put the item in right now.</span>")
-		else
+		if(length(contents) >= 5)
 			to_chat(user, "<span class='notice'>The washing machine is full.</span>")
-	else
-		..()
-	update_icon()
+			return
+
+		if(!(state in list(1, 3)))
+			to_chat(user, "<span class='notice'>You can't put the item in right now.</span>")
+			return
+
+		if(!user.transferItemToLoc(I, src))
+			return
+			
+		state = 3
+
+		update_icon()
 
 /obj/machinery/washing_machine/attack_hand(mob/user as mob)
 	switch(state)

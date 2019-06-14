@@ -3,7 +3,7 @@
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc,/obj/mecha) || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	if(hand)
@@ -19,37 +19,6 @@
 	if(next_move < world.time)
 		next_move = world.time + 2
 	return
-
-/mob/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
-	set name = "Point To"
-	set category = "Object"
-
-	if(!isturf(loc))
-		return FALSE
-
-	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
-		return FALSE
-
-	if(!A.mouse_opacity) //Can't click it? can't point at it.
-		return FALSE
-
-	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
-		return FALSE
-
-	var/tile = get_turf(A)
-	if(!tile)
-		return FALSE
-
-	if(next_move > world.time)
-		return FALSE
-
-	if(recently_pointed_to > world.time)
-		return FALSE
-
-	next_move = world.time + 2
-
-	point_to_atom(A, tile)
-	return TRUE
 
 
 /mob/verb/memory()
@@ -132,7 +101,7 @@
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "Object"
-	reset_view(null)
+	reset_perspective(null)
 	unset_interaction()
 	if(isliving(src))
 		var/mob/living/M = src

@@ -85,15 +85,15 @@ Defined in conflicts.dm of the #defines folder.
 	var/scope_zoom_mod = FALSE //codex
 
 
-/obj/item/attachable/attackby(obj/item/I, mob/user)
+/obj/item/attachable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(flags_attach_features & ATTACH_RELOADABLE)
 		if(user.get_inactive_held_item() != src)
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 		else
 			reload_attachment(I, user)
 		return TRUE
-	else
-		return ..()
 
 
 /obj/item/attachable/attack_hand(var/mob/user as mob)
@@ -263,11 +263,16 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "suppressor_a"
 
 /obj/item/attachable/suppressor/unremovable
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/suppressor/unremovable/invisible
 	attach_icon = ""
 	icon_state = ""
+
+
+/obj/item/attachable/suppressor/unremovable/invisible/Initialize(mapload, ...)
+	. = ..()
+	attach_icon = ""
 
 /obj/item/attachable/suppressor/Initialize()
 	. = ..()
@@ -300,6 +305,8 @@ Defined in conflicts.dm of the #defines folder.
 	matter = list("metal" = 1000)
 
 /obj/item/attachable/bayonet/attackby(obj/item/I, mob/user)
+	. = ..()
+
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the bayonet back into a combat knife.</span>")
 		if(istype(loc, /obj/item/storage))
@@ -307,13 +314,11 @@ Defined in conflicts.dm of the #defines folder.
 			S.remove_from_storage(src)
 		if(loc == user)
 			user.dropItemToGround(src)
-		var/obj/item/weapon/combat_knife/F = new(src.loc)
+		var/obj/item/weapon/combat_knife/F = new(loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-			F.loc = src.loc
+			F.forceMove(loc)
 		qdel(src) //Delete da old bayonet
-	else
-		return ..()
 
 /obj/item/attachable/bayonet/Initialize()
 	. = ..()
@@ -379,7 +384,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	pixel_shift_x = 20
 	pixel_shift_y = 16
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/slavicbarrel/Initialize()
 	. = ..()
@@ -394,7 +399,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	pixel_shift_x = 20
 	pixel_shift_y = 16
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/mosinbarrel/Initialize()
 	. = ..()
@@ -406,7 +411,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "sniperbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/sniperbarrel/Initialize()
 	. = ..()
@@ -418,7 +423,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "smartbarrel"
 	desc = "A heavy rotating barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 
 
@@ -487,7 +492,9 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-/obj/item/attachable/flashlight/attackby(obj/item/I, mob/user)
+/obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>")
 		if(istype(loc, /obj/item/storage))
@@ -498,8 +505,6 @@ Defined in conflicts.dm of the #defines folder.
 		var/obj/item/flashlight/F = new(user)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		qdel(src) //Delete da old flashlight
-	else
-		return ..()
 
 
 
@@ -603,6 +608,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
+	attach_icon = "slavicscope"
 
 /obj/item/attachable/scope/pmc
 	icon_state = "pmcscope"
@@ -655,7 +661,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
 	icon_state = "zx_stock"
 	wield_delay_mod = 0
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/stock/scout/Initialize()
 	. = ..()
@@ -671,7 +677,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	matter = null
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 
 /obj/item/attachable/stock/slavic/Initialize()
@@ -689,7 +695,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	matter = null
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 /obj/item/attachable/stock/mosin/Initialize()
 	. = ..()
@@ -720,7 +726,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper M41A marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 
 /obj/item/attachable/stock/smg
@@ -783,9 +789,9 @@ Defined in conflicts.dm of the #defines folder.
 	if(pockets.handle_mousedrop(usr, over_object))
 		return ..(over_object)
 
-/obj/item/attachable/stock/vp70/attackby(obj/item/W, mob/user)
+/obj/item/attachable/stock/vp70/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	return pockets.attackby(W, user)
+	return pockets.attackby(I, user, params)
 
 /obj/item/attachable/stock/vp70/emp_act(severity)
 	pockets.emp_act(severity)
@@ -824,7 +830,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "laserstock"
 	pixel_shift_x = 41
 	pixel_shift_y = 10
-	flags_attach_features = NOFLAGS
+	flags_attach_features = NONE
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -1075,7 +1081,7 @@ Defined in conflicts.dm of the #defines folder.
 		fire_mod = 1
 
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)

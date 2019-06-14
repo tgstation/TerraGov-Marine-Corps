@@ -24,11 +24,12 @@
 		icon_state = "implantcase-0"
 	return
 
-/obj/item/implantcase/attackby(obj/item/I as obj, mob/user as mob)
-	..()
-	if (istype(I, /obj/item/tool/pen))
-		var/t = stripped_input(user, "What would you like the label to be?", text("[]", src.name), null)
-		if (user.get_active_held_item() != I)
+/obj/item/implantcase/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen))
+		var/t = stripped_input(user, "What would you like the label to be?", text("[]", name), null)
+		if(user.get_active_held_item() != I)
 			return
 		if((!in_range(src, usr) && loc != user))
 			return
@@ -36,35 +37,36 @@
 			name = text("glass case - '[]'", t)
 		else
 			name = "glass case"
+
 	else if(istype(I, /obj/item/reagent_container/syringe))
 		if(!imp?.allow_reagents)
 			return
+
 		if(imp.reagents.total_volume >= imp.reagents.maximum_volume)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
-			spawn(5)
-				I.reagents.trans_to(imp, 5)
-				to_chat(user, "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>")
-	else if (istype(I, /obj/item/implanter))
+			return
+
+		I.reagents.trans_to(imp, 5)
+		to_chat(user, "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>")
+
+	else if(istype(I, /obj/item/implanter))
 		var/obj/item/implanter/M = I
-		if (M.imp)
-			if ((imp || M.imp.implanted))
+		if(M.imp)
+			if((imp || M.imp.implanted))
 				return
-			M.imp.loc = src
+			M.imp.forceMove(src)
 			imp = M.imp
 			M.imp = null
-			update()
-			M.update()
-		else
-			if (imp)
-				if (M.imp)
-					return
-				imp.loc = M
-				M.imp = imp
-				imp = null
-				update()
-			M.update()
-	return
+
+		else if(imp)
+			if(M.imp)
+				return
+			imp.forceMove(M)
+			M.imp = imp
+			imp = null
+			
+		update()
+		M.update()
 
 
 /obj/item/implantcase/tracking

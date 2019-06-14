@@ -5,7 +5,7 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	use_power = 0
 	var/list/components = null
 	var/list/req_components = null
@@ -42,7 +42,7 @@
 					if(C.get_amount() < 5)
 						to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
 						return
-					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
+					playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] starts adding cables to [src].</span>",
 					"<span class='notice'>You start adding cables to [src].</span>")
 					if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) && state == 1)
@@ -53,13 +53,13 @@
 							icon_state = "box_1"
 				else
 					if(iswrench(P))
-						playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+						playsound(src.loc, 'sound/items/ratchet.ogg', 25, 1)
 						to_chat(user, "<span class='notice'>You dismantle the frame</span>")
 						new /obj/item/stack/sheet/metal(src.loc, 5)
 						qdel(src)
 			if(2)
 				if(istype(P, /obj/item/circuitboard/machine))
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+					playsound(src.loc, 'sound/items/deconstruct.ogg', 25, 1)
 					to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
 					var/obj/item/circuitboard/machine/circuit = P
 					if(user.transferItemToLoc(P, src))
@@ -82,7 +82,7 @@
 
 				else
 					if(iswirecutter(P))
-						playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+						playsound(src.loc, 'sound/items/wirecutter.ogg', 25, 1)
 						to_chat(user, "<span class='notice'>You remove the cables.</span>")
 						state = 1
 						icon_state = "box_0"
@@ -91,7 +91,7 @@
 
 			if(3)
 				if(iscrowbar(P))
-					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
+					playsound(src.loc, 'sound/items/crowbar.ogg', 25, 1)
 					state = 2
 					circuit.loc = src.loc
 					circuit = null
@@ -113,7 +113,7 @@
 								component_check = 0
 								break
 						if(component_check)
-							playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+							playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1)
 							var/obj/machinery/new_machine = new src.circuit.build_path(src.loc)
 							new_machine.component_parts.Cut()
 							src.circuit.construct(new_machine)
@@ -127,7 +127,7 @@
 						if(istype(P, /obj/item))
 							for(var/I in req_components)
 								if(istype(P, text2path(I)) && (req_components[I] > 0))
-									playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
+									playsound(src.loc, 'sound/items/deconstruct.ogg', 25, 1)
 									if(iscablecoil(P))
 										var/obj/item/stack/cable_coil/CP = P
 										if(CP.get_amount() > 1)

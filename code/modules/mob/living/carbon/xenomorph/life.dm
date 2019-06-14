@@ -5,9 +5,9 @@
 
 #define XENO_HUD_ICON_BUCKETS 16  // should equal the number of icons you use to represent health / plasma (from 0 -> X)
 
-/mob/living/carbon/Xenomorph/Life()
+/mob/living/carbon/xenomorph/Life()
 
-	if(monkeyizing || !loc)
+	if(!loc)
 		return
 
 	..()
@@ -36,7 +36,7 @@
 	update_icons()
 
 
-/mob/living/carbon/Xenomorph/update_stat()
+/mob/living/carbon/xenomorph/update_stat()
 
 	update_cloak()
 
@@ -66,24 +66,24 @@
 
 	//Deal with devoured things and people
 	if(length(stomach_contents))
-		for(var/mob/M in stomach_contents)
-			if(world.time > devour_timer && ishuman(M) && !is_ventcrawling)
-				stomach_contents.Remove(M)
-				if(M.loc != src)
+		for(var/mob/living/L in stomach_contents)
+			if(world.time > devour_timer && ishuman(L) && !is_ventcrawling)
+				stomach_contents.Remove(L)
+				if(L.loc != src)
 					continue
-				M.forceMove(loc)
-				M.SetKnockeddown(1)
+				L.forceMove(loc)
+				L.SetKnockeddown(1)
 	return TRUE
 
 
 
-/mob/living/carbon/Xenomorph/handle_status_effects()
+/mob/living/carbon/xenomorph/handle_status_effects()
 	. = ..()
 	handle_stagger() // 1 each time
 	handle_slowdown() // 0.4 each time
 	handle_halloss() // 3 each time
 
-/mob/living/carbon/Xenomorph/Hunter/handle_status_effects()
+/mob/living/carbon/xenomorph/hunter/handle_status_effects()
 	. = ..()
 	if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
 		if(last_move_intent < world.time - HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY || !stealth)
@@ -93,16 +93,15 @@
 			to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
 	handle_stealth()
 
-/mob/living/carbon/Xenomorph/handle_fire()
+/mob/living/carbon/xenomorph/handle_fire()
 	. = ..()
 	if(.)
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		if(stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to y'know being on fire.
-			stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
 		adjustFireLoss((fire_stacks + 3) * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
 
-/mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
+/mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
 		handle_critical_health_updates()
 		return
@@ -124,14 +123,14 @@
 			heal_wounds(XENO_STANDING_HEAL * queen_healing_penalty) //Major healing nerf if standing.
 	updatehealth()
 
-/mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
+/mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
 		heal_wounds(XENO_RESTING_HEAL + warding_aura * 0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
 	else
 		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
-/mob/living/carbon/Xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
+/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
 	var/amount = (1 + (maxHealth * 0.02) ) // 1 damage + 2% max health
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
@@ -141,7 +140,7 @@
 
 
 
-/mob/living/carbon/Xenomorph/proc/handle_living_plasma_updates()
+/mob/living/carbon/xenomorph/proc/handle_living_plasma_updates()
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
@@ -157,7 +156,8 @@
 		plasma_stored++
 	if(plasma_stored > xeno_caste.plasma_max)
 		plasma_stored = xeno_caste.plasma_max
-	else if(plasma_stored < 0)
+		return //Ditto above == max
+	else if(plasma_stored < 5)
 		plasma_stored = 0
 		if(current_aura)
 			current_aura = null
@@ -165,35 +165,41 @@
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
-/mob/living/carbon/Xenomorph/proc/handle_aura_emiter()
+/mob/living/carbon/xenomorph/proc/handle_aura_emiter()
 	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
 	//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
 	//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
-	if(on_fire) //Burning Xenos can't emit pheromones; they get burnt up! Null it baby! Disco inferno
-		current_aura = null
-	if(current_aura && plasma_stored > 5)
+
+	if(!current_aura && !leader_current_aura) //Gotta be emitting some pheromones to actually do something
+		return
+
+	if(on_fire) //Can't output pheromones if on fire
+		return
+
+	if(current_aura) //Plasma costs are already checked beforehand
+		var/phero_range = round(6 + xeno_caste.aura_strength * 2) //Don't need to do the distance math over and over for each xeno
 		if(isxenoqueen(src) && anchored) //stationary queen's pheromone apply around the observed xeno.
-			var/mob/living/carbon/Xenomorph/Queen/Q = src
-			var/atom/phero_center = Q
+			var/mob/living/carbon/xenomorph/queen/Q = src
 			if(Q.observed_xeno)
-				phero_center = Q.observed_xeno
-			var/pheromone_range = round(6 + xeno_caste.aura_strength * 2)
-			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
-				if(Z.stat != DEAD && issamexenohive(Z) && !Z.on_fire)
-					switch(current_aura)
-						if("frenzy")
-							if(xeno_caste.aura_strength > Z.frenzy_new)
-								Z.frenzy_new = xeno_caste.aura_strength
-						if("warding")
-							if(xeno_caste.aura_strength > Z.warding_new)
-								Z.warding_new = xeno_caste.aura_strength
-						if("recovery")
-							if(xeno_caste.aura_strength > Z.recovery_new)
-								Z.recovery_new = xeno_caste.aura_strength
+				//The reason why we don't check the hive of observed_xeno is just in case the watched xeno isn't of the same hive for whatever reason
+				for(var/xenos in Q.hive.get_all_xenos())
+					var/mob/living/carbon/xenomorph/Z = xenos
+					if(get_dist(Q.observed_xeno, Z) <= phero_range && (Q.observed_xeno.z == Z.z) && !Z.on_fire) //We don't need to check to see if it's dead or if it's the same hive as the list we're pulling from only contain alive xenos of the same hive
+						switch(current_aura)
+							if("frenzy")
+								if(xeno_caste.aura_strength > Z.frenzy_new)
+									Z.frenzy_new = xeno_caste.aura_strength
+							if("warding")
+								if(xeno_caste.aura_strength > Z.warding_new)
+									Z.warding_new = xeno_caste.aura_strength
+							if("recovery")
+								if(xeno_caste.aura_strength > Z.recovery_new)
+									Z.recovery_new = xeno_caste.aura_strength
+
 		else
-			var/pheromone_range = round(6 + xeno_caste.aura_strength * 2)
-			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-				if(Z.stat != DEAD && issamexenohive(Z) && !Z.on_fire)
+			for(var/xenos in hive.get_all_xenos())
+				var/mob/living/carbon/xenomorph/Z = xenos
+				if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
 					switch(current_aura)
 						if("frenzy")
 							if(xeno_caste.aura_strength > Z.frenzy_new)
@@ -204,10 +210,11 @@
 						if("recovery")
 							if(xeno_caste.aura_strength > Z.recovery_new)
 								Z.recovery_new = xeno_caste.aura_strength
-	if(leader_current_aura && !stat && !on_fire)
-		var/pheromone_range = round(6 + leader_aura_strength * 2)
-		for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-			if(Z.stat != DEAD && issamexenohive(Z) && !Z.on_fire)
+	if(leader_current_aura)
+		var/phero_range = round(6 + leader_aura_strength * 2)
+		for(var/xenos in hive.get_all_xenos())
+			var/mob/living/carbon/xenomorph/Z = xenos
+			if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
 				switch(leader_current_aura)
 					if("frenzy")
 						if(leader_aura_strength > Z.frenzy_new)
@@ -219,7 +226,7 @@
 						if(leader_aura_strength > Z.recovery_new)
 							Z.recovery_new = leader_aura_strength
 
-/mob/living/carbon/Xenomorph/proc/handle_aura_receiver()
+/mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
 		frenzy_aura = frenzy_new
 		warding_aura = warding_new
@@ -232,7 +239,7 @@
 	if(warding_aura > 0)
 		armor_pheromone_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
 
-/mob/living/carbon/Xenomorph/handle_regular_hud_updates()
+/mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
 
@@ -247,8 +254,8 @@
 	// Health Hud
 	if(hud_used && hud_used.healths)
 		if(stat != DEAD)
-			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, 0, list("full", "critical"))
-			hud_used.healths.icon_state = "health_[bucket]"
+			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, maxHealth, health, get_crit_threshold(), list("full", "critical"))
+			hud_used.healths.icon_state = "health[bucket]"
 		else
 			hud_used.healths.icon_state = "health_dead"
 
@@ -260,14 +267,12 @@
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
-	if(interactee)
-		interactee.check_eye(src)
-	else if(!client.adminobs)
-		reset_view(null)
+
+	interactee?.check_eye(src)
 
 	return TRUE
 
-/mob/living/carbon/Xenomorph/proc/handle_environment() //unused while atmos is not on
+/mob/living/carbon/xenomorph/proc/handle_environment() //unused while atmos is not on
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
@@ -281,7 +286,7 @@
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
 
-/mob/living/carbon/Xenomorph/updatehealth()
+/mob/living/carbon/xenomorph/updatehealth()
 	if(status_flags & GODMODE)
 		return
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
@@ -289,17 +294,17 @@
 	update_stat()
 	update_wounds()
 
-/mob/living/carbon/Xenomorph/handle_stunned()
+/mob/living/carbon/xenomorph/handle_stunned()
 	if(stunned)
 		AdjustStunned(-2)
 	return stunned
 
-/mob/living/carbon/Xenomorph/handle_knocked_down()
+/mob/living/carbon/xenomorph/handle_knocked_down()
 	if(knocked_down && client)
 		AdjustKnockeddown(-5)
 	return knocked_down
 
-/mob/living/carbon/Xenomorph/handle_slowdown()
+/mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE
 		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
@@ -310,21 +315,21 @@
 		#endif
 	return slowdown
 
-/mob/living/carbon/Xenomorph/add_slowdown(amount)
+/mob/living/carbon/xenomorph/add_slowdown(amount)
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
 
-/mob/living/carbon/Xenomorph/Crusher/add_slowdown(amount)
+/mob/living/carbon/xenomorph/crusher/add_slowdown(amount)
 	if(charge_speed > CHARGE_SPEED_MAX * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
 		return FALSE
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
 
-/mob/living/carbon/Xenomorph/proc/handle_halloss()
+/mob/living/carbon/xenomorph/proc/handle_halloss()
 	if(halloss)
 		adjustHalLoss(XENO_HALOSS_REGEN)
 
-/mob/living/carbon/Xenomorph/proc/handle_afk_takeover()
+/mob/living/carbon/xenomorph/proc/handle_afk_takeover()
 	if(client || world.time - away_time < XENO_AFK_TIMER)
 		return
 	if(isaghost(src) && GLOB.directory[key]) // If aghosted, and admin still online

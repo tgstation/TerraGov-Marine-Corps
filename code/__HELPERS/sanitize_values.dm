@@ -13,6 +13,13 @@
 	return default
 
 
+/proc/sanitize_islist(value, default)
+	if(length(value))
+		return value
+	if(default)
+		return default
+
+
 /proc/sanitize_inlist(value, list/L, default)
 	if(value in L)	
 		return value
@@ -20,6 +27,14 @@
 		return default
 	if(length(L))
 		return L[1]
+
+
+/proc/sanitize_inlist_assoc(value, list/L, default)
+	for(var/i in L)
+		if(L[i] == value)
+			return value
+	if(default)			
+		return default
 
 
 //more specialised stuff

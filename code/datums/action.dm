@@ -1,6 +1,7 @@
 
 /datum/action
 	var/name = "Generic Action"
+	var/desc
 	var/obj/target = null
 	var/obj/screen/action_button/button = null
 	var/mob/living/owner
@@ -19,6 +20,8 @@
 		button.overlays += IMG
 	button.source_action = src
 	button.name = name
+	if(desc)
+		button.desc = desc
 
 /datum/action/Destroy()
 	if(owner)
@@ -95,16 +98,72 @@
 /datum/action/item_action/update_button_icon()
 	button.overlays.Cut()
 	var/obj/item/I = target
-	var/old = I.layer
-	I.layer = FLOAT_LAYER
+	var/old_layer = I.layer
+	var/old_plane = I.plane
+	I.layer = ABOVE_HUD_LAYER
+	I.plane = ABOVE_HUD_PLANE
 	button.overlays += I
-	I.layer = old
+	I.layer = old_layer
+	I.plane = old_plane
 
 
 /datum/action/item_action/toggle/New(Target)
 	..()
 	name = "Toggle [target]"
 	button.name = name
+
+
+//Preset for general and toggled actions
+/datum/action/innate
+	var/active = FALSE
+	var/icon_icon = 'icons/mob/actions.dmi' //This is the file for the ACTION icon
+	var/icon_icon_state = "default" //And this is the state for the action icon
+	var/button_icon_state = "template" //The state for the button background
+
+
+/datum/action/innate/action_activate()
+	if(!can_use_action())
+		return FALSE
+	if(!active)
+		Activate()
+	else
+		Deactivate()
+	return TRUE
+
+
+/datum/action/innate/update_button_icon()
+	if(!button)
+		return
+
+	button.name = name
+	button.desc = desc
+
+	if(icon_icon && icon_icon_state)
+		button.cut_overlays(TRUE)
+		button.add_overlay(mutable_appearance(icon_icon, icon_icon_state))
+
+	if(button_icon_state)
+		button.icon_state = button_icon_state
+
+	if(can_use_action())
+		button.color = rgb(255, 255, 255, 255)
+	else
+		button.color = rgb(128, 0, 0, 128)
+	
+	return TRUE
+
+
+/datum/action/innate/give_action()
+	. = ..()
+	update_button_icon()
+
+
+/datum/action/innate/proc/Activate()
+	return
+
+
+/datum/action/innate/proc/Deactivate()
+	return
 
 
 
@@ -123,6 +182,8 @@
 #define XACT_IGNORE_DEAD_TARGET	(1 << 12) // bypass checks of a dead target
 #define XACT_IGNORE_SELECTED_ABILITY	(1 << 13) // bypass the check of the selected ability
 
+#define XACT_KEYBIND_USE_ABILITY (1 << 0) // immediately activate even if selectable
+
 /datum/action/xeno_action
 	var/action_icon_state
 	var/plasma_cost = 0
@@ -132,7 +193,10 @@
 	var/last_use
 	var/cooldown_timer
 	var/ability_name
+	var/keybind_flags
 	var/image/cooldown_image
+	var/keybind_signal
+	var/cooldown_id
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -143,8 +207,25 @@
 	cooldown_image.pixel_y = 7
 	cooldown_image.appearance_flags = RESET_COLOR|RESET_ALPHA
 
+/datum/action/xeno_action/give_action(mob/living/L)
+	. = ..()
+	if(keybind_signal)
+		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
+
+/datum/action/xeno_action/remove_action(mob/living/L)
+	. = ..()
+	if(keybind_signal)
+		UnregisterSignal(L, keybind_signal)
+	if(cooldown_id)
+		deltimer(cooldown_id)
+
+/datum/action/xeno_action/proc/keybind_activation()
+	if(can_use_action())
+		action_activate()
+	return COMSIG_KB_ACTIVATED
+
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!X)
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
@@ -210,7 +291,7 @@
 	update_button_icon()
 
 /datum/action/xeno_action/proc/succeed_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(plasma_cost)
 		X.use_plasma(plasma_cost)
 
@@ -231,7 +312,7 @@
 	if(!length(active_timers)) // stop doubling up
 		last_use = world.time
 		on_cooldown = TRUE
-		addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown())
+		cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
 		button.overlays += cooldown_image
 		update_button_icon()
 
@@ -267,20 +348,30 @@
 	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
 	selected_frame.appearance_flags = RESET_COLOR
 
+/datum/action/xeno_action/activable/keybind_activation()
+	. = COMSIG_KB_ACTIVATED
+	if(CHECK_BITFIELD(keybind_flags, XACT_KEYBIND_USE_ABILITY))
+		if(can_use_ability(null, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+			use_ability()
+		return
+
+	if(can_use_action(FALSE, null, TRUE)) // just for selecting
+		action_activate()
+
 /datum/action/xeno_action/activable/proc/deselect()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays -= selected_frame
 	X.selected_ability = null
 	on_deactivation()
 
 /datum/action/xeno_action/activable/proc/select()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays += selected_frame
 	X.selected_ability = src
 	on_activation()
 
 /datum/action/xeno_action/activable/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
 		deselect()
@@ -292,7 +383,7 @@
 	return ..()
 
 
-/datum/action/xeno_action/activable/remove_action(mob/living/carbon/Xenomorph/X)
+/datum/action/xeno_action/activable/remove_action(mob/living/carbon/xenomorph/X)
 	..()
 	if(X.selected_ability == src)
 		X.selected_ability = null
@@ -310,7 +401,7 @@
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/flags_to_check = use_state_flags|override_flags
 
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && X.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)
@@ -343,9 +434,6 @@
 
 //This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen)
-	return
-
-/mob/living/update_action_buttons(reload_screen)
 	if(!hud_used || !client)
 		return
 

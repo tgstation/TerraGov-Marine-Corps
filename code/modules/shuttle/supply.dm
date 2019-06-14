@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
-	circuit = "/obj/item/circuitboard/computer/supplycomp"
+	circuit = null
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/hacked = 0
@@ -252,7 +252,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	name = "Supply ordering console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "request"
-	circuit = "/obj/item/circuitboard/computer/ordercomp"
+	circuit = null
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
@@ -395,7 +395,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	else if (href_list["mainmenu"])
 		temp = null
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 	return
 
@@ -645,6 +644,5 @@ GLOBAL_LIST_EMPTY(exports_types)
 	else if (href_list["mainmenu"])
 		temp = null
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 	return

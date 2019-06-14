@@ -89,88 +89,85 @@
 			M.entangle_delay = null
 	entangled_list = list()
 
+/obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-/obj/structure/razorwire/attack_tk() // no telehulk sorry
-	return
-
-
-/obj/structure/razorwire/attackby(obj/item/W, mob/user)
-	if(!W)
-		return
-	if(istype(W, /obj/item/grab))
+	if(istype(I, /obj/item/grab))
 		if(isxeno(user))
 			return
-		var/obj/item/grab/G = W
-		if(isliving(G.grabbed_thing))
-			var/mob/living/M = G.grabbed_thing
-			if(user.a_intent == INTENT_HARM)
-				if(user.grab_level > GRAB_AGGRESSIVE)
-					var/armor_block = null
-					var/def_zone = ran_zone()
-					M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1)
-					user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
-					"<span class='danger'>You sparta [M]'s against [src]!</span>")
-					log_admin("[key_name(usr)] spartaed [key_name(M)]'s against \the [src].")
-					log_combat(user, M, "spartaed", "", "against \the [src]")
-					msg_admin_attack("[key_name(usr)] spartaed [key_name(M)] against \the [src].")
-					playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-				else
-					to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
-					return
-			else if(user.grab_level >= GRAB_AGGRESSIVE)
-				M.forceMove(loc)
-				M.KnockDown(5)
-				user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
-				"<span class='danger'>You throw [M] on [src].</span>")
+
+		var/obj/item/grab/G = I
+		if(!isliving(G.grabbed_thing))
+			return
+
+		var/mob/living/M = G.grabbed_thing
+		if(user.a_intent == INTENT_HARM)
+			if(user.grab_level <= GRAB_AGGRESSIVE)
+				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+				return
+
+			var/armor_block = null
+			var/def_zone = ran_zone()
+			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1)
+			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
+			"<span class='danger'>You sparta [M]'s against [src]!</span>")
+			log_admin("[key_name(usr)] spartaed [key_name(M)]'s against \the [src].")
+			log_combat(user, M, "spartaed", "", "against \the [src]")
+			msg_admin_attack("[key_name(usr)] spartaed [key_name(M)] against \the [src].")
+			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+
+		else if(user.grab_level >= GRAB_AGGRESSIVE)
+			M.forceMove(loc)
+			M.KnockDown(5)
+			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
+			"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if(iswirecutter(W))
+	else if(iswirecutter(I))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		var/delay_disassembly = SKILL_TASK_AVERAGE
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
 			delay_disassembly -= 5 + user.mind.cm_skills.engineer * 5
-		if(do_after(user,delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
-			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
-			"<span class='notice'>You disassemble [src].</span>")
-			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			destroyed(TRUE)
+
+		if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
+		"<span class='notice'>You disassemble [src].</span>")
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+		destroyed(TRUE)
+
+	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.remove_fuel(0, user))
+			return
+
+		var/delay = SKILL_TASK_TOUGH
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
+			delay -= 10 + user.mind.cm_skills.engineer * 5
+		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+		"<span class='notice'>You begin repairing the damage to [src].</span>")
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		var/old_loc = loc
+		if(!do_after(user, delay, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
+			return
+
+		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+		"<span class='notice'>You repair [src].</span>")
+		obj_integrity = min(obj_integrity + 100, max_integrity)
+		update_health()
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+
+	else if((I.flags_item & ITEM_ABSTRACT))
 		return
 
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
-			var/delay = SKILL_TASK_TOUGH
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
-				delay -= 10 + user.mind.cm_skills.engineer * 5
-			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-			"<span class='notice'>You begin repairing the damage to [src].</span>")
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			if(do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-				"<span class='notice'>You repair [src].</span>")
-				obj_integrity = min(obj_integrity + 100, max_integrity)
-				update_health()
-				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-		return
-
-	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
-		var/obj/item/tool/pickaxe/plasmacutter/P = W
-		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
-			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE)) //Barbed wire requires half the normal time
-				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Barbed wire requires half the normal power
-				destroyed()
-		return
-
-	if((W.flags_item & ITEM_ABSTRACT))
-		return
-
-	var/damage = W.force
-	if(!W.sharp)
+	var/damage = I.force
+	if(!I.sharp)
 		damage *= 0.25
 	damage = max(damage - soak,0)
+
 	if(damage)
-		. = ..()
 		obj_integrity -= damage
 		update_health()
 
@@ -184,7 +181,8 @@
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
-/obj/structure/razorwire/attack_alien(mob/living/carbon/Xenomorph/M)
+
+/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
@@ -198,8 +196,7 @@
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
 	update_health(TRUE)
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
 
 /obj/structure/razorwire/ex_act(severity)
 	switch(severity)
@@ -216,9 +213,9 @@
 /obj/structure/razorwire/Bumped(atom/A)
 	. = ..()
 
-	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+	if(istype(A, /mob/living/carbon/xenomorph/crusher))
 
-		var/mob/living/carbon/Xenomorph/Crusher/C = A
+		var/mob/living/carbon/xenomorph/crusher/C = A
 
 		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
 			return
@@ -280,7 +277,7 @@
 	update_icon()
 
 /obj/structure/razorwire/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && mover.checkpass(PASSGRILLE))
+	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))
 		return TRUE

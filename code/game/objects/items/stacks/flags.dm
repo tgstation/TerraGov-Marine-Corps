@@ -29,11 +29,11 @@
 	singular_name = "green flag"
 	icon_state = "greenflag"
 
-/obj/item/stack/flag/attackby(obj/item/W as obj, mob/user as mob)
-	if(upright && istype(W,src.type))
-		src.attack_hand(user)
-	else
-		..()
+/obj/item/stack/flag/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(upright && istype(I, type))
+		return attack_hand(user)
 
 /obj/item/stack/flag/attack_hand(user as mob)
 	if(upright)
@@ -60,7 +60,7 @@
 	var/obj/item/stack/flag/newflag = new src.type(T)
 	newflag.amount = 1
 	newflag.upright = 1
-	anchored = 1
+	anchored = TRUE
 	newflag.name = newflag.singular_name
 	newflag.icon_state = "[newflag.base_state]_open"
 	newflag.visible_message("<b>[user]</b> plants [newflag] firmly in the ground.")
