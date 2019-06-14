@@ -921,7 +921,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("ambientocclusion")
 			ambientocclusion = !ambientocclusion
-			if(parent && parent.screen && parent.screen.len)
+			if(length(parent?.screen))
 				var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
 				PM.backdrop(parent.mob)
 
