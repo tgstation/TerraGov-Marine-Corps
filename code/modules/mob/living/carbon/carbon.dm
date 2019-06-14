@@ -1,8 +1,7 @@
 /mob/living/carbon/Destroy()
-	if(ismob(loc))
-		var/mob/M = loc
-		if(src in M.stomach_contents)
-			M.stomach_contents -= src
+	if(iscarbon(loc))
+		var/mob/carbon/C = loc
+		C.stomach_contents -= src
 	stomach_contents.Cut()
 	return ..()
 
