@@ -261,6 +261,12 @@
 	icon = 'icons/obj/doors/almayer/securedoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
+
+/obj/machinery/door/airlock/almayer/evacuation
+	name = "\improper Evacuation Airlock"
+	icon = 'icons/obj/doors/almayer/securedoor.dmi'
+
+
 /obj/machinery/door/airlock/almayer/maint
 	name = "\improper Maintenance Hatch"
 	icon = 'icons/obj/doors/almayer/maintdoor.dmi'
