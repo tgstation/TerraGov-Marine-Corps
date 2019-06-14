@@ -1,15 +1,18 @@
-#define RECEIVER_REPLACE (1 << 0)
+#define RECEIVER_REPLACE 	(1 << 0)
+#define RECEIVER_PERMANENT	(1 << 1)
 
 /datum/component/magazine_receiver
 
 	var/obj/item/magazine // contained magazine
 	var/flags_receiver
 
-/datum/component/magazine_receiver/Initialize(flags_receiver)
+/datum/component/magazine_receiver/Initialize(flags_receiver, obj/item/starting)
 	src.flags_receiver = flags_receiver
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/hit_by_obj)
+	RegisterSignal(parent, )
 
+	load_magazine(null, starting)
 
 /datum/component/magazine_receiver/proc/hit_by_obj(datum/source, obj/item/I, mob/user, params)
 	var/reload_delay
@@ -54,7 +57,7 @@
 
 	else if(istype(I, /obj/item/cell/lasgun))
 		var/obj/item/cell/lasgun/LC = I
-		return LC
+		return LC.charge
 
 /datum/component/magazine_receiver/proc/load_magazine(mob/user, obj/item/I)
 	if(user)
@@ -71,6 +74,12 @@
 	if(!magazine)
 		to_chat(user, "It's unloaded[flags & GUN_IS_CHAMBERED?" but has a round chambered":""].")
 		return
+	var/current_shots = FLOOR(get_ammo_count() max(ammo_per_shot, 1), 1)
+
 	if(flags & GUN_HAS_AMMO_COUNTER)
+		to_chat(user, "Ammo counter shows [current_shots + (flags & GUN_IS_CHAMBERED ? 1:0)] round\s remaining.")
+		return
+	
+	to_chat(user, "It's loaded[flags & GUN_IS_CHAMBERED?" and has a round chambered":""].")
 
 

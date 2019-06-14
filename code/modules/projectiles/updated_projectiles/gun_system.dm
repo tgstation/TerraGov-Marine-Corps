@@ -217,17 +217,14 @@
 	examine_ammo_count(user)
 
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
-	var/list/dat = list()
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
-		if(current_mag?.current_rounds > 0)
-			if(flags_gun_features & GUN_AMMO_COUNTER)
-				dat += "Ammo counter shows [current_mag.current_rounds] round\s remaining.<br>"
-			else
-				dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
-		else
-			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
-	if(dat)
-		to_chat(user, "[dat.Join(" ")]")
+		var/flags
+		if(flags_gun_features & GUN_AMMO_COUNTER)
+			flags |= GUN_HAS_AMMO_COUNTER
+		if(in_chamber)
+			flags |= GUN_IS_CHAMBERED
+
+		SEND_SIGNAL(src, COMSIG_MAGAZINE_AMMO_COUNT, user, flags, 1)
 
 /obj/item/weapon/gun/wield(var/mob/user)
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)

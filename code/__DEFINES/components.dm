@@ -31,6 +31,8 @@
 	#define COMSIG_IS_MAGAZINE 1
 
 #define COMSIG_MAGAZINE_LOADED "magazine_loaded"
+#define COMSIG_MAGAZINE_AMMO_COUNT "magazine_ammo_count"
+
 
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
