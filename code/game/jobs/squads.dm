@@ -208,7 +208,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
-	
 	marines_list -= src
 	if(!wipe)
 		var/role = "unknown"

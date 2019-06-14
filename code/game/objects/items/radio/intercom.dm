@@ -83,4 +83,5 @@
 
 
 /obj/item/radio/intercom/general/colony
+	freqlock = TRUE
 	frequency = FREQ_CIV_GENERAL

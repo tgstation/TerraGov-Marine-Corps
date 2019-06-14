@@ -409,7 +409,11 @@
 	to_chat(X, "<span class='notice'>You will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
 	update_button_icon()
 
-// Corrosive Acid
+
+// ***************************************
+// *********** Corrosive Acid
+// ***************************************
+
 /datum/action/xeno_action/activable/corrosive_acid
 	name = "Corrosive Acid"
 	action_icon_state = "corrosive_acid"
@@ -579,6 +583,17 @@
 	new_acid.ticks = current_acid.ticks //Inherit the old acid's progress
 	qdel(current_acid)
 
+
+// ***************************************
+// *********** Super strong acid
+// ***************************************
+
+/datum/action/xeno_action/activable/corrosive_acid/strong
+	name = "Corrosive Acid"
+	plasma_cost = 200
+	acid_type = /obj/effect/xenomorph/acid/strong
+
+
 /datum/action/xeno_action/activable/spray_acid
 	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
 
@@ -588,10 +603,26 @@
 		return FALSE
 	if(!A)
 		return FALSE
-	if(get_turf(owner) == get_turf(A))
+
+	var/turf/T = get_turf(owner)
+	var/turf/T2 = get_turf(A)
+	if(T == T2)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>That's far too close!</span>")
 		return FALSE
+
+	var/facing = get_cardinal_dir(T, T2)
+	for(var/i in 1 to get_dist(T2, T))
+		var/turf/next_T = get_step(T, facing)
+		T = next_T
+		if(!T.density)
+			continue
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>There is something in the way!</span>")
+
+		return FALSE
+
+
 
 /datum/action/xeno_action/activable/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)

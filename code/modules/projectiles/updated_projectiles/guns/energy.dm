@@ -192,6 +192,11 @@
 	return toggle_chargemode(user)
 
 
+/obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
+	. = ..()
+	update_icon()
+
+
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
 	//if(in_chamber)

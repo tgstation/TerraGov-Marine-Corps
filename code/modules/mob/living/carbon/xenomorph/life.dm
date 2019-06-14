@@ -259,10 +259,8 @@
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
-	if(interactee)
-		interactee.check_eye(src)
-	else
-		reset_perspective(null)
+
+	interactee?.check_eye(src)
 
 	return TRUE
 

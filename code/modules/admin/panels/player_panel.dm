@@ -484,6 +484,7 @@
 			if(ishuman(M))
 				body += "<br>"
 				body += "<a href='?src=[ref];rankequip=[REF(M)]'>Rank and Equipment</a> | "
+				body += "<a href='?src=[ref];editappearance=[REF(M)]'>Edit Appearance</a> | "
 				body += "<a href='?src=[ref];randomname=[REF(M)]'>Randomize Name</a>"
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")

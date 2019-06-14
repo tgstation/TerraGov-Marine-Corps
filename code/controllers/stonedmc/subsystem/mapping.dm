@@ -164,13 +164,6 @@ SUBSYSTEM_DEF(mapping)
 	INIT_ANNOUNCE("Loading [CONFIG_GET(string/ship_name)]...")
 	LoadGroup(FailedZs, CONFIG_GET(string/ship_name), theseus.map_path, theseus.map_file, theseus.traits, ZTRAITS_MAIN_SHIP)
 
-	var/datum/map_config/low_orbit = new
-	low_orbit.LoadConfig("_maps/low_orbit.json")
-
-	INIT_ANNOUNCE("Loading Low Orbit...")
-	LoadGroup(FailedZs, "Low Orbit", low_orbit.map_path, low_orbit.map_file, low_orbit.traits, ZTRAITS_LOW_ORBIT)
-
-
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
 		query_round_map_name.Execute()

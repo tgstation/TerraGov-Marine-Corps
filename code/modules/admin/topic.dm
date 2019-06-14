@@ -1575,13 +1575,26 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_FUN))
 			return
 
-		var/mob/living/carbon/human/H = locate(href_list["rankequip"])
+		var/mob/living/carbon/human/H = locate(href_list["rankequip"]) in GLOB.human_mob_list
 
 		if(!istype(H))
 			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		usr.client.holder.rank_and_equipment(H)
+
+
+	else if(href_list["editappearance"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["editappearance"]) in GLOB.human_mob_list
+
+		if(!istype(H))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		usr.client.holder.edit_appearance(H)
 
 
 	else if(href_list["sleep"])
@@ -1749,6 +1762,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				previous = H.ethnicity
 				H.ethnicity = change
+			if("species")
+				previous = H.species
+				change = input("Select the species.", "Edit Appearance") as null|anything in GLOB.all_species
+				if(!change || !istype(H))
+					return
+				H.set_species(change)
 
 		H.update_hair()
 		H.update_body()
@@ -1838,27 +1857,26 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 				H.change_squad(change)
 			if("equipment")
-				var/dresscode = input("Please select an outfit.", "Select Equipment") as null|anything in list("{Naked}", "{Job}", "{Custom}")
-				if(!dresscode)
-					return
+				var/list/job_paths = subtypesof(/datum/outfit/job)
+				var/list/job_outfits = list()
+				for(var/path in job_paths)
+					var/datum/outfit/O = path
+					if(initial(O.can_be_admin_equipped))
+						job_outfits[initial(O.name)] = path
 
-				if(dresscode == "{Job}")
-					var/list/job_paths = subtypesof(/datum/outfit/job)
-					var/list/job_outfits = list()
-					for(var/path in job_paths)
-						var/datum/outfit/O = path
-						if(initial(O.can_be_admin_equipped))
-							job_outfits[initial(O.name)] = path
+				var/list/picker = sortList(job_outfits)
+				picker.Insert(1, "{Custom}", "{Naked}")
 
-					dresscode = input("Select job equipment", "Select Equipment") as null|anything in sortList(job_outfits)
-					dresscode = job_outfits[dresscode]
+				var/dresscode = input("Select job equipment", "Select Equipment") as null|anything in picker
 
-				else if(dresscode == "{Custom}")
+				if(dresscode == "{Custom}")
 					var/list/custom_names = list()
 					for(var/datum/outfit/D in GLOB.custom_outfits)
 						custom_names[D.name] = D
 					var/selected_name = input("Select outfit", "Select Equipment") as null|anything in sortList(custom_names)
 					dresscode = custom_names[selected_name]
+				else if(dresscode != "{Naked}")
+					dresscode = job_outfits[dresscode]
 
 				if(!dresscode || !istype(H))
 					return
