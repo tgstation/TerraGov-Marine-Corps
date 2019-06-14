@@ -12,19 +12,24 @@
 
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
 	var/mob/living/carbon/xenomorph/shrike/caller = owner
-	RegisterSignal(owner, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), /mob/living/carbon/xenomorph/shrike.proc/is_burrowed_larva_host)
+	RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 
 	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
 	"<span class='xenowarning'>We call forth the larvas to rise from their slumber!</span>")
 	notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 
-	addtimer(CALLBACK(src, .proc/calling_larvas_end), CALLING_BURROWED_DURATION)
+	addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
 
 	add_cooldown()
 
 
-/datum/action/xeno_action/call_of_the_burrowed/proc/calling_larvas_end()
-	UnregisterSignal(owner, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
+/datum/action/xeno_action/call_of_the_burrowed/proc/calling_larvas_end(mob/living/carbon/xenomorph/shrike/caller)
+	UnregisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
+
+
+/datum/action/xeno_action/call_of_the_burrowed/proc/is_burrowed_larva_host(datum/source, list/mothers) //Should only register while a viable candidate.
+	if(!owner.incapacitated())
+		mothers += owner //Adding them to the list.
 
 
 // ***************************************

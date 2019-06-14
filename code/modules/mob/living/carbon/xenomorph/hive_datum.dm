@@ -509,11 +509,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	var/list/possible_mothers
-
-	for(var/x in (xenos_by_typepath[/mob/living/carbon/xenomorph/shrike] + xenos_by_typepath[/mob/living/carbon/xenomorph/queen]))
-		var/mob/living/carbon/xenomorph/good_enough_mother = x
-		if(CHECK_BITFIELD(SEND_SIGNAL(good_enough_mother, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
-			possible_mothers.Add(good_enough_mother) //Winnicott keeping an eye on.
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
 
 	if(!length(possible_mothers))
 		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to recive new larvas.</span>")
@@ -547,7 +543,10 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(SEND_SIGNAL(mother, COMSIG_HIVE_XENO_MOTHER_CHECK), COMSIG_HIVE_XENO_MOTHER_TRUE))
+	var/list/possible_mothers
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
+
+	if(!(mother in possible_mothers))
 		to_chat(xeno_candidate, "<span class='warning'>This mother is not in a state to receive us.</span>")
 		return FALSE
 

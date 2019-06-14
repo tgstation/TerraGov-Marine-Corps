@@ -60,15 +60,6 @@
 
 
 // ***************************************
-// *********** Larva Mother
-// ***************************************
-
-/mob/living/carbon/xenomorph/shrike/proc/is_burrowed_larva_host() //Should only register while a viable candidate.
-	if(!incapacitated())
-		return COMSIG_HIVE_XENO_MOTHER_TRUE
-
-
-// ***************************************
 // *********** Pain Hud
 // ***************************************
 /mob/living/carbon/xenomorph/prepare_huds()

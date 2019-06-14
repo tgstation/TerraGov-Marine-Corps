@@ -292,6 +292,7 @@
 /mob/living/carbon/xenomorph/queen/proc/mount_ovipositor()
 	if(ovipositor) return //sanity check
 	ovipositor = TRUE
+	RegisterSignal(hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 
 	for(var/datum/action/A in actions)
 		qdel(A)
@@ -337,6 +338,7 @@
 	if(!ovipositor)
 		return
 	ovipositor = FALSE
+	UnregisterSignal(hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 	update_icons()
 	new /obj/ovipositor(loc)
 
