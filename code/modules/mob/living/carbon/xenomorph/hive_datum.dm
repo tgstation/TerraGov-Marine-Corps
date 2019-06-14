@@ -326,14 +326,14 @@
 		return TRUE //No succession required.
 
 	var/mob/living/carbon/xenomorph/successor
+
 	var/list/candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/queen]
-	
 	if(length(candidates)) //Priority to the queens.
-		successor = pick(candidates)
+		successor = candidates[1] //First come, first serve.
 	else
 		candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]
-		if(length(candidates)) // pick() from an empty list runtimes.
-			successor = pick(candidates)
+		if(length(candidates))
+			successor = candidates[1]
 
 	var/announce = TRUE
 	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
