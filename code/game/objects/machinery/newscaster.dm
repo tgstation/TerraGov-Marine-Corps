@@ -110,7 +110,6 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 
 	Destroy()
 		GLOB.all_casters -= src
-		SetLuminosity(0)
 		. = ..()
 
 /obj/machinery/newscaster/update_icon()

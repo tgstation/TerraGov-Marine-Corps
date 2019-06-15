@@ -74,13 +74,8 @@
 
 
 /obj/effect/rune/attunement
-	l_color = "#ff0000"
 	luminosity = 5
 
-
-/obj/effect/rune/attunement/Destroy()
-	SetLuminosity(0)
-	return ..()
 
 
 /obj/effect/forcefield

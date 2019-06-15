@@ -468,17 +468,11 @@ Defined in conflicts.dm of the #defines folder.
 	if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
-		if(user && G.loc == user)
-			user.SetLuminosity(-light_mod)
-		else
-			G.SetLuminosity(0)
+		G.set_light(0)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
-		if(user && G.loc == user)
-			user.SetLuminosity(light_mod)
-		else
-			G.SetLuminosity(light_mod)
+		G.set_light(light_mod)
 
 	G.flags_gun_features ^= GUN_FLASHLIGHT_ON
 

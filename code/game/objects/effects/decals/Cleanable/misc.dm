@@ -60,10 +60,6 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
 
-/obj/effect/decal/cleanable/greenglow/Destroy()
-	SetLuminosity(0)
-	. = ..()
-
 /obj/effect/decal/cleanable/cobweb
 	name = "cobweb"
 	desc = "Somebody should remove that."

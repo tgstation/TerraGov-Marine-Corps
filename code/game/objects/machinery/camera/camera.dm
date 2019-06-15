@@ -182,7 +182,7 @@
 /obj/machinery/camera/proc/deactivate(mob/user)
 	status = FALSE
 	obj_integrity = 0
-	SetLuminosity(0)
+	set_light(0)
 	GLOB.cameranet.removeCamera(src)
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
@@ -214,7 +214,7 @@
 		else
 			myarea = null
 	else
-		SetLuminosity(0)
+		set_light(0)
 		GLOB.cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
@@ -279,9 +279,9 @@
 			if(cam == src)
 				return
 	if(on)
-		SetLuminosity(AI_CAMERA_LUMINOSITY)
+		set_light(AI_CAMERA_LUMINOSITY)
 	else
-		SetLuminosity(0)
+		set_light(0)
 
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)

@@ -171,10 +171,6 @@
 
 /obj/item/tool/weldingtool/Destroy()
 	if(welding)
-		if(ismob(loc))
-			loc.SetLuminosity(-LIGHTER_LUMINOSITY)
-		else
-			SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
@@ -323,9 +319,7 @@
 			welding = 1
 			if(M)
 				to_chat(M, "<span class='notice'>You switch [src] on.</span>")
-				M.SetLuminosity(LIGHTER_LUMINOSITY)
-			else
-				SetLuminosity(LIGHTER_LUMINOSITY)
+			set_light(LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = "fire"
@@ -350,12 +344,11 @@
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")
 			else
 				to_chat(M, "<span class='warning'>[src] shuts off!</span>")
-			M.SetLuminosity(-LIGHTER_LUMINOSITY)
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
 				M.update_inv_l_hand()
-		SetLuminosity(0)
+		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
@@ -369,19 +362,6 @@
 	else
 		to_chat(user, "<span class='notice'>[src] can now be refuelled and emptied.</span>")
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
-
-/obj/item/tool/weldingtool/pickup(mob/user)
-	if(welding && loc != user)
-		SetLuminosity(0)
-		user.SetLuminosity(LIGHTER_LUMINOSITY)
-
-
-/obj/item/tool/weldingtool/dropped(mob/user)
-	if(welding && loc != user)
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(LIGHTER_LUMINOSITY)
-	return ..()
-
 
 /obj/item/tool/weldingtool/largetank
 	name = "industrial blowtorch"
