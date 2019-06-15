@@ -47,12 +47,11 @@
 
 	levelupdate()
 
-	if(luminosity)
-		if(light)	
-			WARNING("[type] - Don't set lights up manually during New(), We do it automatically.")
-		trueLuminosity = luminosity * luminosity
-		light = new(src)
 	visibilityChanged()
+
+	if(light_power && light_range)
+		update_light()
+
 
 /turf/Destroy()
 	if(oldTurf != "")
@@ -161,9 +160,11 @@
 	if (!new_turf_path)
 		return
 
-	var/old_lumcount = lighting_lumcount - initial(lighting_lumcount)
-
-	//to_chat(world, "Replacing [src.type] with [new_turf_path]")
+	var/old_opacity = opacity
+	var/old_dynamic_lighting = dynamic_lighting
+	var/old_affecting_lights = affecting_lights
+	var/old_lighting_object = lighting_object
+	var/old_corners = corners
 
 	var/path = "[src.type]"
 	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
@@ -180,10 +181,19 @@
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
 
-	W.lighting_lumcount += old_lumcount
-	if(old_lumcount != W.lighting_lumcount)
-		W.lighting_changed = 1
-		GLOB.lighting_controller.changed_turfs += W
+	if(SSlighting.initialized)
+		recalc_atom_opacity()
+		lighting_object = old_lighting_object
+		affecting_lights = old_affecting_lights
+		corners = old_corners
+		if(old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
+			reconsider_lights()
+
+		if(dynamic_lighting != old_dynamic_lighting)
+			if(IS_DYNAMIC_LIGHTING(src))
+				lighting_build_overlay()
+			else
+				lighting_clear_overlay()
 
 	W.levelupdate()
 	return W

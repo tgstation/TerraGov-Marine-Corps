@@ -73,8 +73,6 @@
 			log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
 
-		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
-
 		//postpone processing for a bit
 		var/postponeCycles = max(round(devastation_range / 8), 1)
 		SSlighting.postpone(postponeCycles)

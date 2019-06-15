@@ -124,7 +124,7 @@
 
 	if(building)
 		var/area/A = get_area(src)
-		area = A.master
+		area = A
 		opened = APC_COVER_OPENED
 		operating = FALSE
 		name = "\improper [area.name] APC"
@@ -1171,12 +1171,10 @@
 		INVOKE_ASYNC(src, .proc/break_lights)
 
 /obj/machinery/power/apc/proc/break_lights()
-	for(var/a in area.related)
-		var/area/A = a
-		for(var/obj/machinery/light/L in A)
-			L.broken()
-			L.on = FALSE
-			stoplag()
+	for(var/obj/machinery/light/L in get_area(src))
+		L.broken()
+		L.on = FALSE
+		stoplag()
 
 /obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)

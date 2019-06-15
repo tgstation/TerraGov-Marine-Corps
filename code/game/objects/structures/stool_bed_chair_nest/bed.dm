@@ -654,9 +654,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/medevac_beacon/proc/check_power()
 	var/area/A = loc?.loc
-	if(!A || !isarea(A) || !A.master)
+	if(!A || !isarea(A))
 		return FALSE
-	return(A.master.powered(1))
+	return(A.powered(1))
 
 /obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()

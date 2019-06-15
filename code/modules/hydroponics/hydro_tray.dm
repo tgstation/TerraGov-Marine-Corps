@@ -210,8 +210,6 @@
 	// Check that pressure, heat and light are all within bounds.
 	// First, handle an open system or an unconnected closed system.
 
-	var/turf/T = loc
-
 	// Process it.
 //	if(pressure < seed.lowkpa_tolerance || pressure > seed.highkpa_tolerance)
 //		health -= healthmod
@@ -222,17 +220,6 @@
 	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
 //	if (closed_system && connected_port)
 //		update_connected_network()
-
-	// Handle light requirements.
-	var/area/A = T.loc
-	if(A)
-		var/light_available
-		if(A.lighting_use_dynamic)
-			light_available = max(0,min(10,T.lighting_lumcount)-5)
-		else
-			light_available =  5
-		if(abs(light_available - seed.ideal_light) > seed.light_tolerance)
-			health -= healthmod
 
 	// Toxin levels beyond the plant's tolerance cause damage, but
 	// toxins are sucked up each tick and slowly reduce over time.
@@ -663,18 +650,6 @@
 		if(pestlevel >= 5)
 			to_chat(usr, "[src] is <span class='warning'> filled with tiny worms!</span>")
 
-		if(!istype(src,/obj/machinery/portable_atmospherics/hydroponics/soil))
-
-			var/turf/T = loc
-			var/area/A = T.loc
-			var/light_available
-			if(A)
-				if(A.lighting_use_dynamic)
-					light_available = max(0,min(10,T.lighting_lumcount)-5)
-				else
-					light_available =  5
-
-			to_chat(usr, "The tray's sensor suite is reporting a light level of [light_available] lumens.") // and a temperature of [temperature]K.")
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid()
 	set name = "Toggle Tray Lid"

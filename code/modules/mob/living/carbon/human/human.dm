@@ -1084,12 +1084,15 @@
 	if(armor)
 		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			if(S.turn_off_light(src))
+			if(S.luminosity)
+				S.set_light(0)
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/G in contents)
-			if(G.turn_off_light(src))
-				light_off++
+			if(!G.luminosity)
+				continue
+			G.set_light(0)
+			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
 			if(F.on)
@@ -1101,8 +1104,10 @@
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			if(H.turn_off_light(src))
-				light_off++
+			if(!H.luminosity)
+				continue
+			H.set_light(0)
+			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
 				continue

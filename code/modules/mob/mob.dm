@@ -44,7 +44,6 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
-				GLOB.lighting_controller.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()

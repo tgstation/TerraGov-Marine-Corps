@@ -123,9 +123,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	heat = 1000
 	damtype = "burn"
 	icon_state = "match_lit"
-	var/mob/user
-	if(ismob(loc))
-		user = loc
 	set_light(LIGHTER_LUMINOSITY)
 
 	START_PROCESSING(SSobj, src)

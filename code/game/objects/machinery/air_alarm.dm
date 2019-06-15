@@ -96,9 +96,6 @@
 
 	first_run()
 
-	if(!master_is_operating())
-		elect_master()
-
 
 /obj/machinery/alarm/Destroy()
 	QDEL_NULL(wires)
@@ -107,8 +104,6 @@
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
-	if (alarm_area.master)
-		alarm_area = alarm_area.master
 	area_uid = alarm_area.uid
 	if (name == "alarm")
 		name = "[alarm_area.name] Air Alarm"
@@ -153,6 +148,7 @@
 	return 0
 
 
+<<<<<<< master
 /obj/machinery/alarm/proc/master_is_operating()
 	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.machine_stat & (NOPOWER|BROKEN))
 
@@ -166,6 +162,9 @@
 	return 0
 
 /obj/machinery/alarm/proc/get_danger_level(current_value, list/danger_levels)
+=======
+/obj/machinery/alarm/proc/get_danger_level(current_value, list/danger_levels)
+>>>>>>> Machinery and area changes
 	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
 		return 2
 	if((current_value >= danger_levels[3] && danger_levels[3] > 0) || current_value <= danger_levels[2])
@@ -192,12 +191,6 @@
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if (alarm_area.master_air_alarm != src)
-		if (master_is_operating())
-			return
-		elect_master()
-		if (alarm_area.master_air_alarm != src)
-			return
 	if(!signal)
 		return
 	var/id_tag = signal.data["tag"]
@@ -264,12 +257,6 @@
 	return 1
 
 /obj/machinery/alarm/proc/apply_mode()
-	//propagate mode to other air alarms in the area
-	//TODO: make it so that players can choose between applying the new mode to the room they are in (related area) vs the entire alarm area
-	for (var/area/RA in alarm_area.related)
-		for (var/obj/machinery/alarm/AA in RA)
-			AA.mode = mode
-
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
 			for(var/device_id in alarm_area.air_scrub_names)
@@ -826,8 +813,6 @@ table tr:first-child th:first-child { border: none;}
 
 /obj/machinery/alarm/server/first_run()
 	alarm_area = get_area(src)
-	if (alarm_area.master)
-		alarm_area = alarm_area.master
 	area_uid = alarm_area.uid
 	if (name == "alarm")
 		name = "[alarm_area.name] Air Alarm"

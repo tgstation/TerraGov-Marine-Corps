@@ -360,8 +360,8 @@
 // returns whether this light has power
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
-	var/area/A = src.loc.loc
-	return A.master.lightswitch && A.master.power_light
+	var/area/A = get_area(src)
+	return A.lightswitch && A.power_light
 
 /obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	if(flickering)
@@ -516,11 +516,8 @@
 
 // called when area power state changes
 /obj/machinery/light/power_change()
-	spawn(10)
-		if(loc)
-			var/area/A = src.loc.loc
-			A = A.master
-			seton(A.lightswitch && A.power_light)
+	var/area/A = get_area(src)
+	seton(A.lightswitch && A.power_light)
 
 // called when on fire
 

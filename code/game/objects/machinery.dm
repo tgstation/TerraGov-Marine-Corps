@@ -24,17 +24,11 @@
 /obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src
-	var/area/A = get_area(src)
-	if(A)
-		A.area_machines += src
 
 
 /obj/machinery/Destroy()
 	GLOB.machines -= src
 	STOP_PROCESSING(SSmachines, src)
-	var/area/A = get_area(src)
-	if(A)
-		A.area_machines -= src
 	return ..()
 
 
@@ -119,23 +113,6 @@
 			qdel(src)
 
 
-//sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(new_use_power, force_update = FALSE)
-	if(new_use_power == use_power && !force_update)
-		return	//don't need to do anything
-
-	use_power = new_use_power
-
-	//force area power update
-	force_power_update()
-
-
-/obj/machinery/proc/force_power_update()
-	var/area/A = get_area(src)
-	if(A?.master)
-		A.master.powerupdate = 1
-
-
 /obj/machinery/proc/power_change()
 	if(!powered(power_channel) && machine_current_charge <= 0)
 		machine_stat |= NOPOWER
@@ -189,9 +166,6 @@
 	if((!in_range(src, usr) || !isturf(loc)) && !issilicon(usr))
 		return TRUE
 
-	var/area/A = get_area(src)
-	A.master.powerupdate = 1
-
 	return FALSE
 
 
@@ -236,9 +210,6 @@
 
 	if(!is_operational())
 		return TRUE
-
-	var/area/A = get_area(src)
-	A.master.powerupdate = 1
 
 	return FALSE
 

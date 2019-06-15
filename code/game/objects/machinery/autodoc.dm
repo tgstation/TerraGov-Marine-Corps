@@ -695,7 +695,6 @@
 			return
 		usr.stop_pulling()
 		usr.forceMove(src)
-		update_use_power(2)
 		occupant = usr
 		icon_state = "autodoc_closed"
 		var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
@@ -736,7 +735,6 @@
 		radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	surgery_todo_list = list()
-	update_use_power(1)
 	update_icon()
 	stop_processing()
 	connected.stop_processing()
@@ -823,7 +821,6 @@
 		return
 
 	M.forceMove(src)
-	update_use_power(2)
 	occupant = M
 	icon_state = "autodoc_closed"
 	var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
