@@ -332,7 +332,7 @@
 			M.mind.transfer_to(L, TRUE)
 			
 		L.mind.bypass_ff = TRUE
-		L.forceMove(picked)
+		INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
 		L.revive()
 
 		if(isxeno(L))
