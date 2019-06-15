@@ -238,6 +238,12 @@
 	icon_state = "wy3"
 	},
 /area/shuttle/ert/pmc)
+"Z" = (
+/obj/machinery/vending/attachments,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/ert/pmc)
 
 (1,1,1) = {"
 a
@@ -296,7 +302,7 @@ r
 l
 z
 z
-z
+Z
 R
 "}
 (5,1,1) = {"

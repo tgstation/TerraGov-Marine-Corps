@@ -194,6 +194,12 @@
 	icon_state = "stan3"
 	},
 /area/shuttle/ert)
+"N" = (
+/obj/machinery/vending/attachments,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/ert)
 
 (1,1,1) = {"
 a
@@ -252,7 +258,7 @@ r
 l
 z
 z
-z
+N
 J
 "}
 (5,1,1) = {"
