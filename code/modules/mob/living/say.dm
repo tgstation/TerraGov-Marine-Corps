@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	animate_speechbubble(I, speech_bubble_recipients, TYPING_INDICATOR_LIFETIME)
+	INVOKE_ASYNC(GLOBAL_PROC, /.proc/animate_speechbubble, I, speech_bubble_recipients, TYPING_INDICATOR_LIFETIME)
 
 
 /mob/living/GetVoice()
