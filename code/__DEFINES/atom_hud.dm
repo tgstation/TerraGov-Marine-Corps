@@ -2,25 +2,23 @@
 //The number is the location of the image on the list hud_list of humans.
 // /datum/atom_hud expects these to be unique
 // these need to be strings in order to make them associative lists
-#define HEALTH_HUD			"1" // a simple line rounding the mob's number health
-#define STATUS_HUD			"2" // alive, dead, diseased, etc.
-#define ID_HUD				"3" // the job asigned to your ID
-#define WANTED_HUD			"4" // wanted, released, parroled, security status
-#define IMPLOYAL_HUD		"5" // loyality implant
-#define IMPCHEM_HUD			"6" // chemical implant
-#define IMPTRACK_HUD		"7" // tracking implant
-#define SPECIALROLE_HUD 	"8" // AntagHUD image
-#define STATUS_HUD_OOC		"9" // STATUS_HUD without virus db check for someone being ill.
-#define STATUS_HUD_XENO_INFECTION		"10" // STATUS_HUD without virus db check for someone being ill.
-#define HEALTH_HUD_XENO		"11" //health HUD for xenos
-#define SQUAD_HUD			"12" //squad hud showing who's leader, corpsman, etc for each squad.
-#define PLASMA_HUD			"13" //indicates the plasma level of xenos.
-#define PHEROMONE_HUD		"14" //indicates which pheromone is active on a xeno.
-#define QUEEN_OVERWATCH_HUD	"15" //indicates which xeno the queen is overwatching.
-#define STATUS_HUD_OBSERVER_INFECTION "16" //gives observers the xeno larval stage
-#define ORDER_HUD "17" //shows what orders are applied to marines
-#define AI_DETECT_HUD "18"
-#define PAIN_HUD "19" //A HUD to display human pain.
+#define HEALTH_HUD					"health_hud" // a simple line rounding the mob's number health
+#define STATUS_HUD					"status_hud" // alive, dead, diseased, etc.
+#define ID_HUD						"id_hud" // the job asigned to your ID
+#define WANTED_HUD					"wanted_hud" // wanted, released, parroled, security status
+#define IMPLOYAL_HUD				"loyalty_implant_hud" // loyality implant
+#define IMPCHEM_HUD					"chemical_implant_hud" // chemical implant
+#define IMPTRACK_HUD				"tracking_implant_hud" // tracking implant
+#define SPECIALROLE_HUD				"antag_hud" // AntagHUD image
+#define XENO_EMBRYO_HUD				"xeno_embryo_hud" // xeno larval stage.
+#define HEALTH_HUD_XENO				"xeno_health_hud" //health HUD for xenos
+#define SQUAD_HUD					"squad_hud" //squad hud showing who's leader, corpsman, etc for each squad.
+#define PLASMA_HUD					"xeno_plasma_hud" //indicates the plasma level of xenos.
+#define PHEROMONE_HUD				"xeno_pheromone_hud" //indicates which pheromone is active on a xeno.
+#define QUEEN_OVERWATCH_HUD			"xeno_overwatch_hud" //indicates which xeno the queen is overwatching.
+#define ORDER_HUD					"human_order_hud" //shows what orders are applied to marines
+#define AI_DETECT_HUD				"ai_detect_hud" //hud for displaying the AI eye's location
+#define PAIN_HUD					"pain_hud" //displays human pain / preceived health.
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 
