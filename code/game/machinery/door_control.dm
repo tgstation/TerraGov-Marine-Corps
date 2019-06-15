@@ -103,7 +103,7 @@
 			handle_pod()
 
 	desiredstate = !desiredstate
-	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /obj/machinery/door_control/proc/unpress()
 	pressed = FALSE
