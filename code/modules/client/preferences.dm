@@ -118,11 +118,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 3 SECONDS)
 	
 
-/datum/preferences/proc/load_default_keybindings(client/C = usr)
+/datum/preferences/proc/load_default_keybindings()
 	to_chat(C, "Empty keybindings, setting defaults")
 
-	var/choice = tgalert(C, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "hotkey", "classic")
-	hotkeys = (choice == "hotkey")
+	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
+	hotkeys = (choice == "Hotkey")
 	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 	save_preferences()
 
@@ -992,11 +992,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=keybindings")
 
 		if("keybindings_reset")
-			var/choice = tgalert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "hotkey", "classic", "cancel")
-			if (choice == "cancel")
+			var/choice = tgalert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
+			if (choice == "Cancel")
 				ShowKeybindings(user)
 				return
-			hotkeys = (choice == "hotkey")
+			hotkeys = (choice == "Hotkey")
 			key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 			save_preferences()
 			ShowKeybindings(user)
