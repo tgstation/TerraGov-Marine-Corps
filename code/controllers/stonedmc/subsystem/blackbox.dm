@@ -42,7 +42,8 @@ SUBSYSTEM_DEF(blackbox)
 /datum/controller/subsystem/blackbox/proc/send_pr_stats()
 	var/bot_url = CONFIG_GET(string/github_pr_bot)
 	if(!bot_url)
-		return
+		stack_trace("Warning: `string/github_pr_bot` not set")
+		return FALSE
 
 	var/round_id = GLOB.round_id
 	var/datum/getrev/revdata = GLOB.revdata
@@ -57,3 +58,4 @@ SUBSYSTEM_DEF(blackbox)
 
 
 	world.Export("http://[bot_url]?roundId=[round_id]&commit=[revdata.commit]&prs=[prs.Join(",")]&totalRuntimes=[total_runtimes]&uniqueRuntimes=[unique_runtimes]")
+	return TRUE
