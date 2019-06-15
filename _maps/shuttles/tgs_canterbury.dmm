@@ -14,8 +14,7 @@
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/almayer{
 	dir = 9;
-	icon_state = "blue";
-	tag = "icon-blue"
+	icon_state = "blue"
 	},
 /area/shuttle/canterbury/cic)
 "ae" = (
@@ -38,8 +37,7 @@
 /obj/machinery/computer/card,
 /turf/open/floor/almayer{
 	dir = 5;
-	icon_state = "blue";
-	tag = "icon-blue"
+	icon_state = "blue"
 	},
 /area/shuttle/canterbury/cic)
 "ai" = (
@@ -48,13 +46,11 @@
 	},
 /turf/open/floor/almayer{
 	dir = 8;
-	icon_state = "blue";
-	tag = "icon-blue"
+	icon_state = "blue"
 	},
 /area/shuttle/canterbury/cic)
 "aj" = (
 /obj/structure/bed/chair/dropship/pilot{
-	tag = "icon-pilot_chair (NORTH)";
 	icon_state = "pilot_chair";
 	dir = 1
 	},
@@ -72,13 +68,11 @@
 	dir = 10
 	},
 /turf/open/floor/almayer{
-	tag = "icon-bluefull";
 	icon_state = "bluefull"
 	},
 /area/shuttle/canterbury/cic)
 "al" = (
 /obj/structure/bed/chair/dropship/pilot{
-	tag = "icon-pilot_chair (NORTH)";
 	icon_state = "pilot_chair";
 	dir = 1
 	},
@@ -95,8 +89,7 @@
 	},
 /turf/open/floor/almayer{
 	dir = 4;
-	icon_state = "blue";
-	tag = "icon-blue"
+	icon_state = "blue"
 	},
 /area/shuttle/canterbury/cic)
 "an" = (
@@ -125,7 +118,6 @@
 	dir = 1
 	},
 /turf/open/floor/almayer{
-	tag = "icon-redfull";
 	icon_state = "redfull"
 	},
 /area/shuttle/canterbury/cic)
@@ -174,8 +166,7 @@
 	},
 /turf/open/floor/almayer{
 	dir = 6;
-	icon_state = "blue";
-	tag = "icon-blue"
+	icon_state = "blue"
 	},
 /area/shuttle/canterbury/cic)
 "as" = (
@@ -208,7 +199,6 @@
 	dir = 1
 	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
@@ -281,7 +271,6 @@
 	on = 1
 	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
@@ -300,7 +289,6 @@
 	dir = 4
 	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/shuttle/canterbury/general)
@@ -346,7 +334,6 @@
 	dir = 4
 	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/shuttle/canterbury/general)
@@ -356,7 +343,6 @@
 	on = 1
 	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
@@ -365,7 +351,6 @@
 	dir = 4
 	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
@@ -388,7 +373,6 @@
 	},
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/almayer{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/shuttle/canterbury/general)
@@ -431,7 +415,6 @@
 	},
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/almayer{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/shuttle/canterbury/general)
@@ -440,7 +423,6 @@
 	dir = 8
 	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
@@ -451,7 +433,6 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
@@ -512,11 +493,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	tag = "icon-0-2";
 	icon_state = "0-2"
 	},
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -795,7 +774,6 @@
 "bx" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -883,7 +861,6 @@
 	dir = 8
 	},
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -974,7 +951,6 @@
 "bQ" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -983,7 +959,6 @@
 	pixel_y = 25
 	},
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -996,7 +971,6 @@
 /area/shuttle/canterbury/general)
 "bT" = (
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -1072,7 +1046,6 @@
 	dir = 8
 	},
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -1082,7 +1055,6 @@
 	},
 /obj/effect/landmark/start/marine/maintenancetech,
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -1144,8 +1116,7 @@
 	dir = 4
 	},
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "ck" = (
@@ -1158,8 +1129,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cl" = (
@@ -1177,8 +1147,7 @@
 	dir = 8
 	},
 /turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "cm" = (
@@ -1218,8 +1187,7 @@
 	stored_metal = 1000
 	},
 /turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "cs" = (
@@ -1228,8 +1196,7 @@
 	pixel_y = 13
 	},
 /turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "ct" = (
@@ -1239,8 +1206,7 @@
 "cu" = (
 /obj/machinery/autodoc,
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cv" = (
@@ -1253,15 +1219,13 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cw" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cx" = (
@@ -1287,7 +1251,6 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/open/floor/almayer{
-	tag = "icon-orangefull";
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
@@ -1354,22 +1317,19 @@
 	dir = 8
 	},
 /turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "cE" = (
 /obj/effect/landmark/start/marine/medicalofficer,
 /turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "cF" = (
 /obj/machinery/door/airlock/almayer/medical/glass,
 /turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "cG" = (
@@ -1378,8 +1338,7 @@
 	on = 1
 	},
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cH" = (
@@ -1395,8 +1354,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cI" = (
@@ -1487,8 +1445,7 @@
 	dir = 8
 	},
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cP" = (
@@ -1503,8 +1460,7 @@
 /obj/item/reagent_container/spray/cleaner,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "cQ" = (
@@ -1514,8 +1470,7 @@
 /obj/item/healthanalyzer,
 /obj/item/reagent_container/spray/cleaner,
 /turf/open/floor/almayer{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "cR" = (
@@ -1523,8 +1478,7 @@
 /obj/item/bedsheet/medical,
 /obj/machinery/light,
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cS" = (
@@ -1534,15 +1488,13 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cT" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/almayer{
-	icon_state = "sterile_green";
-	tag = "icon-sterile"
+	icon_state = "sterile_green"
 	},
 /area/shuttle/canterbury/medical)
 "cU" = (
@@ -1705,7 +1657,6 @@
 	id = "storage_podlock"
 	},
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
@@ -1844,7 +1795,7 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"Vq" = (
+"Wo" = (
 /turf/closed/wall/almayer,
 /area/shuttle/canterbury/medical)
 
@@ -1950,7 +1901,7 @@ ci
 ct
 cF
 ct
-Vq
+Wo
 de
 dC
 dn
@@ -2004,7 +1955,7 @@ ck
 cv
 cH
 cS
-Vq
+Wo
 dg
 as
 as
@@ -2031,7 +1982,7 @@ cl
 cw
 cO
 cT
-Vq
+Wo
 dh
 dv
 dE
@@ -2054,10 +2005,10 @@ dy
 bJ
 bV
 ce
-Vq
-Vq
+Wo
+Wo
 dt
-Vq
+Wo
 dm
 di
 df
