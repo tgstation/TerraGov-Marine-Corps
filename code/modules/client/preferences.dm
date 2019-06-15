@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 3 SECONDS)
 	
 
-/datum/preferences/proc/load_default_keybindings()
+/datum/preferences/proc/load_default_keybindings(client/C)
 	to_chat(C, "Empty keybindings, setting defaults")
 
 	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
