@@ -209,7 +209,7 @@
 	if(A)
 		on = FALSE
 //		A.update_lights()
-	SetLuminosity(0)
+	set_light(0)
 	. = ..()
 
 /obj/machinery/light/proc/is_broken()
@@ -248,13 +248,13 @@
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
 					on = FALSE
-					SetLuminosity(0)
+					set_light(0)
 			else
 				use_power = 2
-				SetLuminosity(brightness)
+				set_light(brightness)
 	else
 		use_power = 1
-		SetLuminosity(0)
+		set_light(0)
 
 	active_power_usage = (luminosity * 10)
 	if(on != on_gs)
@@ -681,7 +681,7 @@
 
 /obj/machinery/landinglight/proc/turn_off()
 	icon_state = "landingstripe"
-	SetLuminosity(0)
+	set_light(0)
 
 /obj/machinery/landinglight/ds1
 
@@ -699,28 +699,28 @@
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds1/delayone/turn_on()
 	icon_state = "landingstripe1"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds1/delaytwo/turn_on()
 	icon_state = "landingstripe2"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds1/delaythree/turn_on()
 	icon_state = "landingstripe3"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds2/delayone/turn_on()
 	icon_state = "landingstripe1"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds2/delaytwo/turn_on()
 	icon_state = "landingstripe2"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds2/delaythree/turn_on()
 	icon_state = "landingstripe3"
-	SetLuminosity(2)
+	set_light(2)

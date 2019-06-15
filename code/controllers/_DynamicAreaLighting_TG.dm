@@ -9,7 +9,7 @@
 	much less costly than using overlays or objects.
 
 	Unlike sd_DAL however it uses a queueing system. Everytime we call a change to opacity or luminosity
-	(through SetOpacity() or SetLuminosity()) we are  simply updating variables and scheduling certain lights/turfs for an
+	(through SetOpacity() or set_light()) we are  simply updating variables and scheduling certain lights/turfs for an
 	update. Actual updates are handled periodically by the lighting_controller. This carries additional overheads, however it
 	means that each thing is changed only once per lighting_controller.processing_interval ticks. Allowing for greater control
 	over how much priority we'd like lighting updates to have. It also makes it possible for us to simply delay updates by
@@ -175,7 +175,7 @@ atom/movable/Destroy()
 //If we are setting luminosity to 0 the light will be cleaned up by the controller and garbage collected once all its
 //queues are complete.
 //if we have a light already it is merely updated, rather than making a new one.
-atom/proc/SetLuminosity(new_luminosity, trueLum = FALSE)
+atom/proc/set_light(new_luminosity, trueLum = FALSE)
 	if(new_luminosity < 0)
 		new_luminosity = 0
 	if(!trueLum)
@@ -194,14 +194,14 @@ atom/proc/SetLuminosity(new_luminosity, trueLum = FALSE)
 
 atom/proc/AddLuminosity(delta_luminosity)
 	if(delta_luminosity > 0)
-		SetLuminosity(trueLuminosity + delta_luminosity*delta_luminosity, TRUE)
+		set_light(trueLuminosity + delta_luminosity*delta_luminosity, TRUE)
 	else if(delta_luminosity < 0)
-		SetLuminosity(trueLuminosity - delta_luminosity*delta_luminosity, TRUE)
+		set_light(trueLuminosity - delta_luminosity*delta_luminosity, TRUE)
 
 
 //This slightly modifies human luminosity. Source of light do NOT stack.
 //When you drop a light source it should keep a running total of your actual luminosity and set it accordingly.
-mob/SetLuminosity(new_luminosity, trueLum, reset)
+mob/set_light(new_luminosity, trueLum, reset)
 	//message_admins("MOB SET LUM DEBUG 1: luminosity_total: [luminosity_total] new_luminosity: [new_luminosity] length: [length(light_sources)]")
 	if(reset) //hard reset of the target's light sources; to be used sparingly
 		luminosity_total = 0
@@ -237,7 +237,7 @@ mob/SetLuminosity(new_luminosity, trueLum, reset)
 
 	return
 
-area/SetLuminosity(new_luminosity)			//we don't want dynamic lighting for areas
+area/set_light(new_luminosity)			//we don't want dynamic lighting for areas
 	luminosity = !!new_luminosity
 	trueLuminosity = luminosity
 

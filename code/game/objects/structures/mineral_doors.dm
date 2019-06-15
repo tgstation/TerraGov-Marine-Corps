@@ -176,7 +176,7 @@
 	luminosity = 2
 
 /obj/structure/mineral_door/uranium/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	. = ..()
 
 /obj/structure/mineral_door/sandstone

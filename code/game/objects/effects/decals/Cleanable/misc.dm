@@ -61,7 +61,7 @@
 	icon_state = "greenglow"
 
 /obj/effect/decal/cleanable/greenglow/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	. = ..()
 
 /obj/effect/decal/cleanable/cobweb

@@ -20,8 +20,8 @@
 		on = !on
 		icon_state = "rig[on]-[rig_color]"
 
-		if(on)	user.SetLuminosity(brightness_on)
-		else	user.SetLuminosity(-brightness_on)
+		if(on)	user.set_light(brightness_on)
+		else	user.set_light(-brightness_on)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -31,23 +31,23 @@
 
 	pickup(mob/user)
 		if(on)
-			user.SetLuminosity(brightness_on)
+			user.set_light(brightness_on)
 //			user.UpdateLuminosity()
-			SetLuminosity(0)
+			set_light(0)
 		..()
 
 	dropped(mob/user)
 		if(on)
-			user.SetLuminosity(-brightness_on)
+			user.set_light(-brightness_on)
 //			user.UpdateLuminosity()
-			SetLuminosity(brightness_on)
+			set_light(brightness_on)
 		..()
 
 	Destroy()
 		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
+			src.loc.set_light(-brightness_on)
 		else
-			SetLuminosity(0)
+			set_light(0)
 		. = ..()
 
 /obj/item/clothing/suit/space/rig

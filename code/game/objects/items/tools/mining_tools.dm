@@ -240,8 +240,8 @@
 		damtype = "brute"
 		heat = 0
 		if(user)
-			user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(0)
+			user.set_light(-LIGHTER_LUMINOSITY)
+		set_light(0)
 	else
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
@@ -249,22 +249,22 @@
 		damtype = "fire"
 		heat = 3800
 		if(user)
-			user.SetLuminosity(LIGHTER_LUMINOSITY)
-			SetLuminosity(0)
+			user.set_light(LIGHTER_LUMINOSITY)
+			set_light(0)
 		else
-			SetLuminosity(LIGHTER_LUMINOSITY)
+			set_light(LIGHTER_LUMINOSITY)
 
 
 /obj/item/tool/pickaxe/plasmacutter/pickup(mob/user)
 	if(powered && loc != user)
-		user.SetLuminosity(LIGHTER_LUMINOSITY)
-		SetLuminosity(0)
+		user.set_light(LIGHTER_LUMINOSITY)
+		set_light(0)
 	return ..()
 
 /obj/item/tool/pickaxe/plasmacutter/dropped(mob/user)
 	if(powered && loc != user)
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(LIGHTER_LUMINOSITY)
+		user.set_light(-LIGHTER_LUMINOSITY)
+		set_light(LIGHTER_LUMINOSITY)
 	return ..()
 
 
@@ -272,8 +272,8 @@
 	var/mob/user
 	if(ismob(loc))
 		user = loc
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-	SetLuminosity(0)
+		user.set_light(-LIGHTER_LUMINOSITY)
+	set_light(0)
 	return ..()
 
 /obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)

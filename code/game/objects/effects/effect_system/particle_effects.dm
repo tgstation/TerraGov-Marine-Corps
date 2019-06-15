@@ -22,7 +22,7 @@
 	extinguish()
 
 	setDir(pick(GLOB.cardinals))
-	SetLuminosity(3)
+	set_light(3)
 
 	for(var/mob/living/L in loc)//Mobs
 		L.fire_act()
@@ -36,7 +36,7 @@
 /obj/effect/particle_effect/fire/proc/extinguish()
 	spawn(life * 10)
 		if (istype(loc, /turf))
-			SetLuminosity(0)
+			set_light(0)
 		qdel(src)
 
 /obj/effect/particle_effect/fire/Crossed(mob/living/L)

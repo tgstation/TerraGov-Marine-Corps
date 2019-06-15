@@ -66,8 +66,8 @@
 
 /obj/item/clothing/suit/storage/marine/pickup(mob/user)
 	if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
-		user.SetLuminosity(brightness_on)
-		SetLuminosity(0)
+		user.set_light(brightness_on)
+		set_light(0)
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/dropped(mob/user)
@@ -77,7 +77,7 @@
 
 /obj/item/clothing/suit/storage/marine/proc/turn_off_light(mob/wearer)
 	if(flags_marine_armor & ARMOR_LAMP_ON)
-		SetLuminosity(0)
+		set_light(0)
 		toggle_armor_light(wearer) //turn the light off
 		return TRUE
 	return FALSE
@@ -85,8 +85,8 @@
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(ismob(loc))
 		var/mob/user = loc
-		user.SetLuminosity(-brightness_on)
-	SetLuminosity(0)
+		user.set_light(-brightness_on)
+	set_light(0)
 	if(pockets)
 		qdel(pockets)
 	return ..()
@@ -117,14 +117,14 @@
 	flashlight_cooldown = world.time + 2 SECONDS //2 seconds cooldown every time the light is toggled
 	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
 		if(user)
-			user.SetLuminosity(-brightness_on)
+			user.set_light(-brightness_on)
 		else
-			SetLuminosity(0)
+			set_light(0)
 	else //Turn it on.
 		if(user)
-			user.SetLuminosity(brightness_on)
+			user.set_light(brightness_on)
 		else
-			SetLuminosity(brightness_on)
+			set_light(brightness_on)
 	flags_marine_armor ^= ARMOR_LAMP_ON
 	playsound(src,'sound/items/flashlight.ogg', 15, 1)
 	update_icon(user)
@@ -775,22 +775,22 @@
 
 /obj/item/clothing/suit/storage/faction/pickup(mob/user)
 	if(flags_faction_armor & ARMOR_LAMP_ON && src.loc != user)
-		user.SetLuminosity(brightness_on)
-		SetLuminosity(0)
+		user.set_light(brightness_on)
+		set_light(0)
 	..()
 
 /obj/item/clothing/suit/storage/faction/dropped(mob/user)
 	if(flags_faction_armor & ARMOR_LAMP_ON && src.loc != user)
-		user.SetLuminosity(-brightness_on)
-		SetLuminosity(brightness_on)
+		user.set_light(-brightness_on)
+		set_light(brightness_on)
 		toggle_armor_light() //turn the light off
 	..()
 
 /obj/item/clothing/suit/storage/faction/Destroy()
 	if(ismob(src.loc))
-		src.loc.SetLuminosity(-brightness_on)
+		src.loc.set_light(-brightness_on)
 	else
-		SetLuminosity(0)
+		set_light(0)
 	. = ..()
 
 /obj/item/clothing/suit/storage/faction/attack_self(mob/user)
@@ -816,11 +816,11 @@
 /obj/item/clothing/suit/storage/faction/proc/toggle_armor_light(mob/user)
 	flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
 	if(flags_faction_armor & ARMOR_LAMP_ON) //Turn it off.
-		if(user) user.SetLuminosity(-brightness_on)
-		else SetLuminosity(0)
+		if(user) user.set_light(-brightness_on)
+		else set_light(0)
 	else //Turn it on.
-		if(user) user.SetLuminosity(brightness_on)
-		else SetLuminosity(brightness_on)
+		if(user) user.set_light(brightness_on)
+		else set_light(brightness_on)
 
 	flags_faction_armor ^= ARMOR_LAMP_ON
 

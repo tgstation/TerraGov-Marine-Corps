@@ -141,9 +141,9 @@
 	if(.)
 		var/fire_light = min(fire_stacks,5)
 		if(fire_light > fire_luminosity) // light up xenos if new light source greater than
-			SetLuminosity(-fire_luminosity) //Remove old fire_luminosity
+			set_light(-fire_luminosity) //Remove old fire_luminosity
 			fire_luminosity = fire_light
-			SetLuminosity(fire_luminosity) //Add new fire luminosity
+			set_light(fire_luminosity) //Add new fire luminosity
 		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 		if(istype(F))
@@ -161,7 +161,7 @@
 
 /mob/living/carbon/xenomorph/ExtinguishMob()
 	. = ..()
-	SetLuminosity(-fire_luminosity) //Reset lighting
+	set_light(-fire_luminosity) //Reset lighting
 
 /mob/living/proc/update_fire()
 	return

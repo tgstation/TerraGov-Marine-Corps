@@ -88,7 +88,7 @@
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc.coord = null
 		source_binoc = null
-	SetLuminosity(0)
+	set_light(0)
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target
@@ -127,7 +127,7 @@
 	if(linked_cam)
 		qdel(linked_cam)
 		linked_cam = null
-	SetLuminosity(0)
+	set_light(0)
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
@@ -150,7 +150,7 @@
 	icon_state = "laser_target3"
 
 /obj/effect/overlay/temp/blinking_laser/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	. = ..()
 
 /obj/effect/overlay/temp/sniper_laser
@@ -161,7 +161,7 @@
 	icon_state = "sniper_laser"
 
 /obj/effect/overlay/temp/blinking_laser/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	return ..()
 
 /obj/effect/overlay/temp/emp_sparks
@@ -191,7 +191,7 @@
 	effect_duration = 20
 
 /obj/effect/overlay/temp/tank_laser/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	return ..()
 
 

@@ -432,14 +432,14 @@
 	// Update bioluminescence.
 	if(seed)
 		if(seed.biolum)
-			SetLuminosity(round(seed.potency/10))
+			set_light(round(seed.potency/10))
 			if(seed.biolum_colour)
 				l_color = seed.biolum_colour
 			else
 				l_color = null
 			return
 
-	SetLuminosity(0)
+	set_light(0)
 	return
 
  // If a weed growth is sufficient, this proc is called.

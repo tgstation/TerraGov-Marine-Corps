@@ -453,12 +453,12 @@
 	if(switch_on && !is_lit)
 		if(damaged || !anchored || !fswitch.turned_on)
 			return
-		SetLuminosity(lum_value)
+		set_light(lum_value)
 		fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
 		is_lit = TRUE
 		update_icon()
 	else if(!switch_on && is_lit)
-		SetLuminosity(0)
+		set_light(0)
 		fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
 		is_lit = FALSE
 		update_icon()

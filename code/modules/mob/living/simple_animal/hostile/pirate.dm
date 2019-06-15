@@ -46,7 +46,7 @@
 
 /mob/living/simple_animal/hostile/pirate/melee/Initialize()
 	. = ..()
-	SetLuminosity(2)
+	set_light(2)
 
 
 /mob/living/simple_animal/hostile/pirate/ranged

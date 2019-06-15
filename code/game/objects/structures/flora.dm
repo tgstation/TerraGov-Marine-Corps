@@ -92,7 +92,7 @@
 /obj/structure/flora/tree/flamer_fire_act()
 	if(on_fire == FALSE)
 		on_fire = TRUE
-		SetLuminosity(5)
+		set_light(5)
 	START_PROCESSING(SSobj, src)
 	update_icon()
 

@@ -19,7 +19,7 @@
 	cell = new /obj/item/cell(src)
 
 /obj/machinery/floodlight/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	return ..()
 
 /obj/machinery/floodlight/proc/updateicon()
@@ -32,7 +32,7 @@
 		else
 			on = 0
 			updateicon()
-			SetLuminosity(0)
+			set_light(0)
 			src.visible_message("<span class='warning'>[src] shuts down due to lack of power!</span>")
 			return
 */
@@ -57,7 +57,7 @@
 	if(on)
 		on = 0
 		to_chat(user, "<span class='notice'>You turn off the light.</span>")
-		SetLuminosity(0)
+		set_light(0)
 		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 	else
 		if(!cell)
@@ -66,7 +66,7 @@
 			return
 		on = 1
 		to_chat(user, "<span class='notice'>You turn on the light.</span>")
-		SetLuminosity(brightness_on)
+		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 
 	updateicon()

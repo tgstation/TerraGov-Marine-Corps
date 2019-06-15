@@ -21,7 +21,7 @@
 		return
 	anchored = FALSE
 	icon_state = "lightstick_[s_color][anchored]"
-	SetLuminosity(0)
+	set_light(0)
 
 	//Removing from turf
 /obj/item/lightstick/attack_hand(mob/user)
@@ -38,12 +38,12 @@
 	anchored = FALSE
 	user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
 	icon_state = "lightstick_[s_color][anchored]"
-	SetLuminosity(0)
+	set_light(0)
 	playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 	//Remove lightsource
 /obj/item/lightstick/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	return ..()
 
 /obj/item/lightstick/anchored

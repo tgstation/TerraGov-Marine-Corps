@@ -172,14 +172,14 @@
 
 	// Update bioluminescence.
 	if(seed.biolum)
-		SetLuminosity(1+round(seed.potency/10))
+		set_light(1+round(seed.potency/10))
 		if(seed.biolum_colour)
 			l_color = seed.biolum_colour
 		else
 			l_color = null
 		return
 	else
-		SetLuminosity(0)
+		set_light(0)
 
 	// Update flower/product overlay.
 	overlays.Cut()

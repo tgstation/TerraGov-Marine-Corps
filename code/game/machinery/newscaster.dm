@@ -111,7 +111,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 	Destroy()
 		allCasters -= src
-		SetLuminosity(0)
+		set_light(0)
 		. = ..()
 
 /obj/machinery/newscaster/update_icon()

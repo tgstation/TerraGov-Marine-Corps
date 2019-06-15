@@ -157,8 +157,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(!bearer && ismob(loc))
 		bearer = loc
 	if(flags_gun_features & GUN_FLASHLIGHT_ON && bearer)
-		bearer.SetLuminosity( rail.light_mod * -1 )
-		SetLuminosity(rail.light_mod)
+		bearer.set_light( rail.light_mod * -1 )
+		set_light(rail.light_mod)
 		return TRUE
 	return FALSE
 
@@ -167,8 +167,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	..()
 
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)
-		user.SetLuminosity(rail.light_mod)
-		SetLuminosity(0)
+		user.set_light(rail.light_mod)
+		set_light(0)
 
 	unwield(user)
 

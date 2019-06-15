@@ -17,12 +17,12 @@
 	if(machine_stat)
 		return FALSE
 	on = TRUE
-	SetLuminosity(initial(luminosity))
+	set_light(initial(luminosity))
 	return TRUE
 
 /obj/machinery/bot/proc/turn_off()
 	on = FALSE
-	SetLuminosity(0)
+	set_light(0)
 
 /obj/machinery/bot/proc/explode()
 	qdel(src)
@@ -32,7 +32,7 @@
 		explode()
 
 /obj/machinery/bot/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	. = ..()
 
 /obj/machinery/bot/proc/Emag(mob/user as mob)

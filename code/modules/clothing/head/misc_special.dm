@@ -135,28 +135,28 @@
 		on = !on
 		icon_state = "hardhat[on]_pumpkin"
 
-		if(on)	user.SetLuminosity(brightness_on)
-		else	user.SetLuminosity(-brightness_on)
+		if(on)	user.set_light(brightness_on)
+		else	user.set_light(-brightness_on)
 
 	pickup(mob/user)
 		..()
 		if(on)
-			user.SetLuminosity(brightness_on)
+			user.set_light(brightness_on)
 //			user.UpdateLuminosity()
-			SetLuminosity(0)
+			set_light(0)
 
 	dropped(mob/user)
 		..()
 		if(on)
-			user.SetLuminosity(-brightness_on)
+			user.set_light(-brightness_on)
 //			user.UpdateLuminosity()
-			SetLuminosity(brightness_on)
+			set_light(brightness_on)
 
 	Destroy()
 		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
+			src.loc.set_light(-brightness_on)
 		else
-			SetLuminosity(0)
+			set_light(0)
 		. = ..()
 /*
  * Kitty ears

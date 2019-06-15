@@ -18,15 +18,15 @@
 	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		SetLuminosity(brightness_on)
+		set_light(brightness_on)
 	else
 		icon_state = initial(icon_state)
-		SetLuminosity(0)
+		set_light(0)
 
 /obj/item/flashlight/Destroy()
 	if(ismob(src.loc))
-		loc.SetLuminosity(-brightness_on)
-	SetLuminosity(0)
+		loc.set_light(-brightness_on)
+	set_light(0)
 	. = ..()
 
 
@@ -36,15 +36,15 @@
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		if(loc && loc == user)
-			user.SetLuminosity(brightness_on)
+			user.set_light(brightness_on)
 		else if(isturf(loc))
-			SetLuminosity(brightness_on)
+			set_light(brightness_on)
 	else
 		icon_state = initial(icon_state)
 		if(loc && loc == user)
-			user.SetLuminosity(-brightness_on)
+			user.set_light(-brightness_on)
 		else if(isturf(loc))
-			SetLuminosity(0)
+			set_light(0)
 
 /obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -123,15 +123,15 @@
 
 /obj/item/flashlight/pickup(mob/user)
 	if(on && loc != user)
-		user.SetLuminosity(brightness_on)
-		SetLuminosity(0)
+		user.set_light(brightness_on)
+		set_light(0)
 	..()
 
 
 /obj/item/flashlight/dropped(mob/user)
 	if(on && loc != user)
-		user.SetLuminosity(-brightness_on)
-		SetLuminosity(brightness_on)
+		user.set_light(-brightness_on)
+		set_light(brightness_on)
 	..()
 
 /obj/item/flashlight/pen
@@ -279,7 +279,7 @@
 	raillight_compatible = FALSE
 
 /obj/item/flashlight/slime/New()
-	SetLuminosity(brightness_on)
+	set_light(brightness_on)
 	spawn(1) //Might be sloppy, but seems to be necessary to prevent further runtimes and make these work as intended... don't judge me!
 		update_brightness()
 		icon_state = initial(icon_state)

@@ -476,11 +476,11 @@
 		to_chat(user, "<span class='warning'>[src] is busy.</span>")
 		return //prevents spamming deployment/undeployment
 	if(luminosity != brightness)
-		SetLuminosity(brightness)
+		set_light(brightness)
 		icon_state = "spotlights_on"
 		to_chat(user, "<span class='notice'>You turn on [src].</span>")
 	else
-		SetLuminosity(0)
+		set_light(0)
 		icon_state = "spotlights_off"
 		to_chat(user, "<span class='notice'>You turn off [src].</span>")
 	spotlights_cooldown = world.time + 50
@@ -495,13 +495,13 @@
 	else
 		icon_state = "spotlights"
 		if(luminosity)
-			SetLuminosity(0)
+			set_light(0)
 
 /obj/structure/dropship_equipment/electronics/spotlights/on_launch()
-	SetLuminosity(0)
+	set_light(0)
 
 /obj/structure/dropship_equipment/electronics/spotlights/on_arrival()
-	SetLuminosity(brightness)
+	set_light(brightness)
 
 #undef LIGHTING_MAX_LUMINOSITY_SHIPLIGHTS
 

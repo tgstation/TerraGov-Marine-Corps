@@ -32,7 +32,7 @@
 /obj/item/weapon/gun/flare/load_into_chamber()
 	if(num_flares)
 		in_chamber = create_bullet(ammo)
-		in_chamber.SetLuminosity(4)
+		in_chamber.set_light(4)
 		num_flares--
 		return in_chamber
 

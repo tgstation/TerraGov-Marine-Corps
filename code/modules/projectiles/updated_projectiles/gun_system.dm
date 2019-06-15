@@ -165,8 +165,8 @@
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
 		flags_gun_features &= ~GUN_FLASHLIGHT_ON
 		if(ismob(loc))
-			loc.SetLuminosity(-(rail.light_mod) )
-		SetLuminosity(0)
+			loc.set_light(-(rail.light_mod) )
+		set_light(0)
 	rail 			= null
 	under 			= null
 	stock 			= null
@@ -1118,9 +1118,9 @@ and you're good to go.
 		return
 
 	if(user.luminosity <= muzzle_flash_lum)
-		user.SetLuminosity(muzzle_flash_lum)
+		user.set_light(muzzle_flash_lum)
 		spawn(10)
-			user.SetLuminosity(-muzzle_flash_lum)
+			user.set_light(-muzzle_flash_lum)
 
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1

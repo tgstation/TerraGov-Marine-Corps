@@ -79,7 +79,7 @@
 
 
 /obj/effect/rune/attunement/Destroy()
-	SetLuminosity(0)
+	set_light(0)
 	return ..()
 
 
