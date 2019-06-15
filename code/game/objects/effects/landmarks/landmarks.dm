@@ -134,11 +134,3 @@
 /obj/effect/landmark/distress
 
 /obj/effect/landmark/distress_item
-
-/obj/effect/landmark/prisonwarp
-	icon_state = "prisonwarp"
-
-/obj/effect/landmark/prisonwarp/Initialize()
-	. = ..()
-	GLOB.prisonwarp += loc
-	return INITIALIZE_HINT_QDEL
