@@ -65,14 +65,9 @@
 	update_canmove()
 
 	//Deal with devoured things and people
-	if(length(stomach_contents))
-		for(var/mob/living/L in stomach_contents)
-			if(world.time > devour_timer && ishuman(L) && !is_ventcrawling)
-				stomach_contents.Remove(L)
-				if(L.loc != src)
-					continue
-				L.forceMove(loc)
-				L.SetKnockeddown(1)
+	if(length(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
+		empty_gut()
+
 	return TRUE
 
 
