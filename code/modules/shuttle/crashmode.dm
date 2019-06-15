@@ -15,4 +15,4 @@
 
 /obj/docking_port/stationary/crashmode/loading
     id = "crashmodeloading"
-    roundstart_template = /datum/template/shuttle/crashmode
+    roundstart_template = /datum/map_template/shuttle/tgs_canterbury
