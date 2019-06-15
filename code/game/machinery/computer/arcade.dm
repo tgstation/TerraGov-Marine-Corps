@@ -76,7 +76,8 @@
 
 
 /obj/machinery/computer/arcade/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if (!src.blocked && !src.gameover)

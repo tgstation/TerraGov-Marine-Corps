@@ -192,6 +192,9 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/queen/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["watch_xeno_number"])
 		if(!check_state())
 			return
@@ -208,7 +211,6 @@
 				set_queen_overwatch(X)
 			break
 		return
-	..()
 
 // ***************************************
 // *********** Death

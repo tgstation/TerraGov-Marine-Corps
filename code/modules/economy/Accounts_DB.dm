@@ -116,8 +116,3 @@
 		ui = new(user, src, ui_key, "accounts_terminal.tmpl", src.name, 400, 640)
 		ui.set_initial_data(data)
 		ui.open()
-
-/obj/machinery/account_database/Topic(href, href_list)
-	if(..())
-		return 1
-	return 1

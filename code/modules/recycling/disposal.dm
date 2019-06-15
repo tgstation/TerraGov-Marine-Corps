@@ -228,6 +228,9 @@
 
 //Handle machine interaction
 /obj/machinery/disposal/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr.loc == src)
 		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
 		return
@@ -235,7 +238,6 @@
 	if(mode == -1 && !href_list["eject"]) // only allow ejecting if mode is -1
 		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
 		return
-	..()
 	if(machine_stat & BROKEN)
 		return
 	if(usr.stat || usr.restrained() || flushing)

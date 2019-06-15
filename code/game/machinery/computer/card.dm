@@ -153,8 +153,9 @@
 		ui.open()
 
 /obj/machinery/computer/card/Topic(href, href_list)
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	switch(href_list["choice"])
 		if ("modify")

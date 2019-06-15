@@ -173,7 +173,8 @@
 
 /obj/machinery/Topic(href, href_list)
 	. = ..()
-
+	if(.)
+		return
 	if(!is_operational())
 		return TRUE
 

@@ -139,7 +139,8 @@
 
 
 /obj/machinery/computer/med_data/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if (!( GLOB.datacore.general.Find(src.active1) ))

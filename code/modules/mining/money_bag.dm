@@ -64,7 +64,8 @@
 		to_chat(user, "<span class='notice'>You empty the [C.name] into the bag.</span>")
 
 /obj/item/moneybag/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	if(href_list["remove"])

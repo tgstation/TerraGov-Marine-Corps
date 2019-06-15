@@ -88,7 +88,9 @@
 
 
 /obj/machinery/power/monitor/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if( href_list["close"] )
 		usr << browse(null, "window=powcomp")
 		usr.unset_interaction()

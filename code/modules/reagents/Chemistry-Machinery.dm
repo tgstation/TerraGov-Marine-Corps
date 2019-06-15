@@ -121,6 +121,9 @@
 		ui.open()
 
 /obj/machinery/chem_dispenser/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE // don't update UIs attached to this object
 
@@ -306,6 +309,9 @@
 				source.reagents.trans_id_to(dest, reagent_id, amount)
 
 /obj/machinery/chem_master/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!ishuman(usr))
@@ -804,7 +810,8 @@
 
 
 /obj/machinery/reagentgrinder/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	switch(href_list["action"])

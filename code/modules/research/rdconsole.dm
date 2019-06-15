@@ -166,7 +166,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	updateUsrDialog()
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

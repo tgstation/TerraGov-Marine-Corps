@@ -121,6 +121,9 @@ FLOOR SAFES
 	onclose(user, "safe")
 
 /obj/structure/safe/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(usr))	return
 	var/mob/living/carbon/human/user = usr
 

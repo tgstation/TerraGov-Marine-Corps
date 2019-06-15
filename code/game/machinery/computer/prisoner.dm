@@ -71,7 +71,8 @@
 
 
 /obj/machinery/computer/prisoner/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)

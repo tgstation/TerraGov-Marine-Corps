@@ -209,6 +209,8 @@
 
 /obj/item/assembly/infra/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(!usr.canUseTopic(src, TRUE))
 		usr << browse(null, "window=infra")
 		onclose(usr, "infra")

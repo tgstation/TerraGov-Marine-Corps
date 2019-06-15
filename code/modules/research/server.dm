@@ -179,7 +179,8 @@
 	var/badmin = 0
 
 /obj/machinery/computer/rdservercontrol/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

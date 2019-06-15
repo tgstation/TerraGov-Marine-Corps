@@ -74,6 +74,9 @@
 	return
 
 /obj/structure/filingcabinet/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["retrieve"])
 		usr << browse("", "window=filingcabinet") // Close the menu
 

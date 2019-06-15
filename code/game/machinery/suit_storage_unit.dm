@@ -125,7 +125,8 @@
 
 
 /obj/machinery/suit_storage_unit/Topic(href, href_list) //I fucking HATE this proc
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if (Adjacent(usr))
 		usr.set_interaction(src)

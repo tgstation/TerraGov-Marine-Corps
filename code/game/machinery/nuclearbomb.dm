@@ -237,7 +237,9 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 
 /obj/machinery/nuclearbomb/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if (!usr.canmove || usr.stat || usr.restrained())
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))

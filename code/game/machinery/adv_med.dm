@@ -251,7 +251,8 @@
 
 
 /obj/machinery/body_scanconsole/Topic(href, href_list)
-	if (..())
+	. = ..()
+	if(.)
 		return
 
 	if (href_list["print"])

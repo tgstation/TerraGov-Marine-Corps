@@ -630,4 +630,6 @@ Proc for attack log creation, because really why not
 
 /atom/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	add_fingerprint(usr, "topic")

@@ -510,7 +510,9 @@
 
 //Interface for the B18
 /obj/item/clothing/suit/storage/marine/specialist/Topic(href, href_list)
-	//..()
+	. = ..()
+	if(.)
+		return
 	if(usr.incapacitated() || usr != wearer || !usr.IsAdvancedToolUser())
 		return
 	if(usr.contents.Find(src) )

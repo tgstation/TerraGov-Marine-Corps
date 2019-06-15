@@ -117,6 +117,9 @@
 	return FALSE
 
 /mob/living/carbon/monkey/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_interaction()

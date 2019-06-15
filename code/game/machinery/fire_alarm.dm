@@ -205,7 +205,9 @@ FIRE ALARM
 
 
 /obj/machinery/firealarm/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if (usr.stat || machine_stat & (BROKEN|NOPOWER))
 		return
 

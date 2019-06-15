@@ -93,7 +93,8 @@
 	status = ""
 
 /obj/machinery/computer/area_atmos/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 

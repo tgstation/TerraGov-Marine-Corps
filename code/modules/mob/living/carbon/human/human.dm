@@ -378,6 +378,9 @@
 
 
 /mob/living/carbon/human/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)

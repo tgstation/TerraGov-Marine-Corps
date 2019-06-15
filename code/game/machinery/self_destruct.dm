@@ -49,7 +49,7 @@
 /obj/machinery/self_destruct/console/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return TRUE
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	switch(href_list["command"])

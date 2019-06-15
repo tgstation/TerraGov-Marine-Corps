@@ -139,7 +139,8 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 		..(signal)
 
 /obj/machinery/computer/general_air_control/large_tank_control/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["adj_pressure"])
@@ -254,7 +255,8 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 		..(signal)
 
 /obj/machinery/computer/general_air_control/supermatter_core/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["adj_pressure"])
@@ -382,7 +384,8 @@ Rate: [volume_rate] L/sec<BR>"}
 		..(signal)
 
 /obj/machinery/computer/general_air_control/fuel_injection/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["refresh_status"])

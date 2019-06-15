@@ -59,7 +59,8 @@
 
 
 /obj/machinery/computer/emails/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["open_inbox"])

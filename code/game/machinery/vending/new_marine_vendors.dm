@@ -148,6 +148,9 @@
 
 
 /obj/machinery/marine_selector/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.incapacitated())
