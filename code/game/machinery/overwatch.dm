@@ -62,6 +62,13 @@
 	return FALSE
 
 
+/obj/machinery/computer/camera_advanced/overwatch/CreateEye()
+	. = ..()
+	eyeobj.visible_icon = TRUE
+	eyeobj.icon = 'icons/mob/cameramob.dmi'
+	eyeobj.icon_state = "generic_camera"
+
+
 /obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/user)
 	. = ..()
 	if(.)
