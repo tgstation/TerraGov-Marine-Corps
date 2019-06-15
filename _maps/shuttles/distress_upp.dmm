@@ -210,8 +210,18 @@
 	icon_state = "upp3"
 	},
 /area/shuttle/ert/upp)
-"R" = (
-/obj/machinery/vending/attachments,
+"U" = (
+/obj/structure/closet/crate,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/bayonet,
+/obj/item/attachable/reddot,
+/obj/item/attachable/reddot,
+/obj/item/attachable/reddot,
+/obj/item/attachable/reddot,
+/obj/item/attachable/reddot,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin3"
 	},
@@ -274,7 +284,7 @@ r
 l
 z
 z
-R
+U
 L
 "}
 (5,1,1) = {"
