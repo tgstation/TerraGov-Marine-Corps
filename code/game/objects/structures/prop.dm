@@ -229,3 +229,13 @@
 
 /obj/structure/prop/almayer/cannon_cable_connector/bullet_act()
 	return
+
+// AI Core Props
+
+///obj/structure/prop/almayer/aicore
+
+/obj/structure/prop/almayer/aicore/blackbox
+	name = "\improper blackbox recorder"
+	desc = "A large, shock-resistant tape recorder."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "blackbox"
