@@ -976,6 +976,8 @@
 	lastused_light = area.usage(LIGHT)
 	lastused_equip = area.usage(EQUIP)
 	lastused_environ = area.usage(ENVIRON)
+	area.clear_usage()
+
 	lastused_total = lastused_light + lastused_equip + lastused_environ
 
 	//store states to update icon if any change
