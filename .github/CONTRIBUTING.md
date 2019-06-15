@@ -2,45 +2,47 @@
 
 ## Reporting Issues
 
-See [this page](http://tgstation13.org/wiki/Reporting_Issues) for a guide and format to issue reports.
+See [this page](https://github.com/tgstation/TerraGov-Marine-Corps/issues/new?template=bug_report.md) for a guide and format to issue reports.
 
 ## Introduction
 
-Hello and welcome to /tg/station's TGMC contributing page. You are here because you are curious or interested in contributing - thank you! Everyone is free to contribute to this project as long as they follow the simple guidelines and specifications below; at /tg/station, we strive to maintain code stability and maintainability, and to do that, we need all pull requests to hold up to those specifications. It's in everyone's best interests - including yours! - if the same bug doesn't have to be fixed twice because of duplicated code.
+Hello and welcome to the TGMC contributing page. You are here because you are curious or interested in contributing - thank you! Everyone is free to contribute to this project as long as they follow the simple guidelines and specifications below. We strive to maintain long-term code stability and maintainability, and to do that, we need all pull requests to hold up to those specifications. It's in everyone's best interests - including yours! - if the same bug doesn't have to be fixed twice because of duplicated code.
 
-First things first, we want to make it clear how you can contribute (if you've never contributed before), as well as the kinds of powers the team has over your additions, to avoid any unpleasant surprises if your pull request is closed for a reason you didn't foresee.
+First things first, we want to make it clear how you can contribute (if you've never contributed before), as well as what the structure of the team and the processes are, to avoid any unpleasant surprises if your pull request is closed for a reason you didn't foresee.
 
 ## Getting Started
 
-/tg/station doesn't have a list of goals and features to add; we instead allow freedom for contributors to suggest and create their ideas for the game. That doesn't mean we aren't determined to squash bugs, which unfortunately pop up a lot due to the deep complexity of the game. Here are some useful starting guides, if you want to contribute or if you want to know what challenges you can tackle with zero knowledge about the game's code structure.
+We don't have a strict list of goals and features to add; we instead allow freedom for contributors to suggest and create their ideas for the game. That doesn't mean we aren't determined to squash bugs, which unfortunately pop up a lot due to the deep complexity of the game. Here are some useful starting guides, if you want to contribute or if you want to know what challenges you can tackle with zero knowledge about the game's code structure.
 
-If you want to contribute the first thing you'll need to do is [set up Git](http://tgstation13.org/wiki/Setting_up_git) so you can download the source code.
+If you'd still like some guidance to see which features are appreciated, check the thread [here](https://tgstation13.org/phpBB/viewtopic.php?f=65&t=20487).
 
-We have a [list of guides on the wiki](http://www.tgstation13.org/wiki/index.php/Guides#Development_and_Contribution_Guides) that will help you get started contributing to /tg/station with Git and Dream Maker. For beginners, it is recommended you work on small projects like bugfixes at first. If you need help learning to program in BYOND, check out this [repository of resources](http://www.byond.com/developer/articles/resources).
+If you want to contribute the first thing you'll need to do is set up Git and clone the repository. Check out [this](https://tgstation13.org/wiki/TGMC:Guide_to_contributing) helpful guide.
 
-You can of course, as always, ask for help at TGMC coding channel on /tg/station official discord (https://discord.tgstation13.org/). We're just here to have fun and help out, so please don't expect professional support.
+We have a [list of guides on the wiki](http://www.tgstation13.org/wiki/index.php/Guides#Development_and_Contribution_Guides) that will help you get started contributing to this codebase with Git and Dream Maker. For beginners, it is recommended you work on small projects like bugfixes at first. If you need help learning to program in BYOND, check out this [repository of resources](http://www.byond.com/developer/articles/resources).
+
+You can of course, as always, ask for help at #coding channel on our [Discord](https://discord.gg/2dFpfNE). We're just here to have fun and help out, so please don't expect professional support. If you're eager to learn we'll gladly hold your hand during the first steps.
 
 ## Meet the Team
 
 **Design Lead**
 
-The Design Lead has the final say on what gameplay changes get into and out of the game. He or she has full veto power on any feature or balance additions, changes, or removals, and establishes a general, personally-preferred direction for the game.
+The Design Lead has the final say on what gameplay changes get into and out of the game. He or she has full veto power on any feature or balance additions, changes, or removals, and establishes a general, personally-preferred direction for the game. They can also appoint maintainers.
 
 **Headcoder**
 
-The Headcoder is responsible for controlling, adding, and removing maintainers from the project. In addition to filling the role of a normal maintainer, they have sole authority on who becomes a maintainer, as well as who remains a maintainer and who does not.
+The Headcoder is responsible for overall quality of the code and has the veto power here. In addition they are also able to appoint maintainers.
 
 **Art Director**
 
-The Art Director controls sprites and aesthetic that get into the game. While sprites for brand-new additions are generally accepted regardless of quality, modified current art assets fall to the Art Director, who can decide whether or not a sprite tweak is both merited and a suitable replacement.
+The Art Director controls sprites and aesthetic that get into the game. While sprites for brand-new additions are generally accepted without harsh standards, modified current art assets fall to the Art Director, who can decide whether or not a sprite tweak is both merited and a suitable replacement.
 
 They also control the general "perspective" of the game - how sprites should generally look, especially the angle from which they're viewed. An example of this is the [3/4 perspective](http://static.tvtropes.org/pmwiki/pub/images/kakarikovillage.gif), which is a bird's eye view from above the object being viewed.
 
 **Maintainers**
 
-Maintainers are quality control. If a proposed pull request doesn't meet the following specifications, they can request you to change it, or simply just close the pull request. Maintainers are required to give a reason for closing the pull request.
+Maintainers are the quality control. If a proposed pull request doesn't meet the following specifications, they can request a change, and if a proper reason is not provided or the request becomes stale, they may close it. Maintainers are required to give a reason for closing the pull request.
 
-Maintainers can revert your changes if they feel they are not worth maintaining or if they did not live up to the quality specifications.
+Maintainers can revert changes if they feel they are not worth maintaining or if they did not live up to the quality specifications.
 
 ## Specifications
 
@@ -99,9 +101,30 @@ The previous code made compliant:
 /datum/datum1/datum2/proc/proc3()
 	code
 /datum/datum1/datum2/proc2()
-	..()
+	. = ..()
 	code
 ```
+
+### Preserve return values
+```
+/datum/proc/proc1()
+	code
+	return something
+
+/datum/datum1/proc1()
+	..()
+```
+This wouldn't preserve the return value of the parent proc, instead, you should do this.
+```
+/datum/proc/proc1()
+	code
+	return something
+
+/datum/datum1/proc1()
+	. = ..()
+```
+`.` is the current return value of the current proc.
+If you have the parent call at the end of the proc, use `return ..()` instead, it's slightly faster and more readable.
 
 ### No overriding type safety checks
 The use of the : operator to override type safety checks is not allowed. You must cast the variable to the proper type.
@@ -131,13 +154,26 @@ You must use tabs to indent your code, NOT SPACES.
 
 (You may use spaces to align something, but you should tab to the block level first, then add the remaining spaces)
 
+### Argument naming
+Do not use the `var/` prefix in arguments, it is already implied. Also if the argument will always be of a certain type, make the path reflect it. `mob/user` or `list/L` for example.
+
+### The use of src
+`src.` is implied and the only place where using it makes sense is if you have an argument of the same name as one of the variables, for example:
+```
+/datum/datum1
+	var/something
+
+/datum/datum1/New(something)
+	src.something = something
+```
+
 ### No hacky code
-Hacky code, such as adding specific checks, is highly discouraged and only allowed when there is ***no*** other option. (Protip: 'I couldn't immediately think of a proper way so thus there must be no other option' is not gonna cut it here! If you can't think of anything else, say that outright and admit that you need help with it. Maintainers exist for exactly that reason.)
+Hacky code, such as adding specific checks, is highly discouraged and only allowed when there is ***no*** other option. "I couldn't immediately think of a proper way so thus there must be no other option" is likely not gonna cut it. If you can't think of anything else, say that outright and admit that you need help with it. Maintainers and helpful contributors exist for exactly that reason.
 
 You can avoid hacky code by using object-oriented methodologies, such as overriding a function (called "procs" in DM) or sectioning code into functions and then overriding them as required.
 
 ### No duplicated code
-Copying code from one place to another may be suitable for small, short-time projects, but /tg/station is a long-term project and highly discourages this.
+Copying code from one place to another may be suitable for small, short-time projects, but this is a long-term project and highly discourages this.
 
 Instead you can use object orientation, or simply placing repeated code in a function, to obey this specification easily.
 
@@ -150,7 +186,7 @@ There are two key points here:
 
 2) It also consumes more memory to the point where the list is actually required, even if the object in question may never use it!
 
-Remember: although this tradeoff makes sense in many cases, it doesn't cover them all. Think carefully about your addition before deciding if you need to use it.
+Remember: Although this tradeoff makes sense in many cases, it doesn't cover them all. Think carefully about your addition before deciding if you need to use it.
 
 ### Prefer `Initialize()` over `New()` for atoms
 Our game controller is pretty good at handling long operations and lag, but it can't control what happens when the map is loaded, which calls `New` for all atoms on the map. If you're creating a new atom, use the `Initialize` proc to do what you would normally do in `New`. This cuts down on the number of proc calls needed when the world is loaded. See here for details on `Initialize`: https://github.com/tgstation/tgstation/blob/master/code/game/atoms.dm#L49
@@ -244,17 +280,17 @@ This prevents nesting levels from getting deeper then they need to be.
 
 * It is recommended as well you do not expose information about the players - even something as simple as the number of people who have readied up at the start of the round can and has been used to try to identify the round type.
 
-* Where you have code that can cause large-scale modification and *FUN*, make sure you start it out locked behind one of the default admin roles - use common sense to determine which role fits the level of damage a function could do.
+* Where you have code that can cause large-scale modification and *FUN*, make sure you start it out locked behind one of the proper admin permissions - ask if you're not sure.
 
 ### Files
 * Because runtime errors do not give the full path, try to avoid having files with the same name across folders.
 
-* File names should not be mixed case, or contain spaces or any character that would require escaping in a uri.
+* File names and directory names should not contain upper case letters, spaces or any character that would require escaping in a URI.
 
 * Files and path accessed and referenced by code above simply being #included should be strictly lowercase to avoid issues on filesystems where case matters.
 
 ### SQL
-* Do not use the shorthand sql insert format (where no column names are specified) because it unnecessarily breaks all queries on minor column changes and prevents using these tables for tracking outside related info such as in a connected site/forum.
+* Do not use the shorthand SQL insert format (where no column names are specified) because it unnecessarily breaks all queries on minor column changes and prevents using these tables for tracking outside related info such as in a connected site/forum.
 
 * All changes to the database's layout(schema) must be specified in the database changelog in SQL, as well as reflected in the schema files
 
@@ -262,11 +298,12 @@ This prevents nesting levels from getting deeper then they need to be.
 
 * Queries must never specify the database, be it in code, or in text files in the repo.
 
-### Mapping Standards
-* Variable Editing (Var-edits)
-	* While var-editing an item within the editor is perfectly fine, it is preferred that when you are changing the base behavior of an item (how it functions) that you make a new subtype of that item within the code, especially if you plan to use the item in multiple locations on the same map, or across multiple maps. This makes it easier to make corrections as needed to all instances of the item at one time as opposed to having to find each instance of it and change them all individually.
-	* Please attempt to clean out any dirty variables that may be contained within items you alter through var-editing. For example, due to how DM functions, changing the `pixel_x` variable from 23 to 0 will leave a dirty record in the map's code of `pixel_x = 0`. Likewise this can happen when changing an item's icon to something else and then back. This can lead to some issues where an item's icon has changed within the code, but becomes broken on the map due to it still attempting to use the old entry.
-	* Areas should not be var-edited on a map to change it's name or attributes. All areas of a single type and it's altered instances are considered the same area within the code, and editing their variables on a map can lead to issues with powernets and event subsystems which are difficult to debug.
+### Mapping Standards and variable editing
+* While var-editing an item within the editor is perfectly fine, it is preferred that when you are changing the base behavior of an item (how it functions) that you make a new subtype of that item within the code, especially if you plan to use the item in multiple locations on the same map, or across multiple maps. This makes it easier to make corrections as needed to all instances of the item at one time as opposed to having to find each instance of it and change them all individually.
+* Please attempt to clean out any dirty variables that may be contained within items you alter through var-editing. For example, due to how DM functions, changing the `pixel_x` variable from 23 to 0 will leave a dirty record in the map's code of `pixel_x = 0`. Likewise this can happen when changing an item's icon to something else and then back. This can lead to some issues where an item's icon has changed within the code, but becomes broken on the map due to it still attempting to use the old entry.
+* Areas should not be var-edited on a map to change it's name or attributes. All areas of a single type and it's altered instances are considered the same area within the code, and editing their variables on a map can lead to issues with powernets and subsystems which are difficult to debug.
+* All maps should be 255x255 at most because of known issues with how BYOND behaves with maps bigger than this.
+* New maps should be converted into the .tgm format before making a pull request. All edits to existing maps should be correctly map merged. See [this link](https://tgstation13.org/wiki/Map_Merger) on how to do this.
 
 ### Other Notes
 * Code should be modular where possible; if you are working on a new addition, then strongly consider putting it in its own file unless it makes sense to put it with similar ones (i.e. a new tool would go in the "tools.dm" file)
@@ -275,7 +312,7 @@ This prevents nesting levels from getting deeper then they need to be.
 
 * You are expected to help maintain the code that you add, meaning that if there is a problem then you are likely to be approached in order to fix any issues, runtimes, or bugs.
 
-* Do not divide when you can easily convert it to multiplication. (ie `4/2` should be done as `4*0.5`)
+* Do not divide when you can easily convert it to multiplication. (ie `4 / 2` should be done as `4 * 0.5`)
 
 * If you used regex to replace code during development of your code, post the regex in your PR for the benefit of future developers and downstream users.
 
@@ -309,6 +346,7 @@ Math operators like +, -, /, *, etc are up in the air, just choose which version
 #### Use
 * Bitwise AND - '&'
 	* Should be written as ```bitfield & bitflag``` NEVER ```bitflag & bitfield```, both are valid, but the latter is confusing and nonstandard.
+	* Feel free to use one of the helpful bitflag operation macros instead (CHECK_BITFIELD and similar).
 * Associated lists declarations must have their key value quoted if it's a string
 	* WRONG: list(a = "b")
 	* RIGHT: list("a" = "b")
@@ -390,29 +428,28 @@ There is also an undocumented keyword called `static` that has the same behaviou
 
 There is no strict process when it comes to merging pull requests. Pull requests will sometimes take a while before they are looked at by a maintainer; the bigger the change, the more time it will take before they are accepted into the code. Every team member is a volunteer who is giving up their own time to help maintain and contribute, so please be courteous and respectful. Here are some helpful ways to make it easier for you and for the maintainers when making a pull request.
 
+Anyone can review pull requests, and while only maintainers have write permissions, any help is appreciated.
+
 * Make sure your pull request complies to the requirements outlined in [this guide](http://tgstation13.org/wiki/Getting_Your_Pull_Accepted)
 
-* You are going to be expected to document all your changes in the pull request. Failing to do so will mean delaying it as we will have to question why you made the change. On the other hand, you can speed up the process by making the pull request readable and easy to understand, with diagrams or before/after data.
+* You are going to be expected to describe your changes in the pull request description. Failing to do so could mean delaying it as we may have to question why you made the change. On the other hand, you can speed up the process by making the pull request readable and easy to understand, with diagrams or before/after data. For performance changes, you are expected to do some profiling. Ask around if you don't know how.
 
-* We ask that you use the changelog system to document your change, which prevents our players from being caught unaware by changes - you can find more information about this [on this wiki page](http://tgstation13.org/wiki/Guide_to_Changelogs).
+* Use the changelog for large player-facing changes, it prevents our players from being caught unaware by changes - you can find more information about this [on this wiki page](http://tgstation13.org/wiki/Guide_to_Changelogs).
 
-* If you are proposing multiple changes, which change many different aspects of the code, you are expected to section them off into different pull requests in order to make it easier to review them and to deny/accept the changes that are deemed acceptable.
+* If you are proposing multiple changes, which change many different aspects of the code, you are expected to section them off into different pull requests in order to make it easier to review them and to deny/accept the changes that are deemed acceptable. This is called atomizing.
 
 * If your pull request is accepted, the code you add no longer belongs exclusively to you but to everyone; everyone is free to work on it, but you are also free to support or object to any changes being made, which will likely hold more weight, as you're the one who added the feature. It is a shame this has to be explicitly said, but there have been cases where this would've saved some trouble.
-
-* Please explain why you are submitting the pull request, and how you think your change will be beneficial to the game. Failure to do so will be grounds for rejecting the PR.
 
 ## Porting features/sprites/sounds/tools from other codebases
 
 If you are porting features/tools from other codebases, you must give them credit where it's due. Typically, crediting them in your pull request and the changelog is the recommended way of doing it. Take note of what license they use though, porting stuff from AGPLv3 and GPLv3 codebases are allowed.
 
-Regarding sprites & sounds, you must credit the artist and possibly the codebase. All /tg/station assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated. However if you are porting assets from GoonStation or usually any assets under the [Creative Commons 3.0 BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/3.0/) are to go into the 'goon' folder of the /tg/station codebase.
+Regarding sprites & sounds, you must credit the artist and possibly the codebase. All of our assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated. However if you are porting assets from GoonStation or usually any assets under the [Creative Commons 3.0 BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/3.0/) are to go into the 'goon' folder of the codebase.
 
 ## Banned content
-Do not add any of the following in a Pull Request or risk getting the PR closed:
+Do not add any of the following in a pull request or it will get closed:
 * National Socialist Party of Germany content, National Socialist Party of Germany related content, or National Socialist Party of Germany references
-* Code where one line of code is split across mutiple lines (except for multiple, separate strings and comments; in those cases, existing longer lines must not be split up)
-* Code adding, removing, or updating the availability of alien races/species/human mutants without prior approval. Pull requests attempting to add or remove features from said races/species/mutants require prior approval as well.
+* Anything that would be against our rules
 
 Just because something isn't on this list doesn't mean that it's acceptable. Use common sense above all else.
 
