@@ -4,6 +4,7 @@
     height = 25
     dwidth = 7
     dheight = 12
+    id = "crashmodedock"
 
 /obj/docking_port/mobile/crashmode
     dir = SOUTH
