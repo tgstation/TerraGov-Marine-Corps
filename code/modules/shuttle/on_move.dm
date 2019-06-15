@@ -332,8 +332,8 @@ All ShuttleMove procs go here
 
 /************************************Misc move procs************************************/
 
-///atom/movable/lighting_object/onShuttleMove()
-//	return FALSE
+/atom/movable/lighting_object/onShuttleMove()
+	return FALSE
 
 /obj/docking_port/mobile/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
