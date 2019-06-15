@@ -265,7 +265,7 @@
 
 	candidates = list() //Blank out the candidates list for next time.
 
-	cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST)
+	cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
 	if(!M.client)
