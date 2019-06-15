@@ -348,6 +348,7 @@
 				H.regenerate_icons()
 
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
+		CHECK_TICK
 
 
 /datum/game_mode/proc/check_queen_status(queen_time)
