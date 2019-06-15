@@ -20,13 +20,10 @@
 	verbs.Cut()
 
 	myturf = loc
-	if (myturf.lighting_object)
+	if(myturf.lighting_object)
 		qdel(myturf.lighting_object, force = TRUE)
 	myturf.lighting_object = src
 	myturf.luminosity = 0
-
-	for(var/turf/open/space/S in RANGE_TURFS(1, src)) //RANGE_TURFS is in code\__HELPERS\game.dm
-		S.update_starlight()
 
 	needs_update = TRUE
 	SSlighting.objects_queue += src
@@ -131,14 +128,6 @@
 // Variety of overrides so the overlays don't get affected by weird things.
 /atom/movable/lighting_object/ex_act(severity)
 	return FALSE
-
-
-/atom/movable/lighting_object/singularity_act()
-	return
-
-
-/atom/movable/lighting_object/singularity_pull()
-	return
 
 
 /atom/movable/lighting_object/onTransitZ()
