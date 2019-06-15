@@ -199,8 +199,7 @@
 	if(mind)
 		mind.transfer_to(new_xeno)
 	else
-		new_xeno.key = src.key
-		if(new_xeno.client) new_xeno.client.change_view(world.view)
+		new_xeno.key = key
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = nicknumber
