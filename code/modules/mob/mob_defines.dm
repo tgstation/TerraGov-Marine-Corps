@@ -70,6 +70,7 @@
 	var/luminosity_total = 0 //For max luminosity stuff.
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
+	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 
 
 	//Interaction
