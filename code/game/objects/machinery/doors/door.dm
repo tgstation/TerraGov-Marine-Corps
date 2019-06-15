@@ -205,10 +205,10 @@
 
 	do_animate("opening")
 	icon_state = "door0"
-	SetOpacity(FALSE)
+	set_opacity(FALSE)
 	for(var/t in fillers)
 		var/obj/effect/opacifier/O = t
-		O.SetOpacity(FALSE)
+		O.set_opacity(FALSE)
 	sleep(openspeed)
 	layer = open_layer
 	density = FALSE
@@ -236,10 +236,10 @@
 	sleep(openspeed)
 	update_icon()
 	if(visible && !glass)
-		SetOpacity(TRUE)	//caaaaarn!
+		set_opacity(TRUE)	//caaaaarn!
 		for(var/t in fillers)
 			var/obj/effect/opacifier/O = t
-			O.SetOpacity(TRUE)
+			O.set_opacity(TRUE)
 	operating = FALSE
 
 /obj/machinery/door/proc/requiresID()

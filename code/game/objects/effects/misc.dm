@@ -134,7 +134,7 @@
 
 /obj/effect/opacifier/Initialize(mapload, initial_opacity)
 	. = ..()
-	SetOpacity(initial_opacity)
+	set_opacity(initial_opacity)
 
 
 /obj/effect/supplypod_selector
