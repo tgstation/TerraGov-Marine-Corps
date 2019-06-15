@@ -488,15 +488,6 @@
 /obj/screen/component_button/Click(params)
 	parent?.component_click(src, params)
 
-/obj/screen/cinematic
-	layer = CINEMATIC_LAYER
-	mouse_opacity = 0
-	screen_loc = "1,0"
-
-/obj/screen/cinematic/explosion
-	icon = 'icons/effects/station_explosion.dmi'
-	icon_state = "intro_ship"
-
 /obj/screen/action_button
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "template"

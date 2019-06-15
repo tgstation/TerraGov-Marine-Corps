@@ -34,13 +34,11 @@ GLOBAL_LIST_EMPTY(wizardstart)
 GLOBAL_LIST_EMPTY(nukeop_start)
 GLOBAL_LIST_EMPTY(nukeop_leader_start)
 GLOBAL_LIST_EMPTY(newplayer_start)
-GLOBAL_LIST_EMPTY(prisonwarp)	//prisoners go to these
 GLOBAL_LIST_EMPTY(xeno_spawn)//Aliens spawn at these.
 GLOBAL_LIST_EMPTY(surv_spawn)
 GLOBAL_LIST_EMPTY(tdome1)
 GLOBAL_LIST_EMPTY(tdome2)
 GLOBAL_LIST_EMPTY(deathmatch)
-GLOBAL_LIST_EMPTY(prisonwarped)	//list of players already warped
 GLOBAL_LIST_EMPTY(secequipment)
 GLOBAL_LIST_EMPTY(deathsquadspawn)
 GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)

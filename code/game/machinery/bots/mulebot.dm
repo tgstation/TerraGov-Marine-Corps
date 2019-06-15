@@ -230,7 +230,8 @@
 
 
 /obj/machinery/bot/mulebot/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if (usr.stat)
 		return

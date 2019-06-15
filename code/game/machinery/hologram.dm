@@ -64,6 +64,8 @@
 
 /obj/machinery/holopad/attack_hand(mob/living/carbon/human/user) //Carn: Hologram requests.
 	. = ..()
+	if(.)
+		return
 	if(!istype(user))
 		return
 
@@ -116,7 +118,6 @@
 
 /obj/machinery/holopad/Topic(href, href_list)
 	. = ..()
-
 	if(. || isAI(usr))
 		return
 

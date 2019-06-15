@@ -286,7 +286,6 @@
 
 /datum/wires/Topic(href, href_list)
 	. = ..()
-
 	if(. || !interactable(usr))
 		return
 

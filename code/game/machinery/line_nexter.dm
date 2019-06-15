@@ -44,6 +44,9 @@
 	var/id
 
 /obj/machinery/line_nexter_control/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 

@@ -211,20 +211,3 @@
 	wear_suit = /obj/item/clothing/suit/storage/CMB
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
-
-
-//Clown
-/datum/job/survivor/clown
-	title = "Clown"
-	skills_type = /datum/skills/civilian/survivor/clown
-	outfit = /datum/outfit/job/survivor/clown
-
-
-/datum/outfit/job/survivor/clown
-	name = "Clown"
-	jobtype = /datum/job/survivor/clown
-
-	w_uniform = /obj/item/clothing/under/rank/clown
-	mask = /obj/item/clothing/mask/gas/clown_hat
-	shoes = /obj/item/clothing/shoes/clown_shoes
-	back = /obj/item/storage/backpack/clown

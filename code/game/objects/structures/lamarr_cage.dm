@@ -69,6 +69,9 @@
 	return src.attack_hand(user)
 
 /obj/structure/lamarr/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (src.destroyed)
 		return
 	else

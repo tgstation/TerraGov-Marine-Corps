@@ -11,6 +11,9 @@
 	return attack_hand(user)
 
 /obj/machinery/pipedispenser/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/pipedispenser/ui_interact(mob/user)
@@ -34,8 +37,9 @@
 	return
 
 /obj/machinery/pipedispenser/Topic(href, href_list)
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 	var/mob/living/L = usr
 	if(!anchored || !istype(L) || L.incapacitated() || !in_range(loc, usr))
 		usr << browse(null, "window=pipedispenser")
@@ -138,7 +142,9 @@
 	qdel(pipe)
 
 /obj/machinery/pipedispenser/disposal/attack_hand(mob/user)
-
+	. = ..()
+	if(.)
+		return
 	var/dat = ""
 	var/recipes = GLOB.disposal_pipe_recipes
 
@@ -157,8 +163,9 @@
 
 
 /obj/machinery/pipedispenser/disposal/Topic(href, href_list)
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 	if(href_list["dmake"])
 		if(wait < world.time)
 			var/p_type = text2path(href_list["dmake"])

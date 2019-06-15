@@ -57,6 +57,9 @@
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(contents.len <= 0)
 		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
 		return
@@ -71,6 +74,9 @@
 	return
 
 /obj/structure/filingcabinet/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["retrieve"])
 		usr << browse("", "window=filingcabinet") // Close the menu
 
@@ -116,8 +122,10 @@
 	..()
 
 /obj/structure/filingcabinet/security/attack_hand()
+	. = ..()
+	if(.)
+		return
 	populate()
-	..()
 
 /*
  * Medical Record Cabinets
@@ -150,5 +158,7 @@
 	..()
 
 /obj/structure/filingcabinet/medical/attack_hand()
+	. = ..()
+	if(.)
+		return
 	populate()
-	..()

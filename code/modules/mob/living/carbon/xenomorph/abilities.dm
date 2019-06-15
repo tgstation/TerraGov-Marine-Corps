@@ -31,17 +31,9 @@
 		return FALSE
 
 /datum/action/xeno_action/regurgitate/action_activate()
-	var/mob/living/carbon/C = owner
-	for(var/mob/living/L in C.stomach_contents)
-		C.stomach_contents.Remove(L)
-		if(L.loc != C)
-			continue
-		L.forceMove(C.loc)
-		L.SetKnockeddown(1)
-		L.adjust_blindness(-1)
+	var/mob/living/carbon/xenomorph/spewer = owner
+	spewer.empty_gut(TRUE)
 
-	C.visible_message("<span class='xenowarning'>\The [C] hurls out the contents of their stomach!</span>", \
-	"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
 	return succeed_activate()
 
 // ***************************************
@@ -246,6 +238,7 @@
 		X.current_aura = null
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
+		X.hud_set_pheromone()
 		return fail_activate() // dont use plasma
 
 	X.current_aura = aura_type
@@ -255,7 +248,7 @@
 
 	if(isxenoqueen(X))
 		X.hive?.update_leader_pheromones()
-
+	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
 	return succeed_activate()
 
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding

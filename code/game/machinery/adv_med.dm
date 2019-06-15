@@ -66,6 +66,9 @@
 	return
 
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	go_out()
 
 
@@ -216,7 +219,8 @@
 	return src.attack_hand(user)
 
 /obj/machinery/body_scanconsole/attack_hand(var/mob/living/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
@@ -247,7 +251,8 @@
 
 
 /obj/machinery/body_scanconsole/Topic(href, href_list)
-	if (..())
+	. = ..()
+	if(.)
 		return
 
 	if (href_list["print"])

@@ -17,7 +17,8 @@
 	return
 
 /obj/machinery/igniter/attack_hand(mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	use_power(50)
@@ -130,7 +131,9 @@
 	return attack_hand(user)
 
 /obj/machinery/ignition_switch/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)

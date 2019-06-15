@@ -157,6 +157,9 @@
 
 
 /obj/item/eftpos/Topic(var/href, var/href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("change_code")

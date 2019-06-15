@@ -85,7 +85,9 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/card/attack_hand(mob/user as mob)
-	if(..()) return
+	. = ..()
+	if(.) 
+		return
 	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
@@ -151,8 +153,9 @@
 		ui.open()
 
 /obj/machinery/computer/card/Topic(href, href_list)
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	switch(href_list["choice"])
 		if ("modify")

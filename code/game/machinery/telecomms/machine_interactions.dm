@@ -17,6 +17,9 @@
 
 
 /obj/machinery/computer/telecomms/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	interact(user)
 
 

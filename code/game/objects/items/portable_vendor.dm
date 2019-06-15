@@ -26,10 +26,11 @@
 
 
 /obj/item/portable_vendor/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(loc == user)
 		attack_self(user)
-	else
-		..()
 
 
 /obj/item/portable_vendor/attack_self(mob/user)
@@ -106,6 +107,9 @@
 
 
 /obj/item/portable_vendor/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(broken)
 		return
 	if(usr.incapacitated())

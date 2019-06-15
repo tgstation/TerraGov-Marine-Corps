@@ -125,7 +125,8 @@
 			.+=cur
 
 /obj/machinery/computer/forensic_scanning/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 
@@ -194,6 +195,9 @@
 
 
 /obj/machinery/computer/forensic_scanning/Topic(href,href_list)
+	. = ..()
+	if(.)
+		return
 	switch(href_list["operation"])
 		if("login")
 			var/mob/M = usr

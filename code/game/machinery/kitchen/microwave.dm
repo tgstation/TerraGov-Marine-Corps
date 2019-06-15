@@ -141,6 +141,9 @@
 	return 0
 
 /obj/machinery/microwave/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	interact(user)
 
@@ -357,7 +360,8 @@
 	return ffuu
 
 /obj/machinery/microwave/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

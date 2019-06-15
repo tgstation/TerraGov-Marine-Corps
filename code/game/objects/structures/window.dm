@@ -141,6 +141,9 @@
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
 /obj/structure/window/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(user.a_intent == INTENT_HARM)
 
 		if(istype(user,/mob/living/carbon/human))

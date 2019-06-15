@@ -270,7 +270,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return attack_hand(user)
 
 /obj/machinery/computer/ordercomp/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat
@@ -300,7 +301,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 
 /obj/machinery/computer/ordercomp/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if( isturf(loc) && (in_range(src, usr) || issilicon(usr)) )
@@ -399,6 +401,9 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
@@ -459,7 +464,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(isturf(loc) && ( in_range(src, usr) || issilicon(usr) ) )

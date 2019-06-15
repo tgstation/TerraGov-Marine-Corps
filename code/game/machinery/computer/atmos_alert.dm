@@ -42,7 +42,8 @@
 
 
 /obj/machinery/computer/atmos_alert/attack_hand(mob/user)
-	if(..(user))
+	. = ..()
+	if(.)
 		return
 
 	user.set_interaction(src)
@@ -100,7 +101,8 @@
 
 
 /obj/machinery/computer/atmos_alert/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["priority_clear"])

@@ -11,6 +11,8 @@
 
 /datum/admins/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 
 	if(usr.client != owner || !check_rights(NONE))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
@@ -540,8 +542,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		M.client.screen.Cut()
 		NP.key = M.key
 		NP.name = M.key
-		if(NP.client)
-			NP.client.change_view(world.view)
 		if(isobserver(M))
 			qdel(M)
 		else

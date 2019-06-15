@@ -311,7 +311,9 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(!cell || cell.charge <= 0)
 		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
 		return
@@ -377,6 +379,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/marine_turret/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr.stat)
 		return
 
@@ -1082,7 +1087,9 @@
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(!cell || cell.charge <= 0)
 		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
 		return

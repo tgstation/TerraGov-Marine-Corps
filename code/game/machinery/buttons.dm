@@ -173,6 +173,9 @@
 	return ..()
 
 /obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	if(.)
+		return
 	if(!istype(user))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))

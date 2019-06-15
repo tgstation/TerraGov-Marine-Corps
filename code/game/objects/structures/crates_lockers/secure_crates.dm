@@ -56,11 +56,6 @@
 		return
 	togglelock(usr)
 
-/obj/structure/closet/crate/secure/attack_hand(mob/user)
-	if(locked)
-		togglelock(user)
-	else
-		toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(obj/item/I, mob/user, params)
 	. = ..()

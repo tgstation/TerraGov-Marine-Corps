@@ -25,6 +25,9 @@
 
 
 /obj/machinery/computer/crew/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
@@ -41,7 +44,8 @@
 		machine_stat &= ~NOPOWER
 
 /obj/machinery/computer/crew/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if( href_list["close"] )
 		var/mob/user = usr

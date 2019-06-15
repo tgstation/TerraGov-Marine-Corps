@@ -214,4 +214,7 @@
 	new /obj/item/tool/pen(src)
 
 /obj/item/storage/secure/safe/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	return attack_self(user)

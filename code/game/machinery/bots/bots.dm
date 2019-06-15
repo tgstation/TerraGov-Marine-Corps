@@ -146,9 +146,11 @@
 	attack_hand(user)
 
 /obj/machinery/bot/attack_hand(var/mob/living/carbon/human/user)
-
+	. = ..()
+	if(.)
+		return
 	if(!istype(user))
-		return ..()
+		return
 
 	if(user.species.can_shred(user))
 		src.obj_integrity -= rand(15,30)*brute_dam_coeff

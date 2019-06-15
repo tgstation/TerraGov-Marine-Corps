@@ -89,6 +89,9 @@
 		to_chat(user, "<span class='notice'>There is some kind of device rigged to the tank.</span>")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
+	. = ..()
+	if(.)
+		return
 	if (rig)
 		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
 		if(do_after(usr, 20, TRUE, src, BUSY_ICON_GENERIC))

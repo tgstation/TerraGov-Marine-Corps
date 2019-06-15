@@ -62,6 +62,9 @@
 	return attack_hand(user)
 
 /obj/machinery/botany/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/botany/proc/finished_task()
@@ -173,9 +176,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/botany/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	if(href_list["eject_packet"])
 		if(!seed) return
@@ -200,9 +203,9 @@
 	usr.set_interaction(src)
 
 /obj/machinery/botany/extractor/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	usr.set_interaction(src)
 
@@ -303,9 +306,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/botany/editor/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	if(href_list["apply_gene"])
 		if(!loaded_disk || !seed) return
