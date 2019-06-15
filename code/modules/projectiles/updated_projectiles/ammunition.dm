@@ -419,7 +419,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	update_icon()
 
 /obj/item/ammobox/attack_hand(mob/user)
-	if(deployed == FALSE)
+	if(!deployed)
 		user.put_in_hands(src)
 		return
 	if(magazine_amount == 0)
@@ -485,7 +485,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	to_chat(user, "It contains [current_rounds] out of [max_rounds] shotgun shells.")
 
 /obj/item/ammo_magazine/shotgunbox/attack_hand(mob/user)
-	if(deployed == FALSE)
+	if(!deployed)
 		user.put_in_hands(src)
 		return
 	if(!(flags_magazine & AMMUNITION_REFILLABLE) || current_rounds < 1)

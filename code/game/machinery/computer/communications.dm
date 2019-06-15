@@ -50,7 +50,7 @@
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return FALSE
+		return
 
 	usr.set_interaction(src)
 
@@ -316,8 +316,9 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
-	if(..())
-		return FALSE
+	. = ..()
+	if(.)
+		return
 
 	//Should be refactored later, if there's another ship that can appear during a mode with a comm console.
 	if(!istype(loc.loc, /area/almayer/command/cic)) //Has to be in the CIC. Can also be a generic CIC area to communicate, if wanted.

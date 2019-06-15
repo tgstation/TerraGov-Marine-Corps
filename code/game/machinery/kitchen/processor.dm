@@ -114,6 +114,9 @@
 	O.forceMove(src)
 
 /obj/machinery/processor/attack_hand(var/mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (src.machine_stat != 0) //NOPOWER etc
 		return
 	if(src.processing)

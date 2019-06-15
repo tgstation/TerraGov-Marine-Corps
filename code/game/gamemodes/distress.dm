@@ -545,7 +545,7 @@
 	for(var/i in GLOB.alive_xeno_list)
 		var/mob/living/carbon/xenomorph/X = i
 		var/area/A = get_area(X)
-		if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
+		if(is_ground_level(A?.z))
 			if(isxenolarva(X))
 				numLarvaPlanet++
 			numXenosPlanet++
@@ -559,7 +559,7 @@
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
 		var/area/A = get_area(H)
-		if(is_ground_level(A?.z) || is_low_orbit_level(A?.z))
+		if(is_ground_level(A?.z))
 			numHostsPlanet++
 			hostLocationsP += A
 		else if(is_mainship_level(A?.z))

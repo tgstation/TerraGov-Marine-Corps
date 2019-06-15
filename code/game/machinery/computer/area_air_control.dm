@@ -23,7 +23,8 @@
 	return
 
 /obj/machinery/computer/area_atmos/attack_hand(var/mob/user as mob)
-	if(..(user))
+	. = ..()
+	if(.)
 		return
 	var/dat = {"
 	<html>
@@ -92,7 +93,8 @@
 	status = ""
 
 /obj/machinery/computer/area_atmos/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 

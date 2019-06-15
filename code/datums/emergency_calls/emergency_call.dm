@@ -161,7 +161,7 @@
 
 	SSticker.mode.on_distress_cooldown = TRUE
 
-	candidate_timer = addtimer(CALLBACK(src, .do_activate, announce), 1 MINUTES)
+	candidate_timer = addtimer(CALLBACK(src, .do_activate, announce), 1 MINUTES, TIMER_STOPPABLE)
 
 /datum/emergency_call/proc/do_activate(announce = TRUE)
 	candidate_timer = null
@@ -197,7 +197,7 @@
 		SSticker.mode.picked_call = null
 		SSticker.mode.on_distress_cooldown = TRUE
 
-		cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST)
+		cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 		return
 
 	var/datum/mind/picked_candidates = list()

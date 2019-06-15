@@ -24,6 +24,9 @@
 
 
 /obj/machinery/computer/operating/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
@@ -71,7 +74,8 @@
 
 
 /obj/machinery/computer/operating/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)

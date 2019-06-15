@@ -97,16 +97,6 @@
 		apply_overlay(M_FIRE_LAYER)
 
 
-//Call when target overlay should be added/removed
-/mob/living/carbon/monkey/update_targeted()
-	remove_overlay(M_TARGETED_LAYER)
-	if (targeted_by && target_locked)
-		overlays_standing[M_TARGETED_LAYER]	= image("icon"=target_locked, "layer" =-M_TARGETED_LAYER)
-	else if (!targeted_by && target_locked)
-		qdel(target_locked)
-		target_locked = null
-	apply_overlay(M_TARGETED_LAYER)
-
 /mob/living/carbon/monkey/update_burst()
 	remove_overlay(M_BURST_LAYER)
 	var/image/standing = null

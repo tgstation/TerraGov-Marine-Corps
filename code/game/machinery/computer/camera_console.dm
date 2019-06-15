@@ -56,6 +56,9 @@
 
 
 /obj/machinery/computer/security/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat)
 		return
 

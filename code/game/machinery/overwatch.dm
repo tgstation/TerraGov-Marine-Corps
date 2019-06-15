@@ -1197,7 +1197,7 @@
 				if(is_ground_level(M_turf?.z))
 					continue
 			if(HIDE_ON_SHIP)
-				if(is_mainship_or_low_orbit_level(M_turf?.z))
+				if(is_mainship_level(M_turf?.z))
 					continue
 
 		if(H.mind?.assigned_role)

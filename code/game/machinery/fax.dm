@@ -42,6 +42,9 @@
 
 
 /obj/machinery/faxmachine/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 
 	var/dat
@@ -89,6 +92,9 @@
 
 
 /obj/machinery/faxmachine/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["send"])
 		if(message)
 			send_fax(usr, src, selected, message.name, message.info, FALSE)

@@ -8,6 +8,7 @@
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
 	resistance_flags = FIRE_PROOF
+	anchored = TRUE
 
 	var/list/network = list("marinemainship")
 	var/c_tag = null

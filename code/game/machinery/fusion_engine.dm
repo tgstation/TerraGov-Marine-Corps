@@ -89,6 +89,9 @@
 		update_icon()
 
 /obj/machinery/power/fusion_engine/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return FALSE

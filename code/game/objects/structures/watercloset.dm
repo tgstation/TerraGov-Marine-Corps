@@ -18,6 +18,9 @@
 	update_icon()
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(swirlie)
 		user.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
 		swirlie.apply_damage(8, BRUTE)
@@ -174,6 +177,9 @@
 	mouse_opacity = 0
 
 /obj/machinery/shower/attack_hand(mob/M as mob)
+	. = ..()
+	if(.)
+		return
 	on = !on
 	update_icon()
 	if(on)
@@ -392,6 +398,9 @@
 			pixel_x = 12
 
 /obj/structure/sink/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(isAI(user))
 		return
 
@@ -476,9 +485,10 @@
 	name = "puddle"
 	icon_state = "puddle"
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/sink/puddle/attack_hand(mob/M as mob)
 	icon_state = "puddle-splash"
-	..()
+	. = ..()
 	icon_state = "puddle"
 
 /obj/structure/sink/puddle/attackby(obj/item/I, mob/user, params)

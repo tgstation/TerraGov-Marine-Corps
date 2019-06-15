@@ -1,8 +1,4 @@
 #define CHARS_PER_LINE 5
-#define FONT_SIZE "5pt"
-#define FONT_COLOR "#09f"
-#define FONT_STYLE "Arial Black"
-#define SCROLL_SPEED 2
 
 #define SD_BLANK 0  // 0 = Blank
 #define SD_EMERGENCY 1  // 1 = Emergency Shuttle timer

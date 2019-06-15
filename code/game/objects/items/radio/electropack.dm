@@ -24,12 +24,13 @@
 	return ..()
 
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/electropack/attack_hand(mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(C.back == src)
 			to_chat(user, "<span class='warning'>You need help taking this off!</span>")
-			return
+			return TRUE
 	return ..()
 
 

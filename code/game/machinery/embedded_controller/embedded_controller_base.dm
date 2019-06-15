@@ -35,6 +35,9 @@
 	return
 
 /obj/machinery/embedded_controller/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	src.ui_interact(user)
 
 /obj/machinery/embedded_controller/ui_interact()

@@ -746,3 +746,10 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 /turf/AllowDrop()
 	return TRUE
+
+
+/turf/contents_explosion(severity, target)
+	for(var/i in contents)
+		var/atom/A = i
+		if(!QDELETED(A) && A.level >= severity)
+			A.ex_act(severity, target)

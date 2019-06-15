@@ -135,7 +135,8 @@
 
 /obj/item/attack_hand(mob/user)
 	. = ..()
-
+	if(.)
+		return
 	if(!user)
 		return
 

@@ -265,13 +265,15 @@
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, "<span class='notice'>You play with [src].</span>")
 			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1)
 			cooldown = world.time
 			return
-	..()
 
 /obj/item/toy/prize/ripley
 	name = "toy ripley"

@@ -24,8 +24,8 @@
 					dropped(user)
 */
 			to_chat(H, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
-			return
-	..()
+			return TRUE
+	return ..()
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()

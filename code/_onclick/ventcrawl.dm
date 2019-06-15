@@ -117,10 +117,14 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			client.images += A.pipe_vision_img
 			pipes_shown += A.pipe_vision_img
 	is_ventcrawling = TRUE
+	return TRUE
+
 
 /mob/living/carbon/xenomorph/hunter/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	. = ..()
-	cancel_stealth()
+	if(.)
+		cancel_stealth()
+
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = FALSE

@@ -75,7 +75,8 @@
 // Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
 /obj/machinery/door_display/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	user.set_interaction(src)
@@ -103,8 +104,9 @@
 	return data
 
 /obj/machinery/door_display/Topic(href, href_list)
-	if(..())
-		return FALSE
+	. = ..()
+	if(.)
+		return
 	if(!allowed(usr))
 		return FALSE
 
@@ -181,8 +183,9 @@
 	return data
 
 /obj/machinery/door_display/research_cell/Topic(href, href_list)
-	if(!..())
-		return FALSE
+	. = ..()
+	if(.)
+		return
 
 	if(href_list["flasher"]) //flashing timer is checked in the /flash proc, so the href is safe
 		for(var/obj/machinery/flasher/F in targets)

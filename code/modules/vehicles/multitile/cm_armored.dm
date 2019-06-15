@@ -184,7 +184,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!can_use_hp(usr))
 		return
 
-	HP.ammo.Move(entrance.loc)
+	HP.ammo.forceMove(get_turf(entrance))
 	HP.ammo.update_icon()
 	HP.ammo = A
 	HP.backup_clips.Remove(A)
@@ -593,12 +593,13 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Special case for entering the vehicle without using the verb
 /obj/vehicle/multitile/root/cm_armored/attack_hand(mob/user)
-
+	. = ..()
+	if(.)
+		return
 	if(user.loc == entrance.loc)
 		handle_player_entrance(user)
 		return
 
-	. = ..()
 
 /obj/vehicle/multitile/root/cm_armored/Entered(atom/movable/A)
 	if(istype(A, /obj) && !istype(A, /obj/item/ammo_magazine/tank) && !istype(A, /obj/item/hardpoint))
@@ -890,3 +891,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	hardpoints[old.slot] = null
 	update_damage_distribs()
 	update_icon()
+
+
+
+/obj/vehicle/multitile/root/cm_armored/contents_explosion(severity, target)
+	return

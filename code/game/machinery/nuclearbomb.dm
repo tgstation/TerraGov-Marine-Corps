@@ -157,6 +157,9 @@
 	return attack_hand(user)
 
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (extended)
 		if (!ishuman(user))
 			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
@@ -271,6 +274,8 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 /obj/machinery/nuclearbomb/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if (!usr.canmove || usr.stat || usr.restrained())
 		return
 	if (!(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))

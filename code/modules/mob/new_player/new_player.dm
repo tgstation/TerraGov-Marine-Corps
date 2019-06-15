@@ -98,6 +98,9 @@
 					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
 
 /mob/new_player/Topic(href, href_list[])
+	. = ..()
+	if(.)
+		return
 	if(!client)
 		return
 

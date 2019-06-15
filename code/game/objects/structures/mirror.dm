@@ -24,7 +24,9 @@
 	shattered = TRUE
 
 /obj/structure/mirror/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(shattered)
 		return
 

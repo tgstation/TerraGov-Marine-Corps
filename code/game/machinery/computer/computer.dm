@@ -139,6 +139,7 @@
 
 /obj/machinery/computer/attack_hand()
 	. = ..()
-	if(!.) //not broken or unpowered
-		if(ishuman(usr))
-			pick(playsound(src, 'sound/machines/computer_typing1.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing2.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing3.ogg', 5, 1))
+	if(.)
+		return
+	if(ishuman(usr))
+		pick(playsound(src, 'sound/machines/computer_typing1.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing2.ogg', 5, 1), playsound(src, 'sound/machines/computer_typing3.ogg', 5, 1))

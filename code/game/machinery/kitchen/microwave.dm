@@ -41,11 +41,6 @@
 			if (recipe.items)
 				max_n_of_items = max(max_n_of_items,recipe.items.len)
 
-		// This will do until I can think of a fun recipe to use dionaea in -
-		// will also allow anything using the holder item to be microwaved into
-		// impure carbon. ~Z
-		acceptable_items |= /obj/item/holder
-
 /*******************
 *   Item Adding
 ********************/
@@ -146,6 +141,9 @@
 	return 0
 
 /obj/machinery/microwave/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	interact(user)
 
@@ -362,7 +360,8 @@
 	return ffuu
 
 /obj/machinery/microwave/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

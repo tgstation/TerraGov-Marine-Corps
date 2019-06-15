@@ -684,6 +684,11 @@
 			qdel(new_xeno)
 		return
 
+	for(var/obj/item/W in T.contents) //Drop stuff
+		T.dropItemToGround(W)
+
+	T.empty_gut()
+
 	if(T.mind)
 		T.mind.transfer_to(new_xeno)
 	else
@@ -703,11 +708,6 @@
 		new_xeno.xeno_mobhud = TRUE
 
 	new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
-
-	for(var/obj/item/W in T.contents) //Drop stuff
-		T.dropItemToGround(W)
-
-	T.empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \
 	"<span class='xenodanger'>[X] makes you regress into your previous form.</span>")
 

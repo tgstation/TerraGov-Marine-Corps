@@ -53,6 +53,7 @@
 
 	if(crashing)
 		new_dock.on_crash()
+		on_crash()
 
 	. = preflight_check(old_turfs, new_turfs, areas_to_move, rotation)
 	if(.)

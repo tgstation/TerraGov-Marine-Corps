@@ -370,18 +370,19 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,
 	/datum/admins/proc/force_distress,
-	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/create_outfit,
 	/datum/admins/proc/offer,
+	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/change_hivenumber,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
 	/datum/admins/proc/launch_pod,
+	/datum/admins/proc/play_cinematic,
 	/client/proc/toggle_buildmode
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())

@@ -140,6 +140,8 @@
 
 /obj/item/assembly/prox_sensor/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(!usr.canUseTopic(src, TRUE))
 		usr << browse(null, "window=prox")
 		onclose(usr, "prox")

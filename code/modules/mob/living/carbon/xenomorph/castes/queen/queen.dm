@@ -38,7 +38,7 @@
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/grow_ovipositor,
 		/datum/action/xeno_action/activable/screech,
-		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		// /datum/action/xeno_action/activable/gut, We're taking this out for now.
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
@@ -49,7 +49,8 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
-		/mob/living/carbon/xenomorph/queen/proc/hive_Message
+		/mob/living/carbon/xenomorph/queen/proc/hive_Message,
+		/mob/living/carbon/xenomorph/queen/proc/calldown_dropship
 		)
 
 // ***************************************
@@ -191,6 +192,9 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/queen/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["watch_xeno_number"])
 		if(!check_state())
 			return
@@ -207,7 +211,6 @@
 				set_queen_overwatch(X)
 			break
 		return
-	..()
 
 // ***************************************
 // *********** Death

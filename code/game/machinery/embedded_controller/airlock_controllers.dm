@@ -44,7 +44,8 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)
@@ -99,7 +100,8 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)
@@ -162,7 +164,8 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/airlock/access_controller/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)
