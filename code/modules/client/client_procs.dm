@@ -88,6 +88,9 @@
 		if("chat")
 			return chatOutput.Topic(href, href_list)
 
+	switch(href_list["action"])
+		if("openLink")
+			src << link(href_list["link"])
 
 	if(hsrc)
 		var/datum/real_src = hsrc
