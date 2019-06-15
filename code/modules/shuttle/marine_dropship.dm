@@ -253,6 +253,8 @@
 			D = M
 	if(is_ground_level(D.z))
 		return FALSE
+	if(D.hijack_state != HIJACK_STATE_NORMAL)
+		return FALSE
 	var/humans_on_ground = 0
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
