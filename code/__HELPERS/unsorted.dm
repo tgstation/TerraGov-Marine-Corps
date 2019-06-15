@@ -414,7 +414,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		areatype = areatemp.type
 
 	var/list/turfs = list()
-	for(var/i in GLOB.all_areas)
+	for(var/i in GLOB.sorted_areas)
 		var/area/A = i
 		if(!istype(A, areatype))
 			continue

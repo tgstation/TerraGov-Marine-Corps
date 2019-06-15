@@ -6,8 +6,6 @@ GLOBAL_LIST_EMPTY(joketips)
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
-GLOBAL_LIST_EMPTY(active_areas)
-GLOBAL_LIST_EMPTY(all_areas)
 
 // Posters
 GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
