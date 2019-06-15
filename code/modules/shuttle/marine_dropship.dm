@@ -246,6 +246,13 @@
 /datum/game_mode/proc/can_summon_dropship()
 	if(SSticker.round_start_time + MIN_CALLDOWN_TIME > world.time)
 		return FALSE
+	var/obj/docking_port/mobile/marine_dropship/D
+	for(var/k in SSshuttle.dropships)
+		var/obj/docking_port/mobile/M = k
+		if(M.id == "alamo")
+			D = M
+	if(is_ground_level(D.z))
+		return FALSE
 	var/humans_on_ground = 0
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
