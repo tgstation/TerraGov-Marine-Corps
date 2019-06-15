@@ -90,6 +90,9 @@
 		reconnect()
 
 /obj/machinery/power/generator/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
 	interact(user)
 

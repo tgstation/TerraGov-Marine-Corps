@@ -65,7 +65,9 @@
 
 
 /obj/machinery/marine_selector/attack_hand(mob/user)
-
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 

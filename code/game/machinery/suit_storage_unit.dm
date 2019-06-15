@@ -83,9 +83,10 @@
 
 
 /obj/machinery/suit_storage_unit/attack_hand(mob/user)
-	var/dat
-	if(..())
+	. = ..()
+	if(.)
 		return
+	var/dat
 	if(machine_stat & NOPOWER)
 		return
 		dat+= "<HR><BR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close panel</A>"

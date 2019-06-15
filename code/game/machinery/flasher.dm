@@ -117,7 +117,9 @@
 	return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)

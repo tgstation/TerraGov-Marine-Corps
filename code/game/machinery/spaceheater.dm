@@ -80,6 +80,9 @@
 			user.unset_interaction()
 
 /obj/machinery/space_heater/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	interact(user)
 
 /obj/machinery/space_heater/interact(mob/user as mob)

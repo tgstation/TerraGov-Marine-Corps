@@ -50,7 +50,8 @@
 	return src.attack_hand(user)
 
 /obj/machinery/computer/arcade/attack_hand(mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a>"

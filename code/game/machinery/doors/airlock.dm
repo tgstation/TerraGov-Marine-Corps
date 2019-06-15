@@ -314,9 +314,11 @@
 	M.forceMove(loc)
 
 /obj/machinery/door/airlock/attack_hand(mob/user)
-	if(!issilicon(user) && isElectrified() && shock(user, 100))
+	. = ..()
+	if(.)
 		return
-	return ..()
+	if(!issilicon(user) && isElectrified())
+		shock(user, 100)
 
 /obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
 	if(!nowindow)

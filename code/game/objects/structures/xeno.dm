@@ -100,6 +100,7 @@
 
 /obj/effect/alien/resin/attack_hand()
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	return TRUE
 
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()

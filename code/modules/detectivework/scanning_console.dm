@@ -125,7 +125,8 @@
 			.+=cur
 
 /obj/machinery/computer/forensic_scanning/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 

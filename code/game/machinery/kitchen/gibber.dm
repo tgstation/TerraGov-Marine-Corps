@@ -41,6 +41,9 @@
 
 
 /obj/machinery/gibber/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(operating)

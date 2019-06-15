@@ -51,7 +51,8 @@
 	return attack_hand(user)
 
 /obj/machinery/sleep_console/attack_hand(mob/living/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return

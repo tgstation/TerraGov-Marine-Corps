@@ -125,6 +125,9 @@
 		return TRUE
 
 /obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (disabled)
 		return
 	if (shocked)
@@ -246,6 +249,9 @@
 	return
 
 /obj/machinery/computer/rdservercontrol/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	user.set_interaction(src)

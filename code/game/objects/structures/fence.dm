@@ -59,6 +59,9 @@
 	healthcheck()
 
 /obj/structure/fence/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))

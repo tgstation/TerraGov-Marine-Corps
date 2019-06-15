@@ -35,6 +35,9 @@
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target)

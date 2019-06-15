@@ -64,6 +64,9 @@
 	return src.attack_hand(user)
 
 /obj/structure/displaycase/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (src.destroyed && src.occupied)
 		to_chat(user, "\b You deactivate the hover field built into the case.")
 		src.occupied = 0

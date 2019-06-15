@@ -199,6 +199,9 @@
 
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)

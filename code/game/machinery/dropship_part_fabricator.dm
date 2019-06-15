@@ -27,7 +27,8 @@
 		icon_state = "drone_fab_idle"
 
 /obj/machinery/dropship_part_fabricator/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat = "<center><h2>Dropship Part Fabricator</h2></center><hr/>"

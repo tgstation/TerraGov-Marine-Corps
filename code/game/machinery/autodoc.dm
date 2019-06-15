@@ -867,7 +867,8 @@
 	updateUsrDialog()
 
 /obj/machinery/autodoc_console/attack_hand(mob/living/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	var/dat = ""
 	if(!connected || (connected.machine_stat & (NOPOWER|BROKEN)))

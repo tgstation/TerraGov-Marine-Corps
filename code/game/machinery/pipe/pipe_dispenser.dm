@@ -11,6 +11,9 @@
 	return attack_hand(user)
 
 /obj/machinery/pipedispenser/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/pipedispenser/ui_interact(mob/user)
@@ -138,7 +141,9 @@
 	qdel(pipe)
 
 /obj/machinery/pipedispenser/disposal/attack_hand(mob/user)
-
+	. = ..()
+	if(.)
+		return
 	var/dat = ""
 	var/recipes = GLOB.disposal_pipe_recipes
 

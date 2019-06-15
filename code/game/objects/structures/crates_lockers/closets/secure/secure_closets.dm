@@ -86,12 +86,6 @@
 	else
 		togglelock(user)
 
-/obj/structure/closet/secure_closet/attack_hand(mob/living/user)
-	if(locked)
-		togglelock(user)
-	else
-		toggle(user)
-
 /obj/structure/closet/secure_closet/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
