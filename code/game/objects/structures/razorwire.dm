@@ -77,17 +77,18 @@
 		var/mob/living/M = O
 		if(M.entangled_by)
 			razorwire_untangle(M)
-	. = ..()
+	return ..()
 
 /obj/structure/razorwire/Destroy()
-	. = ..()
-	for(var/mob/living/M in entangled_list)
-		M.set_frozen(FALSE)
-		M.update_canmove()
-		if(M.entangled_by == src)
-			M.entangled_by = null
-			M.entangle_delay = null
-	entangled_list = list()
+	for(var/i in entangled_list)
+		var/mob/living/L = i
+		L.set_frozen(FALSE)
+		L.update_canmove()
+		if(L.entangled_by == src)
+			L.entangled_by = null
+			L.entangle_delay = null
+	entangled_list.Cut()
+	return ..()
 
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
