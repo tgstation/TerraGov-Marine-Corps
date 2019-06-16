@@ -17,6 +17,7 @@
 	//Preferences related
 	var/datum/preferences/prefs 	= null
 	var/list/keybindings[0]
+	var/inprefs = FALSE
 
 
 	//Mob related
