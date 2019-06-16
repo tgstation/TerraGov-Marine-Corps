@@ -143,6 +143,8 @@
 	var/on = FALSE
 	var/on_gs = FALSE
 	var/brightness = 8			// luminosity when on, also used in power calculation
+	var/bulb_power = 1			// basically the alpha of the emitted light source
+	var/bulb_colour = LIGHT_COLOR_WHITE
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item
@@ -233,31 +235,36 @@
 	return
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(trigger = 1)
-
-	update_icon()
+/obj/machinery/light/proc/update(trigger = TRUE)
+	switch(status)
+		if(LIGHT_BROKEN, LIGHT_BURNED, LIGHT_EMPTY)
+			on = FALSE
 	if(on)
-		if(luminosity != brightness)
+		var/BR = brightness
+		var/PO = bulb_power
+		var/CO = bulb_colour
+		if(color)
+			CO = color
+		var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
+		if(!matching)
 			switchcount++
 			if(rigged)
 				if(status == LIGHT_OK && trigger)
 					explode()
-			else if( prob( min(60, switchcount*switchcount*0.01) ) )
-				if(status == LIGHT_OK && trigger)
-					status = LIGHT_BURNED
-					icon_state = "[base_state]-burned"
-					on = FALSE
-					set_light(0)
+			else if(prob(min(60, (switchcount ^ 2) * 0.01)))
+				if(trigger)
+					broken()
 			else
-				use_power = 2
-				set_light(brightness)
+				use_power = ACTIVE_POWER_USE
+				set_light(BR, PO, CO)
 	else
-		use_power = 1
+		use_power = IDLE_POWER_USE
 		set_light(0)
 
 	active_power_usage = (luminosity * 10)
 	if(on != on_gs)
 		on_gs = on
+	update_icon()
 
 
 // attempt to set the light's on/off status

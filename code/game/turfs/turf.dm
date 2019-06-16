@@ -40,20 +40,38 @@
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
-/turf/Initialize(mapload, ...)
-	. = ..()
-	for(var/atom/movable/AM in src)
-		Entered(AM)
+/turf/Initialize(mapload)
+	if(flags_atom & INITIALIZED)
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	ENABLE_BITFIELD(flags_atom, INITIALIZED)
+
+	// by default, vis_contents is inherited from the turf that was here before
+	vis_contents.Cut()
+
+	GLOB.turfs += src
 
 	levelupdate()
 
 	visibilityChanged()
 
+	for(var/atom/movable/AM in src)
+		Entered(AM)
+
+	var/area/A = loc
+	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
+		add_overlay(/obj/effect/fullbright)
+
 	if(light_power && light_range)
 		update_light()
 
+	if(opacity)
+		has_opaque_atom = TRUE
+
+	return INITIALIZE_HINT_NORMAL
+
 
 /turf/Destroy()
+	GLOB.turfs -= src
 	if(oldTurf != "")
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
