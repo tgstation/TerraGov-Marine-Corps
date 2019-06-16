@@ -241,10 +241,9 @@
 	hive?.xeno_message("The Queen has summoned down the metal bird to [port], gather to her now!")
 
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
-#define MIN_CALLDOWN_TIME 30 MINUTES
 
 /datum/game_mode/proc/can_summon_dropship()
-	if(SSticker.round_start_time + MIN_CALLDOWN_TIME > world.time)
+	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		return FALSE
 	var/obj/docking_port/mobile/marine_dropship/D
 	for(var/k in SSshuttle.dropships)
@@ -306,7 +305,7 @@
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
-	if(SSticker.round_start_time + MIN_CALLDOWN_TIME > world.time)
+	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(X, "<span class='xenowarning'>It's too early to do this!</span>")
 		return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
@@ -389,6 +388,9 @@
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	if(href_list["hijack"])
+		if(world.time < SSticker.round_start_time + SHUTTLE_HIJACK_LOCK)
+			to_chat(X, "<span class='xenowarning'>You can't take over it yet.</span>")
+			return TRUE
 		if(M.mode == SHUTTLE_RECHARGING)
 			to_chat(X, "<span class='xenowarning'>The birb is still cooling down.</span>")
 			return

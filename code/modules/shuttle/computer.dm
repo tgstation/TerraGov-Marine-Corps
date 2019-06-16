@@ -58,6 +58,9 @@
 		return TRUE
 
 	if(href_list["move"])
+		if(world.time < SSticker.round_start_time + SHUTTLE_LAUNCH_LOCK)
+			to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
+			return TRUE
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 		if(M.mode == SHUTTLE_RECHARGING)
 			to_chat(usr, "<span class='warning'>The engines are not ready to use yet!</span>")
