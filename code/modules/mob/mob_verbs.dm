@@ -93,9 +93,6 @@
 		return
 
 	M.key = key
-	if(M.client)
-		M.client.change_view(world.view)
-	return
 
 
 /mob/verb/cancel_camera()

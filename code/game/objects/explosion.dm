@@ -102,7 +102,7 @@
 			else if(dist < flame_range)			dist = 4
 			else								continue
 
-			if(T)
+			if(T == epicenter) // Ensures explosives detonating from bags trigger other explosives in that bag
 				T.ex_act(dist)
 				var/list/items = list()
 				for(var/I in T)
@@ -114,6 +114,9 @@
 					var/atom/A = O
 					if(!QDELETED(A))
 						A.ex_act(dist)
+
+			if(dist > 0)
+				T.ex_act(dist)
 
 
 			//------- TURF FIRES -------

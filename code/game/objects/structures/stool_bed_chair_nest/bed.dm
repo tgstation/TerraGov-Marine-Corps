@@ -615,6 +615,9 @@ var/global/list/activated_medevac_stretchers = list()
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 
 /obj/item/medevac_beacon/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(locked)
 		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
@@ -624,7 +627,6 @@ var/global/list/activated_medevac_stretchers = list()
 		to_chat(user, "<span class='warning'>You retrieve and deactivate [src].</span>")
 		icon_state = "med_beacon0"
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
-	return ..()
 
 /obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
 	. = ..()

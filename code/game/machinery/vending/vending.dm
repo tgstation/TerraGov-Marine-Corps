@@ -347,6 +347,9 @@
 			return null
 
 /obj/machinery/vending/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(tipped_level == 2)
 		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
 		if(do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
@@ -362,10 +365,6 @@
 	if(src.seconds_electrified != 0)
 		if(shock(user, 100))
 			return
-
-	. = ..()
-	if(.)
-		return
 
 	ui_interact(user)
 
@@ -409,6 +408,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/vending/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.incapacitated())

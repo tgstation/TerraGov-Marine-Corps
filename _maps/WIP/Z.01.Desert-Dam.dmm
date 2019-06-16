@@ -19813,9 +19813,6 @@
 	},
 /area/desert_dam/interior/caves/east_caves)
 "aXp" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "1"
-	},
 /turf/open/floor/plating,
 /area/desert_dam/exterior/landing_pad_one)
 "aXq" = (

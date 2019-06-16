@@ -141,6 +141,9 @@
 	return 0
 
 /obj/machinery/smartfridge/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!ispowered)
 		to_chat(user, "<span class='warning'>[src] has no power.</span>")
 		return
@@ -182,7 +185,9 @@
 		ui.open()
 
 /obj/machinery/smartfridge/Topic(href, href_list)
-	if (..()) return 0
+	. = ..()
+	if(.) 
+		return
 
 	var/mob/user = usr
 	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")

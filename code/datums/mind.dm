@@ -57,7 +57,7 @@
 	return ..()
 
 
-/datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = FALSE)
+/datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
 		current.set_away_time()
@@ -80,10 +80,6 @@
 
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
-		if(new_character.client)
-			new_character.client.change_view(world.view) //reset view range to default.
-			new_character.client.pixel_x = 0
-			new_character.client.pixel_y = 0
 
 
 /datum/mind/proc/set_death_time()
@@ -124,6 +120,9 @@
 
 
 /datum/mind/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!check_rights(R_ADMIN))
 		return
 

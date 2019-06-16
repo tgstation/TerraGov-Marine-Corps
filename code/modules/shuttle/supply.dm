@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
-	circuit = "/obj/item/circuitboard/computer/supplycomp"
+	circuit = null
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/hacked = 0
@@ -252,7 +252,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	name = "Supply ordering console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "request"
-	circuit = "/obj/item/circuitboard/computer/ordercomp"
+	circuit = null
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
@@ -270,7 +270,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return attack_hand(user)
 
 /obj/machinery/computer/ordercomp/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat
@@ -300,7 +301,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 
 /obj/machinery/computer/ordercomp/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if( isturf(loc) && (in_range(src, usr) || issilicon(usr)) )
@@ -399,6 +401,9 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
@@ -459,7 +464,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 	return
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(isturf(loc) && ( in_range(src, usr) || issilicon(usr) ) )

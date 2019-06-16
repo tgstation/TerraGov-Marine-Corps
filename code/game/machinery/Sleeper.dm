@@ -51,7 +51,8 @@
 	return attack_hand(user)
 
 /obj/machinery/sleep_console/attack_hand(mob/living/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
@@ -117,8 +118,9 @@
 
 
 /obj/machinery/sleep_console/Topic(href, href_list)
-	if(..())
-		return FALSE
+	. = ..()
+	if(.)
+		return
 	if(!usr)
 		return FALSE
 	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
@@ -218,6 +220,9 @@
 		break
 
 /obj/machinery/sleeper/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (!href_list["scanreport"])
 		return
 	if(!hasHUD(usr,"medical"))

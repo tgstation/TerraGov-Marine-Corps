@@ -135,6 +135,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["reentercorpse"])
 		if(!isobserver(usr))
 			return
@@ -244,11 +247,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		// if you ghost while alive your current mob is now your ghost
 		// aghosting is invoked with can_reenter_corpse = TRUE so this won't mess with aghosting
 
-	if(ghost.client)
-		ghost.client.change_view(world.view)
-		ghost.client.pixel_x = 0
-		ghost.client.pixel_y = 0
-
 	ghost.alpha = 127
 
 	ghost.can_reenter_corpse = can_reenter_corpse
@@ -325,17 +323,20 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client)
 		return FALSE
 
-	if(!mind?.current || mind.current.gc_destroyed || !can_reenter_corpse)
+	if(!mind || QDELETED(mind.current))
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return FALSE
 
-	if(mind.current.key && copytext(mind.current.key, 1, 2) != "@")
-		to_chat(usr, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
+
+	if(!can_reenter_corpse)
+		to_chat(src, "<span class='warning'>You cannot re-enter your body.</span>")
 		return FALSE
 
-	mind.current.key = key
-	if(mind.current.client)
-		mind.current.client.change_view(world.view)
+	if(mind.current.key && !isaghost(mind.current))
+		to_chat(src, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
+		return FALSE
+
+	mind.transfer_to(mind.current, TRUE)
 	return TRUE
 
 

@@ -67,6 +67,8 @@
 
 /obj/structure/shipmast/attack_hand(var/mob/user)
 	. = ..()
+	if(.)
+		return
 	switch(user.a_intent)
 		if(INTENT_HELP)
 			visible_message("[usr] rubs the [src] for good luck.")

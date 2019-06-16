@@ -2254,8 +2254,8 @@
 
 	icon_state = "pizzabox[boxes.len+1]"
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/pizzabox/attack_hand( mob/user as mob )
-
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
@@ -2264,10 +2264,9 @@
 		update_icon()
 		return
 
-	if( boxes.len > 0 )
+	else if( boxes.len > 0 )
 		if( user.get_inactive_held_item() != src )
-			..()
-			return
+			return ..()
 
 		var/obj/item/pizzabox/box = boxes[boxes.len]
 		boxes -= box
@@ -2276,8 +2275,9 @@
 		to_chat(user, "<span class='warning'>You remove the topmost [src] from your hand.</span>")
 		box.update_icon()
 		update_icon()
-		return
-	..()
+
+	else
+		return ..()
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 

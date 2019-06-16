@@ -37,6 +37,9 @@
 				pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25))
 
 /obj/vehicle/powerloader/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(buckled_mob && user != buckled_mob)
 		buckled_mob.visible_message("<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",\
 		"<span class='danger'>[user] tries to move you out of [src]!</span>")

@@ -151,6 +151,9 @@ var/jungle_plants_init = 0
 	plant_strength = rand(20,200)
 
 /obj/structure/jungle_plant/attack_hand(var/mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(fruits_left > 0)
 		fruits_left--
 		to_chat(user, "<span class='notice'>You pick a fruit off [src].</span>")

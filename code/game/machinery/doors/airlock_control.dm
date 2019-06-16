@@ -159,6 +159,9 @@ obj/machinery/airlock_sensor/update_icon()
 		icon_state = "airlock_sensor_off"
 
 obj/machinery/airlock_sensor/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	var/datum/signal/signal = new
 	signal.transmission_method = 1 //radio signal
 	signal.data["tag"] = master_tag
@@ -236,6 +239,9 @@ obj/machinery/access_button/update_icon()
 		attack_hand(user)
 
 obj/machinery/access_button/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied</span>")
 

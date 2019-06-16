@@ -53,6 +53,9 @@
 		icon_state = "auth_off"
 
 /obj/machinery/keycard_auth/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(user.stat || machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
@@ -89,6 +92,8 @@
 
 /obj/machinery/keycard_auth/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(busy)
 		to_chat(usr, "This device is busy.")
 		return

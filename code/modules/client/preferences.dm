@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				ban_check_name = ROLE_SURVIVOR
 
 		if(jobban_isbanned(user, ban_check_name) || is_banned_from(user.ckey, ban_check_name))
-			dat += "<b>[role]:</b> <font color=red><b> \[BANNED]</b></font><br>"
+			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
 		else
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
 		n++
@@ -381,7 +381,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/rank = job.title
 			lastJob = job
 			if(is_banned_from(user.ckey, rank))
-				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
+				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;preference=bancheck;role=[rank]'> BANNED</a></td></tr>"
 				continue
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 			if(required_playtime_remaining)
@@ -555,6 +555,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/Topic(href, href_list, hsrc)
 	. = ..()
+	if(.)
+		return
 	if(href_list["close"])
 		var/client/C = usr.client
 		if(C)
@@ -984,6 +986,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			save_preferences()
 			ShowKeybindings(user)
 			return
+
+		if("bancheck")
+			var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, href_list["role"])
+			var/admin = FALSE
+			if(GLOB.admin_datums[user.ckey] || GLOB.deadmins[user.ckey])
+				admin = TRUE
+			for(var/i in ban_details)
+				if(admin && !text2num(i["applies_to_admins"]))
+					continue
+				ban_details = i
+				break //we only want to get the most recent ban's details
+			if(!length(ban_details))
+				return
+
+			var/expires = "This is a permanent ban."
+			if(ban_details["expiration_time"])
+				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
+			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
 
 	save_preferences()
 	save_character()

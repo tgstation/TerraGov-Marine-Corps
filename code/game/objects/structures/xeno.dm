@@ -100,6 +100,7 @@
 
 /obj/effect/alien/resin/attack_hand()
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	return TRUE
 
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
@@ -714,12 +715,13 @@ TUNNEL
 
 
 /obj/structure/tunnel/Destroy()
-    GLOB.xeno_tunnels -= src
-    creator.tunnels -= src
-    if(other)
-        other.other = null
-        qdel(other)
-    . = ..()
+	GLOB.xeno_tunnels -= src
+	if(creator)
+		creator.tunnels -= src
+	if(other)
+		other.other = null
+		qdel(other)
+	return ..()
 
 /obj/structure/tunnel/examine(mob/user)
 	..()

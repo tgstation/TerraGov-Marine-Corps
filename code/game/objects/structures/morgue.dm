@@ -50,6 +50,9 @@
 	toggle_morgue(user)
 
 /obj/structure/morgue/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	toggle_morgue(user)
 
 /atom/movable/proc/can_be_morgue_trayed()
@@ -135,6 +138,9 @@
 	return src.attack_hand(user)
 
 /obj/structure/morgue_tray/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(linked_morgue)
 		linked_morgue.toggle_morgue(user)
 
@@ -241,6 +247,9 @@
  */
 
 /obj/machinery/crema_switch/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(allowed(user))
 		for (var/obj/structure/morgue/crematorium/C in range(7,src))
 			if (C.id == id)

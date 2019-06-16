@@ -247,6 +247,9 @@ Currently only has the tank hardpoints
 		return
 
 	next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+	var/obj/item/hardpoint/secondary/towlauncher/HP = owner.hardpoints[HDPT_SECDGUN]
+	if(istype(HP))
+		HP.next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 
 	var/delay = 5
 	var/turf/T = get_turf(A)
@@ -434,6 +437,10 @@ Currently only has the tank hardpoints
 	qdel(TL)
 
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+	var/obj/item/hardpoint/primary/cannon/HP = owner.hardpoints[HDPT_PRIMARY]
+	if(istype(HP))
+		HP.next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		T = get_step(T, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new

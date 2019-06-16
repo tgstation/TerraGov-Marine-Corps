@@ -11,7 +11,7 @@
 	..()
 
 /obj/item/storage/internal/attack_hand()
-	return		//make sure this is never picked up
+	return TRUE
 
 /obj/item/storage/internal/mob_can_equip()
 	return 0	//make sure this is never picked up

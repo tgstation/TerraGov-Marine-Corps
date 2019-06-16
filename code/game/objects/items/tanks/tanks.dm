@@ -106,7 +106,9 @@
 		ui.set_auto_update(1)
 
 /obj/item/tank/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if (usr.stat|| usr.restrained())
 		return 0
 	if (src.loc != usr)

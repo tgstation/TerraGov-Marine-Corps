@@ -276,7 +276,7 @@
 
 /turf/closed/wall/mineral/uranium/attack_hand(mob/user as mob)
 	radiate()
-	..()
+	return ..()
 
 /turf/closed/wall/mineral/uranium/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -473,6 +473,7 @@
 
 /turf/closed/wall/resin/attack_hand(mob/user)
 	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	return TRUE
 
 
 /turf/closed/wall/resin/attack_paw(mob/user)

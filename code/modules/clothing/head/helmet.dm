@@ -212,8 +212,8 @@
 
 
 /obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
-	if (pockets.handle_attack_hand(user))
-		..()
+	if(pockets.handle_attack_hand(user))
+		return ..()
 
 /obj/item/clothing/head/helmet/marine/MouseDrop(over_object, src_location, over_location)
 	if(pockets.handle_mousedrop(usr, over_object))

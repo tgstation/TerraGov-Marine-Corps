@@ -130,7 +130,7 @@
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(machine_stat)
+	if(!is_operational())
 		return
 
 	if(busy)
@@ -224,8 +224,8 @@
 	interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
-
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

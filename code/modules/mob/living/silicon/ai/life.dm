@@ -3,11 +3,6 @@
 		SSmobs.stop_processing(src)
 		return
 
-	if(stat != CONSCIOUS)
-		cameraFollow = null
-		reset_perspective(null)
-		unset_interaction()
-
 	updatehealth()
 
 	interactee?.check_eye(src)

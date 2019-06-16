@@ -24,6 +24,9 @@ var/global/list/active_orbital_beacons = list()
 // Posters
 var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 
+// Pill icons
+GLOBAL_LIST_EMPTY(randomized_pill_icons)
+
 //////////////////////////
 /////Initial Building/////
 //////////////////////////
@@ -119,6 +122,10 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 	// Sort all the keybindings by their weight
 	for(var/key in GLOB.keybinding_list_by_key)
 		GLOB.keybinding_list_by_key[key] = sortList(GLOB.keybinding_list_by_key[key])
+
+	for(var/i in 1 to 21)
+		GLOB.randomized_pill_icons += "pill[i]"
+	shuffle(GLOB.randomized_pill_icons)
 
 	return TRUE
 

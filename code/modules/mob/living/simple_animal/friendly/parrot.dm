@@ -141,6 +141,9 @@
 
 
 /mob/living/simple_animal/parrot/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!iscarbon(usr) || !usr.canUseTopic(src, TRUE, FALSE))
 		usr << browse(null, "window=mob[REF(src)]")
 		usr.unset_interaction()

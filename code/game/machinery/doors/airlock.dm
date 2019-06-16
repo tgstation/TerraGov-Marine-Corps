@@ -314,13 +314,16 @@
 	M.forceMove(loc)
 
 /obj/machinery/door/airlock/attack_hand(mob/user)
-	if(!issilicon(user) && isElectrified() && shock(user, 100))
+	. = ..()
+	if(.)
 		return
-	return ..()
+	if(!issilicon(user) && isElectrified())
+		shock(user, 100)
 
 /obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
-	if(!nowindow)
-		..()
+	. = ..()
+	if(.)
+		return
 	if(usr.stat || usr.restrained()|| usr.mob_size == MOB_SIZE_SMALL)
 		return
 	if(href_list["close"])
@@ -524,7 +527,7 @@
 	else if(!issilicon(user) && isElectrified())
 		shock(user, 75)
 
-	else if(iswelder(I) && !operating && density)
+	if(iswelder(I) && !operating && density)
 		var/obj/item/tool/weldingtool/W = I
 
 		if(not_weldable)

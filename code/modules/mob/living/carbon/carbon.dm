@@ -1,3 +1,8 @@
+/mob/living/carbon/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
+
+
 /mob/living/carbon/Destroy()
 	. = ..()
 	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
@@ -32,15 +37,7 @@
 	if(legcuffed)
 		dropItemToGround(legcuffed)
 
-	for(var/atom/movable/A in stomach_contents)
-		stomach_contents.Remove(A)
-		A.forceMove(loc)
-		if(isliving(A))
-			var/mob/living/L = A
-			L.SetKnockeddown(1)
-			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
-
-	. = ..()
+	return ..()
 
 
 /mob/living/carbon/revive()
@@ -53,14 +50,6 @@
 	legcuffed = initial(legcuffed)
 
 	return ..()
-
-
-/mob/living/carbon/human/attack_hand(mob/living/carbon/M)
-	if(!iscarbon(M))
-		return
-
-	next_move += 7 //Adds some lag to the 'attack'
-	return
 
 
 /mob/living/carbon/attack_paw(mob/living/carbon/M)

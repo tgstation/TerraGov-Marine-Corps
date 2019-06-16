@@ -708,8 +708,10 @@
 			qdel(O)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	for(var/A in contents - radio)
+	for(var/A in contents)
 		var/atom/movable/B = A
+		if(B == radio)
+			continue
 		B.forceMove(loc)
 	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
@@ -865,7 +867,8 @@
 	updateUsrDialog()
 
 /obj/machinery/autodoc_console/attack_hand(mob/living/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	var/dat = ""
 	if(!connected || (connected.machine_stat & (NOPOWER|BROKEN)))
@@ -1043,7 +1046,8 @@
 
 
 /obj/machinery/autodoc_console/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))))
 		usr.set_interaction(src)
@@ -1250,6 +1254,9 @@
 		break
 
 /obj/machinery/autodoc/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (!href_list["scanreport"])
 		return
 	if(!hasHUD(usr,"medical"))

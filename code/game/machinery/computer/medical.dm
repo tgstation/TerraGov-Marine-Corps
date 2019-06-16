@@ -50,7 +50,8 @@
 	return src.attack_hand(user)
 
 /obj/machinery/computer/med_data/attack_hand(mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	var/dat
 	if (src.temp)
@@ -138,7 +139,8 @@
 
 
 /obj/machinery/computer/med_data/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if (!( GLOB.datacore.general.Find(src.active1) ))

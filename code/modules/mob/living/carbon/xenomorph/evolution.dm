@@ -191,17 +191,21 @@
 			qdel(new_xeno)
 		return
 
+	for(var/obj/item/W in contents) //Drop stuff
+		dropItemToGround(W)
+
+	empty_gut()
+
 	if(mind)
 		mind.transfer_to(new_xeno)
 	else
-		new_xeno.key = src.key
-		if(new_xeno.client) new_xeno.client.change_view(world.view)
+		new_xeno.key = key
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = nicknumber
 	new_xeno.hivenumber = hivenumber
 	new_xeno.transfer_to_hive(hivenumber)
-	generate_name()
+	new_xeno.generate_name()
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
@@ -217,10 +221,6 @@
 
 	update_spits() //Update spits to new/better ones
 
-	for(var/obj/item/W in contents) //Drop stuff
-		dropItemToGround(W)
-
-	empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
 	"<span class='xenodanger'>You emerge in a greater form from the husk of your old body. For the hive!</span>")
 

@@ -404,16 +404,13 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 	if(stored_larva && (last_larva_time + 1 MINUTES) < world.time) // every minute
 		last_larva_time = world.time
-		var/picked = get_alien_candidate()
+		var/mob/picked = get_alien_candidate()
 		if(picked)
 			var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(Q.loc)
 			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 			"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
-			new_xeno.key = picked
-
-			if(new_xeno.client)
-				new_xeno.client.change_view(world.view)
+			picked.mind.transfer_to(new_xeno, TRUE)
 
 			to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))

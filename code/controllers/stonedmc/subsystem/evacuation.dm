@@ -185,38 +185,15 @@ SUBSYSTEM_DEF(evacuation)
 			continue
 		shake_camera(M, 110, 4)
 
-	addtimer(CALLBACK(src, .proc/show_cinematic, override, ship_intact), 10 SECONDS)
-
-
-/datum/controller/subsystem/evacuation/proc/show_cinematic(override, ship_intact)
-	var/obj/screen/cinematic/explosion/E = new
-
-	for(var/x in GLOB.clients)
-		var/client/C = x
-		C.screen += E
-		C.change_view(world.view)
-
-	addtimer(CALLBACK(src, .proc/flick_cinematic, E, override, ship_intact), 1.5 SECONDS)
-
-
-/datum/controller/subsystem/evacuation/proc/flick_cinematic(obj/screen/cinematic/explosion/E, override, ship_intact)
-	flick(override ? "intro_override" : "intro_nuke", E)
-	flick(ship_intact ? "ship_spared" : "ship_destroyed", E)
-	SEND_SOUND(world, 'sound/effects/explosionfar.ogg')
-	E.icon_state = ship_intact ? "summary_spared" : "summary_destroyed"
+	if(ship_intact)
+		Cinematic(CINEMATIC_SELFDESTRUCT_MISS, world)
+	else
+		Cinematic(CINEMATIC_SELFDESTRUCT, world)
 
 	dest_status = NUKE_EXPLOSION_FINISHED
-
-	addtimer(CALLBACK(src, .proc/remove_cinematic, E), 10 SECONDS)
-
-
-/datum/controller/subsystem/evacuation/proc/remove_cinematic(obj/screen/cinematic/explosion/E)
-	for(var/x in GLOB.clients)
-		var/client/C = x
-		C.screen -= E
 
 
 /datum/controller/subsystem/evacuation/proc/get_affected_zlevels()
 	if(dest_status >= NUKE_EXPLOSION_IN_PROGRESS || evac_status != EVACUATION_STATUS_COMPLETE)
 		return
-	. = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT))
+	. = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP))
