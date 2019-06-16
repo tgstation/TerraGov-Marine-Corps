@@ -9,7 +9,7 @@
 	throwforce = 0
 	w_class = 3.0
 	origin_tech = "materials=1"
-	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
+	breakouttime = 30 SECONDS
 
 /obj/item/restraints/legcuffs/beartrap
 	name = "bear trap"
@@ -42,7 +42,7 @@
 							if(!H.legcuffed)
 								H.legcuffed = src
 								forceMove(H)
-								H.legcuff_update()
+								H.update_legcuffed()
 							armed = 0
 							icon_state = "beartrap0"
 							playsound(loc, 'sound/effects/snap.ogg', 25, 1)

@@ -56,7 +56,7 @@
 			var/mob/living/carbon/xenomorph/X = user
 			X.pull_power(grabbed_thing)
 		return
-	var/mob/victim = grabbed_thing
+	var/mob/living/victim = grabbed_thing
 	if(victim.mob_size > MOB_SIZE_HUMAN || !(victim.status_flags & CANPUSH))
 		return //can't tighten your grip on big mobs and mobs you can't push.
 	last_upgrade = world.time
@@ -74,6 +74,8 @@
 				user.visible_message("<span class='warning'>[user] has reinforced [user.p_their()] grip on [victim] (now neck)!</span>", null, null, 5)
 				log_combat(user, victim, "neck grabbed")
 				msg_admin_attack("[key_name(user)] grabbed the neck of [key_name(victim)]")
+				ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
+				victim.RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, /mob/living/proc.do_resist_grab)
 			if(GRAB_AGGRESSIVE)
 				user.visible_message("<span class='warning'>[user] has grabbed [victim] aggressively (now hands)!</span>", null, null, 5)
 		victim.update_canmove()

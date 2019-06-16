@@ -1,17 +1,22 @@
-
-
-/mob/living/carbon/proc/handcuff_update()
+//called when we get cuffed/uncuffed
+/mob/living/carbon/proc/update_handcuffed()
 	if(handcuffed)
 		drop_all_held_items()
 		stop_pulling()
+		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_handcuffs)
+	else
+		UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 	update_inv_handcuffed()
 
-/mob/living/carbon/proc/legcuff_update()
+/mob/living/carbon/proc/update_legcuffed()
 	if(legcuffed)
 		if(m_intent != MOVE_INTENT_WALK)
 			m_intent = MOVE_INTENT_WALK
-			if(hud_used && hud_used.move_intent)
+			if(hud_used?.move_intent)
 				hud_used.move_intent.icon_state = "walking"
+		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_legcuffs)
+	else
+		UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 	update_inv_legcuffed()
 
 
@@ -29,10 +34,10 @@
 		sec_hud_set_ID()
 	else if(I == handcuffed)
 		handcuffed = null
-		handcuff_update()
+		update_handcuffed()
 	else if(I == legcuffed)
 		legcuffed = null
-		legcuff_update()
+		update_legcuffed()
 
 /mob/living/carbon/proc/wear_mask_update(obj/item/I, equipping = FALSE)
 	if(!equipping && internal)

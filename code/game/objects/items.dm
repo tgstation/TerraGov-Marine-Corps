@@ -43,6 +43,7 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
+	var/breakouttime = 0
 
 	var/list/allowed = null //suit storage stuff.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
@@ -211,7 +212,7 @@
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
-/obj/item/proc/dropped(mob/user as mob)
+/obj/item/proc/dropped(mob/user)
 	if(user && user.client) //Dropped when disconnected, whoops
 		if(zoom) //binoculars, scope, etc
 			zoom(user, 11, 12)

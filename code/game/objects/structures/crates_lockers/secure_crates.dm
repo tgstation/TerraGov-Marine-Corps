@@ -8,8 +8,7 @@
 	var/icon_unlocked = "secure_unlocked_basic"
 	var/sparks = "securecratesparks"
 	var/emag = "securecrateemag"
-	var/broken = 0
-	var/locked = 1
+	locked = TRUE
 
 /obj/structure/closet/crate/secure/New()
 	..()

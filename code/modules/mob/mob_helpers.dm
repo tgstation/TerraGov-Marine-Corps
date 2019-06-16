@@ -353,7 +353,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 
-/mob/proc/restrained()
+/mob/proc/restrained(ignore_grab)
 	return
 
 

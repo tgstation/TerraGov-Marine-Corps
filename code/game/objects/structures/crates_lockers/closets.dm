@@ -10,8 +10,10 @@
 	var/overlay_welded = "welded"
 	var/opened = FALSE
 	var/welded = FALSE
+	var/locked = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	max_integrity = 100
+	var/breakout_time = 2 MINUTES
 	var/lastbang = FALSE
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate
 							//then open it in a populated area to crash clients.
@@ -71,6 +73,8 @@
 		if(!L.lying && L.stunned)
 			L.visible_message("<span class='warning'>[L] suddenly gets out of [src]!",
 			"<span class='warning'>You get out of [src] and get your bearings!")
+		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
+
 
 /obj/structure/closet/proc/open()
 	if(opened)
@@ -117,17 +121,15 @@
 	return stored_units
 
 /obj/structure/closet/proc/store_mobs(stored_units)
-	for(var/mob/M in loc)
+	for(var/mob/living/L in loc)
 		if(stored_units + mob_size > storage_capacity)
 			break
-		if(isobserver(M))
+		if(L.buckled)
 			continue
-		if(M.buckled)
-			continue
-		var/mob/living/L = M
 		L.smokecloak_off()
+		RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+		L.forceMove(src)
 
-		M.forceMove(src)
 		stored_units += mob_size
 	return stored_units
 
@@ -314,6 +316,42 @@
 			overlays += image(icon, overlay_welded)
 	else
 		icon_state = icon_opened
+
+
+/obj/structure/closet/proc/resisted_against(datum/source, mob/living/resister)
+	container_resist(resister)
+
+
+/obj/structure/closet/proc/container_resist(mob/living/user)
+	if(opened)
+		return
+	if(!welded && !locked)
+		open()
+		return
+
+	//okay, so the closet is either welded or locked... resist!!!
+	user.changeNext_move(CLICK_CD_BREAKOUT)
+	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
+		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
+		"<span class='italics'>You hear banging from [src].</span>")
+	if(do_after(user, breakout_time, target = src))
+		if(!user || user.stat != CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
+			return
+		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
+		user.visible_message("<span class='danger'>[user] successfully broke out of [src]!</span>",
+							"<span class='notice'>You successfully break out of [src]!</span>")
+		bust_open()
+	else
+		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
+			to_chat(user, "<span class='warning'>You fail to break out of [src]!</span>")
+
+
+/obj/structure/closet/proc/bust_open()
+	welded = FALSE //applies to all lockers
+	locked = FALSE //applies to critter crates and secure lockers only
+	broken = TRUE //applies to secure lockers only
+	open()
 
 
 /obj/structure/closet/proc/break_open()

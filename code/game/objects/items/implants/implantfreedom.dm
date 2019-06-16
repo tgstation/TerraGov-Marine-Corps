@@ -23,7 +23,7 @@
 			if (source.handcuffed)
 				var/obj/item/W = source.handcuffed
 				source.handcuffed = null
-				source.handcuff_update()
+				source.update_handcuffed()
 				source.dropItemToGround(W)
 			if (source.legcuffed)
 				var/obj/item/W = source.legcuffed

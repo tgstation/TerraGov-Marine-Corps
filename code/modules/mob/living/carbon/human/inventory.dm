@@ -217,9 +217,9 @@
 	return ..()
 
 
-//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
+//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot)
 	if(!slot)
 		return
 	if(!istype(W))
@@ -260,11 +260,11 @@
 			wear_mask_update(W, TRUE)
 		if(SLOT_HANDCUFFED)
 			handcuffed = W
-			handcuff_update()
+			update_handcuffed()
 		if(SLOT_LEGCUFFED)
 			legcuffed = W
 			W.equipped(src, slot)
-			legcuff_update()
+			update_legcuffed()
 		if(SLOT_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)
@@ -398,8 +398,7 @@
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
 		else
-			to_chat(src, "<span class='warning'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</span>")
-			return
+			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
 	return TRUE
 
 

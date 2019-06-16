@@ -75,6 +75,8 @@
 
 	GLOB.round_statistics.warrior_grabs++
 	grab_level = GRAB_NECK
+	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
+	L.RegisterSignal(L, COMSIG_LIVING_DO_RESIST, /mob/living/proc.do_resist_grab)
 	L.drop_all_held_items()
 	L.KnockDown(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
