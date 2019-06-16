@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "Queen screech is reduced by 30% when out of LOS."
