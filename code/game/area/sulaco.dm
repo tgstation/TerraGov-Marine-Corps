@@ -73,7 +73,7 @@
 	requires_power = 1
 	always_unpowered = 1
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/sulaco/solar/south
 	icon_state = "panelsA"

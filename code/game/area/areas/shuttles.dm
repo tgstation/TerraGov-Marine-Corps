@@ -5,7 +5,7 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
-//	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 //	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
 //	valid_territory = FALSE
@@ -48,7 +48,7 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-//	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"

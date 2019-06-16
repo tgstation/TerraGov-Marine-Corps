@@ -2,7 +2,7 @@
 	name = "\improper Space"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -34,7 +34,7 @@
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = 0
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/arrival
 	name = "\improper Abandoned Arrival Shuttle"
@@ -219,7 +219,7 @@
 	icon_state = "start"
 	requires_power = 0
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = 1
 
 
@@ -259,7 +259,8 @@
 /area/tdome
 	name = "\improper Abandoned Thunderdome"
 	icon_state = "thunder"
-	requires_power = 0
+	requires_power = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 
 /area/tdome/tdome1
@@ -951,7 +952,7 @@
 	requires_power = 1
 	always_unpowered = 1
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 	auxport
 		name = "\improper Abandoned Fore Port Solar Array"
