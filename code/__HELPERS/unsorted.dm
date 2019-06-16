@@ -1181,16 +1181,16 @@ var/list/WALLITEMS = list(
 	if(final_x || final_y)
 		return locate(final_x, final_y, T.z)
 
-/proc/animate_speechbubble(image/I, list/show_to, duration)
-    var/matrix/M = matrix()
-    M.Scale(0,0)
-    I.transform = M
-    I.alpha = 0
-    for(var/client/C in show_to)
-        C.images += I
-    animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
-    addtimer(CALLBACK(GLOBAL_PROC, /.proc/fade_out, I), duration - 5)
-    addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), duration)
+/proc/animate_speech_bubble(image/I, list/show_to, duration)
+	var/matrix/M = matrix()
+	M.Scale(0,0)
+	I.transform = M
+	I.alpha = 0
+	for(var/client/C in show_to)
+		C.images += I
+	animate(I, transform = 0, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
+	addtimer(CALLBACK(GLOBAL_PROC, /.proc/fade_out, I), duration - 0.5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), duration)
 
 /proc/fade_out(image/I)
-	animate(I, alpha = 0, time = 5, easing = EASE_IN)
+	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
