@@ -146,13 +146,10 @@
 	else
 		plasma_stored++
 
-	if(current_aura)
-		plasma_stored -= 5
-
-		if(plasma_stored < 5)
-			plasma_stored = 0
-			current_aura = null
-			to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
+	if(current_aura && (plasma_stored -= 5) < 5)
+		plasma_stored = 0
+        current_aura = null
+        to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
 
 	if(plasma_stored > xeno_caste.plasma_max)
 		plasma_stored = xeno_caste.plasma_max
