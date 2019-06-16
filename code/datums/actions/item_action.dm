@@ -5,7 +5,7 @@
 							//e.g. gun attachment action: target = attachment, holder = gun.
 
 /datum/action/item_action/New(Target, obj/item/holder)
-	..()
+	. = ..()
 	if(!holder)
 		holder = target
 	holder_item = holder
@@ -16,7 +16,7 @@
 /datum/action/item_action/Destroy()
 	holder_item.actions -= src
 	holder_item = null
-	..()
+	return ..()
 
 /datum/action/item_action/action_activate()
 	if(target)
@@ -40,7 +40,7 @@
 
 
 /datum/action/item_action/toggle/New(Target)
-	..()
+	. = ..()
 	name = "Toggle [target]"
 	button.name = name
 
