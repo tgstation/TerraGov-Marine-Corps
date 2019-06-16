@@ -175,6 +175,7 @@
 					observer.real_name = species.random_name()
 
 				observer.name = observer.real_name
+				observer.alpha = 127
 
 				mind.transfer_to(observer, TRUE)
 				qdel(src)
