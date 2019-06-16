@@ -256,11 +256,6 @@
 			qdel(dummy)
 
 
-// Default behavior: ignore double clicks (the second click that makes the doubleclick call already calls for a normal click)
-/mob/proc/DblClickOn(atom/A, params)
-	return
-
-
 /*
 	Translates into attack_hand, etc.
 
