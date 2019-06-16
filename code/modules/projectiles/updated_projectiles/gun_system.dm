@@ -114,6 +114,9 @@
 
 	base_gun_icon = icon_state
 	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
+
+	AddComponent(/datum/component/magazine_receiver)
+	/*
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -125,6 +128,7 @@
 			load_into_chamber()
 	else
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
+		*/
 	set_gun_config_values()
 	update_force_list() //This gives the gun some unique verbs for attacking.
 

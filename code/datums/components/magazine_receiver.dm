@@ -1,5 +1,6 @@
 #define RECEIVER_REPLACE 	(1 << 0)
 #define RECEIVER_PERMANENT	(1 << 1)
+#define RECEIVER_INTERNAL	(1 << 2)
 
 /datum/component/magazine_receiver
 
@@ -10,7 +11,7 @@
 	src.flags_receiver = flags_receiver
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/hit_by_obj)
-	RegisterSignal(parent, )
+	RegisterSignal(parent, COMSIG_MAGAZINE_AMMO_COUNT, .proc/examine_ammo_count)
 
 	load_magazine(null, starting)
 
@@ -39,7 +40,7 @@
 		to_chat(user, "<span class='warning'>It's still got something loaded.</span>")
 		return
 
-	if(!user || reload_delay =< 1)
+	if(!user || reload_delay <= 1)
 		load_magazine(user, I)
 		return
 
@@ -74,7 +75,7 @@
 	if(!magazine)
 		to_chat(user, "It's unloaded[flags & GUN_IS_CHAMBERED?" but has a round chambered":""].")
 		return
-	var/current_shots = FLOOR(get_ammo_count() max(ammo_per_shot, 1), 1)
+	var/current_shots = FLOOR(get_ammo_count()/max(ammo_per_shot, 1), 1)
 
 	if(flags & GUN_HAS_AMMO_COUNTER)
 		to_chat(user, "Ammo counter shows [current_shots + (flags & GUN_IS_CHAMBERED ? 1:0)] round\s remaining.")
@@ -82,4 +83,33 @@
 	
 	to_chat(user, "It's loaded[flags & GUN_IS_CHAMBERED?" and has a round chambered":""].")
 
+/*
+uses a magazine
+/obj/item/weapon/gun/rifle/sniper/M42A
+/obj/item/weapon/gun/rifle/sniper/elite
+/obj/item/weapon/gun/rifle/sniper/svd
+/obj/item/weapon/gun/rifle/m4ra
+* /obj/item/weapon/gun/launcher/rocket
+/obj/item/weapon/gun/minigun
+/obj/item/weapon/gun/smg
+/obj/item/weapon/gun/rifle
+/obj/item/weapon/gun/pistol
+/obj/item/weapon/gun/flamer
+* /obj/item/weapon/gun/energy
 
+
+internal magazine
+/obj/item/weapon/gun/smartgun
+/obj/item/weapon/gun/shotgun/merc/scout
+/obj/item/weapon/gun/shotgun
+/obj/item/weapon/gun/revolver
+/obj/item/weapon/gun/launcher/rocket/toy
+
+
+weird special cases
+/obj/item/weapon/gun/launcher/m92
+/obj/item/weapon/gun/launcher/m81
+/obj/item/weapon/gun/flare
+/obj/item/weapon/gun/syringe
+
+*/
