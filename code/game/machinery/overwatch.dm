@@ -8,6 +8,9 @@
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
 
+GLOBAL_LIST_EMPTY(active_orbital_beacons)
+GLOBAL_LIST_EMPTY(active_laser_targets)
+
 /obj/machinery/computer/camera_advanced/overwatch
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."
@@ -135,29 +138,29 @@
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>[current_squad.name] Laser Targets:</b><br>"
-					if(active_laser_targets.len)
+					if(length(GLOB.active_laser_targets))
 						for(var/obj/effect/overlay/temp/laser_target/LT in current_squad.squad_laser_targets)
 							if(!istype(LT))
 								continue
-							dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[LT];selected_target=\ref[LT]'>[LT.name]</a><br>"
+							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 					else
 						dat += "<span class='warning'>None</span><br>"
 					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
-					if(active_orbital_beacons.len)
+					if(length(GLOB.active_orbital_beacons))
 						for(var/obj/item/squad_beacon/bomb/OB in current_squad.squad_orbital_beacons)
 							if(!istype(OB))
 								continue
-							dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[OB];selected_target=\ref[OB]'>[OB.name]</a><br>"
+							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
 					else
 						dat += "<span class='warning'>None transmitting</span><br>"
 					dat += "<b>Selected Target:</b><br>"
 					if(!selected_target) // Clean the targets if nothing is selected
 						dat += "<span class='warning'>None</span><br>"
-					else if(!(selected_target in active_laser_targets) && !(selected_target in active_orbital_beacons)) // Or available
+					else if(!(selected_target in GLOB.active_laser_targets) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
 						dat += "<span class='warning'>None</span><br>"
 						selected_target = null
 					else
-						dat += "<font color='green'>[selected_target.name]</font><br>"
+						dat += "<font color='green'>[selected_target]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
 					dat += "----------------------<br>"
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
@@ -389,6 +392,7 @@
 		if("use_cam")
 			if(isAI(usr))
 				return
+			selected_target = locate(href_list["selected_target"])
 			var/atom/cam_target = locate(href_list["cam_target"])
 			open_prompt(usr)
 			eyeobj.setLoc(get_turf(cam_target))
@@ -440,25 +444,25 @@
 				else
 					dat += "<font color='green'>Ready!</font><br>"
 				dat += "<B>Laser Targets:</b><br>"
-				if(active_laser_targets.len)
-					for(var/obj/effect/overlay/temp/laser_target/LT in active_laser_targets)
+				if(length(GLOB.active_laser_targets))
+					for(var/obj/effect/overlay/temp/laser_target/LT in GLOB.active_laser_targets)
 						if(!istype(LT))
 							continue
-						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[LT];selected_target=\ref[LT]'>[LT.name]</a><br>"
+						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 				else
 					dat += "<span class='warning'>None</span><br>"
 				dat += "<B>Beacon Targets:</b><br>"
-				if(active_orbital_beacons.len)
-					for(var/obj/item/squad_beacon/bomb/OB in active_orbital_beacons)
+				if(length(GLOB.active_orbital_beacons))
+					for(var/obj/item/squad_beacon/bomb/OB in GLOB.active_orbital_beacons)
 						if(!istype(OB))
 							continue
-						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[OB];selected_target=\ref[OB]'>[OB.name]</a><br>"
+						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
 				else
 					dat += "<span class='warning'>None transmitting</span><br>"
 				dat += "<b>Selected Target:</b><br>"
 				if(!selected_target) // Clean the targets if nothing is selected
 					dat += "<span class='warning'>None</span><br>"
-				else if(!(selected_target in active_laser_targets) && !(selected_target in active_orbital_beacons)) // Or available
+				else if(!(selected_target in GLOB.active_laser_targets) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
 					dat += "<span class='warning'>None</span><br>"
 					selected_target = null
 				else
@@ -833,8 +837,7 @@
 	var/obj/machinery/camera/beacon_cam = null
 
 /obj/item/squad_beacon/Destroy()
-	if(src in active_orbital_beacons)
-		active_orbital_beacons -= src
+	GLOB.active_orbital_beacons -= src
 	if(squad)
 		if(squad.sbeacon == src)
 			squad.sbeacon = null
@@ -932,7 +935,7 @@
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 		name = "transmitting orbital beacon"
-		active_orbital_beacons += src
+		GLOB.active_orbital_beacons += src
 		var/cam_name = ""
 		cam_name += H.get_paygrade()
 		cam_name += H.name
@@ -940,8 +943,7 @@
 			squad = H.assigned_squad
 			name += " ([squad.name])"
 			squad.squad_orbital_beacons += src
-		var/n = active_orbital_beacons.Find(src)
-		cam_name += " [n]"
+		cam_name += " [src]"
 		var/obj/machinery/camera/beacon_cam/BC = new(src, cam_name)
 		H.transferItemToLoc(src, H.loc)
 		beacon_cam = BC
@@ -966,8 +968,7 @@
 		if(squad)
 			squad.squad_orbital_beacons -= src
 			squad = null
-		if(src in active_orbital_beacons)
-			active_orbital_beacons -= src
+		GLOB.active_orbital_beacons -= src
 		qdel(beacon_cam)
 		beacon_cam = null
 		activated = FALSE

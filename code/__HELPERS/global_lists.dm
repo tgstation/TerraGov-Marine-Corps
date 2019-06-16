@@ -15,12 +15,6 @@ var/global/list/processing_machines = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 
-//used by binoculars for dropship bombardment
-var/global/list/active_laser_targets = list()
-
-//used by the main overwatch console
-var/global/list/active_orbital_beacons = list()
-
 // Posters
 var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 
