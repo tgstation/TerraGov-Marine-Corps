@@ -149,7 +149,7 @@
 	if(current_aura)
 		plasma_stored -= 5
 
-	if(current_aura && plasma_stored < 5)
+	if(current_aura && plasma_stored < 10)
 		plasma_stored = 0
 		current_aura = null
 		to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
