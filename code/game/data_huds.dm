@@ -195,7 +195,7 @@
 
 	if(species.species_flags & IS_SYNTHETIC)
 		status_hud.icon_state = "hudsynth"
-		infection_hud.icon_state = ""
+		infection_hud.icon_state = "hudsynth"
 		return TRUE
 
 	if(status_flags & XENO_HOST)
