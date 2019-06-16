@@ -154,6 +154,10 @@
 		current_aura = null
 		to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
 
+	else
+		if(plasma_stored > xeno_caste.plasma_max)
+			plasma_stored = xeno_caste.plasma_max
+
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
 /mob/living/carbon/xenomorph/proc/handle_aura_emiter()
