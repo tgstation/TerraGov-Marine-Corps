@@ -29,7 +29,8 @@
 	var/list/old_images = hud_list[AI_DETECT_HUD]
 	if(!ai_detector_visible)
 		hud.remove_from_hud(src)
-		QDEL_LIST(old_images)
+		if(islist(old_images))
+			QDEL_LIST(old_images)
 		return
 
 	if(!length(hud.hudusers))
@@ -48,11 +49,11 @@
 	var/list/new_images = list()
 	var/list/turfs = get_visible_turfs()
 	for(var/T in turfs)
-		var/image/I = (old_images.len > new_images.len) ? old_images[new_images.len + 1] : image(null, T)
+		var/image/I = (length(old_images) > length(new_images) ? old_images[length(new_images) + 1] : image(null, T))
 		I.loc = T
 		I.vis_contents += hud_obj
 		new_images += I
-	for(var/i in (new_images.len + 1) to old_images.len)
+	for(var/i in (length(new_images) + 1) to length(old_images))
 		qdel(old_images[i])
 	hud_list[AI_DETECT_HUD] = new_images
 	hud.add_to_hud(src)
