@@ -279,6 +279,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		switch(href_list["transform"])
 			if("observer")
 				newmob = M.ghostize()
+				newmob.alpha = 255 // Admin made ghosts use the ghost sprite, this doesn't need the alpha applied within .ghostize()
 				if(delmob)
 					qdel(M)
 				if(location)
