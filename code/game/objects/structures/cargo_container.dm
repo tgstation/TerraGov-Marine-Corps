@@ -5,13 +5,15 @@
 	icon_state = "blue"
 	bound_width = 32
 	bound_height = 64
-	density = 1
+	density = TRUE
 	max_integrity = 200
 	opacity = 1
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/cargo_container/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	playsound(loc, 'sound/effects/clang.ogg', 25, 1)
 
 	var/damage_dealt
@@ -59,7 +61,7 @@
 	icon_state = "blue"
 	bound_width = 64
 	bound_height = 32
-	density = 1
+	density = TRUE
 	opacity = 1
 
 

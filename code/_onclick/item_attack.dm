@@ -1,14 +1,34 @@
 
+/obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
+	if(tool_attack_chain(user, target))
+		return
+	// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
+	var/resolved = target.attackby(src, user, params)
+	if(resolved || QDELETED(target) || QDELETED(src))
+		return
+	afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
+
+
+
+//Checks if the item can work as a tool, calling the appropriate tool behavior on the target
+/obj/item/proc/tool_attack_chain(mob/user, atom/target)
+	if(!tool_behaviour)
+		return FALSE
+
+	return target.tool_act(user, src, tool_behaviour)
+
+
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
+	add_fingerprint(user, "attack_self")
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
 	return
 
 
-
-/atom/proc/attackby(obj/item/W, mob/user, params)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, params) & COMPONENT_NO_AFTERATTACK)
+/atom/proc/attackby(obj/item/I, mob/user, params)
+	add_fingerprint(user, "attackby", I)
+	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
 
@@ -36,10 +56,12 @@
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 	return
 
 
-/obj/item/proc/attack(mob/living/M, mob/living/user, def_zone)
+/obj/item/proc/attack(mob/living/M, mob/living/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
 
 	if(flags_item & NOBLUDGEON)
@@ -59,11 +81,7 @@
 
 	/////////////////////////
 
-	add_fingerprint(user)
-
 	var/power = force
-	if(HULK in user.mutations)
-		power *= 2
 
 	if(user.mind && user.mind.cm_skills)
 		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
@@ -90,13 +108,12 @@
 			if("brute")
 				M.apply_damage(power,BRUTE)
 			if("fire")
-				if (!(COLD_RESISTANCE in M.mutations))
-					M.apply_damage(power,BURN)
-					to_chat(M, "<span class='warning'>It burns!</span>")
+				M.apply_damage(power,BURN)
+				to_chat(M, "<span class='warning'>It burns!</span>")
 		M.updatehealth()
 	else
 		var/mob/living/carbon/human/H = M
-		var/hit = H.attacked_by(src, user, def_zone)
+		var/hit = H.attacked_by(src, user)
 		if (hit && hitsound)
 			playsound(loc, hitsound, 25, 1)
 		H.camo_off_process(SCOUT_CLOAK_OFF_ATTACK)

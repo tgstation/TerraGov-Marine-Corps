@@ -21,7 +21,7 @@
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/bible,
-		/obj/item/storage/sparepouch,
+		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun)
@@ -201,7 +201,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/storage/sparepouch,
+		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/belt/gun)
 
@@ -239,7 +239,7 @@
 					/obj/item/explosive/mine,
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/gun/smartgun,
-					/obj/item/storage/sparepouch)
+					/obj/item/storage/belt/sparepouch)
 
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."
@@ -510,7 +510,9 @@
 
 //Interface for the B18
 /obj/item/clothing/suit/storage/marine/specialist/Topic(href, href_list)
-	//..()
+	. = ..()
+	if(.)
+		return
 	if(usr.incapacitated() || usr != wearer || !usr.IsAdvancedToolUser())
 		return
 	if(usr.contents.Find(src) )
@@ -745,7 +747,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/storage/sparepouch,
+		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete)
 	var/brightness_on = 5 //Average attachable pocket light
 	var/flashlight_cooldown = 0 //Cooldown for toggling the light
@@ -887,7 +889,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/storage/sparepouch,
+		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/baseballbat)
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -965,3 +967,34 @@
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/combat_knife)
+
+
+
+/obj/item/clothing/suit/storage/marine/som
+	name = "\improper S12 hauberk"
+	desc = "A heavily modified piece of mining equipment remade for general purpose combat use. It's light but practically gives no armor."
+	icon_state = "som_armor"
+	item_state = "som_armor"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_armor_protection = CHEST|GROIN
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 30, "acid" = 30)
+
+
+/obj/item/clothing/suit/storage/marine/som/veteran
+	name = "\improper S12 combat Hauberk"
+	desc = "A heavily modified piece of mining equipment remade for general purpose combat use. Seems to have been modifed much further than other pieces like it. Heavier but tougher because of it."
+	icon_state = "som_armor_veteran"
+	item_state = "som_armor_veteran"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 30, "energy" = 40, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
+
+
+/obj/item/clothing/suit/storage/marine/som/leader
+	name = "\improper S13 leader hauberk"
+	desc = "A heavily modified modified piece of mining equipment remade for general purpose combat use. Modified extensively than other pieces like it but heavier because of it."
+	icon_state = "som_armor_leader"
+	item_state = "som_armor_leader"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 40, "energy" = 50, "bomb" = 40, "bio" = 15, "rad" = 15, "fire" = 50, "acid" = 50)

@@ -8,7 +8,7 @@
 	icon_state = "platform"
 	climbable = TRUE
 	anchored = TRUE
-	density = 1
+	density = TRUE
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack

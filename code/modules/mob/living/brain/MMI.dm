@@ -18,14 +18,13 @@
 
 	var/locked = 0
 	var/mob/living/brain/brainmob = null//The current occupant.
-	var/mob/living/silicon/robot = null//Appears unused.
-	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
+
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if(istype(O,/obj/item/organ/brain) && !brainmob) //Time to stick a brain in it --NEO
 
 			var/obj/item/organ/brain/B = O
-			if(B.health <= 0)
+			if(B.obj_integrity <= 0)
 				to_chat(user, "<span class='warning'>That brain is well and truly dead.</span>")
 				return
 			else if(!B.brainmob)

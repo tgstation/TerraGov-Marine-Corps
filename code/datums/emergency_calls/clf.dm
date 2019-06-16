@@ -1,7 +1,7 @@
 //Colonial Liberation Front
 /datum/emergency_call/clf
 	name = "CLF"
-	probability = 20
+	probability = 0
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)
@@ -20,13 +20,11 @@
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
 	if(H.gender == MALE)
-		H.name = pick(first_names_male_clf) + " " + pick(last_names_clf)
+		H.name = pick(GLOB.first_names_male_clf) + " " + pick(GLOB.last_names_clf)
 		H.real_name = H.name
-		H.voice_name = H.name
 	else
-		H.name = pick(first_names_female_clf) + " " + pick(last_names_clf)
+		H.name = pick(GLOB.first_names_female_clf) + " " + pick(GLOB.last_names_clf)
 		H.real_name = H.name
-		H.voice_name = H.name
 
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)

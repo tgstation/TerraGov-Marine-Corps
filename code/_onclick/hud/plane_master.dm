@@ -46,8 +46,11 @@
 
 /obj/screen/plane_master/floor/backdrop(mob/mymob)
 	filters = list()
-	if(istype(mymob) && mymob.eye_blurry)
-		filters += GAUSSIAN_BLUR(CLAMP(mymob.eye_blurry*0.1,0.6,3))
+	if(!isliving(mymob))
+		return
+	var/mob/living/L = mymob
+	if(L.eye_blurry)
+		filters += GAUSSIAN_BLUR(CLAMP(L.eye_blurry * 0.1, 0.6, 3))
 
 /obj/screen/plane_master/game_world
 	name = "game world plane master"
@@ -57,10 +60,11 @@
 
 /obj/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
-//	if(istype(mymob) && mymob.client && mymob.client.prefs && mymob.client.prefs.ambientocclusion)
-//		filters += AMBIENT_OCCLUSION
-	if(istype(mymob) && mymob.eye_blurry)
-		filters += GAUSSIAN_BLUR(CLAMP(mymob.eye_blurry*0.1,0.6,3))
+	if(!isliving(mymob))
+		return
+	var/mob/living/L = mymob
+	if(L.eye_blurry)
+		filters += GAUSSIAN_BLUR(CLAMP(L.eye_blurry * 0.1, 0.6, 3))
 
 /obj/screen/plane_master/lighting
 	name = "lighting plane master"
@@ -78,9 +82,9 @@
 	name = "parallax whitifier plane master"
 	plane = PLANE_SPACE
 
-///obj/screen/plane_master/lighting/backdrop(mob/mymob)
-//	mymob.overlay_fullscreen("lighting_backdrop_lit", /obj/screen/fullscreen/lighting_backdrop/lit)
-//	mymob.overlay_fullscreen("lighting_backdrop_unlit", /obj/screen/fullscreen/lighting_backdrop/unlit)
+/obj/screen/plane_master/lighting/backdrop(mob/mymob)
+	mymob.overlay_fullscreen("lighting_backdrop_lit", /obj/screen/fullscreen/lighting_backdrop/lit)
+	mymob.overlay_fullscreen("lighting_backdrop_unlit", /obj/screen/fullscreen/lighting_backdrop/unlit)
 
 /obj/screen/plane_master/camera_static
 	name = "camera static plane master"

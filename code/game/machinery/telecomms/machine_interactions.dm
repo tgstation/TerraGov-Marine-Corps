@@ -17,6 +17,9 @@
 
 
 /obj/machinery/computer/telecomms/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	interact(user)
 
 
@@ -92,12 +95,6 @@
 	// Let's double check
 	if(!issilicon(user) && istype(user.get_active_held_item(), /obj/item/multitool))
 		P = user.get_active_held_item()
-	else if(isAI(user))
-		var/mob/living/silicon/ai/U = user
-		P = U.aiMulti
-	else if(iscyborg(user) && in_range(user, src))
-		if(istype(user.get_active_held_item(), /obj/item/multitool))
-			P = user.get_active_held_item()
 	return P
 
 

@@ -1,9 +1,9 @@
 /datum/admin_rank
 	var/name = "NoRank"
 	var/rights
-	var/exclude_rights = NOFLAGS
-	var/include_rights = NOFLAGS
-	var/can_edit_rights = NOFLAGS
+	var/exclude_rights = NONE
+	var/include_rights = NONE
+	var/can_edit_rights = NONE
 
 
 /datum/admin_rank/New(init_name, init_rights, init_exclude_rights, init_edit_rights)
@@ -56,6 +56,8 @@
 				flag = R_MENTOR
 			if("ASAY")
 				flag = R_ASAY
+			if("ADMINTICKET")
+				flag = R_ADMINTICKET
 			if("BAN")
 				flag = R_BAN
 			if("FUN")

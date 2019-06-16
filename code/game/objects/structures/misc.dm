@@ -44,14 +44,17 @@
 	..()
 	to_chat(user, "It contains [reagents.total_volume] unit\s of water!")
 
-/obj/structure/mopbucket/attackby(obj/item/I, mob/user)
+/obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
 			to_chat(user, "<span class='warning'>[src] is out of water!</span>")
-		else
-			reagents.trans_to(I, 5)
-			to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			return
+
+		reagents.trans_to(I, 5)
+		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/structure/shipmast
 	name = "\the Ships Mast"
@@ -64,6 +67,8 @@
 
 /obj/structure/shipmast/attack_hand(var/mob/user)
 	. = ..()
+	if(.)
+		return
 	switch(user.a_intent)
 		if(INTENT_HELP)
 			visible_message("[usr] rubs the [src] for good luck.")
@@ -141,3 +146,44 @@ obj/item/alienjar
 	icon_state = "rampbottom"
 	density = 0
 	opacity = 0
+
+/obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
+	name = "\improper plastic flaps"
+	desc = "Completely impassable - or are they?"
+	icon = 'icons/obj/stationobjs.dmi' //Change this.
+	icon_state = "plasticflaps"
+	density = 0
+	anchored = TRUE
+	layer = MOB_LAYER
+
+/obj/structure/plasticflaps/CanPass(atom/A, turf/T)
+	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
+		return prob(60)
+
+	var/obj/structure/bed/B = A
+	if (istype(A, /obj/structure/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
+		return 0
+
+	if(istype(A, /obj/vehicle))	//no vehicles
+		return 0
+
+	if(isliving(A)) // You Shall Not Pass!
+		var/mob/living/M = A
+		if(!M.lying && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse))  //If your not laying down, or a small creature, no pass.
+			return 0
+	return ..()
+
+/obj/structure/plasticflaps/ex_act(severity)
+	switch(severity)
+		if (1)
+			qdel(src)
+		if (2)
+			if (prob(50))
+				qdel(src)
+		if (3)
+			if (prob(5))
+				qdel(src)
+
+/obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
+	name = "\improper Airtight plastic flaps"
+	desc = "Heavy duty, airtight, plastic flaps."

@@ -44,7 +44,7 @@
 	. = FALSE
 
 
-/obj/machinery/power/terminal/dismantle(mob/living/user)
+/obj/machinery/power/terminal/deconstruct(mob/living/user)
 	var/turf/T = get_turf(src)
 	if(T.intact_tile)
 		to_chat(user, "<span class='warning'>You must first expose the power terminal!</span>")
@@ -57,7 +57,7 @@
 		"<span class='notice'>You start removing [master]'s wiring and terminal.</span>")
 
 	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
-	if(!do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(master && !master.can_terminal_dismantle())

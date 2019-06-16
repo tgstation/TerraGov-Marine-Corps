@@ -261,8 +261,6 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 			job = J.comm_title
 	else if(isAI(M))  // AI
 		job = "AI"
-	else if(iscyborg(M))  // Cyborg
-		job = "Cyborg"
 	else if(isobj(M))  // Cold, emotionless machines
 		job = "Machine"
 

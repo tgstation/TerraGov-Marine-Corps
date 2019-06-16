@@ -128,6 +128,12 @@ Contains most of the procs that are called when a mob is attacked by something
 			return TRUE
 	return ..()
 
+/mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) && species.has_organ["lungs"])
+		var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
+		L?.take_damage(1, TRUE)
+
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
 	if(!I || !user)	return 0
@@ -219,9 +225,9 @@ Contains most of the procs that are called when a mob is attacked by something
 					bloody_body(src)
 
 	//Melee weapon embedded object code.
-	if (I.damtype == BRUTE && !I.is_robot_module() && !(I.flags_item & (NODROP|DELONDROP)))
+	if (I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
 		var/damage = I.force
-		if(damage > 40) 
+		if(damage > 40)
 			damage = 40
 		if (!armor && weapon_sharp && prob(3))
 			affecting.embed(I)
@@ -295,20 +301,19 @@ Contains most of the procs that are called when a mob is attacked by something
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
 			var/obj/item/I = O
-			if (!I.is_robot_module())
-				var/sharp = is_sharp(I)
-				var/damage = throw_damage
-				if (armor)
-					damage /= armor+1
+			var/sharp = is_sharp(I)
+			var/damage = throw_damage
+			if (armor)
+				damage /= armor+1
 
-				//blunt objects should really not be embedding in things unless a huge amount of force is involved
-				var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
-				var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
+			//blunt objects should really not be embedding in things unless a huge amount of force is involved
+			var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
+			var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
 
-				//Sharp objects will always embed if they do enough damage.
-				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-				if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
-					affecting.embed(I)
+			//Sharp objects will always embed if they do enough damage.
+			//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
+			if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
+				affecting.embed(I)
 
 		// Begin BS12 momentum-transfer code.
 		if(O.throw_source && speed >= 15)
@@ -319,17 +324,13 @@ Contains most of the procs that are called when a mob is attacked by something
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 
-/mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
-	if (gloves)
+/mob/living/carbon/human/proc/bloody_hands(mob/living/source, amount = 2)
+	if (istype(gloves))
 		gloves.add_mob_blood(source)
-		gloves:transfer_blood = amount
+		gloves.transfer_blood = amount
 	else
-		var/list/blood_dna = source.get_blood_dna_list()
-		if(!blood_dna)
-			return
 		var/b_color = source.get_blood_color()
 
-		transfer_blood_dna(blood_dna)
 		if(b_color)
 			blood_color = b_color
 		bloody_hands = amount
@@ -368,7 +369,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	return 1
 
 
-/mob/living/carbon/human/screech_act(mob/living/carbon/Xenomorph/Queen/Q)
+/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q)
 	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 	var/dist = get_dist(src, Q)
 

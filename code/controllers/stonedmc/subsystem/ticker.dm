@@ -34,16 +34,19 @@ SUBSYSTEM_DEF(ticker)
 	var/list/round_end_events
 	var/end_state = "undefined"
 
+	var/tipped = FALSE
+
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
 	login_music = pick(
-	'sound/music/SpaceHero.ogg',
-	'sound/music/ManOfWar.ogg',
-	'sound/music/PraiseTheLord.ogg',
-	'sound/music/BloodUponTheRisers.ogg',
-	'sound/music/DawsonChristian.ogg')
+		'sound/music/SpaceHero.ogg',
+		'sound/music/ManOfWar.ogg',
+		'sound/music/PraiseTheLord.ogg',
+		'sound/music/BloodUponTheRisers.ogg',
+		'sound/music/DawsonChristian.ogg',
+	)
 
 	return ..()
 
@@ -66,6 +69,10 @@ SUBSYSTEM_DEF(ticker)
 				time_left = max(0, start_at - world.time)
 			if(start_immediately)
 				time_left = 0
+
+			if(time_left <= 300 && !tipped)
+				send_tip_of_the_round()
+				tipped = TRUE
 
 			//countdown
 			if(time_left < 0)
@@ -104,6 +111,8 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 	//Create and announce mode
 	mode = config.pick_mode(GLOB.master_mode)
+
+	CHECK_TICK
 	if(!mode.can_start())
 		to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		QDEL_NULL(mode)
@@ -111,42 +120,35 @@ SUBSYSTEM_DEF(ticker)
 		return FALSE
 
 	CHECK_TICK
-	var/can_continue = mode.pre_setup()
-	CHECK_TICK
-	SSjob.DivideOccupations() 
-	CHECK_TICK
-
-	if(!GLOB.Debug2)
-		if(!can_continue)
+	var/success = mode.pre_setup()
+	if (!success)
+		if(GLOB.Debug2)
+			message_admins("<span class='notice'>DEBUG: Bypassing failing prestart checks...</span>")
+		else
 			QDEL_NULL(mode)
-			to_chat(world, "<b>Error setting up [GLOB.master_mode].</b> Reverting to pre-game lobby.")
+			to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
 			SSjob.ResetOccupations()
 			return FALSE
-	else
-		message_admins("<span class='notice'>DEBUG: Bypassing prestart checks...</span>")
 
 	CHECK_TICK
-
+	if (!mode.setup())
+		QDEL_NULL(mode)
+		to_chat(world, "<b>Error in setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
+		SSjob.ResetOccupations()
+		return FALSE
+	
+	CHECK_TICK
 	mode.announce()
 
 	if(CONFIG_GET(flag/autooocmute))
 		GLOB.ooc_allowed = TRUE
 
 	CHECK_TICK
-	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
-	create_characters() //Create player characters
-	collect_minds()
-	reset_squads()
-	equip_characters()
-
-	transfer_characters()	//transfer keys to the new mobs
-
 	for(var/I in round_start_events)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
-
-	supply_controller.process()
+	CHECK_TICK
 
 	GLOB.datacore.manifest()
 
@@ -157,6 +159,7 @@ SUBSYSTEM_DEF(ticker)
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
+	CHECK_TICK
 	PostSetup()
 	return TRUE
 
@@ -167,6 +170,7 @@ SUBSYSTEM_DEF(ticker)
 
 	setup_done = TRUE
 
+	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
 	for(var/i in GLOB.start_landmarks_list)
 		var/obj/effect/landmark/start/S = i
 		if(istype(S))							//we can not runtime here. not in this important of a proc.
@@ -198,59 +202,6 @@ SUBSYSTEM_DEF(ticker)
 		if(epi)
 			explosion(epi, 0, 256, 512, 0, TRUE, TRUE, 0, TRUE)
 
-
-/datum/controller/subsystem/ticker/proc/create_characters()
-	for(var/mob/new_player/player in GLOB.player_list)
-		if(player.ready && player.mind)
-			GLOB.joined_player_list += player.ckey
-			player.create_character(FALSE)
-		else
-			player.new_player_panel()
-		CHECK_TICK
-
-
-/datum/controller/subsystem/ticker/proc/collect_minds()
-	for(var/mob/new_player/P in GLOB.player_list)
-		if(P.new_character && P.new_character.mind)
-			SSticker.minds += P.new_character.mind
-		CHECK_TICK
-
-
-/datum/controller/subsystem/ticker/proc/equip_characters()
-	var/captainless = TRUE
-	for(var/mob/new_player/N in GLOB.player_list)
-		var/mob/living/carbon/human/player = N.new_character
-		if(istype(player) && player.mind && player.mind.assigned_role)
-			if(player.mind.assigned_role == "Captain")
-				captainless = FALSE
-			if(player.mind.assigned_role)
-				SSjob.EquipRank(N, player.mind.assigned_role, 0)
-		CHECK_TICK
-	if(captainless)
-		for(var/mob/new_player/N in GLOB.player_list)
-			if(N.new_character)
-				to_chat(N, "Marine Captain position not forced on anyone.")
-			CHECK_TICK
-
-
-/datum/controller/subsystem/ticker/proc/transfer_characters()
-	var/list/livings = list()
-	for(var/mob/new_player/player in GLOB.mob_list)
-		var/mob/living = player.transfer_character()
-		if(living)
-			qdel(player)
-			living.notransform = TRUE
-			livings += living
-	if(length(livings))
-		addtimer(CALLBACK(src, .proc/release_characters, livings), 30, TIMER_CLIENT_TIME)
-
-
-/datum/controller/subsystem/ticker/proc/release_characters(list/livings)
-	for(var/I in livings)
-		var/mob/living/L = I
-		L.notransform = FALSE
-
-
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
 
@@ -271,6 +222,8 @@ SUBSYSTEM_DEF(ticker)
 	delay_end = SSticker.delay_end
 
 	time_left = SSticker.time_left
+
+	tipped = SSticker.tipped
 
 	switch(current_state)
 		if(GAME_STATE_SETTING_UP)
@@ -338,3 +291,19 @@ SUBSYSTEM_DEF(ticker)
 	to_chat_immediate(world, "<h3><span class='boldnotice'>Rebooting...</span></h3>")
 
 	world.Reboot(TRUE)
+
+/datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
+	var/tip
+	GLOB.marinetips = world.file2list("strings/tips/marine.txt")
+	GLOB.xenotips = world.file2list("strings/tips/xeno.txt")
+	GLOB.metatips = world.file2list("strings/tips/meta.txt")
+	GLOB.joketips = world.file2list("strings/tips/meme.txt")
+
+
+	if(prob(95) && length(ALLTIPS))
+		tip = pick(ALLTIPS)
+	else if(length(GLOB.joketips))
+		tip = pick(GLOB.joketips)
+
+	if(tip)
+		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")

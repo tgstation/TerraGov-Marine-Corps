@@ -88,42 +88,51 @@
 	return round(4 * charge/(capacity ? capacity : 5e6))
 
 
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
-	..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
-	if(panel_open)
-		if(iscrowbar(W))
-			if (charge < (capacity / 100))
-				if (!outputting && !input_attempt)
-					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 25, 1)
-					var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
-					M.state = 2
-					M.icon_state = "box_1"
-					for(var/obj/I in component_parts)
-						if(I.reliability != 100 && crit_fail)
-							I.crit_fail = 1
-						I.loc = src.loc
-					qdel(src)
-					return 1
-				else
-					to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
-			else
-				to_chat(user, "<span class='warning'>Better let [src] discharge before dismantling it.</span>")
-		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell) && (cells_amount < 5)))
-			if (charge < (capacity / 100))
-				if (!outputting && !input_attempt)
-					if(user.transferItemToLoc(W, src))
-						component_parts += W
-						RefreshParts()
-						to_chat(user, "<span class='notice'>You upgrade the [src] with [W.name].</span>")
-				else
-					to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
-			else
-				to_chat(user, "<span class='warning'>Better let [src] discharge before putting your hand inside it.</span>")
-		else
-			user.set_interaction(src)
-			interact(user)
-			return 1
-	return
+/obj/machinery/power/smes/batteryrack/attackby(obj/item/I, mob/user, params) //these can only be moved by being reconstructed, solves having to remake the powernet.
+	. = ..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
+	
+	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		return
+
+	if(iscrowbar(I))
+		if(charge >= (capacity / 100))
+			to_chat(user, "<span class='warning'>Better let [src] discharge before dismantling it.</span>")
+			return
+
+		if(outputting || input_attempt)
+			to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
+			return
+
+		playsound(get_turf(src), 'sound/items/crowbar.ogg', 25, 1)
+		var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
+		M.state = 2
+		M.icon_state = "box_1"
+		for(var/obj/O in component_parts)
+			if(O.reliability != 100 && crit_fail)
+				O.crit_fail = TRUE
+			O.forceMove(loc)
+		qdel(src)
+
+	else if((istype(I, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(I, /obj/item/cell) && (cells_amount < 5)))
+		if(charge >= (capacity / 100))
+			to_chat(user, "<span class='warning'>Better let [src] discharge before putting your hand inside it.</span>")
+			return
+
+		if(outputting || input_attempt)
+			to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
+			return
+
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		component_parts += I
+		RefreshParts()
+		to_chat(user, "<span class='notice'>You upgrade the [src] with [I].</span>")
+	
+	else
+		user.set_interaction(src)
+		interact(user)
+		return TRUE
 
 
 //The shitty one that will blow up.

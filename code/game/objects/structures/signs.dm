@@ -1,6 +1,6 @@
 /obj/structure/sign
 	icon = 'icons/obj/decals.dmi'
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
 	density = 0
 	layer = WALL_OBJ_LAYER
@@ -32,18 +32,17 @@
 		else
 	return
 
-/obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
-	if(isscrewdriver(tool) && !istype(src, /obj/structure/sign/double))
-		to_chat(user, "You unfasten the sign with your [tool].")
-		var/obj/item/sign/S = new(src.loc)
+/obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
+	. = ..()
+	
+	if(isscrewdriver(I) && !istype(src, /obj/structure/sign/double))
+		to_chat(user, "You unfasten the sign with your [I].")
+		var/obj/item/sign/S = new(loc)
 		S.name = name
 		S.desc = desc
 		S.icon_state = icon_state
-		//var/icon/I = icon('icons/obj/decals.dmi', icon_state)
-		//S.icon = I.Scale(24, 24)
 		S.sign_state = icon_state
 		qdel(src)
-	else ..()
 
 /obj/item/sign
 	name = "sign"
@@ -52,10 +51,13 @@
 	w_class = 3		//big
 	var/sign_state = ""
 
-/obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
-	if(isscrewdriver(tool) && isturf(user.loc))
-		var/direction = input("In which direction?", "Select direction.") in list("North", "East", "South", "West", "Cancel")
-		if(direction == "Cancel") return
+/obj/item/sign/attackby(obj/item/I, mob/user, params)	//construction
+	. = ..()
+
+	if(isscrewdriver(I) && isturf(user.loc))
+		var/direction = input("In which direction?", "Select direction.") as null|anything in list("North", "East", "South", "West")
+		if(!direction) 
+			return
 		var/obj/structure/sign/S = new(user.loc)
 		switch(direction)
 			if("North")
@@ -66,13 +68,14 @@
 				S.pixel_y = -32
 			if("West")
 				S.pixel_x = -32
-			else return
+			else 
+				return
 		S.name = name
 		S.desc = desc
 		S.icon_state = sign_state
-		to_chat(user, "You fasten \the [S] with your [tool].")
+		to_chat(user, "You fasten \the [S] with your [I].")
 		qdel(src)
-	else ..()
+
 
 /obj/structure/sign/double/map
 	name = "station map"
@@ -220,7 +223,7 @@
 	name = "sign"
 	icon = 'icons/obj/safety_signs.dmi'
 	desc = "A sign warning of a particular hazard"
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
 	density = 0
 

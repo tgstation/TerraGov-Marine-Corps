@@ -78,27 +78,9 @@
 	if(mobility_aura)
 		. -= 0.1 + 0.1 * mobility_aura
 
-	if(mRun in mutations)
-		. = 0
-
-	Process_Cloaking_Router(src)
-
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
 	. = max(-2.5, . + reagent_move_delay_modifier) //hyperzine and ultrazine
-/mob/living/carbon/human/proc/clear_leader_tracking()
-	var/obj/screen/SL_dir = hud_used.SL_locator
-	SL_dir.icon_state = "SL_locator_off"
-
-/mob/living/carbon/human/proc/update_leader_tracking(var/mob/living/carbon/human/H)
-	var/obj/screen/SL_dir = hud_used.SL_locator
-
-	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
-		SL_dir.icon_state = ""
-	else
-		SL_dir.icon_state = "SL_locator"
-		SL_dir.transform = 0 //Reset and 0 out
-		SL_dir.transform = turn(SL_dir.transform, Get_Angle(src,H))
 
 /mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)
 	if(!user.cloaking)
@@ -133,22 +115,11 @@
 		return
 	alpha = initial(alpha) //Sniper variant has *no* mobility stealth, but no drain on movement either
 
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
-	//Can we act
-	if(restrained())	return 0
+/mob/living/carbon/human/Process_Spacemove()
+	if(restrained())	
+		return FALSE
 
-	//Do we have a working jetpack
-	if(istype(back, /obj/item/tank/jetpack))
-		var/obj/item/tank/jetpack/J = back
-		if(((!check_drift) || (check_drift && J.stabilization_on)) && (!lying) && (J.allow_thrust(0.01, src)))
-			inertia_dir = 0
-			return 1
-//		if(!check_drift && J.allow_thrust(0.01, src))
-//			return 1
-
-	//If no working jetpack then use the other checks
-	if(..())	return 1
-	return 0
+	return ..()
 
 
 /mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
@@ -172,3 +143,8 @@
 
 	prob_slip = round(prob_slip)
 	return(prob_slip)
+
+
+/mob/living/carbon/human/Moved(atom/oldloc, direction)
+	Process_Cloaking_Router(src)
+	return ..()

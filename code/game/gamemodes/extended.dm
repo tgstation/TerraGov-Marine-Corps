@@ -4,16 +4,14 @@
 	required_players = 0
 
 
-/datum/game_mode/announce()
+/datum/game_mode/extended/announce()
 	to_chat(world, "<b>The current game mode is - Extended Role-Playing!</b>")
 	to_chat(world, "<b>Just have fun and role-play!</b>")
-
 
 /datum/game_mode/extended/check_finished()
 	if(!round_finished) 
 		return FALSE
 	return TRUE
-
 
 /datum/game_mode/extended/declare_completion()
 	. = ..()

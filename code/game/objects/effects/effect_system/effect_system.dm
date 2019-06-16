@@ -71,9 +71,9 @@ steam.start() -- spawns the effect
 				var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(src.location)
 				var/direction
 				if(src.cardinals)
-					direction = pick(cardinal)
+					direction = pick(GLOB.cardinals)
 				else
-					direction = pick(alldirs)
+					direction = pick(GLOB.alldirs)
 				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(steam,direction)
@@ -92,7 +92,7 @@ steam.start() -- spawns the effect
 	name = "sparks"
 	icon_state = "sparks"
 	var/amount = 6.0
-	anchored = 1.0
+	anchored = TRUE
 	mouse_opacity = 0
 
 /obj/effect/particle_effect/sparks/New()
@@ -130,9 +130,9 @@ steam.start() -- spawns the effect
 				src.total_sparks++
 				var/direction
 				if(src.cardinals)
-					direction = pick(cardinal)
+					direction = pick(GLOB.cardinals)
 				else
-					direction = pick(alldirs)
+					direction = pick(GLOB.alldirs)
 				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(sparks,direction)
@@ -153,7 +153,7 @@ steam.start() -- spawns the effect
 /obj/effect/particle_effect/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
-	anchored = 1.0
+	anchored = TRUE
 
 /datum/effect_system/ion_trail_follow
 	var/turf/oldposition

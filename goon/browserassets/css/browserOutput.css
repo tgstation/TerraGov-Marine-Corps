@@ -270,6 +270,10 @@ a.popt {text-decoration: none;}
 .charlieradio			{color: #AA55AA;}
 .deltaradio				{color: #007FCF;}
 
+.binarysay    			{color: #20c20e; background-color: #000000; display: block;}
+.binarysay a  			{color: #00ff00;}
+.binarysay a:active, .binarysay a:visited {color: #88ff88;}
+
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
 
@@ -326,6 +330,7 @@ h1.alert, h2.alert		{color: #000000;}
 .rough					{font-family: trebuchet-ms, cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 .command_headset		{font-weight: bold; font-size: 18px;}
+.robot					{font-family: "Courier New", cursive, sans-serif;}
 
 
 .green					{color: #29b245;}

@@ -2,8 +2,8 @@
 	name = "\improper autolathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 100
@@ -12,16 +12,50 @@
 	var/list/storage_capacity = list("metal" = 0, "glass" = 0)
 	var/show_category = "All"
 
-	var/opened = 0
-	var/hacked = 0
-	var/disabled = 0
-	var/shocked = 0
-	var/busy = 0
+	var/hacked = FALSE
+	var/disabled = FALSE
+	var/shocked = FALSE
+	var/busy = FALSE
 
-	var/list/wires = list()
-	var/hack_wire
-	var/disable_wire
-	var/shock_wire
+
+/obj/machinery/autolathe/Initialize(mapload, ...)
+	. = ..()
+	//Create global autolathe recipe list if it hasn't been made already.
+	if(isnull(autolathe_recipes))
+		autolathe_recipes = list()
+		autolathe_categories = list()
+		for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
+			var/datum/autolathe/recipe/recipe = new R
+			autolathe_recipes += recipe
+			autolathe_categories |= recipe.category
+
+			var/obj/item/I = new recipe.path
+			if(I.matter && !recipe.resources) //This can be overidden in the datums.
+				recipe.resources = list()
+				for(var/material in I.matter)
+					if(!isnull(storage_capacity[material]))
+						if(istype(I,/obj/item/stack/sheet))
+							recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
+						else
+							recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
+				qdel(I)
+
+	//Create parts for lathe.
+	component_parts = list()
+	component_parts += new /obj/item/circuitboard/machine/autolathe(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/manipulator(src)
+	component_parts += new /obj/item/stock_parts/console_screen(src)
+	RefreshParts()
+
+	wires = new /datum/wires/autolathe(src)
+
+
+/obj/machinery/autolathe/Destroy()
+	QDEL_NULL(wires)
+	return ..()
 
 /obj/machinery/autolathe/interact(mob/user as mob)
 
@@ -87,58 +121,47 @@
 
 	dat += "</table><hr>"
 
-	//Hacking.
-	if(opened)
-		dat += "<h4>Maintenance Panel</h4>"
-		for(var/wire in wires)
-			dat += "[wire] Wire: <A href='?src=\ref[src];wire=[wire];act=wire'>[wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>"
-		dat += "<br>"
-		dat += "The red light is [disabled ? "off" : "on"].<br>"
-		dat += "The green light is [shocked ? "off" : "on"].<br>"
-		dat += "The blue light is [hacked ? "off" : "on"].<br>"
-
-		dat += "<hr>"
-
 	var/datum/browser/popup = new(user, "autolathe", "<div align='center'>Autolathe</div>")
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "autolathe")
 
 
-/obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (machine_stat)
+	if(!is_operational())
 		return
 
-	if (busy)
+	if(busy)
 		to_chat(user, "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
-	if(isscrewdriver(O))
-		opened = !opened
-		icon_state = (opened ? "autolathe_t": "autolathe")
-		to_chat(user, "You [opened ? "open" : "close"] the maintenance hatch of [src].")
+	if(isscrewdriver(I))
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		icon_state = (CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "autolathe_t": "autolathe")
+		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance hatch of [src].")
 		updateUsrDialog()
 		return
 
-	if (opened)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		//Don't eat multitools or wirecutters used on an open lathe.
-		if(ismultitool(O) || iswirecutter(O))
+		if(ismultitool(I) || iswirecutter(I))
 			attack_hand(user)
 			return
 
 		//Dismantle the frame.
-		if(iscrowbar(O))
-			dismantle()
+		if(iscrowbar(I))
+			deconstruct()
 			return
 
 	//Resources are being loaded.
-	var/obj/item/eating = O
+	var/obj/item/eating = I
 	if(!eating.matter)
 		to_chat(user, "<span class='warning'>\The [eating] does not contain significant amounts of useful materials and cannot be accepted.</span>")
 		return
 
-	if (eating.is_robot_module() || (eating.flags_item & (NODROP|DELONDROP)))
+	if(eating.flags_item & (NODROP|DELONDROP))
 		to_chat(user, "<span class='warning'>\The [eating] is stuck to you and cannot be placed into [src].</span>")
 		return
 
@@ -184,9 +207,8 @@
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
-	else
-		if(user.temporarilyRemoveItemFromInventory(O))
-			qdel(O)
+	else if(user.temporarilyRemoveItemFromInventory(I))
+		qdel(I)
 
 	updateUsrDialog()
 	return TRUE //so the item's afterattack isn't called
@@ -195,16 +217,18 @@
 	return attack_hand(user)
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
-
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)
-	add_fingerprint(usr)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")
@@ -267,117 +291,7 @@
 			var/obj/item/stack/S = I
 			S.amount = multiplier
 
-	if(href_list["act"])
-
-		var/temp_wire = href_list["wire"]
-		if(href_list["act"] == "pulse")
-
-			if (!ismultitool(usr.get_active_held_item()))
-				to_chat(usr, "You need a multitool!")
-				return
-
-			if(wires[temp_wire])
-				to_chat(usr, "You can't pulse a cut wire.")
-				return
-
-			if(hack_wire == temp_wire)
-				hacked = !hacked
-
-				spawn(100)
-					hacked = !hacked
-
-			if(disable_wire == temp_wire)
-				disabled = !disabled
-				shock(usr,50)
-
-				spawn(100)
-					disabled = !disabled
-
-			if(shock_wire == temp_wire)
-				shocked = !shocked
-				shock(usr,50)
-
-				spawn(100)
-					shocked = !shocked
-
-		else if(href_list["act"] == "wire")
-
-			if (!iswirecutter(usr.get_active_held_item()))
-				to_chat(usr, "You need wirecutters!")
-				return
-
-			wires[temp_wire] = !wires[temp_wire]
-
-			if(hack_wire == temp_wire)
-				hacked = !hacked
-
-			if(disable_wire == temp_wire)
-				disabled = !disabled
-				shock(usr,50)
-
-			if(shock_wire == temp_wire)
-				shocked = !shocked
-				shock(usr,50)
-
 	updateUsrDialog()
-
-
-/obj/machinery/autolathe/New()
-
-	..()
-
-	//Create global autolathe recipe list if it hasn't been made already.
-	if(isnull(autolathe_recipes))
-		autolathe_recipes = list()
-		autolathe_categories = list()
-		for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
-			var/datum/autolathe/recipe/recipe = new R
-			autolathe_recipes += recipe
-			autolathe_categories |= recipe.category
-
-			var/obj/item/I = new recipe.path
-			if(I.matter && !recipe.resources) //This can be overidden in the datums.
-				recipe.resources = list()
-				for(var/material in I.matter)
-					if(!isnull(storage_capacity[material]))
-						if(istype(I,/obj/item/stack/sheet))
-							recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
-						else
-							recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
-				qdel(I)
-
-	//Create parts for lathe.
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/autolathe(src)
-	component_parts += new /obj/item/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/stock_parts/manipulator(src)
-	component_parts += new /obj/item/stock_parts/console_screen(src)
-	RefreshParts()
-
-	//Init wires.
-	wires = list(
-		"Light Red" = 0,
-		"Dark Red" = 0,
-		"Blue" = 0,
-		"Green" = 0,
-		"Yellow" = 0,
-		"Black" = 0,
-		"White" = 0,
-		"Gray" = 0,
-		"Orange" = 0,
-		"Pink" = 0
-		)
-
-	//Randomize wires.
-	var/list/w = list("Light Red","Dark Red","Blue","Green","Yellow","Black","White","Gray","Orange","Pink")
-	hack_wire = pick(w)
-	w -= hack_wire
-	shock_wire = pick(w)
-	w -= shock_wire
-	disable_wire = pick(w)
-	w -= disable_wire
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
@@ -389,7 +303,7 @@
 	storage_capacity["metal"] = tot_rating  * 25000
 	storage_capacity["glass"] = tot_rating  * 12500
 
-/obj/machinery/autolathe/dismantle()
+/obj/machinery/autolathe/deconstruct()
 	var/list/sheets = list("metal" = /obj/item/stack/sheet/metal, "glass" = /obj/item/stack/sheet/glass)
 
 	for(var/mat in stored_material)
@@ -399,3 +313,16 @@
 			S.amount = round(stored_material[mat] / S.perunit)
 			S.loc = loc
 	..()
+
+
+/obj/machinery/autolathe/proc/reset(wire)
+	switch(wire)
+		if(WIRE_HACK)
+			if(!wires.is_cut(wire))
+				hacked = FALSE
+		if(WIRE_SHOCK)
+			if(!wires.is_cut(wire))
+				shocked = FALSE
+		if(WIRE_DISABLE)
+			if(!wires.is_cut(wire))
+				disabled = FALSE

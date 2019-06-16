@@ -95,10 +95,6 @@
 	config_entry_value = 0
 	movedelay_type = /mob/living/carbon/human
 
-/datum/config_entry/number/outdated_movedelay/robot_delay
-	config_entry_value = 0
-	movedelay_type = /mob/living/silicon/robot
-
 /datum/config_entry/number/outdated_movedelay/monkey_delay
 	config_entry_value = 0
 	movedelay_type = /mob/living/carbon/monkey
@@ -136,8 +132,6 @@
 	config_entry_value = 3000
 	min_val = 0
 
-/datum/config_entry/flag/husking_on
-
 /datum/config_entry/flag/bones_can_break
 
 /datum/config_entry/flag/unlimited_rotate_speed
@@ -150,9 +144,15 @@
 
 /datum/config_entry/flag/jobs_have_minimal_access
 
+/datum/config_entry/number/minimal_access_threshold	//If the number of players is larger than this threshold, minimal access will be turned on.
+	config_entry_value = 10
+	min_val = 0
+
 /datum/config_entry/flag/humans_need_surnames
 
 /datum/config_entry/flag/allow_ai
+
+/datum/config_entry/flag/allow_ai_multicam	// allow ai multicamera mode
 
 /datum/config_entry/flag/fun_allowed //at the moment, when set equal to 1, allows players to *dab (and get limbs automatically blown off).
 
@@ -181,3 +181,15 @@
 	integer = FALSE
 	min_val = 0
 	config_entry_value = 4
+
+
+/datum/config_entry/number/specialist_coefficient
+	integer = FALSE
+	config_entry_value = 5
+	min_val = 0.001
+
+
+/datum/config_entry/number/smartgunner_coefficient
+	integer = FALSE
+	config_entry_value = 5
+	min_val = 0.001

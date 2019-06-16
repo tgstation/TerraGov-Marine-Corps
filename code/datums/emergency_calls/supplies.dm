@@ -41,7 +41,7 @@
 	name = "Supply Drop"
 	mob_max = 0
 	mob_min = 0
-	probability = 5
+	probability = 0
 	auto_shuttle_launch = TRUE
 
 
@@ -50,7 +50,7 @@
 	var/total = rand(3,6)
 	
 	for(var/i = 1 to total)
-		drop_spawn = get_spawn_point(1)
+		drop_spawn = get_spawn_point(TRUE)
 
 		if(!istype(drop_spawn))
 			return

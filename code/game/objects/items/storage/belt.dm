@@ -95,7 +95,6 @@
 
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		/obj/item/dnainjector,
 		/obj/item/reagent_container/dropper,
 		/obj/item/reagent_container/glass/beaker,
 		/obj/item/reagent_container/glass/bottle,
@@ -184,6 +183,14 @@
 	icon_state = "medicalbag_u"
 	item_state = "medicbag_u"
 
+
+/obj/item/storage/belt/combatLifesaver/som
+	name = "\improper S17 lifesaver bag"
+	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
+	icon_state = "medicbag_som"
+	item_state = "medicbag_som"
+
+
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This configuration is commonly seen among TGMC Military Police and peacekeepers, though it can hold some light munitions."
@@ -246,6 +253,7 @@
 	name = "\improper M276 pattern ammo load rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
+	item_state = "marinebelt"
 	w_class = 4
 	storage_slots = 5
 	max_w_class = 3
@@ -282,36 +290,50 @@
 	new /obj/item/ammo_magazine/rifle/type71(src)
 
 
+/obj/item/storage/belt/marine/som
+	name = "\improper S18 ammo belt"
+	desc = "A belt with origins traced to the M276 ammo belt and some old colony security."
+	icon_state = "som_belt"
+	item_state = "som_belt"
+
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets."
 	icon_state = "shotgunbelt"
+	item_state = "shotgunbelt"
 	w_class = 4
 	storage_slots = 10
 	max_w_class = 2
 	max_storage_space = 20
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
-/obj/item/storage/belt/shotgun/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/ammo_magazine/shotgun))
-		var/obj/item/ammo_magazine/shotgun/M = W
-		if(M.current_rounds)
-			if(contents.len < storage_slots)
-				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
-					return
-				for(var/x = 1 to (storage_slots - contents.len))
-					var/cont = handle_item_insertion(M.create_handful(), 1, user)
-					if(!cont)
-						break
-				playsound(user.loc, "rustle", 15, 1, 6)
-				to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
-			else
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
+
+/obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine/shotgun))
+		var/obj/item/ammo_magazine/shotgun/M = I
+		if(!M.current_rounds)
 			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+			return
+
+		if(length(contents) >= storage_slots)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
+
+
+		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		for(var/x in 1 to (storage_slots - length(contents)))
+			var/cont = handle_item_insertion(M.create_handful(), 1, user)
+			if(!cont)
+				break
+
+		playsound(user.loc, "rustle", 15, 1, 6)
+		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
 		return TRUE
+
 	else
 		return ..()
 
@@ -320,7 +342,7 @@
 	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
-	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
+	item_state="knifebelt"
 	w_class = 3
 	storage_slots = 6
 	max_w_class = 1
@@ -330,7 +352,6 @@
 
 /obj/item/storage/belt/knifepouch/Initialize()
 	. = ..()
-	item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
@@ -342,7 +363,7 @@
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt" // temp
-	item_state="s_marine"
+	item_state="grenadebelt"
 	w_class = 4
 	storage_slots = 8
 	max_w_class = 3
@@ -362,6 +383,7 @@
 	new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/storage/belt/grenade/b18
+	name = "\improper M276 pattern M40 HEDP rig Mk II"
 	w_class = 4
 	storage_slots = 16
 	max_w_class = 3
@@ -387,15 +409,14 @@
 	new /obj/item/explosive/grenade/frag(src)
 	new /obj/item/explosive/grenade/frag(src)
 
-/obj/item/storage/sparepouch
-	name="\improper G8 general utility pouch"
-	desc="A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor to provide additional storage. Unfortunately, this pouch uses the same securing system as most Armat platform weaponry, and thus only one can be clipped to the M3 Pattern Armor."
+/obj/item/storage/belt/sparepouch
+	name= "\improper G8 general utility pouch"
+	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage."
 	storage_slots = 3
 	w_class = 4
 	max_w_class = 3
-	icon = 'icons/obj/clothing/belts.dmi'
-	icon_state="sparepouch"
-	item_state="marine_s"
+	icon_state= "sparepouch"
+	item_state= "sparepouch"
 
 
 
@@ -437,7 +458,7 @@
 	if(current_gun && ishuman(user) && loc == user)
 		current_gun.attack_hand(user)
 	else
-		..()
+		return ..()
 
 
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
@@ -536,6 +557,14 @@
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new_gun.on_enter_storage(src)
+
+
+/obj/item/storage/belt/gun/m4a3/som
+	name = "\improper S19 holster rig"
+	desc = "A belt with origins to old colony security holster rigs."
+	icon_state = "som_belt_pistol"
+	item_state = "som_belt_pistol"
+
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"

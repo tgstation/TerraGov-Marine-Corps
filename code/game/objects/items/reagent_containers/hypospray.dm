@@ -70,10 +70,7 @@
 			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
 				to_chat(user, "<span class='warning'>There is already a blood sample in [src].</span>")
 				return
-			if(!C.dna)
-				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-				return
-			if(NOCLONE in C.mutations) //target done been et, no more blood in him
+			if(!C.blood_type)
 				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 				return
 
@@ -117,7 +114,7 @@
 	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_NOVICE)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
-		if(!do_after(user, SKILL_TASK_EASY, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED))
 			return
 
 	if(ismob(A))
@@ -159,6 +156,8 @@
 
 /obj/item/reagent_container/hypospray/attack_hand()
 	. = ..()
+	if(.)
+		return
 	update_icon()
 
 /obj/item/reagent_container/hypospray/pickup(mob/user)

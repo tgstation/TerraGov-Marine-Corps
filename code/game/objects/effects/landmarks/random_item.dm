@@ -59,6 +59,7 @@
 
 // names are for mapper ease of use only
 /obj/effect/landmark/random_item
+	icon_state = "random_loot"
 	var/item_quality = NONE
 
 /obj/effect/landmark/random_item/Initialize()
@@ -72,7 +73,7 @@
 /obj/effect/landmark/random_item/proc/spawn_item()
 	return
 
-/obj/effect/landmark/random_item/after_round_start(flags_round_type=NOFLAGS,flags_landmarks=NOFLAGS)
+/obj/effect/landmark/random_item/after_round_start(flags_round_type=NONE,flags_landmarks=NONE)
 	if(flags_landmarks & MODE_LANDMARK_RANDOM_ITEMS)
 		spawn_item()
 	qdel(src)

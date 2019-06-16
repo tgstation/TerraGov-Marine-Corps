@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/organs.dmi'
 	icon_state = "appendix"
 
-	health = 100                              // Process() ticks before death.
+	max_integrity = 100                              // Process() ticks before death.
 
 	var/fresh = 3                             // Squirts of blood left in it.
 	var/dead_icon                             // Icon used when the organ dies.
@@ -56,14 +56,14 @@
 			TU.add_blood(L, B.color)
 		//blood_splatter(src,B,1)
 
-	health -= rand(0,1)
-	if(health <= 0)
+	obj_integrity -= rand(0,1)
+	if(obj_integrity <= 0)
 		die()
 
 /obj/item/organ/proc/die()
 	name = "dead [initial(name)]"
 	if(dead_icon) icon_state = dead_icon
-	health = 0
+	obj_integrity = 0
 	STOP_PROCESSING(SSobj, src)
 	//TODO: Grey out the icon state.
 	//TODO: Inject an organ with peridaxon to make it alive again.
@@ -161,20 +161,6 @@
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] removed a vital organ ([src]) from [ADMIN_TPMONTY(target)].")
 		target.death()
 
-/obj/item/organ/appendix/removed(mob/living/carbon/target, mob/living/carbon/user)
-
-	..()
-
-	var/inflamed = 0
-	for(var/datum/disease/appendicitis/appendicitis in target.viruses)
-		inflamed = 1
-		appendicitis.cure()
-		target.resistances += appendicitis
-
-	if(inflamed)
-		icon_state = "appendixinflamed"
-		name = "inflamed appendix"
-
 /obj/item/organ/eyes/removed(var/mob/living/target,var/mob/living/user)
 
 	if(!eye_colour)
@@ -230,8 +216,6 @@
 
 	// Pass over the blood.
 	reagents.trans_to(O, reagents.total_volume)
-
-	transfer_fingerprints_to(O)
 
 	user.put_in_active_hand(O)
 	qdel(src)

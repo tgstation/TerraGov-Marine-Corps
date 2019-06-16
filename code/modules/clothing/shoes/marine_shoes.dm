@@ -21,6 +21,7 @@
 		knife = null
 	. = ..()
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/shoes/marine/attack_hand(var/mob/living/M)
 	if(knife && src.loc == M && !M.incapacitated()) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 		if(M.put_in_active_hand(knife))
@@ -28,17 +29,20 @@
 			playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
 			knife = 0
 			update_icon()
-		return
-	..()
+	else
+		return ..()
 
-/obj/item/clothing/shoes/marine/attackby(var/obj/item/I, var/mob/living/M)
+/obj/item/clothing/shoes/marine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/throwing_knife))
-		if(knife)	return
-		M.drop_held_item()
+		if(knife)	
+			return
+		user.drop_held_item()
 		knife = I
-		I.loc = src
-		to_chat(M, "<div class='notice'>You slide the [I] into [src].</div>")
-		playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
+		I.forceMove(src)
+		to_chat(user, "<div class='notice'>You slide the [I] into [src].</div>")
+		playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
 		update_icon()
 
 /obj/item/clothing/shoes/marine/update_icon()
@@ -52,6 +56,7 @@
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
 	desc = "Protects you from fire and even contains a pouch for your knife!"
+	icon_state = "marine_armored"
 
 
 /obj/item/clothing/shoes/marinechief
@@ -113,3 +118,11 @@
 	knife = new /obj/item/weapon/combat_knife
 	update_icon()
 	
+
+
+/obj/item/clothing/shoes/marine/som
+	name = "\improper S11 combat shoes"
+	desc = "Shoes with origins dating back to the old mining colonies."
+	icon_state = "som"
+	item_state = "som"
+	armor = list(melee = 65, bullet = 45, laser = 15, energy = 15, bomb = 15, bio = 15, rad = 0)

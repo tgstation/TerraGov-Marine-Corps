@@ -9,16 +9,17 @@ obj/machinery/door/airlock
 	var/cur_command = null	//the command the door is currently attempting to complete
 
 obj/machinery/door/airlock/proc/can_radio()
-	if(!arePowerSystemsOn())
+	if(!hasPower())
 		return 0
 	return 1
 
 obj/machinery/door/airlock/receive_signal(datum/signal/signal)
-	if (!arePowerSystemsOn()) return //no power
+	if(!hasPower())
+		return
 
 	if (!can_radio()) return //no radio
 
-	if(!signal) 
+	if(!signal)
 		return
 
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
@@ -116,15 +117,6 @@ obj/machinery/door/airlock/close(surpress_send)
 	. = ..()
 	if(!surpress_send) send_status()
 
-
-obj/machinery/door/airlock/Bumped(atom/AM)
-	..(AM)
-	if(istype(AM, /obj/mecha))
-		var/obj/mecha/mecha = AM
-		if(density && radio_connection && mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
-			send_status(1)
-	return
-
 obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	if(new_frequency)
@@ -143,7 +135,7 @@ obj/machinery/airlock_sensor
 	icon_state = "airlock_sensor_off"
 	name = "airlock sensor"
 
-	anchored = 1
+	anchored = TRUE
 	power_channel = ENVIRON
 
 	var/id_tag
@@ -167,6 +159,9 @@ obj/machinery/airlock_sensor/update_icon()
 		icon_state = "airlock_sensor_off"
 
 obj/machinery/airlock_sensor/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	var/datum/signal/signal = new
 	signal.transmission_method = 1 //radio signal
 	signal.data["tag"] = master_tag
@@ -219,7 +214,7 @@ obj/machinery/access_button
 	icon_state = "access_button_standby"
 	name = "access button"
 
-	anchored = 1
+	anchored = TRUE
 	power_channel = ENVIRON
 
 	var/master_tag
@@ -237,15 +232,16 @@ obj/machinery/access_button/update_icon()
 	else
 		icon_state = "access_button_off"
 
-obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
-	//Swiping ID on the access button
-	if (istype(I, /obj/item/card/id))
+/obj/machinery/access_button/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/card/id))
 		attack_hand(user)
-		return
-	..()
 
 obj/machinery/access_button/attack_hand(mob/user)
-	add_fingerprint(usr)
+	. = ..()
+	if(.)
+		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied</span>")
 

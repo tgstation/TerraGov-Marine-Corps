@@ -31,7 +31,6 @@
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
-	var/mutantrace = "human"
 	var/xenovictim = FALSE //whether this person was infected and killed by xenos
 
 
@@ -44,7 +43,6 @@
 /obj/effect/landmark/corpsespawner/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	round_statistics.total_humans_created-- //corpses don't count
-	M.dna.mutantrace = mutantrace
 	M.real_name = name
 	M.death(1) //Kills the new mob
 	if(corpseuniform)
@@ -92,9 +90,7 @@
 		W.registered_name = M.real_name
 		M.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 	if(xenovictim)
-		M.adjustBruteLoss(100)
-		M.adjustBruteLoss(100)
-		M.adjustBruteLoss(100)
+		// no damage because limb updates are expensive
 		var/datum/internal_organ/O
 		var/i
 		for(i in list("heart","lungs"))
@@ -295,6 +291,19 @@
 	corpseidjob = "Prison Guard"
 
 
+/obj/effect/landmark/corpsespawner/pmc
+	name = "Unknown PMC"
+	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsesuit = /obj/item/clothing/suit/armor/vest/security
+	corpseback = /obj/item/storage/backpack/satchel
+	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
+	corpsemask = /obj/item/clothing/mask/gas/PMC
+	corpseradio = /obj/item/radio/headset/survivor
+	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
+	xenovictim = TRUE
 
 
 /////////////////Officers//////////////////////

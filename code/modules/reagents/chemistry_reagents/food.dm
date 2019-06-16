@@ -14,12 +14,14 @@
 	var/targ_temp = BODYTEMP_NORMAL
 	taste_description = "generic food"
 
-/datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/on_mob_life(mob/living/L, metabolism)
 	current_cycle++
-	M.nutrition += nutriment_factor * REM
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.nutrition += nutriment_factor * REM
 	if(adj_temp)
-		M.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
-	holder.remove_reagent(src.id, custom_metabolism)
+		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
+	holder.remove_reagent(id, custom_metabolism)
 	return TRUE
 
 /datum/reagent/consumable/nutriment
@@ -33,15 +35,15 @@
 	var/burn_heal = 0
 	var/blood_gain = 0.4
 
-/datum/reagent/consumable/nutriment/on_mob_life(mob/living/M)
+/datum/reagent/consumable/nutriment/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
-		M.heal_limb_damage(brute_heal,burn_heal)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+		L.heal_limb_damage(brute_heal,burn_heal)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
 			C.blood_volume += blood_gain
 
-	..()
+	return ..()
 
 /datum/reagent/consumable/nutriment/on_new(list/supplied_data)
 	// taste data can sometimes be ("salt" = 3, "chips" = 1)
@@ -127,22 +129,22 @@
 	var/agony_start = 20
 	var/agony_amount = 2
 
-/datum/reagent/consumable/capsaicin/on_mob_life(mob/living/M)
+/datum/reagent/consumable/capsaicin/on_mob_life(mob/living/L, metabolism)
 	if(holder.has_reagent("frostoil"))
 		holder.remove_reagent("frostoil", 5)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
 		if((H.species.species_flags & NO_PAIN))
 			return ..()
 	switch(current_cycle)
 		if(1 to agony_start - 1)
 			if(prob(5))
-				to_chat(M, discomfort_message)
+				to_chat(L, discomfort_message)
 		if(agony_start to INFINITY)
-			M.apply_effect(agony_amount,AGONY,0)
+			L.apply_effect(agony_amount,AGONY,0)
 			if(prob(5))
-				M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
-				to_chat(M, discomfort_message)
+				L.emote(pick("dry heaves!", "coughs!", "splutters!"))
+				to_chat(L, discomfort_message)
 	return ..()
 
 /datum/reagent/consumable/capsaicin/condensed
@@ -158,61 +160,66 @@
 	agony_start = 3
 	agony_amount = 4
 
-/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/M, method=TOUCH, volume)
-	if(method in list(TOUCH, VAPOR, PATCH))
-		if(ishuman(M))
-			var/mob/living/carbon/human/victim = M
-			var/mouth_covered = 0
-			var/eyes_covered = 0
-			var/obj/item/safe_thing = null
-			if( victim.wear_mask )
-				if( victim.wear_mask.flags_inventory & COVEREYES )
-					eyes_covered = 1
-					safe_thing = victim.wear_mask
-				if( victim.wear_mask.flags_inventory & COVERMOUTH )
-					mouth_covered = 1
-					safe_thing = victim.wear_mask
-			if( victim.head )
-				if( victim.head.flags_inventory & COVEREYES )
-					eyes_covered = 1
-					safe_thing = victim.head
-				if( victim.head.flags_inventory & COVERMOUTH )
-					mouth_covered = 1
-					safe_thing = victim.head
-			if(victim.glasses)
-				eyes_covered = 1
-				if( !safe_thing )
-					safe_thing = victim.glasses
-			if( eyes_covered && mouth_covered )
-				to_chat(victim, "<span class='danger'>Your [safe_thing.name] protects you from the pepperspray!</span>")
-				return
-			else if( mouth_covered )	// Reduced effects if partially protected
-				to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
-				victim.blur_eyes(15)
-				victim.blind_eyes(5)
-				victim.Stun(5)
-				victim.KnockDown(5)
-				//victim.KnockOut(10)
-				//victim.drop_held_item()
-				return
-			else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
-				to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
-				if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
-					if(prob(10))
-						victim.Stun(1)
-				victim.blur_eyes(5)
-				return
-			else // Oh dear :D
-				if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
-					if(prob(10))
-						victim.emote("scream")
-				to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
-				victim.blur_eyes(25)
-				victim.blind_eyes(10)
-				victim.Stun(5)
-				victim.KnockDown(5)
-				//victim.KnockOut(10)
-				//victim.drop_held_item()
+/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+	. = ..()
+	if(!(method in list(TOUCH, VAPOR)) || !ishuman(L))
+		return
+	var/mob/living/carbon/human/victim = L
+	var/mouth_covered = 0
+	var/eyes_covered = 0
+	var/obj/item/safe_thing = null
+	if( victim.wear_mask )
+		if( victim.wear_mask.flags_inventory & COVEREYES )
+			eyes_covered = 1
+			safe_thing = victim.wear_mask
+		if( victim.wear_mask.flags_inventory & COVERMOUTH )
+			mouth_covered = 1
+			safe_thing = victim.wear_mask
+	if( victim.head )
+		if( victim.head.flags_inventory & COVEREYES )
+			eyes_covered = 1
+			safe_thing = victim.head
+		if( victim.head.flags_inventory & COVERMOUTH )
+			mouth_covered = 1
+			safe_thing = victim.head
+	if(victim.glasses)
+		eyes_covered = 1
+		if( !safe_thing )
+			safe_thing = victim.glasses
+	if( eyes_covered && mouth_covered )
+		if(show_message)
+			to_chat(victim, "<span class='danger'>Your [safe_thing.name] protects you from the pepperspray!</span>")
+		return
+	else if( mouth_covered )	// Reduced effects if partially protected
+		if(show_message)
+			to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
+		victim.blur_eyes(15)
+		victim.blind_eyes(5)
+		victim.Stun(5)
+		victim.KnockDown(5)
+		//victim.KnockOut(10)
+		//victim.drop_held_item()
+		return
+	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
+		if(show_message)
+			to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
+		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
+			if(prob(10))
+				victim.Stun(1)
+		victim.blur_eyes(5)
+		return
+	else // Oh dear :D
+		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
+			if(prob(10))
+				victim.emote("scream")
+		if(show_message)
+			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
+		victim.blur_eyes(25)
+		victim.blind_eyes(10)
+		victim.Stun(5)
+		victim.KnockDown(5)
+		//victim.KnockOut(10)
+		//victim.drop_held_item()
 
 
 /datum/reagent/consumable/frostoil
@@ -225,9 +232,9 @@
 	targ_temp = - 50
 	adj_temp = 10
 
-/datum/reagent/consumable/frostoil/on_mob_life(mob/living/M)
+/datum/reagent/consumable/frostoil/on_mob_life(mob/living/L, metabolism)
 	if(prob(1))
-		M.emote("shiver")
+		L.emote("shiver")
 	if(holder.has_reagent("capsaicin"))
 		holder.remove_reagent("capsaicin", 5)
 	return ..()
@@ -241,17 +248,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "salt"
 
-/datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/M, alien)
-	M.confused = max(M.confused, 20)
+/datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/L, metabolism)
+	L.confused = max(L.confused, 20)
 	if(prob(10))
-		M.emote(pick("sigh","grumble","frown"))
+		L.emote(pick("sigh","grumble","frown"))
 
-/datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/M, alien)
-	M.Jitter(5) //Turn super salty
+/datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
+	L.Jitter(5) //Turn super salty
 	if(prob(10))
-		M.KnockDown(10)
+		L.KnockDown(10)
 	if(prob(10))
-		M.emote(pick("cry","moan","pain"))
+		L.emote(pick("cry","moan","pain"))
 
 /datum/reagent/consumable/blackpepper
 	name = "Black Pepper"
@@ -287,40 +294,40 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "mushroom"
 
-/datum/reagent/consumable/psilocybin/on_mob_life(mob/living/M)
-	M.druggy = max(M.druggy, 30)
+/datum/reagent/consumable/psilocybin/on_mob_life(mob/living/L, metabolism)
+	L.druggy = max(L.druggy, 30)
 	switch(current_cycle)
 		if(1 to 5)
-			M.stuttering += 1
-			M.Dizzy(5)
+			L.stuttering += 1
+			L.Dizzy(5)
 			if(prob(10))
-				M.emote(pick("twitch","giggle"))
+				L.emote(pick("twitch","giggle"))
 		if(5 to 10)
-			M.stuttering += 1
-			M.Jitter(10)
-			M.Dizzy(10)
-			M.set_drugginess(35)
+			L.stuttering += 1
+			L.Jitter(10)
+			L.Dizzy(10)
+			L.set_drugginess(35)
 			if(prob(20))
-				M.emote(pick("twitch","giggle"))
+				L.emote(pick("twitch","giggle"))
 		if(10 to INFINITY)
-			M.stuttering += 1
-			M.Jitter(20)
-			M.Dizzy(20)
-			M.set_drugginess(40)
+			L.stuttering += 1
+			L.Jitter(20)
+			L.Dizzy(20)
+			L.set_drugginess(40)
 			if(prob(30))
-				M.emote(pick("twitch","giggle"))
+				L.emote(pick("twitch","giggle"))
 	return ..()
 
-/datum/reagent/consumable/psilocybin/overdose_process(mob/living/M, alien)
-	M.apply_damage(1, TOX)
+/datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(1, TOX)
 	if(prob(15))
-		M.KnockOut(5)
+		L.KnockOut(5)
 
-/datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/M, alien)
-	M.apply_damage(2, TOX)
+/datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damage(2, TOX)
 	if(prob(60))
-		M.KnockOut(3)
-	M.drowsyness = max(M.drowsyness, 30)
+		L.KnockOut(3)
+	L.drowsyness = max(L.drowsyness, 30)
 
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"
@@ -339,10 +346,7 @@
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "slime"
 
-/datum/reagent/consumable/cornoil/reaction_turf(var/turf/T, var/volume)
-	if(!istype(T))
-		return
-	src = null
+/datum/reagent/consumable/cornoil/reaction_turf(turf/T, volume)
 	if(volume >= 3)
 		T.wet_floor(FLOOR_WET_WATER)
 
@@ -356,11 +360,11 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "sweetness"
 
-/datum/reagent/consumable/enzyme/overdose_process(mob/living/M, alien)
-	M.apply_damage(1, BURN)
+/datum/reagent/consumable/enzyme/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(1, BURN)
 
-/datum/reagent/consumable/enzyme/overdose_crit_process(mob/living/M, alien)
-	M.apply_damages(2, BURN)
+/datum/reagent/consumable/enzyme/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damages(2, BURN)
 
 /datum/reagent/consumable/dry_ramen
 	name = "Dry Ramen"
@@ -417,11 +421,10 @@
 	nutriment_factor = 15
 	taste_description = "sweetness"
 
-/datum/reagent/consumable/honey/on_mob_life(mob/living/carbon/M)
-	M.reagents.add_reagent("sugar",3)
-	if(prob(55))
-		M.adjustBruteLoss(-1*REM, 0)
-		M.adjustFireLoss(-1*REM, 0)
-		M.adjustOxyLoss(-1*REM, 0)
-		M.adjustToxLoss(-1*REM, 0)
+/datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
+	L.reagents.add_reagent("sugar",3)
+	L.adjustBruteLoss(-0,5 * REM, FALSE)
+	L.adjustFireLoss(-0,5 * REM, FALSE)
+	L.adjustOxyLoss(-0,5 * REM, FALSE)
+	L.adjustToxLoss(-0,5 * REM, FALSE)
 	return ..()

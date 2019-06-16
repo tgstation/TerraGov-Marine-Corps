@@ -57,7 +57,7 @@
 	if(!armed)
 		user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \
 		"<span class='notice'>You start deploying [src].</span>")
-		if(!do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
 			user.visible_message("<span class='notice'>[user] stops deploying [src].</span>", \
 		"<span class='notice'>You stop deploying \the [src].</span>")
 			return
@@ -74,15 +74,20 @@
 		tripwire.linked_claymore = src
 
 //Disarming
-/obj/item/explosive/mine/attackby(obj/item/W, mob/user)
-	if(!ismultitool(W) || !anchored)
-		return ..()
+/obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!ismultitool(I) || !anchored)
+		return
+
 	user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 	"<span class='notice'>You start disarming [src].</span>")
-	if(!do_after(user, 80, TRUE, 5, BUSY_ICON_FRIENDLY))
+
+	if(!do_after(user, 80, TRUE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
+
 	user.visible_message("<span class='notice'>[user] finishes disarming [src].", \
 	"<span class='notice'>You finish disarming [src].")
 	anchored = FALSE
@@ -103,7 +108,7 @@
 	if(!armed || triggered)
 		return
 
-	if((istype(H) && H.get_target_lock(iff_signal)) || iscyborg(H))
+	if((istype(H) && H.get_target_lock(iff_signal)))
 		return
 
 	H.visible_message("<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as [H] moves in front of it.</span>", \
@@ -123,7 +128,7 @@
 			explosion(tripwire ? tripwire.loc : loc, -1, -1, 2)
 			qdel(src)
 
-/obj/item/explosive/mine/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/M)
 	if(triggered) //Mine is already set to go off
 		return
 
@@ -135,7 +140,7 @@
 
 	//We move the tripwire randomly in either of the four cardinal directions
 	if(tripwire)
-		var/direction = pick(cardinal)
+		var/direction = pick(GLOB.cardinals)
 		var/step_direction = get_step(src, direction)
 		tripwire.forceMove(step_direction)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
@@ -148,7 +153,7 @@
 
 /obj/effect/mine_tripwire
 	name = "claymore tripwire"
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = UNACIDABLE
@@ -167,5 +172,5 @@
 	if(linked_claymore.triggered) //Mine is already set to go off
 		return
 
-	if(linked_claymore && ismob(A))
+	if(linked_claymore && isliving(A))
 		linked_claymore.Bumped(A)

@@ -43,11 +43,12 @@ SUBSYSTEM_DEF(evacuation)
 		if(EVACUATION_STATUS_IN_PROGRESS)
 			if(world.time < pod_cooldown + EVACUATION_POD_LAUNCH_COOLDOWN)
 				return
-			if(!length(pod_list))
+			if(!length(pod_list)) // none left to pick from to evac
+				if(!length(SSshuttle.escape_pods)) // no valid pods left, all have launched/exploded
+					announce_evac_completion()
 				return
-			var/datum/shuttle/ferry/marine/evacuation_pod/P = pick(pod_list)
-			P.prepare_for_launch()
-			pod_list -= P
+			var/obj/docking_port/mobile/escape_pod/P = pick_n_take(pod_list)
+			P.launch()
 
 	switch(dest_status)
 		if(NUKE_EXPLOSION_ACTIVE)
@@ -76,14 +77,12 @@ SUBSYSTEM_DEF(evacuation)
 	GLOB.enter_allowed = FALSE
 	evac_time = world.time
 	evac_status = EVACUATION_STATUS_INITIATING
-	command_announcement.Announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", new_sound='sound/AI/evacuate.ogg', to_xenos = 0)
+	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
-	var/datum/shuttle/ferry/marine/evacuation_pod/P
-	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-		P = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [i]"]
-		P.toggle_ready()
-		pod_list += P
-	addtimer(CALLBACK(src, .proc/announce_evac_completion), 5 MINUTES)
+	pod_list = SSshuttle.escape_pods.Copy()
+	for(var/i in pod_list)
+		var/obj/docking_port/mobile/escape_pod/P = i
+		P.prep_for_launch()
 	return TRUE
 
 
@@ -91,7 +90,7 @@ SUBSYSTEM_DEF(evacuation)
 	if(evac_status != EVACUATION_STATUS_INITIATING)
 		return FALSE
 	evac_status = EVACUATION_STATUS_IN_PROGRESS
-	command_announcement.Announce("WARNING: Evacuation order confirmed. Launching escape pods.", "Priority Alert", new_sound = 'sound/AI/evacuation_confirmed.ogg')
+	priority_announce("WARNING: Evacuation order confirmed. Launching escape pods.", "Priority Alert", sound = 'sound/AI/evacuation_confirmed.ogg')
 	return TRUE
 
 
@@ -101,11 +100,10 @@ SUBSYSTEM_DEF(evacuation)
 	GLOB.enter_allowed = TRUE
 	evac_time = null
 	evac_status = EVACUATION_STATUS_STANDING_BY
-	command_announcement.Announce("Evacuation has been cancelled.", "Priority Alert", new_sound='sound/AI/evacuate_cancelled.ogg')
-	var/datum/shuttle/ferry/marine/evacuation_pod/P
-	for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
-		P = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Evac [i]"]
-		P.toggle_ready()
+	priority_announce("Evacuation has been cancelled.", "Priority Alert", sound = 'sound/AI/evacuate_cancelled.ogg')
+	for(var/i in pod_list)
+		var/obj/docking_port/mobile/escape_pod/P = i
+		P.unprep_for_launch()
 	return TRUE
 
 
@@ -118,7 +116,7 @@ SUBSYSTEM_DEF(evacuation)
 			. = "NOW"
 
 /datum/controller/subsystem/evacuation/proc/announce_evac_completion()
-	command_announcement.Announce("ATTENTION: Evacuation complete.", "Priority Alert", new_sound='sound/AI/evacuation_complete.ogg')
+	priority_announce("ATTENTION: Evacuation complete.", "Priority Alert", sound = 'sound/AI/evacuation_complete.ogg')
 	evac_status = EVACUATION_STATUS_COMPLETE
 
 
@@ -141,7 +139,7 @@ SUBSYSTEM_DEF(evacuation)
 	for(i in SSevacuation.dest_rods)
 		I = i
 		if(I.active_state == SELF_DESTRUCT_MACHINE_ARMED && !override)
-			dest_master.state("<span class='warning'>WARNING: Unable to cancel detonation. Please disarm all control rods.</span>")
+			dest_master.visible_message("<span class='warning'>WARNING: Unable to cancel detonation. Please disarm all control rods.</span>")
 			return FALSE
 
 	dest_status = NUKE_EXPLOSION_INACTIVE
@@ -151,7 +149,7 @@ SUBSYSTEM_DEF(evacuation)
 			I.toggle(TRUE)
 	dest_master.toggle(TRUE)
 	dest_index = 1
-	command_announcement.Announce("The emergency destruct system has been deactivated.", "Priority Alert", new_sound='sound/AI/selfdestruct_deactivated.ogg')
+	priority_announce("The emergency destruct system has been deactivated.", "Priority Alert", sound = 'sound/AI/selfdestruct_deactivated.ogg')
 	if(evac_status == EVACUATION_STATUS_STANDING_BY)
 		set_security_level(SEC_LEVEL_RED, TRUE)
 	return TRUE
@@ -165,13 +163,13 @@ SUBSYSTEM_DEF(evacuation)
 	for(var/i in dest_rods)
 		I = i
 		if(I.active_state != SELF_DESTRUCT_MACHINE_ARMED && !override)
-			dest_master.state("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
+			dest_master.visible_message("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
 			return FALSE
 	
-	command_announcement.Announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
+	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
 	GLOB.enter_allowed = FALSE
 	dest_status = NUKE_EXPLOSION_IN_PROGRESS
-	playsound(dest_master, 'sound/machines/Alarm.ogg', 75, 0, 30)
+	playsound(dest_master, 'sound/machines/alarm.ogg', 75, 0, 30)
 	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
 
 	var/list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
@@ -187,38 +185,15 @@ SUBSYSTEM_DEF(evacuation)
 			continue
 		shake_camera(M, 110, 4)
 
-	addtimer(CALLBACK(src, .proc/show_cinematic, override, ship_intact), 10 SECONDS)
-
-
-/datum/controller/subsystem/evacuation/proc/show_cinematic(override, ship_intact)
-	var/obj/screen/cinematic/explosion/E = new
-
-	for(var/x in GLOB.clients)
-		var/client/C = x
-		C.screen += E
-		C.change_view(world.view)
-
-	addtimer(CALLBACK(src, .proc/flick_cinematic, E, override, ship_intact), 1.5 SECONDS)
-
-
-/datum/controller/subsystem/evacuation/proc/flick_cinematic(obj/screen/cinematic/explosion/E, override, ship_intact)
-	flick(override ? "intro_override" : "intro_nuke", E)
-	flick(ship_intact ? "ship_spared" : "ship_destroyed", E)
-	SEND_SOUND(world, 'sound/effects/explosionfar.ogg')
-	E.icon_state = ship_intact ? "summary_spared" : "summary_destroyed"
+	if(ship_intact)
+		Cinematic(CINEMATIC_SELFDESTRUCT_MISS, world)
+	else
+		Cinematic(CINEMATIC_SELFDESTRUCT, world)
 
 	dest_status = NUKE_EXPLOSION_FINISHED
-
-	addtimer(CALLBACK(src, .proc/remove_cinematic, E), 10 SECONDS)
-
-
-/datum/controller/subsystem/evacuation/proc/remove_cinematic(obj/screen/cinematic/explosion/E)
-	for(var/x in GLOB.clients)
-		var/client/C = x
-		C.screen -= E
 
 
 /datum/controller/subsystem/evacuation/proc/get_affected_zlevels()
 	if(dest_status >= NUKE_EXPLOSION_IN_PROGRESS || evac_status != EVACUATION_STATUS_COMPLETE)
 		return
-	. = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT))
+	. = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP))

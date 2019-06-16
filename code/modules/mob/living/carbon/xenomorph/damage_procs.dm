@@ -1,4 +1,4 @@
-/mob/living/carbon/Xenomorph/ex_act(severity)
+/mob/living/carbon/xenomorph/ex_act(severity)
 
 	flash_eyes()
 
@@ -92,7 +92,7 @@
 	updatehealth()
 
 
-/mob/living/carbon/Xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
 	if(blocked >= 1) //total negation
 		return FALSE
 
@@ -113,8 +113,8 @@
 
 	if(damage > 12) //Light damage won't splash.
 		check_blood_splash(damage, damagetype, chancemod)
-		if(damage > 15 && stealth_router(HANDLE_STEALTH_CHECK)) //Any significant damage causes us to break stealth
-			stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_TAKING_DAMAGE, damage)
 
 	if(stat == DEAD)
 		return FALSE
@@ -131,20 +131,20 @@
 	return TRUE
 
 
-/mob/living/carbon/Xenomorph/adjustBruteLoss(amount, process_rage = TRUE)
+/mob/living/carbon/xenomorph/adjustBruteLoss(amount, process_rage = TRUE)
 	if(process_rage)
 		amount = process_rage_damage(amount)
 	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
-/mob/living/carbon/Xenomorph/adjustFireLoss(amount, process_rage = TRUE)
+/mob/living/carbon/xenomorph/adjustFireLoss(amount, process_rage = TRUE)
 	if(process_rage)
 		amount = process_rage_damage(amount)
 	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
-/mob/living/carbon/Xenomorph/proc/process_rage_damage(damage)
+/mob/living/carbon/xenomorph/proc/process_rage_damage(damage)
 	return damage
 
-/mob/living/carbon/Xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
+/mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
 		return FALSE
 	var/chance = 20 //base chance

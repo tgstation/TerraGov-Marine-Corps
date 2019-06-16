@@ -28,15 +28,6 @@
 
 
 /mob/living/silicon/ai/shared_nano_interaction()
-	if(check_unable(1, 0))
+	if(incapacitated())
 		return STATUS_CLOSE
 	return ..()
-
-
-/mob/living/silicon/robot/shared_nano_interaction()
-	. = STATUS_INTERACTIVE
-	if(!cell || cell.charge <= 0)
-		return STATUS_CLOSE
-	if(lockcharge)
-		. = STATUS_DISABLED
-	return min(., ..())

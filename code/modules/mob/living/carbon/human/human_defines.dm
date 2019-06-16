@@ -58,8 +58,6 @@
 
 	var/icon/stand_icon = null
 
-	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
-
 	var/speech_problem_flag = 0
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
@@ -67,17 +65,19 @@
 	var/last_dam = -1	//Used for determining if we need to process all limbs or just some or even none.
 	//var/list/bad_limbs = list()// limbs we check until they are good.
 
-	var/xylophone = 0 //For the spoooooooky xylophone cooldown
-
 	var/mob/remoteview_target
 
 	var/list/flavor_texts = list()
 	var/last_unbuckled = 0 //Unbuckled cooldown.
 
+	var/flavor_text = ""
+	var/med_record = ""
+	var/sec_record = ""
+	var/gen_record = ""
+	var/exploit_record = ""
+
 
 	//Life variables
-
-	var/prev_gender // Debug for plural genders
 
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
 
@@ -113,3 +113,5 @@
 	var/damageoverlaytemp = 0
 
 	var/specset //Simple way to track which set has the player taken
+
+	hud_type = /datum/hud/human

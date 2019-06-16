@@ -52,14 +52,17 @@
 	return ..()
 
 
-/obj/vehicle/train/cargo/engine/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/key/cargo_train))
-		if(!key)
-			user.transferItemToLoc(W, src)
-			key = W
-			verbs += /obj/vehicle/train/cargo/engine/verb/remove_key
-		return
-	..()
+/obj/vehicle/train/cargo/engine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/key/cargo_train))
+		if(key)
+			return
+
+		user.transferItemToLoc(I, src)
+		key = I
+		verbs += /obj/vehicle/train/cargo/engine/verb/remove_key
+
 
 /obj/vehicle/train/cargo/update_icon()
 	if(open)
@@ -218,5 +221,5 @@
 		else
 			verbs += /atom/movable/verb/pull
 	else
-		anchored = 1
+		anchored = TRUE
 		verbs -= /atom/movable/verb/pull

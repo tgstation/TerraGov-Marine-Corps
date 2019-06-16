@@ -9,14 +9,12 @@
 	can_buckle = TRUE
 
 	var/on = FALSE
-	var/health = 100
-	var/maxhealth = 100
+	max_integrity = 100
 	var/fire_dam_coeff = 1.0
 	var/brute_dam_coeff = 1.0
 	var/open = FALSE	//Maint panel
 	var/locked = TRUE
 	var/stat = 0
-	var/emagged = 0
 	var/powered = FALSE		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 	var/buckling_y = 0
@@ -34,7 +32,7 @@
 /obj/vehicle/relaymove(mob/user, direction)
 	if(user.incapacitated())
 		return
-	if(world.time > l_move_time + move_delay)
+	if(world.time > last_move_time + move_delay)
 		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()
 		else if(!on && powered)
@@ -42,49 +40,56 @@
 		else
 			. = step(src, direction)
 
-/obj/vehicle/attackby(obj/item/W, mob/user)
+/obj/vehicle/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isscrewdriver(W))
-		if(!locked)
-			open = !open
-			update_icon()
-			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
-	else if(iscrowbar(W) && cell && open)
+	if(isscrewdriver(I))
+		if(locked)
+			return
+
+		open = !open
+		update_icon()
+		to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
+	
+	else if(iscrowbar(I) && cell && open)
 		remove_cell(user)
 
-	else if(istype(W, /obj/item/cell) && !cell && open)
-		insert_cell(W, user)
-	else if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-		if(WT.remove_fuel(1, user))
-			if(health < maxhealth)
-				user.visible_message("<span class='notice'>[user] starts to repair [src].</span>","<span class='notice'>You start to repair [src]</span>")
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_FRIENDLY))
-					if(!src || !WT.isOn())
-						return
-					health = min(maxhealth, health+10)
-					user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
-			else
-				to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
+	else if(istype(I, /obj/item/cell) && !cell && open)
+		insert_cell(I, user)
 
-	else if(W.force)
-		switch(W.damtype)
+	else if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.remove_fuel(1, user))
+			return
+
+		if(obj_integrity >= max_integrity)
+			to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
+			return
+
+		user.visible_message("<span class='notice'>[user] starts to repair [src].</span>","<span class='notice'>You start to repair [src]</span>")
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+			return
+
+		obj_integrity = min(max_integrity, obj_integrity + 10)
+		user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
+		
+	else if(I.force)
+		switch(I.damtype)
 			if("fire")
-				health -= W.force * fire_dam_coeff
+				obj_integrity -= I.force * fire_dam_coeff
 			if("brute")
-				health -= W.force * brute_dam_coeff
-		playsound(src.loc, "smash.ogg", 25, 1)
-		user.visible_message("<span class='danger'>[user] hits [src] with [W].</span>","<span class='danger'>You hit [src] with [W].</span>")
+				obj_integrity -= I.force * brute_dam_coeff
+		playsound(loc, "smash.ogg", 25, 1)
+		user.visible_message("<span class='danger'>[user] hits [src] with [I].</span>","<span class='danger'>You hit [src] with [I].</span>")
 		healthcheck()
 
 
-/obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/vehicle/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
-		health -= 15
+		obj_integrity -= 15
 		playsound(src.loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>", null, 5)
 		healthcheck()
@@ -94,7 +99,7 @@
 /obj/vehicle/attack_animal(var/mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)
 		return
-	health -= M.melee_damage_upper
+	obj_integrity -= M.melee_damage_upper
 	src.visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
 	log_combat(M, src, "attacked")
 	if(prob(10))
@@ -102,7 +107,7 @@
 	healthcheck()
 
 /obj/vehicle/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+	obj_integrity -= Proj.damage
 	..()
 	healthcheck()
 	return TRUE
@@ -113,14 +118,14 @@
 			explode()
 			return
 		if(2.0)
-			health -= rand(5,10)*fire_dam_coeff
-			health -= rand(10,20)*brute_dam_coeff
+			obj_integrity -= rand(5,10)*fire_dam_coeff
+			obj_integrity -= rand(10,20)*brute_dam_coeff
 			healthcheck()
 			return
 		if(3.0)
 			if (prob(50))
-				health -= rand(1,5)*fire_dam_coeff
-				health -= rand(1,5)*brute_dam_coeff
+				obj_integrity -= rand(1,5)*fire_dam_coeff
+				obj_integrity -= rand(1,5)*brute_dam_coeff
 				healthcheck()
 				return
 	return
@@ -135,9 +140,6 @@
 		stat &= ~EMPED
 		if(was_on)
 			turn_on()
-
-/obj/vehicle/attack_ai(mob/user as mob)
-	return
 
 //-------------------------------------------
 // Vehicle procs
@@ -158,7 +160,7 @@
 	update_icon()
 
 /obj/vehicle/proc/Emag(mob/user as mob)
-	emagged = 1
+	ENABLE_BITFIELD(obj_flags, EMAGGED)
 
 	if(locked)
 		locked = FALSE
@@ -187,7 +189,7 @@
 	qdel(src)
 
 /obj/vehicle/proc/healthcheck()
-	if(health <= 0)
+	if(obj_integrity <= 0)
 		explode()
 
 /obj/vehicle/proc/powercheck()

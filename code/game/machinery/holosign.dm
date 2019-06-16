@@ -5,7 +5,7 @@
 	icon = 'icons/obj/machines/holosign.dmi'
 	icon_state = "sign_off"
 	layer = MOB_LAYER
-	anchored = 1
+	anchored = TRUE
 	var/lit = 0
 	var/id = null
 	var/on_icon = "sign_on"
@@ -40,7 +40,7 @@
 	desc = "A remote control switch for holosign."
 	var/id = null
 	var/active = 0
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -51,16 +51,17 @@
 /obj/machinery/holosign_switch/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/holosign_switch/attackby(obj/item/W, mob/user as mob)
-	if(istype(W, /obj/item/detective_scanner))
+/obj/machinery/holosign_switch/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/detective_scanner))
 		return
-	return src.attack_hand(user)
+	else
+		return attack_hand(user)
 
 /obj/machinery/holosign_switch/attack_hand(mob/user as mob)
-	src.add_fingerprint(usr)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	add_fingerprint(user)
 
 	use_power(5)
 

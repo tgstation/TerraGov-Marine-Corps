@@ -42,24 +42,38 @@
 					var/dist = get_dist(M_turf, epicenter)
 					// If inside the blast radius + world.view - 2
 					if(dist <= round(max_range + world.view - 2, 1))
-						M.playsound_local(epicenter, get_sfx("explosion"), 75, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
+						if(devastation_range > 0)
+							M.playsound_local(epicenter, get_sfx("explosion"), 75, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
+						else
+							M.playsound_local(epicenter, get_sfx("explosion_small"), 75, 1, frequency, falloff = 5)
 
 						//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 
 					else if(dist <= far_dist)
 						var/far_volume = CLAMP(far_dist, 30, 50) // Volume is based on explosion size and dist
 						far_volume += (dist <= far_dist * 0.5 ? 75 : 75) // add 50 volume if the mob is pretty close to the explosion
-						M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', far_volume, 1, frequency, falloff = 5)
+						if(devastation_range > 0)
+							M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', far_volume, 1, frequency, falloff = 5)
+						else
+							M.playsound_local(epicenter, 'sound/effects/explosionsmallfar.ogg', far_volume, 1, frequency, falloff = 5)
 
 		var/close = trange(world.view + round(devastation_range, 1), epicenter)
 		//To all distanced mobs play a different sound
 		for(var/mob/M in GLOB.mob_list)
-			if(M.z == epicenter.z)
-				if(!(M in close))
-					// check if the mob can hear
-					if(M.ear_deaf <= 0 || !M.ear_deaf)
-						if(!isspaceturf(M.loc))
-							M << 'sound/effects/explosionfar.ogg'
+			if(M.z != epicenter.z)
+				continue
+
+			if(M in close)
+				continue
+
+			if(isliving(M))
+				var/mob/living/L = M
+				if(L.ear_deaf > 0 || isspaceturf(L.loc))
+					continue
+			
+			SEND_SOUND(M, 'sound/effects/explosionfar.ogg')
+
+
 		if(adminlog)
 			log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
@@ -69,10 +83,6 @@
 		if(approximate_intensity > 30)
 			lighting_controller.processing = 0
 
-		var/powernet_rebuild_was_deferred_already = defer_powernet_rebuild
-		// Large enough explosion. For performance reasons, powernets will be rebuilt manually
-		if(!defer_powernet_rebuild && (approximate_intensity > 25))
-			defer_powernet_rebuild = TRUE
 
 		if(heavy_impact_range > 1)
 			var/datum/effect_system/explosion/E = new/datum/effect_system/explosion()
@@ -92,11 +102,21 @@
 			else if(dist < flame_range)			dist = 4
 			else								continue
 
-			if(T)
+			if(T == epicenter) // Ensures explosives detonating from bags trigger other explosives in that bag
 				T.ex_act(dist)
-				for(var/atom_movable in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
-					var/atom/movable/AM = atom_movable
-					if(AM)	AM.ex_act(dist)
+				var/list/items = list()
+				for(var/I in T)
+					var/atom/A = I
+					if(A.prevent_content_explosion())
+						continue
+					items += A.GetAllContents()
+				for(var/O in items)
+					var/atom/A = O
+					if(!QDELETED(A))
+						A.ex_act(dist)
+
+			if(dist > 0)
+				T.ex_act(dist)
 
 
 			//------- TURF FIRES -------
@@ -110,7 +130,7 @@
 
 		var/took = (world.timeofday-start)/10
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
-		if(GLOB.Debug2)	
+		if(GLOB.Debug2)
 			log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
 
 		//Machines which report explosions.
@@ -125,9 +145,7 @@
 			lighting_controller.processing = 1
 			lighting_controller.process() //Restart the lighting controller
 
-		if(!powernet_rebuild_was_deferred_already && defer_powernet_rebuild)
-			SSmachines.makepowernets()
-			defer_powernet_rebuild = FALSE
+		SSmachines.makepowernets()
 
 	return 1
 

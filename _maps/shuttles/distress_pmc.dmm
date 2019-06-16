@@ -1,0 +1,346 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy20"
+	},
+/area/shuttle/ert/pmc)
+"c" = (
+/obj/docking_port/mobile/ert,
+/turf/closed/shuttle/ert{
+	icon_state = "wy27"
+	},
+/area/shuttle/ert/pmc)
+"d" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy25"
+	},
+/area/shuttle/ert/pmc)
+"e" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy21"
+	},
+/area/shuttle/ert/pmc)
+"f" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy22"
+	},
+/area/shuttle/ert/pmc)
+"g" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"h" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy23"
+	},
+/area/shuttle/ert/pmc)
+"i" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy18"
+	},
+/area/shuttle/ert/pmc)
+"j" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"k" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin6"
+	},
+/area/shuttle/ert/pmc)
+"l" = (
+/turf/open/shuttle/dropship{
+	icon_state = "floor8"
+	},
+/area/shuttle/ert/pmc)
+"m" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin7"
+	},
+/area/shuttle/ert/pmc)
+"n" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/firstaid/adv,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"o" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy19"
+	},
+/area/shuttle/ert/pmc)
+"p" = (
+/obj/machinery/door/airlock/almayer/generic,
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 4
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/ert/pmc)
+"q" = (
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship{
+	tag = "icon-rasputin3";
+	icon_state = "rasputin3"
+	},
+/area/shuttle/ert/pmc)
+"r" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"s" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy16"
+	},
+/area/shuttle/ert/pmc)
+"t" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"u" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"v" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin4";
+	tag = "icon-rasputin7"
+	},
+/area/shuttle/ert/pmc)
+"w" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin8"
+	},
+/area/shuttle/ert/pmc)
+"x" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy17"
+	},
+/area/shuttle/ert/pmc)
+"y" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy14"
+	},
+/area/shuttle/ert/pmc)
+"z" = (
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/shuttle/ert/pmc)
+"A" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy15"
+	},
+/area/shuttle/ert/pmc)
+"B" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy12"
+	},
+/area/shuttle/ert/pmc)
+"C" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"D" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy13"
+	},
+/area/shuttle/ert/pmc)
+"F" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy4"
+	},
+/area/shuttle/ert/pmc)
+"H" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/belt/combatLifesaver,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"I" = (
+/obj/machinery/door/airlock/almayer/generic{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 2
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
+"J" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy5"
+	},
+/area/shuttle/ert/pmc)
+"K" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy_leftengine"
+	},
+/area/shuttle/ert/pmc)
+"L" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy8"
+	},
+/area/shuttle/ert/pmc)
+"M" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy9"
+	},
+/area/shuttle/ert/pmc)
+"N" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy_rightengine"
+	},
+/area/shuttle/ert/pmc)
+"Q" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy1"
+	},
+/area/shuttle/ert/pmc)
+"R" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy2"
+	},
+/area/shuttle/ert/pmc)
+"S" = (
+/turf/closed/shuttle/ert{
+	icon_state = "wy3"
+	},
+/area/shuttle/ert/pmc)
+
+(1,1,1) = {"
+a
+b
+i
+p
+s
+y
+B
+p
+F
+K
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+e
+j
+g
+t
+t
+t
+g
+H
+L
+F
+F
+Q
+"}
+(3,1,1) = {"
+b
+f
+k
+q
+q
+q
+q
+q
+v
+g
+g
+g
+I
+"}
+(4,1,1) = {"
+c
+C
+l
+r
+r
+r
+r
+r
+l
+z
+z
+z
+R
+"}
+(5,1,1) = {"
+d
+h
+m
+q
+q
+q
+q
+q
+w
+g
+g
+g
+I
+"}
+(6,1,1) = {"
+a
+e
+n
+g
+u
+u
+u
+g
+H
+M
+J
+J
+S
+"}
+(7,1,1) = {"
+a
+d
+o
+p
+x
+A
+D
+p
+J
+N
+a
+a
+a
+"}

@@ -1,5 +1,4 @@
 /datum/job/other
-	department_flag = J_FLAG_MISC
 	skills_type = /datum/skills/pfc
 
 
@@ -9,7 +8,6 @@
 	paygrade = "C"
 	access = list(ACCESS_IFF_MARINE)
 	minimal_access = list(ACCESS_IFF_MARINE)
-	flag = MISC_COLONIST
 	outfit = /datum/outfit/job/other/colonist
 
 
@@ -30,7 +28,6 @@
 	paygrade = "C"
 	access = list(ACCESS_IFF_MARINE)
 	minimal_access = list(ACCESS_IFF_MARINE)
-	flag = MISC_PASSENGER
 
 
 //Pizza Deliverer
@@ -38,7 +35,6 @@
 	title = "Pizza Deliverer"
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
-	flag = MISC_PIZZA
 	outfit = /datum/outfit/job/other/pizza
 
 
@@ -62,7 +58,6 @@
 	title = "Spatial Agent"
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
-	flag = MISC_SPATIAL_AGENT
 	skills_type = /datum/skills/spatial_agent
 	outfit = /datum/outfit/job/other/spatial_agent
 

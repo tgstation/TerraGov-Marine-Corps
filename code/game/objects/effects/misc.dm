@@ -4,7 +4,7 @@
 	desc = "It's a ... present?"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "strangepresent"
-	density = 1
+	density = TRUE
 	anchored = 0
 
 
@@ -15,8 +15,7 @@
 /obj/effect/mark
 	var/mark = ""
 	icon = 'icons/misc/mark.dmi'
-	icon_state = "blank"
-	anchored = 1
+	anchored = TRUE
 	layer = 99
 	mouse_opacity = 0
 
@@ -30,7 +29,7 @@
 	name = "begin"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "begin"
-	anchored = 1.0
+	anchored = TRUE
 
 
 
@@ -47,7 +46,7 @@
 /obj/effect/projection
 	name = "Projection"
 	desc = "This looks like a projection of something."
-	anchored = 1.0
+	anchored = TRUE
 
 
 /obj/effect/shut_controller
@@ -63,7 +62,7 @@
 	name = "engine exhaust"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "exhaust"
-	anchored = 1
+	anchored = TRUE
 
 	New(var/turf/nloc, var/ndir, var/temp)
 		setDir(ndir)
@@ -111,6 +110,7 @@
 
 /obj/effect/forcefield/fog/attack_hand(mob/M)
 	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+	return TRUE
 
 
 /obj/effect/forcefield/fog/attack_alien(M)
@@ -135,3 +135,8 @@
 /obj/effect/opacifier/Initialize(mapload, initial_opacity)
 	. = ..()
 	SetOpacity(initial_opacity)
+
+
+/obj/effect/supplypod_selector
+	icon_state = "supplypod_selector"
+	layer = FLY_LAYER

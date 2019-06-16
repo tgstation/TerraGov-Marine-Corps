@@ -41,33 +41,33 @@
 		return 1
 
 /obj/machinery/door/poddoor/railing/open()
-	if (src.operating == 1) //doors can still open when emag-disabled
-		return 0
-	if (!SSticker)
-		return 0
-	if(!src.operating) //in case of emag
-		src.operating = 1
+	if(!SSticker || operating || !density)
+		return FALSE
+
+	operating = TRUE
 	flick("railingc0", src)
-	src.icon_state = "railing0"
+	icon_state = "railing0"
 	layer = open_layer
 
-	sleep(12)
+	addtimer(CALLBACK(src, .proc/do_open), 12)
+	return TRUE
 
-	src.density = 0
-	if(operating == 1) //emag again
-		src.operating = 0
-	return 1
+/obj/machinery/door/poddoor/railing/proc/do_open()
+	density = FALSE
+	operating = FALSE
 
 /obj/machinery/door/poddoor/railing/close()
-	if (src.operating)
-		return 0
-	src.density = 1
-	src.operating = 1
+	if (!SSticker || operating || density)
+		return FALSE
+		
+	density = TRUE
+	operating = TRUE
 	layer = closed_layer
 	flick("railingc1", src)
-	src.icon_state = "railing1"
+	icon_state = "railing1"
 
-	sleep(12)
+	addtimer(CALLBACK(src, .proc/do_close), 12)
+	return TRUE
 
-	src.operating = 0
-	return 1
+/obj/machinery/door/poddoor/railing/proc/do_close()
+	operating = FALSE

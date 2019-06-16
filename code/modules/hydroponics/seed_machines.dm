@@ -32,8 +32,8 @@
 /obj/machinery/botany
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 
 	var/obj/item/seeds/seed // Currently loaded seed packet.
@@ -62,6 +62,9 @@
 	return attack_hand(user)
 
 /obj/machinery/botany/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/botany/proc/finished_task()
@@ -80,54 +83,48 @@
 			loaded_disk = null
 	stop_processing()
 
-/obj/machinery/botany/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/seeds))
+/obj/machinery/botany/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/seeds))
 		if(seed)
 			to_chat(user, "There is already a seed loaded.")
 			return
-		var/obj/item/seeds/S =W
-		if(S.seed && S.seed.immutable > 0)
+		var/obj/item/seeds/S = I
+		if(S.seed?.immutable > 0)
 			to_chat(user, "That seed is not compatible with our genetics technology.")
-		else
-			user.drop_held_item()
-			W.loc = src
-			seed = W
-			to_chat(user, "You load [W] into [src].")
-		return
-
-	if(istype(W,/obj/item/tool/screwdriver))
-		open = !open
-		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
-		return
-
-	if(open)
-		if(iscrowbar(W))
-			dismantle()
 			return
 
-	if(istype(W,/obj/item/disk/botany))
+		user.drop_held_item()
+		I.forceMove(src)
+		seed = I
+		to_chat(user, "You load [I] into [src].")
+
+	else if(isscrewdriver(I))
+		open = !open
+		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
+
+	else if(iscrowbar(I) && open)
+		deconstruct()
+
+	else if(istype(I, /obj/item/disk/botany))
+		var/obj/item/disk/botany/B = I
+
 		if(loaded_disk)
 			to_chat(user, "There is already a data disk loaded.")
 			return
-		else
-			var/obj/item/disk/botany/B = W
 
-			if(B.genes && B.genes.len)
-				if(!disk_needs_genes)
-					to_chat(user, "That disk already has gene data loaded.")
-					return
-			else
-				if(disk_needs_genes)
-					to_chat(user, "That disk does not have any gene data loaded.")
-					return
+		if(length(B.genes) && !disk_needs_genes)
+			to_chat(user, "That disk already has gene data loaded.")
+			return
+		else if(disk_needs_genes)
+			to_chat(user, "That disk does not have any gene data loaded.")
+			return
 
-			user.drop_held_item()
-			W.loc = src
-			loaded_disk = W
-			to_chat(user, "You load [W] into [src].")
-
-		return
-	..()
+		user.drop_held_item()
+		I.forceMove(src)
+		loaded_disk = I
+		to_chat(user, "You load [I] into [src].")
 
 // Allows for a trait to be extracted from a seed packet, destroying that seed.
 /obj/machinery/botany/extractor
@@ -179,9 +176,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/botany/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	if(href_list["eject_packet"])
 		if(!seed) return
@@ -204,15 +201,13 @@
 		loaded_disk = null
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 
 /obj/machinery/botany/extractor/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 
 	if(href_list["scan_genome"])
 
@@ -311,9 +306,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/botany/editor/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	if(href_list["apply_gene"])
 		if(!loaded_disk || !seed) return
@@ -336,4 +331,3 @@
 			seed.modified += rand(5,10)
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)

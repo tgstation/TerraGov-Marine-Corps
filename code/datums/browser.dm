@@ -155,6 +155,9 @@
 
 
 /datum/browser/modal/alert/Topic(href,href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["close"] || !user || !user.client)
 		opentime = 0
 		return

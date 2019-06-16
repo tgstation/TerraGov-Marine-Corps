@@ -202,8 +202,12 @@
 
 	if(istype(D, /atom))
 		var/atom/A = D
-		if(isliving(A))
+		if(ismob(A))
 			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];rename=[refid]'><b id='name'>[D]</b></a>"
+		else
+			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
+			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+		if(isliving(A))
 			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 			var/mob/living/M = A
 			atomsnowflake += {"
@@ -217,9 +221,6 @@
 					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getBrainLoss()]</a>
 				</font>
 			"}
-		else
-			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
-			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 	else if("name" in D.vars)
 		atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
 	else
@@ -560,8 +561,10 @@
 		var/list/L = value
 		var/list/items = list()
 
-		if(length(L) > 0 && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
-			for(var/i in 1 to L.len)
+		if(istype(DA, /datum/controller/global_vars) && !DA.vv_edit_var(name, L))
+			item = "[VV_HTML_ENCODE(name)] = /list ([L.len])"
+		else if(length(L) > 0  && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
+			for(var/i in 1 to length(L))
 				var/key = L[i]
 				var/val
 				if(IS_NORMAL_LIST(L) && !isnum(key))
@@ -987,29 +990,6 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has used [result] transformation on [A].")
 
 
-	else if(href_list["setspecies"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in GLOB.mob_list
-		if(!istype(H))
-			return
-
-		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.all_species
-
-		if(!H)
-			return
-
-		if(!result)
-			return
-
-		H.set_species(result)
-		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result].")
-
-		log_admin("[key_name(usr)] set the species of [key_name(H)] to [result].")
-		message_admins("[ADMIN_TPMONTY(usr)] set the species of [ADMIN_TPMONTY(H)] to [result].")
-
-
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 		if(!check_rights(R_FUN))
 			return
@@ -1134,7 +1114,7 @@
 
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
 				if(!AR || !A)
 					return
 				target = pick(get_area_turfs(AR))

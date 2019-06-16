@@ -14,10 +14,6 @@
 	var/identifier = MOTION_DETECTOR_HOSTILE
 	layer = BELOW_FULLSCREEN_LAYER
 
-	Destroy()
-		..()
-		return TA_REVIVE_ME
-
 /obj/effect/detector_blip/friendly
 	icon_state = "detector_blip_friendly"
 	identifier = MOTION_DETECTOR_FRIENDLY
@@ -134,8 +130,6 @@
 	for(var/mob/living/M in orange(detector_range, operator))
 		if(!isturf(M.loc))
 			continue
-		if(iscyborg(M))
-			continue
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -156,7 +150,7 @@
 						status = MOTION_DETECTOR_FRIENDLY
 					else
 						continue
-		if(world.time > M.l_move_time + 20 && (status == MOTION_DETECTOR_HOSTILE))
+		if(world.time > M.last_move_time + 20 && (status == MOTION_DETECTOR_HOSTILE))
 			continue //hasn't moved recently
 
 		detected = TRUE
@@ -244,7 +238,9 @@
 
 
 /obj/item/motiondetector/Topic(href, href_list)
-	//..()
+	. = ..()
+	if(.)
+		return
 	if(usr.stat || usr.restrained())
 		return
 	if(ishuman(usr) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))

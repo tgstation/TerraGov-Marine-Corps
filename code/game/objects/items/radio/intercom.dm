@@ -5,7 +5,7 @@
 	icon_state = "intercom"
 	pixel_x = -16
 	pixel_y = -16
-	anchored = 1
+	anchored = TRUE
 	w_class = 4.0
 	canhear_range = 2
 	flags_atom = CONDUCT|NOBLOODY
@@ -34,7 +34,6 @@
 
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)
-	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 
@@ -43,7 +42,9 @@
 
 
 /obj/item/radio/intercom/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
+	. = ..()
+	if(.)
+		return
 	spawn (0)
 		attack_self(user)
 
@@ -92,6 +93,7 @@
 
 
 /obj/item/radio/intercom/general/colony
+	freqlock = TRUE
 	frequency = FREQ_CIV_GENERAL
 
 /obj/item/radio/intercom/dropship

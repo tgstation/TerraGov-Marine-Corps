@@ -23,7 +23,8 @@
 
 
 /obj/machinery/computer/prisoner/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat
@@ -70,7 +71,8 @@
 
 
 /obj/machinery/computer/prisoner/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)
@@ -101,6 +103,5 @@
 				var/mob/living/carbon/R = I.imp_in
 				to_chat(R, "<span class='green'> You hear a voice in your head saying: '[warning]'</span>")
 
-		src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return

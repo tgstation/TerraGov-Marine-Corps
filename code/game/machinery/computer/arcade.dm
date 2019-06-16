@@ -50,7 +50,8 @@
 	return src.attack_hand(user)
 
 /obj/machinery/computer/arcade/attack_hand(mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a>"
@@ -75,7 +76,8 @@
 
 
 /obj/machinery/computer/arcade/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if (!src.blocked && !src.gameover)
@@ -131,11 +133,10 @@
 		gameover = 0
 		turtle = 0
 
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			src.New()
-			emagged = 0
+			DISABLE_BITFIELD(obj_flags, EMAGGED)
 
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
 
@@ -145,14 +146,14 @@
 			src.gameover = 1
 			src.temp = "[src.enemy_name] has fallen! Rejoice!"
 
-			if(emagged)
+			if(CHECK_BITFIELD(obj_flags, EMAGGED))
 				new /obj/effect/spawner/newbomb/timer/syndicate(src.loc)
 				new /obj/item/clothing/head/collectable/petehat(src.loc)
 				log_game("[key_name(usr)] has outbombed Cuban Pete and been awarded a bomb.")
 				message_admins("[ADMIN_TPMONTY(usr)] has outbombed Cuban Pete and been awarded a bomb.")
 
 				src.New()
-				emagged = 0
+				DISABLE_BITFIELD(obj_flags, EMAGGED)
 			else if(!contents.len)
 				var/prizeselect = pickweight(prizes)
 				new prizeselect(src.loc)
@@ -167,7 +168,7 @@
 				var/atom/movable/prize = pick(contents)
 				prize.loc = src.loc
 
-	else if (emagged && (turtle >= 4))
+	else if (CHECK_BITFIELD(obj_flags, EMAGGED) && (turtle >= 4))
 		var/boomamt = rand(5,10)
 		src.temp = "[src.enemy_name] throws a bomb, exploding you for [boomamt] damage!"
 		src.player_hp -= boomamt
@@ -182,7 +183,7 @@
 			src.gameover = 1
 			sleep(10)
 			src.temp = "You have been drained! GAME OVER"
-			if(emagged)
+			if(CHECK_BITFIELD(obj_flags, EMAGGED))
 				usr.gib()
 
 	else if ((src.enemy_hp <= 10) && (src.enemy_mp > 4))
@@ -198,32 +199,31 @@
 	if ((src.player_mp <= 0) || (src.player_hp <= 0))
 		src.gameover = 1
 		src.temp = "GAME OVER"
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			usr.gib()
 
 	src.blocked = 0
 	return
 
 
-/obj/machinery/computer/arcade/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/card/emag) && !emagged)
+/obj/machinery/computer/arcade/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		temp = "If you die in the game, you die for real!"
 		player_hp = 30
 		player_mp = 10
 		enemy_hp = 45
 		enemy_mp = 20
-		gameover = 0
-		blocked = 0
+		gameover = FALSE
+		blocked = FALSE
 
-		emagged = 1
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 
 		enemy_name = "Cuban Pete"
 		name = "Outbomb Cuban Pete"
 
-
-		src.updateUsrDialog()
-	else
-		..()
+		updateUsrDialog()
 
 
 /obj/machinery/computer/arcade/emp_act(severity)

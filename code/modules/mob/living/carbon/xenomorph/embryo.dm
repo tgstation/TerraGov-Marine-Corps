@@ -53,13 +53,13 @@
 	if(affected_mob.stat == DEAD)
 		if(ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
-			if(H.check_tod()) //Can't be defibbed.
-				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+			if(check_tod(H)) //Can't be defibbed.
+				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
 				STOP_PROCESSING(SSobj, src)
 				return FALSE
 		else
-			var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+			var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 			L?.initiate_burst(affected_mob)
 			STOP_PROCESSING(SSobj, src)
 			return FALSE
@@ -115,7 +115,7 @@
 		if(6)
 			larva_autoburst_countdown--
 			if(!larva_autoburst_countdown)
-				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
+				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
 				L?.initiate_burst(affected_mob)
 
 
@@ -128,16 +128,16 @@
 	if(is_centcom_level(affected_mob.z) && !admin)
 		return
 
-	var/picked
+	var/mob/picked
 
 	//If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva.
 	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, ROLE_XENOMORPH) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
-		picked = affected_mob.key
+		picked = affected_mob
 	else //Get a candidate from observers.
 		picked = get_alien_candidate()
 
 	//Spawn the larva.
-	var/mob/living/carbon/Xenomorph/Larva/new_xeno
+	var/mob/living/carbon/xenomorph/larva/new_xeno
 
 	new_xeno = new(affected_mob)
 
@@ -146,10 +146,7 @@
 
 	//If we have a candidate, transfer it over.
 	if(picked)
-		new_xeno.key = picked
-
-		if(new_xeno.client)
-			new_xeno.client.change_view(world.view)
+		picked.mind.transfer_to(new_xeno, TRUE)
 
 		to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva inside a host! Move to burst out of it!</span>")
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
@@ -157,7 +154,7 @@
 	stage = 6
 
 
-/mob/living/carbon/Xenomorph/Larva/proc/initiate_burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/victim)
 	if(victim.chestburst || loc != victim)
 		return
 
@@ -172,7 +169,7 @@
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
 
 
-/mob/living/carbon/Xenomorph/Larva/proc/burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)
 	if(QDELETED(victim))
 		return
 

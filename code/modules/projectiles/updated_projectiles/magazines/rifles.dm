@@ -5,32 +5,32 @@
 //M41A PULSE RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle
-	name = "\improper M41A magazine (10x24mm)"
+	name = "\improper M41A1 magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = "10x24mm caseless"
-	icon_state = "m41a"
+	icon_state = "m41a1"
 	w_class = 3
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/m41a
 
 /obj/item/ammo_magazine/rifle/extended
-	name = "\improper M41A extended magazine (10x24mm)"
+	name = "\improper M41A1 extended magazine (10x24mm)"
 	desc = "A 10mm assault extended rifle magazine."
-	icon_state = "m41a_ext"
+	icon_state = "m41a1_ext"
 	max_rounds = 60
-	bonus_overlay = "m41a_ex"
+	bonus_overlay = "m41a1_ex"
 
 /obj/item/ammo_magazine/rifle/incendiary
-	name = "\improper M41A incendiary magazine (10x24mm)"
+	name = "\improper M41A1 incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
-	icon_state = "m41a_incendiary"
+	icon_state = "m41a1_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 
 /obj/item/ammo_magazine/rifle/ap
-	name = "\improper M41A AP magazine (10x24mm)"
+	name = "\improper M41A1 AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
-	icon_state = "m41a_ap"
+	icon_state = "m41a1_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 
 
@@ -38,8 +38,9 @@
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41aMK1
-	name = "\improper M41AMK1 magazine (10x24mm)"
+	name = "\improper M41A magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
+	icon_state = "m41a"
 	max_rounds = 95
 	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
 

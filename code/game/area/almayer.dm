@@ -7,26 +7,6 @@
 	icon_state = "almayer"
 	ceiling = CEILING_METAL
 
-/area/shuttle/almayer/elevator_maintenance/upperdeck
-	name = "\improper Maintenance Elevator"
-	icon_state = "shuttle"
-	fake_zlevel = 1
-
-/area/shuttle/almayer/elevator_maintenance/lowerdeck
-	name = "\improper Maintenance Elevator"
-	icon_state = "shuttle"
-	fake_zlevel = 2
-
-/area/shuttle/almayer/elevator_hangar/lowerdeck
-	name = "\improper Hangar Elevator"
-	icon_state = "shuttle"
-	fake_zlevel = 2 // lowerdeck
-
-/area/shuttle/almayer/elevator_hangar/underdeck
-	name = "\improper Hangar Elevator"
-	icon_state = "shuttle"
-	fake_zlevel = 3
-
 /area/almayer/command/cic
 	name = "\improper Combat Information Center"
 	icon_state = "cic"
@@ -394,37 +374,4 @@
 /area/almayer/powered //for objects not intended to lose power
 	name = "\improper Powered"
 	icon_state = "selfdestruct"
-	requires_power = 0
-
-/area/almayer/evacuation
-	icon = 'icons/turf/areas.dmi'
-	icon_state = "shuttle2"
-	requires_power = 0
-
-//Placeholder.
-/area/almayer/evacuation/pod1
-/area/almayer/evacuation/pod2
-/area/almayer/evacuation/pod3
-/area/almayer/evacuation/pod4
-/area/almayer/evacuation/pod5
-/area/almayer/evacuation/pod6
-/area/almayer/evacuation/pod7
-/area/almayer/evacuation/pod8
-/area/almayer/evacuation/pod9
-/area/almayer/evacuation/pod10
-/area/almayer/evacuation/pod11
-
-/area/almayer/evacuation/stranded
-
-//Placeholder.
-/area/almayer/evacuation/stranded/pod1
-/area/almayer/evacuation/stranded/pod2
-/area/almayer/evacuation/stranded/pod3
-/area/almayer/evacuation/stranded/pod4
-/area/almayer/evacuation/stranded/pod5
-/area/almayer/evacuation/stranded/pod6
-/area/almayer/evacuation/stranded/pod7
-/area/almayer/evacuation/stranded/pod8
-/area/almayer/evacuation/stranded/pod9
-/area/almayer/evacuation/stranded/pod10
-/area/almayer/evacuation/stranded/pod11
+	requires_power = FALSE

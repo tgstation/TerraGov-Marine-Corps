@@ -37,11 +37,9 @@
 	var/stat_msg1
 	var/stat_msg2
 
-	var/datum/announcement/priority/command/crew_announcement = new
 
 /obj/machinery/computer/communications/New()
 	. = ..()
-	crew_announcement.newscast = TRUE
 	start_processing()
 
 /obj/machinery/computer/communications/process()
@@ -52,7 +50,7 @@
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return FALSE
+		return
 
 	usr.set_interaction(src)
 
@@ -61,6 +59,9 @@
 			state = STATE_DEFAULT
 
 		if("login")
+			if(isAI(usr))
+				authenticated = 2
+				return
 			var/mob/living/carbon/human/C = usr
 			var/obj/item/card/id/I = C.get_active_held_item()
 			if(istype(I))
@@ -68,7 +69,6 @@
 					authenticated = 1
 				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = 2
-					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 			else
 				I = C.wear_id
 				if(istype(I))
@@ -76,10 +76,8 @@
 						authenticated = 1
 					if(ACCESS_MARINE_BRIDGE in I.access)
 						authenticated = 2
-						crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 		if("logout")
 			authenticated = 0
-			crew_announcement.announcer = ""
 
 		if("swipeidseclevel")
 			var/mob/M = usr
@@ -115,7 +113,7 @@
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
-				crew_announcement.Announce(input, to_xenos = 0)
+				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
 				cooldown_message = world.time
 
 		if("award")
@@ -318,8 +316,9 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
-	if(..())
-		return FALSE
+	. = ..()
+	if(.)
+		return
 
 	//Should be refactored later, if there's another ship that can appear during a mode with a comm console.
 	if(!istype(loc.loc, /area/almayer/command/cic)) //Has to be in the CIC. Can also be a generic CIC area to communicate, if wanted.
@@ -426,76 +425,7 @@
 	popup.open(FALSE)
 	onclose(user, "communications")
 
-
-/*
-/obj/machinery/computer/communications/proc/interact_ai(var/mob/living/silicon/ai/user as mob)
-	var/dat = ""
-	switch(aistate)
-		if(STATE_DEFAULT)
-			if(emergency_shuttle.location() && !emergency_shuttle.online())
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Call Emergency Shuttle</A> \]"
-			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message List</A> \]"
-			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-status'>Set Status Display</A> \]"
-		if(STATE_CALLSHUTTLE)
-			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=ai-callshuttle2'>OK</A>|<A HREF='?src=\ref[src];operation=ai-main'>Cancel</A> \]"
-		if(STATE_MESSAGELIST)
-			dat += "Messages:"
-			for(var/i = 1; i<=messagetitle.len; i++)
-				dat += "<BR><A HREF='?src=\ref[src];operation=ai-viewmessage;message-num=[i]'>[messagetitle[i]]</A>"
-		if(STATE_VIEWMESSAGE)
-			if (aicurrmsg)
-				dat += "<B>[messagetitle[aicurrmsg]]</B><BR><BR>[messagetext[aicurrmsg]]"
-				dat += "<BR><BR>\[ <A HREF='?src=\ref[src];operation=ai-delmessage'>Delete</A> \]"
-			else
-				aistate = STATE_MESSAGELIST
-				attack_hand(user)
-				return FALSE
-		if(STATE_DELMESSAGE)
-			if(aicurrmsg)
-				dat += "Are you sure you want to delete this message? \[ <A HREF='?src=\ref[src];operation=ai-delmessage2'>OK</A>|<A HREF='?src=\ref[src];operation=ai-viewmessage'>Cancel</A> \]"
-			else
-				aistate = STATE_MESSAGELIST
-				attack_hand(user)
-				return FALSE
-
-		if(STATE_STATUSDISPLAY)
-			dat += "Set Status Displays<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=blank'>Clear</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=time'>Station Time</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
-			dat += "\[ <A HREF='?src=\ref[src];operation=setstat;statdisp=message'>Message</A> \]"
-			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
-			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
-			dat += "\[ Alert: <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=default'>None</A> |"
-			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
-			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
-			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
-
-	dat += "<BR>\[ [(aistate != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=ai-main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
-	return dat
-*/
-
 /obj/machinery/computer/communications/proc/post_status(command, data1, data2)
-
-	/*var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
-
-	if(!frequency) return FALSE
-
-	var/datum/signal/status_signal = new
-	status_signal.source = src
-	status_signal.transmission_method = 1
-	status_signal.data["command"] = command
-
-	switch(command)
-		if("message")
-			status_signal.data["msg1"] = data1
-			status_signal.data["msg2"] = data2
-			log_admin("STATUS: [fingerprintslast] set status screen message with [src]: [data1] [data2]")
-			//message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
-		if("alert")
-			status_signal.data["picture_state"] = data1
-
-	frequency.post_signal(src, status_signal)*/
 
 #undef STATE_DEFAULT
 #undef STATE_MESSAGELIST

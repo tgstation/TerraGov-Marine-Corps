@@ -14,48 +14,52 @@
 	src.pixel_x = rand(-6, 6)
 	return
 
-/obj/item/ashtray/attackby(obj/item/W as obj, mob/user as mob)
-	if (health < 1)
+/obj/item/ashtray/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(obj_integrity < 1)
 		return
-	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/cigarette) || istype(W, /obj/item/tool/match))
-		if (contents.len >= max_butts)
+
+	else if(istype(I, /obj/item/trash/cigbutt) || istype(I, /obj/item/clothing/mask/cigarette) || istype(I, /obj/item/tool/match))
+		if(length(contents) >= max_butts)
 			to_chat(user, "This ashtray is full.")
 			return
-		user.transferItemToLoc(W, src)
 
-		if (istype(W,/obj/item/clothing/mask/cigarette))
-			var/obj/item/clothing/mask/cigarette/cig = W
-			if (cig.heat_source)
-				src.visible_message("[user] crushes [cig] in [src], putting it out.")
-				STOP_PROCESSING(SSobj, cig)
-				var/obj/item/butt = new cig.type_butt(src)
-				cig.transfer_fingerprints_to(butt)
-				qdel(cig)
-				W = butt
-			else if (cig.heat_source == 0)
+		user.transferItemToLoc(I, src)
+
+		if(istype(I, /obj/item/clothing/mask/cigarette))
+			var/obj/item/clothing/mask/cigarette/cig = I
+			if(!cig.heat)
 				to_chat(user, "You place [cig] in [src] without even smoking it. Why would you do that?")
+				return
 
-		src.visible_message("[user] places [W] in [src].")
+			visible_message("[user] crushes [cig] in [src], putting it out.")
+			STOP_PROCESSING(SSobj, cig)
+			new cig.type_butt(src)
+			qdel(cig)
+
+		visible_message("[user] places [I] in [src].")
 		user.update_inv_l_hand(0)
 		user.update_inv_r_hand()
-		add_fingerprint(user)
-		if (contents.len == max_butts)
+
+		if(length(contents) >= max_butts)
 			icon_state = icon_full
 			desc = empty_desc + " It's stuffed full."
-		else if (contents.len > max_butts/2)
+
+		else if(length(contents) >= max_butts / 2)
 			icon_state = icon_half
 			desc = empty_desc + " It's half-filled."
+
 	else
-		health = max(0,health - W.force)
-		to_chat(user, "You hit [src] with [W].")
-		if (health < 1)
+		obj_integrity = max(0, obj_integrity - I.force)
+		to_chat(user, "You hit [src] with [I].")
+		if(obj_integrity < 1)
 			die()
-	return
 
 /obj/item/ashtray/throw_impact(atom/hit_atom)
-	if (health > 0)
-		health = max(0,health - 3)
-		if (health < 1)
+	if (obj_integrity > 0)
+		obj_integrity = max(0,obj_integrity - 3)
+		if (obj_integrity < 1)
 			die()
 			return
 		if (contents.len)
@@ -80,7 +84,7 @@
 	icon_full  = "ashtray_full_bl"
 	icon_broken  = "ashtray_bork_bl"
 	max_butts = 14
-	health = 24.0
+	max_integrity = 24.0
 	matter = list("metal" = 30,"glass" = 30)
 	empty_desc = "Cheap plastic ashtray."
 	throwforce = 3.0
@@ -100,7 +104,7 @@
 	icon_full  = "ashtray_full_br"
 	icon_broken  = "ashtray_bork_br"
 	max_butts = 10
-	health = 72.0
+	max_integrity = 72.0
 	matter = list("metal" = 80)
 	empty_desc = "Massive bronze ashtray."
 	throwforce = 10.0
@@ -121,7 +125,7 @@
 	icon_full  = "ashtray_full_gl"
 	icon_broken  = "ashtray_bork_gl"
 	max_butts = 12
-	health = 12.0
+	max_integrity = 12.0
 	matter = list("glass" = 60)
 	empty_desc = "Glass ashtray. Looks fragile."
 	throwforce = 6.0

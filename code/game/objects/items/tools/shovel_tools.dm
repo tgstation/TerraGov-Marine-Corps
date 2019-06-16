@@ -47,7 +47,6 @@
 		to_chat(user, "It holds [dirt_amt] layer\s of [dirt_name].")
 
 /obj/item/tool/shovel/attack_self(mob/user)
-	add_fingerprint(user)
 
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
@@ -83,7 +82,7 @@
 						return
 				to_chat(user, "<span class='notice'>You start digging.</span>")
 				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-				if(!do_after(user, shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, shovelspeed, TRUE, T, BUSY_ICON_BUILD))
 					return
 				var/transf_amt = dirt_amt_per_dig
 				if(turfdirt == DIRT_TYPE_SNOW)

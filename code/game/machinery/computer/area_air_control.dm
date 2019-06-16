@@ -23,9 +23,9 @@
 	return
 
 /obj/machinery/computer/area_atmos/attack_hand(var/mob/user as mob)
-	if(..(user))
+	. = ..()
+	if(.)
 		return
-	src.add_fingerprint(usr)
 	var/dat = {"
 	<html>
 		<head>
@@ -93,10 +93,10 @@
 	status = ""
 
 /obj/machinery/computer/area_atmos/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 
 
 	if(href_list["scan"])

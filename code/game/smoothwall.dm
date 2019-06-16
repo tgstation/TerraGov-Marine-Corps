@@ -13,7 +13,7 @@
 	var/j //second iterator
 	var/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
 
-	for(i in cardinal) //For all cardinal dir turfs
+	for(i in GLOB.cardinals) //For all GLOB.cardinals dir turfs
 		T = get_step(src, i)
 		if(!istype(T)) continue
 		for(j in tiles_with) //And for all types that we tile with
@@ -36,7 +36,7 @@
 	var/j //second iterator
 	var/atom/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
 
-	for(i in cardinal) //For all cardinal dir turfs
+	for(i in GLOB.cardinals) //For all GLOB.cardinals dir turfs
 		T = get_step(src, i)
 		if(!istype(T)) continue
 		for(j in tiles_with) //And for all types that we tile with
@@ -63,7 +63,7 @@
 	var/j
 	var/k
 
-	for(i in cardinal)
+	for(i in GLOB.cardinals)
 		T = get_step(src, i)
 		if(!istype(T)) continue
 		for(j in tiles_with)
@@ -95,7 +95,7 @@
 	var/j
 	var/k
 
-	for(i in cardinal)
+	for(i in GLOB.cardinals)
 		T = get_step(src, i)
 		if(!istype(T)) continue
 		for(j in tiles_with)

@@ -2,11 +2,6 @@
 #define CAT_HIDDEN 1
 #define CAT_COIN   2
 
-#define WIRE_EXTEND 1
-#define WIRE_SCANID 2
-#define	WIRE_SHOCK 3
-#define	WIRE_SHOOTINV 4
-
 /datum/data/vending_product
 	var/product_name = "generic"
 	var/product_path = null
@@ -53,12 +48,10 @@
 	var/slogan_delay = 600 //How long until we can pitch again?
 	var/icon_vend //Icon_state when vending!
 	var/icon_deny //Icon_state when vending!
-	//var/emagged = 0 //Ignores if somebody doesn't have card access to that machine.
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
 	var/shut_up = FALSE //Stop spouting those godawful pitches!
 	var/extended_inventory = FALSE //can we access the hidden inventory?
-	var/wires = 15
 	var/obj/item/coin/coin
 	var/tokensupport = TOKEN_GENERAL
 
@@ -68,9 +61,11 @@
 	var/hacking_safety = FALSE //1 = Will never shoot inventory or allow all access
 	wrenchable = TRUE
 	var/isshared = FALSE
+	var/scan_id = TRUE
 
-/obj/machinery/vending/Initialize()
+/obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
+	wires = new /datum/wires/vending(src)
 	src.slogan_list = text2list(src.product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
@@ -82,8 +77,18 @@
 		//Add hidden inventory
 	src.build_inventory(contraband, 1)
 	src.build_inventory(premium, 0, 1)
-	power_change()
 	start_processing()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/vending/LateInitialize()
+	. = ..()
+	power_change()
+
+
+/obj/machinery/vending/Destroy()
+	QDEL_NULL(wires)
+	return ..()
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
@@ -142,7 +147,7 @@
 		R.product_name = initial(temp_path.name)
 
 
-/obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/vending/attack_alien(mob/living/carbon/xenomorph/M)
 	if(tipped_level)
 		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
 		return FALSE
@@ -167,9 +172,9 @@
 	var/shove_time = 100
 	if(M.mob_size == MOB_SIZE_BIG)
 		shove_time = 50
-	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
+	if(istype(M,/mob/living/carbon/xenomorph/crusher))
 		shove_time = 15
-	if(do_after(M, shove_time, FALSE, 5, BUSY_ICON_HOSTILE))
+	if(do_after(M, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
 		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
 		tip_over()
@@ -192,69 +197,74 @@
 	transform = A
 	machine_stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
 
-/obj/machinery/vending/attackby(obj/item/W, mob/user)
+/obj/machinery/vending/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
-		return
 
-	if (istype(W, /obj/item/card/emag))
-		src.emagged = 1
+	else if(istype(I, /obj/item/card/emag))
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "You short out the product lock on [src]")
-		return
-	else if(isscrewdriver(W))
-		src.panel_open = !src.panel_open
-		to_chat(user, "You [src.panel_open ? "open" : "close"] the maintenance panel.")
-		src.overlays.Cut()
-		if(src.panel_open)
-			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
-		src.updateUsrDialog()
-		return
-	else if(ismultitool(W)||iswirecutter(W))
-		if(src.panel_open)
-			attack_hand(user)
-		return
-	else if(istype(W, /obj/item/coin))
-		var/obj/item/coin/C = W
+
+	else if(isscrewdriver(I))
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
+		overlays.Cut()
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			overlays += image(icon, "[initial(icon_state)]-panel")
+		updateUsrDialog()
+
+	else if(ismultitool(I) || iswirecutter(I))
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			return
+
+		attack_hand(user)
+
+	else if(istype(I, /obj/item/coin))
+		var/obj/item/coin/C = I
+
 		if(coin)
 			to_chat(user, "<span class='warning'>[src] already has [coin] inserted</span>")
-			return
-		if(!premium.len && !isshared)
+
+		else if(!length(premium) && !isshared)
 			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
-			return
-		if(C.flags_token & tokensupport)
-			if(user.transferItemToLoc(W, src))
-				coin = W
-				to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
+
+		else if(C.flags_token & tokensupport)
+			if(!user.transferItemToLoc(C, src))
+				return
+
+			coin = C
+			to_chat(user, "<span class='notice'>You insert \the [C] into \the [src]</span>")
+
 		else
-			to_chat(user, "<span class='warning'>\The [src] rejects the [W].</span>")
+			to_chat(user, "<span class='warning'>\The [src] rejects \the [C].</span>")
+
+	else if(istype(I, /obj/item/card))
+		var/obj/item/card/C = I
+		scan_card(C)
+
+	else if(istype(I, /obj/item/spacecash/ewallet))
+		if(!user.transferItemToLoc(I, src))
 			return
-		return
-	else if(istype(W, /obj/item/card))
-		var/obj/item/card/I = W
-		scan_card(I)
-		return
-	else if (istype(W, /obj/item/spacecash/ewallet))
-		if(user.transferItemToLoc(W, src))
-			ewallet = W
-			to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
-		return
 
-	else if(iswrench(W))
-		if(!wrenchable) return
+		ewallet = I
+		to_chat(user, "<span class='notice'>You insert the [I] into the [src]</span>")
 
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-			if(!src) return
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			switch (anchored)
-				if (0)
-					anchored = 1
-					user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
-				if (1)
-					user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
-					anchored = 0
-		return
+	else if(iswrench(I))
+		if(!wrenchable) 
+			return
 
-	..()
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		anchored = !anchored
+		if(anchored)
+			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
+		else
+			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
+
 
 /obj/machinery/vending/proc/scan_card(var/obj/item/card/I)
 	if(!currently_vending) return
@@ -292,7 +302,7 @@
 			else
 				T.amount = "[transaction_amount]"
 			T.source_terminal = src.name
-			T.date = current_date_string
+			T.date = GLOB.current_date_string
 			T.time = worldtime2text()
 			acc.transaction_log.Add(T)
 
@@ -337,15 +347,14 @@
 			return null
 
 /obj/machinery/vending/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(tipped_level == 2)
-		tipped_level = 1
 		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
-		if(do_after(user,80, FALSE, 5, BUSY_ICON_FRIENDLY))
+		if(do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
 			user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
 			flip_back()
-			return
-		else
-			tipped_level = 2
 			return
 
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -356,42 +365,6 @@
 	if(src.seconds_electrified != 0)
 		if(shock(user, 100))
 			return
-
-
-	if(panel_open)
-		var/dat = ""
-		var/list/vendwires = list(
-			"Violet" = 1,
-			"Orange" = 2,
-			"Goldenrod" = 3,
-			"Green" = 4,
-		)
-		dat += "<br>"
-		for(var/wiredesc in vendwires)
-			var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
-			dat += "[wiredesc] wire: "
-			if(!is_uncut)
-				dat += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
-			else
-				dat += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
-				dat += "<a href='?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
-			dat += "<br>"
-
-		dat += "<br>"
-		dat += "The orange light is [(src.seconds_electrified == 0) ? "off" : "on"].<BR>"
-		dat += "The red light is [src.shoot_inventory ? "off" : "blinking"].<BR>"
-		dat += "The green light is [src.extended_inventory ? "on" : "off"].<BR>"
-		dat += "The [(src.wires & WIRE_SCANID) ? "purple" : "yellow"] light is on.<BR>"
-
-		if (product_slogans != "")
-			dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a>"
-
-		var/datum/browser/popup = new(user, "vending", "<div align='center'>Access Panel</div>")
-		popup.set_content(dat)
-		popup.open(FALSE)
-		onclose(user, "vending")
-
-
 
 	ui_interact(user)
 
@@ -435,6 +408,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/vending/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.incapacitated())
@@ -465,7 +441,7 @@
 		usr.set_interaction(src)
 		if ((href_list["vend"]) && vend_ready && !currently_vending)
 
-			if(!allowed(usr) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
+			if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				flick(src.icon_deny,src)
 				return
@@ -498,42 +474,9 @@
 			src.updateUsrDialog()
 			return
 
-		else if ((href_list["cutwire"]) && (src.panel_open))
-			var/twire = text2num(href_list["cutwire"])
-			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
-				"<span class='notice'>You fumble around figuring out the wiring.</span>")
-				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
-					return
-			if (!iswirecutter(usr.get_active_held_item()))
-				to_chat(usr, "You need wirecutters!")
-				return
-			if (src.isWireColorCut(twire))
-				src.mend(twire)
-			else
-				src.cut(twire)
-
-		else if ((href_list["pulsewire"]) && (src.panel_open))
-			var/twire = text2num(href_list["pulsewire"])
-			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
-				"<span class='notice'>You fumble around figuring out the wiring.</span>")
-				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!ismultitool(usr.get_active_held_item()))
-				to_chat(usr, "You need a multitool!")
-				return
-			if (src.isWireColorCut(twire))
-				to_chat(usr, "You can't pulse a cut wire.")
-				return
-			else
-				src.pulse(twire)
-
-		else if ((href_list["togglevoice"]) && (src.panel_open))
+		else if ((href_list["togglevoice"]) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			src.shut_up = !src.shut_up
 
-		src.add_fingerprint(usr)
 		ui_interact(usr) //updates the nanoUI window
 		updateUsrDialog() //updates the wires window
 	else
@@ -541,7 +484,7 @@
 
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if(!allowed(user) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH
+	if(!allowed(user) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		flick(src.icon_deny,src)
 		return
@@ -734,45 +677,3 @@
 		throw_item.throw_at(target, 16, 3, src)
 	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target]!</span>")
 	. = TRUE
-
-/obj/machinery/vending/proc/isWireColorCut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	return ((src.wires & wireFlag) == 0)
-
-/obj/machinery/vending/proc/isWireCut(var/wireIndex)
-	var/wireFlag = APCIndexToFlag[wireIndex]
-	return ((src.wires & wireFlag) == 0)
-
-/obj/machinery/vending/proc/cut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	src.wires &= ~wireFlag
-	switch(wireIndex)
-		if(WIRE_EXTEND)
-			src.extended_inventory = 0
-		if(WIRE_SHOCK)
-			src.seconds_electrified = -1
-		if (WIRE_SHOOTINV)
-			if(!src.shoot_inventory)
-				src.shoot_inventory = 1
-
-
-/obj/machinery/vending/proc/mend(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor] //not used in this function
-	src.wires |= wireFlag
-	switch(wireIndex)
-		if(WIRE_SHOCK)
-			src.seconds_electrified = 0
-		if (WIRE_SHOOTINV)
-			src.shoot_inventory = 0
-
-/obj/machinery/vending/proc/pulse(var/wireColor)
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	switch(wireIndex)
-		if(WIRE_EXTEND)
-			src.extended_inventory = !src.extended_inventory
-		if (WIRE_SHOCK)
-			src.seconds_electrified = 30
-		if (WIRE_SHOOTINV)
-			src.shoot_inventory = !src.shoot_inventory

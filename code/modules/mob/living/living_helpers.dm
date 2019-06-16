@@ -13,7 +13,7 @@
 /mob/living/proc/has_vision()
 	if(sdisabilities & BLIND)
 		return FALSE
-	if(get_total_tint() >= TINT_HEAVY)
+	if(get_total_tint() >= TINT_BLIND)
 		return FALSE
 	return has_eyes()
 
@@ -22,3 +22,9 @@
 
 /mob/living/proc/get_reagent_tags()
 	return
+
+
+/mob/living/incapacitated(ignore_restrained)
+	. = ..()
+	if(!.)
+		return (stunned || knocked_down || knocked_out)

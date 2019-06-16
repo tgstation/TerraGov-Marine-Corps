@@ -3,11 +3,11 @@
 	desc = "Looks unstable. Best to test it with the clown."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
-	density = 1
+	density = TRUE
 	var/failchance = 5
 	var/obj/item/target = null
 	var/creator = null
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
 	spawn(0)
@@ -22,6 +22,9 @@
 	return
 
 /obj/effect/portal/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	spawn(0)
 		src.teleport(user)
 		return
@@ -35,8 +38,6 @@
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if(istype(M, /obj/effect)) //sparks don't teleport
-		return
-	if (M.anchored&&istype(M, /obj/mecha))
 		return
 	if (icon_state == "portal1")
 		return

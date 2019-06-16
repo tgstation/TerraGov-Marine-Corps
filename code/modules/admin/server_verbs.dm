@@ -215,18 +215,26 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(SSticker?.current_state != GAME_STATE_PREGAME)
-		to_chat(usr, "<span class='warning'>The round cannot be started early in this state.</span>")
+	if(SSticker.current_state != GAME_STATE_STARTUP && SSticker.current_state != GAME_STATE_PREGAME)
+		to_chat(usr, "<span class='warning'>The round has already started.</span>")
 		return
 
 	if(SSticker.start_immediately)
 		SSticker.start_immediately = FALSE
 		log_admin("[key_name(usr)] has cancelled the early round start.")
 		message_admins("[ADMIN_TPMONTY(usr)] has cancelled the early round start.")
-	else if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "Yes")
-		SSticker.start_immediately = TRUE
-		log_admin("[key_name(usr)] has started the round early[SSticker.current_state == GAME_STATE_STARTUP ? ". The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again." : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has started the round early[SSticker.current_state == GAME_STATE_STARTUP ? ". The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again." : ""].")
+		return
+
+	if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "No")
+		return
+
+	var/startup_msg = ""
+	if(SSticker.current_state == GAME_STATE_STARTUP)
+		startup_msg = " The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again."
+
+	SSticker.start_immediately = TRUE
+	log_admin("[key_name(usr)] has started the round early.[startup_msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] has started the round early.[startup_msg]")
 
 
 /datum/admins/proc/toggle_join()
@@ -286,8 +294,8 @@
 
 /datum/admins/proc/end_round()
 	set category = "Server"
-	set desc = "Immediately ends the round, be very careful"
 	set name = "End Round"
+	set desc = "Immediately ends the round, be very careful"
 
 	if(!check_rights(R_SERVER))
 		return
@@ -295,13 +303,23 @@
 	if(!SSticker?.mode)
 		return
 
-	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes", "No") != "Yes")
+	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")
 		return
 
-	SSticker.mode.round_finished = "Admin Intervention"
+	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention", MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_X_MINOR,  MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
+	if(!winstate)
+		return
 
-	log_admin("[key_name(usr)] has made the round end early.")
-	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
+	if(winstate == "Custom")
+		winstate = input(usr, "Please enter a custom round end state.", "End Round") as null|text
+		if(!winstate)
+			return
+
+	SSticker.force_ending = TRUE
+	SSticker.mode.round_finished = winstate
+
+	log_admin("[key_name(usr)] has made the round end early - [winstate].")
+	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early - [winstate].")
 
 
 /datum/admins/proc/delay_start()
@@ -343,6 +361,8 @@
 		return
 
 	if(SSticker.admin_delay_notice)
+		if(alert(usr, "Do you want to remove the round end delay?", "Delay Round End", "Yes", "No") != "Yes")
+			return
 		SSticker.admin_delay_notice = null
 	else
 		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text

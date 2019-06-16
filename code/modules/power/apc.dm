@@ -58,17 +58,10 @@
 	var/lastused_environ = 0
 	var/lastused_total = 0
 	var/main_status = APC_EXTERNAL_POWER_NONE
-	var/apcwires = 15
 	var/debug = 0
 	var/has_electronics = APC_ELECTRONICS_MISSING
 	var/overload = 1 //Used for the Blackout malf module
 	var/beenhit = 0 //Used for counting how many times it has been hit, used for Aliens at the moment
-	var/list/apcwirelist = list(
-		"Orange" = 1,
-		"Dark red" = 2,
-		"White" = 3,
-		"Yellow" = 4,
-	)
 	var/longtermpower = 10
 	var/update_state = -1
 	var/update_overlay = -1
@@ -81,26 +74,6 @@
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
 	var/obj/item/circuitboard/apc/electronics = null
-
-/proc/RandomAPCWires()
-	//To make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
-	var/list/apcwires = list(0, 0, 0, 0)
-	APCIndexToFlag = list(0, 0, 0, 0)
-	APCIndexToWireColor = list(0, 0, 0, 0)
-	APCWireColorToIndex = list(0, 0, 0, 0)
-	var/flagIndex = 1
-	for(var/flag = 1, flag < 16, flag += flag)
-		var/valid = FALSE
-		while(!valid)
-			var/colorIndex = rand(1, 4)
-			if(apcwires[colorIndex] == 0)
-				valid = TRUE
-				apcwires[colorIndex] = flag
-				APCIndexToFlag[flagIndex] = flag
-				APCIndexToWireColor[flagIndex] = colorIndex
-				APCWireColorToIndex[colorIndex] = flagIndex
-		flagIndex += 1
-	return apcwires
 
 /obj/machinery/power/apc/connect_to_network()
 	//Override because the APC does not directly connect to the network; it goes through a terminal.
@@ -116,6 +89,7 @@
 /obj/machinery/power/apc/New()
 	. = ..()
 	GLOB.apcs_list += src
+	wires = new /datum/wires/apc(src)
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs_list -= src
@@ -126,6 +100,7 @@
 	area.power_change()
 
 	QDEL_NULL(cell)
+	QDEL_NULL(wires)
 	if(terminal)
 		disconnect_terminal()
 
@@ -214,7 +189,7 @@
 		else
 			to_chat(user, "<span class='info'>The cover is closed.</span>")
 
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		to_chat(user, "<span class='info'>The wiring is exposed.</span>")
 
 //Update the APC icon to show the three base states
@@ -263,11 +238,11 @@
 			ENABLE_BITFIELD(update_state, UPSTATE_OPENED1)
 		if(opened == APC_COVER_REMOVED)
 			ENABLE_BITFIELD(update_state, UPSTATE_OPENED2)
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(update_state, UPSTATE_WIREEXP)
 	if(!update_state)
 		ENABLE_BITFIELD(update_state, UPSTATE_ALLGOOD)
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_BLUESCREEN)
 		if(locked)
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LOCKED)
@@ -315,306 +290,379 @@
 /obj/machinery/power/apc/proc/queue_icon_update()
 	updating_icon = TRUE
 
-/obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M)
+/obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
 	M.animation_attack_on(src)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 	"<span class='danger'>You slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
-	var/allcut = TRUE
-	for(var/wire in apcwirelist)
-		if(!isWireCut(apcwirelist[wire]))
-			allcut = FALSE
-			break
+	var/allcut = wires.is_all_cut()
 
-	if(beenhit >= pick(3, 4) && !panel_open)
-		panel_open = TRUE
+	if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
 		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>", null, null, 5)
 
-	else if(panel_open && !allcut)
-		for(var/wire in apcwirelist)
-			cut(apcwirelist[wire])
+	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
+		wires.cut_all()
 		update_icon()
-		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!", null, null, 5)
+		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!</span>", null, null, 5)
 	else
 		beenhit += 1
 
 //Attack with an item - open/close cover, insert cell, or (un)lock interface
-/obj/machinery/power/apc/attackby(obj/item/W, mob/user)
+/obj/machinery/power/apc/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(issilicon(user) && get_dist(src, user) > 1)
 		return attack_hand(user)
-	add_fingerprint(user)
-	if(iscrowbar(W) && opened)
+
+	else if(iscrowbar(I) && opened)
 		if(has_electronics == APC_ELECTRONICS_INSTALLED)
-			if(user.action_busy) return
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			if(user.action_busy) 
+				return
+
+			if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+
 			if(terminal)
 				to_chat(user, "<span class='warning'>Disconnect the terminal first.</span>")
 				return
-			playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts removing [src]'s power control board.</span>",
 			"<span class='notice'>You start removing [src]'s power control board.</span>")
-			if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD) && has_electronics == APC_ELECTRONICS_INSTALLED)
-				has_electronics = APC_ELECTRONICS_MISSING
-				if((machine_stat & BROKEN))
-					user.visible_message("<span class='notice'>[user] breaks [src]'s charred power control board and removes the remains.</span>",
-					"<span class='notice'>You break [src]'s charred power control board and remove the remains.</span>")
+			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || has_electronics != APC_ELECTRONICS_INSTALLED)
+				return
+
+			has_electronics = APC_ELECTRONICS_MISSING
+			if((machine_stat & BROKEN))
+				user.visible_message("<span class='notice'>[user] breaks [src]'s charred power control board and removes the remains.</span>",
+				"<span class='notice'>You break [src]'s charred power control board and remove the remains.</span>")
+			else
+				user.visible_message("<span class='notice'>[user] removes [src]'s power control board.</span>",
+				"<span class='notice'>You remove [src]'s power control board.</span>")
+				var/obj/item/circuitboard/apc/circuit
+				if(!electronics)
+					circuit = new /obj/item/circuitboard/apc(loc)
 				else
-					user.visible_message("<span class='notice'>[user] removes [src]'s power control board.</span>",
-					"<span class='notice'>You remove [src]'s power control board.</span>")
-					var/obj/item/circuitboard/apc/circuit
-					if(!electronics)
-						circuit = new/obj/item/circuitboard/apc( src.loc )
-					else
-						circuit = new electronics( src.loc )
-						if(electronics.is_general_board)
-							circuit.set_general()
-				electronics = null
+					circuit = new electronics(loc)
+					if(electronics.is_general_board)
+						circuit.set_general()
+			electronics = null
+
 		else if(opened != APC_COVER_REMOVED)
 			opened = APC_COVER_CLOSED
 			update_icon()
-	else if(iscrowbar(W) && !((machine_stat & BROKEN)))
+
+	else if(iscrowbar(I) && !((machine_stat & BROKEN)))
 		if(coverlocked && !(machine_stat & MAINT))
 			to_chat(user, "<span class='warning'>The cover is locked and cannot be opened.</span>")
 			return
-		else
-			opened = APC_COVER_OPENED
-			update_icon()
-	else if(istype(W, /obj/item/cell) && opened) //Trying to put a cell inside
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [W] into [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to fit [W] into [src].</span>")
+
+		opened = APC_COVER_OPENED
+		update_icon()
+
+	else if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [I] into [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to fit [I] into [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
 		if(cell)
 			to_chat(user, "<span class='warning'>There is a power cell already installed.</span>")
 			return
-		else
-			if(machine_stat & MAINT)
-				to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
-				return
-			if(user.transferItemToLoc(W, src))
-				cell = W
-				user.visible_message("<span class='notice'>[user] inserts [W] into [src]!",
-				"<span class='notice'>You insert [W] into [src]!")
-				chargecount = 0
-				update_icon()
-	else if(isscrewdriver(W)) //Haxing
+
+		if(machine_stat & MAINT)
+			to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
+			return
+
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		cell = I
+		user.visible_message("<span class='notice'>[user] inserts [I] into [src]!",
+		"<span class='notice'>You insert [I] into [src]!")
+		chargecount = 0
+		update_icon()
+
+	else if(isscrewdriver(I)) //Haxing
 		if(opened)
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s confusing wiring.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s confusing wiring.</span>")
 				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return
+
 			if(cell)
 				to_chat(user, "<span class='warning'>Close the APC first.</span>")
 				return
+
+			if(has_electronics == APC_ELECTRONICS_INSTALLED && terminal)
+				has_electronics = APC_ELECTRONICS_SECURED
+				machine_stat &= ~MAINT
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+				user.visible_message("<span class='notice'>[user] screws [src]'s circuit electronics into place.</span>",
+				"<span class='notice'>You screw [src]'s circuit electronics into place.</span>")
+			else if(has_electronics == APC_ELECTRONICS_SECURED)
+				has_electronics = APC_ELECTRONICS_INSTALLED
+				machine_stat |= MAINT
+				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+				user.visible_message("<span class='notice'>[user] unfastens [src]'s circuit electronics.</span>",
+				"<span class='notice'>You unfasten [src]'s circuit electronics.</span>")
 			else
-				if(has_electronics == APC_ELECTRONICS_INSTALLED && terminal)
-					has_electronics = APC_ELECTRONICS_SECURED
-					machine_stat &= ~MAINT
-					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-					user.visible_message("<span class='notice'>[user] screws [src]'s circuit electronics into place.</span>",
-					"<span class='notice'>You screw [src]'s circuit electronics into place.</span>")
-				else if(has_electronics == APC_ELECTRONICS_SECURED)
-					has_electronics = APC_ELECTRONICS_INSTALLED
-					machine_stat |= MAINT
-					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-					user.visible_message("<span class='notice'>[user] unfastens [src]'s circuit electronics.</span>",
-					"<span class='notice'>You unfasten [src]'s circuit electronics.</span>")
-				else
-					to_chat(user, "<span class='warning'>There is nothing to secure.</span>")
-					return
-				update_icon()
-		else if(emagged)
+				to_chat(user, "<span class='warning'>There is nothing to secure.</span>")
+
+			update_icon()
+		
+		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>The interface is broken.</span>")
+		
 		else
-			panel_open = !panel_open
-			user.visible_message("<span class='notice'>[user] [panel_open ? "exposes" : "unexposes"] [src]'s wiring.</span>",
-			"<span class='notice'>You [panel_open ? "expose" : "unexpose"] [src]'s wiring.</span>")
+			TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+			user.visible_message("<span class='notice'>[user] [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposes" : "unexposes"] [src]'s wiring.</span>",
+			"<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "expose" : "unexpose"] [src]'s wiring.</span>")
 			update_icon()
 
-	else if(istype(W, /obj/item/card/id)) //Trying to unlock the interface with an ID card
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [W] on [src].</span>",
-			"<span class='notice'>You fumble around figuring out where to swipe [W] on [src].</span>")
+	else if(istype(I, /obj/item/card/id)) //Trying to unlock the interface with an ID card
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [I] on [src].</span>",
+			"<span class='notice'>You fumble around figuring out where to swipe [I] on [src].</span>")
 			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-		if(emagged)
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>The interface is broken.</span>")
-		else if(opened)
-			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
-		else if(panel_open)
-			to_chat(user, "<span class='warning'>You must close the panel.</span>")
-		else if(machine_stat & (BROKEN|MAINT))
-			to_chat(user, "<span class='warning'>Nothing happens.</span>")
-		else
-			if(allowed(usr))
-				locked = !locked
-				user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s interface.</span>",
-				"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
-				update_icon()
-			else
-				to_chat(user, "<span class='warning'>Access denied.</span>")
-	else if(istype(W, /obj/item/card/emag) && !(emagged)) // trying to unlock with an emag card
+			return
+		
 		if(opened)
 			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
-		else if(panel_open)
-			to_chat(user, "<span class='warning'>You must close the panel first</span>")
-		else if(machine_stat & (BROKEN|MAINT))
+			return
+
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			to_chat(user, "<span class='warning'>You must close the panel.</span>")
+			return
+
+		if(machine_stat & (BROKEN|MAINT))
 			to_chat(user, "<span class='warning'>Nothing happens.</span>")
+			return
+
+		if(!allowed(user))
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+			return
+
+		locked = !locked
+		user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s interface.</span>",
+		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
+		update_icon()
+
+	else if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED)) // trying to unlock with an emag card
+		if(opened)
+			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
+			return
+
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			to_chat(user, "<span class='warning'>You must close the panel first</span>")
+			return
+
+		if(machine_stat & (BROKEN|MAINT))
+			to_chat(user, "<span class='warning'>Nothing happens.</span>")
+			return
+
+		flick("apc-spark", src)
+		if(!do_after(user, 6, TRUE, src, BUSY_ICON_HOSTILE))
+			return
+
+		if(prob(50))
+			ENABLE_BITFIELD(obj_flags, EMAGGED)
+			locked = FALSE
+			to_chat(user, "<span class='warning'>You emag [src]'s interface.</span>")
+			update_icon()
 		else
-			flick("apc-spark", src)
-			if(do_after(user, 6, TRUE, 5, BUSY_ICON_HOSTILE))
-				if(prob(50))
-					emagged = TRUE
-					locked = FALSE
-					to_chat(user, "<span class='warning'>You emag [src]'s interface.</span>")
-					update_icon()
-				else
-					to_chat(user, "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] [src]'s interface.</span>")
-	else if(iscablecoil(W) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			to_chat(user, "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] [src]'s interface.</span>")
+	
+	else if(iscablecoil(I) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
+		var/obj/item/stack/cable_coil/C = I
+
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
 		var/turf/T = get_turf(src)
 		if(T.intact_tile)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
 			return
-		var/obj/item/stack/cable_coil/C = W
+
 		if(C.get_amount() < 10)
 			to_chat(user, "<span class='warning'>You need more wires.</span>")
 			return
+
 		user.visible_message("<span class='notice'>[user] starts wiring [src]'s frame.</span>",
 		"<span class='notice'>You start wiring [src]'s frame.</span>")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
-			var/obj/structure/cable/N = T.get_cable_node()
-			if(prob(50) && electrocute_mob(usr, N, N))
-				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-				s.set_up(5, 1, src)
-				s.start()
-				return
-			if(C.use(10))
-				user.visible_message("<span class='notice'>[user] wires [src]'s frame.</span>",
-				"<span class='notice'>You wire [src]'s frame.</span>")
-				make_terminal()
-				terminal.connect_to_network()
-	else if(iswirecutter(W) && terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+		
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || terminal || !opened || has_electronics == APC_ELECTRONICS_SECURED)
+			return
+
+		var/obj/structure/cable/N = T.get_cable_node()
+		if(prob(50) && electrocute_mob(user, N, N))
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+			s.set_up(5, 1, src)
+			s.start()
+			return
+
+		if(!C.use(10))
+			return
+
+		user.visible_message("<span class='notice'>[user] wires [src]'s frame.</span>",
+		"<span class='notice'>You wire [src]'s frame.</span>")
+		make_terminal()
+		terminal.connect_to_network()
+
+	else if(iswirecutter(I) && terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
-		terminal.dismantle(user)
-	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+		terminal.deconstruct(user)
+
+	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED)) 
+				return
+
 		user.visible_message("<span class='notice'>[user] starts inserting the power control board into [src].</span>",
 		"<span class='notice'>You start inserting the power control board into [src].</span>")
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-		if(do_after(user, 15, TRUE, 5, BUSY_ICON_BUILD))
-			has_electronics = APC_ELECTRONICS_INSTALLED
-			user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
-			"<span class='notice'>You insert the power control board into [src].</span>")
-			electronics = W
-			qdel(W)
-	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		has_electronics = APC_ELECTRONICS_INSTALLED
+		user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
+		"<span class='notice'>You insert the power control board into [src].</span>")
+		electronics = I
+		qdel(I)
+
+	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED)) 
+				return
+		
 		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
-		return
-	else if(iswelder(W) && opened && has_electronics == APC_ELECTRONICS_MISSING && !terminal)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+
+	else if(iswelder(I) && opened && has_electronics == APC_ELECTRONICS_MISSING && !terminal)
+		var/obj/item/tool/weldingtool/WT = I
+
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-		var/obj/item/tool/weldingtool/WT = W
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
 		if(WT.get_fuel() < 3)
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
+
 		user.visible_message("<span class='notice'>[user] starts unwelding [src]'s frame.</span>",
 		"<span class='notice'>You start unwelding [src]'s frame.</span>")
-		playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-			if(!src || !WT.remove_fuel(3, user)) return
-			if(emagged || (machine_stat & BROKEN) || opened == APC_COVER_REMOVED)
-				new /obj/item/stack/sheet/metal(loc)
-				user.visible_message("<span class='notice'>[user] unwelds [src]'s frame apart.</span>",
-				"<span class='notice'>You unweld [src]'s frame apart.</span>")
-			else
-				new /obj/item/frame/apc(loc)
-				user.visible_message("<span class='notice'>[user] unwelds [src]'s frame off the wall.</span>",
-				"<span class='notice'>You unweld [src]'s frame off the wall.</span>")
-			qdel(src)
+		playsound(loc, 'sound/items/welder.ogg', 25, 1)
+
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(3, user))
 			return
-	else if(istype(W, /obj/item/frame/apc) && opened && emagged)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+
+		if(CHECK_BITFIELD(obj_flags, EMAGGED) || (machine_stat & BROKEN) || opened == APC_COVER_REMOVED)
+			new /obj/item/stack/sheet/metal(loc)
+			user.visible_message("<span class='notice'>[user] unwelds [src]'s frame apart.</span>",
+			"<span class='notice'>You unweld [src]'s frame apart.</span>")
+		else
+			new /obj/item/frame/apc(loc)
+			user.visible_message("<span class='notice'>[user] unwelds [src]'s frame off the wall.</span>",
+			"<span class='notice'>You unweld [src]'s frame off the wall.</span>")
+		qdel(src)
+
+	else if(istype(I, /obj/item/frame/apc) && opened && CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-		emagged = FALSE
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
+		DISABLE_BITFIELD(obj_flags, EMAGGED)
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
 		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-		qdel(W)
+		qdel(I)
 		update_icon()
-	else if(istype(W, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+
+	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
 		if(has_electronics)
 			to_chat(user, "<span class='warning'>You cannot repair this APC until you remove the electronics still inside.</span>")
 			return
+
 		user.visible_message("<span class='notice'>[user] begins replacing [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You begin replacing [src]'s damaged frontal panel with a new one.</span>")
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-			user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
-			"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-			qdel(W)
-			machine_stat &= ~BROKEN
-			if(opened == APC_COVER_REMOVED)
-				opened = APC_COVER_OPENED
-			update_icon()
+		
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
+		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
+		qdel(I)
+		machine_stat &= ~BROKEN
+		if(opened == APC_COVER_REMOVED)
+			opened = APC_COVER_OPENED
+		update_icon()
+
 	else
-		if(((machine_stat & BROKEN)) && !opened && W.force >= 5)
+		if(((machine_stat & BROKEN)) && !opened && I.force >= 5)
 			opened = APC_COVER_REMOVED
-			user.visible_message("<span class='warning'>[user] knocks down [src]'s cover with [W]!</span>", \
-				"<span class='warning'>You knock down [src]'s cover with [W]!</span>")
+			user.visible_message("<span class='warning'>[user] knocks down [src]'s cover with [I]!</span>", \
+				"<span class='warning'>You knock down [src]'s cover with [I]!</span>")
 			update_icon()
 		else
 			if(issilicon(user))
 				return attack_hand(user)
-			if(!opened && panel_open && (ismultitool(W) || iswirecutter(W)))
+
+			if(!opened && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(I) || iswirecutter(I)))
 				return attack_hand(user)
-			user.visible_message("<span class='danger'>[user] hits [src] with [W]!</span>", \
-			"<span class='danger'>You hit [src] with [W]!</span>")
+			user.visible_message("<span class='danger'>[user] hits [src] with [I]!</span>", \
+			"<span class='danger'>You hit [src] with [I]!</span>")
 
 //Attack with hand - remove cell (if cover open) or interact with the APC
 /obj/machinery/power/apc/attack_hand(mob/user)
-
-	if(!user)
+	. = ..()
+	if(.)
 		return
 
-	add_fingerprint(user)
 
 	//Human mob special interaction goes here.
 	if(ishuman(user))
@@ -622,7 +670,7 @@
 		var/datum/species/S = H.species
 
 		if(S.species_flags & IS_SYNTHETIC && H.a_intent == INTENT_GRAB)
-			if(emagged || machine_stat & BROKEN)
+			if(CHECK_BITFIELD(obj_flags, EMAGGED) || machine_stat & BROKEN)
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(3, 1, src)
 				s.start()
@@ -651,19 +699,14 @@
 			user.visible_message("<span class='warning'>[user.name] slashes [src]!</span>",
 			"<span class='warning'>You slash [src]!</span>")
 			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-			var/allcut = 1
-			for(var/wire in apcwirelist)
-				if(!isWireCut(apcwirelist[wire]))
-					allcut = 0
-					break
-			if(beenhit >= pick(3, 4) && !panel_open)
-				panel_open = TRUE
+			var/allcut = wires.is_all_cut()
+			if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+				ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 				update_icon()
 				visible_message("<span class='warning'>[src]'s cover flies open, exposing the wires!</span>")
 
-			else if(panel_open && allcut == 0)
-				for(var/wire in apcwirelist)
-					cut(apcwirelist[wire])
+			else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
+				wires.cut_all()
 				update_icon()
 				visible_message("<span class='warning'>[src]'s wires are shredded!</span>")
 			else
@@ -677,9 +720,9 @@
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to remove the power cell from [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to remove the power cell from [src].</span>")
 				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !cell)
+					return
 			user.put_in_hands(cell)
-			cell.add_fingerprint(user)
 			cell.updateicon()
 
 			src.cell = null
@@ -697,25 +740,6 @@
 	if(!user)
 		return
 	user.set_interaction(src)
-	if(panel_open /*&& !issiicon(user)*/) //Commented out the typecheck to allow engiborgs to repair damaged apcs.
-		var/t1 = text("<B>Access Panel</B><br>\n")
-
-		for(var/wiredesc in apcwirelist)
-			var/is_uncut = src.apcwires & APCWireColorToFlag[apcwirelist[wiredesc]]
-			t1 += "[wiredesc] wire: "
-			if(!is_uncut)
-				t1 += "<a href='?src=\ref[src];apcwires=[apcwirelist[wiredesc]]'>Mend</a>"
-			else
-				t1 += "<a href='?src=\ref[src];apcwires=[apcwirelist[wiredesc]]'>Cut</a> "
-				t1 += "<a href='?src=\ref[src];pulse=[apcwirelist[wiredesc]]'>Pulse</a> "
-			t1 += "<br>"
-		t1 += text("<br>\n[(src.locked ? "The APC is locked." : "The APC is unlocked.")]<br>\n[(shorted ? "The APC's power has been shorted." : "The APC is working properly!")]<br>\n[(src.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
-		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p></body></html>")
-
-		var/datum/browser/popup = new(user, "apcwires", "<div align='center'>[area.name] APC wires</div>")
-		popup.set_content(t1)
-		popup.open(FALSE)
-		onclose(user, "apcwires")
 
 	//Open the APC NanoUI
 	ui_interact(user)
@@ -797,91 +821,21 @@
 		area.power_environ = 0
 	area.power_change()
 
-/obj/machinery/power/apc/proc/isWireColorCut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	return ((apcwires & wireFlag) == 0)
-
-/obj/machinery/power/apc/proc/isWireCut(var/wireIndex)
-	var/wireFlag = APCIndexToFlag[wireIndex]
-	return ((apcwires & wireFlag) == 0)
-
-/obj/machinery/power/apc/proc/cut(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	apcwires &= ~wireFlag
-	switch(wireIndex)
-		if(APC_WIRE_MAIN_POWER1)
-			shock(usr, 50)
-			shorted = TRUE
-			updateDialog()
-		if(APC_WIRE_MAIN_POWER2)
-			shock(usr, 50)
-			shorted = TRUE
-			updateDialog()
-		if(APC_WIRE_AI_CONTROL)
-			if(!aidisabled)
-				aidisabled = TRUE
-			updateDialog()
-	if(isxeno(usr)) //So aliens don't see this when they cut all of the wires.
-		return
-	interact(usr)
-	updateUsrDialog()
-
-/obj/machinery/power/apc/proc/mend(var/wireColor)
-	var/wireFlag = APCWireColorToFlag[wireColor]
-	var/wireIndex = APCWireColorToIndex[wireColor] //Not used in this function
-	apcwires |= wireFlag
-	switch(wireIndex)
-		if(APC_WIRE_MAIN_POWER1)
-			if((!isWireCut(APC_WIRE_MAIN_POWER1)) && (!isWireCut(APC_WIRE_MAIN_POWER2)))
-				shorted = FALSE
-				shock(usr, 50)
-				updateDialog()
-		if(APC_WIRE_MAIN_POWER2)
-			if((!isWireCut(APC_WIRE_MAIN_POWER1)) && (!isWireCut(APC_WIRE_MAIN_POWER2)))
-				shorted = FALSE
-				shock(usr, 50)
-				updateDialog()
-		if(APC_WIRE_AI_CONTROL)
-			//One wire for AI control. Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute). If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
-			//aidisabledDisabled: If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
-			if(aidisabled)
-				aidisabled = FALSE
-			updateUsrDialog()
-	updateUsrDialog()
-	interact(usr)
-
-/obj/machinery/power/apc/proc/pulse(var/wireColor)
-	var/wireIndex = APCWireColorToIndex[wireColor]
-	switch(wireIndex)
-		if(APC_WIRE_IDSCAN) //Unlocks the APC for 30 seconds, if you have a better way to hack an APC I'm all ears
-			locked = FALSE
-			addtimer(CALLBACK(src, .proc/reset, wireIndex), 300)
-		if(APC_WIRE_MAIN_POWER1)
-			shorted = TRUE
-			addtimer(CALLBACK(src, .proc/reset, wireIndex), 1200)
-		if(APC_WIRE_MAIN_POWER2)
-			shorted = TRUE
-			addtimer(CALLBACK(src, .proc/reset, wireIndex), 1200)
-		if(APC_WIRE_AI_CONTROL)
-			aidisabled = TRUE
-			updateDialog()
-			addtimer(CALLBACK(src, .proc/reset, wireIndex), 10)
-
-/obj/machinery/power/apc/proc/reset(var/wire)
+/obj/machinery/power/apc/proc/reset(wire)
 	switch(wire)
-		if(APC_WIRE_IDSCAN)
+		if(WIRE_IDSCAN)
 			locked = TRUE
-		if(APC_WIRE_MAIN_POWER1)
-			shorted = FALSE
-		if(APC_WIRE_MAIN_POWER2)
-			shorted = FALSE
-		if(APC_WIRE_AI_CONTROL)
-			aidisabled = FALSE
+		if(WIRE_POWER1, WIRE_POWER2)
+			if(!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
+				shorted = FALSE
+		if(WIRE_AI)
+			if(!wires.is_cut(WIRE_AI))
+				aidisabled = FALSE
 		if(APC_RESET_EMP)
 			equipment = 3
 			environ = 3
-	updateDialog()
+			update_icon()
+			update()
 
 /obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
 	if(user.stat)
@@ -923,36 +877,10 @@
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
-	if(!(iscyborg(usr) && (href_list["apcwires"] || href_list["pulse"])))
-		if(!can_use(usr, 1))
-			return FALSE
-	add_fingerprint(usr)
-
-	if(href_list["apcwires"])
-		var/t1 = text2num(href_list["apcwires"])
-		if(!iswirecutter(usr.get_active_held_item()))
-			to_chat(usr, "<span class='warning'>You need wirecutters!</span>")
-			return FALSE
-		if(!skillcheck(usr))
-			return FALSE
-		if(isWireColorCut(t1))
-			mend(t1)
-		else
-			cut(t1)
-
-	else if(href_list["pulse"])
-		var/t1 = text2num(href_list["pulse"])
-		if(!ismultitool(usr.get_active_held_item()))
-			to_chat(usr, "<span class='warning'>You need a multitool!</span>")
-			return FALSE
-		if(isWireColorCut(t1))
-			to_chat(usr, "<span class='warning'>You can't pulse a cut wire.</span>")
-			return FALSE
-		if(!skillcheck(usr))
-			return FALSE
-		pulse(t1)
-
-	else if(href_list["lock"])
+	. = ..()
+	if(.)
+		return
+	if(href_list["lock"])
 		coverlocked = !coverlocked
 
 	else if(href_list["breaker"])
@@ -988,10 +916,6 @@
 		SSnano.close_user_uis(usr, src)
 		return FALSE
 
-	else if(href_list["close2"])
-		usr << browse(null, "window=apcwires")
-		return FALSE
-
 	else if(href_list["overload"])
 		if(issilicon(usr) && !aidisabled)
 			overload_lighting()
@@ -1004,13 +928,13 @@
 
 /obj/machinery/power/apc/proc/ion_act()
 	//intended to be a bit like an emag
-	if(!emagged)
+	if(!CHECK_BITFIELD(obj_flags, EMAGGED))
 		if(prob(3))
 			locked = FALSE
 			if(cell.charge > 0)
 				cell.charge = 0
 				cell.corrupt()
-				emagged = TRUE
+				ENABLE_BITFIELD(obj_flags, EMAGGED)
 				update_icon()
 				var/datum/effect_system/smoke_spread/smoke = new(src)
 				smoke.set_up(1, loc)
@@ -1272,9 +1196,20 @@
 		H.visible_message("<span class='notice'>[H] fumbles around figuring out how to operate [src]'s interface.</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [src]'s interface.</span>")
 		var/fumbling_time = 50 * (SKILL_ENGINEER_ENGI - H.mind.cm_skills.engineer)
-		if(!do_after(H, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(H, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	return TRUE
+
+
+/obj/machinery/power/apc/proc/toggle_breaker(mob/user)
+	if(machine_stat & (NOPOWER|BROKEN|MAINT))
+		return
+
+	operating = !operating
+	log_combat(user, src, "turned [operating ? "on" : "off"]")
+	update()
+	update_icon()
+
 
 //------Various APCs ------//
 

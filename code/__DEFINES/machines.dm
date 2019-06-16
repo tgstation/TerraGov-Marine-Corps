@@ -94,3 +94,29 @@
 #define MEDIUM		(1<<4)
 #define FULL		(1<<5)
 #define DANGER		(1<<6)
+
+
+#define AALARM_MODE_SCRUBBING	1
+#define AALARM_MODE_REPLACEMENT	2 //like scrubbing, but faster.
+#define AALARM_MODE_PANIC		3 //constantly sucks all air
+#define AALARM_MODE_CYCLE		4 //sucks off all air, then refill and switches to scrubbing
+#define AALARM_MODE_FILL		5 //emergency fill
+#define AALARM_MODE_OFF			6 //Shuts it all down.
+
+
+#define MACHINE_NOT_ELECTRIFIED 0
+#define MACHINE_ELECTRIFIED_PERMANENT -1
+#define MACHINE_DEFAULT_ELECTRIFY_TIME 30
+
+
+#define TURRET_SAFETY		(1<<0)
+#define TURRET_LOCKED		(1<<1)
+#define TURRET_ON			(1<<2)
+#define TURRET_HAS_CAMERA	(1<<3)
+#define TURRET_ALERTS		(1<<4)
+#define TURRET_RADIAL		(1<<5)
+#define TURRET_BURSTFIRE	(1<<6)
+#define TURRET_BURSTFIRING	(1<<7)
+#define TURRET_MANUAL		(1<<8)
+#define TURRET_IMMOBILE		(1<<9)
+#define TURRET_COOLDOWN		(1<<10)

@@ -14,13 +14,6 @@
 	var/broken = 0     //Is the flash burnt out?
 	var/last_used = 0 //last world.time it was used.
 
-/obj/item/flash/proc/clown_check(var/mob/user)
-	if(user && (CLUMSY in user.mutations) && prob(50))
-		if(user.drop_held_item())
-			to_chat(user, "<span class='warning'>\The [src] slips out of your hand.</span>")
-		return 0
-	return 1
-
 /obj/item/flash/proc/flash_recharge()
 	//capacitor recharges over time
 	for(var/i=0, i<3, i++)
@@ -43,7 +36,6 @@
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 
-	if(!clown_check(user))	return
 	if(broken)
 		to_chat(user, "<span class='warning'>\The [src] is broken.</span>")
 		return
@@ -80,17 +72,6 @@
 	else
 		flashfail = 1
 
-	if(iscyborg(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
-
 	if(!flashfail)
 	//	flick("flash2", src)
 		if(!issilicon(M))
@@ -109,7 +90,8 @@
 
 
 /obj/item/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
-	if(!user || !clown_check(user)) 	return
+	if(!user)
+		return
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_FLASH)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
@@ -137,16 +119,6 @@
 	playsound(src.loc, 'sound/weapons/flash.ogg', 25, 1)
 	user.log_message("flashed an area with [key_name(src)]", LOG_ATTACK)
 	//flick("flash2", src)
-	if(user && iscyborg(user))
-		spawn(0)
-			var/atom/movable/overlay/animation = new(user.loc)
-			animation.layer = user.layer + 1
-			animation.icon_state = "blank"
-			animation.icon = 'icons/mob/mob.dmi'
-			animation.master = user
-			flick("blspell", animation)
-			sleep(5)
-			qdel(animation)
 
 	for(var/mob/living/carbon/human/M in oviewers(3, null))
 		if(prob(50))

@@ -26,17 +26,21 @@
 /obj/item/stack/barbed_wire/full
 	amount = 20
 
-/obj/item/stack/barbed_wire/attackby(obj/item/W, mob/user)
+/obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(W, /obj/item/stack/rods))
+
+	if(!istype(I, /obj/item/stack/rods))
 		return
-	var/obj/item/stack/rods/R = W
+
+	var/obj/item/stack/rods/R = I
 	if(R.amount < 4)
 		to_chat(user, "<span class='warning'>You need [4 - R.amount] more [R] to make a razor wire obstacle!</span>")
 		return
+
 	R.use(4)
 	use(1)
-	var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
+
+	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 1)
 	to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
 
 /obj/item/stack/razorwire
@@ -82,9 +86,7 @@
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
 		delay_assembly -= 5 + user.mind.cm_skills.engineer * 2
 
-	if(do_after(user, delay_assembly, TRUE, 5, BUSY_ICON_BUILD))
-		if(!src) //Make sure the stack still exists
-			return
+	if(do_after(user, delay_assembly, TRUE, src, BUSY_ICON_BUILD))
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)
 		M.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] assembles a [M].</span>",
