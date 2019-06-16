@@ -7003,8 +7003,8 @@
 	pixel_x = 17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/overwatch/squad/alpha,
 /obj/structure/table/almayer,
+/obj/machinery/computer/camera_advanced/overwatch/alpha,
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_state = "red";
@@ -7017,7 +7017,7 @@
 	pixel_x = -17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/overwatch/squad/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/bravo,
 /obj/structure/table/almayer,
 /turf/open/floor/almayer{
 	dir = 8;
@@ -13053,7 +13053,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/computer/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/main,
 /turf/open/floor/plating/almayer,
 /area/almayer/command/cic)
 "aBz" = (
@@ -16829,7 +16829,7 @@
 /area/almayer/command/cic)
 "aIM" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/overwatch/squad/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/charlie,
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_state = "emerald";
@@ -16838,7 +16838,7 @@
 /area/almayer/command/cic)
 "aIN" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/overwatch/squad/delta,
+/obj/machinery/computer/camera_advanced/overwatch/delta,
 /turf/open/floor/almayer{
 	dir = 8;
 	icon_state = "blue";

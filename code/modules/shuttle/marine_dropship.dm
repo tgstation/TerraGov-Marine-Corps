@@ -246,6 +246,15 @@
 /datum/game_mode/proc/can_summon_dropship()
 	if(SSticker.round_start_time + MIN_CALLDOWN_TIME > world.time)
 		return FALSE
+	var/obj/docking_port/mobile/marine_dropship/D
+	for(var/k in SSshuttle.dropships)
+		var/obj/docking_port/mobile/M = k
+		if(M.id == "alamo")
+			D = M
+	if(is_ground_level(D.z))
+		return FALSE
+	if(D.hijack_state != HIJACK_STATE_NORMAL)
+		return FALSE
 	var/humans_on_ground = 0
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
@@ -341,6 +350,11 @@
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
+
+/obj/machinery/computer/shuttle/marine_dropship/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
+
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
 	. = ..()
 	if(!Adjacent(usr))
@@ -414,6 +428,11 @@
 	name = "shuttle control console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
+
+
+/obj/machinery/computer/shuttle_control/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
