@@ -224,6 +224,19 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"aaR" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/radio/intercom/general/colony{
+	dir = 1;
+	frequency = 150;
+	name = "safe-room intercom"
+	},
+/turf/open/floor/elevatorshaft,
+/area/bigredv2/caves/lambda_lab)
 "aaS" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
@@ -290,6 +303,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/space_port)
+"abb" = (
+/obj/item/radio/intercom/general/colony{
+	frequency = 150;
+	name = "safe-room intercom"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/caves/lambda_lab)
 "abc" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
@@ -723,20 +743,6 @@
 "acp" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/marshal_office)
-"acq" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/item/radio/intercom{
-	dir = 1;
-	freqlock = 1;
-	frequency = 150;
-	name = "safe-room intercom"
-	},
-/turf/open/floor/elevatorshaft,
-/area/bigredv2/caves/lambda_lab)
 "acr" = (
 /turf/closed/wall,
 /area/bigredv2/outside/marshal_office)
@@ -4017,14 +4023,6 @@
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
-/area/bigredv2/caves/lambda_lab)
-"alZ" = (
-/obj/item/radio/intercom{
-	freqlock = 1;
-	frequency = 150;
-	name = "safe-room intercom"
-	},
-/turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "ama" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -63560,9 +63558,9 @@ adZ
 aqY
 arF
 arF
-acq
+aaR
 adZ
-alZ
+abb
 ltt
 auY
 asq
