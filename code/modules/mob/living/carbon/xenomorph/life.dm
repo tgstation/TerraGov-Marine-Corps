@@ -141,7 +141,7 @@
 		return
 	if(current_aura)
 		plasma_stored -= 5
-	if(plasma_stored == xeno_caste.plasma_max)
+	if(plasma_stored >= xeno_caste.plasma_max)
 		return
 	if(locate(/obj/effect/alien/weeds) in T)
 		plasma_stored += xeno_caste.plasma_gain
@@ -149,14 +149,11 @@
 			plasma_stored += round(xeno_caste.plasma_gain * recovery_aura * 0.25) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
 	else
 		plasma_stored++
-	if(plasma_stored > xeno_caste.plasma_max)
-		plasma_stored = xeno_caste.plasma_max
-		return //Ditto above == max
-	else if(plasma_stored < 5)
+
+	if(current_aura && plasma_stored < 5)
 		plasma_stored = 0
-		if(current_aura)
-			current_aura = null
-			to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
+		current_aura = null
+		to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
