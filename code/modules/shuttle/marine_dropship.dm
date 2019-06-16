@@ -341,6 +341,11 @@
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
+
+/obj/machinery/computer/shuttle/marine_dropship/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
+
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
 	. = ..()
 	if(!Adjacent(usr))
@@ -414,6 +419,11 @@
 	name = "shuttle control console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
+
+
+/obj/machinery/computer/shuttle_control/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
