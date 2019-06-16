@@ -204,8 +204,8 @@
 			infection_hud.icon_state = "infected[E.stage]"
 		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
 			infection_hud.icon_state = "infected6"
-		else
-			infection_hud.icon_state = ""
+	else if(stat == DEAD)
+		infection_hud.icon_state = "huddead"
 	else
 		infection_hud.icon_state = ""
 
