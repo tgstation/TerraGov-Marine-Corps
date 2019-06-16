@@ -1142,35 +1142,6 @@
 		return TRUE
 
 
-/mob/living/carbon/human/update_sight()
-	if(!client)
-		return
-	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		return
-
-	sight = initial(sight)
-	see_in_dark = species.darksight
-	see_invisible = SEE_INVISIBLE_LIVING
-
-	if(glasses)
-		var/obj/item/clothing/glasses/G = glasses
-		//prescription applies regardless of it the glasses are active
-		if(G.active)
-			see_in_dark = max(G.darkness_view, see_in_dark)
-			sight |= G.vision_flags
-			if(G.fullscreen_vision)
-				overlay_fullscreen("glasses_vision", G.fullscreen_vision)
-			else
-				clear_fullscreen("glasses_vision", 0)
-			if(G.see_invisible)
-				see_invisible = min(G.see_invisible, see_invisible)
-		else
-			clear_fullscreen("glasses_vision", 0)
-	else
-		clear_fullscreen("glasses_vision", 0)
-
 /mob/living/carbon/human/get_total_tint()
 	. = ..()
 	var/obj/item/clothing/C

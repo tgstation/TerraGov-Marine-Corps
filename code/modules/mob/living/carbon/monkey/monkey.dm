@@ -326,19 +326,6 @@
 	return FALSE
 
 
-/mob/living/carbon/monkey/update_sight()
-	if (stat == DEAD)
-		sight |= SEE_TURFS
-		sight |= SEE_MOBS
-		sight |= SEE_OBJS
-		see_in_dark = 8
-		return
-	sight &= ~SEE_TURFS
-	sight &= ~SEE_MOBS
-	sight &= ~SEE_OBJS
-	see_in_dark = 2
-	see_invisible = SEE_INVISIBLE_LIVING
-
 /mob/living/carbon/monkey/get_idcard(hand_first)
 	//Check hands
 	var/obj/item/card/id/id_card
