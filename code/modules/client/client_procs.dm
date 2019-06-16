@@ -90,7 +90,7 @@
 
 	switch(href_list["action"])
 		if("openLink")
-			src << link(href_list["link"])
+			DIRECT_OUTPUT(src, link(href_list["link"]))
 
 	if(hsrc)
 		var/datum/real_src = hsrc
