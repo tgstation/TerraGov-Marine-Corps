@@ -75,8 +75,7 @@
 
 
 /obj/machinery/computer/camera_advanced/Destroy()
-	if(current_user)
-		current_user.unset_interaction()
+	current_user?.unset_interaction()
 	if(eyeobj)
 		qdel(eyeobj)
 	QDEL_LIST(actions)
@@ -188,9 +187,7 @@
 
 
 /mob/camera/aiEye/remote/GetViewerClient()
-	if(eye_user)
-		return eye_user.client
-	return null
+	return eye_user?.client
 
 
 /mob/camera/aiEye/remote/setLoc(T)
@@ -222,7 +219,7 @@
 		if(T)
 			setLoc(T)
 
-	cooldown = world.timeofday + 5
+	cooldown = world.timeofday + 0.5 SECONDS
 	if(acceleration)
 		sprint = min(sprint + 0.5, max_sprint)
 	else
@@ -236,7 +233,7 @@
 
 
 /datum/action/innate/camera_off/Activate()
-	if(!target || !isliving(target))
+	if(!isliving(target))
 		return
 	var/mob/living/C = target
 	var/mob/camera/aiEye/remote/remote_eye = C.remote_control
@@ -251,7 +248,7 @@
 
 
 /datum/action/innate/camera_jump/Activate()
-	if(!target || !isliving(target))
+	if(!isliving(target))
 		return
 	var/mob/living/L = target
 	var/mob/camera/aiEye/remote/remote_eye = L.remote_control
