@@ -179,6 +179,15 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	// fix all of our organs
 	restore_all_organs()
 
+	//remove larva
+	var/obj/item/alien_embryo/A = locate() in src
+	var/mob/living/carbon/xenomorph/larva/L = locate() in src //the larva was fully grown, ready to burst.
+	if(A)
+		qdel(A)
+	if(L)
+		qdel(L)
+	DISABLE_BITFIELD(status_flags, XENO_HOST)
+
 	// remove the character from the list of the dead
 	if(stat == DEAD)
 		on_revive()
