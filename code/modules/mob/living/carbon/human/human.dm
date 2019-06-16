@@ -1070,9 +1070,6 @@
 	return ..()
 
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
-	if(luminosity <= 0)
-		return FALSE
-
 	if(sparks)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
@@ -1084,13 +1081,10 @@
 	if(armor)
 		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			if(S.luminosity)
-				S.set_light(0)
-				light_off++
+			S.set_light(0)
+			light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/G in contents)
-			if(!G.luminosity)
-				continue
 			G.set_light(0)
 			light_off++
 	if(flares)
@@ -1104,8 +1098,6 @@
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			if(!H.luminosity)
-				continue
 			H.set_light(0)
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
@@ -1138,7 +1130,7 @@
 			if(light_off > 1)
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
 			else
-				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
 		return TRUE
 
 
