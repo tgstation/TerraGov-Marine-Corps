@@ -3,7 +3,7 @@
 	var/desc
 	var/obj/target = null
 	var/obj/screen/action_button/button = null
-	var/mob/living/owner
+	var/mob/owner
 
 /datum/action/New(Target)
 	target = Target
@@ -45,24 +45,24 @@
 	if(owner) 
 		return TRUE
 
-/datum/action/proc/give_action(mob/living/L)
+/datum/action/proc/give_action(mob/M)
 	if(owner)
-		if(owner == L)
+		if(owner == M)
 			return
 		remove_action(owner)
-	owner = L
-	L.actions += src
-	if(L.client)
-		L.client.screen += button
-	L.update_action_buttons()
-	L.actions_by_path[type] = src
+	owner = M
+	M.actions += src
+	if(M.client)
+		M.client.screen += button
+	M.update_action_buttons()
+	M.actions_by_path[type] = src
 
-/datum/action/proc/remove_action(mob/living/L)
-	if(L.client)
-		L.client.screen -= button
-	L.actions_by_path[type] = null
-	L.actions -= src
-	L.update_action_buttons()
+/datum/action/proc/remove_action(mob/M)
+	if(M.client)
+		M.client.screen -= button
+	M.actions_by_path[type] = null
+	M.actions -= src
+	M.update_action_buttons()
 	owner = null
 
 
