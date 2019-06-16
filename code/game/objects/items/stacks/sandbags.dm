@@ -27,24 +27,25 @@
 		if(!dirt_transfer)
 			return
 
+		playsound(user.loc, "rustle", 30, 1, 6)
+
 		ET.dirt_amt -= dirt_transfer
 		ET.update_icon()
+
+		var/obj/item/stack/sandbags/new_bags = new(user.loc, max(1, dirt_transfer))
+		var/replace = user.get_inactive_held_item() == src
 		use(dirt_transfer)
-		var/obj/item/stack/sandbags/new_bags = new(user.loc)
-		new_bags.add(max(0, dirt_transfer - 1))
-		new_bags.add_to_stacks(user)
-		var/obj/item/stack/sandbags_empty/E = src
-		var/replace = (user.get_inactive_held_item() == E)
-		playsound(user.loc, "rustle", 30, 1, 6)
-		if(!E && replace)
+		if(QDELETED(src) && replace)
 			user.put_in_hands(new_bags)
 
 	else if(istype(I, /obj/item/stack/snow))
-		var/obj/item/stack/S = I
+		var/obj/item/stack/snow/S = I
 		var/obj/item/stack/sandbags/new_bags = new(user.loc)
-		new_bags.add_to_stacks(user)
+		var/replace = user.get_inactive_held_item() == src
 		S.use(1)
 		use(1)
+		if(QDELETED(src) && replace)
+			user.put_in_hands(new_bags)
 
 
 //half a max stack

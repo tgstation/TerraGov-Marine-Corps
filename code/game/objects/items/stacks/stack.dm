@@ -22,15 +22,19 @@
 	origin_tech = "materials=1"
 
 
-/obj/item/stack/New(loc, new_amount)
+/obj/item/stack/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
-	if(new_amount)
+	if(new_amount != null)
 		amount = new_amount
 	while(amount > max_amount)
 		amount -= max_amount
-		new type(loc, max_amount)
+		new type(loc, max_amount, FALSE)
 	if(!merge_type)
 		merge_type = type
+	if(merge)
+		for(var/obj/item/stack/S in loc)
+			if(S.merge_type == merge_type)
+				merge(S)
 	update_weight()
 	update_icon()
 
@@ -239,12 +243,14 @@
 	return TRUE
 
 
-/obj/item/stack/use(used)
-	if(used > amount) //If it's larger than what we have, no go.
+/obj/item/stack/use(used, transfer = FALSE, check = TRUE)
+	if(check && zero_amount())
+		return FALSE
+	if(amount < used)
 		return FALSE
 	amount -= used
-	if(zero_amount())
-		return TRUE
+	if(check)
+		zero_amount()
 	update_icon()
 	update_weight()
 	return TRUE
@@ -270,22 +276,13 @@
 	return amount
 
 
-/obj/item/stack/proc/add_to_stacks(mob/user)
-	for(var/obj/item/stack/S in get_turf(user))
-		if(S.merge_type != merge_type)
-			continue
-		merge(S)
-		if(QDELETED(src))
-			return
-
-
 /obj/item/stack/proc/merge(obj/item/stack/S) //Merge src into S, as much as possible
 	if(QDELETED(S) || QDELETED(src) || S == src) //amusingly this can cause a stack to consume itself, let's not allow that.
 		return
-	var/max_transfer = loc.max_stack_merging(S) //We don't want to bypass the max size the container allows.
-	var/transfer = min(get_amount(), (max_transfer ? max_transfer : S.max_amount) - S.amount)
+	var/transfer = min(get_amount(), S.max_amount - S.amount)
+	pulledby?.start_pulling(S)
+	use(transfer, TRUE)
 	S.add(transfer)
-	use(transfer)
 	return transfer
 
 
@@ -298,6 +295,8 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/stack/attack_hand(mob/user)
 	if(user.get_inactive_held_item() == src)
+		if(zero_amount())
+			return
 		return change_stack(user, 1)
 	return ..()
 
@@ -313,13 +312,15 @@
 	to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack</span>")
 
 
-/obj/item/stack/proc/change_stack(mob/user, new_amount)
-	if(amount < 1 || amount < new_amount)
-		stack_trace("[src] tried to change_stack() by [new_amount] amount for [user] user, while having [amount] amount itself.")
-		return
-	var/obj/item/stack/S = new type(user, new_amount)
-	use(new_amount)
-	user.put_in_hands(S)
+/obj/item/stack/proc/change_stack(mob/user, amount)
+	if(!use(amount, TRUE, FALSE))
+		return FALSE
+	var/obj/item/stack/F = new type(user ? user : get_turf(user), amount, FALSE)
+	. = F
+	if(user)
+		if(!user.put_in_hands(F, merge_stacks = FALSE))
+			F.forceMove(get_turf(user))
+	zero_amount()
 
 
 /obj/item/stack/attackby(obj/item/I, mob/user)

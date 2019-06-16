@@ -55,10 +55,10 @@
 			return
 
 		var/obj/item/stack/sheet/glass/RG = new reinforced_type(user.loc)
-		RG.add_to_stacks(user)
-		use(1)
+		var/replace = user.get_inactive_held_item() == src
 		V.use(1)
-		if(!src && !RG)
+		use(1)
+		if(QDELETED(src) && replace)
 			user.put_in_hands(RG)
 
 

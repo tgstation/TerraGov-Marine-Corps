@@ -57,7 +57,9 @@
 		
 	user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 	var/obj/item/stack/sheet/wood/NG = new(user.loc, 2)
-	NG.add_to_stacks(user)
+	for(var/obj/item/stack/ST in user.loc)
+		if(ST != NG && istype(ST, NG) && ST.amount < ST.max_amount)
+			ST.attackby(NG, user, params) //we try to transfer all old unfinished stacks to the new stack we created.
 	qdel(src)
 
 

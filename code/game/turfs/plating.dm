@@ -58,8 +58,7 @@
 	. = ..()
 	if(iscrowbar(I))
 		if(covered)
-			var/obj/item/stack/catwalk/R = new(user.loc)
-			R.add_to_stacks(user)
+			new /obj/item/stack/catwalk(user.loc)
 			covered = FALSE
 			update_turf_overlay()
 			return
