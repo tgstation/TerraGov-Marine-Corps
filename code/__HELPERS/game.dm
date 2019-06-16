@@ -80,9 +80,10 @@
 
 // Same as above but for alien candidates.
 /proc/get_alien_candidate()
-	var/mob/picked
+	var/mob/dead/observer/picked
 
-	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/O = i
 		//Players without preferences or jobbaned players cannot be drafted.
 		if(!O.key || !O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
 			continue
@@ -107,7 +108,7 @@
 		if(O.timeofdeath < picked.timeofdeath)
 			picked = O
 
-	return picked?.key
+	return picked
 
 
 /proc/GetRedPart(const/hexa)

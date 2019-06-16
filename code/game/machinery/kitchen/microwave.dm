@@ -204,9 +204,9 @@
 			dat = {"<B>The microwave is empty</B><BR>"}
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
-		dat += {"<HR><BR>\
-<A href='?src=\ref[src];action=cook'>Turn on!<BR>\
-<A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
+		dat += {"<HR><BR>
+<a href='?src=\ref[src];action=cook'>Turn on!</a><br>
+<a href='?src=\ref[src];action=dispose'>Eject ingredients!</a>
 "}
 
 	var/datum/browser/popup = new(user, "microwave", "<div align='center'>Microwave Controls</div>")

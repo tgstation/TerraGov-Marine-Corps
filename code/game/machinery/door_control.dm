@@ -103,7 +103,12 @@
 			handle_pod()
 
 	desiredstate = !desiredstate
-	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
+
+
+/obj/machinery/door_control/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
 
 /obj/machinery/door_control/proc/unpress()
 	pressed = FALSE
@@ -121,8 +126,8 @@
 	. = ..()
 	update_icon()
 
-/obj/machinery/driver_button/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/driver_button/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
 
 /obj/machinery/driver_button/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

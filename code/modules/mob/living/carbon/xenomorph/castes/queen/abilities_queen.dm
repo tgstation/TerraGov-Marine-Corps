@@ -144,10 +144,15 @@
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/mob/living/L in range(world.view, X))
-		if(L.stat == DEAD)
+	var/list/nearby_living = list()
+	for(var/mob/living/L in hearers(world.view, X))
+		nearby_living.Add(L)
+
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		if(get_dist(L, X) > world.view)
 			continue
-		L.screech_act(X)
+		L.screech_act(X, world.view, L in nearby_living)
 
 // ***************************************
 // *********** Gut
@@ -693,10 +698,6 @@
 		T.mind.transfer_to(new_xeno)
 	else
 		new_xeno.key = T.key
-		if(new_xeno.client)
-			new_xeno.client.change_view(world.view)
-			new_xeno.client.pixel_x = 0
-			new_xeno.client.pixel_y = 0
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = T.nicknumber
