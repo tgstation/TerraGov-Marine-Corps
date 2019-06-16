@@ -149,14 +149,13 @@
 	if(current_aura)
 		plasma_stored -= 5
 
-	if(current_aura && plasma_stored < 10)
-		plasma_stored = 0
-		current_aura = null
-		to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
+		if(plasma_stored < 5)
+			plasma_stored = 0
+			current_aura = null
+			to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
 
-	else
-		if(plasma_stored > xeno_caste.plasma_max)
-			plasma_stored = xeno_caste.plasma_max
+	if(plasma_stored > xeno_caste.plasma_max)
+		plasma_stored = xeno_caste.plasma_max
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
