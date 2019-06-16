@@ -270,7 +270,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("Cancel")
 				return
 			if("Yes")
-				location = get_turf(usr.loc)
+				location = get_turf(oldusr)
 
 		var/mob/newmob
 
