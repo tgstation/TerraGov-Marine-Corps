@@ -388,9 +388,6 @@
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	if(href_list["hijack"])
-		if(world.time < SSticker.round_start_time + SHUTTLE_HIJACK_LOCK)
-			to_chat(X, "<span class='xenowarning'>You can't take over it yet.</span>")
-			return TRUE
 		if(M.mode == SHUTTLE_RECHARGING)
 			to_chat(X, "<span class='xenowarning'>The birb is still cooling down.</span>")
 			return
