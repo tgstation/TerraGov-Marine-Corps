@@ -139,16 +139,15 @@
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
-	if(current_aura)
-		plasma_stored -= 5
-	if(plasma_stored >= xeno_caste.plasma_max)
-		return
 	if(locate(/obj/effect/alien/weeds) in T)
 		plasma_stored += xeno_caste.plasma_gain
 		if(recovery_aura)
 			plasma_stored += round(xeno_caste.plasma_gain * recovery_aura * 0.25) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
 	else
 		plasma_stored++
+
+	if(current_aura)
+		plasma_stored -= 5
 
 	if(current_aura && plasma_stored < 5)
 		plasma_stored = 0
