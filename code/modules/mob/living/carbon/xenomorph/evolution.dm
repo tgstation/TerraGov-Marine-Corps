@@ -194,7 +194,7 @@
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
 
-	empty_gut()
+	empty_gut(FALSE, TRUE)
 
 	if(mind)
 		mind.transfer_to(new_xeno)
