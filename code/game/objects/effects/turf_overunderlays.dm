@@ -24,11 +24,12 @@
 
 /obj/effect/turf_underlay
 	name = "abstract type"
+	plane = FLOOR_PLANE
 
 /obj/effect/turf_underlay/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	T.underlays += image(icon, T, icon_state, TURF_LAYER)
+	T.underlays += mutable_appearance(icon, icon_state, TURF_LAYER, FLOOR_PLANE)
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/turf_underlay/tiles
