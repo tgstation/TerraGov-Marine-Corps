@@ -88,30 +88,7 @@
 	"<span class='notice'>You start climbing [ladder_dir_name] [src].</span>")
 	if(!do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC) || user.lying || user.anchored)
 		return
-	var/obj/buckled
-	var/atom/movable/pulling
-	var/mob/pulling_mob
-	if(user.pulling)
-		pulling = user.pulling
-		if(ismob(user.pulling))
-			pulling_mob = user.pulling
-			if(pulling_mob.buckled)
-				buckled = pulling_mob.buckled
-				buckled.forceMove(get_turf(ladder_dest))
-				pulling_mob.forceMove(get_turf(ladder_dest))
-		else if(isobj(user.pulling))
-			buckled = user.pulling
-			if(buckled.buckled_mob)
-				pulling_mob = buckled.buckled_mob
-				pulling_mob.forceMove(get_turf(ladder_dest))
-			buckled.forceMove(get_turf(ladder_dest))
-		else
-			pulling.forceMove(get_turf(ladder_dest))
-	user.forceMove(get_turf(ladder_dest))
-	if(pulling)
-		user.start_pulling(pulling, suppress_message = TRUE)
-	if(buckled && pulling_mob)
-		buckled.do_buckle(pulling_mob, silent = TRUE)
+	user.trainteleport(ladder_dest.loc)
 	visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
 	user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
