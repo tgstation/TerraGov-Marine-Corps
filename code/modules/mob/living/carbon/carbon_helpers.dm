@@ -6,7 +6,7 @@
 	return TRUE
 
 
-/mob/living/carbon/restrained(check_grab = TRUE)
+/mob/living/carbon/restrained(ignore_grab)
 	. = ..()
 	return (. || handcuffed)
 

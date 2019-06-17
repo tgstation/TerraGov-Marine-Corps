@@ -12,7 +12,7 @@
 
 
 /mob/living/carbon/proc/resist_handcuffs()
-	if(last_special <= world.time)
+	if(last_special >= world.time)
 		return FALSE
 
 	changeNext_move(CLICK_CD_BREAKOUT)
@@ -24,7 +24,7 @@
 
 
 /mob/living/carbon/proc/resist_legcuffs()
-	if(last_special <= world.time)
+	if(last_special >= world.time)
 		return FALSE
 
 	changeNext_move(CLICK_CD_RANGE)

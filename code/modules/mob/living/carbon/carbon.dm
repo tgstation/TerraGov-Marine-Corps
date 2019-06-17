@@ -47,10 +47,12 @@
 	if (handcuffed && !initial(handcuffed))
 		dropItemToGround(handcuffed)
 	handcuffed = initial(handcuffed)
+	update_handcuffed()
 
 	if (legcuffed && !initial(legcuffed))
 		dropItemToGround(legcuffed)
 	legcuffed = initial(legcuffed)
+	update_legcuffed()
 
 	return ..()
 

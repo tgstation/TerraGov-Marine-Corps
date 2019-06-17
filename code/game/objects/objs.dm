@@ -132,9 +132,13 @@
 			buckled_mob.update_canmove()
 
 			var/M = buckled_mob
-			buckled_mob = null
-
+			buckled_mob = null			
+			UnregisterSignal(buckled_mob, COMSIG_LIVING_DO_RESIST)
 			afterbuckle(M)
+
+
+/obj/proc/resisted_against(datum/source, mob/user) //COMSIG_LIVING_DO_RESIST
+	manual_unbuckle(user)
 
 
 /obj/proc/manual_unbuckle(mob/user as mob)
@@ -188,6 +192,7 @@
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 
 /obj/proc/send_buckling_message(mob/M, mob/user)

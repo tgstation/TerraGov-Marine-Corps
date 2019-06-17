@@ -30,8 +30,8 @@
 		return (stunned || knocked_down || knocked_out)
 
 
-/mob/living/restrained(check_grab = TRUE)
+/mob/living/restrained(ignore_grab)
 	. = ..()
-	if(check_grab)
+	if(!ignore_grab)
 		. = (. || CHECK_BITFIELD(restrained_flags, RESTRAINED_NECKGRAB))
 	return (. || CHECK_BITFIELD(restrained_flags, (RESTRAINED_STRAIGHTJACKET | RESTRAINED_XENO_NEST | RESTRAINED_RAZORWIRE)))

@@ -61,7 +61,7 @@
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 
 
-/obj/structure/razorwire/proc/resisted_against(datum/source, mob/living/entangled)
+/obj/structure/razorwire/resisted_against(datum/source, mob/living/entangled)
 	if(world.time < entangled.entangle_delay)
 		entangled.visible_message("<span class='danger'>[entangled] attempts to disentangle itself from [src] but is unsuccessful!</span>",
 		"<span class='warning'>You will be able to disentangle yourself after [(entangled.entangle_delay - world.time) * 0.1] more seconds!</span>")

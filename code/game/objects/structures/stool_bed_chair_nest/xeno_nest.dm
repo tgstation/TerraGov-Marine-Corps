@@ -126,12 +126,7 @@
 
 /obj/structure/bed/nest/do_buckle(mob/living/victim, mob/living/carbon/xenomorph/user, silent)
 	ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_XENO_NEST)
-	RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	return ..()
-
-
-/obj/structure/bed/nest/proc/resisted_against(datum/source, mob/living/victim)
-	manual_unbuckle(victim)
 
 
 /obj/structure/bed/nest/send_buckling_message(mob/M, mob/user)
@@ -152,7 +147,6 @@
 	if(!buckled_mob)
 		return
 	DISABLE_BITFIELD(buckled_mob.restrained_flags, RESTRAINED_XENO_NEST)
-	UnregisterSignal(buckled_mob, COMSIG_LIVING_DO_RESIST)
 	resisting_time = 0 //Reset it to keep track on if someone is actively resisting.
 	buckled_mob.pixel_y = 0
 	buckled_mob.old_y = 0

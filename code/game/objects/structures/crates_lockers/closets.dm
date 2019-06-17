@@ -318,7 +318,7 @@
 		icon_state = icon_opened
 
 
-/obj/structure/closet/proc/resisted_against(datum/source, mob/living/resister)
+/obj/structure/closet/resisted_against(datum/source, mob/living/resister)
 	container_resist(resister)
 
 
