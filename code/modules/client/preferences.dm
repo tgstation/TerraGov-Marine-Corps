@@ -969,6 +969,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			// This is a mapping from JS keys to Byond - ref: https://keycode.info/
 			var/list/_kbMap = list(
+				"UP" = "North", "RIGHT" = "East", "DOWN" = "South", "LEFT" = "West",
 				"INSERT" = "Insert", "HOME" = "Northwest", "PAGEUP" = "Northeast",
 				"DEL" = "Delete", "END" = "Southwest",  "PAGEDOWN" = "Southeast",
 				"SPACEBAR" = "Space", "ALT" = "Alt", "SHIFT" = "Shift", "CONTROL" = "Ctrl"
