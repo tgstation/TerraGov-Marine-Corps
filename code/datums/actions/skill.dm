@@ -7,7 +7,7 @@
 
 /datum/action/skill/can_use_action()
 	var/mob/living/carbon/human/human = owner
-	return istype(human) human.mind?.cm_skills && human.mind.cm_skills.vars[skill_name] >= skill_min
+	return istype(human) && human.mind?.cm_skills && human.mind.cm_skills.vars[skill_name] >= skill_min
 
 /datum/action/skill/fail_activate()
 	if(owner)
