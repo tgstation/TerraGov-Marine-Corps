@@ -378,14 +378,8 @@
 	take_damage(50)
 
 /turf/closed/wall/resin/proc/thicken()
-	var/prev_oldturf = oldTurf
 	ChangeTurf(/turf/closed/wall/resin/thick)
-	oldTurf = prev_oldturf
 	return TRUE
-
-//this one is only for map use
-/turf/closed/wall/resin/ondirt
-	oldTurf = "/turf/open/floor/plating/ground/dirt"
 
 /turf/closed/wall/resin/thick
 	name = "thick resin wall"
@@ -407,13 +401,8 @@
 	alpha = 180
 
 /turf/closed/wall/resin/membrane/thicken()
-	var/prev_oldturf = oldTurf
 	ChangeTurf(/turf/closed/wall/resin/membrane/thick)
-	oldTurf = prev_oldturf
 
-//this one is only for map use
-/turf/closed/wall/resin/membrane/ondirt
-	oldTurf = "/turf/open/floor/plating/ground/dirt"
 
 /turf/closed/wall/resin/membrane/thick
 	name = "thick resin membrane"
@@ -503,10 +492,7 @@
 	return !density
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
-	if(oldTurf != "")
-		ChangeTurf(text2path(oldTurf), TRUE)
-	else
-		ChangeTurf(/turf/open/floor/plating, TRUE)
+	ScrapeAway()
 
 
 /turf/closed/wall/resin/ChangeTurf(newtype)

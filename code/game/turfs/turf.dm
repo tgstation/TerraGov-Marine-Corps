@@ -30,7 +30,6 @@
 	icon = 'icons/turf/floors.dmi'
 	var/intact_tile = 1 //used by floors to distinguish floor with/without a floortile(e.g. plating).
 	var/can_bloody = TRUE //Can blood spawn on this turf?
-	var/oldTurf = "" //The previous turf's path as text. Used when deconning on LV --MadSnailDisease
 
 	// baseturfs can be either a list or a single turf type.
 	// In class definition like here it should always be a single type.
@@ -39,6 +38,7 @@
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+	var/changing_turf = FALSE
 
 /turf/Initialize(mapload)
 	if(flags_atom & INITIALIZED)
@@ -70,14 +70,23 @@
 	return INITIALIZE_HINT_NORMAL
 
 
-/turf/Destroy()
-	GLOB.turfs -= src
-	if(oldTurf != "")
-		ChangeTurf(text2path(oldTurf), TRUE)
-	else
-		ChangeTurf(/turf/open/floor/plating, TRUE)
+/turf/Destroy(force)
+	. = QDEL_HINT_IWILLGC
+	if(!changing_turf)
+		stack_trace("Incorrect turf deletion")
+	changing_turf = FALSE
+	if(force)
+		..()
+		//this will completely wipe turf state
+		var/turf/B = new world.turf(src)
+		for(var/A in B.contents)
+			qdel(A)
+		for(var/I in B.vars)
+			B.vars[I] = null
+		return
 	visibilityChanged()
-	return ..()
+	DISABLE_BITFIELD(flags_atom, INITIALIZED)
+	..()
 
 /turf/ex_act(severity)
 	return 0
@@ -173,10 +182,28 @@
 			O.hide(intact_tile)
 
 
-//Creates a new turf. this is called by every code that changes a turf ("spawn atom" verb, cdel, build mode stuff, etc)
-/turf/proc/ChangeTurf(new_turf_path, forget_old_turf, flags)
-	if (!new_turf_path)
-		return
+// Creates a new turf
+// new_baseturfs can be either a single type or list of types, formated the same as baseturfs. see turf.dm
+/turf/proc/ChangeTurf(path, list/new_baseturfs, flags)
+	switch(path)
+		if(null)
+			return
+		if(/turf/baseturf_bottom)
+			path = SSmapping.level_trait(z, ZTRAIT_BASETURF) || /turf/open/space
+			if (!ispath(path))
+				path = text2path(path)
+				if (!ispath(path))
+					warning("Z-level [z] has invalid baseturf '[SSmapping.level_trait(z, ZTRAIT_BASETURF)]'")
+					path = /turf/open/space
+		if(/turf/open/space/basic)
+			// basic doesn't initialize and this will cause issues
+			// no warning though because this can happen naturaly as a result of it being built on top of
+			path = /turf/open/space
+
+	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP)) // Don't no-op if the map loader requires it to be reconstructed
+		return src
+	if(flags & CHANGETURF_SKIP)
+		return new path(src)
 
 	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
@@ -184,16 +211,25 @@
 	var/old_lighting_object = lighting_object
 	var/old_corners = corners
 
-	var/path = "[src.type]"
-	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
-	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
-		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
+	var/list/old_baseturfs = baseturfs
 
 	var/list/transferring_comps = list()
-	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, flags, transferring_comps)
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, transferring_comps)
 	for(var/i in transferring_comps)
 		var/datum/component/comp = i
 		comp.RemoveComponent()
+
+	changing_turf = TRUE
+	qdel(src)	//Just get the side effects and call Destroy
+	var/turf/W = new path(src)
+
+	for(var/i in transferring_comps)
+		W.TakeComponent(i)
+
+	if(new_baseturfs)
+		W.baseturfs = new_baseturfs
+	else
+		W.baseturfs = old_baseturfs
 
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
@@ -208,12 +244,11 @@
 			reconsider_lights()
 
 		if(dynamic_lighting != old_dynamic_lighting)
-			if(IS_DYNAMIC_LIGHTING(src))
+			if (IS_DYNAMIC_LIGHTING(src))
 				lighting_build_overlay()
 			else
 				lighting_clear_overlay()
 
-	W.levelupdate()
 	return W
 
 // Take off the top layer turf and replace it with the next baseturf down
@@ -643,8 +678,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		T.icon_state = icon_state
 	if(T.icon != icon)
 		T.icon = icon
-	//if(T.dir != dir)//components
-	//	T.setDir(dir)
+	if(color)
+		T.atom_colours = atom_colours.Copy()
+		T.update_atom_colour()
+	if(T.dir != dir)
+		T.setDir(dir)
 	return T
 
 //If you modify this function, ensure it works correctly with lateloaded map templates.

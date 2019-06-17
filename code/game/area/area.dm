@@ -75,9 +75,8 @@
 		if(dynamic_lighting == DYNAMIC_LIGHTING_FORCED)
 			dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 			luminosity = 0
-		else if(dynamic_lighting != DYNAMIC_LIGHTING_ENABLED)
+		else
 			dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-
 
 	. = ..()
 
