@@ -1,11 +1,13 @@
 //called when we get cuffed/uncuffed
-/mob/living/carbon/proc/update_handcuffed()
-	if(handcuffed)
+/mob/living/carbon/proc/update_handcuffed(obj/item/restraints/handcuffs/restraints)
+	if(restraints)
 		drop_all_held_items()
 		stop_pulling()
-		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_handcuffs)
+		handcuffed = restraints
+		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/item/restraints/handcuffs/.proc/resisted_against)
 	else
-		UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
+		handcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
+		handcuffed = null
 	update_inv_handcuffed()
 
 /mob/living/carbon/proc/update_legcuffed()
@@ -33,8 +35,7 @@
 		wear_mask_update(I)
 		sec_hud_set_ID()
 	else if(I == handcuffed)
-		handcuffed = null
-		update_handcuffed()
+		update_handcuffed(null)
 	else if(I == legcuffed)
 		legcuffed = null
 		update_legcuffed()

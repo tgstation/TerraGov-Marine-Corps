@@ -219,7 +219,7 @@
 
 
 /mob/living/proc/do_resist_grab(datum/source)
-	if(restrained(FALSE))
+	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
 	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab(FALSE)

@@ -11,18 +11,6 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_DO_RESIST, src)
 
 
-/mob/living/carbon/proc/resist_handcuffs()
-	if(last_special >= world.time)
-		return FALSE
-
-	changeNext_move(CLICK_CD_BREAKOUT)
-	last_special = world.time + CLICK_CD_BREAKOUT
-
-	var/obj/item/restraints/handcuffs/cuffs = handcuffed
-
-	resist_cuffs(cuffs)
-
-
 /mob/living/carbon/proc/resist_legcuffs()
 	if(last_special >= world.time)
 		return FALSE

@@ -16,7 +16,7 @@
 	return FALSE
 
 //These don't do much currently. Or anything? Only around for legacy code.
-/mob/living/carbon/xenomorph/restrained(ignore_grab)
+/mob/living/carbon/xenomorph/restrained(ignore_checks)
 	return FALSE
 
 

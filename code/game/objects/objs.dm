@@ -132,12 +132,14 @@
 			buckled_mob.update_canmove()
 
 			var/M = buckled_mob
-			buckled_mob = null			
-			UnregisterSignal(buckled_mob, COMSIG_LIVING_DO_RESIST)
+			buckled_mob = null
+			UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 			afterbuckle(M)
 
 
 /obj/proc/resisted_against(datum/source, mob/user) //COMSIG_LIVING_DO_RESIST
+	if(user.restrained(RESTRAINED_XENO_NEST))
+		return FALSE
 	manual_unbuckle(user)
 
 

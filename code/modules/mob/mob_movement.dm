@@ -101,7 +101,7 @@
 	if(L.pulledby)
 		if(L.incapacitated(TRUE))
 			return
-		else if(L.restrained(TRUE))
+		else if(L.restrained(RESTRAINED_NECKGRAB))
 			move_delay = world.time + 10 //to reduce the spam
 			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
 			return

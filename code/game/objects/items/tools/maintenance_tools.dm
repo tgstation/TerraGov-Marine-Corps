@@ -127,8 +127,7 @@
 		user.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
-		C.handcuffed = null
-		C.update_handcuffed()
+		C.update_handcuffed(null)
 		return
 	else
 		..()
