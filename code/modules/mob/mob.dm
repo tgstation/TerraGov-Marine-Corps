@@ -90,7 +90,7 @@
 
 /mob/proc/prepare_huds()
 	hud_list = new
-	for(var/hud in hud_possible)
+	for(var/hud in hud_possible) //Providing huds.
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
 
 

@@ -482,6 +482,8 @@
 	else
 		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(M)
+		var/datum/atom_hud/simple/basic = GLOB.huds[DATA_HUD_BASIC]
+		basic.remove_from_hud(M)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(M)
 
@@ -511,6 +513,8 @@
 
 	var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	SA.add_to_hud(user)
+	var/datum/atom_hud/simple/basic = GLOB.huds[DATA_HUD_BASIC]
+	basic.add_to_hud(user)
 	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 	XI.add_to_hud(user)
 

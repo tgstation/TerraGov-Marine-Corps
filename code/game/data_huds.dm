@@ -53,6 +53,10 @@
 		hud.remove_from_hud(src)
 
 
+/datum/atom_hud/simple //Naked-eye observable statuses.
+	hud_icons = list(STATUS_HUD_SIMPLE)
+
+
 /datum/atom_hud/medical
 	hud_icons = list(HEALTH_HUD, STATUS_HUD)
 
@@ -190,10 +194,16 @@
 
 
 /mob/living/carbon/human/med_hud_set_status()
-	var/image/status_hud = hud_list[STATUS_HUD]
-	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD]
+	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
+	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
+	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 
 	if(species.species_flags & IS_SYNTHETIC)
+		switch(stat)
+			if(DEAD, UNCONSCIOUS)
+				simple_status_hud.icon_state = "hudsynth" //Dead or unconscious synths are obvious.
+			else
+				simple_status_hud.icon_state = "hudhealthy" //Conscious ones, though, mask it better.
 		status_hud.icon_state = "hudsynth"
 		infection_hud.icon_state = ""
 		return TRUE
@@ -210,13 +220,11 @@
 		infection_hud.icon_state = ""
 
 	switch(stat)
-
 		if(DEAD)
-
+			simple_status_hud.icon_state = "huddead" //Without a medhud the dead are simply dead.
 			if(undefibbable || (!client && !get_ghost()))
 				status_hud.icon_state = "huddead"
 				return TRUE
-
 			var/stage = 1
 			if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 2
@@ -224,9 +232,39 @@
 				stage = 3
 			status_hud.icon_state = "huddeaddefib[stage]"
 			return TRUE
-
-		else
-			status_hud.icon_state = "hudhealthy"
+		if(UNCONSCIOUS)
+			if(!client) //Nobody home.
+				simple_status_hud.icon_state = "hud_uncon_afk"
+				status_hud.icon_state = "hud_uncon_afk"
+				return TRUE
+			if(knocked_out) //Should hopefully get out of it soon.
+				simple_status_hud.icon_state = "hud_uncon_ko"
+				status_hud.icon_state = "hud_uncon_ko"
+				return TRUE
+			status_hud.icon_state = "hud_uncon_sleep" //Regular sleep, else.
+			simple_status_hud.icon_state = "hud_uncon_sleep"
+			return TRUE
+		if(CONSCIOUS)
+			if(!key) //Nobody home. Shouldn't affect aghosting.
+				simple_status_hud.icon_state = "hud_uncon_afk"
+				status_hud.icon_state = "hud_uncon_afk"
+				return TRUE
+			if(knocked_down) //I've fallen and I can't get up.
+				simple_status_hud.icon_state = "hud_con_kd"
+				status_hud.icon_state = "hud_con_kd"
+				return TRUE
+			if(stunned)
+				simple_status_hud.icon_state = "hud_con_stun"
+				status_hud.icon_state = "hud_con_stun"
+				return TRUE
+			if(stagger || slowdown)
+				simple_status_hud.icon_state = "hud_con_stagger"
+				status_hud.icon_state = "hud_con_stagger"
+				return TRUE
+			else
+				simple_status_hud.icon_state = "hudhealthy"
+				status_hud.icon_state = "hudhealthy"
+				return TRUE
 
 
 /mob/proc/med_pain_set_perceived_health()
@@ -330,9 +368,6 @@
 
 
 /datum/atom_hud/security
-
-
-/datum/atom_hud/security/basic
 	hud_icons = list(ID_HUD)
 
 
