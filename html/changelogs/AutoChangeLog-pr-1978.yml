@@ -1,4 +1,0 @@
-author: "ma44"
-delete-after: True
-changes: 
-  - bugfix: "Xenos with low plasma regen like runners will no longer be stuck at 0 plasma when running out of it"
