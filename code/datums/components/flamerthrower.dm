@@ -293,7 +293,7 @@
 	max_range = 4
 	flame_color = "green"
 
-/datum/reagent/napalm/green
+/datum/reagent/napalm/blue
 	name = "blue napalm"
 	id = "bluenapalm"
 	burnlevel = 45
