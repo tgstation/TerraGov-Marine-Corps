@@ -5,7 +5,8 @@
 /obj/effect/turf_overlay/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	T.overlays += image(icon, T, icon_state, TURF_LAYER)
+	var/image/I = image(icon, T, icon_state, TURF_LAYER)
+	T.overlays += I
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/turf_overlay/shuttle
@@ -29,7 +30,9 @@
 /obj/effect/turf_underlay/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	T.underlays += mutable_appearance(icon, icon_state, TURF_LAYER, FLOOR_PLANE)
+	var/image/I = image(icon, T, icon_state, TURF_LAYER)
+	T.underlays += I
+	I.plane = FLOOR_PLANE
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/turf_underlay/tiles
