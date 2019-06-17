@@ -328,7 +328,8 @@
 	if(!welded && !locked)
 		open()
 		return
-
+	if(user.action_busy) //Already resisting or doing something like it.
+		return
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
@@ -342,9 +343,8 @@
 		user.visible_message("<span class='danger'>[user] successfully broke out of [src]!</span>",
 							"<span class='notice'>You successfully break out of [src]!</span>")
 		bust_open()
-	else
-		if(user.loc == src) //so we don't get the message if we resisted multiple times and succeeded.
-			to_chat(user, "<span class='warning'>You fail to break out of [src]!</span>")
+	else if(!opened) //Didn't get opened in the meatime.
+		to_chat(user, "<span class='warning'>You fail to break out of [src]!</span>")
 
 
 /obj/structure/closet/proc/bust_open()
