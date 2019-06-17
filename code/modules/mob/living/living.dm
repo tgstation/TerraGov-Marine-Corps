@@ -218,7 +218,7 @@
 	return //returning 1 means we successfully broke free
 
 
-/mob/living/proc/do_resist_grab(datum/source)
+/mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
 	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
@@ -227,7 +227,7 @@
 
 /mob/living/resist_grab(moving_resist)
 	if(pulledby.grab_level)
-		grab_resist_level += 1
+		grab_resist_level++
 		if(grab_resist_level > pulledby.grab_level)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
@@ -236,7 +236,6 @@
 			return TRUE
 		if(moving_resist) //we resisted by trying to move
 			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
-			changeNext_move(1 SECONDS * pulledby.grab_level)
 	else
 		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
@@ -257,7 +256,6 @@
 		var/mob/living/L = pulling
 		L.grab_resist_level = 0 //zero it out
 		DISABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
-		L.UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 
 	. = ..()
 

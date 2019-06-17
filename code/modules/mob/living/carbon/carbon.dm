@@ -50,8 +50,7 @@
 
 	if (legcuffed && !initial(legcuffed))
 		dropItemToGround(legcuffed)
-	legcuffed = initial(legcuffed)
-	update_legcuffed()
+	update_legcuffed(initial(legcuffed))
 
 	return ..()
 

@@ -261,9 +261,8 @@
 		if(SLOT_HANDCUFFED)
 			update_handcuffed(W)
 		if(SLOT_LEGCUFFED)
-			legcuffed = W
+			update_legcuffed(W)
 			W.equipped(src, slot)
-			update_legcuffed()
 		if(SLOT_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)

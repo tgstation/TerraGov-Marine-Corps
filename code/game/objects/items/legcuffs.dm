@@ -11,6 +11,17 @@
 	origin_tech = "materials=1"
 	breakouttime = 30 SECONDS
 
+
+/obj/item/restraints/legcuffs/resisted_against(datum/source, mob/living/carbon/perp)
+	if(perp.last_special >= world.time)
+		return FALSE
+
+	perp.changeNext_move(CLICK_CD_BREAKOUT)
+	perp.last_special = world.time + CLICK_CD_BREAKOUT
+
+	perp.resist_cuffs(src)
+
+
 /obj/item/restraints/legcuffs/beartrap
 	name = "bear trap"
 	throw_speed = 2
@@ -40,9 +51,8 @@
 						var/mob/living/carbon/H = AM
 						if(H.m_intent == MOVE_INTENT_RUN)
 							if(!H.legcuffed)
-								H.legcuffed = src
 								forceMove(H)
-								H.update_legcuffed()
+								H.update_legcuffed(src)
 							armed = 0
 							icon_state = "beartrap0"
 							playsound(loc, 'sound/effects/snap.ogg', 25, 1)

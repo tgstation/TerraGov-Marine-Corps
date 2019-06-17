@@ -75,10 +75,14 @@
 				log_combat(user, victim, "neck grabbed")
 				msg_admin_attack("[key_name(user)] grabbed the neck of [key_name(victim)]")
 				ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
-				victim.RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, /mob/living/proc.do_resist_grab)
+				RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 			if(GRAB_AGGRESSIVE)
 				user.visible_message("<span class='warning'>[user] has grabbed [victim] aggressively (now hands)!</span>", null, null, 5)
 		victim.update_canmove()
+
+
+/obj/item/grab/resisted_against(datum/source, mob/living/victim)
+	victim.do_resist_grab()
 
 
 /obj/item/grab/attack(mob/living/attacked, mob/living/user, def_zone)

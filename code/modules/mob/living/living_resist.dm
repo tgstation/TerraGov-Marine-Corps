@@ -11,18 +11,6 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_DO_RESIST, src)
 
 
-/mob/living/carbon/proc/resist_legcuffs()
-	if(last_special >= world.time)
-		return FALSE
-
-	changeNext_move(CLICK_CD_RANGE)
-	last_special = world.time + CLICK_CD_RANGE
-
-	var/obj/item/cuffs = legcuffed
-
-	resist_cuffs(cuffs)
-
-
 /mob/living/carbon/proc/resist_cuffs(obj/item/cuffs)
 	if(CHECK_BITFIELD(cuffs.flags_item, BEING_REMOVED))
 		to_chat(src, "<span class='warning'>You're already attempting to remove [cuffs]!</span>")
