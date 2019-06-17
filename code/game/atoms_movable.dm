@@ -23,6 +23,7 @@
 	var/verb_exclaim = "exclaims"
 	var/verb_whisper = "whispers"
 	var/verb_yell = "yells"
+	var/speech_span
 
 	var/datum/component/orbiter/orbiting
 
