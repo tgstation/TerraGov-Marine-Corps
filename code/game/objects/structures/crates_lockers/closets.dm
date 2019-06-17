@@ -324,27 +324,27 @@
 
 /obj/structure/closet/proc/container_resist(mob/living/user)
 	if(opened)
-		return
+		return FALSE
 	if(!welded && !locked)
 		open()
-		return
+		return FALSE
 	if(user.action_busy) //Already resisting or doing something like it.
-		return
+		return FALSE
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='italics'>You hear banging from [src].</span>")
-	if(do_after(user, breakout_time, target = src))
-		if(!user || user.stat != CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
-			return
-		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
-		user.visible_message("<span class='danger'>[user] successfully broke out of [src]!</span>",
-							"<span class='notice'>You successfully break out of [src]!</span>")
-		bust_open()
-	else if(!opened) //Didn't get opened in the meatime.
-		to_chat(user, "<span class='warning'>You fail to break out of [src]!</span>")
+	if(!do_after(user, breakout_time, target = src))
+		if(!opened) //Didn't get opened in the meatime.
+			to_chat(user, "<span class='warning'>You fail to break out of [src]!</span>")
+		return FALSE
+	if(opened || (!locked && !welded) ) //Did get opened in the meatime.
+		return TRUE
+	user.visible_message("<span class='danger'>[user] successfully broke out of [src]!</span>",
+		"<span class='notice'>You successfully break out of [src]!</span>")
+	return bust_open()
 
 
 /obj/structure/closet/proc/bust_open()
