@@ -42,8 +42,8 @@
 /obj/Destroy()
 	if(buckled_mob)
 		unbuckle()
-	. = ..()
 	GLOB.object_list -= src
+	return ..()
 
 /obj/ex_act()
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))

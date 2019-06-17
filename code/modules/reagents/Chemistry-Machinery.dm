@@ -60,7 +60,7 @@
 				return
 
 
-/obj/machinery/chem_dispenser/on_stored_atom_del(atom/movable/AM)
+/obj/machinery/chem_dispenser/handle_atom_del(atom/movable/AM)
 	if(AM == beaker)
 		beaker = null
 
