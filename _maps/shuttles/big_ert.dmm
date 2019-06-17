@@ -439,9 +439,9 @@
 /obj/structure/table/almayer,
 /obj/item/clipboard,
 /obj/item/folder/red,
-/obj/item/handcuffs,
-/obj/item/handcuffs,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"

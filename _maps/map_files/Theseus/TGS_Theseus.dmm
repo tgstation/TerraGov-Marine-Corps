@@ -5807,7 +5807,7 @@
 /area/almayer/shipboard/brig)
 "amE" = (
 /obj/structure/table/almayer,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/camera,
 /obj/item/taperecorder,
 /turf/open/floor/plating/almayer,
@@ -16740,7 +16740,7 @@
 /area/almayer/command/cic)
 "aID" = (
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/machinery/computer/security/marinemainship,
 /turf/open/floor/almayer{
 	dir = 1;
@@ -32904,7 +32904,7 @@
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/almayer{
 	dir = 10;
 	icon_state = "red";

@@ -143,7 +143,7 @@
 				ExtinguishMob()
 			return
 		if(CM.handcuffed && CM.canmove && (CM.last_special <= world.time))
-			var/obj/item/handcuffs/HC = CM.handcuffed
+			var/obj/item/restraints/handcuffs/HC = CM.handcuffed
 
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
@@ -170,7 +170,7 @@
 						CM.handcuff_update()
 			else
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
-				/*if(istype(HC, /obj/item/handcuffs/xeno))
+				/*if(istype(HC, /obj/item/restraints/handcuffs/xeno))
 					breakouttime = 300
 					displaytime = "Half a"
 					to_chat(CM, "<span class='warning'>You attempt to remove \the [HC]. (This will take around half a minute and you need to stand still)</span>")
@@ -194,7 +194,7 @@
 						to_chat(CM, "<span class='notice'>You successfully remove [HC].</span>")
 						CM.dropItemToGround(CM.handcuffed)
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
-			var/obj/item/legcuffs/LC = CM.legcuffed
+			var/obj/item/restraints/legcuffs/LC = CM.legcuffed
 
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100

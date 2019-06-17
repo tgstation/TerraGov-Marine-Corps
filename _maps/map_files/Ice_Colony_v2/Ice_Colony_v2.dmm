@@ -13755,7 +13755,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "aJz" = (
 /obj/structure/table/woodentable,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/tool/stamp,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
@@ -25184,7 +25184,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bob" = (
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -29612,7 +29612,7 @@
 /area/ice_colony/underground/security/marshal)
 "bzw" = (
 /obj/structure/table/woodentable,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/weapon/baton,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
@@ -32046,7 +32046,7 @@
 /area/ice_colony/underground/security/interrogation)
 "bFL" = (
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/machinery/flasher_button{
 	id = "sec_checkpoint";
 	pixel_y = 24
@@ -35039,7 +35039,7 @@
 "bMX" = (
 /obj/item/book/manual/marine_law,
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},

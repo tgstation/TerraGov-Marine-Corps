@@ -1630,7 +1630,7 @@
 /area/desert_dam/interior/caves/northern_caves)
 "afU" = (
 /obj/structure/table,
-/obj/item/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -56189,7 +56189,7 @@
 /area/desert_dam/building/security/marshals_office)
 "cAW" = (
 /obj/structure/table/woodentable,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/weapon/baton,
 /turf/open/floor{
 	icon_state = "grimy"
@@ -58636,7 +58636,7 @@
 /area/desert_dam/building/security/evidence)
 "cGF" = (
 /obj/structure/table,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 10
@@ -61426,7 +61426,7 @@
 /area/desert_dam/building/security/warden)
 "cMW" = (
 /obj/structure/table,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor{
 	tag = "icon-darkred2";
 	icon_state = "darkred2"

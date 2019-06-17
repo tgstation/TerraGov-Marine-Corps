@@ -16592,7 +16592,7 @@
 /area/lv624/lazarus/security)
 "bgn" = (
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/storage/firstaid/adv,
 /obj/machinery/light/small,
 /turf/open/floor/tile/red/redtaupecorner{
