@@ -2,10 +2,12 @@
 #define FLAMER_COOLDOWN		(1 << 1)
 #define FLAMER_ALWAYS_LIT	(1 << 2)
 
+#define NAPALM_TRIANGULAR	(1 << 0)
+
 /datum/component/flamethrower
 	var/flamer_flags
 	var/obj/item/reagent_container/flamer_tank/tank
-	var/max_range = 5 // limit that overrides reagent limit
+	var/max_range = INFINITY // limit that overrides reagent limit
 	var/firing_delay
 	var/fire_sound
 	var/reagent_consumption
@@ -66,9 +68,9 @@
 			break
 		if(get_turf(parent) != user)
 			break
-		if(!current_mag?.current_rounds)
+		if(!R.volume < reagent_consumption)
 			break
-		if(distance > R.max_range)
+		if(distance > min(R.max_range, max_range))
 			break
 
 		var/blocked = FALSE
@@ -118,17 +120,17 @@
 			break
 		if(get_turf(parent) != user)
 			break
-		if(!current_mag || !current_mag.current_rounds)
+		if(R.volume < reagent_consumption)
 			break
-		if(distance > max_range)
+		if(distance > min(R.max_range, max_range))
 			break
 		if(prev_T && LinkBlocked(prev_T, T))
 			break
-		current_mag.current_rounds--
+		R.volume -= reagent_consumption
 		if(delay < 1)
-			INVOKE_ASYNC(src, .proc/flame_turf, TF, user, R, power)
+			INVOKE_ASYNC(src, .proc/flame_turf, T, user, R, power)
 		else
-			addtimer(CALLBACK(src, .proc/flame_turf, TF, user, R, power), delay)
+			addtimer(CALLBACK(src, .proc/flame_turf, T, user, R, power), delay)
 		delay++
 		prev_T = T
 
@@ -174,7 +176,7 @@
 	if(!istype(T))
 		return
 
-	T.ignite(R.burntime * power, R.burnlevel * power, f_color)
+	T.ignite(R.burntime * power, R.burnlevel * power, R.flame_color)
 
 	// Melt a single layer of snow
 	if(istype(T, /turf/open/floor/plating/ground/snow))
@@ -206,10 +208,10 @@
 				var/area/A = get_area(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "shot", src)
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [parent] in [ADMIN_VERBOSEJMP(A)].")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [parent] in [ADMIN_VERBOSEJMP(A)].")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
 				continue
@@ -227,19 +229,10 @@
 
 		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
-/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
-	//extinguish any flame present
-	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src
-	if(F)
-		qdel(F)
-
-	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
-
 
 /obj/item/reagent_container/flamer_tank
 	name = "abstract flamer tank"
 
-#define NAPALM_TRIANGULAR (1 << 0)
 
 /datum/reagent/napalm
 	name = "napalm"
