@@ -1146,7 +1146,6 @@
 /area/almayer/engineering/engine_core)
 "acF" = (
 /obj/structure/cable{
-	tag = "icon-0-2";
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/almayer{
@@ -5089,7 +5088,6 @@
 /area/almayer/command/self_destruct)
 "avY" = (
 /turf/open/shuttle/escapepod{
-	tag = "icon-floor8";
 	icon_state = "floor8"
 	},
 /area/almayer/command/self_destruct)
@@ -5099,7 +5097,6 @@
 /area/almayer/command/telecomms)
 "axn" = (
 /turf/open/shuttle/escapepod{
-	tag = "icon-floor1";
 	icon_state = "floor1"
 	},
 /area/almayer/command/self_destruct)
@@ -5224,13 +5221,11 @@
 /area/almayer/squads/req)
 "lAe" = (
 /turf/open/shuttle/escapepod{
-	tag = "icon-floor5";
 	icon_state = "floor5"
 	},
 /area/almayer/command/self_destruct)
 "pNG" = (
 /turf/open/shuttle/escapepod{
-	tag = "icon-floor11";
 	icon_state = "floor11"
 	},
 /area/almayer/command/self_destruct)
