@@ -639,10 +639,30 @@
 	browser.open(FALSE)
 
 
-/datum/admins/proc/create_outfit()
+/datum/admins/proc/outfit_manager()
 	set category = "Fun"
-	set name = "Create Custom Outfit"
+	set name = "Outfit Manager"
 
+	if(!check_rights(R_FUN))
+		return
+
+	var/dat = "<ul>"
+	for(var/datum/outfit/O in GLOB.custom_outfits)
+		var/vv = FALSE
+		var/datum/outfit/varedit/VO = O
+		if(istype(VO))
+			vv = length(VO.vv_values)
+		dat += "<li>[O.name][vv ? "(VV)" : ""]</li> <a href='?src=holder;[HrefToken()];save_outfit=1;chosen_outfit=[REF(O)]'>Save</a> <a href='?src=holder;[HrefToken()];delete_outfit=1;chosen_outfit=[REF(O)]'>Delete</a>"
+	dat += "</ul>"
+	dat += "<a href='?_src_=holder;[HrefToken()];create_outfit_menu=1'>Create</a><br>"
+	dat += "<a href='?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a>"
+
+	var/datum/browser/browser = new(usr, "outfitmanager", "<div align='center'>Outfit Manager</div>")
+	browser.set_content(dat)
+	browser.open(FALSE)
+
+
+/datum/admins/proc/create_outfit()
 	if(!check_rights(R_FUN))
 		return
 
@@ -650,6 +670,7 @@
 	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
 	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
 	[HrefTokenFormField()]
+	<input type="hidden" name="create_outfit_finalize" value="1">
 	<table>
 		<tr>
 			<th>Name:</th>

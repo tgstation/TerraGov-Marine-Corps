@@ -309,8 +309,8 @@
 
 	updateUsrDialog()
 
-/obj/machinery/computer/communications/attack_ai(var/mob/user as mob)
-	return attack_hand(user)
+/obj/machinery/computer/communications/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
 
 /obj/machinery/computer/communications/attack_paw(var/mob/user as mob)
 	return attack_hand(user)

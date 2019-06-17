@@ -10,6 +10,7 @@
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
 	animate_movement = 2
+	speech_span = SPAN_ROBOT
 	var/throwforce = 1
 
 	var/mob/living/buckled_mob
@@ -182,8 +183,9 @@
 	do_buckle(M, user)
 
 //the actual buckling proc
-/obj/proc/do_buckle(mob/M, mob/user)
-	send_buckling_message(M, user)
+/obj/proc/do_buckle(mob/M, mob/user, silent = FALSE)
+	if(!silent)
+		send_buckling_message(M, user)
 	M.buckled = src
 	M.loc = src.loc
 	M.setDir(dir)

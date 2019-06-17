@@ -9698,7 +9698,7 @@
 	},
 /area/sulaco/bridge)
 "ato" = (
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced,
 /turf/open/floor{
 	tag = "icon-whiteredfull";
@@ -10693,7 +10693,7 @@
 /turf/open/floor/plating/airless,
 /area/sulaco/engineering/engine)
 "auU" = (
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -10732,7 +10732,7 @@
 	icon_state = "1-2";
 	layer = 2.2
 	},
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /turf/open/floor{
 	tag = "icon-whitegreenfull (NORTHEAST)";
 	icon_state = "whitegreenfull";
@@ -11584,7 +11584,7 @@
 	},
 /area/sulaco/bridge)
 "aww" = (
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced{
 	dir = 1
 	},

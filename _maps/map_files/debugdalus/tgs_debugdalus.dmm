@@ -1,0 +1,21112 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/turf/open/space,
+/area/space)
+"aab" = (
+/obj/machinery/vending/uniform_supply{
+	squad_tag = "Alpha"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aac" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aad" = (
+/obj/machinery/marine_selector/clothes/smartgun/alpha,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aae" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaf" = (
+/obj/machinery/marine_selector/gear/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aag" = (
+/obj/machinery/marine_selector/clothes/medic/alpha,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aah" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aai" = (
+/obj/machinery/marine_selector/gear/engi,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaj" = (
+/obj/machinery/marine_selector/clothes/engi/alpha,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aak" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/obj/item/stack/sheet/metal/medium_stack{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/stack/sheet/plasteel/small_stack,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aal" = (
+/obj/machinery/marine_selector/gear/spec,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aam" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aan" = (
+/obj/machinery/marine_selector/gear/leader,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aao" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aap" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaq" = (
+/obj/docking_port/stationary/ert/target{
+	name = "Hangar"
+	},
+/turf/open/floor/plating,
+/area/almayer/hallways/hangar)
+"aar" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aas" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aat" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aau" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aav" = (
+/obj/machinery/marine_selector/clothes/specialist/alpha,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaw" = (
+/obj/machinery/marine_selector/clothes/leader/alpha,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aax" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"aay" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"aaz" = (
+/obj/machinery/door/airlock/almayer/marine/alpha/smart,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaA" = (
+/obj/machinery/door/airlock/almayer/marine/alpha/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaB" = (
+/obj/machinery/door/airlock/almayer/marine/alpha/engineer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaC" = (
+/obj/machinery/door/airlock/almayer/marine/alpha/spec,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaD" = (
+/obj/machinery/door/airlock/almayer/marine/alpha/sl,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaE" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"aaF" = (
+/obj/docking_port/stationary/ert/target{
+	name = "Starboard";
+	id = "starboard_target"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"aaG" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"aaH" = (
+/obj/machinery/door/airlock/almayer/marine/alpha{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaI" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaJ" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaK" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaL" = (
+/obj/machinery/door/airlock/almayer/marine/alpha{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaM" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"aaN" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"aaO" = (
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"aaP" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"aaQ" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"aaR" = (
+/obj/structure/table/almayer,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/keycard_auth{
+	pixel_y = 25
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"aaS" = (
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"aaT" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"aaU" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-8";
+	d1 = 2;
+	d2 = 4
+	},
+/obj/machinery/power/fusion_engine/preset,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"aaV" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaW" = (
+/obj/machinery/computer/cryopod/alpha,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaX" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaY" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/almayer{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aaZ" = (
+/obj/machinery/vending/uniform_supply{
+	squad_tag = "Alpha"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"aba" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"abb" = (
+/obj/machinery/marine_selector/clothes/alpha,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"abc" = (
+/obj/machinery/marine_selector/clothes/alpha,
+/obj/machinery/camera/autoname/almayer,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/alpha)
+"abd" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"abe" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"abf" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abg" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abh" = (
+/obj/effect/landmark/start/marine/chiefshipengineer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abi" = (
+/obj/machinery/computer/atmos_alert,
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abj" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"abk" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"abl" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"abm" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"abn" = (
+/obj/machinery/power/monitor{
+	name = "Main Power Grid Monitoring"
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abo" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4;
+	icon_state = "officechair_white"
+	},
+/obj/effect/landmark/start/marine/maintenancetech,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abp" = (
+/obj/machinery/computer/station_alert,
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abq" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abr" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abs" = (
+/obj/machinery/computer/cryopod/bravo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abt" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abu" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abv" = (
+/obj/machinery/marine_selector/clothes/bravo,
+/obj/structure/window/reinforced,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abw" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abx" = (
+/obj/machinery/camera/autoname/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"aby" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abz" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"abA" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abB" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abC" = (
+/obj/machinery/camera/autoname/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abD" = (
+/obj/structure/window/framed/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abE" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"abF" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"abG" = (
+/obj/machinery/fuelcell_recycler,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"abH" = (
+/obj/machinery/door/airlock/almayer/marine/bravo{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abI" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abJ" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abK" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/almayer/marine/bravo{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abL" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"abM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"abN" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/preset,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abO" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"abP" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abQ" = (
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abR" = (
+/obj/machinery/power/monitor{
+	name = "Core Power Monitoring"
+	},
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"abS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abU" = (
+/obj/machinery/door/airlock/almayer/marine/bravo/smart,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abV" = (
+/obj/machinery/door/airlock/almayer/marine/bravo/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abW" = (
+/obj/machinery/door/airlock/almayer/marine/bravo/engineer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abX" = (
+/obj/machinery/door/airlock/almayer/marine/bravo/spec,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abY" = (
+/obj/machinery/door/airlock/almayer/marine/bravo/sl,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"abZ" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"aca" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"acb" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"acc" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"acd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"ace" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"acf" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acg" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"ach" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"aci" = (
+/obj/machinery/marine_selector/clothes/specialist/bravo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acj" = (
+/obj/machinery/marine_selector/clothes/leader/bravo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"ack" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"acl" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"acm" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"acn" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"aco" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"acp" = (
+/obj/machinery/vending/uniform_supply{
+	squad_tag = "Bravo"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acq" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acr" = (
+/obj/machinery/marine_selector/clothes/smartgun/bravo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acs" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"act" = (
+/obj/machinery/marine_selector/gear/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acu" = (
+/obj/machinery/marine_selector/clothes/medic/bravo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acv" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acw" = (
+/obj/machinery/marine_selector/gear/engi,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acx" = (
+/obj/machinery/marine_selector/clothes/engi/bravo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acy" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/obj/item/stack/sheet/metal/medium_stack{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/stack/sheet/plasteel/small_stack,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acz" = (
+/obj/machinery/marine_selector/gear/spec,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acA" = (
+/obj/machinery/marine_selector/gear/leader,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/bravo)
+"acB" = (
+/obj/structure/bed/chair/office/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"acC" = (
+/obj/structure/closet/radiation,
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/lower_engine_monitoring)
+"acD" = (
+/obj/structure/table/almayer,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"acE" = (
+/obj/structure/table/almayer,
+/obj/machinery/light,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/engineering/engine_core)
+"acF" = (
+/obj/structure/cable{
+	tag = "icon-0-2";
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"acG" = (
+/obj/structure/ship_ammo/rocket/banshee,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acH" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acI" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acJ" = (
+/obj/structure/ship_ammo/heavygun,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acK" = (
+/obj/machinery/power/apc/almayer,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acL" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acM" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"acN" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"acO" = (
+/obj/machinery/door/airlock/almayer/maint{
+	name = "\improper Shuttle Hanger";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"acP" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"acQ" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acR" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acS" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"acT" = (
+/obj/docking_port/stationary/marine_dropship/hangar/one,
+/turf/open/floor/plating,
+/area/almayer/hallways/hangar)
+"acU" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"acV" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"acW" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"acX" = (
+/obj/machinery/door/airlock/almayer/maint{
+	name = "\improper Shuttle Hanger";
+	req_one_access_txt = "0"
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"acY" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"acZ" = (
+/obj/machinery/light/small,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/starboard_point_defense)
+"ada" = (
+/obj/machinery/landinglight/ds2/delaytwo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adb" = (
+/obj/machinery/landinglight/ds2/delayone,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adc" = (
+/obj/machinery/landinglight/ds2,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"add" = (
+/obj/machinery/landinglight/ds2/delaythree,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ade" = (
+/obj/structure/ship_ammo/minirocket/illumination,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adf" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adg" = (
+/obj/machinery/landinglight/ds1/delaytwo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adh" = (
+/obj/machinery/landinglight/ds1/delayone,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adi" = (
+/obj/machinery/landinglight/ds1,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adj" = (
+/obj/machinery/landinglight/ds1/delaythree,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adk" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"adl" = (
+/obj/machinery/power/apc/almayer{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/starboard_hallway)
+"adm" = (
+/obj/machinery/landinglight/ds2{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adn" = (
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ado" = (
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adp" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adq" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"adr" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"ads" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"adt" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"adu" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"adv" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"adw" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"adx" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"ady" = (
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adA" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adB" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/rack,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adC" = (
+/obj/structure/rack,
+/obj/item/megaphone,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adD" = (
+/obj/machinery/tank_part_fabricator,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adE" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adF" = (
+/obj/structure/ship_ammo/minirocket,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adG" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adH" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"adI" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"adJ" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"adK" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"adL" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"adM" = (
+/obj/structure/closet/secure_closet/medical2,
+/obj/item/storage/box/gloves{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"adN" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"adO" = (
+/obj/structure/sink{
+	pixel_y = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv,
+/obj/item/reagent_container/spray/surgery{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"adP" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"adQ" = (
+/obj/machinery/cryopod,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"adR" = (
+/obj/machinery/cryopod/right,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"adS" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"adT" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"adU" = (
+/obj/effect/landmark/start/marine/tankcrewman,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adV" = (
+/obj/structure/rack,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"adW" = (
+/obj/structure/ship_ammo/minirocket,
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adX" = (
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"adZ" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aea" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aeb" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aec" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aed" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aee" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aef" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"aeg" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"aeh" = (
+/obj/vehicle/powerloader,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"aei" = (
+/obj/effect/landmark/start/marine/squadspecialist,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"aej" = (
+/obj/effect/multitile_spawner/cm_armored/tank,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"aek" = (
+/obj/structure/rack,
+/obj/item/tool/weldingtool,
+/obj/item/tool/weldpack,
+/obj/item/tool/weldpack,
+/obj/item/tool/weldingtool,
+/obj/item/clothing/glasses/welding,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"ael" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"aem" = (
+/obj/machinery/landinglight/ds2/delaytwo{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aen" = (
+/obj/machinery/landinglight/ds2{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aeo" = (
+/obj/structure/prop/almayer/mapping_computer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aep" = (
+/obj/structure/table/almayer,
+/obj/item/flashlight/lamp,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aeq" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aeu" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/almayer/hallways/hangar)
+"aev" = (
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aew" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aex" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/almayer/medical{
+	name = "Operating Theatre 1"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"aey" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"aez" = (
+/obj/machinery/optable,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"aeA" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"aeB" = (
+/obj/machinery/vending/marine/cargo_guns,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"aeC" = (
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"aeD" = (
+/obj/effect/landmark/start/latejoin_cryo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"aeE" = (
+/obj/structure/rack,
+/obj/item/storage/backpack/marine/engineerpack,
+/obj/item/tool/weldingtool,
+/obj/item/tool/weldingtool,
+/obj/item/storage/backpack/marine/engineerpack,
+/obj/item/clothing/glasses/welding,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"aeF" = (
+/obj/structure/table/almayer,
+/obj/item/paper_bin,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeG" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/hyper,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeH" = (
+/obj/structure/rack,
+/obj/item/storage/pouch/tools,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeI" = (
+/obj/structure/table/almayer,
+/obj/item/clipboard,
+/obj/item/radio/headset,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeJ" = (
+/obj/structure/table/almayer,
+/obj/item/flashlight/lamp,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeK" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeL" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/toolbox,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeM" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeN" = (
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aeO" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aeP" = (
+/obj/machinery/computer/security/marinemainship{
+	dir = 4;
+	pixel_x = 17;
+	pixel_y = 16
+	},
+/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aeQ" = (
+/obj/machinery/computer/security/marinemainship{
+	dir = 8;
+	pixel_x = -17;
+	pixel_y = 16
+	},
+/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aeR" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aeS" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_one)
+"aeT" = (
+/obj/machinery/computer/supplycomp,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"aeU" = (
+/obj/effect/landmark/start/marine/squadleader,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"aeV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"aeW" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"aeX" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
+"aeY" = (
+/obj/structure/table/almayer,
+/obj/item/tool/pen,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aeZ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afa" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/autoname/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afb" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afc" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afd" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afe" = (
+/obj/machinery/landinglight/ds2/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aff" = (
+/obj/effect/landmark/start/marine/intelligenceofficer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"afg" = (
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"afh" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afi" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"afj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"afk" = (
+/obj/machinery/autolathe,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"afl" = (
+/obj/machinery/power/apc/almayer{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"afm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"afn" = (
+/obj/machinery/power/apc/almayer{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"afo" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afp" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/squad_changer,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"afq" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"afr" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/obj/structure/table/almayer,
+/obj/machinery/computer/security/marinemainship_network,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"afs" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/power/apc/hyper,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aft" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"afu" = (
+/obj/machinery/chem_dispenser,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afv" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afw" = (
+/obj/machinery/power/apc/almayer,
+/obj/structure/table/almayer,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/machinery/reagentgrinder,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afx" = (
+/obj/structure/table/almayer,
+/obj/item/storage/box/syringes,
+/obj/item/reagent_container/dropper,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afy" = (
+/obj/structure/closet/secure_closet/medical2,
+/obj/item/storage/box/gloves{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"afz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_container/spray/cleaner,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"afA" = (
+/obj/structure/sink{
+	pixel_y = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv,
+/obj/item/reagent_container/spray/cleaner{
+	name = "Surgery Cleaner";
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"afB" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"afC" = (
+/obj/structure/closet/secure_closet/req_officer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"afD" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"afE" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"afF" = (
+/obj/machinery/telecomms/server/presets/alpha,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afG" = (
+/obj/machinery/telecomms/server/presets/bravo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afH" = (
+/obj/machinery/telecomms/server/presets/charlie,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afI" = (
+/obj/machinery/telecomms/server/presets/delta,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afJ" = (
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afK" = (
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afL" = (
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afM" = (
+/obj/machinery/computer/telecomms/monitor,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"afN" = (
+/obj/structure/ship_rail_gun,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"afO" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/almayer/hallways/hangar)
+"afQ" = (
+/obj/machinery/smartfridge/chemistry,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afR" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afS" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afT" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afU" = (
+/obj/structure/table/almayer,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/mass_spectrometer,
+/obj/item/tool/pen,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"afV" = (
+/obj/machinery/door/airlock/almayer/medical/glass,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"afW" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"afX" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"afY" = (
+/obj/machinery/computer/cryopod,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"afZ" = (
+/obj/effect/landmark/start/marine/squadengineer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"aga" = (
+/obj/docking_port/stationary/ert/target{
+	name = "Aft";
+	id = "aft_target"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"agb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agc" = (
+/obj/machinery/computer/telecomms/server,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agd" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"age" = (
+/obj/structure/table/almayer,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/box/gloves{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"agf" = (
+/obj/machinery/chem_master,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"agg" = (
+/obj/machinery/light,
+/obj/machinery/vending/medical,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"agh" = (
+/obj/structure/table/almayer,
+/obj/item/reagent_container/glass/beaker/large,
+/obj/item/reagent_container/glass/beaker/large,
+/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_container/glass/beaker/bluespace,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"agi" = (
+/obj/structure/table/almayer,
+/obj/item/storage/box/gloves,
+/obj/item/storage/box/beakers{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/reagent_container/spray/cleaner,
+/obj/item/storage/box/pillbottles,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/chemistry)
+"agj" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/almayer/medical{
+	name = "Operating Theatre 2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"agk" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"agl" = (
+/obj/machinery/optable,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"agm" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"agn" = (
+/obj/machinery/vending/marine/cargo_ammo,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"ago" = (
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agp" = (
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agq" = (
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agr" = (
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ags" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agt" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"agu" = (
+/obj/effect/landmark/start/marine/masteratarms,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agv" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/shuttle_control/dropship2,
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agw" = (
+/obj/machinery/door/window/northleft,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agx" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/shuttle_control/dropship1,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agy" = (
+/obj/effect/landmark/start/marine/captain,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agz" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"agA" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_two)
+"agB" = (
+/turf/closed/wall/almayer,
+/area/space)
+"agC" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/eastleft{
+	req_one_access_txt = "2;21"
+	},
+/obj/machinery/door/window/westright,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"agD" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"agE" = (
+/obj/effect/landmark/start/marine/squadsmartgunner,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"agF" = (
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agG" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agH" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"agI" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/almayer/secure{
+	name = "Telecommunications";
+	req_access_txt = "6"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"agJ" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"agK" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"agL" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"agM" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"agN" = (
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"agO" = (
+/obj/effect/landmark/start/marine/pilotofficer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agP" = (
+/obj/machinery/computer/communications,
+/obj/structure/table/almayer,
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agQ" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agR" = (
+/obj/structure/table/almayer,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 7
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agS" = (
+/obj/effect/landmark/start/marine/fieldcommander,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"agT" = (
+/obj/effect/landmark/start/marine/researcher,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"agU" = (
+/obj/machinery/vending/MarineMed,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"agV" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"agW" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"agX" = (
+/obj/structure/closet/secure_closet/medical_doctor,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"agY" = (
+/obj/structure/shipmast{
+	pixel_y = 2
+	},
+/obj/effect/landmark{
+	name = "Observer-Start"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"agZ" = (
+/obj/machinery/computer/ordercomp,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"aha" = (
+/obj/machinery/vending/attachments,
+/obj/machinery/line_nexter_control{
+	id = "line2";
+	pixel_x = -20;
+	pixel_y = -4;
+	req_one_access_txt = "1;21"
+	},
+/obj/machinery/line_nexter_control{
+	id = "line1";
+	pixel_x = -20;
+	pixel_y = 8;
+	req_one_access_txt = "1;21"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"ahb" = (
+/obj/structure/table/almayer,
+/obj/item/tool/stamp{
+	name = "Quartermaster's stamp"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"ahc" = (
+/obj/structure/bed/chair/office/light,
+/obj/effect/landmark/start/marine/requisitionsofficer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"ahd" = (
+/obj/machinery/power/apc/almayer{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"ahe" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"ahf" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"ahg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"ahh" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"ahi" = (
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahj" = (
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahk" = (
+/obj/machinery/telecomms/processor/preset_three,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahl" = (
+/obj/machinery/telecomms/processor/preset_four,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahm" = (
+/obj/structure/table/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahn" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aho" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/almayer{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"ahp" = (
+/obj/effect/landmark/start/marine/commandmasteratarms,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"ahq" = (
+/obj/machinery/computer/station_alert,
+/obj/structure/table/almayer,
+/obj/structure/window/reinforced/toughened{
+	dir = 8
+	},
+/obj/structure/window/reinforced/toughened,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"ahr" = (
+/obj/machinery/door/window/southright,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"ahs" = (
+/obj/structure/table/almayer,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/toughened,
+/obj/machinery/computer/camera_advanced/overwatch/main,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aht" = (
+/obj/effect/landmark/start/marine/synthetic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"ahu" = (
+/obj/effect/landmark/start/marine/medicalofficer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"ahv" = (
+/obj/structure/closet/secure_closet/medical2,
+/obj/item/storage/box/gloves{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahw" = (
+/obj/structure/window/framed/almayer,
+/turf/open/floor/plating,
+/area/almayer/living/cryo_cells)
+"ahx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_container/spray/cleaner,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahy" = (
+/obj/structure/sink{
+	pixel_y = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv,
+/obj/item/reagent_container/spray/surgery{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahz" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahA" = (
+/obj/effect/landmark/start/marine/squadcorpsman,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"ahB" = (
+/obj/structure/table/almayer,
+/obj/item/folder/black,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahC" = (
+/obj/structure/table/almayer,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"ahD" = (
+/obj/machinery/computer/cryopod/medical{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"ahE" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahF" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahG" = (
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"ahH" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"ahI" = (
+/obj/machinery/telecomms/server/presets/requisitions,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahJ" = (
+/obj/machinery/telecomms/server/presets/command,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahK" = (
+/obj/machinery/telecomms/server/presets/engineering,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahL" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahM" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahN" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahO" = (
+/obj/structure/table/almayer,
+/obj/machinery/recharger,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"ahP" = (
+/obj/machinery/door/airlock/almayer/medical{
+	name = "Operating Theatre 3"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahQ" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahR" = (
+/obj/machinery/optable,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahS" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"ahT" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 4;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"ahU" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"ahV" = (
+/obj/effect/landmark/start/marine/squadmarine,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"ahW" = (
+/obj/machinery/door/airlock/almayer/secure{
+	dir = 2;
+	name = "Telecommunications";
+	req_access_txt = "6"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ahX" = (
+/obj/machinery/photocopier,
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"ahY" = (
+/obj/machinery/status_display{
+	pixel_y = -30
+	},
+/obj/machinery/camera/autoname/almayer,
+/obj/structure/table/almayer,
+/obj/machinery/computer/secure_data,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"ahZ" = (
+/obj/machinery/computer/crew,
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aia" = (
+/obj/structure/table/almayer,
+/obj/machinery/recharger,
+/obj/item/reagent_container/spray/cleaner,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aib" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aic" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aid" = (
+/obj/machinery/computer/med_data,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aie" = (
+/obj/structure/bed/chair/wheelchair,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aif" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_three)
+"aig" = (
+/obj/structure/table/almayer,
+/obj/item/tool/crowbar,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aih" = (
+/obj/structure/window/framed/almayer/white,
+/turf/open/floor/plating,
+/area/almayer/medical/operating_room_one)
+"aii" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aij" = (
+/obj/machinery/door/airlock/almayer/secure,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aik" = (
+/obj/structure/table/almayer,
+/obj/item/tool/extinguisher,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ail" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aim" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"ain" = (
+/obj/structure/window/framed/almayer/requisitions,
+/turf/open/floor/plating,
+/area/almayer/squads/req)
+"aio" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/obj/machinery/light/small,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aip" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aiq" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/incendiary,
+/obj/structure/ob_ammo/warhead/incendiary,
+/obj/structure/ob_ammo/warhead/incendiary,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"air" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/cluster,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"ais" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/structure/ob_ammo/warhead/explosive,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"ait" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aiu" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/camera_advanced/overwatch/charlie,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aiv" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/camera_advanced/overwatch/delta,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aiw" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aix" = (
+/obj/structure/table/almayer,
+/obj/item/reagent_container/glass/beaker/cryoxadone,
+/obj/item/reagent_container/glass/beaker/cryoxadone,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiy" = (
+/obj/structure/closet/secure_closet/medical2,
+/obj/item/storage/box/gloves{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_container/spray/cleaner,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiA" = (
+/obj/structure/sink{
+	pixel_y = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv,
+/obj/item/reagent_container/spray/surgery{
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiB" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiC" = (
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/obj/structure/prop/almayer/mapping_computer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aiD" = (
+/obj/item/flashlight/lamp,
+/obj/structure/table/almayer,
+/obj/machinery/computer/security/marinemainship{
+	dir = 4;
+	pixel_x = 17;
+	pixel_y = 16
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aiE" = (
+/obj/item/flashlight/lamp,
+/obj/structure/table/almayer,
+/obj/machinery/computer/security/marinemainship{
+	dir = 8;
+	pixel_x = -17;
+	pixel_y = 16
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
+"aiF" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiG" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiH" = (
+/obj/effect/landmark/start/latejoin_gateway,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/living/cryo_cells)
+"aiI" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiJ" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiK" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiL" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiM" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiN" = (
+/obj/machinery/door/airlock/almayer/medical{
+	name = "Operating Theatre 4"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiO" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiP" = (
+/obj/machinery/optable,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiQ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aiR" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"aiS" = (
+/obj/structure/prop/almayer/cannon_cables,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"aiT" = (
+/obj/machinery/bodyscanner,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiU" = (
+/obj/machinery/body_scanconsole,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiV" = (
+/obj/machinery/sleeper,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiW" = (
+/obj/machinery/sleep_console,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiX" = (
+/obj/machinery/autodoc,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiY" = (
+/obj/machinery/autodoc_console,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/surgery_hallway)
+"aiZ" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/medical/operating_room_four)
+"aja" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"ajb" = (
+/obj/structure/orbital_cannon,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"ajc" = (
+/obj/machinery/computer/orbital_cannon_console,
+/obj/structure/bed/chair/ob_chair,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"ajd" = (
+/obj/structure/prop/almayer/cannon_cable_connector,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/weapon_room)
+"ajf" = (
+/obj/machinery/light/small,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hull/lower_hull)
+"ajg" = (
+/obj/structure/ship_ammo/rocket/widowmaker,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajh" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"aji" = (
+/obj/structure/ship_ammo/rocket/keeper,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajj" = (
+/obj/machinery/landinglight/ds2{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajk" = (
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajl" = (
+/obj/machinery/landinglight/ds2/delaytwo{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajm" = (
+/obj/machinery/landinglight/ds2/delaythree{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajn" = (
+/obj/machinery/landinglight/ds1{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajo" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajp" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajq" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajr" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajs" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajt" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"aju" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajv" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajw" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajx" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajy" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajz" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajA" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajB" = (
+/obj/machinery/door/airlock/almayer/maint{
+	name = "\improper Shuttle Hanger";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"ajC" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"ajD" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"ajE" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"ajF" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/hangar)
+"ajG" = (
+/obj/machinery/camera/autoname/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajH" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajI" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"ajJ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"ajK" = (
+/obj/docking_port/stationary/ert/target{
+	name = "Port";
+	id = "port_target"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"ajL" = (
+/obj/machinery/door/airlock/almayer/secure{
+	dir = 2;
+	name = "\improper Evacuation Airlock";
+	req_access_txt = "0"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/powered)
+"ajM" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/almayer{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"ajN" = (
+/obj/machinery/vending/uniform_supply{
+	squad_tag = "Charlie"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajO" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajP" = (
+/obj/machinery/marine_selector/clothes/smartgun/charlie,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajQ" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajR" = (
+/obj/machinery/marine_selector/gear/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajS" = (
+/obj/machinery/marine_selector/clothes/medic/charlie,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajT" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajU" = (
+/obj/structure/table/almayer,
+/obj/machinery/marine_selector/gear/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajV" = (
+/obj/machinery/marine_selector/gear/engi,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajW" = (
+/obj/machinery/marine_selector/gear/engi,
+/obj/machinery/marine_selector/clothes/engi/charlie,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajX" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/obj/item/stack/sheet/metal/medium_stack{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/stack/sheet/plasteel/small_stack,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajY" = (
+/obj/machinery/marine_selector/gear/spec,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"ajZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"aka" = (
+/obj/machinery/marine_selector/gear/leader,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"akc" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"ake" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"akf" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akg" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akh" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"aki" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akk" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akl" = (
+/obj/machinery/marine_selector/clothes/specialist/charlie,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akm" = (
+/obj/machinery/marine_selector/clothes/leader/charlie,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akn" = (
+/obj/machinery/self_destruct/rod,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"ako" = (
+/obj/machinery/door/airlock/almayer/marine/charlie/smart,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akp" = (
+/obj/machinery/door/airlock/almayer/marine/charlie/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akq" = (
+/obj/machinery/door/airlock/almayer/marine/charlie/engineer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akr" = (
+/obj/machinery/door/airlock/almayer/marine/charlie/spec,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"aks" = (
+/obj/machinery/door/airlock/almayer/marine/charlie/sl,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"aku" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akv" = (
+/obj/machinery/door/airlock/almayer/marine/charlie{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akw" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akx" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"aky" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/almayer/hallways/hangar)
+"akz" = (
+/obj/machinery/door/airlock/almayer/secure{
+	name = "Self Destruct Room"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akA" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akB" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"akC" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akD" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akE" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akF" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akG" = (
+/obj/machinery/door/airlock/almayer/marine/charlie{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akH" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"akI" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"akJ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akK" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akL" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akM" = (
+/obj/machinery/self_destruct/console,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akN" = (
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/almayer/hardened{
+	icon_state = "apc0";
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akO" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akP" = (
+/obj/machinery/computer/cryopod/charlie,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akQ" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akR" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/almayer{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akS" = (
+/obj/machinery/marine_selector/clothes/charlie,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akT" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akU" = (
+/obj/machinery/camera/autoname/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akV" = (
+/obj/machinery/light,
+/obj/machinery/marine_selector/clothes/charlie,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/charlie)
+"akW" = (
+/obj/machinery/door/airlock/almayer/secure{
+	name = "Self Destruct Room"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"akX" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"akY" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"akZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"ala" = (
+/obj/machinery/computer/cryopod/delta,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alb" = (
+/obj/structure/window/reinforced,
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alc" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/almayer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"ald" = (
+/obj/machinery/marine_selector/clothes/delta,
+/obj/structure/window/reinforced,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"ale" = (
+/obj/structure/window/reinforced,
+/obj/machinery/vending/marine,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alf" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alg" = (
+/obj/structure/window/framed/almayer/white,
+/turf/open/floor/plating,
+/area/almayer/medical/operating_room_two)
+"alh" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"ali" = (
+/obj/machinery/door/airlock/almayer/marine/delta{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alj" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alk" = (
+/obj/effect/landmark/start/marine/cargotechnician,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/req)
+"all" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alm" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/almayer/marine/delta{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"aln" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/port_hallway)
+"alo" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/self_destruct)
+"alp" = (
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alr" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"als" = (
+/obj/machinery/door/airlock/almayer/marine/delta/smart,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alt" = (
+/obj/machinery/door/airlock/almayer/marine/delta/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alu" = (
+/obj/machinery/door/airlock/almayer/marine/delta/engineer,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alv" = (
+/obj/machinery/door/airlock/almayer/marine/delta/spec,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alw" = (
+/obj/machinery/door/airlock/almayer/marine/delta/sl,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alx" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"aly" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alz" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alA" = (
+/obj/machinery/marine_selector/clothes/specialist/delta,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alB" = (
+/obj/machinery/marine_selector/clothes/leader/delta,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alC" = (
+/obj/machinery/light/small,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/shipboard/port_point_defense)
+"alD" = (
+/obj/machinery/vending/uniform_supply{
+	squad_tag = "Delta"
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alE" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alF" = (
+/obj/machinery/marine_selector/clothes/smartgun/delta,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alG" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alH" = (
+/obj/machinery/marine_selector/gear/medic,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alI" = (
+/obj/machinery/marine_selector/clothes/medic/delta,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alJ" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alK" = (
+/obj/machinery/marine_selector/gear/engi,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alL" = (
+/obj/machinery/marine_selector/clothes/engi/delta,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alM" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/obj/item/stack/sheet/metal/medium_stack{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/stack/sheet/plasteel/small_stack,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alN" = (
+/obj/machinery/marine_selector/gear/spec,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alO" = (
+/obj/machinery/marine_selector/gear/leader,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/squads/delta)
+"alQ" = (
+/obj/structure/window/framed/almayer,
+/turf/open/floor/plating,
+/area/almayer/engineering/lower_engine_monitoring)
+"amH" = (
+/turf/closed/wall/almayer,
+/area/almayer/command/cic)
+"anr" = (
+/obj/structure/window/framed/almayer/white,
+/turf/open/floor/plating,
+/area/almayer/medical/operating_room_three)
+"aob" = (
+/obj/structure/window/framed/almayer,
+/turf/open/floor/plating,
+/area/almayer/command/cic)
+"aoI" = (
+/turf/closed/wall/almayer/outer/reinforced,
+/area/almayer/command/telecomms)
+"aoJ" = (
+/turf/closed/wall/almayer,
+/area/almayer/command/telecomms)
+"aoT" = (
+/obj/structure/window/framed/almayer/white,
+/turf/open/floor/plating,
+/area/almayer/medical/operating_room_four)
+"asv" = (
+/turf/closed/wall/almayer,
+/area/almayer/command/self_destruct)
+"avY" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor8";
+	icon_state = "floor8"
+	},
+/area/almayer/command/self_destruct)
+"awM" = (
+/obj/structure/window/framed/almayer,
+/turf/open/floor/plating,
+/area/almayer/command/telecomms)
+"axn" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor1";
+	icon_state = "floor1"
+	},
+/area/almayer/command/self_destruct)
+"aVs" = (
+/turf/closed/wall/almayer,
+/area/almayer/hull/lower_hull)
+"aVB" = (
+/turf/open/floor/plating,
+/area/almayer/hull/lower_hull)
+"aWb" = (
+/obj/docking_port/stationary/escape_pod/down,
+/turf/open/floor/plating,
+/area/almayer/hull/lower_hull)
+"aWf" = (
+/turf/closed/wall/almayer,
+/area/almayer/hallways/starboard_hallway)
+"aWg" = (
+/obj/machinery/door/airlock/almayer/secure{
+	dir = 2;
+	name = "\improper Evacuation Airlock";
+	req_access_txt = "0"
+	},
+/turf/open/floor/plating,
+/area/almayer/powered)
+"aWH" = (
+/turf/closed/wall/almayer,
+/area/almayer/squads/alpha)
+"aWV" = (
+/turf/closed/wall/almayer,
+/area/almayer/shipboard/starboard_point_defense)
+"baV" = (
+/turf/closed/wall/almayer,
+/area/almayer/squads/bravo)
+"bbF" = (
+/turf/closed/wall/almayer,
+/area/almayer/hallways/exoarmor)
+"bgb" = (
+/turf/closed/wall/almayer,
+/area/almayer/hallways/hangar)
+"blP" = (
+/turf/closed/wall/almayer/white,
+/area/almayer/medical/surgery_hallway)
+"blQ" = (
+/turf/closed/wall/almayer/white,
+/area/almayer/medical/operating_room_one)
+"blZ" = (
+/turf/closed/wall/almayer,
+/area/almayer/living/cryo_cells)
+"bnF" = (
+/turf/closed/wall/almayer,
+/area/almayer/squads/req)
+"bpX" = (
+/turf/closed/wall/almayer,
+/area/almayer/engineering/lower_engine_monitoring)
+"brQ" = (
+/turf/closed/wall/almayer,
+/area/almayer/engineering/engine_core)
+"bsC" = (
+/turf/closed/wall/almayer/white,
+/area/almayer/medical/operating_room_four)
+"buq" = (
+/turf/closed/wall/almayer/white,
+/area/almayer/medical/chemistry)
+"bvT" = (
+/turf/closed/wall/almayer/white,
+/area/almayer/medical/operating_room_two)
+"bwS" = (
+/turf/closed/wall/almayer,
+/area/almayer/shipboard/weapon_room)
+"bzr" = (
+/turf/open/floor/almayer/empty,
+/area/almayer/squads/req)
+"bAM" = (
+/obj/structure/supply_drop/alpha,
+/turf/open/floor/plating,
+/area/almayer/squads/req)
+"bAN" = (
+/obj/structure/supply_drop/bravo,
+/turf/open/floor/plating,
+/area/almayer/squads/req)
+"bBI" = (
+/turf/closed/wall/almayer/white,
+/area/almayer/medical/operating_room_three)
+"bBX" = (
+/obj/docking_port/stationary/supply/reqs,
+/turf/open/floor/almayer/empty,
+/area/almayer/squads/req)
+"bDl" = (
+/obj/structure/window/framed/almayer/white,
+/turf/open/floor/plating,
+/area/almayer/medical/surgery_hallway)
+"bDF" = (
+/obj/structure/supply_drop/charlie,
+/turf/open/floor/plating,
+/area/almayer/squads/req)
+"bDG" = (
+/obj/structure/supply_drop/delta,
+/turf/open/floor/plating,
+/area/almayer/squads/req)
+"bOu" = (
+/turf/open/floor/plating,
+/area/almayer/hallways/hangar)
+"bRF" = (
+/turf/closed/wall/almayer,
+/area/almayer/hallways/port_hallway)
+"bWZ" = (
+/turf/closed/wall/almayer,
+/area/almayer/squads/charlie)
+"caM" = (
+/turf/closed/wall/almayer,
+/area/almayer/shipboard/port_point_defense)
+"cbn" = (
+/turf/closed/wall/almayer,
+/area/almayer/squads/delta)
+"ceR" = (
+/obj/docking_port/stationary/escape_pod/up,
+/turf/open/floor/plating,
+/area/almayer/hull/lower_hull)
+"ckV" = (
+/obj/structure/noticeboard,
+/turf/closed/wall/almayer,
+/area/almayer/squads/req)
+"lAe" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor5";
+	icon_state = "floor5"
+	},
+/area/almayer/command/self_destruct)
+"pNG" = (
+/turf/open/shuttle/escapepod{
+	tag = "icon-floor11";
+	icon_state = "floor11"
+	},
+/area/almayer/command/self_destruct)
+
+(1,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(2,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoI
+aoI
+aoI
+aoI
+aoI
+aoI
+aoI
+aoI
+aoI
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(3,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoI
+afF
+agb
+ago
+afd
+ahi
+agb
+ahI
+aoI
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(4,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoI
+afG
+afd
+agp
+afd
+ahj
+afd
+ahJ
+aoI
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(5,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoI
+aoI
+aoI
+aoI
+afH
+afd
+agq
+afd
+ahk
+afd
+ahK
+aoI
+aoI
+aoI
+aoI
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(6,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoI
+aeF
+aeY
+aoJ
+afI
+afd
+agr
+afd
+ahl
+afd
+ahL
+aoJ
+aig
+aik
+aoI
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(7,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoJ
+aeG
+aeZ
+aoJ
+afJ
+afd
+afd
+afd
+afd
+afd
+ahM
+awM
+afd
+ail
+aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(8,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoJ
+aeH
+afa
+aoJ
+afd
+afd
+afd
+afd
+afd
+afd
+afd
+afd
+afd
+afd
+aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(9,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoJ
+aeI
+afb
+aoJ
+afK
+afd
+afd
+agF
+afd
+afd
+afd
+awM
+afd
+afd
+aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(10,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoJ
+aeJ
+afb
+aoJ
+afL
+afd
+afd
+agG
+afd
+afd
+ahN
+aoJ
+aii
+afd
+aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(11,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoJ
+aoJ
+afb
+aoJ
+aoJ
+awM
+awM
+awM
+awM
+awM
+aoJ
+aoJ
+aij
+aoJ
+aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(12,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoJ
+aeK
+afb
+aoJ
+afM
+agc
+afd
+agH
+ahm
+ahB
+afd
+aoJ
+afd
+aim
+aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(13,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoJ
+aeL
+afc
+afo
+afo
+afo
+afo
+aeZ
+afd
+afd
+afd
+ahW
+afd
+aio
+aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(14,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aoJ
+aeM
+afd
+aoJ
+afd
+afd
+ags
+afb
+ahn
+afd
+afd
+aoJ
+afd
+aip
+aoJ
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(15,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bgb
+bwS
+bwS
+bwS
+bwS
+bwS
+bwS
+bwS
+agI
+bwS
+bwS
+bwS
+bwS
+bwS
+bwS
+bwS
+bwS
+bwS
+bwS
+bgb
+bgb
+bgb
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(16,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acG
+acG
+acG
+acG
+adF
+adW
+ael
+ael
+ael
+ael
+afN
+agd
+agt
+agJ
+aho
+ael
+agt
+agd
+agd
+agd
+ael
+ael
+ael
+ajb
+ajg
+ajg
+ajg
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(17,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acH
+acH
+adF
+adF
+ael
+ael
+ael
+ael
+ael
+ael
+ael
+agK
+ael
+ael
+ael
+ael
+ael
+aiq
+ael
+ael
+ael
+ael
+ajh
+acH
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(18,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acH
+acH
+adF
+adF
+ael
+ael
+ael
+ael
+ael
+ael
+ael
+agK
+ael
+ael
+ael
+ael
+ael
+air
+ael
+ael
+ael
+ajc
+acI
+acH
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(19,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acI
+acH
+acH
+acH
+acH
+acH
+ael
+ael
+ael
+ael
+ael
+ael
+ael
+agK
+ael
+ael
+ael
+ael
+ael
+ais
+ael
+ael
+aiS
+ajd
+aji
+aji
+aji
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(20,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acJ
+acJ
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+agL
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(21,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+agM
+adf
+adf
+adf
+adf
+adf
+adf
+adf
+adf
+adf
+adf
+adf
+aju
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(22,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acH
+adm
+adm
+adX
+aem
+aeN
+adm
+adX
+aem
+aeN
+adm
+adX
+aem
+aeN
+adm
+adX
+aem
+aeN
+adm
+adX
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(23,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+ada
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+aeu
+aeu
+aeu
+aeu
+aeu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajj
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(24,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+adb
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajk
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(25,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+adc
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajl
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(26,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+add
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajm
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(27,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acI
+acH
+ada
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+aky
+ajj
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(28,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+adb
+bOu
+bOu
+bOu
+aaq
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+aky
+ajk
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(29,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+adc
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+aky
+ajl
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(30,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+add
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajm
+acS
+ajF
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(31,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+ada
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajj
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(32,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+adb
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajk
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(33,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+adc
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+afO
+afO
+afO
+afO
+afO
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajl
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(34,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acH
+adn
+adn
+agN
+aen
+adn
+afe
+agN
+aen
+adn
+afe
+agN
+aen
+adn
+afe
+agN
+aen
+adn
+afe
+agN
+aen
+aen
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(35,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(36,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acI
+acH
+acH
+acH
+acH
+bgb
+amH
+amH
+amH
+afp
+afq
+afq
+agu
+agO
+ahp
+afq
+afq
+ahX
+amH
+amH
+amH
+bgb
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(37,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acJ
+acJ
+acH
+bgb
+aeo
+aeO
+aff
+afq
+afq
+afq
+afq
+afq
+afq
+afq
+afq
+afq
+aff
+ait
+aiC
+bgb
+acH
+acH
+acH
+ajv
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(38,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+ade
+ade
+acH
+bgb
+aep
+aeP
+afg
+afq
+afq
+afq
+agv
+agP
+ahq
+afq
+afq
+afq
+afg
+aiu
+aiD
+bgb
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(39,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+ade
+ade
+acH
+bgb
+amH
+aob
+amH
+afr
+afq
+afq
+agw
+agQ
+ahr
+afq
+afq
+ahY
+amH
+aob
+amH
+bgb
+acH
+acH
+acH
+acS
+ajF
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(40,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+ade
+ade
+acH
+bgb
+aep
+aeQ
+afg
+afq
+afq
+afq
+agx
+agR
+ahs
+afq
+afq
+afq
+afg
+aiv
+aiE
+bgb
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(41,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acJ
+acJ
+acH
+bgb
+aeo
+aeO
+aff
+afq
+afq
+afq
+afq
+afq
+afq
+afq
+afq
+afq
+aff
+ait
+aiC
+bgb
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(42,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acH
+acJ
+acJ
+acH
+bgb
+amH
+amH
+amH
+afs
+afq
+afq
+agy
+agS
+aht
+afq
+afq
+ahZ
+amH
+amH
+amH
+bgb
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(43,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acQ
+adf
+adf
+adf
+adf
+adf
+adf
+adf
+aft
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(44,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acK
+acR
+acH
+ado
+ado
+adZ
+aeq
+aeR
+ado
+adZ
+aeq
+aeR
+ado
+adZ
+aeq
+aeR
+ado
+adZ
+aeq
+aeR
+ado
+adZ
+aeR
+aeR
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(45,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acI
+acS
+adg
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+aeu
+aeu
+aeu
+aeu
+aeu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajn
+acS
+ajF
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(46,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adh
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajo
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(47,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adi
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajp
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(48,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adj
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajq
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(49,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adg
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+aky
+ajn
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(50,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adh
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+acT
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+aky
+ajo
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(51,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adi
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+aky
+ajp
+ajv
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(52,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adj
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajq
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(53,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adg
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajn
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(54,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adh
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajo
+acS
+ajF
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(55,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+adi
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+afO
+afO
+afO
+afO
+afO
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+bOu
+ajp
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(56,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acI
+acS
+acH
+adp
+adG
+aea
+aev
+adp
+adG
+aea
+aev
+adp
+adG
+aea
+aev
+adp
+adG
+aea
+aev
+adp
+adG
+aea
+aev
+adp
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(57,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acH
+acS
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(58,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bgb
+acL
+acS
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+agT
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acH
+acS
+acH
+bgb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(59,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+acU
+abm
+adq
+adq
+aeb
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+adq
+aiI
+adH
+adH
+ajr
+ajw
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(60,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+aaM
+aaG
+adr
+adH
+aec
+adH
+adr
+adH
+adH
+adH
+age
+agz
+agU
+agz
+ahC
+ahO
+aia
+adH
+adr
+adH
+aiJ
+adH
+adr
+ajr
+ajw
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(61,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+aaM
+aaG
+blP
+bDl
+aec
+adH
+blP
+buq
+afu
+afQ
+agf
+blP
+blP
+blP
+blP
+blP
+blP
+blP
+blP
+adH
+aiJ
+bDl
+blP
+ajr
+ajw
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(62,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aVs
+aVs
+aVs
+aVs
+aVs
+aWf
+aaG
+aaM
+aaG
+blP
+adI
+aed
+adq
+adq
+afh
+afh
+afR
+afv
+blP
+agV
+adH
+ahD
+adH
+aib
+blP
+adH
+adq
+aiK
+aiT
+blP
+ajr
+ajw
+ajr
+bRF
+aVs
+aVs
+aVs
+aVs
+aVs
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(63,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aVs
+aVB
+aVB
+aVB
+aVB
+aWf
+aaG
+aaM
+aaG
+blP
+adJ
+aec
+adH
+adH
+buq
+afv
+afS
+agg
+blP
+agW
+ahu
+adL
+ahu
+aic
+blP
+aiw
+adH
+aiL
+aiU
+blP
+ajr
+ajw
+ajr
+bRF
+aVB
+aVB
+aVB
+aVB
+aVs
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(64,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aVs
+aVB
+aVB
+aVB
+aVB
+aWf
+aaG
+aaM
+aaG
+blP
+adJ
+aec
+adH
+adH
+buq
+afw
+afT
+agh
+blP
+agX
+ahu
+adL
+ahu
+aid
+blP
+aix
+adH
+aec
+aiV
+blP
+ajr
+ajw
+ajr
+aWf
+aVB
+aVB
+aVB
+aVB
+aVs
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(65,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aVs
+aVB
+aVB
+aVB
+aWb
+aWg
+aaG
+aaM
+aaG
+blP
+adK
+aec
+adH
+adH
+buq
+afx
+afU
+agi
+blP
+agX
+ahu
+adH
+ahu
+aie
+blP
+aiw
+adH
+aec
+aiW
+blP
+ajr
+ajw
+ajr
+ajL
+ceR
+aVB
+aVB
+aVB
+aVs
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(66,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aVs
+aVB
+aVB
+aVB
+aVB
+aWf
+aaG
+aaM
+aaG
+blP
+adJ
+aec
+adH
+adH
+blP
+bDl
+afV
+bDl
+blP
+blP
+bDl
+afV
+bDl
+blP
+blP
+adL
+adH
+aec
+aiX
+blP
+ajr
+ajw
+ajr
+bRF
+aVB
+aVB
+aVB
+aVB
+aVs
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(67,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aVs
+aVB
+aVB
+aVB
+aVB
+aWf
+aaG
+aaM
+aaG
+blP
+adH
+aec
+adH
+adH
+afi
+adH
+adH
+adH
+adH
+afi
+adH
+adH
+adH
+afi
+adH
+adH
+adH
+aec
+aiY
+blP
+ajr
+ajw
+ajr
+bRF
+aVB
+aVB
+aVB
+aVB
+aVs
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(68,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aWf
+aWf
+aWf
+aWf
+aWf
+aWf
+aWf
+aWf
+aWf
+aWf
+aWf
+aaG
+aaM
+aaG
+blP
+adL
+aee
+aew
+adq
+adq
+adq
+adq
+aeb
+adq
+adq
+adq
+adq
+aew
+adq
+adq
+adq
+adq
+aiM
+adH
+blP
+ajr
+ajx
+ajG
+bRF
+bRF
+bRF
+bRF
+bRF
+bRF
+bRF
+bRF
+bRF
+bRF
+bRF
+bRF
+aaa
+aaa
+aaa
+aaa
+"}
+(69,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+aaG
+aaG
+aaG
+aaG
+abz
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaM
+adk
+blQ
+aih
+aih
+aex
+aih
+blQ
+alg
+alg
+agj
+bDl
+blP
+anr
+anr
+ahP
+anr
+bBI
+aoT
+aoT
+aiN
+aoT
+bsC
+ajs
+ajx
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+akb
+ajr
+ajr
+ajr
+ajr
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+"}
+(70,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaM
+aaG
+blQ
+adM
+aef
+aey
+aef
+blQ
+afy
+afW
+agk
+afW
+bvT
+ahv
+ahE
+ahQ
+ahE
+bBI
+aiy
+aiF
+aiO
+aiF
+bsC
+ajr
+ajx
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+"}
+(71,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+aaG
+aaG
+abl
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaM
+aaG
+blQ
+adN
+aef
+aey
+aeS
+blQ
+afz
+afW
+agk
+agA
+bvT
+ahx
+ahE
+ahQ
+aif
+bBI
+aiz
+aiF
+aiO
+aiZ
+bsC
+ajr
+ajw
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+ajr
+akX
+ajr
+ajr
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+"}
+(72,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aWH
+aWH
+aWH
+aaH
+aaH
+aWH
+baV
+baV
+abH
+abH
+baV
+baV
+baV
+baV
+acM
+aaM
+aaG
+blQ
+adO
+aef
+aez
+aef
+blQ
+afA
+afW
+agl
+afW
+bvT
+ahy
+ahE
+ahR
+ahE
+bBI
+aiA
+aiF
+aiP
+aiF
+bsC
+ajr
+ajw
+ajr
+bWZ
+bWZ
+bWZ
+bWZ
+akv
+akv
+bWZ
+bWZ
+cbn
+ali
+ali
+cbn
+cbn
+cbn
+cbn
+aaa
+"}
+(73,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aab
+aao
+aau
+aas
+aas
+aas
+baV
+abq
+abq
+abq
+abS
+acf
+acp
+baV
+aaG
+aaM
+aaG
+blQ
+adP
+aeg
+aeA
+aef
+blQ
+afB
+afX
+agm
+afW
+bvT
+ahz
+ahF
+ahS
+ahE
+bBI
+aiB
+aiG
+aiQ
+aiF
+bsC
+ajr
+ajw
+ajr
+bWZ
+ajN
+akf
+akk
+aki
+aki
+aki
+bWZ
+akY
+akY
+akY
+alq
+alx
+alD
+cbn
+aaa
+"}
+(74,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aac
+aap
+aas
+aas
+aas
+aas
+baV
+abq
+abq
+abq
+abq
+acg
+acq
+baV
+aaG
+aaM
+adk
+blQ
+blQ
+blQ
+blQ
+blQ
+blQ
+bvT
+bvT
+bvT
+bvT
+bvT
+bBI
+bBI
+bBI
+bBI
+bBI
+bsC
+bsC
+bsC
+bsC
+bsC
+ajs
+ajw
+ajG
+bWZ
+ajO
+akg
+aki
+aki
+aki
+aki
+bWZ
+akY
+akY
+akY
+akY
+aly
+alE
+cbn
+aaa
+"}
+(75,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aac
+aap
+aas
+aas
+aas
+aaV
+baV
+abr
+abq
+abq
+abq
+acg
+acq
+baV
+aaG
+aaM
+aaG
+ads
+ads
+ads
+ads
+ads
+afj
+ads
+ads
+ads
+ads
+afj
+ads
+ads
+ads
+ads
+afj
+ads
+ads
+ads
+ads
+ads
+ajr
+ajw
+ajH
+bWZ
+ajO
+akg
+aki
+aki
+aki
+akO
+bWZ
+akZ
+akY
+akY
+akY
+aly
+alE
+cbn
+aaa
+"}
+(76,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aac
+aar
+aat
+aas
+aas
+aaW
+baV
+abs
+abq
+abq
+abT
+ach
+acq
+baV
+aaG
+aaM
+aaG
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+agY
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ajr
+ajw
+ajr
+bWZ
+ajO
+akh
+akj
+aki
+aki
+akP
+bWZ
+ala
+akY
+akY
+alr
+alz
+alE
+cbn
+aaa
+"}
+(77,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aWH
+aWH
+aWH
+aas
+aas
+aaX
+baV
+abt
+abq
+abq
+baV
+baV
+baV
+baV
+aaG
+aaM
+aaG
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+agZ
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ajr
+ajw
+ajr
+bWZ
+bWZ
+bWZ
+bWZ
+aki
+aki
+akQ
+bWZ
+alb
+akY
+akY
+cbn
+cbn
+cbn
+cbn
+aaa
+"}
+(78,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aad
+aas
+aaz
+aas
+aaJ
+aaY
+baV
+abu
+abI
+abq
+abU
+abq
+acr
+baV
+acN
+aaM
+adk
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+ain
+ain
+ain
+agC
+ckV
+agC
+ain
+ain
+ain
+bnF
+bnF
+bnF
+bnF
+ads
+bnF
+ajs
+ajw
+ajr
+bWZ
+ajP
+aki
+ako
+aki
+akE
+akR
+bWZ
+alc
+alj
+akY
+als
+akY
+alF
+cbn
+aaa
+"}
+(79,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aae
+aat
+aWH
+aas
+aaK
+aaZ
+baV
+abv
+abJ
+abq
+baV
+abT
+acs
+baV
+aaG
+aaM
+aaG
+bnF
+ads
+aeh
+aeB
+aeT
+afk
+afC
+afY
+agn
+agD
+aha
+agD
+ahG
+ahT
+ahT
+ahT
+ahT
+ahT
+ahG
+ads
+bnF
+ajr
+ajw
+ajr
+bWZ
+ajQ
+akj
+bWZ
+aki
+akF
+akS
+bWZ
+ald
+all
+akY
+cbn
+alr
+alG
+cbn
+aaa
+"}
+(80,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aWH
+aWH
+aWH
+aam
+aaK
+aba
+baV
+abw
+abJ
+abP
+baV
+baV
+baV
+baV
+aaG
+aaM
+aaG
+bnF
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ahb
+ads
+ahH
+bzr
+bzr
+bzr
+bzr
+bzr
+aiR
+ads
+bnF
+ajr
+ajw
+ajr
+bWZ
+bWZ
+bWZ
+bWZ
+ajZ
+akF
+akT
+bWZ
+ale
+all
+alp
+cbn
+cbn
+cbn
+cbn
+aaa
+"}
+(81,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aaf
+aau
+aWH
+aas
+aaK
+aas
+baV
+abq
+abJ
+abq
+baV
+abS
+act
+baV
+aaG
+aaM
+aaG
+ain
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+alk
+ahc
+alk
+ahH
+bzr
+bzr
+bzr
+bzr
+bzr
+aiR
+ads
+ain
+ajr
+ajw
+ajH
+bWZ
+ajR
+akk
+bWZ
+aki
+akF
+aki
+bWZ
+akY
+all
+akY
+cbn
+alq
+alH
+cbn
+aaa
+"}
+(82,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aag
+aas
+aWH
+aas
+aaK
+abb
+baV
+abv
+abJ
+abq
+baV
+abq
+acu
+baV
+aaG
+acU
+abm
+adt
+adt
+adt
+adt
+adt
+afl
+ads
+ads
+ads
+ads
+ads
+ads
+ahH
+bzr
+bzr
+bBX
+bzr
+bzr
+aiR
+ads
+ads
+ajr
+ajw
+ajr
+bWZ
+ajS
+aki
+bWZ
+aki
+akF
+akS
+bWZ
+ald
+all
+akY
+cbn
+akY
+alI
+cbn
+aaa
+"}
+(83,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aah
+aas
+aaA
+aas
+aaK
+aba
+baV
+abw
+abJ
+abq
+abV
+abq
+acv
+baV
+aaG
+aaM
+aaG
+ain
+ads
+ads
+ads
+bAM
+bnF
+bDF
+ads
+ads
+ads
+ads
+ads
+ahH
+bzr
+bzr
+bzr
+bzr
+bzr
+aiR
+ads
+ain
+ajr
+ajw
+ajr
+bWZ
+ajT
+aki
+akp
+aki
+akF
+akT
+bWZ
+ale
+all
+akY
+alt
+akY
+alJ
+cbn
+aaa
+"}
+(84,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aaf
+aas
+aWH
+aas
+aaK
+aas
+baV
+abq
+abJ
+abq
+baV
+abq
+act
+baV
+aaG
+aaM
+aaG
+bnF
+ads
+ads
+ads
+bAN
+bnF
+bDG
+ads
+ads
+ads
+ads
+ads
+ahH
+bzr
+bzr
+bzr
+bzr
+bzr
+aiR
+ads
+bnF
+ajr
+ajw
+ajr
+bWZ
+ajU
+aki
+bWZ
+aki
+akF
+aki
+bWZ
+akY
+all
+akY
+cbn
+akY
+alH
+cbn
+aaa
+"}
+(85,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aag
+aat
+aWH
+aas
+aaK
+abb
+baV
+abv
+abJ
+abq
+baV
+abT
+acu
+baV
+aaG
+aaM
+aaG
+bnF
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+ads
+akB
+ads
+ahG
+ahU
+ahU
+ahU
+ahU
+ahU
+ahG
+ads
+bnF
+ajr
+ajw
+ajr
+bWZ
+ajS
+akj
+bWZ
+aki
+akF
+akS
+bWZ
+ald
+all
+akY
+cbn
+alr
+alI
+cbn
+aaa
+"}
+(86,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aWH
+aWH
+aWH
+aam
+aaK
+aba
+baV
+abw
+abJ
+abP
+baV
+baV
+baV
+baV
+aaG
+aaM
+aaG
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+bnF
+ajr
+ajw
+ajr
+bWZ
+bWZ
+bWZ
+bWZ
+ajZ
+akF
+akT
+bWZ
+ale
+all
+alp
+cbn
+cbn
+cbn
+cbn
+aaa
+"}
+(87,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aai
+aau
+aWH
+aas
+aaK
+aas
+baV
+abx
+abJ
+abq
+baV
+abS
+acw
+baV
+aaG
+aaM
+aaG
+ahw
+adQ
+aei
+aeC
+adu
+adQ
+afD
+afZ
+adQ
+agE
+ahd
+ahA
+adQ
+ahV
+afD
+adQ
+adu
+aiH
+aei
+adQ
+ahw
+ajr
+ajw
+ajr
+bWZ
+ajV
+akk
+bWZ
+aki
+akF
+akU
+bWZ
+alf
+all
+akY
+cbn
+alq
+alK
+cbn
+aaa
+"}
+(88,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aaj
+aas
+aWH
+aas
+aaK
+abc
+baV
+abv
+abJ
+abq
+baV
+abq
+acx
+baV
+aaG
+aaM
+aaG
+ahw
+adR
+aei
+aeD
+aeU
+adR
+aeC
+afZ
+adR
+agE
+ahe
+ahA
+adR
+ahV
+ahV
+adR
+aeU
+aeC
+aei
+adR
+ahw
+ajr
+ajw
+ajr
+bWZ
+ajW
+aki
+bWZ
+aki
+akF
+akS
+bWZ
+ald
+all
+akY
+cbn
+akY
+alL
+cbn
+aaa
+"}
+(89,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aak
+aas
+aaB
+aas
+aaK
+aba
+baV
+abw
+abJ
+abq
+abW
+abq
+acy
+baV
+aaG
+aaM
+adk
+blZ
+adu
+adu
+adu
+adu
+blZ
+adu
+adu
+adu
+adu
+ahe
+adu
+adu
+adu
+adu
+blZ
+aeU
+aeD
+aeU
+aeU
+blZ
+ajs
+ajw
+ajr
+bWZ
+ajX
+aki
+akq
+aki
+akF
+akT
+bWZ
+ale
+all
+akY
+alu
+akY
+alM
+cbn
+aaa
+"}
+(90,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aaj
+aas
+aWH
+aaI
+aaK
+aas
+baV
+abq
+abJ
+abq
+baV
+abq
+acx
+baV
+aaG
+aaM
+aaG
+adu
+adu
+adu
+adu
+adu
+afm
+adu
+adu
+adu
+adu
+ahe
+adu
+adu
+adu
+adu
+afm
+adu
+adu
+adu
+adu
+adu
+ajr
+ajw
+ajr
+bWZ
+ajW
+aki
+bWZ
+aki
+akF
+aki
+bWZ
+akY
+all
+akY
+cbn
+akY
+alK
+cbn
+aaa
+"}
+(91,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aai
+aat
+aWH
+aas
+aaK
+abb
+baV
+abv
+abJ
+abq
+baV
+abT
+acw
+baV
+aaG
+acU
+abm
+adv
+adv
+adv
+adv
+adv
+adv
+adv
+adv
+adv
+adv
+ahf
+adu
+adu
+adu
+adu
+adu
+adu
+adu
+adu
+adu
+adu
+ajr
+ajw
+ajr
+bWZ
+ajV
+akj
+bWZ
+akw
+akF
+akS
+bWZ
+ald
+all
+akY
+cbn
+alr
+alL
+cbn
+aaa
+"}
+(92,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aWH
+aWH
+aWH
+aam
+aaK
+aba
+baV
+abw
+abJ
+abP
+baV
+baV
+baV
+baV
+aaG
+acU
+adl
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+blZ
+ajt
+ajy
+ajr
+bWZ
+bWZ
+bWZ
+bWZ
+ajZ
+akF
+akT
+bWZ
+ale
+all
+alp
+cbn
+cbn
+cbn
+cbn
+aaa
+"}
+(93,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aal
+aav
+aWH
+aas
+aaK
+aas
+baV
+aby
+abJ
+abq
+baV
+aci
+acz
+baV
+aaG
+aaM
+aaG
+aVs
+adw
+adw
+adw
+aeV
+adw
+adw
+aeV
+adw
+adw
+aeV
+adw
+adw
+aeV
+adw
+adw
+aeV
+adw
+adw
+adw
+aVs
+ajr
+ajw
+ajr
+bWZ
+ajY
+akl
+bWZ
+aki
+akF
+aki
+bWZ
+alh
+all
+akY
+cbn
+alA
+alN
+cbn
+aaa
+"}
+(94,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aam
+aas
+aaC
+aas
+aaK
+abb
+baV
+abv
+abJ
+abq
+abX
+abq
+abP
+baV
+aaG
+aaM
+aaG
+aVs
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+aVs
+ajr
+ajw
+ajr
+bWZ
+ajZ
+aki
+akr
+aki
+akF
+akV
+bWZ
+ald
+all
+akY
+alv
+akY
+alp
+cbn
+aaa
+"}
+(95,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aWH
+aWH
+aWH
+aaI
+aaK
+aba
+baV
+abw
+abJ
+abq
+baV
+baV
+baV
+baV
+acN
+aaM
+aaG
+aVs
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+aVs
+ajr
+ajw
+ajH
+bWZ
+bWZ
+bWZ
+bWZ
+aki
+akF
+akT
+bWZ
+ale
+all
+akY
+cbn
+cbn
+cbn
+cbn
+aaa
+"}
+(96,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aam
+aas
+aaD
+aas
+aaK
+aaV
+baV
+abr
+abJ
+abq
+abY
+abq
+abP
+baV
+aaG
+aaM
+aaG
+aVs
+adS
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aja
+aVs
+ajr
+ajw
+ajr
+bWZ
+ajZ
+aki
+aks
+aki
+akF
+aki
+bWZ
+akZ
+all
+akY
+alw
+akY
+alp
+cbn
+aaa
+"}
+(97,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aan
+aaw
+aWH
+aas
+aaK
+abb
+baV
+abv
+abJ
+abq
+baV
+acj
+acA
+baV
+aaG
+aaM
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajw
+ajr
+bWZ
+aka
+akm
+bWZ
+aki
+akF
+akS
+bWZ
+ald
+all
+akY
+cbn
+alB
+alO
+cbn
+aaa
+"}
+(98,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWH
+aWH
+aWH
+aWH
+aaH
+aaL
+aWH
+baV
+baV
+abK
+abH
+baV
+baV
+baV
+baV
+aaG
+aaM
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajw
+ajr
+bWZ
+bWZ
+bWZ
+bWZ
+akv
+akG
+bWZ
+bWZ
+cbn
+alm
+ali
+cbn
+cbn
+cbn
+cbn
+aaa
+"}
+(99,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+aaM
+aaG
+aaG
+abz
+aaM
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+aaM
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajw
+ajr
+ajr
+akb
+ajr
+ajr
+ajr
+ajw
+ajr
+ajr
+ajr
+ajw
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+"}
+(100,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+aaN
+abd
+abm
+abm
+abL
+abm
+abm
+abm
+abm
+abm
+abm
+acV
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajz
+ajI
+ajI
+ajI
+ajI
+ajI
+akx
+akH
+ajI
+ajI
+ajI
+aln
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+"}
+(101,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWf
+aaG
+aaG
+abe
+aaG
+aaG
+abM
+aaG
+aaG
+aaG
+aaG
+aaG
+aaG
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajr
+ajr
+ajr
+ajr
+ajr
+ajA
+akI
+ajr
+ajr
+ajr
+ajr
+ajr
+bRF
+aaa
+aaa
+aaa
+aaa
+"}
+(102,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+agB
+bpX
+bpX
+abf
+bpX
+bpX
+bpX
+bpX
+aaQ
+aaQ
+bpX
+bpX
+acN
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajH
+asv
+asv
+asv
+asv
+akz
+asv
+akW
+asv
+asv
+asv
+asv
+agB
+aaa
+aaa
+aaa
+aaa
+"}
+(103,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bpX
+aaO
+abf
+abn
+abA
+abN
+abQ
+abZ
+aaQ
+aaQ
+bpX
+aaG
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajr
+asv
+akc
+akc
+akt
+akA
+akJ
+akc
+akt
+akc
+akc
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(104,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bpX
+aaP
+abg
+abg
+abB
+abN
+abQ
+aca
+abZ
+acB
+bpX
+aaG
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajr
+asv
+akc
+akn
+axn
+axn
+akK
+axn
+axn
+akn
+akc
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(105,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bpX
+aaQ
+abh
+aaQ
+aaP
+abN
+abQ
+acb
+ack
+aaQ
+bpX
+aaG
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajr
+asv
+akc
+pNG
+akc
+akc
+akK
+akc
+akc
+avY
+akc
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(106,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bpX
+aaQ
+aaQ
+abo
+abC
+bpX
+bpX
+aaQ
+ack
+bpX
+bpX
+aaG
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajr
+asv
+akd
+pNG
+akc
+akC
+akL
+akc
+akc
+avY
+alo
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(107,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bpX
+aaR
+abi
+abp
+aaQ
+bpX
+abR
+acc
+acl
+acC
+bpX
+acN
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajH
+asv
+akc
+akn
+akc
+akD
+akM
+akc
+akc
+akn
+akc
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(108,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+bpX
+alQ
+alQ
+alQ
+abD
+bpX
+bpX
+acd
+ack
+bpX
+bpX
+aaG
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajr
+asv
+akc
+pNG
+akc
+akA
+akJ
+akc
+akc
+avY
+akc
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(109,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+brQ
+aaS
+abj
+abj
+abE
+abj
+abj
+abj
+acm
+acD
+brQ
+aaG
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajr
+asv
+akc
+pNG
+akc
+akc
+akD
+akc
+akc
+avY
+akc
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(110,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+brQ
+aaT
+abk
+abk
+abF
+abO
+abO
+ace
+acn
+acE
+brQ
+aaG
+abe
+aaG
+adw
+adw
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+aVB
+adw
+adw
+ajr
+ajA
+ajr
+asv
+akc
+akn
+lAe
+lAe
+akD
+lAe
+lAe
+akn
+akc
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(111,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+brQ
+aaU
+aaU
+aaU
+abG
+aaU
+aaU
+aaU
+aco
+acD
+brQ
+aaG
+acW
+abm
+adx
+adT
+adT
+adT
+adT
+afn
+adw
+adw
+adw
+adw
+ahg
+adw
+adw
+adw
+adw
+ahg
+adw
+adw
+adw
+adw
+adw
+ajr
+ajA
+ajr
+asv
+akc
+akc
+aku
+akc
+akN
+akc
+aku
+akc
+akc
+asv
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(112,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+caM
+caM
+caM
+brQ
+brQ
+brQ
+brQ
+brQ
+brQ
+brQ
+brQ
+brQ
+brQ
+brQ
+acO
+acX
+aWV
+ady
+adA
+adA
+adA
+adA
+aVs
+adw
+adw
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+caM
+ajB
+ajB
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+asv
+caM
+caM
+caM
+aaa
+aaa
+"}
+(113,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aax
+aaE
+aax
+aax
+aax
+aaE
+aax
+aax
+aax
+aax
+aax
+aaE
+acF
+acP
+acY
+aWV
+adz
+adA
+adA
+adA
+aeW
+aVs
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+caM
+ajC
+ajJ
+ajM
+ake
+ajD
+ajD
+ajD
+ajD
+ajD
+ake
+ajD
+ajD
+ajD
+ake
+ajD
+caM
+aaa
+aaa
+"}
+(114,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aWV
+adA
+adA
+adA
+adA
+adA
+aVs
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+caM
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+caM
+aaa
+aaa
+"}
+(115,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aWV
+adA
+adA
+adA
+adA
+adA
+aVs
+afE
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+ajf
+caM
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+caM
+aaa
+aaa
+"}
+(116,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aay
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+acZ
+aWV
+adA
+adA
+adA
+adA
+adA
+aVs
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+caM
+ajE
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+alC
+caM
+aaa
+aaa
+"}
+(117,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aWV
+adB
+adU
+adU
+adA
+aeW
+aVs
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+caM
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+caM
+aaa
+aaa
+"}
+(118,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aax
+aaF
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aWV
+adC
+adA
+adA
+adA
+adA
+aVs
+adw
+aga
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+caM
+ajD
+ajK
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+caM
+aaa
+aaa
+"}
+(119,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aWV
+adD
+adA
+aej
+adA
+adA
+aVs
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+caM
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+caM
+aaa
+aaa
+"}
+(120,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aay
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+acZ
+aWV
+adA
+adA
+adA
+adA
+adA
+aVs
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+caM
+ajE
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+alC
+caM
+aaa
+aaa
+"}
+(121,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aWV
+adz
+adA
+adA
+adA
+aeW
+aVs
+afE
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+adw
+ajf
+caM
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+caM
+aaa
+aaa
+"}
+(122,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aax
+aWV
+adE
+adV
+aek
+aeE
+aeX
+aVs
+adw
+adw
+adw
+adw
+ahh
+adw
+adw
+adw
+adw
+adw
+ahh
+adw
+adw
+adw
+adw
+caM
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+ajD
+caM
+aaa
+aaa
+"}
+(123,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+aWV
+bbF
+bbF
+bbF
+bbF
+bbF
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+caM
+aaa
+aaa
+"}
+(124,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(125,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
