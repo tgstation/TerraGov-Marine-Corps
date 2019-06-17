@@ -279,10 +279,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		switch(href_list["transform"])
 			if("observer")
 				newmob = M.ghostize()
+				if(isobserver(M) && newmob.icon == initial(newmob.icon))
+					newmob.alpha = 255 // If the original mob was a ghost this would incorrectly affect their alpha, resetting it back to 255.
 				if(delmob)
 					qdel(M)
 				if(location)
-					newmob.forceMove(usr.loc)
+					newmob.forceMove(location)
 			if("larva")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/larva, location, null, delmob)
 			if("defender")
