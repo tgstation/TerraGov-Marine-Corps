@@ -4,6 +4,7 @@
 	verb_ask = "queries"
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
+	speech_span = SPAN_ROBOT
 
 	initial_language_holder = /datum/language_holder/synthetic
 

@@ -154,3 +154,12 @@
 
 /area/shuttle/caravan/freighter3
 	name = "Tiny Freighter"
+
+/area/shuttle/canterbury/cic
+	name = "Combat Information Center"
+
+/area/shuttle/canterbury/medical
+	name = "Medical"
+
+/area/shuttle/canterbury/general
+	name = "Canterbury"

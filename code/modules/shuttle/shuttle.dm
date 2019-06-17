@@ -577,6 +577,7 @@
 		if(SHUTTLE_CALL, SHUTTLE_PREARRIVAL)
 			if(prearrivalTime && mode != SHUTTLE_PREARRIVAL)
 				mode = SHUTTLE_PREARRIVAL
+				on_prearrival()
 				setTimer(prearrivalTime)
 				return
 			var/error = initiate_docking(destination, preferred_direction)

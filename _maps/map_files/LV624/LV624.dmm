@@ -11941,7 +11941,6 @@
 /area/lv624/lazarus/sleep_male)
 "aRF" = (
 /obj/structure/bed/chair/wood/wings{
-	tag = "icon-wooden_chair_wings (NORTH)";
 	icon_state = "wooden_chair_wings";
 	dir = 1
 	},

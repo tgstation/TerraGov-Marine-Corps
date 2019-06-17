@@ -1146,7 +1146,6 @@
 /area/almayer/engineering/engine_core)
 "acF" = (
 /obj/structure/cable{
-	tag = "icon-0-2";
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/almayer{
@@ -2085,7 +2084,7 @@
 	pixel_x = 17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/overwatch/squad/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/alpha,
 /obj/structure/table/almayer,
 /turf/open/floor/almayer{
 	pixel_z = -1
@@ -2097,7 +2096,7 @@
 	pixel_x = -17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/overwatch/squad/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/bravo,
 /obj/structure/table/almayer,
 /turf/open/floor/almayer{
 	pixel_z = -1
@@ -3187,7 +3186,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/computer/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/main,
 /turf/open/floor/almayer{
 	pixel_z = -1
 	},
@@ -3602,14 +3601,14 @@
 /area/almayer/command/cic)
 "aiu" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/overwatch/squad/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/charlie,
 /turf/open/floor/almayer{
 	pixel_z = -1
 	},
 /area/almayer/command/cic)
 "aiv" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/overwatch/squad/delta,
+/obj/machinery/computer/camera_advanced/overwatch/delta,
 /turf/open/floor/almayer{
 	pixel_z = -1
 	},
@@ -5089,7 +5088,6 @@
 /area/almayer/command/self_destruct)
 "avY" = (
 /turf/open/shuttle/escapepod{
-	tag = "icon-floor8";
 	icon_state = "floor8"
 	},
 /area/almayer/command/self_destruct)
@@ -5099,7 +5097,6 @@
 /area/almayer/command/telecomms)
 "axn" = (
 /turf/open/shuttle/escapepod{
-	tag = "icon-floor1";
 	icon_state = "floor1"
 	},
 /area/almayer/command/self_destruct)
@@ -5224,13 +5221,11 @@
 /area/almayer/squads/req)
 "lAe" = (
 /turf/open/shuttle/escapepod{
-	tag = "icon-floor5";
 	icon_state = "floor5"
 	},
 /area/almayer/command/self_destruct)
 "pNG" = (
 /turf/open/shuttle/escapepod{
-	tag = "icon-floor11";
 	icon_state = "floor11"
 	},
 /area/almayer/command/self_destruct)

@@ -4,7 +4,6 @@
 /area/shuttle/supply)
 "b" = (
 /turf/open/floor/plating{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/shuttle/supply)

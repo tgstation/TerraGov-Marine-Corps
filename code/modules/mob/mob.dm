@@ -202,12 +202,6 @@
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
 
 
-/mob/proc/findname(msg)
-	for(var/mob/M in GLOB.mob_list)
-		if (M.real_name == text("[]", msg))
-			return M
-	return 0
-
 /mob/proc/movement_delay()
 	. += next_move_slowdown
 	next_move_slowdown = 0
@@ -451,7 +445,7 @@
 	show_inv(M)
 
 
-/mob/living/start_pulling(atom/movable/AM, no_msg)
+/mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
@@ -498,7 +492,7 @@
 		log_combat(src, M, "grabbed")
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
-		if(!no_msg)
+		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
@@ -517,12 +511,6 @@
 //returns true if the pull isn't severed by the response
 /atom/movable/proc/pull_response(mob/puller)
 	return TRUE
-
-
-/mob/proc/show_viewers(message)
-	for(var/mob/M in viewers())
-		if(!M.stat)
-			to_chat(src, message)
 
 
 /mob/GenerateTag()
@@ -692,17 +680,14 @@ mob/proc/yank_out_object()
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/on_stored_atom_del(atom/movable/AM)
-	if(istype(AM, /obj/item))
-		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
-
 /mob/forceMove(atom/destination)
+	. = ..()
+	if(!.)
+		return
 	stop_pulling()
-	if(pulledby)
-		pulledby.stop_pulling()
 	if(buckled)
 		buckled.unbuckle()
-	return ..()
+
 
 /mob/proc/trainteleport(atom/destination)
 	if(!destination || anchored)

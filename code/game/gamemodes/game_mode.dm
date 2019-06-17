@@ -332,7 +332,7 @@
 			M.mind.transfer_to(L, TRUE)
 			
 		L.mind.bypass_ff = TRUE
-		L.forceMove(picked)
+		INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
 		L.revive()
 
 		if(isxeno(L))
@@ -348,6 +348,7 @@
 				H.regenerate_icons()
 
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
+		CHECK_TICK
 
 
 /datum/game_mode/distress/proc/transform_survivor(datum/mind/M)
