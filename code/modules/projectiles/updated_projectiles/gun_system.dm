@@ -607,6 +607,9 @@ and you're good to go.
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	set waitfor = 0
 
+	if(SEND_SIGNAL(src, COMSIG_GUN_FIRE, target, user) & COMPONENT_GUN_FIRED)
+		return
+
 	if(!able_to_fire(user))
 		return
 

@@ -1,18 +1,51 @@
-#define FLAMER_LIT			(1 << 0)
-#define FLAMER_COOLDOWN		(1 << 1)
-#define FLAMER_ALWAYS_LIT	(1 << 2)
+#define FLAMER_LIT				(1 << 0)
+#define FLAMER_COOLDOWN			(1 << 1)
+#define FLAMER_ALWAYS_LIT		(1 << 2)
+#define FLAMER_INTERNAL_TANK	(1 << 3)
 
-#define NAPALM_TRIANGULAR	(1 << 0)
+#define NAPALM_TRIANGULAR		(1 << 0)
 
 /datum/component/flamethrower
 	var/flamer_flags
 	var/obj/item/reagent_container/flamer_tank/tank
 	var/max_range = INFINITY // limit that overrides reagent limit
-	var/firing_delay
-	var/fire_sound
-	var/reagent_consumption
+	var/fire_delay
+	var/fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
+	var/reagent_consumption = 5
+
+/datum/component/flamethrower/Initialize(flamer_flags, obj/item/reagent_container/flamer_tank/tank, fire_delay, max_range)
+	. = ..()
+	src.flamer_flags = flamer_flags
+	src.tank = tank
+	src.fire_delay = fire_delay
+	if(max_range)
+		src.max_range = max_range
+
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby)
+	RegisterSignal(parent, COMSIG_GUN_FIRE, .proc/fire)
+
+/datum/component/flamethrower/proc/attackby(datum/source, obj/item/I, mob/user, params)
+	if(!istype(I, /obj/item/reagent_container))
+		return
+	if(!tank)
+		if(!istype(I, /obj/item/reagent_container/flamer_tank))
+			if(user)
+				to_chat(user, "theres no tank loaded, load one first")
+			return COMPONENT_NO_AFTERATTACK
+		if(flamer_flags & FLAMER_INTERNAL_TANK)
+			CRASH("somehow a flamer with an internal tank no longer has a tank")
+		if(user)
+			user.dropItemToGround(I)
+			to_chat(user, "you load a new tank")
+		tank = I
+		I.moveToNullspace()
+		return COMPONENT_NO_AFTERATTACK
+	I.afterattack(tank, user, TRUE)
+	return COMPONENT_NO_AFTERATTACK
 
 /datum/component/flamethrower/proc/fire(datum/source, atom/target, mob/user)
+	. = COMPONENT_GUN_FIRED
+
 	if(!(flamer_flags & FLAMER_LIT|FLAMER_ALWAYS_LIT))
 		return
 
@@ -46,7 +79,7 @@
 	else
 		flame_line(target, user, R, power)
 
-	addtimer(CALLBACK(src, .proc/cooldown_end), firing_delay)
+	addtimer(CALLBACK(src, .proc/cooldown_end), fire_delay)
 
 /datum/component/flamethrower/proc/cooldown_end()
 	DISABLE_BITFIELD(flamer_flags, FLAMER_COOLDOWN)
@@ -233,6 +266,9 @@
 /obj/item/reagent_container/flamer_tank
 	name = "abstract flamer tank"
 
+/obj/item/reagent_container/flamer_tank/regular
+	volume = 300
+	list_reagents = list("napalm")
 
 /datum/reagent/napalm
 	name = "napalm"

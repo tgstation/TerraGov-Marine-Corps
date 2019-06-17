@@ -106,6 +106,8 @@
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 
+#define COMSIG_GUN_FIRE "gun_fire"
+	#define COMPONENT_GUN_FIRED 1
 
 // xeno stuff
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"

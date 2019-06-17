@@ -23,6 +23,10 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
+/obj/item/weapon/gun/flamer/Initialize()
+	. = ..()
+	AddComponent(/datum/component/flamethrower, null, new /obj/item/reagent_container/flamer_tank/regular, CONFIG_GET(number/combat_define/max_fire_delay) * 5, 6)
+
 /obj/item/weapon/gun/flamer/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
