@@ -107,27 +107,6 @@
 /mob/living/proc/calculate_affecting_pressure(var/pressure)
 	return
 
-/mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
-	var/temperature = actual
-	var/difference = abs(actual-desired)	//get difference
-	var/increments = difference/10 //find how many increments apart they are
-	var/change = increments*incrementboost	// Get the amount to change by (x per increment)
-
-	// Too cold
-	if(actual < desired)
-		temperature += change
-		if(actual > desired)
-			temperature = desired
-	// Too hot
-	if(actual > desired)
-		temperature -= change
-		if(actual < desired)
-			temperature = desired
-//	if(ishuman(src))
-//		to_chat(world, "[src] ~ [src.bodytemperature] ~ [temperature]")
-	return temperature
-
-
 
 /mob/proc/get_contents()
 
@@ -216,6 +195,8 @@
 	//Only bother updating the camera if we actually managed to move
 	if(.)
 		update_camera_location(destination)
+		if(client)
+			reset_perspective()
 
 
 /mob/living/proc/do_camera_update(oldLoc)
@@ -538,16 +519,11 @@
 	var/amplitude = min(4, (jitteriness/100) + 1)
 	var/pixel_x_diff = rand(-amplitude, amplitude)
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = get_standard_pixel_x_offset(lying)
-	var/final_pixel_y = get_standard_pixel_y_offset(lying)
+	var/final_pixel_x = initial(pixel_x)
+	var/final_pixel_y = initial(pixel_y)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
 	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 
-/mob/living/proc/get_standard_pixel_x_offset(lying = 0)
-	return initial(pixel_x)
-
-/mob/living/proc/get_standard_pixel_y_offset(lying = 0)
-	return initial(pixel_y)
 
 /*
 adds a dizziness amount to a mob
@@ -688,8 +664,6 @@ below 100 is not dizzy
 	if(!T)
 		return FALSE
 	if(is_centcom_level(T.z)) //dont detect mobs on centcom
-		return FALSE
-	if(is_away_level(T.z))
 		return FALSE
 	if(user != null && src == user)
 		return FALSE

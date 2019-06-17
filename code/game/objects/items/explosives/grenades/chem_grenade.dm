@@ -1,6 +1,6 @@
-#define EMPTY 1
-#define WIRED 2
-#define READY 3
+#define CG_EMPTY 1
+#define CG_WIRED 2
+#define CG_READY 3
 
 /obj/item/explosive/grenade/chem_grenade
 	name = "chemical grenade"
@@ -9,7 +9,7 @@
 	item_state = "flashbang"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
-	var/stage = EMPTY
+	var/stage = CG_EMPTY
 	var/display_timer = FALSE
 	var/list/obj/item/reagent_container/glass/beakers = list()
 	var/list/allowed_containers = list(/obj/item/reagent_container/glass/beaker, /obj/item/reagent_container/glass/bottle)
@@ -30,7 +30,7 @@
 
 
 /obj/item/explosive/grenade/chem_grenade/attack_self(mob/user)
-	if(stage == READY && !active)
+	if(stage == CG_READY && !active)
 		if(nadeassembly)
 			nadeassembly.attack_self(user)
 		else
@@ -39,21 +39,21 @@
 
 /obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		if(stage == WIRED)
+		if(stage == CG_WIRED)
 			if(!length(beakers))
 				to_chat(user, "<span class='warning'>You need to add at least one beaker before locking the [initial(name)] assembly!</span>")
 			else
-				stage_change(READY)
+				stage_change(CG_READY)
 				to_chat(user, "<span class='notice'>You lock the [initial(name)] assembly.</span>")
 				I.play_tool_sound(src, 25)
 
-		else if(stage == READY && !nadeassembly)
+		else if(stage == CG_READY && !nadeassembly)
 			det_time = det_time == 50 ? 30 : 50	//toggle between 30 and 50
 			to_chat(user, "<span class='notice'>You modify the time delay. It's set for [DisplayTimeText(det_time)].</span>")
-		else if(stage == EMPTY)
+		else if(stage == CG_EMPTY)
 			to_chat(user, "<span class='warning'>You need to add an activation mechanism!</span>")
 
-	else if(stage == WIRED && is_type_in_list(I, allowed_containers))
+	else if(stage == CG_WIRED && is_type_in_list(I, allowed_containers))
 		. = TRUE //no afterattack
 		if(is_type_in_list(I, banned_containers))
 			to_chat(user, "<span class='warning'>[src] is too small to fit [I]!</span>") // this one hits home huh anon?
@@ -72,7 +72,7 @@
 			else
 				to_chat(user, "<span class='warning'>[I] is empty!</span>")
 
-	else if(stage == EMPTY && istype(I, /obj/item/assembly_holder))
+	else if(stage == CG_EMPTY && istype(I, /obj/item/assembly_holder))
 		. = 1 // no afterattack
 		var/obj/item/assembly_holder/A = I
 		if(isigniter(A.a_left) == isigniter(A.a_right))	//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
@@ -84,24 +84,24 @@
 		A.master = src
 		assemblyattacher = user.ckey
 
-		stage_change(WIRED)
+		stage_change(CG_WIRED)
 		to_chat(user, "<span class='notice'>You add [A] to the [initial(name)] assembly.</span>")
 
-	else if(stage == EMPTY && istype(I, /obj/item/stack/cable_coil))
+	else if(stage == CG_EMPTY && istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = I
 		if (C.use(1))
 			det_time = 50 // In case the cable_coil was removed and readded.
-			stage_change(WIRED)
+			stage_change(CG_WIRED)
 			to_chat(user, "<span class='notice'>You rig the [initial(name)] assembly.</span>")
 		else
 			to_chat(user, "<span class='warning'>You need one length of coil to wire the assembly!</span>")
 			return
 
-	else if(stage == READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
-		stage_change(WIRED)
+	else if(stage == CG_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
+		stage_change(CG_WIRED)
 		to_chat(user, "<span class='notice'>You unlock the [initial(name)] assembly.</span>")
 
-	else if(stage == WIRED && I.tool_behaviour == TOOL_WRENCH)
+	else if(stage == CG_WIRED && I.tool_behaviour == TOOL_WRENCH)
 		if(length(beakers))
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
@@ -116,16 +116,16 @@
 			nadeassembly.forceMove(drop_location())
 			nadeassembly.master = null
 			nadeassembly = null
-		else // If "nadeassembly = null && stage == WIRED", then it most have been cable_coil that was used.
+		else // If "nadeassembly = null && stage == CG_WIRED", then it most have been cable_coil that was used.
 			new /obj/item/stack/cable_coil(get_turf(src),1)
-		stage_change(EMPTY)
+		stage_change(CG_EMPTY)
 		to_chat(user, "<span class='notice'>You remove the activation mechanism from the [initial(name)] assembly.</span>")
 	else
 		return ..()
 
 
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
-	display_timer = (stage == READY && !nadeassembly)	//show/hide the timer based on assembly state
+	display_timer = (stage == CG_READY && !nadeassembly)	//show/hide the timer based on assembly state
 	. = ..()
 	if(user.mind?.cm_skills && user.mind.cm_skills.medical > SKILL_MEDICAL_NOVICE)
 		if(length(beakers))
@@ -137,7 +137,7 @@
 				to_chat(user, "<span class='notice'>You detect no second beaker in the grenade.</span>")
 		else
 			to_chat(user, "<span class='notice'>You scan the grenade, but detect nothing.</span>")
-	else if(stage != READY && length(beakers))
+	else if(stage != CG_READY && length(beakers))
 		if(length(beakers) == 2 && beakers[1].name == beakers[2].name)
 			to_chat(user, "<span class='notice'>You see two [beakers[1].name]s inside the grenade.</span>")
 		else
@@ -148,15 +148,15 @@
 /obj/item/explosive/grenade/chem_grenade/proc/stage_change(N)
 	if(N)
 		stage = N
-	if(stage == EMPTY)
+	if(stage == CG_EMPTY)
 		name = "[initial(name)] casing"
 		desc = "A do it yourself [initial(name)]! [initial(casedesc)]"
 		icon_state = initial(icon_state)
-	else if(stage == WIRED)
+	else if(stage == CG_WIRED)
 		name = "unsecured [initial(name)]"
 		desc = "An unsecured [initial(name)] assembly."
 		icon_state = "[initial(icon_state)]_ass"
-	else if(stage == READY)
+	else if(stage == CG_READY)
 		name = initial(name)
 		desc = initial(desc)
 		icon_state = "[initial(icon_state)]_locked"
@@ -172,7 +172,7 @@
 
 
 /obj/item/explosive/grenade/chem_grenade/prime()
-	if(stage != READY)
+	if(stage != CG_READY)
 		return
 
 	var/list/datum/reagents/reactants = list()
@@ -187,7 +187,7 @@
 			for(var/obj/O in beakers)
 				O.forceMove(drop_location())
 			beakers = list()
-		stage_change(EMPTY)
+		stage_change(CG_EMPTY)
 		return
 
 	if(nadeassembly)
@@ -216,7 +216,7 @@
 	name = "Metal-Foam Grenade"
 	desc = "Used for emergency sealing of air breaches."
 	dangerous = FALSE
-	stage = READY
+	stage = CG_READY
 
 
 /obj/item/explosive/grenade/chem_grenade/metalfoam/Initialize(mapload, ...)
@@ -236,7 +236,7 @@
 /obj/item/explosive/grenade/chem_grenade/incendiary
 	name = "Incendiary Grenade"
 	desc = "Used for clearing rooms of living things."
-	stage = READY
+	stage = CG_READY
 
 
 /obj/item/explosive/grenade/chem_grenade/incendiary/Initialize(mapload, ...)
@@ -259,7 +259,7 @@
 	name = "weedkiller grenade"
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
 	dangerous = FALSE
-	stage = READY
+	stage = CG_READY
 
 
 /obj/item/explosive/grenade/chem_grenade/antiweed/Initialize(mapload, ...)
@@ -281,7 +281,7 @@
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
 	dangerous = FALSE
-	stage = READY
+	stage = CG_READY
 
 
 /obj/item/explosive/grenade/chem_grenade/cleaner/Initialize(mapload, ...)
@@ -301,7 +301,7 @@
 /obj/item/explosive/grenade/chem_grenade/teargas
 	name = "\improper M66 teargas grenade"
 	desc = "Tear gas grenade used for nonlethal riot control. Please wear adequate gas protection."
-	stage = READY
+	stage = CG_READY
 
 
 /obj/item/explosive/grenade/chem_grenade/teargas/Initialize(mapload, ...)
@@ -327,6 +327,6 @@
 	return ..()
 
 
-#undef READY
-#undef WIRED
-#undef EMPTY
+#undef CG_READY
+#undef CG_WIRED
+#undef CG_EMPTY

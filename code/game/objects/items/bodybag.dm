@@ -304,6 +304,9 @@
 		if(1201 to 1800) to_chat(user, "It looks really used.")
 
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["scanreport"])
 		if(hasHUD(usr,"medical"))
 			if(get_dist(usr, src) > 7)

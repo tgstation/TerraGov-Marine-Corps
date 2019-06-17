@@ -54,7 +54,8 @@
 	return 0
 
 /obj/machinery/computer/marine_card/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	user.set_interaction(src)
@@ -225,7 +226,8 @@
 	return
 
 /obj/machinery/computer/marine_card/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	switch(href_list["choice"])
@@ -400,7 +402,8 @@
 	return 0
 
 /obj/machinery/computer/squad_changer/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)
@@ -433,7 +436,8 @@
 
 
 /obj/machinery/computer/squad_changer/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if (get_dist(src, usr) <= 1 && istype(src.loc, /turf))

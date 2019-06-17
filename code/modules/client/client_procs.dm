@@ -25,7 +25,7 @@
 		var/job = text2num(href_list["asset_cache_confirm_arrival"])
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
 		//into letting append to a list without limit.
-		if(job && job <= last_asset_job && !(job in completed_asset_jobs))
+		if(job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
 			completed_asset_jobs += job
 			return
 		else if(job in completed_asset_jobs) //byond bug ID:2256651
@@ -82,12 +82,20 @@
 		if("usr")
 			hsrc = mob
 		if("prefs")
-			return prefs.process_link(usr, href_list)
+			if(inprefs)
+				return
+			inprefs = TRUE
+			. = prefs.process_link(usr, href_list)
+			inprefs = FALSE
+			return
 		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 		if("chat")
 			return chatOutput.Topic(href, href_list)
 
+	switch(href_list["action"])
+		if("openLink")
+			DIRECT_OUTPUT(src, link(href_list["link"]))
 
 	if(hsrc)
 		var/datum/real_src = hsrc

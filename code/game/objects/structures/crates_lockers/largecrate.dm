@@ -12,9 +12,7 @@
 	M.animation_attack_on(src)
 	playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 	new /obj/item/stack/sheet/wood(src)
-	var/turf/T = get_turf(src)
-	for(var/obj/O in contents)
-		O.loc = T
+	spawn_stuff()
 	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
 	"<span class='danger'>You smash \the [src] apart!</span>", \
 	"<span class='danger'>You hear splitting wood!</span>", 5)
@@ -22,19 +20,14 @@
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
-	return FALSE
+	return TRUE
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(iscrowbar(I))
 		new /obj/item/stack/sheet/wood(src)
-		var/turf/T = get_turf(src)
-		if(spawn_type && spawn_amount)
-			for(var/i in 1 to spawn_amount)
-				new spawn_type(T)
-		for(var/obj/O in contents)
-			O.forceMove(loc)
+		spawn_stuff()
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
@@ -42,24 +35,37 @@
 	else
 		return attack_hand(user)
 
+
+/obj/structure/largecrate/proc/spawn_stuff()
+	var/turf/T = get_turf(src)
+	if(spawn_type && spawn_amount)
+		for(var/i in 1 to spawn_amount)
+			new spawn_type(T)
+	for(var/obj/O in contents)
+		O.forceMove(loc)
+
+
 /obj/structure/largecrate/mule
 	icon_state = "mulecrate"
 
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
 	spawn_type = /mob/living/simple_animal/corgi/Lisa
+	spawn_amount = 1
 
 
 /obj/structure/largecrate/cow
 	name = "cow crate"
 	icon_state = "lisacrate"
 	spawn_type = /mob/living/simple_animal/cow
+	spawn_amount = 1
 
 
 /obj/structure/largecrate/goat
 	name = "goat crate"
 	icon_state = "lisacrate"
 	spawn_type = /mob/living/simple_animal/hostile/retaliate/goat
+	spawn_amount = 1
 
 
 /obj/structure/largecrate/chick
@@ -149,7 +155,7 @@
 
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
-	return FALSE
+	return TRUE
 
 
 /obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/xenomorph/X)
@@ -222,7 +228,7 @@
 
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
-	return FALSE
+	return TRUE
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"

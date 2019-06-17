@@ -60,7 +60,9 @@
 
 
 /obj/effect/plantsegment/attack_hand(mob/user as mob)
-
+	.  = ..()
+	if(.)
+		return
 	if(user.a_intent == INTENT_HELP && seed && harvest)
 		seed.harvest(user,1)
 		harvest = 0

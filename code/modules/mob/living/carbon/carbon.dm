@@ -1,6 +1,14 @@
-/mob/living/carbon/Destroy()
+/mob/living/carbon/Initialize()
 	. = ..()
-	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
+	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
+
+
+/mob/living/carbon/Destroy()
+	if(iscarbon(loc))
+		var/mob/living/carbon/C = loc
+		C.stomach_contents -= src
+	stomach_contents.Cut()
+	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -32,15 +40,7 @@
 	if(legcuffed)
 		dropItemToGround(legcuffed)
 
-	for(var/atom/movable/A in stomach_contents)
-		stomach_contents.Remove(A)
-		A.forceMove(loc)
-		if(isliving(A))
-			var/mob/living/L = A
-			L.SetKnockeddown(1)
-			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
-
-	. = ..()
+	return ..()
 
 
 /mob/living/carbon/revive()
@@ -53,14 +53,6 @@
 	legcuffed = initial(legcuffed)
 
 	return ..()
-
-
-/mob/living/carbon/human/attack_hand(mob/living/carbon/M)
-	if(!iscarbon(M))
-		return
-
-	next_move += 7 //Adds some lag to the 'attack'
-	return
 
 
 /mob/living/carbon/attack_paw(mob/living/carbon/M)
@@ -351,16 +343,6 @@
 			step(src, slide_dir)
 			sleep(2)
 			if(!lying)
-				break
-
-
-
-/mob/living/carbon/on_stored_atom_del(atom/movable/AM)
-	..()
-	if(stomach_contents.len && ismob(AM))
-		for(var/X in stomach_contents)
-			if(AM == X)
-				stomach_contents -= AM
 				break
 
 

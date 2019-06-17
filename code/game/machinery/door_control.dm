@@ -1,6 +1,5 @@
 #define CONTROL_POD_DOORS 0
 #define CONTROL_NORMAL_DOORS 1
-#define CONTROL_DROPSHIP 2
 
 /obj/machinery/door_control
 	name = "remote door-control"
@@ -14,8 +13,8 @@
 	var/normaldoorcontrol = CONTROL_POD_DOORS
 	var/desiredstate = 0 // Zero is closed, 1 is open.
 	var/specialfunctions = 1
-
 	anchored = TRUE
+	var/pressed = FALSE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
@@ -23,23 +22,6 @@
 
 /obj/machinery/door_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
-
-/obj/machinery/door_control/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT && normaldoorcontrol == CONTROL_DROPSHIP)
-		var/shuttle_tag
-		switch(id)
-			if("sh_dropship1")
-				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
-			if("sh_dropship2")
-				shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
-			else
-				return
-
-		var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
-		shuttle.hijack(M)
-		shuttle.door_override(M)
-	else
-		..()
 
 /obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -54,56 +36,6 @@
 
 	else 
 		return attack_hand(user)
-
-/obj/machinery/door_control/proc/handle_dropship(var/ship_id)
-	var/shuttle_tag
-	switch(ship_id)
-		if("sh_dropship1")
-			shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
-		if("sh_dropship2")
-			shuttle_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
-	if(!shuttle_tag)
-		return
-	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if (!istype(shuttle))
-		return
-	if(shuttle.door_override)
-		return // its been locked down by the queen
-	if(is_mainship_level(z)) // on the almayer
-		return
-	for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
-		if(M.id == ship_id)
-			if(M.locked && M.density)
-				continue // jobs done
-			else if(!M.locked && M.density)
-				M.lock() // closed but not locked yet
-				continue
-			else
-				M.do_command("secure_close")
-
-	var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
-	switch(ship_id)
-		if("sh_dropship1")
-			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
-				reardoor = D
-		if("sh_dropship2")
-			for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
-				reardoor = D
-
-	if(!reardoor.locked && reardoor.density)
-		reardoor.lock() // closed but not locked yet
-	else if(reardoor.locked && !reardoor.density)
-		spawn()
-			reardoor.unlock()
-			sleep(1)
-			reardoor.close()
-			sleep(reardoor.openspeed + 1) // let it close
-			reardoor.lock() // THEN lock it
-	else
-		spawn()
-			reardoor.close()
-			sleep(reardoor.openspeed + 1)
-			reardoor.lock()
 
 /obj/machinery/door_control/proc/handle_door()
 	for(var/obj/machinery/door/airlock/D in range(range))
@@ -140,20 +72,15 @@
 /obj/machinery/door_control/proc/handle_pod()
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
-			var/datum/shuttle/ferry/marine/S
-			var/area/A = get_area(M)
-			for(var/i = 1 to 2)
-				if(istype(A, text2path("/area/shuttle/drop[i]")))
-					S = shuttle_controller.shuttles["[CONFIG_GET(string/ship_name)] Dropship [i]"]
-					if(S.moving_status == SHUTTLE_INTRANSIT) return FALSE
 			if(M.density)
-				spawn()
-					M.open()
+				INVOKE_ASYNC(M, /obj/machinery/door/.proc/open)
 			else
-				spawn()
-					M.close()
+				INVOKE_ASYNC(M, /obj/machinery/door/.proc/close)
 
 /obj/machinery/door_control/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(istype(user,/mob/living/carbon/xenomorph))
 		return
 	if(machine_stat & (NOPOWER|BROKEN))
@@ -166,30 +93,41 @@
 		return
 
 	use_power(5)
-	icon_state = "doorctrl1"
+	pressed = TRUE
+	update_icon()
 
 	switch(normaldoorcontrol)
 		if(CONTROL_NORMAL_DOORS)
 			handle_door()
 		if(CONTROL_POD_DOORS)
 			handle_pod()
-		if(CONTROL_DROPSHIP)
-			handle_dropship(id)
 
 	desiredstate = !desiredstate
-	spawn(15)
-		if(!(machine_stat & NOPOWER))
-			icon_state = "doorctrl0"
+	addtimer(CALLBACK(src, .proc/unpress), 15, TIMER_OVERRIDE|TIMER_UNIQUE)
 
-/obj/machinery/door_control/power_change()
-	..()
+
+/obj/machinery/door_control/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
+
+/obj/machinery/door_control/proc/unpress()
+	pressed = FALSE
+	update_icon()
+
+/obj/machinery/door_control/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
+	else if(pressed)
+		icon_state = "doorctrl1"
 	else
 		icon_state = "doorctrl0"
 
-/obj/machinery/driver_button/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/door_control/power_change()
+	. = ..()
+	update_icon()
+
+/obj/machinery/driver_button/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
 
 /obj/machinery/driver_button/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
@@ -203,7 +141,9 @@
 		return attack_hand(user)
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
@@ -254,8 +194,6 @@
 				handle_door()
 			if(CONTROL_POD_DOORS)
 				handle_pod()
-			if(CONTROL_DROPSHIP)
-				handle_dropship(id)
 
 		desiredstate = !desiredstate
 		triggered = 1

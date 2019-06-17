@@ -61,6 +61,9 @@ obj/structure/sign/poster/New(var/serial)
 
 
 /obj/structure/sign/poster/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(ruined)
 		return
 	var/temp_loc = user.loc

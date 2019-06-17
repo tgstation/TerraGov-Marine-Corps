@@ -20,8 +20,6 @@
 
 /mob/living/carbon/monkey/add_to_all_mob_huds()
 	for(var/datum/atom_hud/hud in GLOB.huds)
-		if(!istype(hud, /datum/atom_hud/xeno_infection)) //monkey only appear on this hud
-			continue
 		hud.add_to_hud(src)
 
 
@@ -45,8 +43,6 @@
 
 /mob/living/carbon/monkey/remove_from_all_mob_huds()
 	for(var/datum/atom_hud/hud in GLOB.huds)
-		if(!istype(hud, /datum/atom_hud/xeno_infection))
-			continue
 		hud.add_to_hud(src)
 
 
@@ -99,7 +95,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, STATUS_HUD_OBSERVER_INFECTION, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, STATUS_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -180,7 +176,7 @@
 
 
 /mob/living/carbon/monkey/med_hud_set_status()
-	var/image/holder = hud_list[STATUS_HUD_XENO_INFECTION]
+	var/image/holder = hud_list[XENO_EMBRYO_HUD]
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
@@ -192,70 +188,45 @@
 	else
 		holder.icon_state = ""
 
+
 /mob/living/carbon/human/med_hud_set_status()
-	var/image/holder = hud_list[STATUS_HUD]
-	var/image/holder2 = hud_list[STATUS_HUD_OOC]
-	var/image/holder3 = hud_list[STATUS_HUD_XENO_INFECTION]
-	var/image/holder4 = hud_list[STATUS_HUD_OBSERVER_INFECTION]
+	var/image/status_hud = hud_list[STATUS_HUD]
+	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD]
 
 	if(species.species_flags & IS_SYNTHETIC)
-		holder.icon_state = "hudsynth"
-		holder2.icon_state = "hudsynth"
-		holder3.icon_state = "hudsynth"
-	else
-		var/revive_enabled = TRUE
-		var/stage = 1
-		if(!check_tod(src) || !is_revivable())
-			revive_enabled = FALSE
-		else if(!client)
-			var/mob/dead/observer/G = get_ghost()
-			if(!istype(G))
-				revive_enabled = FALSE
+		status_hud.icon_state = "hudsynth"
+		infection_hud.icon_state = ""
+		return TRUE
 
-		if(stat == DEAD && !undefibbable)
+	if(status_flags & XENO_HOST)
+		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
+		if(E)
+			infection_hud.icon_state = "infected[E.stage]"
+		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
+			infection_hud.icon_state = "infected6"
+		else
+			infection_hud.icon_state = ""
+	else
+		infection_hud.icon_state = ""
+
+	switch(stat)
+
+		if(DEAD)
+
+			if(undefibbable || (!client && !get_ghost()))
+				status_hud.icon_state = "huddead"
+				return TRUE
+
+			var/stage = 1
 			if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 2
 			else if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 3
+			status_hud.icon_state = "huddeaddefib[stage]"
+			return TRUE
 
-		var/holder2_set = 0
-		if(status_flags & XENO_HOST)
-			holder2.icon_state = "hudxeno"//Observer and admin HUD only
-			holder2_set = 1
-			var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-			if(E)
-				holder3.icon_state = "infected[E.stage]"
-				holder4.icon_state = "infected[E.stage]"
-			else if(locate(/mob/living/carbon/xenomorph/larva) in src)
-				holder.icon_state = "infected5"
-				holder4.icon_state = "infected5"
-			else
-				holder4.icon_state = ""
 		else
-			holder4.icon_state = ""
-
-		if(stat == DEAD)
-			if(revive_enabled)
-				holder.icon_state = "huddeaddefib[stage]"
-				if(!holder2_set)
-					holder2.icon_state = "huddeaddefib[stage]"
-					holder3.icon_state = "huddead"
-					holder2_set = 1
-			else
-				holder.icon_state = "huddead"
-				holder4.icon_state = ""
-				if(!holder2_set || check_tod(src))
-					holder2.icon_state = "huddead"
-					holder3.icon_state = "huddead"
-					holder2_set = 1
-
-			return
-
-
-		holder.icon_state = "hudhealthy"
-		if(!holder2_set)
-			holder2.icon_state = "hudhealthy"
-			holder3.icon_state = ""
+			status_hud.icon_state = "hudhealthy"
 
 
 /mob/proc/med_pain_set_perceived_health()
@@ -276,16 +247,8 @@
 	switch(perceived_health)
 		if(100 to INFINITY)
 			holder.icon_state = "hudhealth100"
-		if(80 to 100)
-			holder.icon_state = "hudhealth80"
-		if(60 to 80)
-			holder.icon_state = "hudhealth60"
-		if(40 to 60)
-			holder.icon_state = "hudhealth40"
-		if(20 to 40)
-			holder.icon_state = "hudhealth20"
-		if(0 to 20)
-			holder.icon_state = "hudhealth0"
+		if(0 to 100)
+			holder.icon_state = "hudhealth[round(perceived_health, 10)]"
 		if(-50 to 0)
 			holder.icon_state = "hudhealth-0"
 		else
@@ -294,9 +257,9 @@
 	return TRUE
 
 
-//infection status that appears on humans, viewed by xenos only.
+//infection status that appears on humans and monkeys, viewed by xenos only.
 /datum/atom_hud/xeno_infection
-	hud_icons = list(STATUS_HUD_XENO_INFECTION)
+	hud_icons = list(XENO_EMBRYO_HUD)
 
 
 //Xeno status hud, for xenos

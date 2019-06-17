@@ -107,12 +107,13 @@
 			use(amt)
 
 /obj/item/stack/cable_coil/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
 		user.put_in_hands(F)
 		use(1)
-	else
-		..()
     
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))

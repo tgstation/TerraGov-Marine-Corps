@@ -78,62 +78,88 @@
 				user.visible_message("<span class='warning'>[user] has grabbed [victim] aggressively (now hands)!</span>", null, null, 5)
 		victim.update_canmove()
 
-/obj/item/grab/attack(mob/living/M, mob/living/user, def_zone)
-	if(M == user && user.pulling && isxeno(user))
-		var/mob/living/carbon/xenomorph/X = user
-		var/mob/living/carbon/pulled = X.pulling
-		if(!istype(pulled))
-			return
-		if(isxeno(pulled) || issynth(pulled))
-			to_chat(X, "<span class='warning'>That wouldn't taste very good.</span>")
-			return 0
-		if(pulled.buckled)
-			to_chat(X, "<span class='warning'>[pulled] is buckled to something.</span>")
-			return 0
-		if(pulled.stat == DEAD)
-			to_chat(X, "<span class='warning'>Ew, [pulled] is already starting to rot.</span>")
-			return 0
-		if(X.stomach_contents.len) //Only one thing in the stomach at a time, please
-			to_chat(X, "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>")
-			return 0
-			/* Saving this in case we want to allow devouring of dead bodies UNLESS their client is still online somewhere
-			if(pulled.client) //The client is still inside the body
-			else // The client is observing
-				for(var/mob/dead/observer/G in GLOB.player_list)
-					if(ckey(G.mind.original.ckey) == pulled.ckey)
-						to_chat(src, "You start to devour [pulled] but realize [user.p_they()] is already dead.")
-						return */
-		X.visible_message("<span class='danger'>[X] starts to devour [pulled]!</span>", \
-		"<span class='danger'>You start to devour [pulled]!</span>", null, 5)
-		if(do_after(X, 50, FALSE, pulled, BUSY_ICON_DANGER))
-			if(X.pulling == pulled && !pulled.buckled && pulled.stat != DEAD && !X.stomach_contents.len) //make sure you've still got them in your claws, and alive
-				X.visible_message("<span class='warning'>[X] devours [pulled]!</span>", \
-				"<span class='warning'>You devour [pulled]!</span>", null, 5)
-				var/DT = pulled.client ? 50 SECONDS + rand(0, 20 SECONDS) : 3 MINUTES // 50-70 seconds if there's a client, three minutes otherwise
-				X.devour_timer = world.time + DT
 
-				//IMPORTANT CODER NOTE: Due to us using the old lighting engine, we need to hacky hack hard to get this working properly
-				//So we're just going to get the lights out of here by forceMoving them to a far-away place
-				//They will be recovered when regurgitating, since this also calls forceMove
-				pulled.x = 1
-				pulled.y = 1
-				pulled.z = 2 //Centcomm
-				pulled.forceMove(pulled.loc)
+/obj/item/grab/attack(mob/living/attacked, mob/living/user, def_zone)
+	if(attacked == user && CHECK_BITFIELD(SEND_SIGNAL(user, COMSIG_GRAB_SELF_ATTACK), COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK))
+		return TRUE
 
-				//Then, we place the mob where it ought to be
-				X.stomach_contents.Add(pulled)
-				pulled.KnockDown(360)
-				pulled.blind_eyes(1)
-				pulled.forceMove(X)
-				if(ishuman(pulled)) //Check for camera; if we have one, turn it off.
-					var/mob/living/carbon/human/H = pulled
-					if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
-						var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
-						if(R.camera.status)
-							R.camera.status = FALSE //Turn camera off.
-							to_chat(H, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
-				return 1
-		if(!(pulled in X.stomach_contents))
-			to_chat(X, "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>")
-		return 0
+/mob/living/carbon/xenomorph/proc/devour_grabbed()
+	var/mob/living/carbon/prey = pulling
+	if(!istype(prey) || isxeno(prey) || issynth(prey))
+		to_chat(src, "<span class='warning'>That wouldn't taste very good.</span>")
+		return NONE
+	if(prey.buckled)
+		to_chat(src, "<span class='warning'>[prey] is buckled to something.</span>")
+		return NONE
+	if(prey.stat == DEAD)
+		to_chat(src, "<span class='warning'>Ew, [prey] is already starting to rot.</span>")
+		return NONE
+	if(length(stomach_contents)) //Only one thing in the stomach at a time, please
+		to_chat(src, "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>")
+		return NONE
+
+	visible_message("<span class='danger'>[src] starts to devour [prey]!</span>", \
+	"<span class='danger'>You start to devour [prey]!</span>", null, 5)
+
+	//extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)
+
+	if(!do_after(src, 5 SECONDS, FALSE, prey, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_devour_grabbed, prey)))
+		to_chat(src, "<span class='warning'>You stop devouring \the [prey]. \He probably tasted gross anyways.</span>")
+		return NONE
+
+	visible_message("<span class='warning'>[src] devours [prey]!</span>", \
+	"<span class='warning'>You devour [prey]!</span>", null, 5)
+
+	var/DT = prey.client ? 50 SECONDS + rand(0, 20 SECONDS) : 3 MINUTES // 50-70 seconds if there's a client, three minutes otherwise
+	devour_timer = world.time + DT
+
+	//IMPORTANT CODER NOTE: Due to us using the old lighting engine, we need to hacky hack hard to get this working properly
+	//So we're just going to get the lights out of here by forceMoving them to a far-away place
+	//They will be recovered when regurgitating, since this also calls forceMove
+	prey.x = 1
+	prey.y = 1
+	prey.z = 2 //Centcomm
+	prey.forceMove(prey.loc)
+
+	//Then, we place the mob where it ought to be
+
+	stomach_contents.Add(prey)
+	prey.KnockDown(360)
+	prey.blind_eyes(1)
+	prey.forceMove(src)
+
+	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
+
+	return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+
+
+/mob/living/carbon/xenomorph/proc/can_devour_grabbed(mob/living/carbon/prey)
+	if(!pulling)
+		return FALSE
+	if(pulling != prey)
+		return FALSE
+	if(prey.buckled || prey.stat == DEAD)
+		return FALSE
+	if(length(stomach_contents))
+		return FALSE
+	return TRUE
+
+
+/mob/living/carbon/proc/on_devour_by_xeno()
+	RegisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, .proc/on_release_from_stomach)
+
+
+/mob/living/carbon/human/on_devour_by_xeno()
+	if(istype(wear_ear, /obj/item/radio/headset/almayer/marine))
+		var/obj/item/radio/headset/almayer/marine/marine_headset = wear_ear
+		if(marine_headset.camera.status)
+			marine_headset.camera.status = FALSE //Turn camera off.
+			to_chat(src, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")
+	return ..()
+
+
+/mob/living/carbon/proc/on_release_from_stomach(mob/living/carbon/prey, mob/living/predator)
+	prey.SetKnockeddown(1)
+	prey.adjust_blindness(-1)
+	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)

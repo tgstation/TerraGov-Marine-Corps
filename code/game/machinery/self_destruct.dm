@@ -17,12 +17,6 @@
 	operator = null
 	return ..()
 
-/obj/machinery/self_destruct/attack_hand()
-	. = ..()
-	if(.)
-		return FALSE
-	return TRUE
-
 
 /obj/machinery/self_destruct/proc/toggle(lock)
 	icon_state = initial(icon_state) + (lock ? "_1" : "_3")
@@ -47,7 +41,7 @@
 
 /obj/machinery/self_destruct/console/attack_hand(mob/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return FALSE
 	ui_interact(user)
 
@@ -55,7 +49,7 @@
 /obj/machinery/self_destruct/console/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return TRUE
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	switch(href_list["command"])
@@ -122,16 +116,18 @@
 /obj/machinery/self_destruct/rod/attack_hand(mob/user)
 	. = ..()
 	if(.)
-		switch(active_state)
-			if(SELF_DESTRUCT_MACHINE_ACTIVE)
-				to_chat(user, "<span class='notice'>You twist and release the control rod, arming it.</span>")
-				playsound(src, 'sound/machines/switch.ogg', 25, 1)
-				icon_state = "rod_4"
-				active_state = SELF_DESTRUCT_MACHINE_ARMED
-			if(SELF_DESTRUCT_MACHINE_ARMED)
-				to_chat(user, "<span class='notice'>You twist and release the control rod, disarming it.</span>")
-				playsound(src, 'sound/machines/switch.ogg', 25, 1)
-				icon_state = "rod_3"
-				active_state = SELF_DESTRUCT_MACHINE_ACTIVE
-			else
-				to_chat(user, "<span class='warning'>The control rod is not ready.</span>")
+		return
+		
+	switch(active_state)
+		if(SELF_DESTRUCT_MACHINE_ACTIVE)
+			to_chat(user, "<span class='notice'>You twist and release the control rod, arming it.</span>")
+			playsound(src, 'sound/machines/switch.ogg', 25, 1)
+			icon_state = "rod_4"
+			active_state = SELF_DESTRUCT_MACHINE_ARMED
+		if(SELF_DESTRUCT_MACHINE_ARMED)
+			to_chat(user, "<span class='notice'>You twist and release the control rod, disarming it.</span>")
+			playsound(src, 'sound/machines/switch.ogg', 25, 1)
+			icon_state = "rod_3"
+			active_state = SELF_DESTRUCT_MACHINE_ACTIVE
+		else
+			to_chat(user, "<span class='warning'>The control rod is not ready.</span>")

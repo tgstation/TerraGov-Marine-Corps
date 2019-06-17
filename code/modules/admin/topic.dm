@@ -11,6 +11,8 @@
 
 /datum/admins/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 
 	if(usr.client != owner || !check_rights(NONE))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
@@ -277,10 +279,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		switch(href_list["transform"])
 			if("observer")
 				newmob = M.ghostize()
+				if(isobserver(M) && newmob.icon == initial(newmob.icon))
+					newmob.alpha = 255 // If the original mob was a ghost this would incorrectly affect their alpha, resetting it back to 255.
 				if(delmob)
 					qdel(M)
 				if(location)
-					newmob.forceMove(usr.loc)
+					newmob.forceMove(location)
 			if("larva")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/larva, location, null, delmob)
 			if("defender")
@@ -540,8 +544,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		M.client.screen.Cut()
 		NP.key = M.key
 		NP.name = M.key
-		if(NP.client)
-			NP.client.change_view(world.view)
 		if(isobserver(M))
 			qdel(M)
 		else
@@ -1189,11 +1191,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
-	else if(href_list["outfit_name"])
+	else if(href_list["create_outfit_finalize"])
 		if(!check_rights(R_FUN))
 			return
 
-		var/datum/outfit/O = new /datum/outfit
+		var/datum/outfit/O = new
+
 		O.name = href_list["outfit_name"]
 		O.w_uniform = text2path(href_list["outfit_uniform"])
 		O.shoes = text2path(href_list["outfit_shoes"])
@@ -1212,9 +1215,64 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		O.belt = text2path(href_list["outfit_belt"])
 		O.ears = text2path(href_list["outfit_ears"])
 
-		GLOB.custom_outfits.Add(O)
-		log_admin("[key_name(usr)] created outfit named '[O.name]'.")
-		message_admins("[ADMIN_TPMONTY(usr)] created outfit named '[O.name]'.")
+		GLOB.custom_outfits += O
+
+		log_admin("[key_name(usr)] created a \"[O.name]\" outfit.") 
+		message_admins("[ADMIN_TPMONTY(usr)] created a \"[O.name]\" outfit.") 
+
+
+	else if(href_list["load_outfit"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/outfit_file = input("Pick outfit json file:", "Load Outfit") as null|file
+		if(!outfit_file)
+			return
+
+		var/filedata = file2text(outfit_file)
+		var/json = json_decode(filedata)
+		if(!json)
+			to_chat(usr, "<span class='warning'>JSON decode error.</span>")
+			return
+
+		var/otype = text2path(json["outfit_type"])
+		if(!ispath(otype, /datum/outfit))
+			to_chat(usr, "<span class='warning'>Malformed/Outdated file.</span>")
+			return
+
+		var/datum/outfit/O = new otype
+		if(!O.load_from(json))
+			to_chat(usr, "<span class='warning'>Malformed/Outdated file.</span>")
+			return
+
+		GLOB.custom_outfits += O
+		outfit_manager()
+
+
+	else if(href_list["create_outfit_menu"])
+		if(!check_rights(R_FUN))
+			return
+
+		create_outfit()
+
+
+	else if(href_list["delete_outfit"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/outfit/O = locate(href_list["chosen_outfit"]) in GLOB.custom_outfits
+		GLOB.custom_outfits -= O
+		log_admin("[key_name(usr)] deleted the \"[O.name]\" outfit.") 
+		message_admins("[ADMIN_TPMONTY(usr)] deleted the \"[O.name]\" outfit.") 
+		qdel(O)
+		outfit_manager()
+
+
+	else if(href_list["save_outfit"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/datum/outfit/O = locate(href_list["chosen_outfit"]) in GLOB.custom_outfits
+		O.save_to_file()
+		outfit_manager()
 
 
 	else if(href_list["viewruntime"])

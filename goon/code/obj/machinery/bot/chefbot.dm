@@ -177,6 +177,9 @@
 		explode()
 
 /obj/machinery/bot/chefbot/attack_hand(mob/living/carbon/human/M)
+	. = ..()
+	if(.)
+		return
 	if(Adjacent(M) && !M.incapacitated() && !M.lying)
 		switch(M.a_intent)
 			if (INTENT_HELP)
@@ -197,7 +200,6 @@
 				if(src.health <= 0)
 					src.explode()
 			M.delayNextAttack(10)
-	..()
 
 /obj/machinery/bot/chefbot/kick_act()
 	..()

@@ -6,7 +6,7 @@
 	gender = NEUTER
 	flags_pass = PASSTABLE
 	hud_type = /datum/hud/monkey
-	hud_possible = list(STATUS_HUD_XENO_INFECTION)
+	hud_possible = list(XENO_EMBRYO_HUD)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/greaterform_type = /datum/species/human
@@ -117,6 +117,9 @@
 	return FALSE
 
 /mob/living/carbon/monkey/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_interaction()
@@ -178,6 +181,9 @@
 	return
 
 /mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
+	. = ..()
+	if(.)
+		return
 	if (!SSticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -270,11 +276,6 @@
 
 	return 1
 
-/mob/living/carbon/get_standard_pixel_y_offset()
-	if(lying)
-		return -6
-	else
-		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
 	. = ..()

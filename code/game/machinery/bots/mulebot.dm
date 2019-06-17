@@ -230,7 +230,8 @@
 
 
 /obj/machinery/bot/mulebot/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if (usr.stat)
 		return
@@ -694,9 +695,6 @@
 	L.Stun(8)
 	L.KnockDown(5)
 	L.lying = TRUE
-
-/obj/machinery/bot/mulebot/alter_health()
-	return get_turf(src)
 
 
 // called from mob/living/carbon/human/Crossed()

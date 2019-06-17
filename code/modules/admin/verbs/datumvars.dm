@@ -690,6 +690,7 @@
 		if(!istype(M))
 			return
 
+		var/old_name = M.real_name
 		var/new_name = input(usr, "What would you like to name this mob?", "Input a name", M.real_name) as text
 		new_name = noscript(new_name)
 		if(!new_name || !M)
@@ -699,7 +700,8 @@
 		vv_update_display(M, "name", new_name)
 		vv_update_display(M, "real_name", M.real_name || "No real name")
 
-		message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
+		log_admin("[key_name(usr)] renamed [old_name] to [key_name(M)].")
+		message_admins("[ADMIN_TPMONTY(usr)] renamed [old_name] to [ADMIN_TPMONTY(M)].")
 
 
 	else if(href_list["varnameedit"] && href_list["datumedit"])

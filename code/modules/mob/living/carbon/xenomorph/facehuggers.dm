@@ -83,6 +83,7 @@
 	else
 		attack_hand(user)
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/facehugger/attack_hand(mob/user)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
@@ -306,6 +307,9 @@
 	if(!provoked)
 		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
+
+	if(on_fire)
+		return FALSE
 
 	if(check_mask)
 		if(wear_mask)

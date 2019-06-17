@@ -39,6 +39,7 @@
 	var/next_move_slowdown = 0	// Amount added during the next movement_delay(), then is reset.
 	var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
 	var/next_move_modifier = 1 //Value to multiply action/click delays by
+	var/last_move_intent
 	var/last_bumped = 0
 	var/area/lastarea
 	var/old_x = 0

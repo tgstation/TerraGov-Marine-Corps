@@ -102,8 +102,10 @@
 				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
 
 /obj/item/explosive/grenade/attack_hand()
+	. = ..()
+	if(.)
+		return
 	walk(src, null, null)
-	..()
 	return
 
 /obj/item/explosive/grenade/attack_paw(mob/user as mob)

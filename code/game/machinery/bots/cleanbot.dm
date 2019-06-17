@@ -93,7 +93,8 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	return
 
 /obj/machinery/bot/cleanbot/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	switch(href_list["operation"])

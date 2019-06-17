@@ -57,6 +57,9 @@
 	attack_hand()
 
 /obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -120,7 +123,6 @@
 
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
-
 	. =..()
 	if(.)
 		return

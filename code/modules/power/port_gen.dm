@@ -199,6 +199,9 @@
 
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
@@ -234,7 +237,8 @@
 		ui.set_auto_update(TRUE)
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["toggle_power"])

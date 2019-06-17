@@ -36,7 +36,9 @@
 			src.visible_message("<span class='warning'>[src] shuts down due to lack of power!</span>")
 			return
 */
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/floodlight/attack_hand(mob/user as mob)
+	. = ..()
 	if(open && cell)
 		if(ishuman(user))
 			if(!user.get_active_held_item())
@@ -130,3 +132,11 @@
 
 	attackby()
 		return
+
+
+/obj/machinery/floodlight/outpost
+	name = "Outpost Light"
+	icon_state = "flood01"
+	luminosity = 7
+	on = TRUE
+	use_power = FALSE

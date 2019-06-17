@@ -35,6 +35,9 @@
 
 
 /obj/item/radio/intercom/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	spawn (0)
 		attack_self(user)
 
@@ -83,4 +86,5 @@
 
 
 /obj/item/radio/intercom/general/colony
+	freqlock = TRUE
 	frequency = FREQ_CIV_GENERAL

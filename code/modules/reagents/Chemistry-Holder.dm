@@ -264,7 +264,7 @@
 	var/need_mob_update = 0
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		if(R.holder.gc_destroyed)
+		if(QDELETED(R.holder))
 			continue
 		if(liverless && !R.self_consuming) //need to be metabolized
 			continue

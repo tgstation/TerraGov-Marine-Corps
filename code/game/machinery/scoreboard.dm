@@ -58,6 +58,9 @@
 	active_power_usage = 4
 
 /obj/machinery/scoreboard_button/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)

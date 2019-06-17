@@ -238,7 +238,9 @@
 
 
 /obj/item/motiondetector/Topic(href, href_list)
-	//..()
+	. = ..()
+	if(.)
+		return
 	if(usr.stat || usr.restrained())
 		return
 	if(ishuman(usr) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))

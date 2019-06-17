@@ -140,12 +140,13 @@
 		update_icon()
 
 /obj/machinery/iv_drip/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(src.beaker)
 		src.beaker.loc = get_turf(src)
 		src.beaker = null
 		update_icon()
-	else
-		return ..()
 
 
 /obj/machinery/iv_drip/verb/toggle_mode()

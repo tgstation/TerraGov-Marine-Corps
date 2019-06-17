@@ -193,7 +193,7 @@
 		climbable = TRUE
 		new /obj/item/stack/barbed_wire(loc)
 
-	else if(I.force > barricade_resistance)
+	else if(I.force > barricade_resistance && user.a_intent != INTENT_HELP)
 		if(barricade_hitsound)
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(I)
@@ -860,6 +860,9 @@
 
 
 /obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(isxeno(user))
 		return
 

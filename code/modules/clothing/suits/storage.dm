@@ -7,7 +7,7 @@
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user)
 	if(pockets.handle_attack_hand(user))
-		return ..(user)
+		return ..()
 
 /obj/item/clothing/suit/storage/MouseDrop(obj/over_object)
 	if(pockets.handle_mousedrop(usr, over_object))

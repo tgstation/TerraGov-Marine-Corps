@@ -252,8 +252,9 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
-/atom/proc/ex_act()
-	return
+/atom/proc/ex_act(severity, target)
+	contents_explosion(severity, target)
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
 
 /atom/proc/fire_act()
 	return
@@ -272,14 +273,18 @@ directive is properly returned.
 	return FALSE
 
 
+/atom/proc/contents_explosion(severity, target)
+	return //For handling the effects of explosions on contents that would not normally be effected
+
+
 //Generalized Fire Proc.
 /atom/proc/flamer_fire_act()
 	return
 
 
-//things that object need to do when a movable atom inside it is deleted
-/atom/proc/on_stored_atom_del(atom/movable/AM)
-	return
+//This proc is called on the location of an atom when the atom is Destroy()'d
+/atom/proc/handle_atom_del(atom/A)
+	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
 
 // Generic logging helper
@@ -625,4 +630,6 @@ Proc for attack log creation, because really why not
 
 /atom/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	add_fingerprint(usr, "topic")

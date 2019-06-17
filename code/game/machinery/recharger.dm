@@ -59,6 +59,9 @@ obj/machinery/recharger
 
 
 obj/machinery/recharger/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(istype(user,/mob/living/silicon))
 		return
 

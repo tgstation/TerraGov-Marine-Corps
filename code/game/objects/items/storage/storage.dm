@@ -464,7 +464,7 @@
 		else
 			open(user)
 	else
-		..()
+		. = ..()
 		for(var/mob/M in content_watchers)
 			close(M)
 
@@ -669,7 +669,7 @@
 	return depth
 
 
-/obj/item/storage/on_stored_atom_del(atom/movable/AM)
+/obj/item/storage/handle_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
 		remove_from_storage(AM)
 
@@ -694,3 +694,9 @@
 	for(var/X in lookers)
 		var/mob/M = X //There is no need to typecast here, really, but for clarity.
 		show_to(M)
+
+
+/obj/item/storage/contents_explosion(severity, target)
+	for(var/i in contents)
+		var/atom/A = i
+		A.ex_act(severity, target)

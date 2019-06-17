@@ -56,6 +56,9 @@
 
 
 /obj/machinery/computer/security/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat)
 		return
 
@@ -133,16 +136,16 @@
 
 //returns the list of cameras accessible from this computer
 /obj/machinery/computer/security/proc/get_available_cameras()
-	var/list/L = list()
-	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
-		if((is_away_level(z) || is_away_level(C.z)) && (C.z != z))//if on away mission, can only receive feed from same z_level cameras
-			continue
-		L.Add(C)
+	var/list/all_cams = list()
+	for(var/i in GLOB.cameranet.cameras)
+		var/obj/machinery/camera/C = i
+		all_cams += C
 
-	camera_sort(L)
+	camera_sort(all_cams)
 
-	var/list/D = list()
-	for(var/obj/machinery/camera/C in L)
+	var/list/valid_cams = list()
+	for(var/i in all_cams)
+		var/obj/machinery/camera/C = i
 		if(!C.network)
 			stack_trace("Camera in a cameranet has no camera network")
 			continue
@@ -151,8 +154,8 @@
 			continue
 		var/list/tempnetwork = C.network & network
 		if(length(tempnetwork))
-			D["[C.c_tag][(C.status ? null : " (Deactivated)")]"] = C
-	return D
+			valid_cams["[C.c_tag][(C.status ? null : " (Deactivated)")]"] = C
+	return valid_cams
 
 
 /obj/machinery/computer/security/telescreen

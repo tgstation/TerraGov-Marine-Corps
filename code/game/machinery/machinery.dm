@@ -165,7 +165,8 @@
 
 /obj/machinery/Topic(href, href_list)
 	. = ..()
-
+	if(.)
+		return
 	if(!is_operational())
 		return TRUE
 
@@ -201,8 +202,9 @@
 
 
 /obj/machinery/attack_hand(mob/user)
-	if(!is_operational())
-		return TRUE
+	. = ..()
+	if(.)
+		return
 
 	if(user.lying || user.stat != CONSCIOUS)
 		return TRUE
@@ -221,6 +223,9 @@
 			return TRUE
 
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
+		return TRUE
+
+	if(!is_operational())
 		return TRUE
 
 	var/area/A = get_area(src)

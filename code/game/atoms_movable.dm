@@ -23,21 +23,24 @@
 	var/verb_exclaim = "exclaims"
 	var/verb_whisper = "whispers"
 	var/verb_yell = "yells"
+	var/speech_span
 
 	var/datum/component/orbiter/orbiting
 
 //===========================================================================
 /atom/movable/Destroy()
+	QDEL_NULL(proximity_monitor)
+	QDEL_NULL(language_holder)
+
 	if(throw_source)
 		throw_source = null
 
-	loc?.on_stored_atom_del(src) //things that container need to do when a movable atom inside it is deleted
-
-	QDEL_NULL(language_holder)
-
 	. = ..()
 
-	for(var/atom/movable/AM in contents)
+	loc?.handle_atom_del(src)
+
+	for(var/i in contents)
+		var/atom/movable/AM = i
 		qdel(AM)
 
 	moveToNullspace()
@@ -265,12 +268,12 @@
 					old_area.Exited(src, destination)
 			for(var/atom/movable/AM in oldloc)
 				AM.Uncrossed(src)
-			//var/turf/oldturf = get_turf(oldloc)
-			//var/turf/destturf = get_turf(destination)
-			//var/old_z = (oldturf ? oldturf.z : null)
-			//var/dest_z = (destturf ? destturf.z : null)
-			//if (old_z != dest_z)
-			//	onTransitZ(old_z, dest_z)
+			var/turf/oldturf = get_turf(oldloc)
+			var/turf/destturf = get_turf(destination)
+			var/old_z = (oldturf ? oldturf.z : null)
+			var/dest_z = (destturf ? destturf.z : null)
+			if(old_z != dest_z)
+				onTransitZ(old_z, dest_z)
 			destination.Entered(src, oldloc)
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
@@ -644,7 +647,7 @@
 	return throw_at(target, range, speed, thrower, spin)
 
 
-/atom/movable/proc/start_pulling(atom/movable/AM, supress_message = FALSE)
+/atom/movable/proc/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	if(QDELETED(AM))
 		return FALSE
 
@@ -666,7 +669,7 @@
 	if(ismob(AM))
 		var/mob/M = AM
 		log_combat(src, M, "grabbed", addition = "passive grab")
-		if(!supress_message)
+		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 	return TRUE
 

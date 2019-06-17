@@ -45,6 +45,9 @@
 
 	update_action_button_icons()
 
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
+
+
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
@@ -183,7 +186,7 @@
 		AdjustKnockedout(-2)
 	return knocked_out
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, no_msg)
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM

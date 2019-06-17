@@ -92,18 +92,6 @@
 		overlays_standing[X_L_HAND_LAYER]	= image("icon" = spritesheet_used, "icon_state" = t_state, "layer" =-X_L_HAND_LAYER)
 		apply_overlay(X_L_HAND_LAYER)
 
-//Call when target overlay should be added/removed
-/mob/living/carbon/xenomorph/update_targeted()
-	remove_overlay(X_TARGETED_LAYER)
-	if(targeted_by && target_locked)
-		overlays_standing[X_TARGETED_LAYER]	= image("icon" = target_locked, "layer" =-X_TARGETED_LAYER)
-	else if(!targeted_by && target_locked)
-		qdel(target_locked)
-		target_locked = null
-	if(!targeted_by || src.stat == DEAD)
-		overlays_standing[X_TARGETED_LAYER]	= null
-	apply_overlay(X_TARGETED_LAYER)
-
 /mob/living/carbon/xenomorph/update_inv_legcuffed()
 	remove_overlay(X_LEGCUFF_LAYER)
 	if(legcuffed)

@@ -639,7 +639,9 @@
 
 
 /obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(istype(usr,/mob/living/silicon))
 		return
 

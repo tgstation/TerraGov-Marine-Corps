@@ -311,7 +311,9 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(!cell || cell.charge <= 0)
 		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
 		return
@@ -335,7 +337,7 @@
 			update_health()
 		return
 
-	if(CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
+	if(CHECK_BITFIELD(turret_flags, TURRET_LOCKED))
 		to_chat(user, "<span class='warning'>[src]'s control panel is locked! Only a Squad Leader or Engineer can unlock it now.</span>")
 		return
 
@@ -377,6 +379,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/marine_turret/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr.stat)
 		return
 
@@ -521,10 +526,10 @@
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 
-		TOGGLE_BITFIELD(turret_flags, TURRET_RADIAL)
-		user.visible_message("<span class='notice'>[user] [CHECK_BITFIELD(turret_flags, TURRET_RADIAL) ? "locks" : "unlocks"] [src]'s panel.</span>",
-		"<span class='notice'>You [CHECK_BITFIELD(turret_flags, TURRET_RADIAL) ? "lock" : "unlock"] [src]'s panel.</span>")
-		if(CHECK_BITFIELD(turret_flags, TURRET_RADIAL))
+		TOGGLE_BITFIELD(turret_flags, TURRET_LOCKED)
+		user.visible_message("<span class='notice'>[user] [CHECK_BITFIELD(turret_flags, TURRET_LOCKED) ? "locks" : "unlocks"] [src]'s panel.</span>",
+		"<span class='notice'>You [CHECK_BITFIELD(turret_flags, TURRET_LOCKED) ? "lock" : "unlock"] [src]'s panel.</span>")
+		if(CHECK_BITFIELD(turret_flags, TURRET_LOCKED))
 			if(user.interactee == src)
 				user.unset_interaction()
 				user << browse(null, "window=turret")
@@ -1048,29 +1053,7 @@
 
 	if(targets.len) . = pick(targets)
 
-/*
-/obj/item/turret_laptop
-	name = "UA 571-C Turret Control Laptop"
-	desc = "A small device used for remotely controlling sentry turrets."
-	w_class = 4
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "turret_off"
-	var/linked_turret = null
-	var/on = 0
-	var/mob/living/carbon/human/user = null
-	var/obj/machinery/camera/current = null
 
-	check_eye(var/mob/user as mob)
-		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
-			return null
-		if(!linked_turret || isnull(linked_turret.camera))
-			return null
-		user.reset_perspective(linked_turret.camera)
-		return 1
-
-	attack_self(mob/living/user as mob)
-		if(!linked_turret)
-*/
 /obj/machinery/marine_turret/premade
 	name = "UA-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
@@ -1104,7 +1087,9 @@
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(!cell || cell.charge <= 0)
 		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
 		return

@@ -120,6 +120,9 @@ log transactions
 
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(issilicon(user))
 		to_chat(user, "<span class='warning'>[icon2html(src, user)] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per Nanotrasen regulation #1005.</span>")
 		return
@@ -218,6 +221,9 @@ log transactions
 		user << browse(null,"window=atm")
 
 /obj/machinery/atm/Topic(var/href, var/href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("transfer")

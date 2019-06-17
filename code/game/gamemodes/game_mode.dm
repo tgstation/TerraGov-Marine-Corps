@@ -332,7 +332,7 @@
 			M.mind.transfer_to(L, TRUE)
 			
 		L.mind.bypass_ff = TRUE
-		L.forceMove(picked)
+		INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
 		L.revive()
 
 		if(isxeno(L))
@@ -348,6 +348,7 @@
 				H.regenerate_icons()
 
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
+		CHECK_TICK
 
 
 /datum/game_mode/proc/check_queen_status(queen_time)
@@ -414,7 +415,7 @@
 			to_chat(player, output)
 
 
-/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_LOW_ORBIT, ZTRAIT_GROUND)))
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)))
 	var/num_humans = 0
 	var/num_xenos = 0
 

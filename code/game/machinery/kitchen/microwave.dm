@@ -41,11 +41,6 @@
 			if (recipe.items)
 				max_n_of_items = max(max_n_of_items,recipe.items.len)
 
-		// This will do until I can think of a fun recipe to use dionaea in -
-		// will also allow anything using the holder item to be microwaved into
-		// impure carbon. ~Z
-		acceptable_items |= /obj/item/holder
-
 /*******************
 *   Item Adding
 ********************/
@@ -146,6 +141,9 @@
 	return 0
 
 /obj/machinery/microwave/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	interact(user)
 
@@ -206,9 +204,9 @@
 			dat = {"<B>The microwave is empty</B><BR>"}
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
-		dat += {"<HR><BR>\
-<A href='?src=\ref[src];action=cook'>Turn on!<BR>\
-<A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
+		dat += {"<HR><BR>
+<a href='?src=\ref[src];action=cook'>Turn on!</a><br>
+<a href='?src=\ref[src];action=dispose'>Eject ingredients!</a>
 "}
 
 	var/datum/browser/popup = new(user, "microwave", "<div align='center'>Microwave Controls</div>")
@@ -362,7 +360,8 @@
 	return ffuu
 
 /obj/machinery/microwave/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

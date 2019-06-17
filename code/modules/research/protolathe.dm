@@ -184,4 +184,4 @@ Note: Must be placed west/left of and R&D console to function.
 
 //This is to stop these machines being hackable via clicking.
 /obj/machinery/r_n_d/protolathe/attack_hand(mob/user as mob)
-	return
+	return TRUE

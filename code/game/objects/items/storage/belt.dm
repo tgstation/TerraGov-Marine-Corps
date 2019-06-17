@@ -253,6 +253,7 @@
 	name = "\improper M276 pattern ammo load rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
+	item_state = "marinebelt"
 	w_class = 4
 	storage_slots = 5
 	max_w_class = 3
@@ -300,6 +301,7 @@
 	name = "\improper shotgun shell load rig"
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets."
 	icon_state = "shotgunbelt"
+	item_state = "shotgunbelt"
 	w_class = 4
 	storage_slots = 10
 	max_w_class = 2
@@ -340,7 +342,7 @@
 	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
-	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
+	item_state="knifebelt"
 	w_class = 3
 	storage_slots = 6
 	max_w_class = 1
@@ -350,7 +352,6 @@
 
 /obj/item/storage/belt/knifepouch/Initialize()
 	. = ..()
-	item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
@@ -362,7 +363,7 @@
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt" // temp
-	item_state="s_marine"
+	item_state="grenadebelt"
 	w_class = 4
 	storage_slots = 8
 	max_w_class = 3
@@ -382,6 +383,7 @@
 	new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/storage/belt/grenade/b18
+	name = "\improper M276 pattern M40 HEDP rig Mk II"
 	w_class = 4
 	storage_slots = 16
 	max_w_class = 3
@@ -456,7 +458,7 @@
 	if(current_gun && ishuman(user) && loc == user)
 		current_gun.attack_hand(user)
 	else
-		..()
+		return ..()
 
 
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
