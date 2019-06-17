@@ -1956,3 +1956,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		else
 			log_admin("[key_name(usr)] updated the rank: [href_list["rank"]] of [key_name(H)].")
 			message_admins("[ADMIN_TPMONTY(usr)] updated the rank: [href_list["rank"]] of [ADMIN_TPMONTY(H)].")
+
+		if(href_list["doequip"])
+			Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "rank" = "equipment", "mob" = REF(H)))
