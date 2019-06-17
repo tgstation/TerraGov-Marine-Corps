@@ -60,8 +60,10 @@
 		to_chat(user, "<span class='warning'>The baton does not have a power source installed.</span>")
 
 /obj/item/weapon/baton/attack_hand(mob/user)
-	if(check_user_auth(user))
-		..()
+	. = ..()
+	if(.)
+		return
+	check_user_auth(user)
 
 
 /obj/item/weapon/baton/equipped(mob/user, slot)
@@ -204,3 +206,94 @@
 	attack_verb = list("poked")
 	flags_equip_slot = NONE
 	has_user_lock = FALSE
+
+
+/obj/item/weapon/stunprod
+	name = "electrified prodder"
+	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
+	icon_state = "stunbaton"
+	item_state = "baton"
+	flags_equip_slot = ITEM_SLOT_BELT
+	force = 12
+	throwforce = 7
+	w_class = WEIGHT_CLASS_NORMAL
+	var/charges = 12
+	var/status = 0
+	origin_tech = "combat=2"
+
+
+/obj/item/weapon/stunprod/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is putting the live [src] in [user.p_their()] mouth! It looks like [p_theyre()] trying to commit suicide.</span>")
+	return FIRELOSS
+
+
+/obj/item/weapon/stunprod/update_icon()
+	if(status)
+		icon_state = "stunbaton_active"
+	else
+		icon_state = "stunbaton"
+
+
+/obj/item/weapon/stunprod/attack_self(mob/user)
+	if(charges > 0)
+		status = !status
+		to_chat(user, "<span class='notice'>\The [src] is now [status ? "on" : "off"].</span>")
+		playsound(loc, "sparks", 15, 1)
+		update_icon()
+	else
+		status = 0
+		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
+
+
+/obj/item/weapon/stunprod/attack(mob/M, mob/user)
+	if(user.a_intent == INTENT_HARM)
+		return
+
+	else if(!status)
+		M.visible_message("<span class='warning'>[M] has been poked with [src] whilst it's turned off by [user].</span>")
+		return
+
+	if(status && isliving(M))
+		var/mob/living/L = M
+		L.KnockDown(6)
+		charges -= 2
+		L.visible_message("<span class='danger'>[L] has been prodded with the [src] by [user]!</span>")
+
+		log_combat(user, L, "stunned", src)
+
+		playsound(loc, 'sound/weapons/egloves.ogg', 25, 1)
+		if(charges < 1)
+			status = 0
+			update_icon()
+
+
+
+/obj/item/weapon/stunprod/emp_act(severity)
+	switch(severity)
+		if(1)
+			charges = 0
+		if(2)
+			charges = max(0, charges - 5)
+	if(charges < 1)
+		status = 0
+		update_icon()
+
+
+/obj/item/weapon/stunprod/improved
+	charges = 30
+	name = "improved electrified prodder"
+	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with. This one seems to be much more effective than its predecessor."
+	color = "#FF6666"
+
+	
+/obj/item/weapon/stunprod/improved/attack(mob/M, mob/user)
+	. = ..()
+	if(!isliving(M))
+		return
+	var/mob/living/L = M
+	L.KnockDown(14)
+
+
+/obj/item/weapon/stunprod/improved/examine(mob/user)
+	. = ..()
+	to_chat(user, "<span class='notice'>It has [charges] charges left.</span>")

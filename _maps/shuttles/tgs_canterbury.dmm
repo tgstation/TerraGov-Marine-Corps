@@ -1,0 +1,2206 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/closed/wall/almayer/outer,
+/area/shuttle/canterbury/cic)
+"ac" = (
+/obj/structure/window/framed/almayer/hull,
+/turf/open/floor/plating,
+/area/shuttle/canterbury/cic)
+"ad" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/security/marinemainship_network,
+/turf/open/floor/almayer{
+	dir = 9;
+	icon_state = "blue"
+	},
+/area/shuttle/canterbury/cic)
+"ae" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/communications,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/cic)
+"af" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/overwatch/squad/alpha,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/cic)
+"ag" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/station_alert,
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/cic)
+"ah" = (
+/obj/structure/table/almayer,
+/obj/machinery/computer/card,
+/turf/open/floor/almayer{
+	dir = 5;
+	icon_state = "blue"
+	},
+/area/shuttle/canterbury/cic)
+"ai" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	dir = 8;
+	icon_state = "blue"
+	},
+/area/shuttle/canterbury/cic)
+"aj" = (
+/obj/structure/bed/chair/dropship/pilot{
+	icon_state = "pilot_chair";
+	dir = 1
+	},
+/obj/effect/landmark/start/marine/captain,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/cic)
+"ak" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/almayer{
+	icon_state = "bluefull"
+	},
+/area/shuttle/canterbury/cic)
+"al" = (
+/obj/structure/bed/chair/dropship/pilot{
+	icon_state = "pilot_chair";
+	dir = 1
+	},
+/obj/effect/landmark/start/marine/pilotofficer,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/cic)
+"am" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/shuttle/canterbury/cic)
+"an" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/guncabinet/mp_armory{
+	req_one_access_txt = "22;2;7"
+	},
+/obj/item/smartgun_powerpack/fancy,
+/obj/item/weapon/gun/smartgun,
+/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/clothing/suit/armor/bulletproof,
+/obj/item/weapon/gun/flamer,
+/obj/item/ammo_magazine/flamer_tank,
+/obj/item/ammo_magazine/pistol/ap,
+/obj/item/ammo_magazine/pistol/ap,
+/obj/item/ammo_magazine/smg/m39/ap,
+/obj/item/ammo_magazine/smg/m39/ap,
+/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/pistol/m4a3,
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "redfull"
+	},
+/area/shuttle/canterbury/cic)
+"ao" = (
+/obj/structure/prop/almayer/mapping_computer,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/cic)
+"ap" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/cic)
+"aq" = (
+/obj/structure/table/almayer,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 7
+	},
+/obj/machinery/power/apc/almayer{
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/item/paper_bin,
+/obj/item/tool/pen,
+/obj/item/clipboard,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/cic)
+"ar" = (
+/obj/machinery/computer/crew,
+/obj/machinery/alarm{
+	icon_state = "alarm0";
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	dir = 6;
+	icon_state = "blue"
+	},
+/area/shuttle/canterbury/cic)
+"as" = (
+/turf/closed/wall/almayer/outer,
+/area/shuttle/canterbury/general)
+"at" = (
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/cic)
+"au" = (
+/obj/machinery/door/airlock/almayer/command{
+	name = "\improper Combat Information Center";
+	icon_state = "door_closed";
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/cic)
+"av" = (
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/general)
+"aw" = (
+/obj/machinery/marine_turret,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
+"ax" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/closet/firecloset,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"ay" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/firealarm,
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
+"az" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/camera/autoname/almayer{
+	dir = 2
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
+"aA" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"aB" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
+"aC" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/machinery/alarm,
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
+"aD" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/structure/closet/emcloset,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"aE" = (
+/obj/machinery/door_control{
+	id = "port_umbilical_inner"
+	},
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/general)
+"aF" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
+"aG" = (
+/obj/machinery/door/poddoor/almayer{
+	id = "port_umbilical_outer";
+	name = "\improper Umbillical Airlock"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"aH" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"aI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"aJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
+"aK" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"aL" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"aM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
+"aN" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
+"aO" = (
+/obj/machinery/door/poddoor/almayer{
+	id = "port_umbilical_inner";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"aP" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/almayer{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"aQ" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"aR" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"aS" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
+"aT" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/almayer{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"aU" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
+"aV" = (
+/obj/machinery/marine_turret{
+	icon_state = "sentry_base";
+	dir = 1
+	},
+/obj/machinery/light/small,
+/turf/open/floor/almayer{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
+"aW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
+"aX" = (
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
+"aY" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
+"aZ" = (
+/obj/machinery/power/fusion_engine/random,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"ba" = (
+/obj/machinery/fuelcell_recycler,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bb" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/structure/window/framed/almayer,
+/turf/open/floor/plating,
+/area/shuttle/canterbury/general)
+"bc" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/power/monitor{
+	name = "Main Power Grid Monitoring"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"bd" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"be" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"bf" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/vending/wallmed1{
+	pixel_y = 25
+	},
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/shuttle/canterbury/general)
+"bg" = (
+/obj/machinery/door/window/westright,
+/obj/effect/landmark/start/marine/squadengineer,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"bh" = (
+/obj/machinery/marine_selector/clothes/engi/alpha,
+/obj/structure/window/reinforced,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bi" = (
+/obj/machinery/power/terminal,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/canterbury/general)
+"bj" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bk" = (
+/obj/machinery/door/airlock/almayer/engineering,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bl" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bm" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bn" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bo" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bp" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bq" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"br" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
+"bs" = (
+/obj/machinery/marine_selector/gear/engi,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bt" = (
+/obj/machinery/marine_selector/clothes/medic/alpha,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bu" = (
+/obj/machinery/power/smes/preset,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/canterbury/general)
+"bv" = (
+/obj/machinery/power/monitor{
+	name = "Core Power Monitoring"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"bw" = (
+/obj/structure/window/framed/almayer,
+/turf/open/floor/plating,
+/area/shuttle/canterbury/general)
+"bx" = (
+/obj/machinery/vending/engivend,
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"by" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"bz" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/landmark/start/marine/squadmarine,
+/turf/open/floor/almayer{
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/shuttle/canterbury/general)
+"bA" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/landmark/start/marine/squadmarine,
+/turf/open/floor/almayer{
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/shuttle/canterbury/general)
+"bB" = (
+/obj/machinery/cryopod/right,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bC" = (
+/obj/effect/landmark/start/latejoin,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
+"bE" = (
+/obj/machinery/marine_selector/gear/medic,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bF" = (
+/obj/machinery/door/window/westright{
+	icon_state = "right";
+	dir = 2
+	},
+/obj/effect/landmark/start/marine/squadcorpsman,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"bG" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/item/tool/weldpack,
+/obj/item/tool/extinguisher/mini,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"bH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
+"bI" = (
+/obj/machinery/marine_selector/clothes/alpha,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bJ" = (
+/obj/machinery/marine_selector/clothes/alpha,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"bK" = (
+/obj/machinery/marine_selector/clothes/alpha,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bL" = (
+/obj/machinery/computer/cryopod{
+	icon_state = "cellconsole";
+	dir = 8
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/shuttle/canterbury/general)
+"bO" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bQ" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"bR" = (
+/obj/machinery/vending/wallmed1{
+	pixel_y = 25
+	},
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"bS" = (
+/obj/machinery/door/poddoor/almayer{
+	id = "starboard_umbilical_outer";
+	name = "\improper Umbillical Airlock"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bT" = (
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"bU" = (
+/obj/machinery/marine_selector/clothes/leader/alpha,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bV" = (
+/obj/effect/landmark/start/marine/squadleader,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window/westright{
+	icon_state = "right";
+	dir = 2
+	},
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"bW" = (
+/obj/machinery/marine_selector/gear/leader,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
+"bY" = (
+/obj/machinery/marine_selector/gear/spec,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"bZ" = (
+/obj/machinery/door/window/westright{
+	icon_state = "right";
+	dir = 1
+	},
+/obj/effect/landmark/start/marine/squadspecialist,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"ca" = (
+/obj/structure/table/almayer,
+/obj/item/lightreplacer,
+/obj/item/clothing/glasses/welding,
+/obj/item/cell/high,
+/obj/machinery/cell_charger,
+/obj/item/radio,
+/obj/item/tool/crowbar,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"cb" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/landmark/start/marine/maintenancetech,
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"cc" = (
+/obj/effect/landmark/start/marine/synthetic,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"cd" = (
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"ce" = (
+/obj/machinery/light,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"cf" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"cg" = (
+/obj/machinery/marine_selector/clothes/specialist/alpha,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"ch" = (
+/turf/closed/wall/almayer/outer,
+/area/shuttle/canterbury/medical)
+"ci" = (
+/turf/closed/wall/almayer/white,
+/area/shuttle/canterbury/medical)
+"cj" = (
+/obj/machinery/bodyscanner,
+/obj/machinery/alarm{
+	icon_state = "alarm0";
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"ck" = (
+/obj/machinery/body_scanconsole,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cl" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/item/defibrillator,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/box/bodybags,
+/obj/item/roller,
+/obj/item/roller,
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"cm" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"cn" = (
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"co" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/almayer{
+	dir = 4;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/shuttle/canterbury/general)
+"cp" = (
+/obj/machinery/door/window/westright,
+/obj/structure/window/reinforced,
+/obj/effect/landmark/start/marine/squadsmartgunner,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"cq" = (
+/obj/machinery/marine_selector/clothes/smartgun/alpha,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"cr" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"cs" = (
+/obj/machinery/iv_drip,
+/obj/structure/sink{
+	pixel_y = 13
+	},
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"ct" = (
+/obj/structure/window/framed/almayer/white,
+/turf/open/floor/plating,
+/area/shuttle/canterbury/medical)
+"cu" = (
+/obj/machinery/autodoc,
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cv" = (
+/obj/machinery/autodoc_console,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cw" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cx" = (
+/obj/structure/rack,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
+/obj/item/tool/extinguisher/mini,
+/obj/item/stack/sheet/glass{
+	pixel_x = 3;
+	pixel_y = 3;
+	amount = 50
+	},
+/obj/item/t_scanner,
+/obj/item/tool/extinguisher,
+/obj/item/storage/backpack/marine/engineerpack,
+/obj/item/storage/belt/utility/full,
+/obj/item/flashlight,
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest,
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"cy" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/tool/shovel/etool,
+/obj/item/tool/extinguisher,
+/obj/item/pizzabox/meat{
+	pixel_y = 8
+	},
+/obj/effect/landmark/map_item,
+/obj/item/binoculars,
+/obj/item/facepaint/sniper,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"cz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"cA" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 4
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"cB" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"cC" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"cD" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"cE" = (
+/obj/effect/landmark/start/marine/medicalofficer,
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"cF" = (
+/obj/machinery/door/airlock/almayer/medical/glass,
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"cG" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cH" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cI" = (
+/obj/structure/rack,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/item/m56d_post,
+/obj/item/m56d_gun,
+/obj/item/tool/hand_labeler,
+/obj/item/storage/toolbox/electrical,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/almayer{
+	dir = 4;
+	icon_state = "camera"
+	},
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"cJ" = (
+/obj/machinery/power/apc/almayer{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"cK" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"cL" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/open/floor/almayer{
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/shuttle/canterbury/general)
+"cM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/shuttle/canterbury/general)
+"cN" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"cO" = (
+/obj/machinery/vending/medical,
+/obj/machinery/camera/autoname/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cP" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/surgical_tray,
+/obj/item/reagent_container/spray/cleaner{
+	name = "Surgery Cleaner";
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/obj/item/reagent_container/spray/cleaner,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"cQ" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/healthanalyzer,
+/obj/item/reagent_container/spray/cleaner,
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"cR" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/light,
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cS" = (
+/obj/machinery/iv_drip,
+/obj/machinery/power/apc/almayer{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cT" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/almayer{
+	icon_state = "sterile_green"
+	},
+/area/shuttle/canterbury/medical)
+"cU" = (
+/obj/structure/rack,
+/obj/item/flashlight,
+/obj/item/tool/extinguisher/mini,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/radio,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"cV" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"cW" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"cX" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/plasteel/medium_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/box/sentry,
+/obj/machinery/light/small,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"cY" = (
+/obj/structure/largecrate/supply/supplies/sandbags,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"db" = (
+/obj/machinery/door/airlock/almayer/maint{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"dc" = (
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/space,
+/area/shuttle/canterbury/general)
+"dd" = (
+/turf/open/floor/almayer,
+/area/shuttle/canterbury/general)
+"de" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"df" = (
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"dg" = (
+/obj/machinery/alarm,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
+"dh" = (
+/obj/machinery/firealarm,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"di" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"dj" = (
+/obj/machinery/power/apc/almayer,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"dk" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
+"dl" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/space,
+/area/shuttle/canterbury/general)
+"dm" = (
+/obj/machinery/door_control{
+	id = "aft_engine_podlock"
+	},
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/medical)
+"dn" = (
+/obj/structure/shuttle/engine/propulsion/burst,
+/turf/open/space,
+/area/shuttle/canterbury/general)
+"do" = (
+/obj/machinery/door_control{
+	id = "port_engine_podlock"
+	},
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/medical)
+"dp" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 8;
+	icon_state = "pdoor1";
+	id = "storage_podlock"
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
+"dq" = (
+/obj/machinery/door/poddoor/almayer{
+	id = "port_umbilical_inner";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"dr" = (
+/obj/machinery/door_control{
+	id = "starboard_umbilical_inner"
+	},
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/general)
+"ds" = (
+/obj/machinery/door/poddoor/almayer{
+	id = "starboard_umbilical_inner";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"dt" = (
+/obj/machinery/door_control{
+	id = "storage_podlock"
+	},
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/medical)
+"du" = (
+/obj/machinery/door/poddoor/almayer{
+	id = "starboard_umbilical_inner";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"dv" = (
+/obj/machinery/camera/autoname/almayer{
+	dir = 4;
+	icon_state = "camera"
+	},
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"dw" = (
+/obj/machinery/door_control{
+	id = "starboard_umbilical_outer"
+	},
+/turf/closed/wall/almayer/outer,
+/area/shuttle/canterbury/general)
+"dx" = (
+/obj/machinery/door_control{
+	id = "port_umbilical_outer"
+	},
+/turf/closed/wall/almayer/outer,
+/area/shuttle/canterbury/general)
+"dy" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/landmark/start/marine/squadmarine,
+/obj/docking_port/mobile/crashmode,
+/turf/open/floor/almayer{
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/shuttle/canterbury/general)
+"dz" = (
+/obj/machinery/door_control{
+	id = "starboard_engine_podlock"
+	},
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/general)
+"dA" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 8;
+	icon_state = "pdoor1";
+	id = "port_engine_podlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/canterbury/general)
+"dB" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 8;
+	icon_state = "pdoor1";
+	id = "starboard_engine_podlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/canterbury/general)
+"dC" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "port_engine_podlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/canterbury/general)
+"dD" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "starboard_engine_podlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/canterbury/general)
+"dE" = (
+/obj/machinery/door/poddoor/almayer{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "aft_engine_podlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/canterbury/general)
+"Wo" = (
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/medical)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+av
+as
+as
+as
+as
+as
+as
+ch
+ch
+ch
+ch
+ch
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+as
+av
+aG
+aG
+dx
+av
+aZ
+bi
+bu
+av
+bQ
+ca
+ci
+cr
+cD
+cP
+ch
+dc
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+as
+aw
+aF
+aN
+aV
+av
+ba
+bj
+bv
+av
+bR
+cb
+ci
+cs
+cE
+cQ
+ch
+dA
+as
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+as
+aE
+aO
+dq
+av
+av
+bb
+bk
+bw
+av
+cx
+bT
+ci
+ct
+cF
+ct
+Wo
+de
+dC
+dn
+aa
+"}
+(5,1,1) = {"
+ab
+ac
+ac
+ab
+ab
+ax
+aH
+aP
+aW
+aX
+bc
+bl
+bx
+bG
+bT
+bT
+cj
+cu
+cG
+cR
+do
+df
+dC
+dl
+aa
+"}
+(6,1,1) = {"
+ac
+ad
+ai
+an
+at
+ay
+aI
+aQ
+aX
+aX
+aX
+bm
+by
+bH
+bH
+cc
+ck
+cv
+cH
+cS
+Wo
+dg
+as
+as
+aa
+"}
+(7,1,1) = {"
+ac
+ae
+aj
+ao
+at
+az
+aI
+aR
+aX
+aX
+aX
+bn
+bz
+bI
+bU
+cd
+cl
+cw
+cO
+cT
+Wo
+dh
+dv
+dE
+dn
+"}
+(8,1,1) = {"
+ac
+af
+ak
+ap
+au
+aA
+aJ
+aS
+aA
+aA
+bd
+bo
+dy
+bJ
+bV
+ce
+Wo
+Wo
+dt
+Wo
+dm
+di
+df
+dE
+dn
+"}
+(9,1,1) = {"
+ac
+ag
+al
+aq
+at
+aB
+aK
+aQ
+aX
+aX
+aX
+bp
+bA
+bK
+bW
+cd
+cm
+cI
+cJ
+cU
+av
+dj
+df
+dE
+dn
+"}
+(10,1,1) = {"
+ac
+ah
+am
+ar
+at
+aC
+aI
+aR
+aX
+aX
+aX
+bp
+bB
+bL
+bB
+cd
+cn
+cy
+cK
+cV
+db
+dk
+as
+as
+aa
+"}
+(11,1,1) = {"
+ab
+ac
+ac
+ab
+ab
+aD
+aL
+aT
+aY
+aX
+be
+bq
+bC
+bM
+bC
+bM
+bM
+cz
+cL
+cW
+dz
+df
+dD
+dc
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+as
+dr
+ds
+du
+av
+av
+bf
+br
+bD
+bN
+bX
+bX
+co
+cA
+cM
+cW
+av
+de
+dD
+dl
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+as
+aw
+aM
+aU
+aV
+as
+bg
+bs
+bE
+bO
+bY
+cf
+cp
+cB
+cN
+cX
+as
+dB
+as
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+as
+as
+bS
+bS
+dw
+as
+bh
+bt
+bF
+bP
+bZ
+cg
+cq
+cC
+dd
+cY
+as
+dl
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+av
+as
+as
+as
+as
+as
+as
+as
+dp
+dp
+dp
+as
+aa
+aa
+aa
+aa
+"}

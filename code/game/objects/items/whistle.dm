@@ -24,7 +24,8 @@
 
 /obj/item/whistle/attack_hand(mob/user)
 	. = ..()
-
+	if(.)
+		return
 	if(user.wear_mask == src)
 		whistle_playsound(user)
 

@@ -125,3 +125,6 @@
 
 /datum/map_template/shuttle/supply
 	shuttle_id = "supply"
+
+/datum/map_template/shuttle/tgs_canterbury
+	shuttle_id = "tgs_canterbury"

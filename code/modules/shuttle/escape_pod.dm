@@ -116,6 +116,9 @@
 	popup.open()
 
 /obj/machinery/computer/shuttle/escape_pod/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/H = usr
@@ -285,7 +288,7 @@
 /obj/machinery/door/airlock/evacuation/attackby()
 	return FALSE
 /obj/machinery/door/airlock/evacuation/attack_hand()
-	return FALSE
+	return TRUE
 /obj/machinery/door/airlock/evacuation/attack_alien()
 	return FALSE //Probably a better idea that these cannot be forced open.
 /obj/machinery/door/airlock/evacuation/attack_ai()

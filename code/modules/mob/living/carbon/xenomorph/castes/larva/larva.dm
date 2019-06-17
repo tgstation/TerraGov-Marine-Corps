@@ -29,7 +29,7 @@
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	. = ..()
 
-/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM)
+/mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	return
 
 /mob/living/carbon/xenomorph/larva/pull_response(mob/puller)

@@ -8,17 +8,16 @@
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
 
-/obj/machinery/computer/overwatch
+/obj/machinery/computer/camera_advanced/overwatch
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."
 	density = FALSE
-	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "overwatch"
 	req_access = list(ACCESS_MARINE_BRIDGE)
+	networks = list("marine")
+	open_prompt = FALSE
 
 	var/state = OW_MAIN
-	var/obj/machinery/camera/cam = null
-	var/list/network = list("marine")
 	var/x_offset_s = 0
 	var/y_offset_s = 0
 	var/living_marines_sorting = FALSE
@@ -31,41 +30,49 @@
 	var/obj/selected_target //Selected target for bombarding
 //	var/console_locked = 0
 
-/obj/machinery/computer/overwatch/main
+/obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
 	name = "Main Overwatch Console"
 	desc = "State of the art machinery for general overwatch purposes."
 
-/obj/machinery/computer/overwatch/squad/alpha
+/obj/machinery/computer/camera_advanced/overwatch/alpha
 	name = "Alpha Overwatch Console"
 	squad_console = ALPHA_SQUAD
 
-/obj/machinery/computer/overwatch/squad/bravo
+/obj/machinery/computer/camera_advanced/overwatch/bravo
 	name = "Bravo Overwatch Console"
 	squad_console = BRAVO_SQUAD
 
-/obj/machinery/computer/overwatch/squad/charlie
+/obj/machinery/computer/camera_advanced/overwatch/charlie
 	name = "Charlie Overwatch Console"
 	squad_console = CHARLIE_SQUAD
 
-/obj/machinery/computer/overwatch/squad/delta
+/obj/machinery/computer/camera_advanced/overwatch/delta
 	name = "Delta Overwatch Console"
 	squad_console = DELTA_SQUAD
 
-/obj/machinery/computer/overwatch/attackby(obj/item/I, mob/user, params)
+/obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/machinery/computer/overwatch/bullet_act(var/obj/item/projectile/Proj) //Can't shoot it
+/obj/machinery/computer/camera_advanced/overwatch/bullet_act(var/obj/item/projectile/Proj) //Can't shoot it
 	return FALSE
 
-/obj/machinery/computer/overwatch/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/camera_advanced/overwatch/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/overwatch/attack_paw(var/mob/user as mob) //why monkey why
+/obj/machinery/computer/camera_advanced/overwatch/attack_paw(var/mob/user as mob) //why monkey why
 	return attack_hand(user)
 
-/obj/machinery/computer/overwatch/squad/attack_hand(mob/user)
+
+/obj/machinery/computer/camera_advanced/overwatch/CreateEye()
+	. = ..()
+	eyeobj.visible_icon = TRUE
+	eyeobj.icon = 'icons/mob/cameramob.dmi'
+	eyeobj.icon_state = "generic_camera"
+
+
+/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/user)
 	. = ..()
 	if(.)  //Checks for power outages
 		return
@@ -198,7 +205,7 @@
 	onclose(user, "squad_overwatch")
 
 
-/obj/machinery/computer/overwatch/Topic(href, href_list)
+/obj/machinery/computer/camera_advanced/overwatch/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -253,9 +260,6 @@
 			visible_message("<span class='boldnotice'>Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
 			operator = null
 			current_squad = null
-			if(cam)
-				usr.reset_perspective(null)
-			cam = null
 			state = OW_MAIN
 		if("logout_main")
 			var/mob/living/carbon/human/H = operator
@@ -264,9 +268,6 @@
 			operator = null
 			current_squad = null
 			selected_target = null
-			if(cam)
-				usr.reset_perspective(null)
-			cam = null
 			state = OW_MAIN
 		if("pick_squad")
 			if(operator == usr)
@@ -388,25 +389,14 @@
 		if("use_cam")
 			if(isAI(usr))
 				return
-			selected_target = locate(href_list["selected_target"])
 			var/atom/cam_target = locate(href_list["cam_target"])
-			var/obj/machinery/camera/new_cam = cam_target.get_camera(current_squad)
-			if(!new_cam || !new_cam.can_use())
-				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No camera view found associated with [cam_target]...</span>")
-			else if(new_cam == cam)//click the camera you're watching a second time to stop watching.
-				visible_message("<span class='boldnotice'>Stopping camera view of [cam_target].</span>")
-				cam = null
-				usr.reset_perspective(null)
-			else if(usr.client.view != world.view)
-				to_chat(usr, "<span class='warning'>You're too busy peering through binoculars.</span>")
-			else
-				visible_message("<span class='boldnotice'>Searching for [cam_target]... Camera view found and linked.</span>")
-				cam = new_cam
-				usr.reset_perspective(cam)
+			open_prompt(usr)
+			eyeobj.setLoc(get_turf(cam_target))
+			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
 
-	attack_hand(usr) //The above doesn't ever seem to work.
+	updateUsrDialog()
 
-/obj/machinery/computer/overwatch/main/attack_hand(mob/user)
+/obj/machinery/computer/camera_advanced/overwatch/main/attack_hand(mob/user)
 	. = ..()
 	if(.)  //Checks for power outages
 		return
@@ -485,38 +475,11 @@
 	onclose(user, "main_overwatch")
 
 
-/obj/machinery/computer/overwatch/check_eye(mob/user)
-	if(user.incapacitated(TRUE) || get_dist(user, src) > 1 || is_blind(user)) //user can't see - not sure why canmove is here.
-		user.unset_interaction()
-	else if(!cam || !cam.can_use()) //camera doesn't work, is no longer selected or is gone
-		user.unset_interaction()
-
-
-/obj/machinery/computer/overwatch/on_unset_interaction(mob/user)
-	. = ..()
-	cam = null
-	user.reset_perspective(null)
-
-/atom/proc/get_camera()
-	return FALSE
-
-/mob/living/carbon/human/get_camera(current_squad)
-	if(!current_squad)
-		return FALSE
-	var/obj/item/radio/headset/almayer/helm = wear_ear
-	return helm?.camera
-
-/obj/effect/overlay/temp/laser_target/get_camera()
-	return linked_cam
-
-/obj/item/squad_beacon/get_camera()
-	return beacon_cam
-
-/obj/machinery/computer/overwatch/proc/send_to_squads(txt)
+/obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)
 	for(var/datum/squad/S in squads)
 		S.message_squad(txt)
 
-/obj/machinery/computer/overwatch/proc/handle_bombard()
+/obj/machinery/computer/camera_advanced/overwatch/proc/handle_bombard()
 	if(!usr)
 		return
 	if(busy)
@@ -548,12 +511,12 @@
 	addtimer(CALLBACK(src, .send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
 	addtimer(CALLBACK(src, .do_fire_bombard, T, usr), 4.1 SECONDS)
 
-/obj/machinery/computer/overwatch/proc/do_fire_bombard(var/turf/T, var/user)
+/obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(var/turf/T, var/user)
 	visible_message("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
 	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	addtimer(CALLBACK(src, .do_land_bombard, T, user), 2.5 SECONDS)
 
-/obj/machinery/computer/overwatch/proc/do_land_bombard(var/turf/T, var/user)
+/obj/machinery/computer/camera_advanced/overwatch/proc/do_land_bombard(var/turf/T, var/user)
 	busy = FALSE
 	var/x_offset = rand(-2,2) //Little bit of randomness.
 	var/y_offset = rand(-2,2)
@@ -562,7 +525,7 @@
 		target.ceiling_debris_check(5)
 		almayer_orbital_cannon.fire_ob_cannon(target,user)
 
-/obj/machinery/computer/overwatch/proc/change_lead()
+/obj/machinery/computer/camera_advanced/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
 		return
 	if(!current_squad)
@@ -620,7 +583,7 @@
 	H.update_inv_head() //updating marine helmet leader overlays
 	H.update_inv_wear_suit()
 
-/obj/machinery/computer/overwatch/proc/mark_insubordination()
+/obj/machinery/computer/camera_advanced/overwatch/proc/mark_insubordination()
 	if(!usr || usr != operator)
 		return
 	if(!current_squad)
@@ -647,7 +610,7 @@
 						wanted_marine.sec_hud_set_security_status()
 					return
 
-/obj/machinery/computer/overwatch/proc/transfer_squad()
+/obj/machinery/computer/camera_advanced/overwatch/proc/transfer_squad()
 	if(!usr || usr != operator)
 		return
 	if(!current_squad)
@@ -732,7 +695,7 @@
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
 
-/obj/machinery/computer/overwatch/proc/handle_supplydrop()
+/obj/machinery/computer/camera_advanced/overwatch/proc/handle_supplydrop()
 	if(!usr || usr != operator)
 		return
 
@@ -786,7 +749,7 @@
 	current_squad.sbeacon.visible_message("[icon2html(current_squad.sbeacon, viewers(current_squad.sbeacon))] <span class='boldnotice'>The [current_squad.sbeacon.name] begins to beep!</span>")
 	addtimer(CALLBACK(src, .proc/fire_supplydrop, current_squad, supplies, x_offset, y_offset), 10 SECONDS)
 
-/obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/S, list/supplies, x_offset, y_offset)
+/obj/machinery/computer/camera_advanced/overwatch/proc/fire_supplydrop(datum/squad/S, list/supplies, x_offset, y_offset)
 	if(QDELETED(S.sbeacon))
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Launch aborted! Supply beacon signal lost.</span>")
 		busy = FALSE
@@ -1142,7 +1105,7 @@
 			A.give_action(H)
 
 
-/obj/machinery/computer/overwatch/proc/get_squad_by_id(id)
+/obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_by_id(id)
 	if(!squads || !length(squads))
 		return FALSE
 	var/datum/squad/S
@@ -1151,7 +1114,7 @@
 			return S
 	return FALSE
 
-/obj/machinery/computer/overwatch/proc/get_squad_info()
+/obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_info()
 	var/dat = ""
 	if(!current_squad)
 		dat += "No Squad selected!<BR>"
@@ -1197,7 +1160,7 @@
 				if(is_ground_level(M_turf?.z))
 					continue
 			if(HIDE_ON_SHIP)
-				if(is_mainship_or_low_orbit_level(M_turf?.z))
+				if(is_mainship_level(M_turf?.z))
 					continue
 
 		if(H.mind?.assigned_role)
@@ -1317,7 +1280,7 @@
 	dat += get_squad_info_ending()
 	return dat
 
-/obj/machinery/computer/overwatch/proc/get_squad_info_ending()
+/obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"
 	dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"

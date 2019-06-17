@@ -297,10 +297,13 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(user.get_inactive_held_item() != src)
-		return ..()
+		return
 	if(!cell)
-		return ..()
+		return
 	cell.updateicon()
 	user.put_in_active_hand(cell)
 	cell = null

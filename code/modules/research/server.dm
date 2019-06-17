@@ -125,6 +125,9 @@
 		return TRUE
 
 /obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (disabled)
 		return
 	if (shocked)
@@ -176,7 +179,8 @@
 	var/badmin = 0
 
 /obj/machinery/computer/rdservercontrol/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)
@@ -246,6 +250,9 @@
 	return
 
 /obj/machinery/computer/rdservercontrol/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	user.set_interaction(src)

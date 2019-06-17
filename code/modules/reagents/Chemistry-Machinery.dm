@@ -121,6 +121,9 @@
 		ui.open()
 
 /obj/machinery/chem_dispenser/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE // don't update UIs attached to this object
 
@@ -174,6 +177,9 @@
 	return src.attack_hand(user)
 
 /obj/machinery/chem_dispenser/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & BROKEN)
 		return
 	var/mob/living/carbon/human/H = user
@@ -303,6 +309,9 @@
 				source.reagents.trans_id_to(dest, reagent_id, amount)
 
 /obj/machinery/chem_master/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!ishuman(usr))
@@ -531,6 +540,9 @@
 
 
 /obj/machinery/chem_master/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & BROKEN)
 		return
 	user.set_interaction(src)
@@ -743,6 +755,9 @@
 	return FALSE
 
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	interact(user)
 
@@ -795,7 +810,8 @@
 
 
 /obj/machinery/reagentgrinder/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	switch(href_list["action"])

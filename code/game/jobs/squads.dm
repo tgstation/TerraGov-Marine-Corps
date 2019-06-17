@@ -177,15 +177,17 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	count--
 	marines_list -= H
 
-	SSdirection.stop_tracking(tracking_id, H) // covers squad transfers
 
 	if(H.assigned_squad.squad_leader == H)
 		if(H.mind.assigned_role != "Squad Leader") //a field promoted SL, not a real one
 			demote_squad_leader()
 		else
 			H.assigned_squad.squad_leader = null
-			SSdirection.clear_leader(tracking_id)
-			SSdirection.stop_tracking("marine-sl", H)
+		SSdirection.clear_leader(tracking_id)
+		SSdirection.stop_tracking("marine-sl", H)
+	else
+		SSdirection.stop_tracking(tracking_id, H)
+
 
 	H.assigned_squad = null
 
@@ -206,7 +208,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
-	SSdirection.stop_tracking(tracking_id, H)// failsafe
 	marines_list -= src
 	if(!wipe)
 		var/role = "unknown"
@@ -217,6 +218,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		squad_leader = null
 		SSdirection.clear_leader(tracking_id)
 		SSdirection.stop_tracking("marine-sl", src)
+	else
+		SSdirection.stop_tracking(tracking_id, H)
 	H.assigned_squad = null
 	return TRUE
 

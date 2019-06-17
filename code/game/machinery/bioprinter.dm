@@ -33,6 +33,9 @@
 		)
 
 /obj/machinery/bioprinter/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(working)
 		to_chat(user, "Something is already being printed...")
 		return

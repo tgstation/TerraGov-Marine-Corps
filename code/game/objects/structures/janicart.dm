@@ -104,6 +104,9 @@
 
 
 /obj/structure/janitorialcart/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	var/dat
 	if(mybag)

@@ -327,29 +327,32 @@
 	desc = "A secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
 	w_class = 3
-	max_storage_space = 8
+	max_storage_space = 10
 	spawn_type = /obj/item/explosive/mine
 	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/update_icon()
+	icon_state = initial(icon_state)
+	if(!length(contents))
+		icon_state += "_e"
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
 	spawn_type = /obj/item/explosive/mine/pmc
-	spawn_number = 5
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
 	desc = "A packet of five M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
-	icon_state = "m94"
+	icon_state = "m40"
 	w_class = 3
 	max_storage_space = 10
 	spawn_type = /obj/item/explosive/grenade/flare
 	spawn_number = 5
 
 /obj/item/storage/box/m94/update_icon()
-	if(!contents.len)
-		icon_state = "m94_e"
-	else
-		icon_state = "m94"
+	icon_state = initial(icon_state)
+	if(!length(contents))
+		icon_state += "_e"
 
 
 /obj/item/storage/box/nade_box

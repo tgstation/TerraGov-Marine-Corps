@@ -190,6 +190,9 @@
 
 
 /obj/machinery/power/smes/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 
@@ -290,8 +293,9 @@
 
 
 /obj/machinery/power/smes/Topic(href, href_list)
-	..()
-
+	. = ..()
+	if(.)
+		return
 	if (usr.stat || usr.restrained() )
 		return
 

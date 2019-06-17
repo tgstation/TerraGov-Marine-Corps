@@ -125,7 +125,8 @@
 	return
 
 /obj/machinery/bot/medbot/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	if ((href_list["power"]) && (src.allowed(usr)))

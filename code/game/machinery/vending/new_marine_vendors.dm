@@ -65,7 +65,9 @@
 
 
 /obj/machinery/marine_selector/attack_hand(mob/user)
-
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
@@ -146,6 +148,9 @@
 
 
 /obj/machinery/marine_selector/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(usr.incapacitated())

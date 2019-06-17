@@ -85,9 +85,9 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if(!check_skill_level(skill_threshold, OBJ_SKILL_MEDICAL, user) )
+	if(user.mind?.cm_skills && user.mind.cm_skills.medical < skill_threshold)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_PRACTICED, OBJ_SKILL_MEDICAL, user)
+		var/fduration = max(SKILL_TASK_AVERAGE - (user.mind.cm_skills.medical * 10), 0)
 		if(!do_after(user, fduration, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
@@ -503,7 +503,7 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/integrated
 	name = "\improper HF2 integrated health analyzer"
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
-	skill_threshold = 0
+	skill_threshold = SKILL_MEDICAL_UNTRAINED
 
 /obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."

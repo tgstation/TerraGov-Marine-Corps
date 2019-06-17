@@ -82,12 +82,20 @@
 		if("usr")
 			hsrc = mob
 		if("prefs")
-			return prefs.process_link(usr, href_list)
+			if(inprefs)
+				return
+			inprefs = TRUE
+			. = prefs.process_link(usr, href_list)
+			inprefs = FALSE
+			return
 		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 		if("chat")
 			return chatOutput.Topic(href, href_list)
 
+	switch(href_list["action"])
+		if("openLink")
+			DIRECT_OUTPUT(src, link(href_list["link"]))
 
 	if(hsrc)
 		var/datum/real_src = hsrc

@@ -15,6 +15,8 @@
 
 	//Preferences related
 	var/datum/preferences/prefs 	= null
+	var/inprefs = FALSE
+
 
 	//Mob related
 	var/list/keys_held = list() // A list of any keys held currently

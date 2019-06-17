@@ -90,6 +90,9 @@
 		reconnect()
 
 /obj/machinery/power/generator/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
 	interact(user)
 
@@ -133,7 +136,9 @@
 
 
 /obj/machinery/power/generator/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if( href_list["close"] )
 		usr << browse(null, "window=teg")
 		usr.unset_interaction()

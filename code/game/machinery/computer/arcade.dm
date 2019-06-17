@@ -50,7 +50,8 @@
 	return src.attack_hand(user)
 
 /obj/machinery/computer/arcade/attack_hand(mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a>"
@@ -75,7 +76,8 @@
 
 
 /obj/machinery/computer/arcade/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if (!src.blocked && !src.gameover)

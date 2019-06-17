@@ -5,7 +5,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD, PAIN_HUD)
+	hud_possible = list(HEALTH_HUD,STATUS_HUD, XENO_EMBRYO_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
@@ -49,7 +49,6 @@
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
@@ -206,25 +205,6 @@
 		if(armor >= 1) //Complete negation
 			return
 
-
-/mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
-	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
-	L.imp_in = M
-	L.implanted = 1
-	var/datum/limb/affected = M.get_limb("head")
-	affected.implants += L
-	L.part = affected
-
-/mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
-	for(var/L in M.contents)
-		if(istype(L, /obj/item/implant/loyalty))
-			for(var/datum/limb/O in M.limbs)
-				if(L in O.implants)
-					return 1
-	return 0
-
-
-
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
 	if(istype(w_uniform, /obj/item/clothing/under))
@@ -379,6 +359,9 @@
 
 
 /mob/living/carbon/human/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)
@@ -877,18 +860,6 @@
 	playsound(loc, song, 25, 1)
 
 
-/mob/living/carbon/human/proc/get_visible_gender()
-	if(wear_suit && wear_suit.flags_inv_hide & HIDEJUMPSUIT && ((head && head.flags_inv_hide & HIDEMASK) || wear_mask))
-		return NEUTER
-	return gender
-
-/mob/living/carbon/human/proc/increase_germ_level(n)
-	if(gloves)
-		gloves.germ_level += n
-	else
-		germ_level += n
-
-
 /mob/living/carbon/human/revive()
 	for (var/datum/limb/O in limbs)
 		if(O.limb_status & LIMB_ROBOT)
@@ -1082,59 +1053,6 @@
 	else
 		return 0
 
-/mob/living/carbon/human/proc/bloody_doodle()
-	set category = "IC"
-	set name = "Write in blood"
-	set desc = "Use blood on your hands to write a short message on the floor or a wall, murder mystery style."
-
-	if (src.stat)
-		return
-
-	if (usr != src)
-		return 0 //something is terribly wrong
-
-	if (!bloody_hands)
-		verbs -= /mob/living/carbon/human/proc/bloody_doodle
-
-	if (src.gloves)
-		to_chat(src, "<span class='warning'>Your [src.gloves] are getting in the way.</span>")
-		return
-
-	var/turf/T = src.loc
-	if (!istype(T)) //to prevent doodling out of mechs and lockers
-		to_chat(src, "<span class='warning'>You cannot reach the floor.</span>")
-		return
-
-	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
-	if (direction != "Here")
-		T = get_step(T,text2dir(direction))
-	if (!istype(T))
-		to_chat(src, "<span class='warning'>You cannot doodle there.</span>")
-		return
-
-	var/num_doodles = 0
-	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
-		num_doodles++
-	if (num_doodles > 4)
-		to_chat(src, "<span class='warning'>There is no space to write on!</span>")
-		return
-
-	var/max_length = bloody_hands * 30 //tweeter style
-
-	var/message = stripped_input(src,"Write a message. It cannot be longer than [max_length] characters.","Blood writing", "")
-
-	if (message)
-		var/used_blood_amount = round(length(message) / 30, 1)
-		bloody_hands = max(0, bloody_hands - used_blood_amount) //use up some blood
-
-		if (length(message) > max_length)
-			message += "-"
-			to_chat(src, "<span class='warning'>You ran out of blood to write with!</span>")
-
-		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
-		W.basecolor = (blood_color) ? blood_color : "#A10808"
-		W.update_icon()
-		W.message = message
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
@@ -1216,12 +1134,6 @@
 			else
 				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
 		return TRUE
-
-/mob/living/carbon/get_standard_pixel_y_offset()
-	if(lying)
-		return -6
-	else
-		return initial(pixel_y)
 
 
 /mob/living/carbon/human/update_sight()
@@ -1459,15 +1371,6 @@
 	return TRUE
 
 
-/mob/living/carbon/human/canUseTopic(atom/movable/AM)
-	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(!in_range(AM, src))
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	return TRUE
-
 /mob/living/carbon/human/take_over(mob/M)
 	. = ..()
 
@@ -1548,6 +1451,9 @@
 
 /mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
 	. = ..()
+	if(incapacitated())
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
 	if(!Adjacent(AM) && (AM.loc != src))
 		if(!proximity)
 			return TRUE

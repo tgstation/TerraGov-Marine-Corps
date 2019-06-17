@@ -80,6 +80,9 @@
 			user.unset_interaction()
 
 /obj/machinery/space_heater/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	interact(user)
 
 /obj/machinery/space_heater/interact(mob/user as mob)
@@ -117,6 +120,9 @@
 
 
 /obj/machinery/space_heater/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (usr.stat)
 		return
 	if ((in_range(src, usr) && istype(src.loc, /turf)) || issilicon(usr))

@@ -89,8 +89,9 @@
 	},
 /area/bigredv2/outside/space_port)
 "aau" = (
+/obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
+/area/shuttle/drop1/lz1)
 "aav" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -289,10 +290,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/space_port)
-"abb" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
 "abc" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
@@ -641,7 +638,7 @@
 "acd" = (
 /obj/effect/landmark/random_item/good,
 /turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
+/area/shuttle/drop1/lz1)
 "ace" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -755,9 +752,6 @@
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/telecomm)
-"acv" = (
-/turf/open/floor/plating,
-/area/shuttle/drop1/LV624)
 "acw" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -1159,12 +1153,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
-"adK" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "1"
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "adL" = (
 /obj/machinery/light{
 	dir = 4
@@ -1245,7 +1233,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeb" = (
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aec" = (
@@ -1275,7 +1263,7 @@
 /area/bigredv2/outside/telecomm)
 "aef" = (
 /obj/structure/table,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeg" = (
@@ -3164,7 +3152,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajC" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "ajD" = (
@@ -5112,7 +5100,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aoJ" = (
 /obj/structure/table/reinforced,
-/obj/item/XenoBio/Resin,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
@@ -6614,9 +6601,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/radio/intercom{
+/obj/item/radio/intercom/general/colony{
 	dir = 1;
-	frequency = 150;
 	name = "Safe-Room intercom";
 	pixel_y = -30
 	},
@@ -6644,7 +6630,7 @@
 /obj/item/storage/firstaid/o2,
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/rad,
-/obj/item/radio/marine,
+/obj/item/radio/survivor,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atg" = (
@@ -7000,8 +6986,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "auj" = (
-/obj/item/radio/intercom{
-	frequency = 150;
+/obj/item/radio/intercom/general/colony{
 	name = "Safe-Room intercom";
 	dir = 1
 	},
@@ -7873,7 +7858,6 @@
 /area/bigredv2/outside/ne)
 "awz" = (
 /obj/structure/table/holotable/wood,
-/obj/item/XenoBio/Chitin,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "awA" = (
@@ -8047,7 +8031,7 @@
 /area/bigredv2/outside/dorms)
 "axb" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "axd" = (
@@ -11064,7 +11048,7 @@
 /area/bigredv2/outside/dorms)
 "aFT" = (
 /obj/structure/table/woodentable,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aFU" = (
@@ -17634,7 +17618,7 @@
 /area/bigredv2/outside/chapel)
 "ban" = (
 /obj/structure/table/woodentable,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -18205,10 +18189,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcB" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
+/obj/item/radio/intercom/general/colony{
 	name = "General Listening Channel";
 	pixel_y = -30
 	},
@@ -20073,8 +20054,9 @@
 	},
 /area/bigredv2/outside/w)
 "biI" = (
+/obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "biJ" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -20225,7 +20207,7 @@
 "bjo" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "bjp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2{
@@ -20715,7 +20697,7 @@
 /area/bigredv2/outside/cargo)
 "blf" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blg" = (
@@ -21126,7 +21108,7 @@
 "bmM" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "bmO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -21293,7 +21275,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bno" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bnp" = (
@@ -21531,9 +21513,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
-"boh" = (
-/turf/open/floor/plating,
-/area/shuttle/drop2/LV624)
 "boi" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -22668,12 +22647,6 @@
 "brE" = (
 /turf/open/floor/greengrid,
 /area/bigredv2/outside/se)
-"brF" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "2"
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "brG" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -24005,7 +23978,6 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxJ" = (
-/obj/machinery/r_n_d/organic_analyzer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -24141,7 +24113,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byn" = (
-/obj/machinery/r_n_d/bioprinter,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -25200,8 +25171,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCg" = (
 /obj/structure/table,
-/obj/item/XenoBio/Blood,
-/obj/item/XenoBio/Blood,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
@@ -25209,8 +25178,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCh" = (
 /obj/structure/table,
-/obj/item/XenoBio/Blood,
-/obj/item/XenoBio/Blood,
 /obj/item/paper,
 /turf/open/floor{
 	tag = "icon-darkredcorners2";
@@ -25520,7 +25487,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDj" = (
-/obj/machinery/computer/NTresearch,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDk" = (
@@ -32107,22 +32073,22 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
+aao
+aao
+aao
 aao
 aao
 aao
 aaF
 aao
 aao
-aau
-aau
-aau
-aau
 aao
 aao
-adK
+aao
+aao
+aao
+aao
+aao
 aeh
 aaf
 aaf
@@ -32323,23 +32289,23 @@ aao
 aao
 aaF
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aaF
 aao
-aau
+aao
 aei
 aaf
 aaf
@@ -32540,23 +32506,23 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 adx
-aau
+aao
 aej
 aaf
 aaf
@@ -32754,26 +32720,26 @@ aae
 aaf
 aal
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aek
 aaf
 aaf
@@ -32971,24 +32937,24 @@ aae
 aaf
 aai
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 acd
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aeh
@@ -33188,24 +33154,24 @@ aae
 aaf
 aaj
 aao
+aao
+aao
+aao
+adx
+aao
+aao
+aao
+aao
+aao
 aau
-aau
-aau
-abb
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aei
@@ -33405,24 +33371,24 @@ aae
 aaf
 aak
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 acd
-aau
-aau
+aao
+aao
 aao
 aao
 aej
@@ -33509,22 +33475,22 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
+bie
+bie
+bie
 bie
 bie
 bje
 bie
 bie
 bie
-biI
-biI
-biI
-biI
 bie
 bie
-brF
+bie
+bie
+bie
+bie
+bie
 bsb
 bpv
 bpv
@@ -33622,26 +33588,26 @@ aae
 aaf
 aal
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-abb
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+adx
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aek
 aaf
 aaf
@@ -33725,23 +33691,23 @@ bie
 bie
 bje
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
 bie
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bjo
-biI
+bie
 bje
 bie
-biI
+bie
 bsc
 bpv
 bpv
@@ -33842,23 +33808,23 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
 aao
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aeh
 aaf
 aaf
@@ -33942,23 +33908,23 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
 bie
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bsd
 bpv
 bpv
@@ -34059,23 +34025,23 @@ aao
 aao
 aaF
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aaF
 aao
-aau
+aao
 aei
 aaf
 aaf
@@ -34156,26 +34122,26 @@ aSB
 aVG
 bhx
 bie
-biI
-biI
+bie
+bie
 bjo
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bse
 bpv
 bpv
@@ -34277,19 +34243,19 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
+aao
+aao
+aao
 aao
 aao
 aao
 aaF
 aao
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
 aao
 aao
 aao
@@ -34373,24 +34339,24 @@ sBV
 aVG
 bhu
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bmM
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsb
@@ -34590,24 +34556,24 @@ aSB
 aVG
 bhy
 bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsc
@@ -34807,24 +34773,24 @@ aSB
 aVG
 bhw
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsd
@@ -35024,26 +34990,26 @@ aWk
 aVG
 bhz
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bse
 bpv
 bpv
@@ -35244,21 +35210,21 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bjo
 bsb
@@ -35461,23 +35427,23 @@ bie
 bie
 bje
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
 bie
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bje
 bie
-biI
+bie
 bsc
 bpv
 bpv
@@ -35679,19 +35645,19 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
+bie
+bie
+bie
 bie
 bie
 bje
 bie
 bie
 bie
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
 bie
 bie
 bie

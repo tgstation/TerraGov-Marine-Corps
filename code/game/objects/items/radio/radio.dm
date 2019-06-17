@@ -116,6 +116,8 @@
 		return
 
 	else if (href_list["freq"])
+		if(freqlock)
+			return
 		var/new_frequency = (frequency + text2num(href_list["freq"]))
 		set_frequency(new_frequency)
 
@@ -152,7 +154,7 @@
 
 /obj/item/radio/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language)
 	if(!spans)
-		spans = M.get_spans()
+		spans = list(M.speech_span)
 	if(!language)
 		language = M.get_default_language()
 	INVOKE_ASYNC(src, .proc/talk_into_impl, M, message, channel, spans.Copy(), language)
@@ -297,11 +299,9 @@
 
 
 /obj/item/radio/off
-	listening = 0
+	listening = FALSE
 
 
-
-//MARINE RADIO
-
-/obj/item/radio/marine
-	frequency = FREQ_COMMON
+/obj/item/radio/survivor
+	freqlock = TRUE
+	frequency = FREQ_CIV_GENERAL

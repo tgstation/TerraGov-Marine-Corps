@@ -83,6 +83,9 @@
 	src.attack_hand()
 
 /obj/machinery/computer/teleporter/attack_hand()
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -322,6 +325,9 @@
 	src.attack_hand()
 
 /obj/machinery/teleport/station/attack_hand()
+	. = ..()
+	if(.)
+		return
 	if(engaged)
 		src.disengage()
 	else

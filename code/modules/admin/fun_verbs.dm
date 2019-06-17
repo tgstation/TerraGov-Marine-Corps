@@ -519,43 +519,6 @@
 	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
 
 
-/datum/admins/proc/force_dropship()
-	set category = "Fun"
-	set name = "Force Dropship"
-	set desc = "Force a dropship to launch"
-
-	var/tag = input("Which dropship should be force launched?", "Select a dropship:") as null|anything in list("Dropship 1", "Dropship 2")
-	if(!tag)
-		return
-
-	var/crash = FALSE
-	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
-		if("Yes")
-			crash = TRUE
-		if("No")
-			crash = FALSE
-		else
-			return
-
-	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[CONFIG_GET(string/ship_name) + " " + tag]
-
-	if(!dropship)
-		return
-
-	if(crash && dropship.location != 1)
-		switch(alert("Error: Shuttle is on the ground. Proceed with standard launch anyways?", , "Yes", "No"))
-			if("Yes")
-				dropship.process_state = WAIT_LAUNCH
-			if("No")
-				return
-	else if(crash)
-		dropship.process_state = FORCE_CRASH
-	else
-		dropship.process_state = WAIT_LAUNCH
-
-	log_admin("[key_name(usr)] force launched [tag][crash ? " making it crash" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] force launched [tag][crash ? " making it crash" : ""].")
-
 /datum/admins/proc/object_sound(atom/O as obj)
 	set category = null
 	set name = "Object Sound"
@@ -676,10 +639,30 @@
 	browser.open(FALSE)
 
 
-/datum/admins/proc/create_outfit()
+/datum/admins/proc/outfit_manager()
 	set category = "Fun"
-	set name = "Create Custom Outfit"
+	set name = "Outfit Manager"
 
+	if(!check_rights(R_FUN))
+		return
+
+	var/dat = "<ul>"
+	for(var/datum/outfit/O in GLOB.custom_outfits)
+		var/vv = FALSE
+		var/datum/outfit/varedit/VO = O
+		if(istype(VO))
+			vv = length(VO.vv_values)
+		dat += "<li>[O.name][vv ? "(VV)" : ""]</li> <a href='?src=holder;[HrefToken()];save_outfit=1;chosen_outfit=[REF(O)]'>Save</a> <a href='?src=holder;[HrefToken()];delete_outfit=1;chosen_outfit=[REF(O)]'>Delete</a>"
+	dat += "</ul>"
+	dat += "<a href='?_src_=holder;[HrefToken()];create_outfit_menu=1'>Create</a><br>"
+	dat += "<a href='?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a>"
+
+	var/datum/browser/browser = new(usr, "outfitmanager", "<div align='center'>Outfit Manager</div>")
+	browser.set_content(dat)
+	browser.open(FALSE)
+
+
+/datum/admins/proc/create_outfit()
 	if(!check_rights(R_FUN))
 		return
 
@@ -687,6 +670,7 @@
 	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
 	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
 	[HrefTokenFormField()]
+	<input type="hidden" name="create_outfit_finalize" value="1">
 	<table>
 		<tr>
 			<th>Name:</th>
@@ -815,7 +799,7 @@
 	var/ecolor = "#[num2hex(H.r_eyes)][num2hex(H.g_eyes)][num2hex(H.b_eyes)]"
 	var/bcolor = "#[num2hex(H.r_skin)][num2hex(H.g_skin)][num2hex(H.b_skin)]"
 
-	var/dat
+	var/dat = "<br>"
 
 	dat += "Hair style: [H.h_style] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=hairstyle;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Hair color: <font face='fixedsys' size='3' color='[hcolor]'><table style='display:inline;' bgcolor='[hcolor]'><tr><td>_.</td></tr></table></font> <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=haircolor;mob=[REF(H)]'>Edit</a><br>"
@@ -828,6 +812,7 @@
 	dat += "<br>"
 	dat += "Gender: [H.gender] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=gender;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Ethnicity: [H.ethnicity] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=ethnicity;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Species: [H.species] <a href='?src=[REF(usr.client.holder)];[HrefToken()];appearance=species;mob=[REF(H)]'>Edit</a><br>"
 
 	var/datum/browser/browser = new(usr, "edit_appearance_[key_name(H)]", "<div align='center'>Edit Appearance [key_name(H)]</div>")
 	browser.set_content(dat)
@@ -1019,3 +1004,77 @@
 
 	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
+
+
+	
+/datum/admins/proc/force_dropship()
+	set category = "Fun"
+	set name = "Force Dropship"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!length(SSshuttle.dropships))
+		return
+
+	var/obj/docking_port/mobile/marine_dropship/D = SSshuttle.dropships[1]
+
+	if(!istype(D))
+		return
+
+	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Active Shuttle", "Yes", "No") != "Yes")
+		return
+
+	var/instant = FALSE
+
+	if(alert("Move Shuttle instantly??", "Instant Move", "Yes", "No") == "Yes")
+		instant = TRUE
+
+	var/list/possible_destinations = list("lz1", "lz2", "alamo", "normandy")
+	var/list/validdocks = list()
+
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(!possible_destinations.Find(S.id))
+			continue
+		if(!D.check_dock(S, silent=TRUE))
+			continue
+		validdocks += S.name
+
+	if(!length(validdocks))
+		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
+		return
+
+	var/dock = input("Choose the destination.", "Choose Destination") as null|anything in validdocks
+
+	var/obj/docking_port/stationary/target
+
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(S.name != dock)
+			continue
+		target = S
+
+	if(!target)
+		return
+
+	SSshuttle.moveShuttleToDock(D.id, target, !instant)
+
+	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
+
+
+
+/datum/admins/proc/play_cinematic()
+	set category = "Fun"
+	set name = "Play Cinematic"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/datum/cinematic/choice = input(usr, "Choose a cinematic to play.", "Play Cinematic") as anything in subtypesof(/datum/cinematic)
+	if(!choice)
+		return
+
+	Cinematic(initial(choice.id), world)
+
+	log_admin("[key_name(usr)] played the [choice] cinematic.")
+	message_admins("[ADMIN_TPMONTY(usr)] played the [choice] cinematic.")

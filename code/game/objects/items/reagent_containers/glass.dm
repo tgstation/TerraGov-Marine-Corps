@@ -147,7 +147,9 @@
 	update_icon()
 
 /obj/item/reagent_container/glass/beaker/attack_hand()
-	..()
+	. = ..()
+	if(.)
+		return
 	update_icon()
 
 /obj/item/reagent_container/glass/beaker/update_icon()

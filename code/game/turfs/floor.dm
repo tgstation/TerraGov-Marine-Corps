@@ -409,7 +409,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		if(is_wood_floor())
 			to_chat(user, "<span class='warning'>You forcefully pry off the planks, destroying them in the process.</span>")
 		else
-			to_chat(user, "<span class='warning'>You remove the [floor_tile.name].</span>")
+			to_chat(user, "<span class='warning'>You remove the [floor_tile].</span>")
 			new floor_tile.type(src)
 
 		make_plating()

@@ -57,7 +57,8 @@
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
 /obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if (src.z > 6)
 		to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
@@ -210,7 +211,8 @@
 I can't be bothered to look more of the actual code outside of switch but that probably needs revising too.
 What a mess.*/
 /obj/machinery/computer/secure_data/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if (!( GLOB.datacore.general.Find(active1) ))
 		active1 = null

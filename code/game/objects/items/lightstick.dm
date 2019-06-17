@@ -26,6 +26,8 @@
 	//Removing from turf
 /obj/item/lightstick/attack_hand(mob/user)
 	. = ..()
+	if(.)
+		return
 	if(!anchored)//If planted
 		return
 

@@ -138,10 +138,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return
 
 
-
-/mob/living/proc/revive()
-	rejuvenate()
-
 /mob/living/proc/on_revive()
 	GLOB.alive_mob_list += src
 	GLOB.dead_mob_list -= src
@@ -156,7 +152,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	GLOB.alive_xeno_list += src
 	GLOB.dead_xeno_list -= src
 
-/mob/living/proc/rejuvenate()
+/mob/living/proc/revive()
 
 	// shut down various types of badness
 	setToxLoss(0)
@@ -183,6 +179,15 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	// fix all of our organs
 	restore_all_organs()
 
+	//remove larva
+	var/obj/item/alien_embryo/A = locate() in src
+	var/mob/living/carbon/xenomorph/larva/L = locate() in src //the larva was fully grown, ready to burst.
+	if(A)
+		qdel(A)
+	if(L)
+		qdel(L)
+	DISABLE_BITFIELD(status_flags, XENO_HOST)
+
 	// remove the character from the list of the dead
 	if(stat == DEAD)
 		on_revive()
@@ -201,8 +206,9 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	med_hud_set_health()
 	handle_regular_hud_updates()
 	reload_fullscreens()
+	hud_used?.show_hud(hud_used.hud_version)
 
-/mob/living/carbon/rejuvenate()
+/mob/living/carbon/revive()
 	nutrition = 400
 	setHalLoss(0)
 	setTraumatic_Shock(0)
@@ -211,14 +217,14 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	disabilities = 0
 	return ..()
 
-/mob/living/carbon/human/rejuvenate()
+/mob/living/carbon/human/revive()
 	restore_blood() //restore all of a human's blood
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
 	chestburst = 0
 	return ..()
 
-/mob/living/carbon/xenomorph/rejuvenate()
+/mob/living/carbon/xenomorph/revive()
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
 	slowdown = 0

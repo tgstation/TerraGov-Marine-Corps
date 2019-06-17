@@ -40,8 +40,6 @@
 				continue
 			I.loc = src
 
-/obj/structure/closet/alter_health()
-	return get_turf(src)
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)
@@ -290,6 +288,9 @@
 	return attack_hand(user)
 
 /obj/structure/closet/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	return toggle(user)
 
 /obj/structure/closet/verb/verb_toggleopen()
@@ -323,3 +324,9 @@
 		density = FALSE
 		welded = FALSE
 		update_icon()
+
+
+/obj/structure/closet/contents_explosion(severity, target)
+	for(var/i in contents)
+		var/atom/A = i
+		A.ex_act(severity, target)

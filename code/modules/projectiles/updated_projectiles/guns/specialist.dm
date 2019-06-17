@@ -771,7 +771,7 @@
 
 	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
 
-	if(!current_mag.current_rounds)
+	if(current_mag && !current_mag.current_rounds)
 		current_mag.loc = get_turf(src)
 		current_mag.update_icon()
 		current_mag = null

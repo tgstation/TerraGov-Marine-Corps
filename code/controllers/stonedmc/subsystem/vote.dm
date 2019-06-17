@@ -261,6 +261,9 @@ SUBSYSTEM_DEF(vote)
 
 
 /datum/controller/subsystem/vote/Topic(href, href_list[], hsrc)
+	. = ..()
+	if(.)
+		return
 	if(!usr || !usr.client)
 		return
 

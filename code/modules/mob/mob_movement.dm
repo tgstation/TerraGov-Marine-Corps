@@ -47,14 +47,16 @@
 
 
 /client/proc/Move_object(direct)
-	if(mob && mob.control_object)
-		if(mob.control_object.density)
-			step(mob.control_object,direct)
-			if(!mob.control_object)	return
-			mob.control_object.setDir(direct)
-		else
-			mob.control_object.loc = get_step(mob.control_object,direct)
-	return
+	if(!mob?.control_object)
+		return
+
+	if(mob.control_object.density)
+		step(mob.control_object, direct)
+		if(!mob.control_object)
+			return
+		mob.control_object.setDir(direct)
+	else
+		mob.control_object.forceMove(get_step(mob.control_object, direct))
 
 
 /client/Move(n, direct)
@@ -72,6 +74,9 @@
 
 	if(mob.notransform)
 		return FALSE	//This is sota the goto stop mobs from moving var
+
+	if(mob.control_object)
+		return Move_object(direct)
 
 	if(!isliving(mob))
 		return mob.Move(n, direct)

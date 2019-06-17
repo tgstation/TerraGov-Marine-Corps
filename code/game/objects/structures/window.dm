@@ -141,6 +141,9 @@
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
 /obj/structure/window/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(user.a_intent == INTENT_HARM)
 
 		if(istype(user,/mob/living/carbon/human))
@@ -619,6 +622,7 @@
 		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(src,direction) )
 			W.spawn_shutters(turn(direction,180))
 	var/obj/machinery/door/poddoor/shutters/almayer/pressure/P = new(get_turf(src))
+	P.density = TRUE
 	switch(junction)
 		if(4,5,8,9,12)
 			P.setDir(SOUTH)

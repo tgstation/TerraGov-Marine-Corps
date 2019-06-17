@@ -142,6 +142,8 @@
 
 /obj/item/stack/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(usr.incapacitated() || usr.get_active_held_item() != src)
 		return
 	if(href_list["sublist"] && !href_list["make"])

@@ -136,7 +136,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/xmas/able_to_fire(mob/living/user)
 	var/turf/current_turf = get_turf(user)
-	if(is_mainship_or_low_orbit_level(current_turf.z))
+	if(is_mainship_level(current_turf.z))
 		click_empty(user)
 		to_chat(user, "<span class='warning'>You can't fire that here!</span>")
 		return FALSE

@@ -33,6 +33,9 @@
 	return
 
 /obj/machinery/fuelcell_recycler/attack_hand(mob/M)
+	. = ..()
+	if(.)
+		return
 	if(cell_left == null && cell_right == null)
 		to_chat(M, "<span class='notice'>The recycler is empty.</span>")
 		return

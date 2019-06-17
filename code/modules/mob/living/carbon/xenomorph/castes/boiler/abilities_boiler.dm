@@ -53,15 +53,6 @@
 	return ..()
 
 // ***************************************
-// *********** Super strong acid
-// ***************************************
-
-/datum/action/xeno_action/activable/corrosive_acid/boiler
-	name = "Corrosive Acid"
-	plasma_cost = 200
-	acid_type = /obj/effect/xenomorph/acid/strong
-
-// ***************************************
 // *********** Gas cloud bombs
 // ***************************************
 /datum/action/xeno_action/activable/bombard
@@ -97,12 +88,21 @@
 	X.visible_message("<span class='notice'>\The [X] digs itself into the ground!</span>", \
 		"<span class='notice'>You dig yourself into place! If you move, you must wait again to fire.</span>", null, 5)
 	X.set_bombard_pointer()
+	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.on_ranged_attack)
+
 
 /datum/action/xeno_action/activable/bombard/on_deactivation()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.selected_ability == src)
 		X.reset_bombard_pointer()
 		to_chat(X, "<span class='notice'>You relax your stance.</span>")
+	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
+
+
+/datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+    if(can_use_ability(A))
+        use_ability(A)
+
 
 /mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
 	. = ..()

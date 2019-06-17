@@ -446,7 +446,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 
 /obj/machinery/computer/orbital_cannon_console/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -496,7 +497,8 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 
 /obj/machinery/computer/orbital_cannon_console/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["load_tray"])

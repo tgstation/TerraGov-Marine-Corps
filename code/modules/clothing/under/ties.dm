@@ -303,7 +303,7 @@
 			unholster(user)
 		return
 
-	..(user)
+	return ..()
 
 /obj/item/clothing/tie/holster/attackby(obj/item/I, mob/user, params)
 	holster(I, user)

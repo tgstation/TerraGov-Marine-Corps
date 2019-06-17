@@ -378,6 +378,9 @@
 	return 1
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (!href_list["scanreport"])
 		return
 	if(!hasHUD(usr,"medical"))
@@ -398,6 +401,9 @@
 		break
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
@@ -471,10 +477,10 @@
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr == occupant)
-		return 0 // don't update UIs attached to this object
-
-	if(..())
 		return 0 // don't update UIs attached to this object
 
 	if(href_list["switchOn"])
