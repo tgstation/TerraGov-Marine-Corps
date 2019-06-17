@@ -63,7 +63,7 @@
 /area/shuttle/big_ert)
 "an" = (
 /obj/structure/table/almayer,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -320,7 +320,7 @@
 /area/shuttle/big_ert)
 "aS" = (
 /obj/structure/table/almayer,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/edge2{
 	dir = 6
 	},
@@ -345,7 +345,7 @@
 /area/shuttle/big_ert)
 "aV" = (
 /obj/machinery/vending/engivend,
-/obj/item/device/radio/intercom/general{
+/obj/item/radio/intercom/general{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -392,7 +392,7 @@
 "ba" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"
@@ -1210,9 +1210,9 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
 /turf/open/floor/almayer{
 	icon_state = "plate";
 	tag = "icon-sterile"

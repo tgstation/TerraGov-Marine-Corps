@@ -24,7 +24,7 @@
 /area/shuttle/canterbury/cic)
 "af" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/overwatch/squad/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/alpha,
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/cic)
 "ag" = (
