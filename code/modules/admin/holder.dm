@@ -122,7 +122,7 @@
 		A = GLOB.admin_datums[ckey]
 		if(!A)
 			log_admin_private("[key_name(src)] is trying to re-admin but they have no de-admin entry.")
-			message_admins("[ADMIN_TPMONTY(usr)]is trying to re-admin but they have no de-admin entry.")
+			message_admins("[ADMIN_TPMONTY(usr)] is trying to re-admin but they have no de-admin entry.")
 			return
 
 	A.associate(src)
@@ -504,21 +504,21 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	return TRUE
 
 
-/proc/message_admins(var/msg)
+/proc/message_admins(msg)
 	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, msg)
 
 
-/proc/message_staff(var/msg)
+/proc/message_staff(msg)
 	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
 			to_chat(C, msg)
 
 
-/proc/msg_admin_attack(var/msg)
+/proc/msg_admin_attack(msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
@@ -527,7 +527,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			to_chat(C, msg)
 
 
-/proc/msg_admin_ff(var/msg)
+/proc/msg_admin_ff(msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
@@ -631,3 +631,31 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	if(!user.client.ai_interact)
 		return FALSE
 	return TRUE
+
+
+/datum/admins/proc/apicker(text, title, list/targets)
+	if(!check_rights(NONE))
+		return
+
+	var/atom/chosen
+	var/choice = input(text, title) as null|anything in targets
+
+	switch(choice)
+		if(APICKER_CLIENT)
+			var/client/C = input("Please, select a key.", title) as null|anything in sortKey(GLOB.clients)
+			chosen = C?.mob
+		if(APICKER_MOB)
+			chosen = input("Please, select a mob.", title) as null|anything in sortNames(GLOB.mob_list)
+		if(APICKER_LIVING)
+			chosen = input("Please, select a living mob.", title) as null|anything in sortNames(GLOB.mob_living_list)
+		if(APICKER_AREA)
+			chosen = input("Please, select an area.", title) as null|anything in GLOB.sorted_areas
+		if(APICKER_TURF)
+			chosen = input("Please, select a turf.", title) as null|turf in world
+		if(APICKER_COORDS)
+			var/X = input("X coordinate.", title) as null|num
+			var/Y = input("Y coordinate.", title) as null|num
+			var/Z = input("Z coordinate.", title) as null|num
+			chosen = locate(X, Y, Z)
+
+	return chosen
