@@ -111,6 +111,7 @@
 #include "code\_onclick\adjacent.dm"
 #include "code\_onclick\ai.dm"
 #include "code\_onclick\click.dm"
+#include "code\_onclick\double_click.dm"
 #include "code\_onclick\drag_drop.dm"
 #include "code\_onclick\human.dm"
 #include "code\_onclick\item_attack.dm"
