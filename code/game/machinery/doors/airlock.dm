@@ -314,9 +314,13 @@
 	M.forceMove(loc)
 
 /obj/machinery/door/airlock/attack_hand(mob/user)
-	if(!issilicon(user) && isElectrified() && shock(user, 100))
+	if(isElectrified() && !issilicon(user))
+		shock(user, 100)
+	. = ..()
+	if(.)
 		return
-	return ..()
+
+
 
 /obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
 	if(!nowindow)
@@ -516,7 +520,6 @@
 
 /obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
 	if(!issilicon(user) && isElectrified())
 		if(istype(I, /obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/L = I
@@ -525,8 +528,6 @@
 
 	else if(istype(I, /obj/item/assembly/signaler))
 		return attack_hand(user)
-
-
 	return TRUE
 
 
