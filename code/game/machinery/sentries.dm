@@ -925,7 +925,7 @@
 		return
 
 	if(!check_power(2))
-	 return
+		return
 
 	var/target_dir = get_dir(src, targloc)
 	if( ( target_dir & turn(dir, 180) ) && !CHECK_BITFIELD(turret_flags, TURRET_RADIAL))

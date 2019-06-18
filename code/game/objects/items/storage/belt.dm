@@ -114,8 +114,8 @@
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/reagent_container/hypospray,
-	    /obj/item/bodybag,
-	    /obj/item/defibrillator,
+		/obj/item/bodybag,
+		/obj/item/defibrillator,
 		/obj/item/roller)
 
 /obj/item/storage/belt/medical/Initialize()

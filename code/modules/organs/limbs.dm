@@ -1125,7 +1125,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /*
 /datum/limb/head/get_icon(var/icon/race_icon, var/icon/deform_icon)
 	if (!owner)
-	 return ..()
+		return ..()
 	var/g = "m"
 	if(owner.gender == FEMALE)	g = "f"
 	if (limb_status & LIMB_MUTATED)
