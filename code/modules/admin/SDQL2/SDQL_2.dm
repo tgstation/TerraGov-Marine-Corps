@@ -159,6 +159,7 @@
 	SELECT = FORCE_NULLS, (D)SKIP_NULLS
 	PRIORITY = HIGH, (D) NORMAL
 	AUTOGC = (D) AUTOGC, KEEP_ALIVE
+	SEQUENTIAL = TRUE - The queries in this batch will be executed sequentially one by one not in parallel
 
 	Example: USING PROCCALL = BLOCKING, SELECT = FORCE_NULLS, PRIORITY = HIGH SELECT /mob FROM world WHERE z == 1
 
@@ -172,13 +173,14 @@
 #define SDQL2_STATE_SWITCHING 5
 #define SDQL2_STATE_HALTING 6
 
-#define SDQL2_VALID_OPTION_TYPES list("proccall", "select", "priority", "autogc")
-#define SDQL2_VALID_OPTION_VALUES list("async", "blocking", "force_nulls", "skip_nulls", "high", "normal", "keep_alive")
+#define SDQL2_VALID_OPTION_TYPES list("proccall", "select", "priority", "autogc" , "sequential")
+#define SDQL2_VALID_OPTION_VALUES list("async", "blocking", "force_nulls", "skip_nulls", "high", "normal", "keep_alive" , "true")
 
 #define SDQL2_OPTION_SELECT_OUTPUT_SKIP_NULLS			(1<<0)
 #define SDQL2_OPTION_BLOCKING_CALLS						(1<<1)
 #define SDQL2_OPTION_HIGH_PRIORITY						(1<<2)		//High priority SDQL query, allow using almost all of the tick.
 #define SDQL2_OPTION_DO_NOT_AUTOGC						(1<<3)
+#define SDQL2_OPTION_SEQUENTIAL							(1<<4)
 
 #define SDQL2_OPTIONS_DEFAULT		(SDQL2_OPTION_SELECT_OUTPUT_SKIP_NULLS)
 
@@ -216,6 +218,7 @@
 	NOTICE(query_log)
 
 	var/start_time_total = REALTIMEOFDAY
+	var/sequential = FALSE
 
 	if(!irc && lowertext(query_text) == "file")
 		if(usr.client.holder)
@@ -235,18 +238,35 @@
 	if(!length(querys))
 		return
 	var/list/datum/SDQL2_query/running = list()
+	var/list/datum/SDQL2_query/waiting_queue = list() //Sequential queries queue.
+	
 	for(var/list/query_tree in querys)
 		var/datum/SDQL2_query/query = new /datum/SDQL2_query(query_tree)
 		if(QDELETED(query))
 			continue
 		if(usr)
 			query.show_next_to_key = usr.ckey
+		waiting_queue += query
+		if(query.options & SDQL2_OPTION_SEQUENTIAL)
+			sequential = TRUE
+
+	if(sequential) //Start first one
+		var/datum/SDQL2_query/query = popleft(waiting_queue)
 		running += query
 		var/msg = "Starting query #[query.id] - [query.get_query_text()]."
 		if(usr)
 			to_chat(usr, "<span class='admin'>[msg]</span>")
 		log_admin(msg)
 		query.ARun()
+	else //Start all
+		for(var/datum/SDQL2_query/query in waiting_queue)
+			running += query
+			var/msg = "Starting query #[query.id] - [query.get_query_text()]."
+			if(usr)
+				to_chat(usr, "<span class='admin'>[msg]</span>")
+			log_admin(msg)
+			query.ARun()
+	
 	var/finished = FALSE
 	var/objs_all = 0
 	var/objs_eligible = 0
@@ -263,10 +283,10 @@
 				continue
 			else if(query.state != SDQL2_STATE_IDLE)
 				finished = FALSE
-			else if(query.state == SDQL2_STATE_ERROR)
-				if(usr)
-					to_chat(usr, "<span class='admin'>SDQL query [query.get_query_text()] errored. It will NOT be automatically garbage collected. Please remove manually.</span>")
-				running -= query
+				if(query.state == SDQL2_STATE_ERROR)
+					if(usr)
+						to_chat(usr, "<span class='admin'>SDQL query [query.get_query_text()] errored. It will NOT be automatically garbage collected. Please remove manually.</span>")
+					running -= query
 			else
 				if(query.finished)
 					objs_all += islist(query.obj_count_all)? length(query.obj_count_all) : query.obj_count_all
@@ -277,6 +297,15 @@
 					running -= query
 					if(!CHECK_BITFIELD(query.options, SDQL2_OPTION_DO_NOT_AUTOGC))
 						QDEL_IN(query, 50)
+					if(sequential && length(waiting_queue))
+						finished = FALSE
+						var/datum/SDQL2_query/next_query = popleft(waiting_queue)
+						running += next_query
+						var/msg = "Starting query #[next_query.id] - [next_query.get_query_text()]."
+						if(usr)
+							to_chat(usr, "<span class='admin'>[msg]</span>")
+						log_admin(msg)
+						next_query.ARun()
 				else
 					if(usr)
 						to_chat(usr, "<span class='admin'>SDQL query [query.get_query_text()] was halted. It will NOT be automatically garbage collected. Please remove manually.</span>")
@@ -481,7 +510,10 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 			switch(value)
 				if("keep_alive")
 					ENABLE_BITFIELD(options, SDQL2_OPTION_DO_NOT_AUTOGC)
-
+		if("sequential")
+			switch(value)
+				if("true")
+					ENABLE_BITFIELD(options,SDQL2_OPTION_SEQUENTIAL)
 
 /datum/SDQL2_query/proc/ARun()
 	INVOKE_ASYNC(src, .proc/Run)
@@ -612,7 +644,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	if(type == "*")
 		for(var/i in location)
 			var/datum/d = i
-			if(!isnull(d) && (d.can_vv_get() || superuser))
+			if(d.can_vv_get() || superuser)
 				out += d
 			SDQL2_TICK_CHECK
 			SDQL2_HALT_CHECK
