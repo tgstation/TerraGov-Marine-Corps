@@ -710,8 +710,16 @@
 		return FALSE
 	return TRUE
 
+GLOBAL_VAR_INIT(los_switch, 0)
 
 /atom/movable/proc/line_of_sight(atom/target, view_dist = world.view)
+	if(GLOB.los_switch++ % 2)
+		line_of_sight_one(target, view_dist)
+	else
+		line_of_sight_two(target, view_dist)
+
+
+/atom/movable/proc/line_of_sight_one(atom/target, view_dist = world.view)
 	if(!isturf(loc) || QDELETED(target))
 		return FALSE
 
@@ -753,8 +761,70 @@
 				if(CHECK_BITFIELD(dir, reverse_direction(stuff_in_turf.dir)))
 					return FALSE //Doesn't block this tile, but it does block the next, and this is not the last pass.
 
-	turf_to_check = turf_list[length(turf_list)] //Last turf, inverse logic than the first.
+	turf_to_check = turf_list[length(turf_list)] //Last turf, inverse logic from the first.
 	for(var/obj/stuff_in_turf in turf_to_check)
+		if(!stuff_in_turf.opacity)
+			continue //Transparent, we can see through it.
+		if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+			continue //Opaque and not on border. Doesn't block the last tile.
+		if(CHECK_BITFIELD(dir, stuff_in_turf.dir))
+			return FALSE //Same direction and opaque, blocks our view.
+
+	return TRUE
+
+
+/atom/movable/proc/line_of_sight_two(atom/target, view_dist = world.view)
+	if(!isturf(loc) || QDELETED(target))
+		return FALSE
+
+	if(z != target.z)
+		return FALSE
+
+	var/total_distance = get_dist(src, target)
+
+	if(total_distance > view_dist)
+		return FALSE
+	
+	switch(total_distance)
+		if(-1)
+			if(target == src) //We can see ourselves alright.
+				return TRUE
+			else //Standard get_dist() error condition.
+				return FALSE
+		if(null) //Error, does not compute.
+			return FALSE
+		if(0) //We can see our own tile
+			return TRUE
+	
+	var/turf/turf_to_check = get_turf(src) //The source's turf, do a first pass because opaques ON_BORDER facing the opposite direction are our only nemesis.
+	for(var/obj/stuff_in_turf in turf_to_check)
+		if(!stuff_in_turf.opacity)
+			continue //Transparent, we can see through it.
+		if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+			continue //Opaque and not on border. Doesn't block the first tile.
+		if(CHECK_BITFIELD(dir, reverse_direction(stuff_in_turf.dir)))
+			return FALSE //Reverse direction than ours, opaque, ON_BORDER, and in the same tile as us. Blocks our view.
+
+	var/turf/target_turf = get_turf(target)
+
+	if(total_distance > 1) //Let's do a custom last pass. Here we handle the in-beween if any.
+		for(var/i in 1 to total_distance - 1)
+			turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_turf))
+			if(turf_to_check.opacity)
+				return FALSE //First and last turfs' opacity don't matter, but the ones in-between do.
+			for(var/obj/stuff_in_turf in turf_to_check)
+				if(!stuff_in_turf.opacity)
+					continue //Transparent, we can see through it.
+				if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+					return FALSE //Opaque and not on border. We can't see through this tile, it's over.
+				if(ISDIAGONALDIR(stuff_in_turf.dir))
+					return FALSE //Opaque fulltile window.
+				if(CHECK_BITFIELD(dir, stuff_in_turf.dir))
+					return FALSE //Same direction and opaque, blocks our view.
+				if(CHECK_BITFIELD(dir, reverse_direction(stuff_in_turf.dir)))
+					return FALSE //Doesn't block this tile, but it does block the next, and this is not the last pass.
+
+	for(var/obj/stuff_in_turf in target_turf) //Last turf, inverse logic from the first.
 		if(!stuff_in_turf.opacity)
 			continue //Transparent, we can see through it.
 		if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
