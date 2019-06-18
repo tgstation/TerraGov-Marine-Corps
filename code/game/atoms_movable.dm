@@ -713,10 +713,13 @@
 GLOBAL_VAR_INIT(los_switch, 0)
 
 /atom/movable/proc/line_of_sight(atom/target, view_dist = world.view)
-	if(GLOB.los_switch++ % 2)
-		line_of_sight_one(target, view_dist)
-	else
-		line_of_sight_two(target, view_dist)
+	switch(GLOB.los_switch++ % 3)
+		if(0)
+			return line_of_sight_one(target, view_dist)
+		if(1)
+			return line_of_sight_two(target, view_dist)
+		if(2)
+			return line_of_sight_three(target, view_dist)
 
 
 /atom/movable/proc/line_of_sight_one(atom/target, view_dist = world.view)
@@ -833,3 +836,7 @@ GLOBAL_VAR_INIT(los_switch, 0)
 			return FALSE //Same direction and opaque, blocks our view.
 
 	return TRUE
+
+
+/atom/movable/proc/line_of_sight_three(atom/target, view_dist = world.view)
+	return (target in view(view_dist))

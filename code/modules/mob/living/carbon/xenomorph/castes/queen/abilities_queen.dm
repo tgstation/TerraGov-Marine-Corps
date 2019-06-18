@@ -144,15 +144,11 @@
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	var/list/nearby_living = list()
-	for(var/mob/living/L in hearers(world.view, X))
-		nearby_living.Add(L)
-
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
 		if(get_dist(L, X) > world.view)
 			continue
-		L.screech_act(X, world.view, L in nearby_living)
+		L.screech_act(X, world.view, X.line_of_sight(L))
 
 // ***************************************
 // *********** Gut
