@@ -29,8 +29,6 @@ Basics, the most important.
 
 /datum/config_entry/string/banappeals
 
-/datum/config_entry/string/donationurl
-
 /datum/config_entry/string/dburl
 
 /datum/config_entry/string/shipurl
