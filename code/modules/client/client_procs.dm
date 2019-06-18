@@ -342,6 +342,7 @@
 		'html/panels.css',
 		'html/browser/common.css',
 		'html/browser/scannernew.css',
+		'html/browser/playeroptions.css'
 		)
 	spawn(10) //removing this spawn causes all clients to not get verbs.
 		//Precache the client with all other assets slowly, so as to not block other browse() calls

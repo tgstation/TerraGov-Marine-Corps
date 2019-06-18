@@ -1,0 +1,12 @@
+.job {
+  display: block;
+  width: 213px;
+}
+
+.command {
+  font-weight: bold;
+}
+
+.nopositions {
+  font-style: italic;
+}

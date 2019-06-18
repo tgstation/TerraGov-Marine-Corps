@@ -3,6 +3,7 @@
 	supervisors = "the acting captain"
 	faction = "Marine"
 	total_positions = 1
+	exp_type_department = EXP_TYPE_COMMAND
 
 
 //Captain
@@ -203,8 +204,16 @@ You could use MTs help to repair and replace hardpoints."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 
+/datum/job/police
+	selection_color = "#ffdddd"
+	supervisors = "the acting captain"
+	faction = "Marine"
+	total_positions = 1
+	exp_type_department = EXP_TYPE_POLICE
+
+
 //Military Police
-/datum/job/command/masteratarms
+/datum/job/police/officer
 	title = "Master at Arms"
 	paygrade = "PO"
 	comm_title = "MA"
@@ -214,10 +223,10 @@ You could use MTs help to repair and replace hardpoints."})
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
-	outfit = /datum/outfit/job/command/masteratarms
+	outfit = /datum/outfit/job/police/officer
 
 
-/datum/job/command/masteratarms/radio_help_message(mob/M)
+/datum/job/police/officer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
@@ -226,9 +235,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 
-/datum/outfit/job/command/masteratarms
+/datum/outfit/job/police/officer
 	name = "Master at Arms"
-	jobtype = /datum/job/command/masteratarms
+	jobtype = /datum/job/police/officer
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/security/MP/full
@@ -244,7 +253,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 //Command Master at Arms
-/datum/job/command/commandmasteratarms
+/datum/job/police/chief
 	title = "Command Master at Arms"
 	paygrade = "O3"
 	comm_title = "CMA"
@@ -253,12 +262,12 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RO)
 	skills_type = /datum/skills/CMP
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
-	outfit = /datum/outfit/job/command/warrant
+	outfit = /datum/outfit/job/police/chief
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 
 
-/datum/job/command/commandmasteratarms/radio_help_message(mob/M)
+/datum/job/police/chief/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
@@ -267,9 +276,9 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 
-/datum/outfit/job/command/warrant
+/datum/outfit/job/police/chief
 	name = "Command Master at Arms"
-	jobtype = /datum/job/command/commandmasteratarms
+	jobtype = /datum/job/police/chief
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/security/MP/full
@@ -285,14 +294,15 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 
-/datum/job/logistics
+/datum/job/engineering
 	supervisors = "the acting captain"
 	total_positions = 1
 	faction = "Marine"
+	exp_type_department = EXP_TYPE_ENGINEERING
 
 
 //Chief Ship Engineer
-/datum/job/logistics/engineering
+/datum/job/engineering/chief
 	title = "Chief Ship Engineer"
 	paygrade = "O3"
 	comm_title = "CSE"
@@ -301,21 +311,21 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
-	outfit = /datum/outfit/job/logistics/engineering
+	outfit = /datum/outfit/job/engineering/chief
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 
 
-/datum/job/logistics/engineering/radio_help_message(mob/M)
+/datum/job/engineering/chief/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to maintain the ship's engine and keep everything running.
 If you have no idea how to set up the engine, or it's your first time, adminhelp so that a mentor can assist you.
 You are also next in the chain of command, should the bridge crew fall in the line of duty."})
 
 
-/datum/outfit/job/logistics/engineering
+/datum/outfit/job/engineering/chief
 	name = "Chief Ship Engineer"
-	jobtype = /datum/job/logistics/engineering
+	jobtype = /datum/job/engineering/chief
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
@@ -330,47 +340,9 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	back = /obj/item/storage/backpack/marine/satchel/tech
 
 
-//Requisitions Officer
-/datum/job/logistics/requisition
-	title = "Requisitions Officer"
-	paygrade = "CPO"
-	comm_title = "RO"
-	selection_color = "#9990B2"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/RO
-	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
-	outfit = /datum/outfit/job/logistics/requisition
-	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_REGULAR_ALL
-
-
-/datum/job/logistics/requisition/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
-Your cargo techs can help you out, but you have final say in your department. Make sure they're not goofing off.
-While you may request paperwork for supplies, do not go out of your way to screw with marines, unless you want to get deposed.
-A happy ship is a well-functioning ship."})
-
-
-/datum/outfit/job/logistics/requisition
-	name = "Requisitions Officer"
-	jobtype = /datum/job/logistics/requisition
-
-	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m44/full
-	ears = /obj/item/radio/headset/almayer/mcom
-	w_uniform = /obj/item/clothing/under/rank/ro_suit
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
-	shoes = /obj/item/clothing/shoes/marine
-	gloves = /obj/item/clothing/gloves/yellow
-	head = /obj/item/clothing/head/tgmccap/req
-	r_store = /obj/item/storage/pouch/general/large
-	back = /obj/item/storage/backpack/marine/satchel
-
 
 //Ship Engineer
-/datum/job/logistics/tech/maint
+/datum/job/engineering/tech
 	title = "Ship Engineer"
 	comm_title = "SE"
 	paygrade = "PO"
@@ -381,18 +353,18 @@ A happy ship is a well-functioning ship."})
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO)
 	skills_type = /datum/skills/MT
 	display_order = JOB_DISPLAY_ORDER_MAINTENANCE_TECH
-	outfit = /datum/outfit/job/logistics/tech/maint
+	outfit = /datum/outfit/job/engineering/tech
 
 
-/datum/job/logistics/tech/maint/radio_help_message(mob/M)
+/datum/job/engineering/tech/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to make sure the ship is clean and the powergrid is operational.
 Start with the ship's engine, and don't forget radiation equipment."})
 
 
-/datum/outfit/job/logistics/tech/maint
+/datum/outfit/job/engineering/tech
 	name = "Ship Engineer"
-	jobtype = /datum/job/logistics/tech/maint
+	jobtype = /datum/job/engineering/tech
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
@@ -408,8 +380,54 @@ Start with the ship's engine, and don't forget radiation equipment."})
 
 
 
+/datum/job/requisitions
+	supervisors = "the acting captain"
+	total_positions = 1
+	faction = "Marine"
+	exp_type_department = EXP_TYPE_REQUISITIONS
+
+
+//Requisitions Officer
+/datum/job/requisitions/officer
+	title = "Requisitions Officer"
+	paygrade = "CPO"
+	comm_title = "RO"
+	selection_color = "#9990B2"
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
+	skills_type = /datum/skills/RO
+	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
+	outfit = /datum/outfit/job/requisitions/officer
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_REGULAR_ALL
+
+
+/datum/job/requisitions/officer/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
+Your cargo techs can help you out, but you have final say in your department. Make sure they're not goofing off.
+While you may request paperwork for supplies, do not go out of your way to screw with marines, unless you want to get deposed.
+A happy ship is a well-functioning ship."})
+
+
+/datum/outfit/job/requisitions/officer
+	name = "Requisitions Officer"
+	jobtype = /datum/job/requisitions/officer
+
+	id = /obj/item/card/id/silver
+	belt = /obj/item/storage/belt/gun/m44/full
+	ears = /obj/item/radio/headset/almayer/mcom
+	w_uniform = /obj/item/clothing/under/rank/ro_suit
+	wear_suit = /obj/item/clothing/suit/storage/marine/MP
+	shoes = /obj/item/clothing/shoes/marine
+	gloves = /obj/item/clothing/gloves/yellow
+	head = /obj/item/clothing/head/tgmccap/req
+	r_store = /obj/item/storage/pouch/general/large
+	back = /obj/item/storage/backpack/marine/satchel
+
+
 //Cargo Tech
-/datum/job/logistics/tech/cargo
+/datum/job/requisitions/tech
 	title = "Cargo Technician"
 	paygrade = "PO"
 	comm_title = "CT"
@@ -420,19 +438,19 @@ Start with the ship's engine, and don't forget radiation equipment."})
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/CT
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECH
-	outfit = /datum/outfit/job/logistics/tech/cargo
+	outfit = /datum/outfit/job/requisitions/tech
 
 
-/datum/job/logistics/tech/cargo/radio_help_message(mob/M)
+/datum/job/requisitions/tech/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
 Stay in your department when possible to ensure the marines have full access to the supplies they may require.
 Listen to the radio in case someone requests a supply drop via the overwatch system."})
 
 
-/datum/outfit/job/logistics/tech/cargo
+/datum/outfit/job/requisitions/tech
 	name = "Cargo Technician"
-	jobtype = /datum/job/logistics/tech/cargo
+	jobtype = /datum/job/requisitions/tech
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/clothing/tie/holster/m4a3
@@ -449,6 +467,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 /datum/job/medical
 	faction = "Marine"
+	exp_type_department = EXP_TYPE_MEDICAL
 
 
 /datum/job/medical/professor
