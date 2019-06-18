@@ -31,7 +31,7 @@
 		return
 
 	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
-						 "<span class='notice'>You label [A] as \"[label]\".</span>")
+						"<span class='notice'>You label [A] as \"[label]\".</span>")
 	A.name = "[initial(A.name)] ([label])"
 	labels_left--
 

@@ -433,8 +433,8 @@
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
 	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \
-						 "<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
-						 "<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
+						"<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
+						"<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
 
 
 
@@ -468,5 +468,5 @@
 /obj/item/toy/farwadoll/attack_self(mob/user)
 	if(world.time > last_hug_time)
 		user.visible_message("<span class='notice'>[user] hugs [src]! How cute! </span>", \
-							 "<span class='notice'>You hug [src]. Dawwww... </span>")
+							"<span class='notice'>You hug [src]. Dawwww... </span>")
 		last_hug_time = world.time + 50 //5 second cooldown

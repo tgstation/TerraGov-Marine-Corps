@@ -32,6 +32,10 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "space indentation detected"
 		exit 1
 	fi;
+	if grep '^\t* ' code/**/*.dmm; then
+		echo "mixed <tab><space> indentation detected"
+		exit 1
+	fi;
 
 
 	(! grep 'step_[xy]' _maps/**/*.dmm)

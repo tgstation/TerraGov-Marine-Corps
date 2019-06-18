@@ -115,7 +115,7 @@
 			return
 
 		user.visible_message("<span class='notice'>[user] labels [src] as \"[tmp_label]\".</span>", \
-							 "<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
+							"<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
 
 		label_text = tmp_label
 		update_name_label()

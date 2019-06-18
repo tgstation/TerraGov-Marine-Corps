@@ -105,11 +105,11 @@
 		if(M == user)	//they're using it on themselves
 			M.flash_eyes()
 			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
-									 "<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
+								"<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
 			return
 
 		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
-							 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
+							"<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
 		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind

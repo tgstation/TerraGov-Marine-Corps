@@ -242,8 +242,8 @@
 	*/
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10 // w_class = 1 -- takes up 1
-					   // w_class = 2 -- takes up 3
-					   // w_class = 3 -- takes up 5
+						// w_class = 2 -- takes up 3
+						// w_class = 3 -- takes up 5
 
 /obj/item/tool/kitchen/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 

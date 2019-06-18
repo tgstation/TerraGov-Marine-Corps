@@ -681,7 +681,7 @@
 		<tr>
 			<th>Uniform:</th>
 			<td>
-			   <input type="text" name="outfit_uniform" value="">
+				<input type="text" name="outfit_uniform" value="">
 			</td>
 		</tr>
 		<tr>

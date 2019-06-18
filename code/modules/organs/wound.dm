@@ -280,7 +280,7 @@ datum/wound/cut/massive
 /** BRUISES **/
 /datum/wound/bruise
 	stages = list("monumental bruise" = 80, "huge bruise" = 50, "large bruise" = 30,\
-				  "moderate bruise" = 20, "small bruise" = 10, "tiny bruise" = 5)
+				"moderate bruise" = 20, "small bruise" = 10, "tiny bruise" = 5)
 	max_bleeding_stage = 3
 	autoheal_cutoff = 30
 	damage_type = BRUISE

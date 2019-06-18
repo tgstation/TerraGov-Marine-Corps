@@ -686,7 +686,7 @@
 	set waitfor = 0
 	last_fired = world.time
 	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
-						 "<span class='warning'>You fire the grenade launcher!</span>")
+						"<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.loc = user.loc

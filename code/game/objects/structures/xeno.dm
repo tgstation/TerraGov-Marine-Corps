@@ -340,7 +340,7 @@
 	playsound(src, "alien_resin_break", 25)
 	if(do_after(M, 80, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
-		 "<span class='danger'>You rip down \the [src]!</span>", null, 5)
+		"<span class='danger'>You rip down \the [src]!</span>", null, 5)
 		qdel(src)
 
 /obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
