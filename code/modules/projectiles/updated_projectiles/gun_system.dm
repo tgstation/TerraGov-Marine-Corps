@@ -320,8 +320,7 @@
 
 /obj/item/weapon/gun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
-		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
-		log_runtime("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
+		stack_trace("null ammo while reloading. User: [user]")
 		ammo = GLOB.ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else
 		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
@@ -553,8 +552,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/create_bullet(datum/ammo/chambered)
 	if(!chambered)
-		to_chat(usr, "Something has gone horribly wrong. Ahelp the following: ERROR CODE I2: null ammo while create_bullet()")
-		log_runtime("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
+		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
 	var/obj/item/projectile/P = new /obj/item/projectile(src)
@@ -709,8 +707,7 @@ and you're good to go.
 
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
-			to_chat(user, "Your gun is malfunctioning. Ahelp the following: ERROR CODE I1: projectile malfunctioned while firing.")
-			log_runtime("ERROR CODE I1: projectile malfunctioned while firing. User: <b>[user]</b>")
+			stack_trace("projectile malfunctioned while firing. User: [user]")
 			flags_gun_features &= ~GUN_BURST_FIRING
 			return
 
