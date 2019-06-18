@@ -79,13 +79,17 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
 
+/obj/vehicle/multitile/root/cm_armored/Initialize()
+	. = ..()
+	GLOB.tank_list += src
+
 /obj/vehicle/multitile/root/cm_armored/Destroy()
 	for(var/i in linked_objs)
 		var/obj/O = linked_objs[i]
 		if(O == src)
 			continue
 		qdel(O, TRUE) //Delete all of the hitboxes etc
-
+	GLOB.tank_list -= src
 	return ..()
 
 //What to do if all ofthe installed modules have been broken

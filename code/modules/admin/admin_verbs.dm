@@ -669,14 +669,11 @@
 		return
 
 	var/turf/target
-	var/selection = input("Jump to:", "Jump") as null|anything in list("Area", "Turf", "Coords", "Mob", "Key")
+	var/selection = input("Jump to:", "Jump") as null|anything in list("Area", "Coords", "Mob", "Key")
 	switch(selection)
 		if("Area")
 			var/area/A = input("Area", "Jump") as null|anything in GLOB.sorted_areas
 			target = pick(get_area_turfs(A))
-		if("Turf")
-			var/turf/T = input("Turf", "Jump") as null|anything in GLOB.turfs
-			target = T
 		if("Coords")
 			var/tx = input("X", "Jump") as null|num
 			var/ty = input("Y", "Jump") as null|num
@@ -803,24 +800,6 @@
 	log_admin("[key_name(usr)] jumped to [AREACOORD(M)].")
 	if(!isobserver(M))
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
-
-
-/datum/admins/proc/jump_turf(turf/T in GLOB.turfs)
-	set category = null
-	set name = "Jump to Turf"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!T)
-		return
-
-	var/mob/M = usr
-	M.forceMove(T)
-
-	log_admin("[key_name(M)] jumped to turf [AREACOORD(T)].")
-	if(!isobserver(M))
-		message_admins("[ADMIN_TPMONTY(M)] jumped to turf [ADMIN_VERBOSEJMP(T)].")
 
 
 /datum/admins/proc/jump_coord(tx as num, ty as num, tz as num)
@@ -1314,7 +1293,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.object_list)
+	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.tank_list)
 		CA.remove_all_players()
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")

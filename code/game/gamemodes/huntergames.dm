@@ -69,11 +69,11 @@
 /datum/game_mode/huntergames/pre_setup()
 	. = ..()
 	supply_votes = list()
-
-	for(var/obj/item/weapon/gun/G in GLOB.item_list)
-		qdel(G) //No guns or ammo allowed.
-	for(var/obj/item/ammo_magazine/M in GLOB.item_list)
-		qdel(M)
+// todo: replace guns and ammo in maps with landmark spawners
+//	for(var/obj/item/weapon/gun/G in GLOB.item_list)
+//		qdel(G) //No guns or ammo allowed.
+//	for(var/obj/item/ammo_magazine/M in GLOB.item_list)
+//		qdel(M)
 
 	for(var/mob/new_player/player in GLOB.player_list)
 		if(player && player.ready)
