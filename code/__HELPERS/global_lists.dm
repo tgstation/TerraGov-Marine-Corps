@@ -6,14 +6,9 @@ GLOBAL_LIST_EMPTY(joketips)
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
-var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
-var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
-
 var/global/list/active_areas = list()
 GLOBAL_LIST_EMPTY(all_areas)
 var/global/list/processing_machines = list()
-var/global/list/active_diseases = list()
-var/global/list/events = list()
 
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
@@ -22,7 +17,8 @@ var/global/list/active_laser_targets = list()
 var/global/list/active_orbital_beacons = list()
 
 // Posters
-var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
+GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
+
 
 // Pill icons
 GLOBAL_LIST_EMPTY(randomized_pill_icons)
@@ -59,13 +55,9 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	// Surgery Steps - Initialize all /datum/surgery_step into a list
 	for(var/T in subtypesof(/datum/surgery_step))
 		var/datum/surgery_step/S = new T
-		surgery_steps += S
-	sort_surgeries()
+		GLOB.surgery_steps += S
 
-	// List of job. I can't believe this was calculated multiple times per tick!
-	for(var/T in subtypesof(/datum/job))
-		var/datum/job/J = new T
-		joblist[J.title] = J
+	sort_surgeries()
 
 	var/rkey = 0
 
