@@ -299,7 +299,7 @@ obj/structure/bed/Destroy()
 //////////////////////////////////////////////
 
 //List of all activated medevac stretchers
-var/global/list/activated_medevac_stretchers = list()
+GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher
 	name = "medevac stretcher"
@@ -328,7 +328,7 @@ var/global/list/activated_medevac_stretchers = list()
 	QDEL_NULL(radio)
 	if(stretcher_activated)
 		stretcher_activated = FALSE
-		activated_medevac_stretchers -= src
+		GLOB.activated_medevac_stretchers -= src
 		if(linked_medevac)
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
@@ -363,7 +363,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 	if(stretcher_activated)
 		stretcher_activated = FALSE
-		activated_medevac_stretchers -= src
+		GLOB.activated_medevac_stretchers -= src
 		if(linked_medevac)
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
@@ -382,7 +382,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 		if(buckled_mob || buckled_bodybag)
 			stretcher_activated = TRUE
-			activated_medevac_stretchers += src
+			GLOB.activated_medevac_stretchers += src
 			to_chat(user, "<span class='notice'>You activate [src]'s beacon.</span>")
 			update_icon()
 		else
