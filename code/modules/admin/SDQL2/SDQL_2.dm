@@ -1071,25 +1071,71 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				v = Failsafe
 			if("CFG")
 				v = config
-			//Subsystem switches
+			//Subsystem switches for ease of access.
+			if("SSair")
+				v = SSair
+			if("SSassets")
+				v = SSassets
+			if("SSatoms")
+				v = SSatoms
+			if("SScodex")
+				v = SScodex
+			if("SSdbcore")
+				v = SSdbcore
+			if("SSdcs")
+				v = SSdcs
+			if("SSdirection")
+				v = SSdirection
+			if("SSevacuation")
+				v = SSevacuation
 			if("SSgarbage")
 				v = SSgarbage
+			if("SSchat")
+				v = SSchat
+			if("SSidlenpcpool")
+				v = SSidlenpcpool
+			if("SSinput")
+				v = SSinput
+			if("SSjob")
+				v = SSjob
 			if("SSmachines")
 				v = SSmachines
-			if("SSobj")
-				v = SSobj
-			if("SSfastprocess")
-				v = SSfastprocess
-			if("SSticker")
-				v = SSticker
-			if("SStimer")
-				v = SStimer
-			if("SSmobs")
-				v = SSmobs
-			if("SSshuttle")
-				v = SSshuttle
 			if("SSmapping")
 				v = SSmapping
+			if("SSmobs")
+				v = SSmobs
+			if("SSnano")
+				v = SSnano
+			if("SSnpcpool")
+				v = SSnpcpool
+			if("SSoverlays")
+				v = SSoverlays
+			if("SSpathfinder")
+				v = SSpathfinder
+			if("SSping")
+				v = SSping
+			if("SSpoints")
+				v = SSpoints
+			if("SSradio")
+				v = SSradio
+			if("SSserver_maint")
+				v = SSserver_maint
+			if("SSshuttle")
+				v = SSshuttle
+			if("SSstickyban")
+				v = SSstickyban
+			if("SSticker")
+				v = SSticker
+			if("SStime_track")
+				v = SSstickyban
+			if("SStime_track")
+				v = SStime_track
+			if("SStimer")
+				v = SStimer
+			if("SSvote")
+				v = SSvote
+			if("SSweeds")
+				v = SSweeds
 			//End
 			else
 				return null
