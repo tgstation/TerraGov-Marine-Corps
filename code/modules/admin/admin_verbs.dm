@@ -77,28 +77,28 @@
 	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
 
-/datum/admins/proc/give_mob(mob/living/LGIVE in GLOB.mob_living_list)
+/datum/admins/proc/give_mob(mob/living/given_living in GLOB.mob_living_list)
 	set category = null
 	set name = "Give Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/MREC = usr.client.holder.apicker("Who do you want to give it to:", "Give Mob", list(APICKER_CLIENT, APICKER_MOB))
-	if(!istype(MREC))
+	var/mob/mob_received = usr.client.holder.apicker("Who do you want to give it to:", "Give Mob", list(APICKER_CLIENT, APICKER_MOB))
+	if(!istype(mob_received))
 		return
 
-	if(isliving(MREC) && MREC.client && alert("[key_name(MREC)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+	if(isliving(mob_received) && MREC.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
 		return
 
-	if(!istype(LGIVE))
+	if(!istype(given_living))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
-	log_admin("[key_name(usr)] gave [key_name(LGIVE)] to [key_name(MREC)].")
-	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(LGIVE)] to [ADMIN_TPMONTY(MREC)].")
+	log_admin("[key_name(usr)] gave [key_name(given_living)] to [key_name(mob_received)].")
+	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(given_living)] to [ADMIN_TPMONTY(mob_received)].")
 
-	LGIVE.take_over(MREC, TRUE)
+	given_living.take_over(mob_received, TRUE)
 
 
 /datum/admins/proc/give_mob_panel()
@@ -108,25 +108,25 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/LGIVE = usr.client.holder.apicker("Who do you want to give:", "Give Mob", list(APICKER_CLIENT, APICKER_LIVING))
-	if(!istype(LGIVE))
+	var/mob/living/given_living = usr.client.holder.apicker("Who do you want to give:", "Give Mob", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!istype(given_living))
 		return
 
-	var/mob/MREC = usr.client.holder.apicker("Who do you want to give it to:", "Give Mob", list(APICKER_CLIENT, APICKER_MOB))
-	if(!istype(MREC))
+	var/mob/mob_received = usr.client.holder.apicker("Who do you want to give it to:", "Give Mob", list(APICKER_CLIENT, APICKER_MOB))
+	if(!istype(mob_received))
 		return
 
-	if(isliving(MREC) && MREC.client && alert("[key_name(MREC)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+	if(isliving(mob_received) && mob_received.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
 		return
 
-	if(!istype(LGIVE))
+	if(!istype(given_living))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
-	log_admin("[key_name(usr)] gave [key_name(LGIVE)] to [key_name(MREC)].")
-	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(LGIVE)] to [ADMIN_TPMONTY(MREC)].")
+	log_admin("[key_name(usr)] gave [key_name(given_living)] to [key_name(mob_received)].")
+	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(given_living)] to [ADMIN_TPMONTY(mob_received)].")
 
-	LGIVE.take_over(MREC, TRUE)
+	given_living.take_over(mob_received, TRUE)
 
 
 /datum/admins/proc/rejuvenate(mob/living/L in GLOB.mob_living_list)
