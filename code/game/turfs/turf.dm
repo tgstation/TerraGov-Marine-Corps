@@ -42,7 +42,6 @@
 
 /turf/Initialize(mapload, ...)
 	. = ..()
-	GLOB.turfs += src
 	for(var/atom/movable/AM in src)
 		Entered(AM)
 

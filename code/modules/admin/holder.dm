@@ -269,7 +269,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/get_mob,
 	/datum/admins/proc/send_mob,
 	/datum/admins/proc/jump_area,
-	/datum/admins/proc/jump_turf,
 	/datum/admins/proc/jump_coord,
 	/datum/admins/proc/jump_mob,
 	/datum/admins/proc/jump_key,

@@ -295,7 +295,7 @@
 						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
 						if(!current_squad.drop_pad) //Why the hell did this not link?
-							for(var/obj/structure/supply_drop/S in GLOB.item_list)
+							for(var/obj/structure/supply_drop/S in GLOB.supply_pad_list)
 								S.force_link() //LINK THEM ALL!
 
 					else
@@ -797,6 +797,11 @@
 /obj/structure/supply_drop/Initialize() //Link a squad to a drop pad
 	. = ..()
 	force_link()
+	GLOB.supply_pad_list += src
+
+/obj/structure/supply_drop/Destroy()
+	GLOB.supply_pad_list += src
+	return ..()
 
 /obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
 	var/datum/squad/S = SSjob.squads[squad_name]

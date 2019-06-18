@@ -6,14 +6,6 @@
 	var/flags_barrier = 0
 	anchored = TRUE
 
-/obj/structure/New()
-	..()
-	GLOB.structure_list += src
-
-/obj/structure/Destroy()
-	. = ..()
-	GLOB.structure_list -= src
-
 /obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)
 		new parts(loc)

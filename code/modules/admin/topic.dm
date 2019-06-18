@@ -1880,7 +1880,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				previous = H.mind.comm_title
 				H.mind.comm_title = change
 			if("chattitle")
-				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input a chat title - Title Jane Doe screams!", "Edit Rank") as null|text
 				if(isnull(change) || !istype(H) || !istype(C))
 					return
@@ -1888,7 +1888,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				C.paygrade = change
 				C.update_label()
 			if("idtitle")
-				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input an ID title - Jane Doe (Title)", "Edit Rank") as null|text
 				if(isnull(change) || !istype(H) || !H.mind)
 					return
@@ -1896,7 +1896,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				C.assignment = change
 				C.update_label()
 			if("idname")
-				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input an ID name - Jane Doe (Title)", "Edit Rank") as null|text
 				if(isnull(change) || !istype(H) || !H.mind)
 					return

@@ -139,6 +139,11 @@
 		return
 	var/mob/living/carbon/human/H = loc
 	blood_type = H.blood_type
+	GLOB.id_card_list += src
+
+/obj/item/card/id/Destroy()
+	GLOB.id_card_list -= src
+	return ..()
 
 /obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")
