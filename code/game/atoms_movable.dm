@@ -709,3 +709,57 @@
 	if(anchored || throwing)
 		return FALSE
 	return TRUE
+
+
+/atom/movable/proc/line_of_sight(atom/target, view_dist = world.view)
+	if(!isturf(loc) || QDELETED(target))
+		return FALSE
+
+	if(z != target.z || get_dist(src, target) > view_dist)
+		return FALSE
+
+	var/list/turf_list = getline(loc, get_turf(target))
+
+	switch(length(turf_list))
+		if(0) //Error, does not compute.
+			return FALSE
+		if(1) //We can see our own tile
+			return TRUE
+	
+	var/turf/turf_to_check = turf_list[1] //The source's turf, do a first pass because opaques `ON_BORDER` facing our direction are fine this time.
+	for(var/obj/stuff_in_turf in turf_to_check)
+		if(!stuff_in_turf.opacity)
+			continue //Transparent, we can see through it.
+		if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+			continue //Opaque and not on border. Doesn't block the first tile.
+		if(CHECK_BITFIELD(dir, reverse_direction(stuff_in_turf.dir)))
+			return FALSE //Reverse direction than ours, opaque, ON_BORDER, and in the same tile as us. Blocks our view.
+	turf_list.Cut(1, 2) //Remove the first element of the list, as the first turf is already checked.
+
+	if(length(turf_list) > 1) //Let's do a custom last pass. Here we handle the in-beween if any.
+		for(var/i in (length(turf_list) - 1))
+			turf_to_check = turf_list[i]
+			if(turf_to_check.opacity)
+				return FALSE //First a last turfs' opacity don't matter, but the ones in-between do.
+			for(var/obj/stuff_in_turf in turf_to_check)
+				if(!stuff_in_turf.opacity)
+					continue //Transparent, we can see through it.
+				if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+					return FALSE //Opaque and not on border. We can't see through this tile, it's over.
+				if(ISDIAGONALDIR(stuff_in_turf.dir))
+					return FALSE //Opaque window.
+				if(CHECK_BITFIELD(dir, stuff_in_turf.dir))
+					return FALSE //Same direction and opaque, blocks our view.
+				if(CHECK_BITFIELD(dir, reverse_direction(stuff_in_turf.dir)))
+					return FALSE //Doesn't block this tile, but it does the next, and this is not the last pass.
+
+	turf_to_check = turf_list[length(turf_list)]
+	for(var/obj/stuff_in_turf in turf_to_check)
+		if(!stuff_in_turf.opacity)
+			continue //Transparent, we can see through it.
+		if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+			continue //Opaque and not on border. Doesn't block the last tile.
+		if(CHECK_BITFIELD(dir, stuff_in_turf.dir))
+			return FALSE //Same direction and opaque, blocks our view.
+
+	return TRUE
