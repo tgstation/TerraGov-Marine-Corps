@@ -484,8 +484,8 @@
 
 
 /*
- *	Medbot Assembly -- Can be made out of all three medkits.
- */
+*	Medbot Assembly -- Can be made out of all three medkits.
+*/
 
 /obj/item/storage/firstaid/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/robot_parts/l_arm) && !istype(I, /obj/item/robot_parts/r_arm))

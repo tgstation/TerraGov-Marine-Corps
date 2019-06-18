@@ -455,8 +455,8 @@
 //STATION13
 
 /area/atmos
- 	name = "Atmospherics"
- 	icon_state = "atmos"
+	name = "Atmospherics"
+	icon_state = "atmos"
 */
 //Maintenance
 
@@ -785,8 +785,8 @@
 	icon_state = "Theatre"
 
 /area/library
- 	name = "\improper Abandoned Library"
- 	icon_state = "library"
+	name = "\improper Abandoned Library"
+	icon_state = "library"
 
 /area/chapel/main
 	name = "\improper Abandoned Chapel"

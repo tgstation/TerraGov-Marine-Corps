@@ -2229,7 +2229,7 @@ CLOTHING
 	contains = list(
 					/obj/item/storage/pouch/document,
 					/obj/item/storage/pouch/electronics,
-                    /obj/item/storage/pouch/tools,
+					/obj/item/storage/pouch/tools,
 					/obj/item/storage/pouch/construction
 					)
 	cost = RO_PRICE_VERY_CHEAP

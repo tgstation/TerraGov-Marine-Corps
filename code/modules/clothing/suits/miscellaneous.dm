@@ -1,13 +1,13 @@
 /*
- * Contains:
- *		Lasertag
- *		Costume
- *		Misc
- */
+* Contains:
+*		Lasertag
+*		Costume
+*		Misc
+*/
 
 /*
- * Lasertag
- */
+* Lasertag
+*/
 /obj/item/clothing/suit/bluetag
 	name = "blue laser tag armour"
 	desc = "Blue Pride, Station Wide."
@@ -29,8 +29,8 @@
 	siemens_coefficient = 3.0
 
 /*
- * Costume
- */
+* Costume
+*/
 /obj/item/clothing/suit/pirate
 	name = "pirate coat"
 	desc = "Yarr."
@@ -194,8 +194,8 @@
 	item_state = "commander_cloak_red" //with thanks to Baystation12
 
 /*
- * Misc
- */
+* Misc
+*/
 
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"

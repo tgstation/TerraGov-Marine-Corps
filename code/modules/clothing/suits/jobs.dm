@@ -1,6 +1,6 @@
 /*
- * Job related
- */
+* Job related
+*/
 
 //Botonist
 /obj/item/clothing/suit/apron

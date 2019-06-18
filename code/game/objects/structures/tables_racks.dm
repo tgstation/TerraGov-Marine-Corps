@@ -1,15 +1,15 @@
 /* Tables and Racks
- * Contains:
- *		Tables
- *		Wooden tables
- *		Reinforced tables
- *		Racks
- */
+* Contains:
+*		Tables
+*		Wooden tables
+*		Reinforced tables
+*		Racks
+*/
 
 
 /*
- * Tables
- */
+* Tables
+*/
 /obj/structure/table
 	name = "table"
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -447,8 +447,8 @@
 	flipped = TRUE
 
 /*
- * Wooden tables
- */
+* Wooden tables
+*/
 /obj/structure/table/woodentable
 	name = "wooden table"
 	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -458,8 +458,8 @@
 	table_prefix = "wood"
 	max_integrity = 50
 /*
- * Gambling tables
- */
+* Gambling tables
+*/
 /obj/structure/table/gamblingtable
 	name = "gambling table"
 	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
@@ -469,8 +469,8 @@
 	table_prefix = "gamble"
 	max_integrity = 50
 /*
- * Reinforced tables
- */
+* Reinforced tables
+*/
 /obj/structure/table/reinforced
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
@@ -539,8 +539,8 @@
 
 
 /*
- * Racks
- */
+* Racks
+*/
 /obj/structure/rack
 	name = "rack"
 	desc = "A bunch of metal shelves stacked on top of eachother. Excellent for storage purposes, less so as cover."

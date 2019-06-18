@@ -114,7 +114,7 @@
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
 		user.put_in_hands(F)
 		use(1)
-    
+
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
 		var/mob/living/carbon/human/H = M

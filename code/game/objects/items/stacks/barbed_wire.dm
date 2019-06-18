@@ -22,7 +22,7 @@
 /obj/item/stack/barbed_wire/half_stack
 	amount = 10
 
- //full stack
+//full stack
 /obj/item/stack/barbed_wire/full
 	amount = 20
 
@@ -65,7 +65,7 @@
 /obj/item/stack/razorwire/half_stack
 	amount = 10
 
- //full stack
+//full stack
 /obj/item/stack/razorwire/full
 	amount = 20
 

@@ -1,15 +1,15 @@
 /* Glass stack types
- * Contains:
- *		Glass sheets
- *		Reinforced glass sheets
- *		Phoron Glass Sheets
- *		Reinforced Phoron Glass Sheets (AKA Holy fuck strong windows)
- *		Glass shards - TODO: Move this into code/game/object/item/weapons
- */
+* Contains:
+*		Glass sheets
+*		Reinforced glass sheets
+*		Phoron Glass Sheets
+*		Reinforced Phoron Glass Sheets (AKA Holy fuck strong windows)
+*		Glass shards - TODO: Move this into code/game/object/item/weapons
+*/
 
 /*
- * Glass sheets
- */
+* Glass sheets
+*/
 /obj/item/stack/sheet/glass
 	name = "glass"
 	desc = "Glass is a non-crystalline solid, made out of silicate, the primary constituent of sand. It is valued for its transparency, albeit it is not too resistant to damage."
@@ -144,8 +144,8 @@
 
 
 /*
- * Reinforced glass sheets
- */
+* Reinforced glass sheets
+*/
 /obj/item/stack/sheet/glass/reinforced
 	name = "reinforced glass"
 	desc = "Reinforced glass is made out of squares of regular silicate glass layered on a metallic rod matrice. This glass is more resistant to direct impacts, even if it may crack."
@@ -164,8 +164,8 @@
 	matter = null
 
 /*
- * Phoron Glass sheets
- */
+* Phoron Glass sheets
+*/
 /obj/item/stack/sheet/glass/phoronglass
 	name = "phoron glass"
 	desc = "Phoron glass is a silicate-phoron alloy turned into a non-crystalline solid. It is transparent just like glass, even if visibly tainted pink, and very resistant to damage and heat."
@@ -177,8 +177,8 @@
 	reinforced_type = /obj/item/stack/sheet/glass/phoronrglass
 
 /*
- * Reinforced phoron glass sheets
- */
+* Reinforced phoron glass sheets
+*/
 /obj/item/stack/sheet/glass/phoronrglass
 	name = "reinforced phoron glass"
 	desc = "Reinforced phoron glass is made out of squares of silicate-phoron alloy glass layered on a metallic rod matrice. It is insanely resistant to both physical shock and heat."

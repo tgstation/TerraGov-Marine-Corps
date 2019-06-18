@@ -1,10 +1,10 @@
 /*
- * Cryogenic refrigeration unit. Basically a despawner.
- * Stealing a lot of concepts/code from sleepers due to massive laziness.
- * The despawn tick will only fire if it's been more than time_till_despawned ticks
- * since time_entered, which is world.time when the occupant moves in.
- * ~ Zuhayr
- */
+* Cryogenic refrigeration unit. Basically a despawner.
+* Stealing a lot of concepts/code from sleepers due to massive laziness.
+* The despawn tick will only fire if it's been more than time_till_despawned ticks
+* since time_entered, which is world.time when the occupant moves in.
+* ~ Zuhayr
+*/
 
 //Main cryopod console.
 

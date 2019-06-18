@@ -1,7 +1,7 @@
 
 /*
- * effect/alien
- */
+* effect/alien
+*/
 /obj/effect/alien
 	name = "alien thing"
 	desc = "theres something alien about this"
@@ -53,8 +53,8 @@
 		take_damage(rand(0.2, 2))
 
 /*
- * Resin
- */
+* Resin
+*/
 /obj/effect/alien/resin
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
@@ -454,8 +454,8 @@
 	return FALSE
 
 /*
- * Egg
- */
+* Egg
+*/
 
 #define EGG_BURST 0
 #define EGG_BURSTING 1

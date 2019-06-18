@@ -1,21 +1,21 @@
 /* Weapons
- * Contains:
- *		Banhammer
- *		Classic Baton
- *		Energy Shield
- */
+* Contains:
+*		Banhammer
+*		Classic Baton
+*		Energy Shield
+*/
 
 /*
- * Banhammer
- */
+* Banhammer
+*/
 /obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
 	to_chat(M, "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>")
 	to_chat(user, "<font color='red'> You have <b>BANNED</b> [M]</font>")
 
 
 /*
- * Classic Baton
- */
+* Classic Baton
+*/
 /obj/item/weapon/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."
@@ -98,8 +98,8 @@
 
 
 /*
- * Energy Shield
- */
+* Energy Shield
+*/
 /obj/item/weapon/shield/energy/IsShield()
 	if(active)
 		return 1

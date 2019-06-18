@@ -117,8 +117,8 @@
 
 
 /obj/effect/proc_holder/spell/Click()
-    if(cast_check())
-        choose_targets()
+	if(cast_check())
+		choose_targets()
 
 
 

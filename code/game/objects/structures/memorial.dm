@@ -1,5 +1,5 @@
 /*
- At 7:30 AM on March 8th, 2017, ArcLumin died in a fatal car crash on impact.
+At 7:30 AM on March 8th, 2017, ArcLumin died in a fatal car crash on impact.
 Rest in peace, man. You did good work.
 On the 6th of November, 2018 at the age of 22,
 a  friend, contributor and member of our community,Austin "Valmoric" Philips passed away in his sleep

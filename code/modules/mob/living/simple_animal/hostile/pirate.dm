@@ -35,7 +35,7 @@
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/blade1.ogg'
 
- 
+
 /mob/living/simple_animal/hostile/pirate/melee/space
 	name = "Space Pirate Swashbuckler"
 	icon_state = "piratespace"

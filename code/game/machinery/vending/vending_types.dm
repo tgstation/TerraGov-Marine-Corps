@@ -1,7 +1,7 @@
 
 /*
- * Vending machine types
- */
+* Vending machine types
+*/
 
 /*
 

@@ -1,7 +1,7 @@
 /*
- * Paper
- * also scraps of paper
- */
+* Paper
+* also scraps of paper
+*/
 
 /obj/item/paper
 	name = "paper"
@@ -401,8 +401,8 @@
 
 
 /*
- * Premade paper
- */
+* Premade paper
+*/
 
 
 /obj/item/paper/commendation

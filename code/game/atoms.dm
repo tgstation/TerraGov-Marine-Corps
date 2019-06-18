@@ -141,14 +141,14 @@ directive is properly returned.
 
 
 /*
- *	atom/proc/search_contents_for(path,list/filter_path=null)
- * Recursevly searches all atom contens (including contents contents and so on).
- *
- * ARGS: path - search atom contents for atoms of this type
- *	   list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
- *
- * RETURNS: list of found atoms
- */
+*	atom/proc/search_contents_for(path,list/filter_path=null)
+* Recursevly searches all atom contens (including contents contents and so on).
+*
+* ARGS: path - search atom contents for atoms of this type
+*	   list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
+*
+* RETURNS: list of found atoms
+*/
 
 /atom/proc/search_contents_for(path,list/filter_path=null)
 	var/list/found = list()

@@ -1,25 +1,25 @@
 /*
- *	Everything derived from the common cardboard box.
- *	Basically everything except the original is a kit (starts full).
- *
- *	Contains:
- *		Empty box, starter boxes (survival/engineer),
- *		Latex glove and sterile mask boxes,
- *		Syringe, beaker, dna injector boxes,
- *		Blanks, flashbangs, and EMP grenade boxes,
- *		Tracking and chemical implant boxes,
- *		Prescription glasses and drinking glass boxes,
- *		Condiment bottle and silly cup boxes,
- *		Donkpocket and monkeycube boxes,
- *		ID and security PDA cart boxes,
- *		Handcuff, mousetrap, and pillbottle boxes,
- *		Snap-pops and matchboxes,
- *		Replacement light boxes.
- *
- *		For syndicate call-ins see uplink_kits.dm
- *
- *  EDITED BY APOPHIS 09OCT2015 to prevent in-game abuse of boxes.
- */
+*	Everything derived from the common cardboard box.
+*	Basically everything except the original is a kit (starts full).
+*
+*	Contains:
+*		Empty box, starter boxes (survival/engineer),
+*		Latex glove and sterile mask boxes,
+*		Syringe, beaker, dna injector boxes,
+*		Blanks, flashbangs, and EMP grenade boxes,
+*		Tracking and chemical implant boxes,
+*		Prescription glasses and drinking glass boxes,
+*		Condiment bottle and silly cup boxes,
+*		Donkpocket and monkeycube boxes,
+*		ID and security PDA cart boxes,
+*		Handcuff, mousetrap, and pillbottle boxes,
+*		Snap-pops and matchboxes,
+*		Replacement light boxes.
+*
+*		For syndicate call-ins see uplink_kits.dm
+*
+*  EDITED BY APOPHIS 09OCT2015 to prevent in-game abuse of boxes.
+*/
 
 
 

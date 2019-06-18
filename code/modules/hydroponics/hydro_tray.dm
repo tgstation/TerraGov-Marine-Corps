@@ -442,7 +442,7 @@
 	SetLuminosity(0)
 	return
 
- // If a weed growth is sufficient, this proc is called.
+// If a weed growth is sufficient, this proc is called.
 /obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
 
 	//Remove the seed if something is already planted.

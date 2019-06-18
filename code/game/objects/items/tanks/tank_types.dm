@@ -1,15 +1,15 @@
 /* Types of tanks!
- * Contains:
- *		Oxygen
- *		Anesthetic
- *		Air
- *		Phoron
- *		Emergency Oxygen
- */
+* Contains:
+*		Oxygen
+*		Anesthetic
+*		Air
+*		Phoron
+*		Emergency Oxygen
+*/
 
 /*
- * Oxygen
- */
+* Oxygen
+*/
 /obj/item/tank/oxygen
 	name = "oxygen tank"
 	desc = "A tank of oxygen."
@@ -29,8 +29,8 @@
 
 
 /*
- * Anesthetic
- */
+* Anesthetic
+*/
 /obj/item/tank/anesthetic
 	name = "anesthetic tank"
 	desc = "A tank with an N2O/O2 gas mix."
@@ -40,8 +40,8 @@
 
 
 /*
- * Air
- */
+* Air
+*/
 /obj/item/tank/air
 	name = "air tank"
 	desc = "Mixed anyone?"
@@ -49,8 +49,8 @@
 
 
 /*
- * Phoron
- */
+* Phoron
+*/
 /obj/item/tank/phoron
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
@@ -61,8 +61,8 @@
 
 
 /*
- * Emergency Oxygen
- */
+* Emergency Oxygen
+*/
 /obj/item/tank/emergency_oxygen
 	name = "emergency oxygen tank"
 	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
@@ -99,8 +99,8 @@
 	pressure_full = 5*ONE_ATMOSPHERE
 
 /*
- * Nitrogen
- */
+* Nitrogen
+*/
 /obj/item/tank/nitrogen
 	name = "nitrogen tank"
 	desc = "A tank of nitrogen."

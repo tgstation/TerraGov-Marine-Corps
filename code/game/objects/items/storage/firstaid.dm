@@ -1,12 +1,12 @@
 /* First aid storage
- * Contains:
- *		First Aid Kits
- * 		Pill Bottles
- */
+* Contains:
+*		First Aid Kits
+* 		Pill Bottles
+*/
 
 /*
- * First Aid Kits
- */
+* First Aid Kits
+*/
 /obj/item/storage/firstaid
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
@@ -140,8 +140,8 @@
 
 
 	/*
- * Syringe Case
- */
+* Syringe Case
+*/
 
 
 /obj/item/storage/syringe_case
@@ -192,8 +192,8 @@
 	new /obj/item/reagent_container/glass/bottle/dexalin(src)
 
 /*
- * Pill Bottles
- */
+* Pill Bottles
+*/
 
 
 /obj/item/storage/pill_bottle
