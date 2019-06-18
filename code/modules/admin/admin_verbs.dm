@@ -88,7 +88,7 @@
 	if(!istype(mob_received))
 		return
 
-	if(isliving(mob_received) && MREC.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+	if(isliving(mob_received) && mob_received.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
 		return
 
 	if(!istype(given_living))
