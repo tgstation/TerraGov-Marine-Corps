@@ -28,11 +28,11 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "base /turf path use detected in maps, please replace with proper paths."
 		exit 1
 	fi;
-	if grep '^ ' code/**/*.dmm; then
+	if grep '^ ' code/**/*.dm; then
 		echo "space indentation detected"
 		exit 1
 	fi;
-	if grep '^\t* ' code/**/*.dmm; then
+	if grep '^\t* ' code/**/*.dm; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
 	fi;
