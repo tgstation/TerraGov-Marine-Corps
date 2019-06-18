@@ -301,7 +301,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(loc)].")
+		log_game("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
 
 		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")

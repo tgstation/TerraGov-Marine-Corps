@@ -287,7 +287,6 @@
 			M.apply_damage(8, def_zone = "head")
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 			"<span class='danger'>You slam [M]'s face against [src]!</span>")
-			log_admin("[key_name(user)] slams [key_name(M)]'s face' against \the [src].")
 			log_combat(user, M, "slammed", "", "against \the [src]")
 			msg_admin_attack("[key_name(user)] slammed [key_name(M)]'s face' against \the [src].")
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)

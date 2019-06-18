@@ -252,7 +252,7 @@
 
 		//Exploit detection, not sure if necessary after rewrite.
 		if(!making || multiplier < 0 || multiplier > 100)
-			log_admin("[key_name(usr)] tried to exploit an autolathe to duplicate an item!")
+			log_admin_private("[key_name(usr)] tried to exploit an autolathe to duplicate an item!")
 			message_admins("[ADMIN_TPMONTY(usr)] tried to exploit an autolathe to duplicate an item!")
 			return
 

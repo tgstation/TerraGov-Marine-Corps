@@ -586,8 +586,8 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
-		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
+		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
+		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)

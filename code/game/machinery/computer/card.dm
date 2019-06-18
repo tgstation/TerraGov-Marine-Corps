@@ -212,7 +212,7 @@
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t && modify)
 						modify.assignment = temp_t
-						log_admin("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+						log_game("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 						message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 
 				else
@@ -235,7 +235,7 @@
 					modify.access = access
 					modify.assignment = t1
 					modify.rank = t1
-					log_admin("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+					log_game("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 					message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 
 
@@ -294,7 +294,7 @@
 			if (is_authenticated())
 				modify.assignment = "Terminated"
 				modify.access = list()
-				log_admin("[key_name(usr)] terminated the ID of [modify.registered_name].")
+				log_game("[key_name(usr)] terminated the ID of [modify.registered_name].")
 				message_admins("[ADMIN_TPMONTY(usr)] terminated the ID of [modify.registered_name].")
 
 	if (modify)

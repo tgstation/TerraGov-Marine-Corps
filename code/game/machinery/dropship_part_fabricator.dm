@@ -98,7 +98,7 @@
 			cost = initial(SA.point_cost)
 			build_type = produce
 		else
-			log_admin("[key_name(usr)] may have attempted a href exploit on a dropship printer [AREACOORD(usr)].")
+			log_admin_private("[key_name(usr)] may have attempted a href exploit on a dropship printer [AREACOORD(usr)].")
 			message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href exploit on a dropship printer [ADMIN_VERBOSEJMP(usr)].")
 			return
 

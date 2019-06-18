@@ -36,7 +36,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<span class='danger'>Advertising other servers is not allowed.</span>")
-			log_admin("[key_name(usr)] has attempted to advertise in OOC: [msg]")
+			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
 			return
 
@@ -133,7 +133,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
-			log_admin("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
+			log_admin_private("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
 			return
 
