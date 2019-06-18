@@ -1,8 +1,8 @@
 /mob/CanPass(atom/movable/mover, turf/target)
-	if(mover.checkpass(PASSMOB)) return 1
-	if(ismob(mover))
-		if(checkpass(PASSMOB))
-			return 1
+	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB)) 
+		return TRUE
+	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
+		return TRUE
 	return (!mover.density || !density || lying)
 
 
@@ -47,14 +47,16 @@
 
 
 /client/proc/Move_object(direct)
-	if(mob && mob.control_object)
-		if(mob.control_object.density)
-			step(mob.control_object,direct)
-			if(!mob.control_object)	return
-			mob.control_object.setDir(direct)
-		else
-			mob.control_object.loc = get_step(mob.control_object,direct)
-	return
+	if(!mob?.control_object)
+		return
+
+	if(mob.control_object.density)
+		step(mob.control_object, direct)
+		if(!mob.control_object)
+			return
+		mob.control_object.setDir(direct)
+	else
+		mob.control_object.forceMove(get_step(mob.control_object, direct))
 
 
 /client/Move(n, direct)
@@ -73,6 +75,9 @@
 	if(mob.notransform)
 		return FALSE	//This is sota the goto stop mobs from moving var
 
+	if(mob.control_object)
+		return Move_object(direct)
+
 	if(!isliving(mob))
 		return mob.Move(n, direct)
 
@@ -85,6 +90,12 @@
 	var/double_delay = FALSE
 	if(direct in GLOB.diagonals)
 		double_delay = TRUE
+
+	if(L.remote_control) //we're controlling something, our movement is relayed to it
+		return L.remote_control.relaymove(L, direct)
+
+	if(isAI(L))
+		return AIMove(n, direct, L)
 
 	//Check if you are being grabbed and if so attemps to break it
 	if(L.pulledby)
@@ -121,15 +132,13 @@
 				move_delay = 7 + CONFIG_GET(number/movedelay/walk_delay)
 		move_delay += L.movement_delay(direct)
 		//We are now going to move
-		moving = TRUE
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
 
 		if(L.confused)
-			step(L, pick(cardinal))
+			step(L, pick(GLOB.cardinals))
 		else
 			. = ..()
 
-		moving = FALSE
 		if(double_delay)
 			move_delay = world.time + (move_delay * SQRTWO)
 		else
@@ -143,17 +152,7 @@
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
-		make_floating(1)
 		return 0
-
-	if(istype(src,/mob/living/carbon/human/))
-		var/mob/living/carbon/human/H = src
-		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.flags_inventory & NOSLIPPING))  //magboots + dense_object = no floaty effect
-			make_floating(0)
-		else
-			make_floating(1)
-	else
-		make_floating(1)
 
 	if(restrained()) //Check to see if we can do things
 		return 0

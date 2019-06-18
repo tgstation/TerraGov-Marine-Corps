@@ -5,8 +5,8 @@
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_MOB_LAYER
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/recycle_dir = NORTH
 	var/list/stored_matter =  list("metal" = 0, "glass" = 0)
 	var/last_recycle_sound //for sound cooldown
@@ -64,6 +64,6 @@
 			stored_matter[material] += total_material
 	qdel(I)
 	if(last_recycle_sound < world.time)
-		playsound(loc, 'sound/items/Welder.ogg', 30, 1)
+		playsound(loc, 'sound/items/welder.ogg', 30, 1)
 		last_recycle_sound = world.time + 50
 

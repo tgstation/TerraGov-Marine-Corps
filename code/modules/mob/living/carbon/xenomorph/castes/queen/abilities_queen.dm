@@ -1,7 +1,7 @@
 // ***************************************
 // *********** Hive orders
 // ***************************************
-/mob/living/carbon/Xenomorph/Queen/proc/set_orders()
+/mob/living/carbon/xenomorph/queen/proc/set_orders()
 	set category = "Alien"
 	set name = "Set Hive Orders (50)"
 	set desc = "Give some specific orders to the hive. They can see this on the status pane."
@@ -30,7 +30,7 @@
 // ***************************************
 // *********** Hive message
 // ***************************************
-/mob/living/carbon/Xenomorph/Queen/proc/hive_Message()
+/mob/living/carbon/xenomorph/queen/proc/hive_Message()
 	set category = "Alien"
 	set name = "Word of the Queen (50)"
 	set desc = "Send a message to all aliens in the hive that is big and visible"
@@ -49,11 +49,11 @@
 
 	INVOKE_ASYNC(src, .proc/do_hive_message, queensWord)
 
-/mob/living/carbon/Xenomorph/Queen/proc/do_hive_message(queensWord)
+/mob/living/carbon/xenomorph/queen/proc/do_hive_message(queensWord)
 	if(SSticker?.mode)
 		hive.xeno_message("[queensWord]")
 		for(var/i in hive.get_watchable_xenos())
-			var/mob/living/carbon/Xenomorph/X = i
+			var/mob/living/carbon/xenomorph/X = i
 			SEND_SOUND(X, sound(get_sfx("queen"), wait = 0,volume = 50))
 
 	for(var/i in GLOB.observer_list)
@@ -67,7 +67,7 @@
 // ***************************************
 // *********** Slashing permissions
 // ***************************************
-/mob/living/carbon/Xenomorph/proc/claw_toggle()
+/mob/living/carbon/xenomorph/proc/claw_toggle()
 	set name = "Permit/Disallow Slashing"
 	set desc = "Allows you to permit the hive to harm."
 	set category = "Alien"
@@ -84,7 +84,7 @@
 		to_chat(src, "<span class='warning'>You must wait a bit before you can toggle this again.</span>")
 		return
 
-	addtimer(CALLBACK(src, .slash_toggle_delay), 300)
+	addtimer(VARSET_CALLBACK(src, pslash_delay, FALSE), 30 SECONDS)
 
 	pslash_delay = TRUE
 
@@ -103,8 +103,6 @@
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
 		hive.slashing_allowed = XENO_SLASHING_FORBIDDEN
 
-/mob/living/carbon/Xenomorph/proc/slash_toggle_delay()
-	pslash_delay = FALSE
 
 // ***************************************
 // *********** Screech
@@ -116,13 +114,15 @@
 	ability_name = "screech"
 	plasma_cost = 250
 	cooldown_timer = 50 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
 	to_chat(owner, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/screech/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 
 	//screech is so powerful it kills huggers in our hands
 	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
@@ -144,10 +144,15 @@
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/mob/living/L in range(world.view, X))
-		if(L.stat == DEAD)
+	var/list/nearby_living = list()
+	for(var/mob/living/L in hearers(world.view, X))
+		nearby_living.Add(L)
+
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		if(get_dist(L, X) > world.view)
 			continue
-		L.screech_act(X)
+		L.screech_act(X, world.view, L in nearby_living)
 
 // ***************************************
 // *********** Gut
@@ -162,7 +167,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(X.last_special > world.time)
 		return FALSE
 	if(!iscarbon(A))
@@ -181,7 +186,7 @@
 				if(!silent)
 					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
 				return FALSE
-			else if(istype(H) && !H.check_tod()) //Dead, but the host can still hatch, possibly.
+			else if(istype(H) && !check_tod(H)) //Dead, but the host can still hatch, possibly.
 				if(!silent)
 					to_chat(owner, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return FALSE
@@ -191,7 +196,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/gut/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	var/mob/living/carbon/victim = A
 
 	succeed_activate()
@@ -221,9 +226,10 @@
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Grow an ovipositor to lay eggs and access new abilities. Takes 20 seconds and you cannot move while on the ovipositor."
 	plasma_cost = 700
+	keybind_signal = COMSIG_XENOABILITY_GROW_OVIPOSITOR
 
 /datum/action/xeno_action/grow_ovipositor/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.check_state())
 		return
 
@@ -250,6 +256,9 @@
 	if(X.check_plasma(plasma_cost))
 		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
 		"<span class='xenowarning'>You start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
+
+		notify_ghosts("\The <b>[X]</b> has started growing an ovipositor!", source = X, action = NOTIFY_ORBIT)
+
 		if(!do_after(X, 200, TRUE, alien_weeds, BUSY_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
 			return
 
@@ -262,9 +271,10 @@
 	name = "Remove Eggsac"
 	action_icon_state = "grow_ovipositor"
 	mechanics_text = "Get off your ovipositor, causing it to collapse. You must grow a new one the next time you wish to reattach."
+	keybind_signal = COMSIG_XENOABILITY_REMOVE_EGGSAC
 
 /datum/action/xeno_action/remove_eggsac/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 
 	var/answer = alert(X, "Are you sure you want to remove your ovipositor? (5min cooldown to grow a new one)", , "Yes", "No")
 	if(answer != "Yes")
@@ -279,7 +289,7 @@
 		return
 	X.dismount_ovipositor()
 
-/mob/living/carbon/Xenomorph/Queen/proc/mount_ovipositor()
+/mob/living/carbon/xenomorph/queen/proc/mount_ovipositor()
 	if(ovipositor) return //sanity check
 	ovipositor = TRUE
 
@@ -306,15 +316,14 @@
 		A.give_action(src)
 
 	anchored = TRUE
-	resting = FALSE
-	update_canmove()
+	set_resting(FALSE)
 	update_icons()
 
 	hive?.update_leader_pheromones()
 
 	hive?.xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor.</span>", 3)
 
-/mob/living/carbon/Xenomorph/Queen/proc/dismount_ovipositor(instant_dismount)
+/mob/living/carbon/xenomorph/queen/proc/dismount_ovipositor(instant_dismount)
 	set waitfor = 0
 	if(!instant_dismount)
 		if(observed_xeno)
@@ -377,31 +386,32 @@
 	action_icon_state = "watch_xeno"
 	mechanics_text = "See from the target Xenomorphs vision."
 	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 
 /datum/action/xeno_action/watch_xeno/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.hive)
 		return
 	var/list/possible_xenos = X.hive.get_watchable_xenos()
 
-	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
+	var/mob/living/carbon/xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
 	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
 		if(X.observed_xeno)
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
 		X.set_queen_overwatch(selected_xeno)
 
-/mob/living/carbon/Xenomorph/Queen/proc/set_queen_overwatch(mob/living/carbon/Xenomorph/target, stop_overwatch)
+/mob/living/carbon/xenomorph/queen/proc/set_queen_overwatch(mob/living/carbon/xenomorph/target, stop_overwatch)
 	if(stop_overwatch)
 		observed_xeno = null
 	else
-		var/mob/living/carbon/Xenomorph/old_xeno = observed_xeno
+		var/mob/living/carbon/xenomorph/old_xeno = observed_xeno
 		observed_xeno = target
 		if(old_xeno)
 			old_xeno.hud_set_queen_overwatch()
 	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
-	reset_view()
+	reset_perspective()
 
 // ***************************************
 // *********** Psychic Whisper
@@ -409,9 +419,10 @@
 /datum/action/xeno_action/psychic_whisper
 	name = "Psychic Whisper"
 	action_icon_state = "psychic_whisper"
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
 /datum/action/xeno_action/psychic_whisper/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	var/list/target_list = list()
 	for(var/mob/living/possible_target in view(7, X))
 		if(possible_target == X || !possible_target.client) continue
@@ -437,9 +448,10 @@
 	action_icon_state = "toggle_queen_zoom"
 	mechanics_text = "Zoom out for a larger view around wherever you are looking."
 	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM
 
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.check_state())
 		return
 	if(X.is_zoomed)
@@ -455,9 +467,10 @@
 	action_icon_state = "xeno_lead"
 	mechanics_text = "Make a target Xenomorph a leader."
 	plasma_cost = 0
+	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 
 /datum/action/xeno_action/set_xeno_lead/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.check_state())
 		return
 	if(!X.hive)
@@ -473,7 +486,7 @@
 		if(X.xeno_caste.queen_leader_limit <= X.hive.xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
 			to_chat(X, "<span class='xenowarning'>You currently have [X.hive.xeno_leader_list.len] promoted leaders. You may not maintain additional leaders until your power grows.</span>")
 			return
-		var/mob/living/carbon/Xenomorph/T = X.observed_xeno
+		var/mob/living/carbon/xenomorph/T = X.observed_xeno
 		X.queen_ability_cooldown = world.time + 150 //15 seconds
 		if(!T.queen_chosen_lead)
 			to_chat(X, "<span class='xenonotice'>You've selected [T] as a Hive Leader.</span>")
@@ -487,7 +500,7 @@
 		T.handle_xeno_leader_pheromones(X)
 	else
 		if(length(X.hive.xeno_leader_list) > 1)
-			var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in X.hive.xeno_leader_list
+			var/mob/living/carbon/xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in X.hive.xeno_leader_list
 			if(!selected_xeno || !selected_xeno.queen_chosen_lead || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
 				return
 			X.set_queen_overwatch(selected_xeno)
@@ -500,13 +513,14 @@
 // *********** Queen heal
 // ***************************************
 /datum/action/xeno_action/queen_heal
-	name = "Heal Xenomorph (600)"
+	name = "Heal Xenomorph"
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
 /datum/action/xeno_action/queen_heal/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.check_state())
 		return
 	if(X.queen_ability_cooldown > world.time)
@@ -515,7 +529,7 @@
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to give healing to.</span>")
 		return
-	var/mob/living/carbon/Xenomorph/target = X.observed_xeno
+	var/mob/living/carbon/xenomorph/target = X.observed_xeno
 	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
 		to_chat(X, "<span class='xenowarning'>You can't heal that caste.</span>")
 		return
@@ -537,13 +551,14 @@
 // *********** Queen plasma
 // ***************************************
 /datum/action/xeno_action/queen_give_plasma
-	name = "Give Plasma (600)"
+	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
 /datum/action/xeno_action/queen_give_plasma/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.check_state())
 		return
 	if(X.queen_ability_cooldown > world.time)
@@ -552,7 +567,7 @@
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to give plasma to.</span>")
 		return
-	var/mob/living/carbon/Xenomorph/target = X.observed_xeno
+	var/mob/living/carbon/xenomorph/target = X.observed_xeno
 	if(target.stat == DEAD)
 		return
 	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
@@ -571,16 +586,17 @@
 // *********** Queen order
 // ***************************************
 /datum/action/xeno_action/queen_order
-	name = "Give Order (100)"
+	name = "Give Order"
 	action_icon_state = "queen_order"
 	plasma_cost = 100
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
 
 /datum/action/xeno_action/queen_order/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.check_state())
 		return
 	if(X.observed_xeno)
-		var/mob/living/carbon/Xenomorph/target = X.observed_xeno
+		var/mob/living/carbon/xenomorph/target = X.observed_xeno
 		if(target.stat != DEAD && target.client)
 			if(X.check_plasma(100))
 				var/input = stripped_input(X, "This message will be sent to the overwatched xeno.", "Queen Order", "")
@@ -606,16 +622,17 @@
 	action_icon_state = "xeno_deevolve"
 	mechanics_text = "De-evolve a target Xenomorph of Tier 2 or higher to the next lowest tier."
 	plasma_cost = 600
+	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
 
 /datum/action/xeno_action/deevolve/action_activate()
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.check_state())
 		return
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
 		return
 
-	var/mob/living/carbon/Xenomorph/T = X.observed_xeno
+	var/mob/living/carbon/xenomorph/T = X.observed_xeno
 	if(!X.check_plasma(600)) // check plasma gives an error message itself
 		return
 
@@ -663,7 +680,7 @@
 	var/xeno_type = new_caste.caste_type_path
 
 	//From there, the new xeno exists, hopefully
-	var/mob/living/carbon/Xenomorph/new_xeno = new xeno_type(get_turf(T))
+	var/mob/living/carbon/xenomorph/new_xeno = new xeno_type(get_turf(T))
 
 	if(!istype(new_xeno))
 		//Something went horribly wrong!
@@ -672,30 +689,26 @@
 			qdel(new_xeno)
 		return
 
+	for(var/obj/item/W in T.contents) //Drop stuff
+		T.dropItemToGround(W)
+
+	T.empty_gut(FALSE, TRUE)
+
 	if(T.mind)
 		T.mind.transfer_to(new_xeno)
 	else
 		new_xeno.key = T.key
-		if(new_xeno.client)
-			new_xeno.client.change_view(world.view)
-			new_xeno.client.pixel_x = 0
-			new_xeno.client.pixel_y = 0
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = T.nicknumber
 	new_xeno.generate_name()
 
 	if(T.xeno_mobhud)
-		var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
+		var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 
 	new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
-
-	for(var/obj/item/W in T.contents) //Drop stuff
-		T.dropItemToGround(W)
-
-	T.empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \
 	"<span class='xenodanger'>[X] makes you regress into your previous form.</span>")
 
@@ -725,7 +738,8 @@
 	mechanics_text = "Instantly cause the larva inside a host to grow a set amount."
 	ability_name = "advance larval growth"
 	plasma_cost = 300
-	cooldown_timer = XENO_LARVAL_ADVANCEMENT_COOLDOWN
+	cooldown_timer = 15 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH
 
 /datum/action/xeno_action/activable/larva_growth/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -751,7 +765,7 @@
 
 
 /datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	var/mob/living/carbon/xenomorph/queen/X = owner
 
 	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in A
 

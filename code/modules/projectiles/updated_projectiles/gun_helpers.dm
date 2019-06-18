@@ -147,10 +147,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/dropped(mob/user)
 	. = ..()
 
-	stop_aim()
-	if(user?.client)
-		user.update_gun_icons()
-
 	turn_off_light(user)
 
 	unwield(user)
@@ -251,7 +247,7 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
-	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
+	. = ..()
 
 	if(istype(I,/obj/item/attachable) && check_inactive_hand(user))
 		attach_to_gun(user, I)
@@ -307,11 +303,12 @@ should be alright.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
-	return
+	return FALSE
 
 
-/mob/living/carbon/human/proc/unique_action()
-	if(stat != CONSCIOUS)
+/mob/living/carbon/human/proc/do_unique_action()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	if(incapacitated() || lying)
 		return
 
 	var/obj/item/weapon/gun/G = get_active_held_item()
@@ -467,7 +464,7 @@ should be alright.
 			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
 
 
-/obj/item/weapon/gun/proc/get_active_firearm(mob/user)
+/proc/get_active_firearm(mob/user)
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return

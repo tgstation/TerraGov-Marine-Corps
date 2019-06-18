@@ -7,7 +7,6 @@ GLOBAL_LIST_EMPTY(latejoin)
 GLOBAL_LIST_EMPTY(latejoin_gateway)
 GLOBAL_LIST_EMPTY(latejoin_cryo)
 
-GLOBAL_VAR(supply_elevator)
 GLOBAL_LIST_EMPTY(shuttle_locations)			//list of all /obj/effect/landmark/shuttle_loc
 
 GLOBAL_LIST_EMPTY(landmarks_list)				//list of all landmarks created
@@ -35,13 +34,11 @@ GLOBAL_LIST_EMPTY(wizardstart)
 GLOBAL_LIST_EMPTY(nukeop_start)
 GLOBAL_LIST_EMPTY(nukeop_leader_start)
 GLOBAL_LIST_EMPTY(newplayer_start)
-GLOBAL_LIST_EMPTY(prisonwarp)	//prisoners go to these
 GLOBAL_LIST_EMPTY(xeno_spawn)//Aliens spawn at these.
 GLOBAL_LIST_EMPTY(surv_spawn)
 GLOBAL_LIST_EMPTY(tdome1)
 GLOBAL_LIST_EMPTY(tdome2)
 GLOBAL_LIST_EMPTY(deathmatch)
-GLOBAL_LIST_EMPTY(prisonwarped)	//list of players already warped
 GLOBAL_LIST_EMPTY(secequipment)
 GLOBAL_LIST_EMPTY(deathsquadspawn)
 GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)
@@ -54,7 +51,7 @@ GLOBAL_LIST_EMPTY(awaydestinations)	//a list of landmarks that the warpgate can 
 GLOBAL_LIST_EMPTY(vr_spawnpoints)
 
 	//used by jump-to-area etc. Updated by area/updateName()
-GLOBAL_LIST_EMPTY(sortedAreas)
+GLOBAL_LIST_EMPTY(sorted_areas)
 /// An association from typepath to area instance. Only includes areas with `unique` set.
 GLOBAL_LIST_EMPTY(areas_by_type)
 

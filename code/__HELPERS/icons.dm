@@ -243,7 +243,8 @@ world
 	if(gray)
 		MapColors(255/gray,0,0, 0,255/gray,0, 0,0,255/gray, 0,0,0)
 		Blend(tone, ICON_MULTIPLY)
-	else SetIntensity(0)
+	else 
+		SetIntensity(0)
 	if(255-gray)
 		upper.Blend(rgb(gray,gray,gray), ICON_SUBTRACT)
 		upper.MapColors((255-TONE[1])/(255-gray),0,0,0, 0,(255-TONE[2])/(255-gray),0,0, 0,0,(255-TONE[3])/(255-gray),0, 0,0,0,0, 0,0,0,1)
@@ -567,7 +568,7 @@ world
 				mid = g
 		hue += dir * round((mid-lo) * 255 / (hi-lo))
 
-	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
+	return hsv(hue, sat, val, (length(RGB) > 3 ? RGB[4] : null))
 
 
 /proc/hsv(hue, sat, val, alpha)
@@ -753,14 +754,14 @@ world
 	// decompress hue
 	HSV[1] += round(HSV[1] / 255)
 
-	return hsv(HSV[1], HSV[2], HSV[3], (HSV.len > 3 ? HSV[4] : null))
+	return hsv(HSV[1], HSV[2], HSV[3], (length(HSV) > 3 ? HSV[4] : null))
 
 
 // Convert an rgb color to grayscale
 /proc/GrayScale(rgb)
 	var/list/RGB = ReadRGB(rgb)
-	var/gray = RGB[1]*0.3 + RGB[2]*0.59 + RGB[3]*0.11
-	return (RGB.len > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
+	var/gray = RGB[1] * 0.3 + RGB[2] * 0.59 + RGB[3] * 0.11
+	return (length(RGB) > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
 
 
 // Change grayscale color to black->tone->white range
@@ -768,13 +769,13 @@ world
 	var/list/RGB = ReadRGB(rgb)
 	var/list/TONE = ReadRGB(tone)
 
-	var/gray = RGB[1]*0.3 + RGB[2]*0.59 + RGB[3]*0.11
+	var/gray = RGB[1] * 0.3 + RGB[2] * 0.59 + RGB[3] * 0.11
 	var/tone_gray = TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11
 
 	if(gray <= tone_gray)
-		return BlendRGB("#000000", tone, gray/(tone_gray || 1))
+		return BlendRGB("#000000", tone, gray / (tone_gray || 1))
 	else
-		return BlendRGB(tone, "#ffffff", (gray-tone_gray)/((255-tone_gray) || 1))
+		return BlendRGB(tone, "#ffffff", (gray - tone_gray) / ((255 - tone_gray) || 1))
 
 
 // Creates a single icon from a given /atom or /image.  Only the first argument is required.
@@ -784,15 +785,15 @@ world
 
 	#define BLANK icon(flat_template)
 	#define SET_SELF(SETVAR) do { \
-		var/icon/SELF_ICON=icon(icon(curicon, curstate, base_icon_dir),"",SOUTH,no_anim?1:null); \
-		if(A.alpha<255) { \
-			SELF_ICON.Blend(rgb(255,255,255,A.alpha),ICON_MULTIPLY);\
+		var/icon/SELF_ICON = icon(icon(curicon, curstate, base_icon_dir), "", SOUTH, no_anim ? 1 : null); \
+		if(A.alpha < 255) { \
+			SELF_ICON.Blend(rgb(255, 255, 255, A.alpha), ICON_MULTIPLY);\
 		} \
 		if(A.color) { \
 			if(islist(A.color)){ \
 				SELF_ICON.MapColors(arglist(A.color))} \
 			else{ \
-				SELF_ICON.Blend(A.color,ICON_MULTIPLY)} \
+				SELF_ICON.Blend(A.color, ICON_MULTIPLY)} \
 		} \
 		##SETVAR=SELF_ICON;\
 		} while (0)
@@ -871,7 +872,7 @@ world
 		var/image/copy
 		// Add the atom's icon itself, without pixel_x/y offsets.
 		if(!noIcon)
-			copy = image(icon=curicon, icon_state=curstate, layer=A.layer, dir=base_icon_dir)
+			copy = image(icon = curicon, icon_state = curstate, layer = A.layer, dir = base_icon_dir)
 			copy.color = A.color
 			copy.alpha = A.alpha
 			copy.blend_mode = curblend
@@ -879,7 +880,7 @@ world
 
 		// Loop through the underlays, then overlays, sorting them into the layers list
 		for(var/process_set in 0 to 1)
-			var/list/process = process_set? A.overlays : A.underlays
+			var/list/process = process_set ? A.overlays : A.underlays
 			for(var/i in 1 to length(process))
 				var/image/current = process[i]
 				if(!current)
@@ -980,38 +981,6 @@ world
 	#undef SET_SELF
 
 
-/proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
-	var/icon/alpha_mask = new(A.icon, A.icon_state)//So we want the default icon and icon state of A.
-	for(var/V in A.overlays)//For every image in overlays. var/image/I will not work, don't try it.
-		var/image/I = V
-		if(I.layer>A.layer)
-			continue//If layer is greater than what we need, skip it.
-		var/icon/image_overlay = new(I.icon, I.icon_state)//Blend only works with icon objects.
-		//Also, icons cannot directly set icon_state. Slower than changing variables but whatever.
-		alpha_mask.Blend(image_overlay,ICON_OR)//OR so they are lumped together in a nice overlay.
-	return alpha_mask//And now return the mask.
-
-
-/mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.
-	var/icon/opacity_icon = new(A.icon, A.icon_state)//Don't really care for overlays/underlays.
-	//Now we need to calculate overlays+underlays and add them together to form an image for a mask.
-	var/icon/alpha_mask = getIconMask(src)//getFlatIcon(src) is accurate but SLOW. Not designed for running each tick. This is also a little slow since it's blending a bunch of icons together but good enough.
-	opacity_icon.AddAlphaMask(alpha_mask)//Likely the main source of lag for this proc. Probably not designed to run each tick.
-	opacity_icon.ChangeOpacity(0.4)//Front end for MapColors so it's fast. 0.5 means half opacity and looks the best in my opinion.
-	for(var/i = 0 to 4)//And now we add it as overlays. It's faster than creating an icon and then merging it.
-		var/image/I = image("icon" = opacity_icon, "icon_state" = A.icon_state, "layer" = layer+0.8)//So it's above other stuff but below weapons and the like.
-		switch(i)//Now to determine offset so the result is somewhat blurred.
-			if(1)
-				I.pixel_x--
-			if(2)
-				I.pixel_x++
-			if(3)
-				I.pixel_y--
-			if(4)
-				I.pixel_y++
-		add_overlay(I)//And finally add the overlay.
-
-
 /proc/getHologramIcon(icon/A, safety = TRUE)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
 	flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
@@ -1021,23 +990,24 @@ world
 	return flat_icon
 
 
-/proc/adjust_brightness(var/color, var/value)
-	if (!color)
+/proc/adjust_brightness(color, value)
+	if(!color)
 		return "#FFFFFF"
-	if (!value)
+
+	if(!value)
 		return color
 
 	var/list/RGB = ReadRGB(color)
-	RGB[1] = CLAMP(RGB[1]+value,0,255)
-	RGB[2] = CLAMP(RGB[2]+value,0,255)
-	RGB[3] = CLAMP(RGB[3]+value,0,255)
-	return rgb(RGB[1],RGB[2],RGB[3])
+	RGB[1] = CLAMP(RGB[1] + value, 0, 255)
+	RGB[2] = CLAMP(RGB[2] + value, 0, 255)
+	RGB[3] = CLAMP(RGB[3] + value, 0, 255)
+	return rgb(RGB[1], RGB[2], RGB[3])
 
 
-/proc/sort_atoms_by_layer(var/list/atoms)
+/proc/sort_atoms_by_layer(list/L)
 	// Comb sort icons based on levels
-	var/list/result = atoms.Copy()
-	var/gap = result.len
+	var/list/result = L.Copy()
+	var/gap = length(L)
 	var/swapped = TRUE
 	while(gap > 1 || swapped)
 		swapped = FALSE
@@ -1090,7 +1060,7 @@ world
 		targets = list(target)
 	else
 		targets = target
-		if(!targets.len)
+		if(!length(targets))
 			return
 	if(!isicon(I))
 		if(isfile(thing)) //special snowflake
@@ -1173,7 +1143,7 @@ world
 
 
 //For creating consistent icons for human looking simple animals
-/proc/get_flat_human_icon(icon_id, datum/job/J, datum/preferences/prefs, dummy_key, showDirs = GLOB.cardinals, outfit_override = null)
+/proc/get_flat_human_icon(icon_id, datum/job/J, datum/preferences/prefs, dummy_key, showDirs = GLOB.cardinals, outfit_override)
 	var/static/list/humanoid_icon_cache = list()
 	if(!icon_id || !humanoid_icon_cache[icon_id])
 		var/mob/living/carbon/human/dummy/body = generate_or_wait_for_human_dummy(dummy_key)
@@ -1191,10 +1161,20 @@ world
 			body.setDir(D)
 			COMPILE_OVERLAYS(body)
 			var/icon/partial = getFlatIcon(body)
-			out_icon.Insert(partial,dir=D)
+			out_icon.Insert(partial, dir = D)
 
 		humanoid_icon_cache[icon_id] = out_icon
-		dummy_key? unset_busy_human_dummy(dummy_key) : qdel(body)
+		dummy_key ? unset_busy_human_dummy(dummy_key) : qdel(body)
 		return out_icon
 	else
 		return humanoid_icon_cache[icon_id]
+
+
+/proc/Get_Pixel_Angle(y, x)
+	if(!y)
+		return (x >= 0) ? 90 : 270
+	. = arctan(x / y)
+	if(y < 0)
+		. += 180
+	else if(x < 0)
+		. += 360

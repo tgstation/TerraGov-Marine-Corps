@@ -37,11 +37,9 @@
 	var/stat_msg1
 	var/stat_msg2
 
-	var/datum/announcement/priority/command/crew_announcement = new
 
 /obj/machinery/computer/communications/New()
 	. = ..()
-	crew_announcement.newscast = TRUE
 	start_processing()
 
 /obj/machinery/computer/communications/process()
@@ -52,7 +50,7 @@
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return FALSE
+		return
 
 	usr.set_interaction(src)
 
@@ -61,6 +59,9 @@
 			state = STATE_DEFAULT
 
 		if("login")
+			if(isAI(usr))
+				authenticated = 2
+				return
 			var/mob/living/carbon/human/C = usr
 			var/obj/item/card/id/I = C.get_active_held_item()
 			if(istype(I))
@@ -68,7 +69,6 @@
 					authenticated = 1
 				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = 2
-					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 			else
 				I = C.wear_id
 				if(istype(I))
@@ -76,10 +76,8 @@
 						authenticated = 1
 					if(ACCESS_MARINE_BRIDGE in I.access)
 						authenticated = 2
-						crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 		if("logout")
 			authenticated = 0
-			crew_announcement.announcer = ""
 
 		if("swipeidseclevel")
 			var/mob/M = usr
@@ -115,7 +113,7 @@
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
-				crew_announcement.Announce(input, to_xenos = 0)
+				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
 				cooldown_message = world.time
 
 		if("award")
@@ -311,15 +309,16 @@
 
 	updateUsrDialog()
 
-/obj/machinery/computer/communications/attack_ai(var/mob/user as mob)
-	return attack_hand(user)
+/obj/machinery/computer/communications/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
 
 /obj/machinery/computer/communications/attack_paw(var/mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
-	if(..())
-		return FALSE
+	. = ..()
+	if(.)
+		return
 
 	//Should be refactored later, if there's another ship that can appear during a mode with a comm console.
 	if(!istype(loc.loc, /area/almayer/command/cic)) //Has to be in the CIC. Can also be a generic CIC area to communicate, if wanted.

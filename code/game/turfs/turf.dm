@@ -12,7 +12,7 @@
 
 		/snow - snow is one type of non-floor open turf
 
-	/closed - all turfs with density = 1 are turf/closed
+	/closed - all turfs with density = TRUE are turf/closed
 
 		/wall - walls are constructed walls as opposed to natural solid turfs
 
@@ -40,21 +40,27 @@
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
-/turf/New()
-	..()
+/turf/Initialize(mapload, ...)
+	. = ..()
 	GLOB.turfs += src
-	for(var/atom/movable/AM as mob|obj in src)
-		spawn(0)
-			Entered(AM)
+	for(var/atom/movable/AM in src)
+		Entered(AM)
 
 	levelupdate()
 
+	if(luminosity)
+		if(light)	
+			WARNING("[type] - Don't set lights up manually during New(), We do it automatically.")
+		trueLuminosity = luminosity * luminosity
+		light = new(src)
+	visibilityChanged()
 
 /turf/Destroy()
 	if(oldTurf != "")
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
 		ChangeTurf(/turf/open/floor/plating, TRUE)
+	visibilityChanged()
 	return ..()
 
 /turf/ex_act(severity)
@@ -118,7 +124,6 @@
 
 		if(!isspaceturf(src))
 			M.inertia_dir = 0
-			M.make_floating(0)
 	..()
 
 /turf/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -165,6 +170,13 @@
 	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
 	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
 		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
+
+	var/list/transferring_comps = list()
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, flags, transferring_comps)
+	for(var/i in transferring_comps)
+		var/datum/component/comp = i
+		comp.RemoveComponent()
+
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
@@ -245,6 +257,15 @@
 		return get_dist(src,t)
 
 
+//  This Distance proc assumes that only cardinal movement is
+//  possible. It results in more efficient (CPU-wise) pathing
+//  for bots and anything else that only moves in cardinal dirs.
+/turf/proc/Distance_cardinal(turf/T)
+	if(!src || !T)
+		return FALSE
+	return abs(x - T.x) + abs(y - T.y)
+
+
 //Blood stuff------------
 /turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	if(!can_bloody)
@@ -263,7 +284,8 @@
 
 //Enable cable laying on turf click instead of pixel hunting the cable
 /turf/attackby(obj/item/I, mob/living/user, params)
-	if(..())
+	. = ..()
+	if(.)
 		return TRUE
 
 	user.changeNext_move(I.attack_speed)
@@ -272,12 +294,10 @@
 		var/obj/item/stack/cable_coil/coil = I
 		for(var/obj/structure/cable/C in src)
 			if(C.d1 == CABLE_NODE || C.d2 == CABLE_NODE)
-				C.attackby(I,user)
+				C.attackby(I, user, params)
 				return
 		coil.place_turf(src, user)
 		return TRUE
-
-	return FALSE
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()
@@ -299,7 +319,7 @@
 
 	switch(A.ceiling)
 		if(CEILING_GLASS)
-			playsound(src, "sound/effects/Glassbr1.ogg", 60, 1)
+			playsound(src, "sound/effects/glassbr1.ogg", 60, 1)
 			spawn(8)
 				if(amount >1)
 					visible_message("<span class='boldnotice'>Shards of glass rain down from above!</span>")
@@ -363,7 +383,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache(get_area(src), GLOB.unweedable_areas)
+	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -391,7 +411,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 
 
 /turf/closed/wall/is_weedable()
-	return !is_type_in_typecache(get_area(src), GLOB.unweedable_areas) //so we can spawn weeds on the walls
+	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/L, silent = FALSE)
@@ -702,3 +722,34 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	name = "Z-level baseturf placeholder"
 	desc = "Marker for z-level baseturf, usually resolves to space."
 	baseturfs = /turf/baseturf_bottom
+
+
+/turf/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
+	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
+
+	// Make toxins vomit look different
+	if(toxvomit)
+		this.icon_state = "vomittox_[pick(1,4)]"
+
+
+/turf/proc/visibilityChanged()
+	GLOB.cameranet.updateVisibility(src)
+	// The cameranet usually handles this for us, but if we've just been
+	// recreated we should make sure we have the cameranet vis_contents.
+	var/datum/camerachunk/C = GLOB.cameranet.chunkGenerated(x, y, z)
+	if(C)
+		if(C.obscuredTurfs[src])
+			vis_contents += GLOB.cameranet.vis_contents_objects
+		else
+			vis_contents -= GLOB.cameranet.vis_contents_objects
+
+
+/turf/AllowDrop()
+	return TRUE
+
+
+/turf/contents_explosion(severity, target)
+	for(var/i in contents)
+		var/atom/A = i
+		if(!QDELETED(A) && A.level >= severity)
+			A.ex_act(severity, target)

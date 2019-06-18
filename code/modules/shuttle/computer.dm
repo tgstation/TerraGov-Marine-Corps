@@ -1,6 +1,7 @@
 /obj/machinery/computer/shuttle
 	name = "shuttle console"
 	desc = "A shuttle control computer."
+	icon_state = "syndishuttle"
 //	icon_screen = "shuttle"
 //	icon_keyboard = "tech_key"
 //	light_color = LIGHT_COLOR_CYAN
@@ -11,6 +12,9 @@
 	var/no_destination_swap = 0
 
 /obj/machinery/computer/shuttle/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!user || user.incapacitated())
 		return
 	ui_interact(user)
@@ -42,26 +46,29 @@
 	popup.open()
 
 /obj/machinery/computer/shuttle/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
-//	usr.set_machine(src)
-	src.add_fingerprint(usr)
+
+	if(isxeno(usr))
+		return
+
 	if(!allowed(usr))
 		to_chat(usr, "<span class='danger'>Access denied.</span>")
-		return
+		return TRUE
 
 	if(href_list["move"])
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 		if(M.mode == SHUTTLE_RECHARGING)
 			to_chat(usr, "<span class='warning'>The engines are not ready to use yet!</span>")
-			return
+			return TRUE
 		if(M.launch_status == ENDGAME_LAUNCHED)
 			to_chat(usr, "<span class='warning'>You've already escaped. Never going back to that place again!</span>")
-			return
+			return TRUE
 		if(no_destination_swap)
 			if(M.mode != SHUTTLE_IDLE)
 				to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
-				return
+				return TRUE
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
 				visible_message("Shuttle departing. Please stand away from the doors.")

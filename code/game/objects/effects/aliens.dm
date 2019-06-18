@@ -15,7 +15,7 @@
 	icon_state = "splatter"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/xenomorph/splatter/New() //Self-deletes after creation & animation
 	..()
@@ -29,7 +29,7 @@
 	icon_state = "acidblob"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/xenomorph/splatterblob/New() //Self-deletes after creation & animation
 	..()
@@ -43,7 +43,7 @@
 	icon_state = "acid2"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
@@ -103,7 +103,7 @@
 	icon_state = "acid_normal"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
 	var/acid_strength = 1 //100% speed, normal

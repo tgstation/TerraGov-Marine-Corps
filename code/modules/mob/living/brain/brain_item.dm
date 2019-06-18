@@ -3,7 +3,7 @@
 	max_integrity = 400 //They need to live awhile longer than other organs.
 	desc = "A piece of juicy meat found in a person's head."
 	icon_state = "brain2"
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	force = 1.0
 	w_class = 2.0
 	throwforce = 1.0
@@ -67,4 +67,3 @@
 			brainmob.mind.transfer_to(target)
 		else
 			target.key = brainmob.key
-			if(target.client) target.client.change_view(world.view)

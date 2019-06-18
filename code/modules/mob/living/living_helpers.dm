@@ -22,3 +22,9 @@
 
 /mob/living/proc/get_reagent_tags()
 	return
+
+
+/mob/living/incapacitated(ignore_restrained)
+	. = ..()
+	if(!.)
+		return (stunned || knocked_down || knocked_out)

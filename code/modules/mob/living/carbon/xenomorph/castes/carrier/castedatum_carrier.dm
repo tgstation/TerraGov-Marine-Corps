@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A carrier of huggies."
 
-	caste_type_path = /mob/living/carbon/Xenomorph/Carrier
+	caste_type_path = /mob/living/carbon/xenomorph/carrier
 
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -31,9 +31,9 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Drone
+	deevolves_to = /mob/living/carbon/xenomorph/drone
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Defiler)
+	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

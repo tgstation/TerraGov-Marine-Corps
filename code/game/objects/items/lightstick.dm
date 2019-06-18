@@ -15,7 +15,7 @@
 	if(!anchored || !istype(L) || isxenolarva(L) || prob(80))
 		return
 	visible_message("<span class='danger'>[L] tramples the [src]!</span>")
-	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
 	if(isxeno(L) && prob(40))
 		qdel(src)
 		return
@@ -26,6 +26,8 @@
 	//Removing from turf
 /obj/item/lightstick/attack_hand(mob/user)
 	. = ..()
+	if(.)
+		return
 	if(!anchored)//If planted
 		return
 
@@ -37,7 +39,7 @@
 	user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
 	icon_state = "lightstick_[s_color][anchored]"
 	SetLuminosity(0)
-	playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
+	playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 	//Remove lightsource
 /obj/item/lightstick/Destroy()

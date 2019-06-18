@@ -157,3 +157,10 @@
 		qdel(D)
 	else
 		return returned
+
+
+/datum/Topic(href, href_list[])
+	. = ..()
+	if(.)
+		return
+	SEND_SIGNAL(src, COMSIG_TOPIC, usr, href_list)

@@ -68,7 +68,7 @@
 	icon_state = "mecha_laser"
 	energy_drain = 30
 	projectile = /obj/item/projectile/beam
-	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_sound = 'sound/weapons/laser.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
 	equip_cooldown = 30
@@ -77,7 +77,7 @@
 	icon_state = "mecha_laser"
 	energy_drain = 80
 	projectile = /obj/item/projectile/beam
-	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_sound = 'sound/weapons/laser.ogg'
 	required_type = list(/obj/mecha/combat, /obj/mecha/working)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
@@ -94,7 +94,7 @@
 	icon_state = "mecha_ion"
 	energy_drain = 120
 	projectile = /obj/item/projectile
-	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_sound = 'sound/weapons/laser.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
 	equip_cooldown = 30
@@ -123,7 +123,7 @@
 	energy_drain = 20
 	equip_cooldown = 8
 	projectile = /obj/item/projectile
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/taser.ogg'
 
 /* Commenting this out rather than removing it because it may be useful for reference.
 /obj/item/mecha_parts/mecha_equipment/weapon/honker
@@ -212,7 +212,7 @@
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/gunshot.ogg'
 	fire_volume = 80
 	projectiles = 40
 	projectiles_per_shot = 4
@@ -224,7 +224,7 @@
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
 	projectile = /obj/item/projectile
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/gunshot.ogg'
 	projectiles = 300
 	projectiles_per_shot = 3
 	deviation = 0.3

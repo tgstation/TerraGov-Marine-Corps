@@ -1,10 +1,10 @@
-/mob/living/silicon/ai/Login()	//ThisIsDumb(TM) TODO: tidy this up �_� ~Carn
-	..()
-	regenerate_icons()
-
+/mob/living/silicon/ai/Login()
+	. = ..()
 	if(stat != DEAD)
-		for(var/obj/machinery/ai_status_display/O in GLOB.machines) //change status
+		for(var/i in GLOB.ai_status_displays) //change status
+			var/obj/machinery/status_display/ai/O = i
 			O.mode = 1
 			O.emotion = "Neutral"
-	src.view_core()
-	return
+			O.update()
+	set_eyeobj_visible(TRUE)
+	view_core()

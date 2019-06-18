@@ -39,6 +39,12 @@ var/list/all_supply_groups = list("Operations", "Weapons", "Hardpoint Modules", 
 	manifest += "</ul>"
 
 
+/datum/supply_packs/proc/generate(atom/movable/location)
+	for(var/i in contains)
+		var/atom/movable/AM = i
+		new AM(location)
+
+
 /*******************************************************************************
 OPERATIONS
 *******************************************************************************/

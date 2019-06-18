@@ -23,11 +23,12 @@
 #define ATMOS_DEFAULT_VOLUME_PIPE	70	//L
 
 // bitflags for machine stat variable
-#define BROKEN		1
-#define NOPOWER		2
-#define POWEROFF	4		// tbd
-#define MAINT		8			// under maintaince
-#define EMPED		16		// temporary broken by EMP pulse
+#define BROKEN		(1<<0)
+#define NOPOWER		(1<<1)
+#define POWEROFF	(1<<2)		// tbd
+#define MAINT		(1<<3)		// under maintaince
+#define EMPED		(1<<4)		// temporary broken by EMP pulse
+#define PANEL_OPEN	(1<<5)
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
 
 #define ENGINE_EJECT_Z	3
@@ -169,26 +170,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define B18_PAIN_MIN					50
 #define B18_PAIN_MAX					150
 
-//Obj skill check defines
-
-#define OBJ_SKILL_CQC			1
-#define OBJ_SKILL_MELEE_WEAPONS	2
-#define OBJ_SKILL_FIREARMS		3
-#define OBJ_SKILL_PISTOLS		4
-#define OBJ_SKILL_RIFLES		5
-#define OBJ_SKILL_SMG			6
-#define OBJ_SKILL_SHOTGUNS		7
-#define OBJ_SKILL_HEAVYWEAPONS	8
-#define OBJ_SKILL_SMARTGUN		9
-#define OBJ_SKILL_SPEC_WEAPONS	10
-#define OBJ_SKILL_LEADERSHIP	11
-#define OBJ_SKILL_MEDICAL		12
-#define OBJ_SKILL_SURGERY		13
-#define OBJ_SKILL_PILOT			14
-#define OBJ_SKILL_ENGINEER		15
-#define OBJ_SKILL_CONSTRUCTION	16
-#define OBJ_SKILL_POLICE		17
-#define OBJ_SKILL_POWERLOADER	18
 
 //Razor wire
 

@@ -180,14 +180,16 @@
 	amount_per_transfer_from_this = 10
 	volume = 10
 
-/obj/item/reagent_container/glass/fertilizer/New()
-	..()
 
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+/obj/item/reagent_container/glass/fertilizer/Initialize()
+	. = ..()
+
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)
 
 	if(fertilizer)
 		reagents.add_reagent(fertilizer,10)
+
 
 /obj/item/reagent_container/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"

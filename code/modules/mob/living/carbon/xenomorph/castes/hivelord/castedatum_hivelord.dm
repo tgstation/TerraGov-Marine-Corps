@@ -3,7 +3,7 @@
 	display_name = "Hivelord"
 	upgrade_name = ""
 	caste_desc = "A builder of REALLY BIG hives."
-	caste_type_path = /mob/living/carbon/Xenomorph/Hivelord
+	caste_type_path = /mob/living/carbon/xenomorph/hivelord
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hivelord" //used to match appropriate wound overlays
@@ -28,9 +28,9 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Drone
+	deevolves_to = /mob/living/carbon/xenomorph/drone
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Defiler)
+	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

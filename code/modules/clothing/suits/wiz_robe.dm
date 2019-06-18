@@ -52,7 +52,7 @@
 	gas_transfer_coefficient = 0.01 // IT'S MAGICAL OKAY JEEZ +1 TO NOT DIE
 	permeability_coefficient = 0.01
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
-	allowed = list(/obj/item/teleportation_scroll)
+	allowed = list()
 	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.8
 

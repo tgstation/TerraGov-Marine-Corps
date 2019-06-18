@@ -178,3 +178,13 @@
 		sleep(resolution*world.tick_lag)
 	return CS.finished
 
+
+/proc/___callbackvarset(list_or_datum, var_name, var_value)
+	if(length(list_or_datum))
+		list_or_datum[var_name] = var_value
+		return
+	var/datum/D = list_or_datum
+	if(IsAdminAdvancedProcCall())
+		D.vv_edit_var(var_name, var_value)
+	else
+		D.vars[var_name] = var_value

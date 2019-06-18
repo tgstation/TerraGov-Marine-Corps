@@ -6,9 +6,10 @@
 	action_icon_state = "throw_hugger"
 	mechanics_text = "Click once to bring a facehugger into your hand. Click again to ready that facehugger for throwing at a target or tile."
 	ability_name = "throw facehugger"
+	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 
 /datum/action/xeno_action/activable/throw_hugger/get_cooldown()
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
+	var/mob/living/carbon/xenomorph/carrier/X = owner
 	return X.xeno_caste.hugger_delay
 
 /datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags = XACT_IGNORE_COOLDOWN) // true
@@ -19,7 +20,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/throw_hugger/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
+	var/mob/living/carbon/xenomorph/carrier/X = owner
 
 	//target a hugger on the ground to store it directly
 	if(istype(A, /obj/item/clothing/mask/facehugger))
@@ -55,7 +56,7 @@
 		"<span class='xenowarning'>You throw a facehugger towards \the [A]!</span>")
 		add_cooldown()
 
-/mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
+/mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers.len < xeno_caste.huggers_max)
 		if(F.stat == CONSCIOUS || forced)
 			transferItemToLoc(F, src)
@@ -77,12 +78,13 @@
 	action_icon_state = "retrieve_egg"
 	mechanics_text = "Store an egg on your body for future use. The egg has to be unplanted."
 	ability_name = "retrieve egg"
+	keybind_signal = COMSIG_XENOABILITY_RETRIEVE_EGG
 
 /datum/action/xeno_action/activable/retrieve_egg/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
+	var/mob/living/carbon/xenomorph/carrier/X = owner
 	X.retrieve_egg(A)
 
-/mob/living/carbon/Xenomorph/Carrier/proc/retrieve_egg(atom/T)
+/mob/living/carbon/xenomorph/carrier/proc/retrieve_egg(atom/T)
 	if(!T)
 		return
 
@@ -113,7 +115,7 @@
 		to_chat(src, "<span class='warning'>You need an empty hand to grab one of your stored eggs!</span>")
 		return
 
-/mob/living/carbon/Xenomorph/Carrier/proc/store_egg(obj/item/xeno_egg/E)
+/mob/living/carbon/xenomorph/carrier/proc/store_egg(obj/item/xeno_egg/E)
 	if(!issamexenohive(E))
 		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
 		return
@@ -132,6 +134,7 @@
 	action_icon_state = "place_trap"
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
 	plasma_cost = 200
+	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -166,8 +169,9 @@
 	name = "Spawn Facehugger"
 	action_icon_state = "spawn_hugger"
 	mechanics_text = "Spawn a facehugger that is stored on your body."
-	plasma_cost = CARRIER_SPAWN_HUGGER_COST
+	plasma_cost = 100
 	cooldown_timer = 10 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You can now spawn another young one.</span>")
@@ -178,14 +182,14 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
+	var/mob/living/carbon/xenomorph/carrier/X = owner
 	if(X.huggers.len >= X.xeno_caste.huggers_max)
 		if(!silent)
 			to_chat(X, "<span class='xenowarning'>You can't host any more young ones!</span>")
 		return FALSE
 
 /datum/action/xeno_action/spawn_hugger/action_activate()
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
+	var/mob/living/carbon/xenomorph/carrier/X = owner
 
 	var/obj/item/clothing/mask/facehugger/stasis/F = new
 	F.hivenumber = X.hivenumber

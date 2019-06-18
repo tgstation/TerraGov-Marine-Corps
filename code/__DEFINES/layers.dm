@@ -23,6 +23,9 @@
 
 #define FLOOR_PLANE -2
 #define GAME_PLANE -1
+#define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+
+#define SPACE_LAYER 1.8
 
 #define ABOVE_TURF_LAYER 2.01
 
@@ -111,6 +114,8 @@
 
 #define ABOVE_MOB_LAYER 4.1
 
+#define ABOVE_ALL_MOB_LAYER 4.5
+
 //#define FLY_LAYER 5
 
 #define RIPPLE_LAYER 5.1
@@ -137,6 +142,7 @@
 #define BELOW_FULLSCREEN_LAYER 17.9 //blip from motion detector
 
 #define CAMERA_STATIC_PLANE 18
+#define CAMERA_STATIC_LAYER 18
 
 #define FULLSCREEN_LAYER 18
 #define FULLSCREEN_IMPAIRED_LAYER 18.02 //visual impairment from wearing welding helmet, etc
@@ -153,4 +159,5 @@
 #define ABOVE_HUD_PLANE 22
 #define ABOVE_HUD_LAYER 22
 
-#define CINEMATIC_LAYER 23
+#define SPLASHSCREEN_LAYER 23
+#define SPLASHSCREEN_PLANE 23

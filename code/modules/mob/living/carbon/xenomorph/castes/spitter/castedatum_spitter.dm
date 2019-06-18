@@ -3,7 +3,7 @@
 	display_name = "Spitter"
 	upgrade_name = ""
 	caste_desc = "Ptui!"
-	caste_type_path = /mob/living/carbon/Xenomorph/Spitter
+	caste_type_path = /mob/living/carbon/xenomorph/spitter
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 
@@ -28,8 +28,8 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Boiler, /mob/living/carbon/Xenomorph/Praetorian)
-	deevolves_to = /mob/living/carbon/Xenomorph/Sentinel
+	evolves_to = list(/mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/praetorian)
+	deevolves_to = /mob/living/carbon/xenomorph/sentinel
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

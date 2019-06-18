@@ -27,7 +27,8 @@
 
 
 /obj/machinery/computer/emails/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	var/dat
@@ -58,7 +59,8 @@
 
 
 /obj/machinery/computer/emails/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["open_inbox"])
@@ -73,7 +75,6 @@
 	else if(href_list["back"])
 		selected_mail = null
 
-	add_fingerprint(usr)
 //	updateUsrDialog()
 	attack_hand(usr)
 

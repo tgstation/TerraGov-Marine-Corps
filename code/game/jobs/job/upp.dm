@@ -1,5 +1,4 @@
 /datum/job/upp
-	department_flag = J_FLAG_UPP
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/pfc/crafty
@@ -10,7 +9,6 @@
 /datum/job/upp/standard
 	title = "UPP Standard"
 	paygrade = "UPP1"
-	flag = UPP_STANDARD
 	outfit = /datum/outfit/job/upp/standard
 
 
@@ -61,7 +59,6 @@
 	title = "UPP Medic"
 	paygrade = "UPP2"
 	skills_type = /datum/skills/combat_medic/crafty
-	flag = UPP_MEDIC
 	outfit = /datum/outfit/job/upp/medic
 
 
@@ -114,7 +111,6 @@
 	title = "UPP Heavy"
 	paygrade = "UPP3"
 	skills_type = /datum/skills/specialist/upp
-	flag = UPP_HEAVY
 	outfit = /datum/outfit/job/upp/heavy
 
 

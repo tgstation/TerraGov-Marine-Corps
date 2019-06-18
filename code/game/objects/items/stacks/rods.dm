@@ -49,7 +49,6 @@
 
 
 /obj/item/stack/rods/attack_self(mob/user as mob)
-	src.add_fingerprint(user)
 
 	if(!istype(user.loc,/turf)) return 0
 
@@ -61,7 +60,7 @@
 		for(var/obj/structure/grille/G in usr.loc)
 			if (G.destroyed)
 				G.obj_integrity = 10
-				G.density = 1
+				G.density = TRUE
 				G.destroyed = 0
 				G.icon_state = "grille"
 				use(1)
@@ -77,9 +76,8 @@
 		if (!do_after(usr, 20, TRUE, src, BUSY_ICON_BUILD))
 			DISABLE_BITFIELD(obj_flags, IN_USE)
 			return
-		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
+		new /obj/structure/grille/ ( usr.loc )
 		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
 		DISABLE_BITFIELD(obj_flags, IN_USE)
-		F.add_fingerprint(usr)
 		use(4)
 	return

@@ -15,33 +15,36 @@
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
 
-/obj/item/stack/sandbags_empty/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/tool/shovel))
-		var/obj/item/tool/shovel/ET = W
-		if(ET.dirt_amt)
-			var/dirt_transfer = min(ET.dirt_amt,get_amount())
-			if(!dirt_transfer)
-				return
-			ET.dirt_amt -= dirt_transfer
-			ET.update_icon()
-			use(dirt_transfer)
-			var/obj/item/stack/sandbags/new_bags = new(user.loc)
-			new_bags.add(max(0,dirt_transfer-1))
-			new_bags.add_to_stacks(user)
-			var/obj/item/stack/sandbags_empty/E = src
-			var/replace = (user.get_inactive_held_item() == E)
-			playsound(user.loc, "rustle", 30, 1, 6)
-			if(!E && replace)
-				user.put_in_hands(new_bags)
+/obj/item/stack/sandbags_empty/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	else if (istype(W, /obj/item/stack/snow))
-		var/obj/item/stack/S = W
+	if(istype(I, /obj/item/tool/shovel))
+		var/obj/item/tool/shovel/ET = I
+		if(!ET.dirt_amt)
+			return
+
+		var/dirt_transfer = min(ET.dirt_amt,get_amount())
+		if(!dirt_transfer)
+			return
+
+		ET.dirt_amt -= dirt_transfer
+		ET.update_icon()
+		use(dirt_transfer)
+		var/obj/item/stack/sandbags/new_bags = new(user.loc)
+		new_bags.add(max(0, dirt_transfer - 1))
+		new_bags.add_to_stacks(user)
+		var/obj/item/stack/sandbags_empty/E = src
+		var/replace = (user.get_inactive_held_item() == E)
+		playsound(user.loc, "rustle", 30, 1, 6)
+		if(!E && replace)
+			user.put_in_hands(new_bags)
+
+	else if(istype(I, /obj/item/stack/snow))
+		var/obj/item/stack/S = I
 		var/obj/item/stack/sandbags/new_bags = new(user.loc)
 		new_bags.add_to_stacks(user)
 		S.use(1)
 		use(1)
-	else
-		return ..()
 
 
 //half a max stack
@@ -72,7 +75,6 @@
 	amount = 25
 
 /obj/item/stack/sandbags/attack_self(mob/living/user)
-	add_fingerprint(user)
 
 	if(!istype(user.loc,/turf)) return 0
 
@@ -114,5 +116,4 @@
 	user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
 	"<span class='notice'>You assemble a sandbag barricade.</span>")
 	SB.setDir(user.dir)
-	SB.add_fingerprint(user)
 	use(5)

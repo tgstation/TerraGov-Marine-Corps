@@ -262,7 +262,7 @@
 	..()
 	update_icon_nopipes()
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/plasmacutter_act(mob/living/user, obj/item/W)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/weld_cut_act(mob/living/user, obj/item/W)
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 
@@ -279,7 +279,6 @@
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/welder_act(mob/living/user, obj/item/W)
-	add_fingerprint(user)
 	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.isOn())
@@ -287,7 +286,7 @@
 			"<span class='notice'>You start welding [src] with [WT].</span>")
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) && WT.remove_fuel(1, user))
-				playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
+				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message("<span class='notice'>[user] welds [src] shut.</span>", \
 					"<span class='notice'>You weld [src] shut.</span>")

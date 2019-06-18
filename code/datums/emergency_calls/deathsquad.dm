@@ -1,8 +1,7 @@
 /datum/emergency_call/deathsquad
 	name = "Deathsquad"
 	probability = 0
-	shuttle_id = "Distress_PMC"
-	name_of_spawn = "Distress_PMC"
+	shuttle_id = "distress_pmc"
 
 
 /datum/emergency_call/deathsquad/print_backstory(mob/living/carbon/human/H)
@@ -22,7 +21,6 @@
 
 	H.name = pick(names)
 	H.real_name = H.name
-	H.voice_name = H.name
 
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)

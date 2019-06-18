@@ -100,10 +100,6 @@
 	return (BRUTELOSS)
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You accidentally cut yourself with the [src].</span>")
-		user.take_limb_damage(20)
-		return
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
 	return ..()
 
@@ -115,10 +111,6 @@
 	throwforce = 10.0
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You somehow managed to cut yourself with the [src].</span>")
-		user.take_limb_damage(20)
-		return
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
 	return ..()
 
@@ -192,13 +184,6 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked") //I think the rollingpin attackby will end up ignoring this anyway.
 
 /obj/item/tool/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
-		user.take_limb_damage(10)
-		user.KnockOut(2)
-		return
-
-
 	log_combat(user, M, "attacked", src)
 	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
 
@@ -273,18 +258,6 @@
 					if(I)
 						step(I, pick(NORTH,SOUTH,EAST,WEST))
 						sleep(rand(2,4))
-
-
-	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
-		to_chat(M, "<span class='warning'>You accidentally slam yourself with the [src]!</span>")
-		M.KnockDown(1)
-		user.take_limb_damage(2)
-		if(prob(50))
-			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
-			return
-		else
-			playsound(M, 'sound/items/trayhit2.ogg', 25, 1) //sound playin'
-			return //it always returns, but I feel like adding an extra return just for safety's sakes. EDIT; Oh well I won't :3
 
 	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
@@ -378,14 +351,14 @@
 
 /obj/item/tool/kitchen/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
 
-/obj/item/tool/kitchen/tray/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/kitchen/rollingpin))
+/obj/item/tool/kitchen/tray/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message("<span class='warning'>[user] bashes [src] with [I]!</span>")
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 			cooldown = world.time
-	else
-		..()
 
 /*
 ===============~~~~~================================~~~~~====================

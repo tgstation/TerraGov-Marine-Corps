@@ -53,18 +53,27 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/card/attackby(obj/item/card/id/id_card, mob/user)
-	if(!istype(id_card))
-		return ..()
+/obj/machinery/computer/card/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(!scan && ACCESS_MARINE_LOGISTICS in id_card.access)
-		if(user.drop_held_item())
-			id_card.forceMove(src)
-			scan = id_card
+	if(!istype(I, /obj/item/card/id))
+		return
+
+	var/obj/item/card/id/C = I
+
+	if(!scan && ACCESS_MARINE_LOGISTICS in C.access)
+		if(!user.drop_held_item())
+			return
+
+		C.forceMove(src)
+		scan = C
+
 	else if(!modify)
-		if(user.drop_held_item())
-			id_card.forceMove(src)
-			modify = id_card
+		if(!user.drop_held_item())
+			return
+
+		C.forceMove(src)
+		modify = C
 
 	SSnano.update_uis(src)
 	attack_hand(user)
@@ -76,7 +85,9 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/card/attack_hand(mob/user as mob)
-	if(..()) return
+	. = ..()
+	if(.) 
+		return
 	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
@@ -142,8 +153,9 @@
 		ui.open()
 
 /obj/machinery/computer/card/Topic(href, href_list)
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	switch(href_list["choice"])
 		if ("modify")

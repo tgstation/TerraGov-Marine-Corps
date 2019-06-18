@@ -12,8 +12,9 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
 GLOBAL_LIST_EMPTY(mob_directory)			//mob_id -> mob
+GLOBAL_LIST_EMPTY(new_player_list)			//all /mob/new_player
 GLOBAL_LIST_EMPTY(observer_list)			//all /mob/dead/observer
-GLOBAL_LIST_EMPTY(xeno_mob_list)			//all /mob/living/carbon/Xenomorph
+GLOBAL_LIST_EMPTY(xeno_mob_list)			//all /mob/living/carbon/xenomorph
 GLOBAL_LIST_EMPTY(alive_xeno_list)			//as above except stat != DEAD
 GLOBAL_LIST_EMPTY(dead_xeno_list)
 GLOBAL_LIST_EMPTY(human_mob_list)			//all /mob/living/carbon/human including synths and species

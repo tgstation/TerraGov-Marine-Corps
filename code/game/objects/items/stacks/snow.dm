@@ -14,36 +14,39 @@
 	max_amount = 25
 
 
-/obj/item/stack/snow/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tool/shovel))
-		var/obj/item/tool/shovel/ET = W
-		if(isturf(loc))
-			if(ET.dirt_amt)
-				if(ET.dirt_type == DIRT_TYPE_SNOW)
-					if(amount < max_amount + ET.dirt_amt)
-						amount += ET.dirt_amt
-					else
-						new /obj/item/stack/snow(loc, ET.dirt_amt)
-					ET.dirt_amt = 0
-					ET.update_icon()
+/obj/item/stack/snow/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/shovel))
+		var/obj/item/tool/shovel/ET = I
+		if(!isturf(loc))
+			return
+
+		if(ET.dirt_amt && ET.dirt_type == DIRT_TYPE_SNOW)
+			if(amount < max_amount + ET.dirt_amt)
+				amount += ET.dirt_amt
 			else
-				to_chat(user, "<span class='notice'>You start taking snow from [src].</span>")
-				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-				if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
-					return
-				var/transf_amt = ET.dirt_amt_per_dig
-				if(amount < ET.dirt_amt_per_dig)
-					transf_amt = amount
-				ET.dirt_amt = transf_amt
-				ET.dirt_type = DIRT_TYPE_SNOW
-				to_chat(user, "<span class='notice'>You take snow from [src].</span>")
-				ET.update_icon()
-				use(transf_amt)
-				return TRUE
-	else
-		. = ..()
+				new /obj/item/stack/snow(loc, ET.dirt_amt)
+			ET.dirt_amt = 0
+			ET.update_icon()
+			return
 
+		to_chat(user, "<span class='notice'>You start taking snow from [src].</span>")
+		playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 
+		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		var/transf_amt = ET.dirt_amt_per_dig
+		if(amount < ET.dirt_amt_per_dig)
+			transf_amt = amount
+
+		ET.dirt_amt = transf_amt
+		ET.dirt_type = DIRT_TYPE_SNOW
+		to_chat(user, "<span class='notice'>You take snow from [src].</span>")
+		ET.update_icon()
+		use(transf_amt)
+		return TRUE
 
 
 /obj/item/stack/snow/afterattack(atom/target, mob/user, proximity)
@@ -104,5 +107,4 @@
 	user.visible_message("<span class='notice'>[user] assembles a snow barricade.</span>",
 	"<span class='notice'>You assemble a snow barricade.</span>")
 	SB.setDir(user.dir)
-	SB.add_fingerprint(user)
 	use(3)

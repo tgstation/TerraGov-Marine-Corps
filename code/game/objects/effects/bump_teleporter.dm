@@ -2,13 +2,13 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 
 /obj/effect/bump_teleporter
 	name = "bump-teleporter"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "x2"
 	var/id = null			//id of this bump_teleporter.
 	var/id_target = null	//id of bump_teleporter which this moves you to.
 	invisibility = INVISIBILITY_MAXIMUM 		//nope, can't see this
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	opacity = 0
 
 /obj/effect/bump_teleporter/New()

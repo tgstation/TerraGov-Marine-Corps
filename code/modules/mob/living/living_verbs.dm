@@ -10,27 +10,6 @@
 	var/mob/living/L = usr
 	usr.next_move = world.time + 20
 
-	//Getting out of someone's inventory.
-	if(istype(src.loc,/obj/item/holder))
-		var/obj/item/holder/H = src.loc //Get our item holder.
-		var/mob/M = H.loc                      //Get our mob holder (if any).
-
-		if(istype(M))
-			M.dropItemToGround(H)
-			to_chat(M, "[H] wriggles out of your grip!")
-			to_chat(src, "You wriggle out of [M]'s grip!")
-		else if(istype(H.loc,/obj/item))
-			to_chat(src, "You struggle free of [H.loc].")
-			H.loc = get_turf(H)
-
-		if(istype(M))
-			for(var/atom/A in M.contents)
-				if(istype(A,/obj/item/holder))
-					return
-
-		M.status_flags &= ~PASSEMOTES
-		return
-
 	//resisting grabs (as if it helps anyone...)
 	if(!restrained(0) && pulledby)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
@@ -140,7 +119,7 @@
 	//breaking out of handcuffs & putting out fires
 	else if(iscarbon(L))
 		if (isxeno(L))
-			var/mob/living/carbon/Xenomorph/X = L
+			var/mob/living/carbon/xenomorph/X = L
 			if (X.on_fire && X.canmove && !knocked_down)
 				X.fire_stacks = max(X.fire_stacks - rand(3, 6), 0)
 				X.KnockDown(4, TRUE)
@@ -170,9 +149,7 @@
 			CM.last_special = world.time + 100
 
 			var/can_break_cuffs
-			if(HULK in usr.mutations)
-				can_break_cuffs = 1
-			else if(istype(CM,/mob/living/carbon/human))
+			if(istype(CM,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = CM
 				if(H.species.can_shred(H))
 					can_break_cuffs = 1
@@ -223,9 +200,7 @@
 			CM.last_special = world.time + 100
 
 			var/can_break_cuffs
-			if(HULK in usr.mutations)
-				can_break_cuffs = 1
-			else if(istype(CM,/mob/living/carbon/human))
+			if(istype(CM,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = CM
 				if(H.species.can_shred(H))
 					can_break_cuffs = 1
@@ -268,24 +243,33 @@
 		return
 
 	if(!resting)
-		resting = TRUE
-		to_chat(src, "<span class='notice'>You are now resting.</span>")
-		update_canmove()
+		if(is_ventcrawling)
+			return FALSE
+		set_resting(TRUE, FALSE)
 	else if(action_busy)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
 	else if(do_mob(src, src, 2 SECONDS, uninterruptible = TRUE))
 		get_up()
 
-
 /mob/living/proc/get_up()
 	if(!incapacitated(TRUE))
-		to_chat(src, "<span class='notice'>You get up.</span>")
-		resting = FALSE
-		update_canmove()
+		set_resting(FALSE, FALSE)
 	else
 		to_chat(src, "<span class='notice'>You fail to get up.</span>")
 
+/mob/living/proc/set_resting(rest, silent = TRUE)
+	if(!silent)
+		if(rest)
+			to_chat(src, "<span class='notice'>You are now resting.</span>")
+		else
+			to_chat(src, "<span class='notice'>You get up.</span>")
+	resting = rest
+	update_resting()
+
+/mob/living/proc/update_resting()
+	hud_used?.rest_icon?.update_icon(src)
+	update_canmove()
 
 /mob/living/verb/ghost()
 	set category = "OOC"
@@ -298,9 +282,41 @@
 	if(alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body") != "Ghost")
 		return
 
-	resting = TRUE
+	set_resting(TRUE)
 	log_game("[key_name(usr)] has ghosted.")
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	var/mob/dead/observer/ghost = ghostize(FALSE)
 	if(ghost)
 		ghost.timeofdeath = world.time
+
+
+/mob/living/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
+	set name = "Point To"
+	set category = "Object"
+
+	if(!isturf(loc))
+		return FALSE
+
+	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
+		return FALSE
+
+	if(!A.mouse_opacity) //Can't click it? can't point at it.
+		return FALSE
+
+	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
+		return FALSE
+
+	var/tile = get_turf(A)
+	if(!tile)
+		return FALSE
+
+	if(next_move > world.time)
+		return FALSE
+
+	if(recently_pointed_to > world.time)
+		return FALSE
+
+	next_move = world.time + 2
+
+	point_to_atom(A, tile)
+	return TRUE

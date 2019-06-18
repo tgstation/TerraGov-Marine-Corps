@@ -1,10 +1,12 @@
+GLOBAL_LIST_EMPTY(tagger_locations)
+
 /obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
-	density = 1
+	density = TRUE
 	var/sortTag = null
 	var/examtext = null
 	var/nameset = 0
@@ -19,54 +21,6 @@
 				var/obj/structure/closet/O = wrapped
 				O.welded = 0
 		qdel(src)
-		return
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/destTagger))
-			var/obj/item/destTagger/O = W
-			if(O.currTag)
-				if(src.sortTag != O.currTag)
-					to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
-					if(!src.sortTag)
-						src.sortTag = O.currTag
-						update_icon()
-					else
-						src.sortTag = O.currTag
-					playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 1)
-				else
-					to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
-			else
-				to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
-
-		else if(istype(W, /obj/item/tool/pen))
-			switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
-				if("Title")
-					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_NAME_LEN))
-					if(!str || !length(str))
-						to_chat(usr, "<span class='warning'> Invalid text.</span>")
-						return
-					user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
-					"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
-					"You hear someone scribbling a note.")
-					name = "[name] ([str])"
-					if(!examtext && !nameset)
-						nameset = 1
-						update_icon()
-					else
-						nameset = 1
-				if("Description")
-					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_MESSAGE_LEN))
-					if(!str || !length(str))
-						to_chat(usr, "<span class='warning'>Invalid text.</span>")
-						return
-					if(!examtext && !nameset)
-						examtext = str
-						update_icon()
-					else
-						examtext = str
-					user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
-					"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
-					"You hear someone scribbling a note.")
 		return
 
 	update_icon()
@@ -107,6 +61,59 @@
 				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
 		return
 
+
+/obj/structure/bigDelivery/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/destTagger))
+		var/obj/item/destTagger/O = I
+		if(!O.currTag)
+			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
+			return
+
+		if(sortTag == O.currTag)
+			to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
+			return
+
+		to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
+		if(!sortTag)
+			sortTag = O.currTag
+			update_icon()
+		else
+			sortTag = O.currTag
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+
+	else if(istype(I, /obj/item/tool/pen))
+		switch(alert("What would you like to alter?", "Label", "Title", "Description", "Cancel"))
+			if("Title")
+				var/str = trim(copytext(sanitize(input(user, "Label text?", "Set label", "")), 1, MAX_NAME_LEN))
+				if(!str)
+					to_chat(user, "<span class='warning'>Invalid text.</span>")
+					return
+				user.visible_message("\The [user] titles \the [src] with \a [I], marking down: \"[str]\"",\
+				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
+				"You hear someone scribbling a note.")
+				name = "[name] ([str])"
+				if(!examtext && !nameset)
+					nameset = TRUE
+					update_icon()
+				else
+					nameset = TRUE
+			if("Description")
+				var/str = trim(copytext(sanitize(input(user, "Label text?", "Set label", "")), 1, MAX_MESSAGE_LEN))
+				if(!str)
+					to_chat(user, "<span class='warning'>Invalid text.</span>")
+					return
+				if(!examtext && !nameset)
+					examtext = str
+					update_icon()
+				else
+					examtext = str
+				user.visible_message("\The [user] labels \the [src] with \a [I], scribbling down: \"[examtext]\"",\
+				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
+				"You hear someone scribbling a note.")
+
+
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
 	name = "small parcel"
@@ -127,55 +134,6 @@
 				wrapped.loc = get_turf(src)
 
 		qdel(src)
-		return
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/destTagger))
-			var/obj/item/destTagger/O = W
-			if(O.currTag)
-				if(src.sortTag != O.currTag)
-					to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
-					if(!src.sortTag)
-						src.sortTag = O.currTag
-						update_icon()
-					else
-						src.sortTag = O.currTag
-					playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 1)
-				else
-					to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
-			else
-				to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
-
-		else if(istype(W, /obj/item/tool/pen))
-			switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
-				if("Title")
-					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_NAME_LEN))
-					if(!str || !length(str))
-						to_chat(usr, "<span class='warning'> Invalid text.</span>")
-						return
-					user.visible_message("\The [user] titles \the [src] with \a [W], marking down: \"[str]\"",\
-					"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
-					"You hear someone scribbling a note.")
-					name = "[name] ([str])"
-					if(!examtext && !nameset)
-						nameset = 1
-						update_icon()
-					else
-						nameset = 1
-
-				if("Description")
-					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_MESSAGE_LEN))
-					if(!str || !length(str))
-						to_chat(usr, "<span class='warning'>Invalid text.</span>")
-						return
-					if(!examtext && !nameset)
-						examtext = str
-						update_icon()
-					else
-						examtext = str
-					user.visible_message("\The [user] labels \the [src] with \a [W], scribbling down: \"[examtext]\"",\
-					"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
-					"You hear someone scribbling a note.")
 		return
 
 	update_icon()
@@ -210,6 +168,58 @@
 				to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
 			if(examtext)
 				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
+
+/obj/item/smallDelivery/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/destTagger))
+		var/obj/item/destTagger/O = I
+		if(!O.currTag)
+			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
+			return
+
+		if(sortTag == O.currTag)
+			to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
+			return
+
+		to_chat(user, "<span class='notice'>You have labeled the destination as [O.currTag].</span>")
+		if(!sortTag)
+			sortTag = O.currTag
+			update_icon()
+		else
+			sortTag = O.currTag
+		playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
+
+	else if(istype(I, /obj/item/tool/pen))
+		switch(alert("What would you like to alter?", "Label", "Title", "Description", "Cancel"))
+			if("Title")
+				var/str = trim(copytext(sanitize(input(user, "Label text?", "Set label", "")), 1, MAX_NAME_LEN))
+				if(!str)
+					to_chat(user, "<span class='warning'>Invalid text.</span>")
+					return
+				user.visible_message("\The [user] titles \the [src] with \a [I], marking down: \"[str]\"",\
+				"<span class='notice'>You title \the [src]: \"[str]\"</span>",\
+				"You hear someone scribbling a note.")
+				name = "[name] ([str])"
+				if(!examtext && !nameset)
+					nameset = TRUE
+					update_icon()
+				else
+					nameset = TRUE
+			if("Description")
+				var/str = trim(copytext(sanitize(input(user, "Label text?", "Set label", "")), 1, MAX_MESSAGE_LEN))
+				if(!str)
+					to_chat(user, "<span class='warning'>Invalid text.</span>")
+					return
+				if(!examtext && !nameset)
+					examtext = str
+					update_icon()
+				else
+					examtext = str
+				user.visible_message("\The [user] labels \the [src] with \a [I], scribbling down: \"[examtext]\"",\
+				"<span class='notice'>You label \the [src]: \"[examtext]\"</span>",\
+				"You hear someone scribbling a note.")
+
 
 /obj/item/packageWrap
 	name = "package wrapper"
@@ -259,9 +269,6 @@
 				if(i > 5)
 					P.icon_state = "deliverycrate5"
 					P.name = "huge parcel"
-				P.add_fingerprint(usr)
-				O.add_fingerprint(usr)
-				src.add_fingerprint(usr)
 				src.amount -= 1
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
 				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
@@ -321,8 +328,8 @@
 		var/dat
 
 		dat += "<table style='width:100%; padding:4px;'><tr>"
-		for(var/i = 1, i <= tagger_locations.len, i++)
-			dat += "<td><a href='?src=\ref[src];nextTag=[tagger_locations[i]]'>[tagger_locations[i]]</a></td>"
+		for(var/i in 1 to length(GLOB.tagger_locations))
+			dat += "<td><a href='?src=\ref[src];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
 
 			if (i%4==0)
 				dat += "</tr><tr>"
@@ -339,15 +346,14 @@
 		return
 
 	Topic(href, href_list)
-		src.add_fingerprint(usr)
-		if(href_list["nextTag"] && href_list["nextTag"] in tagger_locations)
+		if(href_list["nextTag"] && href_list["nextTag"] in GLOB.tagger_locations)
 			src.currTag = href_list["nextTag"]
 		openwindow(usr)
 
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"
 	desc = "A chute for big and small packages alike!"
-	density = 1
+	density = TRUE
 	icon_state = "intake"
 
 	var/c_mode = 0
@@ -406,35 +412,35 @@
 	update()
 	return
 
-/obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
-	if(!I || !user)
-		return
+/obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
 	if(isscrewdriver(I))
-		if(c_mode==0)
-			c_mode=1
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		c_mode = !c_mode
+		if(c_mode)
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "You remove the screws around the power connection.")
-			return
-		else if(c_mode==1)
-			c_mode=0
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			to_chat(user, "You attach the screws around the power connection.")
-			return
-	else if(istype(I,/obj/item/tool/weldingtool) && c_mode==1)
-		var/obj/item/tool/weldingtool/W = I
-		if(W.remove_fuel(0,user))
-			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			to_chat(user, "You start slicing the floorweld off the delivery chute.")
-			if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
-				to_chat(user, "You sliced the floorweld off the delivery chute.")
-				var/obj/structure/disposalconstruct/C = new (src.loc)
-				C.ptype = 8 // 8 =  Delivery chute
-				C.update()
-				C.anchored = 1
-				C.density = 1
-				qdel(src)
-			return
 		else
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			to_chat(user, "You attach the screws around the power connection.")
+
+	else if(istype(I, /obj/item/tool/weldingtool) && c_mode)
+		var/obj/item/tool/weldingtool/W = I
+		
+		if(!W.remove_fuel(0, user))
 			to_chat(user, "You need more welding fuel to complete this task.")
 			return
+
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		to_chat(user, "You start slicing the floorweld off the delivery chute.")
+		
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+			return
+
+		to_chat(user, "You sliced the floorweld off the delivery chute.")
+		var/obj/structure/disposalconstruct/C = new(loc)
+		C.ptype = 8 // 8 =  Delivery chute
+		C.update()
+		C.anchored = TRUE
+		C.density = TRUE
+		qdel(src)

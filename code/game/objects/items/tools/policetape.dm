@@ -13,7 +13,7 @@
 /obj/item/tape
 	name = "tape"
 	icon = 'icons/obj/policetape.dmi'
-	anchored = 1
+	anchored = TRUE
 	var/lifted = 0
 	var/crumpled = 0
 	var/icon_base
@@ -116,18 +116,21 @@
 /obj/item/tape/Crossed(atom/movable/AM)
 	if(!lifted && ismob(AM))
 		var/mob/M = AM
-		add_fingerprint(M)
 		if(!allowed(M))	//only select few learn art of not crumpling the tape
 			if(ishuman(M))
 				to_chat(M, "<span class='warning'>You are not supposed to go past [src]...</span>")
 			crumple()
 
-/obj/item/tape/attackby(obj/item/W as obj, mob/user as mob)
-	breaktape(W, user)
+/obj/item/tape/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	breaktape(I, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (user.a_intent == INTENT_HELP && allowed(user))
-		user.show_viewers("<span class='notice'>[user] lifts [src], allowing passage.</span>")
+		user.visible_message("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()
 		lifted = 1
 		spawn(200)
@@ -142,7 +145,7 @@
 	if(user.a_intent == INTENT_HELP && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break the [src] with that!")
 		return
-	user.show_viewers("<span class='notice'> [user] breaks the [src]!</span>")
+	user.visible_message("<span class='notice'> [user] breaks the [src]!</span>")
 
 	var/dir[2]
 	var/icon_dir = src.icon_state

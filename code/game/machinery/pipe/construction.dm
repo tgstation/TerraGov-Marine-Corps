@@ -131,21 +131,16 @@ Buildable meters
 /obj/item/pipe/attack_self(mob/user)
 	setDir(turn(dir,-90))
 
-/obj/item/pipe/attackby(obj/item/W, mob/living/user)
-	if(!istype(user))
-		return FALSE
+/obj/item/pipe/attackby(obj/item/I, mob/user, params)
+	. = ..()
 	if(user.incapacitated())
 		return FALSE
-	if(iswrench(W))
-		. = wrench_act(user, W)
-	if(!.)
-		return ..()
+	if(iswrench(I))
+		return wrench_act(user, I)
 
-/obj/item/pipe/proc/wrench_act(mob/living/user, obj/item/wrench/W)
+/obj/item/pipe/wrench_act(mob/living/user, obj/item/wrench/W)
 	if(!isturf(loc))
 		return TRUE
-
-	add_fingerprint(user)
 
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	var/flags = initial(fakeA.pipe_flags)
@@ -163,9 +158,8 @@ Buildable meters
 	var/obj/machinery/atmospherics/A = new pipe_type(loc)
 	build_pipe(A)
 	A.on_construction(color, piping_layer)
-	transfer_fingerprints_to(A)
 
-	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	user.visible_message( \
 		"[user] fastens \the [src].", \
 		"<span class='notice'>You fasten \the [src].</span>", \
@@ -203,14 +197,10 @@ Buildable meters
 		return FALSE
 	if(user.incapacitated())
 		return FALSE
-	if(iswrench(W))
-		. = wrench_act(user, W)
-	if(isscrewdriver(W))
-		. = screwdriver_act(user, W)
 	if(!.)
 		return ..()
 
-/obj/item/pipe_meter/proc/wrench_act(mob/living/user, obj/item/wrench/W)
+/obj/item/pipe_meter/wrench_act(mob/living/user, obj/item/wrench/W)
 
 	var/obj/machinery/atmospherics/pipe/pipe
 	for(var/obj/machinery/atmospherics/pipe/P in loc)
@@ -221,11 +211,11 @@ Buildable meters
 		to_chat(user, "<span class='warning'>You need to fasten it to a pipe!</span>")
 		return TRUE
 	new /obj/machinery/meter(loc, piping_layer)
-	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	to_chat(user, "<span class='notice'>You fasten the meter to the pipe.</span>")
 	qdel(src)
 
-/obj/item/pipe_meter/proc/screwdriver_act(mob/living/user, obj/item/S)
+/obj/item/pipe_meter/screwdriver_act(mob/living/user, obj/item/S)
 	. = ..()
 	if(.)
 		return TRUE
@@ -235,7 +225,7 @@ Buildable meters
 		return TRUE
 
 	new /obj/machinery/meter/turf(loc, piping_layer)
-	playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
+	playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1)
 	to_chat(user, "<span class='notice'>You fasten the meter to the [loc.name].</span>")
 	qdel(src)
 

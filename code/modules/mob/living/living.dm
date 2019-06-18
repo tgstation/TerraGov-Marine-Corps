@@ -24,7 +24,6 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
-	handle_silent()
 
 /mob/living/proc/handle_organs()
 	reagent_move_delay_modifier = 0
@@ -49,11 +48,6 @@
 	if(stuttering)
 		stuttering = max(stuttering-1, 0)
 	return stuttering
-
-/mob/living/proc/handle_silent()
-	if(silent)
-		silent = max(silent-1, 0)
-	return silent
 
 /mob/living/proc/handle_drugged()
 	if(druggy)
@@ -114,55 +108,6 @@
 	return
 
 
-//sort of a legacy burn method for /electrocute, /shock, and the e_chair
-/mob/living/proc/burn_skin(burn_amount)
-	if(ishuman(src))
-		//to_chat(world, "DEBUG: burn_skin(), mutations=[mutations]")
-		if(mShock in src.mutations) //shockproof
-			return 0
-		if (COLD_RESISTANCE in src.mutations) //fireproof
-			return 0
-		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
-		var/divided_damage = (burn_amount)/(H.limbs.len)
-		var/extradam = 0	//added to when organ is at max dam
-		for(var/datum/limb/affecting in H.limbs)
-			if(!affecting)	continue
-			if(affecting.take_damage_limb(0, divided_damage + extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
-				H.UpdateDamageIcon()
-		H.updatehealth()
-		return 1
-	else if(ismonkey(src))
-		if (COLD_RESISTANCE in src.mutations) //fireproof
-			return 0
-		var/mob/living/carbon/monkey/M = src
-		M.adjustFireLoss(burn_amount)
-		M.updatehealth()
-		return 1
-	else if(isAI(src))
-		return 0
-
-/mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
-	var/temperature = actual
-	var/difference = abs(actual-desired)	//get difference
-	var/increments = difference/10 //find how many increments apart they are
-	var/change = increments*incrementboost	// Get the amount to change by (x per increment)
-
-	// Too cold
-	if(actual < desired)
-		temperature += change
-		if(actual > desired)
-			temperature = desired
-	// Too hot
-	if(actual > desired)
-		temperature -= change
-		if(actual < desired)
-			temperature = desired
-//	if(ishuman(src))
-//		to_chat(world, "[src] ~ [src.bodytemperature] ~ [temperature]")
-	return temperature
-
-
-
 /mob/proc/get_contents()
 
 
@@ -220,22 +165,6 @@
 	return
 
 
-/mob/living/proc/Examine_OOC()
-	set name = "Examine Meta-Info (OOC)"
-	set category = "OOC"
-	set src in view()
-
-	if(CONFIG_GET(flag/allow_metadata))
-		if(client)
-			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
-		else
-			to_chat(usr, "[src] does not have any stored infomation!")
-	else
-		to_chat(usr, "OOC Metadata is not supported by this server!")
-
-	return
-
-
 /mob/living/proc/InCritical()
 	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
 
@@ -254,6 +183,28 @@
 
 	if(s_active && !(s_active in contents) && !CanReach(s_active))
 		s_active.close(src)
+
+
+/mob/living/Moved(oldLoc, dir)
+	. = ..()
+	update_camera_location(oldLoc)
+
+
+/mob/living/forceMove(atom/destination)
+	. = ..()
+	//Only bother updating the camera if we actually managed to move
+	if(.)
+		update_camera_location(destination)
+		if(client)
+			reset_perspective()
+
+
+/mob/living/proc/do_camera_update(oldLoc)
+	return
+
+
+/mob/living/proc/update_camera_location(oldLoc)
+	return
 
 
 /mob/living/vv_get_dropdown()
@@ -349,7 +300,7 @@
 			return
 
 		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos can still push small Xenos
-			var/mob/living/carbon/Xenomorph/X = L
+			var/mob/living/carbon/xenomorph/X = L
 			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isxeno(src) && X.mob_size == MOB_SIZE_BIG))
 				if(!isxeno(src) && client)
 					do_bump_delay = 1
@@ -357,7 +308,7 @@
 				return
 
 		if(isxeno(src) && !isxenolarva(src) && ishuman(L)) //We are a Xenomorph and pushing a human
-			var/mob/living/carbon/Xenomorph/X = src
+			var/mob/living/carbon/xenomorph/X = src
 			if(X.mob_size == MOB_SIZE_BIG)
 				L.do_bump_delay = 1
 
@@ -377,12 +328,6 @@
 					return
 
 		if(ishuman(L))
-
-			if(HULK in L.mutations)
-				if(prob(70))
-					to_chat(usr, "<span class='danger'>You fail to push [L]'s fat ass out of the way.</span>")
-					now_pushing = 0
-					return
 			if(!(L.status_flags & CANPUSH))
 				now_pushing = 0
 				return
@@ -446,11 +391,18 @@
 		now_pushing = 0
 
 
+/mob/living/Bumped(atom/movable/AM)
+	. = ..()
+	last_bumped = world.time
+
 
 /mob/living/throw_at(atom/target, range, speed, thrower)
-	if(!target || !src)	return 0
-	if(pulling) stop_pulling() //being thrown breaks pulls.
-	if(pulledby) pulledby.stop_pulling()
+	if(!target || !src)	
+		return 0
+	if(pulling) 
+		stop_pulling() //being thrown breaks pulls.
+	if(pulledby) 
+		pulledby.stop_pulling()
 	set_frozen(TRUE) //can't move while being thrown
 	update_canmove()
 	. = ..()
@@ -486,10 +438,7 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
-	for(var/i in GLOB.observer_list)
-		var/mob/dead/observer/O = i
-		to_chat(O, "<br><hr><span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] \[<a href='byond://?src=[REF(O)];claim=[REF(src)]'>CLAIM</a>\] \[<a href='byond://?src=[REF(O)];track=[REF(src)]'>FOLLOW</a>\]</span><hr><br>")
-
+	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
@@ -534,9 +483,9 @@
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
 	if(!isxeno(src)||!isanimal(src))
-		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(src)
-		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(src)
 
 	smokecloaked = TRUE
@@ -549,9 +498,9 @@
 	alpha = initial(alpha)
 
 	if(!isxeno(src)|| !isanimal(src))
-		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.add_to_hud(src)
-		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.add_to_hud(src)
 
 	smokecloaked = FALSE
@@ -570,16 +519,11 @@
 	var/amplitude = min(4, (jitteriness/100) + 1)
 	var/pixel_x_diff = rand(-amplitude, amplitude)
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = get_standard_pixel_x_offset(lying)
-	var/final_pixel_y = get_standard_pixel_y_offset(lying)
+	var/final_pixel_x = initial(pixel_x)
+	var/final_pixel_y = initial(pixel_y)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
 	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 
-/mob/living/proc/get_standard_pixel_x_offset(lying = 0)
-	return initial(pixel_x)
-
-/mob/living/proc/get_standard_pixel_y_offset(lying = 0)
-	return initial(pixel_y)
 
 /*
 adds a dizziness amount to a mob
@@ -697,7 +641,7 @@ below 100 is not dizzy
 
 // called when the client disconnects and is away.
 /mob/living/proc/begin_away()
-	away_time = set_away_time(world.time)
+	set_away_time(world.time)
 
 
 /mob/living/reset_perspective(atom/A)
@@ -712,3 +656,51 @@ below 100 is not dizzy
 	else
 		clear_fullscreen("remote_view", 0)
 	update_pipe_vision()
+
+
+/mob/living/proc/can_track(mob/living/user)
+	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
+	var/turf/T = get_turf(src)
+	if(!T)
+		return FALSE
+	if(is_centcom_level(T.z)) //dont detect mobs on centcom
+		return FALSE
+	if(user != null && src == user)
+		return FALSE
+	if(invisibility || alpha == 0)//cloaked
+		return FALSE
+
+	// Now, are they viewable by a camera? (This is last because it's the most intensive check)
+	if(!near_camera(src))
+		return FALSE
+
+	return TRUE
+
+
+/mob/living/proc/get_visible_name()
+	return name
+
+
+/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+	if(incapacitated())
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
+	if(proximity && !in_range(AM, src))
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	if(!dexterity)
+		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return FALSE
+	return TRUE
+
+
+/mob/living/proc/point_to_atom(atom/A, turf/T)
+	//Squad Leaders and above have reduced cooldown and get a bigger arrow
+	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
+		recently_pointed_to = world.time + 50
+		new /obj/effect/overlay/temp/point(T)
+	else
+		recently_pointed_to = world.time + 10
+		new /obj/effect/overlay/temp/point/big(T)
+	visible_message("<b>[src]</b> points to [A]")
+	return TRUE

@@ -261,6 +261,12 @@
 	icon = 'icons/obj/doors/almayer/securedoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
+
+/obj/machinery/door/airlock/almayer/evacuation
+	name = "\improper Evacuation Airlock"
+	icon = 'icons/obj/doors/almayer/securedoor.dmi'
+
+
 /obj/machinery/door/airlock/almayer/maint
 	name = "\improper Maintenance Hatch"
 	icon = 'icons/obj/doors/almayer/maintdoor.dmi'
@@ -473,6 +479,15 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
+	aiControlDisabled = TRUE
+
+/obj/machinery/door/airlock/dropship_hatch/proc/lockdown()
+	unlock()
+	close()
+	lock()
+
+/obj/machinery/door/airlock/dropship_hatch/proc/release()
+	unlock()
 
 /obj/machinery/door/airlock/dropship_hatch/ex_act(severity)
 	return
@@ -487,11 +502,6 @@
 	else
 		..()
 
-/obj/machinery/door/airlock/dropship_hatch/unlock()
-	if(is_low_orbit_level(z)) // in flight
-		return
-	return ..(TRUE)
-
 /obj/machinery/door/airlock/dropship_hatch/two
 	icon = 'icons/obj/doors/almayer/dropship2_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship2"
@@ -503,6 +513,7 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
+	aiControlDisabled = TRUE
 
 /obj/machinery/door/airlock/hatch/cockpit/two
 	icon = 'icons/obj/doors/almayer/dropship2_pilot.dmi'

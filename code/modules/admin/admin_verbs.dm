@@ -17,8 +17,6 @@
 		ghost.reenter_corpse()
 		return
 
-	M.client.change_view(world.view)
-
 	var/oldkey = M.key
 
 	M.ghostize(TRUE)
@@ -674,7 +672,7 @@
 	var/selection = input("Jump to:", "Jump") as null|anything in list("Area", "Turf", "Coords", "Mob", "Key")
 	switch(selection)
 		if("Area")
-			var/area/A = input("Area", "Jump") as null|anything in return_sorted_areas()
+			var/area/A = input("Area", "Jump") as null|anything in GLOB.sorted_areas
 			target = pick(get_area_turfs(A))
 		if("Turf")
 			var/turf/T = input("Turf", "Jump") as null|anything in GLOB.turfs
@@ -767,7 +765,7 @@
 	var/turf/target
 	switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
 		if("Area")
-			var/area/A = input("Pick an area.", "Send Mob") as null|anything in return_sorted_areas()
+			var/area/A = input("Pick an area.", "Send Mob") as null|anything in GLOB.sorted_areas
 			if(!A)
 				return
 			target = pick(get_area_turfs(A))
@@ -791,7 +789,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(target)].")
 
 
-/datum/admins/proc/jump_area(area/A in return_sorted_areas())
+/datum/admins/proc/jump_area(area/A in GLOB.sorted_areas)
 	set category = null
 	set name = "Jump to Area"
 
@@ -950,7 +948,7 @@
 
 	var/datum/admin_help/AH = C.current_ticket
 
-	if(AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
+	if(AH && AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 
 	if(AH && !AH.marked)
@@ -1281,7 +1279,7 @@
 		return
 
 	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
+		var/mob/living/carbon/xenomorph/X = i
 		if(!X.client)
 			continue
 		X.forceMove(get_turf(usr))
@@ -1377,3 +1375,23 @@
 		return
 
 	usr << link(CONFIG_GET(string/dburl))
+
+
+/datum/admins/proc/check_fingerprints(atom/A)
+	set category = null
+	set name = "Check Fingerprints"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/dat
+
+	if(!A.fingerprints)
+		dat += "No fingerprints detected."
+
+	for(var/i in A.fingerprints)
+		dat += "[i] - [A.fingerprints[i]]<br>"
+
+	var/datum/browser/browser = new(usr, "fingerprints_[A]", "Fingerprints on [A]")
+	browser.set_content(dat)
+	browser.open(FALSE)

@@ -32,8 +32,10 @@
 			T = get_turf(M)
 			if(T && T.z == turf_source.z) M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global)
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, var/falloff, is_global)
-	if(!client || ear_deaf > 0)	return FALSE
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global)
+	if(!client)	
+		return FALSE
+
 	soundin = get_sfx(soundin)
 
 	var/sound/S = sound(soundin)
@@ -99,6 +101,13 @@
 	if(!is_global) S.environment = 2
 	SEND_SOUND(src, S)
 
+
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global)
+	if(ear_deaf > 0)
+		return FALSE
+	return ..()
+
+
 /client/proc/playtitlemusic()
 	if(!SSticker?.login_music)	return FALSE
 	if(prefs.toggles_sound & SOUND_LOBBY)
@@ -119,9 +128,11 @@
 		switch(S)
 			// General effects
 			if("shatter")
-				S = pick('sound/effects/Glassbr1.ogg','sound/effects/Glassbr2.ogg','sound/effects/Glassbr3.ogg')
+				S = pick('sound/effects/glassbr1.ogg','sound/effects/glassbr2.ogg','sound/effects/glassbr3.ogg')
 			if("explosion")
-				S = pick('sound/effects/Explosion1.ogg','sound/effects/Explosion2.ogg')
+				S = pick('sound/effects/explosion1.ogg','sound/effects/explosion2.ogg','sound/effects/explosion3.ogg','sound/effects/explosion4.ogg','sound/effects/explosion5.ogg','sound/effects/explosion6.ogg')
+			if("explosion_small")
+				S = pick('sound/effects/explosion_small1.ogg','sound/effects/explosion_small2.ogg','sound/effects/explosion_small3.ogg')
 			if("sparks")
 				S = pick('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg','sound/effects/sparks4.ogg')
 			if("rustle")
@@ -163,6 +174,8 @@
 				S = pick('sound/weapons/gun_m41a_1.ogg','sound/weapons/gun_m41a_2.ogg','sound/weapons/gun_m41a_3.ogg','sound/weapons/gun_m41a_4.ogg','sound/weapons/gun_m41a_5.ogg','sound/weapons/gun_m41a_6.ogg')
 			if("gun_smartgun")
 				S = pick('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')
+			if("gun_flamethrower")
+				S = pick('sound/weapons/gun_flamethrower1.ogg', 'sound/weapons/gun_flamethrower2.ogg', 'sound/weapons/gun_flamethrower3.ogg')
 			// Xeno
 			if("acid_hit")
 				S = pick('sound/bullets/acid_impact1.ogg')

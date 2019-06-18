@@ -162,7 +162,10 @@
 	exit_tank(occupant, TRUE, TRUE)
 	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
 					"<span class='notice'>you forcibly pull [occupant] out of [src].</span>", null, 6)
-	occupant.KnockDown(4)
+	if(!isliving(occupant))
+		return
+	var/mob/living/L = occupant
+	L.KnockDown(4)
 
 //Two seats, gunner and driver
 //Must have the skills to do so

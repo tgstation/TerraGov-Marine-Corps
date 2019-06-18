@@ -7,15 +7,15 @@
 
 /obj/item/clothing/suit/storage/attack_hand(mob/user)
 	if(pockets.handle_attack_hand(user))
-		return ..(user)
+		return ..()
 
 /obj/item/clothing/suit/storage/MouseDrop(obj/over_object)
 	if(pockets.handle_mousedrop(usr, over_object))
 		return ..(over_object)
 
-/obj/item/clothing/suit/storage/attackby(obj/item/W, mob/user)
+/obj/item/clothing/suit/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	return pockets.attackby(W, user)
+	return pockets.attackby(I, user, params)
 
 /obj/item/clothing/suit/storage/emp_act(severity)
 	pockets.emp_act(severity)

@@ -6,16 +6,17 @@
 	action_icon_state = "stealth_on"
 	mechanics_text = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
 /datum/action/xeno_action/activable/stealth/action_activate()
-	var/mob/living/carbon/Xenomorph/Hunter/X = owner
+	var/mob/living/carbon/xenomorph/hunter/X = owner
 	X.Stealth()
 
 /datum/action/xeno_action/activable/stealth/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Hunter/X = owner
+	var/mob/living/carbon/xenomorph/hunter/X = owner
 	return !X.used_stealth
 
-/mob/living/carbon/Xenomorph/Hunter/proc/Stealth()
+/mob/living/carbon/xenomorph/hunter/proc/Stealth()
 
 	if(!check_state())
 		return
@@ -50,7 +51,7 @@
 	else
 		cancel_stealth()
 
-/mob/living/carbon/Xenomorph/Hunter/proc/stealth_cooldown()
+/mob/living/carbon/xenomorph/hunter/proc/stealth_cooldown()
 	if(!used_stealth)//sanity check/safeguard
 		return
 	used_stealth = FALSE
@@ -58,7 +59,7 @@
 	playsound(src, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 	update_action_button_icons()
 
-/mob/living/carbon/Xenomorph/Hunter/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
+/mob/living/carbon/xenomorph/hunter/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	if(!stealth)//sanity check/safeguard
 		return
 	to_chat(src, "<span class='xenodanger'>You emerge from the shadows.</span>")
@@ -85,13 +86,13 @@
 		owner.update_icons()
 
 /datum/action/xeno_action/activable/pounce/hunter/sneak_attack()
-	var/mob/living/carbon/Xenomorph/Hunter/X = owner
+	var/mob/living/carbon/xenomorph/hunter/X = owner
 	if(X.can_sneak_attack) //If we could sneak attack, add a cooldown to sneak attack
 		to_chat(X, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
 		X.can_sneak_attack = FALSE
-		addtimer(CALLBACK(X, /mob/living/carbon/Xenomorph/Hunter/.proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
+		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/hunter/.proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
-/mob/living/carbon/Xenomorph/Hunter/proc/sneak_attack_cooldown()
+/mob/living/carbon/xenomorph/hunter/proc/sneak_attack_cooldown()
 	if(can_sneak_attack)
 		return
 	can_sneak_attack = TRUE

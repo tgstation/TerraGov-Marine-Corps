@@ -6,16 +6,17 @@
 	action_icon_state = "agility_on"
 	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
 	ability_name = "toggle agility"
-	cooldown_timer = WARRIOR_AGILITY_COOLDOWN
+	cooldown_timer = 0.5 SECONDS
 	use_state_flags = XACT_USE_AGILITY
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
 
 /datum/action/xeno_action/activable/toggle_agility/on_cooldown_finish()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(src, "<span class='notice'>You can [X.agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/toggle_agility/action_activate()
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	X.agility = !X.agility
 
@@ -41,7 +42,29 @@
 	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
 	plasma_cost = 10
-	cooldown_timer = WARRIOR_LUNGE_COOLDOWN
+	cooldown_timer = 10 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_LUNGE
+
+/datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
+	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
+		return COMSIG_WARRIOR_CANT_NECKGRAB
+
+/datum/action/xeno_action/activable/lunge/proc/lunge(mob/living/owner, atom/A)
+	if(can_use_ability(A, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+		use_ability(A)
+		return COMSIG_WARRIOR_USED_LUNGE
+
+/datum/action/xeno_action/activable/lunge/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAB, .proc/add_cooldown)
+	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/neck_grab)
+	RegisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM, .proc/lunge)
+
+/datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
+	UnregisterSignal(owner, COMSIG_WARRIOR_NECKGRAB)
+	UnregisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM)
 
 /datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -51,32 +74,38 @@
 		return FALSE
 	if(!ishuman(A))
 		return FALSE
+	var/flags_to_check = use_state_flags|override_flags
 	var/mob/living/carbon/human/H = A
-	if(H.stat == DEAD)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_DEAD_TARGET) && H.stat == DEAD)
 		return FALSE
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
-	var/mob/living/carbon/Xenomorph/X = owner
-	X.used_lunge = FALSE
+	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, "<span class='notice'>You get ready to lunge again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 
 	round_statistics.warrior_lunges++
 	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
 	"<span class='xenowarning'>You lunge at [A]!</span>")
 
 	succeed_activate()
-	X.used_lunge = TRUE // triggered by start_pulling
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if (X.Adjacent(A))
+		X.swap_hand()
 		X.start_pulling(A, TRUE)
+		X.swap_hand()
 
 	add_cooldown()
 	return TRUE
+
+/mob/living/carbon/xenomorph/warrior/CtrlClickOn(atom/A)
+	if(SEND_SIGNAL(src, COMSIG_WARRIOR_CTRL_CLICK_ATOM, A) & COMSIG_WARRIOR_USED_LUNGE)
+		return
+	return ..()
 
 // ***************************************
 // *********** Fling
@@ -87,7 +116,8 @@
 	mechanics_text = "Knock a target flying up to 5 tiles."
 	ability_name = "Fling"
 	plasma_cost = 30
-	cooldown_timer = WARRIOR_FLING_COOLDOWN
+	cooldown_timer = 6 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_FLING
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>You gather enough strength to fling something again.</span>")
@@ -108,7 +138,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/H = A
 	round_statistics.warrior_flings++
 
@@ -144,7 +174,8 @@
 	mechanics_text = "Strike a target up to 1 tile away with a chance to break bones."
 	ability_name = "punch"
 	plasma_cost = 20
-	cooldown_timer = WARRIOR_PUNCH_COOLDOWN
+	cooldown_timer = 6 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
@@ -157,11 +188,11 @@
 	if(!isliving(A))
 		return FALSE
 	var/mob/living/L = A
-	if(L.stat == DEAD || (CHECK_BITFIELD(L.status_flags, XENO_HOST) && istype(L.buckled, /obj/structure/bed/nest))) //Can't bully the dead/nested hosts.
+	if(L.stat == DEAD || isnestedhost(L)) //Can't bully the dead/nested hosts.
 		return FALSE
 
 /datum/action/xeno_action/activable/punch/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
 	if(X.issamexenohive(M))
 		return M.attack_alien() //harmless nibbling.
@@ -184,10 +215,10 @@
 
 	add_cooldown()
 
-/mob/living/proc/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
+/mob/living/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
 
-/mob/living/carbon/human/punch_act(mob/living/carbon/Xenomorph/X, damage, target_zone)
+/mob/living/carbon/human/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	var/datum/limb/L = get_limb(target_zone)
 
 	if (!L || (L.limb_status & LIMB_DESTROYED))
@@ -212,7 +243,7 @@
 // ***************************************
 
 // Called when pulling something and attacking yourself with the pull
-/mob/living/carbon/Xenomorph/proc/pull_power(var/mob/M)
+/mob/living/carbon/xenomorph/proc/pull_power(var/mob/M)
 	if (isxenowarrior(src) && !ripping_limb && M.stat != DEAD)
 		ripping_limb = TRUE
 		if(rip_limb(M))
@@ -221,7 +252,7 @@
 
 
 // Warrior Rip Limb - called by pull_power()
-/mob/living/carbon/Xenomorph/proc/rip_limb(var/mob/M)
+/mob/living/carbon/xenomorph/proc/rip_limb(var/mob/M)
 	if (!ishuman(M))
 		return FALSE
 

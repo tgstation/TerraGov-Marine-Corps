@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "Gross!"
 
-	caste_type_path = /mob/living/carbon/Xenomorph/Boiler
+	caste_type_path = /mob/living/carbon/xenomorph/boiler
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -18,19 +18,19 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.7
+	speed = 0.6
 
 	// *** Plasma *** //
 	plasma_max = 800
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 220
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Spitter
+	deevolves_to = /mob/living/carbon/xenomorph/spitter
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -64,14 +64,14 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.6
+	speed = 0.5
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
@@ -100,14 +100,14 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0.5
+	speed = 0.4
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
@@ -137,14 +137,14 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = 0.3
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 245
+	max_health = 255
 
 	// *** Defense *** //
 	armor_deflection = 35

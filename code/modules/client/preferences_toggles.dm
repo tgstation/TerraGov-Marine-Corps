@@ -68,6 +68,16 @@
 	to_chat(src, "<span class='notice'>You will [(prefs.toggles_chat & CHAT_DEAD) ? "now" : "no longer"] see deadchat.</span>")
 
 
+/client/verb/toggle_admin_music()
+	set category = "Preferences"
+	set name = "Toggle Admin Music"
+
+	prefs.toggles_sound ^= SOUND_MIDI
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will [(prefs.toggles_sound & SOUND_MIDI) ? "now" : "no longer"] hear admin music.</span>")
+
+
 /client/verb/toggle_lobby_music()
 	set category = "Preferences"
 	set name = "Toggle Lobby Music"
@@ -195,7 +205,7 @@
 	prefs.ShowChoices(usr)
 
 
-GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1" = "ghostian1", "Ghost Ian 2" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\
+GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1" = "ghostian", "Ghost Ian 2" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\
 							"Black" = "ghost_black", "Blue" = "ghost_blue", "Yellow" = "ghost_yellow", "Green" = "ghost_green", "Pink" = "ghost_pink", \
 							"Cyan" = "ghost_cyan", "Dark Blue" = "ghost_dblue", "Dark Red" = "ghost_dred", "Dark Green" = "ghost_dgreen", \
 							"Dark Cyan" = "ghost_dcyan", "Grey" = "ghost_grey", "Dark Yellow" = "ghost_dyellow", "Dark Pink" = "ghost_dpink",\

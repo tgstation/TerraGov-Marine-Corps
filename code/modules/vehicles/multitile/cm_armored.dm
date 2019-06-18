@@ -184,7 +184,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!can_use_hp(usr))
 		return
 
-	HP.ammo.Move(entrance.loc)
+	HP.ammo.forceMove(get_turf(entrance))
 	HP.ammo.update_icon()
 	HP.ammo = A
 	HP.backup_clips.Remove(A)
@@ -393,7 +393,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!lying)
 		temp = get_step(T, facing)
 		T = temp
-		T = get_step(T, pick(cardinal))
+		T = get_step(T, pick(GLOB.cardinals))
 		if(mob_size == MOB_SIZE_BIG)
 			throw_at(T, 3, 2, roadtrafficaccident, 0)
 		else
@@ -402,20 +402,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			KnockDown(1)
 		apply_damage(rand(10, 15), BRUTE)
 		visible_message("<span class='danger'>[roadtrafficaccident] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[roadtrafficaccident] violently bumps into you!</span>")
-
-/mob/living/carbon/Xenomorph/tank_collision(obj/vehicle/roadtrafficaccident, facing, turf/T, turf/temp)
-	if(lying || loc == roadtrafficaccident.loc)
 		return ..()
 	temp = get_step(T, facing)
-	T = temp
-	T = get_step(T, pick(cardinal))
+	T = temp	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, roadtrafficaccident, 0)
 	visible_message("<span class='danger'>[roadtrafficaccident] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[roadtrafficaccident] bumps into you!</span>")
 
-/mob/living/carbon/Xenomorph/Larva/tank_collision(obj/vehicle/roadtrafficaccident, facing, turf/T, turf/temp)
-	gib() //fuck you
-
-/obj/effect/alien/tank_collision(obj/vehicle/roadtrafficaccident, facing, turf/T, turf/temp)
+	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
+	gib()
 	take_damage(40)
 
 /obj/effect/alien/weeds/tank_collision(obj/vehicle/roadtrafficaccident, facing, turf/T, turf/temp)
@@ -456,11 +450,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/hitbox/cm_armored/ex_act(severity)
 	return root.ex_act(severity)
 
-/obj/vehicle/hitbox/cm_armored/attackby(obj/item/O, mob/user)
 	return root.attackby(O, user)
-
-/obj/vehicle/hitbox/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
-	return root.attack_alien(M, dam_bonus)
+/obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)	return root.attack_alien(M, dam_bonus)
 
 /obj/vehicle/hitbox/cm_armored/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -531,8 +522,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			take_damage_type(rand(10, 15), "slash")
 
 //Honestly copies some code from the Xeno files, just handling some special cases
-/obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
-
+/obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
 	if(M.loc == entrance.loc && M.a_intent == INTENT_HELP)
 		handle_player_entrance(M) //will call the get out of tank proc on its own
 		return
@@ -552,8 +542,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	else
 		playsound(loc, "alien_claw_metal", 25, 1)
 
-	if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TANK)
 
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
@@ -562,12 +551,13 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 //Special case for entering the vehicle without using the verb
 /obj/vehicle/attack_hand(mob/user)
-
+	. = ..()
+	if(.)
+		return
 	if(user.loc == entrance.loc)
 		handle_player_entrance(user)
 		return
 
-	. = ..()
 
 /obj/vehicle/Entered(atom/movable/A)
 	if(istype(A, /obj) && !istype(A, /obj/item/ammo_magazine/tank) && !istype(A, /obj/item/hardpoint))
@@ -580,9 +570,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/Bumped(atom/A)
 	..()
 
-	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
+	if(istype(A, /mob/living/carbon/xenomorph/crusher))
 
-		var/mob/living/carbon/Xenomorph/Crusher/C = A
+		var/mob/living/carbon/xenomorph/crusher/C = A
 
 		if(C.charge_speed < CHARGE_SPEED_MAX/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
 			return
@@ -859,3 +849,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	hardpoints[old.slot] = null
 	update_damage_distribs()
 	update_icon()
+
+
+
+/obj/vehicle/multitile/root/cm_armored/contents_explosion(severity, target)
+	return

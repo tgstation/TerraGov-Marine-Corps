@@ -8,7 +8,6 @@
 
 
 /obj/machinery/computer/station_alert/attack_ai(mob/user)
-	add_fingerprint(user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
@@ -16,7 +15,9 @@
 
 
 /obj/machinery/computer/station_alert/attack_hand(mob/user)
-	add_fingerprint(user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
@@ -49,12 +50,6 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "alerts")
-
-
-/obj/machinery/computer/station_alert/Topic(href, href_list)
-	if(..())
-		return
-	return
 
 
 /obj/machinery/computer/station_alert/proc/triggerAlarm(var/class, area/A, var/O, var/alarmsource)

@@ -2,8 +2,8 @@
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
 	icon_state = "teg"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = 0
 
 	//var/obj/machinery/atmospherics/unary/generator_input/input1
@@ -56,7 +56,9 @@
 
 
 /obj/machinery/power/generator_type2/attack_hand(mob/user)
-	add_fingerprint(user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 
@@ -90,7 +92,9 @@
 
 
 /obj/machinery/power/generator_type2/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 
 	if( href_list["close"] )
 		usr << browse(null, "window=teg")

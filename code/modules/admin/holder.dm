@@ -284,6 +284,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/mcdb,
+	/datum/admins/proc/check_fingerprints,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -300,6 +301,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
+	/datum/admins/proc/imaginary_friend,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -353,9 +355,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 
 /world/proc/AVfun()
 	return list(
-	/datum/admins/proc/edit_rank,
-	/datum/admins/proc/select_equipment,
-	/datum/admins/proc/change_squad,
+	/datum/admins/proc/rank_and_equipment,
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,
@@ -370,18 +370,19 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,
 	/datum/admins/proc/force_distress,
-	/datum/admins/proc/force_dropship,
-	/datum/admins/proc/force_ert_shuttle,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
-	/datum/admins/proc/create_outfit,
+	/datum/admins/proc/outfit_manager,
 	/datum/admins/proc/offer,
+	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/change_hivenumber,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
+	/datum/admins/proc/launch_pod,
+	/datum/admins/proc/play_cinematic,
 	/client/proc/toggle_buildmode
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
@@ -617,3 +618,17 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	var/stealth = "@[num2text(num)]"
 	GLOB.stealthminID["IRCKEY"] = stealth
 	return	stealth
+
+
+/proc/IsAdminGhost(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(!user.client)
+		return FALSE
+	if(!isobserver(user))
+		return FALSE
+	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
+		return FALSE
+	if(!user.client.ai_interact)
+		return FALSE
+	return TRUE

@@ -1,5 +1,7 @@
-/mob/living/carbon/human/proc/quick_equip()
-	if(incapacitated() || lying || istype(loc, /obj/mecha) || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+/mob/living/carbon/human/proc/do_quick_equip()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	
+	if(incapacitated() || lying || istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	var/obj/item/I = get_active_held_item()
@@ -15,6 +17,9 @@
 				next_move = world.time + 3
 				return
 	else
+		if(s_active && s_active.can_be_inserted(I))
+			s_active.handle_item_insertion(I, FALSE, src)
+			return
 		if(client?.prefs?.preferred_slot)
 			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
 				return
@@ -241,6 +246,7 @@
 	W.screen_loc = null
 	W.loc = src
 	W.layer = ABOVE_HUD_LAYER
+	W.plane = ABOVE_HUD_PLANE
 
 	switch(slot)
 		if(SLOT_BACK)
@@ -461,7 +467,6 @@
 
 	M.visible_message("<span class='danger'>[src] tries to remove [M]'s [I.name].</span>", \
 					"<span class='userdanger'>[src] tries to remove [M]'s [I.name].</span>", null, 5)
-	I.add_fingerprint(src)
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
@@ -482,7 +487,7 @@
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
 			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M]!</span>")
 			return
-		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null, 5)
+		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null , null, 5)
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC))
 			if(!M.get_item_by_slot(slot_to_process))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob

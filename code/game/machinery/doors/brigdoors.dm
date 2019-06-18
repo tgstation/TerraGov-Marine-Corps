@@ -15,7 +15,7 @@
 	icon_state = "frame"
 	desc = "A remote control for a door."
 	req_access = list(ACCESS_MARINE_BRIG)
-	anchored = 1.0    		// can't pick it up
+	anchored = TRUE    		// can't pick it up
 	density = 0       		// can walk through it.
 	var/id = null     		// id of door it controls.
 	var/releasetime = 0		// when world.timeofday reaches it - release the prisoner
@@ -27,8 +27,21 @@
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/Initialize()
+/obj/machinery/door_timer/Initialize(mapload, newDir)
 	. = ..()
+
+	if(newDir)
+		setDir(newDir)
+
+	switch(dir)
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = 32
+		if(WEST)
+			pixel_x = -32
 
 	for(var/obj/machinery/door/window/brigdoor/M in GLOB.machines)
 		if (M.id == src.id)
@@ -151,7 +164,8 @@
 // Allows altering timer and the timing boolean.
 // Flasher activation limited to 150 seconds
 /obj/machinery/door_timer/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	// Used for the 'time left' display
@@ -212,8 +226,9 @@
 // 	"change" resets the timer to the timetoset amount while the timer is counting down
 // Also updates dialog window and timer icon
 /obj/machinery/door_timer/Topic(href, href_list)
-	if(..())
-		return 0
+	. = ..()
+	if(.)
+		return
 	if(!src.allowed(usr))
 		return 0
 
@@ -243,7 +258,6 @@
 		if(href_list["change"])
 			src.timer_start()
 
-	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	src.update_icon()
 

@@ -39,13 +39,15 @@
 		to_chat(usr, "There is nothing to remove from the console.")
 	return
 
-/obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
-	if(istype(O, /obj/item/card/id) && !scan)
-		if(usr.drop_held_item())
-			O.forceMove(src)
-			scan = O
-			to_chat(user, "You insert [O].")
-	..()
+/obj/machinery/computer/secure_data/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/card/id) && !scan)
+		if(!user.drop_held_item())
+			return
+		I.forceMove(src)
+		scan = I
+		to_chat(user, "You insert [I].")
 
 /obj/machinery/computer/secure_data/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -55,7 +57,8 @@
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
 /obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if (src.z > 6)
 		to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
@@ -208,7 +211,8 @@
 I can't be bothered to look more of the actual code outside of switch but that probably needs revising too.
 What a mess.*/
 /obj/machinery/computer/secure_data/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if (!( GLOB.datacore.general.Find(active1) ))
 		active1 = null
@@ -560,7 +564,6 @@ What a mess.*/
 					else
 						temp = "This function does not appear to be working at the moment. Our apologies."
 
-	add_fingerprint(usr)
 	updateUsrDialog()
 	return
 

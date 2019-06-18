@@ -16,7 +16,6 @@
 			if("screwed")
 				new /obj/effect/spawner/newbomb/timer/syndicate(src)
 				new /obj/effect/spawner/newbomb/timer/syndicate(src)
-				new /obj/item/powersink(src)
 				new /obj/item/clothing/suit/space/syndicate(src)
 				new /obj/item/clothing/head/helmet/space/syndicate(src)
 				return
@@ -35,10 +34,6 @@
 
 			if("freedom")
 				new /obj/item/implanter/freedom(src)
-
-			if("hacker")
-				new /obj/item/circuitboard/ai_module/syndicate(src)
-				new /obj/item/card/emag(src)
 				return
 
 			if("smoothoperator")

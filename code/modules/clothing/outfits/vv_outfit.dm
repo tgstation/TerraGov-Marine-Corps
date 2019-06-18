@@ -44,7 +44,7 @@
 
 /proc/collect_vv(obj/item/I)
 	//Temporary/Internal stuff, do not copy these.
-	var/static/list/ignored_vars = list("vars","x","y","z","plane","layer","override","animate_movement","pixel_step_size","screen_loc","fingerprintslast","tip_timer")
+	var/static/list/ignored_vars = list("vars","x","y","z","plane","layer","override","animate_movement","pixel_step_size","screen_loc","tip_timer")
 
 	if(istype(I) && I.datum_flags & DF_VAR_EDITED)
 		var/list/vedits = list()
@@ -135,3 +135,24 @@
 
 	H.name = H.get_visible_name()
 	H.hud_set_squad()
+
+
+/datum/outfit/varedit/get_json_data()
+	. = .. ()
+	.["stored_access"] = stored_access
+	var/list/stripped_vv = list()
+	for(var/slot in vv_values)
+		var/list/vedits = vv_values[slot]
+		var/list/stripped_edits = list()
+		for(var/edit in vedits)
+			if(istext(vedits[edit]) || isnum(vedits[edit]) || isnull(vedits[edit]))
+				stripped_edits[edit] = vedits[edit]
+		if(stripped_edits.len)
+			stripped_vv[slot] = stripped_edits
+	.["vv_values"] = stripped_vv
+
+
+/datum/outfit/varedit/load_from(list/outfit_data)
+	. = ..()
+	stored_access = outfit_data["stored_access"]
+	vv_values = outfit_data["vv_values"]

@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Praetorian
-	caste_base_type = /mob/living/carbon/Xenomorph/Praetorian
+/mob/living/carbon/xenomorph/praetorian
+	caste_base_type = /mob/living/carbon/xenomorph/praetorian
 	name = "Praetorian"
 	desc = "A huge, looming beast of an alien."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'

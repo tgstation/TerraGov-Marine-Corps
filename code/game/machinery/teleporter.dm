@@ -71,7 +71,6 @@
 				src.locked = L
 				one_time_use = 1
 
-			src.add_fingerprint(usr)
 	else
 		..()
 
@@ -84,6 +83,9 @@
 	src.attack_hand()
 
 /obj/machinery/computer/teleporter/attack_hand()
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -130,7 +132,6 @@
 	src.locked = L[desc]
 	for(var/mob/O in hearers(src, null))
 		O.show_message("<span class='notice'> Locked In</span>", 2)
-	src.add_fingerprint(usr)
 	return
 
 /obj/machinery/computer/teleporter/verb/set_id(t as text)
@@ -156,8 +157,8 @@
 /obj/machinery/teleport
 	name = "teleport"
 	icon = 'icons/obj/stationobjs.dmi'
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	var/lockeddown = 0
 
 
@@ -313,8 +314,9 @@
 	overlays.Cut()
 	overlays += image('icons/obj/stationobjs.dmi', icon_state = "controller-wires")
 
-/obj/machinery/teleport/station/attackby(var/obj/item/W)
-	src.attack_hand()
+/obj/machinery/teleport/station/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	return attack_hand()
 
 /obj/machinery/teleport/station/attack_paw()
 	src.attack_hand()
@@ -323,6 +325,9 @@
 	src.attack_hand()
 
 /obj/machinery/teleport/station/attack_hand()
+	. = ..()
+	if(.)
+		return
 	if(engaged)
 		src.disengage()
 	else
@@ -337,7 +342,6 @@
 		use_power(5000)
 		for(var/mob/O in hearers(src, null))
 			O.show_message("<span class='notice'> Teleporter engaged!</span>", 2)
-	src.add_fingerprint(usr)
 	src.engaged = 1
 	return
 
@@ -350,7 +354,6 @@
 		com.accurate = 0
 		for(var/mob/O in hearers(src, null))
 			O.show_message("<span class='notice'> Teleporter disengaged!</span>", 2)
-	src.add_fingerprint(usr)
 	src.engaged = 0
 	return
 
@@ -372,7 +375,6 @@
 		spawn(30)
 			active=0
 
-	src.add_fingerprint(usr)
 	return
 
 /obj/machinery/teleport/station/power_change()

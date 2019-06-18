@@ -2,7 +2,7 @@
 	var/datum/computer/file/embedded_program/program	//the currently executing program
 
 	name = "Embedded Controller"
-	anchored = 1
+	anchored = TRUE
 
 	use_power = 1
 	idle_power_usage = 10
@@ -35,6 +35,9 @@
 	return
 
 /obj/machinery/embedded_controller/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	src.ui_interact(user)
 
 /obj/machinery/embedded_controller/ui_interact()

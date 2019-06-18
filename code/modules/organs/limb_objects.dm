@@ -6,11 +6,6 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	..(loc)
 	if(!istype(H))
 		return
-	if(H.dna)
-		if(!blood_DNA)
-			blood_DNA = list()
-		blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
-
 	//Forming icon for the limb
 
 	//Setting base icon for this mob's race
@@ -128,38 +123,37 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
 
-/obj/item/limb/head/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/tool/surgery/scalpel))
+/obj/item/limb/head/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/tool/surgery/scalpel))
 		switch(brain_op_stage)
 			if(0)
-				user.visible_message("<span class='warning'>[brainmob] is beginning to have [brainmob.p_their()] head cut open with [W] by [user].</span>", \
-									"<span class='warning'>You cut [brainmob]'s head open with [W]!</span>")
-				to_chat(brainmob, "<span class='warning'>[user] begins to cut open your head with [W]!</span>")
+				user.visible_message("<span class='warning'>[brainmob] is beginning to have [brainmob.p_their()] head cut open with [I] by [user].</span>", \
+									"<span class='warning'>You cut [brainmob]'s head open with [I]!</span>")
+				to_chat(brainmob, "<span class='warning'>[user] begins to cut open your head with [I]!</span>")
 
 				brain_op_stage = 1
-
 			if(2)
-				user.visible_message("<span class='warning'>[brainmob] is having [brainmob.p_their()] connections to the brain delicately severed with [W] by [user].</span>", \
-									"<span class='warning'>You cut [brainmob]'s head open with [W]!</span>")
-				to_chat(brainmob, "<span class='warning'>[user] begins to cut open your head with [W]!</span>")
+				user.visible_message("<span class='warning'>[brainmob] is having [brainmob.p_their()] connections to the brain delicately severed with [I] by [user].</span>", \
+									"<span class='warning'>You cut [brainmob]'s head open with [I]!</span>")
+				to_chat(brainmob, "<span class='warning'>[user] begins to cut open your head with [I]!</span>")
 
 				brain_op_stage = 3.0
 			else
-				..()
-	else if(istype(W,/obj/item/tool/surgery/circular_saw))
+				return ..()
+	else if(istype(I, /obj/item/tool/surgery/circular_saw))
 		switch(brain_op_stage)
 			if(1)
-				user.visible_message("<span class='warning'>[brainmob] has [brainmob.p_their()] head sawed open with [W] by [user].</span>", \
-							"<span class='warning'>You saw [brainmob]'s head open with [W]!</span>")
-				to_chat(brainmob, "<span class='warning'>[user] saw open your head with [W]!</span>")
+				user.visible_message("<span class='warning'>[brainmob] has [brainmob.p_their()] head sawed open with [I] by [user].</span>", \
+							"<span class='warning'>You saw [brainmob]'s head open with [I]!</span>")
+				to_chat(brainmob, "<span class='warning'>[user] saw open your head with [I]!</span>")
 				brain_op_stage = 2
 			if(3)
-				user.visible_message("<span class='warning'>[brainmob] has [brainmob.p_their()] spine's connection to the brain severed with [W] by [user].</span>", \
-									"<span class='warning'>You sever [brainmob]'s brain's connection to the spine with [W]!</span>")
-				to_chat(brainmob, "<span class='warning'>[user] severs your brain's connection to the spine with [W]!</span>")
+				user.visible_message("<span class='warning'>[brainmob] has [brainmob.p_their()] spine's connection to the brain severed with [I] by [user].</span>", \
+									"<span class='warning'>You sever [brainmob]'s brain's connection to the spine with [I]!</span>")
+				to_chat(brainmob, "<span class='warning'>[user] severs your brain's connection to the spine with [I]!</span>")
 
-				log_combat(user, brainmob, "debrained", W, "(INTENT: [uppertext(user.a_intent)])")
-				msg_admin_attack("[ADMIN_TPMONTY(usr)] debrained [ADMIN_TPMONTY(brainmob)].")
+				log_combat(user, brainmob, "debrained", I, "(INTENT: [uppertext(user.a_intent)])")
+				msg_admin_attack("[ADMIN_TPMONTY(user)] debrained [ADMIN_TPMONTY(brainmob)].")
 
 				//TODO: ORGAN REMOVAL UPDATE.
 				var/obj/item/organ/brain/B = new brain_item_type(loc)
@@ -169,9 +163,9 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 
 				brain_op_stage = 4.0
 			else
-				..()
+				return ..()
 	else
-		..()
+		return ..()
 
 
 //synthetic head, allowing brain mob inside to talk

@@ -110,10 +110,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	log_talk(message, LOG_SAY)
 
 	message = treat_message(message)
+	SEND_SIGNAL(src, COMSIG_MOB_SAY, args)
+
 	if(!message)
 		return
 
-	spans |= get_spans()
+	spans |= speech_span
 
 	if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
@@ -283,7 +285,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)
 
 
-/mob/living/proc/binarycheck()
+/mob/proc/binarycheck()
 	return FALSE
 
 
