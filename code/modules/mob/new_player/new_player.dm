@@ -317,7 +317,7 @@
 	var/column_counter = 0
 	for(var/list/category in (list(JOBS_OFFICERS) + list(JOBS_REQUISITIONS) + list(JOBS_POLICE) + list(JOBS_MEDICAL) + list(JOBS_ENGINEERING) + list(JOBS_MARINES)))
 		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
-		dat += "<fieldset style='width: 225px; border: 2px solid [cat_color]; display: inline; margin: 0 20px'>"
+		dat += "<fieldset class='latejoin' style='border-color: [cat_color]'>"
 		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
 		var/list/dept_dat = list()
 		for(var/job in category)
@@ -337,7 +337,7 @@
 	dat += "</td></tr></table></center>"
 	dat += "</div></div>"
 	var/datum/browser/popup = new(src, "latechoices", "Choose Occupation", 680, 580)
-	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
+	popup.add_stylesheet("latechoices", 'html/browser/latechoices.css')
 	popup.set_content(jointext(dat, ""))
 	popup.open(FALSE)
 

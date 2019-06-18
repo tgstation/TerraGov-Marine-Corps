@@ -1,3 +1,10 @@
+fieldset.latejoin {
+	display: inline-block;
+	width: 225px;
+	border: 2px solid black;
+	margin: 0 20px
+}
+
 .job {
   display: block;
   width: 213px;
