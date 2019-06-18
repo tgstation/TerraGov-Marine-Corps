@@ -726,7 +726,7 @@
 		if(1) //We can see our own tile
 			return TRUE
 	
-	var/turf/turf_to_check = turf_list[1] //The source's turf, do a first pass because opaques `ON_BORDER` facing our direction are fine this time.
+	var/turf/turf_to_check = turf_list[1] //The source's turf, do a first pass because opaques ON_BORDER facing the opposite direction are our only nemesis.
 	for(var/obj/stuff_in_turf in turf_to_check)
 		if(!stuff_in_turf.opacity)
 			continue //Transparent, we can see through it.
@@ -740,20 +740,20 @@
 		for(var/i in (length(turf_list) - 1))
 			turf_to_check = turf_list[i]
 			if(turf_to_check.opacity)
-				return FALSE //First a last turfs' opacity don't matter, but the ones in-between do.
+				return FALSE //First and last turfs' opacity don't matter, but the ones in-between do.
 			for(var/obj/stuff_in_turf in turf_to_check)
 				if(!stuff_in_turf.opacity)
 					continue //Transparent, we can see through it.
 				if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
 					return FALSE //Opaque and not on border. We can't see through this tile, it's over.
 				if(ISDIAGONALDIR(stuff_in_turf.dir))
-					return FALSE //Opaque window.
+					return FALSE //Opaque fulltile window.
 				if(CHECK_BITFIELD(dir, stuff_in_turf.dir))
 					return FALSE //Same direction and opaque, blocks our view.
 				if(CHECK_BITFIELD(dir, reverse_direction(stuff_in_turf.dir)))
-					return FALSE //Doesn't block this tile, but it does the next, and this is not the last pass.
+					return FALSE //Doesn't block this tile, but it does block the next, and this is not the last pass.
 
-	turf_to_check = turf_list[length(turf_list)]
+	turf_to_check = turf_list[length(turf_list)] //Last turf, inverse logic than the first.
 	for(var/obj/stuff_in_turf in turf_to_check)
 		if(!stuff_in_turf.opacity)
 			continue //Transparent, we can see through it.
