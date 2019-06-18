@@ -28,6 +28,10 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "base /turf path use detected in maps, please replace with proper paths."
 		exit 1
 	fi;
+	if grep '^/*var/' code/**/*.dm; then
+		echo "Unmanaged global var use detected in code, please use the helpers."
+		exit 1
+	fi;
 	if grep '^ ' code/**/*.dm; then
 		echo "space indentation detected"
 		exit 1
@@ -36,7 +40,6 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
 	fi;
-
 
 	(! grep 'step_[xy]' _maps/**/*.dmm)
 	source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
