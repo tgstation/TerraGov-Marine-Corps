@@ -113,7 +113,7 @@
 	mechanics_text = "A large area knockdown that causes pain and screen-shake."
 	ability_name = "screech"
 	plasma_cost = 250
-	cooldown_timer = 50 SECONDS
+	cooldown_timer = 1 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
