@@ -893,6 +893,10 @@ var/global/list/common_tools = list(
 	)
 
 
+//Actually better performant than reverse_direction()
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
+
+
 /proc/reverse_direction(direction)
 	switch(direction)
 		if(NORTH)
