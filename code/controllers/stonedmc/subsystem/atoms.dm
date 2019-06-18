@@ -15,8 +15,6 @@ SUBSYSTEM_DEF(atoms)
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
-	populate_spawn_points()
-
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 

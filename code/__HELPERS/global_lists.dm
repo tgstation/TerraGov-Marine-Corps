@@ -127,6 +127,9 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		GLOB.randomized_pill_icons += "pill[i]"
 	shuffle(GLOB.randomized_pill_icons)
 
+	shuffle(GLOB.fruit_icon_states)
+	shuffle(GLOB.reagent_effects)
+
 	return TRUE
 
 

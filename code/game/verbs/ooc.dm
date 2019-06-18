@@ -1,5 +1,3 @@
-var/global/normal_ooc_colour = "#002eb8"
-
 /client/verb/ooc(msg as text)
 	set name = "OOC"
 	set category = "OOC"
@@ -46,7 +44,7 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	mob.log_talk(msg, LOG_OOC)
 
-	var/display_colour = normal_ooc_colour
+	var/display_colour = "#002eb8"
 	if(holder?.rank && !holder.fakekey)
 		switch(holder.rank.name)
 			if("Host")
