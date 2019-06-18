@@ -10,12 +10,6 @@ var/global/list/active_areas = list()
 GLOBAL_LIST_EMPTY(all_areas)
 var/global/list/processing_machines = list()
 
-//used by binoculars for dropship bombardment
-var/global/list/active_laser_targets = list()
-
-//used by the main overwatch console
-var/global/list/active_orbital_beacons = list()
-
 // Posters
 GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
 
