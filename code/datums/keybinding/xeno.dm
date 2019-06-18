@@ -72,7 +72,7 @@
 /datum/keybinding/xeno/larval_growth_sting
 	key = "Unbound"
 	name = "larval_growth_sting"
-	full_name = "Drone: Larval Growth Sting"
+	full_name = "Xeno: Larval Growth Sting"
 	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
 
