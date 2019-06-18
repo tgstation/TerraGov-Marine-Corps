@@ -8,6 +8,7 @@
 	ability_name = "charge"
 	cooldown_timer = 30 SECONDS
 	plasma_cost = 80
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
 /datum/action/xeno_action/activable/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -48,6 +49,7 @@
 	plasma_cost = 40
 	var/last_victim_count = 0
 	cooldown_timer = 10 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
@@ -103,7 +105,6 @@
 	mechanics_text = "A channeled ability to restore health that uses plasma and rage. Must stand still for it to work."
 	cooldown_timer = 240 SECONDS
 	var/last_rage = 0
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_SECOND_WIND
 
 /datum/action/xeno_action/activable/second_wind/get_cooldown()
