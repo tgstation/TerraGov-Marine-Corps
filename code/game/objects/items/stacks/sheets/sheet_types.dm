@@ -1,15 +1,15 @@
 /* Diffrent misc types of sheets
- * Contains:
- *		Metal
- *		Plasteel
- *		Wood
- *		Cloth
- *		Cardboard
- */
+* Contains:
+*		Metal
+*		Plasteel
+*		Wood
+*		Cloth
+*		Cardboard
+*/
 
 /*
- * Metal
- */
+* Metal
+*/
 var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	new/datum/stack_recipe("stool", /obj/structure/bed/stool, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("chair", /obj/structure/bed/chair, one_per_turf = 1, on_floor = 1), \
@@ -93,8 +93,8 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	return ..()
 
 /*
- * Plasteel
- */
+* Plasteel
+*/
 var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 50, one_per_turf = 1), \
 	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 80, one_per_turf = 1, on_floor = 1, skill_req =  SKILL_CONSTRUCTION_PLASTEEL)
@@ -128,14 +128,14 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	amount = 50
 
 /*
- * Wood
- */
+* Wood
+*/
 var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	new/datum/stack_recipe("pair of wooden sandals", /obj/item/clothing/shoes/sandal, 1), \
 	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
 	/*
 	new/datum/stack_recipe("table parts", /obj/item/frame/table/wood, 2), \
-	 */
+	*/
 	new/datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood/normal, 1, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 50, one_per_turf = 2, on_floor = 1), \
 
@@ -168,8 +168,8 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	return ..()
 
 /*
- * Cloth
- */
+* Cloth
+*/
 /obj/item/stack/sheet/cloth
 	name = "cloth"
 	desc = "This roll of cloth is made from only the finest chemicals and bunny rabbits."
@@ -179,8 +179,8 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 
 
 /*
- * Cardboard
- */
+* Cardboard
+*/
 var/global/list/datum/stack_recipe/cardboard_recipes = list ( \
 	new/datum/stack_recipe("box", /obj/item/storage/box), \
 	new/datum/stack_recipe("donut box", /obj/item/storage/donut_box/empty), \

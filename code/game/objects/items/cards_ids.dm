@@ -1,16 +1,16 @@
 /* Cards
- * Contains:
- *		DATA CARD
- *		ID CARD
- *		FINGERPRINT CARD HOLDER
- *		FINGERPRINT CARD
- */
+* Contains:
+*		DATA CARD
+*		ID CARD
+*		FINGERPRINT CARD HOLDER
+*		FINGERPRINT CARD
+*/
 
 
 
 /*
- * DATA CARDS - Used for the teleporter
- */
+* DATA CARDS - Used for the teleporter
+*/
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
@@ -51,8 +51,8 @@
 	data = "Clown Land"
 
 /*
- * ID CARDS
- */
+* ID CARDS
+*/
 
 /obj/item/card/emag_broken
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."

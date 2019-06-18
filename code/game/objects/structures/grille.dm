@@ -90,13 +90,13 @@
 		if(H.species.can_shred(H))
 			damage_dealt = 5
 			user.visible_message("<span class='warning'>[user] mangles [src].</span>", \
-					 "<span class='warning'>You mangle [src].</span>", \
-					 "You hear twisting metal.")
+					"<span class='warning'>You mangle [src].</span>", \
+					"You hear twisting metal.")
 
 	if(!damage_dealt)
 		user.visible_message("<span class='warning'>[user] kicks [src].</span>", \
-						 "<span class='warning'>You kick [src].</span>", \
-						 "You hear twisting metal.")
+						"<span class='warning'>You kick [src].</span>", \
+						"You hear twisting metal.")
 
 	if(shock(user, 70))
 		return
@@ -113,8 +113,8 @@
 
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	M.visible_message("<span class='warning'>[M] smashes against [src].</span>", \
-					  "<span class='warning'>You smash against [src].</span>", \
-					  "You hear twisting metal.")
+					"<span class='warning'>You smash against [src].</span>", \
+					"You hear twisting metal.")
 
 	obj_integrity -= M.melee_damage_upper
 	healthcheck()
@@ -158,7 +158,7 @@
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		anchored = !anchored
 		user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
-							 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
+							"<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
 
 
 	else if(istype(I, /obj/item/stack/sheet/glass))

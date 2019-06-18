@@ -1,12 +1,12 @@
 /*
- * Contains:
- * 		Beds
- *		Roller beds
- */
+* Contains:
+* 		Beds
+*		Roller beds
+*/
 
 /*
- * Beds
- */
+* Beds
+*/
 /obj/structure/bed
 	name = "bed"
 	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
@@ -197,8 +197,8 @@ obj/structure/bed/Destroy()
 
 
 /*
- * Roller beds
- */
+* Roller beds
+*/
 /obj/structure/bed/roller
 	name = "roller bed"
 	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly."

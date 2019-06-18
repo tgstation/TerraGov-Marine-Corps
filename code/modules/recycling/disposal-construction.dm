@@ -42,7 +42,7 @@
 			if(5)
 				base_state = "pipe-t"
 				dpdir = dir
-			 // disposal bin has only one dir, thus we don't need to care about setting it
+			// disposal bin has only one dir, thus we don't need to care about setting it
 			if(6)
 				if(anchored)
 					base_state = "disposal"

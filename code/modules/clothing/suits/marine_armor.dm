@@ -43,7 +43,7 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun
-	 )
+	)
 	max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/Initialize()

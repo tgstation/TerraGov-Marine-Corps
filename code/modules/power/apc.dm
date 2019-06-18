@@ -798,7 +798,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		//The ui does not exist, so we'll create a new() one
-        //For a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		//For a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
 		//When the ui is first opened this is the data it will use
 		ui.set_initial_data(data)

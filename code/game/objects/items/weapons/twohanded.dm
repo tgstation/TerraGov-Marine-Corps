@@ -115,8 +115,8 @@
 		if(main_hand) main_hand.unwield(user)
 
 /*
- * Fireaxe
- */
+* Fireaxe
+*/
 /obj/item/weapon/twohanded/fireaxe
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
@@ -149,8 +149,8 @@
 		qdel(A)
 
 /*
- * Double-Bladed Energy Swords - Cheridan
- */
+* Double-Bladed Energy Swords - Cheridan
+*/
 /obj/item/weapon/twohanded/dualsaber
 	name = "double-bladed energy sword"
 	desc = "Handle with care."

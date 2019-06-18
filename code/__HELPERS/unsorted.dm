@@ -311,13 +311,13 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 //returns random gauss number
 /proc/GaussRand(sigma)
-  var/x,y,rsq
-  do
-    x = 2 * rand() - 1
-    y = 2 * rand() - 1
-    rsq = x * x + y * y
-  while(rsq > 1 || !rsq)
-  return sigma * y * sqrt(-2 * log(rsq) / rsq)
+	var/x,y,rsq
+	do
+		x = 2 * rand() - 1
+		y = 2 * rand() - 1
+		rsq = x * x + y * y
+	while(rsq > 1 || !rsq)
+	return sigma * y * sqrt(-2 * log(rsq) / rsq)
 
 
 //returns random gauss number, rounded to 'roundto'
@@ -1136,16 +1136,16 @@ var/list/WALLITEMS = list(
 
 /*
 
- Gets the turf this atom's *ICON* appears to inhabit
- It takes into account:
- * Pixel_x/y
- * Matrix x/y
+Gets the turf this atom's *ICON* appears to inhabit
+It takes into account:
+* Pixel_x/y
+* Matrix x/y
 
- NOTE: if your atom has non-standard bounds then this proc
- will handle it, but:
- * if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
- (this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
- * if the bounds are odd, the true middle turf of the atom is returned
+NOTE: if your atom has non-standard bounds then this proc
+will handle it, but:
+* if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
+(this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
+* if the bounds are odd, the true middle turf of the atom is returned
 
 */
 

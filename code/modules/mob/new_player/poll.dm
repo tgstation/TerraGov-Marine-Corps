@@ -314,7 +314,7 @@
 						});
 						$( "#sortable" ).disableSelection();
 						$('form').submit(function(){
-						    $('#IRVdata').val($( "#sortable" ).sortable("toArray", { attribute: "voteid" }));
+							$('#IRVdata').val($( "#sortable" ).sortable("toArray", { attribute: "voteid" }));
 						});
 					});
 
