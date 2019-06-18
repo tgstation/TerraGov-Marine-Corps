@@ -602,7 +602,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		else if(tier == TICKET_ADMIN)
 			to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp marked as IC! -</b></font><br>")
 			to_chat(initiator, "<font color='red'>Whatever your query was, you will have to find out using IC mean, the staff won't reveal anything relevant.</font>")
-			to_chat(initiator, "<font color='red'>Your issue has been determined by an administrator to be an in character issue and does not require their intervention at this time. For further resolution you should pursue options that are in character and within the rules.</font>.")
+			to_chat(initiator, "<font color='red'>Your issue has been determined by an administrator to be in-character and does not require their intervention at this time, nor may they solve it without out-of-character intrusion into the round. You should find out a solution to the problem in the game, according to the rules.</font>")
 
 	message_admins("Ticket [TicketHref("#[id]")] marked as IC by [ref].")
 	log_admin_private("Ticket (#[id]) marked as IC by [key_name(usr)].")
