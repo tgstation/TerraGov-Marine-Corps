@@ -38,6 +38,7 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
 	fi
+	echo $changed_files
 	if grep '^(?:\/\w+)+\((?:.*, ?var\/.*|var\/.*)\)' $changed_files; then
 		echo "changed files contains proc argument starting with 'var'"
 		exit 1
