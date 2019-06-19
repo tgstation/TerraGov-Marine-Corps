@@ -303,8 +303,8 @@
 				dept_console = CRYO_DELTA
 		if(job)
 			var/datum/job/J = SSjob.name_occupations[job]
-			if(istype(J, /datum/job/marine/specialist) && specset && !available_specialist_sets.Find(specset))
-				available_specialist_sets += specset //we make the set this specialist took if any available again
+			if(istype(J, /datum/job/marine/specialist) && specset && !GLOB.available_specialist_sets.Find(specset))
+				GLOB.available_specialist_sets += specset //we make the set this specialist took if any available again
 			if(istype(J, /datum/job/marine/engineer))
 				assigned_squad.num_engineers--
 			if(istype(J, /datum/job/marine/corpsman))
