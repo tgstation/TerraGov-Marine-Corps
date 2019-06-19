@@ -374,40 +374,40 @@
 
 /datum/game_mode/proc/announce_round_stats()
 	var/list/dat = list({"<span class='round_body'>The end of round statistics are:</span><br>
-		<br>There were [round_statistics.total_bullets_fired] total bullets fired.
-		<br>[round_statistics.total_bullet_hits_on_marines] bullets managed to hit marines. For a [(round_statistics.total_bullet_hits_on_marines / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!"})
-	if(round_statistics.total_bullet_hits_on_xenos)
-		dat += "[round_statistics.total_bullet_hits_on_xenos] bullets managed to hit xenomorphs. For a [(round_statistics.total_bullet_hits_on_xenos / max(round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!"
-	if(round_statistics.grenades_thrown)
-		dat += "[round_statistics.grenades_thrown] total grenades exploding."
+		<br>There were [GLOB.round_statistics.total_bullets_fired] total bullets fired.
+		<br>[GLOB.round_statistics.total_bullet_hits_on_marines] bullets managed to hit marines. For a [(GLOB.round_statistics.total_bullet_hits_on_marines / max(GLOB.round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!"})
+	if(GLOB.round_statistics.total_bullet_hits_on_xenos)
+		dat += "[GLOB.round_statistics.total_bullet_hits_on_xenos] bullets managed to hit xenomorphs. For a [(GLOB.round_statistics.total_bullet_hits_on_xenos / max(GLOB.round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!"
+	if(GLOB.round_statistics.grenades_thrown)
+		dat += "[GLOB.round_statistics.grenades_thrown] total grenades exploding."
 	else
 		dat += "No grenades exploded."
-	if(round_statistics.now_pregnant)
-		dat += "[round_statistics.now_pregnant] people infected among which [round_statistics.total_larva_burst] burst. For a [(round_statistics.total_larva_burst / max(round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
-	if(round_statistics.queen_screech)
-		dat += "[round_statistics.queen_screech] Queen screeches."
-	if(round_statistics.ravager_ravage_victims)
-		dat += "[round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!"
-	if(round_statistics.warrior_limb_rips)
-		dat += "[round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
-	if(round_statistics.crusher_stomp_victims)
-		dat += "[round_statistics.crusher_stomp_victims] people stomped by crushers."
-	if(round_statistics.praetorian_spray_direct_hits)
-		dat += "[round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray."
-	if(round_statistics.weeds_planted)
-		dat += "[round_statistics.weeds_planted] weed nodes planted."
-	if(round_statistics.weeds_destroyed)
-		dat += "[round_statistics.weeds_destroyed] weed tiles removed."
-	if(round_statistics.carrier_traps)
-		dat += "[round_statistics.carrier_traps] hidey holes for huggers were made."
-	if(round_statistics.sentinel_neurotoxin_stings)
-		dat += "[round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
-	if(round_statistics.drone_salvage_plasma)
-		dat += "[round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
-	if(round_statistics.defiler_defiler_stings)
-		dat += "[round_statistics.defiler_defiler_stings] number of times Defilers stung."
-	if(round_statistics.defiler_neurogas_uses)
-		dat += "[round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
+	if(GLOB.round_statistics.now_pregnant)
+		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
+	if(GLOB.round_statistics.queen_screech)
+		dat += "[GLOB.round_statistics.queen_screech] Queen screeches."
+	if(GLOB.round_statistics.ravager_ravage_victims)
+		dat += "[GLOB.round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!"
+	if(GLOB.round_statistics.warrior_limb_rips)
+		dat += "[GLOB.round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
+	if(GLOB.round_statistics.crusher_stomp_victims)
+		dat += "[GLOB.round_statistics.crusher_stomp_victims] people stomped by crushers."
+	if(GLOB.round_statistics.praetorian_spray_direct_hits)
+		dat += "[GLOB.round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray."
+	if(GLOB.round_statistics.weeds_planted)
+		dat += "[GLOB.round_statistics.weeds_planted] weed nodes planted."
+	if(GLOB.round_statistics.weeds_destroyed)
+		dat += "[GLOB.round_statistics.weeds_destroyed] weed tiles removed."
+	if(GLOB.round_statistics.carrier_traps)
+		dat += "[GLOB.round_statistics.carrier_traps] hidey holes for huggers were made."
+	if(GLOB.round_statistics.sentinel_neurotoxin_stings)
+		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
+	if(GLOB.round_statistics.drone_salvage_plasma)
+		dat += "[GLOB.round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
+	if(GLOB.round_statistics.defiler_defiler_stings)
+		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
+	if(GLOB.round_statistics.defiler_neurogas_uses)
+		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)

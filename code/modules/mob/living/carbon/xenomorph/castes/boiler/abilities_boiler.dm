@@ -171,9 +171,9 @@
 	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		round_statistics.boiler_acid_smokes++
+		GLOB.round_statistics.boiler_acid_smokes++
 	else
-		round_statistics.boiler_neuro_smokes++
+		GLOB.round_statistics.boiler_neuro_smokes++
 
 	add_cooldown()
 	X.reset_bombard_pointer()

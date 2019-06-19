@@ -22,7 +22,7 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	round_statistics.praetorian_acid_sprays++
+	GLOB.round_statistics.praetorian_acid_sprays++
 
 	succeed_activate()
 

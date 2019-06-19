@@ -64,7 +64,7 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
-	round_statistics.ravager_ravages++
+	GLOB.round_statistics.ravager_ravages++
 	X.visible_message("<span class='danger'>\The [X] thrashes about in a murderous frenzy!</span>", \
 	"<span class='xenowarning'>You thrash about in a murderous frenzy!</span>")
 
@@ -83,7 +83,7 @@
 			var/extra_dam = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) * round(RAV_RAVAGE_DAMAGE_MULITPLIER + X.rage * RAV_RAVAGE_RAGE_MULITPLIER, 0.01)
 			H.attack_alien(X, extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
-			round_statistics.ravager_ravage_victims++
+			GLOB.round_statistics.ravager_ravage_victims++
 			step_away(H, X, sweep_range, 2)
 			shake_camera(H, 2, 1)
 			H.KnockDown(1, 1)
@@ -132,7 +132,7 @@
 	X.updatehealth()
 	X.hud_set_plasma()
 
-	round_statistics.ravager_second_winds++
+	GLOB.round_statistics.ravager_second_winds++
 
 	last_rage = current_rage
 	add_cooldown()

@@ -76,7 +76,7 @@
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
 
 		if(approximate_intensity > 30)
-			lighting_controller.processing = 0
+			GLOB.lighting_controller.processing = 0
 
 
 		if(heavy_impact_range > 1)
@@ -136,9 +136,9 @@
 
 		sleep(8)
 
-		if(!lighting_controller.processing)
-			lighting_controller.processing = 1
-			lighting_controller.process() //Restart the lighting controller
+		if(!GLOB.lighting_controller.processing)
+			GLOB.lighting_controller.processing = 1
+			GLOB.lighting_controller.process() //Restart the lighting controller
 
 		SSmachines.makepowernets()
 

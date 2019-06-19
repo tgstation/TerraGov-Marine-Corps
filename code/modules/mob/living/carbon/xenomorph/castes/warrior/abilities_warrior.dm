@@ -20,7 +20,7 @@
 
 	X.agility = !X.agility
 
-	round_statistics.warrior_agility_toggles++
+	GLOB.round_statistics.warrior_agility_toggles++
 	if (X.agility)
 		to_chat(X, "<span class='xenowarning'>You lower yourself to all fours and loosen your armored scales to ease your movement.</span>")
 		X.speed_modifier--
@@ -87,7 +87,7 @@
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	round_statistics.warrior_lunges++
+	GLOB.round_statistics.warrior_lunges++
 	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
 	"<span class='xenowarning'>You lunge at [A]!</span>")
 
@@ -140,7 +140,7 @@
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/H = A
-	round_statistics.warrior_flings++
+	GLOB.round_statistics.warrior_flings++
 
 	X.visible_message("<span class='xenowarning'>\The [X] effortlessly flings [H] to the side!</span>", \
 	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
@@ -197,7 +197,7 @@
 	if(X.issamexenohive(M))
 		return M.attack_alien() //harmless nibbling.
 
-	round_statistics.warrior_punches++
+	GLOB.round_statistics.warrior_punches++
 
 	var/S = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 	var/target_zone = check_zone(X.zone_selected)
@@ -269,7 +269,7 @@
 	if (!L || L.body_part == CHEST || L.body_part == GROIN || (L.limb_status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
 		to_chat(src, "<span class='xenowarning'>You can't rip off that limb.</span>")
 		return FALSE
-	round_statistics.warrior_limb_rips++
+	GLOB.round_statistics.warrior_limb_rips++
 	var/limb_time = rand(40,60)
 
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \

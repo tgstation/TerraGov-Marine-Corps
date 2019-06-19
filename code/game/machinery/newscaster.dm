@@ -45,7 +45,7 @@
 	var/list/datum/feed_channel/network_channels = list()
 	var/datum/feed_message/wanted_issue
 
-var/datum/feed_network/news_network = new /datum/feed_network     //The global news-network, which is coincidentally a global list.
+GLOBAL_DATUM_INIT(news_network, /datum/feed_network, new)	//The global news-network, which is coincidentally a global list.
 
 GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all newscasters in existence.
 
@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 
 	src.overlays.Cut() //reset overlays
 
-	if(news_network.wanted_issue) //wanted icon state, there can be no overlays on it as it's a priority message
+	if(GLOB.news_network.wanted_issue) //wanted icon state, there can be no overlays on it as it's a priority message
 		icon_state = "newscaster_wanted"
 		return
 
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 			if(0)
 				dat += "Welcome to Newscasting Unit #[src.unit_no].<BR> Interface & News networks Operational."
 				dat += "<BR><FONT SIZE=1>Property of Nanotransen Inc</FONT>"
-				if(news_network.wanted_issue)
+				if(GLOB.news_network.wanted_issue)
 					dat+= "<HR><A href='?src=\ref[src];view_wanted=1'>Read Wanted Issue</A>"
 				dat+= "<HR><BR><A href='?src=\ref[src];create_channel=1'>Create Feed Channel</A>"
 				dat+= "<BR><A href='?src=\ref[src];view=1'>View Feed Channels</A>"
@@ -197,7 +197,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				dat+= "<BR><BR><A href='?src=\ref[human_or_robot_user];mach_close=newscaster_main'>Exit</A>"
 				if(src.securityCaster)
 					var/wanted_already = 0
-					if(news_network.wanted_issue)
+					if(GLOB.news_network.wanted_issue)
 						wanted_already = 1
 
 					dat+="<HR><B>Feed Security functions:</B><BR>"
@@ -207,10 +207,10 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				dat+="<BR><HR>The newscaster recognises you as: <FONT COLOR='green'>[src.scanned_user]</FONT>"
 			if(1)
 				dat+= "Station Feed Channels<HR>"
-				if( isemptylist(news_network.network_channels) )
+				if( isemptylist(GLOB.news_network.network_channels) )
 					dat+="<I>No active channels found...</I>"
 				else
-					for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
+					for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
 						if(CHANNEL.is_admin_channel)
 							dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen '><A href='?src=\ref[src];show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
 						else
@@ -258,7 +258,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed Channel to Network.</B></FONT><HR><BR>"
 				//var/list/existing_channels = list()            //Let's get dem existing channels - OBSOLETE
 				var/list/existing_authors = list()
-				for(var/datum/feed_channel/FC in news_network.network_channels)
+				for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 					//existing_channels += FC.channel_name       //OBSOLETE
 					if(FC.author == "\[REDACTED\]")
 						existing_authors += FC.backup_author
@@ -269,7 +269,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				if(src.channel_name=="" || src.channel_name == "\[REDACTED\]")
 					dat+="<FONT COLOR='maroon'>�Invalid channel name.</FONT><BR>"
 				var/check = 0
-				for(var/datum/feed_channel/FC in news_network.network_channels)
+				for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 					if(FC.channel_name == src.channel_name)
 						check = 1
 						break
@@ -279,10 +279,10 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 					dat+="<FONT COLOR='maroon'>�Channel author unverified.</FONT><BR>"
 				dat+="<BR><A href='?src=\ref[src];setScreen=[2]'>Return</A><BR>"
 			if(8)
-				var/total_num=length(news_network.network_channels)
+				var/total_num=length(GLOB.news_network.network_channels)
 				var/active_num=total_num
 				var/message_num=0
-				for(var/datum/feed_channel/FC in news_network.network_channels)
+				for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 					if(!FC.censored)
 						message_num += length(FC.messages)    //Dont forget, datum/feed_channel's var messages is a list of datum/feed_message
 					else
@@ -315,10 +315,10 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				dat+="<FONT SIZE=1>NOTE: Due to the nature of news Feeds, total deletion of a Feed Story is not possible.<BR>"
 				dat+="Keep in mind that users attempting to view a censored feed will instead see the \[REDACTED\] tag above it.</FONT>"
 				dat+="<HR>Select Feed channel to get Stories from:<BR>"
-				if(isemptylist(news_network.network_channels))
+				if(isemptylist(GLOB.news_network.network_channels))
 					dat+="<I>No feed channels found active...</I><BR>"
 				else
-					for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
+					for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
 						dat+="<A href='?src=\ref[src];pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : ""]<BR>"
 				dat+="<BR><A href='?src=\ref[src];setScreen=[0]'>Cancel</A>"
 			if(11)
@@ -326,10 +326,10 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				dat+="<FONT SIZE=1>A D-Notice is to be bestowed upon the channel if the handling Authority deems it as harmful for the station's"
 				dat+="morale, integrity or disciplinary behaviour. A D-Notice will render a channel unable to be updated by anyone, without deleting any feed"
 				dat+="stories it might contain at the time. You can lift a D-Notice if you have the required access at any time.</FONT><HR>"
-				if(isemptylist(news_network.network_channels))
+				if(isemptylist(GLOB.news_network.network_channels))
 					dat+="<I>No feed channels found active...</I><BR>"
 				else
-					for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
+					for(var/datum/feed_channel/CHANNEL in GLOB.news_network.network_channels)
 						dat+="<A href='?src=\ref[src];pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : ""]<BR>"
 
 				dat+="<BR><A href='?src=\ref[src];setScreen=[0]'>Back</A>"
@@ -363,7 +363,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				dat+="<B>Wanted Issue Handler:</B>"
 				var/wanted_already = 0
 				var/end_param = 1
-				if(news_network.wanted_issue)
+				if(GLOB.news_network.wanted_issue)
 					wanted_already = 1
 					end_param = 2
 
@@ -374,7 +374,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				dat+="<A href='?src=\ref[src];set_wanted_desc=1'>Description</A>: [src.msg] <BR>"
 				dat+="<A href='?src=\ref[src];set_attachment=1'>Attach Photo</A>: [(src.photo ? "Photo Attached" : "No Photo")]</BR>"
 				if(wanted_already)
-					dat+="<B>Wanted Issue created by:</B><FONT COLOR='green'> [news_network.wanted_issue.backup_author]</FONT><BR>"
+					dat+="<B>Wanted Issue created by:</B><FONT COLOR='green'> [GLOB.news_network.wanted_issue.backup_author]</FONT><BR>"
 				else
 					dat+="<B>Wanted Issue will be created under prosecutor:</B><FONT COLOR='green'> [src.scanned_user]</FONT><BR>"
 				dat+="<BR><A href='?src=\ref[src];submit_wanted=[end_param]'>[(wanted_already) ? ("Edit Issue") : ("Submit")]</A>"
@@ -397,12 +397,12 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				dat+="<B>Wanted Issue successfully deleted from Circulation</B><BR>"
 				dat+="<BR><A href='?src=\ref[src];setScreen=[0]'>Return</A><BR>"
 			if(18)
-				dat+="<B><FONT COLOR ='maroon'>-- STATIONWIDE WANTED ISSUE --</B></FONT><BR><FONT SIZE=2>\[Submitted by: <FONT COLOR='green'>[news_network.wanted_issue.backup_author]</FONT>\]</FONT><HR>"
-				dat+="<B>Criminal</B>: [news_network.wanted_issue.author]<BR>"
-				dat+="<B>Description</B>: [news_network.wanted_issue.body]<BR>"
+				dat+="<B><FONT COLOR ='maroon'>-- STATIONWIDE WANTED ISSUE --</B></FONT><BR><FONT SIZE=2>\[Submitted by: <FONT COLOR='green'>[GLOB.news_network.wanted_issue.backup_author]</FONT>\]</FONT><HR>"
+				dat+="<B>Criminal</B>: [GLOB.news_network.wanted_issue.author]<BR>"
+				dat+="<B>Description</B>: [GLOB.news_network.wanted_issue.body]<BR>"
 				dat+="<B>Photo:</B>: "
-				if(news_network.wanted_issue.img)
-					usr << browse_rsc(news_network.wanted_issue.img, "tmp_photow.png")
+				if(GLOB.news_network.wanted_issue.img)
+					usr << browse_rsc(GLOB.news_network.wanted_issue.img, "tmp_photow.png")
 					dat+="<BR><img src='tmp_photow.png' width = '180'>"
 				else
 					dat+="None"
@@ -453,14 +453,14 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 		else if(href_list["submit_new_channel"])
 			//var/list/existing_channels = list() //OBSOLETE
 			var/list/existing_authors = list()
-			for(var/datum/feed_channel/FC in news_network.network_channels)
+			for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 				//existing_channels += FC.channel_name
 				if(FC.author == "\[REDACTED\]")
 					existing_authors += FC.backup_author
 				else
 					existing_authors  +=FC.author
 			var/check = 0
-			for(var/datum/feed_channel/FC in news_network.network_channels)
+			for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 				if(FC.channel_name == src.channel_name)
 					check = 1
 					break
@@ -475,7 +475,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 					newChannel.locked = c_locked
 					/*for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)    //Let's add the new channel in all casters.
 						NEWSCASTER.channel_list += newChannel*/                     //Now that it is sane, get it into the list. -OBSOLETE
-					news_network.network_channels += newChannel                        //Adding channel to the global network
+					GLOB.news_network.network_channels += newChannel                        //Adding channel to the global network
 					src.screen=5
 			src.updateUsrDialog()
 			//src.update_icon()
@@ -483,7 +483,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 		else if(href_list["set_channel_receiving"])
 			//var/list/datum/feed_channel/available_channels = list()
 			var/list/available_channels = list()
-			for(var/datum/feed_channel/F in news_network.network_channels)
+			for(var/datum/feed_channel/F in GLOB.news_network.network_channels)
 				if( (!F.locked || F.author == scanned_user) && !F.censored)
 					available_channels += F.channel_name
 			src.channel_name = strip_html(input(usr, "Choose receiving Feed Channel", "Network Channel Handler") in available_channels )
@@ -508,7 +508,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				newMsg.body = src.msg
 				if(photo)
 					newMsg.img = photo.img
-				for(var/datum/feed_channel/FC in news_network.network_channels)
+				for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 					if(FC.channel_name == src.channel_name)
 						FC.messages += newMsg                  //Adding message to the network's appropriate feed_channel
 						break
@@ -547,12 +547,12 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 
 		else if(href_list["menu_wanted"])
 			var/already_wanted = 0
-			if(news_network.wanted_issue)
+			if(GLOB.news_network.wanted_issue)
 				already_wanted = 1
 
 			if(already_wanted)
-				src.channel_name = news_network.wanted_issue.author
-				src.msg = news_network.wanted_issue.body
+				src.channel_name = GLOB.news_network.wanted_issue.author
+				src.msg = GLOB.news_network.wanted_issue.body
 			src.screen = 14
 			src.updateUsrDialog()
 
@@ -582,31 +582,31 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 						WANTED.backup_author = src.scanned_user //I know, a bit wacky
 						if(photo)
 							WANTED.img = photo.img
-						news_network.wanted_issue = WANTED
+						GLOB.news_network.wanted_issue = WANTED
 						for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.all_casters)
 							NEWSCASTER.newsAlert()
 							NEWSCASTER.update_icon()
 						src.screen = 15
 					else
-						if(news_network.wanted_issue.is_admin_message)
+						if(GLOB.news_network.wanted_issue.is_admin_message)
 							alert("The wanted issue has been distributed by a Nanotrasen higherup. You cannot edit it.","Ok")
 							return
-						news_network.wanted_issue.author = src.channel_name
-						news_network.wanted_issue.body = src.msg
-						news_network.wanted_issue.backup_author = src.scanned_user
+						GLOB.news_network.wanted_issue.author = src.channel_name
+						GLOB.news_network.wanted_issue.body = src.msg
+						GLOB.news_network.wanted_issue.backup_author = src.scanned_user
 						if(photo)
-							news_network.wanted_issue.img = photo.img
+							GLOB.news_network.wanted_issue.img = photo.img
 						src.screen = 19
 
 			src.updateUsrDialog()
 
 		else if(href_list["cancel_wanted"])
-			if(news_network.wanted_issue.is_admin_message)
+			if(GLOB.news_network.wanted_issue.is_admin_message)
 				alert("The wanted issue has been distributed by a Nanotrasen higherup. You cannot take it down.","Ok")
 				return
 			var/choice = alert("Please confirm Wanted Issue removal","Network Security Handler","Confirm","Cancel")
 			if(choice=="Confirm")
-				news_network.wanted_issue = null
+				GLOB.news_network.wanted_issue = null
 				for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.all_casters)
 					NEWSCASTER.update_icon()
 				src.screen=17
@@ -926,10 +926,10 @@ obj/item/newspaper/Topic(href, href_list)
 
 /obj/machinery/newscaster/proc/print_paper()
 	var/obj/item/newspaper/NEWSPAPER = new /obj/item/newspaper
-	for(var/datum/feed_channel/FC in news_network.network_channels)
+	for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 		NEWSPAPER.news_content += FC
-	if(news_network.wanted_issue)
-		NEWSPAPER.important_message = news_network.wanted_issue
+	if(GLOB.news_network.wanted_issue)
+		NEWSPAPER.important_message = GLOB.news_network.wanted_issue
 	NEWSPAPER.loc = get_turf(src)
 	src.paper_remaining--
 	return

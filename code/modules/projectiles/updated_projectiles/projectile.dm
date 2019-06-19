@@ -114,11 +114,11 @@
 
 	setDir(get_dir(loc, target_turf))
 
-	round_statistics.total_projectiles_fired++
+	GLOB.round_statistics.total_projectiles_fired++
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullets_fired++
+		GLOB.round_statistics.total_bullets_fired++
 		if(ammo.bonus_projectiles_amount)
-			round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
+			GLOB.round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && ammo.bonus_projectiles_type) ammo.fire_bonus_projectiles(src)
@@ -501,7 +501,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	flash_weak_pain()
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullet_hits_on_humans++
+		GLOB.round_statistics.total_bullet_hits_on_humans++
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	#if DEBUG_HUMAN_DEFENSE
@@ -602,7 +602,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullet_hits_on_xenos++
+		GLOB.round_statistics.total_bullet_hits_on_xenos++
 
 	flash_weak_pain()
 
@@ -802,7 +802,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			log_combat(firingMob, src, "shot", P)
 			log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
 			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
-			round_statistics.total_bullet_hits_on_marines++
+			GLOB.round_statistics.total_bullet_hits_on_marines++
 		else
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")

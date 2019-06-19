@@ -1,4 +1,4 @@
-var/datum/controller/lighting/lighting_controller = new ()
+GLOBAL_DATUM_INIT(lighting_controller, /datum/controller/lighting, new)
 
 datum/controller/lighting
 	var/processing = 0
@@ -19,11 +19,11 @@ datum/controller/lighting
 
 datum/controller/lighting/New()
 	lighting_states = max( 0, length(icon_states(LIGHTING_ICON))-1 )
-	if(lighting_controller != src)
-		if(istype(lighting_controller,/datum/controller/lighting))
-			Recover()	//if we are replacing an existing lighting_controller (due to a crash) we attempt to preserve as much as we can
-			qdel(lighting_controller)
-		lighting_controller = src
+	if(GLOB.lighting_controller != src)
+		if(istype(GLOB.lighting_controller,/datum/controller/lighting))
+			Recover()	//if we are replacing an existing GLOB.lighting_controller (due to a crash) we attempt to preserve as much as we can
+			qdel(GLOB.lighting_controller)
+		GLOB.lighting_controller = src
 
 
 /datum/controller/lighting/stat_entry()
@@ -134,35 +134,35 @@ datum/controller/lighting/Initialize(var/z_level)
 //It works by using spawn(-1) to transfer the data, if there is a runtime the data does not get transfered but the loop
 //does not crash
 datum/controller/lighting/Recover()
-	if(!istype(lighting_controller.changed_turfs,/list))
-		lighting_controller.changed_turfs = null
-		lighting_controller.changed_turfs = list()
-	if(!istype(lighting_controller.changed_lights,/list))
-		lighting_controller.changed_lights = null
-		lighting_controller.changed_lights = list()
+	if(!istype(GLOB.lighting_controller.changed_turfs,/list))
+		GLOB.lighting_controller.changed_turfs = null
+		GLOB.lighting_controller.changed_turfs = list()
+	if(!istype(GLOB.lighting_controller.changed_lights,/list))
+		GLOB.lighting_controller.changed_lights = null
+		GLOB.lighting_controller.changed_lights = list()
 
 
 /*
-	for(var/thing in lighting_controller.changed_lights)
+	for(var/thing in GLOB.lighting_controller.changed_lights)
 		var/datum/light_source/L = thing
 		spawn(-1)			//so we don't crash the loop (inefficient)
 			if(istype(L)
 				L.check()
 
-	for(var/thing in lighting_controller.changed_turfs)
+	for(var/thing in GLOB.lighting_controller.changed_turfs)
 		var/turf/T = thing
 		if(istype(T) && T.lighting_changed)
 			spawn(-1)
 				T.shift_to_subarea()
 */
-	lighting_controller.Initialize()
+	GLOB.lighting_controller.Initialize()
 
 	var/msg = "## DEBUG: [time2text(world.timeofday)] lighting_controller restarted. Reports:\n"
-	for(var/varname in lighting_controller.vars)
+	for(var/varname in GLOB.lighting_controller.vars)
 		switch(varname)
 			if("tag","bestF","type","parent_type","vars")	continue
 			else
-				var/varval1 = lighting_controller.vars[varname]
+				var/varval1 = GLOB.lighting_controller.vars[varname]
 				var/varval2 = vars[varname]
 				if(istype(varval1,/list))
 					varval1 = "/list([length(varval1)])"
