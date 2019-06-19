@@ -1,7 +1,7 @@
 
 /*
- * effect/alien
- */
+* effect/alien
+*/
 /obj/effect/alien
 	name = "alien thing"
 	desc = "theres something alien about this"
@@ -53,8 +53,8 @@
 		take_damage(rand(0.2, 2))
 
 /*
- * Resin
- */
+* Resin
+*/
 /obj/effect/alien/resin
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
@@ -340,7 +340,7 @@
 	playsound(src, "alien_resin_break", 25)
 	if(do_after(M, 80, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
-		 "<span class='danger'>You rip down \the [src]!</span>", null, 5)
+		"<span class='danger'>You rip down \the [src]!</span>", null, 5)
 		qdel(src)
 
 /obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
@@ -454,8 +454,8 @@
 	return FALSE
 
 /*
- * Egg
- */
+* Egg
+*/
 
 #define EGG_BURST 0
 #define EGG_BURSTING 1

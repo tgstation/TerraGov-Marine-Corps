@@ -20,25 +20,6 @@
 
 /obj/machinery/autolathe/Initialize(mapload, ...)
 	. = ..()
-	//Create global autolathe recipe list if it hasn't been made already.
-	if(isnull(autolathe_recipes))
-		autolathe_recipes = list()
-		autolathe_categories = list()
-		for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
-			var/datum/autolathe/recipe/recipe = new R
-			autolathe_recipes += recipe
-			autolathe_categories |= recipe.category
-
-			var/obj/item/I = new recipe.path
-			if(I.matter && !recipe.resources) //This can be overidden in the datums.
-				recipe.resources = list()
-				for(var/material in I.matter)
-					if(!isnull(storage_capacity[material]))
-						if(istype(I,/obj/item/stack/sheet))
-							recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
-						else
-							recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
-				qdel(I)
 
 	//Create parts for lathe.
 	component_parts = list()
@@ -79,7 +60,8 @@
 	dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[show_category]</a>.</h3></center><table width = '100%'>"
 
 	var/index = 0
-	for(var/datum/autolathe/recipe/R in autolathe_recipes)
+	for(var/z in GLOB.autolathe_recipes)
+		var/datum/autolathe/recipe/R = z
 		index++
 		if(R.hidden && !hacked || (show_category != "All" && show_category != R.category))
 			continue
@@ -236,19 +218,19 @@
 
 	if(href_list["change_category"])
 
-		var/choice = input("Which category do you wish to display?") as null|anything in autolathe_categories+"All"
+		var/choice = input("Which category do you wish to display?") as null|anything in GLOB.autolathe_categories+"All"
 		if(!choice) return
 		show_category = choice
 
-	if(href_list["make"] && autolathe_recipes)
+	if(href_list["make"] && GLOB.autolathe_recipes)
 
 		var/index = text2num(href_list["make"])
 		var/multiplier = text2num(href_list["multiplier"])
 		var/datum/autolathe/recipe/making
 		var/make_loc = get_step(loc, get_dir(src,usr))
 
-		if(index > 0 && index <= autolathe_recipes.len)
-			making = autolathe_recipes[index]
+		if(index > 0 && index <= length(GLOB.autolathe_recipes))
+			making = GLOB.autolathe_recipes[index]
 
 		//Exploit detection, not sure if necessary after rewrite.
 		if(!making || multiplier < 0 || multiplier > 100)

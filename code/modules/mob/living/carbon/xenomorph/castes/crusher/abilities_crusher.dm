@@ -16,7 +16,7 @@
 	succeed_activate()
 	add_cooldown()
 
-	round_statistics.crusher_stomps++
+	GLOB.round_statistics.crusher_stomps++
 
 	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
 	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
@@ -30,7 +30,7 @@
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
 		damage += FRENZY_DAMAGE_BONUS(X)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
-			round_statistics.crusher_stomp_victims++
+			GLOB.round_statistics.crusher_stomp_victims++
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M

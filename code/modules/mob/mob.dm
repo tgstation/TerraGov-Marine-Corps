@@ -44,7 +44,7 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
-				lighting_controller.stat_entry()
+				GLOB.lighting_controller.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -679,10 +679,6 @@ mob/proc/yank_out_object()
 
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
-
-/mob/on_stored_atom_del(atom/movable/AM)
-	if(istype(AM, /obj/item))
-		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
 
 /mob/forceMove(atom/destination)
 	. = ..()

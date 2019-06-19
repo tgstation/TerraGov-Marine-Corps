@@ -13,7 +13,7 @@
 	icon_state = "ert_commander"
 	item_state = "suit-command"
 	w_class = 3
-	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/weapon/energy/sword,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/weapon/energy/sword,/obj/item/restraints/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 1
 	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 15, "acid" = 15)
 	allowed = list(/obj/item/flashlight, /obj/item/tank, /obj/item/t_scanner, /obj/item/rcd, /obj/item/tool/crowbar, \

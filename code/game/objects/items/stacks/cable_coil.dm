@@ -70,7 +70,7 @@
 		if(amount <= 14)
 			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")
 			return
-		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
+		var/obj/item/restraints/handcuffs/cable/B = new /obj/item/restraints/handcuffs/cable(usr.loc)
 		B.color = color
 		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 		use(15)
@@ -114,7 +114,7 @@
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
 		user.put_in_hands(F)
 		use(1)
-    
+
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
 		var/mob/living/carbon/human/H = M

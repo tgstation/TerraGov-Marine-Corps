@@ -227,9 +227,9 @@
 	if (!istype(src,/obj/item/card/id))
 		return
 	var/obj/item/card/id/I = src
-	if(I.rank in joblist)
+	if(I.rank in SSjob.name_occupations)
 		return I.rank
-	if(I.assignment in joblist)
+	if(I.assignment in SSjob.name_occupations)
 		return I.assignment
 	return "Unknown"
 
@@ -243,7 +243,7 @@ proc/FindNameFromID(mob/living/carbon/human/H)
 		return I.registered_name
 
 proc/get_all_job_icons()
-	return joblist + list("Prisoner")//For all existing HUD icons
+	return SSjob.name_occupations + list("Prisoner")//For all existing HUD icons
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
 	var/obj/item/card/id/I = src

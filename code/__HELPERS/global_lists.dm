@@ -6,23 +6,12 @@ GLOBAL_LIST_EMPTY(joketips)
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
-var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
-var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
-
-var/global/list/active_areas = list()
+GLOBAL_LIST_EMPTY(active_areas)
 GLOBAL_LIST_EMPTY(all_areas)
-var/global/list/processing_machines = list()
-var/global/list/active_diseases = list()
-var/global/list/events = list()
-
-//used by binoculars for dropship bombardment
-var/global/list/active_laser_targets = list()
-
-//used by the main overwatch console
-var/global/list/active_orbital_beacons = list()
 
 // Posters
-var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
+GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
+
 
 // Pill icons
 GLOBAL_LIST_EMPTY(randomized_pill_icons)
@@ -36,7 +25,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	for(var/path in subtypesof(/datum/sprite_accessory/hair))
 		var/datum/sprite_accessory/hair/H = new path()
 		GLOB.hair_styles_list[H.name] = H
- 	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
+	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	for(var/path in subtypesof(/datum/sprite_accessory/facial_hair))
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		GLOB.facial_hair_styles_list[H.name] = H
@@ -59,13 +48,9 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	// Surgery Steps - Initialize all /datum/surgery_step into a list
 	for(var/T in subtypesof(/datum/surgery_step))
 		var/datum/surgery_step/S = new T
-		surgery_steps += S
-	sort_surgeries()
+		GLOB.surgery_steps += S
 
-	// List of job. I can't believe this was calculated multiple times per tick!
-	for(var/T in subtypesof(/datum/job))
-		var/datum/job/J = new T
-		joblist[J.title] = J
+	sort_surgeries()
 
 	var/rkey = 0
 
@@ -140,6 +125,45 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	for(var/i in 1 to 21)
 		GLOB.randomized_pill_icons += "pill[i]"
 	shuffle(GLOB.randomized_pill_icons)
+
+	shuffle(GLOB.fruit_icon_states)
+	shuffle(GLOB.reagent_effects)
+
+	for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
+		var/datum/autolathe/recipe/recipe = new R
+		GLOB.autolathe_recipes += recipe
+		GLOB.autolathe_categories |= recipe.category
+
+		var/obj/item/I = new recipe.path
+		if(I.matter && !recipe.resources) //This can be overidden in the datums.
+			recipe.resources = list()
+			for(var/material in I.matter)
+				if(istype(I,/obj/item/stack/sheet))
+					recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
+				else
+					recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
+			qdel(I)
+
+	for(var/path in subtypesof(/datum/reagent))
+		var/datum/reagent/D = new path()
+		GLOB.chemical_reagents_list[D.id] = D
+
+	for(var/path in subtypesof(/datum/chemical_reaction))
+
+		var/datum/chemical_reaction/D = new path()
+		var/list/reaction_ids = list()
+
+		if(D.required_reagents && D.required_reagents.len)
+			for(var/reaction in D.required_reagents)
+				reaction_ids += reaction
+
+		// Create filters based on each reagent id in the required reagents list
+		for(var/id in reaction_ids)
+			if(!GLOB.chemical_reactions_list[id])
+				GLOB.chemical_reactions_list[id] = list()
+			GLOB.chemical_reactions_list[id] += D
+			break // Don't bother adding ourselves to other reagent ids, it is redundant
+
 
 	return TRUE
 

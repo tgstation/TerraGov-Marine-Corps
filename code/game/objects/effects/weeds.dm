@@ -14,9 +14,9 @@
 	max_integrity = 4
 
 /obj/effect/alien/weeds/healthcheck()
-    if(obj_integrity <= 0)
-        round_statistics.weeds_destroyed++
-        qdel(src)
+	if(obj_integrity <= 0)
+		GLOB.round_statistics.weeds_destroyed++
+		qdel(src)
 
 /obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()

@@ -1,12 +1,6 @@
 #define WARHEAD_FLY_TIME 50
 #define WARHEAD_FALLING_SOUND_RANGE 15
 
-//global vars
-var/obj/structure/orbital_cannon/almayer_orbital_cannon
-var/list/ob_type_fuel_requirements
-
-var/obj/structure/ship_rail_gun/almayer_rail_gun
-
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
 	desc = "The TGMC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
@@ -25,18 +19,18 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	var/ob_cannon_busy = FALSE
 	var/last_orbital_firing = 0 //stores the last time it was fired to check when we can fire again
 
-/obj/structure/orbital_cannon/New()
-	..()
-	if(!almayer_orbital_cannon)
-		almayer_orbital_cannon = src
+/obj/structure/orbital_cannon/Initialize()
+	. = ..()
+	if(!GLOB.marine_main_ship.orbital_cannon)
+		GLOB.marine_main_ship.orbital_cannon = src
 
-	if(!ob_type_fuel_requirements)
-		ob_type_fuel_requirements = list()
+	if(!GLOB.marine_main_ship.ob_type_fuel_requirements)
+		GLOB.marine_main_ship.ob_type_fuel_requirements = list()
 		var/list/L = list(4,5,6)
 		var/amt
 		for(var/i=1 to 3)
 			amt = pick_n_take(L)
-			ob_type_fuel_requirements += amt
+			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
 
 	var/turf/T = locate(x+1,y+2,z)
 	var/obj/structure/orbital_tray/O = new(T)
@@ -204,11 +198,11 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 	switch(tray.warhead.warhead_kind)
 		if("explosive")
-			inaccurate_fuel = abs(ob_type_fuel_requirements[1] - tray.fuel_amt)
+			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[1] - tray.fuel_amt)
 		if("incendiary")
-			inaccurate_fuel = abs(ob_type_fuel_requirements[2] - tray.fuel_amt)
+			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[2] - tray.fuel_amt)
 		if("cluster")
-			inaccurate_fuel = abs(ob_type_fuel_requirements[3] - tray.fuel_amt)
+			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 	for(var/M in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
@@ -460,30 +454,30 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	user.set_interaction(src)
 
 	var/dat = "<font size=5><center>Orbital Cannon System Control Console</center></font><HR>"
-	if(!almayer_orbital_cannon)
+	if(!GLOB.marine_main_ship?.orbital_cannon)
 		dat += "No Orbital Cannon System Detected!<BR>"
-	else if(!almayer_orbital_cannon.tray)
+	else if(!GLOB.marine_main_ship.orbital_cannon.tray)
 		dat += "Orbital Cannon System Tray is missing!<BR>"
 	else
 		if(orbital_window_page == 1)
 			dat += "<font size=3>Warhead Fuel Requirements:</font><BR>"
-			dat += "- HE Orbital Warhead: <b>[ob_type_fuel_requirements[1]] Solid Fuel blocks.</b><BR>"
-			dat += "- Incendiary Orbital Warhead: <b>[ob_type_fuel_requirements[2]] Solid Fuel blocks.</b><BR>"
-			dat += "- Cluster Orbital Warhead: <b>[ob_type_fuel_requirements[3]] Solid Fuel blocks.</b><BR>"
+			dat += "- HE Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[1]] Solid Fuel blocks.</b><BR>"
+			dat += "- Incendiary Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[2]] Solid Fuel blocks.</b><BR>"
+			dat += "- Cluster Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[3]] Solid Fuel blocks.</b><BR>"
 
 			dat += "<BR><BR><A href='?src=\ref[src];back=1'><font size=3>Back</font></A><BR>"
 		else
 			var/tray_status = "unloaded"
-			if(almayer_orbital_cannon.chambered_tray)
+			if(GLOB.marine_main_ship.orbital_cannon.chambered_tray)
 				tray_status = "chambered"
-			else if(almayer_orbital_cannon.loaded_tray)
+			else if(GLOB.marine_main_ship.orbital_cannon.loaded_tray)
 				tray_status = "loaded"
 			dat += "Orbital Cannon Tray is <b>[tray_status]</b><BR>"
-			if(almayer_orbital_cannon.tray.warhead)
-				dat += "[almayer_orbital_cannon.tray.warhead.name] Detected<BR>"
+			if(GLOB.marine_main_ship.orbital_cannon.tray.warhead)
+				dat += "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>"
 			else
 				dat += "No Warhead Detected<BR>"
-			dat += "[almayer_orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
+			dat += "[GLOB.marine_main_ship.orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
 
 			dat += "<A href='?src=\ref[src];load_tray=1'><font size=3>Load Tray</font></A><BR>"
 			dat += "<A href='?src=\ref[src];unload_tray=1'><font size=3>Unload Tray</font></A><BR>"
@@ -502,13 +496,13 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 		return
 
 	if(href_list["load_tray"])
-		almayer_orbital_cannon.load_tray(usr)
+		GLOB.marine_main_ship?.orbital_cannon?.load_tray(usr)
 
 	else if(href_list["unload_tray"])
-		almayer_orbital_cannon.unload_tray(usr)
+		GLOB.marine_main_ship?.orbital_cannon?.unload_tray(usr)
 
 	else if(href_list["chamber_tray"])
-		almayer_orbital_cannon.chamber_payload(usr)
+		GLOB.marine_main_ship?.orbital_cannon?.chamber_payload(usr)
 
 	else if(href_list["check_req"])
 		orbital_window_page = 1
@@ -539,10 +533,10 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
 	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo
 
-/obj/structure/ship_rail_gun/New()
+/obj/structure/ship_rail_gun/Initialize()
 	. = ..()
-	if(!almayer_rail_gun)
-		almayer_rail_gun = src
+	if(!GLOB.marine_main_ship.rail_gun)
+		GLOB.marine_main_ship.rail_gun = src
 	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/highvelocity(src)
 	rail_gun_ammo.max_ammo_count = 16000 //400 uses
 	rail_gun_ammo.ammo_count = 16000

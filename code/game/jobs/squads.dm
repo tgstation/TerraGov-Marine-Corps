@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(squad_leader == src)
 		squad_leader = null
 		SSdirection.clear_leader(tracking_id)
-		SSdirection.stop_tracking("marine-sl", src)
+		SSdirection.stop_tracking("marine-sl", H)
 	else
 		SSdirection.stop_tracking(tracking_id, H)
 	H.assigned_squad = null

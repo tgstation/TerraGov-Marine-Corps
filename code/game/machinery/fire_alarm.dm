@@ -57,7 +57,7 @@ FIRE ALARM
 		return
 
 	if(!(machine_stat & NOPOWER))
-		var/alert = (is_mainship_level(z)) ? get_security_level() : "green"
+		var/alert = (is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"
 		overlays += image(icon, "fire_o[alert]")
 		var/area/A = get_area(src)
 		if(A?.flags_alarm_state & ALARM_WARNING_FIRE)
@@ -178,7 +178,7 @@ FIRE ALARM
 			d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Lock</A>", src)
 		var/second = round(src.time) % 60
 		var/minute = (round(src.time) - second) / 60
-		var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>"
+		var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>"
 
 		var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
 		popup.set_content(dat)
@@ -196,7 +196,7 @@ FIRE ALARM
 			d2 = text("<A href='?src=\ref[];time=1'>[]</A>", src, stars("Initiate Time Lock"))
 		var/second = round(src.time) % 60
 		var/minute = (round(src.time) - second) / 60
-		var/dat = "[d1]\n<HR><b>The current alert level is: [stars(get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? text("[]:", minute) : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>"
+		var/dat = "[d1]\n<HR><b>The current alert level is: [stars(GLOB.marine_main_ship.get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? text("[]:", minute) : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>"
 
 		var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
 		popup.set_content(dat)

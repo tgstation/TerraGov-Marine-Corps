@@ -19,7 +19,7 @@
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
 	SEND_SOUND(world, pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg'))
 	
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal humans spawned: [round_statistics.total_humans_created]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 	announce_medal_awards()
 	announce_round_stats()

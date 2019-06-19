@@ -92,7 +92,7 @@
 
 
 /****************************************************
-			   DAMAGE PROCS
+			DAMAGE PROCS
 ****************************************************/
 
 /datum/limb/proc/emp_act(severity)
@@ -328,7 +328,7 @@ This function completely restores a damaged organ to perfect condition.
 
 
 /****************************************************
-			   PROCESSING & UPDATING
+			PROCESSING & UPDATING
 ****************************************************/
 
 //Determines if we even need to process this organ.
@@ -611,7 +611,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return "[tbrute][tburn]"
 
 /****************************************************
-			   DISMEMBERMENT
+			DISMEMBERMENT
 ****************************************************/
 
 //Recursive setting of all child organs to amputated
@@ -729,7 +729,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(vital) owner.death()
 
 /****************************************************
-			   HELPERS
+			HELPERS
 ****************************************************/
 
 /datum/limb/proc/release_restraints()
@@ -1004,7 +1004,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 /****************************************************
-			   LIMB TYPES
+			LIMB TYPES
 ****************************************************/
 
 /datum/limb/chest
@@ -1125,7 +1125,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /*
 /datum/limb/head/get_icon(var/icon/race_icon, var/icon/deform_icon)
 	if (!owner)
-	 return ..()
+		return ..()
 	var/g = "m"
 	if(owner.gender == FEMALE)	g = "f"
 	if (limb_status & LIMB_MUTATED)

@@ -137,7 +137,7 @@
 /turf/open/floor,
 /area/whiskey_outpost)
 "at" = (
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "au" = (
@@ -185,9 +185,7 @@
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aC" = (
-/obj/machinery/telecomms/relay/preset/ice_colony{
-	idle_power_usage = 100
-	},
+/obj/machinery/telecomms/relay/preset/telecomms,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -293,7 +291,6 @@
 "aQ" = (
 /obj/machinery/light,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -732,8 +729,7 @@
 "bX" = (
 /obj/structure/barricade/metal{
 	dir = 8;
-	icon_state = "barricade2";
-	tag = "icon-barricade (WEST)"
+	icon_state = "barricade2"
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
@@ -788,8 +784,6 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced{
 	color = "gray";
-	dir = 5;
-	health = 80;
 	name = "gray reinforced window"
 	},
 /turf/open/floor/plating,
@@ -933,7 +927,6 @@
 /area/whiskey_outpost)
 "ct" = (
 /obj/machinery/light{
-	tag = "icon-tube1 (NORTH)";
 	icon_state = "tube1";
 	dir = 1
 	},
@@ -942,8 +935,7 @@
 "cu" = (
 /obj/structure/barricade/metal{
 	dir = 4;
-	icon_state = "barricade2";
-	tag = "icon-barricade (EAST)"
+	icon_state = "barricade2"
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
@@ -979,24 +971,15 @@
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/north)
 "cy" = (
-/obj/machinery/floodlight{
-	icon_state = "flood01";
-	in_use = 1;
-	luminosity = 7;
-	name = "Outpost Light";
-	on = 1;
-	use_power = 0
-	},
+/obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "cz" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -1011,7 +994,6 @@
 /area/whiskey_outpost)
 "cB" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -1100,8 +1082,7 @@
 "cL" = (
 /obj/machinery/m56d_hmg/mg_turret{
 	dir = 8;
-	icon_state = "towergun";
-	tag = ""
+	icon_state = "towergun"
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
@@ -1199,7 +1180,6 @@
 /area/whiskey_outpost/outside/north)
 "cY" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -1212,7 +1192,6 @@
 "cZ" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -1275,7 +1254,6 @@
 /area/whiskey_outpost)
 "di" = (
 /turf/open/ground/coast{
-	tag = "icon-beachcorner";
 	icon_state = "beachcorner";
 	dir = 2
 	},
@@ -1385,7 +1363,6 @@
 /area/whiskey_outpost)
 "dy" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1401,7 +1378,6 @@
 /area/whiskey_outpost)
 "dA" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1413,7 +1389,6 @@
 /area/whiskey_outpost)
 "dB" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1433,12 +1408,10 @@
 /area/whiskey_outpost)
 "dE" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -1452,7 +1425,6 @@
 /area/whiskey_outpost)
 "dF" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
@@ -1466,12 +1438,10 @@
 /area/whiskey_outpost)
 "dG" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1490,12 +1460,10 @@
 /area/whiskey_outpost)
 "dI" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1505,7 +1473,6 @@
 /area/whiskey_outpost)
 "dJ" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1517,7 +1484,6 @@
 /area/whiskey_outpost/outside/north)
 "dK" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -1536,7 +1502,6 @@
 /area/whiskey_outpost)
 "dM" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1551,8 +1516,7 @@
 "dN" = (
 /obj/machinery/m56d_hmg/mg_turret{
 	dir = 4;
-	icon_state = "towergun";
-	tag = ""
+	icon_state = "towergun"
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
@@ -1582,12 +1546,10 @@
 /area/whiskey_outpost/outside/north)
 "dS" = (
 /obj/machinery/light{
-	tag = "icon-tube1 (NORTH)";
 	icon_state = "tube1";
 	dir = 1
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1600,7 +1562,6 @@
 "dT" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -1772,8 +1733,7 @@
 "ey" = (
 /obj/machinery/m56d_hmg/mg_turret{
 	dir = 8;
-	icon_state = "towergun";
-	tag = ""
+	icon_state = "towergun"
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
@@ -1873,8 +1833,7 @@
 "eL" = (
 /obj/structure/barricade/metal{
 	dir = 4;
-	icon_state = "barricade2";
-	tag = "icon-barricade (EAST)"
+	icon_state = "barricade2"
 	},
 /obj/structure/barricade/metal,
 /turf/open/floor/plating/asteroidwarning{
@@ -1883,7 +1842,6 @@
 /area/whiskey_outpost)
 "eM" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2115,7 +2073,6 @@
 /area/whiskey_outpost)
 "fh" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
@@ -2314,7 +2271,6 @@
 /area/whiskey_outpost)
 "fK" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2351,8 +2307,7 @@
 /obj/structure/barricade/metal,
 /obj/structure/barricade/metal{
 	dir = 8;
-	icon_state = "barricade2";
-	tag = "icon-barricade (WEST)"
+	icon_state = "barricade2"
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 10
@@ -2362,8 +2317,7 @@
 /obj/structure/barricade/metal,
 /obj/structure/barricade/metal{
 	dir = 4;
-	icon_state = "barricade2";
-	tag = "icon-barricade (EAST)"
+	icon_state = "barricade2"
 	},
 /turf/open/floor/plating/asteroidwarning{
 	dir = 6
@@ -2402,7 +2356,6 @@
 "fY" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2425,7 +2378,6 @@
 /area/whiskey_outpost/outside/north)
 "gb" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2453,12 +2405,10 @@
 /area/whiskey_outpost/outside/north)
 "gg" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2468,7 +2418,6 @@
 /area/whiskey_outpost/outside/north)
 "gh" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
@@ -2478,12 +2427,10 @@
 /area/whiskey_outpost/outside/north)
 "gi" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2501,7 +2448,6 @@
 /area/whiskey_outpost/outside/north)
 "gk" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2515,7 +2461,6 @@
 "gl" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2528,7 +2473,6 @@
 "gn" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2542,8 +2486,7 @@
 "gp" = (
 /obj/machinery/m56d_hmg/mg_turret{
 	dir = 8;
-	icon_state = "towergun";
-	tag = ""
+	icon_state = "towergun"
 	},
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -2571,7 +2514,6 @@
 /area/whiskey_outpost/outside/north)
 "gt" = (
 /turf/open/ground/coast{
-	tag = "icon-beach (SOUTHWEST)";
 	icon_state = "beach";
 	dir = 10
 	},
@@ -2589,7 +2531,6 @@
 "gw" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2606,7 +2547,6 @@
 "gy" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2616,12 +2556,10 @@
 /area/whiskey_outpost/outside/north)
 "gz" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2636,12 +2574,10 @@
 /area/whiskey_outpost)
 "gB" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (NORTH)";
 	icon_state = "sandbag";
 	dir = 1
 	},
@@ -2652,7 +2588,6 @@
 "gC" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2664,7 +2599,6 @@
 /area/whiskey_outpost/outside/north)
 "gD" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2683,7 +2617,6 @@
 /area/whiskey_outpost)
 "gG" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2704,7 +2637,6 @@
 /area/whiskey_outpost/outside/north)
 "gJ" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2725,7 +2657,6 @@
 /area/whiskey_outpost)
 "gL" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2751,7 +2682,6 @@
 "gO" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -2774,7 +2704,6 @@
 "gR" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2921,7 +2850,6 @@
 "hv" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -2998,14 +2926,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "hM" = (
-/obj/machinery/floodlight{
-	icon_state = "flood01";
-	in_use = 1;
-	luminosity = 7;
-	name = "Outpost Light";
-	on = 1;
-	use_power = 0
-	},
+/obj/machinery/floodlight/outpost,
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/west)
 "hN" = (
@@ -3044,7 +2965,6 @@
 /area/whiskey_outpost/outside/west)
 "hU" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -3052,7 +2972,6 @@
 /area/whiskey_outpost/outside/west)
 "hV" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -3072,14 +2991,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "hZ" = (
-/obj/machinery/floodlight{
-	icon_state = "flood01";
-	in_use = 1;
-	luminosity = 7;
-	name = "Outpost Light";
-	on = 1;
-	use_power = 0
-	},
+/obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "ia" = (
@@ -3090,7 +3002,6 @@
 "ib" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -3099,7 +3010,6 @@
 "ic" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -3107,7 +3017,6 @@
 /area/whiskey_outpost/outside/west)
 "id" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -3124,7 +3033,6 @@
 /area/whiskey_outpost/outside/west)
 "ig" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (WEST)";
 	icon_state = "sandbag";
 	dir = 8
 	},
@@ -3132,14 +3040,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "ih" = (
-/obj/machinery/floodlight{
-	icon_state = "flood01";
-	in_use = 1;
-	luminosity = 7;
-	name = "Outpost Light";
-	on = 1;
-	use_power = 0
-	},
+/obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "ii" = (
@@ -3249,15 +3150,13 @@
 "iE" = (
 /turf/open/ground/river,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (EAST)";
 	icon_state = "diagrasputin";
 	dir = 4
 	},
 /area/whiskey_outpost/outside/east)
 "iF" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -3275,7 +3174,6 @@
 "iG" = (
 /turf/open/ground/river,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (NORTH)";
 	icon_state = "diagrasputin";
 	dir = 1
 	},
@@ -3298,8 +3196,7 @@
 /area/whiskey_outpost/outside/east)
 "iK" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -3316,14 +3213,12 @@
 /area/whiskey_outpost/outside/east)
 "iL" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
 "iM" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
@@ -3351,38 +3246,32 @@
 /area/whiskey_outpost/outside/east)
 "iP" = (
 /obj/structure/bed/chair/dropship/pilot{
-	tag = "icon-pilot_chair (NORTH)";
 	icon_state = "pilot_chair";
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/effect/spawner/gibspawner/human,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
 "iQ" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin_nose";
 	icon_state = "rasputin_nose"
 	},
 /area/whiskey_outpost/outside/east)
 "iR" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin_light";
 	icon_state = "rasputin_light"
 	},
 /area/whiskey_outpost/outside/east)
 "iS" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin8";
 	icon_state = "rasputin8"
 	},
 /area/whiskey_outpost/outside/east)
 "iT" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin4";
 	icon_state = "rasputin4"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3391,7 +3280,6 @@
 /area/whiskey_outpost/outside/east)
 "iV" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin10";
 	icon_state = "rasputin10"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3410,49 +3298,36 @@
 /area/whiskey_outpost/outside/east)
 "iZ" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/whiskey_outpost/outside/east)
 "ja" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/whiskey_outpost/outside/east)
 "jb" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-floor8";
 	icon_state = "floor8"
 	},
 /area/whiskey_outpost/outside/east)
 "jc" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
 /area/whiskey_outpost/outside/east)
 "jd" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /obj/item/storage/box/sentry,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
 "je" = (
-/obj/machinery/floodlight{
-	icon_state = "flood01";
-	in_use = 1;
-	luminosity = 7;
-	name = "Outpost Light";
-	on = 1;
-	use_power = 0
-	},
+/obj/machinery/floodlight/outpost,
 /turf/open/ground/jungle{
 	bushes_spawn = 0;
 	icon_state = "grass_impenetrable"
@@ -3460,41 +3335,34 @@
 /area/whiskey_outpost/outside/west)
 "jf" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
 "jg" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin0";
 	icon_state = "rasputin0"
 	},
 /area/whiskey_outpost/outside/east)
 "jh" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (EAST)";
 	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
 "ji" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/whiskey_outpost/outside/east)
 "jj" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -3502,14 +3370,12 @@
 /area/whiskey_outpost/outside/east)
 "jk" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin2";
 	icon_state = "rasputin2"
 	},
 /area/whiskey_outpost/outside/east)
 "jl" = (
 /obj/structure/window/reinforced{
-	dir = 5;
-	health = 80
+	dir = 5
 	},
 /turf/open/shuttle{
 	icon_state = "floor7"
@@ -3517,13 +3383,11 @@
 /area/whiskey_outpost/outside/east)
 "jm" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /obj/item/cell/high,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3539,7 +3403,6 @@
 "jp" = (
 /obj/item/cell/high,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3551,14 +3414,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "jr" = (
-/obj/machinery/floodlight{
-	icon_state = "flood01";
-	in_use = 1;
-	luminosity = 7;
-	name = "Outpost Light";
-	on = 1;
-	use_power = 0
-	},
+/obj/machinery/floodlight/outpost,
 /turf/open/ground/jungle{
 	bushes_spawn = 0;
 	icon_state = "grass_impenetrable"
@@ -3567,13 +3423,11 @@
 "js" = (
 /obj/item/storage/box/m94,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/whiskey_outpost/outside/east)
 "jt" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -3589,7 +3443,6 @@
 "jv" = (
 /obj/item/storage/box/m94,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3620,13 +3473,11 @@
 	name = "Dropship Hatch"
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
 "jB" = (
 /obj/structure/barricade/sandbags{
-	tag = "icon-sandbag (EAST)";
 	icon_state = "sandbag";
 	dir = 4
 	},
@@ -3663,7 +3514,6 @@
 /area/whiskey_outpost)
 "jG" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin10";
 	icon_state = "rasputin10"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3728,20 +3578,17 @@
 /area/whiskey_outpost)
 "jP" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin4";
 	icon_state = "rasputin4"
 	},
 /area/whiskey_outpost/outside/east)
 "jQ" = (
 /obj/item/cell/high,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/whiskey_outpost/outside/east)
 "jR" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin8";
 	icon_state = "rasputin8"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3809,12 +3656,10 @@
 	pixel_x = -32
 	},
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (EAST)";
 	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3823,18 +3668,15 @@
 	pixel_x = 32
 	},
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
 "kd" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3897,44 +3739,37 @@
 /area/whiskey_outpost/outside/south)
 "kr" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin11";
 	icon_state = "rasputin11"
 	},
 /area/whiskey_outpost/outside/south)
 "ks" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (EAST)";
 	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/south)
 "kt" = (
 /obj/item/cell/high,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/whiskey_outpost/outside/south)
 "ku" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /obj/item/weapon/gun/rifle/lmg,
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/whiskey_outpost/outside/east)
 "kv" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
 /area/whiskey_outpost/outside/east)
@@ -3966,37 +3801,31 @@
 /area/whiskey_outpost/outside/south)
 "kC" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/whiskey_outpost/outside/south)
 "kD" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin12";
 	icon_state = "rasputin12"
 	},
 /area/whiskey_outpost/outside/south)
 "kE" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/whiskey_outpost/outside/south)
 "kF" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin12";
 	icon_state = "rasputin12"
 	},
 /area/whiskey_outpost/outside/east)
 "kG" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin9";
 	icon_state = "rasputin9"
 	},
 /area/whiskey_outpost/outside/east)
 "kH" = (
 /turf/open/ground/coast{
-	tag = "icon-beachcorner";
 	icon_state = "beachcorner";
 	dir = 2
 	},
@@ -4031,7 +3860,6 @@
 /area/whiskey_outpost/outside/east)
 "kM" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/whiskey_outpost/outside/east)
@@ -4056,14 +3884,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "kR" = (
-/obj/machinery/floodlight{
-	icon_state = "flood01";
-	in_use = 1;
-	luminosity = 7;
-	name = "Outpost Light";
-	on = 1;
-	use_power = 0
-	},
+/obj/machinery/floodlight/outpost,
 /turf/open/ground/jungle/path,
 /area/whiskey_outpost/outside/east)
 "kS" = (
@@ -4143,14 +3964,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "lh" = (
-/obj/machinery/floodlight{
-	icon_state = "flood01";
-	in_use = 1;
-	luminosity = 7;
-	name = "Outpost Light";
-	on = 1;
-	use_power = 0
-	},
+/obj/machinery/floodlight/outpost,
 /turf/open/ground/jungle{
 	bushes_spawn = 0;
 	icon_state = "grass_impenetrable"
@@ -4236,7 +4050,6 @@
 /obj/structure/window/reinforced{
 	color = "gray";
 	dir = 5;
-	health = 80;
 	name = "gray reinforced window"
 	},
 /turf/open/floor/plating,
@@ -4269,7 +4082,6 @@
 /area/whiskey_outpost/outside/south)
 "lF" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/whiskey_outpost/outside/south)
@@ -4297,21 +4109,18 @@
 "lJ" = (
 /turf/open/ground/jungle,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (EAST)";
 	icon_state = "diagrasputin";
 	dir = 4
 	},
 /area/whiskey_outpost/outside/south)
 "lK" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/whiskey_outpost/outside/south)
 "lL" = (
 /turf/open/ground/jungle,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (NORTH)";
 	icon_state = "diagrasputin";
 	dir = 1
 	},
@@ -4327,7 +4136,6 @@
 /area/whiskey_outpost/outside/south)
 "lO" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (NORTH)";
 	icon_state = "tracks";
 	dir = 1
 	},
@@ -4335,7 +4143,6 @@
 /area/whiskey_outpost/outside/south)
 "lQ" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (NORTH)";
 	icon_state = "tracks";
 	dir = 1
 	},
@@ -4366,7 +4173,6 @@
 "lV" = (
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (NORTH)";
 	icon_state = "tracks";
 	dir = 1
 	},
@@ -4388,7 +4194,6 @@
 /area/whiskey_outpost/outside/south)
 "lY" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (NORTH)";
 	icon_state = "tracks";
 	dir = 1
 	},
@@ -4398,7 +4203,6 @@
 /area/whiskey_outpost/outside/south)
 "lZ" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (NORTHWEST)";
 	icon_state = "tracks";
 	dir = 9
 	},
@@ -4406,7 +4210,6 @@
 /area/whiskey_outpost/outside/south)
 "ma" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -4414,7 +4217,6 @@
 /area/whiskey_outpost/outside/south)
 "mb" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},
@@ -4425,7 +4227,6 @@
 /area/whiskey_outpost/outside/south)
 "mc" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (SOUTHWEST)";
 	icon_state = "tracks";
 	dir = 10
 	},
@@ -4436,7 +4237,6 @@
 /area/whiskey_outpost/outside/south)
 "md" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (NORTHEAST)";
 	icon_state = "tracks";
 	dir = 5
 	},
@@ -4444,7 +4244,6 @@
 /area/whiskey_outpost/outside/south)
 "me" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (SOUTHWEST)";
 	icon_state = "tracks";
 	dir = 10
 	},
@@ -4467,7 +4266,6 @@
 /area/whiskey_outpost/outside/south)
 "mh" = (
 /obj/effect/decal/cleanable/blood/writing{
-	tag = "icon-tracks (EAST)";
 	icon_state = "tracks";
 	dir = 4
 	},

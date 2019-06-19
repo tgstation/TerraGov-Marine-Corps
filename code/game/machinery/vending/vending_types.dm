@@ -1,7 +1,7 @@
 
 /*
- * Vending machine types
- */
+* Vending machine types
+*/
 
 /*
 
@@ -244,8 +244,8 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access_txt = "3"
-	products = list(/obj/item/handcuffs = 8,
-					/obj/item/handcuffs/zip = 10,
+	products = list(/obj/item/restraints/handcuffs = 8,
+					/obj/item/restraints/handcuffs/zip = 10,
 					/obj/item/explosive/grenade/flashbang = 4,
 					/obj/item/flash = 5,
 					/obj/item/reagent_container/food/snacks/donut/normal = 12,
@@ -281,7 +281,7 @@
 					/obj/item/seeds/lemonseed = 3,/obj/item/seeds/orangeseed = 3,/obj/item/seeds/grassseed = 3,/obj/item/seeds/cocoapodseed = 3,/obj/item/seeds/plumpmycelium = 2,
 					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
-					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
+					/obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
 	premium = list(/obj/item/toy/waterflower = 1)
 
 

@@ -1,16 +1,16 @@
 /*
- * Contents:
- *		Welding mask
- *		Cakehat
- *		Ushanka
- *		Pumpkin head
- *		Kitty ears
- *
- */
+* Contents:
+*		Welding mask
+*		Cakehat
+*		Ushanka
+*		Pumpkin head
+*		Kitty ears
+*
+*/
 
 /*
- * Welding mask
- */
+* Welding mask
+*/
 /obj/item/clothing/head/welding
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
@@ -79,8 +79,8 @@
 	toggle()
 
 /*
- * Cakehat
- */
+* Cakehat
+*/
 /obj/item/clothing/head/cakehat
 	name = "cake-hat"
 	desc = "It's tasty looking!"
@@ -113,8 +113,8 @@
 
 
 /*
- * Pumpkin head
- */
+* Pumpkin head
+*/
 /obj/item/clothing/head/pumpkinhead
 	name = "carved pumpkin"
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
@@ -159,8 +159,8 @@
 			SetLuminosity(0)
 		. = ..()
 /*
- * Kitty ears
- */
+* Kitty ears
+*/
 /obj/item/clothing/head/kitty
 	name = "kitty ears"
 	desc = "A pair of kitty ears. Meow!"

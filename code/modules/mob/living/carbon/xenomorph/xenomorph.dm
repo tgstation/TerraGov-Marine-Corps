@@ -26,7 +26,7 @@
 
 	GLOB.alive_xeno_list += src
 	GLOB.xeno_mob_list += src
-	round_statistics.total_xenos_created++
+	GLOB.round_statistics.total_xenos_created++
 
 	set_initial_hivenumber()
 

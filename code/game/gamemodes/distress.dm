@@ -125,7 +125,7 @@
 
 	SEND_SOUND(world, musical_track)
 
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal humans spawned: [round_statistics.total_humans_created]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 	announce_xenomorphs()
 	announce_survivors()

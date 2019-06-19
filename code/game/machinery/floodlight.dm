@@ -132,3 +132,11 @@
 
 	attackby()
 		return
+
+
+/obj/machinery/floodlight/outpost
+	name = "Outpost Light"
+	icon_state = "flood01"
+	luminosity = 7
+	on = TRUE
+	use_power = FALSE

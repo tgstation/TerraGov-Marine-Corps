@@ -104,7 +104,7 @@
 			if(prob(1))
 				if(affected_mob.knocked_out < 1)
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
-												 "<span class='danger'>You start shaking uncontrollably!</span>")
+												"<span class='danger'>You start shaking uncontrollably!</span>")
 					affected_mob.KnockOut(10)
 					affected_mob.Jitter(105)
 					affected_mob.take_limb_damage(1)
@@ -163,7 +163,7 @@
 
 	victim.KnockOut(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
-								 "<span class='danger'>You feel something ripping up your insides!</span>")
+								"<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.Jitter(300)
 
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
@@ -186,7 +186,7 @@
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
-	round_statistics.total_larva_burst++
+	GLOB.round_statistics.total_larva_burst++
 	var/obj/item/alien_embryo/AE = locate() in victim
 
 	if(AE)

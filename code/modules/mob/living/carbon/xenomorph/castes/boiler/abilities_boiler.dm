@@ -100,8 +100,8 @@
 
 
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
-    if(can_use_ability(A))
-        use_ability(A)
+	if(can_use_ability(A))
+		use_ability(A)
 
 
 /mob/living/carbon/xenomorph/boiler/Moved(atom/OldLoc,Dir)
@@ -171,9 +171,9 @@
 	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		round_statistics.boiler_acid_smokes++
+		GLOB.round_statistics.boiler_acid_smokes++
 	else
-		round_statistics.boiler_neuro_smokes++
+		GLOB.round_statistics.boiler_neuro_smokes++
 
 	add_cooldown()
 	X.reset_bombard_pointer()

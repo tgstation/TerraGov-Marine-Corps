@@ -31,9 +31,9 @@
 	var/image/LT = null
 	var/obj/item/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
-                        /obj/item/attachable/bipod,
-                        /obj/item/attachable/lasersight,
-                        )
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/lasersight,
+						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
@@ -686,7 +686,7 @@
 	set waitfor = 0
 	last_fired = world.time
 	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
-						 "<span class='warning'>You fire the grenade launcher!</span>")
+						"<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.loc = user.loc

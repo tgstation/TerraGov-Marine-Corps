@@ -76,24 +76,24 @@
 
 
 #define RELIGION_CHOICES list(\
-    "Christianity (Protestant)",\
-    "Christianity (Catholic)",\
-    "Christianity (Orthodox)",\
-    "Christianity (Mormonism)",\
-    "Christianity (Other)",\
-    "Judaism",\
-    "Islam (Shia)",\
-    "Islam (Sunni)",\
-    "Buddhism",\
-    "Hinduism",\
-    "Sikhism",\
-    "Shintoism",\
-    "Wiccanism",\
-    "Paganism (Wicca)",\
-    "Minor Religion",\
-    "Atheism",\
-    "None",\
-    "Other"\
+	"Christianity (Protestant)",\
+	"Christianity (Catholic)",\
+	"Christianity (Orthodox)",\
+	"Christianity (Mormonism)",\
+	"Christianity (Other)",\
+	"Judaism",\
+	"Islam (Shia)",\
+	"Islam (Sunni)",\
+	"Buddhism",\
+	"Hinduism",\
+	"Sikhism",\
+	"Shintoism",\
+	"Wiccanism",\
+	"Paganism (Wicca)",\
+	"Minor Religion",\
+	"Atheism",\
+	"None",\
+	"Other"\
 	)
 
 

@@ -136,6 +136,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "jitters and death"
 	adj_temp = 5
 	targ_temp = 305
+	trait_flags = TACHYCARDIC
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
 	L.drowsyness = max(0,L.drowsyness-7)

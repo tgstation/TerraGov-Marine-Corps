@@ -25,7 +25,7 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
-	round_statistics.total_humans_created++
+	GLOB.round_statistics.total_humans_created++
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -70,9 +70,7 @@
 
 
 /mob/living/carbon/human/Destroy()
-	if(assigned_squad)
-		SSdirection.stop_tracking(assigned_squad.tracking_id, src) // failsafe to ensure they're definite not in the list
-	assigned_squad?.clean_marine_from_squad(src,FALSE)
+	assigned_squad?.clean_marine_from_squad(src, FALSE)
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
@@ -881,7 +879,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in GLOB.item_list)
+		for (var/obj/item/limb/head/H in GLOB.head_list)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)

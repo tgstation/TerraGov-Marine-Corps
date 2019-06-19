@@ -9,8 +9,6 @@
 	var/weight = WEIGHT_LOWEST
 	var/keybind_signal
 
-
-
 /datum/keybinding/New()
 	if(!key)
 		return

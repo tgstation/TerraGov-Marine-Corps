@@ -316,7 +316,7 @@
 
 /obj/machinery/vending/lasgun/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	var/datum/data/vending_product/R //Let's try with a new datum.
-	 //More accurate comparison between absolute paths.
+	//More accurate comparison between absolute paths.
 	for(R in (product_records + hidden_records + coin_records))
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
 			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)

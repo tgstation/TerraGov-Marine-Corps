@@ -1,6 +1,6 @@
 /*
- * Platforms
- */
+* Platforms
+*/
 /obj/structure/platform
 	name = "platform"
 	desc = "A square metal surface resting on four legs."

@@ -1,7 +1,3 @@
-// Door open and close constants
-/var/const
-	CLOSED = 2
-
 #define FIREDOOR_MAX_PRESSURE_DIFF 25 // kPa
 #define FIREDOOR_MAX_TEMP 50 // °C
 #define FIREDOOR_MIN_TEMP 0
@@ -197,7 +193,7 @@
 				if(A.flags_alarm_state & ALARM_WARNING_FIRE || A.air_doors_activated)
 					alarmed = TRUE
 			if(alarmed)
-				nextstate = CLOSED
+				nextstate = FIREDOOR_CLOSED
 				close()
 
 /obj/machinery/door/firedoor/attackby(obj/item/I, mob/user, params)
@@ -252,10 +248,10 @@
 	if(operating || !nextstate)
 		return
 	switch(nextstate)
-		if(OPEN)
+		if(FIREDOOR_OPEN)
 			nextstate = null
 			open()
-		if(CLOSED)
+		if(FIREDOOR_CLOSED)
 			nextstate = null
 			close()
 	return
