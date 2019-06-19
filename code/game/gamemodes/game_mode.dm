@@ -13,7 +13,6 @@
 
 	var/distress_cancelled = FALSE
 
-
 /datum/game_mode/New()
 	initialize_emergency_calls()
 

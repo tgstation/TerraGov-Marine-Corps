@@ -1,4 +1,4 @@
-var/bomb_set
+GLOBAL_LIST_EMPTY(nukes_set_list)
 
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
@@ -23,13 +23,13 @@ var/bomb_set
 
 
 
-/obj/machinery/nuclearbomb/New()
-	..()
+/obj/machinery/nuclearbomb/Initialize()
+	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
 
 /obj/machinery/nuclearbomb/process()
 	if (src.timing)
-		bomb_set = 1 //So long as there is one nuke timing, it means one nuke is armed.
+		GLOB.nukes_set_list |= src
 		src.timeleft--
 		if (src.timeleft <= 0)
 			explode()
@@ -287,11 +287,11 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 						if(!src.lighthack)
 							src.icon_state = "nuclearbomb2"
 						if(!src.safety)
-							bomb_set = 1//There can still be issues with this reseting when there are multiple bombs. Not a big deal tho for Nuke/N
+							GLOB.nukes_set_list |= src
 						else
-							bomb_set = 0
+							GLOB.nukes_set_list -= src
 					else
-						bomb_set = 0
+						GLOB.nukes_set_list -= src
 						if(!src.lighthack)
 							src.icon_state = "nuclearbomb1"
 				if (href_list["safety"])
@@ -299,7 +299,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					if(safety)
 						src.timing = 0
 						stop_processing()
-						bomb_set = 0
+						GLOB.nukes_set_list -= src
 				if (href_list["anchor"])
 
 					if(removal_stage == 5)

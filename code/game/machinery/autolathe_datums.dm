@@ -1,5 +1,5 @@
-/var/global/list/autolathe_recipes
-/var/global/list/autolathe_categories
+GLOBAL_LIST_EMPTY(autolathe_recipes)
+GLOBAL_LIST_EMPTY(autolathe_categories)
 
 /datum/autolathe/recipe
 	var/name = "object"

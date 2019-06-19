@@ -16,6 +16,11 @@
 #define AMOUNT_ESTIMEE	(1<<7)	//For containers without volume meters on (e.g. drinking glasses, cans, sprays)
 #define NO_REACT (1<<8)
 
+#define TACHYCARDIC (1<<9)
+#define BRADYCARDICS (1<<10)
+#define HEARTSTOPPER (1<<11)
+#define CHEARTSTOPPER (1<<12)
+
 // Is an open container for all intents and purposes.
 #define OPENCONTAINER 	(REFILLABLE | DRAINABLE | TRANSPARENT)
 #define OPENCONTAINER_NOUNIT	(REFILLABLE | DRAINABLE | AMOUNT_ESTIMEE)

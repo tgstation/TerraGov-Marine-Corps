@@ -273,10 +273,10 @@
 			#endif
 			if(hit_roll < 25) //Sniper targets more likely to hit
 				if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
-					def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+					def_zone = pick(GLOB.base_miss_chance)	// Still hit but now we might hit the wrong body part
 
 			if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
-				hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+				hit_chance -= GLOB.base_miss_chance[def_zone] // Reduce accuracy based on spot.
 				#if DEBUG_HIT_CHANCE
 				to_chat(world, "Hit Chance 2: [hit_chance]")
 				#endif
@@ -288,7 +288,7 @@
 						break //Hit
 					if( hit_chance < (hit_roll - 20) )
 						break //Outright miss.
-					def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+					def_zone 	  = pick(GLOB.base_miss_chance) //We're going to pick a new target and let this run one more time.
 					hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
 				if(2)
 					if(prob(critical_miss) )
