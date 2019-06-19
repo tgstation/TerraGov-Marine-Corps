@@ -170,7 +170,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		to_chat(M, "<span class='warning'>You need your hands free to climb on [src].</span>")
 		return FALSE
 
-	if(!M.mind || !(!M.mind.cm_skills || M.mind.cm_skills.large_vehicle >= SKILL_LARGE_VEHICLE_TRAINED))
+	if(M.mind?.cm_skills?.large_vehicle < SKILL_LARGE_VEHICLE_TRAINED)
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
 	var/time = 10 SECONDS - (2 SECONDS * M.mind.cm_skills.large_vehicle)
