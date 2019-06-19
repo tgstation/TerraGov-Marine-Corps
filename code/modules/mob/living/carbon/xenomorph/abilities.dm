@@ -9,7 +9,10 @@
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/xeno_resting/action_activate()
-	owner.lay_down()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!istype(X))
+		return
+	X.lay_down()
 	return succeed_activate()
 
 // Regurgitate
