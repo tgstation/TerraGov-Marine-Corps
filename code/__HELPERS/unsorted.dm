@@ -827,18 +827,18 @@ var/global/image/busy_indicator_hostile
 
 
 //Quick type checks for some tools
-var/global/list/common_tools = list(
+GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 /obj/item/stack/cable_coil,
 /obj/item/tool/wrench,
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
 /obj/item/multitool,
-/obj/item/tool/crowbar)
+/obj/item/tool/crowbar)))
 
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
+	if(O && is_type_in_typecache(O, GLOB.common_tools))
 		return TRUE
 	return FALSE
 

@@ -50,11 +50,11 @@
 #define GETPULSE_HAND	0	//less accurate (hand)
 #define GETPULSE_TOOL	1	//more accurate (med scanner, sleeper, etc)
 
-var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
+GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
 	"thunder",
 	"ERT",
 	"NUKE"
-	)
+	))
 
 #define STASIS_IN_BAG 		1
 #define STASIS_IN_CRYO_CELL 2
