@@ -4,6 +4,8 @@
 set -e
 shopt -s globstar
 
+changed_files=$(git diff --name-only --diff-filter=AM HEAD...$TRAVIS_BRANCH)
+
 if [ "$BUILD_TOOLS" = false ]; then
 	if grep -E '^\".+\" = \(.+\)' _maps//**/*.dmm;	then
 		echo "Non-TGM formatted map detected. Please convert it using Map Merger!"
@@ -35,7 +37,11 @@ if [ "$BUILD_TOOLS" = false ]; then
 	if grep '^\t* ' code/**/*.dm; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
-	fi;
+	fi
+	if grep '^(?:\/\w+)+\((?:.*, ?var\/.*|var\/.*)\)' changed_files; then
+		echo "changed files contains proc argument starting with 'var'"
+		exit 1
+	fi
 
 
 	(! grep 'step_[xy]' _maps/**/*.dmm)
