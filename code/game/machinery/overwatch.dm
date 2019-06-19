@@ -130,10 +130,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					dat += "----------------------<br>"
 					dat += "<b>Rail Gun Control</b><br>"
 					dat += "<b>Current Rail Gun Status:</b> "
-					var/cooldown_left = (almayer_rail_gun.last_firing + 600) - world.time // 60 seconds between shots
+					var/cooldown_left = (GLOB.marine_main_ship?.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
 					if(cooldown_left > 0)
 						dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
-					else if(!almayer_rail_gun.rail_gun_ammo?.ammo_count)
+					else if(!GLOB.marine_main_ship?.rail_gun?.rail_gun_ammo?.ammo_count)
 						dat += "<font color='red'>Ammo depleted.</font><br>"
 					else
 						dat += "<font color='green'>Ready!</font><br>"
@@ -376,17 +376,17 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				else
 					handle_supplydrop()
 		if("dropbomb")
-			if((almayer_orbital_cannon.last_orbital_firing + 5000) > world.time)
+			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Orbital bombardment not yet available!</span>")
 			else
 				handle_bombard()
 		if("shootrailgun")
-			if((almayer_rail_gun.last_firing + 600) > world.time)
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
 			else if(!selected_target)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
 			else
-				almayer_rail_gun.fire_rail_gun(get_turf(selected_target),usr)
+				GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(get_turf(selected_target),usr)
 		if("back")
 			state = OW_MAIN
 		if("use_cam")
@@ -436,10 +436,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				dat += "----------------------<br>"
 				dat += "<b>Orbital Bombardment Control</b><br>"
 				dat += "<b>Current Cannon Status:</b> "
-				var/cooldown_left = (almayer_orbital_cannon.last_orbital_firing + 5000) - world.time
+				var/cooldown_left = (GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) - world.time
 				if(cooldown_left > 0)
 					dat += "Cannon on cooldown ([round(cooldown_left/10)] seconds)<br>"
-				else if(!almayer_orbital_cannon.chambered_tray)
+				else if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
 					dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
 				else
 					dat += "<font color='green'>Ready!</font><br>"
@@ -489,7 +489,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(busy)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [name] is busy processing another action!</span>")
 		return
-	if(!almayer_orbital_cannon.chambered_tray)
+	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The orbital cannon has no ammo chambered.</span>")
 		return
 	if(!selected_target)
@@ -527,7 +527,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 	if(target && istype(target))
 		target.ceiling_debris_check(5)
-		almayer_orbital_cannon.fire_ob_cannon(target,user)
+		GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target,user)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/change_lead()
 	if(!usr || usr != operator)

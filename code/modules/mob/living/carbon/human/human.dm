@@ -25,7 +25,7 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
-	round_statistics.total_humans_created++
+	GLOB.round_statistics.total_humans_created++
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)

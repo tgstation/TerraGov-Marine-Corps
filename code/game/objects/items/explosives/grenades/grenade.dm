@@ -67,7 +67,7 @@
 	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
-		round_statistics.grenades_thrown++
+		GLOB.round_statistics.grenades_thrown++
 		updateicon()
 	spawn(det_time)
 		prime()

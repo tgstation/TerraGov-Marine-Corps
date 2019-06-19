@@ -14,15 +14,6 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	HDPT_ARMOR = 0.5,
 	HDPT_TREADS = 0.15))
 
-//Currently unused, I thought I was gonna need to fuck with stuff but we good
-/*
-var/list/TANK_HARDPOINT_OFFSETS = list(
-	HDPT_MAINGUN = "0,0",
-	HDPT_SECDGUN = "0,0",
-	HDPT_SUPPORT = "0,0",
-	HDPT_ARMOR = "0,0",
-	HDPT_TREADS = "0,0")*/
-
 //The main object, should be an abstract class
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"

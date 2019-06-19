@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(atoms)
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 
-	lighting_controller.Initialize()
+	GLOB.lighting_controller.Initialize()
 
 	return ..()
 

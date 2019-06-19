@@ -15,7 +15,7 @@
 
 /obj/effect/alien/weeds/healthcheck()
 	if(obj_integrity <= 0)
-		round_statistics.weeds_destroyed++
+		GLOB.round_statistics.weeds_destroyed++
 		qdel(src)
 
 /obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)

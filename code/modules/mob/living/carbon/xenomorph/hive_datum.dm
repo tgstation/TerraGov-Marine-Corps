@@ -425,7 +425,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 	L.visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
 	stored_larva++
-	round_statistics.total_xenos_created-- // keep stats sane
+	GLOB.round_statistics.total_xenos_created-- // keep stats sane
 	qdel(L)
 
 

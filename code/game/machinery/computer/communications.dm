@@ -90,12 +90,12 @@
 						if(SEC_LEVEL_BLUE to INFINITY)
 							tmp_alertlevel = SEC_LEVEL_BLUE //Cannot go above blue.
 
-					var/old_level = security_level
-					set_security_level(tmp_alertlevel)
-					if(security_level != old_level)
+					var/old_level = GLOB.marine_main_ship.security_level
+					GLOB.marine_main_ship.set_security_level(tmp_alertlevel)
+					if(GLOB.marine_main_ship.security_level != old_level)
 						//Only notify the admins if an actual change happened
-						log_game("[key_name(usr)] has changed the security level to [get_security_level()].")
-						message_admins("[ADMIN_TPMONTY(usr)] has changed the security level to [get_security_level()].")
+						log_game("[key_name(usr)] has changed the security level to [GLOB.marine_main_ship.get_security_level()].")
+						message_admins("[ADMIN_TPMONTY(usr)] has changed the security level to [GLOB.marine_main_ship.get_security_level()].")
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
 				tmp_alertlevel = SEC_LEVEL_GREEN //Reset to green.
@@ -134,7 +134,7 @@
 					to_chat(usr, "<span class='warning'>The [CONFIG_GET(string/ship_name)]'s distress beacon must be activated prior to evacuation taking place.</span>")
 					return FALSE
 
-				if(security_level < SEC_LEVEL_RED)
+				if(GLOB.marine_main_ship.security_level < SEC_LEVEL_RED)
 					to_chat(usr, "<span class='warning'>The ship must be under red alert in order to enact evacuation procedures.</span>")
 					return FALSE
 
@@ -172,7 +172,7 @@
 						//if the self_destruct is active we try to cancel it (which includes lowering alert level to red)
 						if(!SSevacuation.cancel_self_destruct(1))
 							//if SD wasn't active (likely canceled manually in the SD room), then we lower the alert level manually.
-							set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
+							GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 
 				log_game("[key_name(usr)] has canceled the emergency evacuation.")
 				message_admins("[ADMIN_TPMONTY(usr)] has canceled the emergency evacuation.")
@@ -398,8 +398,8 @@
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR><HR>"
 
 		if(STATE_ALERT_LEVEL)
-			dat += "Current alert level: [get_security_level()]<BR>"
-			if(security_level == SEC_LEVEL_DELTA)
+			dat += "Current alert level: [GLOB.marine_main_ship.get_security_level()]<BR>"
+			if(GLOB.marine_main_ship.security_level == SEC_LEVEL_DELTA)
 				if(SSevacuation.dest_status >= NUKE_EXPLOSION_ACTIVE)
 					dat += "<font color='red'><b>The self-destruct mechanism is active. [SSevacuation.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
 				switch(SSevacuation.evac_status)
@@ -414,8 +414,8 @@
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
 
 		if(STATE_CONFIRM_LEVEL)
-			dat += "Current alert level: [get_security_level()]<BR>"
-			dat += "Confirm the change to: [num2seclevel(tmp_alertlevel)]<BR>"
+			dat += "Current alert level: [GLOB.marine_main_ship.get_security_level()]<BR>"
+			dat += "Confirm the change to: [GLOB.marine_main_ship.get_security_level(tmp_alertlevel)]<BR>"
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"

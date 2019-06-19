@@ -80,6 +80,7 @@
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_SQUEAK			-40
 #define INIT_ORDER_PATH				-50
+#define INIT_ORDER_GLOBAL_IMAGES	-60
 #define INIT_ORDER_PERSISTENCE		-100
 
 // Subsystem fire priority, from lowest to highest priority

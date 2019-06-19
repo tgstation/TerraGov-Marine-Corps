@@ -6,9 +6,8 @@ GLOBAL_LIST_EMPTY(joketips)
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
-var/global/list/active_areas = list()
+GLOBAL_LIST_EMPTY(active_areas)
 GLOBAL_LIST_EMPTY(all_areas)
-var/global/list/processing_machines = list()
 
 // Posters
 GLOBAL_LIST_INIT(poster_designs, subtypesof(/datum/poster))
@@ -115,6 +114,42 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 	shuffle(GLOB.fruit_icon_states)
 	shuffle(GLOB.reagent_effects)
+
+	for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
+		var/datum/autolathe/recipe/recipe = new R
+		GLOB.autolathe_recipes += recipe
+		GLOB.autolathe_categories |= recipe.category
+
+		var/obj/item/I = new recipe.path
+		if(I.matter && !recipe.resources) //This can be overidden in the datums.
+			recipe.resources = list()
+			for(var/material in I.matter)
+				if(istype(I,/obj/item/stack/sheet))
+					recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
+				else
+					recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
+			qdel(I)
+
+	for(var/path in subtypesof(/datum/reagent))
+		var/datum/reagent/D = new path()
+		GLOB.chemical_reagents_list[D.id] = D
+
+	for(var/path in subtypesof(/datum/chemical_reaction))
+
+		var/datum/chemical_reaction/D = new path()
+		var/list/reaction_ids = list()
+
+		if(D.required_reagents && D.required_reagents.len)
+			for(var/reaction in D.required_reagents)
+				reaction_ids += reaction
+
+		// Create filters based on each reagent id in the required reagents list
+		for(var/id in reaction_ids)
+			if(!GLOB.chemical_reactions_list[id])
+				GLOB.chemical_reactions_list[id] = list()
+			GLOB.chemical_reactions_list[id] += D
+			break // Don't bother adding ourselves to other reagent ids, it is redundant
+
 
 	return TRUE
 

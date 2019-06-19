@@ -590,14 +590,14 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/sec_level = input(usr, "It's currently code [get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
+	var/sec_level = input(usr, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
 	if(!sec_level)
 		return
 
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
+	if(alert("Switch from code [GLOB.marine_main_ship.get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
 		return
 
-	set_security_level(sec_level)
+	GLOB.marine_main_ship.set_security_level(sec_level)
 
 	log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")

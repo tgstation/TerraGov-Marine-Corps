@@ -250,6 +250,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = 1
 	taste_description = "cough syrup"
+	trait_flags = BRADYCARDICS
 
 /datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
@@ -311,6 +312,7 @@
 	color = "#FFFFFF" // rgb: 255,255,255
 	toxpwr = 0
 	overdose_threshold = REAGENTS_OVERDOSE
+	trait_flags = CHEARTSTOPPER
 
 /datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/L, metabolism)
 	if(iscarbon(L))

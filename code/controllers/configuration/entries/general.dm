@@ -299,8 +299,6 @@ Master controller and performance related.
 
 /datum/config_entry/flag/tickcomp
 
-/datum/config_entry/flag/use_recursive_explosions
-
 /*
 System command that invokes youtube-dl, used by Play Internet Sound.
 You can install youtube-dl with

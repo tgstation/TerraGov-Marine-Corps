@@ -75,7 +75,7 @@
 	master = src //moved outside the spawn(1) to avoid runtimes in lighting.dm when it references loc.loc.master ~Carn
 	uid = ++global_uid
 	related = list(src)
-	active_areas += src
+	GLOB.active_areas += src
 	GLOB.all_areas += src
 
 	initialize_power_and_lighting()
@@ -279,7 +279,7 @@
 		for(var/obj/machinery/door/firedoor/D in all_doors)
 			if(!D.blocked)
 				if(D.operating)
-					D.nextstate = CLOSED
+					D.nextstate = FIREDOOR_CLOSED
 				else if(!D.density)
 					spawn()
 						D.close()

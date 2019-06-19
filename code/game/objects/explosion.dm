@@ -10,11 +10,6 @@
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = FALSE, flame_range = 0)
 	src = null	//so we don't abort once src is deleted
 	spawn(0)
-		if(CONFIG_GET(flag/use_recursive_explosions))
-			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
-			explosion_rec(epicenter, power)
-			return
-
 		var/start = world.timeofday
 		epicenter = get_turf(epicenter)
 		if(!epicenter) return
@@ -81,7 +76,7 @@
 		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
 
 		if(approximate_intensity > 30)
-			lighting_controller.processing = 0
+			GLOB.lighting_controller.processing = 0
 
 
 		if(heavy_impact_range > 1)
@@ -141,9 +136,9 @@
 
 		sleep(8)
 
-		if(!lighting_controller.processing)
-			lighting_controller.processing = 1
-			lighting_controller.process() //Restart the lighting controller
+		if(!GLOB.lighting_controller.processing)
+			GLOB.lighting_controller.processing = 1
+			GLOB.lighting_controller.process() //Restart the lighting controller
 
 		SSmachines.makepowernets()
 

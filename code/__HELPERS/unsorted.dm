@@ -392,41 +392,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(A.density)
 			return TRUE
 
-
-var/global/image/busy_indicator_clock
-var/global/image/busy_indicator_medical
-var/global/image/busy_indicator_build
-var/global/image/busy_indicator_friendly
-var/global/image/busy_indicator_hostile
-
-/proc/get_busy_icon(busy_type)
-	if(busy_type == BUSY_ICON_GENERIC)
-		if(!busy_indicator_clock)
-			busy_indicator_clock = image('icons/mob/mob.dmi', null, "busy_generic", "pixel_y" = 22)
-			busy_indicator_clock.layer = FLY_LAYER
-		return busy_indicator_clock
-	else if(busy_type == BUSY_ICON_MEDICAL)
-		if(!busy_indicator_medical)
-			busy_indicator_medical = image('icons/mob/mob.dmi', null, "busy_medical", "pixel_y" = 0) //This shows directly on top of the mob, no offset!
-			busy_indicator_medical.layer = FLY_LAYER
-		return busy_indicator_medical
-	else if(busy_type == BUSY_ICON_BUILD)
-		if(!busy_indicator_build)
-			busy_indicator_build = image('icons/mob/mob.dmi', null, "busy_build", "pixel_y" = 22)
-			busy_indicator_build.layer = FLY_LAYER
-		return busy_indicator_build
-	else if(busy_type == BUSY_ICON_FRIENDLY)
-		if(!busy_indicator_friendly)
-			busy_indicator_friendly = image('icons/mob/mob.dmi', null, "busy_friendly", "pixel_y" = 22)
-			busy_indicator_friendly.layer = FLY_LAYER
-		return busy_indicator_friendly
-	else if(busy_type == BUSY_ICON_HOSTILE)
-		if(!busy_indicator_hostile)
-			busy_indicator_hostile = image('icons/mob/mob.dmi', null, "busy_hostile", "pixel_y" = 22)
-			busy_indicator_hostile.layer = FLY_LAYER
-		return busy_indicator_hostile
-
-
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: TRUE if found, FALSE if not.
 /proc/hasvar(datum/A, varname)
@@ -827,18 +792,18 @@ var/global/image/busy_indicator_hostile
 
 
 //Quick type checks for some tools
-var/global/list/common_tools = list(
+GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 /obj/item/stack/cable_coil,
 /obj/item/tool/wrench,
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
 /obj/item/multitool,
-/obj/item/tool/crowbar)
+/obj/item/tool/crowbar)))
 
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
+	if(O && is_type_in_typecache(O, GLOB.common_tools))
 		return TRUE
 	return FALSE
 
@@ -936,23 +901,20 @@ var/global/list/common_tools = list(
 /*
 Checks if that loc and dir has a item on the wall
 */
-var/list/WALLITEMS = list(
-	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/radio/intercom",
-	"/obj/structure/extinguisher_cabinet", "/obj/structure/reagent_dispensers/peppertank",
-	"/obj/machinery/status_display", "/obj/machinery/requests_console", "/obj/machinery/light_switch", "/obj/effect/sign",
-	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",
-	"/obj/machinery/computer/security/telescreen", "/obj/machinery/embedded_controller/radio/simple_vent_controller",
-	"/obj/item/storage/secure/safe", "/obj/machinery/door_timer", "/obj/machinery/flasher", "/obj/machinery/keycard_auth",
-	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet", "/obj/machinery/computer/security/telescreen/entertainment"
-	)
+GLOBAL_LIST_INIT(wallitems, typecacheof(list(
+	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom,
+	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/wallmounted/peppertank,
+	/obj/machinery/status_display, /obj/machinery/light_switch, /obj/structure/sign,
+	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,
+	/obj/machinery/computer/security/telescreen,
+	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
+	/obj/structure/mirror, /obj/structure/closet/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
+	)))
 
 
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
-		for(var/item in WALLITEMS)
-			if(!istype(O, text2path(item)))
-				continue
-
+		if(is_type_in_typecache(O, GLOB.wallitems))
 			//Direction works sometimes
 			if(O.dir == dir)
 				return TRUE
@@ -975,10 +937,7 @@ var/list/WALLITEMS = list(
 
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in get_step(loc, dir))
-		for(var/item in WALLITEMS)
-			if(!istype(O, text2path(item)))
-				continue
-
+		if(is_type_in_typecache(O, GLOB.wallitems))
 			if(O.pixel_x != 0 || O.pixel_y != 0)
 				continue
 			
