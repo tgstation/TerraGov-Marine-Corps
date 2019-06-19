@@ -258,7 +258,7 @@
 
 /datum/autolathe/recipe/handcuffs
 	name = "handcuffs"
-	path = /obj/item/handcuffs
+	path = /obj/item/restraints/handcuffs
 	hidden = 1
 	category = "General"
 

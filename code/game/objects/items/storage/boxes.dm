@@ -207,14 +207,14 @@
 	name = "box of handcuffs"
 	desc = "A box full of handcuffs."
 	icon_state = "handcuff"
-	spawn_type = /obj/item/handcuffs
+	spawn_type = /obj/item/restraints/handcuffs
 	spawn_number = 7
 
 /obj/item/storage/box/zipcuffs
 	name = "box of zip cuffs"
 	desc = "A box full of zip cuffs."
 	icon_state = "handcuff"
-	spawn_type = /obj/item/handcuffs/zip
+	spawn_type = /obj/item/restraints/handcuffs/zip
 	spawn_number = 14
 
 /obj/item/storage/box/mousetraps

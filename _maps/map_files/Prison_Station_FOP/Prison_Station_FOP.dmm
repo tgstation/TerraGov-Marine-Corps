@@ -4313,10 +4313,10 @@
 /area/prison/research/secret)
 "alR" = (
 /obj/structure/rack,
-/obj/item/handcuffs,
-/obj/item/handcuffs,
-/obj/item/handcuffs,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/prison/darkpurple{
 	dir = 8
 	},
@@ -16727,7 +16727,7 @@
 /area/prison/command/secretary_office)
 "aOO" = (
 /obj/structure/closet,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/clothing/mask/muzzle,
 /obj/item/weapon/chainofcommand,
 /turf/open/floor/prison/blue{

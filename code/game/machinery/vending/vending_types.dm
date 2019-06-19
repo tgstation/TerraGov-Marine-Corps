@@ -244,8 +244,8 @@
 	icon_state = "sec"
 	icon_deny = "sec-deny"
 	req_access_txt = "3"
-	products = list(/obj/item/handcuffs = 8,
-					/obj/item/handcuffs/zip = 10,
+	products = list(/obj/item/restraints/handcuffs = 8,
+					/obj/item/restraints/handcuffs/zip = 10,
 					/obj/item/explosive/grenade/flashbang = 4,
 					/obj/item/flash = 5,
 					/obj/item/reagent_container/food/snacks/donut/normal = 12,
