@@ -59,9 +59,6 @@ Administrative related.
 /datum/config_entry/flag/localhost_rank
 	protection = CONFIG_ENTRY_LOCKED
 
-/datum/config_entry/flag/ban_legacy_system
-	protection = CONFIG_ENTRY_LOCKED
-
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
 	protection = CONFIG_ENTRY_LOCKED
 

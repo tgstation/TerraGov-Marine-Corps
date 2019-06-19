@@ -805,7 +805,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
-	if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+	if(is_banned_from(ckey, ROLE_XENOMORPH))
 		to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 		return
 

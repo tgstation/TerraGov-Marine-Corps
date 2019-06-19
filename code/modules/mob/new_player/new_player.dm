@@ -197,7 +197,7 @@
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
-			if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+			if(is_banned_from(ckey, ROLE_XENOMORPH))
 				to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 				return
 
@@ -419,8 +419,6 @@
 		for(var/datum/job/J in SSjob.occupations)
 			if(J && J.current_positions < J.total_positions && J.title != job.title)
 				return FALSE
-	if(jobban_isbanned(src, rank))
-		return FALSE
 	if(is_banned_from(ckey, rank))
 		return FALSE
 	if(QDELETED(src))

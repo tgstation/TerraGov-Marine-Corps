@@ -537,7 +537,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		return
 	var/sl_candidates = list()
 	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
-		if(istype(H) && H.stat != DEAD && H.mind && !jobban_isbanned(H, "Squad Leader") && !is_banned_from(H.ckey, "Squad Leader"))
+		if(istype(H) && H.stat != DEAD && H.mind && !is_banned_from(H.ckey, "Squad Leader"))
 			sl_candidates += H
 	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in sl_candidates
 	if(!new_lead || new_lead == "Cancel") return
@@ -548,7 +548,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(H == current_squad.squad_leader)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[H] is already the Squad Leader!</span>")
 		return
-	if(jobban_isbanned(H, "Squad Leader") || is_banned_from(H.ckey, "Squad Leader"))
+	if(is_banned_from(H.ckey, "Squad Leader"))
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[H] is unfit to lead!</span>")
 		return
 	if(current_squad.squad_leader)

@@ -179,7 +179,7 @@
 		var/mob/new_player/player = i
 		if(!(player.client?.prefs?.be_special & role) || !player.ready)
 			continue
-		else if(jobban_isbanned(player, roletext) || is_banned_from(player.ckey, roletext))
+		else if(is_banned_from(player.ckey, roletext))
 			continue	
 		log_game("[key_name(player)] had [roletext] enabled, so we are drafting them.")
 		candidates += player.mind
