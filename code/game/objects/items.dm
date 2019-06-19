@@ -76,7 +76,6 @@
 /obj/item/Initialize()
 	. = ..()
 
-	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
 	if(w_class <= 3) //pulling small items doesn't slow you down much
@@ -92,7 +91,6 @@
 	for(var/X in actions)
 		qdel(X)
 	master = null
-	GLOB.item_list -= src
 	return ..()
 
 
@@ -430,13 +428,13 @@
 			if(SLOT_HANDCUFFED)
 				if(H.handcuffed)
 					return FALSE
-				if(!istype(src, /obj/item/handcuffs))
+				if(!istype(src, /obj/item/restraints/handcuffs))
 					return FALSE
 				return TRUE
 			if(SLOT_LEGCUFFED)
 				if(H.legcuffed)
 					return FALSE
-				if(!istype(src, /obj/item/legcuffs))
+				if(!istype(src, /obj/item/restraints/legcuffs))
 					return FALSE
 				return TRUE
 			if(SLOT_ACCESSORY)

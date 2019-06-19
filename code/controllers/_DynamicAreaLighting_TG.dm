@@ -56,7 +56,7 @@ datum/light_source
 		__y = owner.y
 		__z = owner.z
 		// the lighting object maintains a list of all light sources
-		lighting_controller.changed_lights.Add(src)
+		GLOB.lighting_controller.changed_lights.Add(src)
 
 
 	//Check a light to see if its effect needs reprocessing. If it does, remove any old effect and create a new one
@@ -92,7 +92,7 @@ datum/light_source
 
 		if(!changed)
 			changed = 1
-			lighting_controller.changed_lights.Add(src)
+			GLOB.lighting_controller.changed_lights.Add(src)
 
 	proc/remove_effect()
 		// before we apply the effect we remove the light's current effect.
@@ -143,7 +143,7 @@ datum/light_source
 atom
 	var/datum/light_source/light
 	var/trueLuminosity = 0  // Typically 'luminosity' squared.  The builtin luminosity must remain linear.
-	                        // We may read it, but NEVER set it directly.
+							// We may read it, but NEVER set it directly.
 	var/l_color
 
 //Turfs with opacity when they are constructed will trigger nearby lights to update
@@ -303,7 +303,7 @@ turf/proc/update_lumcount(amount, col_r, col_g, col_b, removing = 0)
 		color_lighting_lumcount = max(color_lighting_lumcount + amount, 0) // Minimum of 0.
 
 	if(!lighting_changed)
-		lighting_controller.changed_turfs += src
+		GLOB.lighting_controller.changed_turfs += src
 		lighting_changed = 1
 
 turf/proc/lighting_tag(const/level)
@@ -340,17 +340,17 @@ turf/proc/shift_to_subarea()
 
 	if(!istype(Area) || !Area.lighting_use_dynamic) return
 
-	var/level = min(max(round(lighting_lumcount,1),0),lighting_controller.lighting_states)
+	var/level = min(max(round(lighting_lumcount,1),0),GLOB.lighting_controller.lighting_states)
 	var/new_tag = lighting_tag(level)
 
 	// pomf - If we have a lighting color that is not null, apply the new tag to seperate the areas.
 	if (l_color)
 		// pomf - We append the (rounded!) color lighting lumcount so we can have colored lights.
-		new_tag += "[l_color][min(max(round(color_lighting_lumcount,1),0),lighting_controller.lighting_states)]"
+		new_tag += "[l_color][min(max(round(color_lighting_lumcount,1),0),GLOB.lighting_controller.lighting_states)]"
 
 	if(Area.tag!=new_tag)	//skip if already in this area
 		var/area/A = locate(new_tag)	// find an appropriate area
-		var/color_light = min(max(round(color_lighting_lumcount,1),0),lighting_controller.lighting_states)
+		var/color_light = min(max(round(color_lighting_lumcount,1),0),GLOB.lighting_controller.lighting_states)
 
 		if (!A)
 			A = build_lighting_area(new_tag, level, color_light)
@@ -389,8 +389,8 @@ area
 			light = 0
 			luminosity = 0
 		else
-			if(light > lighting_controller.lighting_states)
-				light = lighting_controller.lighting_states
+			if(light > GLOB.lighting_controller.lighting_states)
+				light = GLOB.lighting_controller.lighting_states
 			luminosity = 1
 
 		if(lighting_overlay)

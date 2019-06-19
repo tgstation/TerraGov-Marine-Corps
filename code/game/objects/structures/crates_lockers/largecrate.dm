@@ -29,8 +29,8 @@
 		new /obj/item/stack/sheet/wood(src)
 		spawn_stuff()
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							 "<span class='notice'>You pry open \the [src].</span>", \
-							 "<span class='notice'>You hear splitting wood.</span>")
+							"<span class='notice'>You pry open \the [src].</span>", \
+							"<span class='notice'>You hear splitting wood.</span>")
 		qdel(src)
 	else
 		return attack_hand(user)
@@ -145,8 +145,8 @@
 		for(var/obj/O in contents)
 			O.forceMove(T)
 		user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
-							 "<span class='notice'>You weld open \the [src].</span>", \
-							 "<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
+							"<span class='notice'>You weld open \the [src].</span>", \
+							"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		qdel(src)
 

@@ -595,7 +595,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
+	take_damage(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
 	healthcheck()
 	return TRUE
 
@@ -604,7 +604,7 @@
 		return
 
 	if(isxenopraetorian(X))
-		round_statistics.praetorian_spray_direct_hits++
+		GLOB.round_statistics.praetorian_spray_direct_hits++
 
 	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
 	var/armor_block = run_armor_check("chest", "acid")

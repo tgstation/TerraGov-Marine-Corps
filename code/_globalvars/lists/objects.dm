@@ -1,14 +1,19 @@
 GLOBAL_LIST_EMPTY(cable_list)					    //Index for all cables, so that powernets don't have to look through the entire world all the time
-GLOBAL_LIST_EMPTY(object_list)						//list of all /obj
-GLOBAL_LIST_EMPTY(turfs)							//list of all /turf
-GLOBAL_LIST_EMPTY(structure_list)					//list of all /obj/structure
-GLOBAL_LIST_EMPTY(item_list)					    //list of all /obj/item
 GLOBAL_LIST_EMPTY(ammo_list)						//List of all ammo types. Used by guns to tell the projectile how to act.
-GLOBAL_LIST_EMPTY(effect_list)
 GLOBAL_LIST_EMPTY(cargo_ammo_vendors)				//Used by our gamemode code
 GLOBAL_LIST_EMPTY(cargo_guns_vendors)				//Used by our gamemode code
 GLOBAL_LIST_EMPTY(marine_vendors)					//Used by our gamemode code
 GLOBAL_LIST_EMPTY(attachment_vendors)				//Used by our gamemode code
+
+GLOBAL_LIST_EMPTY(tank_list)
+GLOBAL_LIST_EMPTY(implant_list)
+GLOBAL_LIST_EMPTY(head_list)
+GLOBAL_LIST_EMPTY(beacon_list)
+GLOBAL_LIST_EMPTY(id_card_list)
+GLOBAL_LIST_EMPTY(disposal_list)
+GLOBAL_LIST_EMPTY(ladder_list)
+GLOBAL_LIST_EMPTY(brig_closets)
+GLOBAL_LIST_EMPTY(supply_pad_list)
 
 GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/tunnel
 GLOBAL_LIST_EMPTY(portals)					        //list of all /obj/effect/portal

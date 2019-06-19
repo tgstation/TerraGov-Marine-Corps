@@ -170,11 +170,11 @@
 /obj/item/cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
 /*
- * 1000-cell	explosion(T, -1, 0, 1, 1)
- * 2500-cell	explosion(T, -1, 0, 1, 1)
- * 10000-cell	explosion(T, -1, 1, 3, 3)
- * 15000-cell	explosion(T, -1, 2, 4, 4)
- * */
+* 1000-cell	explosion(T, -1, 0, 1, 1)
+* 2500-cell	explosion(T, -1, 0, 1, 1)
+* 10000-cell	explosion(T, -1, 1, 3, 3)
+* 15000-cell	explosion(T, -1, 2, 4, 4)
+* */
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = CLAMP(round(sqrt(charge) * 0.01), -1, 2)
 	var/light_impact_range = CLAMP(round(sqrt(charge) * 0.15), -1, 3)

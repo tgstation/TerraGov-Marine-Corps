@@ -1,17 +1,17 @@
 /* Utility Closets
- * Contains:
- *		Emergency Closet
- *		Fire Closet
- *		Tool Closet
- *		Radiation Closet
- *		Bombsuit Closet
- *		Hydrant
- *		First Aid
- */
+* Contains:
+*		Emergency Closet
+*		Fire Closet
+*		Tool Closet
+*		Radiation Closet
+*		Bombsuit Closet
+*		Hydrant
+*		First Aid
+*/
 
 /*
- * Emergency Closet
- */
+* Emergency Closet
+*/
 /obj/structure/closet/emcloset
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
@@ -64,8 +64,8 @@
 	new /obj/item/clothing/mask/gas(src)
 
 /*
- * Fire Closet
- */
+* Fire Closet
+*/
 /obj/structure/closet/firecloset
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
@@ -102,8 +102,8 @@
 
 
 /*
- * Tool Closet
- */
+* Tool Closet
+*/
 /obj/structure/closet/toolcloset
 	name = "tool closet"
 	desc = "It's a storage unit for tools."
@@ -124,8 +124,8 @@
 
 
 /*
- * Radiation Closet
- */
+* Radiation Closet
+*/
 /obj/structure/closet/radiation
 	name = "radiation suit closet"
 	desc = "It's a storage unit for rad-protective suits."
@@ -141,8 +141,8 @@
 	new /obj/item/clothing/head/radiation(src)
 
 /*
- * Bombsuit closet
- */
+* Bombsuit closet
+*/
 /obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."

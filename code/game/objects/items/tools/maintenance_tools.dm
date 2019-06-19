@@ -1,21 +1,21 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /* Tools!
- * Note: Multitools are /obj/item
- *
- * Contains:
- * 		Wrench
- * 		Screwdriver
- * 		Wirecutters
- * 		Blowtorch
- * 		Crowbar
- */
+* Note: Multitools are /obj/item
+*
+* Contains:
+* 		Wrench
+* 		Screwdriver
+* 		Wirecutters
+* 		Blowtorch
+* 		Crowbar
+*/
 
 //toolspeed is used to change the speed of how fast this tool works lower is faster
 
 /*
- * Wrench
- */
+* Wrench
+*/
 /obj/item/tool/wrench
 	name = "wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
@@ -34,8 +34,8 @@
 
 
 /*
- * Screwdriver
- */
+* Screwdriver
+*/
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
@@ -95,8 +95,8 @@
 	return eyestab(M,user)*/
 
 /*
- * Wirecutters
- */
+* Wirecutters
+*/
 /obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
@@ -123,7 +123,7 @@
 		item_state = "cutters_yellow"
 
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user)
-	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
+	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/restraints/handcuffs/cable)))
 		user.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
@@ -134,8 +134,8 @@
 		..()
 
 /*
- * Blowtorch
- */
+* Blowtorch
+*/
 /obj/item/tool/weldingtool
 	name = "blowtorch"
 	icon = 'icons/obj/items/items.dmi'
@@ -414,8 +414,8 @@
 		reagents = max_fuel
 
 /*
- * Crowbar
- */
+* Crowbar
+*/
 
 /obj/item/tool/crowbar
 	name = "crowbar"
@@ -445,7 +445,7 @@
 
 
 /*
- Welding backpack
+Welding backpack
 */
 
 /obj/item/tool/weldpack

@@ -318,12 +318,12 @@
 			now_pushing = 0
 			return
 
- 		if(L.pulling)
- 			if(ismob(L.pulling))
- 				var/mob/P = L.pulling
- 				if(P.restrained())
- 					if(!(world.time % 5))
- 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
+		if(L.pulling)
+			if(ismob(L.pulling))
+				var/mob/P = L.pulling
+				if(P.restrained())
+					if(!(world.time % 5))
+						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					now_pushing = 0
 					return
 

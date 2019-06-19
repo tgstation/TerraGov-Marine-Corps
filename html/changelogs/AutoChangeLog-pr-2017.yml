@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "Ghosts can now hold shift and use the mouse wheel to zoom in / out."

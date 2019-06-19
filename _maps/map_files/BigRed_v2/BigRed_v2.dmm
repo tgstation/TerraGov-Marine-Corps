@@ -2834,7 +2834,7 @@
 /area/bigredv2/outside/marshal_office)
 "aiG" = (
 /obj/structure/table,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiH" = (
@@ -2875,7 +2875,7 @@
 /area/bigredv2/outside/marshal_office)
 "aiM" = (
 /obj/structure/table,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aiN" = (
@@ -16550,7 +16550,7 @@
 /area/bigredv2/outside/general_store)
 "aWY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/handcuffs/cable/cyan,
+/obj/item/restraints/handcuffs/cable/cyan,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aWZ" = (

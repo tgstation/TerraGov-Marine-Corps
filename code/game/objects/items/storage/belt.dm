@@ -114,8 +114,8 @@
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/reagent_container/hypospray,
-	    /obj/item/bodybag,
-	    /obj/item/defibrillator,
+		/obj/item/bodybag,
+		/obj/item/defibrillator,
 		/obj/item/roller)
 
 /obj/item/storage/belt/medical/Initialize()
@@ -203,7 +203,7 @@
 		/obj/item/explosive/grenade/flashbang,
 		/obj/item/explosive/grenade/chem_grenade/teargas,
 		/obj/item/reagent_container/spray/pepper,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_magazine/pistol,
@@ -245,7 +245,7 @@
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/flash(src)
 	new /obj/item/weapon/baton(src)
-	new /obj/item/handcuffs(src)
+	new /obj/item/restraints/handcuffs(src)
 
 
 

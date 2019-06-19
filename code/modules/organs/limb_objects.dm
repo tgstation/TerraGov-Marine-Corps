@@ -114,6 +114,12 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	if(braindeath_on_decap)
 		brainmob.stat = DEAD
 		brainmob.death()
+	
+	GLOB.head_list += src
+
+/obj/item/limb/head/Destroy()
+	GLOB.head_list -= src
+	return ..()
 
 /obj/item/limb/head/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
 	brainmob = new(src)

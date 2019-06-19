@@ -118,10 +118,10 @@
 
 
 /*
- * Returns list containing all the entries from first list that are not present in second.
- * If skiprep = 1, repeated elements are treated as one.
- * If either of arguments is not a list, returns null
- */
+* Returns list containing all the entries from first list that are not present in second.
+* If skiprep = 1, repeated elements are treated as one.
+* If either of arguments is not a list, returns null
+*/
 /proc/difflist(list/first, list/second, skiprep = FALSE)
 	if(!islist(first) || !islist(second))
 		return
@@ -279,10 +279,10 @@
 
 /proc/dd_sortedObjectList(list/incoming)
 	/*
-	   Use binary search to order by dd_SortValue().
-	   This works by going to the half-point of the list, seeing if the node in
-	   question is higher or lower cost, then going halfway up or down the list
-	   and checking again. This is a very fast way to sort an item into a list.
+	Use binary search to order by dd_SortValue().
+	This works by going to the half-point of the list, seeing if the node in
+	question is higher or lower cost, then going halfway up or down the list
+	and checking again. This is a very fast way to sort an item into a list.
 	*/
 	var/list/sorted_list = new()
 	var/low_index
@@ -361,7 +361,7 @@
 
 /* Definining a counter as a series of key -> numeric value entries
 
- * All these procs modify in place.
+* All these procs modify in place.
 */
 /proc/counterlist_scale(list/L, scalar)
 	var/list/out = list()

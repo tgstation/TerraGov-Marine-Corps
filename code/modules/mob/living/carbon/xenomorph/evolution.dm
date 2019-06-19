@@ -224,7 +224,7 @@
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
 	"<span class='xenodanger'>You emerge in a greater form from the husk of your old body. For the hive!</span>")
 
-	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 
 	if(queen_chosen_lead && new_caste_type != /mob/living/carbon/xenomorph/queen) // xeno leader is removed by Destroy()
 		new_xeno.queen_chosen_lead = TRUE

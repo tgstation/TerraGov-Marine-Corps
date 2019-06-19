@@ -1,14 +1,14 @@
 /*
- *		Toy gun
- *		Toy crossbow
- *		Toy swords
+*		Toy gun
+*		Toy crossbow
+*		Toy swords
 */
 
 
 
 /*
- * Toy gun: Why isnt this an /obj/item/weapon/gun?
- */
+* Toy gun: Why isnt this an /obj/item/weapon/gun?
+*/
 /obj/item/toy/gun
 	name = "cap gun"
 	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
@@ -78,8 +78,8 @@
 
 
 /*
- * Toy crossbow
- */
+* Toy crossbow
+*/
 
 /obj/item/toy/crossbow
 	name = "foam dart crossbow"
@@ -192,8 +192,8 @@
 
 
 /*
- * Toy swords
- */
+* Toy swords
+*/
 /obj/item/toy/sword
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."

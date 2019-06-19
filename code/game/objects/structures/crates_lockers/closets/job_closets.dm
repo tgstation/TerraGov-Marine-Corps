@@ -1,13 +1,13 @@
 /* Closets for specific jobs
- * Contains:
- *		Bartender
- *		Janitor
- *		Lawyer
- */
+* Contains:
+*		Bartender
+*		Janitor
+*		Lawyer
+*/
 
 /*
- * Bartender
- */
+* Bartender
+*/
 /obj/structure/closet/gmcloset
 	name = "formal closet"
 	desc = "It's a storage unit for formal clothing."
@@ -30,8 +30,8 @@
 	new /obj/item/clothing/shoes/black(src)
 
 /*
- * Janitor
- */
+* Janitor
+*/
 /obj/structure/closet/jcloset
 	name = "custodial closet"
 	desc = "It's a storage unit for janitorial clothes and gear."
@@ -54,8 +54,8 @@
 	new /obj/item/clothing/shoes/galoshes(src)
 
 /*
- * Lawyer
- */
+* Lawyer
+*/
 /obj/structure/closet/lawcloset
 	name = "legal closet"
 	desc = "It's a storage unit for courtroom apparel and items."

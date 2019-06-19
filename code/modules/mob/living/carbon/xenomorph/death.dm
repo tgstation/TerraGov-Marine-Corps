@@ -33,7 +33,7 @@
 
 	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 
-	round_statistics.total_xeno_deaths++
+	GLOB.round_statistics.total_xeno_deaths++
 
 /mob/living/carbon/xenomorph/proc/xeno_death_alert()
 	if(is_centcom_level(z))

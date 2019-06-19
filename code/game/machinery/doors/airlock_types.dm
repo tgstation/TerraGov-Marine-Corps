@@ -104,9 +104,9 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 
 /obj/machinery/door/airlock/marine
-    name = "\improper Airlock"
-    icon = 'icons/obj/doors/door_marines.dmi'
-    assembly_type = /obj/structure/door_assembly/door_assembly_min
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/door_marines.dmi'
+	assembly_type = /obj/structure/door_assembly/door_assembly_min
 
 /obj/machinery/door/airlock/atmos
 	name = "\improper Atmospherics Airlock"

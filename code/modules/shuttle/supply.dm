@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
-			for(var/supply_group_name in all_supply_groups )
+			for(var/supply_group_name in GLOB.all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
@@ -502,7 +502,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
-			for(var/supply_group_name in all_supply_groups )
+			for(var/supply_group_name in GLOB.all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]

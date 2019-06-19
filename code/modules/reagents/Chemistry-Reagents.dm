@@ -28,6 +28,7 @@
 	var/can_synth = TRUE // can this reagent be synthesized? (example: odysseus syringe gun)
 	var/list/datum/reagent/purge_list = list() //Does this purge any specific chems?
 	var/purge_rate = 0 //rate at which it purges specific chems
+	var/trait_flags
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()

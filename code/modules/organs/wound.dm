@@ -280,7 +280,7 @@ datum/wound/cut/massive
 /** BRUISES **/
 /datum/wound/bruise
 	stages = list("monumental bruise" = 80, "huge bruise" = 50, "large bruise" = 30,\
-				  "moderate bruise" = 20, "small bruise" = 10, "tiny bruise" = 5)
+				"moderate bruise" = 20, "small bruise" = 10, "tiny bruise" = 5)
 	max_bleeding_stage = 3
 	autoheal_cutoff = 30
 	damage_type = BRUISE
@@ -315,12 +315,12 @@ datum/wound/cut/massive
 
 /** EXTERNAL ORGAN LOSS **/
 /datum/wound/lost_limb
-    damage_type = CUT
-    stages = list("ripped stump" = 65, "bloody stump" = 50, "clotted stump" = 25, "scarred stump" = 0)
-    max_bleeding_stage = 3
+	damage_type = CUT
+	stages = list("ripped stump" = 65, "bloody stump" = 50, "clotted stump" = 25, "scarred stump" = 0)
+	max_bleeding_stage = 3
 
-    can_merge(var/datum/wound/other)
-        return 0 //cannot be merged
+	can_merge(var/datum/wound/other)
+		return 0 //cannot be merged
 
 /datum/wound/lost_limb/small
-    stages = list("ripped stump" = 40, "bloody stump" = 30, "clotted stump" = 15, "scarred stump" = 0)
+	stages = list("ripped stump" = 40, "bloody stump" = 30, "clotted stump" = 15, "scarred stump" = 0)

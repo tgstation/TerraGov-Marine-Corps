@@ -19,7 +19,7 @@
 	cam.network = list("LADDER")
 	cam.c_tag = name
 
-	for(var/obj/structure/ladder/L in GLOB.structure_list)
+	for(var/obj/structure/ladder/L in GLOB.ladder_list)
 		if(L.id == id)
 			if(L.height == (height - 1))
 				down = L
@@ -30,6 +30,7 @@
 
 		if(up && down)	//If both our connections are filled
 			break
+	GLOB.ladder_list += src
 	update_icon()
 
 /obj/structure/ladder/Destroy()
@@ -42,6 +43,7 @@
 	if(cam)
 		qdel(cam)
 		cam = null
+	GLOB.ladder_list -= src
 	. = ..()
 
 /obj/structure/ladder/update_icon()

@@ -14,7 +14,7 @@
 #define RO_PRICE_VERY_PRICY		100
 #define RO_PRICE_MAX_PRICY		120
 
-var/list/all_supply_groups = list("Operations", "Weapons", "Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Science", "Supplies")
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Science", "Supplies"))
 
 /datum/supply_packs
 	var/name = null
@@ -630,7 +630,7 @@ WEAPONS
 /*******************************************************************************
 HARDPOINT MODULES (and their ammo)
 *******************************************************************************/
-
+/*
 /datum/supply_packs/ltaaap_minigun
 	name = "TGS3 Minigun Assembly (x1)"
 	contains = list(/obj/item/tank_weapon/minigun)
@@ -669,6 +669,8 @@ HARDPOINT MODULES (and their ammo)
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
 	group = "Hardpoint Modules"
+
+*/
 
 /*******************************************************************************
 ATTACHMENTS
@@ -2032,7 +2034,7 @@ CLOTHING
 	contains = list(
 					/obj/item/storage/pouch/document,
 					/obj/item/storage/pouch/electronics,
-                    /obj/item/storage/pouch/tools,
+					/obj/item/storage/pouch/tools,
 					/obj/item/storage/pouch/construction
 					)
 	cost = RO_PRICE_VERY_CHEAP

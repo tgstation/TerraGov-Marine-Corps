@@ -47,7 +47,7 @@
 	if(!lying)
 		temp = get_step(T, facing)
 		T = temp
-		T = get_step(T, pick(cardinal))
+		T = get_step(T, pick(GLOB.cardinals))
 		if(mob_size == MOB_SIZE_BIG)
 			throw_at(T, 3, 2, roadtrafficaccident, 0)
 		else
@@ -62,7 +62,7 @@
 		return ..()
 	temp = get_step(T, facing)
 	T = temp
-	T = get_step(T, pick(cardinal))
+	T = get_step(T, pick(GLOB.cardinals))
 	throw_at(T, 2, 2, roadtrafficaccident, 0)
 	visible_message("<span class='danger'>[roadtrafficaccident] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[roadtrafficaccident] bumps into you!</span>")
 

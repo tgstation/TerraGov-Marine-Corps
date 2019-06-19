@@ -158,6 +158,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 
 	else if(href_list["secrets"])
+		var/turf/T = get_turf(usr)
 		switch(href_list["secrets"])
 			if("blackout")
 				log_admin("[key_name(usr)] broke all lights.")
@@ -188,19 +189,29 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("gethumans")
 				log_admin("[key_name(usr)] mass-teleported all humans.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all humans.")
-				get_all_humans()
+				for(var/i in GLOB.alive_human_list)
+					var/mob/M = i
+					M.forceMove(T)
 			if("getxenos")
 				log_admin("[key_name(usr)] mass-teleported all Xenos.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all Xenos.")
-				get_all_xenos()
+				for(var/i in GLOB.alive_xeno_list)
+					var/mob/M = i
+					M.forceMove(T)
 			if("getall")
 				log_admin("[key_name(usr)] mass-teleported everyone.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported everyone.")
-				get_all()
+				for(var/i in GLOB.mob_living_list)
+					var/mob/M = i
+					M.forceMove(T)
 			if("rejuvall")
 				log_admin("[key_name(usr)] mass-rejuvenated cliented mobs.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-rejuvenated cliented mobs.")
-				rejuv_all()
+				for(var/i in GLOB.mob_living_list)
+					var/mob/living/L = i
+					if(!L.client)
+						continue
+					L.revive()
 
 
 	else if(href_list["kick"])
@@ -1880,7 +1891,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				previous = H.mind.comm_title
 				H.mind.comm_title = change
 			if("chattitle")
-				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input a chat title - Title Jane Doe screams!", "Edit Rank") as null|text
 				if(isnull(change) || !istype(H) || !istype(C))
 					return
@@ -1888,7 +1899,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				C.paygrade = change
 				C.update_label()
 			if("idtitle")
-				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input an ID title - Jane Doe (Title)", "Edit Rank") as null|text
 				if(isnull(change) || !istype(H) || !H.mind)
 					return
@@ -1896,7 +1907,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				C.assignment = change
 				C.update_label()
 			if("idname")
-				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.item_list
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input an ID name - Jane Doe (Title)", "Edit Rank") as null|text
 				if(isnull(change) || !istype(H) || !H.mind)
 					return
@@ -1956,3 +1967,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		else
 			log_admin("[key_name(usr)] updated the rank: [href_list["rank"]] of [key_name(H)].")
 			message_admins("[ADMIN_TPMONTY(usr)] updated the rank: [href_list["rank"]] of [ADMIN_TPMONTY(H)].")
+
+		if(href_list["doequip"])
+			Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "rank" = "equipment", "mob" = REF(H)))

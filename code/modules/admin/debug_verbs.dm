@@ -212,8 +212,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	SSmachines.makepowernets()
 
-	log_admin("[key_name(usr)] has remade the powernet. makepowernets() called.")
-	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets. makepowernets() called.")
+	log_admin("[key_name(usr)] has remade powernets.")
+	message_admins("[ADMIN_TPMONTY(usr)] has remade powernets.")
 
 
 /datum/admins/proc/debug_mob_lists()
@@ -302,7 +302,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(findtext("[path]", object))
 			matches += path
 
-	if(length(matches) == 0)
+	if(!length(matches))
 		return
 
 	var/chosen
@@ -323,22 +323,25 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] spawned [chosen] at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
-/datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
+/datum/admins/proc/delete_atom(atom/A as obj|mob|turf in world)
 	set category = null
 	set name = "Delete"
 
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(alert(src, "Are you sure you want to delete: [O]?", "Delete", "Yes", "No") != "Yes")
+	if(alert(src, "Are you sure you want to delete: [A]?", "Delete", "Yes", "No") != "Yes")
 		return
 
-	var/turf/T = get_turf(O)
+	if(QDELETED(A))
+		return
 
-	log_admin("[key_name(usr)] deleted [O] at [AREACOORD(T)].")
-	message_admins("[ADMIN_TPMONTY(usr)] deleted [O] at [ADMIN_VERBOSEJMP(T)].")
+	var/turf/T = get_turf(A)
 
-	qdel(O)
+	log_admin("[key_name(usr)] deleted [A]([A.type]) at [AREACOORD(T)].")
+	message_admins("[ADMIN_TPMONTY(usr)] deleted [A]([A.type]) at [ADMIN_VERBOSEJMP(T)].")
+
+	qdel(A)
 
 
 /datum/admins/proc/restart_controller(controller in list("Master", "Failsafe"))

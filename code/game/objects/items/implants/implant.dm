@@ -51,7 +51,12 @@
 	Destroy()
 		if(part)
 			part.implants.Remove(src)
+		GLOB.implant_list -= src
 		. = ..()
+
+/obj/item/implant/Initialize()
+	. = ..()
+	GLOB.implant_list += src
 
 /obj/item/implant/tracking
 	name = "tracking implant"

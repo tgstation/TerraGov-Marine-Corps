@@ -1,6 +1,6 @@
 /*
- * Book
- */
+* Book
+*/
 /obj/item/book
 	name = "book"
 	icon = 'icons/obj/items/books.dmi'

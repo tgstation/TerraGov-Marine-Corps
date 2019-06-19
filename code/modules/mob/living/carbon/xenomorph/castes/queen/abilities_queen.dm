@@ -140,7 +140,7 @@
 
 	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
-	round_statistics.queen_screech++
+	GLOB.round_statistics.queen_screech++
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
@@ -725,7 +725,7 @@
 	log_admin("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
 
-	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	qdel(T)
 	X.use_plasma(600)
 
