@@ -13,7 +13,6 @@
 	max_integrity = 20
 	req_access =list(ACCESS_MARINE_MEDBAY)
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
-//var/DISABLE_BITFIELD(obj_flags, EMAGGED)
 	var/list/botcard_access = list(ACCESS_MARINE_MEDBAY)
 	var/obj/item/reagent_container/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
