@@ -137,7 +137,7 @@
 		if(SSticker.HasRoundStarted())
 			.["real_mode"] = SSticker.mode.name
 
-	.["security_level"] = get_security_level()
+	.["security_level"] = GLOB.marine_main_ship?.get_security_level()
 	.["round_duration"] = SSticker ? round((world.time - SSticker.round_start_time) / 10) : 0
 
 	.["time_dilation_current"] = SStime_track.time_dilation_current

@@ -299,7 +299,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
-	    /obj/item/reagent_container/hypospray)
+		/obj/item/reagent_container/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()
 	. = ..()
@@ -314,7 +314,7 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-	    /obj/item/reagent_container/hypospray/autoinjector
+		/obj/item/reagent_container/hypospray/autoinjector
 	)
 
 

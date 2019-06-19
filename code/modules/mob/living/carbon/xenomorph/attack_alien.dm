@@ -1,8 +1,8 @@
 /*
- * Important note about attack_alien : In our code, attack_ procs are received by src, not dealt by src
- * For example, attack_alien defined for humans means what will happen to THEM when attacked by an alien
- * In that case, the first argument is always the attacker. For attack_alien, it should always be Xenomorph sub-types
- */
+* Important note about attack_alien : In our code, attack_ procs are received by src, not dealt by src
+* For example, attack_alien defined for humans means what will happen to THEM when attacked by an alien
+* In that case, the first argument is always the attacker. For attack_alien, it should always be Xenomorph sub-types
+*/
 
 //#define DEBUG_ATTACK_ALIEN
 

@@ -1,0 +1,4 @@
+author: "MoXuT0"
+delete-after: True
+changes: 
+  - rscadd: "Speech bubble is now animated."

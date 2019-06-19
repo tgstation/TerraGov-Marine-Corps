@@ -129,13 +129,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += {"
 	<style>
 	.column {
-	  float: left;
-	  width: 50%;
+		float: left;
+		width: 50%;
 	}
 	.row:after {
-	  content: "";
-	  display: table;
-	  clear: both;
+		content: "";
+		display: table;
+		clear: both;
 	}
 	</style>
 	"}

@@ -73,7 +73,7 @@
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
 	use_plasma(10)
 
-	round_statistics.warrior_grabs++
+	GLOB.round_statistics.warrior_grabs++
 	grab_level = GRAB_NECK
 	L.drop_all_held_items()
 	L.KnockDown(1)

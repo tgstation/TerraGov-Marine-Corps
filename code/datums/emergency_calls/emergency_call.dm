@@ -47,23 +47,23 @@
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
-    var/datum/emergency_call/chosen_call
-    var/list/valid_calls = list()
+	var/datum/emergency_call/chosen_call
+	var/list/valid_calls = list()
 
-    for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
-        if(E.probability < 1) //Those that are meant to be admin-only
-            continue
+	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
+		if(E.probability < 1) //Those that are meant to be admin-only
+			continue
 
-        valid_calls.Add(E)
+		valid_calls.Add(E)
 
-        if(prob(E.probability))
-            chosen_call = E
-            break
+		if(prob(E.probability))
+			chosen_call = E
+			break
 
-    if(!istype(chosen_call))
-        chosen_call = pick(valid_calls)
+	if(!istype(chosen_call))
+		chosen_call = pick(valid_calls)
 
-    return chosen_call
+	return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
 	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.

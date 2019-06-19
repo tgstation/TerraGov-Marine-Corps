@@ -1,13 +1,13 @@
 /* Diffrent misc types of tiles
- * Contains:
- *		Grass
- *		Wood
- *		Carpet
- */
+* Contains:
+*		Grass
+*		Wood
+*		Carpet
+*/
 
 /*
- * Grass
- */
+* Grass
+*/
 /obj/item/stack/tile/grass
 	name = "grass tile"
 	singular_name = "grass floor tile"
@@ -22,8 +22,8 @@
 	origin_tech = "biotech=1"
 
 /*
- * Wood
- */
+* Wood
+*/
 /obj/item/stack/tile/wood
 	name = "wood floor tile"
 	singular_name = "wood floor tile"
@@ -37,8 +37,8 @@
 	max_amount = 60
 
 /*
- * Carpets
- */
+* Carpets
+*/
 /obj/item/stack/tile/carpet
 	name = "carpet"
 	singular_name = "carpet"

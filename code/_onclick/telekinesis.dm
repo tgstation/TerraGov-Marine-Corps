@@ -19,7 +19,7 @@ To add TK to a living mob, just make it register this proc on ranged attacks and
 Redefine as needed.
 */
 /mob/living/proc/on_ranged_attack_tk(mob/user, atom/target)
-    target.attack_tk(user)
+	target.attack_tk(user)
 
 
 /atom/proc/attack_tk(mob/user)

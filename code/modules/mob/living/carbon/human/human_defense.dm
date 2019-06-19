@@ -47,7 +47,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	else
 		for(var/X in limbs)
 			var/datum/limb/E = X
-			var/weight = organ_rel_size[E.name]
+			var/weight = GLOB.organ_rel_size[E.name]
 			armorval += getarmor_organ(E, type) * weight
 			total += weight
 			#ifdef DEBUG_HUMAN_EXPLOSIONS

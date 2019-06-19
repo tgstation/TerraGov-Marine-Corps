@@ -1,15 +1,15 @@
 /* Stack type objects!
- * Contains:
- * 		Stacks
- * 		Recipe datum
- * 		Recipe list datum
- */
+* Contains:
+* 		Stacks
+* 		Recipe datum
+* 		Recipe list datum
+*/
 
 #define STACK_WEIGHT_STEPS 3 //Currently weight updates in 3 intervals
 
 /*
- * Stacks
- */
+* Stacks
+*/
 /obj/item/stack
 	icon = 'icons/obj/stack_objects.dmi'
 	gender = PLURAL
@@ -331,8 +331,8 @@
 	return ..()
 
 /*
- * Recipe datum
- */
+* Recipe datum
+*/
 /datum/stack_recipe
 	var/title = "ERROR"
 	var/result_type
@@ -357,8 +357,8 @@
 	src.skill_req = skill_req
 
 /*
- * Recipe list datum
- */
+* Recipe list datum
+*/
 /datum/stack_recipe_list
 	var/title = "ERROR"
 	var/list/recipes

@@ -8,6 +8,9 @@
 #define HIDE_ON_GROUND 1
 #define HIDE_ON_SHIP 2
 
+GLOBAL_LIST_EMPTY(active_orbital_beacons)
+GLOBAL_LIST_EMPTY(active_laser_targets)
+
 /obj/machinery/computer/camera_advanced/overwatch
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."
@@ -127,37 +130,37 @@
 					dat += "----------------------<br>"
 					dat += "<b>Rail Gun Control</b><br>"
 					dat += "<b>Current Rail Gun Status:</b> "
-					var/cooldown_left = (almayer_rail_gun.last_firing + 600) - world.time // 60 seconds between shots
+					var/cooldown_left = (GLOB.marine_main_ship?.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
 					if(cooldown_left > 0)
 						dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
-					else if(!almayer_rail_gun.rail_gun_ammo?.ammo_count)
+					else if(!GLOB.marine_main_ship?.rail_gun?.rail_gun_ammo?.ammo_count)
 						dat += "<font color='red'>Ammo depleted.</font><br>"
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>[current_squad.name] Laser Targets:</b><br>"
-					if(active_laser_targets.len)
+					if(length(GLOB.active_laser_targets))
 						for(var/obj/effect/overlay/temp/laser_target/LT in current_squad.squad_laser_targets)
 							if(!istype(LT))
 								continue
-							dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[LT];selected_target=\ref[LT]'>[LT.name]</a><br>"
+							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 					else
 						dat += "<span class='warning'>None</span><br>"
 					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
-					if(active_orbital_beacons.len)
+					if(length(GLOB.active_orbital_beacons))
 						for(var/obj/item/squad_beacon/bomb/OB in current_squad.squad_orbital_beacons)
 							if(!istype(OB))
 								continue
-							dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[OB];selected_target=\ref[OB]'>[OB.name]</a><br>"
+							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
 					else
 						dat += "<span class='warning'>None transmitting</span><br>"
 					dat += "<b>Selected Target:</b><br>"
 					if(!selected_target) // Clean the targets if nothing is selected
 						dat += "<span class='warning'>None</span><br>"
-					else if(!(selected_target in active_laser_targets) && !(selected_target in active_orbital_beacons)) // Or available
+					else if(!(selected_target in GLOB.active_laser_targets) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
 						dat += "<span class='warning'>None</span><br>"
 						selected_target = null
 					else
-						dat += "<font color='green'>[selected_target.name]</font><br>"
+						dat += "<font color='green'>[selected_target]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
 					dat += "----------------------<br>"
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
@@ -295,7 +298,7 @@
 						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
 						if(!current_squad.drop_pad) //Why the hell did this not link?
-							for(var/obj/structure/supply_drop/S in GLOB.item_list)
+							for(var/obj/structure/supply_drop/S in GLOB.supply_pad_list)
 								S.force_link() //LINK THEM ALL!
 
 					else
@@ -373,22 +376,23 @@
 				else
 					handle_supplydrop()
 		if("dropbomb")
-			if((almayer_orbital_cannon.last_orbital_firing + 5000) > world.time)
+			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Orbital bombardment not yet available!</span>")
 			else
 				handle_bombard()
 		if("shootrailgun")
-			if((almayer_rail_gun.last_firing + 600) > world.time)
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
 			else if(!selected_target)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
 			else
-				almayer_rail_gun.fire_rail_gun(get_turf(selected_target),usr)
+				GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(get_turf(selected_target),usr)
 		if("back")
 			state = OW_MAIN
 		if("use_cam")
 			if(isAI(usr))
 				return
+			selected_target = locate(href_list["selected_target"])
 			var/atom/cam_target = locate(href_list["cam_target"])
 			open_prompt(usr)
 			eyeobj.setLoc(get_turf(cam_target))
@@ -432,33 +436,33 @@
 				dat += "----------------------<br>"
 				dat += "<b>Orbital Bombardment Control</b><br>"
 				dat += "<b>Current Cannon Status:</b> "
-				var/cooldown_left = (almayer_orbital_cannon.last_orbital_firing + 5000) - world.time
+				var/cooldown_left = (GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) - world.time
 				if(cooldown_left > 0)
 					dat += "Cannon on cooldown ([round(cooldown_left/10)] seconds)<br>"
-				else if(!almayer_orbital_cannon.chambered_tray)
+				else if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
 					dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
 				else
 					dat += "<font color='green'>Ready!</font><br>"
 				dat += "<B>Laser Targets:</b><br>"
-				if(active_laser_targets.len)
-					for(var/obj/effect/overlay/temp/laser_target/LT in active_laser_targets)
+				if(length(GLOB.active_laser_targets))
+					for(var/obj/effect/overlay/temp/laser_target/LT in GLOB.active_laser_targets)
 						if(!istype(LT))
 							continue
-						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[LT];selected_target=\ref[LT]'>[LT.name]</a><br>"
+						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 				else
 					dat += "<span class='warning'>None</span><br>"
 				dat += "<B>Beacon Targets:</b><br>"
-				if(active_orbital_beacons.len)
-					for(var/obj/item/squad_beacon/bomb/OB in active_orbital_beacons)
+				if(length(GLOB.active_orbital_beacons))
+					for(var/obj/item/squad_beacon/bomb/OB in GLOB.active_orbital_beacons)
 						if(!istype(OB))
 							continue
-						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=\ref[OB];selected_target=\ref[OB]'>[OB.name]</a><br>"
+						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
 				else
 					dat += "<span class='warning'>None transmitting</span><br>"
 				dat += "<b>Selected Target:</b><br>"
 				if(!selected_target) // Clean the targets if nothing is selected
 					dat += "<span class='warning'>None</span><br>"
-				else if(!(selected_target in active_laser_targets) && !(selected_target in active_orbital_beacons)) // Or available
+				else if(!(selected_target in GLOB.active_laser_targets) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
 					dat += "<span class='warning'>None</span><br>"
 					selected_target = null
 				else
@@ -485,7 +489,7 @@
 	if(busy)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [name] is busy processing another action!</span>")
 		return
-	if(!almayer_orbital_cannon.chambered_tray)
+	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The orbital cannon has no ammo chambered.</span>")
 		return
 	if(!selected_target)
@@ -523,7 +527,7 @@
 	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 	if(target && istype(target))
 		target.ceiling_debris_check(5)
-		almayer_orbital_cannon.fire_ob_cannon(target,user)
+		GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target,user)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
@@ -797,6 +801,11 @@
 /obj/structure/supply_drop/Initialize() //Link a squad to a drop pad
 	. = ..()
 	force_link()
+	GLOB.supply_pad_list += src
+
+/obj/structure/supply_drop/Destroy()
+	GLOB.supply_pad_list += src
+	return ..()
 
 /obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
 	var/datum/squad/S = SSjob.squads[squad_name]
@@ -833,8 +842,7 @@
 	var/obj/machinery/camera/beacon_cam = null
 
 /obj/item/squad_beacon/Destroy()
-	if(src in active_orbital_beacons)
-		active_orbital_beacons -= src
+	GLOB.active_orbital_beacons -= src
 	if(squad)
 		if(squad.sbeacon == src)
 			squad.sbeacon = null
@@ -932,7 +940,7 @@
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 		name = "transmitting orbital beacon"
-		active_orbital_beacons += src
+		GLOB.active_orbital_beacons += src
 		var/cam_name = ""
 		cam_name += H.get_paygrade()
 		cam_name += H.name
@@ -940,8 +948,7 @@
 			squad = H.assigned_squad
 			name += " ([squad.name])"
 			squad.squad_orbital_beacons += src
-		var/n = active_orbital_beacons.Find(src)
-		cam_name += " [n]"
+		cam_name += " [src]"
 		var/obj/machinery/camera/beacon_cam/BC = new(src, cam_name)
 		H.transferItemToLoc(src, H.loc)
 		beacon_cam = BC
@@ -966,8 +973,7 @@
 		if(squad)
 			squad.squad_orbital_beacons -= src
 			squad = null
-		if(src in active_orbital_beacons)
-			active_orbital_beacons -= src
+		GLOB.active_orbital_beacons -= src
 		qdel(beacon_cam)
 		beacon_cam = null
 		activated = FALSE

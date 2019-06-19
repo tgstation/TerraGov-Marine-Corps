@@ -527,7 +527,7 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
- 	//If we have a round chambered and no active attachable, we're good to go.
+	//If we have a round chambered and no active attachable, we're good to go.
 	if(in_chamber && !active_attachable)
 		return in_chamber //Already set!
 

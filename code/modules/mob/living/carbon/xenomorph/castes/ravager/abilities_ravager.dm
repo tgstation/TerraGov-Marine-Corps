@@ -8,6 +8,7 @@
 	ability_name = "charge"
 	cooldown_timer = 30 SECONDS
 	plasma_cost = 80
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
 /datum/action/xeno_action/activable/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -48,6 +49,7 @@
 	plasma_cost = 40
 	var/last_victim_count = 0
 	cooldown_timer = 10 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
@@ -62,7 +64,7 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
-	round_statistics.ravager_ravages++
+	GLOB.round_statistics.ravager_ravages++
 	X.visible_message("<span class='danger'>\The [X] thrashes about in a murderous frenzy!</span>", \
 	"<span class='xenowarning'>You thrash about in a murderous frenzy!</span>")
 
@@ -81,7 +83,7 @@
 			var/extra_dam = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) * round(RAV_RAVAGE_DAMAGE_MULITPLIER + X.rage * RAV_RAVAGE_RAGE_MULITPLIER, 0.01)
 			H.attack_alien(X, extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
-			round_statistics.ravager_ravage_victims++
+			GLOB.round_statistics.ravager_ravage_victims++
 			step_away(H, X, sweep_range, 2)
 			shake_camera(H, 2, 1)
 			H.KnockDown(1, 1)
@@ -103,7 +105,6 @@
 	mechanics_text = "A channeled ability to restore health that uses plasma and rage. Must stand still for it to work."
 	cooldown_timer = 240 SECONDS
 	var/last_rage = 0
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_SECOND_WIND
 
 /datum/action/xeno_action/activable/second_wind/get_cooldown()
@@ -131,7 +132,7 @@
 	X.updatehealth()
 	X.hud_set_plasma()
 
-	round_statistics.ravager_second_winds++
+	GLOB.round_statistics.ravager_second_winds++
 
 	last_rage = current_rage
 	add_cooldown()

@@ -465,9 +465,5 @@
 
 	var/datum/map_config/VM = maprotatechoices[chosenmap]
 
-	log_admin("[key_name(usr)] is changing the map to [VM.map_name].")
-	message_admins("[ADMIN_TPMONTY(usr)] is changing the map to [VM.map_name].")
-
-	if(SSmapping.changemap(VM) == 0)
-		log_admin("[key_name(usr)] has changed the map to [VM.map_name].")
-		message_admins("[ADMIN_TPMONTY(usr)] has changed the map to [VM.map_name].")
+	log_admin("[key_name(usr)] changed the map to [VM.map_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the map to [VM.map_name].")

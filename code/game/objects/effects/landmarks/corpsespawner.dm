@@ -42,7 +42,7 @@
 
 /obj/effect/landmark/corpsespawner/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
-	round_statistics.total_humans_created-- //corpses don't count
+	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	M.real_name = name
 	M.death(1) //Kills the new mob
 	if(corpseuniform)

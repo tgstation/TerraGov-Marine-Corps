@@ -211,7 +211,7 @@
 						p_name = "Scout Set"
 					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
 						p_name = "Heavy Armor Set"
-					if(!available_specialist_sets.Find(p_name))
+					if(!GLOB.available_specialist_sets.Find(p_name))
 						to_chat(H, "<span class='warning'>That set is already taken</span>")
 						return
 
@@ -257,7 +257,7 @@
 						to_chat(H, "<span class='warning'><b>Something bad occured with [src], tell a Dev.</b></span>")
 						return
 					H.update_action_buttons()
-					available_specialist_sets -= p_name
+					GLOB.available_specialist_sets -= p_name
 
 
 
@@ -867,7 +867,7 @@
 							list("M41A skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("Shotgun stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("Submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
- 							)
+							)
 
 
 
@@ -912,9 +912,9 @@
 							)
 
 
-
+//todo: move this to some sort of kit controller/datum
 //the global list of specialist sets that haven't been claimed yet.
-var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Armor Set", "Pyro Set")
+GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Armor Set", "Pyro Set"))
 
 
 /obj/machinery/marine_selector/gear/spec

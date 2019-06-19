@@ -60,20 +60,20 @@
 				return
 
 
-/obj/machinery/chem_dispenser/on_stored_atom_del(atom/movable/AM)
+/obj/machinery/chem_dispenser/handle_atom_del(atom/movable/AM)
 	if(AM == beaker)
 		beaker = null
 
- /**
-  * The ui_interact proc is used to open and update Nano UIs
-  * If ui_interact is not used then the UI will not update correctly
-  * ui_interact is currently defined for /atom/movable
-  *
-  * @param user /mob The mob who is interacting with this ui
-  * @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
-  *
-  * @return nothing
-  */
+/**
+* The ui_interact proc is used to open and update Nano UIs
+* If ui_interact is not used then the UI will not update correctly
+* ui_interact is currently defined for /atom/movable
+*
+* @param user /mob The mob who is interacting with this ui
+* @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
+*
+* @return nothing
+*/
 /obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 0)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
@@ -113,7 +113,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "chem_dispenser.tmpl", ui_title, 390, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)

@@ -1,10 +1,10 @@
 /*	Photography!
- *	Contains:
- *		Camera
- *		Camera Film
- *		Photos
- *		Photo Albums
- */
+*	Contains:
+*		Camera
+*		Camera Film
+*		Photos
+*		Photo Albums
+*/
 
 /datum/picture
 	var/name = "image"

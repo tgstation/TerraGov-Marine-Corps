@@ -13,7 +13,7 @@
 		"acid" = "acid"
 		)
 
-var/list/string_part_flags = list("head" = HEAD,
+GLOBAL_LIST_INIT(string_part_flags, list("head" = HEAD,
 								"face" = FACE,
 								"eyes" = EYES,
 								"chest" = CHEST,
@@ -21,9 +21,9 @@ var/list/string_part_flags = list("head" = HEAD,
 								"legs" = LEGS,
 								"feet" = FEET,
 								"arms" = ARMS,
-								"hands" = HANDS)
+								"hands" = HANDS))
 
-var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
+GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 									"uniform" = ITEM_SLOT_ICLOTHING,
 									"gloves" = ITEM_SLOT_GLOVES,
 									"eyes" = ITEM_SLOT_EYES,
@@ -34,7 +34,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 									"ID" = ITEM_SLOT_ID,
 									"belt" = ITEM_SLOT_BELT,
 									"back" = ITEM_SLOT_BACK,
-									"pocket" = ITEM_SLOT_POCKET)
+									"pocket" = ITEM_SLOT_POCKET))
 
 /obj/item/clothing/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
@@ -110,11 +110,11 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 
 	var/list/covers = list()
 	var/list/slots = list()
-	for(var/name in string_part_flags)
-		if(flags_armor_protection & string_part_flags[name])
+	for(var/name in GLOB.string_part_flags)
+		if(flags_armor_protection & GLOB.string_part_flags[name])
 			covers += name
-	for(var/name in string_equip_flags)
-		if(flags_equip_slot & string_equip_flags[name])
+	for(var/name in GLOB.string_equip_flags)
+		if(flags_equip_slot & GLOB.string_equip_flags[name])
 			slots += name
 
 	if(covers.len)

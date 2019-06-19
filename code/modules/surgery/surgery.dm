@@ -1,5 +1,7 @@
 /* SURGERY STEPS */
 
+GLOBAL_LIST_EMPTY(surgery_steps)
+
 /datum/surgery_step
 	var/priority = 0 //Steps with higher priority will be attempted first. Accepts decimals
 
@@ -128,7 +130,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		to_chat(user, "<span class='warning'>You can't operate on the patient's [affected.display_name] while it's already being operated on.</span>")
 		return 1
 
-	for(var/datum/surgery_step/S in surgery_steps)
+	for(var/i in GLOB.surgery_steps)
+		var/datum/surgery_step/S = i
 		//Check if tool is right or close enough, and the target mob valid, and if this step is possible
 		if(S.tool_quality(tool) && S.is_valid_target(M))
 			var/step_is_valid = S.can_use(user, M, user.zone_selected, tool, affected)
@@ -191,8 +194,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	return 0
 
 //Comb Sort. This works apparently, so we're keeping it that way
-proc/sort_surgeries()
-	var/gap = surgery_steps.len
+/proc/sort_surgeries()
+	var/gap = length(GLOB.surgery_steps)
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -200,11 +203,11 @@ proc/sort_surgeries()
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= surgery_steps.len; i++)
-			var/datum/surgery_step/l = surgery_steps[i]		//Fucking hate
-			var/datum/surgery_step/r = surgery_steps[gap+i]	//how lists work here
+		for(var/i = 1; gap + i <= length(GLOB.surgery_steps); i++)
+			var/datum/surgery_step/l = GLOB.surgery_steps[i]		//Fucking hate
+			var/datum/surgery_step/r = GLOB.surgery_steps[gap+i]	//how lists work here
 			if(l.priority < r.priority)
-				surgery_steps.Swap(i, gap + i)
+				GLOB.surgery_steps.Swap(i, gap + i)
 				swapped = 1
 
 

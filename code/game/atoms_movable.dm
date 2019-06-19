@@ -29,17 +29,18 @@
 
 //===========================================================================
 /atom/movable/Destroy()
-	if(throw_source)
-		throw_source = null
-
-	loc?.on_stored_atom_del(src) //things that container need to do when a movable atom inside it is deleted
-
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
 
+	if(throw_source)
+		throw_source = null
+
 	. = ..()
 
-	for(var/atom/movable/AM in contents)
+	loc?.handle_atom_del(src)
+
+	for(var/i in contents)
+		var/atom/movable/AM = i
 		qdel(AM)
 
 	moveToNullspace()

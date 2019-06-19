@@ -51,7 +51,7 @@
 	if (!X.Adjacent(H))
 		return fail_activate()
 
-	round_statistics.defender_headbutts++
+	GLOB.round_statistics.defender_headbutts++
 
 	X.visible_message("<span class='xenowarning'>\The [X] rams [H] with it's armored crest!</span>", \
 	"<span class='xenowarning'>You ram [H] with your armored crest!</span>")
@@ -119,7 +119,7 @@
 /datum/action/xeno_action/activable/tail_sweep/use_ability()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	round_statistics.defender_tail_sweeps++
+	GLOB.round_statistics.defender_tail_sweeps++
 	X.visible_message("<span class='xenowarning'>\The [X] sweeps it's tail in a wide circle!</span>", \
 	"<span class='xenowarning'>You sweep your tail in a wide circle!</span>")
 
@@ -139,7 +139,7 @@
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
 			H.KnockDown(1, 1)
-		round_statistics.defender_tail_sweep_hits++
+		GLOB.round_statistics.defender_tail_sweep_hits++
 		shake_camera(H, 2, 1)
 
 		to_chat(H, "<span class='xenowarning'>You are struck by \the [X]'s tail sweep!</span>")
@@ -232,14 +232,14 @@
 	if(on)
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
-		round_statistics.defender_crest_lowerings++
+		GLOB.round_statistics.defender_crest_lowerings++
 		xeno_explosion_resistance = 2
 		armor_bonus += xeno_caste.crest_defense_armor
 		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You raise your crest.</span>")
-		round_statistics.defender_crest_raises++
+		GLOB.round_statistics.defender_crest_raises++
 		xeno_explosion_resistance = 0
 		armor_bonus -= xeno_caste.crest_defense_armor
 		speed_modifier -= DEFENDER_CRESTDEFENSE_SLOWDOWN
@@ -285,7 +285,7 @@
 	return succeed_activate()
 
 /mob/living/carbon/xenomorph/defender/proc/set_fortify(on, silent = FALSE)
-	round_statistics.defender_fortifiy_toggles++
+	GLOB.round_statistics.defender_fortifiy_toggles++
 	if(on)
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")

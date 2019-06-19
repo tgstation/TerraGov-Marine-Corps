@@ -40,8 +40,8 @@
 		return src.healthstring
 
 /*
- *	Diskette Box
- */
+*	Diskette Box
+*/
 
 /obj/item/storage/box/disks
 	name = "Diskette Box"

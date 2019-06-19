@@ -1,14 +1,14 @@
 /* Filing cabinets!
- * Contains:
- *		Filing Cabinets
- *		Security Record Cabinets
- *		Medical Record Cabinets
- */
+* Contains:
+*		Filing Cabinets
+*		Security Record Cabinets
+*		Medical Record Cabinets
+*/
 
 
 /*
- * Filing Cabinets
- */
+* Filing Cabinets
+*/
 /obj/structure/filingcabinet
 	name = "filing cabinet"
 	desc = "A large cabinet with drawers."
@@ -92,8 +92,8 @@
 
 
 /*
- * Security Record Cabinets
- */
+* Security Record Cabinets
+*/
 /obj/structure/filingcabinet/security
 	var/virgin = 1
 
@@ -128,8 +128,8 @@
 	populate()
 
 /*
- * Medical Record Cabinets
- */
+* Medical Record Cabinets
+*/
 /obj/structure/filingcabinet/medical
 	var/virgin = 1
 

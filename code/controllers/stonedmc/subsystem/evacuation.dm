@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(evacuation)
 		return FALSE
 	dest_status = NUKE_EXPLOSION_ACTIVE
 	dest_master.toggle()
-	set_security_level(SEC_LEVEL_DELTA)
+	GLOB.marine_main_ship.set_security_level(SEC_LEVEL_DELTA)
 	return TRUE
 
 
@@ -151,7 +151,7 @@ SUBSYSTEM_DEF(evacuation)
 	dest_index = 1
 	priority_announce("The emergency destruct system has been deactivated.", "Priority Alert", sound = 'sound/AI/selfdestruct_deactivated.ogg')
 	if(evac_status == EVACUATION_STATUS_STANDING_BY)
-		set_security_level(SEC_LEVEL_RED, TRUE)
+		GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED, TRUE)
 	return TRUE
 
 

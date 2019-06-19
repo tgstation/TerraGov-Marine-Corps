@@ -100,7 +100,7 @@
 			item_quants[I.name] = 1
 
 		user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].", \
-							 "<span class='notice'>You add \the [I] to \the [src].")
+							"<span class='notice'>You add \the [I] to \the [src].")
 		SSnano.update_uis(src)
 
 	else if(istype(I, /obj/item/storage/bag/plants))

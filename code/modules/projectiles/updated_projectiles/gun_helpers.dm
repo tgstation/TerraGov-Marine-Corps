@@ -253,7 +253,7 @@ should be alright.
 		attach_to_gun(user, I)
 		return
 
- 	//the active attachment is reloadable
+	//the active attachment is reloadable
 	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
 		active_attachable.reload_attachment(I, user)
 		return

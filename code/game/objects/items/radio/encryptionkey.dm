@@ -75,9 +75,9 @@
 	channels = list(RADIO_CHANNEL_DELTA = TRUE)
 
 /obj/item/encryptionkey/general
-    	name = "\improper General radio encryption key"
-    	icon_state = "cypherkey"
-    	channels = list(RADIO_CHANNEL_COMMON = TRUE)
+	name = "\improper General radio encryption key"
+	icon_state = "cypherkey"
+	channels = list(RADIO_CHANNEL_COMMON = TRUE)
 
 
 //ERT
