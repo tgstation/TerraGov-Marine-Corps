@@ -141,13 +141,9 @@
 	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
 	round_statistics.queen_screech++
-	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
-		if(get_dist(L, X) > world.view)
-			continue
+	for(var/mob/living/L in view(world.view + 2))
 		L.screech_act(X, world.view, X.line_of_sight(L))
 
 // ***************************************

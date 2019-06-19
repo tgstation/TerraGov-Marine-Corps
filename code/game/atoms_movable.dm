@@ -710,18 +710,14 @@
 		return FALSE
 	return TRUE
 
-GLOBAL_VAR_INIT(los_switch, 0)
 
 /atom/movable/proc/line_of_sight(atom/target, view_dist = world.view)
-	switch(GLOB.los_switch++ % 4)
-		if(0)
-			return line_of_sight_one(target, view_dist)
-		if(1)
-			return line_of_sight_two(target, view_dist)
-		if(2)
-			return line_of_sight_three(target, view_dist)
-		if(3)
-			return line_of_sight_four(target, view_dist)
+	var/return1 = line_of_sight_one(target, view_dist)
+	var/return2 = line_of_sight_two(target, view_dist)
+	var/return3 = line_of_sight_three(target, view_dist)
+	if(return1 != return2 || return2 != return3)
+		to_chat(src, "[target] with conflicting results: [return1], [return2], [return3]")
+	return return1
 
 
 /atom/movable/proc/line_of_sight_one(atom/target, view_dist = world.view)
@@ -749,8 +745,8 @@ GLOBAL_VAR_INIT(los_switch, 0)
 
 	var/list/turf_list = getline(loc, get_turf(target))
 
-	turf_list.Cut(1,2) //First turf does not need to be checked.
-	turf_list.Cut(total_distance - 2) //Nor the last.
+	turf_list.Cut(total_distance + 1) //Last turf does not need to be checked.
+	turf_list.Cut(1,2) //Nor the first.
 
 	for(var/i in turf_list)
 		var/turf/turf_to_check = i
@@ -814,9 +810,119 @@ GLOBAL_VAR_INIT(los_switch, 0)
 	return TRUE
 
 
+#define LOS_HORIZONTAL_CASE_EASTWARDS 1
+#define LOS_HORIZONTAL_CASE_WESTWARDS 2
+#define LOS_VERTICAL_CASE_NORTHWARDS 3
+#define LOS_VERTICAL_CASE_SOUTHWARDS 4
+#define LOS_DIAGONAL_CASE 5
+#define LOS_MOSTLY_HORIZONTAL_CASE 6
+#define LOS_MOSTLY_VERTICAL_CASE 7
+
 /atom/movable/proc/line_of_sight_three(atom/target, view_dist = world.view)
-	return (target in view(view_dist))
+	if(!isturf(loc) || QDELETED(target))
+		return FALSE
+
+	if(z != target.z)
+		return FALSE
+
+	var/total_distance = get_dist(src, target)
+
+	if(total_distance > view_dist)
+		return FALSE
+	
+	switch(total_distance)
+		if(-1)
+			if(target == src) //We can see ourselves alright.
+				return TRUE
+			else //Standard get_dist() error condition.
+				return FALSE
+		if(null) //Error, does not compute.
+			return FALSE
+		if(0, 1) //We can see our own tile and the next one regardless.
+			return TRUE
+	var/case
+	var/abs_dx
+	var/abs_dy
+	var/sign_dx
+	var/sign_dy
+	var/y_error
+	var/x_error
 
 
-/atom/movable/proc/line_of_sight_four(atom/target, view_dist = world.view)
-	return (target in viewers(view_dist))
+	if(y == target.y) //Let's predetermine the trajectory.
+		if(x < target.x)
+			case = LOS_HORIZONTAL_CASE_EASTWARDS
+		else
+			case = LOS_HORIZONTAL_CASE_WESTWARDS
+	else if(x == target.x)
+		if(y < target.y)
+			case = LOS_VERTICAL_CASE_NORTHWARDS
+		else
+			case = LOS_VERTICAL_CASE_SOUTHWARDS
+	else
+		abs_dx = abs(target.x - x)
+		abs_dy = abs(target.y - y)
+		sign_dx = SIGN(target.x - x)
+		sign_dy = SIGN(target.y - y)
+		if(abs_dx == abs_dy)
+			case = LOS_DIAGONAL_CASE
+		else if(abs_dx > abs_dy)
+			case = LOS_MOSTLY_HORIZONTAL_CASE
+			y_error = -(abs_dx >> 1)
+		else
+			case = LOS_MOSTLY_VERTICAL_CASE
+			x_error = -(abs_dy >> 1)
+
+	var/xx = x
+	var/yy = y
+	var/turf/turf_to_check = loc //Starting point, but doesn't need to be checked.
+
+	for(var/i in 1 to total_distance - 1) //We go until the one before the last.
+		switch(case)
+			if(LOS_HORIZONTAL_CASE_EASTWARDS)
+				turf_to_check = locate(++xx, yy, z)
+			if(LOS_HORIZONTAL_CASE_WESTWARDS)
+				turf_to_check = locate(--xx, yy, z)
+			if(LOS_VERTICAL_CASE_NORTHWARDS)
+				turf_to_check = locate(xx, ++yy, z)
+			if(LOS_VERTICAL_CASE_SOUTHWARDS)
+				turf_to_check = locate(xx, --yy, z)
+			if(LOS_DIAGONAL_CASE)
+				xx += sign_dx
+				yy += sign_dy
+				turf_to_check = locate(xx, yy, z)
+			if(LOS_MOSTLY_HORIZONTAL_CASE)
+				y_error += abs_dy
+				if(y_error > 0)
+					y_error -= abs_dx
+					yy += sign_dy
+				xx += sign_dx
+				turf_to_check = locate(xx, yy, z)
+			if(LOS_MOSTLY_VERTICAL_CASE)
+				x_error += abs_dx
+				if(x_error > 0)
+					x_error -= abs_dy
+					xx += sign_dx
+				yy += sign_dy
+				turf_to_check = locate(xx, yy, z)
+		if(turf_to_check.opacity)
+			return FALSE
+		for(var/obj/stuff_in_turf in turf_to_check)
+			if(!stuff_in_turf.opacity)
+				continue //Transparent, we can see through it.
+			if(!CHECK_BITFIELD(stuff_in_turf.flags_atom, ON_BORDER))
+				return FALSE //Opaque and not on border. We can't see through this tile, it's over.
+			if(ISDIAGONALDIR(stuff_in_turf.dir))
+				return FALSE //Opaque fulltile window.
+			if(CHECK_BITFIELD(dir, (stuff_in_turf.dir | reverse_direction(stuff_in_turf.dir))))
+				return FALSE //Same or opposite direction and opaque, blocks our view.
+
+	return TRUE
+
+#undef LOS_HORIZONTAL_CASE_EASTWARDS
+#undef LOS_HORIZONTAL_CASE_WESTWARDS
+#undef LOS_VERTICAL_CASE_NORTHWARDS
+#undef LOS_VERTICAL_CASE_SOUTHWARDS
+#undef LOS_DIAGONAL_CASE
+#undef LOS_MOSTLY_HORIZONTAL_CASE
+#undef LOS_MOSTLY_VERTICAL_CASE
