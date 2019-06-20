@@ -221,7 +221,7 @@
 
 	switch(stat)
 		if(DEAD)
-			simple_status_hud.icon_state = "huddead" //Without a medhud the dead are simply dead.
+			simple_status_hud.icon_state = ""
 			if(undefibbable || (!client && !get_ghost()))
 				status_hud.icon_state = "huddead"
 				return TRUE
@@ -262,7 +262,7 @@
 				status_hud.icon_state = "hud_con_stagger"
 				return TRUE
 			else
-				simple_status_hud.icon_state = "hudhealthy"
+				simple_status_hud.icon_state = ""
 				status_hud.icon_state = "hudhealthy"
 				return TRUE
 
@@ -442,37 +442,41 @@
 	return
 
 
+#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS "Squad Leader", "Squad Engineer", "Squad Specialist", "Squad Corpsman", "Squad Smartgunner"
+#define SQUAD_HUD_SUPPORTED_OTHER_JOBS "Captain", "Executive Officer", "Field Commander", "Intelligence Officer", "Pilot Officer", "Tank Crewman"
+
 /mob/living/carbon/human/hud_set_squad()
 	var/image/holder = hud_list[SQUAD_HUD]
-	holder.icon_state = "hudblank"
+	holder.icon_state = ""
 	holder.overlays.Cut()
-	if(assigned_squad)
-		var/squad_clr = assigned_squad.color
-		var/marine_rk
-		var/obj/item/card/id/I = get_idcard()
-		var/_role
-		if(mind)
-			_role = mind.assigned_role
-		else if(I)
-			_role = I.rank
-		switch(_role)
-			if("Squad Engineer") marine_rk = "engi"
-			if("Squad Specialist") marine_rk = "spec"
-			if("Squad Corpsman") marine_rk = "med"
-			if("Squad Smartgunner") marine_rk = "gun"
-		if(assigned_squad.squad_leader == src)
-			marine_rk = "leader"
-		if(marine_rk)
-			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarinesquad")
-			IMG.color = squad_clr
-			holder.overlays += IMG
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudmarinesquad[marine_rk]")
-		if(I?.assigned_fireteam)
-			var/image/IMG2 = image('icons/mob/hud.dmi', src, "hudmarinesquadft[I.assigned_fireteam]")
-			IMG2.color = squad_clr
-			holder.overlays += IMG2
-	hud_list[SQUAD_HUD] = holder
 	
+	if(assigned_squad)
+		var/squad_color = assigned_squad.color
+		var/rank = job
+		if(assigned_squad.squad_leader == src)
+			rank = "Squad Leader"
+		switch(rank)
+			if(SQUAD_HUD_SUPPORTED_SQUAD_JOBS)
+				var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
+				IMG.color = squad_color
+				holder.overlays += IMG
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [rank]")
+		var/fireteam = wear_id?.assigned_fireteam
+		if(fireteam)
+			var/image/IMG2 = image('icons/mob/hud.dmi', src, "hudmarinesquadft[fireteam]")
+			IMG2.color = squad_color
+			holder.overlays += IMG2
+	
+	else
+		switch(job)
+			if(SQUAD_HUD_SUPPORTED_OTHER_JOBS)
+				holder.icon_state = "hudmarine [job]"
+	
+	hud_list[SQUAD_HUD] = holder
+
+#undef SQUAD_HUD_SUPPORTED_SQUAD_JOBS
+#undef SQUAD_HUD_SUPPORTED_OTHER_JOBS
+
 
 /datum/atom_hud/order
 	hud_icons = list(ORDER_HUD)	
