@@ -48,7 +48,7 @@
 	var/late_joiner = FALSE
 
 
-/datum/mind/New(var/key)
+/datum/mind/New(key)
 	src.key = key
 
 

@@ -378,7 +378,7 @@
 
 	build_shared_inventory(shared,0,1)
 
-/obj/machinery/vending/shared_vending/proc/build_shared_inventory(var/list/productlist,hidden=0,req_coin=0)
+/obj/machinery/vending/shared_vending/proc/build_shared_inventory(list/productlist,hidden=0,req_coin=0)
 
 	if(delay_product_spawn)
 		sleep(15) //Make ABSOLUTELY SURE the seed datum is properly populated.

@@ -96,7 +96,7 @@
 		)
 
 
-/obj/item/card/emag/afterattack(var/obj/item/O as obj, mob/user as mob)
+/obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
 
 	for(var/type in devices)
 		if(istype(O,type))

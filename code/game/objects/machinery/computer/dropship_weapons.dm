@@ -29,7 +29,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 	// no more cas
 
 /obj/machinery/computer/dropship_weapons/dropship1

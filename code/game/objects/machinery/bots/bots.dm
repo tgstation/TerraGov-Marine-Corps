@@ -55,7 +55,7 @@
 		else
 			to_chat(user, "<span class='danger'>[src]'s parts look very loose!</span>")
 
-/obj/machinery/bot/attack_animal(var/mob/living/simple_animal/M as mob)
+/obj/machinery/bot/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)
 		return
 	obj_integrity -= M.melee_damage_upper
@@ -111,7 +111,7 @@
 				obj_integrity -= I.force * brute_dam_coeff
 		healthcheck()
 
-/obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/bot/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.ammo.damage
 	..()
 	healthcheck()
@@ -145,7 +145,7 @@
 /obj/machinery/bot/attack_ai(mob/user as mob)
 	attack_hand(user)
 
-/obj/machinery/bot/attack_hand(var/mob/living/carbon/human/user)
+/obj/machinery/bot/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 	if(.)
 		return
@@ -167,7 +167,7 @@
 
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
+/turf/proc/CardinalTurfsWithAccess(obj/item/card/id/ID)
 	var/L[] = new()
 
 	for(var/d in GLOB.cardinals)
@@ -209,7 +209,7 @@
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
-/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/card/id/ID)
+/proc/DirBlockedWithAccess(turf/loc, dir, obj/item/card/id/ID)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)
 			continue

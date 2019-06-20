@@ -68,7 +68,7 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/autodoc/power_change(var/area/master_area = null)
+/obj/machinery/autodoc/power_change(area/master_area = null)
 	..()
 	if(machine_stat & NOPOWER && occupant)
 		visible_message("\ [src] engages the safety override, ejecting the occupant.")

@@ -103,7 +103,7 @@
 /proc/get_freelancer_access()
 	return list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 
-/proc/get_region_accesses(var/code)
+/proc/get_region_accesses(code)
 	switch(code)
 		if(0) return get_all_accesses()
 		if(1) return list(ACCESS_MARINE_WO, ACCESS_MARINE_BRIG)//security

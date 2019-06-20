@@ -149,7 +149,7 @@
 ///Called by /client/Move()
 ///For moving in space
 ///Return 1 for movement 0 for none
-/mob/proc/Process_Spacemove(var/check_drift = 0)
+/mob/proc/Process_Spacemove(check_drift = 0)
 
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		return 0
@@ -209,7 +209,7 @@
 	return dense_object
 
 
-/mob/proc/Process_Spaceslipping(var/prob_slip = 5)
+/mob/proc/Process_Spaceslipping(prob_slip = 5)
 	//Setup slipage
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 	if(stat)

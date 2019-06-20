@@ -74,7 +74,7 @@
 	return
 
 
-/obj/machinery/bot/floorbot/attackby(var/obj/item/W , mob/user as mob)
+/obj/machinery/bot/floorbot/attackby(obj/item/W , mob/user as mob)
 	. = ..()
 
 	if(istype(W, /obj/item/stack/tile/plasteel))
@@ -260,7 +260,7 @@
 	src.oldloc = src.loc
 
 
-/obj/machinery/bot/floorbot/proc/repair(var/turf/target)
+/obj/machinery/bot/floorbot/proc/repair(turf/target)
 	if(isspaceturf(target))
 		if(target.loc.name == "Space")
 			return
@@ -292,7 +292,7 @@
 			src.anchored = 0
 			src.target = null
 
-/obj/machinery/bot/floorbot/proc/eattile(var/obj/item/stack/tile/plasteel/T)
+/obj/machinery/bot/floorbot/proc/eattile(obj/item/stack/tile/plasteel/T)
 	if(!istype(T, /obj/item/stack/tile/plasteel))
 		return
 	visible_message("<span class='warning'> [src] begins to collect tiles.</span>")
@@ -313,7 +313,7 @@
 		src.target = null
 		src.repairing = 0
 
-/obj/machinery/bot/floorbot/proc/maketile(var/obj/item/stack/sheet/metal/M)
+/obj/machinery/bot/floorbot/proc/maketile(obj/item/stack/sheet/metal/M)
 	if(!istype(M, /obj/item/stack/sheet/metal))
 		return
 	if(M.get_amount() > 1)

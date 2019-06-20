@@ -625,7 +625,7 @@
 	to_chat(owner, "<span class='xenodanger'>You feel your acid glands refill. You can spray acid again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(var/turf/T)
+/datum/action/xeno_action/activable/spray_acid/proc/acid_splat_turf(turf/T)
 	. = locate(/obj/effect/xenomorph/spray) in T
 	if(!.)
 		. = new /obj/effect/xenomorph/spray(T)

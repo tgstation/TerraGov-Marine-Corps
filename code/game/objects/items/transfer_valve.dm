@@ -10,7 +10,7 @@
 	var/valve_open = 0
 	var/toggle = 1
 
-/obj/item/transfer_valve/proc/process_activation(var/obj/item/D)
+/obj/item/transfer_valve/proc/process_activation(obj/item/D)
 
 /obj/item/transfer_valve/IsAssemblyHolder()
 	return 1
@@ -72,7 +72,7 @@
 /obj/item/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)
 
-/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	// this is the data which will be sent to the ui
 	var/data[0]
@@ -126,7 +126,7 @@
 			attached_device.attack_self(usr)
 	return 1 // Returning 1 sends an update to attached UIs
 
-/obj/item/transfer_valve/process_activation(var/obj/item/D)
+/obj/item/transfer_valve/process_activation(obj/item/D)
 	if(toggle)
 		toggle = 0
 		toggle_valve()

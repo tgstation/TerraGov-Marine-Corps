@@ -35,7 +35,7 @@
 /mob/living/carbon/xenomorph/Defiler/throw_item(atom/target)
 	throw_mode_off()
 
-/mob/living/carbon/xenomorph/Defiler/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+/mob/living/carbon/xenomorph/Defiler/hitby(atom/movable/AM as mob|obj,speed = 5)
 	if(ishuman(AM))
 		return
 	return ..()

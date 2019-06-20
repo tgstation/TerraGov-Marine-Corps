@@ -109,7 +109,7 @@
 	parents[parents.Find(Old)] = New
 
 /*
-/obj/machinery/atmospherics/components/unsafe_pressure_release(var/mob/user, var/pressures)
+/obj/machinery/atmospherics/components/unsafe_pressure_release(mob/user, pressures)
 	..()
 
 	var/turf/T = get_turf(src)
@@ -134,7 +134,7 @@
 		T.assume_air(to_release)
 		air_update_turf(1)*/
 
-///obj/machinery/atmospherics/components/proc/safe_input(var/title, var/text, var/default_set)
+///obj/machinery/atmospherics/components/proc/safe_input(title, text, default_set)
 //	var/new_value = input(usr,text,title,default_set) as num
 //	if(usr.canUseTopic(src))
 //		return new_value

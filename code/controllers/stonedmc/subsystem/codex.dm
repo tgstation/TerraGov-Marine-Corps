@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(codex)
 	index_file = sortTim(index_file, cmp=/proc/cmp_text_asc)
 	return ..()
 
-/datum/controller/subsystem/codex/proc/get_codex_entry(var/datum/codex_entry/entry)
+/datum/controller/subsystem/codex/proc/get_codex_entry(datum/codex_entry/entry)
 	if(!initialized)
 		return
 	var/searching = "\ref[entry]"
@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(codex)
 					entry_cache[searching] = entity.get_specific_codex_entry()
 	return entry_cache[searching]
 
-/datum/controller/subsystem/codex/proc/present_codex_entry(var/mob/presenting_to, var/datum/codex_entry/entry)
+/datum/controller/subsystem/codex/proc/present_codex_entry(mob/presenting_to, datum/codex_entry/entry)
 	if(entry && istype(presenting_to) && presenting_to.client)
 		var/list/dat = list()
 		if(entry.lore_text)
@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(codex)
 		popup.set_content(jointext(dat, null))
 		popup.open()
 
-/datum/controller/subsystem/codex/proc/retrieve_entries_for_string(var/searching)
+/datum/controller/subsystem/codex/proc/retrieve_entries_for_string(searching)
 
 	if(!initialized)
 		return list()

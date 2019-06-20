@@ -122,7 +122,7 @@
 	return ..()
 
 
-/mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
+/mob/living/carbon/human/Process_Spaceslipping(prob_slip = 5)
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 
 	if(species.species_flags & NO_SLIP)

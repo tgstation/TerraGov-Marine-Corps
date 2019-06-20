@@ -492,7 +492,7 @@
 /obj/machinery/door/airlock/dropship_hatch/ex_act(severity)
 	return
 
-/obj/machinery/door/airlock/dropship_hatch/close(var/forced=0)
+/obj/machinery/door/airlock/dropship_hatch/close(forced=0)
 	if(forced)
 		for(var/mob/living/L in loc)
 			step(L, pick(EAST,WEST)) // bump them off the tile

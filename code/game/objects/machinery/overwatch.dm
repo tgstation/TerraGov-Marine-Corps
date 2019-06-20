@@ -57,14 +57,14 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/machinery/computer/camera_advanced/overwatch/bullet_act(var/obj/item/projectile/Proj) //Can't shoot it
+/obj/machinery/computer/camera_advanced/overwatch/bullet_act(obj/item/projectile/Proj) //Can't shoot it
 	return FALSE
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/camera_advanced/overwatch/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_paw(var/mob/user as mob) //why monkey why
+/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/user as mob) //why monkey why
 	return attack_hand(user)
 
 
@@ -515,12 +515,12 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	addtimer(CALLBACK(src, .send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
 	addtimer(CALLBACK(src, .do_fire_bombard, T, usr), 4.1 SECONDS)
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(var/turf/T, var/user)
+/obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
 	visible_message("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
 	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
 	addtimer(CALLBACK(src, .do_land_bombard, T, user), 2.5 SECONDS)
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/do_land_bombard(var/turf/T, var/user)
+/obj/machinery/computer/camera_advanced/overwatch/proc/do_land_bombard(turf/T, user)
 	busy = FALSE
 	var/x_offset = rand(-2,2) //Little bit of randomness.
 	var/y_offset = rand(-2,2)

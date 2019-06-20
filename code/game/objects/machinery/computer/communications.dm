@@ -312,10 +312,10 @@
 /obj/machinery/computer/communications/attack_ai(mob/living/silicon/ai/AI)
 	return attack_hand(AI)
 
-/obj/machinery/computer/communications/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/communications/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/communications/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return

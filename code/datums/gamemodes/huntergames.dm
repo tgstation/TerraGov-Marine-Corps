@@ -98,7 +98,7 @@
 	SEND_SOUND(world, 'sound/effects/siren.ogg')
 
 
-/datum/game_mode/huntergames/proc/spawn_contestant(var/mob/living/carbon/H)
+/datum/game_mode/huntergames/proc/spawn_contestant(mob/living/carbon/H)
 	var/turf/picked
 
 	if(spawn_points.len)

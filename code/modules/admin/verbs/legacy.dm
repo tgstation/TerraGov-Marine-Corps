@@ -13,7 +13,7 @@
 		return timeleftstring
 
 
-/proc/notes_add(var/key, var/note, var/mob/usr)
+/proc/notes_add(key, note, mob/usr)
 	if(!check_rights(R_BAN))
 		return
 
@@ -75,7 +75,7 @@
 	qdel(note_list)
 
 
-/proc/notes_del(var/key, var/index)
+/proc/notes_del(key, index)
 	if(!check_rights(R_BAN))
 		return
 
@@ -96,7 +96,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has deleted [key]'s note: [item.content]")
 
 
-/proc/notes_hide(var/key, var/index)
+/proc/notes_hide(key, index)
 	if(!check_rights(R_BAN))
 		return
 
@@ -117,7 +117,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has hidden [key]'s note: [item.content]")
 
 
-/proc/notes_unhide(var/key, var/index)
+/proc/notes_unhide(key, index)
 	if(!check_rights(R_BAN))
 		return
 
@@ -138,7 +138,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has made visible [key]'s note: [item.content]")
 
 
-/proc/notes_edit(var/key, var/index)
+/proc/notes_edit(key, index)
 	if(!check_rights(R_BAN))
 		return
 
