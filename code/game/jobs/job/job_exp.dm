@@ -7,6 +7,8 @@ GLOBAL_PROTECT(exp_to_update)
 		return FALSE
 	if(!CONFIG_GET(flag/use_exp_tracking))
 		return FALSE
+	if(!SSdbcore.Connect())
+		return FALSE
 	if(!exp_requirements || !exp_type)
 		return FALSE
 	if(!job_is_xp_locked(title))
