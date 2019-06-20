@@ -147,24 +147,7 @@
 
 	return 0
 
-
-<<<<<<< master
-/obj/machinery/alarm/proc/master_is_operating()
-	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.machine_stat & (NOPOWER|BROKEN))
-
-
-/obj/machinery/alarm/proc/elect_master()
-	for (var/area/A in alarm_area.related)
-		for (var/obj/machinery/alarm/AA in A)
-			if (!(AA.machine_stat & (NOPOWER|BROKEN)))
-				alarm_area.master_air_alarm = AA
-				return 1
-	return 0
-
 /obj/machinery/alarm/proc/get_danger_level(current_value, list/danger_levels)
-=======
-/obj/machinery/alarm/proc/get_danger_level(current_value, list/danger_levels)
->>>>>>> Machinery and area changes
 	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
 		return 2
 	if((current_value >= danger_levels[3] && danger_levels[3] > 0) || current_value <= danger_levels[2])
