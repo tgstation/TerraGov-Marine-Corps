@@ -197,7 +197,7 @@
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
-			if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+			if(is_banned_from(ckey, ROLE_XENOMORPH))
 				to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 				return
 
@@ -310,34 +310,35 @@
 
 
 /mob/new_player/proc/LateChoices()
-	var/dat = "<html><body><center>"
-	dat += "Round Duration: [worldtime2text()]<br>"
-
-	if(SSevacuation)
-		switch(SSevacuation.evac_status)
-			if(EVACUATION_STATUS_INITIATING)
-				dat += "<font color='red'><b>The [CONFIG_GET(string/ship_name)] is being evacuated.</b></font><br>"
-			if(EVACUATION_STATUS_COMPLETE)
-				dat += "<font color='red'>The [CONFIG_GET(string/ship_name)] has undergone evacuation.</font><br>"
-
-	dat += "Choose from the following open positions:<br>"
-	var/datum/job/J
-	for(var/i in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-		J = i
-		if(!(J.title in JOBS_REGULAR_ALL))
-			continue
-		if((J.current_positions >= J.total_positions) && J.total_positions != -1)
-			continue
-		var/active = 0
-		//Only players with the job assigned and AFK for less than 10 minutes count as active
-		for(var/mob/M in GLOB.player_list)
-			if(M.mind && M.client && M.mind.assigned_role == J.title && M.client.inactivity <= 10 MINUTES)
-				active++
-		dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.title] ([J.current_positions]) (Active: [active])</a><br>"
-
-	dat += "</center>"
-	var/datum/browser/popup = new(src, "latechoices", "<div align='center'>Join the TGMC</div>", 300, 640)
-	popup.set_content(dat)
+	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
+	if(!GLOB.enter_allowed)
+		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
+	dat += "<table><tr><td valign='top'>"
+	var/column_counter = 0
+	for(var/list/category in (list(JOBS_OFFICERS) + list(JOBS_REQUISITIONS) + list(JOBS_POLICE) + list(JOBS_MEDICAL) + list(JOBS_ENGINEERING) + list(JOBS_MARINES)))
+		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
+		dat += "<fieldset class='latejoin' style='border-color: [cat_color]'>"
+		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
+		var/list/dept_dat = list()
+		for(var/job in category)
+			var/datum/job/job_datum = SSjob.name_occupations[job]
+			if(job_datum && IsJobAvailable(job_datum.title, TRUE))
+				var/command_bold = ""
+				if(job in JOBS_COMMAND)
+					command_bold = " command"
+				dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
+		if(!length(dept_dat))
+			dept_dat += "<span class='nopositions'>No positions open.</span>"
+		dat += jointext(dept_dat, "")
+		dat += "</fieldset><br>"
+		column_counter++
+		if(column_counter > 0 && (column_counter % 3 == 0))
+			dat += "</td><td valign='top'>"
+	dat += "</td></tr></table></center>"
+	dat += "</div></div>"
+	var/datum/browser/popup = new(src, "latechoices", "Choose Occupation", 680, 580)
+	popup.add_stylesheet("latechoices", 'html/browser/latechoices.css')
+	popup.set_content(jointext(dat, ""))
 	popup.open(FALSE)
 
 
@@ -419,8 +420,6 @@
 		for(var/datum/job/J in SSjob.occupations)
 			if(J && J.current_positions < J.total_positions && J.title != job.title)
 				return FALSE
-	if(jobban_isbanned(src, rank))
-		return FALSE
 	if(is_banned_from(ckey, rank))
 		return FALSE
 	if(QDELETED(src))

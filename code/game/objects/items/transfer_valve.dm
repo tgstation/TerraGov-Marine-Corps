@@ -175,7 +175,7 @@
 		if(attacher)
 			log_str += "(<A HREF='?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
 
-		log_admin(log_str)
+		log_game(log_str)
 		message_admins(log_str)
 		merge_gases()
 		spawn(20) // In case one tank bursts

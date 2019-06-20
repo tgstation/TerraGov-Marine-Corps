@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if("Survivor")
 				ban_check_name = ROLE_SURVIVOR
 
-		if(jobban_isbanned(user, ban_check_name) || is_banned_from(user.ckey, ban_check_name))
+		if(is_banned_from(user.ckey, ban_check_name))
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
 		else
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
@@ -300,10 +300,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=corporation'>[nanotrasen_relation]</a><br>"
 	dat += "<br>"
 
-	if(jobban_isbanned(user, "Records"))
-		dat += "<b>You are banned from using character records.</b><br>"
-	else
-		dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
+	dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
 
 	dat += "<a href ='?_src_=prefs;preference=flavor_text'>Character Description</a><br>"
 

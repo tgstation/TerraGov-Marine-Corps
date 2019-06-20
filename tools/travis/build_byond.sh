@@ -28,6 +28,10 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "base /turf path use detected in maps, please replace with proper paths."
 		exit 1
 	fi;
+	if grep '^/*var/' code/**/*.dm; then
+		echo "Unmanaged global var use detected in code, please use the helpers."
+		exit 1
+	fi;
 	if grep '^ ' code/**/*.dm; then
 		echo "space indentation detected"
 		exit 1
@@ -36,8 +40,15 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
 	fi;
-	if grep -P '^/[\w/].+\(.*(var/|, ?var/.*).*\)' $(git diff --name-only --diff-filter=AM $TRAVIS_BRANCH...HEAD || echo '/dev/null'); then
+	if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $(git diff --name-only --diff-filter=AM $TRAVIS_BRANCH...HEAD || echo '/dev/null'); then
 		echo "changed files contains proc argument starting with 'var'"
+    exit 1
+	if grep -i 'nanotransen' code/**/*.dm; then
+		echo "Misspelling(s) of nanotrasen detected in code, please remove the extra N(s)."
+		exit 1
+	fi;
+	if grep -i 'nanotransen' _maps/**/*.dmm; then
+		echo "Misspelling(s) of nanotrasen detected in maps, please remove the extra N(s)."
 		exit 1
 	fi;
 

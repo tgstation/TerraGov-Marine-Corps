@@ -61,7 +61,7 @@
 		SEND_SOUND(G, sound(get_sfx("queen"), wait = 0,volume = 50))
 		to_chat(G, "[queensWord]")
 
-	log_admin("[key_name(src)] has created a Word of the Queen report: [queensWord]")
+	log_game("[key_name(src)] has created a Word of the Queen report: [queensWord]")
 	message_admins("[ADMIN_TPMONTY(src)] has created a Word of the Queen report.")
 
 // ***************************************
@@ -608,7 +608,7 @@
 				if(target.client)
 					X.use_plasma(100)
 					to_chat(target, "[queen_order]")
-					log_admin("[key_name(X)] has given the following Queen order to [key_name(target)]: [input]")
+					log_game("[key_name(X)] has given the following Queen order to [key_name(target)]: [input]")
 					message_admins("[ADMIN_TPMONTY(X)] has given the following Queen order to [ADMIN_TPMONTY(target)]: [input]")
 
 	else
@@ -722,7 +722,7 @@
 	// this sets the right datum
 	new_xeno.upgrade_xeno(T.upgrade_next()) //a young Crusher de-evolves into a MATURE Hunter
 
-	log_admin("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
+	log_game("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
 
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.

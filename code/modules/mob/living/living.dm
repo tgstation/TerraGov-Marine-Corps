@@ -577,7 +577,7 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+		if(job && is_banned_from(M.ckey, job))
 			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
 			return FALSE
 
@@ -586,8 +586,8 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
-		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
+		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
+		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)

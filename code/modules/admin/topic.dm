@@ -22,10 +22,6 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
-	if(CONFIG_GET(flag/ban_legacy_system))
-		LegacyTopic(href, href_list)
-
-
 	if(href_list["ahelp"])
 		var/ahelp_ref = href_list["ahelp"]
 		var/datum/admin_help/AH = locate(ahelp_ref)
@@ -468,7 +464,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		SSticker.mode.distress_cancelled = TRUE
 		priority_announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
-		log_game("[key_name(usr)] has denied a distress beacon, requested by [key_name(M)]")
+		log_admin("[key_name(usr)] has denied a distress beacon, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has denied a distress beacon, requested by [ADMIN_TPMONTY(M)]")
 
 
@@ -483,7 +479,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		SSticker.mode.activate_distress()
 
-		log_game("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
+		log_admin("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
 
 

@@ -100,14 +100,12 @@
 		return
 
 
-/obj/machinery/power/monitor/power_change()
-	..()
+/obj/machinery/power/monitor/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "broken"
 	else
 		if(machine_stat & NOPOWER)
-			spawn(rand(0, 15))
-				src.icon_state = "power0"
+			icon_state = "power0"
 		else
 			icon_state = initial(icon_state)
 
