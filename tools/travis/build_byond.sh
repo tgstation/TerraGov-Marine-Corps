@@ -35,8 +35,8 @@ if [ "$BUILD_TOOLS" = false ]; then
 	if grep '^\t* ' code/**/*.dm; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
-	fi
-	if grep '^\/[\w\/].+\(.*(var\/|, ?var\/.*).*\)$' $(git diff --name-only --diff-filter=AM HEAD...$TRAVIS_BRANCH); then
+	fi;
+	if grep '^\/[\w\/].+\(.*(var\/|, ?var\/.*).*\)' $(git diff --name-only --diff-filter=AM HEAD...$TRAVIS_BRANCH); then
 		echo "changed files contains proc argument starting with 'var'"
 		exit 1
 	fi
