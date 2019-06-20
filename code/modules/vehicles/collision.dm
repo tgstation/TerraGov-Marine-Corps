@@ -22,9 +22,8 @@
 
 /turf/closed/tank_collision(obj/vehicle/roadtrafficaccident, facing, turf/T, turf/temp)
 	. = ..()
-	var/damage = .
 	if(prob(15))
-		ex_act(damage)
+		ex_act(3)
 
 /mob/living/tank_collision(obj/vehicle/roadtrafficaccident, facing, turf/T, turf/temp) //If theyre alive, yeet them
 	if(stat == DEAD) //We don't care about the dead
@@ -32,7 +31,7 @@
 	if(!roadtrafficaccident.demolish_on_ram)
 		return 0 //FALSE, also 0 damage.
 
-	if(loc == roadtrafficaccident.loc) // trodden over.
+	if(src in get_turf(roadtrafficaccident)) // trodden over.
 		if(!knocked_down)
 			KnockDown(1)
 		var/target_dir = turn(roadtrafficaccident.dir, 180)

@@ -17,7 +17,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/default_ammo = /obj/item/ammo_magazine/tank/ltb_cannon //What do we start with?
 	var/list/accepted_ammo = list(/obj/item/ammo_magazine/tank/tank_glauncher) //Alternative ammo types that we'll accept. The default ammo is in this by default
 	var/fire_delay
-	var/cooldown = 60 //6 second weapons cooldown
+	var/cooldown = 6 SECONDS //6 second weapons cooldown
 	var/lastfired = 0 //When were we last shot?
 
 /obj/item/tank_weapon/Initialize()
@@ -32,21 +32,21 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	icon_state = "m56_cupola"
 	default_ammo = /obj/item/ammo_magazine/tank/ltaaap_minigun
 	fire_sounds = list('sound/weapons/tank_minigun_loop.ogg')
-	cooldown = 2 //Minimal cooldown
+	cooldown = 0.3 SECONDS //Minimal cooldown
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/towlauncher,/obj/item/ammo_magazine/tank/m56_cupola,/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/tank_slauncher)
 
 /obj/item/tank_weapon/proc/fire(atom/T,mob/user)
 	if(!can_fire(T))
 		return FALSE
-	if(ammo.current_rounds <= 0)
-		return FALSE
 	if(world.time < lastfired + cooldown)
+		return FALSE
+	if(ammo.current_rounds <= 0)
+		playsound(get_turf(src), 'sound/weapons/gun_empty.ogg', 100, 1)
 		return FALSE
 	lastfired = world.time
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
-	log_combat(user, user, "fired the [src].")
-	log_explosion("[user] fired the [src] at [AREACOORD(loc)].")
+	log_combat(user, T, "fired the [src].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	if(!CONFIG_GET(flag/tank_mouth_noise))
 		playsound(get_turf(owner), pick(fire_sounds), 60, 1)
@@ -74,11 +74,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	desc = "A gigantic wall of metal designed for maximum Xeno destruction. Click it with an open hand to enter as a pilot or a gunner."
 	icon = 'icons/obj/tank.dmi'
 	icon_state = "tank"
-	layer = 5
+	layer = OBJ_LAYER
 	anchored = FALSE
 	can_buckle = FALSE
 	req_access = list(ACCESS_MARINE_TANK)
-	move_delay = 4
+	move_delay = 0.4 SECONDS
 	obj_integrity = 600
 	max_integrity = 600
 	anchored = TRUE //No bumping / pulling the tank
@@ -86,6 +86,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	pixel_x = -48
 	pixel_y = -48
 	//Who's driving the tank
+	var/turret_icon = 'icons/obj/tank_gun.dmi'
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner
 	var/list/operators = list() //Who's in this tank? Prevents you from entering the tank again
@@ -102,23 +103,36 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/list/passengers = list() //People who are in the tank without gunning / driving. This allows for things like jeeps and APCs in future
 	var/max_passengers = 5 //This seems sane to me, change if you don't agree.
 
+
+/obj/vehicle/tank/tiny //SQUEEEE
+	name = "Mk-4 'pint pot' tank"
+	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that nanotrasen wants it to. This model contains advanced bluespace technology which allows a tardis like amount of room on the inside"
+	icon = 'icons/obj/tinytank.dmi'
+	turret_icon = 'icons/obj/tinytank_gun.dmi'
+	icon_state = "tank"
+	pixel_x = -15 //Stops marines from treading on it...d'aww
+	pixel_y = 0
+	max_passengers = 3 //Bluespace's one hell of a drug.
+
 /obj/vehicle/tank/examine(mob/user)
 	. = ..()
 	to_chat(user, "<b>To fire its main cannon, <i>ctrl</i> click a tile</b>")
 	to_chat(user, "<b>To fire its secondary_weapon, click a tile</b>")
+	to_chat(user, "<i>It's currently holding [passengers.len] / [max_passengers] passengers</i>")
 
 /obj/turret_overlay
 	name = "Tank gun turret"
 	desc = "The shooty bit on a tank."
 	icon = 'icons/obj/tank_gun.dmi'
 	icon_state = "turret"
-	layer = 5.1
+	layer = ABOVE_MOB_LAYER
 	animate_movement = TRUE //So it doesnt just ping back and forth and look all stupid
 	mouse_opacity = FALSE //It's an overlay
 
 /obj/vehicle/tank/Initialize()
 	. = ..()
 	turret_overlay = new()
+	turret_overlay.icon = turret_icon
 	update_icon()
 	primary_weapon = new(src) //Make our guns
 	secondary_weapon = new(src)
@@ -337,7 +351,9 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 	if(neighbour)
 		to_chat(usr, "<span class='notice'>There's already someone in the other seat.</span>")
 		return
-
+	if(usr in passengers)
+		to_chat(usr, "<span class='notice'>You can't get to the front seats from back here, try getting out of [src]?.</span>")
+		return
 	to_chat(usr, "<span class='notice'>You start getting into the other seat.</span>")
 	addtimer(CALLBACK(src, .proc/seat_switched, wannabe_trucker, usr), 3 SECONDS)
 
