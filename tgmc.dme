@@ -396,6 +396,7 @@
 #include "code\game\objects\items\portable_vendor.dm"
 #include "code\game\objects\items\power_cells.dm"
 #include "code\game\objects\items\rcd.dm"
+#include "code\game\objects\items\restraints.dm"
 #include "code\game\objects\items\rpd.dm"
 #include "code\game\objects\items\rsf.dm"
 #include "code\game\objects\items\rsp.dm"
