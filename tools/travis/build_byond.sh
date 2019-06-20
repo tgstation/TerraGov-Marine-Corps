@@ -39,7 +39,7 @@ if [ "$BUILD_TOOLS" = false ]; then
 	if grep '^\/[\w\/].+\(.*(var\/|, ?var\/.*).*\)' $(git diff --name-only --diff-filter=AM HEAD...$TRAVIS_BRANCH); then
 		echo "changed files contains proc argument starting with 'var'"
 		exit 1
-	fi
+	fi;
 
 	(! grep 'step_[xy]' _maps/**/*.dmm)
 	source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
