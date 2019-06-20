@@ -3,6 +3,7 @@
 	//var/volume = 0
 
 	level = 1
+	plane = FLOOR_PLANE
 
 	use_power = NO_POWER_USE
 	can_unwrench = 1

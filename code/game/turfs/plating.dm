@@ -36,7 +36,6 @@
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	var/covered = TRUE
-	plane = FLOOR_PLANE
 
 
 /turf/open/floor/plating/plating_catwalk/Initialize()
@@ -47,7 +46,7 @@
 
 /turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
 	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
-	I.plane = GAME_PLANE
+	I.plane = FLOOR_PLANE
 	if(covered)
 		overlays += I
 	else
