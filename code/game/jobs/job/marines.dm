@@ -3,6 +3,7 @@
 	selection_color = "#ffeeee"
 	skills_type = /datum/skills/pfc
 	faction = "Marine"
+	exp_type_department = EXP_TYPE_MARINES
 
 
 /datum/job/marine/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
