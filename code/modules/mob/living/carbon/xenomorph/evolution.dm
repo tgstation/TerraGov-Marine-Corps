@@ -129,7 +129,7 @@
 				new_caste_type = /mob/living/carbon/xenomorph/queen/admeme
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike) //Special case for dealing with shrikes
-		if(is_banned_from(ckey, ROLE_XENO_QUEEN) || jobban_isbanned(src, ROLE_XENO_QUEEN))
+		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			to_chat(src, "<span class='warning'>You are jobbanned from Queen-like roles.</span>")
 
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))

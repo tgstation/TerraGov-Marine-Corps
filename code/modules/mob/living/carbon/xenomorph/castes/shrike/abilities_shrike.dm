@@ -68,7 +68,7 @@
 
 /datum/action/xeno_action/activable/psychic_fling/use_ability(atom/A)
 	var/mob/living/victim = A
-	round_statistics.psychic_flings++
+	GLOB.round_statistics.psychic_flings++
 
 	owner.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [owner]!</span>", \
 	"<span class='xenowarning'>We violently fling [victim] with the power of our mind!</span>")
@@ -151,7 +151,7 @@
 	if(assailant.get_active_held_item())
 		assailant.drop_held_item() //Do we have a hugger? No longer.
 
-	round_statistics.psychic_chokes++
+	GLOB.round_statistics.psychic_chokes++
 	assailant.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [assailant]!</span>", \
 	"<span class='xenowarning'>We choke [victim] with the power of our mind!</span>")
 	victim.visible_message("<span class='xenowarning'>[victim] is suddenly grabbed by the neck by an unseen force!</span>", \
