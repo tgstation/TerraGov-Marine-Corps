@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #nb: must be bash to support shopt globstar
-set -ex
+set -e
 shopt -s globstar
 
 if [ "$BUILD_TOOLS" = false ]; then
