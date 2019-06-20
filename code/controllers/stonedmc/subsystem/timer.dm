@@ -277,7 +277,7 @@ SUBSYSTEM_DEF(timer)
 
 
 		if (!timer.callBack || timer.spent)
-			WARNING("Invalid timer: [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
+			stack_trace("Invalid timer: [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
 			if (timer.callBack)
 				qdel(timer)
 			continue

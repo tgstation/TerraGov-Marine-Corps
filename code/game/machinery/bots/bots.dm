@@ -40,11 +40,11 @@
 		locked = FALSE
 		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>")
-		log_admin("[key_name(user)] emagged [src]'s maintenance hatch lock.")
+		log_game("[key_name(user)] emagged [src]'s maintenance hatch lock.")
 		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s maintenance hatch lock.")
 	if(!locked && open)
 		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		log_admin("[key_name(user)] emagged [src]'s inner circuits.")
+		log_game("[key_name(user)] emagged [src]'s inner circuits.")
 		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s inner circuits.")
 
 /obj/machinery/bot/examine(mob/user)

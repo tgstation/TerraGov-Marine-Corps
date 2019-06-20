@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	count++ //Add up the tally. This is important in even squad distribution.
 
-	log_game("[key_name(H)] has been assigned as [name] [H.mind.assigned_role]")
+	log_manifest("[key_name(H)] has been assigned as [name] [H.mind.assigned_role]")
 
 	marines_list += H
 	H.assigned_squad = src //Add them to the squad

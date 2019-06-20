@@ -34,9 +34,7 @@
 
 	var/list/total_calls = typesof(/datum/emergency_call)
 	if(!length(total_calls))
-		log_game("ERROR: No distress Datums found.")
-		message_admins("ERROR: No distress Datums found.")
-		return FALSE
+		CRASH("No distress Datums found.")
 
 	for(var/x in total_calls)
 		var/datum/emergency_call/D = new x()

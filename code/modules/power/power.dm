@@ -304,8 +304,7 @@
 	else if (!power_source)
 		return 0
 	else
-		log_admin("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
-		return 0
+		CRASH("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
 	if (!C && !PN)
 		return 0
 	var/PN_damage = 0

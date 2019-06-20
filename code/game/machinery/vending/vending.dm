@@ -331,7 +331,7 @@
 		if(CAT_COIN)
 			plist=coin_records
 		else
-			warning("UNKNOWN CATEGORY [P.category] IN TYPE [P.product_path] INSIDE [type]!")
+			stack_trace("UNKNOWN CATEGORY [P.category] IN TYPE [P.product_path] INSIDE [type]!")
 	return plist.Find(P)
 
 /obj/machinery/vending/proc/GetProductByID(var/pid, var/category)
@@ -343,7 +343,7 @@
 		if(CAT_COIN)
 			return coin_records[pid]
 		else
-			warning("UNKNOWN PRODUCT: PID: [pid], CAT: [category] INSIDE [type]!")
+			stack_trace("UNKNOWN PRODUCT: PID: [pid], CAT: [category] INSIDE [type]!")
 			return null
 
 /obj/machinery/vending/attack_hand(mob/user as mob)

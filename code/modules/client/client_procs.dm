@@ -46,7 +46,7 @@
 			var/msg = "Your previous action was ignored because you've done too many in a minute."
 			if(minute != topiclimiter[5]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
 				topiclimiter[5] = minute
-				log_admin("[key_name(src)] has hit the per-minute topic limit of [mtl] topic calls.")
+				log_admin_private("[key_name(src)] has hit the per-minute topic limit of [mtl] topic calls.")
 				message_admins("[ADMIN_LOOKUP(src)] has hit the per-minute topic limit of [mtl] topic calls.")
 			to_chat(src, "<span class='danger'>[msg]</span>")
 			return

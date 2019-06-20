@@ -473,7 +473,7 @@
 	to_chat(user, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
 	time_entered = world.time
 	start_processing()
-	log_admin("[key_name(user)] has entered a stasis pod.")
+	log_game("[key_name(user)] has entered a stasis pod.")
 	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
 
 /obj/machinery/cryopod/proc/go_out()

@@ -636,7 +636,7 @@
 		return
 	if(occupant)
 		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
-			log_admin("[key_name(usr)] ejected [key_name(occupant)] from the autodoc.")
+			log_game("[key_name(usr)] ejected [key_name(occupant)] from the autodoc.")
 			message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc.")
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
 			return
@@ -659,7 +659,7 @@
 			if(usr.mind && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
 				visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
 				occupant.take_limb_damage(rand(30,50),rand(30,50))
-				log_admin("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
+				log_game("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
 				message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc during surgery causing damage.")
 				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
 		go_out()

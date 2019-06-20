@@ -212,8 +212,7 @@
 	var/query_log = "executed SDQL query(s): \"[query_text]\"."
 	message_admins("[log_entry1] [query_log]")
 	query_log = "[log_entry2] [query_log]"
-	log_game(query_log)
-	NOTICE(query_log)
+	log_admin(query_log)
 
 	var/start_time_total = REALTIMEOFDAY
 
@@ -593,7 +592,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 /datum/SDQL2_query/proc/SDQL_from_objs(list/tree)
 	if(IsAdminAdvancedProcCall())
 		if("world" in tree)
-			log_admin("[key_name(usr)] attempted to grab world with a procedure call to a SDQL datum.")
+			log_admin_private("[key_name(usr)] attempted to grab world with a procedure call to a SDQL datum.")
 			message_admins("[ADMIN_TPMONTY(usr)] attempted to grab world with a procedure call to a SDQL datum.")
 			return
 	if("world" in tree)
