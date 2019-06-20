@@ -11,21 +11,29 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	desc = "A gun that works about 50% of the time, but at least it's open source! It fires tank shells."
 	icon = 'icons/obj/hardpoint_modules.dmi'
 	icon_state = "glauncher"
-	var/obj/item/ammo_magazine/ammo = new /obj/item/ammo_magazine/tank/ltb_cannon
+	var/obj/item/ammo_magazine/ammo
 	var/obj/vehicle/tank/owner
 	var/list/fire_sounds = list('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg')
+	var/default_ammo = /obj/item/ammo_magazine/tank/ltb_cannon //What do we start with?
+	var/list/accepted_ammo = list(/obj/item/ammo_magazine/tank/tank_glauncher) //Alternative ammo types that we'll accept. The default ammo is in this by default
 	var/fire_delay
 	var/cooldown = 60 //6 second weapons cooldown
 	var/lastfired = 0 //When were we last shot?
 
-/obj/item/tank_weapon/minigun
+/obj/item/tank_weapon/Initialize()
+	. = ..()
+	ammo = new default_ammo(src)
+	accepted_ammo += default_ammo
+
+/obj/item/tank_weapon/secondary_weapon
 	name = "TGS 3 XENOCRUSHER tank machine gun"
 	desc = "A much better gun that shits out bullets at ridiculous speeds, don't get in its way!"
 	icon = 'icons/obj/hardpoint_modules.dmi'
 	icon_state = "m56_cupola"
-	ammo = new /obj/item/ammo_magazine/tank/ltaaap_minigun
+	default_ammo = /obj/item/ammo_magazine/tank/ltaaap_minigun
 	fire_sounds = list('sound/weapons/tank_minigun_loop.ogg')
 	cooldown = 2 //Minimal cooldown
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/towlauncher,/obj/item/ammo_magazine/tank/m56_cupola,/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/tank_slauncher)
 
 /obj/item/tank_weapon/proc/fire(atom/T,mob/user)
 	if(!can_fire(T))
@@ -51,8 +59,15 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		return FALSE
 	return TRUE
 
-/obj/item/tank_weapon/minigun/can_fire(var/turf/T)
+/obj/item/tank_weapon/secondary_weapon/can_fire(var/turf/T)
 	return TRUE //No loc check here
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// As standard, tank subtypes come with a primary and secondary, the primary is its big tank gun which fires explosive rounds, and its secondary is a rapid firing minigun. //
+// You must manually set the offsets for your tank subtypes so that they move correctly, VV them in game to find the perfect values											//
+// You can set max_passengers to something different (eg, 2 for a jeep) if you don't want loads of marines to pile in														//
+// I have set the layer of this tank high so that it layers over lights. This is an issue with multi-tile sprites in byond 													//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/vehicle/tank
 	name = "MK-1 'friendly fire' prototype tank"
@@ -76,14 +91,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/list/operators = list() //Who's in this tank? Prevents you from entering the tank again
 	//Health and combat shit
 	var/obj/turret_overlay/turret_overlay //Allows for independantly swivelling guns, wow!
-	var/obj/turret_overlay/minigun/minigun_overlay
-	var/obj/item/tank_weapon/main_cannon //What we use to shoot big shells
-	var/obj/item/tank_weapon/minigun/minigun //What we use to shoot mini shells ((rapidfire xenocrusher 6000))
-	var/main_cannon_dir = null //So that the guns swivel independantly
-	var/minigun_dir = null
+	var/obj/item/tank_weapon/primary_weapon //What we use to shoot big shells
+	var/obj/item/tank_weapon/secondary_weapon/secondary_weapon //What we use to shoot mini shells ((rapidfire xenocrusher 6000))
+	var/primary_weapon_dir = null //So that the guns swivel independantly
+	var/secondary_weapon_dir = null
 	var/atom/firing_target = null //Shooting code, at whom are we firing?
-	var/firing_main_cannon = FALSE
-	var/firing_minigun = FALSE
+	var/firing_primary_weapon = FALSE
+	var/firing_secondary_weapon = FALSE
 	var/last_drive_sound = 0 //Engine noises.
 	var/list/passengers = list() //People who are in the tank without gunning / driving. This allows for things like jeeps and APCs in future
 	var/max_passengers = 5 //This seems sane to me, change if you don't agree.
@@ -91,7 +105,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tank/examine(mob/user)
 	. = ..()
 	to_chat(user, "<b>To fire its main cannon, <i>ctrl</i> click a tile</b>")
-	to_chat(user, "<b>To fire its minigun, click a tile</b>")
+	to_chat(user, "<b>To fire its secondary_weapon, click a tile</b>")
 
 /obj/turret_overlay
 	name = "Tank gun turret"
@@ -106,16 +120,16 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	. = ..()
 	turret_overlay = new()
 	update_icon()
-	main_cannon = new(src) //Make our guns
-	minigun = new(src)
-	main_cannon.owner = src
-	minigun.owner = src
+	primary_weapon = new(src) //Make our guns
+	secondary_weapon = new(src)
+	primary_weapon.owner = src
+	secondary_weapon.owner = src
 	GLOB.tank_list += src
 
 /obj/vehicle/tank/Destroy()
 	qdel(turret_overlay)
-	qdel(main_cannon)
-	qdel(minigun)
+	qdel(primary_weapon)
+	qdel(secondary_weapon)
 	. = ..()
 
 /obj/vehicle/tank/Move()
@@ -132,8 +146,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	handle_overlays()
 
 /obj/vehicle/tank/proc/handle_overlays() //This code is vehicle specific and handles offsets + overlays for the tank's gun. Please change this accordingly.
-	if(main_cannon_dir)
-		turret_overlay.setDir(main_cannon_dir)
+	if(primary_weapon_dir)
+		turret_overlay.setDir(primary_weapon_dir)
 		turret_overlay.pixel_x = 0
 	vis_contents += turret_overlay
 
@@ -208,6 +222,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		user.forceMove(get_turf(src))
 		passengers -= user
 		operators -= user
+	to_chat(user, "You hop out of [src] and slam its hatch shut behind you")
 
 /obj/vehicle/tank/relaymove(mob/user, direction)
 	if(world.time < last_move_time + move_delay)
@@ -245,37 +260,37 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	handle_fire(A)
 
 /obj/vehicle/tank/proc/handle_fire(atom/A)
-	if(!minigun && gunner)
-		to_chat(gunner, "[src]'s minigun hardpoint spins pathetically. Maybe you should install a minigun on this tank?")
+	if(!secondary_weapon && gunner)
+		to_chat(gunner, "[src]'s secondary_weapon hardpoint spins pathetically. Maybe you should install a secondary_weapon on this tank?")
 		return FALSE
 	firing_target = A
 	playsound(get_turf(src), 'sound/weapons/tank_minigun_start.ogg', 60, 1)
-	firing_minigun = TRUE
+	firing_secondary_weapon = TRUE
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/vehicle/tank/proc/handle_fire_main(atom/A) //This is used to shoot your big ass tank cannon, rather than your small MG
-	if(!main_cannon && gunner)
+	if(!primary_weapon && gunner)
 		to_chat(gunner, "You look at the stump where [src]'s tank barrel should be and sigh.'")
 		return FALSE
 	firing_target = A
-	firing_main_cannon = TRUE
+	firing_primary_weapon = TRUE
 	START_PROCESSING(SSfastprocess, src)
 
 /obj/vehicle/tank/process()
-	if(firing_main_cannon && firing_target)
-		if(main_cannon.fire(firing_target, gunner))
-			if(main_cannon_dir != get_dir(src, firing_target)) //The turret has changed position, so we want it to play a swivelling noise.
+	if(firing_primary_weapon && firing_target)
+		if(primary_weapon.fire(firing_target, gunner))
+			if(primary_weapon_dir != get_dir(src, firing_target)) //The turret has changed position, so we want it to play a swivelling noise.
 				if(world.time > lastsound + 4 SECONDS)
 					visible_message("<span class='danger'>[src] swings its turret round!</span>")
 					playsound(src, 'sound/effects/tankswivel.ogg', 80)
 					lastsound = world.time
-			main_cannon_dir = get_dir(src, firing_target)
+			primary_weapon_dir = get_dir(src, firing_target)
 			update_icon()
 		else
 			stop_firing()
-	if(firing_minigun)
-		if(minigun.fire(firing_target, gunner))
-			minigun_dir = get_dir(src, firing_target) //Set the gun dir
+	if(firing_secondary_weapon)
+		if(secondary_weapon.fire(firing_target, gunner))
+			secondary_weapon_dir = get_dir(src, firing_target) //Set the gun dir
 			update_icon()
 
 /obj/vehicle/tank/proc/onMouseUp(atom/A, mob/user)
@@ -283,9 +298,9 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 /obj/vehicle/tank/proc/stop_firing()
 	firing_target = null
-	firing_main_cannon = FALSE
-	firing_minigun = FALSE
-	update_icon(icon_state, "turret", "minigun") //Stop firing animation
+	firing_primary_weapon = FALSE
+	firing_secondary_weapon = FALSE
+	update_icon(icon_state, "turret", "secondary_weapon") //Stop firing animation
 	STOP_PROCESSING(SSfastprocess,src)
 
 /*
