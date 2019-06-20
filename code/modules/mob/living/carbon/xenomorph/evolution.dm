@@ -26,7 +26,7 @@
 		to_chat(src, "<span class='warning'>Nuh-uh.</span>")
 		return
 
-	if(jobban_isbanned(src, "Alien"))
+	if(is_banned_from(ckey, ROLE_XENOMORPH))
 		to_chat(src, "<span class='warning'>You are jobbanned from aliens and cannot evolve. How did you even become an alien?</span>")
 		return
 
@@ -93,7 +93,7 @@
 	var/tierthrees
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
-		if(is_banned_from(ckey, ROLE_XENO_QUEEN) || jobban_isbanned(src, ROLE_XENO_QUEEN))
+		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
 			return
 		if(xeno_caste.hardcore)

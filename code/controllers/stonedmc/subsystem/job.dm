@@ -68,9 +68,6 @@ SUBSYSTEM_DEF(job)
 		if(!job)
 			JobDebug("AR job doesn't exists ! Player: [player], Rank:[rank]")
 			return FALSE
-		if(jobban_isbanned(player, rank))
-			JobDebug("AR legacy isbanned failed, Player: [player], Job:[job.title]")
-			return FALSE
 		if(is_banned_from(player.ckey, rank))
 			JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
 			return FALSE

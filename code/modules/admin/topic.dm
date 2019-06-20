@@ -22,10 +22,6 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
-	if(CONFIG_GET(flag/ban_legacy_system))
-		LegacyTopic(href, href_list)
-
-
 	if(href_list["ahelp"])
 		var/ahelp_ref = href_list["ahelp"]
 		var/datum/admin_help/AH = locate(ahelp_ref)

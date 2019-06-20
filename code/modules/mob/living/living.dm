@@ -577,7 +577,7 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+		if(job && is_banned_from(M.ckey, job))
 			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
 			return FALSE
 

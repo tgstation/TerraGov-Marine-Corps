@@ -173,7 +173,7 @@
 
 	for(var/i in possible_xenomorphs)
 		var/datum/mind/new_xeno = i
-		if(new_xeno.assigned_role || jobban_isbanned(new_xeno.current, ROLE_XENOMORPH) || is_banned_from(new_xeno.current?.ckey, ROLE_XENOMORPH))
+		if(new_xeno.assigned_role || is_banned_from(new_xeno.current?.ckey, ROLE_XENOMORPH))
 			continue
 		new_xeno.assigned_role = ROLE_XENOMORPH
 		xenomorphs += new_xeno
@@ -205,7 +205,7 @@
 	var/found = FALSE
 	for(var/i in possible_queens)
 		var/datum/mind/new_queen = i
-		if(new_queen.assigned_role || jobban_isbanned(new_queen.current, ROLE_XENO_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
+		if(new_queen.assigned_role || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
 			continue
 		if(queen_age_check(new_queen.current?.client))
 			continue
@@ -224,7 +224,7 @@
 
 	for(var/i in possible_survivors)
 		var/datum/mind/new_survivor = i
-		if(new_survivor.assigned_role || jobban_isbanned(new_survivor.current, ROLE_SURVIVOR) || is_banned_from(new_survivor.current?.ckey, ROLE_SURVIVOR))
+		if(new_survivor.assigned_role || is_banned_from(new_survivor.current?.ckey, ROLE_SURVIVOR))
 			continue
 		new_survivor.assigned_role = "Survivor"
 		survivors += new_survivor
