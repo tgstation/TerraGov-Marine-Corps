@@ -4,7 +4,7 @@
 		drop_all_held_items()
 		stop_pulling()
 		handcuffed = restraints
-		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/item/restraints/handcuffs/.proc/resisted_against)
+		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/item/restraints/.proc/resisted_against)
 	else
 		handcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 		handcuffed = null
@@ -17,7 +17,7 @@
 			if(hud_used?.move_intent)
 				hud_used.move_intent.icon_state = "walking"
 		legcuffed = restraints
-		legcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/item/restraints/legcuffs.proc/resisted_against)
+		legcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/item/restraints/.proc/resisted_against)
 	else
 		legcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 		legcuffed = null

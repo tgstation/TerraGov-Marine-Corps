@@ -3,10 +3,11 @@
 
 
 /obj/item/restraints/resisted_against(datum/source, mob/living/carbon/perp)
-	if(perp.next_move > world.time)
+	if(perp.last_special >= world.time)
 		return FALSE
 
 	perp.changeNext_move(CLICK_CD_RESIST)
+	perp.last_special = world.time + CLICK_CD_BREAKOUT
 
 	perp.resist_restraints(src)
 

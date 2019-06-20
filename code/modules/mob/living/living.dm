@@ -214,28 +214,38 @@
 	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
 
 
-/mob/proc/resist_grab(moving_resist)
+/mob/proc/resist_grab()
 	return //returning 1 means we successfully broke free
 
 
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
+	if(last_special >= world.time)
+		return FALSE
+	last_special = world.time + CLICK_CD_RESIST
 	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
-	return resist_grab(FALSE)
+	return resist_grab()
 
 
-/mob/living/resist_grab(moving_resist)
+/mob/living/proc/do_move_resist_grab()
+	if(restrained(RESTRAINED_NECKGRAB))
+		return FALSE
+	if(last_special >= world.time)
+		return FALSE
+	last_special = world.time + CLICK_CD_RESIST
+	visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
+	return resist_grab()
+
+
+/mob/living/resist_grab()
 	if(pulledby.grab_level)
-		grab_resist_level++
-		if(grab_resist_level > pulledby.grab_level)
+		if(++grab_resist_level >= pulledby.grab_level)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 			pulledby.stop_pulling()
 			grab_resist_level = 0 //zero it out.
 			return TRUE
-		if(moving_resist) //we resisted by trying to move
-			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	else
 		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()

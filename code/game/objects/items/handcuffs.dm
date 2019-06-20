@@ -58,16 +58,6 @@
 			return TRUE
 
 
-/obj/item/restraints/handcuffs/resisted_against(datum/source, mob/living/carbon/perp)
-	if(perp.last_special >= world.time)
-		return FALSE
-
-	perp.changeNext_move(CLICK_CD_BREAKOUT)
-	perp.last_special = world.time + CLICK_CD_BREAKOUT
-
-	perp.resist_cuffs(src)
-
-
 /obj/item/restraints/handcuffs/zip
 	name = "zip cuffs"
 	desc = "Single-use plastic zip tie handcuffs."

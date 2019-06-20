@@ -106,8 +106,8 @@
 			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
 			return
 		else
-			move_delay = world.time + 1 SECONDS //Not using CLICK_CD_RESIST because else the warrior grab becomes too powerful.
-			return L.resist_grab(TRUE)
+			move_delay = world.time + 1 SECONDS
+			return L.do_move_resist_grab()
 
 	if(L.buckled)
 		return L.buckled.relaymove(L, direct)
