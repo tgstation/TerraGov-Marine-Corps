@@ -278,7 +278,6 @@
 "aaO" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor{
-	tag = "icon-platebot";
 	icon_state = "platebot"
 	},
 /area/sulaco/cargo)
@@ -308,15 +307,18 @@
 	},
 /obj/structure/window/reinforced,
 /obj/structure/disposalpipe/trunk,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
 /obj/machinery/camera/autoname,
 /obj/structure/sign/deathsposal{
 	pixel_y = 32
-	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 1
 	},
 /turf/open/floor/plating/airless,
 /area/sulaco/disposal)
@@ -408,13 +410,11 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-platebot";
 	icon_state = "platebot"
 	},
 /area/sulaco/cargo)
 "abi" = (
 /obj/machinery/disposal/deliveryChute{
-	tag = "icon-intake (EAST)";
 	icon_state = "intake";
 	dir = 4
 	},
@@ -525,7 +525,6 @@
 "abw" = (
 /obj/structure/closet/crate,
 /turf/open/floor{
-	tag = "icon-platebot";
 	icon_state = "platebot"
 	},
 /area/sulaco/cargo)
@@ -565,7 +564,6 @@
 "abE" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/storage)
@@ -586,7 +584,6 @@
 /area/sulaco/medbay/storage)
 "abG" = (
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/storage)
@@ -690,8 +687,11 @@
 	},
 /area/sulaco/cryosleep)
 "abV" = (
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
 /turf/open/floor/plating,
 /area/sulaco/cargo)
@@ -749,7 +749,6 @@
 "acd" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -768,8 +767,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHEAST)"
+	icon_state = "intact"
 	},
 /obj/item/storage/pill_bottle/peridaxon,
 /obj/item/storage/pill_bottle/dylovene,
@@ -785,7 +783,6 @@
 	on = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -810,7 +807,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/storage)
@@ -830,7 +826,6 @@
 /obj/item/reagent_container/spray/cleaner,
 /obj/item/reagent_container/spray/cleaner,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -862,7 +857,6 @@
 	},
 /obj/item/storage/box/syringes,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -878,7 +872,6 @@
 "acn" = (
 /obj/machinery/alarm,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -893,7 +886,6 @@
 	density = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -910,7 +902,6 @@
 "acr" = (
 /obj/machinery/sleeper,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -1139,7 +1130,12 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "acT" = (
-/obj/item/radio/intercom/general,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
+	},
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1155,12 +1151,10 @@
 /area/sulaco/medbay/surgery_one)
 "acV" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -1183,7 +1177,6 @@
 	layer = 2.3
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -1207,7 +1200,6 @@
 "ada" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/storage)
@@ -1235,7 +1227,6 @@
 	name = "Doctor"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -1246,7 +1237,6 @@
 /area/sulaco/medbay)
 "adf" = (
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -1258,7 +1248,6 @@
 	layer = 2.1
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -1268,7 +1257,6 @@
 	icon_state = "tube1"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -1399,21 +1387,22 @@
 /area/sulaco/disposal)
 "adx" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
 /turf/open/floor/plating,
 /area/sulaco/disposal)
 "ady" = (
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
 /area/sulaco/disposal)
 "adz" = (
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -1479,7 +1468,6 @@
 	layer = 2.1
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -1490,7 +1478,6 @@
 /area/sulaco/medbay/west)
 "adI" = (
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -1500,7 +1487,6 @@
 	},
 /obj/machinery/vending/medical,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -1520,14 +1506,12 @@
 	dir = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/storage)
 "adL" = (
 /obj/machinery/iv_drip,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -1700,7 +1684,6 @@
 /area/sulaco/engineering/ce)
 "aei" = (
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -1726,11 +1709,9 @@
 "ael" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHWEST)"
+	icon_state = "intact"
 	},
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -1818,7 +1799,6 @@
 "aev" = (
 /obj/machinery/iv_drip,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -1839,15 +1819,18 @@
 "aex" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
 "aey" = (
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
+	},
 /obj/structure/bed/roller,
-/obj/item/radio/intercom/general,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -1870,7 +1853,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -1887,21 +1869,18 @@
 	},
 /obj/structure/bed/roller,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
 "aeD" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
 "aeE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -1912,7 +1891,6 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -1939,7 +1917,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -2068,7 +2045,6 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
@@ -2083,7 +2059,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
@@ -2099,7 +2074,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
@@ -2118,7 +2092,6 @@
 	pixel_x = 30
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
@@ -2129,7 +2102,6 @@
 	icon_state = "2-8"
 	},
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -2150,7 +2122,6 @@
 "afc" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -2255,7 +2226,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2272,7 +2242,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2291,7 +2260,6 @@
 	icon_state = "pipe-c"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2302,7 +2270,6 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2343,7 +2310,6 @@
 	layer = 2.2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -2355,7 +2321,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -2413,16 +2378,6 @@
 	icon_state = "loadingarea"
 	},
 /area/sulaco/showers)
-"afI" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
-	},
-/area/sulaco/engineering/ce)
 "afJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -2465,7 +2420,6 @@
 	},
 /obj/item/clothing/head/welding,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
@@ -2479,7 +2433,6 @@
 	},
 /obj/item/tool/stamp/ce,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
@@ -2492,22 +2445,21 @@
 /obj/item/tool/pen,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
 "afS" = (
-/obj/machinery/light{
-	dir = 4
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	icon_state = "white"
+	icon_state = "yellowfull"
 	},
-/area/sulaco/cryosleep)
+/area/sulaco/engineering/ce)
 "afT" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -2515,7 +2467,6 @@
 	icon_state = "1-2"
 	},
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -2674,7 +2625,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2712,7 +2662,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2740,7 +2689,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2775,7 +2723,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2828,7 +2775,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -2882,7 +2828,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -2924,7 +2869,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -2965,7 +2909,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -3199,20 +3142,17 @@
 	},
 /obj/structure/closet/secure_closet/engineering_chief,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
 "agV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
 "agW" = (
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
@@ -3230,7 +3170,6 @@
 	pixel_x = 30
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
@@ -3245,7 +3184,6 @@
 "agZ" = (
 /obj/machinery/pipedispenser,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},
@@ -3254,8 +3192,7 @@
 "aha" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHWEST)"
+	icon_state = "intact"
 	},
 /turf/open/floor,
 /area/sulaco/engineering/atmos)
@@ -3355,7 +3292,6 @@
 	dir = 4
 	},
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -3425,7 +3361,6 @@
 "ahv" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -3512,7 +3447,6 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -3540,7 +3474,6 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -3563,7 +3496,6 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -3639,17 +3571,23 @@
 	},
 /area/sulaco/cryosleep)
 "ahK" = (
-/obj/structure/disposalpipe/segment{
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/item/radio/intercom/general{
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/camera/autoname{
 	dir = 8
 	},
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	icon_state = "white"
 	},
-/area/sulaco/cargo)
+/area/sulaco/cryosleep)
 "ahL" = (
 /obj/machinery/light{
 	dir = 8;
@@ -3765,24 +3703,21 @@
 	dir = 8
 	},
 /area/sulaco/cargo)
-"ahY" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/item/radio/intercom/general,
-/turf/open/floor{
-	icon_state = "white"
-	},
-/area/sulaco/medbay/surgery_two)
 "ahZ" = (
-/obj/structure/bed/chair,
-/obj/item/radio/intercom/general,
-/turf/open/floor{
-	icon_state = "white"
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/area/sulaco/medbay)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "vault";
+	dir = 8
+	},
+/area/sulaco/cargo)
 "aia" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -3885,16 +3820,21 @@
 	},
 /area/sulaco/medbay/surgery_two)
 "aim" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/sulaco/cryosleep)
+/area/sulaco/medbay/surgery_two)
 "ain" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/sink{
@@ -3931,7 +3871,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/bodyscanner,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -3949,7 +3888,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -3968,24 +3906,21 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
 "aiv" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/bed/chair,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
 /turf/open/floor{
 	icon_state = "white"
 	},
-/turf/closed/shuttle{
-	dir = 1;
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/cryosleep)
+/area/sulaco/medbay)
 "aiw" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/camera/autoname,
@@ -3996,14 +3931,12 @@
 "aix" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
 "aiy" = (
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -4152,18 +4085,13 @@
 	},
 /area/sulaco/cryosleep)
 "aiN" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
 	},
-/obj/item/megaphone,
-/obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 4
+/turf/open/floor{
+	icon_state = "white"
 	},
-/turf/open/floor,
-/area/sulaco/cargo/office)
+/area/sulaco/cryosleep)
 "aiO" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -4535,7 +4463,6 @@
 	dir = 4
 	},
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -4621,14 +4548,12 @@
 	},
 /obj/machinery/iv_drip,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
 "ajE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -4686,7 +4611,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -4705,7 +4629,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -4723,7 +4646,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5012,7 +4934,6 @@
 	dir = 9
 	},
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -5144,7 +5065,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -5161,7 +5081,6 @@
 "akF" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -5212,7 +5131,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5234,7 +5152,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5257,7 +5174,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5282,7 +5198,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5575,7 +5490,6 @@
 "alw" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -5702,7 +5616,6 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -5717,7 +5630,6 @@
 "alK" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -5738,7 +5650,6 @@
 	density = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
@@ -5791,7 +5702,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5833,7 +5743,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5852,7 +5761,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5868,7 +5776,6 @@
 "alW" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -5936,24 +5843,19 @@
 /turf/open/floor/plating,
 /area/sulaco/briefing)
 "amd" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
-/obj/machinery/computer/security/wooden_tv,
-/obj/structure/table/reinforced{
-	icon_state = "table"
-	},
 /obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/open/floor{
-	dir = 4;
-	icon_state = "yellowpatch"
+	icon_state = "white"
 	},
-/area/sulaco/engineering)
+/turf/closed/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/cryosleep)
 "ame" = (
 /obj/structure/table,
 /obj/item/flashlight/flare,
@@ -6109,12 +6011,20 @@
 	},
 /area/sulaco/showers)
 "amw" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor,
-/turf/closed/shuttle{
-	icon_state = "diagonalWall3"
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
 	},
-/area/sulaco/briefing)
+/obj/item/megaphone,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = -30
+	},
+/turf/open/floor,
+/area/sulaco/cargo/office)
 "amx" = (
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -6295,9 +6205,30 @@
 	},
 /area/sulaco/engineering)
 "amM" = (
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/plating,
-/area/sulaco/cargo)
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/obj/machinery/computer/security/wooden_tv,
+/obj/structure/table/reinforced{
+	icon_state = "table"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor{
+	dir = 4;
+	icon_state = "yellowpatch"
+	},
+/area/sulaco/engineering)
 "amN" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -6437,23 +6368,6 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/medbay/west)
-"anc" = (
-/obj/structure/table/reinforced{
-	icon_state = "table"
-	},
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/electrical,
-/obj/item/clothing/glasses/welding,
-/obj/effect/spawner/random/toolbox,
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "yellowpatch"
-	},
-/area/sulaco/engineering)
 "and" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 2
@@ -6471,7 +6385,6 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -6498,7 +6411,6 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
@@ -6646,10 +6558,12 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "ans" = (
-/obj/machinery/camera/autoname,
-/obj/item/radio/intercom/general,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor,
-/area/sulaco/hallway/central_hall)
+/turf/closed/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/briefing)
 "ant" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -6866,9 +6780,15 @@
 /turf/open/floor/plating,
 /area/sulaco/cargo)
 "anN" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor,
-/area/sulaco/briefing)
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/vending/marine/cargo_guns,
+/turf/open/floor/plating,
+/area/sulaco/cargo)
 "anO" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor{
@@ -6895,9 +6815,19 @@
 	},
 /area/sulaco/engineering)
 "anQ" = (
-/obj/item/radio/intercom/general,
-/turf/open/floor,
-/area/sulaco/briefing)
+/obj/structure/table/reinforced{
+	icon_state = "table"
+	},
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/clothing/glasses/welding,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor{
+	dir = 4;
+	icon_state = "yellowpatch"
+	},
+/area/sulaco/engineering)
 "anR" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -6928,7 +6858,6 @@
 "anU" = (
 /obj/structure/sign/prop1,
 /turf/closed/shuttle{
-	tag = "icon-wall3 (EAST)";
 	icon_state = "wall3";
 	dir = 4
 	},
@@ -6944,7 +6873,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -6957,7 +6885,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -6990,7 +6917,6 @@
 /obj/item/ammo_magazine/smg/m39,
 /obj/item/ammo_magazine/smg/m39,
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -7060,14 +6986,15 @@
 /turf/open/floor,
 /area/sulaco/hallway/central_hall)
 "aoj" = (
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
-/turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
-	},
-/area/sulaco/cargo/office)
+/obj/machinery/camera/autoname,
+/turf/open/floor,
+/area/sulaco/hallway/central_hall)
 "aok" = (
 /obj/structure/sign/greencross{
 	icon_state = "lifestar";
@@ -7170,13 +7097,18 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
 "aoy" = (
-/obj/item/radio/intercom/general,
-/turf/open/floor{
-	tag = "icon-whitered (NORTH)";
-	icon_state = "whitered";
-	dir = 1
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
-/area/sulaco/bridge)
+/turf/open/floor,
+/turf/closed/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/briefing)
 "aoz" = (
 /obj/machinery/alarm,
 /turf/open/floor,
@@ -7211,15 +7143,13 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "aoF" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
-/obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 4
-	},
+/obj/machinery/camera/autoname,
 /turf/open/floor,
 /area/sulaco/briefing)
 "aoG" = (
@@ -7376,7 +7306,6 @@
 "aoY" = (
 /obj/item/tool/hand_labeler,
 /turf/open/floor{
-	tag = "icon-platebot";
 	icon_state = "platebot"
 	},
 /area/sulaco/cargo)
@@ -7384,18 +7313,14 @@
 /turf/open/floor/plating,
 /area/sulaco/cargo/office)
 "apa" = (
-/obj/structure/table/reinforced{
-	icon_state = "table"
-	},
-/obj/item/storage/box/uscm_mre,
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
+	icon_state = "platebot"
 	},
-/area/sulaco/cafeteria)
+/area/sulaco/cargo/office)
 "apb" = (
 /obj/machinery/door/airlock/glass_engineering{
 	name = "Engineering Workshop";
@@ -7494,7 +7419,6 @@
 	},
 /obj/structure/table,
 /turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
 	icon_state = "whitered";
 	dir = 9
 	},
@@ -7503,7 +7427,6 @@
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
 /turf/open/floor{
-	tag = "icon-whitered (NORTH)";
 	icon_state = "whitered";
 	dir = 1
 	},
@@ -7511,29 +7434,28 @@
 "app" = (
 /obj/machinery/alarm,
 /turf/open/floor{
-	tag = "icon-whitered (NORTH)";
 	icon_state = "whitered";
 	dir = 1
 	},
 /area/sulaco/bridge)
 "apq" = (
-/obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tech_supply,
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 28
 	},
-/turf/open/floor,
-/area/sulaco/cargo/office)
+/turf/open/floor{
+	icon_state = "whitered";
+	dir = 1
+	},
+/area/sulaco/bridge)
 "apr" = (
 /obj/structure/closet/walllocker/emerglocker,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-whitered (NORTH)";
 	icon_state = "whitered";
 	dir = 1
 	},
@@ -7548,7 +7470,6 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor{
-	tag = "icon-rampbottom (WEST)";
 	icon_state = "rampbottom";
 	dir = 8
 	},
@@ -7556,21 +7477,18 @@
 "apt" = (
 /obj/machinery/status_display,
 /turf/open/floor{
-	tag = "icon-whitered (NORTH)";
 	icon_state = "whitered";
 	dir = 1
 	},
 /area/sulaco/bridge)
 "apu" = (
 /turf/open/floor{
-	tag = "icon-whitered (NORTH)";
 	icon_state = "whitered";
 	dir = 1
 	},
 /area/sulaco/bridge)
 "apv" = (
 /turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
 	icon_state = "whitered";
 	dir = 5
 	},
@@ -7699,8 +7617,7 @@
 "apH" = (
 /turf/open/floor{
 	dir = 4;
-	icon_state = "loadingarea";
-	tag = "loading"
+	icon_state = "loadingarea"
 	},
 /area/sulaco/hallway/central_hall2)
 "apI" = (
@@ -7946,17 +7863,21 @@
 	},
 /area/sulaco/cafeteria)
 "aqh" = (
-/obj/structure/closet/crate/freezer/rations,
-/obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
-	icon_state = "bulb1";
-	dir = 4
+/obj/structure/table/reinforced{
+	icon_state = "table"
 	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/item/storage/box/uscm_mre,
 /turf/open/floor{
-	tag = "icon-platebot";
-	icon_state = "platebot"
+	icon_state = "cafeteria";
+	dir = 2
 	},
-/area/sulaco/cargo)
+/area/sulaco/cafeteria)
 "aqi" = (
 /obj/structure/table,
 /obj/effect/spawner/random/tech_supply,
@@ -7974,14 +7895,19 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "aql" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/structure/table,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
 /turf/open/floor,
-/area/sulaco/hallway/central_hall2)
+/area/sulaco/cargo/office)
 "aqm" = (
 /obj/machinery/computer/ordercomp,
 /turf/open/floor,
@@ -8021,7 +7947,6 @@
 	dir = 8
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -8033,7 +7958,6 @@
 	},
 /obj/structure/closet/crate/internals,
 /turf/open/floor{
-	tag = "icon-platebot";
 	icon_state = "platebot"
 	},
 /area/sulaco/cargo)
@@ -8052,17 +7976,11 @@
 /turf/open/floor/plating,
 /area/sulaco/cargo)
 "aqu" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2
-	},
-/obj/item/radio/intercom/general,
+/obj/structure/closet/crate/freezer/rations,
 /turf/open/floor{
-	dir = 4;
-	icon_state = "loadingarea";
-	tag = "loading"
+	icon_state = "platebot"
 	},
-/area/sulaco/hallway/central_hall3)
+/area/sulaco/cargo)
 "aqv" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor{
@@ -8203,7 +8121,6 @@
 	},
 /obj/structure/table,
 /turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
 	icon_state = "whitered";
 	dir = 9
 	},
@@ -8216,7 +8133,6 @@
 	layer = 2.1
 	},
 /turf/open/floor{
-	tag = "icon-whiteredcorner (NORTH)";
 	icon_state = "whiteredcorner";
 	dir = 1
 	},
@@ -8266,7 +8182,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-rampbottom (WEST)";
 	icon_state = "rampbottom";
 	dir = 8
 	},
@@ -8301,7 +8216,6 @@
 	pixel_y = 30
 	},
 /turf/open/floor{
-	tag = "icon-whiteredcorner (EAST)";
 	icon_state = "whiteredcorner";
 	dir = 4
 	},
@@ -8311,7 +8225,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitered (NORTHEAST)";
 	icon_state = "whitered";
 	dir = 5
 	},
@@ -8696,7 +8609,6 @@
 "arI" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor{
-	tag = "icon-platebot";
 	icon_state = "platebot"
 	},
 /area/sulaco/cargo)
@@ -8715,7 +8627,6 @@
 "arL" = (
 /obj/structure/closet/crate/medical,
 /turf/open/floor{
-	tag = "icon-platebot";
 	icon_state = "platebot"
 	},
 /area/sulaco/cargo)
@@ -8916,11 +8827,9 @@
 /obj/structure/table,
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-15";
-	pixel_y = 10;
-	tag = "icon-plant-15"
+	pixel_y = 10
 	},
 /turf/open/floor{
-	tag = "icon-whitered (NORTHWEST)";
 	icon_state = "whitered";
 	dir = 9
 	},
@@ -8931,14 +8840,12 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-whitered (NORTH)";
 	icon_state = "whitered";
 	dir = 1
 	},
 /area/sulaco/bridge)
 "asb" = (
 /turf/open/floor{
-	tag = "icon-whiteredcorner (NORTH)";
 	icon_state = "whiteredcorner";
 	dir = 1
 	},
@@ -8984,7 +8891,6 @@
 	},
 /obj/machinery/computer/security,
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -9002,7 +8908,6 @@
 	icon_state = "tube1"
 	},
 /turf/open/floor{
-	tag = "icon-whitered (EAST)";
 	icon_state = "whitered";
 	dir = 4
 	},
@@ -9167,25 +9072,17 @@
 /turf/open/floor,
 /area/sulaco/hallway/central_hall2)
 "asB" = (
-/obj/machinery/light{
-	dir = 4
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
-/obj/machinery/camera/autoname{
-	dir = 8
+/turf/open/floor,
+/turf/closed/shuttle{
+	icon_state = "diagonalWall3"
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "bot";
-	dir = 1
-	},
-/area/sulaco/hallway/central_hall3)
+/area/sulaco/hallway/central_hall2)
 "asC" = (
 /obj/structure/window/reinforced{
 	dir = 5
@@ -9577,7 +9474,6 @@
 	},
 /obj/machinery/computer/station_alert,
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -9606,7 +9502,6 @@
 	},
 /obj/machinery/computer/security,
 /turf/open/floor{
-	tag = "icon-whitegreenfull (NORTHEAST)";
 	icon_state = "whitegreenfull";
 	dir = 5
 	},
@@ -9619,7 +9514,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
@@ -9642,7 +9536,6 @@
 	req_access_txt = "19"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
@@ -9656,16 +9549,14 @@
 	},
 /obj/machinery/computer/crew,
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
 /area/sulaco/bridge)
 "ato" = (
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced,
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -9736,7 +9627,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-whitered (EAST)";
 	icon_state = "whitered";
 	dir = 4
 	},
@@ -10445,15 +10335,15 @@
 	},
 /area/sulaco/hallway/central_hall3)
 "auD" = (
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4;
+	layer = 2
 	},
-/obj/item/radio/intercom/general,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 4;
+	icon_state = "loadingarea"
 	},
-/area/sulaco/hallway/central_hall)
+/area/sulaco/hallway/central_hall3)
 "auE" = (
 /obj/structure/table/reinforced{
 	icon_state = "table";
@@ -10554,7 +10444,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/smes)
@@ -10656,12 +10545,11 @@
 /turf/open/floor/plating/airless,
 /area/sulaco/engineering/engine)
 "auU" = (
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -10695,9 +10583,8 @@
 	icon_state = "1-2";
 	layer = 2.2
 	},
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /turf/open/floor{
-	tag = "icon-whitegreenfull (NORTHEAST)";
 	icon_state = "whitegreenfull";
 	dir = 5
 	},
@@ -10708,7 +10595,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
@@ -10732,14 +10618,12 @@
 	req_access_txt = "19"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
 /area/sulaco/bridge)
 "ava" = (
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
@@ -10751,7 +10635,6 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor{
-	tag = "icon-rampbottom (WEST)";
 	icon_state = "rampbottom";
 	dir = 8
 	},
@@ -10797,7 +10680,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-whitered (EAST)";
 	icon_state = "whitered";
 	dir = 4
 	},
@@ -11310,13 +11192,11 @@
 	pixel_y = 30
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
 "awe" = (
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -11339,7 +11219,6 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -11353,7 +11232,6 @@
 /obj/machinery/camera/autoname,
 /obj/item/storage/firstaid/toxin,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -11402,7 +11280,6 @@
 "awj" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/structure/cable{
-	tag = "icon-4-8";
 	icon_state = "4-8";
 	d2 = 8
 	},
@@ -11478,7 +11355,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -11509,7 +11385,6 @@
 	dir = 10
 	},
 /turf/open/floor{
-	tag = "icon-whitegreenfull (NORTHEAST)";
 	icon_state = "whitegreenfull";
 	dir = 5
 	},
@@ -11520,7 +11395,6 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
@@ -11529,7 +11403,6 @@
 /obj/structure/window/reinforced,
 /obj/structure/table,
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
@@ -11541,18 +11414,16 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/security,
 /turf/open/floor{
-	tag = "icon-whitebluefull (NORTHEAST)";
 	icon_state = "whitebluefull";
 	dir = 5
 	},
 /area/sulaco/bridge)
 "aww" = (
-/obj/machinery/computer/overwatch,
+/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -11621,7 +11492,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whitered (EAST)";
 	icon_state = "whitered";
 	dir = 4
 	},
@@ -12677,17 +12547,31 @@
 	},
 /area/sulaco/hallway/central_hall3)
 "axX" = (
-/obj/structure/table/reinforced,
-/obj/item/book/manual/supermatter_engine,
-/obj/item/clothing/glasses/meson,
-/obj/item/radio/intercom/general{
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor{
-	tag = "icon-yellowfull";
-	icon_state = "yellowfull"
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/area/sulaco/engineering)
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "bot";
+	dir = 1
+	},
+/area/sulaco/hallway/central_hall3)
 "axY" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -12790,7 +12674,6 @@
 	pixel_y = 3
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -12803,7 +12686,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -12816,7 +12698,6 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -12846,8 +12727,7 @@
 "ayh" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHEAST)"
+	icon_state = "intact"
 	},
 /obj/structure/rack,
 /obj/item/tool/wrench,
@@ -12921,8 +12801,7 @@
 	initialize_directions = 2;
 	on = 1;
 	pressure_checks = 0;
-	pump_direction = 0;
-	tag = "icon-map_vent_in (WEST)"
+	pump_direction = 0
 	},
 /turf/open/floor/plating/airless,
 /area/sulaco/engineering/engine)
@@ -12961,11 +12840,9 @@
 /obj/structure/table,
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-23";
-	pixel_y = 12;
-	tag = "icon-plant-23"
+	pixel_y = 12
 	},
 /turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
 	icon_state = "whitered";
 	dir = 10
 	},
@@ -12974,14 +12851,12 @@
 /obj/structure/table,
 /obj/machinery/light,
 /turf/open/floor{
-	tag = "icon-whitered";
 	icon_state = "whitered";
 	dir = 2
 	},
 /area/sulaco/bridge)
 "ays" = (
 /turf/open/floor{
-	tag = "icon-whiteredcorner (WEST)";
 	icon_state = "whiteredcorner";
 	dir = 8
 	},
@@ -13012,7 +12887,6 @@
 /obj/structure/window/reinforced,
 /obj/machinery/computer/security,
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -13417,7 +13291,6 @@
 	amount = 50
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -13430,7 +13303,6 @@
 	sensors = list("core_sensor" = "Tank")
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -13464,7 +13336,6 @@
 	req_access_txt = "7"
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -13474,7 +13345,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -13563,7 +13433,6 @@
 	},
 /obj/item/storage/donut_box,
 /turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
 	icon_state = "whitered";
 	dir = 10
 	},
@@ -13602,7 +13471,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-rampbottom (WEST)";
 	icon_state = "rampbottom";
 	dir = 8
 	},
@@ -13618,14 +13486,12 @@
 /area/sulaco/bridge)
 "azE" = (
 /turf/open/floor{
-	tag = "icon-whiteredcorner (NORTHEAST)";
 	icon_state = "whiteredcorner";
 	dir = 5
 	},
 /area/sulaco/bridge)
 "azF" = (
 /turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
 	icon_state = "whitered";
 	dir = 6
 	},
@@ -13752,13 +13618,20 @@
 	},
 /area/sulaco/hallway/central_hall)
 "azS" = (
-/obj/machinery/light,
-/turf/open/floor{
-	tag = "icon-whitered";
-	icon_state = "whitered";
-	dir = 2
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
-/area/sulaco/bridge)
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "red";
+	dir = 1
+	},
+/area/sulaco/hallway/central_hall)
 "azT" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -14141,7 +14014,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -14150,25 +14022,23 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
 "aAG" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
+/obj/structure/table/reinforced,
+/obj/item/book/manual/supermatter_engine,
+/obj/item/clothing/glasses/meson,
 /turf/open/floor{
-	tag = "icon-whitered (SOUTHEAST)";
-	icon_state = "whitered";
-	dir = 6
+	icon_state = "yellowfull"
 	},
-/area/sulaco/bridge)
+/area/sulaco/engineering)
 "aAH" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/light{
@@ -14193,8 +14063,7 @@
 "aAI" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHEAST)"
+	icon_state = "intact"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
@@ -14239,7 +14108,6 @@
 "aAN" = (
 /obj/structure/table,
 /turf/open/floor{
-	tag = "icon-whitered (SOUTHWEST)";
 	icon_state = "whitered";
 	dir = 10
 	},
@@ -14255,7 +14123,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-whitered";
 	icon_state = "whitered";
 	dir = 2
 	},
@@ -14267,22 +14134,10 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitered";
 	icon_state = "whitered";
 	dir = 2
 	},
 /area/sulaco/bridge)
-"aAQ" = (
-/obj/machinery/computer{
-	name = "Shield Wall Generator - Remove Me"
-	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/engineering/storage)
 "aAR" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -14293,7 +14148,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-whitered";
 	icon_state = "whitered";
 	dir = 2
 	},
@@ -14310,26 +14164,25 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor{
-	tag = "icon-rampbottom (WEST)";
 	icon_state = "rampbottom";
 	dir = 8
 	},
 /area/sulaco/bridge)
 "aAT" = (
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -30
+	},
 /obj/machinery/light,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+/turf/open/floor{
+	icon_state = "whitered";
+	dir = 2
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/carpet,
-/area/sulaco/cap_office)
+/area/sulaco/bridge)
 "aAU" = (
 /turf/open/floor{
-	tag = "icon-whitered";
 	icon_state = "whitered";
 	dir = 2
 	},
@@ -14341,17 +14194,21 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor{
-	tag = "icon-whitered";
 	icon_state = "whitered";
 	dir = 2
 	},
 /area/sulaco/bridge)
 "aAW" = (
-/obj/item/radio/intercom/general{
-	dir = 1
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/open/floor,
-/area/sulaco/briefing)
+/turf/open/floor{
+	icon_state = "whitered";
+	dir = 6
+	},
+/area/sulaco/bridge)
 "aAX" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -14573,8 +14430,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
 	dir = 4;
-	icon_state = "loadingarea";
-	tag = "loading"
+	icon_state = "loadingarea"
 	},
 /area/sulaco/hallway/central_hall2)
 "aBp" = (
@@ -14805,15 +14661,19 @@
 	},
 /area/sulaco/engineering/storage)
 "aBT" = (
-/obj/machinery/computer/squad_changer{
-	density = 0
+/obj/machinery/computer{
+	name = "Shield Wall Generator - Remove Me"
 	},
-/obj/structure/table/reinforced,
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/turf/open/floor/carpet,
-/area/sulaco/cap_office)
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/engineering/storage)
 "aBU" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor,
@@ -14876,7 +14736,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -14885,7 +14744,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -14894,7 +14752,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -14903,7 +14760,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -14912,7 +14768,6 @@
 	pixel_y = 32
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -14946,7 +14801,6 @@
 /area/sulaco/engineering/engine)
 "aCg" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHEAST)";
 	icon_state = "intact";
 	dir = 5
 	},
@@ -14955,8 +14809,7 @@
 "aCh" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHWEST)"
+	icon_state = "intact"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
@@ -15015,7 +14868,6 @@
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northleft,
 /turf/open/floor{
-	tag = "icon-bcircuit";
 	icon_state = "bcircuit";
 	dir = 2
 	},
@@ -15028,7 +14880,6 @@
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northright,
 /turf/open/floor{
-	tag = "icon-bcircuit";
 	icon_state = "bcircuit";
 	dir = 2
 	},
@@ -15068,7 +14919,6 @@
 	},
 /obj/machinery/door/window/northright,
 /turf/open/floor{
-	tag = "icon-bcircuit";
 	icon_state = "bcircuit";
 	dir = 2
 	},
@@ -15084,7 +14934,6 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -15095,7 +14944,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -15109,7 +14957,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-whiteredfull";
 	icon_state = "whiteredfull";
 	dir = 2
 	},
@@ -15158,9 +15005,23 @@
 /turf/open/floor/carpet,
 /area/sulaco/cap_office)
 "aCx" = (
-/obj/item/radio/intercom/general,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/south_solar_maint)
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -30
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/carpet,
+/area/sulaco/cap_office)
 "aCy" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -15268,14 +15129,14 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "aCL" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 10
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -30
 	},
 /turf/open/floor,
-/turf/closed/shuttle{
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/marine)
+/area/sulaco/briefing)
 "aCM" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/sulaco,
@@ -15424,7 +15285,6 @@
 "aDc" = (
 /obj/structure/closet/radiation,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -15433,14 +15293,12 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
 "aDe" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -15454,7 +15312,6 @@
 	specialfunctions = 4
 	},
 /turf/open/floor{
-	tag = "icon-yellowfull";
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering)
@@ -15497,15 +15354,12 @@
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aDk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/machinery/computer/squad_changer{
+	density = 0
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/sulaco/engineering/storage)
+/obj/structure/table/reinforced,
+/turf/open/floor/carpet,
+/area/sulaco/cap_office)
 "aDl" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/bridge/maint)
@@ -15707,7 +15561,6 @@
 	req_access_txt = "0"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16062,7 +15915,6 @@
 "aEq" = (
 /obj/machinery/vending/security,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16073,7 +15925,6 @@
 /obj/item/flash,
 /obj/item/clothing/glasses/sunglasses,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16084,7 +15935,6 @@
 /obj/item/reagent_container/spray/pepper,
 /obj/item/clothing/glasses/sunglasses,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16094,7 +15944,6 @@
 	},
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16103,7 +15952,6 @@
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/handcuffs,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16111,7 +15959,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/vending/security,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16120,7 +15967,6 @@
 /area/sulaco/brig)
 "aEx" = (
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16138,7 +15984,6 @@
 	req_access_txt = "3"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16147,14 +15992,12 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aEA" = (
 /obj/machinery/computer/secure_data,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16164,7 +16007,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/hailer,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16177,7 +16019,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/item/hailer,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16193,7 +16034,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16225,14 +16065,14 @@
 	},
 /area/sulaco/maintenance/south_solar_maint)
 "aEI" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/turf/open/floor,
-/area/sulaco/hallway/central_hall3)
+/turf/open/floor/plating,
+/area/sulaco/maintenance/south_solar_maint)
 "aEJ" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
@@ -16528,14 +16368,14 @@
 	},
 /area/sulaco/marine)
 "aFj" = (
-/obj/structure/bed,
-/obj/item/bedsheet/captain,
-/obj/item/storage/belt/champion,
-/obj/item/radio/intercom/general{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 10
 	},
-/turf/open/floor/wood,
-/area/sulaco/cap_office)
+/turf/open/floor,
+/turf/closed/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/marine)
 "aFk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -16581,23 +16421,18 @@
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
 "aFq" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 4
-	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "blue"
-	},
-/area/sulaco/marine/delta)
+/turf/open/floor/plating,
+/area/sulaco/engineering/storage)
 "aFr" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
@@ -16662,13 +16497,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
-"aFA" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor,
-/area/sulaco/marine/delta)
 "aFB" = (
 /obj/structure/table/woodentable,
 /obj/item/paper_bin{
@@ -16731,7 +16559,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16741,7 +16568,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16754,14 +16580,12 @@
 	req_access_txt = "3"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aFL" = (
 /obj/machinery/computer/security,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16775,14 +16599,12 @@
 /obj/item/weapon/baton,
 /obj/item/hailer,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aFN" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16804,7 +16626,6 @@
 	req_access_txt = "3"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -16961,8 +16782,7 @@
 	icon_state = "door_closed";
 	name = "Delta Squad Prep Room";
 	req_access_txt = "9";
-	req_one_access_txt = "2;18";
-	tag = "icon-door_closed (WEST)"
+	req_one_access_txt = "2;18"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 2
@@ -17052,12 +16872,17 @@
 /turf/open/floor,
 /area/sulaco/marine)
 "aGo" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
 	},
 /turf/open/floor,
-/area/sulaco/marine)
+/area/sulaco/hallway/central_hall3)
 "aGp" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
@@ -17113,10 +16938,17 @@
 /turf/open/floor/plating,
 /area/sulaco/engineering/engine)
 "aGz" = (
-/obj/structure/closet/emcloset,
-/obj/item/radio/intercom/general,
-/turf/open/floor,
-/area/sulaco/hallway/central_hall3)
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/item/storage/belt/champion,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -30
+	},
+/turf/open/floor/wood,
+/area/sulaco/cap_office)
 "aGA" = (
 /obj/structure/cable/yellow,
 /obj/machinery/camera/autoname{
@@ -17171,7 +17003,6 @@
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17179,7 +17010,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/filingcabinet/security,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17190,7 +17020,6 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17206,7 +17035,6 @@
 	req_access_txt = "3"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17218,7 +17046,6 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -17233,7 +17060,6 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17263,7 +17089,6 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17279,7 +17104,6 @@
 	icon_state = "pipe-c"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17302,7 +17126,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17335,12 +17158,19 @@
 	},
 /area/sulaco/marine/delta)
 "aGR" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor,
-/turf/closed/shuttle{
-	icon_state = "diagonalWall3"
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/area/sulaco/hallway/central_hall3)
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/sulaco/marine/delta)
 "aGS" = (
 /turf/open/floor{
 	dir = 8;
@@ -17348,18 +17178,18 @@
 	},
 /area/sulaco/marine/delta)
 "aGT" = (
-/obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/obj/item/radio/intercom/general{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
-/area/sulaco/cap_office)
+/turf/open/floor,
+/area/sulaco/marine/delta)
 "aGU" = (
 /turf/open/floor,
 /area/sulaco/marine)
@@ -17388,14 +17218,15 @@
 /turf/open/floor,
 /area/sulaco/marine)
 "aGZ" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor,
-/area/sulaco/marine/charlie)
+/area/sulaco/marine)
 "aHa" = (
 /obj/machinery/door/airlock/glass{
 	name = "Escape Pods"
@@ -17471,14 +17302,18 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/hallway/central_hall3)
 "aHk" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor,
-/area/sulaco/marine/bravo)
+/turf/closed/shuttle{
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/hallway/central_hall3)
 "aHl" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_access_txt = "0"
@@ -17564,7 +17399,6 @@
 /area/sulaco/engineering/engine)
 "aHv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	tag = "icon-intact (NORTHWEST)";
 	icon_state = "intact";
 	dir = 9
 	},
@@ -17599,7 +17433,6 @@
 "aHB" = (
 /obj/machinery/computer/forensic_scanning,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17608,7 +17441,6 @@
 	dir = 5
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17623,7 +17455,6 @@
 	pixel_y = 30
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17632,7 +17463,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17647,7 +17477,6 @@
 /obj/structure/cable/yellow,
 /obj/structure/grille,
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -17666,7 +17495,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17678,7 +17506,6 @@
 /obj/item/weapon/baton,
 /obj/item/hailer,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17693,7 +17520,6 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17707,7 +17533,6 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17719,7 +17544,6 @@
 	name = "Military Police"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -17734,7 +17558,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18048,14 +17871,12 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aIB" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18080,7 +17901,6 @@
 "aID" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18095,14 +17915,12 @@
 	pixel_y = 5
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aIF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18111,7 +17929,6 @@
 	name = "Military Police"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18187,8 +18004,7 @@
 	icon_state = "door_closed";
 	name = "Charlie Squad Prep Room";
 	req_access_txt = "9";
-	req_one_access_txt = "2;17";
-	tag = "icon-door_closed (WEST)"
+	req_one_access_txt = "2;17"
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -18255,8 +18071,7 @@
 	icon_state = "door_closed";
 	name = "Bravo Squad Prep Room";
 	req_access_txt = "9";
-	req_one_access_txt = "2;16";
-	tag = "icon-door_closed (WEST)"
+	req_one_access_txt = "2;16"
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -18327,8 +18142,7 @@
 	icon_state = "door_closed";
 	name = "Alpha Squad Prep Room";
 	req_access_txt = "9";
-	req_one_access_txt = "2;15";
-	tag = "icon-door_closed (WEST)"
+	req_one_access_txt = "2;15"
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -18420,7 +18234,6 @@
 	},
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	tag = "icon-pipe-t (EAST)";
 	icon_state = "pipe-t";
 	dir = 4
 	},
@@ -18661,11 +18474,21 @@
 	},
 /area/sulaco/cap_office)
 "aJy" = (
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11
 	},
-/turf/open/floor,
-/area/sulaco/marine/alpha)
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -30
+	},
+/turf/open/floor{
+	icon_state = "freezerfloor"
+	},
+/area/sulaco/cap_office)
 "aJz" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc{
@@ -18683,7 +18506,6 @@
 /obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/weapon/gun/shotgun/combat,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18693,7 +18515,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -18716,7 +18537,6 @@
 /obj/item/folder/red,
 /obj/item/paper_bin,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18724,7 +18544,6 @@
 /obj/structure/table/reinforced,
 /obj/item/book/manual/marine_law,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18733,7 +18552,6 @@
 /obj/item/book/manual/marine_law,
 /obj/item/tool/taperoll/police,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18745,7 +18563,6 @@
 /obj/item/tool/pen,
 /obj/item/folder/red,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18754,7 +18571,6 @@
 	dir = 6
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18764,7 +18580,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18783,7 +18598,6 @@
 	req_access_txt = "3"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18794,7 +18608,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18803,7 +18616,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -18821,7 +18633,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19020,7 +18831,6 @@
 	req_access_txt = "3"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19028,7 +18838,6 @@
 /obj/structure/table/reinforced,
 /obj/item/tool/pen,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19037,7 +18846,6 @@
 /obj/item/clipboard,
 /obj/item/taperecorder,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19049,7 +18857,6 @@
 /obj/item/folder/red,
 /obj/item/tool/taperoll/police,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19063,7 +18870,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19072,7 +18878,6 @@
 	dir = 9
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19105,7 +18910,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19117,7 +18921,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19254,12 +19057,17 @@
 	},
 /area/sulaco/marine/alpha)
 "aKO" = (
-/obj/item/radio/intercom/general,
-/turf/open/floor{
-	tag = "icon-floor4";
-	icon_state = "floor4"
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/area/sulaco/brig)
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor,
+/area/sulaco/marine/alpha)
 "aKP" = (
 /obj/machinery/door/airlock/hatch{
 	name = "EVA";
@@ -19298,7 +19106,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19320,7 +19127,6 @@
 "aKW" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -19343,7 +19149,6 @@
 "aKX" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -19366,7 +19171,6 @@
 "aKY" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -19405,7 +19209,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19416,7 +19219,6 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -19439,7 +19241,6 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -19509,15 +19310,17 @@
 	},
 /area/sulaco/marine/charlie)
 "aLj" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/turf/open/space,
-/turf/closed/shuttle{
-	dir = 1;
-	icon_state = "diagonalWall3"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
 	},
-/area/space)
+/turf/open/floor,
+/area/sulaco/marine/charlie)
 "aLk" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -19528,15 +19331,17 @@
 	},
 /area/sulaco/marine/bravo)
 "aLl" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/machinery/chem_dispenser,
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/turf/open/floor{
-	icon_state = "white"
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
 	},
-/area/sulaco/research)
+/turf/open/floor,
+/area/sulaco/marine/bravo)
 "aLm" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -19555,16 +19360,6 @@
 	dir = 8
 	},
 /area/sulaco/marine/alpha)
-"aLo" = (
-/obj/structure/table,
-/obj/item/radio/intercom/general{
-	dir = 8
-	},
-/turf/open/floor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/sulaco/morgue)
 "aLp" = (
 /obj/machinery/light,
 /turf/open/floor,
@@ -19646,7 +19441,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19820,36 +19614,20 @@
 	},
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aLT" = (
 /obj/machinery/light,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
-"aLU" = (
-/obj/structure/morgue{
-	icon_state = "morgue1";
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "cult";
-	dir = 2
-	},
-/area/sulaco/morgue)
 "aLV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19860,7 +19638,6 @@
 	layer = 2
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -19872,7 +19649,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20090,7 +19866,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20101,7 +19876,6 @@
 /obj/machinery/camera/autoname,
 /obj/item/book/manual/marine_law,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20111,7 +19885,6 @@
 	req_access_txt = "3"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20134,7 +19907,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20144,7 +19916,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	tag = "icon-rwindow (NORTH)";
 	icon_state = "rwindow";
 	dir = 1
 	},
@@ -20184,7 +19955,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20208,7 +19978,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20232,7 +20001,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20256,7 +20024,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20282,7 +20049,6 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20408,7 +20174,6 @@
 	pixel_x = -30
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20430,20 +20195,20 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aNk" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/machinery/vending/medical,
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = 30
 	},
 /turf/open/floor{
-	icon_state = "white"
+	icon_state = "floor4"
 	},
-/area/sulaco/research)
+/area/sulaco/brig)
 "aNl" = (
 /obj/machinery/flasher{
 	id = "Cell 1";
@@ -20452,7 +20217,6 @@
 	pixel_x = 30
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20464,7 +20228,6 @@
 	pixel_x = 30
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20476,7 +20239,6 @@
 	pixel_x = 30
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20488,7 +20250,6 @@
 	pixel_x = 30
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20500,7 +20261,6 @@
 	pixel_x = 30
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20510,7 +20270,6 @@
 	dir = 5
 	},
 /turf/open/floor{
-	tag = "icon-floorgrime (EAST)";
 	icon_state = "floorgrime";
 	dir = 4
 	},
@@ -20524,7 +20283,6 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-floorgrime (EAST)";
 	icon_state = "floorgrime";
 	dir = 4
 	},
@@ -20534,7 +20292,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-floorgrime (EAST)";
 	icon_state = "floorgrime";
 	dir = 4
 	},
@@ -20549,7 +20306,6 @@
 	},
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor{
-	tag = "icon-floorgrime (EAST)";
 	icon_state = "floorgrime";
 	dir = 4
 	},
@@ -20687,14 +20443,12 @@
 "aNJ" = (
 /obj/structure/bed,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aNK" = (
 /obj/structure/closet/secure_closet/brig,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20730,7 +20484,6 @@
 	pixel_y = -4
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20739,7 +20492,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20747,7 +20499,6 @@
 /obj/machinery/light/small,
 /obj/structure/bed,
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20757,7 +20508,6 @@
 	name = "Cell 1"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20767,7 +20517,6 @@
 	name = "Cell 2"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20777,7 +20526,6 @@
 	name = "Cell 3"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20787,7 +20535,6 @@
 	name = "Cell 4"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
@@ -20797,14 +20544,12 @@
 	name = "Cell 5"
 	},
 /turf/open/floor{
-	tag = "icon-floor4";
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
 "aNT" = (
 /obj/structure/window/reinforced,
 /turf/open/floor{
-	tag = "icon-floorgrimecaution";
 	icon_state = "floorgrimecaution";
 	dir = 2
 	},
@@ -20815,7 +20560,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	tag = "icon-floorgrimecaution";
 	icon_state = "floorgrimecaution";
 	dir = 2
 	},
@@ -20830,7 +20574,6 @@
 	req_access_txt = "1"
 	},
 /turf/open/floor{
-	tag = "icon-floorgrimecaution";
 	icon_state = "floorgrimecaution";
 	dir = 2
 	},
@@ -21098,7 +20841,6 @@
 /area/sulaco/command/eva)
 "aOw" = (
 /turf/open/floor{
-	tag = "icon-podhatch (NORTHWEST)";
 	icon_state = "podhatch";
 	dir = 9
 	},
@@ -21108,14 +20850,12 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-podhatch (NORTH)";
 	icon_state = "podhatch";
 	dir = 1
 	},
 /area/sulaco/brig)
 "aOy" = (
 /turf/open/floor{
-	tag = "icon-podhatch (NORTHEAST)";
 	icon_state = "podhatch";
 	dir = 5
 	},
@@ -21231,7 +20971,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-podhatch (WEST)";
 	icon_state = "podhatch";
 	dir = 8
 	},
@@ -21240,7 +20979,6 @@
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor{
-	tag = "icon-podhatchfloor";
 	icon_state = "podhatchfloor";
 	dir = 2
 	},
@@ -21250,7 +20988,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-podhatch (EAST)";
 	icon_state = "podhatch";
 	dir = 4
 	},
@@ -21333,14 +21070,12 @@
 	pixel_y = -32
 	},
 /turf/open/floor{
-	tag = "icon-podhatch (SOUTHWEST)";
 	icon_state = "podhatch";
 	dir = 10
 	},
 /area/sulaco/brig)
 "aOZ" = (
 /turf/open/floor{
-	tag = "icon-podhatch";
 	icon_state = "podhatch";
 	dir = 2
 	},
@@ -21350,7 +21085,6 @@
 	pixel_y = -32
 	},
 /turf/open/floor{
-	tag = "icon-podhatch (SOUTHEAST)";
 	icon_state = "podhatch";
 	dir = 6
 	},
@@ -21643,7 +21377,6 @@
 /area/sulaco/marine/alpha)
 "aPK" = (
 /turf/closed/shuttle{
-	tag = "icon-wall_space";
 	icon_state = "wall_space";
 	dir = 2
 	},
@@ -21667,14 +21400,12 @@
 /area/shuttle/escape_pod1/station)
 "aPM" = (
 /turf/closed/shuttle{
-	tag = "icon-wall_space (EAST)";
 	icon_state = "wall_space";
 	dir = 4
 	},
 /area/shuttle/escape_pod1/station)
 "aPN" = (
 /turf/closed/shuttle{
-	tag = "icon-wall_space";
 	icon_state = "wall_space";
 	dir = 2
 	},
@@ -21698,14 +21429,12 @@
 /area/shuttle/escape_pod2/station)
 "aPP" = (
 /turf/closed/shuttle{
-	tag = "icon-wall_space (EAST)";
 	icon_state = "wall_space";
 	dir = 4
 	},
 /area/shuttle/escape_pod2/station)
 "aPQ" = (
 /turf/closed/shuttle{
-	tag = "icon-wall_space";
 	icon_state = "wall_space";
 	dir = 2
 	},
@@ -21729,7 +21458,6 @@
 /area/shuttle/escape_pod3/station)
 "aPS" = (
 /turf/closed/shuttle{
-	tag = "icon-wall_space (EAST)";
 	icon_state = "wall_space";
 	dir = 4
 	},
@@ -21830,20 +21558,17 @@
 "aQk" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (EAST)";
 	icon_state = "diagrasputin";
 	dir = 4
 	},
 /area/shuttle/drop2/sulaco)
 "aQl" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
 "aQm" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin8";
 	icon_state = "rasputin8"
 	},
 /area/shuttle/drop2/sulaco)
@@ -21864,20 +21589,17 @@
 	opacity = 0
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
 "aQo" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin4";
 	icon_state = "rasputin4"
 	},
 /area/shuttle/drop2/sulaco)
 "aQp" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (NORTH)";
 	icon_state = "diagrasputin";
 	dir = 1
 	},
@@ -21953,13 +21675,11 @@
 /area/sulaco/morgue)
 "aQB" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/shuttle/drop2/sulaco)
 "aQC" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin9";
 	icon_state = "rasputin9"
 	},
 /area/shuttle/drop2/sulaco)
@@ -21969,13 +21689,11 @@
 	},
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
 "aQE" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/shuttle/drop2/sulaco)
@@ -22025,13 +21743,15 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
 "aQM" = (
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
 	},
-/turf/open/floor{
-	icon_state = "white"
+/turf/open/space,
+/turf/closed/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
 	},
-/area/sulaco/research)
+/area/space)
 "aQN" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
@@ -22098,41 +21818,34 @@
 /area/shuttle/drop2/sulaco)
 "aQT" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (EAST)";
 	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
 "aQU" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/shuttle/drop2/sulaco)
 "aQV" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/shuttle/drop2/sulaco)
 "aQW" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
 /area/shuttle/drop2/sulaco)
 "aQX" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
@@ -22164,7 +21877,6 @@
 "aRa" = (
 /obj/machinery/vending/medical,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/hangar)
@@ -22183,7 +21895,6 @@
 /obj/machinery/computer/operating,
 /obj/structure/closet/walllocker/emerglocker,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/hangar)
@@ -22271,26 +21982,22 @@
 	opacity = 0
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
 "aRp" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/shuttle/drop2/sulaco)
 "aRq" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin12";
 	icon_state = "rasputin12"
 	},
 /area/shuttle/drop2/sulaco)
 "aRr" = (
 /obj/machinery/computer/shuttle_control,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/shuttle/drop2/sulaco)
@@ -22311,7 +22018,6 @@
 	opacity = 0
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
@@ -22383,17 +22089,10 @@
 	},
 /area/sulaco/research)
 "aRB" = (
-/obj/structure/broken_apc{
-	opacity = 0
-	},
 /turf/open/floor{
-	icon_state = "vault"
+	icon_state = "white"
 	},
-/turf/closed/shuttle{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/maintenance/lower_maint)
+/area/sulaco/research)
 "aRC" = (
 /obj/machinery/camera/autoname,
 /obj/machinery/computer,
@@ -22433,17 +22132,7 @@
 	},
 /area/sulaco/research)
 "aRH" = (
-/obj/structure/table,
-/obj/item/stack/sheet/metal/large_stack{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/stack/sheet/glass{
-	amount = 30
-	},
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -22462,13 +22151,11 @@
 /area/sulaco/morgue)
 "aRK" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin4";
 	icon_state = "rasputin4"
 	},
 /area/shuttle/drop2/sulaco)
 "aRL" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin8";
 	icon_state = "rasputin8"
 	},
 /area/shuttle/drop2/sulaco)
@@ -22486,7 +22173,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/hangar)
@@ -22498,7 +22184,6 @@
 /area/sulaco/medbay/hangar)
 "aRP" = (
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/hangar)
@@ -22511,7 +22196,6 @@
 "aRR" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (EAST)";
 	icon_state = "diagrasputin";
 	dir = 4
 	},
@@ -22542,7 +22226,6 @@
 "aRT" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (NORTH)";
 	icon_state = "diagrasputin";
 	dir = 1
 	},
@@ -22704,22 +22387,18 @@
 	},
 /area/sulaco/research)
 "aSl" = (
-/obj/structure/sign/securearea{
-	name = "\improper ARMORY";
-	pixel_x = -30
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/chem_dispenser,
 /turf/open/floor{
-	icon_state = "vault"
+	icon_state = "white"
 	},
-/turf/closed/shuttle{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/research)
 "aSm" = (
 /obj/machinery/light{
 	dir = 8
@@ -22762,7 +22441,6 @@
 	pixel_y = 32
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/research)
@@ -22787,24 +22465,20 @@
 /area/sulaco/morgue)
 "aSt" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/shuttle/drop2/sulaco)
 "aSu" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin10";
 	icon_state = "rasputin10"
 	},
 /area/shuttle/drop2/sulaco)
 "aSv" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (NORTH)";
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
@@ -22816,12 +22490,10 @@
 	req_one_access_txt = "12;22"
 	},
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (NORTH)";
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
@@ -22833,7 +22505,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/hangar)
@@ -22859,7 +22530,6 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/hangar)
@@ -22889,7 +22559,6 @@
 "aSC" = (
 /obj/machinery/computer/shuttle_control,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
@@ -23088,7 +22757,6 @@
 	name = "Sulaco Chemist"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/research)
@@ -23107,26 +22775,29 @@
 	},
 /area/sulaco/morgue)
 "aTc" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 1
+/obj/machinery/light/small{
+	dir = 4
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/structure/table,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
 /turf/open/floor{
-	icon_state = "dark"
+	icon_state = "cult";
+	dir = 2
 	},
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/morgue)
 "aTd" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin";
 	icon_state = "diagrasputin"
 	},
 /area/shuttle/drop2/sulaco)
 "aTe" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/shuttle/drop2/sulaco)
@@ -23146,14 +22817,12 @@
 	icon_state = "shutter0"
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop2/sulaco)
 "aTg" = (
 /turf/open/floor/plating,
 /turf/closed/shuttle/dropship{
-	tag = "icon-diagrasputin (WEST)";
 	icon_state = "diagrasputin";
 	dir = 8
 	},
@@ -23176,7 +22845,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/hangar)
@@ -23207,7 +22875,6 @@
 	pixel_y = 6
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/hangar)
@@ -23227,12 +22894,10 @@
 /area/shuttle/drop1/sulaco)
 "aTn" = (
 /obj/structure/bed/chair/dropship/pilot{
-	tag = "icon-pilot_chair (NORTH)";
 	icon_state = "pilot_chair";
 	dir = 1
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
@@ -23352,7 +23017,6 @@
 /area/sulaco/research)
 "aTB" = (
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/research)
@@ -23363,20 +23027,6 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"aTD" = (
-/obj/structure/sign/securearea{
-	name = "\improper ARMORY";
-	pixel_x = -30
-	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
-/turf/open/floor{
-	icon_state = "vault"
-	},
-/turf/closed/shuttle{
-	dir = 1;
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/hallway/lower_main_hall)
 "aTE" = (
 /turf/open/floor/plating{
 	icon_state = "warnplate";
@@ -23417,19 +23067,16 @@
 /area/sulaco/medbay/hangar)
 "aTJ" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin_nose";
 	icon_state = "rasputin_nose"
 	},
 /area/shuttle/drop1/sulaco)
 "aTK" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin_light";
 	icon_state = "rasputin_light"
 	},
 /area/shuttle/drop1/sulaco)
 "aTL" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin8";
 	icon_state = "rasputin8"
 	},
 /area/shuttle/drop1/sulaco)
@@ -23440,19 +23087,16 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
 "aTN" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin4";
 	icon_state = "rasputin4"
 	},
 /area/shuttle/drop1/sulaco)
 "aTO" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin10";
 	icon_state = "rasputin10"
 	},
 /area/shuttle/drop1/sulaco)
@@ -23558,16 +23202,18 @@
 	},
 /area/sulaco/research)
 "aUb" = (
-/obj/structure/ladder{
-	height = 1;
-	icon_state = "ladderup";
-	id = "hall7"
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
 	},
-/obj/machinery/light,
+/obj/machinery/vending/medical,
 /turf/open/floor{
-	icon_state = "vault"
+	icon_state = "white"
 	},
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/research)
 "aUc" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -23601,47 +23247,39 @@
 /area/shuttle/drop1/sulaco)
 "aUh" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (EAST)";
 	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
 "aUi" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/shuttle/drop1/sulaco)
 "aUj" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/shuttle/drop1/sulaco)
 "aUk" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-floor8";
 	icon_state = "floor8"
 	},
 /area/shuttle/drop1/sulaco)
 "aUl" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
 /area/shuttle/drop1/sulaco)
 "aUm" = (
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
@@ -23733,7 +23371,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	tag = "icon-podhatch (NORTHWEST)";
 	icon_state = "podhatch";
 	dir = 9
 	},
@@ -23752,7 +23389,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor{
-	tag = "icon-podhatch (NORTHEAST)";
 	icon_state = "podhatch";
 	dir = 5
 	},
@@ -23797,11 +23433,19 @@
 	},
 /area/sulaco/research)
 "aUF" = (
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/floor/wood,
-/area/sulaco/liaison)
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/turf/open/floor{
+	icon_state = "white"
+	},
+/area/sulaco/research)
 "aUG" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/table,
@@ -23811,7 +23455,6 @@
 /obj/item/reagent_container/glass/beaker,
 /obj/item/reagent_container/glass/beaker/bluespace,
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/research)
@@ -23829,13 +23472,11 @@
 /area/sulaco/hangar)
 "aUI" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/shuttle/drop1/sulaco)
 "aUJ" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin0";
 	icon_state = "rasputin0"
 	},
 /area/shuttle/drop1/sulaco)
@@ -23913,22 +23554,17 @@
 	},
 /area/sulaco/maintenance/lower_maint)
 "aUU" = (
-/obj/structure/closet/toolcloset,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/structure/broken_apc{
+	opacity = 0
 	},
 /turf/open/floor{
-	icon_state = "dark"
+	icon_state = "vault"
 	},
-/area/sulaco/telecomms/office)
+/turf/closed/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/maintenance/lower_maint)
 "aUV" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor{
@@ -24039,21 +23675,18 @@
 	},
 /area/sulaco/research)
 "aVh" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/table,
+/obj/item/stack/sheet/metal/large_stack{
+	pixel_x = 2;
+	pixel_y = 2
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
+/obj/item/stack/sheet/glass{
+	amount = 30
 	},
-/obj/item/radio/intercom/general{
-	dir = 8
+/turf/open/floor{
+	icon_state = "white"
 	},
-/turf/open/floor/plating{
-	icon_state = "platebot"
-	},
-/area/sulaco/command/ai)
+/area/sulaco/research)
 "aVi" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/reagent_container/spray/cleaner{
@@ -24209,7 +23842,6 @@
 /area/sulaco/hangar)
 "aVz" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin2";
 	icon_state = "rasputin2"
 	},
 /area/shuttle/drop1/sulaco)
@@ -24367,7 +23999,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-whitebluefull";
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/research)
@@ -24645,15 +24276,22 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/command/armory)
 "aWw" = (
-/obj/structure/table/woodentable,
-/obj/item/book/manual/security_space_law,
-/obj/item/tool/crowbar,
-/obj/item/multitool,
-/obj/item/radio/intercom/general{
-	dir = 8
+/obj/structure/sign/securearea{
+	name = "\improper ARMORY";
+	pixel_x = -30
 	},
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters)
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor{
+	icon_state = "vault"
+	},
+/turf/closed/shuttle{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/hallway/lower_main_hall)
 "aWx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
@@ -24889,21 +24527,6 @@
 /turf/open/floor{
 	icon_state = "vault";
 	dir = 8
-	},
-/area/sulaco/hangar)
-"aWU" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
 	},
 /area/sulaco/hangar)
 "aWV" = (
@@ -25250,6 +24873,23 @@
 	icon_state = "dark"
 	},
 /area/sulaco/hallway/lower_main_hall)
+"aXH" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/hallway/lower_main_hall)
 "aXI" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -25270,13 +24910,11 @@
 /area/sulaco/hangar)
 "aXK" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin4";
 	icon_state = "rasputin4"
 	},
 /area/shuttle/drop1/sulaco)
 "aXL" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin8";
 	icon_state = "rasputin8"
 	},
 /area/shuttle/drop1/sulaco)
@@ -25514,6 +25152,20 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/command/armory)
+"aYi" = (
+/obj/structure/sign/securearea{
+	name = "\improper ARMORY";
+	pixel_x = -30
+	},
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/turf/open/floor{
+	icon_state = "vault"
+	},
+/turf/closed/shuttle{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/sulaco/hallway/lower_main_hall)
 "aYj" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor{
@@ -25553,7 +25205,6 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor{
-	tag = "icon-podhatch (NORTH)";
 	icon_state = "podhatch";
 	dir = 1
 	},
@@ -25726,13 +25377,11 @@
 /area/sulaco/hangar)
 "aYB" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin5";
 	icon_state = "rasputin5"
 	},
 /area/shuttle/drop1/sulaco)
 "aYC" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin12";
 	icon_state = "rasputin12"
 	},
 /area/shuttle/drop1/sulaco)
@@ -25741,13 +25390,11 @@
 	name = "Dropship Hatch"
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
 "aYE" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin9";
 	icon_state = "rasputin9"
 	},
 /area/shuttle/drop1/sulaco)
@@ -25827,7 +25474,6 @@
 	},
 /obj/effect/decal/warning_stripes,
 /turf/open/floor{
-	tag = "icon-platebot";
 	icon_state = "platebot"
 	},
 /area/sulaco/telecomms)
@@ -26008,6 +25654,16 @@
 	icon_state = "vault"
 	},
 /area/sulaco/hallway/lower_main_hall)
+"aZh" = (
+/obj/structure/ladder{
+	height = 1;
+	icon_state = "ladderup";
+	id = "hall7"
+	},
+/turf/open/floor{
+	icon_state = "vault"
+	},
+/area/sulaco/hallway/lower_main_hall)
 "aZi" = (
 /obj/structure/ladder{
 	height = 1;
@@ -26064,7 +25720,6 @@
 	opacity = 0
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
@@ -26076,7 +25731,6 @@
 	req_access_txt = "22"
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin10";
 	icon_state = "rasputin10"
 	},
 /area/shuttle/drop1/sulaco)
@@ -26098,7 +25752,6 @@
 	icon_state = "shutter0"
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
@@ -26261,7 +25914,6 @@
 	req_one_access_txt = "2;6;200"
 	},
 /turf/open/floor{
-	tag = "icon-podhatch";
 	icon_state = "podhatch"
 	},
 /area/sulaco/telecomms)
@@ -26435,7 +26087,6 @@
 /area/sulaco/hangar)
 "bak" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/shuttle/drop1/sulaco)
@@ -26673,6 +26324,15 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"baP" = (
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/turf/open/floor/wood,
+/area/sulaco/liaison)
 "baQ" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
@@ -26701,7 +26361,6 @@
 /area/sulaco/hangar)
 "baW" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/shuttle/drop1/sulaco)
@@ -26710,12 +26369,10 @@
 	pixel_x = -32
 	},
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (EAST)";
 	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
@@ -26724,12 +26381,10 @@
 	pixel_x = 32
 	},
 /obj/structure/bed/chair/dropship/passenger{
-	tag = "icon-shuttle_chair (WEST)";
 	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
@@ -27023,13 +26678,11 @@
 /area/sulaco/liaison)
 "bbJ" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin11";
 	icon_state = "rasputin11"
 	},
 /area/shuttle/drop1/sulaco)
 "bbK" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
 /area/shuttle/drop1/sulaco)
@@ -27103,8 +26756,7 @@
 "bbS" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 10;
-	icon_state = "intact";
-	tag = "icon-intact (NORTHEAST)"
+	icon_state = "intact"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hangar/two)
@@ -27188,6 +26840,26 @@
 	icon_state = "dark"
 	},
 /area/sulaco/telecomms/office)
+"bcc" = (
+/obj/structure/closet/toolcloset,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/telecomms/office)
 "bcd" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -27252,6 +26924,25 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/warning_stripes,
+/turf/open/floor/plating{
+	icon_state = "platebot"
+	},
+/area/sulaco/command/ai)
+"bci" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
 /turf/open/floor/plating{
 	icon_state = "platebot"
 	},
@@ -27352,7 +27043,6 @@
 /area/sulaco/hangar)
 "bcv" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin14";
 	icon_state = "rasputin14"
 	},
 /area/shuttle/drop1/sulaco)
@@ -27524,7 +27214,6 @@
 /area/shuttle/drop1/sulaco)
 "bcX" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/shuttle/drop1/sulaco)
@@ -27650,7 +27339,6 @@
 /area/sulaco/hangar)
 "bdq" = (
 /turf/closed/shuttle/dropship{
-	tag = "icon-rasputin13";
 	icon_state = "rasputin13"
 	},
 /area/shuttle/drop1/sulaco)
@@ -28040,6 +27728,19 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"bey" = (
+/obj/structure/table/woodentable,
+/obj/item/book/manual/security_space_law,
+/obj/item/tool/crowbar,
+/obj/item/multitool,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_x = 28
+	},
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters)
 "bez" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -28099,6 +27800,21 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/plating,
+/area/sulaco/hangar)
+"beE" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/turf/closed/shuttle{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
 /area/sulaco/hangar)
 "beF" = (
 /obj/structure/cable{
@@ -47513,7 +47229,7 @@ aaa
 aaa
 aaf
 anV
-aoy
+apq
 aqL
 ase
 atm
@@ -48292,7 +48008,7 @@ ase
 awx
 ayw
 azD
-azS
+aAT
 aAX
 aaf
 aaa
@@ -49320,7 +49036,7 @@ avf
 awB
 ase
 azE
-aAG
+aAW
 aCt
 aaf
 aaa
@@ -50096,7 +49812,7 @@ aCv
 aDi
 aEj
 aFB
-aFj
+aGz
 aDi
 aDi
 aaf
@@ -50606,7 +50322,7 @@ awG
 ayz
 azJ
 aBb
-aAT
+aCx
 aDi
 aEl
 aFD
@@ -50864,13 +50580,13 @@ ayx
 azK
 aBc
 aCy
-aBT
+aDk
 aDi
 aFE
 aGB
 aHy
 aIy
-aGT
+aJy
 aDi
 aEn
 aLx
@@ -51619,7 +51335,7 @@ aet
 afo
 agf
 ahr
-ahY
+aim
 ajz
 akz
 ajz
@@ -51740,9 +51456,9 @@ aTU
 aUy
 aVb
 aTU
-aSl
+aWw
 aXr
-aTD
+aYi
 aYM
 aZF
 baz
@@ -51904,7 +51620,7 @@ aJA
 aEw
 aEw
 aEw
-aKO
+aNk
 aNL
 aaf
 aaa
@@ -52246,7 +51962,7 @@ aaa
 aQh
 aQw
 aRh
-aRI
+aRB
 aRI
 aST
 aTx
@@ -53275,7 +52991,7 @@ aQh
 aQw
 aRh
 aRF
-aLl
+aSl
 aSW
 aTy
 aTy
@@ -53937,7 +53653,7 @@ ajF
 akH
 alN
 abH
-ans
+aoj
 aoi
 are
 asr
@@ -54045,7 +53761,7 @@ aaa
 aQh
 aQw
 aRi
-aST
+aRH
 aSn
 aSn
 aTA
@@ -54202,7 +53918,7 @@ atK
 ast
 awT
 ast
-auD
+azS
 aBj
 aoi
 aDs
@@ -54307,8 +54023,8 @@ aRI
 aRI
 aRh
 aTZ
-aQM
-aRH
+aUF
+aVh
 aRh
 aWE
 aXy
@@ -54960,7 +54676,7 @@ aeC
 adH
 agr
 abH
-ahZ
+aiv
 adf
 akL
 alP
@@ -55088,7 +54804,7 @@ aYT
 aZR
 aZR
 bbx
-aUU
+bcc
 bcK
 bdh
 bdD
@@ -55334,7 +55050,7 @@ aRh
 aSr
 aTa
 aTC
-aNk
+aUb
 aSn
 aSn
 aVS
@@ -56630,7 +56346,7 @@ aYY
 aZW
 baI
 bbA
-aVh
+bci
 aYU
 aYU
 aYU
@@ -57645,8 +57361,8 @@ aQy
 aQA
 aQA
 aQA
-aLo
-aLU
+aTc
+aQA
 aQA
 aQA
 aVl
@@ -58051,7 +57767,7 @@ aaW
 ank
 aou
 apI
-aql
+apI
 aor
 atR
 avy
@@ -58061,7 +57777,7 @@ apI
 apI
 ayH
 aDA
-aCx
+aEI
 aFR
 aBt
 aHO
@@ -58309,7 +58025,7 @@ aaw
 ank
 ank
 ank
-aou
+asB
 atR
 avy
 axb
@@ -58949,7 +58665,7 @@ bdj
 bdO
 bdM
 bel
-aWw
+bey
 beL
 bdj
 aaa
@@ -59455,7 +59171,7 @@ aXD
 aYx
 aZc
 bag
-aUF
+baP
 baf
 baf
 bcS
@@ -60362,8 +60078,8 @@ ajU
 akT
 aaW
 akW
-anq
-aoF
+aoy
+apN
 arm
 aoB
 atY
@@ -60481,7 +60197,7 @@ aWc
 aWQ
 aXF
 aYz
-aUb
+aZh
 aVY
 baR
 baT
@@ -60993,7 +60709,7 @@ aUe
 aVu
 aWe
 aWS
-aTc
+aXH
 aYz
 aZj
 bah
@@ -61918,7 +61634,7 @@ aBv
 aDH
 aET
 aGa
-aFq
+aGR
 aHR
 aIJ
 aJP
@@ -62160,7 +61876,7 @@ agF
 agF
 akY
 akY
-amw
+ans
 aoD
 apT
 ars
@@ -62416,7 +62132,7 @@ ahJ
 aiI
 ajV
 akZ
-aiv
+amd
 ant
 aoE
 apU
@@ -62428,11 +62144,11 @@ axo
 aoD
 aAf
 aoB
-aAW
+aCL
 aDH
 aEV
 aGc
-aFA
+aGT
 aHS
 aIL
 aJQ
@@ -62547,7 +62263,7 @@ aPZ
 bdS
 aPZ
 aPZ
-aWU
+beE
 aPY
 beO
 beO
@@ -62675,7 +62391,7 @@ abs
 aaY
 ame
 akW
-anN
+aoF
 apV
 aru
 aru
@@ -62932,7 +62648,7 @@ acD
 adq
 amf
 akW
-anQ
+aoB
 apW
 apW
 apW
@@ -64493,7 +64209,7 @@ aHZ
 aIQ
 aJV
 aKE
-aGZ
+aLj
 aKA
 aMd
 aKA
@@ -65239,8 +64955,8 @@ adY
 abR
 abR
 agH
-afS
-aim
+ahK
+aiN
 aaY
 aaY
 acI
@@ -65864,7 +65580,7 @@ aaa
 aaa
 aaa
 aaa
-aLj
+aQM
 aRf
 aRf
 aRf
@@ -66549,7 +66265,7 @@ aGn
 aIV
 aKa
 aKJ
-aHk
+aLl
 aKF
 aMg
 aKF
@@ -68330,7 +68046,7 @@ ald
 amv
 anw
 aoT
-apa
+aqh
 aqc
 asN
 aup
@@ -68341,9 +68057,9 @@ aAo
 aAo
 aCQ
 aDO
-aCL
+aFj
 aGn
-aGo
+aGZ
 aIj
 aIZ
 aKe
@@ -68604,8 +68320,8 @@ aDO
 aDO
 aIW
 aKb
-aOX
-aJy
+aKO
+aKK
 aKK
 aMj
 aKK
@@ -68841,7 +68557,7 @@ ahM
 aiR
 ajZ
 alf
-aiN
+amw
 anC
 aiT
 aqi
@@ -69370,7 +69086,7 @@ aAp
 aAp
 aDT
 aAp
-aEI
+aGo
 aHa
 avV
 aJb
@@ -69615,7 +69331,7 @@ alh
 amy
 anF
 aiT
-apq
+aql
 arC
 aiR
 auv
@@ -71684,7 +71400,7 @@ aCY
 azg
 aFl
 azg
-aGz
+aHe
 aIr
 aJi
 avV
@@ -71936,12 +71652,12 @@ asP
 axU
 azg
 aAx
-aAQ
+aBT
 aBS
 azg
 aFo
 azf
-aGR
+aHk
 aBU
 aJj
 avV
@@ -72453,7 +72169,7 @@ aAy
 aBU
 aCZ
 aDX
-aDk
+aFq
 aGt
 aHl
 avV
@@ -72554,7 +72270,7 @@ aaa
 aaa
 aaa
 aUu
-aRB
+aUU
 aVJ
 aWo
 aUX
@@ -72949,19 +72665,19 @@ aed
 aeU
 afO
 agT
-ahK
+ahZ
 ajd
 akj
 aap
 amH
-amM
-aoj
-aqh
+anN
+apa
+aqu
 arL
 aap
-aqu
+auD
 avY
-asB
+axX
 azm
 aAz
 avV
@@ -74232,7 +73948,7 @@ acL
 adx
 aeh
 aeY
-afI
+afS
 agX
 aid
 aji
@@ -74495,8 +74211,8 @@ agY
 ajj
 akn
 alu
-amd
-anc
+amM
+anQ
 aje
 aje
 aje
@@ -75019,7 +74735,7 @@ auL
 awe
 awe
 azq
-axX
+aAG
 aCb
 aDe
 aEe

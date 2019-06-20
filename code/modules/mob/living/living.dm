@@ -107,27 +107,6 @@
 /mob/living/proc/calculate_affecting_pressure(var/pressure)
 	return
 
-/mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
-	var/temperature = actual
-	var/difference = abs(actual-desired)	//get difference
-	var/increments = difference/10 //find how many increments apart they are
-	var/change = increments*incrementboost	// Get the amount to change by (x per increment)
-
-	// Too cold
-	if(actual < desired)
-		temperature += change
-		if(actual > desired)
-			temperature = desired
-	// Too hot
-	if(actual > desired)
-		temperature -= change
-		if(actual < desired)
-			temperature = desired
-//	if(ishuman(src))
-//		to_chat(world, "[src] ~ [src.bodytemperature] ~ [temperature]")
-	return temperature
-
-
 
 /mob/proc/get_contents()
 
@@ -339,12 +318,12 @@
 			now_pushing = 0
 			return
 
- 		if(L.pulling)
- 			if(ismob(L.pulling))
- 				var/mob/P = L.pulling
- 				if(P.restrained())
- 					if(!(world.time % 5))
- 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
+		if(L.pulling)
+			if(ismob(L.pulling))
+				var/mob/P = L.pulling
+				if(P.restrained())
+					if(!(world.time % 5))
+						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					now_pushing = 0
 					return
 
@@ -540,16 +519,11 @@
 	var/amplitude = min(4, (jitteriness/100) + 1)
 	var/pixel_x_diff = rand(-amplitude, amplitude)
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = get_standard_pixel_x_offset(lying)
-	var/final_pixel_y = get_standard_pixel_y_offset(lying)
+	var/final_pixel_x = initial(pixel_x)
+	var/final_pixel_y = initial(pixel_y)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
 	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 
-/mob/living/proc/get_standard_pixel_x_offset(lying = 0)
-	return initial(pixel_x)
-
-/mob/living/proc/get_standard_pixel_y_offset(lying = 0)
-	return initial(pixel_y)
 
 /*
 adds a dizziness amount to a mob
@@ -603,7 +577,7 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+		if(job && is_banned_from(M.ckey, job))
 			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
 			return FALSE
 
@@ -612,8 +586,8 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
-		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
+		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
+		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
@@ -667,7 +641,7 @@ below 100 is not dizzy
 
 // called when the client disconnects and is away.
 /mob/living/proc/begin_away()
-	away_time = set_away_time(world.time)
+	set_away_time(world.time)
 
 
 /mob/living/reset_perspective(atom/A)
@@ -690,8 +664,6 @@ below 100 is not dizzy
 	if(!T)
 		return FALSE
 	if(is_centcom_level(T.z)) //dont detect mobs on centcom
-		return FALSE
-	if(is_away_level(T.z))
 		return FALSE
 	if(user != null && src == user)
 		return FALSE

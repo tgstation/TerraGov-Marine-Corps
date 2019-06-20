@@ -1,7 +1,7 @@
 /*
- * Paper
- * also scraps of paper
- */
+* Paper
+* also scraps of paper
+*/
 
 /obj/item/paper
 	name = "paper"
@@ -113,10 +113,10 @@
 				H.update_body()
 			else
 				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
-								 	 "<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
+									"<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
 				if(do_after(user, 10, TRUE, H, BUSY_ICON_FRIENDLY))
 					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
-										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
+										"<span class='notice'>You wipe off [H]'s lipstick.</span>")
 					H.lip_style = null
 					H.update_body()
 
@@ -306,8 +306,8 @@
 	if(href_list["write"])
 		var/id = href_list["write"]
 		var/t =  stripped_multiline_input(usr, "Enter what you want to write:", "Write", "", MAX_MESSAGE_LEN)
-		var/shortened_t = copytext(t,1,100)
-		log_admin("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
+		var/shortened_t = copytext(t, 1, 300)
+		log_game("[key_name(usr)] tried to write something on paper. First 300 characters: [shortened_t]")
 
 		var/obj/item/i = usr.get_active_held_item() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
@@ -401,8 +401,8 @@
 
 
 /*
- * Premade paper
- */
+* Premade paper
+*/
 
 
 /obj/item/paper/commendation

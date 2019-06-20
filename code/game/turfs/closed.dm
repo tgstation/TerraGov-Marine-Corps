@@ -15,21 +15,21 @@
 	icon_state = "rock"
 
 /turf/closed/mineral/Initialize(mapload)
-    . = ..()
-    for(var/direction in GLOB.cardinals)
-        var/turf/turf_to_check = get_step(src, direction)
-        if(istype(turf_to_check, /turf/open))
-            var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
-            switch(direction)
-                if(NORTH)
-                    rock_side.pixel_y += world.icon_size
-                if(SOUTH)
-                    rock_side.pixel_y -= world.icon_size
-                if(EAST)
-                    rock_side.pixel_x += world.icon_size
-                if(WEST)
-                    rock_side.pixel_x -= world.icon_size
-            overlays += rock_side
+	. = ..()
+	for(var/direction in GLOB.cardinals)
+		var/turf/turf_to_check = get_step(src, direction)
+		if(istype(turf_to_check, /turf/open))
+			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+			switch(direction)
+				if(NORTH)
+					rock_side.pixel_y += world.icon_size
+				if(SOUTH)
+					rock_side.pixel_y -= world.icon_size
+				if(EAST)
+					rock_side.pixel_x += world.icon_size
+				if(WEST)
+					rock_side.pixel_x -= world.icon_size
+			overlays += rock_side
 
 /turf/closed/mineral/bigred
 	name = "rock"
@@ -69,9 +69,9 @@
 
 //desertdam rock
 /turf/closed/desertdamrockwall
-    name = "rockwall"
-    icon = 'icons/turf/desertdam_map.dmi'
-    icon_state = "cavewall1"
+	name = "rockwall"
+	icon = 'icons/turf/desertdam_map.dmi'
+	icon_state = "cavewall1"
 
 
 

@@ -45,8 +45,7 @@ They're all essentially identical when it comes to getting the job done.
 	..()
 	// It should never have negative ammo after spawn. If it does, we need to know about it.
 	if(current_rounds < 0)
-		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine.")
-		log_runtime("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
+		stack_trace("negative current_rounds on examine. User: [usr]")
 	else
 		to_chat(user, "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>.")
 

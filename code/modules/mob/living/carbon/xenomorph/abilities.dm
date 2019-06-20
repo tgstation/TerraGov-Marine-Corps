@@ -9,7 +9,10 @@
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/xeno_resting/action_activate()
-	owner.lay_down()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!istype(X))
+		return
+	X.lay_down()
 	return succeed_activate()
 
 // Regurgitate
@@ -61,7 +64,7 @@
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
 	new /obj/effect/alien/weeds/node (owner.loc, src, owner)
 	playsound(owner.loc, "alien_resin_build", 25)
-	round_statistics.weeds_planted++
+	GLOB.round_statistics.weeds_planted++
 	return succeed_activate()
 
 // Choose Resin
@@ -369,7 +372,7 @@
 
 	succeed_activate()
 
-	round_statistics.larval_growth_stings++
+	GLOB.round_statistics.larval_growth_stings++
 
 	add_cooldown()
 	X.recurring_injection(A, "xeno_growthtoxin", XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
@@ -743,7 +746,7 @@
 
 	add_cooldown()
 
-	round_statistics.sentinel_neurotoxin_stings++
+	GLOB.round_statistics.sentinel_neurotoxin_stings++
 
 	X.recurring_injection(A, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 

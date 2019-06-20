@@ -308,6 +308,9 @@
 		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
 
+	if(on_fire)
+		return FALSE
+
 	if(check_mask)
 		if(wear_mask)
 			var/obj/item/W = wear_mask
@@ -434,7 +437,7 @@
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
-			round_statistics.now_pregnant++
+			GLOB.round_statistics.now_pregnant++
 			sterile = TRUE
 		Die()
 	else

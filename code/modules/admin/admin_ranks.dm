@@ -8,7 +8,7 @@
 
 /datum/admin_rank/New(init_name, init_rights, init_exclude_rights, init_edit_rights)
 	if(IsAdminAdvancedProcCall())
-		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		log_admin_private("[key_name(usr)] has tried to elevate permissions!")
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		if(name == "NoRank") //only del if this is a true creation (and not just a New() proc call), other wise trialmins/coders could abuse this to deadmin other admins
 			QDEL_IN(src, 0)
@@ -31,7 +31,7 @@
 
 /datum/admin_rank/Destroy()
 	if(IsAdminAdvancedProcCall())
-		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		log_admin_private("[key_name(usr)] has tried to elevate permissions!")
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return QDEL_HINT_LETMELIVE
 	return ..()
@@ -43,7 +43,7 @@
 
 /datum/admin_rank/proc/process_keyword(group, group_count, datum/admin_rank/previous_rank)
 	if(IsAdminAdvancedProcCall())
-		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		log_admin_private("[key_name(usr)] has tried to elevate permissions!")
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
 	var/list/keywords = splittext(group, " ")
@@ -106,7 +106,7 @@
 	set waitfor = FALSE
 
 	if(IsAdminAdvancedProcCall())
-		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		log_admin_private("[key_name(usr)] has tried to elevate permissions!")
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
 
@@ -123,7 +123,7 @@
 //load our rank - > rights associations
 /proc/load_admin_ranks(dbfail, no_update)
 	if(IsAdminAdvancedProcCall())
-		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		log_admin_private("[key_name(usr)] has tried to elevate permissions!")
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
 	GLOB.admin_ranks.Cut()

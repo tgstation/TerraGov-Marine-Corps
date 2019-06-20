@@ -29,8 +29,6 @@ Basics, the most important.
 
 /datum/config_entry/string/banappeals
 
-/datum/config_entry/string/donationurl
-
 /datum/config_entry/string/dburl
 
 /datum/config_entry/string/shipurl
@@ -57,9 +55,6 @@ Basics, the most important.
 Administrative related.
 */
 /datum/config_entry/flag/localhost_rank
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/ban_legacy_system
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
@@ -298,8 +293,6 @@ Master controller and performance related.
 		world.sleep_offline = !config_entry_value
 
 /datum/config_entry/flag/tickcomp
-
-/datum/config_entry/flag/use_recursive_explosions
 
 /*
 System command that invokes youtube-dl, used by Play Internet Sound.

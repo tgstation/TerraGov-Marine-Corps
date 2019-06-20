@@ -475,7 +475,7 @@
 	// shotguns too
 	firearms = SKILL_FIREARMS_TRAINED
 	rifles = SKILL_RIFLES_TRAINED
-     	// smgs too
+	// smgs too
 
 /datum/skills/imperial/SL
 	name = "Guardsman Sergeant" // veteran guardsman, practically better in all

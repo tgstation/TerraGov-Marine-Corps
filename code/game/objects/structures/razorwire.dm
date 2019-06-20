@@ -77,17 +77,18 @@
 		var/mob/living/M = O
 		if(M.entangled_by)
 			razorwire_untangle(M)
-	. = ..()
+	return ..()
 
 /obj/structure/razorwire/Destroy()
-	. = ..()
-	for(var/mob/living/M in entangled_list)
-		M.set_frozen(FALSE)
-		M.update_canmove()
-		if(M.entangled_by == src)
-			M.entangled_by = null
-			M.entangle_delay = null
-	entangled_list = list()
+	for(var/i in entangled_list)
+		var/mob/living/L = i
+		L.set_frozen(FALSE)
+		L.update_canmove()
+		if(L.entangled_by == src)
+			L.entangled_by = null
+			L.entangle_delay = null
+	entangled_list.Cut()
+	return ..()
 
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -111,7 +112,6 @@
 			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1)
 			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
 			"<span class='danger'>You sparta [M]'s against [src]!</span>")
-			log_admin("[key_name(usr)] spartaed [key_name(M)]'s against \the [src].")
 			log_combat(user, M, "spartaed", "", "against \the [src]")
 			msg_admin_attack("[key_name(usr)] spartaed [key_name(M)] against \the [src].")
 			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)

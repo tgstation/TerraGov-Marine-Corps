@@ -584,10 +584,10 @@
 	var/base_icon_state	//Initial icon state on map
 
 	//New pipe, set the icon_state as on map
-	New()
-		..()
-		base_icon_state = icon_state
-		return
+/obj/structure/disposalpipe/Initialize()
+	. = ..()
+	base_icon_state = icon_state
+	GLOB.disposal_list += src
 
 
 //Pipe is deleted
@@ -611,6 +611,7 @@
 		//Otherwise, do normal expel from turf
 		if(H)
 			expel(H, T, 0)
+	GLOB.disposal_list -= src
 	. = ..()
 
 //Returns the direction of the next pipe object, given the entrance dir by default, returns the bitmask of remaining directions
@@ -936,7 +937,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 12)
-		for(var/obj/structure/disposalpipe/down/almayer/F in GLOB.structure_list)
+		for(var/obj/structure/disposalpipe/down/almayer/F in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -964,7 +965,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 11)
-		for(var/obj/structure/disposalpipe/up/almayer/F in GLOB.structure_list)
+		for(var/obj/structure/disposalpipe/up/almayer/F in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match

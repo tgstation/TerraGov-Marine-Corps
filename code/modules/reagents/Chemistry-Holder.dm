@@ -1,47 +1,5 @@
 #define CHEMICAL_QUANTISATION_LEVEL 0.0001 //stops floating point errors causing issues with checking reagent amounts
 
-/proc/build_chemical_reagent_list()
-	//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
-
-	if(GLOB.chemical_reagents_list)
-		return
-
-	var/paths = subtypesof(/datum/reagent)
-	GLOB.chemical_reagents_list = list()
-
-	for(var/path in paths)
-		var/datum/reagent/D = new path()
-		GLOB.chemical_reagents_list[D.id] = D
-
-/proc/build_chemical_reactions_list()
-	//Chemical Reactions - Initialises all /datum/chemical_reaction into a list
-	// It is filtered into multiple lists within a list.
-	// For example:
-	// chemical_reaction_list["plasma"] is a list of all reactions relating to plasma
-
-	if(GLOB.chemical_reactions_list)
-		return
-
-	var/paths = subtypesof(/datum/chemical_reaction)
-	GLOB.chemical_reactions_list = list()
-
-	for(var/path in paths)
-
-		var/datum/chemical_reaction/D = new path()
-		var/list/reaction_ids = list()
-
-		if(D.required_reagents && D.required_reagents.len)
-			for(var/reaction in D.required_reagents)
-				reaction_ids += reaction
-
-		// Create filters based on each reagent id in the required reagents list
-		for(var/id in reaction_ids)
-			if(!GLOB.chemical_reactions_list[id])
-				GLOB.chemical_reactions_list[id] = list()
-			GLOB.chemical_reactions_list[id] += D
-			break // Don't bother adding ourselves to other reagent ids, it is redundant
-
-
 /datum/reagents
 	var/list/datum/reagent/reagent_list = new/list()
 	var/total_volume = 0
@@ -55,12 +13,6 @@
 
 /datum/reagents/New(maximum = 100, new_flags)
 	maximum_volume = maximum
-
-	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!GLOB.chemical_reagents_list)
-		build_chemical_reagent_list()
-	if(!GLOB.chemical_reactions_list)
-		build_chemical_reactions_list()
 
 	reagent_flags = new_flags
 

@@ -471,7 +471,7 @@
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			if(isidcard(I))
-				log_admin("[key_name(src)] took the [I] of [key_name(M)].")
+				log_game("[key_name(src)] took the [I] of [key_name(M)].")
 				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
 	if(M)

@@ -274,7 +274,7 @@
 
 	// If enough time (in cycles, not ticks) has passed since the plant was harvested, we're ready to harvest again.
 	else if(seed.products && seed.products.len && age > seed.production && \
-	 (age - lastproduce) > seed.production && (!harvest && !dead))
+	(age - lastproduce) > seed.production && (!harvest && !dead))
 		harvest = 1
 		lastproduce = age
 
@@ -442,7 +442,7 @@
 	SetLuminosity(0)
 	return
 
- // If a weed growth is sufficient, this proc is called.
+// If a weed growth is sufficient, this proc is called.
 /obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
 
 	//Remove the seed if something is already planted.

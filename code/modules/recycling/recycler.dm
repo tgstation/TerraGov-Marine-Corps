@@ -16,12 +16,6 @@
 	..()
 	update_icon()
 
-
-/obj/machinery/recycler/power_change()
-	..()
-	update_icon()
-
-
 /obj/machinery/recycler/update_icon()
 	icon_state = "separator-AO[(machine_stat & (BROKEN|NOPOWER)) ? "0":"1"]"
 

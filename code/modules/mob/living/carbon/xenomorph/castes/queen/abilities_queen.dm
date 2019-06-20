@@ -61,7 +61,7 @@
 		SEND_SOUND(G, sound(get_sfx("queen"), wait = 0,volume = 50))
 		to_chat(G, "[queensWord]")
 
-	log_admin("[key_name(src)] has created a Word of the Queen report: [queensWord]")
+	log_game("[key_name(src)] has created a Word of the Queen report: [queensWord]")
 	message_admins("[ADMIN_TPMONTY(src)] has created a Word of the Queen report.")
 
 // ***************************************
@@ -140,14 +140,19 @@
 
 	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
-	round_statistics.queen_screech++
+	GLOB.round_statistics.queen_screech++
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
-	for(var/mob/living/L in range(world.view, X))
-		if(L.stat == DEAD)
+	var/list/nearby_living = list()
+	for(var/mob/living/L in hearers(world.view, X))
+		nearby_living.Add(L)
+
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		if(get_dist(L, X) > world.view)
 			continue
-		L.screech_act(X)
+		L.screech_act(X, world.view, L in nearby_living)
 
 // ***************************************
 // *********** Gut
@@ -603,7 +608,7 @@
 				if(target.client)
 					X.use_plasma(100)
 					to_chat(target, "[queen_order]")
-					log_admin("[key_name(X)] has given the following Queen order to [key_name(target)]: [input]")
+					log_game("[key_name(X)] has given the following Queen order to [key_name(target)]: [input]")
 					message_admins("[ADMIN_TPMONTY(X)] has given the following Queen order to [ADMIN_TPMONTY(target)]: [input]")
 
 	else
@@ -687,7 +692,7 @@
 	for(var/obj/item/W in T.contents) //Drop stuff
 		T.dropItemToGround(W)
 
-	T.empty_gut()
+	T.empty_gut(FALSE, TRUE)
 
 	if(T.mind)
 		T.mind.transfer_to(new_xeno)
@@ -717,10 +722,10 @@
 	// this sets the right datum
 	new_xeno.upgrade_xeno(T.upgrade_next()) //a young Crusher de-evolves into a MATURE Hunter
 
-	log_admin("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
+	log_game("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
 
-	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	qdel(T)
 	X.use_plasma(600)
 

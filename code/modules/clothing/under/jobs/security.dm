@@ -1,13 +1,13 @@
 /*
- * Contains:
- *		Security
- *		Detective
- *		Head of Security
- */
+* Contains:
+*		Security
+*		Detective
+*		Head of Security
+*/
 
 /*
- * Security
- */
+* Security
+*/
 /obj/item/clothing/under/rank/warden
 	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the word \"Warden\" written on the shoulders."
 	name = "warden's jumpsuit"
@@ -58,8 +58,8 @@
 	siemens_coefficient = 0.9
 
 /*
- * Detective
- */
+* Detective
+*/
 /obj/item/clothing/under/det
 	name = "hard-worn suit"
 	desc = "Someone who wears this means business."
@@ -77,8 +77,8 @@
 
 
 /*
- * Head of Security
- */
+* Head of Security
+*/
 /obj/item/clothing/under/rank/head_of_security
 	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
 	name = "head of security's jumpsuit"
@@ -101,8 +101,8 @@
 	rollable_sleeves = FALSE
 
 /*
- * Navy uniforms
- */
+* Navy uniforms
+*/
 
 /obj/item/clothing/under/rank/security/navyblue
 	name = "security officer's uniform"

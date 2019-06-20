@@ -61,13 +61,13 @@
 	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	var/obj/item/alien_embryo/embryo = new(C)
 	embryo.hivenumber = X.hivenumber
-	round_statistics.now_pregnant++
+	GLOB.round_statistics.now_pregnant++
 	to_chat(X, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
 	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
 	C.apply_damage(100, HALLOSS)
 	C.apply_damage(10, BRUTE, "chest")
 	C.emote("scream")
-	round_statistics.defiler_defiler_stings++
+	GLOB.round_statistics.defiler_defiler_stings++
 	succeed_activate()
 	return ..()
 
@@ -118,7 +118,7 @@
 		to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
 		return fail_activate()
 
-	round_statistics.defiler_neurogas_uses++
+	GLOB.round_statistics.defiler_neurogas_uses++
 
 	X.visible_message("<span class='xenodanger'>[X] emits a noxious gas!</span>", \
 	"<span class='xenodanger'>You emit neurogas!</span>")

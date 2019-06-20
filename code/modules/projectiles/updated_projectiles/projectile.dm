@@ -114,11 +114,11 @@
 
 	setDir(get_dir(loc, target_turf))
 
-	round_statistics.total_projectiles_fired++
+	GLOB.round_statistics.total_projectiles_fired++
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullets_fired++
+		GLOB.round_statistics.total_bullets_fired++
 		if(ammo.bonus_projectiles_amount)
-			round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
+			GLOB.round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && ammo.bonus_projectiles_type) ammo.fire_bonus_projectiles(src)
@@ -273,10 +273,10 @@
 			#endif
 			if(hit_roll < 25) //Sniper targets more likely to hit
 				if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
-					def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+					def_zone = pick(GLOB.base_miss_chance)	// Still hit but now we might hit the wrong body part
 
 			if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
-				hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+				hit_chance -= GLOB.base_miss_chance[def_zone] // Reduce accuracy based on spot.
 				#if DEBUG_HIT_CHANCE
 				to_chat(world, "Hit Chance 2: [hit_chance]")
 				#endif
@@ -288,7 +288,7 @@
 						break //Hit
 					if( hit_chance < (hit_roll - 20) )
 						break //Outright miss.
-					def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+					def_zone 	  = pick(GLOB.base_miss_chance) //We're going to pick a new target and let this run one more time.
 					hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
 				if(2)
 					if(prob(critical_miss) )
@@ -307,10 +307,10 @@
 			L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 //----------------------------------------------------------
-		    	//				    	\\
-			    //  HITTING THE TARGET  \\
-			    //						\\
-			    //						\\
+			//				    	\\
+			//  HITTING THE TARGET  \\
+			//						\\
+			//						\\
 //----------------------------------------------------------
 
 
@@ -501,7 +501,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	flash_weak_pain()
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullet_hits_on_humans++
+		GLOB.round_statistics.total_bullet_hits_on_humans++
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	#if DEBUG_HUMAN_DEFENSE
@@ -538,13 +538,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 
 		if(armor > 0) //Armor check. We should have some to continue.
-			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
-			 soaked. Small caliber firearms aren't really effective against combat armor.*/
+			/*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
+			soaked. Small caliber firearms aren't really effective against combat armor.*/
 			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
 			var/critical_hit = rand(CONFIG_GET(number/combat_define/critical_chance_low),CONFIG_GET(number/combat_define/critical_chance_high))
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
 			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
-											  		   //This gives smaller calibers a chance to actually deal damage.
+													//This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_HUMAN_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 			#endif
@@ -602,7 +602,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullet_hits_on_xenos++
+		GLOB.round_statistics.total_bullet_hits_on_xenos++
 
 	flash_weak_pain()
 
@@ -654,13 +654,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
 		#endif
 		if(armor > 0) //Armor check. We should have some to continue.
-			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
-			 soaked. Small caliber firearms aren't really effective against combat armor.*/
+			/*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
+			soaked. Small caliber firearms aren't really effective against combat armor.*/
 			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
 			var/critical_hit = rand(CONFIG_GET(number/combat_define/critical_chance_low),CONFIG_GET(number/combat_define/critical_chance_high))
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
 			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
-											  		   //This gives smaller calibers a chance to actually deal damage.
+													//This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 			#endif
@@ -802,7 +802,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			log_combat(firingMob, src, "shot", P)
 			log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
 			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
-			round_statistics.total_bullet_hits_on_marines++
+			GLOB.round_statistics.total_bullet_hits_on_marines++
 		else
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")

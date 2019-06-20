@@ -216,7 +216,7 @@
 	return copy
 
 
-/obj/machinery/photocopier/on_stored_atom_del(atom/movable/AM)
+/obj/machinery/photocopier/handle_atom_del(atom/movable/AM)
 	if(AM == copy)
 		copy = null
 	else if(AM == photocopy)

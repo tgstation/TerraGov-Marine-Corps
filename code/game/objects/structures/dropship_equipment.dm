@@ -846,7 +846,7 @@
 		return
 
 	var/list/possible_stretchers = list()
-	for(var/obj/structure/bed/medevac_stretcher/MS in activated_medevac_stretchers)
+	for(var/obj/structure/bed/medevac_stretcher/MS in GLOB.activated_medevac_stretchers)
 		var/area/AR = get_area(MS)
 		var/evaccee
 		if(MS.buckled_mob)

@@ -100,3 +100,12 @@
 
 
 #define PR_ANNOUNCEMENTS_PER_ROUND 5 //The number of unique PR announcements allowed per round
+
+
+#define APICKER_CLIENT	"Key"
+#define APICKER_MOB		"Mob"
+#define APICKER_LIVING	"Living Mob"
+#define APICKER_AREA	"Area"
+#define APICKER_TURF	"Turf"
+#define APICKER_COORDS	"Coords"
+#define APICKER_PLAYER	"Cliented Mob"

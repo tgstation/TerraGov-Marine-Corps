@@ -364,7 +364,7 @@
 
 //Bleuugh
 
-/mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE)
+/mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
 	if(warning)
 		if(length(stomach_contents))
 			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
@@ -378,10 +378,11 @@
 		passenger.forceMove(get_turf(src))
 		SEND_SIGNAL(passenger, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
 
-	for(var/x in contents) //Get rid of anything that may be stuck inside us as well
-		var/atom/movable/stowaway = x
-		stowaway.forceMove(get_turf(src))
-		stack_trace("[stowaway] found in [src]'s stomach. It shouldn't have ended there.")
+	if(content_cleanup)
+		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
+			var/atom/movable/stowaway = x
+			stowaway.forceMove(get_turf(src))
+			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision()
@@ -603,7 +604,7 @@
 		return
 
 	if(isxenopraetorian(X))
-		round_statistics.praetorian_spray_direct_hits++
+		GLOB.round_statistics.praetorian_spray_direct_hits++
 
 	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
 	var/armor_block = run_armor_check("chest", "acid")

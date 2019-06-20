@@ -276,11 +276,6 @@
 
 	return 1
 
-/mob/living/carbon/get_standard_pixel_y_offset()
-	if(lying)
-		return -6
-	else
-		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
 	. = ..()

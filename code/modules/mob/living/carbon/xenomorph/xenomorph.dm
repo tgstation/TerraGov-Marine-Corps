@@ -26,7 +26,7 @@
 
 	GLOB.alive_xeno_list += src
 	GLOB.xeno_mob_list += src
-	round_statistics.total_xenos_created++
+	GLOB.round_statistics.total_xenos_created++
 
 	set_initial_hivenumber()
 
@@ -186,7 +186,7 @@
 		AdjustKnockedout(-2)
 	return knocked_out
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, no_msg)
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM

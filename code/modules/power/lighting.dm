@@ -631,7 +631,7 @@
 
 		if(S.reagents.has_reagent("phoron", 5))
 
-			log_admin("[key_name(user)] injected a light with phoron, rigging it to explode.")
+			log_game("[key_name(user)] injected a light with phoron, rigging it to explode.")
 			message_admins("[ADMIN_TPMONTY(user)] injected a light with phoron, rigging it to explode.")
 
 			rigged = TRUE

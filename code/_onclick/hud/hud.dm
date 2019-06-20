@@ -91,7 +91,7 @@
 			qdel(thing)
 		infodisplay.Cut()
 
- 	qdel(hide_actions_toggle)
+	qdel(hide_actions_toggle)
 	hide_actions_toggle = null
 
 	r_hand_hud_object = null
