@@ -1365,7 +1365,6 @@
 #include "code\modules\vehicles\multitile\tank.dm"
 #include "code\modules\vehicles\multitile\tankvendor.dm"
 #include "goon\code\datums\browserOutput.dm"
-#include "goon\code\datums\jsErrorHandler.dm"
 #include "interface\interface.dm"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
