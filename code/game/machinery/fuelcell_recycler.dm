@@ -90,10 +90,6 @@
 
 		update_icon()
 
-/obj/machinery/fuelcell_recycler/power_change()
-	..()
-	update_icon()
-
 /obj/machinery/fuelcell_recycler/update_icon()
 	src.overlays.Cut()
 

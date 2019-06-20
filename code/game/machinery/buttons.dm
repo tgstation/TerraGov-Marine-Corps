@@ -64,12 +64,6 @@
 	next_activate = world.time + 3 SECONDS
 	return TRUE
 
-
-/obj/machinery/button/power_change()
-	. = ..()
-	update_icon()
-
-
 /obj/machinery/button/door
 	name = "door button"
 	desc = "A door remote control switch."
@@ -194,11 +188,9 @@
 
 /obj/machinery/medical_help_button/proc/icon_update_check()
 	active = FALSE
-	if(!(machine_stat & NOPOWER))
-		icon_state = "doorctrl0"
+	update_icon()
 
-/obj/machinery/medical_help_button/power_change()
-	. = ..()
+/obj/machinery/medical_help_button/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else

@@ -854,13 +854,10 @@
 	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 	connected.connected = src
 
-/obj/machinery/autodoc_console/power_change(var/area/master_area = null)
-	..()
+/obj/machinery/autodoc_console/update_icon()
 	if(machine_stat & NOPOWER)
-		if(icon_state != "sleeperconsole-p")
-			icon_state = "sleeperconsole-p"
-		return
-	if(icon_state != "sleeperconsole")
+		icon_state = "sleeperconsole-p"
+	else
 		icon_state = "sleeperconsole"
 
 /obj/machinery/autodoc_console/process()

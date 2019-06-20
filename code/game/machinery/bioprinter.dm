@@ -80,10 +80,6 @@
 	..()
 	to_chat(user, "It has [stored_matter] matter and [stored_metal] metal left.")
 
-/obj/machinery/bioprinter/power_change()
-	.=..()
-	update_icon()
-
 /obj/machinery/bioprinter/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "bioprinter_off"

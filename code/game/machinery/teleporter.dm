@@ -377,8 +377,7 @@
 
 	return
 
-/obj/machinery/teleport/station/power_change()
-	..()
+/obj/machinery/teleport/station/update_icon()
 	if(machine_stat & NOPOWER)
 		icon_state = "controller-p"
 

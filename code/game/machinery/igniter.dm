@@ -37,8 +37,7 @@
 	..()
 	icon_state = "igniter[on]"
 
-/obj/machinery/igniter/power_change()
-	..()
+/obj/machinery/igniter/update_icon()
 	if(!( machine_stat & NOPOWER) )
 		icon_state = "igniter[src.on]"
 	else
@@ -57,11 +56,7 @@
 	var/base_state = "migniter"
 	anchored = TRUE
 
-/obj/machinery/sparker/New()
-	..()
-
-/obj/machinery/sparker/power_change()
-	..()
+/obj/machinery/sparker/update_icon()
 	if ( !(machine_stat & NOPOWER) && disable == 0 )
 
 		icon_state = "[base_state]"

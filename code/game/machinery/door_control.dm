@@ -122,10 +122,6 @@
 	else
 		icon_state = "doorctrl0"
 
-/obj/machinery/door_control/power_change()
-	. = ..()
-	update_icon()
-
 /obj/machinery/driver_button/attack_ai(mob/living/silicon/ai/AI)
 	return attack_hand(AI)
 

@@ -114,9 +114,9 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 		. = ..()
 
 /obj/machinery/newscaster/update_icon()
-	if(!ispowered || isbroken)
+	if(!is_operational())
 		icon_state = "newscaster_off"
-		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
+		if(machine_stat & BROKEN) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
 			src.overlays.Cut()
 			src.overlays += image(src.icon, "crack3")
 		return
@@ -135,18 +135,6 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 
 	icon_state = "newscaster_normal"
 	return
-
-/obj/machinery/newscaster/power_change()
-	if(isbroken) //Broken shit can't be powered.
-		return
-	..()
-	if( !(machine_stat & NOPOWER) )
-		src.ispowered = 1
-		src.update_icon()
-	else
-		spawn(rand(0, 15))
-			src.ispowered = 0
-			src.update_icon()
 
 
 /obj/machinery/newscaster/ex_act(severity)

@@ -65,8 +65,6 @@
 	if(machine_stat & NOPOWER)
 		dump_everything()
 		isUV = 0
-	update_icon()
-
 
 /obj/machinery/suit_storage_unit/ex_act(severity)
 	switch(severity)
