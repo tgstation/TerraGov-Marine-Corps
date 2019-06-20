@@ -1140,7 +1140,7 @@ will handle it, but:
 	if(final_x || final_y)
 		return locate(final_x, final_y, T.z)
 
-/proc/animate_speech_bubble(image/I, list/show_to, var/duration)
+/proc/animate_speech_bubble(var/image/I, var/list/show_to, var/duration)
 	var/matrix/M = matrix()
 	M.Scale(0,0)
 	I.transform = M
