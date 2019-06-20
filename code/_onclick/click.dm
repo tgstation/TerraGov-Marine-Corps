@@ -49,7 +49,7 @@
 			var/msg = "Your previous click was ignored because you've done too many in a minute."
 			if(minute != clicklimiter[5]) //only one admin message per-minute
 				clicklimiter[5] = minute
-				log_game("[key_name(src)] has hit the per-minute click limit of [mcl].")
+				log_admin_private("[key_name(src)] has hit the per-minute click limit of [mcl].")
 				message_admins("[ADMIN_TPMONTY(mob)] has hit the per-minute click limit of [mcl].")
 			to_chat(src, "<span class='danger'>[msg]</span>")
 			return

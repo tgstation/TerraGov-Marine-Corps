@@ -85,7 +85,7 @@
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/O = i
 		//Players without preferences or jobbaned players cannot be drafted.
-		if(!O.key || !O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
+		if(!O.key || !O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || is_banned_from(O.ckey, ROLE_XENOMORPH))
 			continue
 
 		//AFK players cannot be drafted

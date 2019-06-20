@@ -228,9 +228,6 @@
 		air1.gases[/datum/gas/oxygen][MOLES] = max(0,air1.gases[/datum/gas/oxygen][MOLES] - 0.5 / efficiency) // Magically consume gas? Why not, we run on cryo magic.
 		air1.garbage_collect()
 */
-/obj/machinery/atmospherics/components/unary/cryo_cell/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
 	if(message_cooldown <= world.time)
@@ -301,7 +298,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(loc)].")
+		log_game("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
 
 		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")

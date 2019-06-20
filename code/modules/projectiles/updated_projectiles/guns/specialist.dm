@@ -693,8 +693,8 @@
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")
-		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
+		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
+		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1
 		F.updateicon()

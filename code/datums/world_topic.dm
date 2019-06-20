@@ -6,13 +6,13 @@
 		var/datum/world_topic/WT = I
 		var/keyword = initial(WT.keyword)
 		if(!keyword)
-			warning("[WT] has no keyword! Ignoring...")
+			stack_trace("[WT] has no keyword! Ignoring...")
 			continue
 		var/existing_path = .[keyword]
 		if(existing_path)
-			warning("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
+			stack_trace("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
 		else if(keyword == "key")
-			warning("[WT] has keyword 'key'! Ignoring...")
+			stack_trace("[WT] has keyword 'key'! Ignoring...")
 		else
 			.[keyword] = WT
 

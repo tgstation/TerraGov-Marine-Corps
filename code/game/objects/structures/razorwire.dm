@@ -112,7 +112,6 @@
 			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1)
 			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
 			"<span class='danger'>You sparta [M]'s against [src]!</span>")
-			log_admin("[key_name(usr)] spartaed [key_name(M)]'s against \the [src].")
 			log_combat(user, M, "spartaed", "", "against \the [src]")
 			msg_admin_attack("[key_name(usr)] spartaed [key_name(M)] against \the [src].")
 			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)

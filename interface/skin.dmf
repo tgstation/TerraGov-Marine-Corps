@@ -56,7 +56,7 @@ window "mainwindow"
 		anchor2 = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
-		icon = 'icons\\ss13_64.png'
+		icon = 'icons\\tgmc_64.png'
 		macro = "default"
 		menu = "menu"
 	elem "split"
@@ -189,55 +189,64 @@ window "infowindow"
 		is-vert = false
 	elem "changelog"
 		type = BUTTON
-		pos = 16,5
-		size = 104x20
-		anchor1 = 3,0
-		anchor2 = 19,0
+		pos = 6,5
+		size = 94x20
+		anchor1 = 1,0
+		anchor2 = 16,0
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "changelog"
+	elem "discord"
+		type = BUTTON
+		pos = 100,5
+		size = 90x20
+		anchor1 = 16,0
+		anchor2 = 30,0
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
 	elem "rules"
 		type = BUTTON
-		pos = 120,5
-		size = 100x20
-		anchor1 = 19,0
-		anchor2 = 34,0
+		pos = 190,5
+		size = 90x20
+		anchor1 = 30,0
+		anchor2 = 44,0
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
 	elem "wiki"
 		type = BUTTON
-		pos = 220,5
-		size = 100x20
-		anchor1 = 34,0
-		anchor2 = 50,0
+		pos = 280,5
+		size = 90x20
+		anchor1 = 44,0
+		anchor2 = 58,0
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
 	elem "forum"
 		type = BUTTON
-		pos = 320,5
-		size = 100x20
-		anchor1 = 50,0
-		anchor2 = 66,0
+		pos = 370,5
+		size = 90x20
+		anchor1 = 58,0
+		anchor2 = 72,0
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
 	elem "github"
 		type = BUTTON
-		pos = 420,5
-		size = 100x20
-		anchor1 = 66,0
-		anchor2 = 81,0
+		pos = 460,5
+		size = 90x20
+		anchor1 = 72,0
+		anchor2 = 86,0
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
 	elem "webmap"
 		type = BUTTON
-		pos = 520,5
-		size = 100x20
-		anchor1 = 81,0
-		anchor2 = 97,0
+		pos = 550,5
+		size = 90x20
+		anchor1 = 86,0
+		anchor2 = 100,0
 		saved-params = "is-checked"
 		text = "Webmap"
 		command = "webmap"

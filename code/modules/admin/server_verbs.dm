@@ -102,7 +102,7 @@
 		return
 
 	to_chat(world, "<span class='danger'>Server shutting down.</span> <span class='notice'>Initiated by: [shuttingdown]</span>")
-	log_game("Server shutting down. Initiated by: [shuttingdown]")
+	log_admin("Server shutting down. Initiated by: [shuttingdown]")
 
 #ifdef TGS_V3_API
 	if(GLOB.tgs)
@@ -115,15 +115,15 @@
 			else
 				var/msg = "WARNING: Couldn't find tgstation-server3 instancename, server might restart after shutdown."
 				message_admins(msg)
-				log_game(msg)
+				log_admin(msg)
 		else
 			var/msg = "WARNING: Couldn't find tgstation-server3 command line interface, server will very likely restart after shutdown."
 			message_admins(msg)
-			log_game(msg)
+			log_admin(msg)
 	else
 		var/msg = "WARNING: Couldn't find tgstation-server3 api object, server could restart after shutdown, but it will very likely be just fine"
 		message_admins(msg)
-		log_game(msg)
+		log_admin(msg)
 #endif
 
 	sleep(world.tick_lag) //so messages can get sent to players.
