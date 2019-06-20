@@ -52,7 +52,7 @@
 		open = !open
 		update_icon()
 		to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
-	
+
 	else if(iscrowbar(I) && cell && open)
 		remove_cell(user)
 
@@ -74,7 +74,7 @@
 
 		obj_integrity = min(max_integrity, obj_integrity + 10)
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
-		
+
 	else if(I.force)
 		switch(I.damtype)
 			if("fire")
@@ -255,7 +255,7 @@
 /obj/vehicle/proc/update_stats()
 	return
 
-/obj/vehicle/proc/take_damage(var/damage)
-	if(damage)
+/obj/vehicle/proc/take_damage(damage)
+	if(damage) //This prevents the vehicle taking negative damage and thus healing.
 		obj_integrity -= damage
 		healthcheck()

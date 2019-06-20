@@ -27,7 +27,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	fire_sounds = list('sound/weapons/tank_minigun_loop.ogg')
 	cooldown = 2 //Minimal cooldown
 
-/obj/item/tank_weapon/proc/fire(var/atom/T,var/mob/user)
+/obj/item/tank_weapon/proc/fire(atom/T,mob/user)
 	if(!can_fire(T))
 		return FALSE
 	if(ammo.current_rounds <= 0)
@@ -46,7 +46,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	return TRUE
 
 /obj/item/tank_weapon/proc/can_fire(var/turf/T)
-	if(get_dist(T, src) <= 3 && owner.gunner)
+	if(get_dist(T, src) <= 3)
 		to_chat(owner.gunner, "Firing your main gun here could damage the tank!")
 		return FALSE
 	return TRUE
@@ -59,9 +59,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	desc = "A gigantic wall of metal designed for maximum Xeno destruction. Click it with an open hand to enter as a pilot or a gunner."
 	icon = 'icons/obj/tank.dmi'
 	icon_state = "tank"
-	layer = OBJ_LAYER
-	bound_width = 128
-	bound_height = 128
+	layer = 5
 	anchored = FALSE
 	can_buckle = FALSE
 	req_access = list(ACCESS_MARINE_TANK)
@@ -70,6 +68,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	max_integrity = 600
 	anchored = TRUE //No bumping / pulling the tank
 	demolish_on_ram = TRUE
+	pixel_x = -48
+	pixel_y = -48
 	//Who's driving the tank
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner
@@ -85,6 +85,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/firing_main_cannon = FALSE
 	var/firing_minigun = FALSE
 	var/last_drive_sound = 0 //Engine noises.
+	var/list/passengers = list() //People who are in the tank without gunning / driving. This allows for things like jeeps and APCs in future
+	var/max_passengers = 5 //This seems sane to me, change if you don't agree.
 
 /obj/vehicle/tank/examine(mob/user)
 	. = ..()
@@ -96,7 +98,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	desc = "The shooty bit on a tank."
 	icon = 'icons/obj/tank_gun.dmi'
 	icon_state = "turret"
-	layer = ABOVE_OBJ_LAYER
+	layer = 5.1
 	animate_movement = TRUE //So it doesnt just ping back and forth and look all stupid
 	mouse_opacity = FALSE //It's an overlay
 
@@ -124,28 +126,25 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		last_drive_sound = world.time
 
 /obj/vehicle/tank/update_icon() //To show damage, gun firing, whatever. We need to re apply the gun turret overlay.
-	var/icon/I = icon(icon,icon_state,dir)
-	bound_width = I.Width() //Adjust the hitbox in case admins want to make an OMEGAtank
-	bound_height = I.Height()
 	vis_contents = null
-	if(!turret_overlay) //We have to do this because of BYOND's innate dir setting habits, in byond, if you have an overlay'd object its direction can ONLY be which way the source is facing. So, we improvise.. ((yes this is kinda shit))
+	if(!turret_overlay)
 		return
+	handle_overlays()
+
+/obj/vehicle/tank/proc/handle_overlays() //This code is vehicle specific and handles offsets + overlays for the tank's gun. Please change this accordingly.
 	if(main_cannon_dir)
 		turret_overlay.setDir(main_cannon_dir)
-		if(main_cannon_dir == WEST || main_cannon_dir == SOUTHWEST|| main_cannon_dir == NORTHWEST)
-			turret_overlay.pixel_x = pixel_x -19
-		else
-			turret_overlay.pixel_x = 0
+		turret_overlay.pixel_x = 0
 	vis_contents += turret_overlay
 
 /obj/vehicle/tank/attack_hand(mob/user)
-	if(pilot && gunner)
-		to_chat(user, "You are unable to enter [src] because all of its seats are occupied!")
-		return ..()
 	if(user in operators)
 		exit_tank(user)
 		return
-	var/position = alert("What seat would you like to enter?.",name,"pilot","gunner") //God I wish I had radials to work with
+	if(pilot && gunner)
+		to_chat(user, "You are unable to enter [src] because all of its seats are occupied!")
+		return ..()
+	var/position = alert("What seat would you like to enter?.",name,"pilot","gunner", "passenger") //God I wish I had radials to work with
 	if(!position)
 		return
 	if(pilot && position == "pilot")
@@ -153,6 +152,9 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		return
 	if(gunner && position == "gunner")
 		to_chat(user, "[gunner] is already controlling [src]!")
+		return
+	if(passengers.len >= max_passengers && position == "passenger") //We have a few slots for people to enter as passengers without gunning / driving.
+		to_chat(user, "[src] is already full!")
 		return
 	if(can_enter(user)) //OWO can they enter us????
 		to_chat(user, "You climb into [src] as a [position]!")
@@ -177,9 +179,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	if(do_after(M, time, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
-/obj/vehicle/tank/proc/enter(var/mob/user, var/position) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
-	if(!user || !position)
-		return //Something fucked up. Whoops!
+/obj/vehicle/tank/proc/enter(mob/user, position) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
 	user.forceMove(src)
 	operators += user
 	switch(position)
@@ -187,15 +187,15 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 			pilot = user
 		if("gunner")
 			gunner = user
+		if("passenger")
+			passengers += user
 
 
 /obj/vehicle/tank/proc/remove_all_players()
 	for(var/M in operators)
 		exit_tank(M)
 
-/obj/vehicle/tank/proc/exit_tank(var/mob/user) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
-	if(!user)
-		return //Something fucked up. Whoops!
+/obj/vehicle/tank/proc/exit_tank(mob/user) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
 	if(user == pilot)
 		user.forceMove(get_turf(src))
 		pilot = null
@@ -204,13 +204,19 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		user.forceMove(get_turf(src))
 		gunner = null
 		operators -= user
+	if(user in passengers)
+		user.forceMove(get_turf(src))
+		passengers -= user
+		operators -= user
 
 /obj/vehicle/tank/relaymove(mob/user, direction)
+	if(world.time < last_move_time + move_delay)
+		return
 	if(user.incapacitated() || user != pilot)
 		to_chat(user, "You can't reach the gas pedal from down here, maybe try manning the driver's seat?")
-		return
-	if(world.time > last_move_time + move_delay)
-		. = step(src, direction)
+		return FALSE
+	last_move_time = world.time
+	. = step(src, direction)
 	update_icon()
 
 /obj/vehicle/tank/Bump(atom/A, yes)
@@ -222,22 +228,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	if(isliving(A) && pilot)
 		log_attack("[pilot] drove over [A] with [src]")
 
-/client/MouseDown(object, location, control, params)
-	. = ..()
-	if(istype(mob.loc, /obj/vehicle/tank)) //mob is a var that exists on all clients anyway
-		var/obj/vehicle/tank/our_tank = mob.loc //I could refactor this to be a var on the mob, if you'd prefer
-		our_tank.onMouseDown(object,mob,params) //Alright, so as soon as they start clicking, this means they want to start firing. If we're in a tank that means that they want to shoot the tank gun
-		//MAINTAINERS: You can easily refactor this to work with guns, just follow the above format.
-
-/client/MouseUp(object, location, control, params) ///Oh boy click code, my favourite! This adds support for click n' hold gun firing action
-	. = ..()
-	if(istype(mob.loc, /obj/vehicle/tank))
-		var/obj/vehicle/tank/our_tank = mob.loc //I could refactor this to be a var on the mob, if you'd prefer
-		our_tank.onMouseUp(object,mob)
-
-
 //Combat, tank guns, all that fun stuff
-/obj/vehicle/tank/proc/onMouseDown(var/atom/A, mob/user, params)
+/obj/vehicle/tank/proc/onMouseDown(atom/A, mob/user, params)
 	if(user != gunner) //Only the gunner can fire!
 		return
 	var/list/modifiers = params2list(params) //If they're CTRL clicking, for example, let's not have them accidentally shoot.
@@ -252,7 +244,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		return
 	handle_fire(A)
 
-/obj/vehicle/tank/proc/handle_fire(var/atom/A)
+/obj/vehicle/tank/proc/handle_fire(atom/A)
 	if(!minigun && gunner)
 		to_chat(gunner, "[src]'s minigun hardpoint spins pathetically. Maybe you should install a minigun on this tank?")
 		return FALSE
@@ -261,7 +253,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	firing_minigun = TRUE
 	START_PROCESSING(SSfastprocess, src)
 
-/obj/vehicle/tank/proc/handle_fire_main(var/atom/A) //This is used to shoot your big ass tank cannon, rather than your small MG
+/obj/vehicle/tank/proc/handle_fire_main(atom/A) //This is used to shoot your big ass tank cannon, rather than your small MG
 	if(!main_cannon && gunner)
 		to_chat(gunner, "You look at the stump where [src]'s tank barrel should be and sigh.'")
 		return FALSE
@@ -286,7 +278,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 			minigun_dir = get_dir(src, firing_target) //Set the gun dir
 			update_icon()
 
-/obj/vehicle/tank/proc/onMouseUp(var/atom/A, mob/user)
+/obj/vehicle/tank/proc/onMouseUp(atom/A, mob/user)
 	stop_firing()
 
 /obj/vehicle/tank/proc/stop_firing()
