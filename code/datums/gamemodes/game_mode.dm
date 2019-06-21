@@ -152,6 +152,7 @@
 
 
 /datum/game_mode/proc/declare_completion()
+	log_game("The round has ended.")
 	SSdbcore.SetRoundEnd()
 	end_of_round_deathmatch()
 	return TRUE

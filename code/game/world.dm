@@ -87,6 +87,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
+	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
@@ -96,6 +97,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_qdel_log)
 	start_log(GLOB.world_runtime_log)
+	start_log(GLOB.world_paper_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
