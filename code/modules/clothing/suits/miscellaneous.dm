@@ -205,13 +205,22 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 
-	equipped(var/mob/user, var/slot)
-		if(slot == SLOT_WEAR_SUIT && ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.dropItemToGround(H.handcuffed)
-			H.drop_l_hand()
-			H.drop_r_hand()
-		..()
+
+/obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
+	if(slot == SLOT_WEAR_SUIT)
+		ENABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
+		user.stop_pulling() //Can't pull if restrained.
+		if(user.handcuffed) //Keep the cuffs on.
+			user.drop_all_held_items()
+		user.update_action_buttons() //Certain action buttons will no longer be usable.
+		RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/on_removal)
+	return ..()
+
+
+/obj/item/clothing/suit/straight_jacket/proc/on_removal(datum/source, mob/living/user)
+	DISABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
+	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
+
 
 /obj/item/clothing/suit/ianshirt
 	name = "worn shirt"

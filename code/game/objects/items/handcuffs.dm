@@ -13,7 +13,7 @@
 	matter = list("metal" = 500)
 	origin_tech = "materials=1"
 	var/dispenser = 0
-	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
+	breakouttime = 2 MINUTES
 	var/single_use = 0 //determines if handcuffs will be deleted on removal
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_delay = 40 //how many deciseconds it takes to cuff someone
@@ -57,14 +57,15 @@
 			target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 			return TRUE
 
+
 /obj/item/restraints/handcuffs/zip
 	name = "zip cuffs"
 	desc = "Single-use plastic zip tie handcuffs."
 	w_class = 1
 	icon_state = "cuff_zip"
-	breakouttime = 600 //Deciseconds = 60s
+	breakouttime = 1 MINUTES
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
-	cuff_delay = 20
+	cuff_delay = 2 SECONDS
 
 
 /obj/item/restraints/handcuffs/zip/place_handcuffs(mob/living/carbon/target, mob/user)
@@ -79,7 +80,7 @@
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "cuff_white"
-	breakouttime = 300 //Deciseconds = 30s
+	breakouttime = 30 SECONDS
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
 
 /obj/item/restraints/handcuffs/cable/red
@@ -140,5 +141,4 @@
 		spawn(30)
 			if(!C)	return
 			if(p_loc == user.loc && p_loc_m == C.loc)
-				C.handcuffed = new /obj/item/restraints/handcuffs(C)
-				C.handcuff_update()
+				C.update_handcuffed(new /obj/item/restraints/handcuffs(C))

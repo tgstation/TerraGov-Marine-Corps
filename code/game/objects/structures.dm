@@ -4,6 +4,7 @@
 	var/climb_delay = 50
 	var/parts
 	var/flags_barrier = 0
+	var/broken = FALSE //similar to machinery's stat BROKEN
 	anchored = TRUE
 
 /obj/structure/proc/destroy_structure(deconstruct)

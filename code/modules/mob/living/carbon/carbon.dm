@@ -46,11 +46,11 @@
 /mob/living/carbon/revive()
 	if (handcuffed && !initial(handcuffed))
 		dropItemToGround(handcuffed)
-	handcuffed = initial(handcuffed)
+	update_handcuffed(initial(handcuffed))
 
 	if (legcuffed && !initial(legcuffed))
 		dropItemToGround(legcuffed)
-	legcuffed = initial(legcuffed)
+	update_legcuffed(initial(legcuffed))
 
 	return ..()
 

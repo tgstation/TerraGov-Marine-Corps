@@ -132,6 +132,7 @@
 				V.loc = src.loc
 				V.update_canmove()
 				src.buckled_mob = V
+				RegisterSignal(V, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 				to_chat(V, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
 
 		// FEED ME, SEYMOUR.

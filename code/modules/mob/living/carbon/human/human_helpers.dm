@@ -212,19 +212,6 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/human/restrained(check_grab = 1)
-	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)
-		return 1
-	if (handcuffed)
-		return 1
-	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
-		return 1
-
-	if (istype(buckled, /obj/structure/bed/nest))
-		return 1
-
-	return 0
-
 
 /mob/living/carbon/human/has_legs()
 	. = 0

@@ -126,6 +126,7 @@
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
+		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
 		to_chat(src, "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>")
 		update_fire()
 		return TRUE
@@ -153,11 +154,15 @@
 			G.Die()
 			dropItemToGround(G)
 
+
 /mob/living/proc/ExtinguishMob()
-	if(on_fire)
-		on_fire = FALSE
-		fire_stacks = 0
-		update_fire()
+	if(!on_fire)
+		return FALSE
+	on_fire = FALSE
+	fire_stacks = 0
+	update_fire()
+	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
+
 
 /mob/living/carbon/xenomorph/ExtinguishMob()
 	. = ..()
@@ -183,6 +188,18 @@
 /mob/living/fire_act()
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
+
+
+/mob/living/proc/resist_fire(datum/source)
+	fire_stacks = max(fire_stacks - rand(3, 6), 0)
+	KnockDown(4, TRUE)
+	visible_message("<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>", \
+	"<span class='notice'>You stop, drop, and roll!</span>", null, 5)
+	if(fire_stacks <= 0)
+		visible_message("<span class='danger'>[src] has successfully extinguished themselves!</span>", \
+		"<span class='notice'>You extinguish yourself.</span>", null, 5)
+		ExtinguishMob()
+
 
 //Mobs on Fire end
 // When they are affected by a queens screech
