@@ -101,7 +101,7 @@
 		M.update_burst()
 		//buckle to nest
 		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
-		victim_nest?.do_buckle(victim_nest, silent = TRUE)
+		victim_nest?.do_buckle(M, silent = TRUE)
 	qdel(src)
 
 
