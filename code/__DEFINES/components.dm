@@ -113,7 +113,9 @@
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
 
 //mob/living signals
-#define COMSIG_LIVING_DO_RESIST	"living_do_resist"				//from the base of /mob/living/do_resist()
+#define COMSIG_LIVING_DO_RESIST			"living_do_resist"		//from the base of /mob/living/do_resist()
+#define COMSIG_LIVING_DO_MOVE_RESIST	"living_do_move_resist"
+	#define COMSIG_LIVING_RESIST_SUCCESSFUL (1<<0)
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"

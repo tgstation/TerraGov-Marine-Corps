@@ -223,7 +223,7 @@ Redefine as needed.
 
 
 /obj/item/tk_grab/shrike
-	var/grab_level = TKGRAB_UNSET
+	var/grab_level = TKGRAB_NONLETHAL
 	var/last_grab_change = 0 //Time
 	var/last_life_tick = 0
 	var/turf/starting_master_loc
@@ -239,49 +239,84 @@ Redefine as needed.
 	master_action = xeno_action
 	tk_user = master
 	focus = victim
-	grab_level = TKGRAB_NONLETHAL
 	starting_master_loc = get_turf(tk_user)
 	starting_victim_loc = get_turf(victim)
 	last_life_tick = victim.life_tick
+
+	ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
+	RegisterSignal(victim, list(COMSIG_LIVING_DO_RESIST, COMSIG_LIVING_DO_MOVE_RESIST), .proc/resisted_against)
 
 	return ..() //Starts processing.
 
 
 /obj/item/tk_grab/shrike/Destroy()
 	stop_psychic_grab()
-	tk_user = null
-	focus = null
-	starting_master_loc = null
-	starting_victim_loc = null
 
 	return ..() //Stops processing.
 
 
+/obj/item/tk_grab/shrike/resisted_against(datum/source, mob/living/carbon/human/victim)
+	if(victim.restrained(RESTRAINED_PSYCHICGRAB))
+		return COMSIG_LIVING_RESIST_SUCCESSFUL
+	if(victim.last_special >= world.time)
+		return COMSIG_LIVING_RESIST_SUCCESSFUL
+	victim.last_special = world.time + CLICK_CD_RESIST_PSYCHIC_GRAB
+
+	var/mob/living/carbon/xenomorph/shrike/master = tk_user
+
+	if(grab_level == TKGRAB_LETHAL && master.hive.living_xeno_ruler == master)
+		to_chat(victim, "<span class='warning'>The grip is too strong, you are at its mercy!</span>")
+		return COMSIG_LIVING_RESIST_SUCCESSFUL
+
+	victim.visible_message("<span class='danger'>[victim] resists against the invisible force's grip!</span>")
+
+	if(++victim.grab_resist_level < grab_level)
+		return COMSIG_LIVING_RESIST_SUCCESSFUL
+
+	playsound(victim.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+	victim.visible_message("<span class='danger'>[victim] has broken free of the invisible force's grip!</span>", null, null, 5)
+	stop_psychic_grab()
+	return COMSIG_LIVING_RESIST_SUCCESSFUL
+
+
 /obj/item/tk_grab/shrike/proc/stop_psychic_grab()
+	if(!QDELETED(src))
+		qdel(src)
+		return //We'll be called again.
+
 	if(!QDELETED(focus))
 		var/mob/living/carbon/human/victim = focus
+		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
 		victim.SetStunned(0)
+		victim.grab_resist_level = 0
 		victim.update_canmove()
+		focus = null
 
-	if(!QDELETED(tk_user) && loc == tk_user)
-		tk_user.temporarilyRemoveItemFromInventory(src)
+	if(!QDELETED(tk_user))
+		if(loc == tk_user)
+			tk_user.temporarilyRemoveItemFromInventory(src)
+		tk_user = null
 	
 	if(master_action && master_action.psychic_hold == src)
 		master_action.psychic_hold = null
 
+	starting_master_loc = null
+	starting_victim_loc = null
+
 
 /obj/item/tk_grab/shrike/process()
+	if(QDELETED(src)) //This is for testing, not for the final version.
+		CRASH("Looks like process() is called again before qdel() finishes processing Destroy() after all. Issue reported by the shrike tk gang.")
+
 	if(QDELETED(tk_user) || QDELETED(focus) || loc != tk_user)
-		if(QDELING(src)) //This is for testing, not for the final version.
-			CRASH("Looks like process() is called again before qdel() finishes processing Destroy() after all. Issue reported by the shrike tk gang.")
-		qdel(src)
+		stop_psychic_grab()
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/shrike/assailant = tk_user
 	var/mob/living/carbon/human/victim = focus
 
 	if(!assailant.check_state() || assailant.stagger || assailant.loc != starting_master_loc || victim.loc != starting_victim_loc || victim.stat == DEAD || isnestedhost(victim))
-		qdel(src)
+		stop_psychic_grab()
 		return FALSE
 
 	if(victim.life_tick <= last_life_tick) //One per life tick, no more.
@@ -289,9 +324,9 @@ Redefine as needed.
 
 	switch(grab_level)
 		if(TKGRAB_NONLETHAL)
-			victim.SetStunned(2)
+			//victim.SetStunned(2)
 		if(TKGRAB_LETHAL)
-			victim.SetKnockeddown(2)
+			//victim.SetKnockeddown(2)
 			victim.Losebreath(3)
 
 	apply_focus_overlay()
@@ -313,6 +348,7 @@ Redefine as needed.
 			if(!do_mob(assailant, victim, 2 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 				return FALSE
 			grab_level = TKGRAB_LETHAL
+			victim.SetKnockeddown(2)
 			log_combat(assailant, victim, "psychically strangled", addition="(kill intent)")
 			msg_admin_attack("[key_name(assailant)] psychically strangled (kill intent) [key_name(victim)]")
 			to_chat(assailant, "<span class='danger'>We tighten our psychic grip on [victim]'s neck!</span>")

@@ -352,7 +352,7 @@
 
 /datum/hive_status/proc/set_ruler(mob/living/carbon/xenomorph/successor)
 	SSdirection.clear_leader(hivenumber)
-	if(successor != null)
+	if(!isnull(successor))
 		SSdirection.set_leader(hivenumber, successor)
 		SEND_SIGNAL(successor, COMSIG_HIVE_BECOME_RULER)
 	living_xeno_ruler = successor
