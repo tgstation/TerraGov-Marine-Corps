@@ -206,7 +206,7 @@ directive is properly returned.
 	if(get_dist(user,src) <= 2)
 		if(reagents)
 			if(CHECK_BITFIELD(reagents.reagent_flags, TRANSPARENT))
-				to_chat(user, "It contains:")
+				to_chat(user, "It contains these reagents:")
 				if(reagents.reagent_list.len) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)
@@ -223,7 +223,7 @@ directive is properly returned.
 				if(isxeno(user))
 					return
 				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_NOVICE) // If they have no skillset(admin-spawn, etc), or are properly skilled.
-					to_chat(user, "It contains:")
+					to_chat(user, "It contains these reagents:")
 					if(reagents.reagent_list.len)
 						for(var/datum/reagent/R in reagents.reagent_list)
 							to_chat(user, "[R.volume] units of [R.name]")
