@@ -14,7 +14,6 @@
 	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
-	var/lit = 0 //Turn the flamer on/off
 
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
@@ -26,17 +25,13 @@
 /obj/item/weapon/gun/flamer/Initialize()
 	. = ..()
 	AddComponent(/datum/component/flamethrower, null, new /obj/item/reagent_container/flamer_tank/regular, CONFIG_GET(number/combat_define/max_fire_delay) * 5, 6)
+	RegisterSignal(src, COMSIG_FLAMER_LIT_STATE, .proc/toggle_flame)
 
 /obj/item/weapon/gun/flamer/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
-
-/obj/item/weapon/gun/flamer/unique_action(mob/user)
-	return toggle_flame(user)
-
-
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
-	to_chat(user, "It's turned [lit? "on" : "off"].")
+//	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
 	else
@@ -49,14 +44,13 @@
 			return
 
 
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user, lit ? 'sound/weapons/gun_flamethrower_off.ogg' : 'sound/weapons/gun_flamethrower_on.ogg', 25, 1)
-	lit = !lit
+/obj/item/weapon/gun/flamer/proc/toggle_flame(datum/source, newstate)
+	playsound(loc, newstate ? 'sound/weapons/gun_flamethrower_on.ogg' : 'sound/weapons/gun_flamethrower_off.ogg', 25, 1)
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
 	I.pixel_x += 3
 
-	if (lit)
+	if (newstate)
 		overlays += I
 	else
 		overlays -= I
@@ -65,7 +59,7 @@
 	return TRUE
 
 
-/obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
+///obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 /*	set waitfor = 0
 
 	if(!able_to_fire(user))

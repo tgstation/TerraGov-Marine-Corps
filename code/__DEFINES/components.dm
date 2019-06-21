@@ -108,6 +108,13 @@
 
 #define COMSIG_GUN_FIRE "gun_fire"
 	#define COMPONENT_GUN_FIRED 1
+#define COMSIG_GUN_UNIQUE_ACTION "gun_unique_action"
+	#define COMPONENT_GUN_HAS_UNIQUE_ACTION 1
+
+#define COMSIG_FLAMER_LIT_STATE "flamer_lit_state"
+#define COMSIG_FLAMER_IGNITABLE "flamer_ignitable"
+	#define COMPONENT_FLAMER_IGNITABLE 1
+	#define COMPONENT_FLAMER_UNLIT 2
 
 // xeno stuff
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"

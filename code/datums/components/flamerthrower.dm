@@ -23,6 +23,21 @@
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/attackby)
 	RegisterSignal(parent, COMSIG_GUN_FIRE, .proc/fire)
+	RegisterSignal(parent, COMSIG_GUN_UNIQUE_ACTION, .proc/toggle_flame)
+	RegisterSignal(parent, COMSIG_FLAMER_IGNITABLE, .proc/ignitable_source)
+
+/datum/component/flamethrower/proc/ignitable_source()
+	if(flamer_flags & FLAMER_ALWAYS_LIT|FLAMER_LIT)
+		return COMPONENT_FLAMER_IGNITABLE
+	return COMPONENT_FLAMER_UNLIT
+
+/datum/component/flamethrower/proc/toggle_flame()
+	if(flamer_flags & FLAMER_ALWAYS_LIT)
+		return
+	
+	TOGGLE_BITFIELD(flamer_flags, FLAMER_LIT)
+
+	SEND_SIGNAL(parent, COMSIG_FLAMER_LIT_STATE, flamer_flags & FLAMER_LIT)
 
 /datum/component/flamethrower/proc/attackby(datum/source, obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/reagent_container))
@@ -45,24 +60,30 @@
 
 /datum/component/flamethrower/proc/fire(datum/source, atom/target, mob/user)
 	. = COMPONENT_GUN_FIRED
-
+	to_chat(world, "got fire signal, [source], [target], [user]")
 	if(!(flamer_flags & FLAMER_LIT|FLAMER_ALWAYS_LIT))
+		to_chat(user, "not lit")
 		return
 
 	if(flamer_flags & FLAMER_COOLDOWN)
+		to_chat(user, "on cooldown")
 		return
 
 	if(!tank)
+		to_chat(user, "no tank")
 		return
 
 	if(!get_turf(target))
+		to_chat(user, "nullspace target")
 		return // protect against nullspace
 
 	if(!tank.reagents?.total_volume)
+		to_chat(user, "empty tank or no reagents datum on tank")
 		return
 
 	var/datum/reagent/napalm/R = tank.reagents.get_master_reagent()
 	if(!istype(R))
+		to_chat(user, "no napalm reagent in tank")
 		return
 
 	var/power = 100
@@ -73,7 +94,7 @@
 
 /datum/component/flamethrower/proc/unleash_flame(atom/target, mob/living/user, datum/reagent/napalm/R, power)
 	flamer_flags |= FLAMER_COOLDOWN
-
+	to_chat(user, "unleashing flame")
 	if(R.napalm_flags & NAPALM_TRIANGULAR)
 		flame_triangular(target, user, R, power)
 	else
@@ -85,7 +106,9 @@
 	DISABLE_BITFIELD(flamer_flags, FLAMER_COOLDOWN)
 
 /datum/component/flamethrower/proc/flame_line(atom/target, mob/living/user, datum/reagent/napalm/R, power)
-	var/list/turf/turfs = getline(parent,target)
+	to_chat(user, "flaming a line to [target]")
+	var/list/turf/turfs = getline(get_turf(parent),target)
+	to_chat(user, "line is [jointext(turfs, ", ")]")
 	playsound(parent, fire_sound, 50, 1)
 	var/turf/prev_T
 	var/delay = 0
@@ -93,17 +116,21 @@
 
 	for(var/F in turfs)
 		var/turf/T = F
-
+		to_chat(user, "flaming turf [T]")
 		if(T == get_turf(parent))
 			prev_T = T
 			continue
 		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
+			to_chat(user, "dense turf hit")
 			break
-		if(get_turf(parent) != user)
+		if(!(parent in user))
+			to_chat(user, "flamer not in contents of user")
 			break
-		if(!R.volume < reagent_consumption)
+		if(R.volume < reagent_consumption)
+			to_chat(user, "not enough reagent")
 			break
 		if(distance > min(R.max_range, max_range))
+			to_chat(user, "gone too far")
 			break
 
 		var/blocked = FALSE
@@ -268,7 +295,7 @@
 
 /obj/item/reagent_container/flamer_tank/regular
 	volume = 300
-	list_reagents = list("napalm")
+	list_reagents = list("napalm" = 300)
 
 /datum/reagent/napalm
 	name = "napalm"

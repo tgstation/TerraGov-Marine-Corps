@@ -200,7 +200,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(lit || smoketime <= 0)
 		return
 
-	if(iswelder(W))
+	var/signal_return = SEND_SIGNAL(W, COMPONENT_FLAMER_IGNITABLE)
+
+	// todo: just make this completely generic
+	if(signal_return & COMPONENT_FLAMER_IGNITABLE)
+		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
+	else if(signal_return & COMPONENT_FLAMER_UNLIT)
+		to_chat(user, "<span class='warning'>Turn on the pilot light first!</span>")
+
+	else if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.isOn())//Badasses dont get blinded while lighting their cig with a blowtorch
 			light("<span class='notice'>[user] casually lights the [name] with [W].</span>")
@@ -237,16 +245,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/assembly/igniter))
 		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name].</span>")
-
-	else if(istype(W, /obj/item/attachable/attached_gun/flamer))
-		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
-
-	else if(istype(W, /obj/item/weapon/gun/flamer))
-		var/obj/item/weapon/gun/flamer/F = W
-		if(F.lit)
-			light("<span class='notice'>[user] lights their [src] with the pilot light of the [F].</span>")
-		else
-			to_chat(user, "<span class='warning'>Turn on the pilot light first!</span>")
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W

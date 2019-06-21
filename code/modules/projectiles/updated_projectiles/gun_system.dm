@@ -517,6 +517,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			flags_gun_features &= ~GUN_BURST_FIRING
 		return
 
+	to_chat(world, "gun after attacks")
+
 	if(!istype(A, /obj/screen))
 		Fire(A, user, params) //Otherwise, fire normally.
 
@@ -606,7 +608,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	set waitfor = 0
-
+	to_chat(world, "sending signal")
 	if(SEND_SIGNAL(src, COMSIG_GUN_FIRE, target, user) & COMPONENT_GUN_FIRED)
 		return
 
@@ -761,6 +763,7 @@ and you're good to go.
 	if(M != user && user.a_intent == INTENT_HARM)
 		if(!active_attachable && CHECK_BITFIELD(flags_gun_features, GUN_BURST_ON) && burst_amount > 1)
 			..()
+			to_chat(world, "attack fire")
 			Fire(M, user)
 			return TRUE
 		..()
