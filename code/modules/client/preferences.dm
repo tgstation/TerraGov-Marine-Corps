@@ -115,7 +115,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// We don't have a savefile or we failed to load them
 	random_character()
-	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 5 SECONDS)
 	
 
 /datum/preferences/proc/load_default_keybindings(client/C)
