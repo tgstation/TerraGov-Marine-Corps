@@ -68,7 +68,7 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/autodoc/power_change(var/area/master_area = null)
+/obj/machinery/autodoc/power_change(area/master_area = null)
 	..()
 	if(machine_stat & NOPOWER && occupant)
 		visible_message("\ [src] engages the safety override, ejecting the occupant.")
@@ -584,7 +584,7 @@
 	go_out(AUTODOC_NOTICE_SUCCESS)
 
 
-/obj/machinery/autodoc/proc/open_incision(mob/living/carbon/human/target, var/datum/limb/L)
+/obj/machinery/autodoc/proc/open_incision(mob/living/carbon/human/target, datum/limb/L)
 	if(target && L && L.surgery_open_stage < 2)
 		sleep(INCISION_MANAGER_MAX_DURATION*surgery_mod)
 		if(!surgery) return
@@ -593,7 +593,7 @@
 		L.surgery_open_stage = 2 //Can immediately proceed to other surgery steps
 		target.updatehealth()
 
-/obj/machinery/autodoc/proc/close_incision(mob/living/carbon/human/target, var/datum/limb/L)
+/obj/machinery/autodoc/proc/close_incision(mob/living/carbon/human/target, datum/limb/L)
 	if(target && L && 0 < L.surgery_open_stage <= 2)
 		sleep(CAUTERY_MAX_DURATION*surgery_mod)
 		if(!surgery) return
@@ -602,7 +602,7 @@
 		L.limb_status &= ~LIMB_BLEEDING
 		target.updatehealth()
 
-/obj/machinery/autodoc/proc/open_encased(mob/living/carbon/human/target, var/datum/limb/L)
+/obj/machinery/autodoc/proc/open_encased(mob/living/carbon/human/target, datum/limb/L)
 	if(target && L && L.surgery_open_stage >= 2)
 		if(L.surgery_open_stage == 2) // this will cover for half completed surgeries
 			sleep(SAW_OPEN_ENCASED_MAX_DURATION*surgery_mod)
@@ -613,7 +613,7 @@
 			if(!surgery) return
 			L.surgery_open_stage = 3
 
-/obj/machinery/autodoc/proc/close_encased(mob/living/carbon/human/target, var/datum/limb/L)
+/obj/machinery/autodoc/proc/close_encased(mob/living/carbon/human/target, datum/limb/L)
 	if(target && L && L.surgery_open_stage > 2)
 		if(L.surgery_open_stage == 3) // this will cover for half completed surgeries
 			sleep(RETRACT_CLOSE_ENCASED_MAX_DURATION*surgery_mod)

@@ -28,7 +28,7 @@
 		if(brainmob && brainmob.client)
 			brainmob.client.screen.len = null //clear the hud
 
-/obj/item/organ/brain/proc/transfer_identity(var/mob/living/carbon/H)
+/obj/item/organ/brain/proc/transfer_identity(mob/living/carbon/H)
 	name = "[H]'s brain"
 	brainmob = new(src)
 	brainmob.name = H.real_name
@@ -46,7 +46,7 @@
 	else
 		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
 
-/obj/item/organ/brain/removed(var/mob/living/target,var/mob/living/user)
+/obj/item/organ/brain/removed(mob/living/target,mob/living/user)
 
 	..()
 
@@ -57,7 +57,7 @@
 	if(istype(B) && istype(H))
 		B.transfer_identity(target)
 
-/obj/item/organ/brain/replaced(var/mob/living/target)
+/obj/item/organ/brain/replaced(mob/living/target)
 
 	if(target.key)
 		target.ghostize()

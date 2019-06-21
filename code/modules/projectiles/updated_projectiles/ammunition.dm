@@ -37,7 +37,7 @@ They're all essentially identical when it comes to getting the job done.
 		if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
 		if(0) icon_state += "_e" //In case it spawns empty instead.
 
-/obj/item/ammo_magazine/update_icon(var/round_diff = 0)
+/obj/item/ammo_magazine/update_icon(round_diff = 0)
 	if(current_rounds <= 0) 					icon_state = base_mag_icon + "_e"
 	else if(current_rounds - round_diff <= 0) 	icon_state = base_mag_icon
 

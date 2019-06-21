@@ -105,7 +105,7 @@
 			src.close(M)
 	return 1
 
-/obj/item/storage/internal/Adjacent(var/atom/neighbor)
+/obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)
 
 

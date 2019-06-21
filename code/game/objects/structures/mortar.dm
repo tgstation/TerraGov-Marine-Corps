@@ -258,7 +258,7 @@
 	w_class = 5
 	flags_atom = CONDUCT
 
-/obj/item/mortal_shell/proc/detonate(var/turf/T)
+/obj/item/mortal_shell/proc/detonate(turf/T)
 
 	forceMove(T)
 
@@ -267,7 +267,7 @@
 	desc = "An 80mm mortar shell, loaded with a high explosive charge."
 	icon_state = "mortar_ammo_he"
 
-/obj/item/mortal_shell/he/detonate(var/turf/T)
+/obj/item/mortal_shell/he/detonate(turf/T)
 
 	explosion(T, 0, 3, 5, 7)
 
@@ -276,7 +276,7 @@
 	desc = "An 80mm mortar shell, loaded with a napalm charge."
 	icon_state = "mortar_ammo_inc"
 
-/obj/item/mortal_shell/incendiary/detonate(var/turf/T)
+/obj/item/mortal_shell/incendiary/detonate(turf/T)
 
 	explosion(T, 0, 2, 4, 7)
 	flame_radius(3, T)
@@ -292,7 +292,7 @@
 	. = ..()
 	smoke = new(src)
 
-/obj/item/mortal_shell/smoke/detonate(var/turf/T)
+/obj/item/mortal_shell/smoke/detonate(turf/T)
 
 	explosion(T, 0, 1, 2, 7)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
@@ -307,7 +307,7 @@
 	desc = "An 80mm mortar shell, loaded with a flash powder charge."
 	icon_state = "mortar_ammo_fsh"
 
-/obj/item/mortal_shell/flash/detonate(var/turf/T)
+/obj/item/mortal_shell/flash/detonate(turf/T)
 
 	explosion(T, 0, 1, 2, 7)
 	var/obj/item/explosive/grenade/flashbang/flash = new(T)
@@ -319,7 +319,7 @@
 	desc = "An 80mm mortar shell, loaded with an illumination flare."
 	icon_state = "mortar_ammo_flr"
 
-/obj/item/mortal_shell/flare/detonate(var/turf/T)
+/obj/item/mortal_shell/flare/detonate(turf/T)
 
 	//TODO: Add flare sound
 	new /obj/item/flashlight/flare/on/illumination(T)

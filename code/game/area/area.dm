@@ -177,7 +177,7 @@
 	InitializeLighting()
 
 
-/area/proc/poweralert(var/state, var/obj/source as obj)
+/area/proc/poweralert(state, obj/source as obj)
 	if(state != poweralm)
 		poweralm = state
 		if(istype(source))	//Only report power alarms on the z-level where the source is located.

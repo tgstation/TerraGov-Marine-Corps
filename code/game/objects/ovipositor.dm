@@ -93,6 +93,6 @@
 /obj/ovipositor/get_projectile_hit_chance(obj/item/projectile/P)
 	return TRUE
 
-/obj/ovipositor/bullet_act(var/obj/item/projectile/Proj)
+/obj/ovipositor/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	return 1

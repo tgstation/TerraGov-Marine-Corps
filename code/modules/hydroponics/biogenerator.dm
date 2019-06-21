@@ -161,7 +161,7 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item,var/cost)
+/obj/machinery/biogenerator/proc/create_product(item,cost)
 	if(cost > points)
 		menustat = "nopoints"
 		return 0

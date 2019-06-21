@@ -16,13 +16,13 @@
 	. = ..()
 	scanscrubbers()
 
-/obj/machinery/computer/area_atmos/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/area_atmos/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/area_atmos/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/area_atmos/attack_paw(mob/user as mob)
 	return
 
-/obj/machinery/computer/area_atmos/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/area_atmos/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -114,7 +114,7 @@
 		scrubber.on = text2num(href_list["toggle"])
 		scrubber.update_icon()
 
-/obj/machinery/computer/area_atmos/proc/validscrubber( var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber as obj )
+/obj/machinery/computer/area_atmos/proc/validscrubber( obj/machinery/portable_atmospherics/scrubber/huge/scrubber as obj )
 	if(!isobj(scrubber) || get_dist(scrubber.loc, src.loc) > src.range || scrubber.loc.z != src.loc.z)
 		return 0
 

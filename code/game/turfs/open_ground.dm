@@ -62,7 +62,7 @@
 		C.next_move_slowdown += river_slowdown
 
 
-/turf/open/ground/river/proc/cleanup(var/mob/living/carbon/human/H)
+/turf/open/ground/river/proc/cleanup(mob/living/carbon/human/H)
 	if(H.back?.clean_blood())
 		H.update_inv_back()
 	if(H.wear_suit?.clean_blood())

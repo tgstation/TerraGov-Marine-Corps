@@ -52,7 +52,7 @@
 	onclose(user, "alerts")
 
 
-/obj/machinery/computer/station_alert/proc/triggerAlarm(var/class, area/A, var/O, var/alarmsource)
+/obj/machinery/computer/station_alert/proc/triggerAlarm(class, area/A, O, alarmsource)
 	if(machine_stat & (BROKEN))
 		return
 	var/list/L = src.alarms[class]
@@ -75,7 +75,7 @@
 	return 1
 
 
-/obj/machinery/computer/station_alert/proc/cancelAlarm(var/class, area/A as area, obj/origin)
+/obj/machinery/computer/station_alert/proc/cancelAlarm(class, area/A as area, obj/origin)
 	if(machine_stat & (BROKEN))
 		return
 	var/list/L = src.alarms[class]

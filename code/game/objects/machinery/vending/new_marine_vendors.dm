@@ -98,7 +98,7 @@
 
 
 
-/obj/machinery/marine_selector/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/machinery/marine_selector/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 
 	if(!ishuman(user)) return
 	var/mob/living/carbon/human/H = user

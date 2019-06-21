@@ -133,7 +133,7 @@
 	results = list("nitroglycerin" = 2)
 	required_reagents = list("glycerol" = 1, "pacid" = 1, "sacid" = 1)
 
-/datum/chemical_reaction/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
 	var/datum/effect_system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)
 	e.holder_damage(holder.my_atom)
@@ -152,7 +152,7 @@
 	id = "flash_powder"
 	required_reagents = list("aluminum" = 1, "potassium" = 1, "sulfur" = 1 )
 
-/datum/chemical_reaction/flash_powder/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(2, 1, location)
@@ -173,7 +173,7 @@
 	id = "napalm"
 	required_reagents = list("aluminum" = 1, "phoron" = 1, "sacid" = 1 )
 
-/datum/chemical_reaction/napalm/on_reaction(var/datum/reagents/holder, var/created_volume, var/radius)
+/datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume, radius)
 	var/location = get_turf(holder.my_atom)
 	radius = round(created_volume/45)
 	if(radius < 0) radius = 0
@@ -192,7 +192,7 @@
 	id = "chemsmoke"
 	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 
-/datum/chemical_reaction/chemsmoke/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume * 1.5), 1)
 	var/location = get_turf(holder.my_atom)
 	var/datum/effect_system/smoke_spread/chem/S = new(location)
@@ -250,7 +250,7 @@
 	id = "solidphoron"
 	required_reagents = list("iron" = 5, "frostoil" = 5, "phoron" = 20)
 
-/datum/chemical_reaction/phoronsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+/datum/chemical_reaction/phoronsolidification/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	new /obj/item/stack/sheet/mineral/phoron(location)
 	return
@@ -260,7 +260,7 @@
 	id = "solidplastic"
 	required_reagents = list("pacid" = 10, "plasticide" = 20)
 
-/datum/chemical_reaction/plastication/on_reaction(var/datum/reagents/holder)
+/datum/chemical_reaction/plastication/on_reaction(datum/reagents/holder)
 	new /obj/item/stack/sheet/mineral/plastic(get_turf(holder.my_atom),10)
 	return
 

@@ -10,7 +10,7 @@
 		g = "f"
 	return g
 
-/proc/get_limb_icon_name(var/datum/species/S, var/body_type, var/gender, var/limb_name, var/ethnicity)
+/proc/get_limb_icon_name(datum/species/S, body_type, gender, limb_name, ethnicity)
 	if(S.name == "Human")
 		switch(limb_name)
 			if ("torso")
@@ -212,7 +212,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/human/restrained(var/check_grab = 1)
+/mob/living/carbon/human/restrained(check_grab = 1)
 	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)
 		return 1
 	if (handcuffed)

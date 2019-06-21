@@ -341,7 +341,7 @@
 	removed_type = /obj/item/organ/appendix
 	organ_id = ORGAN_APPENDIX
 
-/datum/internal_organ/proc/remove(var/mob/user)
+/datum/internal_organ/proc/remove(mob/user)
 
 	if(!removed_type) return 0
 

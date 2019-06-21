@@ -29,7 +29,7 @@
 /obj/effect/alien/fire_act()
 	take_damage(50)
 
-/obj/effect/alien/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/alien/bullet_act(obj/item/projectile/Proj)
 	if(Proj.damtype == "fire")
 		take_damage(Proj.damage*2)
 	else
@@ -343,7 +343,7 @@
 		"<span class='danger'>You rip down \the [src]!</span>", null, 5)
 		qdel(src)
 
-/obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/mineral_door/resin/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage * 0.5
 	..()
 	healthcheck()
@@ -561,7 +561,7 @@
 		hugger.fast_activate(TRUE)
 		hugger = null
 
-/obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
+/obj/effect/alien/egg/bullet_act(obj/item/projectile/P)
 	..()
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
 		return
@@ -745,7 +745,7 @@ TUNNEL
 			other = null
 		qdel(src)
 
-/obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/tunnel/bullet_act(obj/item/projectile/Proj)
 	return 0
 
 /obj/structure/tunnel/ex_act(severity)

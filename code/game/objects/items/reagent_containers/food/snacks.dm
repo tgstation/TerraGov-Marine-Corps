@@ -27,7 +27,7 @@
 		else
 			reagents.add_reagent(rid, amount, data)
 
-/obj/item/reagent_container/food/snacks/proc/On_Consume(var/mob/M)
+/obj/item/reagent_container/food/snacks/proc/On_Consume(mob/M)
 	if(!usr)
 		return
 
@@ -209,7 +209,7 @@
 			something.loc = get_turf(src)
 	. = ..()
 
-/obj/item/reagent_container/food/snacks/attack_animal(var/mob/M)
+/obj/item/reagent_container/food/snacks/attack_animal(mob/M)
 	if(isanimal(M))
 		if(iscorgi(M))
 			var/mob/living/L = M
@@ -1307,7 +1307,7 @@
 		to_chat(user, "You unwrap the cube.")
 		package = FALSE
 
-/obj/item/reagent_container/food/snacks/monkeycube/On_Consume(var/mob/M)
+/obj/item/reagent_container/food/snacks/monkeycube/On_Consume(mob/M)
 	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
 
 	if (ishuman(M))

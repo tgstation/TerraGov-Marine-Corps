@@ -379,7 +379,7 @@
 	update_icon()
 	return
 
-/obj/structure/barricade/snow/bullet_act(var/obj/item/projectile/P)
+/obj/structure/barricade/snow/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
 	obj_integrity -= round(P.damage/2) //Not that durable.
 
@@ -449,7 +449,7 @@
 			obj_integrity -= I.force * 0.75
 	update_health()
 
-/obj/structure/barricade/wooden/bullet_act(var/obj/item/projectile/P)
+/obj/structure/barricade/wooden/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
 	obj_integrity -= round(P.damage/2) //Not that durable.
 

@@ -96,7 +96,7 @@ Defined in conflicts.dm of the #defines folder.
 		return TRUE
 
 
-/obj/item/attachable/attack_hand(var/mob/user as mob)
+/obj/item/attachable/attack_hand(mob/user as mob)
 	if(src.attach_applied == TRUE)
 		return
 	else

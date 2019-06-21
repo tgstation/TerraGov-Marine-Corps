@@ -106,7 +106,7 @@
 	density = TRUE
 	return TRUE
 
-/obj/structure/closet/proc/store_items(var/stored_units)
+/obj/structure/closet/proc/store_items(stored_units)
 	for(var/obj/item/I in loc)
 		var/item_size = CEILING(I.w_class / 2, 1)
 		if(stored_units + item_size > storage_capacity)
@@ -116,7 +116,7 @@
 			stored_units += item_size
 	return stored_units
 
-/obj/structure/closet/proc/store_mobs(var/stored_units)
+/obj/structure/closet/proc/store_mobs(stored_units)
 	for(var/mob/M in loc)
 		if(stored_units + mob_size > storage_capacity)
 			break
@@ -159,7 +159,7 @@
 					A.ex_act(severity++)
 				qdel(src)
 
-/obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/closet/bullet_act(obj/item/projectile/Proj)
 	if(obj_integrity > 999)
 		return TRUE
 	obj_integrity -= round(Proj.damage*0.3)

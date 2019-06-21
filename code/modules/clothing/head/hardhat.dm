@@ -34,7 +34,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/head/hardhat/proc/update_brightness(var/mob/user = null)
+/obj/item/clothing/head/hardhat/proc/update_brightness(mob/user = null)
 	if(on)
 		if(loc && loc == user)
 			user.SetLuminosity(brightness_on)

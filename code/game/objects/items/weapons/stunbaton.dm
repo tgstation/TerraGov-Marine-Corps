@@ -35,7 +35,7 @@
 	update_icon()
 	return
 
-/obj/item/weapon/baton/proc/deductcharge(var/chrgdeductamt)
+/obj/item/weapon/baton/proc/deductcharge(chrgdeductamt)
 	if(bcell)
 		if(bcell.use(chrgdeductamt))
 			return 1

@@ -81,7 +81,7 @@
 	"<span class='xenowarning'>You grab [L] by the throat!</span>")
 	return TRUE
 
-/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM as mob|obj,speed = 5)
 	if(ishuman(AM))
 		return
 	..()

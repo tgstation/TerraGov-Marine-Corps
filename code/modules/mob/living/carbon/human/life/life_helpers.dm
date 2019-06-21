@@ -26,7 +26,7 @@
 	return pressure_adjustment_coefficient
 
 //Calculate how much of the enviroment pressure-difference affects the human.
-/mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
+/mob/living/carbon/human/calculate_affecting_pressure(pressure)
 	var/pressure_difference
 
 	//First get the absolute pressure difference.
@@ -136,7 +136,7 @@
 
 
 //See proc/get_flags_heat_protection_flags(temperature) for the description of this proc.
-/mob/living/carbon/human/proc/get_flags_cold_protection_flags(temperature, var/deficit = 0)
+/mob/living/carbon/human/proc/get_flags_cold_protection_flags(temperature, deficit = 0)
 
 	var/thermal_protection_flags = 0
 

@@ -28,7 +28,7 @@
 	score_state = "s[scoreright%10]d"
 	overlays += image('icons/obj/machines/scoreboard.dmi', icon_state=score_state)
 
-/obj/machinery/scoreboard/proc/score(var/side, var/points=2)
+/obj/machinery/scoreboard/proc/score(side, points=2)
 	switch(side)
 		if("left")
 			scoreleft += points

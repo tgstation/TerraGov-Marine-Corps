@@ -1,4 +1,4 @@
-/datum/preferences/proc/randomize_appearance_for(var/mob/living/carbon/human/H)
+/datum/preferences/proc/randomize_appearance_for(mob/living/carbon/human/H)
 	if(H)
 		if(H.gender == MALE)
 			gender = MALE

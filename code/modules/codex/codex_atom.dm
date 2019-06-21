@@ -20,7 +20,7 @@
 
 /atom/proc/get_lore_info()
 
-/atom/examine(var/mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/examine(mob/user, distance = -1, infix = "", suffix = "")
 	. = ..()
 	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
 		to_chat(user, "<span class='notice'>The codex has <a href='?src=[REF(SScodex)];show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.</span>")

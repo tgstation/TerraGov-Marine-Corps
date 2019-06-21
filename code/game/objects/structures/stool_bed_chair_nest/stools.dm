@@ -18,7 +18,7 @@
 	w_class = 5.0
 	var/obj/structure/bed/stool/origin = null
 
-/obj/item/stool/proc/deploy(var/mob/user)
+/obj/item/stool/proc/deploy(mob/user)
 
 	if(!origin)
 		user.temporarilyRemoveItemFromInventory(src)

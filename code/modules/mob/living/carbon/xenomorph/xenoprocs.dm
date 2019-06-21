@@ -29,7 +29,7 @@
 
 	return xenoinfo
 
-/proc/check_hive_status(mob/living/carbon/xenomorph/user, var/anchored = FALSE)
+/proc/check_hive_status(mob/living/carbon/xenomorph/user, anchored = FALSE)
 	if(!SSticker)
 		return
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
@@ -408,7 +408,7 @@
 
 
 
-/mob/living/carbon/xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
+/mob/living/carbon/xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
 	if(stat || resting)
 		if(is_zoomed)
 			is_zoomed = 0
@@ -540,7 +540,7 @@
 	update_icons()
 
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
-/mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(var/mob/living/carbon/xenomorph/queen/Q)
+/mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
 
 	if(!Q || !Q.ovipositor || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
