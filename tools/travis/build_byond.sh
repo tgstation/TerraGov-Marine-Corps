@@ -40,7 +40,7 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
 	fi;
-	if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $(git diff --name-only --diff-filter=AM $TRAVIS_BRANCH...HEAD || echo '/dev/null'); then
+	if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
 		echo "changed files contains proc argument starting with 'var'"
     exit 1
 	if grep -i 'nanotransen' code/**/*.dm; then
