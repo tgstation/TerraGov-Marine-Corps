@@ -546,6 +546,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Shrike defines
 
 #define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
+#define SHRIKE_CURE_HEAL_MULTIPLIER	10
 
 //misc
 

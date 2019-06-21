@@ -321,6 +321,13 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
 
+/datum/keybinding/xeno/psychic_heal
+	key = "Unbound"
+	name = "psychic_cure"
+	full_name = "Psychic Cure"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+
 /datum/keybinding/xeno/toggle_queen_zoom
 	key = "Unbound"
 	name = "toggle_queen_zoom"

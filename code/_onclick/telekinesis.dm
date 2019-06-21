@@ -263,7 +263,7 @@ Redefine as needed.
 		victim.SetStunned(0)
 		victim.update_canmove()
 
-	if(!QDELETED(tk_user))
+	if(!QDELETED(tk_user) && loc == tk_user)
 		tk_user.temporarilyRemoveItemFromInventory(src)
 	
 	if(master_action && master_action.psychic_hold == src)
@@ -272,8 +272,8 @@ Redefine as needed.
 
 /obj/item/tk_grab/shrike/process()
 	if(QDELETED(tk_user) || QDELETED(focus) || loc != tk_user)
-		if(QDELING(src)) //This is for local testing, not for the final version.
-			CRASH("Looks like process() is called again before qdel() finishes processing Destroy() after all.")
+		if(QDELING(src)) //This is for testing, not for the final version.
+			CRASH("Looks like process() is called again before qdel() finishes processing Destroy() after all. Issue reported by the shrike tk gang.")
 		qdel(src)
 		return FALSE
 

@@ -49,25 +49,27 @@
 	return ..()
 
 
-/datum/action/xeno_action/activable/psychic_fling/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/psychic_fling/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!A)
+	if(QDELETED(target))
 		return FALSE
-	var/mob/living/carbon/xenomorph/shrike/S = owner
-	var/max_dist = (S == S.hive.living_xeno_ruler) ? 6 : 3 //We can fling targets further away if we are the ruler.
-	if(get_dist(S, A) > max_dist)
+	if(!ishuman(target))
 		return FALSE
-	if(!ishuman(A))
+	var/mob/living/carbon/xenomorph/shrike/user = owner
+	var/max_dist = (user == user.hive.living_xeno_ruler) ? 6 : 3 //We can fling targets further away if we are the ruler.
+	if(!owner.line_of_sight(target, max_dist))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
 		return FALSE
-	var/mob/living/carbon/human/target = A
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && target.stat == DEAD)
+	var/mob/living/carbon/human/victim = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 		return FALSE
 
 
-/datum/action/xeno_action/activable/psychic_fling/use_ability(atom/A)
-	var/mob/living/victim = A
+/datum/action/xeno_action/activable/psychic_fling/use_ability(atom/target)
+	var/mob/living/victim = target
 	GLOB.round_statistics.psychic_flings++
 
 	owner.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [owner]!</span>", \
@@ -114,33 +116,37 @@
 	return ..()
 
 
-/datum/action/xeno_action/activable/psychic_choke/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/psychic_choke/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!A)
+	if(QDELETED(target))
 		return FALSE
-	var/mob/living/carbon/xenomorph/shrike/S = owner
-	var/dist = get_dist(S, A)
+	var/dist = get_dist(owner, target)
 	switch(dist)
 		if(-1 to 1)
 			if(!silent)
-				to_chat(S, "<span class='warning'>The target is too close, we need some room to focus!</span>")
+				to_chat(owner, "<span class='warning'>The target is too close, we need some room to focus!</span>")
 			return FALSE
+		if(2 to 3)
+			if(!owner.line_of_sight(target))
+				if(!silent)
+					to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
+				return FALSE
 		if(4 to INFINITY)
 			if(!silent)
-				to_chat(S, "<span class='warning'>Too far, our mind power does not reach it...</span>")
+				to_chat(owner, "<span class='warning'>Too far, our mind power does not reach it...</span>")
 			return FALSE
-	if(!ishuman(A))
+	if(!ishuman(target))
 		return FALSE
-	var/mob/living/carbon/human/target = A
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && target.stat == DEAD)
+	var/mob/living/carbon/human/victim = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
 		return FALSE
 
 
-/datum/action/xeno_action/activable/psychic_choke/use_ability(atom/A)
+/datum/action/xeno_action/activable/psychic_choke/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/shrike/assailant = owner
-	var/mob/living/carbon/human/victim = A
+	var/mob/living/carbon/human/victim = target
 
 	if(psychic_hold) //We are already using the ability.
 		if(psychic_hold.focus == victim)
@@ -169,6 +175,86 @@
 
 	log_combat(assailant, victim, "psychically grabbed")
 	msg_admin_attack("[key_name(assailant)] psychically grabbed [key_name(victim)]" )
+
+	succeed_activate()
+	add_cooldown()
+
+
+// ***************************************
+// *********** Psychic Cure
+// ***************************************
+/datum/action/xeno_action/activable/psychic_cure
+	name = "Psychic Cure"
+	action_icon_state = "heal_xeno"
+	mechanics_text = "Heal and remove debuffs from a target."
+	cooldown_timer = 1 MINUTES
+	plasma_cost = 200
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+
+
+/datum/action/xeno_action/activable/psychic_cure/on_cooldown_finish()
+	to_chat(owner, "<span class='notice'>We gather enough mental strength to cure sisters again.</span>")
+	return ..()
+
+
+/datum/action/xeno_action/activable/psychic_cure/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(QDELETED(target))
+		return FALSE
+	var/dist = get_dist(owner, target)
+	switch(dist)
+		if(-1)
+			if(!silent && target == owner)
+				to_chat(owner, "<span class='warning'>We cannot cure ourselves.</span>")
+			return FALSE
+		if(0 to 3)
+			if(!owner.line_of_sight(target))
+				to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
+				return FALSE
+		if(4 to INFINITY)
+			if(!silent)
+				to_chat(owner, "<span class='warning'>Too far, our mind power does not reach it...</span>")
+			return FALSE
+	if(!isxeno(target))
+		return FALSE
+	var/mob/living/carbon/xenomorph/patient = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/psychic_cure/use_ability(atom/target)
+	if(owner.action_busy)
+		return FALSE
+
+	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+
+	GLOB.round_statistics.psychic_cures++
+	owner.visible_message("<span class='xenowarning'>A strange psychic aura is suddenly emitted from \the [owner]!</span>", \
+	"<span class='xenowarning'>We cure [target] with the power of our mind!</span>")
+	target.visible_message("<span class='xenowarning'>[target] suddenly shimmers in a chill light.</span>", \
+	"<span class='xenowarning'>We feel a sudden soothing chill.</span>")
+
+	playsound(target,'sound/effects/magic.ogg', 75, 1)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	var/mob/living/carbon/xenomorph/patient = target
+	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
+		patient.SetKnockedout(0)
+		patient.SetStunned(0)
+		patient.SetKnockeddown(0)
+		patient.stagger = 0
+		patient.slowdown = 0
+	patient.updatehealth()
+
+	owner.changeNext_move(CLICK_CD_RANGE)
+
+	log_combat(owner, patient, "psychically cured")
+	msg_admin_attack("[key_name(owner)] psychically cured [key_name(patient)]" )
 
 	succeed_activate()
 	add_cooldown()

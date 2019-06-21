@@ -32,6 +32,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/praetorian_spray_direct_hits = 0
 	var/psychic_flings = 0
 	var/psychic_chokes = 0
+	var/psychic_cures = 0
 	var/warrior_flings = 0
 	var/warrior_punches = 0
 	var/warrior_lunges = 0

@@ -82,6 +82,7 @@
 #include "code\__HELPERS\level_traits.dm"
 #include "code\__HELPERS\matrices.dm"
 #include "code\__HELPERS\mobs.dm"
+#include "code\__HELPERS\movable.dm"
 #include "code\__HELPERS\patterns.dm"
 #include "code\__HELPERS\pronouns.dm"
 #include "code\__HELPERS\qdel.dm"
