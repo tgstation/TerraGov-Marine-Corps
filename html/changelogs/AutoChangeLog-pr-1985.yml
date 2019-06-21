@@ -1,0 +1,5 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Fixed the warrior grab move-resist delay, which was broken. To free yourself you need to move/resist twice and there's a cooldown of around 1 second between each. Button/macro and movement resists no longer stack."
+  - tweak: "Resisting works a bit differently than usual, but nothing big. If you are bucklecuffed you'll try to remove the cuffs, and if you succeed you'll just be able to unbuckle as normal. If you are hand and legcuffed, you'll resist whatever was slapped first."
