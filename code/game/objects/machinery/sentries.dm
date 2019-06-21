@@ -346,7 +346,7 @@
 
 	return
 
-/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 
 	var/list/data = list(
 		"self_ref" = "\ref[src]",
@@ -736,7 +736,7 @@
 	else
 		stop_processing()
 
-/obj/machinery/marine_turret/proc/update_health(var/damage) //Negative damage restores health.
+/obj/machinery/marine_turret/proc/update_health(damage) //Negative damage restores health.
 
 	health = CLAMP(health - damage, 0, health_max) //Sanity; health can't go below 0 or above max
 
@@ -772,7 +772,7 @@
 				sentry_alert(SENTRY_ALERT_FALLEN)
 	update_icon()
 
-/obj/machinery/marine_turret/proc/check_power(var/power)
+/obj/machinery/marine_turret/proc/check_power(power)
 	if (!cell || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
 		update_icon()
 		return FALSE
@@ -830,7 +830,7 @@
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_SENTRY)
 
-/obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
+/obj/machinery/marine_turret/bullet_act(obj/item/projectile/Proj) //Nope.
 	visible_message("[src] is hit by the [Proj.name]!")
 
 	if(Proj.ammo.flags_ammo_behavior & AMMO_XENO_ACID) //Fix for xenomorph spit doing baby damage.
@@ -979,7 +979,7 @@
 	return TRUE
 
 //Mostly taken from gun code.
-/obj/machinery/marine_turret/proc/muzzle_flash(var/angle)
+/obj/machinery/marine_turret/proc/muzzle_flash(angle)
 	if(isnull(angle)) return
 
 	SetLuminosity(muzzle_flash_lum)

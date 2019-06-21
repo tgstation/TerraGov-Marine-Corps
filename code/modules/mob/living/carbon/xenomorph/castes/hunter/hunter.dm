@@ -179,7 +179,7 @@
 
 	return ..()
 
-/mob/living/carbon/xenomorph/hunter/apply_alpha_channel(var/image/I)
+/mob/living/carbon/xenomorph/hunter/apply_alpha_channel(image/I)
 	I.alpha = src.alpha
 	return I
 

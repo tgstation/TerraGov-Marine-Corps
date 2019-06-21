@@ -4,6 +4,7 @@
 	var/climb_delay = 50
 	var/parts
 	var/flags_barrier = 0
+	var/broken = FALSE //similar to machinery's stat BROKEN
 	anchored = TRUE
 
 /obj/structure/proc/destroy_structure(deconstruct)
@@ -84,7 +85,7 @@
 
 	do_climb(target)
 
-/obj/structure/proc/can_climb(var/mob/living/user)
+/obj/structure/proc/can_climb(mob/living/user)
 	if(!climbable || !can_touch(user))
 		return FALSE
 
@@ -139,7 +140,7 @@
 						return
 	return TRUE
 
-/obj/structure/proc/do_climb(var/mob/living/user)
+/obj/structure/proc/do_climb(mob/living/user)
 	if(!can_climb(user))
 		return
 

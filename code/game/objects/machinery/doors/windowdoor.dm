@@ -96,7 +96,7 @@
 	src.operating = 0
 	return TRUE
 
-/obj/machinery/door/window/take_damage(var/damage)
+/obj/machinery/door/window/take_damage(damage)
 	src.obj_integrity = max(0, src.obj_integrity - damage)
 	if (src.obj_integrity <= 0)
 		new /obj/item/shard(loc)
@@ -123,7 +123,7 @@
 		qdel(src)
 		return
 
-/obj/machinery/door/window/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/door/window/bullet_act(obj/item/projectile/Proj)
 	if(Proj.ammo.damage)
 		take_damage(round(Proj.ammo.damage / 2))
 	return TRUE

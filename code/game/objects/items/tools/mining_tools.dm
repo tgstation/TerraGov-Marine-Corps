@@ -123,7 +123,7 @@
 	return
 
 //Toggles the cutter off and on
-/obj/item/tool/pickaxe/plasmacutter/proc/toggle(var/message = 0)
+/obj/item/tool/pickaxe/plasmacutter/proc/toggle(message = 0)
 	var/mob/M
 	if(ismob(loc))
 		M = loc
@@ -226,7 +226,7 @@
 	update_plasmacutter()
 	..()
 
-/obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, var/silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
+/obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
 	if(!user && ismob(loc) )
 		user = loc
 	if(!cell || cell.charge <= 0 || powered == FALSE)

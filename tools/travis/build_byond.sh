@@ -40,6 +40,10 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
 	fi;
+	if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
+		echo "changed files contains proc argument starting with 'var'"
+    	exit 1
+	fi;
 	if grep -i 'nanotransen' code/**/*.dm; then
 		echo "Misspelling(s) of nanotrasen detected in code, please remove the extra N(s)."
 		exit 1

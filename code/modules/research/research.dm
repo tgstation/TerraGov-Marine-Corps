@@ -63,7 +63,7 @@ research holder datum.
 
 //Checks to see if tech has all the required pre-reqs.
 //Input: datum/tech; Output: 0/1 (false/true)
-/datum/research/proc/TechHasReqs(var/datum/tech/T)
+/datum/research/proc/TechHasReqs(datum/tech/T)
 	if(T.req_tech.len == 0)
 		return 1
 	var/matches = 0
@@ -79,7 +79,7 @@ research holder datum.
 
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(var/datum/design/D)
+/datum/research/proc/DesignHasReqs(datum/design/D)
 	if(D.req_tech.len == 0)
 		return 1
 	var/matches = 0
@@ -96,7 +96,7 @@ research holder datum.
 /*
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(var/datum/design/D)
+/datum/research/proc/DesignHasReqs(datum/design/D)
 	if(D.req_tech.len == 0)
 		return 1
 	var/matches = 0
@@ -112,7 +112,7 @@ research holder datum.
 */
 //Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 //Input: datum/tech; Output: Null
-/datum/research/proc/AddTech2Known(var/datum/tech/T)
+/datum/research/proc/AddTech2Known(datum/tech/T)
 	for(var/datum/tech/known in known_tech)
 		if(T.id == known.id)
 			if(T.level > known.level)
@@ -121,7 +121,7 @@ research holder datum.
 	known_tech += T
 	return
 
-/datum/research/proc/AddDesign2Known(var/datum/design/D)
+/datum/research/proc/AddDesign2Known(datum/design/D)
 	for(var/datum/design/known in known_designs)
 		if(D.id == known.id)
 			if(D.reliability_mod > known.reliability_mod)
@@ -147,13 +147,13 @@ research holder datum.
 
 //Refreshes the levels of a given tech.
 //Input: Tech's ID and Level; Output: null
-/datum/research/proc/UpdateTech(var/ID, var/level)
+/datum/research/proc/UpdateTech(ID, level)
 	for(var/datum/tech/KT in known_tech)
 		if(KT.id == ID)
 			if(KT.level <= level) KT.level = max((KT.level + 1), (level - 1))
 	return
 
-/datum/research/proc/UpdateDesign(var/path)
+/datum/research/proc/UpdateDesign(path)
 	for(var/datum/design/KD in known_designs)
 		if(KD.build_path == path)
 			KD.reliability_mod += rand(1,2)

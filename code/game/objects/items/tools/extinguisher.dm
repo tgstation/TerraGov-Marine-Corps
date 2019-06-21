@@ -34,10 +34,6 @@
 	max_water = 30
 	sprite_name = "miniFE"
 
-/obj/item/tool/extinguisher/New()
-	create_reagents(max_water)
-	reagents.add_reagent("water", max_water)
-
 /obj/item/tool/extinguisher/examine(mob/user)
 	..()
 	to_chat(user, "The safety is [safety ? "on" : "off"].")

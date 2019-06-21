@@ -52,7 +52,7 @@
 	to_chat(user, "<span class='warning'>Foiled!</span>")
 
 
-/obj/item/facepaint/proc/paint_face(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/facepaint/proc/paint_face(mob/living/carbon/human/H, mob/user)
 	if(!H || !user) return //In case they're passed as null.
 	user.visible_message("<span class='notice'>[user] carefully applies [src] on [H]'s face.</span>", \
 						"<span class='notice'>You apply [src].</span>")

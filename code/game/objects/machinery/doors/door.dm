@@ -245,7 +245,7 @@
 /obj/machinery/door/proc/requiresID()
 	return TRUE
 
-/obj/machinery/door/proc/update_flags_heat_protection(var/turf/source)
+/obj/machinery/door/proc/update_flags_heat_protection(turf/source)
 
 /obj/machinery/door/proc/autoclose()
 	if(!density && !operating && !locked && !welded && autoclose)

@@ -42,18 +42,18 @@
 			modify = idcard
 
 
-/obj/machinery/computer/marine_card/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/marine_card/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/marine_card/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/marine_card/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
 
 /obj/machinery/computer/marine_card/bullet_act()
 	return 0
 
-/obj/machinery/computer/marine_card/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/marine_card/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -390,18 +390,18 @@
 		modify = idcard
 
 
-/obj/machinery/computer/squad_changer/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/squad_changer/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/squad_changer/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/squad_changer/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
 
 /obj/machinery/computer/squad_changer/bullet_act()
 	return 0
 
-/obj/machinery/computer/squad_changer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/squad_changer/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return

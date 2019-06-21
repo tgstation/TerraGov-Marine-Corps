@@ -49,7 +49,6 @@ SUBSYSTEM_DEF(mapping)
 	preloadTemplates()
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	// Set up Z-level transitions.
-	generate_station_area_list()
 	initialize_reserved_level()
 	return ..()
 
@@ -177,20 +176,6 @@ SUBSYSTEM_DEF(mapping)
 		msg += ". Yell at your server host!"
 		INIT_ANNOUNCE(msg)
 #undef INIT_ANNOUNCE
-
-GLOBAL_LIST_EMPTY(the_station_areas)
-
-/datum/controller/subsystem/mapping/proc/generate_station_area_list()
-	var/list/station_areas_blacklist = typecacheof(list(/area/space))
-	for(var/area/A in world)
-		var/turf/picked = safepick(get_area_turfs(A.type))
-		if(picked && is_mainship_level(picked.z))
-			if(!(A.type in GLOB.the_station_areas) && !is_type_in_typecache(A, station_areas_blacklist))
-				GLOB.the_station_areas.Add(A.type)
-
-	if(!GLOB.the_station_areas.len)
-		log_world("ERROR: Station areas list failed to generate!")
-
 
 /datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
 	if(!VM.MakeNextMap())

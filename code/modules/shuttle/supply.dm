@@ -257,19 +257,19 @@ GLOBAL_LIST_EMPTY(exports_types)
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
 
-/obj/machinery/computer/ordercomp/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -400,7 +400,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return

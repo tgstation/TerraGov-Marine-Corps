@@ -231,7 +231,7 @@
 					count++
 			if(count)
 				X.charge_speed -= CHARGE_SPEED_BUILDUP / (count * 2) // half normal slowdown regardless of number of corpses.
-		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest)) // neither
+		else if(!(status_flags & XENO_HOST) && !CHECK_BITFIELD(restrained_flags, RESTRAINED_XENO_NEST)) // neither
 			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 40, BRUTE)
 			X.visible_message("<span class='danger'>[X] rams [src]!</span>",

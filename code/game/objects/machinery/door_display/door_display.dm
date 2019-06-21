@@ -63,13 +63,13 @@
 	return TRUE
 
 // Allows AIs to use door_display, see human attack_hand function below
-/obj/machinery/door_display/attack_ai(var/mob/user as mob)
+/obj/machinery/door_display/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
 // Allows humans to use door_display
 // Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
-/obj/machinery/door_display/attack_hand(var/mob/user as mob)
+/obj/machinery/door_display/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -80,7 +80,7 @@
 	popup.set_content(display_contents(user))
 	popup.open(FALSE)
 
-/obj/machinery/door_display/proc/display_contents(var/mob/user as mob)
+/obj/machinery/door_display/proc/display_contents(mob/user as mob)
 	var/data = "<HTML><BODY><TT>"
 
 	data += "<HR>Linked Door:</hr>"
@@ -145,7 +145,7 @@
 		if(F.id == id)
 			targets += F
 
-/obj/machinery/door_display/research_cell/display_contents(var/mob/user as mob)
+/obj/machinery/door_display/research_cell/display_contents(mob/user as mob)
 
 	var/data = "<hr>Linked Door:</hr>"
 	data += " <b> [id]</b><br/><br/>"

@@ -11,11 +11,11 @@
 	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
 
-/obj/item/circuitboard/computer/security/construct(var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/computer/security/construct(obj/machinery/computer/security/C)
 	if (..(C))
 		C.network = network
 
-/obj/item/circuitboard/computer/security/deconstruct(var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/computer/security/deconstruct(obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network
 
@@ -95,11 +95,11 @@
 	name = "Circuit board (Injector Control)"
 	build_path = /obj/machinery/computer/general_air_control/fuel_injection
 
-/obj/item/circuitboard/computer/air_management/construct(var/obj/machinery/computer/general_air_control/C)
+/obj/item/circuitboard/computer/air_management/construct(obj/machinery/computer/general_air_control/C)
 	if (..(C))
 		C.frequency = frequency
 
-/obj/item/circuitboard/computer/air_management/deconstruct(var/obj/machinery/computer/general_air_control/C)
+/obj/item/circuitboard/computer/air_management/deconstruct(obj/machinery/computer/general_air_control/C)
 	if (..(C))
 		frequency = C.frequency
 

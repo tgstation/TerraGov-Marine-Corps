@@ -156,7 +156,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
 
 
-/datum/admins/proc/narage_direct(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/narage_direct(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Direct Narrate"
 

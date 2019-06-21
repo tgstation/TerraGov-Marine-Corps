@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	apply_overlay(DAMAGE_LAYER)
 
 //BASE MOB SPRITE
-/mob/living/carbon/human/proc/update_body(var/update_icons = 1, var/force_cache_update = 0)
+/mob/living/carbon/human/proc/update_body(update_icons = 1, force_cache_update = 0)
 	var/necrosis_color_mod = rgb(10,50,0)
 
 	var/g = get_gender_name(gender)

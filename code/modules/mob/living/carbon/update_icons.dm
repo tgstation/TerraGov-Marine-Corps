@@ -5,7 +5,7 @@
 /mob/living/carbon/proc/remove_overlay(cache_index)
 	return
 
-/mob/living/carbon/proc/apply_temp_overlay(cache_index, var/duration)
+/mob/living/carbon/proc/apply_temp_overlay(cache_index, duration)
 	apply_overlay(cache_index)
 	addtimer(CALLBACK(src, .remove_overlay, cache_index), duration)
 

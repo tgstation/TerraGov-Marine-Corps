@@ -105,7 +105,7 @@
 /obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
 	return
 
-/obj/machinery/vending/proc/build_inventory(var/list/productlist,hidden=0,req_coin=0)
+/obj/machinery/vending/proc/build_inventory(list/productlist,hidden=0,req_coin=0)
 
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
@@ -266,7 +266,7 @@
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
 
 
-/obj/machinery/vending/proc/scan_card(var/obj/item/card/I)
+/obj/machinery/vending/proc/scan_card(obj/item/card/I)
 	if(!currently_vending) return
 	if (istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
@@ -286,7 +286,7 @@
 		else
 			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
-/obj/machinery/vending/proc/transfer_and_vend(var/datum/money_account/acc)
+/obj/machinery/vending/proc/transfer_and_vend(datum/money_account/acc)
 	if(acc)
 		var/transaction_amount = currently_vending.price
 		if(transaction_amount <= acc.money)
@@ -321,7 +321,7 @@
 /obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/vending/proc/GetProductIndex(var/datum/data/vending_product/P)
+/obj/machinery/vending/proc/GetProductIndex(datum/data/vending_product/P)
 	var/list/plist
 	switch(P.category)
 		if(CAT_NORMAL)
@@ -334,7 +334,7 @@
 			stack_trace("UNKNOWN CATEGORY [P.category] IN TYPE [P.product_path] INSIDE [type]!")
 	return plist.Find(P)
 
-/obj/machinery/vending/proc/GetProductByID(var/pid, var/category)
+/obj/machinery/vending/proc/GetProductByID(pid, category)
 	switch(category)
 		if(CAT_NORMAL)
 			return product_records[pid]
@@ -371,7 +371,7 @@
 
 
 
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 
 	var/list/display_list = list()
 	var/list/display_records = list()
@@ -538,7 +538,7 @@
 		return new R.product_path(get_turf(src))
 
 
-/obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
+/obj/machinery/vending/MouseDrop_T(atom/movable/A, mob/user)
 
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
@@ -617,7 +617,7 @@
 	if(src.shoot_inventory && prob(2) && !hacking_safety)
 		src.throw_item()
 
-/obj/machinery/vending/proc/speak(var/message)
+/obj/machinery/vending/proc/speak(message)
 	if(machine_stat & NOPOWER)
 		return
 

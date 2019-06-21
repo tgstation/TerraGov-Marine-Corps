@@ -54,7 +54,7 @@
 	"error"))
 
 
-/obj/structure/sign/double/barsign/proc/ChangeSign(var/Text)
+/obj/structure/sign/double/barsign/proc/ChangeSign(Text)
 		src.icon_state = "[Text]"
 		//on = 0
 		//brightness_on = 4 //uncomment these when the lighting fixes get in

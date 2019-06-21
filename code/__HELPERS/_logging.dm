@@ -133,7 +133,8 @@
 
 
 /proc/log_href(text)
-	WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
+	if(CONFIG_GET(flag/log_hrefs))
+		WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
 
 
 /proc/log_sql(text)
@@ -159,6 +160,10 @@
 /proc/log_config(text)
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
+
+
+/proc/log_paper(text)
+	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
 
 
 /* For logging round startup. */

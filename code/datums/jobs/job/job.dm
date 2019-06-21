@@ -105,7 +105,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		. = access.Copy()
 
 
-/datum/job/proc/announce_head(var/mob/living/carbon/human/H, var/channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+/datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	return FALSE
 	//if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
@@ -189,5 +189,5 @@ GLOBAL_PROTECT(exp_specialmap)
 	H.update_action_buttons()
 
 
-/proc/guest_jobbans(var/job)
+/proc/guest_jobbans(job)
 	return (job in JOBS_COMMAND)

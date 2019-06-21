@@ -227,7 +227,7 @@
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
 
-/obj/item/weapon/gun/wield(var/mob/user)
+/obj/item/weapon/gun/wield(mob/user)
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
@@ -287,7 +287,7 @@
 	do_wield(user, wdelay)
 	return TRUE
 
-/obj/item/weapon/gun/unwield(var/mob/user)
+/obj/item/weapon/gun/unwield(mob/user)
 
 	if((flags_item|TWOHANDED|WIELDED) != flags_item)
 		return //Have to be actually a twohander and wielded.
@@ -318,7 +318,7 @@
 			//						   	        \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/proc/replace_ammo(mob/user = null, obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
 		stack_trace("null ammo while reloading. User: [user]")
 		ammo = GLOB.ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
@@ -581,14 +581,14 @@ and you're good to go.
 
 	return in_chamber //Returns the projectile if it's actually successful.
 
-/obj/item/weapon/gun/proc/delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+/obj/item/weapon/gun/proc/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
 		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
 			active_attachable.current_rounds += ammo_per_shot //Refund the bullet.
 		return TRUE
 
-/obj/item/weapon/gun/proc/clear_jam(var/obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
+/obj/item/weapon/gun/proc/clear_jam(obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
 	flags_gun_features &= ~GUN_BURST_FIRING // Also want to turn off bursting, in case that was on. It probably was.
 	delete_bullet(projectile_to_fire, 1) //We're going to clear up anything inside if we need to.
 	//If it's a regular bullet, we're just going to keep it chambered.
@@ -1108,7 +1108,7 @@ and you're good to go.
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE
 
-/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, var/x_offset = 0, var/y_offset = 5)
+/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, x_offset = 0, y_offset = 5)
 	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || isnull(angle))
 		return //We have to check for null angle here, as 0 can also be an angle.
 	if(!istype(user) || !istype(user.loc,/turf))

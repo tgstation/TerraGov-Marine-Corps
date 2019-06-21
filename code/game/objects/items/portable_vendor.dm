@@ -66,7 +66,7 @@
 	ui_interact(user)
 
 
-/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 
 	if(!ishuman(user)) return
 

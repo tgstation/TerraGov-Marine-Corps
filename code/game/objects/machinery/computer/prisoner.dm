@@ -14,15 +14,15 @@
 	var/screen = 0 // 0 - No Access Denied, 1 - Access allowed
 
 
-/obj/machinery/computer/prisoner/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/prisoner/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
 
-/obj/machinery/computer/prisoner/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/prisoner/attack_paw(mob/user as mob)
 	return
 
 
-/obj/machinery/computer/prisoner/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/prisoner/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return

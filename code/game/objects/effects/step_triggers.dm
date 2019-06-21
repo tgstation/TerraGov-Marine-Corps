@@ -6,7 +6,7 @@
 	invisibility = INVISIBILITY_MAXIMUM // nope cant see this shit
 	anchored = TRUE
 
-/obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
+/obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
 
 /obj/effect/step_trigger/Crossed(H as mob|obj)

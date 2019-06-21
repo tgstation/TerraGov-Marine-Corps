@@ -156,7 +156,7 @@
 		linked_account.transaction_log += T
 
 
-/obj/item/eftpos/Topic(var/href, var/href_list)
+/obj/item/eftpos/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -234,7 +234,7 @@
 
 	src.attack_self(usr)
 
-/obj/item/eftpos/proc/scan_card(var/obj/item/card/I)
+/obj/item/eftpos/proc/scan_card(obj/item/card/I)
 	if (istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")

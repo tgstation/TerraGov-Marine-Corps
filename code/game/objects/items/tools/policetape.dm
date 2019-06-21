@@ -98,7 +98,7 @@
 	//is_blocked_turf(var/turf/T)
 		to_chat(usr, "<span class='notice'> You finish placing the [src].</span>"	)
 
-/obj/item/tool/taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/tool/taperoll/afterattack(atom/A, mob/user as mob, proximity)
 	if (proximity && istype(A, /obj/machinery/door/airlock))
 		var/turf/T = get_turf(A)
 		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)

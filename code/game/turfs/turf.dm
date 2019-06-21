@@ -266,7 +266,7 @@
 
 
 //Blood stuff------------
-/turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/proc/AddTracks(typepath,bloodDNA,comingdir,goingdir,bloodcolor="#A10808")
 	if(!can_bloody)
 		return
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
@@ -302,10 +302,10 @@
 /turf/proc/can_be_dissolved()
 	return FALSE
 
-/turf/proc/ceiling_debris_check(var/size = 1)
+/turf/proc/ceiling_debris_check(size = 1)
 	return
 
-/turf/proc/ceiling_debris(var/size = 1) //debris falling in response to airstrikes, etc
+/turf/proc/ceiling_debris(size = 1) //debris falling in response to airstrikes, etc
 	var/area/A = get_area(src)
 	if(!A.ceiling) return
 
@@ -723,7 +723,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	baseturfs = /turf/baseturf_bottom
 
 
-/turf/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
+/turf/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = 0)
 	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
 	// Make toxins vomit look different

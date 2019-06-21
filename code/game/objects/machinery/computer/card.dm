@@ -78,10 +78,10 @@
 	SSnano.update_uis(src)
 	attack_hand(user)
 
-/obj/machinery/computer/card/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/card/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/card/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/card/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/computer/card/attack_hand(mob/user as mob)
@@ -91,7 +91,7 @@
 	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
-/obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", datum/nanoui/ui = null, force_open = 1)
 
 	user.set_interaction(src)
 

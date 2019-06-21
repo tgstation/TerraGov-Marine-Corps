@@ -30,7 +30,7 @@
 	. = ..()
 
 
-/obj/item/flashlight/proc/update_brightness(var/mob/user = null)
+/obj/item/flashlight/proc/update_brightness(mob/user = null)
 	if(!user && ismob(loc))
 		user = loc
 	if(on)

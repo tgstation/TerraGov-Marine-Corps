@@ -348,7 +348,7 @@
 		health = health_max
 	update_icon()
 
-/obj/machinery/m56d_hmg/bullet_act(var/obj/item/projectile/Proj) //Nope.
+/obj/machinery/m56d_hmg/bullet_act(obj/item/projectile/Proj) //Nope.
 	if(prob(30)) // What the fuck is this from sentry gun code. Sorta keeping it because it does make sense that this is just a gun, unlike the sentry.
 		return 0
 
@@ -451,7 +451,7 @@
 				update_icon() //final safeguard.
 	return
 
-/obj/machinery/m56d_hmg/proc/muzzle_flash(var/angle) // Might as well keep this too.
+/obj/machinery/m56d_hmg/proc/muzzle_flash(angle) // Might as well keep this too.
 	if(isnull(angle))
 		return
 
