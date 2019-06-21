@@ -97,9 +97,10 @@
 	frequency = FREQ_CIV_GENERAL
 
 /obj/item/radio/intercom/dropship
-	name = "dropship intercom"
+	name = "\improper Alamo dropship intercom"
 	canhear_range = 7
 	frequency = FREQ_DROPSHIP_1
 
 /obj/item/radio/intercom/dropship/normandy
+	name = "\improper Normandy dropship intercom"
 	frequency = FREQ_DROPSHIP_2
