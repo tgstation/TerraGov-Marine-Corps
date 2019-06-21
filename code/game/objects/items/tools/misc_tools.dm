@@ -153,7 +153,7 @@
 
 
 
-/obj/item/tool/pen/paralysis/New()
+/obj/item/tool/pen/paralysis/Initialize()
 	. = ..()
 	create_reagents(50, OPENCONTAINER, list("zombiepowder" = 10, "cryptobiolin" = 15))
 

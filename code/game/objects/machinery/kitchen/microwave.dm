@@ -24,8 +24,8 @@
 *   Initialising
 ********************/
 
-/obj/machinery/microwave/New()
-	..()
+/obj/machinery/microwave/Initialize()
+	. = ..()
 	create_reagents(100, OPENCONTAINER)
 	if (!available_recipes)
 		available_recipes = new
