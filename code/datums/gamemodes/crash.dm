@@ -126,7 +126,7 @@
 	
 	SEND_SOUND(world, GAMEMODE_CRASH_MUSIC[round_finished])
 	
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal humans spawned: [round_statistics.total_humans_created]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 	announce_medal_awards()
 	announce_round_stats()
@@ -141,7 +141,7 @@
 	var/found = FALSE
 	for(var/i in possible_queens)
 		var/datum/mind/new_queen = i
-		if(new_queen.assigned_role || jobban_isbanned(new_queen.current, ROLE_XENO_QUEEN) || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
+		if(new_queen.assigned_role || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
 			continue
 		if(queen_age_check(new_queen.current?.client))
 			continue
@@ -159,7 +159,7 @@
 
 	for(var/i in possible_xenomorphs)
 		var/datum/mind/new_xeno = i
-		if(new_xeno.assigned_role || jobban_isbanned(new_xeno.current, ROLE_XENOMORPH) || is_banned_from(new_xeno.current?.ckey, ROLE_XENOMORPH))
+		if(new_xeno.assigned_role || is_banned_from(new_xeno.current?.ckey, ROLE_XENOMORPH))
 			continue
 		new_xeno.assigned_role = ROLE_XENOMORPH
 		xenomorphs += new_xeno

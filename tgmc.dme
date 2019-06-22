@@ -239,6 +239,7 @@
 #include "code\datums\emergency_calls\upp.dm"
 #include "code\datums\emergency_calls\upp_commando.dm"
 #include "code\datums\emergency_calls\xeno.dm"
+#include "code\datums\gamemodes\crash.dm"
 #include "code\datums\gamemodes\distress.dm"
 #include "code\datums\gamemodes\extended.dm"
 #include "code\datums\gamemodes\game_mode.dm"
