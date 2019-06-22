@@ -43,6 +43,7 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
+	var/breakouttime = 0
 
 	var/list/allowed = null //suit storage stuff.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
@@ -76,7 +77,6 @@
 /obj/item/Initialize()
 	. = ..()
 
-	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
 	if(w_class <= 3) //pulling small items doesn't slow you down much
@@ -92,7 +92,6 @@
 	for(var/X in actions)
 		qdel(X)
 	master = null
-	GLOB.item_list -= src
 	return ..()
 
 
@@ -213,7 +212,7 @@
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
-/obj/item/proc/dropped(mob/user as mob)
+/obj/item/proc/dropped(mob/user)
 	if(user && user.client) //Dropped when disconnected, whoops
 		if(zoom) //binoculars, scope, etc
 			zoom(user, 11, 12)
@@ -430,13 +429,13 @@
 			if(SLOT_HANDCUFFED)
 				if(H.handcuffed)
 					return FALSE
-				if(!istype(src, /obj/item/handcuffs))
+				if(!istype(src, /obj/item/restraints/handcuffs))
 					return FALSE
 				return TRUE
 			if(SLOT_LEGCUFFED)
 				if(H.legcuffed)
 					return FALSE
-				if(!istype(src, /obj/item/legcuffs))
+				if(!istype(src, /obj/item/restraints/legcuffs))
 					return FALSE
 				return TRUE
 			if(SLOT_ACCESSORY)

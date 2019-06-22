@@ -68,9 +68,6 @@ SUBSYSTEM_DEF(job)
 		if(!job)
 			JobDebug("AR job doesn't exists ! Player: [player], Rank:[rank]")
 			return FALSE
-		if(jobban_isbanned(player, rank))
-			JobDebug("AR legacy isbanned failed, Player: [player], Job:[job.title]")
-			return FALSE
 		if(is_banned_from(player.ckey, rank))
 			JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
 			return FALSE
@@ -114,9 +111,9 @@ SUBSYSTEM_DEF(job)
 
 
 /** Proc DivideOccupations
- *  fills var "assigned_role" for all ready players.
- *  This proc must not have any side effect besides of modifying "assigned_role".
- **/
+*  fills var "assigned_role" for all ready players.
+*  This proc must not have any side effect besides of modifying "assigned_role".
+**/
 /datum/controller/subsystem/job/proc/DivideOccupations()
 	//Setup new player list and get the jobs list
 	JobDebug("Running DO")

@@ -42,7 +42,7 @@ proc/hasorgans(A)
 //TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
 
 //The base miss chance for the different defence zones
-var/list/global/base_miss_chance = list(
+GLOBAL_LIST_INIT(base_miss_chance, list(
 	"head" = 10,
 	"chest" = 0,
 	"groin" = 5,
@@ -56,11 +56,11 @@ var/list/global/base_miss_chance = list(
 	"r_foot" = 40,
 	"eyes" = 20,
 	"mouth" = 15,
-)
+))
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects. Totals 102; 2 added to chest for limb loops that don't count mouth/eyes.
-var/list/global/organ_rel_size = list(
+GLOBAL_LIST_INIT(organ_rel_size, list(
 	"head" = 4,
 	"chest" = 32,
 	"groin" = 10,
@@ -74,7 +74,7 @@ var/list/global/organ_rel_size = list(
 	"r_foot" = 3,
 	"eyes" = 1,
 	"mouth" = 1,
-)
+))
 
 /proc/check_zone(zone)
 	if(!zone)	return "chest"
@@ -97,17 +97,17 @@ var/list/global/organ_rel_size = list(
 	var/ran_zone = zone
 	while (ran_zone == zone)
 		ran_zone = pick (
-			organ_rel_size["head"]; "head",
-			organ_rel_size["chest"]; "chest",
-			organ_rel_size["groin"]; "groin",
-			organ_rel_size["l_arm"]; "l_arm",
-			organ_rel_size["r_arm"]; "r_arm",
-			organ_rel_size["l_leg"]; "l_leg",
-			organ_rel_size["r_leg"]; "r_leg",
-			organ_rel_size["l_hand"]; "l_hand",
-			organ_rel_size["r_hand"]; "r_hand",
-			organ_rel_size["l_foot"]; "l_foot",
-			organ_rel_size["r_foot"]; "r_foot",
+			GLOB.organ_rel_size["head"]; "head",
+			GLOB.organ_rel_size["chest"]; "chest",
+			GLOB.organ_rel_size["groin"]; "groin",
+			GLOB.organ_rel_size["l_arm"]; "l_arm",
+			GLOB.organ_rel_size["r_arm"]; "r_arm",
+			GLOB.organ_rel_size["l_leg"]; "l_leg",
+			GLOB.organ_rel_size["r_leg"]; "r_leg",
+			GLOB.organ_rel_size["l_hand"]; "l_hand",
+			GLOB.organ_rel_size["r_hand"]; "r_hand",
+			GLOB.organ_rel_size["l_foot"]; "l_foot",
+			GLOB.organ_rel_size["r_foot"]; "r_foot",
 		)
 
 	return ran_zone
@@ -115,19 +115,19 @@ var/list/global/organ_rel_size = list(
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0)
+/proc/get_zone_with_miss_chance(zone, mob/target, miss_chance_mod = 0)
 	zone = check_zone(zone)
 
 	// you can only miss if your target is standing and not restrained
 	if(!target.buckled && !target.lying)
 		var/miss_chance = 10
-		if (zone in base_miss_chance)
-			miss_chance = base_miss_chance[zone]
+		if (zone in GLOB.base_miss_chance)
+			miss_chance = GLOB.base_miss_chance[zone]
 		miss_chance = max(miss_chance + miss_chance_mod, 0)
 		if(prob(miss_chance))
 			if(prob(70))
 				return null
-			return pick(base_miss_chance)
+			return pick(GLOB.base_miss_chance)
 
 	return zone
 
@@ -353,7 +353,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 
-/mob/proc/restrained()
+/mob/proc/restrained(ignore_checks)
 	return
 
 
@@ -451,7 +451,7 @@ mob/proc/get_standard_bodytemperature()
 	alert_overlay.plane = FLOAT_PLANE
 
 	A.add_overlay(alert_overlay)
-    
+
 
 /proc/notify_ghosts(message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of ghosts.
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load

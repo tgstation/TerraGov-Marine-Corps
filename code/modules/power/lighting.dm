@@ -234,7 +234,7 @@
 	return
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(var/trigger = 1)
+/obj/machinery/light/proc/update(trigger = 1)
 
 	update_icon()
 	if(on)
@@ -263,7 +263,7 @@
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(var/s)
+/obj/machinery/light/proc/seton(s)
 	on = (s && status == LIGHT_OK)
 	update()
 
@@ -365,7 +365,7 @@
 	var/area/A = src.loc.loc
 	return A.master.lightswitch && A.master.power_light
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
+/obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	if(flickering)
 		return
 	flickering = TRUE
@@ -469,7 +469,7 @@
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = 0)
+/obj/machinery/light/proc/broken(skip_sound_and_sparks = 0)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -631,7 +631,7 @@
 
 		if(S.reagents.has_reagent("phoron", 5))
 
-			log_admin("[key_name(user)] injected a light with phoron, rigging it to explode.")
+			log_game("[key_name(user)] injected a light with phoron, rigging it to explode.")
 			message_admins("[ADMIN_TPMONTY(user)] injected a light with phoron, rigging it to explode.")
 
 			rigged = TRUE

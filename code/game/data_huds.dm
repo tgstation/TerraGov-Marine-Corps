@@ -1,9 +1,9 @@
 /*
- * Data HUDs have been rewritten in a more generic way.
- * In short, they now use an observer-listener pattern.
- * See code/datum/hud.dm for the generic hud datum.
- * Update the HUD icons when needed with the appropriate hook. (see below)
- */
+* Data HUDs have been rewritten in a more generic way.
+* In short, they now use an observer-listener pattern.
+* See code/datum/hud.dm for the generic hud datum.
+* Update the HUD icons when needed with the appropriate hook. (see below)
+*/
 
 /* DATA HUD DATUMS */
 

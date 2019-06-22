@@ -34,9 +34,7 @@
 
 	var/list/total_calls = typesof(/datum/emergency_call)
 	if(!length(total_calls))
-		log_game("ERROR: No distress Datums found.")
-		message_admins("ERROR: No distress Datums found.")
-		return FALSE
+		CRASH("No distress Datums found.")
 
 	for(var/x in total_calls)
 		var/datum/emergency_call/D = new x()
@@ -47,23 +45,23 @@
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
-    var/datum/emergency_call/chosen_call
-    var/list/valid_calls = list()
+	var/datum/emergency_call/chosen_call
+	var/list/valid_calls = list()
 
-    for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
-        if(E.probability < 1) //Those that are meant to be admin-only
-            continue
+	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
+		if(E.probability < 1) //Those that are meant to be admin-only
+			continue
 
-        valid_calls.Add(E)
+		valid_calls.Add(E)
 
-        if(prob(E.probability))
-            chosen_call = E
-            break
+		if(prob(E.probability))
+			chosen_call = E
+			break
 
-    if(!istype(chosen_call))
-        chosen_call = pick(valid_calls)
+	if(!istype(chosen_call))
+		chosen_call = pick(valid_calls)
 
-    return chosen_call
+	return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
 	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.
@@ -97,7 +95,7 @@
 
 	var/datum/emergency_call/distress = SSticker?.mode?.picked_call //Just to simplify things a bit
 
-	if(jobban_isbanned(usr, ROLE_ERT) || is_banned_from(usr.ckey, ROLE_ERT))
+	if(is_banned_from(usr.ckey, ROLE_ERT))
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 		return
 
@@ -267,7 +265,7 @@
 
 	cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 
-/datum/emergency_call/proc/add_candidate(var/mob/M)
+/datum/emergency_call/proc/add_candidate(mob/M)
 	if(!M.client)
 		return FALSE  //Not connected
 

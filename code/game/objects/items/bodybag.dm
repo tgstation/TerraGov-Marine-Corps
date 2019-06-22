@@ -107,7 +107,7 @@
 		overlays.Cut()
 
 
-/obj/structure/closet/bodybag/store_mobs(var/stored_units) // overriding this
+/obj/structure/closet/bodybag/store_mobs(stored_units) // overriding this
 	var/list/dead_mobs = list()
 	for(var/mob/living/M in loc)
 		if(M.buckled)
@@ -242,7 +242,7 @@
 		new /obj/item/trash/used_stasis_bag(loc)
 		qdel(src)
 
-/obj/structure/closet/bodybag/cryobag/store_mobs(var/stored_units) // overriding this
+/obj/structure/closet/bodybag/cryobag/store_mobs(stored_units) // overriding this
 	var/list/mobs_can_store = list()
 	for(var/mob/living/carbon/human/H in loc)
 		if(H.buckled)

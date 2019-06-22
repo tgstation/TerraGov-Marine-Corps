@@ -64,7 +64,7 @@
 	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
-/obj/machinery/account_database/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/account_database/ui_interact(mob/user, ui_key="main", datum/nanoui/ui = null, force_open = 1)
 	user.set_interaction(src)
 
 	var/data[0]

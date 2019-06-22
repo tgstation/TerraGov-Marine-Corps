@@ -1,21 +1,21 @@
 /* Kitchen tools
- * Contains:
- *		Utensils
- *		Spoons
- *		Forks
- *		Knives
- *		Kitchen knives
- *		Butcher's cleaver
- *		Rolling Pins
- *		Trays
- */
+* Contains:
+*		Utensils
+*		Spoons
+*		Forks
+*		Knives
+*		Kitchen knives
+*		Butcher's cleaver
+*		Rolling Pins
+*		Trays
+*/
 
 /obj/item/tool/kitchen
 	icon = 'icons/obj/items/kitchen_tools.dmi'
 
 /*
- * Utensils
- */
+* Utensils
+*/
 /obj/item/tool/kitchen/utensil
 	force = 5
 	w_class = 1
@@ -28,12 +28,12 @@
 	sharp = 0
 	var/loaded      //Descriptive string for currently loaded food object.
 
-/obj/item/tool/kitchen/utensil/New()
+/obj/item/tool/kitchen/utensil/Initialize()
+	. = ..()
 	if (prob(60))
 		src.pixel_y = rand(0, 4)
 
 	create_reagents(5)
-	return
 
 /obj/item/tool/kitchen/utensil/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))
@@ -82,8 +82,8 @@
 	attack_verb = list("attacked", "poked")
 
 /*
- * Knives
- */
+* Knives
+*/
 /obj/item/tool/kitchen/utensil/knife
 	name = "knife"
 	desc = "Can cut through any food."
@@ -115,8 +115,8 @@
 	return ..()
 
 /*
- * Kitchen knives
- */
+* Kitchen knives
+*/
 /obj/item/tool/kitchen/knife
 	name = "kitchen knife"
 	icon_state = "knife"
@@ -146,8 +146,8 @@
 	icon_state = "render"
 
 /*
- * Bucher's cleaver
- */
+* Bucher's cleaver
+*/
 /obj/item/tool/kitchen/knife/butcher
 	name = "butcher's cleaver"
 	icon_state = "butch"
@@ -169,8 +169,8 @@
 	return ..()
 
 /*
- * Rolling Pins
- */
+* Rolling Pins
+*/
 
 /obj/item/tool/kitchen/rollingpin
 	name = "rolling pin"
@@ -211,8 +211,8 @@
 	return ..()
 
 /*
- * Trays - Agouri
- */
+* Trays - Agouri
+*/
 /obj/item/tool/kitchen/tray
 	name = "tray"
 	icon = 'icons/obj/items/kitchen_tools.dmi'
@@ -242,8 +242,8 @@
 	*/
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10 // w_class = 1 -- takes up 1
-					   // w_class = 2 -- takes up 3
-					   // w_class = 3 -- takes up 5
+						// w_class = 2 -- takes up 3
+						// w_class = 3 -- takes up 5
 
 /obj/item/tool/kitchen/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 

@@ -1,21 +1,21 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /* Tools!
- * Note: Multitools are /obj/item
- *
- * Contains:
- * 		Wrench
- * 		Screwdriver
- * 		Wirecutters
- * 		Blowtorch
- * 		Crowbar
- */
+* Note: Multitools are /obj/item
+*
+* Contains:
+* 		Wrench
+* 		Screwdriver
+* 		Wirecutters
+* 		Blowtorch
+* 		Crowbar
+*/
 
 //toolspeed is used to change the speed of how fast this tool works lower is faster
 
 /*
- * Wrench
- */
+* Wrench
+*/
 /obj/item/tool/wrench
 	name = "wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
@@ -34,8 +34,8 @@
 
 
 /*
- * Screwdriver
- */
+* Screwdriver
+*/
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
@@ -95,8 +95,8 @@
 	return eyestab(M,user)*/
 
 /*
- * Wirecutters
- */
+* Wirecutters
+*/
 /obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
@@ -123,19 +123,18 @@
 		item_state = "cutters_yellow"
 
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user)
-	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
+	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/restraints/handcuffs/cable)))
 		user.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
-		C.handcuffed = null
-		C.handcuff_update()
+		C.update_handcuffed(null)
 		return
 	else
 		..()
 
 /*
- * Blowtorch
- */
+* Blowtorch
+*/
 /obj/item/tool/weldingtool
 	name = "blowtorch"
 	icon = 'icons/obj/items/items.dmi'
@@ -287,7 +286,7 @@
 
 
 //Removes fuel from the blowtorch. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/tool/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/tool/weldingtool/proc/remove_fuel(amount = 1, mob/M = null)
 	if(!welding || !check_fuel())
 		return 0
 	if(get_fuel() >= amount)
@@ -314,7 +313,7 @@
 
 
 //Toggles the welder off and on
-/obj/item/tool/weldingtool/proc/toggle(var/message = 0)
+/obj/item/tool/weldingtool/proc/toggle(message = 0)
 	var/mob/M
 	if(ismob(loc))
 		M = loc
@@ -414,8 +413,8 @@
 		reagents = max_fuel
 
 /*
- * Crowbar
- */
+* Crowbar
+*/
 
 /obj/item/tool/crowbar
 	name = "crowbar"
@@ -445,7 +444,7 @@
 
 
 /*
- Welding backpack
+Welding backpack
 */
 
 /obj/item/tool/weldpack
@@ -457,7 +456,8 @@
 	w_class = 4.0
 	var/max_fuel = 600 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
-/obj/item/tool/weldpack/New()
+/obj/item/tool/weldpack/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src

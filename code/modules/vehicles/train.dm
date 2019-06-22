@@ -50,7 +50,7 @@
 //-------------------------------------------
 
 
-/obj/vehicle/train/MouseDrop_T(var/atom/movable/C, mob/user as mob)
+/obj/vehicle/train/MouseDrop_T(atom/movable/C, mob/user as mob)
 	if(user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C) || !istype(C) || (user == C && !user.canmove))
 		return
 	if(istype(C,/obj/vehicle/train))
@@ -82,7 +82,7 @@
 	attack_hand(M)
 
 //attempts to attach src as a follower of the train T
-/obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user, var/silent=FALSE)
+/obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user, silent=FALSE)
 	if(!istype(user))
 		silent = TRUE
 	if (get_dist(src, T) > 1)
@@ -121,7 +121,7 @@
 
 
 //detaches the train from whatever is towing it
-/obj/vehicle/train/proc/unattach(mob/user, var/silent=FALSE)
+/obj/vehicle/train/proc/unattach(mob/user, silent=FALSE)
 	if(!istype(user))
 		silent = TRUE
 	if (!lead)
@@ -138,7 +138,7 @@
 
 	update_stats()
 
-/obj/vehicle/train/proc/latch(obj/vehicle/train/T, mob/user, var/silent=FALSE)
+/obj/vehicle/train/proc/latch(obj/vehicle/train/T, mob/user, silent=FALSE)
 	if(!istype(T) || !Adjacent(T))
 		return FALSE
 
@@ -186,5 +186,5 @@
 		T.update_car(train_length, active_engines)
 		T = T.lead
 
-/obj/vehicle/train/proc/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/proc/update_car(train_length, active_engines)
 	return

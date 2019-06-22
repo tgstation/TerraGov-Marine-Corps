@@ -192,7 +192,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/list/list_reagents = list("nicotine" = 15)
 	flags_armor_protection = 0
 
-/obj/item/clothing/mask/cigarette/New()
+/obj/item/clothing/mask/cigarette/Initialize()
 	. = ..()
 	create_reagents(chem_volume, INJECTABLE|NO_REACT, list_reagents) // making the cigarrete a chemical holder with a maximum volume of 30
 
@@ -547,7 +547,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return ..()
 	return
 
-/obj/item/tool/lighter/proc/turn_off(mob/living/bearer, var/silent = 1)
+/obj/item/tool/lighter/proc/turn_off(mob/living/bearer, silent = 1)
 	if(heat)
 		heat = 0
 		icon_state = icon_off

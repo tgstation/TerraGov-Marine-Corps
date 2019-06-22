@@ -132,7 +132,7 @@
 	update_icon()
 	start_processing()
 
-/obj/machinery/portable_atmospherics/hydroponics/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/portable_atmospherics/hydroponics/bullet_act(obj/item/projectile/Proj)
 
 	//Don't act on seeds like dionaea that shouldn't change.
 	if(seed && seed.immutable > 0)
@@ -274,7 +274,7 @@
 
 	// If enough time (in cycles, not ticks) has passed since the plant was harvested, we're ready to harvest again.
 	else if(seed.products && seed.products.len && age > seed.production && \
-	 (age - lastproduce) > seed.production && (!harvest && !dead))
+	(age - lastproduce) > seed.production && (!harvest && !dead))
 		harvest = 1
 		lastproduce = age
 
@@ -338,7 +338,7 @@
 	update_icon()
 
 //Harvests the product of a plant.
-/obj/machinery/portable_atmospherics/hydroponics/proc/harvest(var/mob/user)
+/obj/machinery/portable_atmospherics/hydroponics/proc/harvest(mob/user)
 
 	//Harvest the product of the plant,
 	if(!seed || !harvest || !user)
@@ -367,7 +367,7 @@
 	return
 
 //Clears out a dead plant.
-/obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(var/mob/user)
+/obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(mob/user)
 	if(!user || !dead) return
 
 	if(closed_system)
@@ -442,7 +442,7 @@
 	SetLuminosity(0)
 	return
 
- // If a weed growth is sufficient, this proc is called.
+// If a weed growth is sufficient, this proc is called.
 /obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
 
 	//Remove the seed if something is already planted.
@@ -463,7 +463,7 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/proc/mutate(var/severity)
+/obj/machinery/portable_atmospherics/hydroponics/proc/mutate(severity)
 
 	// No seed, no mutations.
 	if(!seed)

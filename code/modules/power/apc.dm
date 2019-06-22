@@ -745,7 +745,7 @@
 	ui_interact(user)
 	return
 
-/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 	if(!user)
 		return
 
@@ -798,7 +798,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		//The ui does not exist, so we'll create a new() one
-        //For a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		//For a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
 		//When the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -837,7 +837,7 @@
 			update_icon()
 			update()
 
-/obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
+/obj/machinery/power/apc/proc/can_use(mob/user as mob, loud = 0) //used by attack_hand() and Topic()
 	if(user.stat)
 		to_chat(user, "<span class='warning'>You must be conscious to use [src]!</span>")
 		return 0
@@ -876,7 +876,7 @@
 			return 0
 	return 1
 
-/obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
+/obj/machinery/power/apc/Topic(href, href_list, usingUI = 1)
 	. = ..()
 	if(.)
 		return
@@ -954,7 +954,7 @@
 /obj/machinery/power/apc/proc/attempt_charging()
 	return (chargemode && charging == APC_CHARGING && operating)
 
-/obj/machinery/power/apc/add_load(var/amount)
+/obj/machinery/power/apc/add_load(amount)
 	if(terminal && terminal.powernet)
 		return terminal.add_load(amount)
 	return 0
@@ -1101,7 +1101,7 @@
 //val 0 = off, 1 = off(auto) 2 = on, 3 = on(auto)
 //on 0 = off, 1 = auto-on, 2 = auto-off
 
-/proc/autoset(var/val, var/on)
+/proc/autoset(val, on)
 
 	if(on == 0) //Turn things off
 		if(val == 2) //If on, return off

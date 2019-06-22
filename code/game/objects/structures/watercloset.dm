@@ -85,7 +85,6 @@
 				return
 
 			user.visible_message("<span class='danger'>[user] gives [C] a swirlie!</span>", "<span class='notice'>You give [C] a swirlie!</span>", "You hear a toilet flushing.")
-			log_admin("[key_name(user)] gives [key_name(C)] a swirlie.")
 			log_combat(user, C, "given a swirlie")
 			msg_admin_attack("[key_name(user)] gave [key_name(C)] a swirlie.")
 			if(!C.internal)
@@ -93,7 +92,6 @@
 			swirlie = null
 		else
 			user.visible_message("<span class='danger'>[user] slams [C] into the [src]!</span>", "<span class='notice'>You slam [C] into the [src]!</span>")
-			log_admin("[key_name(user)] slams [key_name(C)] into the \the [src].")
 			log_combat(user, C, "slammed", "", "into the \the [src]")
 			msg_admin_attack("[key_name(user)] slammed [key_name(C)] into the \the [src].")
 			C.apply_damage(8, BRUTE)
@@ -162,8 +160,8 @@
 	var/mobpresent = 0		//true if there is a mob on the shower's loc, this is to ease process()
 	var/is_washing = 0
 
-/obj/machinery/shower/New()
-	..()
+/obj/machinery/shower/Initialize()
+	. = ..()
 	create_reagents(2)
 
 //add heat controls? when emagged, you can freeze to death in it?

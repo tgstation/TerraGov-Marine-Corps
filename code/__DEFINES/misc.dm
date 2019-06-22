@@ -30,8 +30,8 @@
 
 #define RESIZE_DEFAULT_SIZE 1
 
-/var/static/global_unique_id = 1
-#define UNIQUEID (global_unique_id++)
+GLOBAL_VAR_INIT(global_unique_id, 1)
+#define UNIQUEID (GLOB.global_unique_id++)
 
 // Maploader bounds indices
 #define MAP_MINX 1
@@ -40,7 +40,6 @@
 #define MAP_MAXX 4
 #define MAP_MAXY 5
 #define MAP_MAXZ 6
-var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 

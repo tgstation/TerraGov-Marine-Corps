@@ -26,7 +26,7 @@
 
 	GLOB.alive_xeno_list += src
 	GLOB.xeno_mob_list += src
-	round_statistics.total_xenos_created++
+	GLOB.round_statistics.total_xenos_created++
 
 	set_initial_hivenumber()
 
@@ -212,7 +212,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/xenomorph/resist_grab(moving_resist)
+/mob/living/carbon/xenomorph/resist_grab()
 	if(pulledby.grab_level)
 		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 	pulledby.stop_pulling()

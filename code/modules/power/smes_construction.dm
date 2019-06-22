@@ -57,7 +57,7 @@
 	// Light Overload - X% chance to overload each lighting circuit in connected powernet. APC based.
 	// APC Failure - X% chance to destroy APC causing very weak explosion too. Won't cause hull breach or serious harm.
 	// SMES Explosion - X% chance to destroy the SMES, in moderate explosion. May cause small hull breach.
-/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/proc/total_system_failure(intensity = 0, mob/user as mob)
 	if (!intensity)
 		return
 
@@ -163,7 +163,7 @@
 
 
 	// Gets powernet APCs and overloads lights or breaks the APC completely, depending on percentages.
-/obj/machinery/power/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance)
+/obj/machinery/power/smes/buildable/proc/apcs_overload(failure_chance, overload_chance)
 	if (!src.powernet)
 		return
 

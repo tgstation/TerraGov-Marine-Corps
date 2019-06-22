@@ -36,8 +36,8 @@
 	anchored = FALSE
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
-/obj/structure/mopbucket/New()
-	..()
+/obj/structure/mopbucket/Initialize()
+	. = ..()
 	create_reagents(100, OPENCONTAINER)
 
 /obj/structure/mopbucket/examine(mob/user)
@@ -65,7 +65,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/shipmast/attack_hand(var/mob/user)
+/obj/structure/shipmast/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return

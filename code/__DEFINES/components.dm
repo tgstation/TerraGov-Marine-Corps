@@ -41,6 +41,15 @@
 #define COMSIG_CLICK_ALT "alt_click"							//from base of atom/AltClick(): (/mob)
 #define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"				//from base of atom/CtrlShiftClick(/mob)
 
+#define COMSIG_DBLCLICK_SHIFT_MIDDLE "dblclick_shift_middle"
+#define COMSIG_DBLCLICK_CTRL_SHIFT "dblclick_ctrl_shift"
+#define COMSIG_DBLCLICK_CTRL_MIDDLE "dblclick_ctrl_middle"
+#define COMSIG_DBLCLICK_MIDDLE "dblclick_middle"
+#define COMSIG_DBLCLICK_SHIFT "dblclick_shift"
+#define COMSIG_DBLCLICK_ALT "dblclick_alt"
+#define COMSIG_DBLCLICK_CTRL "dblclick_ctrl"
+
+
 
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
@@ -101,6 +110,9 @@
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+
+//mob/living signals
+#define COMSIG_LIVING_DO_RESIST	"living_do_resist"				//from the base of /mob/living/do_resist()
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"

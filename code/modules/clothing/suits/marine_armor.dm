@@ -43,7 +43,7 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun
-	 )
+	)
 	max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/Initialize()
@@ -197,7 +197,7 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
@@ -611,7 +611,7 @@
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
@@ -922,7 +922,7 @@
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
@@ -941,7 +941,7 @@
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
@@ -960,7 +960,7 @@
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,

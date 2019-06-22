@@ -4,7 +4,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //#define DEBUG_HUMAN_EXPLOSIONS
 
-/mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
+/mob/living/carbon/human/stun_effect_act(stun_amount, agony_amount, def_zone)
 	var/datum/limb/affected = get_limb(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)
 	stun_amount *= siemens_coeff
@@ -32,7 +32,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	..(stun_amount, agony_amount, def_zone)
 
-/mob/living/carbon/human/getarmor(var/def_zone, var/type)
+/mob/living/carbon/human/getarmor(def_zone, type)
 	var/armorval = 0
 	var/total = 0
 
@@ -47,7 +47,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	else
 		for(var/X in limbs)
 			var/datum/limb/E = X
-			var/weight = organ_rel_size[E.name]
+			var/weight = GLOB.organ_rel_size[E.name]
 			armorval += getarmor_organ(E, type) * weight
 			total += weight
 			#ifdef DEBUG_HUMAN_EXPLOSIONS
@@ -56,7 +56,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	return ( round(armorval/max(total, 1)*0.01,0.01) )
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
-/mob/living/carbon/human/proc/get_siemens_coefficient_organ(var/datum/limb/def_zone)
+/mob/living/carbon/human/proc/get_siemens_coefficient_organ(datum/limb/def_zone)
 	if (!def_zone)
 		return 1.0
 
@@ -70,7 +70,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	return siemens_coefficient
 
 //this proc returns the armour value for a particular external organ.
-/mob/living/carbon/human/proc/getarmor_organ(var/datum/limb/def_zone, var/type)
+/mob/living/carbon/human/proc/getarmor_organ(datum/limb/def_zone, type)
 	if(!type)	return 0
 	var/protection = 0
 	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
@@ -92,7 +92,7 @@ Contains most of the procs that are called when a mob is attacked by something
 				return 1
 	return 0
 
-/mob/living/carbon/human/proc/check_shields(var/damage = 0, var/attack_text = "the attack")
+/mob/living/carbon/human/proc/check_shields(damage = 0, attack_text = "the attack")
 	if(l_hand && istype(l_hand, /obj/item/weapon))//Current base is the prob(50-d/3)
 		var/obj/item/weapon/I = l_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
@@ -135,7 +135,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		L?.take_damage(1, TRUE)
 
 //Returns 1 if the attack hit, 0 if it missed.
-/mob/living/carbon/human/proc/attacked_by(var/obj/item/I, var/mob/living/user, var/def_zone)
+/mob/living/carbon/human/proc/attacked_by(obj/item/I, mob/living/user, def_zone)
 	if(!I || !user)	return 0
 
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
@@ -235,7 +235,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/carbon/human/hitby(atom/movable/AM,var/speed = 5)
+/mob/living/carbon/human/hitby(atom/movable/AM,speed = 5)
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 
@@ -338,7 +338,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
 
-/mob/living/carbon/human/proc/bloody_body(var/mob/living/source)
+/mob/living/carbon/human/proc/bloody_body(mob/living/source)
 	if(wear_suit)
 		wear_suit.add_mob_blood(source)
 		update_inv_wear_suit()
@@ -347,7 +347,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		update_inv_w_uniform()
 
 
-/mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage)
+/mob/living/carbon/human/proc/handle_suit_punctures(damtype, damage)
 	if(!wear_suit) return
 	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
 	if(damtype != BURN && damtype != BRUTE) return

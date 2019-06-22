@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(machines)
 		for(var/datum/powernet/Powernet in powernets)
 			Powernet.reset() //reset the power state.
 		src.currentrun = processing.Copy()
-		src.currentrunareas = active_areas.Copy()
+		src.currentrunareas = GLOB.active_areas.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun

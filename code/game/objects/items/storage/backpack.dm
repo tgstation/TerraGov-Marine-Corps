@@ -1,6 +1,6 @@
 /*
- * Backpack
- */
+* Backpack
+*/
 
 /obj/item/storage/backpack
 	name = "backpack"
@@ -76,8 +76,8 @@
 	..()
 
 /*
- * Backpack Types
- */
+* Backpack Types
+*/
 
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
@@ -177,8 +177,8 @@
 	icon_state = "chempack"
 
 /*
- * Satchel Types
- */
+* Satchel Types
+*/
 
 /obj/item/storage/backpack/satchel
 	name = "leather satchel"
@@ -493,7 +493,7 @@
 
 	return TRUE
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(var/mob/user)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
 	if (!user)
 		camo_active = FALSE
 		wearer = null

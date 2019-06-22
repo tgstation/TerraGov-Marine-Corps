@@ -10,7 +10,7 @@ to use said count anywhere else include round_statistics.the_thing_to_count in y
 add [] around this to use it in text.
 */
 
-var/datum/round_statistics/round_statistics = new()
+GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 
 /datum/round_statistics
 	var/total_projectiles_fired = 0

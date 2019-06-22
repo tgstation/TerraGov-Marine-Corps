@@ -6,6 +6,13 @@
 	var/code = "electronic"
 	origin_tech = "bluespace=1"
 
+/obj/item/radio/beacon/Initialize()
+	. = ..()
+	GLOB.beacon_list += src
+
+/obj/item/radio/beacon/Destroy()
+	GLOB.beacon_list -= src
+	return ..()
 
 /obj/item/radio/beacon/verb/alter_signal(t as text)
 	set name = "Alter Beacon's Signal"

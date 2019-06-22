@@ -86,7 +86,7 @@
 
 
 //Update icon
-/turf/open/floor/plating/ground/snow/update_icon(var/update_full, var/skip_sides)
+/turf/open/floor/plating/ground/snow/update_icon(update_full, skip_sides)
 	icon_state = "snow_[slayer]"
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 	switch(slayer)

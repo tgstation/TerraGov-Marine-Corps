@@ -1,15 +1,15 @@
 /* Tables and Racks
- * Contains:
- *		Tables
- *		Wooden tables
- *		Reinforced tables
- *		Racks
- */
+* Contains:
+*		Tables
+*		Wooden tables
+*		Reinforced tables
+*		Racks
+*/
 
 
 /*
- * Tables
- */
+* Tables
+*/
 /obj/structure/table
 	name = "table"
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -287,7 +287,6 @@
 			M.apply_damage(8, def_zone = "head")
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 			"<span class='danger'>You slam [M]'s face against [src]!</span>")
-			log_admin("[key_name(user)] slams [key_name(M)]'s face' against \the [src].")
 			log_combat(user, M, "slammed", "", "against \the [src]")
 			msg_admin_attack("[key_name(user)] slammed [key_name(M)]'s face' against \the [src].")
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
@@ -317,7 +316,7 @@
 		user.transferItemToLoc(I, loc)
 
 
-/obj/structure/table/proc/straight_table_check(var/direction)
+/obj/structure/table/proc/straight_table_check(direction)
 	var/obj/structure/table/T
 	for(var/angle in list(-90, 90))
 		T = locate() in get_step(loc, turn(direction, angle))
@@ -353,7 +352,7 @@
 
 	flip_cooldown = world.time + 50
 
-/obj/structure/table/proc/unflipping_check(var/direction)
+/obj/structure/table/proc/unflipping_check(direction)
 
 	if(world.time < flip_cooldown)
 		return FALSE
@@ -394,7 +393,7 @@
 
 	flip_cooldown = world.time + 50
 
-/obj/structure/table/proc/flip(var/direction)
+/obj/structure/table/proc/flip(direction)
 
 	if(world.time < flip_cooldown)
 		return FALSE
@@ -447,8 +446,8 @@
 	flipped = TRUE
 
 /*
- * Wooden tables
- */
+* Wooden tables
+*/
 /obj/structure/table/woodentable
 	name = "wooden table"
 	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -458,8 +457,8 @@
 	table_prefix = "wood"
 	max_integrity = 50
 /*
- * Gambling tables
- */
+* Gambling tables
+*/
 /obj/structure/table/gamblingtable
 	name = "gambling table"
 	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
@@ -469,8 +468,8 @@
 	table_prefix = "gamble"
 	max_integrity = 50
 /*
- * Reinforced tables
- */
+* Reinforced tables
+*/
 /obj/structure/table/reinforced
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
@@ -484,7 +483,7 @@
 /obj/structure/table/reinforced/flipped
 	flipped = TRUE
 
-/obj/structure/table/reinforced/flip(var/direction)
+/obj/structure/table/reinforced/flip(direction)
 	return FALSE //No, just no. It's a full desk, you can't flip that
 
 
@@ -539,8 +538,8 @@
 
 
 /*
- * Racks
- */
+* Racks
+*/
 /obj/structure/rack
 	name = "rack"
 	desc = "A bunch of metal shelves stacked on top of eachother. Excellent for storage purposes, less so as cover."

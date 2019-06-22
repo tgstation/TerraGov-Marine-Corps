@@ -156,7 +156,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
 
 
-/datum/admins/proc/narage_direct(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/narage_direct(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Direct Narrate"
 
@@ -590,14 +590,14 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/sec_level = input(usr, "It's currently code [get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
+	var/sec_level = input(usr, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
 	if(!sec_level)
 		return
 
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
+	if(alert("Switch from code [GLOB.marine_main_ship.get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
 		return
 
-	set_security_level(sec_level)
+	GLOB.marine_main_ship.set_security_level(sec_level)
 
 	log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
@@ -616,7 +616,8 @@
 	if(!H.mind)
 		dat += "No mind! <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=createmind;mob=[REF(H)]'>Create</a><br>"
 	else
-		dat += "Job: [H.mind.assigned_role] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a><br>"
+		dat += "Job: [H.mind.assigned_role] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a> "
+		dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;doequip=1;mob=[REF(H)]'>Edit and Equip</a <br>"
 		dat += "<br>"
 		dat += "Skillset: [H.mind.cm_skills.name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=skills;mob=[REF(H)]'>Edit</a><br>"
 		dat += "Comms title: [H.mind.comm_title] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=commstitle;mob=[REF(H)]'>Edit</a><br>"
@@ -624,7 +625,7 @@
 			dat += "Squad: [H.assigned_squad] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=squad;mob=[REF(H)]'>Edit</a><br>"
 	if(istype(C))
 		dat += "<br>"
-		dat += "Chat title: [C.paygrade] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=chattitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
+		dat += "Chat title: [get_paygrades(C.paygrade, FALSE, H.gender)] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=chattitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
 		dat += "ID title: [C.assignment] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=idtitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
 		dat += "ID name: [C.registered_name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=idname;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
 	else
@@ -681,7 +682,7 @@
 		<tr>
 			<th>Uniform:</th>
 			<td>
-			   <input type="text" name="outfit_uniform" value="">
+				<input type="text" name="outfit_uniform" value="">
 			</td>
 		</tr>
 		<tr>
@@ -902,7 +903,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
-/datum/admins/proc/release(obj/O in GLOB.object_list)
+/datum/admins/proc/release()
 	set category = null
 	set name = "Release Obj"
 
@@ -913,6 +914,8 @@
 
 	if(!M.control_object)
 		return
+
+	var/obj/O = M.control_object
 
 	var/datum/player_details/P = GLOB.player_details[M.ckey]
 
@@ -931,7 +934,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
 
 
-/datum/admins/proc/possess(obj/O in GLOB.object_list)
+/datum/admins/proc/possess(obj/O in world)
 	set category = null
 	set name = "Possess Obj"
 

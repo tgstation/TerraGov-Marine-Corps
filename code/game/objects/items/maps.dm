@@ -11,7 +11,7 @@
 	var/html_link = ""
 	var/window_size = "1280x720"
 
-/obj/item/map/attack_self(var/mob/usr as mob) //Open the map
+/obj/item/map/attack_self(mob/usr as mob) //Open the map
 	usr.visible_message("<span class='notice'>[usr] opens the [src.name]. </span>")
 	initialize_map()
 
@@ -39,7 +39,7 @@
 				function pageloaded(myframe) {
 					document.getElementById("loading").style.display = "none";
 					myframe.style.display = "inline";
-    			}
+				}
 			</script>
 			<p id='loading'>You start unfolding the map...</p>
 			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[wikiurl]/[html_link]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>

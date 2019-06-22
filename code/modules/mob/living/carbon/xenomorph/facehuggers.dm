@@ -437,7 +437,7 @@
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
-			round_statistics.now_pregnant++
+			GLOB.round_statistics.now_pregnant++
 			sterile = TRUE
 		Die()
 	else

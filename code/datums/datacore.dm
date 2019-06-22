@@ -150,7 +150,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		foundrecord.fields["real_rank"] = rank
 
 
-/datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
+/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
 	if(!H.mind)
 		return
 

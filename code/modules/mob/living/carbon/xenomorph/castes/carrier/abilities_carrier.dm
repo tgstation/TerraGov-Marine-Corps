@@ -158,7 +158,7 @@
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	round_statistics.carrier_traps++
+	GLOB.round_statistics.carrier_traps++
 	new /obj/effect/alien/resin/trap(T, owner)
 	to_chat(owner, "<span class='xenonotice'>You place a hugger trap on the weeds, it still needs a facehugger.</span>")
 

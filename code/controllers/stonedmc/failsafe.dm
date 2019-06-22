@@ -1,8 +1,8 @@
- /**
-  * Failsafe
-  *
-  * Pretty much pokes the MC to make sure it's still alive.
- **/
+/**
+* Failsafe
+*
+* Pretty much pokes the MC to make sure it's still alive.
+**/
 
 GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 
@@ -71,7 +71,7 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 								master_iteration = 0
 								to_chat(GLOB.admins, "<span class='adminnotice'>MC restarted successfully</span>")
 							else if(rtn < 0)
-								log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
+								WARNING("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
 								to_chat(GLOB.admins, "<span class='boldannounce'>ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>")
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it

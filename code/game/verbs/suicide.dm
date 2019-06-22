@@ -36,7 +36,7 @@
 			if(damagetype)
 				var/damage_mod = 1
 				switch(damagetype) //Sorry about the magic numbers.
-								   //brute = 1, burn = 2, tox = 4, oxy = 8
+								//brute = 1, burn = 2, tox = 4, oxy = 8
 					if(15) //4 damage types
 						damage_mod = 4
 

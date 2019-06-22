@@ -1013,7 +1013,7 @@
 	. += "</ol>\n"
 
 
-/proc/get_stickyban_from_ckey(var/ckey)
+/proc/get_stickyban_from_ckey(ckey)
 	if (!ckey)
 		return null
 	ckey = ckey(ckey)
@@ -1023,7 +1023,7 @@
 			. = stickyban2list(world.GetConfig("ban",key))
 			break
 
-/proc/stickyban2list(var/ban)
+/proc/stickyban2list(ban)
 	if (!ban)
 		return null
 	. = params2list(ban)
@@ -1039,7 +1039,7 @@
 	.["computer_id"] = splittext(.["computer_id"], ",")
 
 
-/proc/list2stickyban(var/list/ban)
+/proc/list2stickyban(list/ban)
 	if (!ban || !islist(ban))
 		return null
 	. = ban.Copy()
@@ -1178,7 +1178,7 @@
 
 				world.SetConfig("ban", bannedckey, null)
 
-				log_game("Stickyban on [bannedckey] detected as rogue, reverting to its roundstart state")
+				log_admin_private("Stickyban on [bannedckey] detected as rogue, reverting to its roundstart state")
 				message_admins("Stickyban on [bannedckey] detected as rogue, reverting to its roundstart state")
 				//do not convert to timer.
 				spawn(5)

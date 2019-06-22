@@ -15,12 +15,10 @@ SUBSYSTEM_DEF(atoms)
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
-	populate_spawn_points()
-
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 
-	lighting_controller.Initialize()
+	GLOB.lighting_controller.Initialize()
 
 	return ..()
 

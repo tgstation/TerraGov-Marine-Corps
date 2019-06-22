@@ -1621,7 +1621,7 @@
 /area/desert_dam/interior/caves/northern_caves)
 "afU" = (
 /obj/structure/table,
-/obj/item/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -2301,9 +2301,7 @@
 /area/desert_dam/building/lab_northwest/dormitory)
 "aie" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/desert_dam/building/lab_northwest/dormitory)
@@ -3264,8 +3262,7 @@
 "akI" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -3420,8 +3417,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4537,7 +4533,6 @@
 "anL" = (
 /obj/structure/sink{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -10
 	},
 /turf/open/floor{
@@ -4943,8 +4938,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -5277,9 +5271,7 @@
 "apJ" = (
 /obj/structure/sink{
 	dir = 8;
-	icon_state = "sink";
-	pixel_x = -11;
-	pixel_y = 0
+	pixel_x = -11
 	},
 /turf/open/floor{
 	icon_state = "whitered";
@@ -5868,9 +5860,7 @@
 /area/desert_dam/interior/lab_northeast/central_hallway)
 "aqM" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 5;
@@ -6933,10 +6923,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_north_west)
 "atN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/desertdam/decals/road_stop{
 	dir = 1;
 	icon_state = "stop_decal5"
@@ -8007,7 +7994,6 @@
 /obj/structure/table/reinforced,
 /obj/structure/sink{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -10
 	},
 /turf/open/floor{
@@ -8324,8 +8310,7 @@
 "awW" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -8335,8 +8320,7 @@
 "awX" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -8513,8 +8497,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	dir = 5;
@@ -8599,8 +8582,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8613,8 +8595,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8649,8 +8630,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -8660,8 +8640,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -9076,8 +9055,7 @@
 "ayL" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -9089,8 +9067,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9104,8 +9081,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9305,8 +9281,7 @@
 "azo" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -9348,8 +9323,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9362,8 +9336,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -9390,8 +9363,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -9408,8 +9380,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -9424,8 +9395,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -9443,8 +9413,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -9553,8 +9522,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc,
 /turf/open/floor{
@@ -9843,8 +9811,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9873,8 +9840,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -9884,8 +9850,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -10487,10 +10452,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_north_west)
 "aCl" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_north_west)
 "aCm" = (
@@ -11020,8 +10982,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -11031,8 +10992,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -11098,8 +11058,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	dir = 5;
@@ -11329,8 +11288,7 @@
 "aEz" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -11390,8 +11348,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -11408,8 +11365,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -11522,8 +11478,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -11532,8 +11487,7 @@
 "aER" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -11657,8 +11611,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -11672,8 +11625,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -11766,8 +11718,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11780,8 +11731,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -11807,8 +11757,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12370,8 +12319,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "darkpurplecorners2";
@@ -12382,8 +12330,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	dir = 1;
@@ -12855,8 +12802,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/junction{
 	icon_state = "pipe-j1";
@@ -12871,8 +12817,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12883,8 +12828,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12898,8 +12842,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -12994,8 +12937,7 @@
 "aIr" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -13184,9 +13126,7 @@
 "aIS" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -13644,10 +13584,7 @@
 	},
 /area/desert_dam/exterior/landing_pad_one_external)
 "aKb" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/landing_pad_one_external)
 "aKc" = (
@@ -13760,8 +13697,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark";
@@ -13774,8 +13710,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark";
@@ -13789,8 +13724,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark";
@@ -13801,8 +13735,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -13820,8 +13753,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -13836,8 +13768,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -13852,8 +13783,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -14540,10 +14470,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "N"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/landing_pad_one)
 "aMt" = (
@@ -14734,10 +14661,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/landing_pad_one)
 "aMW" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/landing_pad_one)
 "aMX" = (
@@ -15020,8 +14944,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -15081,10 +15004,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/landing_pad_one_external)
 "aNW" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -15325,8 +15245,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -15338,8 +15257,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_north_east)
@@ -15347,8 +15265,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_north_east)
@@ -15708,8 +15625,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -15974,10 +15890,7 @@
 	},
 /area/desert_dam/building/lab_northeast/checkpoint)
 "aQv" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_north_east)
 "aQw" = (
@@ -16026,9 +15939,7 @@
 "aQC" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "darkblue2";
@@ -16665,9 +16576,7 @@
 "aSj" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -16910,8 +16819,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -16926,8 +16834,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -17251,9 +17158,7 @@
 /area/desert_dam/interior/caves/east_caves)
 "aTu" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -17504,8 +17409,7 @@
 "aTZ" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -17526,9 +17430,7 @@
 	},
 /obj/item/folder/black_random,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -19038,8 +18940,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "carpet10-8";
@@ -19056,9 +18957,7 @@
 /area/desert_dam/building/administration/meetingrooom)
 "aXu" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -19190,9 +19089,7 @@
 /area/desert_dam/building/administration/overseer_office)
 "aXM" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -19276,9 +19173,7 @@
 /area/desert_dam/exterior/landing_pad_one_external)
 "aXZ" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/desert_dam/building/administration/overseer_office)
@@ -19485,8 +19380,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -20062,10 +19956,7 @@
 	},
 /area/desert_dam/exterior/landing_pad_one)
 "bab" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating{
 	dir = 1;
 	icon_state = "asteroidfloor"
@@ -20196,10 +20087,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "bav" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/caves/central_caves)
 "baw" = (
@@ -20242,10 +20130,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hanger)
 "baB" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/item/tool/warning_cone,
 /obj/machinery/light{
 	dir = 1
@@ -20336,10 +20221,7 @@
 /turf/open/floor/plating/ground/desertdam/desert,
 /area/desert_dam/exterior/valley/valley_north_east)
 "baM" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor{
 	icon_state = "darkyellow2";
 	dir = 4
@@ -20500,9 +20382,7 @@
 /area/desert_dam/interior/caves/central_caves/entrances/west_tunnel_entrance)
 "bbh" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -20658,9 +20538,7 @@
 	icon_state = "E"
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "darkyellow2";
@@ -20900,9 +20778,7 @@
 /area/desert_dam/interior/caves/central_caves)
 "bcj" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "darkbrown2";
@@ -21101,10 +20977,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "bcO" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "bcP" = (
@@ -21127,10 +21000,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/caves/central_caves)
 "bcS" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/desertdam/decals/road_stop{
 	dir = 1;
 	icon_state = "stop_decal5"
@@ -21439,10 +21309,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/north_tunnel_entrance)
 "bdH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 8;
@@ -22639,10 +22506,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bha" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -22658,9 +22522,7 @@
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "bhc" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "darkyellow2";
@@ -23020,12 +22882,7 @@
 "bhX" = (
 /obj/structure/closet/radiation,
 /obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_x = -30;
-	pixel_y = 0
+	pixel_x = -30
 	},
 /turf/open/floor{
 	dir = 8;
@@ -24628,10 +24485,7 @@
 	},
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "blz" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "blA" = (
@@ -24972,9 +24826,7 @@
 /area/desert_dam/interior/dam_interior/auxilary_tool_storage)
 "bmr" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/interior/dam_interior/northeastern_tunnel)
@@ -25096,9 +24948,7 @@
 	layer = 2.2
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark";
@@ -25316,9 +25166,7 @@
 "bmY" = (
 /obj/structure/largecrate/random/barrel/green,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -25333,8 +25181,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/open/floor/plating,
 /area/desert_dam/building/mining/maintenance_east)
@@ -25388,9 +25235,7 @@
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "bnh" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
@@ -25666,8 +25511,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -25677,8 +25521,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "darkbrown2";
@@ -25709,9 +25552,7 @@
 /area/desert_dam/building/mining/front_desk)
 "bnU" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "darkbrown2";
@@ -25834,10 +25675,7 @@
 	},
 /area/desert_dam/interior/dam_interior/hangar_storage)
 "boj" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/northwestern_tunnel)
 "bok" = (
@@ -25995,8 +25833,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/junction{
 	icon_state = "pipe-j1";
@@ -26011,8 +25848,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26026,8 +25862,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26045,8 +25880,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26061,8 +25895,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26073,8 +25906,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26704,9 +26536,7 @@
 /area/desert_dam/interior/dam_interior/engine_room)
 "bqg" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "neutral"
@@ -26787,8 +26617,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -26807,8 +26636,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -26831,8 +26659,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -28572,8 +28399,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	dir = 5;
@@ -28652,9 +28478,7 @@
 /area/desert_dam/interior/dam_interior/smes_backup)
 "btN" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark";
@@ -29149,10 +28973,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/caves/central_caves/entrances/south_tunnel_entrance)
 "buX" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/caves/central_caves/entrances/south_tunnel_entrance)
 "buY" = (
@@ -29341,9 +29162,7 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -29710,9 +29529,7 @@
 "bwk" = (
 /obj/structure/largecrate/random/case,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -30220,9 +30037,7 @@
 "bxu" = (
 /obj/structure/sink{
 	dir = 8;
-	icon_state = "sink";
-	pixel_x = -11;
-	pixel_y = 0
+	pixel_x = -11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -30464,9 +30279,7 @@
 	dir = 1
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "darkyellow2";
@@ -30570,9 +30383,7 @@
 /area/desert_dam/building/mining/break_room)
 "bym" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "darkbrown2";
@@ -30844,9 +30655,7 @@
 "byX" = (
 /obj/machinery/washing_machine,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 9;
@@ -30871,8 +30680,7 @@
 "bza" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor{
@@ -31217,9 +31025,7 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -31915,10 +31721,7 @@
 /turf/open/floor,
 /area/desert_dam/interior/dam_interior/office)
 "bBI" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/west_tunnel)
 "bBJ" = (
@@ -33019,10 +32822,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_south_west)
 "bEh" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_south_west)
 "bEi" = (
@@ -33107,9 +32907,7 @@
 /area/desert_dam/exterior/valley/valley_north_east)
 "bEt" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -34133,9 +33931,7 @@
 /area/desert_dam/interior/dam_interior/workshop)
 "bGw" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/interior/dam_interior/west_tunnel)
@@ -35154,10 +34950,7 @@
 /obj/machinery/conveyor{
 	id = "anomalybelt"
 	},
-/obj/effect/decal/cleanable/blood{
-	layer = 3;
-	pixel_x = 0
-	},
+/obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/disposals)
 "bJa" = (
@@ -35701,9 +35494,7 @@
 /area/desert_dam/exterior/valley/valley_north_east)
 "bKp" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/interior/dam_interior/western_dam_cave)
@@ -36201,10 +35992,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "bLK" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "bLL" = (
@@ -37831,10 +37619,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_telecoms)
 "bPX" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "bPY" = (
@@ -38407,8 +38192,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -38423,8 +38207,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -38441,8 +38224,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -39292,10 +39074,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "bTF" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/cable{
 	icon_state = "4-8";
 	d2 = 8
@@ -39850,9 +39629,7 @@
 /area/desert_dam/building/telecommunication)
 "bUN" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 8;
@@ -40205,8 +39982,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/desert_dam/building/telecommunication_platform)
@@ -40214,8 +39990,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -40246,10 +40021,7 @@
 	},
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "bVJ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "bVK" = (
@@ -40457,9 +40229,7 @@
 /area/desert_dam/building/church)
 "bWg" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor/greengrid,
 /area/desert_dam/building/telecommunication)
@@ -40755,9 +40525,7 @@
 /area/desert_dam/building/telecommunication)
 "bWU" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/desert{
 	icon_state = "desert6"
@@ -42901,9 +42669,7 @@
 "cbV" = (
 /obj/structure/sink{
 	dir = 8;
-	icon_state = "sink";
-	pixel_x = -11;
-	pixel_y = 0
+	pixel_x = -11
 	},
 /turf/open/floor{
 	icon_state = "whitered";
@@ -42933,9 +42699,7 @@
 "cbY" = (
 /obj/structure/sink{
 	dir = 8;
-	icon_state = "sink";
-	pixel_x = -11;
-	pixel_y = 0
+	pixel_x = -11
 	},
 /turf/open/floor{
 	icon_state = "whitered";
@@ -44367,8 +44131,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/open/floor{
 	dir = 1;
@@ -45034,10 +44797,7 @@
 	},
 /area/desert_dam/building/medical/patient_wing)
 "cgB" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/desertdam/decals/road_stop{
 	dir = 1;
 	icon_state = "stop_decal5"
@@ -45776,10 +45536,7 @@
 	},
 /area/desert_dam/building/bar/bar)
 "ciC" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -46802,7 +46559,6 @@
 "ckW" = (
 /obj/structure/sink{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -10
 	},
 /turf/open/floor{
@@ -48015,10 +47771,7 @@
 	},
 /area/desert_dam/exterior/landing_pad_two_external)
 "cnN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/landing_pad_two_external)
 "cnO" = (
@@ -48057,10 +47810,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_south_west)
 "cnV" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/desertdam/decals/road_stop{
 	icon_state = "stop_decal5"
 	},
@@ -48274,8 +48024,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/open/floor,
 /area/desert_dam/building/dorms/hallway_northwing)
@@ -49238,9 +48987,7 @@
 "cqT" = (
 /obj/structure/sink{
 	dir = 8;
-	icon_state = "sink";
-	pixel_x = -11;
-	pixel_y = 0
+	pixel_x = -11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -49335,10 +49082,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_south_west)
 "crj" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/desertdam/decals/road_stop{
 	icon_state = "stop_decal5"
 	},
@@ -49631,8 +49375,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -50559,9 +50302,7 @@
 /area/desert_dam/building/warehouse/warehouse)
 "cuk" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -51389,9 +51130,7 @@
 /area/desert_dam/building/hydroponics/hydroponics)
 "cwk" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor/plating{
 	dir = 1;
@@ -51409,9 +51148,7 @@
 /area/desert_dam/building/hydroponics/hydroponics)
 "cwm" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/building/hydroponics/hydroponics)
@@ -51755,9 +51492,7 @@
 /area/desert_dam/building/warehouse/loading)
 "cwS" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/building/warehouse/loading)
@@ -51940,9 +51675,7 @@
 /area/desert_dam/exterior/landing_pad_two_external)
 "cxp" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/building/warehouse/warehouse)
@@ -52207,9 +51940,7 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/building/hydroponics/hydroponics)
@@ -52519,9 +52250,7 @@
 "cyR" = (
 /obj/structure/table,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/open/floor,
 /area/desert_dam/building/hydroponics/hydroponics)
@@ -52549,8 +52278,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -53381,7 +53109,7 @@
 /area/desert_dam/building/security/marshals_office)
 "cAW" = (
 /obj/structure/table/woodentable,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/weapon/baton,
 /turf/open/floor{
 	icon_state = "grimy"
@@ -53481,10 +53209,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "N"
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "cBk" = (
@@ -53738,10 +53463,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "cBM" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "cBN" = (
@@ -54113,10 +53835,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_south_west)
 "cCC" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -54269,10 +53988,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
 "cCW" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/effect/decal/warning_stripes{
 	icon_state = "S"
 	},
@@ -54963,9 +54679,7 @@
 "cED" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -55161,8 +54875,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_south_west)
@@ -55191,7 +54904,6 @@
 "cFj" = (
 /obj/structure/sink{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -10
 	},
 /turf/open/floor{
@@ -55724,7 +55436,7 @@
 /area/desert_dam/building/security/evidence)
 "cGF" = (
 /obj/structure/table,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 10
@@ -58349,7 +58061,7 @@
 /area/desert_dam/building/security/warden)
 "cMW" = (
 /obj/structure/table,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor{
 	icon_state = "darkred2"
 	},
@@ -59242,9 +58954,7 @@
 "cPv" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -59431,9 +59141,7 @@
 "cPT" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -59703,9 +59411,7 @@
 "cQz" = (
 /obj/structure/sink{
 	dir = 8;
-	icon_state = "sink";
-	pixel_x = -11;
-	pixel_y = 0
+	pixel_x = -11
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -60618,10 +60324,7 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/desert_dam/exterior/valley/valley_north_west)
 "cSO" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E";
-	pixel_x = 0
-	},
+/obj/effect/decal/warning_stripes,
 /obj/structure/desertdam/decals/road_edge{
 	icon_state = "road_edge_decal14"
 	},
@@ -61192,8 +60895,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -61313,8 +61015,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "dark"

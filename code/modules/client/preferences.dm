@@ -129,13 +129,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += {"
 	<style>
 	.column {
-	  float: left;
-	  width: 50%;
+		float: left;
+		width: 50%;
 	}
 	.row:after {
-	  content: "";
-	  display: table;
-	  clear: both;
+		content: "";
+		display: table;
+		clear: both;
 	}
 	</style>
 	"}
@@ -240,7 +240,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if("Survivor")
 				ban_check_name = ROLE_SURVIVOR
 
-		if(jobban_isbanned(user, ban_check_name) || is_banned_from(user.ckey, ban_check_name))
+		if(is_banned_from(user.ckey, ban_check_name))
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
 		else
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
@@ -300,10 +300,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=corporation'>[nanotrasen_relation]</a><br>"
 	dat += "<br>"
 
-	if(jobban_isbanned(user, "Records"))
-		dat += "<b>You are banned from using character records.</b><br>"
-	else
-		dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
+	dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
 
 	dat += "<a href ='?_src_=prefs;preference=flavor_text'>Character Description</a><br>"
 
@@ -530,7 +527,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	onclose(user, "keybindings", src)
 
 
-/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, old_key)
 	var/HTML = {"
 	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
 	<script>

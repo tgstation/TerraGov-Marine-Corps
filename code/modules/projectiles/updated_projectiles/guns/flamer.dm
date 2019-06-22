@@ -281,7 +281,7 @@
 
 		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
-/obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
+/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel)
 	set waitfor = 0
 
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.

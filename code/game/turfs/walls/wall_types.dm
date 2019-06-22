@@ -423,7 +423,7 @@
 	walltype = "thickmembrane"
 	alpha = 210
 
-/turf/closed/wall/resin/bullet_act(var/obj/item/projectile/Proj)
+/turf/closed/wall/resin/bullet_act(obj/item/projectile/Proj)
 	take_damage(Proj.damage*0.5)
 	..()
 	return TRUE

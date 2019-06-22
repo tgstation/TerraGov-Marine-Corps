@@ -10,7 +10,7 @@
 	var/valve_open = 0
 	var/toggle = 1
 
-/obj/item/transfer_valve/proc/process_activation(var/obj/item/D)
+/obj/item/transfer_valve/proc/process_activation(obj/item/D)
 
 /obj/item/transfer_valve/IsAssemblyHolder()
 	return 1
@@ -72,7 +72,7 @@
 /obj/item/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)
 
-/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	// this is the data which will be sent to the ui
 	var/data[0]
@@ -85,7 +85,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "transfer_valve.tmpl", "Tank Transfer Valve", 460, 280)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -126,7 +126,7 @@
 			attached_device.attack_self(usr)
 	return 1 // Returning 1 sends an update to attached UIs
 
-/obj/item/transfer_valve/process_activation(var/obj/item/D)
+/obj/item/transfer_valve/process_activation(obj/item/D)
 	if(toggle)
 		toggle = 0
 		toggle_valve()
@@ -175,7 +175,7 @@
 		if(attacher)
 			log_str += "(<A HREF='?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
 
-		log_admin(log_str)
+		log_game(log_str)
 		message_admins(log_str)
 		merge_gases()
 		spawn(20) // In case one tank bursts

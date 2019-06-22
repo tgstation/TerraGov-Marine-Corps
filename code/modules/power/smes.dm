@@ -179,7 +179,7 @@
 		terminal = null
 		machine_stat |= BROKEN
 
-/obj/machinery/power/smes/add_load(var/amount)
+/obj/machinery/power/smes/add_load(amount)
 	if(terminal && terminal.powernet)
 		return terminal.add_load(amount)
 	return FALSE
@@ -260,7 +260,7 @@
 		terminal.deconstruct(user)
 
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	if(machine_stat & BROKEN)
 		return
@@ -282,7 +282,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "smes.tmpl", "SMES Power Storage Unit", 540, 380)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -390,7 +390,7 @@
 	charge = 9000000
 	..()
 
-/proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null)
+/proc/rate_control(S, V, C, Min=1, Max=5, Limit=null)
 	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"

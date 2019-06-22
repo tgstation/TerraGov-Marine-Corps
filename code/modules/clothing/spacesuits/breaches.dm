@@ -24,22 +24,21 @@
 	base_name = "[name]"
 
 //Some simple descriptors for breaches. Global because lazy, TODO: work out a better way to do this.
-
-var/global/list/breach_brute_descriptors = list(
+GLOBAL_LIST_INIT(breach_brute_descriptors, list(
 	"tiny puncture",
 	"ragged tear",
 	"large split",
 	"huge tear",
 	"gaping wound"
-	)
+	))
 
-var/global/list/breach_burn_descriptors = list(
+GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 	"small burn",
 	"melted patch",
 	"sizable burn",
 	"large scorched area",
 	"huge scorched area"
-	)
+	))
 
 /datum/breach/proc/update_descriptor()
 
@@ -47,12 +46,12 @@ var/global/list/breach_burn_descriptors = list(
 	class = max(1,min(class,5))
 	//Apply the correct descriptor.
 	if(damtype == BURN)
-		descriptor = breach_burn_descriptors[class]
+		descriptor = GLOB.breach_burn_descriptors[class]
 	else if(damtype == BRUTE)
-		descriptor = breach_brute_descriptors[class]
+		descriptor = GLOB.breach_brute_descriptors[class]
 
 //Repair a certain amount of brute or burn damage to the suit.
-/obj/item/clothing/suit/space/proc/repair_breaches(var/damtype, var/amount, var/mob/user)
+/obj/item/clothing/suit/space/proc/repair_breaches(damtype, amount, mob/user)
 
 	if(!can_breach || !breaches || !breaches.len || !damage)
 		to_chat(user, "There are no breaches to repair on \the [src].")
@@ -84,7 +83,7 @@ var/global/list/breach_burn_descriptors = list(
 	user.visible_message("<b>[user]</b> patches some of the damage on \the [src].")
 	calc_breach_damage()
 
-/obj/item/clothing/suit/space/proc/create_breaches(var/damtype, var/amount)
+/obj/item/clothing/suit/space/proc/create_breaches(damtype, amount)
 
 	if(!can_breach || !amount)
 		return

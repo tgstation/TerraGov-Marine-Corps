@@ -10,7 +10,7 @@
 		g = "f"
 	return g
 
-/proc/get_limb_icon_name(var/datum/species/S, var/body_type, var/gender, var/limb_name, var/ethnicity)
+/proc/get_limb_icon_name(datum/species/S, body_type, gender, limb_name, ethnicity)
 	if(S.name == "Human")
 		switch(limb_name)
 			if ("torso")
@@ -183,7 +183,7 @@
 				if(wear_suit?.flags_inventory & BLOCKSHARPOBJ)
 					. = FALSE
 	if(!. && error_msg && user)
- 		// Might need re-wording.
+		// Might need re-wording.
 		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>")
 
 
@@ -211,19 +211,6 @@
 	if(get_total_tint() >= TINT_BLIND)
 		return FALSE
 	return TRUE
-
-/mob/living/carbon/human/restrained(var/check_grab = 1)
-	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)
-		return 1
-	if (handcuffed)
-		return 1
-	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
-		return 1
-
-	if (istype(buckled, /obj/structure/bed/nest))
-		return 1
-
-	return 0
 
 
 /mob/living/carbon/human/has_legs()

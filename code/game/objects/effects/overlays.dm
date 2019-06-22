@@ -109,14 +109,14 @@
 	if(named)
 		name = "[named] laser"
 	target_id = UNIQUEID //giving it a unique id.
-	active_laser_targets += src
+	GLOB.active_laser_targets += src
 	squad = assigned_squad
 	if(squad)
 		squad.squad_laser_targets += src
 	linked_cam = new(loc, name)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
-	active_laser_targets -= src
+	GLOB.active_laser_targets -= src
 	if(squad)
 		squad.squad_laser_targets -= src
 		squad = null

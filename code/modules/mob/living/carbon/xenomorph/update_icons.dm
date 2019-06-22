@@ -121,7 +121,7 @@
 		overlays_standing[X_FIRE_LAYER] = I
 		apply_overlay(X_FIRE_LAYER)
 
-/mob/living/carbon/xenomorph/proc/apply_alpha_channel(var/image/I)
+/mob/living/carbon/xenomorph/proc/apply_alpha_channel(image/I)
 	return I
 
 /mob/living/carbon/xenomorph/proc/update_wounds()

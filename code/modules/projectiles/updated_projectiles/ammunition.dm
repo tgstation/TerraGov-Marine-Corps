@@ -37,7 +37,7 @@ They're all essentially identical when it comes to getting the job done.
 		if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
 		if(0) icon_state += "_e" //In case it spawns empty instead.
 
-/obj/item/ammo_magazine/update_icon(var/round_diff = 0)
+/obj/item/ammo_magazine/update_icon(round_diff = 0)
 	if(current_rounds <= 0) 					icon_state = base_mag_icon + "_e"
 	else if(current_rounds - round_diff <= 0) 	icon_state = base_mag_icon
 
@@ -45,8 +45,7 @@ They're all essentially identical when it comes to getting the job done.
 	..()
 	// It should never have negative ammo after spawn. If it does, we need to know about it.
 	if(current_rounds < 0)
-		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine.")
-		log_runtime("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
+		stack_trace("negative current_rounds on examine. User: [usr]")
 	else
 		to_chat(user, "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>.")
 

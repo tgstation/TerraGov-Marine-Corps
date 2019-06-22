@@ -257,19 +257,19 @@ GLOBAL_LIST_EMPTY(exports_types)
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
 
-/obj/machinery/computer/ordercomp/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
-			for(var/supply_group_name in all_supply_groups )
+			for(var/supply_group_name in GLOB.all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]
@@ -400,7 +400,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return
@@ -502,7 +502,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
-			for(var/supply_group_name in all_supply_groups )
+			for(var/supply_group_name in GLOB.all_supply_groups )
 				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
 		else
 			last_viewed_group = href_list["order"]

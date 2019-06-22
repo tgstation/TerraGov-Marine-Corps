@@ -230,6 +230,7 @@
 	adj_sleepy = -2
 	adj_temp = 20
 	taste_description = "bitterness"
+	trait_flags = TACHYCARDIC
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
 	L.Jitter(2)
@@ -542,6 +543,7 @@
 	color = "#2E2E61" // rgb: 46, 46, 97
 	adj_dizzy = 6
 	taste_description = "a numbing sensation"
+	trait_flags = BRADYCARDICS
 
 /datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/L, metabolism)
 	L.KnockDown(3)

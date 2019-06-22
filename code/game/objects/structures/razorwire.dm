@@ -57,6 +57,17 @@
 	M.set_frozen(TRUE)
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
+	ENABLE_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE)
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+
+
+/obj/structure/razorwire/resisted_against(datum/source, mob/living/entangled)
+	if(world.time < entangled.entangle_delay)
+		entangled.visible_message("<span class='danger'>[entangled] attempts to disentangle itself from [src] but is unsuccessful!</span>",
+		"<span class='warning'>You will be able to disentangle yourself after [(entangled.entangle_delay - world.time) * 0.1] more seconds!</span>")
+		return FALSE
+	return razorwire_untangle(entangled)
+
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/M)
 	var/armor_block = null
@@ -71,6 +82,10 @@
 	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1) //Apply damage as we tear free
 	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
+	DISABLE_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE)
+	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
+	return TRUE
+
 
 /obj/structure/razorwire/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(isliving(O))
@@ -112,7 +127,6 @@
 			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1)
 			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
 			"<span class='danger'>You sparta [M]'s against [src]!</span>")
-			log_admin("[key_name(usr)] spartaed [key_name(M)]'s against \the [src].")
 			log_combat(user, M, "spartaed", "", "against \the [src]")
 			msg_admin_attack("[key_name(usr)] spartaed [key_name(M)] against \the [src].")
 			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)

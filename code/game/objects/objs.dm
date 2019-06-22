@@ -37,12 +37,9 @@
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
 
-	GLOB.object_list += src
-
 /obj/Destroy()
 	if(buckled_mob)
 		unbuckle()
-	GLOB.object_list -= src
 	return ..()
 
 /obj/ex_act()
@@ -136,8 +133,14 @@
 
 			var/M = buckled_mob
 			buckled_mob = null
-
+			UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 			afterbuckle(M)
+
+
+/obj/proc/resisted_against(datum/source, mob/user) //COMSIG_LIVING_DO_RESIST
+	if(user.restrained(RESTRAINED_XENO_NEST))
+		return FALSE
+	manual_unbuckle(user)
 
 
 /obj/proc/manual_unbuckle(mob/user as mob)
@@ -191,6 +194,7 @@
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 
 /obj/proc/send_buckling_message(mob/M, mob/user)
