@@ -42,7 +42,7 @@
 	return
 
 /datum/action/proc/can_use_action()
-	if(owner) 
+	if(!QDELETED(owner)) 
 		return TRUE
 
 /datum/action/proc/give_action(mob/M)

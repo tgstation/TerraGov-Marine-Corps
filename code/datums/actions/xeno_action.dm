@@ -112,6 +112,7 @@
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
+	to_chat(world, "on_cooldown checked, result: [on_cooldown] for [name]")
 	return !on_cooldown
 
 /datum/action/xeno_action/proc/clear_cooldown()
@@ -169,7 +170,7 @@
 			use_ability()
 		return
 
-	if(can_use_action(FALSE, null, TRUE)) // just for selecting
+	if(can_use_action(FALSE, NONE, TRUE)) // just for selecting
 		action_activate()
 
 /datum/action/xeno_action/activable/proc/deselect()
@@ -208,7 +209,7 @@
 
 /datum/action/xeno_action/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if(selecting)
-		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
+		return ..(silent, XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
 	return ..()
 
 //override this
