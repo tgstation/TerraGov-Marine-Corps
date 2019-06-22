@@ -6,7 +6,8 @@
 /datum/action/xeno_action/call_of_the_burrowed
 	name = "Call of the Burrowed"
 	action_icon_state = "larva_growth"
-	cooldown_timer = 3 MINUTES
+	plasma_cost = 400
+	cooldown_timer = 2 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
 
 
@@ -14,12 +15,15 @@
 	var/mob/living/carbon/xenomorph/shrike/caller = owner
 	RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 
+	playsound(caller,'sound/magic/invoke_general.ogg', 75, 1)
+	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
 	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
-	"<span class='xenowarning'>We call forth the larvas to rise from their slumber!</span>")
+	"<span class='xenodanger'>We call forth the larvas to rise from their slumber!</span>")
 	notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 
 	addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
 
+	succeed_activate()
 	add_cooldown()
 
 
