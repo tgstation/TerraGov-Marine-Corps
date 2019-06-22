@@ -22,6 +22,9 @@
 	var/marines_evac = FALSE
 	var/planet_nuked = FALSE
 
+	var/shuttle_id = "tgs_canterbury"
+	var/obj/docking_port/mobile/shuttle
+
 /datum/game_mode/crash/New()
 	. = ..()
 
@@ -33,6 +36,7 @@
 
 /datum/game_mode/crash/can_start()
 	. = ..()
+	return TRUE
 	// Check if enough players have signed up for xeno & queen roles.
 	initialize_xeno_leader()
 	initialize_xenomorphs()
@@ -45,6 +49,22 @@
 /datum/game_mode/crash/pre_setup()
 	. = ..()
 
+	// Spawn the ship
+	// Get spawnpoints for the ship
+	if(!SSmapping.shuttle_templates[shuttle_id])
+		message_admins("Gamemode: Shuttle [shuttle_id] wasn't found and can't be loaded")
+		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
+		return FALSE
+
+	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
+	var/obj/docking_port/stationary/L = SSshuttle.getDock("crashmodeloading")
+	shuttle = SSshuttle.action_load(S, L)
+	// shuttle = SSshuttle.getShuttle(shuttle_id)
+
+
+	// shuttle.spawnpoints
+
+	// Create xenos
 	for(var/i in xenomorphs)
 		var/datum/mind/M = i
 		if(M.assigned_role == ROLE_XENO_QUEEN)
@@ -53,7 +73,13 @@
 			transform_xeno(M)
 
 
+#define PLANET_NUKED (1 << 0)
+#define NO_HUMANS (1 << 1)
+#define NO_ALIENS (1 << 2)
+
+
 /datum/game_mode/crash/check_finished()
+	return FALSE
 	if(round_finished)
 		return TRUE
 
@@ -67,6 +93,14 @@
 	var/list/grounded_living_player_list = count_humans_and_xenos(SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)))
 	var/num_grounded_humans = grounded_living_player_list[1]
 	
+
+	// var/victory_options = planet_nuked << 0
+	// victory_options |= (num_humans == 0) << 1
+	// victory_options |= (num_xenos == 0) << 2
+	// switch(victory_options)
+	// 	if(NO_HUMANS)
+	// 		xenowin()
+
 	if(!planet_nuked && num_humans == 0 && num_xenos > 0) // XENO Major (All marines killed)
 		message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
 		round_finished = MODE_CRASH_X_MAJOR 
