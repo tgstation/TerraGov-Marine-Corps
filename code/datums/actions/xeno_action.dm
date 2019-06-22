@@ -112,7 +112,6 @@
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
-	to_chat(world, "on_cooldown checked, result: [on_cooldown] for [name]")
 	return !on_cooldown
 
 /datum/action/xeno_action/proc/clear_cooldown()
