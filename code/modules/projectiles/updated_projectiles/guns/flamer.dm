@@ -263,19 +263,23 @@
 	anchored = TRUE
 	mouse_opacity = 0
 	icon = 'icons/effects/fire.dmi'
-	icon_state = "red_2"
+	icon_state = "white_2"
 	layer = BELOW_OBJ_LAYER
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
-	var/flame_color = "red"
+	var/flame_color
+	color = "#fa960a"
+
 
 /obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 
+	create_reagents(15)
+
 	if(f_color)
 		flame_color = f_color
 
-	icon_state = "[flame_color]_2"
+//	icon_state = "[flame_color]_2"
 	if(fire_lvl)
 		firelevel = fire_lvl
 	if(burn_lvl)
@@ -289,7 +293,7 @@
 			if(C.IgniteMob())
 				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
-	START_PROCESSING(SSobj, src)
+	//START_PROCESSING(SSobj, src)
 
 /obj/flamer_fire/Destroy()
 	SetLuminosity(0)
@@ -342,9 +346,9 @@
 	updatehealth()
 
 /obj/flamer_fire/proc/updateicon()
-	if(burnlevel < 15)
-		color = "#c1c1c1" //make it darker to make show its weaker.
-	switch(firelevel)
+	//if(burnlevel < 15)
+	//	color = "#c1c1c1" //make it darker to make show its weaker.
+	/*switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
 			SetLuminosity(2)
@@ -353,7 +357,7 @@
 			SetLuminosity(4)
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
-			SetLuminosity(6)
+			SetLuminosity(6)*/
 
 
 /obj/flamer_fire/process()

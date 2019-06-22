@@ -2,8 +2,12 @@
 #define FLAMER_COOLDOWN			(1 << 1)
 #define FLAMER_ALWAYS_LIT		(1 << 2)
 #define FLAMER_INTERNAL_TANK	(1 << 3)
+#define FLAMER_SLUDGE_PUMP		(1 << 4) // can fire sludgy fuel
+#define FLAMER_HIGH_TEMP		(1 << 5) // tolerant of very high temperature fuel
 
 #define NAPALM_TRIANGULAR		(1 << 0)
+#define NAPALM_SLUDGY			(1 << 1) // needs proper pumps etc to work
+#define NAPALM_BURNS_HOT		(1 << 2) // burns very very hot
 
 /datum/component/flamethrower
 	var/flamer_flags
@@ -81,9 +85,9 @@
 		to_chat(user, "empty tank or no reagents datum on tank")
 		return
 
-	var/datum/reagent/napalm/R = tank.reagents.get_master_reagent()
+	var/datum/reagent/fuel/R = tank.reagents.get_master_reagent()
 	if(!istype(R))
-		to_chat(user, "no napalm reagent in tank")
+		to_chat(user, "no fuel reagent in tank")
 		return
 
 	var/power = 100
@@ -92,7 +96,7 @@
 
 	unleash_flame(target, user, R, power)
 
-/datum/component/flamethrower/proc/unleash_flame(atom/target, mob/living/user, datum/reagent/napalm/R, power)
+/datum/component/flamethrower/proc/unleash_flame(atom/target, mob/living/user, datum/reagent/fuel/R, power)
 	flamer_flags |= FLAMER_COOLDOWN
 	to_chat(user, "unleashing flame")
 	if(R.napalm_flags & NAPALM_TRIANGULAR)
@@ -100,12 +104,15 @@
 	else
 		flame_line(target, user, R, power)
 
+//	var/delay = fire_delay
+//	if(CHECK_BITFIELD(R.napalm_flags, NAPALM_SLUDGY) && !CHECK_BITFIELD(flamer_flags, FLAMER_SLUDGE_PUMP))
+//		fire_delay
 	addtimer(CALLBACK(src, .proc/cooldown_end), fire_delay)
 
 /datum/component/flamethrower/proc/cooldown_end()
 	DISABLE_BITFIELD(flamer_flags, FLAMER_COOLDOWN)
 
-/datum/component/flamethrower/proc/flame_line(atom/target, mob/living/user, datum/reagent/napalm/R, power)
+/datum/component/flamethrower/proc/flame_line(atom/target, mob/living/user, datum/reagent/fuel/R, power)
 	to_chat(user, "flaming a line to [target]")
 	var/list/turf/turfs = getline(get_turf(parent),target)
 	to_chat(user, "line is [jointext(turfs, ", ")]")
@@ -164,7 +171,7 @@
 		distance++
 		prev_T = T
 
-/datum/component/flamethrower/proc/flame_triangular(atom/target, mob/living/user, datum/reagent/napalm/R, power)
+/datum/component/flamethrower/proc/flame_triangular(atom/target, mob/living/user, datum/reagent/fuel/R, power)
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
 	var/list/turf/turfs = getline(user,target)
 	playsound(parent, fire_sound, 50, 1)
@@ -232,7 +239,7 @@
 		distance++
 
 
-/datum/component/flamethrower/proc/flame_turf(turf/T, mob/living/user, datum/reagent/napalm/R, power)
+/datum/component/flamethrower/proc/flame_turf(turf/T, mob/living/user, datum/reagent/fuel/R, power)
 	if(!istype(T))
 		return
 
@@ -301,7 +308,43 @@
 	volume = 100
 	list_reagents = list("napalm" = 100)
 
-/datum/reagent/napalm
+/datum/reagent/fuel
+	name = "Welding fuel"
+	id = "fuel"
+	description = "Required for blowtorches. Highly flamable."
+	color = "#660000" // rgb: 102, 0, 0
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	taste_description = "gross metal"
+	var/napalm_flags
+	var/consumed_per_process = 0.5
+	var/burntime = 12 // 12 seconds
+	var/burnlevel = 10
+	var/max_range = 4
+	var/flame_color = "red" // todo: replace the sprite with a white one and color it based on reagent color var
+
+/datum/reagent/fuel/reaction_turf(turf/T, volume)
+	if(volume <= 3 || !isfloorturf(T))
+		return
+	new /obj/effect/decal/cleanable/liquid_fuel(T, volume) //It already handles dupes on it own turf.
+
+/datum/reagent/fuel/on_mob_life(mob/living/L)
+	L.adjustToxLoss(1)
+	return ..()
+
+/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
+	. = ..()
+	if(method in list(TOUCH, VAPOR))
+		L.adjust_fire_stacks(volume / 10)
+	return TRUE
+
+/datum/reagent/fuel/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(1, TOX)
+
+/datum/reagent/fuel/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damage(1, TOX)
+
+/datum/reagent/fuel/napalm
 	name = "napalm"
 	id = "napalm"
 	description = "Required for flamerthrowers. Highly flamable."
@@ -309,26 +352,32 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "gross metal"
-	var/napalm_flags
-	var/burntime = 17
-	var/burnlevel = 24
-	var/max_range = 6
-	var/flame_color = "red" // todo: replace the sprite with a white one and color it based on reagent color var
+	consumed_per_process = 0.3
+	burntime = 17 // 17 seconds
+	burnlevel = 24
+	max_range = 6
 
-/datum/reagent/napalm/green
+/datum/reagent/fuel/napalm/on_mob_life(mob/living/L)
+	L.adjustToxLoss(3)
+	return ..()
+
+/datum/reagent/fuel/napalm/green
 	name = "green napalm"
 	id = "greennapalm"
-	napalm_flags = NAPALM_TRIANGULAR
+	napalm_flags = NAPALM_TRIANGULAR|NAPALM_SLUDGY
+	consumed_per_process = 0.1
+	burntime = 50 // 50 seconds
 	burnlevel = 10
-	burntime = 50
 	max_range = 4
 	flame_color = "green"
 
-/datum/reagent/napalm/blue
+/datum/reagent/fuel/napalm/blue
 	name = "blue napalm"
 	id = "bluenapalm"
+	napalm_flags = NAPALM_BURNS_HOT
+	consumed_per_process = 0.125
+	burntime = 40 // 40 seconds
 	burnlevel = 45
-	burntime = 40
 	max_range = 7
 	flame_color = "blue"
 

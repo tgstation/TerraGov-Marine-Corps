@@ -442,35 +442,7 @@
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_multi = 0
 
-/datum/reagent/fuel
-	name = "Welding fuel"
-	id = "fuel"
-	description = "Required for blowtorches. Highly flamable."
-	color = "#660000" // rgb: 102, 0, 0
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	taste_description = "gross metal"
-
-/datum/reagent/fuel/reaction_turf(turf/T, volume)
-	if(volume <= 3 || !isfloorturf(T))
-		return
-	new /obj/effect/decal/cleanable/liquid_fuel(T, volume) //It already handles dupes on it own turf.
-
-/datum/reagent/fuel/on_mob_life(mob/living/L)
-	L.adjustToxLoss(1)
-	return ..()
-
-/datum/reagent/fuel/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)//Splashing people with welding fuel to make them easy to ignite!
-	. = ..()
-	if(method in list(TOUCH, VAPOR))
-		L.adjust_fire_stacks(volume / 10)
-	return TRUE
-
-/datum/reagent/fuel/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
-
-/datum/reagent/fuel/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+// welder fuel goes here
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
