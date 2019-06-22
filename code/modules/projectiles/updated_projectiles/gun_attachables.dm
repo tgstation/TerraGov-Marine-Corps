@@ -974,7 +974,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/flamer/Initialize()
 	. = ..()
-	attachment_firing_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
+	AddComponent(/datum/component/flamethrower, FLAMER_ALWAYS_LIT|FLAMER_INTERNAL_TANK, new /obj/item/reagent_container/flamer_tank/internal, CONFIG_GET(number/combat_define/max_fire_delay) * 5, 6)
 
 /obj/item/attachable/attached_gun/flamer/examine(mob/user)
 	..()

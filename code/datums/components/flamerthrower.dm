@@ -297,6 +297,10 @@
 	volume = 300
 	list_reagents = list("napalm" = 300)
 
+/obj/item/reagent_container/flamer_tank/internal
+	volume = 100
+	list_reagents = list("napalm" = 100)
+
 /datum/reagent/napalm
 	name = "napalm"
 	id = "napalm"
