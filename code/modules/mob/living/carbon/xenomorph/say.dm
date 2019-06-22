@@ -1,13 +1,13 @@
 /mob/living/carbon/xenomorph/proc/hivemind_name()
-	return "<span class='game say'>Hivemind, <span class='name'>[name]</span>"
+	return "<span class='game say hivemind'>Hivemind, <span class='name'>[name]</span></span>"
 
 
 /mob/living/carbon/xenomorph/queen/hivemind_name()
-	return "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span>"
+	return "<span class='game say hivemind xenoqueen'>Hivemind, <span class='name'>[name]</span></span>"
 
 
 /mob/living/carbon/xenomorph/shrike/hivemind_name()
-	return "<font size='2' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span>"
+	return "<span class='game say hivemind xenoshrike'>Hivemind, <span class='name'>[name]</span></span>"
 
 
 /mob/living/carbon/xenomorph/proc/hivemind_end()
