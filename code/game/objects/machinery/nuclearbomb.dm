@@ -207,22 +207,6 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		<a href='?src=[REF(src)];type=R'>R</a> - <a href='?src=[REF(src)];type=0'>0</a> - <a href='?src=[REF(src)];type=E'>E</a> <br />
 		"}
 
-		// if (auth)
-		// 	if (yes_code)
-		// 		dat += text("\n<B>Status</B>: []-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] <A href='?src=\ref[];timer=1'>Toggle</A><BR>\nTime: <A href='?src=\ref[];time=-10'>-</A> <A href='?src=\ref[];time=-1'>-</A> [] <A href='?src=\ref[];time=1'>+</A> <A href='?src=\ref[];time=10'>+</A><BR>\n<BR>\nSafety: [] <A href='?src=\ref[];safety=1'>Toggle</A><BR>\nAnchor: [] <A href='?src=\ref[];anchor=1'>Toggle</A><BR>\n", (timing ? "Func/Set" : "Functional"), (safety ? "Safe" : "Engaged"), timeleft, (timing ? "On" : "Off"), src, src, src, timeleft, src, src, (safety ? "On" : "Off"), src, (anchored ? "Engaged" : "Off"), src)
-		// 	else
-		// 		dat += text("\n<B>Status</B>: Auth. S2-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\n[] Safety: Toggle<BR>\nAnchor: [] Toggle<BR>\n", (safety ? "Safe" : "Engaged"), timeleft, (timing ? "On" : "Off"), timeleft, (safety ? "On" : "Off"), (anchored ? "Engaged" : "Off"))
-		// else
-		// 	if (timing)
-		// 		dat += text("\n<B>Status</B>: Set-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\nSafety: [] Toggle<BR>\nAnchor: [] Toggle<BR>\n", (safety ? "Safe" : "Engaged"), timeleft, (timing ? "On" : "Off"), timeleft, (safety ? "On" : "Off"), (anchored ? "Engaged" : "Off"))
-		// 	else
-		// 		dat += text("\n<B>Status</B>: Auth. S1-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\nSafety: [] Toggle<BR>\nAnchor: [] Toggle<BR>\n", (safety ? "Safe" : "Engaged"), timeleft, (timing ? "On" : "Off"), timeleft, (safety ? "On" : "Off"), (anchored ? "Engaged" : "Off"))
-		// var/message = "AUTH"
-		// if (auth)
-		// 	message = text("[]", code)
-		// 	if (yes_code)
-		// 		message = "*****"
-		// dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n", message, src, src, src, src, src, src, src, src, src, src, src, src)
 		var/datum/browser/popup = new(user, "nuclearbomb", "<div align='center'>Nuclear Bomb</div>", 300, 400)
 		popup.set_content(html)
 		popup.open(FALSE)
@@ -327,6 +311,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					return
 				timing = !timing
 				if(timing)
+					GLOB.nukes_set_list |= src
 					start_processing()
 				if(!lighthack)
 					icon_state = (timing) ? "nuclearbomb2" : "nuclearbomb1"
@@ -334,8 +319,10 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 				safety = !safety
 				if(safety)
 					timing = FALSE
+					GLOB.nukes_set_list -= src
 					stop_processing()
 				else
+					GLOB.nukes_set_list |= src
 					start_processing()
 			if (href_list["anchor"])
 				if(removal_stage == 5)
@@ -360,6 +347,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 /obj/machinery/nuclearbomb/proc/explode()
 	if(safety)
 		timing = 0
+		GLOB.nukes_set_list -= src
 		stop_processing()
 		return
 	timing = -1.0
