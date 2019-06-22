@@ -37,7 +37,8 @@
 		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl
+		/mob/living/carbon/xenomorph/proc/vent_crawl,		
+		/mob/living/carbon/xenomorph/proc/calldown_dropship
 		)
 
 // ***************************************

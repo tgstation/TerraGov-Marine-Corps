@@ -214,13 +214,17 @@
 	if(hijack_state == HIJACK_STATE_CRASHING)
 		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
 
-/mob/living/carbon/xenomorph/queen/proc/calldown_dropship()
+/mob/living/carbon/xenomorph/proc/calldown_dropship()
 	set category = "Alien"
 	set name = "Call Down Dropship"
 	set desc = "Call down the dropship to the closest LZ"
 
 	if(!SSticker?.mode)
 		to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+
+	if(hive.living_xeno_ruler != src)
+		to_chat(src, "<span class='warning'>Only the ruler of the hive may attempt this.</span>")
+		return
 
 	var/datum/game_mode/D = SSticker.mode
 
@@ -238,7 +242,7 @@
 		to_chat(src, "<span class='warning'>Something went wrong.</span>")
 		return
 
-	hive?.xeno_message("The Queen has summoned down the metal bird to [port], gather to her now!")
+	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
 
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
@@ -388,6 +392,9 @@
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
 	if(href_list["hijack"])
+		if(X.hive.living_xeno_ruler != X)
+			to_chat(X, "<span class='warning'>Only the ruler of the hive may attempt this.</span>")
+			return
 		if(M.mode == SHUTTLE_RECHARGING)
 			to_chat(X, "<span class='xenowarning'>The birb is still cooling down.</span>")
 			return

@@ -50,7 +50,7 @@
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
 		/mob/living/carbon/xenomorph/queen/proc/hive_Message,
-		/mob/living/carbon/xenomorph/queen/proc/calldown_dropship
+		/mob/living/carbon/xenomorph/proc/calldown_dropship
 		)
 
 // ***************************************
