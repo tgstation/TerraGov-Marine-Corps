@@ -199,13 +199,8 @@
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 
 	if(species.species_flags & IS_SYNTHETIC)
-		switch(stat)
-			if(DEAD, UNCONSCIOUS)
-				simple_status_hud.icon_state = "hudsynth" //Dead or unconscious synths are obvious.
-			else
-				simple_status_hud.icon_state = "hudhealthy" //Conscious ones, though, mask it better.
 		status_hud.icon_state = "hudsynth"
-		infection_hud.icon_state = ""
+		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
 	if(status_flags & XENO_HOST)
