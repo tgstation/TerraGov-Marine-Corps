@@ -116,6 +116,8 @@
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i
+		if(isnewplayer(M))
+			continue
 		var/link = FOLLOW_LINK(M, owner)
 		to_chat(M, "[link] [dead_rendered]")
 
