@@ -187,6 +187,8 @@
 		return FALSE
 	if(!isliving(A))
 		return FALSE
+	if(!owner.Adjacent(A))
+		return FALSE
 	var/mob/living/L = A
 	if(L.stat == DEAD || isnestedhost(L)) //Can't bully the dead/nested hosts.
 		return FALSE
