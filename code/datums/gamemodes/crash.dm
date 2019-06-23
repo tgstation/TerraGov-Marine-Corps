@@ -23,7 +23,7 @@
 	var/planet_nuked = FALSE
 
 	var/shuttle_id = "tgs_canterbury"
-	var/obj/docking_port/mobile/shuttle
+	var/obj/docking_port/mobile/crashmode/shuttle
 
 /datum/game_mode/crash/New()
 	. = ..()
@@ -48,21 +48,26 @@
 
 /datum/game_mode/crash/pre_setup()
 	. = ..()
-
 	// Spawn the ship
-	// Get spawnpoints for the ship
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		message_admins("Gamemode: Shuttle [shuttle_id] wasn't found and can't be loaded")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
 		return FALSE
 
+
+	// Reset all spawnpoints before spawning the ship
+	GLOB.marine_spawns_by_job = list()
+	GLOB.jobspawn_overrides = list()
+	GLOB.latejoin = list()
+	GLOB.latejoin_cryo = list()
+	GLOB.latejoin_gateway = list()
+
 	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
 	var/obj/docking_port/stationary/L = SSshuttle.getDock("crashmodeloading")
 	shuttle = SSshuttle.action_load(S, L)
+	
 	// shuttle = SSshuttle.getShuttle(shuttle_id)
-
-
-	// shuttle.spawnpoints
+	// GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
 
 	// Create xenos
 	for(var/i in xenomorphs)

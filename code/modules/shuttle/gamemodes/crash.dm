@@ -6,6 +6,7 @@
 	dheight = 12
 	id = "crashmodedock"
 
+
 /obj/docking_port/mobile/crashmode
 	dir = SOUTH
 	width = 15
@@ -13,6 +14,9 @@
 	dwidth = 7
 	dheight = 12
 
+	var/list/spawnpoints = list()
+	var/list/marine_spawns_by_job = list()
+
+
 /obj/docking_port/stationary/crashmode/loading
 	id = "crashmodeloading"
-	roundstart_template = /datum/map_template/shuttle/tgs_canterbury

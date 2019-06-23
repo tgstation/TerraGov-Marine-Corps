@@ -3108,6 +3108,10 @@
 	icon_state = "redcorner"
 	},
 /area/centcom)
+"QN" = (
+/obj/docking_port/stationary/crashmode/loading,
+/turf/open/space,
+/area/space)
 "TC" = (
 /obj/docking_port/stationary/supply,
 /turf/open/floor/plating{
@@ -11649,7 +11653,7 @@ aa
 aa
 aa
 aa
-aa
+QN
 aa
 aa
 aa

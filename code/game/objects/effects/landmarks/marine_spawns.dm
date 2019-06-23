@@ -9,6 +9,17 @@
 	GLOB.marine_spawns_by_job[job] += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/start/marine/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
+	. = ..()
+	// FIX: This doesn't seem to actually run as i believe its QDELETED beforehand.
+	if(istype(port, /obj/docking_port/mobile/crashmode))
+		to_chat(world, "new spawn [AREACOORD(src)]")
+		var/obj/docking_port/mobile/crashmode/C = port
+		C.spawnpoints += src
+		if(!C.marine_spawns_by_job[job])
+			C.marine_spawns_by_job[job] = list()
+		C.marine_spawns_by_job[job] += loc
+
 /obj/effect/landmark/start/marine/captain
 	icon_state = "CAP"
 	job = /datum/job/command/captain
