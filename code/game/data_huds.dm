@@ -199,6 +199,7 @@
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 
 	if(species.species_flags & IS_SYNTHETIC)
+		simple_status_hud.icon_state = ""
 		status_hud.icon_state = "hudsynth"
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
