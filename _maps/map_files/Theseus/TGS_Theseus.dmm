@@ -1419,10 +1419,7 @@
 	icon_state = "fwindow";
 	dir = 1
 	},
-/obj/machinery/door/window/eastright{
-	req_access = null;
-	req_access_txt = "0"
-	},
+/obj/machinery/door/window/eastright/briefing,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/numbertwobunks)
 "adO" = (
@@ -32396,9 +32393,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "bAB" = (
-/obj/machinery/door/window/northright{
-	req_access_txt = "19"
-	},
+/obj/machinery/door/window/northright/briefing,
 /turf/open/floor/almayer{
 	icon_state = "silvercorner";
 	dir = 4
@@ -32816,10 +32811,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/briefing)
 "bBP" = (
-/obj/machinery/door/window/eastright{
-	req_access = null;
-	req_access_txt = "19"
-	},
+/obj/machinery/door/window/eastright/briefing,
 /obj/machinery/flasher{
 	id = "briefing_flash";
 	invisibility = 0;
@@ -33390,10 +33382,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "bDt" = (
-/obj/machinery/door/window/southleft{
-	opacity = 1;
-	req_access_txt = "19"
-	},
+/obj/machinery/door/window/southleft/briefing,
 /turf/open/floor/almayer{
 	icon_state = "silvercorner";
 	dir = 2
