@@ -32,6 +32,8 @@
 
 /datum/game_mode/crash/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
+	priority_announce("WAKE THE FUCK UP, WE ARE CRASHING INTO THE FUCKING PLANET AHHHHHHH", type = ANNOUNCEMENT_PRIORITY)
+	playsound(shuttle, 'sound/machines/alarm.ogg', 75, 0, 30)
 
 
 /datum/game_mode/crash/can_start()
@@ -46,6 +48,30 @@
 	return TRUE
 
 
+/datum/game_mode/crash/post_setup()
+	. = ..()
+	var/list/validdocks = list()
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		// if(S.id != crash_target)
+		// 	continue
+		if(!shuttle.check_dock(S, silent=TRUE))
+			continue
+		validdocks += S.name
+
+	var/dock = pick(validdocks)
+
+	var/obj/docking_port/stationary/target
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(S.name != dock)
+			continue
+		target = S
+
+	if(!target)
+		message_admins("<span class='warning'>Unable to get a valid shuttle target!</span>")
+		return
+
+	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // Timed departure
+
 /datum/game_mode/crash/pre_setup()
 	. = ..()
 	// Spawn the ship
@@ -54,20 +80,16 @@
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
 		return FALSE
 
-
-	// Reset all spawnpoints before spawning the ship
-	GLOB.marine_spawns_by_job = list()
-	GLOB.jobspawn_overrides = list()
-	GLOB.latejoin = list()
-	GLOB.latejoin_cryo = list()
-	GLOB.latejoin_gateway = list()
-
 	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
 	var/obj/docking_port/stationary/L = SSshuttle.getDock("crashmodeloading")
 	shuttle = SSshuttle.action_load(S, L)
-	
-	// shuttle = SSshuttle.getShuttle(shuttle_id)
-	// GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
+
+	// Reset all spawnpoints after spawning the ship
+	GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
+	GLOB.jobspawn_overrides = list()
+	GLOB.latejoin = shuttle.spawnpoints
+	GLOB.latejoin_cryo = list()
+	GLOB.latejoin_gateway = list()
 
 	// Create xenos
 	for(var/i in xenomorphs)
@@ -78,13 +100,14 @@
 			transform_xeno(M)
 
 
-#define PLANET_NUKED (1 << 0)
-#define NO_HUMANS (1 << 1)
-#define NO_ALIENS (1 << 2)
+#define CRASH_DRAW (1 << 0)
+#define CRASH_XENO_MAJOR (1 << 1)
+#define CRASH_XENO_MINOR (1 << 2)
+#define CRASH_MARINE_MINOR (1 << 3)
+#define CRASH_MARINE_MAJOR (1 << 4)
 
 
 /datum/game_mode/crash/check_finished()
-	return FALSE
 	if(round_finished)
 		return TRUE
 
@@ -92,35 +115,50 @@
 		return FALSE
 
 	var/list/living_player_list = count_humans_and_xenos()
-	var/num_humans = living_player_list[1]
-	var/num_xenos = living_player_list[2]
+	var/num_humans = living_player_list[1] + 2
+	var/num_xenos = living_player_list[2] + 2
 	
 	var/list/grounded_living_player_list = count_humans_and_xenos(SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)))
 	var/num_grounded_humans = grounded_living_player_list[1]
 	
 
-	// var/victory_options = planet_nuked << 0
-	// victory_options |= (num_humans == 0) << 1
-	// victory_options |= (num_xenos == 0) << 2
-	// switch(victory_options)
-	// 	if(NO_HUMANS)
-	// 		xenowin()
+	var/victory_options = (num_humans == 0 && num_xenos == 0 || (planet_nuked && !marines_evac)) 		<< 0 // Draw, for all other reasons
+	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) 								<< 1 // XENO Major (All marines killed)
+	victory_options |= (marines_evac && !planet_nuked) 													<< 2 // XENO Minor (Marines evac'd )
+	victory_options |= (marines_evac && planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) 	<< 3 // Marine minor (Planet nuked, some human left on planet)
+	victory_options |= (marines_evac && planet_nuked && num_grounded_humans == 0) 						<< 4 // Marine Major (Planet nuked, marines evac)
+	switch(victory_options)
+		if(CRASH_DRAW)
+			message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
+			round_finished = MODE_CRASH_DRAW_DEATH 
+		if(CRASH_XENO_MAJOR)
+			message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
+			round_finished = MODE_CRASH_X_MAJOR 
+		if(CRASH_XENO_MINOR)
+			message_admins("Round finished: [MODE_CRASH_X_MINOR]")
+			round_finished = MODE_CRASH_X_MINOR 
+		if(CRASH_MARINE_MINOR)
+			message_admins("Round finished: [MODE_CRASH_M_MINOR]")
+			round_finished = MODE_CRASH_M_MINOR 
+		if(CRASH_MARINE_MAJOR)
+			message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
+			round_finished = MODE_CRASH_M_MAJOR 
 
-	if(!planet_nuked && num_humans == 0 && num_xenos > 0) // XENO Major (All marines killed)
-		message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
-		round_finished = MODE_CRASH_X_MAJOR 
-	else if(marines_evac && planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) // Marine minor (Planet nuked, some human left on planet)
-		message_admins("Round finished: [MODE_CRASH_M_MINOR]")
-		round_finished = MODE_CRASH_M_MINOR 
-	else if(marines_evac && planet_nuked) // Marine Major (Planet nuked, marines evac)
-		message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
-		round_finished = MODE_CRASH_M_MAJOR 
-	else if(marines_evac && !planet_nuked) // Xeno minor (Marines evac, planet intact)
-		message_admins("Round finished: [MODE_CRASH_X_MINOR]")
-		round_finished = MODE_CRASH_X_MINOR 
-	else if(num_humans == 0 && num_xenos == 0 || (planet_nuked && !marines_evac)) // Draw, for all other reasons
-		message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
-		round_finished = MODE_CRASH_DRAW_DEATH 
+	// if(!planet_nuked && num_humans == 0 && num_xenos > 0) // XENO Major (All marines killed)
+	// 	message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
+	// 	round_finished = MODE_CRASH_X_MAJOR 
+	// else if()
+	// 	message_admins("Round finished: [MODE_CRASH_M_MINOR]")
+	// 	round_finished = MODE_CRASH_M_MINOR 
+	// else if(marines_evac && planet_nuked) // 
+	// 	message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
+	// 	round_finished = MODE_CRASH_M_MAJOR 
+	// else if(marines_evac && !planet_nuked) 
+	// 	message_admins("Round finished: [MODE_CRASH_X_MINOR]")
+	// 	round_finished = MODE_CRASH_X_MINOR 
+	// else if(num_humans == 0 && num_xenos == 0 || (planet_nuked && !marines_evac)) // Draw, for all other reasons
+	// 	message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
+	// 	round_finished = MODE_CRASH_DRAW_DEATH 
 
 	return FALSE
 

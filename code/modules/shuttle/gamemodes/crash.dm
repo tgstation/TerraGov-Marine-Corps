@@ -17,6 +17,9 @@
 	var/list/spawnpoints = list()
 	var/list/marine_spawns_by_job = list()
 
+/obj/docking_port/mobile/crashmode/register()
+	. = ..()
+	SSshuttle.canterbury = src
 
 /obj/docking_port/stationary/crashmode/loading
 	id = "crashmodeloading"

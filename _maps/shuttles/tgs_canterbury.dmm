@@ -54,7 +54,7 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/captain,
+/obj/effect/landmark/start/marine/crash/captain,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -76,7 +76,7 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/pilotofficer,
+/obj/effect/landmark/start/marine/crash/pilotofficer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -539,7 +539,7 @@
 /area/shuttle/canterbury/general)
 "bg" = (
 /obj/machinery/door/window/westright,
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/marine/crash/squadengineer,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
@@ -794,7 +794,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/marine/crash/squadmarine,
 /turf/open/floor/almayer{
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
@@ -807,7 +807,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/marine/crash/squadmarine,
 /turf/open/floor/almayer{
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
@@ -848,7 +848,7 @@
 	icon_state = "right";
 	dir = 2
 	},
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/marine/crash/squadcorpsman,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
@@ -986,7 +986,7 @@
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "bV" = (
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/marine/crash/squadleader,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -1029,7 +1029,7 @@
 	icon_state = "right";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/marine/crash/squadspecialist,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
@@ -1053,13 +1053,13 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/maintenancetech,
+/obj/effect/landmark/start/marine/crash/maintenancetech,
 /turf/open/floor/almayer{
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
 "cc" = (
-/obj/effect/landmark/start/marine/synthetic,
+/obj/effect/landmark/start/marine/crash/synthetic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -1169,7 +1169,7 @@
 "cp" = (
 /obj/machinery/door/window/westright,
 /obj/structure/window/reinforced,
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/marine/crash/squadsmartgunner,
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
@@ -1321,7 +1321,7 @@
 	},
 /area/shuttle/canterbury/medical)
 "cE" = (
-/obj/effect/landmark/start/marine/medicalofficer,
+/obj/effect/landmark/start/marine/crash/medicalofficer,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile"
 	},
@@ -1742,7 +1742,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/marine/crash/squadmarine,
 /obj/docking_port/mobile/crashmode,
 /turf/open/floor/almayer{
 	icon_regular_floor = "cargo_arrow";
