@@ -205,25 +205,55 @@
 
 
 /obj/effect/alien/weeds/node/proc/generate_weed_graph()
-	var/list/turfs_to_check = list()
-	turfs_to_check += get_turf(src)
-	var/node_size = node_range
-	while (node_size > 0)
-		node_size--
-		for(var/X in turfs_to_check)
-			var/turf/T = X
-			for(var/direction in GLOB.cardinals)
-				var/turf/AdjT = get_step(T, direction)
-				if (AdjT == src) // Ignore the node
-					continue
-				if (AdjT in node_turfs) // Ignore existing weeds
-					continue
-				if(AdjT.density || LinkBlocked(T, AdjT) || TurfBlockedNonWindow(AdjT))
-					// Finish here, but add it to expand weeds into
-					node_turfs += AdjT
-					continue
+	// var/list/turfs_to_check = list()
+	// turfs_to_check += get_turf(src)
+	// var/node_size = node_range
+	// while (node_size > 0)
+	// 	node_size--
+	// 	for(var/X in turfs_to_check)
+	// 		var/turf/T = X
+	// 		for(var/direction in GLOB.cardinals)
+	// 			var/turf/AdjT = get_step(T, direction)
+	// 			if (AdjT == src) // Ignore the node
+	// 				continue
+	// 			if (AdjT in node_turfs) // Ignore existing weeds
+	// 				continue
+	// 			if(AdjT.density || LinkBlocked(T, AdjT) || TurfBlockedNonWindow(AdjT))
+	// 				// Finish here, but add it to expand weeds into
+	// 				node_turfs += AdjT
+	// 				continue
 
-				turfs_to_check += AdjT
-				node_turfs += AdjT
+	// 			turfs_to_check += AdjT
+	// 			node_turfs += AdjT
+
+	for(var/direction in GLOB.alldirs) //First pass to get the adjacent ones.
+		var/turf/adjacent_turf = get_step(src, direction)
+		if(adjacent_turf.density || LinkBlocked(src, adjacent_turf) || TurfBlockedNonWindow(adjacent_turf))
+			node_turfs += adjacent_turf
+	to_chat(world, "first len: [length(node_turfs)]")
+
+	var/list/turfs_to_check = node_turfs
+	for(var/node_size in 1 to node_range) //Second to get the rest, one square at a time.
+		for(var/neighbor in turfs_to_check)
+			var/turf/current_turf = neighbor
+			var/expansion_dir = get_dir(src, current_turf)
+			switch(expansion_dir)
+				if(NORTH, SOUTH, WEST, EAST) //These only check the next step in their direction.
+					var/turf/next_turf = get_step(current_turf, expansion_dir)
+					if(!next_turf.density && !LinkBlocked(current_turf, next_turf) && !TurfBlockedNonWindow(next_turf))
+						turfs_to_check += next_turf
+						if(!(next_turf in node_turfs))
+							node_turfs += next_turf
+							to_chat(world, "new turf - steraight")
+				if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) //These are corner cases and check both their direction and their cardinal cases, three in total.
+					for(var/next_direction in list(expansion_dir, expansion_dir & NORTH|SOUTH, expansion_dir & WEST|EAST))
+						var/turf/next_turf = get_step(current_turf, next_direction)
+						if(!next_turf.density && !LinkBlocked(current_turf, next_turf) && !TurfBlockedNonWindow(next_turf) && !(next_turf in turfs_to_check))
+							turfs_to_check += next_turf
+							if(!(next_turf in node_turfs))
+								node_turfs += next_turf
+								to_chat(world, "new turf - diag")
+			turfs_to_check -= current_turf
+	to_chat(world, "last len: [length(node_turfs)]")
 
 #undef NODERANGE
