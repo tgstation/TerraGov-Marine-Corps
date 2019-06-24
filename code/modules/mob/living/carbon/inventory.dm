@@ -5,7 +5,7 @@
 		stop_pulling()
 		handcuffed = restraints
 		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/item/restraints/.proc/resisted_against)
-	else
+	else if(handcuffed)
 		handcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 		handcuffed = null
 	update_inv_handcuffed()
