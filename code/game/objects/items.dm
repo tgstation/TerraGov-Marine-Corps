@@ -95,22 +95,6 @@
 	return ..()
 
 
-/obj/item/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(!prob(50))
-				return
-			qdel(src)
-		if(3)
-			if(!prob(5))
-				return
-			qdel(src)
-
-
 //user: The mob that is suiciding
 //damagetype: The type of damage the item will inflict on the user
 //BRUTELOSS = 1
