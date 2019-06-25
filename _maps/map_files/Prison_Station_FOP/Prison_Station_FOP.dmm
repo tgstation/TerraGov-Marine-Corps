@@ -6158,6 +6158,7 @@
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/timed_late{
 	dir = 2,
+	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/s)
 "aqq" = (
@@ -7988,6 +7989,7 @@
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/timed_late{
 	dir = 2,
+	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/medsec)
 "auv" = (
