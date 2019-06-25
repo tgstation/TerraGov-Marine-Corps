@@ -668,6 +668,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 		I.update_label()
 	H.name = H.get_visible_name()
 
+	H.equip_to_slot(H.wear_ear, SLOT_EARS) // re-equip headset to fix issues with updated names.
+
 
 /datum/job/civilian/synthetic/radio_help_message(mob/M)
 	. = ..()
