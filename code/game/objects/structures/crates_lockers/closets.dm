@@ -201,36 +201,23 @@
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
 		return FALSE
-	if(tool_interact(I, user))
-		return TRUE // No afterattack
-	return ..()
-
-
-/obj/structure/closet/proc/tool_interact(obj/item/I, mob/user)
-	. = TRUE //returns TRUE if attackBy call shouldnt be continued (because tool was used/closet was of wrong type), FALSE if otherwise
 	if(opened)
-		if(I.flags_item & ITEM_ABSTRACT)
-			return FALSE
-
 		if(istype(I, /obj/item/grab))
 			var/obj/item/grab/G = I
 			if(!G.grabbed_thing)
 				CRASH("/obj/item/grab without a grabbed_thing in tool_interact()")
 			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
-			return
-
+			return ..()
+		if(I.flags_item & ITEM_ABSTRACT)
+			return ..()
 		user.transferItemToLoc(I, drop_location())
-		return
-
-	if(istype(I, /obj/item/packageWrap))
-		return
+		return ..()
 
 	if(I.GetID())
 		if(!togglelock(user, TRUE))
 			toggle(user)
-		return
 
-	return FALSE
+	return ..()
 
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
