@@ -648,25 +648,26 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	exp_type = EXP_TYPE_REGULAR_ALL
 
 
-/datum/job/civilian/synthetic/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
-	. = ..()
+/datum/job/civilian/synthetic/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)	
 	if(!H)
 		return FALSE
+
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
 			H.mind.cm_skills = new /datum/skills/early_synthetic
 		H.real_name = preference_source.prefs.synthetic_name
+
 	if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
 		H.real_name = "David"
 		to_chat(H, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
+
+	H.name = H.real_name
+
 	if(H.mind)
 		H.mind.name = H.real_name
-	if(H.wear_id)
-		var/obj/item/card/id/I = H.wear_id
-		I.registered_name = H.real_name
-		I.update_label()
-	H.name = H.get_visible_name()
+
+	return ..()
 
 
 /datum/job/civilian/synthetic/radio_help_message(mob/M)

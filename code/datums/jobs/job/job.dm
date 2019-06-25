@@ -89,8 +89,8 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!H)
 		return FALSE
 
-	equip(H, visualsOnly, announce, latejoin, outfit_override, preference_source)
 	assign(H, visualsOnly, announce, latejoin, outfit_override, preference_source)
+	equip(H, visualsOnly, announce, latejoin, outfit_override, preference_source)
 
 
 /datum/job/proc/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
