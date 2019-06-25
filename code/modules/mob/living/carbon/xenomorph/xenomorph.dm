@@ -228,8 +228,12 @@
 	hud_set_pheromone()
 	//and display them
 	add_to_all_mob_huds()
-	var/datum/atom_hud/MH = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	MH.add_hud_to(src)
+	
+	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_XENO_INFECTION]
+	hud_to_add.add_hud_to(src)
+	
+	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
+	hud_to_add.add_hud_to(src)
 
 
 
