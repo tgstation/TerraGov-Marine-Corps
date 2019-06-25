@@ -15,7 +15,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in [user.loc]")
 		return
-	on = !on
+	toggle_helmet_light()
 	icon_state = "hardhat[on]_[hardhat_color]"
 	item_state = "hardhat[on]_[hardhat_color]"
 
@@ -26,20 +26,20 @@
 	update_action_button_icons()
 
 
-/obj/item/clothing/head/hardhat/proc/toggle_helmet_light(mob/user)
+/obj/item/clothing/head/hardhat/proc/toggle_helmet_light()
 	on = !on
 	if(on)
-		turn_on(user)
+		turn_on()
 	else
-		turn_off(user)
+		turn_off()
 	update_icon()
 
 
-/obj/item/clothing/head/hardhat/proc/turn_on(mob/user)
+/obj/item/clothing/head/hardhat/proc/turn_on()
 	set_light(brightness_on)
 
 
-/obj/item/clothing/head/hardhat/proc/turn_off(mob/user)
+/obj/item/clothing/head/hardhat/proc/turn_off()
 	set_light(0)
 
 
