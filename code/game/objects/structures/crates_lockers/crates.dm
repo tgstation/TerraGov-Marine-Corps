@@ -12,7 +12,7 @@
 	anchored = 0
 	mob_storage_capacity = 0
 	var/rigged = 0
-	closet_flags = CLOSET_ALLOW_OBJS | CLOSET_ALLOW_DENSE_OBJ
+	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 
 /obj/structure/closet/crate/can_open()
 	return 1

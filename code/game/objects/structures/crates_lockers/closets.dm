@@ -24,7 +24,7 @@
 	var/closet_flags = NONE
 	var/max_mob_size = MOB_SIZE_HUMAN //Biggest mob_size accepted by the container
 	var/mob_storage_capacity = 1 // how many max_mob_size'd mob/living can fit together inside a closet.
-	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate
+	var/storage_capacity = 50 //This is so that someone can't pack hundreds of items in a locker/crate
 							//then open it in a populated area to crash clients.
 	var/mob_size_counter = 0
 	var/item_size_counter = 0
@@ -219,40 +219,10 @@
 			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
 			return
 
-		if(iswelder(I))
-			var/obj/item/tool/weldingtool/WT = I
-			if(!WT.remove_fuel(0, user))
-				to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
-				return
-			new /obj/item/stack/sheet/metal(drop_location())
-			visible_message("<span class='notice'>\The [src] has been cut apart by [user] with [WT].</span>", "You hear welding.")
-			qdel(src)
-			return
-
 		user.transferItemToLoc(I, drop_location())
 		return
 
 	if(istype(I, /obj/item/packageWrap))
-		return
-
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!WT.remove_fuel(0,user))
-			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
-			return
-		welded = !welded
-		update_icon()
-		visible_message("<span class='warning'>[src] has been [welded ? "welded shut" : "unwelded"] by [user.name].</span>", "You hear welding.")
-		return
-
-	if(iswrench(I))
-		if(isspaceturf(loc) && !anchored)
-			return
-		setAnchored(!anchored)
-		I.play_tool_sound(src, 75)
-		user.visible_message("<span class='notice'>[user] [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
-						"<span class='notice'>You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
-						"<span class='italics'>You hear a ratchet.</span>")
 		return
 
 	if(I.GetID())
@@ -261,6 +231,42 @@
 		return
 
 	return FALSE
+
+
+/obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
+	if(!welder.isOn())
+		return FALSE
+
+	if(opened)
+		if(!welder.remove_fuel(0, user))
+			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+			return TRUE
+		new /obj/item/stack/sheet/metal(drop_location())
+		visible_message("<span class='notice'>\The [src] has been cut apart by [user] with [welder].</span>", "You hear welding.")
+		qdel(src)
+		return TRUE
+
+	if(!welder.remove_fuel(0,user))
+		to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+		return TRUE
+	welded = !welded
+	update_icon()
+	visible_message("<span class='warning'>[src] has been [welded ? "welded shut" : "unwelded"] by [user.name].</span>", "You hear welding.")
+	return TRUE
+
+
+/obj/structure/closet/wrench_act(mob/living/user, obj/item/tool/wrench/wrenchy_tool)
+	if(opened)
+		return FALSE
+	if(isspaceturf(loc) && !anchored)
+		to_chat(user, "<span class='warning'>You need a firmer floor to wrench [src] down.</span>")
+		return TRUE
+	setAnchored(!anchored)
+	wrenchy_tool.play_tool_sound(src, 75)
+	user.visible_message("<span class='notice'>[user] [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
+					"<span class='notice'>You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
+					"<span class='italics'>You hear a ratchet.</span>")
+	return TRUE
 
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O, mob/user)
