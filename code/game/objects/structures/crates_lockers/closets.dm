@@ -417,7 +417,6 @@
 			to_chat(user, "<span class='notice'>Access Denied</span>")
 		return FALSE
 
-	add_fingerprint(user)
 	locked = !locked
 	user.visible_message("<span class='notice'>[user] [locked ? null : "un"]locks [src].</span>",
 						"<span class='notice'>You [locked ? null : "un"]lock [src].</span>")
