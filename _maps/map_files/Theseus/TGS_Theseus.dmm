@@ -7279,12 +7279,9 @@
 	opacity = 0
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "Conference Room Shutters";
-	name = "\improper Privacy Shutters";
-	opacity = 0
+	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/almayer,
 /obj/machinery/door/firedoor/theseus,
@@ -9027,12 +9024,9 @@
 /area/almayer/living/numbertwobunks)
 "auL" = (
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 2;
-	icon_state = "shutter0";
 	id = "Conference Room Shutters";
-	name = "\improper Privacy Shutters";
-	opacity = 0
+	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/almayer,
 /turf/open/floor/plating,
@@ -10441,12 +10435,9 @@
 	},
 /obj/item/folder/black_random,
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "CIC Checkpoint Shutters";
-	name = "\improper CIC Checkpoint Shutters";
-	opacity = 0
+	name = "\improper CIC Checkpoint Shutters"
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westleft{
@@ -12282,12 +12273,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 2;
-	icon_state = "shutter0";
 	id = "CMP Office Shutters";
-	name = "\improper Privacy Shutters";
-	opacity = 0
+	name = "\improper Privacy Shutters"
 	},
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -17115,12 +17103,9 @@
 /area/almayer/shipboard/brig_cells)
 "aLi" = (
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "CMP Office Shutters";
-	name = "\improper Privacy Shutters";
-	opacity = 0
+	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/almayer,
 /turf/open/floor/plating,
@@ -26173,12 +26158,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bjj" = (
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "northcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+	name = "\improper Checkpoint Shutters"
 	},
 /turf/open/floor/almayer{
 	icon_state = "redfull"
@@ -26711,12 +26693,9 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "northcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+	name = "\improper Checkpoint Shutters"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -37490,12 +37469,9 @@
 /area/almayer/hallways/port_hallway)
 "bPD" = (
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "southcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+	name = "\improper Checkpoint Shutters"
 	},
 /turf/open/floor/almayer{
 	icon_state = "redfull"
@@ -37921,12 +37897,9 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "southcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+	name = "\improper Checkpoint Shutters"
 	},
 /obj/structure/cable{
 	d1 = 4;
