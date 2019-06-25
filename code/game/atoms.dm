@@ -472,7 +472,7 @@ Proc for attack log creation, because really why not
 
 
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
-/atom/proc/LateInitialize()
+/atom/proc/LateInitialize(mapload)
 	return
 
 
