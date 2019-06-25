@@ -93,11 +93,6 @@
 /turf/open/floor,
 /area/space)
 "aax" = (
-/obj/machinery/door_control/timed_automatic{
-	id = "central";
-	name = "timed automatic door-control (central)";
-	trigger_delay = 50
-	},
 /turf/open/floor,
 /area/space)
 "aay" = (
@@ -254,11 +249,6 @@
 /turf/open/beach/water,
 /area/space)
 "abc" = (
-/obj/machinery/door_control/timed_automatic{
-	id = "civ";
-	name = "timed automatic door-control (civ)";
-	trigger_delay = 35
-	},
 /turf/open/floor,
 /area/space)
 "abd" = (
@@ -5138,11 +5128,8 @@
 /area/prison/maintenance/research_medbay)
 "anT" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/maxsec)
@@ -5345,11 +5332,8 @@
 /area/prison/hangar/main)
 "aov" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/n)
@@ -6172,12 +6156,8 @@
 /area/prison/cellblock/highsec/north/north)
 "aqp" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
-	},
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 2,
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/s)
 "aqq" = (
@@ -8006,12 +7986,8 @@
 /area/prison/cellblock/highsec/north/north)
 "auu" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
-	},
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 2,
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/medsec)
 "auv" = (
@@ -10351,11 +10327,8 @@
 	},
 /area/prison/security/checkpoint/maxsec)
 "aAo" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/n)
@@ -12987,11 +12960,8 @@
 /area/prison/security/checkpoint/maxsec)
 "aGx" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/maxsec)
@@ -14682,11 +14652,8 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/hallway/central)
 "aKb" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "rampbottom"
@@ -14701,11 +14668,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "rampbottom"
@@ -14989,11 +14953,8 @@
 /area/prison/security/checkpoint/highsec/n)
 "aKM" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/n)
@@ -16138,11 +16099,8 @@
 	},
 /area/prison/security/checkpoint/highsec/n)
 "aNm" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/red{
 	dir = 1
@@ -16467,11 +16425,8 @@
 	},
 /area/prison/hallway/central)
 "aOk" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -17054,11 +17009,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/n)
@@ -17265,11 +17217,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -17747,11 +17696,8 @@
 	},
 /area/prison/security/checkpoint/highsec/n)
 "aQM" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/red,
 /area/prison/security/checkpoint/highsec/n)
@@ -17873,11 +17819,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/lowsec/ne)
 "aRf" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -23675,11 +23618,8 @@
 	},
 /area/prison/hallway/central)
 "bfB" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -24740,11 +24680,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -26961,11 +26898,8 @@
 	},
 /area/prison/security/checkpoint/vip)
 "bmt" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/blue{
 	dir = 9
@@ -27333,11 +27267,8 @@
 /turf/open/floor/prison/blue/full,
 /area/prison/security/checkpoint/vip)
 "bnt" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/blue/full,
 /area/prison/security/checkpoint/vip)
@@ -27871,11 +27802,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/blue/full,
 /area/prison/security/checkpoint/vip)
@@ -28498,11 +28426,8 @@
 /turf/open/floor/prison/blue,
 /area/prison/security/checkpoint/vip)
 "bpC" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/blue{
 	dir = 10
@@ -32721,11 +32646,8 @@
 /area/prison/security/checkpoint/highsec/s)
 "bzR" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/s)
@@ -33904,11 +33826,8 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/cellblock/lowsec/se)
 "bCG" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -34686,11 +34605,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -34862,11 +34778,8 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/cellblock/lowsec/se)
 "bEy" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -36095,11 +36008,8 @@
 /area/prison/security/checkpoint/highsec/s)
 "bHu" = (
 /obj/effect/decal/cleanable/blood,
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/red{
 	dir = 1
@@ -36581,11 +36491,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/s)
@@ -37167,11 +37074,8 @@
 /turf/open/floor/prison/red/full,
 /area/prison/security/checkpoint/highsec/s)
 "bJL" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/s)
@@ -37485,11 +37389,8 @@
 	},
 /area/prison/security/checkpoint/highsec/s)
 "bKz" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/red,
 /area/prison/security/checkpoint/highsec/s)
@@ -39190,11 +39091,8 @@
 /turf/open/floor/plating,
 /area/prison/storage/medsec)
 "bOB" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison/blue,
 /area/prison/hallway/central)
@@ -39207,11 +39105,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison/blue,
 /area/prison/hallway/central)
@@ -39227,11 +39122,8 @@
 /turf/open/floor/prison,
 /area/prison/cellblock/mediumsec/south)
 "bOE" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -39246,11 +39138,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -39650,11 +39539,8 @@
 /area/prison/security/checkpoint/medsec)
 "bPE" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/medsec)

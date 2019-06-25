@@ -66,6 +66,17 @@
 	return ..()
 
 
+/obj/machinery/door/poddoor/shutters/timed_late
+	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	name = "Timed Emergency Shutters"
+	use_power = FALSE
+
+
+/obj/machinery/door/poddoor/shutters/timed_late/Initialize()
+	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/open)
+	return ..()
+
+
 //transit shutters used by marine dropships
 /obj/machinery/door/poddoor/shutters/transit
 	name = "Transit shutters"

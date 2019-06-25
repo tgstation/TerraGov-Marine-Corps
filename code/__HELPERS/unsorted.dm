@@ -1157,3 +1157,7 @@ will handle it, but:
 /proc/fade_out(image/I, list/show_to)
 	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
 	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
+
+
+/proc/send_global_signal(signal) //Wrapper for callbacks and the likes.
+	SEND_GLOBAL_SIGNAL(signal)
