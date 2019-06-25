@@ -375,3 +375,4 @@
 	name = "\improper Powered"
 	icon_state = "selfdestruct"
 	requires_power = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED

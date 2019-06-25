@@ -5,7 +5,6 @@
 	density = TRUE
 	anchored = TRUE
 	animate_movement = FORWARD_STEPS
-	luminosity = 2
 	can_buckle = TRUE
 
 	var/on = FALSE
@@ -150,13 +149,12 @@
 	if(powered && cell.charge < charge_use)
 		return FALSE
 	on = TRUE
-	SetLuminosity(initial(luminosity))
 	update_icon()
 	return TRUE
 
 /obj/vehicle/proc/turn_off()
 	on = FALSE
-	SetLuminosity(0)
+	set_light(0)
 	update_icon()
 
 /obj/vehicle/proc/Emag(mob/user as mob)
@@ -242,10 +240,6 @@
 		M.pixel_x = initial(buckled_mob.pixel_x)
 		M.pixel_y = initial(buckled_mob.pixel_y)
 		M.old_y = initial(buckled_mob.pixel_y)
-
-/obj/vehicle/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 //-------------------------------------------------------
 // Stat update procs

@@ -2,6 +2,7 @@
 	name = "\improper Centcom"
 	icon_state = "centcom"
 	requires_power = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 
 /area/centcom/control
@@ -24,6 +25,7 @@
 /area/centcom/supplypod
 	name = "Supplypod Facility"
 	icon_state = "supplypod"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 
 /area/centcom/supplypod/podStorage

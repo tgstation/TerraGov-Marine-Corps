@@ -73,11 +73,10 @@
 			log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
 
-		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
-
-		if(approximate_intensity > 30)
-			GLOB.lighting_controller.processing = 0
-
+		//postpone processing for a bit
+		var/postponeCycles = max(round(devastation_range / 8), 1)
+		SSlighting.postpone(postponeCycles)
+		SSmachines.postpone(postponeCycles)
 
 		if(heavy_impact_range > 1)
 			var/datum/effect_system/explosion/E = new/datum/effect_system/explosion()
@@ -135,10 +134,6 @@
 //				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,took)
 
 		sleep(8)
-
-		if(!GLOB.lighting_controller.processing)
-			GLOB.lighting_controller.processing = 1
-			GLOB.lighting_controller.process() //Restart the lighting controller
 
 		SSmachines.makepowernets()
 

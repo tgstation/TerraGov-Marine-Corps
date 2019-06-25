@@ -15,7 +15,7 @@
 	status_flags = CANPUSH
 	attack_sound = 'sound/weapons/punch1.ogg'
 	see_in_dark = 7
-	see_invisible = SEE_INVISIBLE_MINIMUM
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	healable = FALSE
 	AIStatus = AI_OFF

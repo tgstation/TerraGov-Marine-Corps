@@ -56,13 +56,8 @@
 	density = 0
 	anchored = TRUE
 	layer = TURF_LAYER
-	luminosity = 1
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
-
-/obj/effect/decal/cleanable/greenglow/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/effect/decal/cleanable/cobweb
 	name = "cobweb"

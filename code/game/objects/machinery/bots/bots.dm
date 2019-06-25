@@ -3,7 +3,6 @@
 /obj/machinery/bot
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
-	luminosity = 3
 	use_power = FALSE
 	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
 	var/on = TRUE
@@ -17,12 +16,12 @@
 	if(machine_stat)
 		return FALSE
 	on = TRUE
-	SetLuminosity(initial(luminosity))
+	set_light(initial(luminosity))
 	return TRUE
 
 /obj/machinery/bot/proc/turn_off()
 	on = FALSE
-	SetLuminosity(0)
+	set_light(0)
 
 /obj/machinery/bot/proc/explode()
 	qdel(src)
@@ -30,10 +29,6 @@
 /obj/machinery/bot/proc/healthcheck()
 	if(obj_integrity <= 0)
 		explode()
-
-/obj/machinery/bot/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/machinery/bot/proc/Emag(mob/user as mob)
 	if(locked)

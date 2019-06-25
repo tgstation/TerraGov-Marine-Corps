@@ -852,7 +852,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(beacon_cam)
 		qdel(beacon_cam)
 		beacon_cam = null
-	SetLuminosity(0)
 	return ..()
 
 /obj/item/squad_beacon/attack_self(mob/user)
@@ -957,7 +956,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		w_class = 10
 		layer = ABOVE_FLY_LAYER
 		icon_state = "[icon_activated]"
-		SetLuminosity(2)
+		set_light(2)
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 		H.visible_message("[H] activates [src]",
 		"You activate [src]")
@@ -982,7 +981,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		layer = initial(layer)
 		name = initial(name)
 		icon_state = initial(icon_state)
-		SetLuminosity(0)
+		set_light(0)
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")

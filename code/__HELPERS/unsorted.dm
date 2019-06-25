@@ -414,7 +414,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		areatype = areatemp.type
 
 	var/list/turfs = list()
-	for(var/i in GLOB.all_areas)
+	for(var/i in GLOB.sorted_areas)
 		var/area/A = i
 		if(!istype(A, areatype))
 			continue
@@ -536,9 +536,9 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 //					var/area/AR = X.loc
 
-//					if(AR.lighting_use_dynamic)							//TODO: rewrite this code so it's not messed by lighting ~Carn
+//					if(AR.dynamic_lighting)							//TODO: rewrite this code so it's not messed by lighting ~Carn
 //						X.opacity = !X.opacity
-//						X.SetOpacity(!X.opacity)
+//						X.set_opacity(!X.opacity)
 
 					toupdate += X
 
@@ -719,9 +719,9 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 //					var/area/AR = X.loc
 
-//					if(AR.lighting_use_dynamic)
+//					if(AR.dynamic_lighting)
 //						X.opacity = !X.opacity
-//						X.sd_SetOpacity(!X.opacity)			//TODO: rewrite this code so it's not messed by lighting ~Carn
+//						X.sd_set_opacity(!X.opacity)			//TODO: rewrite this code so it's not messed by lighting ~Carn
 
 					toupdate += X
 

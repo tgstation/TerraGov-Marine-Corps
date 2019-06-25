@@ -125,10 +125,10 @@
 	for(var/i = 1, i < width, i++)
 		if(dir in list(NORTH, SOUTH))
 			var/turf/T = locate(x, y + i, z)
-			T.SetOpacity(opacity)
+			T.set_opacity(opacity)
 		else if(dir in list(EAST, WEST))
 			var/turf/T = locate(x + i, y, z)
-			T.SetOpacity(opacity)
+			T.set_opacity(opacity)
 
 	if(dir in list(NORTH, SOUTH))
 		bound_height = world.icon_size * width
@@ -141,10 +141,10 @@
 	for(var/i = 1, i < width, i++)
 		if(dir in list(NORTH, SOUTH))
 			var/turf/T = locate(x, y + i, z)
-			if(T) T.SetOpacity(opacity)
+			if(T) T.set_opacity(opacity)
 		else if(dir in list(EAST, WEST))
 			var/turf/T = locate(x + i, y, z)
-			if(T) T.SetOpacity(opacity)
+			if(T) T.set_opacity(opacity)
 
 /obj/machinery/door/airlock/multi_tile/almayer/proc/get_filler_turfs()
 	var/list/filler_turfs = list()

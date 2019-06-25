@@ -3,7 +3,8 @@
 	real_name = "imaginary friend"
 	desc = "A wonderful yet fake friend."
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
-	see_invisible = SEE_INVISIBLE_MINIMUM
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	see_invisible = SEE_INVISIBLE_LIVING
 	invisibility = INVISIBILITY_MAXIMUM
 	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
 	see_in_dark = 8

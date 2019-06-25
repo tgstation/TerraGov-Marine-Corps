@@ -18,7 +18,7 @@
 	if(is_zoomed)
 		zoom_out()
 
-	SetLuminosity(0)
+	set_light(0)
 
 	if(!gibbed)
 		if(hud_used && hud_used.healths)

@@ -162,11 +162,6 @@
 	target 			= null
 	last_moved_mob 	= null
 	muzzle 			= null
-	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
-		flags_gun_features &= ~GUN_FLASHLIGHT_ON
-		if(ismob(loc))
-			loc.SetLuminosity(-(rail.light_mod) )
-		SetLuminosity(0)
 	rail 			= null
 	under 			= null
 	stock 			= null
@@ -1114,10 +1109,11 @@ and you're good to go.
 	if(!istype(user) || !istype(user.loc,/turf))
 		return
 
-	if(user.luminosity <= muzzle_flash_lum)
-		user.SetLuminosity(muzzle_flash_lum)
+	var/prev_light = light_range
+	if(light_range <= muzzle_flash_lum)
+		set_light(muzzle_flash_lum)
 		spawn(10)
-			user.SetLuminosity(-muzzle_flash_lum)
+			set_light(prev_light)
 
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1

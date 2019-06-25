@@ -26,6 +26,7 @@
 
 /obj/machinery/door/poddoor/proc/pry_open()
 	open()
+	set_opacity(FALSE)
 	density = FALSE
 	operating = FALSE
 	update_icon()

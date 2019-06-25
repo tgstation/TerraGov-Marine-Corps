@@ -44,7 +44,6 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
-				GLOB.lighting_controller.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -887,4 +886,9 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/sync_lighting_plane_alpha()
-	return
+	if(!hud_used)
+		return
+
+	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+	if(L)
+		L.alpha = lighting_alpha
