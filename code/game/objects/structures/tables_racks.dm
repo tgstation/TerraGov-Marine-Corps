@@ -316,7 +316,7 @@
 		user.transferItemToLoc(I, loc)
 
 
-/obj/structure/table/proc/straight_table_check(var/direction)
+/obj/structure/table/proc/straight_table_check(direction)
 	var/obj/structure/table/T
 	for(var/angle in list(-90, 90))
 		T = locate() in get_step(loc, turn(direction, angle))
@@ -352,7 +352,7 @@
 
 	flip_cooldown = world.time + 50
 
-/obj/structure/table/proc/unflipping_check(var/direction)
+/obj/structure/table/proc/unflipping_check(direction)
 
 	if(world.time < flip_cooldown)
 		return FALSE
@@ -393,7 +393,7 @@
 
 	flip_cooldown = world.time + 50
 
-/obj/structure/table/proc/flip(var/direction)
+/obj/structure/table/proc/flip(direction)
 
 	if(world.time < flip_cooldown)
 		return FALSE
@@ -483,7 +483,7 @@
 /obj/structure/table/reinforced/flipped
 	flipped = TRUE
 
-/obj/structure/table/reinforced/flip(var/direction)
+/obj/structure/table/reinforced/flip(direction)
 	return FALSE //No, just no. It's a full desk, you can't flip that
 
 

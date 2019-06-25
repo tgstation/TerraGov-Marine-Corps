@@ -240,7 +240,7 @@
 	return 1
 
 
-/mob/living/carbon/human/take_blood(obj/O, var/amount)
+/mob/living/carbon/human/take_blood(obj/O, amount)
 
 	if(species && species.species_flags & NO_BLOOD)
 		return

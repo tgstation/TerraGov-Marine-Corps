@@ -6,7 +6,7 @@
 #define CLICK_CD_MELEE 8
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_GRABBING 10
-#define CLICK_CD_RESIST 20
+#define CLICK_CD_RESIST 10
 #define CLICK_CD_BREAKOUT 100
 
 //Grab levels
@@ -139,3 +139,9 @@
 #define SMOKE_XENO_ACID		(1<<10)
 #define SMOKE_XENO_NEURO	(1<<11)
 #define SMOKE_CHEM			(1<<12)
+
+//Restraints
+#define RESTRAINED_XENO_NEST (1<<0)
+#define RESTRAINED_NECKGRAB (1<<1)
+#define RESTRAINED_STRAIGHTJACKET (1<<2)
+#define RESTRAINED_RAZORWIRE (1<<3)

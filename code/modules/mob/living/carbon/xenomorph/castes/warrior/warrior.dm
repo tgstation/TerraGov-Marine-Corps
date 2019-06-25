@@ -42,10 +42,11 @@
 	throw_mode_off()
 
 /mob/living/carbon/xenomorph/warrior/stop_pulling()
-	if(isliving(pulling))
+	if(isliving(pulling) && !isxeno(pulling))
 		var/mob/living/L = pulling
 		grab_resist_level = 0 //zero it out
 		L.SetStunned(0)
+		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 
 /mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, suppress_message = TRUE)
@@ -70,18 +71,26 @@
 
 	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
 
+
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
 	use_plasma(10)
 
 	GLOB.round_statistics.warrior_grabs++
 	grab_level = GRAB_NECK
+	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	L.drop_all_held_items()
 	L.KnockDown(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 	"<span class='xenowarning'>You grab [L] by the throat!</span>")
 	return TRUE
 
-/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+
+/mob/living/carbon/xenomorph/warrior/proc/resisted_against(datum/source, mob/living/victim)
+	victim.do_resist_grab()
+
+
+/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM, speed = 5)
 	if(ishuman(AM))
 		return
 	..()

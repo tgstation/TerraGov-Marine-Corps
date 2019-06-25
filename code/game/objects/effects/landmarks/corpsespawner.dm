@@ -100,13 +100,8 @@
 		M.chestburst = 2
 		M.update_burst()
 		//buckle to nest
-		var/obj/structure/bed/nest/N = locate() in get_turf(src)
-		if(N)
-			M.buckled = N
-			M.setDir(N.dir)
-			M.update_canmove()
-			N.buckled_mob = M
-			N.afterbuckle(M)
+		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
+		victim_nest?.do_buckle(M, silent = TRUE)
 	qdel(src)
 
 

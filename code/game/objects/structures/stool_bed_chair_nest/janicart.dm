@@ -14,7 +14,7 @@
 	var/callme = "pimpin' ride"	//how do people refer to it?
 	var/move_delay = 2
 
-/obj/structure/bed/chair/janicart/New()
+/obj/structure/bed/chair/janicart/Initialize()
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 
@@ -100,7 +100,7 @@
 				buckled_mob.pixel_y = 7
 
 
-/obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/bed/chair/janicart/bullet_act(obj/item/projectile/Proj)
 	if(buckled_mob)
 		if(prob(85))
 			return buckled_mob.bullet_act(Proj)

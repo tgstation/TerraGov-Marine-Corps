@@ -261,7 +261,7 @@
 	else
 		update_use_power(IDLE_POWER_USE)
 
-/obj/machinery/colony_floodlight_switch/proc/toggle_lights(var/switch_on)
+/obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
 	for(var/obj/machinery/colony_floodlight/F in floodlist)
 		addtimer(CALLBACK(F, /obj/machinery/colony_floodlight/proc/toggle_light, switch_on), rand(0,50))
 
@@ -446,7 +446,7 @@
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
-/obj/machinery/colony_floodlight/proc/toggle_light(var/switch_on)
+/obj/machinery/colony_floodlight/proc/toggle_light(switch_on)
 	if(!fswitch) //no master, should never happen
 		return
 

@@ -101,12 +101,13 @@
 	if(L.pulledby)
 		if(L.incapacitated(TRUE))
 			return
-		else if(L.restrained(TRUE))
+		else if(L.restrained(RESTRAINED_NECKGRAB))
 			move_delay = world.time + 10 //to reduce the spam
 			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
 			return
 		else
-			return L.resist_grab(TRUE)
+			move_delay = world.time + 1 SECONDS
+			return L.do_move_resist_grab()
 
 	if(L.buckled)
 		return L.buckled.relaymove(L, direct)
@@ -149,7 +150,7 @@
 ///Called by /client/Move()
 ///For moving in space
 ///Return 1 for movement 0 for none
-/mob/proc/Process_Spacemove(var/check_drift = 0)
+/mob/proc/Process_Spacemove(check_drift = 0)
 
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		return 0
@@ -209,7 +210,7 @@
 	return dense_object
 
 
-/mob/proc/Process_Spaceslipping(var/prob_slip = 5)
+/mob/proc/Process_Spaceslipping(prob_slip = 5)
 	//Setup slipage
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 	if(stat)

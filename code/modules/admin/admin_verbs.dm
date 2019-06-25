@@ -617,12 +617,38 @@
 	if(!istype(A))
 		return
 
-	var/turf/T = get_turf(A)
-	N.forceMove(T)
+	var/turf/T = A.jump_to_by(N)
+
+	if(!istype(T))
+		to_chat(src, "Failed to find a valid destination!")
+		return //Might have attempted to jump to an existing area without a valid jump target.
 
 	log_admin("[key_name(usr)] jumped to [A] at [AREACOORD(T)].")
 	if(!isobserver(N))
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [A] at [ADMIN_TPMONTY(T)].")
+
+
+/atom/proc/jump_to_by(atom/movable/jumper)
+	return
+
+
+/atom/movable/jump_to_by(atom/movable/jumper)
+	var/turf/destination = get_turf(src)
+	jumper.forceMove(destination)
+	return destination
+
+
+/turf/jump_to_by(atom/movable/jumper)
+	jumper.forceMove(src)
+	return src
+
+
+/area/jump_to_by(atom/movable/jumper)
+	var/turf/destination = pick(get_area_turfs(src)) //This is a terrible hack until areas get fixed.
+	if(destination)
+		jumper.forceMove(destination)
+	return destination
+
 
 
 /datum/admins/proc/get_mob()

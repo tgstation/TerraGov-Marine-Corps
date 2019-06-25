@@ -649,7 +649,7 @@ Currently only has the tank hardpoints
 	owner.misc_ratios["move"] = 0.2
 	if(M)
 		to_chat(M, "<span class='danger'>You hit the nitros! RRRRRRRMMMM!!</span>")
-	playsound(M, 'sound/mecha/hydraulic.ogg', 100, 1, vary = 0)
+	playsound(M, 'sound/mecha/hydraulic.ogg', 60, 1, vary = 0)
 	addtimer(CALLBACK(src, .boost_off), TANK_OVERDRIVE_BOOST_DURATION)
 	addtimer(CALLBACK(src, .boost_ready_notice), TANK_OVERDRIVE_BOOST_COOLDOWN)
 

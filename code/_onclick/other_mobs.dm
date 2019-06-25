@@ -1,7 +1,7 @@
 /*
 	Animals & All Unspecified
 */
-/mob/living/UnarmedAttack(var/atom/A)
+/mob/living/UnarmedAttack(atom/A)
 	A.attack_animal(src)
 
 
@@ -13,7 +13,7 @@
 /*
 	Monkeys
 */
-/mob/living/carbon/monkey/UnarmedAttack(var/atom/A)
+/mob/living/carbon/monkey/UnarmedAttack(atom/A)
 	A.attack_paw(src)
 
 /atom/proc/attack_paw(mob/user as mob)
@@ -27,7 +27,7 @@
 	moving it here instead of various hand_p's has simplified
 	things considerably
 */
-/mob/living/carbon/monkey/RestrainedClickOn(var/atom/A)
+/mob/living/carbon/monkey/RestrainedClickOn(atom/A)
 	if(a_intent != INTENT_HARM || !ismob(A))
 		return
 	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))

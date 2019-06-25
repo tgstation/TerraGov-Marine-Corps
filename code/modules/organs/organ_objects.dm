@@ -151,7 +151,7 @@
 	organ_type = /datum/internal_organ/brain/prosthetic
 
 
-/obj/item/organ/proc/removed(var/mob/living/target,var/mob/living/user)
+/obj/item/organ/proc/removed(mob/living/target,mob/living/user)
 
 	if(!target || !user)
 		return
@@ -161,7 +161,7 @@
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] removed a vital organ ([src]) from [ADMIN_TPMONTY(target)].")
 		target.death()
 
-/obj/item/organ/eyes/removed(var/mob/living/target,var/mob/living/user)
+/obj/item/organ/eyes/removed(mob/living/target,mob/living/user)
 
 	if(!eye_colour)
 		eye_colour = list(0,0,0)
@@ -181,10 +181,10 @@
 		H.b_eyes = 0
 		H.update_body()
 
-/obj/item/organ/proc/replaced(var/mob/living/target)
+/obj/item/organ/proc/replaced(mob/living/target)
 	return
 
-/obj/item/organ/eyes/replaced(var/mob/living/target)
+/obj/item/organ/eyes/replaced(mob/living/target)
 
 	// Apply our eye colour to the target.
 	var/mob/living/carbon/human/H = target

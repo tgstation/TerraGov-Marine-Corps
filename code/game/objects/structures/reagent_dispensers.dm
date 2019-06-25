@@ -16,7 +16,7 @@
 	if(!I.is_refillable())
 		return ..()
 
-/obj/structure/reagent_dispensers/New()
+/obj/structure/reagent_dispensers/Initialize()
 	. = ..()
 	create_reagents(tank_volume, AMOUNT_VISIBLE, list_reagents)
 	if (!possible_transfer_amounts)

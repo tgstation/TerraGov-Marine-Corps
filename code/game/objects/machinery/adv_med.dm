@@ -215,7 +215,7 @@
 /obj/machinery/body_scanconsole/attack_ai(user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/body_scanconsole/attack_hand(var/mob/living/user)
+/obj/machinery/body_scanconsole/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

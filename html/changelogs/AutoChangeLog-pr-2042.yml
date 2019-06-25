@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - admin: "Removed legacy ban system support"

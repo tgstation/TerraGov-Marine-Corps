@@ -25,7 +25,7 @@
 	return (charge == maxcharge)
 
 // use power from a cell
-/obj/item/cell/use(var/amount)
+/obj/item/cell/use(amount)
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
@@ -36,7 +36,7 @@
 	return TRUE
 
 // recharge the cell
-/obj/item/cell/proc/give(var/amount)
+/obj/item/cell/proc/give(amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0

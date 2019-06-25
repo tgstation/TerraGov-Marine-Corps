@@ -132,6 +132,7 @@
 				V.loc = src.loc
 				V.update_canmove()
 				src.buckled_mob = V
+				RegisterSignal(V, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 				to_chat(V, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
 
 		// FEED ME, SEYMOUR.
@@ -306,7 +307,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/effect/plant_controller/proc/spawn_piece(var/turf/location)
+/obj/effect/plant_controller/proc/spawn_piece(turf/location)
 	var/obj/effect/plantsegment/SV = new(location)
 	SV.limited_growth = src.limited_growth
 	growth_queue += SV

@@ -101,7 +101,7 @@
 		mode = !mode
 		to_chat(user, "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>")
 		update_icon()
-		playsound(usr, 'sound/machines/click.ogg', 15, 1)
+		playsound(usr, 'sound/items/binoculars.ogg', 15, 1)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0

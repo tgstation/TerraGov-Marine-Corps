@@ -20,7 +20,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 	maint_all_access = FALSE
 	priority_announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!", sound = 'sound/misc/notice2.ogg')
 
-/datum/marine_main_ship/proc/set_security_level(var/level, announce = TRUE)
+/datum/marine_main_ship/proc/set_security_level(level, announce = TRUE)
 	switch(level)
 		if("green")
 			level = SEC_LEVEL_GREEN

@@ -305,7 +305,7 @@
 	to_chat(user, "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>")
 
 
-/obj/machinery/vending/lasgun/MouseDrop_T(var/atom/movable/A, mob/user)
+/obj/machinery/vending/lasgun/MouseDrop_T(atom/movable/A, mob/user)
 	. = ..()
 
 	var/obj/item/I = A

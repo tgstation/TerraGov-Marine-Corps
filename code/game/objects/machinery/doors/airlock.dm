@@ -320,7 +320,7 @@
 	if(!issilicon(user) && isElectrified())
 		shock(user, 100)
 
-/obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
+/obj/machinery/door/airlock/Topic(href, href_list, nowindow = 0)
 	. = ..()
 	if(.)
 		return
@@ -676,7 +676,7 @@
 //		ignite(is_hot(C))
 //	..()
 
-/obj/machinery/door/airlock/open(var/forced=0)
+/obj/machinery/door/airlock/open(forced=0)
 	if( operating || welded || locked || !loc)
 		return 0
 	if(!forced)
@@ -691,7 +691,7 @@
 		src.closeOther.close()
 	return ..()
 
-/obj/machinery/door/airlock/close(var/forced=0)
+/obj/machinery/door/airlock/close(forced=0)
 	if(operating || welded || locked || !loc)
 		return
 	if(!forced)
@@ -731,7 +731,7 @@
 	..()
 	return
 
-/obj/machinery/door/airlock/proc/lock(var/forced=0)
+/obj/machinery/door/airlock/proc/lock(forced=0)
 	if (operating || src.locked) return
 
 	src.locked = 1
@@ -739,7 +739,7 @@
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
 
-/obj/machinery/door/airlock/proc/unlock(var/forced=0)
+/obj/machinery/door/airlock/proc/unlock(forced=0)
 	if (operating || !src.locked) return
 
 	if(forced || hasPower()) //only can raise bolts if power's on

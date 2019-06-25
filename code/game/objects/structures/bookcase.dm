@@ -29,7 +29,7 @@
 
 		name = ("bookcase ([sanitize(newname)])")
 
-/obj/structure/bookcase/attack_hand(var/mob/user as mob)
+/obj/structure/bookcase/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return

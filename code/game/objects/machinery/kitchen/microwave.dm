@@ -24,8 +24,8 @@
 *   Initialising
 ********************/
 
-/obj/machinery/microwave/New()
-	..()
+/obj/machinery/microwave/Initialize()
+	. = ..()
 	create_reagents(100, OPENCONTAINER)
 	if (!available_recipes)
 		available_recipes = new
@@ -277,7 +277,7 @@
 			cooked.loc = src.loc
 		return
 
-/obj/machinery/microwave/proc/wzhzhzh(var/seconds as num)
+/obj/machinery/microwave/proc/wzhzhzh(seconds as num)
 	for (var/i=1 to seconds)
 		if (machine_stat & (NOPOWER|BROKEN))
 			return 0

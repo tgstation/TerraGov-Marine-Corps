@@ -40,7 +40,7 @@
 		//Using IDs because SOME chemicals (I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
 	return english_list(data)
 
-/datum/reagents/proc/remove_any(var/amount=1)
+/datum/reagents/proc/remove_any(amount=1)
 	var/list/cached_reagents = reagent_list
 	var/total_transfered = 0
 	var/current_list_element= 1
@@ -386,7 +386,7 @@
 			if(cached_my_atom)
 				if(!ismob(cached_my_atom)) //no bubbling mobs
 					if(selected_reaction.mix_sound)
-						playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 80, 1)
+						playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 30, 1)
 
 					for(var/mob/M in seen)
 						to_chat(M, "<span class='notice'>[selected_reaction.mix_message]</span>") //TODO [iconhtml]
@@ -399,7 +399,7 @@
 	return 0
 
 
-/datum/reagents/proc/isolate_reagent(var/reagent)
+/datum/reagents/proc/isolate_reagent(reagent)
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
@@ -446,7 +446,7 @@
 
 
 
-/datum/reagents/proc/reaction(var/atom/A, var/method=TOUCH, var/volume_modifier=1, show_message = 1)
+/datum/reagents/proc/reaction(atom/A, method=TOUCH, volume_modifier=1, show_message = 1)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
@@ -725,7 +725,7 @@
 
 	return english_list(out, "something indescribable")
 
-/datum/reagents/proc/expose_temperature(var/temperature, var/coeff=0.02)
+/datum/reagents/proc/expose_temperature(temperature, coeff=0.02)
 	var/temp_delta = (temperature - chem_temp) * coeff
 	if(temp_delta > 0)
 		chem_temp = min(chem_temp + max(temp_delta, 1), temperature)

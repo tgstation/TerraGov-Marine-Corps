@@ -279,7 +279,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	if(src.blood)
 		target_types += /obj/effect/decal/cleanable/blood/
 
-/obj/machinery/bot/cleanbot/proc/clean(var/obj/effect/decal/cleanable/target)
+/obj/machinery/bot/cleanbot/proc/clean(obj/effect/decal/cleanable/target)
 	anchored = TRUE
 	icon_state = "cleanbot-c"
 	visible_message("<span class='warning'> [src] begins to clean up the [target]</span>")

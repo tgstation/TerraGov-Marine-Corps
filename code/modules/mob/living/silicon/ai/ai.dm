@@ -61,7 +61,7 @@
 	return ..()
 
 
-/mob/living/silicon/ai/restrained(ignore_grab)
+/mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
 
 

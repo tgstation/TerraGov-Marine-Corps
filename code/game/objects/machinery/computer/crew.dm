@@ -70,7 +70,7 @@
 /obj/machinery/computer/crew/interact(mob/living/user)
 	ui_interact(user)
 
-/obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
+/obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	user.set_interaction(src)

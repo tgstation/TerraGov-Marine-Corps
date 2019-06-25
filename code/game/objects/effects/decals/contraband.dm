@@ -15,7 +15,7 @@
 	var/serial_number = 0
 
 
-/obj/item/contraband/poster/New(turf/loc, var/given_serial = 0)
+/obj/item/contraband/poster/New(turf/loc, given_serial = 0)
 	if(given_serial == 0)
 		serial_number = rand(1, length(GLOB.poster_designs))
 	else
@@ -88,7 +88,7 @@ obj/structure/sign/poster/New(var/serial)
 
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
-/turf/closed/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
+/turf/closed/wall/proc/place_poster(obj/item/contraband/poster/P, mob/user)
 
 	if(!istype(src,/turf/closed/wall))
 		to_chat(user, "<span class='warning'>You can't place this here!</span>")

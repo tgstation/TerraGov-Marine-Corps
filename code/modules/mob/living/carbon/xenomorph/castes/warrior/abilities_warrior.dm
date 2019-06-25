@@ -187,6 +187,8 @@
 		return FALSE
 	if(!isliving(A))
 		return FALSE
+	if(!owner.Adjacent(A))
+		return FALSE
 	var/mob/living/L = A
 	if(L.stat == DEAD || isnestedhost(L)) //Can't bully the dead/nested hosts.
 		return FALSE
@@ -243,7 +245,7 @@
 // ***************************************
 
 // Called when pulling something and attacking yourself with the pull
-/mob/living/carbon/xenomorph/proc/pull_power(var/mob/M)
+/mob/living/carbon/xenomorph/proc/pull_power(mob/M)
 	if (isxenowarrior(src) && !ripping_limb && M.stat != DEAD)
 		ripping_limb = TRUE
 		if(rip_limb(M))
@@ -252,7 +254,7 @@
 
 
 // Warrior Rip Limb - called by pull_power()
-/mob/living/carbon/xenomorph/proc/rip_limb(var/mob/M)
+/mob/living/carbon/xenomorph/proc/rip_limb(mob/M)
 	if (!ishuman(M))
 		return FALSE
 

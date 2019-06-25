@@ -72,7 +72,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		burn_tile()
 
 
-/turf/open/floor/ceiling_debris_check(var/size = 1)
+/turf/open/floor/ceiling_debris_check(size = 1)
 	ceiling_debris(size)
 
 
@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 
 //This proc will make a turf into a grass patch. Fun eh? Insert the grass tile to be used as the argument
 //If no argument is given a new one will be made.
-/turf/open/floor/proc/make_grass_floor(var/obj/item/stack/tile/grass/T = null)
+/turf/open/floor/proc/make_grass_floor(obj/item/stack/tile/grass/T = null)
 	broken = 0
 	burnt = 0
 	intact_tile = 1
@@ -344,7 +344,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 
 //This proc will make a turf into a wood floor. Fun eh? Insert the wood tile to be used as the argument
 //If no argument is given a new one will be made.
-/turf/open/floor/proc/make_wood_floor(var/obj/item/stack/tile/wood/T = null)
+/turf/open/floor/proc/make_wood_floor(obj/item/stack/tile/wood/T = null)
 	broken = 0
 	burnt = 0
 	intact_tile = 1
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 
 //This proc will make a turf into a carpet floor. Fun eh? Insert the carpet tile to be used as the argument
 //If no argument is given a new one will be made.
-/turf/open/floor/proc/make_carpet_floor(var/obj/item/stack/tile/carpet/T = null)
+/turf/open/floor/proc/make_carpet_floor(obj/item/stack/tile/carpet/T = null)
 	broken = 0
 	burnt = 0
 	intact_tile = 1

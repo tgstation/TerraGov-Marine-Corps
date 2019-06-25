@@ -144,13 +144,13 @@
 	return new path(location, item_color)
 
 
-/obj/item/stack/cable_coil/use(var/used)
+/obj/item/stack/cable_coil/use(used)
 	if( ..() )
 		updateicon()
 		update_wclass()
 		return TRUE
 
-/obj/item/stack/cable_coil/add(var/extra)
+/obj/item/stack/cable_coil/add(extra)
 	if( ..() )
 		updateicon()
 		update_wclass()
@@ -215,7 +215,7 @@
 
 // called when cable_coil is click on an installed obj/cable
 // or click on a turf that already contains a "node" cable
-/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, var/showerror = TRUE)
+/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, showerror = TRUE)
 	var/turf/U = get_turf(user)
 	if(!isturf(U))
 		return

@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(VVpixelmovement, list("step_x", "step_y", "bound_height", "boun
 GLOBAL_PROTECT(VVpixelmovement)
 
 
-/client/proc/vv_get_class(var/var_name, var/var_value)
+/client/proc/vv_get_class(var_name, var_value)
 	if(isnull(var_value))
 		. = VV_NULL
 
@@ -269,7 +269,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 //FALSE = no subtypes, strict exact type pathing (or the type doesn't have subtypes)
 //TRUE = Yes subtypes
 //NULL = User cancelled at the prompt or invalid type given
-/client/proc/vv_subtype_prompt(var/type)
+/client/proc/vv_subtype_prompt(type)
 	if (!ispath(type))
 		return
 	var/list/subtypes = subtypesof(type)

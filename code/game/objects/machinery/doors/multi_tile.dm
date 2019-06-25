@@ -185,7 +185,7 @@
 /obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ex_act(severity)
 	return
 
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/close(var/forced=0)
+/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/close(forced=0)
 	if(forced)
 		for(var/turf/T in get_filler_turfs())
 			for(var/mob/living/L in T)

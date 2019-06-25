@@ -79,7 +79,7 @@
 			input = /mob/living/carbon/monkey
 			output = null
 
-/obj/machinery/processor/proc/select_recipe(var/X)
+/obj/machinery/processor/proc/select_recipe(X)
 	for (var/Type in subtypesof(/datum/food_processor_process) - /datum/food_processor_process/mob)
 		var/datum/food_processor_process/P = new Type()
 		if (!istype(X, P.input))
@@ -113,7 +113,7 @@
 	user.drop_held_item()
 	O.forceMove(src)
 
-/obj/machinery/processor/attack_hand(var/mob/user as mob)
+/obj/machinery/processor/attack_hand(mob/user as mob)
 	. = ..()
 	if(.)
 		return

@@ -265,7 +265,7 @@
 
 	cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 
-/datum/emergency_call/proc/add_candidate(var/mob/M)
+/datum/emergency_call/proc/add_candidate(mob/M)
 	if(!M.client)
 		return FALSE  //Not connected
 

@@ -104,7 +104,7 @@
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
-/mob/living/proc/calculate_affecting_pressure(var/pressure)
+/mob/living/proc/calculate_affecting_pressure(pressure)
 	return
 
 
@@ -112,7 +112,7 @@
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/storage/Storage = null)
+/mob/living/get_contents(obj/item/storage/Storage = null)
 	var/list/L = list()
 
 	if(Storage) //If it called itself
@@ -214,25 +214,43 @@
 	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
 
 
-/mob/proc/resist_grab(moving_resist)
+/mob/proc/resist_grab()
 	return //returning 1 means we successfully broke free
 
-/mob/living/resist_grab(moving_resist)
+
+/mob/living/proc/do_resist_grab()
+	if(restrained(RESTRAINED_NECKGRAB))
+		return FALSE
+	if(last_special >= world.time)
+		return FALSE
+	last_special = world.time + CLICK_CD_RESIST
+	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
+	return resist_grab()
+
+
+/mob/living/proc/do_move_resist_grab()
+	if(restrained(RESTRAINED_NECKGRAB))
+		return FALSE
+	if(last_special >= world.time)
+		return FALSE
+	last_special = world.time + CLICK_CD_RESIST
+	visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
+	return resist_grab()
+
+
+/mob/living/resist_grab()
 	if(pulledby.grab_level)
-		grab_resist_level += 1
-		if(grab_resist_level > pulledby.grab_level)
+		if(++grab_resist_level >= pulledby.grab_level)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 			pulledby.stop_pulling()
 			grab_resist_level = 0 //zero it out.
 			return TRUE
-		if(moving_resist && client) //we resisted by trying to move
-			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
-			client.move_delay = world.time + (10*pulledby.grab_level) + client.move_delay
 	else
 		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
 		return TRUE
+
 
 /mob/living/stop_pulling()
 	if(ismob(pulling))
@@ -247,6 +265,7 @@
 	if(isliving(pulling))
 		var/mob/living/L = pulling
 		L.grab_resist_level = 0 //zero it out
+		DISABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
 
 	. = ..()
 
@@ -534,7 +553,7 @@ value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
 
-/mob/living/carbon/Dizzy(var/amount)
+/mob/living/carbon/Dizzy(amount)
 	dizziness = CLAMP(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)
