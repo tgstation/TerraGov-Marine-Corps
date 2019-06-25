@@ -619,10 +619,6 @@
 
 	var/turf/T = get_turf(A)
 
-	if(!istype(T))
-		to_chat(src, "Failed to find a valid destination!")
-		return //Might have attempted to jump to an existing area without a valid jump target.
-
 	log_admin("[key_name(usr)] jumped to [A] at [AREACOORD(T)].")
 	if(!isobserver(N))
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [A] at [ADMIN_TPMONTY(T)].")
