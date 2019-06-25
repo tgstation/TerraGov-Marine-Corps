@@ -6157,7 +6157,7 @@
 "aqp" = (
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/timed_late{
-	dir = 2,
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/s)
@@ -7988,7 +7988,7 @@
 "auu" = (
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/timed_late{
-	dir = 2,
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/medsec)
