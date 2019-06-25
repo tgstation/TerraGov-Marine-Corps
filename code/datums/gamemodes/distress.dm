@@ -131,7 +131,6 @@
 	announce_survivors()
 	announce_medal_awards()
 	announce_round_stats()
-	end_of_round_deathmatch()
 
 
 /datum/game_mode/distress/proc/initialize_scales()
