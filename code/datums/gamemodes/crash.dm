@@ -38,7 +38,7 @@
 
 /datum/game_mode/crash/can_start()
 	. = ..()
-	return TRUE
+	return TRUE // TODO: Remove this check
 	// Check if enough players have signed up for xeno & queen roles.
 	initialize_xeno_leader()
 	initialize_xenomorphs()
@@ -119,7 +119,7 @@
 		return FALSE
 
 	var/list/living_player_list = count_humans_and_xenos()
-	var/num_humans = living_player_list[1] + 2
+	var/num_humans = living_player_list[1] + 2 // TODO: REmove this check
 	var/num_xenos = living_player_list[2] + 2
 	
 	var/list/grounded_living_player_list = count_humans_and_xenos(SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)))
@@ -147,22 +147,6 @@
 		if(CRASH_MARINE_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
 			round_finished = MODE_CRASH_M_MAJOR 
-
-	// if(!planet_nuked && num_humans == 0 && num_xenos > 0) // XENO Major (All marines killed)
-	// 	message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
-	// 	round_finished = MODE_CRASH_X_MAJOR 
-	// else if()
-	// 	message_admins("Round finished: [MODE_CRASH_M_MINOR]")
-	// 	round_finished = MODE_CRASH_M_MINOR 
-	// else if(marines_evac && planet_nuked) // 
-	// 	message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
-	// 	round_finished = MODE_CRASH_M_MAJOR 
-	// else if(marines_evac && !planet_nuked) 
-	// 	message_admins("Round finished: [MODE_CRASH_X_MINOR]")
-	// 	round_finished = MODE_CRASH_X_MINOR 
-	// else if(num_humans == 0 && num_xenos == 0 || (planet_nuked && !marines_evac)) // Draw, for all other reasons
-	// 	message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
-	// 	round_finished = MODE_CRASH_DRAW_DEATH 
 
 	return FALSE
 
