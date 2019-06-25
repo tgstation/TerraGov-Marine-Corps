@@ -40,14 +40,14 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/leader)
 		SSjob.AssignRole(H, J.title)
-		J.equip(H)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of the UPP squad.</span>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/medic)
 		SSjob.AssignRole(H, J.title)
-		J.equip(H)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a medic of the UPP army.</span>")
 		medics++
 		return
@@ -55,11 +55,11 @@
 	if(prob(20))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/heavy)
 		SSjob.AssignRole(H, J.title)
-		J.equip(H)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a specialist of the UPP army.</span>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/upp/standard)
 	SSjob.AssignRole(H, J.title)
-	J.equip(H)
+	J.assign_equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the UPP army.</span>")

@@ -224,8 +224,7 @@ SUBSYSTEM_DEF(job)
 			SendToLateJoin(L)
 
 	if(job && L.mind)
-		L.mind.assigned_role = rank
-		var/new_mob = job.equip(L, null, null, joined_late , null, M.client)
+		var/new_mob = job.assign_equip(L, null, null, joined_late , null, M.client)
 		if(ismob(new_mob))
 			L = new_mob
 			if(!joined_late)

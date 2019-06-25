@@ -343,8 +343,8 @@
 			var/mob/living/carbon/human/H = L
 			if(!H.w_uniform)
 				var/job = pick(/datum/job/clf/leader, /datum/job/upp/commando/leader, /datum/job/freelancer/leader)
-				var/datum/job/J = new job
-				J.equip(H)
+				var/datum/job/J = SSjob.GetJobType(job)
+				J.assign_equip(H)
 				H.regenerate_icons()
 
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")

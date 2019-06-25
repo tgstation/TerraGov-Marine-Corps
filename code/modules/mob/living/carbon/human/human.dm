@@ -1320,28 +1320,7 @@
 	if(!J)
 		return FALSE
 
-	var/datum/outfit/job/O = new J.outfit
-	var/id = O.id ? O.id : /obj/item/card/id
-	var/obj/item/card/id/I = new id
-	var/datum/skills/L = new J.skills_type
-	mind.cm_skills = L
-	mind.comm_title = J.comm_title
-
-	if(wear_id)
-		qdel(wear_id)
-
-	job = rank
-	faction = J.faction
-
-	equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-	SSjob.AssignRole(src, rank)
-	O.handle_id(src)
-
-	GLOB.datacore.manifest_update(real_name, real_name, job)
-
-	if(assigned_squad)
-		change_squad(assigned_squad.name)
+	J.assign(src)
 
 	return TRUE
 
@@ -1375,7 +1354,8 @@
 /mob/living/carbon/human/take_over(mob/M)
 	. = ..()
 
-	set_rank(job)
+	var/datum/job/J = SSjob.GetJob(job)
+	J.equip(src)
 
 	if(assigned_squad)
 		change_squad(assigned_squad.name)

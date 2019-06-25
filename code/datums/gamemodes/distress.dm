@@ -280,8 +280,7 @@
 	var/survivor_job = pick(subtypesof(/datum/job/survivor))
 	var/datum/job/J = new survivor_job
 
-	H.set_rank(J.title)
-	J.equip(H)
+	J.assign_equip(H)
 
 	H.mind.assigned_role = "Survivor"
 
