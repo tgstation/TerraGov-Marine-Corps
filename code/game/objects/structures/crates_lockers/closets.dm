@@ -225,7 +225,7 @@
 		return FALSE
 
 	if(opened)
-		if(!welder.remove_fuel(0, user))
+		if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
 			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 			return TRUE
 		new /obj/item/stack/sheet/metal(drop_location())
@@ -233,7 +233,7 @@
 		qdel(src)
 		return TRUE
 
-	if(!welder.remove_fuel(0,user))
+	if(!welder.use_tool(src, user, 2 SECONDS, 1, 50))
 		to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 		return TRUE
 	welded = !welded
