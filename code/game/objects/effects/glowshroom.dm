@@ -8,7 +8,6 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "glowshroomf"
 	layer = ABOVE_TURF_LAYER
-	l_color = "#003300"
 
 	var/endurance = 30
 	var/potency = 30
@@ -21,9 +20,8 @@
 
 /obj/effect/glowshroom/single
 
-/obj/effect/glowshroom/New()
-
-	..()
+/obj/effect/glowshroom/Initialize(mapload, ...)
+	. = ..()
 
 	setDir(CalcDir())
 
@@ -41,12 +39,9 @@
 	else //if on the floor, glowshroom on-floor sprite
 		icon_state = "glowshroomf"
 
-	SetLuminosity(round(potency/15))
+	set_light(round(potency / 15))
 	lastTick = world.timeofday
 
-/obj/effect/glowshroom/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/effect/glowshroom/proc/CalcDir(turf/location = loc)
 	set background = 1

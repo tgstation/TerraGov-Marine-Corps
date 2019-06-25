@@ -269,7 +269,7 @@
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD)
-		if(luminosity > 0)
+		if(length(light_sources))
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.flick_attack_overlay(src, "slash")
 			disable_lights(sparks = TRUE)

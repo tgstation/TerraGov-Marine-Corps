@@ -89,6 +89,7 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "at" = (
@@ -310,6 +311,24 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/dropship_hatch/right,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"bd" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"be" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bf" = (
@@ -676,7 +695,7 @@ bj
 aI
 bv
 bD
-aI
+be
 aI
 aI
 bX
@@ -692,7 +711,7 @@ aB
 aK
 aN
 aN
-aN
+bd
 aN
 aN
 aK
@@ -738,7 +757,7 @@ aD
 aK
 aI
 aI
-aI
+be
 aI
 aI
 aK
@@ -768,7 +787,7 @@ bl
 aN
 bx
 aN
-aN
+bd
 aN
 aN
 ca

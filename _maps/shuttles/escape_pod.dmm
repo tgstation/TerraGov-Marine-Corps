@@ -89,6 +89,13 @@
 	icon_state = "wall8"
 	},
 /area/shuttle/escape_pod)
+"s" = (
+/obj/machinery/cryopod/evacuation,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/escapepod,
+/area/shuttle/escape_pod)
 
 (1,1,1) = {"
 a
@@ -100,7 +107,7 @@ m
 (2,1,1) = {"
 b
 f
-f
+s
 f
 r
 "}

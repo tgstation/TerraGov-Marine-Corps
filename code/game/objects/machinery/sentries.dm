@@ -306,7 +306,6 @@
 	QDEL_NULL(cell)
 	target = null
 	alert_list = list()
-	SetLuminosity(0)
 	stop_processing()
 	. = ..()
 
@@ -472,7 +471,7 @@
 				visible_message("<span class='notice'>The [name] buzzes in a monotone voice: 'Default systems initiated'.</span>'")
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
-				SetLuminosity(7)
+				set_light(7)
 				if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
@@ -782,7 +781,7 @@
 		sentry_alert(SENTRY_ALERT_BATTERY)
 		visible_message("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
 		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
-		SetLuminosity(0)
+		set_light(0)
 		update_icon()
 		return FALSE
 
@@ -982,9 +981,9 @@
 /obj/machinery/marine_turret/proc/muzzle_flash(angle)
 	if(isnull(angle)) return
 
-	SetLuminosity(muzzle_flash_lum)
+	set_light(muzzle_flash_lum)
 	spawn(10)
-		SetLuminosity(-muzzle_flash_lum)
+		set_light(0)
 
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
@@ -1104,7 +1103,7 @@
 		visible_message("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		ENABLE_BITFIELD(turret_flags, TURRET_ON)
-		SetLuminosity(7)
+		set_light(7)
 		update_icon()
 	else
 		DISABLE_BITFIELD(turret_flags, TURRET_ON)
@@ -1327,7 +1326,7 @@
 		return FALSE
 	target = null
 	ENABLE_BITFIELD(turret_flags, TURRET_ON)
-	SetLuminosity(7)
+	set_light(7)
 	if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 		camera = new /obj/machinery/camera(src)
 		camera.network = list("military")

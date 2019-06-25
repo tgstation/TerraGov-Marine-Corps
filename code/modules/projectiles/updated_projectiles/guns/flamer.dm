@@ -496,7 +496,6 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/flamer_fire/Destroy()
-	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -551,13 +550,13 @@
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
-			SetLuminosity(2)
+			set_light(2)
 		if(10 to 25)
 			icon_state = "[flame_color]_2"
-			SetLuminosity(4)
+			set_light(4)
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
-			SetLuminosity(6)
+			set_light(6)
 
 
 /obj/flamer_fire/process()

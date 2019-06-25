@@ -29,7 +29,7 @@
 /obj/machinery/door/poddoor/shutters/proc/do_open()
 	density = FALSE
 	layer = open_layer
-	SetOpacity(FALSE)
+	set_opacity(FALSE)
 
 	if(operating) //emag again
 		operating = FALSE
@@ -45,7 +45,7 @@
 	layer = closed_layer
 	density = TRUE
 	if(visible)
-		SetOpacity(TRUE)
+		set_opacity(TRUE)
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 	addtimer(CALLBACK(src, .proc/do_close), 10)
 	return TRUE

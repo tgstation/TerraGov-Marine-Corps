@@ -147,28 +147,12 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/dropped(mob/user)
 	. = ..()
 
-	turn_off_light(user)
-
 	unwield(user)
 	harness_check(user)
 
 
-/obj/item/weapon/gun/proc/turn_off_light(mob/bearer)
-	if(!bearer && ismob(loc))
-		bearer = loc
-	if(flags_gun_features & GUN_FLASHLIGHT_ON && bearer)
-		bearer.SetLuminosity( rail.light_mod * -1 )
-		SetLuminosity(rail.light_mod)
-		return TRUE
-	return FALSE
-
-
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
-
-	if(flags_gun_features & GUN_FLASHLIGHT_ON)
-		user.SetLuminosity(rail.light_mod)
-		SetLuminosity(0)
 
 	unwield(user)
 

@@ -18,7 +18,7 @@
 				hud_used.move_intent.icon_state = "walking"
 		legcuffed = restraints
 		legcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/item/restraints/.proc/resisted_against)
-	else
+	else if (legcuffed)
 		legcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 		legcuffed = null
 	update_inv_legcuffed()
