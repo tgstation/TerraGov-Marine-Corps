@@ -17,7 +17,7 @@ All ShuttleMove procs go here
 // returns the new move_mode (based on the old)
 /turf/proc/toShuttleMove(turf/oldT, move_mode, obj/docking_port/mobile/shuttle)
 	. = move_mode
-	if(!(. & MOVE_TURF|MOVE_CONTENTS))
+	if(!(. & (MOVE_TURF|MOVE_CONTENTS)))
 		return
 
 //	var/shuttle_dir = shuttle.dir
