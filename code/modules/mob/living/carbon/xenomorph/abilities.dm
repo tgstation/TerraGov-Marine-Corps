@@ -188,7 +188,7 @@
 
 	var/atom/new_resin
 
-	if(istype(X.selected_resin, /turf/closed/wall/resin))
+	if(X.selected_resin == /turf/closed/wall/resin)
 		T.ChangeTurf(X.selected_resin)
 		new_resin = T
 	else

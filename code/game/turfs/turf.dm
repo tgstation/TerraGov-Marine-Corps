@@ -48,6 +48,8 @@
 	// by default, vis_contents is inherited from the turf that was here before
 	vis_contents.Cut()
 
+	assemble_baseturfs()
+
 	levelupdate()
 
 	visibilityChanged()

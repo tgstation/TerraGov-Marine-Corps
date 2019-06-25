@@ -181,22 +181,20 @@
 	..()
 
 // create a new lighting fixture
-/obj/machinery/light/New()
-	..()
+/obj/machinery/light/Initialize(mapload, ...)
+	. = ..()
 
-	spawn(2)
-		switch(fitting)
-			if("tube")
-				brightness = 8
-				if(prob(2))
-					broken(1)
-			if("bulb")
-				brightness = 4
-				if(prob(5))
-					broken(1)
+	switch(fitting)
+		if("tube")
+			brightness = 8
+			if(prob(2))
+				broken(TRUE)
+		if("bulb")
+			brightness = 4
+			if(prob(5))
+				broken(TRUE)
 
-		spawn(1)
-			update(0)
+	update(FALSE)
 
 	switch(dir)
 		if(NORTH)
@@ -210,8 +208,7 @@
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE
-//		A.update_lights()
-	. = ..()
+	return ..()
 
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)

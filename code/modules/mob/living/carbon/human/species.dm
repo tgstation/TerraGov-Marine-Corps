@@ -101,7 +101,8 @@
 	var/knock_down_reduction = 1 //how much the knocked_down effect is reduced per Life call.
 	var/stun_reduction = 1 //how much the stunned effect is reduced per Life call.
 	var/knock_out_reduction = 1 //same thing
-	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+	var/lighting_alpha
+	var/see_in_dark
 
 /datum/species/New()
 	if(hud_type)
@@ -587,6 +588,7 @@
 		)
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	see_in_dark = 8
 
 
 /datum/species/early_synthetic
@@ -622,6 +624,7 @@
 		)
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+	see_in_dark = 6
 
 
 /mob/living/carbon/human/proc/reset_jitteriness()

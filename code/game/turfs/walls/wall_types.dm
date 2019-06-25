@@ -368,10 +368,8 @@
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
 
-/turf/closed/wall/resin/ChangeTurf(new_turf_path, forget_old_turf, flags)
+/turf/closed/wall/resin/ChangeTurf(path, new_baseturf, flags)
 	. = ..()
-	if(!forget_old_turf)
-		return
 	new /obj/effect/alien/weeds(.)
 
 /turf/closed/wall/resin/flamer_fire_act()
@@ -501,7 +499,8 @@
 		var/turf/T
 		for(var/i in GLOB.cardinals)
 			T = get_step(src, i)
-			if(!istype(T)) continue
+			if(!istype(T)) 
+				continue
 			for(var/obj/structure/mineral_door/resin/R in T)
 				R.check_resin_support()
 
