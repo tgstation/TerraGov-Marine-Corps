@@ -504,7 +504,7 @@
 	if(wearer)
 		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(var/mob/user)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
 	if (!user)
 		camo_active = FALSE
 		wearer = null
