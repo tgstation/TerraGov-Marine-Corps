@@ -204,6 +204,14 @@
 		if(WEST)
 			pixel_x = -10
 
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/light/LateInitialize()
+	var/area/A = get_area(src)
+	seton(A.lightswitch && A.power_light)
+	
+
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
