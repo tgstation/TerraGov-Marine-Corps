@@ -13,11 +13,12 @@
 		return
 
 	var/message = FALSE
-	switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
-		if("Yes")
-			message = TRUE
-		if("Cancel")
-			return
+	if(CONFIG_GET(string/restart_message))
+		switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
+			if("Yes")
+				message = TRUE
+			if("Cancel")
+				return
 
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
