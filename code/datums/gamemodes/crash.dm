@@ -48,6 +48,10 @@
 	return TRUE
 
 
+/datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
+	shuttle.crashing = TRUE
+	SSshuttle.moveShuttleToDock(shuttle.id, target, FALSE) // FALSE = instant arrival
+
 /datum/game_mode/crash/post_setup()
 	. = ..()
 	var/list/validdocks = list()
@@ -70,7 +74,7 @@
 		message_admins("<span class='warning'>Unable to get a valid shuttle target!</span>")
 		return
 
-	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // Timed departure
+	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS)
 
 /datum/game_mode/crash/pre_setup()
 	. = ..()

@@ -8,7 +8,7 @@
 
 /obj/machinery/nuclearbomb/crash/explode()
 	. = ..()
-	addTimer(CALLBACK(src, .proc/set_victory_condition), 45 SECONDS) // TODO: Refine the time here.
+	addtimer(CALLBACK(src, .proc/set_victory_condition), 45 SECONDS) // TODO: Refine the time here.
 	
 
 /obj/machinery/nuclearbomb/crash/make_deployable()
