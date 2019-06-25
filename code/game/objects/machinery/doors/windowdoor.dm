@@ -65,7 +65,7 @@
 /obj/machinery/door/window/bumpopen(mob/user)
 	if(operating || !density)
 		return
-	add_fingerprint(user)
+	add_fingerprint(user, "bumpopen")
 	if(!requiresID())
 		user = null
 
