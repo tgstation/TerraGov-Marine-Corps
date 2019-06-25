@@ -33,7 +33,6 @@
 
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = 0
-	luminosity = 1
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/arrival
@@ -218,7 +217,6 @@
 	name = "start area"
 	icon_state = "start"
 	requires_power = 0
-	luminosity = 1
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = 1
 
@@ -811,7 +809,6 @@
 /area/holodeck
 	name = "\improper Abandoned Holodeck"
 	icon_state = "Holodeck"
-	luminosity = 1
 	dynamic_lighting = 0
 
 /area/holodeck/alphadeck
@@ -951,7 +948,6 @@
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
-	luminosity = 1
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 	auxport

@@ -121,19 +121,24 @@
 	desc = "A powerful light stationed near landing zones to provide better visibility."
 	icon_state = "flood01"
 	on = 1
-	luminosity = 5
 	use_power = 0
 
-	attack_hand()
-		return
 
-	attackby()
-		return
+/obj/machinery/floodlight/landing/Initialize(mapload, ...)
+	. = ..()
+	set_light(5)
+
+
+/obj/machinery/floodlight/landing/attack_hand()
+	return
+
+
+/obj/machinery/floodlight/landing/attackby()
+	return
 
 
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
 	icon_state = "flood01"
-	luminosity = 7
 	on = TRUE
 	use_power = FALSE

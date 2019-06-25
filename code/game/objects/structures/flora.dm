@@ -436,7 +436,6 @@
 
 /obj/structure/jungle/plantbot1/alien
 	icon_state = "alienplant1"
-	luminosity = 2
 
 /obj/structure/jungle/planttop1
 	name = "strange tree"

@@ -43,7 +43,12 @@
 /obj/item/lightstick/anchored
 	icon_state = "lightstick_blue1"
 	anchored = TRUE
-	luminosity = 2
+
+
+/obj/item/lightstick/anchored/Initialize(mapload, ...)
+	. = ..()
+	set_light(2, l_color = LIGHT_COLOR_CYAN)
+
 
 //Red
 /obj/item/lightstick/red
@@ -54,4 +59,8 @@
 /obj/item/lightstick/red/anchored
 	icon_state = "lightstick_red1"
 	anchored = TRUE
-	luminosity = 2
+
+
+/obj/item/lightstick/red/anchored/Initialize(mapload, ...)
+	. = ..()
+	set_light(2, l_color = LIGHT_COLOR_RED)

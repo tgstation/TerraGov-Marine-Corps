@@ -101,6 +101,7 @@
 	var/knock_down_reduction = 1 //how much the knocked_down effect is reduced per Life call.
 	var/stun_reduction = 1 //how much the stunned effect is reduced per Life call.
 	var/knock_out_reduction = 1 //same thing
+	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 
 /datum/species/New()
 	if(hud_type)
@@ -585,6 +586,8 @@
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+
 
 /datum/species/early_synthetic
 	name = "Early Synthetic"
@@ -617,6 +620,8 @@
 		"heart" =    /datum/internal_organ/heart/prosthetic,
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
+
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 
 
 /mob/living/carbon/human/proc/reset_jitteriness()

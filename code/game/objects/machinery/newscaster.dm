@@ -92,7 +92,6 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	var/c_locked=0;        //Will our new channel be locked to public submissions?
 	var/hitstaken = 0      //Death at 3 hits from an item with force>=15
 	var/datum/feed_channel/viewing_channel = null
-	luminosity = 0
 	anchored = TRUE
 
 

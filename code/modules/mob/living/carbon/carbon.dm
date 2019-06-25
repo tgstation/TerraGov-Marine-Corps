@@ -400,6 +400,9 @@
 	see_in_dark = species.darksight
 	see_invisible = initial(see_invisible)
 
+	if(species.lighting_alpha)
+		lighting_alpha = initial(species.lighting_alpha)
+
 	if(client.eye != src)
 		var/atom/A = client.eye
 		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.

@@ -56,7 +56,6 @@
 	density = 0
 	anchored = TRUE
 	layer = TURF_LAYER
-	luminosity = 1
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
 

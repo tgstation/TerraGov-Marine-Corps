@@ -77,7 +77,6 @@
 	name = "laser"
 	anchored = TRUE
 	mouse_opacity = 1
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target_coordinate"
 	effect_duration = 600
@@ -94,7 +93,6 @@
 	name = "laser"
 	anchored = TRUE
 	mouse_opacity = 1
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target2"
 	effect_duration = 600
@@ -141,7 +139,6 @@
 /obj/effect/overlay/temp/blinking_laser
 	name = "blinking laser"
 	anchored = TRUE
-	luminosity = 2
 	effect_duration = 10
 	mouse_opacity = 0
 	icon = 'icons/obj/items/projectiles.dmi'
@@ -151,7 +148,6 @@
 /obj/effect/overlay/temp/sniper_laser
 	name = "laser"
 	mouse_opacity = 0
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "sniper_laser"
 
@@ -177,7 +173,6 @@
 	name = "tanklaser"
 	anchored = TRUE
 	mouse_opacity = 0
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 	effect_duration = 20

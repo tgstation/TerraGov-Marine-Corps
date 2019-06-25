@@ -5,7 +5,6 @@
 	density = TRUE
 	anchored = TRUE
 	animate_movement = FORWARD_STEPS
-	luminosity = 2
 	can_buckle = TRUE
 
 	var/on = FALSE
@@ -150,7 +149,6 @@
 	if(powered && cell.charge < charge_use)
 		return FALSE
 	on = TRUE
-	set_light(initial(luminosity))
 	update_icon()
 	return TRUE
 
