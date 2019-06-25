@@ -775,6 +775,7 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
+	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
 	var/viewers = viewers()
 	for(var/mob/M in viewers)
 		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
