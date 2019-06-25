@@ -466,7 +466,7 @@
 		return FALSE
 	if(anchored)
 		return FALSE
-	if((!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density))
+	if(!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density)
 		return FALSE
 	return TRUE
 
@@ -474,7 +474,7 @@
 /obj/item/closet_insertion_allowed(obj/structure/closet/destination)
 	if(anchored)
 		return FALSE
-	if((!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density))
+	if(!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density)
 		return FALSE
 	if(CHECK_BITFIELD(flags_item, DELONDROP))
 		return FALSE
