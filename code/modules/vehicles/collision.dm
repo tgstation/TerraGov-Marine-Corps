@@ -43,18 +43,19 @@
 		throw_at(T, 3, 2, roadtrafficaccident, 1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
-	if(!lying)
-		temp = get_step(T, facing)
-		T = temp
-		T = get_step(T, pick(GLOB.cardinals))
-		if(mob_size == MOB_SIZE_BIG)
-			throw_at(T, 3, 2, roadtrafficaccident, 0)
-		else
-			throw_at(T, 3, 2, roadtrafficaccident, 1)
-		if(!knocked_down)
-			KnockDown(1)
-		apply_damage(rand(10, 15), BRUTE)
-		visible_message("<span class='danger'>[roadtrafficaccident] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[roadtrafficaccident] violently bumps into you!</span>")
+	if(lying)
+		return FALSE
+	temp = get_step(T, facing)
+	T = temp
+	T = get_step(T, pick(GLOB.cardinals))
+	if(mob_size == MOB_SIZE_BIG)
+		throw_at(T, 3, 2, roadtrafficaccident, 0)
+	else
+		throw_at(T, 3, 2, roadtrafficaccident, 1)
+	if(!knocked_down)
+		KnockDown(1)
+	apply_damage(rand(10, 15), BRUTE)
+	visible_message("<span class='danger'>[roadtrafficaccident] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[roadtrafficaccident] violently bumps into you!</span>")
 
 /mob/living/carbon/Xenomorph/tank_collision(obj/vehicle/roadtrafficaccident, facing, turf/T, turf/temp)
 	if(lying || loc == roadtrafficaccident.loc)
