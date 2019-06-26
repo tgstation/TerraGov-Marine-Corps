@@ -322,9 +322,9 @@ Redefine as needed.
 
 	switch(grab_level)
 		if(TKGRAB_NONLETHAL)
-			//victim.SetStunned(2)
+			victim.set_stagger(4)
 		if(TKGRAB_LETHAL)
-			//victim.SetKnockeddown(2)
+			victim.set_stagger(2)
 			victim.Losebreath(3)
 
 	apply_focus_overlay()
