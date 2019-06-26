@@ -37235,6 +37235,10 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"bTt" = (
+/obj/effect/multitile_spawner/cm_armored/tank,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/underground/caves/open)
 "bTu" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
@@ -40261,43 +40265,7 @@
 "cLf" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/storage/testroom)
-"fCH" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/sign/electricshock,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/valley/south/excavation)
-"hLD" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/sign/electricshock,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/valley/south/excavation)
-"lDf" = (
-/obj/structure/sign/greencross,
-/turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/underground/hallway/north_west)
-"ojH" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/obj/structure/sign/electricshock,
-/turf/open/floor/plating/icefloor,
-/area/ice_colony/underground/hangar)
-"rcI" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/plating/icefloor,
-/area/storage/testroom)
-"yfn" = (
+"dfU" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -40310,6 +40278,42 @@
 	dir = 4
 	},
 /area/ice_colony/underground/hallway/north_west)
+"hot" = (
+/obj/structure/sign/greencross,
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/ice_colony/underground/hallway/north_west)
+"jQI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/sign/electricshock,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/south/excavation)
+"lbl" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/sign/electricshock,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/south/excavation)
+"rcI" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/plating/icefloor,
+/area/storage/testroom)
+"rpH" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/structure/sign/electricshock,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/underground/hangar)
 
 (1,1,1) = {"
 aaa
@@ -43380,7 +43384,7 @@ bFZ
 bTD
 bTD
 bFZ
-bFZ
+bTt
 bFZ
 aZF
 bjZ
@@ -49262,7 +49266,7 @@ bna
 bqQ
 bod
 bod
-yfn
+dfU
 bod
 bod
 bod
@@ -49511,7 +49515,7 @@ bkC
 bok
 bkr
 byE
-lDf
+hot
 bqX
 bqU
 bqU
@@ -51310,7 +51314,7 @@ bkC
 bnz
 bkr
 byE
-lDf
+hot
 bqX
 bsH
 bto
@@ -52829,7 +52833,7 @@ baJ
 bWj
 bWu
 alP
-ojH
+rpH
 beB
 alP
 biw
@@ -53343,7 +53347,7 @@ alP
 bNe
 bWv
 alP
-ojH
+rpH
 beB
 alP
 biA
@@ -65685,7 +65689,7 @@ bci
 bbJ
 bbK
 bbK
-hLD
+jQI
 btz
 bSX
 bSX
@@ -66199,7 +66203,7 @@ bci
 bbJ
 bXY
 bbJ
-fCH
+lbl
 btz
 buj
 bsy
