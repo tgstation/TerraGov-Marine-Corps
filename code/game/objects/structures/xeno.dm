@@ -776,8 +776,8 @@ TUNNEL
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!M.hive.living_xeno_queen)
-			to_chat(M, "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>")
+		if(!M.hive.living_xeno_ruler)
+			to_chat(M, "<span class='xenowarning'>There is no ruler. You must choose one first.</span>")
 			return FALSE
 		else if(isxenoqueen(M))
 			to_chat(M, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")

@@ -138,6 +138,7 @@
 #define XENO_HIVE_ALPHA "alpha_hive"
 #define XENO_HIVE_BETA "beta_hive"
 #define XENO_HIVE_ZETA "zeta_hive"
+#define XENO_HIVE_ADMEME "admeme_hive"
 
 // =============================
 // xeno tiers
@@ -541,6 +542,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT				4
+
+//Shrike defines
+
+#define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
+#define SHRIKE_CURE_HEAL_MULTIPLIER	10
 
 //misc
 

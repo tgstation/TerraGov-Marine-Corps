@@ -107,15 +107,15 @@
 	if(!T || !istype(T))
 		return
 
-	var/queen_healing_penalty = 0.5
-	if(hive?.living_xeno_queen?.loc?.z == T.z) //if the living queen's z-level is the same as ours.
-		queen_healing_penalty = 1
+	var/ruler_healing_penalty = 0.5
+	if(hive?.living_xeno_ruler?.loc?.z == T.z) //if the living queen's z-level is the same as ours.
+		ruler_healing_penalty = 1
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying || resting)
-			heal_wounds(XENO_RESTING_HEAL * queen_healing_penalty)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
 		else
-			heal_wounds(XENO_STANDING_HEAL * queen_healing_penalty) //Major healing nerf if standing.
+			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
 	updatehealth()
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()

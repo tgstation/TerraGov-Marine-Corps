@@ -181,6 +181,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		A.JoinResponseTeam()
 		return
 
+	else if(href_list["join_larva"])
+		if(!isobserver(usr))
+			return
+		var/mob/dead/observer/A = usr
+
+		SSticker.mode.attempt_to_join_as_larva(A)
+		return
+
 	else if(href_list["preference"])
 		if(!client?.prefs)
 			return
@@ -809,9 +817,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(new_xeno)
 				SSticker.mode.transfer_xeno(src, new_xeno)
 		if("Larva")
-			if(!SSticker.mode.attempt_to_join_as_larva(src))
-				return
-			SSticker.mode.spawn_larva(src)
+			SSticker.mode.attempt_to_join_as_larva(src)
 
 
 /mob/dead/observer/verb/observe()
