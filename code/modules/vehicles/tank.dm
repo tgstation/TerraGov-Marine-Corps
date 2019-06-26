@@ -408,10 +408,12 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 	set category = "Vehicle"
 	set src in view(0)
 	if(lights_on)
-		src.set_light(0)
+		to_chat(usr, "<span class='notice'>You turn off [src]'s floodlights.</span>")
+		set_light(0)
 		lights_on = FALSE
 	else
-		src.set_light(3)
+		to_chat(usr, "<span class='notice'>You turn [src]'s floodlights on.</span>")
+		set_light(5)
 		lights_on = TRUE
 
 
