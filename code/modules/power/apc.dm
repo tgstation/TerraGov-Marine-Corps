@@ -537,8 +537,8 @@
 				to_chat(user, "<span class='warning'>Disconnect the wires first!</span>")
 				return
 			if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
-				"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to remove the power cell from [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to remove the power cell from [src].</span>")
 				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
@@ -777,9 +777,9 @@
 		area.power_equip = (equipment > 1)
 		area.power_environ = (environ > 1)
 	else
-		area.power_light = FALSE
-		area.power_equip = FALSE
-		area.power_environ = FALSE
+		area.power_light = 0
+		area.power_equip = 0
+		area.power_environ = 0
 	area.power_change()
 
 
@@ -897,11 +897,11 @@
 	var/excess = surplus()
 
 	if(!avail())
-		main_status = 0
+		main_status = APC_EXTERNAL_POWER_NONE
 	else if(excess < 0)
-		main_status = 1
+		main_status = APC_EXTERNAL_POWER_LOW
 	else
-		main_status = 2
+		main_status = APC_EXTERNAL_POWER_GOOD
 
 	if(cell && !shorted)
 		// draw power from cell as before to power the area
@@ -979,7 +979,7 @@
 
 		if(chargemode)
 			if(!charging)
-				if(excess > cell.maxcharge*GLOB.CHARGELEVEL)
+				if(excess > cell.maxcharge * GLOB.CHARGELEVEL)
 					chargecount++
 				else
 					chargecount = 0
@@ -990,7 +990,7 @@
 					charging = APC_CHARGING
 
 		else // chargemode off
-			charging = 0
+			charging = APC_NOT_CHARGING
 			chargecount = 0
 
 	else // no cell, switch everything off
