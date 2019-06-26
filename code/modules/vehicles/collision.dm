@@ -29,7 +29,7 @@
 	if(stat == DEAD) //We don't care about the dead
 		return
 	if(!roadtrafficaccident.demolish_on_ram)
-		return 0 //FALSE, also 0 damage.
+		return
 
 	if(src in get_turf(roadtrafficaccident)) // trodden over.
 		if(!knocked_down)
