@@ -64,7 +64,6 @@
 	max_rounds = 1000
 	point_cost = 10
 
-
 /obj/item/ammo_magazine/tank/tank_glauncher
 	name = "Grenade Launcher Magazine"
 	desc = "A secondary armament grenade magazine"
@@ -102,7 +101,25 @@
 ///////////////
 
 /obj/vehicle/tank/attackby(obj/item/I, mob/user) //This handles reloading weapons, or changing what kind of mags they'll accept. You can have a passenger do this
-	. = ..()
+	if(iswelder(I)) //Weld to repair the tank
+		if(obj_integrity >= max_integrity)
+			to_chat(user, "<span class='warning'>You can't see any visible dents on [src].</span>")
+			return
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.isOn())
+			to_chat(user, "<span class='warning'>You need to light your [WT] first.</span>")
+			return
+		if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = iswelder(I) ? CALLBACK(I, /obj/item/tool/weldingtool/proc/isOn) : null))
+			user.visible_message("<span class='notice'>[user] stops repairing [src].</span>",
+				"<span class='notice'>You stop repairing [src].</span>")
+			return
+		WT.remove_fuel(3, user) //3 Welding fuel to repair the tank. To repair a small tank, it'd take 4 goes AKA 12 welder fuel and 1 minute
+		obj_integrity += 100
+		if(obj_integrity > max_integrity)
+			obj_integrity = max_integrity //Prevent overheal
+		to_chat(user, "<span class='warning'>You weld out a few of the dents on [src].</span>")
+		update_icon() //Check damage overlays
+		return
 	if(is_type_in_list(I, primary_weapon?.accepted_ammo))
 		var/mob/living/M = user
 		var/time = 8 SECONDS - (1 SECONDS * M.mind.cm_skills.large_vehicle)
@@ -125,4 +142,4 @@
 			to_chat(user, "You load [I] into [secondary_weapon] with a satisfying click.")
 			user.transferItemToLoc(I,src)
 		return
-	to_chat(user, "<span class='warning'>None of [src]'s guns will accept [I].</span>")
+	. = ..()

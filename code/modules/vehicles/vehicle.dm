@@ -78,9 +78,9 @@
 	else if(I.force)
 		switch(I.damtype)
 			if("fire")
-				obj_integrity -= I.force * fire_dam_coeff
+				take_damage(I.force * fire_dam_coeff)
 			if("brute")
-				obj_integrity -= I.force * brute_dam_coeff
+				take_damage(I.force * brute_dam_coeff)
 		playsound(loc, "smash.ogg", 25, 1)
 		user.visible_message("<span class='danger'>[user] hits [src] with [I].</span>","<span class='danger'>You hit [src] with [I].</span>")
 		healthcheck()
@@ -91,7 +91,7 @@
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
-		obj_integrity -= 15
+		take_damage(15)
 		playsound(src.loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>", null, 5)
 		healthcheck()
@@ -101,7 +101,7 @@
 /obj/vehicle/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)
 		return
-	obj_integrity -= M.melee_damage_upper
+	take_damage(M.melee_damage_upper)
 	src.visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
 	log_combat(M, src, "attacked")
 	if(prob(10))
@@ -109,7 +109,7 @@
 	healthcheck()
 
 /obj/vehicle/bullet_act(obj/item/projectile/Proj)
-	obj_integrity -= Proj.damage
+	take_damage(Proj.damage)
 	..()
 	healthcheck()
 	return TRUE
@@ -120,14 +120,14 @@
 			explode()
 			return
 		if(2.0)
-			obj_integrity -= rand(5,10)*fire_dam_coeff
-			obj_integrity -= rand(10,20)*brute_dam_coeff
+			take_damage(rand(5,10)*fire_dam_coeff)
+			take_damage(rand(10,20)*brute_dam_coeff)
 			healthcheck()
 			return
 		if(3.0)
 			if (prob(50))
-				obj_integrity -= rand(1,5)*fire_dam_coeff
-				obj_integrity -= rand(1,5)*brute_dam_coeff
+				take_damage(rand(1,5)*fire_dam_coeff)
+				take_damage(rand(1,5)*brute_dam_coeff)
 				healthcheck()
 				return
 	return

@@ -19,6 +19,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/fire_delay
 	var/cooldown = 6 SECONDS //6 second weapons cooldown
 	var/lastfired = 0 //When were we last shot?
+	var/range_safety_check = 3 //Stops marines form shooting their own tank. If your gun is geared for explosives, 3 tiles is good. Minigun and APC cannon don't have this.
 
 /obj/item/tank_weapon/Initialize()
 	. = ..()
@@ -34,6 +35,17 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	fire_sounds = list('sound/weapons/tank_minigun_loop.ogg')
 	cooldown = 0.3 SECONDS //Minimal cooldown
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/towlauncher,/obj/item/ammo_magazine/tank/m56_cupola,/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/tank_slauncher)
+	range_safety_check = 0
+
+/obj/item/tank_weapon/apc_cannon
+	name = "MKV-7 utility payload launcher"
+	desc = "A double barrelled cannon which can rapidly deploy utility packages to the battlefield."
+	icon = 'icons/obj/hardpoint_modules.dmi'
+	icon_state = "APC uninstalled dualcannon"
+	default_ammo = /obj/item/ammo_magazine/tank/tank_slauncher
+	cooldown = 0.7 SECONDS //Minimal cooldown
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/towlauncher,/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/tank_slauncher)
+	fire_sounds = list('sound/weapons/gun_shotgun_automatic.ogg', 'sound/weapons/gun_shotgun_light.ogg', 'sound/weapons/gun_shotgun_heavy.ogg')
 
 /obj/item/tank_weapon/proc/fire(atom/T,mob/user)
 	if(!can_fire(T))
@@ -54,13 +66,10 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	return TRUE
 
 /obj/item/tank_weapon/proc/can_fire(turf/T)
-	if(get_dist(T, src) <= 3)
-		to_chat(owner.gunner, "Firing your main gun here could damage the tank!")
+	if(get_dist(T, src) <= range_safety_check)
+		to_chat(owner.gunner, "<span class='warning'>Firing [src] here would damage your vehicle!</span>")
 		return FALSE
 	return TRUE
-
-/obj/item/tank_weapon/secondary_weapon/can_fire(turf/T)
-	return TRUE //No loc check here
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // As standard, tank subtypes come with a primary and secondary, the primary is its big tank gun which fires explosive rounds, and its secondary is a rapid firing minigun. //
@@ -74,12 +83,12 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	desc = "A gigantic wall of metal designed for maximum Xeno destruction. Click it with an open hand to enter as a pilot or a gunner."
 	icon = 'icons/obj/tank.dmi'
 	icon_state = "tank"
-	layer = OBJ_LAYER
+	layer = ABOVE_MOB_LAYER
 	anchored = FALSE
 	can_buckle = FALSE
 	req_access = list(ACCESS_MARINE_TANK)
-	move_delay = 0.4 SECONDS
-	obj_integrity = 600
+	move_delay = 0.8 SECONDS
+	obj_integrity = 600 //Friendly fire resistant
 	max_integrity = 600
 	anchored = TRUE //No bumping / pulling the tank
 	demolish_on_ram = TRUE
@@ -87,13 +96,17 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	pixel_y = -48
 	//Who's driving the tank
 	var/turret_icon = 'icons/obj/tank_gun.dmi'
+	var/turret_icon_state = "turret"
+	var/obj/effect/damage_overlay
 	var/mob/living/carbon/human/pilot
 	var/mob/living/carbon/human/gunner
 	var/list/operators = list() //Who's in this tank? Prevents you from entering the tank again
 	//Health and combat shit
 	var/obj/turret_overlay/turret_overlay //Allows for independantly swivelling guns, wow!
 	var/obj/item/tank_weapon/primary_weapon //What we use to shoot big shells
-	var/obj/item/tank_weapon/secondary_weapon/secondary_weapon //What we use to shoot mini shells ((rapidfire xenocrusher 6000))
+	var/obj/item/tank_weapon/secondary_weapon //What we use to shoot mini shells ((rapidfire xenocrusher 6000))
+	var/primary_weapon_type = /obj/item/tank_weapon //What kind of tank weaponry we start with. Defaults to a tank gun and a small minigun as standard.
+	var/secondary_weapon_type = /obj/item/tank_weapon/secondary_weapon
 	var/primary_weapon_dir = null //So that the guns swivel independantly
 	var/secondary_weapon_dir = null
 	var/atom/firing_target = null //Shooting code, at whom are we firing?
@@ -102,6 +115,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/last_drive_sound = 0 //Engine noises.
 	var/list/passengers = list() //People who are in the tank without gunning / driving. This allows for things like jeeps and APCs in future
 	var/max_passengers = 5 //This seems sane to me, change if you don't agree.
+	var/lights_on = FALSE //Tanks start with lights off
 
 
 /obj/vehicle/tank/tiny //SQUEEEE
@@ -112,20 +126,34 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	icon_state = "tank"
 	pixel_x = -16 //Stops marines from treading on it...d'aww
 	pixel_y = -8
-	max_passengers = 3 //Bluespace's one hell of a drug.
+	max_passengers = 2 //Bluespace's one hell of a drug.
+
+/obj/vehicle/tank/apc //SQUEEEE
+	name = "M557 Armoured Personnel Carrier"
+	desc = "A heavily armoured vehicle with light armaments. Though it doesn't pack the punch of a tank its utility launcher can provide cover for troops and allow for rapid deployment with minimal casualties."
+	icon = 'icons/obj/tinytank.dmi'
+	turret_icon = 'icons/obj/tinytank_gun.dmi'
+	turret_icon_state = "apc_turret"
+	icon_state = "apc"
+	move_delay = 0.5 SECONDS //Faster because it's lightweight
+	pixel_x = -16
+	pixel_y = -8
+	max_passengers = 4 //It's a big carrier designed to get marines into the operation safely.
+	primary_weapon_type = /obj/item/tank_weapon/apc_cannon //Only has a utility launcher, no offense as standard.
+	secondary_weapon_type = null
 
 /obj/vehicle/tank/examine(mob/user)
 	. = ..()
-	to_chat(user, "<b>To fire its main cannon, <i>ctrl</i> click a tile</b>")
-	to_chat(user, "<b>To fire its secondary_weapon, click a tile</b>")
-	to_chat(user, "<i>It's currently holding [passengers.len] / [max_passengers] passengers</i>")
+	to_chat(user, "<b><span class='notice>To fire its main cannon, <i>ctrl</i> click a tile</b></span>")
+	to_chat(user, "<b><span class='notice>To fire its secondary weapon, click a tile</b></span>")
+	to_chat(user, "<i><span class='notice>It's currently holding [passengers.len] / [max_passengers] passengers</i></span>")
 
 /obj/turret_overlay
 	name = "Tank gun turret"
 	desc = "The shooty bit on a tank."
 	icon = 'icons/obj/tank_gun.dmi'
 	icon_state = "turret"
-	layer = ABOVE_MOB_LAYER
+	layer = ABOVE_MOB_LAYER+0.1
 	animate_movement = TRUE //So it doesnt just ping back and forth and look all stupid
 	mouse_opacity = FALSE //It's an overlay
 
@@ -133,17 +161,31 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	. = ..()
 	turret_overlay = new()
 	turret_overlay.icon = turret_icon
+	turret_overlay.icon_state = turret_icon_state
 	update_icon()
-	primary_weapon = new(src) //Make our guns
-	secondary_weapon = new(src)
-	primary_weapon.owner = src
-	secondary_weapon.owner = src
+	if(primary_weapon_type)
+		primary_weapon = new primary_weapon_type(src) //Make our guns
+	if(secondary_weapon_type)
+		secondary_weapon = new secondary_weapon_type(src)
+	primary_weapon?.owner = src
+	secondary_weapon?.owner = src
 	GLOB.tank_list += src
 
 /obj/vehicle/tank/Destroy()
 	qdel(turret_overlay)
 	qdel(primary_weapon)
 	qdel(secondary_weapon)
+	for(var/x in contents) //Yeet the occupants out so they arent deleted
+		if(ismob(x))
+			var/mob/living/mob = x
+			var/turf/T = get_turf(pick(orange(src,5)))
+			mob.forceMove(get_turf(src))
+			mob.throw_at(T, 3)
+			mob.apply_effect(6, STUN,)
+			mob.apply_effect(6, WEAKEN)
+			mob.apply_effect(6, STUTTER)
+			to_chat(mob, "<span class='warning'>You violently dive out of [src] as it explodes behind you!</span>")
+	playsound(get_turf(src), 'sound/weapons/tank_cannon_fire1.ogg', 100, 1) //Explosion sound
 	. = ..()
 
 /obj/vehicle/tank/Move()
@@ -164,8 +206,25 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		turret_overlay.setDir(primary_weapon_dir)
 		turret_overlay.pixel_x = 0
 	vis_contents += turret_overlay
+	if(!damage_overlay)
+		damage_overlay = new(src)
+	cut_overlays()
+	damage_overlay.icon = icon //Applies a damage effect
+	damage_overlay.icon_state = null
+	switch(PERCENT(obj_integrity / max_integrity))
+		if(0 to 29)
+			damage_overlay.icon_state = "damage_major"
+		if(30 to 59)
+			damage_overlay.icon_state = "damage_medium"
+		if(60 to 70)
+			damage_overlay.icon_state = "damage_minor_medium"
+		if(71 to 90)
+			damage_overlay.icon_state = "damage_minor"
+	add_overlay(damage_overlay)
 
 /obj/vehicle/tank/attack_hand(mob/user)
+	if(!ishuman(user) || isxeno(user)) //Aliens can't get in a tank...as hilarious as that would be
+		return
 	if(user in operators)
 		exit_tank(user)
 		return
@@ -218,7 +277,6 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		if("passenger")
 			passengers += user
 
-
 /obj/vehicle/tank/proc/remove_all_players()
 	for(var/M in operators)
 		exit_tank(M)
@@ -236,13 +294,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		user.forceMove(get_turf(src))
 		passengers -= user
 		operators -= user
-	to_chat(user, "You hop out of [src] and slam its hatch shut behind you")
+	to_chat(user, "<span class ='notice'>You hop out of [src] and slam its hatch shut behind you.</span>")
 
 /obj/vehicle/tank/relaymove(mob/user, direction)
 	if(world.time < last_move_time + move_delay)
 		return
 	if(user.incapacitated() || user != pilot)
-		to_chat(user, "You can't reach the gas pedal from down here, maybe try manning the driver's seat?")
+		to_chat(user, "<span class ='notice'>You can't reach the gas pedal from down here, maybe try manning the driver's seat?</span>")
 		return FALSE
 	last_move_time = world.time
 	. = step(src, direction)
@@ -275,7 +333,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 /obj/vehicle/tank/proc/handle_fire(atom/A)
 	if(!secondary_weapon && gunner)
-		to_chat(gunner, "[src]'s secondary_weapon hardpoint spins pathetically. Maybe you should install a secondary_weapon on this tank?")
+		to_chat(gunner, "[src]'s secondary weapon hardpoint spins pathetically. Maybe you should install a secondary weapon on this tank?")
 		return FALSE
 	firing_target = A
 	playsound(get_turf(src), 'sound/weapons/tank_minigun_start.ogg', 60, 1)
@@ -339,11 +397,23 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 */
 
 /obj/vehicle/tank/verb/exit_tank_verb()
-	set name = "Exit tank"
+	set name = "Exit vehicle"
 	set category = "Vehicle"
 	set src in view(0)
 	if(usr)
 		exit_tank(usr)
+
+/obj/vehicle/tank/verb/toggle_light()
+	set name = "Toggle floodlights"
+	set category = "Vehicle"
+	set src in view(0)
+	if(lights_on)
+		src.set_light(0)
+		lights_on = FALSE
+	else
+		src.set_light(3)
+		lights_on = TRUE
+
 
 /obj/vehicle/tank/verb/switch_seats()
 	set name = "Swap Seats"
@@ -409,3 +479,11 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 		return
 	else
 		. = ..()
+
+/obj/vehicle/tank/bullet_act(obj/item/projectile/Proj)
+	. = ..()
+	update_icon()
+
+/obj/vehicle/tank/take_damage(amount)
+	. = ..()
+	update_icon() //Update damage overlays
