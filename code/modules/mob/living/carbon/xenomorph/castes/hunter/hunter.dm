@@ -9,9 +9,7 @@
 	plasma_stored = 50
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	var/stealth_delay = null
 	var/last_stealth = null
-	var/used_stealth = FALSE
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	actions = list(
@@ -84,14 +82,14 @@
 		if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
 			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly
 			if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-				to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
+				to_chat(src, "<span class='xenodanger'>Our sneak attack is now at maximum power.</span>")
 	//Running stealth
 	else
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * 0.5)
 		sneak_bonus = round(max(sneak_bonus - HUNTER_SNEAKATTACK_RUN_REDUCTION, 1.25), 0.01) //Rapidly lose sneak attack damage while running and stealthed
 	if(!plasma_stored)
-		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
+		to_chat(src, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
 /mob/living/carbon/xenomorph/hunter/handle_status_effects()

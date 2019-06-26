@@ -46,57 +46,57 @@
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't use [ability_name] yet, wait [cooldown_remaining()] seconds!</span>")
+			to_chat(owner, "<span class='warning'>We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't do this while incapacitated!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this while incapacitated!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't do this while lying down!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't do this while buckled!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this while buckled!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't do this while staggered!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this while staggered!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't do this while fortified!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this while fortified!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't do this while in crest defense!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this while in crest defense!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't do this here!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this here!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUSY) && X.action_busy)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You're busy doing something right now!</span>")
+			to_chat(owner, "<span class='warning'>We're busy doing something right now!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_AGILITY) && X.agility)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You can't do that in agility mode!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this in agility mode!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You don't have enough plasma to do this!</span>")
+			to_chat(owner, "<span class='warning'>We don't have enough plasma to do this!</span>")
 		return FALSE
 
 	return TRUE
@@ -208,7 +208,7 @@
 
 /datum/action/xeno_action/activable/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if(selecting)
-		return ..(silent, XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
+		return ..(silent, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA|XACT_USE_STAGGERED)
 	return ..()
 
 //override this

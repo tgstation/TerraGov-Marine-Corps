@@ -85,7 +85,7 @@
 			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly when stationary or unstealthed
 
 		if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-			to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
+			to_chat(src, "<span class='xenodanger'>Our sneak attack is now at maximum power.</span>")
 	handle_stealth()
 
 /mob/living/carbon/xenomorph/handle_fire()
