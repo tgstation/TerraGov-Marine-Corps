@@ -1827,7 +1827,7 @@
 	},
 /area/almayer/living/cryo_cells)
 "aej" = (
-/obj/vehicle/tank/tiny,
+/obj/vehicle/tank/apc,
 /turf/open/floor/almayer{
 	pixel_z = -1
 	},
@@ -5213,6 +5213,12 @@
 /obj/structure/noticeboard,
 /turf/closed/wall/almayer,
 /area/almayer/squads/req)
+"icE" = (
+/obj/machinery/tank_part_fabricator,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
 "lAe" = (
 /turf/open/shuttle/escapepod{
 	icon_state = "floor5"
@@ -20296,7 +20302,7 @@ aax
 aax
 aax
 aWV
-adD
+icE
 adD
 aej
 adD
