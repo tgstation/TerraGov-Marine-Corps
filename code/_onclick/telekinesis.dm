@@ -250,7 +250,22 @@ Redefine as needed.
 
 
 /obj/item/tk_grab/shrike/Destroy()
-	stop_psychic_grab()
+	if(focus)
+		var/mob/living/carbon/human/victim = focus
+		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
+		victim.SetStunned(0)
+		victim.grab_resist_level = 0
+		victim.update_canmove()
+		focus = null
+	
+	if(master_action && master_action.psychic_hold == src)
+		master_action.psychic_hold = null
+		master_action = null
+
+	starting_master_loc = null
+	starting_victim_loc = null
+
+	tk_user = null
 
 	return ..() //Stops processing.
 
@@ -280,35 +295,18 @@ Redefine as needed.
 
 
 /obj/item/tk_grab/shrike/proc/stop_psychic_grab()
-	if(!QDELETED(src))
+	if(QDELETED(tk_user) || loc != tk_user)
 		qdel(src)
-		return //We'll be called again.
-
-	if(!QDELETED(focus))
-		var/mob/living/carbon/human/victim = focus
-		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
-		victim.SetStunned(0)
-		victim.grab_resist_level = 0
-		victim.update_canmove()
-		focus = null
-
-	if(!QDELETED(tk_user))
-		if(loc == tk_user)
-			tk_user.temporarilyRemoveItemFromInventory(src)
-		tk_user = null
-	
-	if(master_action && master_action.psychic_hold == src)
-		master_action.psychic_hold = null
-
-	starting_master_loc = null
-	starting_victim_loc = null
+		return
+	tk_user.temporarilyRemoveItemFromInventory(src)
 
 
 /obj/item/tk_grab/shrike/process()
-	if(QDELETED(src)) //This is for testing, not for the final version.
-		CRASH("Looks like process() is called again before qdel() finishes processing Destroy() after all. Issue reported by the shrike tk gang.")
-
-	if(QDELETED(tk_user) || QDELETED(focus) || loc != tk_user)
+	if(QDELETED(tk_user) || loc != tk_user)
+		qdel(src)
+		return FALSE
+	
+	if(QDELETED(focus))
 		stop_psychic_grab()
 		return FALSE
 
