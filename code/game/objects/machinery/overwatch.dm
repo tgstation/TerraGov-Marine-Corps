@@ -580,6 +580,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		else if(!R.keyslot2)
 			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
 		R.recalculateChannels()
+		R.use_command = TRUE
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
 		ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
