@@ -153,7 +153,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	desc = "The shooty bit on a tank."
 	icon = 'icons/obj/tank_gun.dmi'
 	icon_state = "turret"
-	layer = ABOVE_MOB_LAYER+0.1
+	layer = ABOVE_ALL_MOB_LAYER
 	animate_movement = TRUE //So it doesnt just ping back and forth and look all stupid
 	mouse_opacity = FALSE //It's an overlay
 
