@@ -1867,7 +1867,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!change || !istype(H) || !H.mind)
 					return
 				previous = H.mind.assigned_role
-				H.set_rank(change)
+				var/datum/job/J = SSjob.GetJob(change)
+				J.assign(H)
 			if("skills")
 				var/list/skilltypes = subtypesof(/datum/skills)
 				var/list/skills = list()
