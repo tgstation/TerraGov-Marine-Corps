@@ -103,27 +103,26 @@
 
 /obj/vehicle/tank/attackby(obj/item/I, mob/user) //This handles reloading weapons, or changing what kind of mags they'll accept. You can have a passenger do this
 	. = ..()
-	for(var/x in primary_weapon?.accepted_ammo) //Run through all the ammo types that the guns will accept, check them against I's type.
-		if(I.type == x) //Byond is lazy like this
-			var/mob/living/M = user
-			var/time = 8 SECONDS - (1 SECONDS * M.mind.cm_skills.large_vehicle)
-			to_chat(user, "You start to swap out [primary_weapon]'s magazine...")
-			if(do_after(M, time, TRUE, src, BUSY_ICON_BUILD))
-				playsound(get_turf(src), 'sound/weapons/working_the_bolt.ogg', 100, 1)
-				primary_weapon.ammo.forceMove(get_turf(user))
-				primary_weapon.ammo = I
-				to_chat(user, "You load [I] into [primary_weapon] with a satisfying click.")
-				user.transferItemToLoc(I,src)
-			return
-	for(var/x in secondary_weapon?.accepted_ammo) //Run through all the ammo types that the guns will accept, check them against I's type.
-		if(I.type == x) //Byond is lazy like this
-			var/mob/living/M = user
-			var/time = 8 SECONDS - (1 SECONDS * M.mind.cm_skills.large_vehicle)
-			to_chat(user, "You start to swap out [primary_weapon]'s magazine...")
-			if(do_after(M, time, TRUE, src, BUSY_ICON_BUILD))
-				playsound(get_turf(src), 'sound/weapons/working_the_bolt.ogg', 100, 1)
-				secondary_weapon.ammo.forceMove(get_turf(user))
-				secondary_weapon.ammo = I
-				to_chat(user, "You load [I] into [secondary_weapon] with a satisfying click.")
-				user.transferItemToLoc(I,src)
-			return
+	if(is_type_in_list(I, primary_weapon?.accepted_ammo))
+		var/mob/living/M = user
+		var/time = 8 SECONDS - (1 SECONDS * M.mind.cm_skills.large_vehicle)
+		to_chat(user, "You start to swap out [primary_weapon]'s magazine...")
+		if(do_after(M, time, TRUE, src, BUSY_ICON_BUILD))
+			playsound(get_turf(src), 'sound/weapons/working_the_bolt.ogg', 100, 1)
+			primary_weapon.ammo.forceMove(get_turf(user))
+			primary_weapon.ammo = I
+			to_chat(user, "You load [I] into [primary_weapon] with a satisfying click.")
+			user.transferItemToLoc(I,src)
+		return
+	if(is_type_in_list(I, secondary_weapon?.accepted_ammo))
+		var/mob/living/M = user
+		var/time = 8 SECONDS - (1 SECONDS * M.mind.cm_skills.large_vehicle)
+		to_chat(user, "You start to swap out [secondary_weapon]'s magazine...")
+		if(do_after(M, time, TRUE, src, BUSY_ICON_BUILD))
+			playsound(get_turf(src), 'sound/weapons/working_the_bolt.ogg', 100, 1)
+			secondary_weapon.ammo.forceMove(get_turf(user))
+			secondary_weapon.ammo = I
+			to_chat(user, "You load [I] into [secondary_weapon] with a satisfying click.")
+			user.transferItemToLoc(I,src)
+		return
+	to_chat(user, "<span class='warning'>None of [src]'s guns will accept [I].</span>")

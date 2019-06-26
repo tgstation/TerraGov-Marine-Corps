@@ -110,8 +110,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	icon = 'icons/obj/tinytank.dmi'
 	turret_icon = 'icons/obj/tinytank_gun.dmi'
 	icon_state = "tank"
-	pixel_x = -15 //Stops marines from treading on it...d'aww
-	pixel_y = 0
+	pixel_x = -16 //Stops marines from treading on it...d'aww
+	pixel_y = -8
 	max_passengers = 3 //Bluespace's one hell of a drug.
 
 /obj/vehicle/tank/examine(mob/user)
@@ -284,21 +284,28 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 /obj/vehicle/tank/proc/handle_fire_main(atom/A) //This is used to shoot your big ass tank cannon, rather than your small MG
 	if(!primary_weapon && gunner)
-		to_chat(gunner, "You look at the stump where [src]'s tank barrel should be and sigh.'")
+		to_chat(gunner, "You look at the stump where [src]'s tank barrel should be and sigh.")
 		return FALSE
+	swivel_gun(A) //Special FX, makes the tank cannon visibly swivel round to aim at the target.
 	firing_target = A
 	firing_primary_weapon = TRUE
 	START_PROCESSING(SSfastprocess, src)
 
+/obj/vehicle/tank/proc/swivel_gun(atom/A)
+	var/new_weapon_dir = get_dir(src, A) //Check that we're not already facing this way to avoid a double swivel when you fire.
+	if(new_weapon_dir == primary_weapon_dir)
+		return FALSE
+	if(world.time > lastsound + 2 SECONDS) //Slight cooldown to avoid spam
+		visible_message("<span class='danger'>[src] swings its turret round!</span>")
+		playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
+		lastsound = world.time
+		primary_weapon_dir = new_weapon_dir
+		return TRUE
+
 /obj/vehicle/tank/process()
 	if(firing_primary_weapon && firing_target)
 		if(primary_weapon.fire(firing_target, gunner))
-			if(primary_weapon_dir != get_dir(src, firing_target)) //The turret has changed position, so we want it to play a swivelling noise.
-				if(world.time > lastsound + 4 SECONDS)
-					visible_message("<span class='danger'>[src] swings its turret round!</span>")
-					playsound(src, 'sound/effects/tankswivel.ogg', 80)
-					lastsound = world.time
-			primary_weapon_dir = get_dir(src, firing_target)
+			primary_weapon_dir = get_dir(src, firing_target) //For those instances when you've swivelled your gun round a lot when your main gun wasn't ready to fire. This ensures the gun always faces the desired target.
 			update_icon()
 		else
 			stop_firing()
