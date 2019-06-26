@@ -251,8 +251,8 @@
 		patient.SetKnockedout(0)
 		patient.SetStunned(0)
 		patient.SetKnockeddown(0)
-		patient.set_stagger(0)
-		patient.set_slowdown(0)
+		patient.SetStagger(0)
+		patient.SetSlowdown(0)
 	patient.updatehealth()
 
 	owner.changeNext_move(CLICK_CD_RANGE)
