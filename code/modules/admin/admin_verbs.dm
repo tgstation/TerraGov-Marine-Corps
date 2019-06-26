@@ -886,7 +886,6 @@
 		recipient = whom
 
 
-
 	if(irc)
 		if(!ircreplyamount)	//to prevent people from spamming irc
 			return
