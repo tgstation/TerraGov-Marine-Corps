@@ -53,13 +53,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	ammo.current_rounds--
 	return TRUE
 
-/obj/item/tank_weapon/proc/can_fire(var/turf/T)
+/obj/item/tank_weapon/proc/can_fire(turf/T)
 	if(get_dist(T, src) <= 3)
 		to_chat(owner.gunner, "Firing your main gun here could damage the tank!")
 		return FALSE
 	return TRUE
 
-/obj/item/tank_weapon/secondary_weapon/can_fire(var/turf/T)
+/obj/item/tank_weapon/secondary_weapon/can_fire(turf/T)
 	return TRUE //No loc check here
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,7 +188,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		to_chat(user, "You climb into [src] as a [position]!")
 		return enter(user, position) //Yeah i could do this with a define, but this way we're not using multiple things
 
-/obj/vehicle/tank/proc/can_enter(var/mob/living/carbon/M) //NO BENOS ALLOWED
+/obj/vehicle/tank/proc/can_enter(mob/living/carbon/M) //NO BENOS ALLOWED
 	if(!M.IsAdvancedToolUser())
 		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
 		return FALSE
@@ -394,7 +394,7 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 					"<span class='notice'>you forcibly pull [occupant] out of [src].</span>", null, 6)
 	occupant.KnockDown(4)
 
-/obj/vehicle/tank/Bumped(var/atom/A) //Don't ..() because then you can shove the tank into a wall.
+/obj/vehicle/tank/Bumped(atom/A) //Don't ..() because then you can shove the tank into a wall.
 	if(isliving(A))
 		if(istype(A, /mob/living/carbon/xenomorph/crusher))
 			var/mob/living/carbon/xenomorph/crusher/C = A
