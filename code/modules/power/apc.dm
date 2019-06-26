@@ -1047,17 +1047,17 @@
 			cell?.ex_act(1) //More lags woohoo
 			qdel(src)
 		if(2)
-			if(!prob(50))
+			if(prob(50))
 				return
 			set_broken()
-			if(!cell || !prob(50))
+			if(!cell || prob(50))
 				return
 			cell.ex_act(2)
 		if(3)
-			if(!prob(25))
+			if(prob(75))
 				return
 			set_broken()
-			if(!cell || !prob(25))
+			if(!cell || prob(75))
 				return
 			cell.ex_act(3)
 
