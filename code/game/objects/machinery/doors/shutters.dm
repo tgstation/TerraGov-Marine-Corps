@@ -29,7 +29,7 @@
 /obj/machinery/door/poddoor/shutters/proc/do_open()
 	density = FALSE
 	layer = open_layer
-	SetOpacity(FALSE)
+	set_opacity(FALSE)
 
 	if(operating) //emag again
 		operating = FALSE
@@ -45,7 +45,7 @@
 	layer = closed_layer
 	density = TRUE
 	if(visible)
-		SetOpacity(TRUE)
+		set_opacity(TRUE)
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 	addtimer(CALLBACK(src, .proc/do_close), 10)
 	return TRUE
@@ -63,6 +63,17 @@
 
 /obj/machinery/door/poddoor/shutters/almayer/Initialize()
 	relativewall_neighbours()
+	return ..()
+
+
+/obj/machinery/door/poddoor/shutters/timed_late
+	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	name = "Timed Emergency Shutters"
+	use_power = FALSE
+
+
+/obj/machinery/door/poddoor/shutters/timed_late/Initialize()
+	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/open)
 	return ..()
 
 

@@ -386,25 +386,19 @@
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision()
-	if(!hud_used)
-		return
-
-	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-	if(!L)
-		return
-
-	if(L.alpha == 255)
+	if(see_in_dark == XENO_NIGHTVISION_DISABLED)
+		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 		see_in_dark = XENO_NIGHTVISION_ENABLED
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		ENABLE_BITFIELD(sight, SEE_OBJS)
 		ENABLE_BITFIELD(sight, SEE_TURFS)
-		L.alpha = 0
 	else
+		lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 		see_in_dark = XENO_NIGHTVISION_DISABLED
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		DISABLE_BITFIELD(sight, SEE_OBJS)
 		DISABLE_BITFIELD(sight, SEE_TURFS)
-		L.alpha = 255
+	update_sight()
 
 
 

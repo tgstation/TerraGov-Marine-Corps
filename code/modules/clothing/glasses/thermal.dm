@@ -9,10 +9,9 @@
 	origin_tech = "magnets=3"
 	toggleable = 1
 	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_MINIMUM
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	eye_protection = -1
 	deactive_state = "goggles_off"
-	fullscreen_vision = /obj/screen/fullscreen/thermal
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	if(ishuman(loc))

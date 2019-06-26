@@ -7,7 +7,6 @@
 	desc = "You can stick them in the ground"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "lightstick_blue0"
-	l_color = "#47A3FF" //Blue
 	var/s_color = "blue"
 
 /obj/item/lightstick/Crossed(mob/living/L)
@@ -21,7 +20,7 @@
 		return
 	anchored = FALSE
 	icon_state = "lightstick_[s_color][anchored]"
-	SetLuminosity(0)
+	set_light(0)
 
 	//Removing from turf
 /obj/item/lightstick/attack_hand(mob/user)
@@ -38,27 +37,30 @@
 	anchored = FALSE
 	user.visible_message("[user.name] removes \the [src] from the ground.","You remove the [src] from the ground.")
 	icon_state = "lightstick_[s_color][anchored]"
-	SetLuminosity(0)
+	set_light(0)
 	playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
-
-	//Remove lightsource
-/obj/item/lightstick/Destroy()
-	SetLuminosity(0)
-	return ..()
 
 /obj/item/lightstick/anchored
 	icon_state = "lightstick_blue1"
 	anchored = TRUE
-	luminosity = 2
+
+
+/obj/item/lightstick/anchored/Initialize(mapload, ...)
+	. = ..()
+	set_light(2, l_color = LIGHT_COLOR_CYAN)
+
 
 //Red
 /obj/item/lightstick/red
 	name = "red lightstick"
-	l_color = "#CC3300"
 	icon_state = "lightstick_red0"
 	s_color = "red"
 
 /obj/item/lightstick/red/anchored
 	icon_state = "lightstick_red1"
 	anchored = TRUE
-	luminosity = 2
+
+
+/obj/item/lightstick/red/anchored/Initialize(mapload, ...)
+	. = ..()
+	set_light(2, l_color = LIGHT_COLOR_RED)

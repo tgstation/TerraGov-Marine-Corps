@@ -64,11 +64,9 @@
 
 /obj/machinery/fuelcell_recycler/process()
 	if(machine_stat & (BROKEN|NOPOWER))
-		update_use_power(NO_POWER_USE)
 		update_icon()
 		return
 	if(!cell_left && !cell_right)
-		update_use_power(IDLE_POWER_USE)
 		update_icon()
 		stop_processing()
 		return
@@ -82,10 +80,7 @@
 			if(!cell_right.is_regenerated())
 				active = TRUE
 				cell_right.give(active_power_usage*(GLOB.CELLRATE * 0.1))
-		if(active)
-			update_use_power(ACTIVE_POWER_USE)
-		else
-			update_use_power(IDLE_POWER_USE)
+		if(!active)
 			stop_processing()
 
 		update_icon()

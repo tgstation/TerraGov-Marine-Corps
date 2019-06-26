@@ -136,7 +136,6 @@
 
 /turf/open/floor/light
 	name = "Light floor"
-	luminosity = 5
 	icon_state = "light_on"
 	floor_tile = new/obj/item/stack/tile/light
 

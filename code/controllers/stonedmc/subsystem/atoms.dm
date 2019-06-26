@@ -18,8 +18,6 @@ SUBSYSTEM_DEF(atoms)
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 
-	GLOB.lighting_controller.Initialize()
-
 	return ..()
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)

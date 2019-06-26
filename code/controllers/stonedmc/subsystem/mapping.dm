@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(mapping)
 			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to LV624</span>")
 			config = old_config
 	loadWorld()
-	repopulate_sorted_areas() // we dont have glob.sortedareas yet
+	repopulate_sorted_areas()
 	preloadTemplates()
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	// Set up Z-level transitions.
