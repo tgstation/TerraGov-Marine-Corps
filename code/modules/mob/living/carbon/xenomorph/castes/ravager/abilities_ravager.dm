@@ -99,7 +99,7 @@
 // ***************************************
 // *********** Second wind
 // ***************************************
-/datum/action/xeno_action/activable/second_wind
+/datum/action/xeno_action/second_wind
 	name = "Second Wind"
 	action_icon_state = "second_wind"
 	mechanics_text = "A channeled ability to restore health that uses plasma and rage. Must stand still for it to work."
@@ -107,15 +107,15 @@
 	var/last_rage = 0
 	keybind_signal = COMSIG_XENOABILITY_SECOND_WIND
 
-/datum/action/xeno_action/activable/second_wind/get_cooldown()
+/datum/action/xeno_action/second_wind/get_cooldown()
 	return cooldown_timer * round((1 - (last_rage * 0.015) ),0.01)
 
-/datum/action/xeno_action/activable/second_wind/on_cooldown_finish()
+/datum/action/xeno_action/second_wind/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
 
-/datum/action/xeno_action/activable/second_wind/action_activate(atom/A)
+/datum/action/xeno_action/second_wind/action_activate(atom/A)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	to_chat(X, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")

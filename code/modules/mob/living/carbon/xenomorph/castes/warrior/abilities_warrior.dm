@@ -1,7 +1,7 @@
 // ***************************************
 // *********** Agility
 // ***************************************
-/datum/action/xeno_action/activable/toggle_agility
+/datum/action/xeno_action/toggle_agility
 	name = "Toggle Agility"
 	action_icon_state = "agility_on"
 	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
@@ -10,12 +10,12 @@
 	use_state_flags = XACT_USE_AGILITY
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
 
-/datum/action/xeno_action/activable/toggle_agility/on_cooldown_finish()
+/datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(src, "<span class='notice'>You can [X.agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/toggle_agility/action_activate()
+/datum/action/xeno_action/toggle_agility/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.agility = !X.agility
