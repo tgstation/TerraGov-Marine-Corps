@@ -7278,7 +7278,7 @@
 	name = "\improper Brig Lockdown Podlocks";
 	opacity = 0
 	},
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
 	id = "Conference Room Shutters";
 	name = "\improper Privacy Shutters"
@@ -10434,7 +10434,7 @@
 	opacity = 0
 	},
 /obj/item/folder/black_random,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
 	id = "CIC Checkpoint Shutters";
 	name = "\improper CIC Checkpoint Shutters"
@@ -11563,7 +11563,7 @@
 "azZ" = (
 /obj/structure/window/framed/almayer/white,
 /obj/machinery/door/firedoor/theseus,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -12523,7 +12523,7 @@
 /area/almayer/medical/upper_medical)
 "aBQ" = (
 /obj/machinery/smartfridge/chemistry,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -13340,7 +13340,7 @@
 	req_one_access_txt = "0"
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -16083,7 +16083,7 @@
 /area/almayer/medical/upper_medical)
 "aJd" = (
 /obj/machinery/door/firedoor/theseus,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -16864,7 +16864,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/theseus,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"

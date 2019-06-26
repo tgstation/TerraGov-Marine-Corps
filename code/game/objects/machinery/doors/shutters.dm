@@ -105,9 +105,12 @@
 /obj/machinery/door/poddoor/shutters/almayer/open
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
+
+
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 
 /obj/machinery/door/poddoor/shutters/transit/open
