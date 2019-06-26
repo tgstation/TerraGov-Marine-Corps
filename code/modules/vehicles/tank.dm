@@ -165,38 +165,42 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	update_icon()
 	if(primary_weapon_type)
 		primary_weapon = new primary_weapon_type(src) //Make our guns
+		primary_weapon.owner = src
 	if(secondary_weapon_type)
 		secondary_weapon = new secondary_weapon_type(src)
-	primary_weapon?.owner = src
-	secondary_weapon?.owner = src
+		secondary_weapon.owner = src
 	GLOB.tank_list += src
 
 /obj/vehicle/tank/Destroy()
-	qdel(turret_overlay)
-	qdel(primary_weapon)
-	qdel(secondary_weapon)
+	remove_mobs()
+	QDEL_NULL(turret_overlay)
+	QDEL_NULL(primary_weapon)
+	QDEL_NULL(secondary_weapon)
+	playsound(get_turf(src), 'sound/weapons/tank_cannon_fire1.ogg', 100, 1) //Explosion sound
+	. = ..()
+
+/obj/vehicle/tank/proc/remove_mobs()
 	for(var/x in contents) //Yeet the occupants out so they arent deleted
 		if(ismob(x))
 			var/mob/living/mob = x
 			var/turf/T = get_turf(pick(orange(src,5)))
 			mob.forceMove(get_turf(src))
+			mob.SpinAnimation(1,1)
 			mob.throw_at(T, 3)
 			mob.apply_effect(6, STUN,)
 			mob.apply_effect(6, WEAKEN)
 			mob.apply_effect(6, STUTTER)
 			to_chat(mob, "<span class='warning'>You violently dive out of [src] as it explodes behind you!</span>")
-	playsound(get_turf(src), 'sound/weapons/tank_cannon_fire1.ogg', 100, 1) //Explosion sound
-	. = ..()
 
 /obj/vehicle/tank/Move()
 	. = ..()
 	update_icon()
-	if(world.time > last_drive_sound + 2 SECONDS)
-		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
-		last_drive_sound = world.time
+	if(world.time < last_drive_sound + 2 SECONDS)
+		return
+	playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
+	last_drive_sound = world.time
 
 /obj/vehicle/tank/update_icon() //To show damage, gun firing, whatever. We need to re apply the gun turret overlay.
-	vis_contents = null
 	if(!turret_overlay)
 		return
 	handle_overlays()
@@ -223,7 +227,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	add_overlay(damage_overlay)
 
 /obj/vehicle/tank/attack_hand(mob/user)
-	if(!ishuman(user) || isxeno(user)) //Aliens can't get in a tank...as hilarious as that would be
+	if(!ishuman(user)) //Aliens can't get in a tank...as hilarious as that would be
 		return
 	if(user in operators)
 		exit_tank(user)
@@ -286,11 +290,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		user.forceMove(get_turf(src))
 		pilot = null
 		operators -= user
-	if(user == gunner)
+	else if(user == gunner)
 		user.forceMove(get_turf(src))
 		gunner = null
 		operators -= user
-	if(user in passengers)
+	else if(user in passengers)
 		user.forceMove(get_turf(src))
 		passengers -= user
 		operators -= user

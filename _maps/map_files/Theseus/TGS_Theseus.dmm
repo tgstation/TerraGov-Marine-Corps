@@ -45051,10 +45051,6 @@
 	icon_state = "red"
 	},
 /area/almayer/shipboard/weapon_room)
-"gdW" = (
-/obj/vehicle/tank/tiny,
-/turf/open/floor/almayer/mono,
-/area/almayer/hallways/exoarmor)
 "gjm" = (
 /turf/open/floor/almayer{
 	dir = 4;
@@ -62787,7 +62783,7 @@ aVs
 beR
 hhV
 beR
-fBU
+beR
 beR
 beR
 bhY
@@ -67156,7 +67152,7 @@ aVs
 beR
 hxX
 beR
-gdW
+fBU
 beR
 beR
 bic
