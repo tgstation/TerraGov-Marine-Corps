@@ -116,6 +116,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/list/passengers = list() //People who are in the tank without gunning / driving. This allows for things like jeeps and APCs in future
 	var/max_passengers = 5 //This seems sane to me, change if you don't agree.
 	var/lights_on = FALSE //Tanks start with lights off
+	var/allow_diagonal_movement = FALSE //For smaller vehicles like a jeep you may want this. This forbids / allows you to move diagonally in these vehicles
 
 
 /obj/vehicle/tank/tiny //SQUEEEE
@@ -302,6 +303,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 /obj/vehicle/tank/relaymove(mob/user, direction)
 	if(world.time < last_move_time + move_delay)
+		return
+	if(!allow_diagonal_movement && direction in GLOB.diagonals)
 		return
 	if(user.incapacitated() || user != pilot)
 		to_chat(user, "<span class ='notice'>You can't reach the gas pedal from down here, maybe try manning the driver's seat?</span>")
