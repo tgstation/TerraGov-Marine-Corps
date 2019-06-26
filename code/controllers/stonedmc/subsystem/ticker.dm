@@ -268,6 +268,12 @@ SUBSYSTEM_DEF(ticker)
 	if(usr && !check_rights(R_SERVER))
 		return
 
+	var/datum/tgs_api/v3210/TGS = GLOB.tgs
+	if(istype(TGS) && TGS.reboot_mode == 1)
+		to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
+		world.Reboot(FALSE)
+		return
+
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10
 
