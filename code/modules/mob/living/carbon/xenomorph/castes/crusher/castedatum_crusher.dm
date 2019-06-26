@@ -113,7 +113,7 @@
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "It always has the right of way."
-	ancient_message = "You are the physical manifestation of a Tank. Almost nothing can harm you."
+	ancient_message = "We are the physical manifestation of a Tank. Almost nothing can harm us."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //

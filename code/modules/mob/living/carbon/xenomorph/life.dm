@@ -144,7 +144,7 @@
 		if(plasma_stored < 5)
 			use_plasma(plasma_stored)
 			current_aura = null
-			to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
+			to_chat(src, "<span class='warning'>We have run out of plasma and stopped emitting pheromones.</span>")
 		else
 			use_plasma(5)
 
@@ -271,7 +271,7 @@
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
-				to_chat(src, "<span class='warning'>You feel a searing heat!</span>")
+				to_chat(src, "<span class='warning'>We feel a searing heat!</span>")
 		else
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
@@ -333,5 +333,5 @@
 
 	SSticker.mode.transfer_xeno(picked, src)
 
-	to_chat(src, "<span class='xenoannounce'>You are an old xenomorph re-awakened from slumber!</span>")
+	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
 	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))

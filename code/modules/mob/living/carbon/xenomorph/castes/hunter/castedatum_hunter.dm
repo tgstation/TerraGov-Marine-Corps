@@ -118,7 +118,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "You are the epitome of the hunter. Few can stand against you in open combat."
+	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 40

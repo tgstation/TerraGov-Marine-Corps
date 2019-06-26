@@ -138,7 +138,7 @@
 		else
 			stat(null,"Slashing of hosts is currently: FORBIDDEN.")
 	else
-		stat(null,"Slashing of hosts is decided by your masters.")
+		stat(null,"Slashing of hosts is decided by our masters.")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
@@ -172,7 +172,7 @@
 		if(hive.hive_orders && hive.hive_orders != "")
 			stat(null,"Hive Orders: [hive.hive_orders]")
 	else
-		stat(null,"Hive Orders: Follow the instructions of your masters")
+		stat(null,"Hive Orders: Follow the instructions of our masters")
 
 
 //A simple handler for checking your state. Used in pretty much all the procs.
@@ -669,7 +669,7 @@
 			break
 
 		if(stagger)
-			to_chat(src, "<span class='xenowarning'>Our muscles fail to respond as you try to shake up the shock!</span>")
+			to_chat(src, "<span class='xenowarning'>Our muscles fail to respond as we try to shake up the shock!</span>")
 			break
 
 		if(target.plasma_stored < amount)

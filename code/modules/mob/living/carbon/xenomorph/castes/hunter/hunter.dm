@@ -117,7 +117,7 @@
 		alpha = HUNTER_STEALTH_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!plasma_stored)
-		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
+		to_chat(src, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
 /mob/living/carbon/xenomorph/hunter/stealth_router(code = 0)
@@ -158,7 +158,7 @@
 		plasma_stored = 0
 		if(current_aura)
 			current_aura = null
-			to_chat(src, "<span class='warning'>You have ran out of plasma and stopped emitting pheromones.</span>")
+			to_chat(src, "<span class='warning'>We have ran out of plasma and stopped emitting pheromones.</span>")
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
