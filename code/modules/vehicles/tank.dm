@@ -144,9 +144,9 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 /obj/vehicle/tank/examine(mob/user)
 	. = ..()
-	to_chat(user, "<b><span class='notice>To fire its main cannon, <i>ctrl</i> click a tile</b></span>")
-	to_chat(user, "<b><span class='notice>To fire its secondary weapon, click a tile</b></span>")
-	to_chat(user, "<i><span class='notice>It's currently holding [passengers.len] / [max_passengers] passengers</i></span>")
+	to_chat(user, "<b><span class='notice'>To fire its main cannon, <i>ctrl</i> click a tile</b></span>")
+	to_chat(user, "<b><span class='notice'>To fire its secondary weapon, click a tile</b></span>")
+	to_chat(user, "<i><span class='notice'>It's currently holding [passengers.len] / [max_passengers] passengers</i></span>")
 
 /obj/turret_overlay
 	name = "Tank gun turret"
