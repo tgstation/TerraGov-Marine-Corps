@@ -113,7 +113,7 @@
 	prepare_to_pounce()
 
 	X.visible_message("<span class='xenowarning'>\The [X] pounces at [A]!</span>", \
-	"<span class='xenowarning'>You pounce at [A]!</span>")
+	"<span class='xenowarning'>We pounce at [A]!</span>")
 
 	sneak_attack()
 

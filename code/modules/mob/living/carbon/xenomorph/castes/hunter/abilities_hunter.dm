@@ -51,7 +51,7 @@
 /mob/living/carbon/xenomorph/hunter/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	if(!stealth)//sanity check/safeguard
 		return
-	to_chat(src, "<span class='xenodanger'>You emerge from the shadows.</span>")
+	to_chat(src, "<span class='xenodanger'>We emerge from the shadows.</span>")
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	alpha = 255 //no transparency/translucency
@@ -74,7 +74,7 @@
 /datum/action/xeno_action/activable/pounce/hunter/sneak_attack()
 	var/mob/living/carbon/xenomorph/hunter/X = owner
 	if(X.can_sneak_attack) //If we could sneak attack, add a cooldown to sneak attack
-		to_chat(X, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
+		to_chat(X, "<span class='xenodanger'>Our pounce has left us off-balance; we'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before we can Sneak Attack again.</span>")
 		X.can_sneak_attack = FALSE
 		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/hunter/.proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
@@ -82,5 +82,5 @@
 	if(!stealth || can_sneak_attack)
 		return
 	can_sneak_attack = TRUE
-	to_chat(src, "<span class='xenodanger'>You're ready to use Sneak Attack while stealthed.</span>")
+	to_chat(src, "<span class='xenodanger'>We're ready to use Sneak Attack while stealthed.</span>")
 	playsound(src, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
