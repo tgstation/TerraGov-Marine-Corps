@@ -1,18 +1,18 @@
 // ***************************************
 // *********** Stealth
 // ***************************************
-/datum/action/xeno_action/activable/stealth
+/datum/action/xeno_action/stealth
 	name = "Toggle Stealth"
 	action_icon_state = "stealth_on"
 	mechanics_text = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
-/datum/action/xeno_action/activable/stealth/action_activate()
+/datum/action/xeno_action/stealth/action_activate()
 	var/mob/living/carbon/xenomorph/hunter/X = owner
 	X.Stealth()
 
-/datum/action/xeno_action/activable/stealth/action_cooldown_check()
+/datum/action/xeno_action/stealth/action_cooldown_check()
 	var/mob/living/carbon/xenomorph/hunter/X = owner
 	return !X.used_stealth
 

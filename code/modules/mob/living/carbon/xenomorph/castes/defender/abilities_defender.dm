@@ -191,7 +191,7 @@
 // ***************************************
 // *********** Crest defense
 // ***************************************
-/datum/action/xeno_action/activable/toggle_crest_defense
+/datum/action/xeno_action/toggle_crest_defense
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
 	mechanics_text = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
@@ -200,12 +200,12 @@
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CREST_DEFENSE
 
-/datum/action/xeno_action/activable/toggle_crest_defense/on_cooldown_finish()
+/datum/action/xeno_action/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
 	to_chat(X, "<span class='notice'>You can [X.crest_defense ? "raise" : "lower"] your crest.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/toggle_crest_defense/action_activate()
+/datum/action/xeno_action/toggle_crest_defense/action_activate()
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
 	if(X.crest_defense)
@@ -215,7 +215,7 @@
 
 	var/was_fortified = X.fortify
 	if(X.fortify)
-		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/activable/fortify]
+		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
 		if(FT.on_cooldown)
 			to_chat(src, "<span class='xenowarning'>You cannot yet untuck yourself!</span>")
 			return fail_activate()
@@ -248,7 +248,7 @@
 // ***************************************
 // *********** Fortify
 // ***************************************
-/datum/action/xeno_action/activable/fortify
+/datum/action/xeno_action/fortify
 	name = "Fortify"
 	action_icon_state = "fortify"	// TODO
 	mechanics_text = "Plant yourself for a large defensive boost."
@@ -257,12 +257,12 @@
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
 
-/datum/action/xeno_action/activable/fortify/on_cooldown_finish()
+/datum/action/xeno_action/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, "<span class='notice'>You can [X.fortify ? "stand up" : "fortify"] again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/fortify/action_activate()
+/datum/action/xeno_action/fortify/action_activate()
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
 	if(X.fortify)
@@ -272,7 +272,7 @@
 
 	var/was_crested = X.crest_defense
 	if(X.crest_defense)
-		var/datum/action/xeno_action/CD = X.actions_by_path[/datum/action/xeno_action/activable/toggle_crest_defense]
+		var/datum/action/xeno_action/CD = X.actions_by_path[/datum/action/xeno_action/toggle_crest_defense]
 		if(CD.on_cooldown)
 			to_chat(X, "<span class='xenowarning'>You cannot yet transition to a defensive stance!</span>")
 			return fail_activate()
