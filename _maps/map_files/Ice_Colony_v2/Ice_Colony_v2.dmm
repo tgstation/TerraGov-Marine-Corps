@@ -37235,10 +37235,6 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/valley/south/excavation)
-"bTt" = (
-/obj/vehicle/tank/apc,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/underground/caves/open)
 "bTu" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
@@ -43384,7 +43380,7 @@ bFZ
 bTD
 bTD
 bFZ
-bTt
+bFZ
 bFZ
 aZF
 bjZ
