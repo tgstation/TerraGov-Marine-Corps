@@ -9,3 +9,6 @@
 
 /mob/living/carbon/proc/set_stagger(amount)
 	stagger = max(amount, 0)
+
+/mob/living/carbon/proc/set_slowdown(amount)
+	slowdown = amount
