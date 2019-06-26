@@ -58,10 +58,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
-	spawn(3000)
-		if(CONFIG_GET(flag/kick_inactive))
-			KickInactiveClients()
-
 	return ..()
 
 
@@ -144,23 +140,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		if(CONFIG_GET(string/server))
 			C << link("byond://[CONFIG_GET(string/server)]")
 	return ..()
-
-
-#define INACTIVITY_KICK	6000	//10 minutes in ticks (approx.)
-/world/proc/KickInactiveClients()
-	spawn(-1)
-		set background = TRUE
-		while(1)
-			sleep(INACTIVITY_KICK)
-			for(var/client/C in GLOB.clients)
-				if(check_other_rights(C, R_ADMIN, FALSE))
-					continue
-				if(C.is_afk(INACTIVITY_KICK))
-					if(!istype(C.mob, /mob/dead))
-						log_access("AFK: [key_name(C)].")
-						to_chat(C, "<span class='warning'>You have been inactive for more than 10 minutes and have been disconnected.</span>")
-						qdel(C)
-#undef INACTIVITY_KICK
 
 
 /world/proc/load_mode()

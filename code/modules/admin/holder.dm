@@ -405,7 +405,9 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/map_change
+	/datum/admins/proc/map_change,
+	/datum/admins/proc/panic_bunker,
+	/datum/admins/proc/mode_check
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 GLOBAL_PROTECT(admin_verbs_server)

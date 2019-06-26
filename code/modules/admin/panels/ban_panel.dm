@@ -1100,11 +1100,25 @@
 	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
 		admin = TRUE
 
+	var/client/C = GLOB.directory[ckey]
+
 	//Guest Checking
-	if(!real_bans_only && IsGuestKey(key))
+	if(!real_bans_only && !C && IsGuestKey(key))
 		if(CONFIG_GET(flag/guest_ban))
 			log_access("Failed Login: [key] - Guests not allowed")
 			return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
+		if(CONFIG_GET(flag/panic_bunker) && SSdbcore.Connect())
+			log_access("Failed Login: [key] - Guests not allowed during panic bunker")
+			return list("reason"="guest", "desc"="\nReason: Sorry but the server is currently not accepting connections from never before seen players or guests. If you have played on this server with a byond account before, please log in to the byond account you have played from.")
+
+
+	//Population Cap Checking
+	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
+	if(!real_bans_only && !C && extreme_popcap && !admin)
+		var/popcap_value = length(GLOB.clients)
+		if(popcap_value >= extreme_popcap && !GLOB.joined_player_list.Find(ckey))
+			log_access("Failed Login: [key] - Population cap reached")
+			return list("reason" = "popcap", "desc" = "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
 
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
@@ -1141,7 +1155,6 @@
 			bannedckey = ban["ckey"]
 
 		var/newmatch = FALSE
-		var/client/C = GLOB.directory[ckey]
 		var/cachedban = SSstickyban.cache[bannedckey]
 
 		//rogue ban in the process of being reverted.

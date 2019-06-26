@@ -154,6 +154,8 @@ SUBSYSTEM_DEF(job)
 	for(var/level in levels)
 		// Loop through all unassigned players
 		for(var/mob/new_player/player in unassigned)
+			if(PopcapReached())
+				RejectPlayer(player)
 
 			// Loop through all jobs
 			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
@@ -177,7 +179,9 @@ SUBSYSTEM_DEF(job)
 
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/new_player/player)
-	if(player.client.prefs.alternate_option == BE_OVERFLOW)
+	if(PopcapReached())
+		RejectPlayer(player)
+	else if(player.client.prefs.alternate_option == BE_OVERFLOW)
 		if(!AssignRole(player, SSjob.overflow_role))
 			RejectPlayer(player)
 	else if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
@@ -269,7 +273,19 @@ SUBSYSTEM_DEF(job)
 	return L
 
 
+/datum/controller/subsystem/job/proc/PopcapReached()
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	var/epc = CONFIG_GET(number/extreme_popcap)
+	if(hpc || epc)
+		var/relevent_cap = max(hpc, epc)
+		if((initial_players_to_assign - length(unassigned)) >= relevent_cap)
+			return TRUE
+	return FALSE
+
+
 /datum/controller/subsystem/job/proc/RejectPlayer(mob/new_player/player)
+	if(PopcapReached())
+		JobDebug("Popcap overflow Check observer located, Player: [player]")
 	if(player.mind?.assigned_role)
 		JobDebug("Player already assigned a role :[player]")
 		unassigned -= player
