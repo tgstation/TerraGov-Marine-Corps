@@ -23485,10 +23485,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
-"bbO" = (
-/obj/machinery/tank_part_fabricator,
-/turf/open/floor/almayer/mono,
-/area/almayer/hallways/exoarmor)
 "bbP" = (
 /obj/structure/ship_ammo/rocket/banshee,
 /turf/open/floor/almayer/mono,
@@ -24567,7 +24563,7 @@
 	},
 /area/almayer/hallways/exoarmor)
 "beR" = (
-/obj/effect/multitile_spawner/cm_armored/tank,
+/obj/vehicle/tank/apc,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "beT" = (
@@ -67153,7 +67149,7 @@ aaa
 aVk
 aVm
 aVs
-bbO
+bbE
 hxX
 bbE
 beR
