@@ -212,13 +212,11 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(PheromonesOpen)
 		PheromonesOpen = FALSE
-		to_chat(X, "<span class ='xenonotice'>You collapse the pheromone button choices.</span>")
 		for(var/datum/action/path in owner.actions)
 			if(istype(path, /datum/action/xeno_action/pheromones))
 				path.remove_action(X)
 	else
 		PheromonesOpen = TRUE
-		to_chat(X, "<span class ='xenonotice'>You open the pheromone button choices.</span>")
 		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
 		for(var/path in subtypeactions)
 			var/datum/action/xeno_action/pheromones/A = new path()
@@ -338,7 +336,7 @@
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>You feel your growth toxin glands refill. You can use Growth Sting again.</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel our growth toxin glands refill. We can use Growth Sting again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -659,7 +657,7 @@
 	return (X.xeno_caste.spit_delay + X.ammo?.added_spit_delay)
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We feel your neurotoxin glands swell with ichor. We can spit again.</span>")
+	to_chat(src, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
@@ -725,7 +723,7 @@
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
-			to_chat(X, "<span class='warning'>You can't reach this target!</span>")
+			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 	var/mob/living/carbon/C = A
@@ -785,7 +783,7 @@
 
 	log_directed_talk(X, L, msg, LOG_SAY, "psychic whisper")
 	to_chat(L, "<span class='alien'>You hear a strange, alien voice in your head. <i>\"[msg]\"</i></span>")
-	to_chat(X, "<span class='xenonotice'>You said: \"[msg]\" to [L]</span>")
+	to_chat(X, "<span class='xenonotice'>We said: \"[msg]\" to [L]</span>")
 
 
 // ***************************************
@@ -804,7 +802,7 @@
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
 	if(!alien_weeds)
-		to_chat(owner, "<span class='warning'>Your eggs wouldn't grow well enough here. Lay them on resin.</span>")
+		to_chat(owner, "<span class='warning'>Our eggs wouldn't grow well enough here. Lay them on resin.</span>")
 		return FALSE
 
 	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
@@ -814,7 +812,7 @@
 		return FALSE
 
 	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
-		"<span class='xenowarning'>You have laid an egg!</span>")
+		"<span class='xenowarning'>We have laid an egg!</span>")
 
 	new /obj/effect/alien/egg(current_turf)
 	playsound(owner.loc, 'sound/effects/alien_egg_move.ogg', 25)
