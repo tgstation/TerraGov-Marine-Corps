@@ -126,7 +126,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	icon_state = "tank"
 	pixel_x = -16 //Stops marines from treading on it...d'aww
 	pixel_y = -8
-	max_passengers = 2 //Bluespace's one hell of a drug.
+	max_passengers = 0 //Bluespace's one hell of a drug.
 
 /obj/vehicle/tank/apc //SQUEEEE
 	name = "M557 Armoured Personnel Carrier"
@@ -138,7 +138,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	move_delay = 0.5 SECONDS //Faster because it's lightweight
 	pixel_x = -16
 	pixel_y = -8
-	max_passengers = 4 //It's a big carrier designed to get marines into the operation safely.
+	max_passengers = 2 //It's a small carrier designed to get marines back from the operation safely.
 	primary_weapon_type = /obj/item/tank_weapon/apc_cannon //Only has a utility launcher, no offense as standard.
 	secondary_weapon_type = null
 
