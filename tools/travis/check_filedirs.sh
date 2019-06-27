@@ -18,7 +18,7 @@ cd ~
 if [ -d "SpacemanDMM" ]; then
     cd SpacemanDMM
     git fetch
-    if [ $(git rev-parse HEAD) == $(git rev-parse @{u}) ]; then
+    if [ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]; then
         compile=1
         git pull
     fi
@@ -28,7 +28,7 @@ else
     compile=1
 fi
 
-if [ $compile == 1]; then 
+if [ "$compile" == 1 ]; then 
     while true
     do
         echo "heartbeat"
