@@ -16,7 +16,7 @@ fi
 cd ~
 git clone https://github.com/SpaceManiac/SpacemanDMM.git
 cd SpacemanDMM
-cargo build
+cargo build -p dreamchecker
 cd ~/tgstation/TerraGov-Marine-Corps
 if [ ~/SpacemanDMM/target/release/dreamchecker ]; then
   echo "dreamchecker errors found"
