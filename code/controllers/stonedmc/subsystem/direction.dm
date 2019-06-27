@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(direction)
 
 	// this is a two d list of defines to lists of mobs tracking that leader
 	// eg; list(CHARLIE_SL = list(<list of references to squad marines), XENO_NORMAL_QUEEN = list(<list of xeno mob refs))
-	var/list/processing_mobs = list()
+	var/list/list/processing_mobs = list()
 
 	var/list/mobs_in_processing = list() // reference lookup
 
