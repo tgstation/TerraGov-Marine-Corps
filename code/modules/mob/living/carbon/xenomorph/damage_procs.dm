@@ -119,30 +119,31 @@
 	if(stat == DEAD)
 		return FALSE
 
-	damage = process_rage_damage(damage, src)
-
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage, FALSE)
+			adjustBruteLoss(damage)
 		if(BURN)
-			adjustFireLoss(damage, FALSE)
+			adjustFireLoss(damage)
 
 	updatehealth()
 	return TRUE
 
 
-/mob/living/carbon/xenomorph/adjustBruteLoss(amount, process_rage = TRUE)
-	if(process_rage)
-		amount = process_rage_damage(amount)
+/mob/living/carbon/xenomorph/adjustBruteLoss(amount)
+	var/list/amount_mod = list()
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
+	for(var/i in amount_mod)
+		amount -= i
+
 	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
-/mob/living/carbon/xenomorph/adjustFireLoss(amount, process_rage = TRUE)
-	if(process_rage)
-		amount = process_rage_damage(amount)
-	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+/mob/living/carbon/xenomorph/adjustFireLoss(amount)
+	var/list/amount_mod = list()
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
+	for(var/i in amount_mod)
+		amount -= i
 
-/mob/living/carbon/xenomorph/proc/process_rage_damage(damage)
-	return damage
+	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)

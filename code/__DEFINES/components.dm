@@ -163,13 +163,18 @@
 #define COMSIG_XENOMORPH_ATTACK_M56 "xenomorph_attack_m56"
 #define COMSIG_XENOMORPH_ATTACK_TANK "xenomorph_attack_tank"
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
+	#define COMSIG_XENOMORPH_BONUS_APPLIED 1
 
+#define COMSIG_XENOMORPH_ATTACK_HUMAN "xenomorph_attack_human"
 #define COMSIG_XENOMORPH_DISARM_HUMAN "xenomorph_disarm_human"
 
 #define COMSIG_XENOMORPH_THROW_HIT "xenomorph_throw_hit"
 
 #define COMSIG_XENOMORPH_FIRE_BURNING "xenomorph_fire_burning"
 #define COMSIG_XENOMORPH_TAKING_DAMAGE "xenomorph_taking_damage" // (target, damagetaken)
+
+#define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage"
+#define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage"
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"

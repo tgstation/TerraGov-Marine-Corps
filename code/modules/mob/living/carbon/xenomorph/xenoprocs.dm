@@ -560,12 +560,6 @@
 /mob/living/carbon/xenomorph/proc/stealth_router(code = 0)
 	return FALSE
 
-/mob/living/carbon/xenomorph/proc/neuroclaw_router()
-	return
-
-/mob/living/carbon/xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
-	return FALSE
-
 /mob/living/carbon/xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
 		use_plasma(min(rand(1,2), plasma_stored))
@@ -754,6 +748,3 @@
 
 /mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
-
-/mob/living/carbon/xenomorph/proc/hit_and_run_bonus(damage)
-	return damage
