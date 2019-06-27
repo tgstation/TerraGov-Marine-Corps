@@ -8,17 +8,6 @@
 	anchored = 0
 
 
-
-
-
-
-/obj/effect/mark
-	var/mark = ""
-	icon = 'icons/misc/mark.dmi'
-	anchored = TRUE
-	layer = 99
-	mouse_opacity = 0
-
 /obj/effect/beam
 	name = "beam"
 	var/def_zone

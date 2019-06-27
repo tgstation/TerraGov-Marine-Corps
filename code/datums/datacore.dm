@@ -1,5 +1,13 @@
 GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
+/datum/data
+	var/name = "data"
+
+
+/datum/data/record
+	name = "record"
+	var/list/fields = list()
+
 
 /datum/datacore
 	var/list/medical = list()
