@@ -13,24 +13,31 @@ then
     exit 1
 fi
 
+compile=0
 cd ~
-if [ -d "~/SpacemanDMM" ]; then
+if [ -d "SpacemanDMM" ]; then
     cd SpacemanDMM
-    git pull
+    git fetch
+    if [ $(git rev-parse HEAD) == $(git rev-parse @{u}) ]; then
+        compile=1
+        git pull
 else
     git clone https://github.com/SpaceManiac/SpacemanDMM.git
     cd SpacemanDMM
+    compile=1
 fi
 
-while true
-do
-    echo "heartbeat"
-    sleep 60
-done &
+if [ $compile == 1]; then 
+    while true
+    do
+        echo "heartbeat"
+        sleep 60
+    done &
 
-cargo build --verbose -p dreamchecker --release
+    cargo build --verbose -p dreamchecker --release
 
-kill %1
+    kill %1
+fi
 
 cd ~/build/tgstation/TerraGov-Marine-Corps
 ~/SpacemanDMM/target/release/dreamchecker
