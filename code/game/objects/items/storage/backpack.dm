@@ -514,10 +514,9 @@
 	if(!camo_active)
 		return FALSE
 
-	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
 	camo_active = FALSE
 
-	user.visible_message("[user.name] shimmers into existence!", "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
+	user.visible_message("<span class='warning'>[user.name] shimmers into existence!</span>", "<span class='danger'>Your cloak's camouflage has deactivated!</span>")
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
@@ -537,9 +536,10 @@
 		process_camo_cooldown(user, cooldown)
 
 	UnregisterSignal(user, list(
-		COMSIG_HUMAN_DAMAGE_TAKEN, 
-		COMSIG_HUMAN_GUN_FIRED, 
-		COMSIG_HUMAN_ITEM_THROW, 
+		COMSIG_HUMAN_DAMAGE_TAKEN,
+		COMSIG_HUMAN_GUN_FIRED,
+		COMSIG_HUMAN_ATTACHMENT_FIRED,
+		COMSIG_HUMAN_ITEM_THROW,
 		COMSIG_HUMAN_ITEM_ATTACK))
 	STOP_PROCESSING(SSprocessing, src)
 	wearer.cloaking = FALSE
@@ -590,12 +590,12 @@
 		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(mob/living/carbon/human/wearer, damage)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
 	if(damage >= 15)
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken(atom/target, obj/item/I, mob/living/wearer)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken(datum/source, atom/target, obj/item/I, mob/living/wearer)
 	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
 	apply_shimmer()
 
