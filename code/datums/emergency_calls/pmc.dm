@@ -40,25 +40,25 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/leader)
 		SSjob.AssignRole(H, J.title)
-		J.equip(H)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are the leader of this Nanotrasen mercenary squad!</span>")
 		return
 
 	if(prob(50))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/gunner)
 		SSjob.AssignRole(H, J.title)
-		J.equip(H)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a Nanostrasen heavy gunner!</span>")
 		return
 
 	if(prob(30))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/sniper)
 		SSjob.AssignRole(H, J.title)
-		J.equip(H)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a Nanotrasen sniper!</span>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/standard)
 	SSjob.AssignRole(H, J.title)
-	J.equip(H)
+	J.assign_equip(H)
 	to_chat(H, "<span class='notice'>You are a Nanotrasen mercenary!</span>")

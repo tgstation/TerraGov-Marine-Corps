@@ -23,9 +23,10 @@
 	icon_state = "wrench"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
-	w_class = 2.0
+	force = 5
+	throwforce = 7
+	w_class = WEIGHT_CLASS_SMALL
+	usesound = 'sound/items/ratchet.ogg'
 	matter = list("metal" = 150)
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
@@ -143,11 +144,12 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 
 	//Amount of OUCH when it's thrown
-	force = 3.0
-	throwforce = 5.0
+	force = 3
+	throwforce = 5
+	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
 
 

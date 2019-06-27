@@ -95,22 +95,6 @@
 	return ..()
 
 
-/obj/item/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(!prob(50))
-				return
-			qdel(src)
-		if(3)
-			if(!prob(5))
-				return
-			qdel(src)
-
-
 //user: The mob that is suiciding
 //damagetype: The type of damage the item will inflict on the user
 //BRUTELOSS = 1
@@ -869,7 +853,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/play_tool_sound(atom/target, volume)
 	if(!target || !usesound || !volume)
 		return
-	playsound(target, usesound, volume, 1)
+	var/played_sound = usesound
+	if(islist(usesound))
+		played_sound = pick(usesound)
+	playsound(target, played_sound, volume, 1)
 
 
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.

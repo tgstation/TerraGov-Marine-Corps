@@ -46,3 +46,4 @@
 #define NOTIFY_JUMP "jump"
 #define NOTIFY_ATTACK "attack"
 #define NOTIFY_ORBIT "orbit"
+#define NOTIFY_JOIN_AS_LARVA "join_as_larva"

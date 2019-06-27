@@ -650,6 +650,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			chosen = input("Please, select a living mob.", title) as null|anything in sortNames(GLOB.mob_living_list)
 		if(APICKER_AREA)
 			chosen = input("Please, select an area.", title) as null|anything in GLOB.sorted_areas
+			chosen = pick(get_area_turfs(chosen))
 		if(APICKER_TURF)
 			chosen = input("Please, select a turf.", title) as null|turf in world
 		if(APICKER_COORDS)
