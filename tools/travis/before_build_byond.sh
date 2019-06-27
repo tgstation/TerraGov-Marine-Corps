@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+git clone https://github.com/SpaceManiac/SpacemanDMM.git
+cd SpacemanDmm
+cargo build -p dreamchecker --release
+cd ..
+SpacemanDMM/target/release/dreamchecker
+
 #If this is the build tools step, we do not bother to install/build byond
 if [ "$BUILD_TOOLS" = true ]; then
   exit 0
