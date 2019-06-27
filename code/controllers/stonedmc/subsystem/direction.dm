@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(direction)
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
 	// it's up to the user of this subsystem to remove themselves via the macros
 
-	var/list/currentrun
+	var/list/list/currentrun
 
 	var/last_faction_id = 0 // use to create unique faction ids
 
