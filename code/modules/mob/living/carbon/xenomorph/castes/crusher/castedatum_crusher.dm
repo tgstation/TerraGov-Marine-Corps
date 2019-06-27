@@ -36,7 +36,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_HAS_CREST
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80, "fire" = 80, "acid" = 80)

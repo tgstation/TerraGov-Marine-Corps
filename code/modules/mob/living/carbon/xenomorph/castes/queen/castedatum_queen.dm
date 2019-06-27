@@ -34,7 +34,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor_deflection = 45
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -150,7 +150,7 @@
 	upgrade_threshold = 3200
 
 	// *** Defense *** //
-	armor_deflection = 60
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
