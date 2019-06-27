@@ -11,9 +11,9 @@
 	var/color = null
 	var/prefix = ""
 	var/list/xeno_leader_list
-	var/list/xenos_by_typepath
-	var/list/xenos_by_tier
-	var/list/xenos_by_upgrade
+	var/list/list/xenos_by_typepath
+	var/list/list/xenos_by_tier
+	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 
 // ***************************************
@@ -197,13 +197,11 @@
 /datum/hive_status/proc/remove_from_lists(mob/living/carbon/xenomorph/X)
 	// Remove() returns 1 if it removes an element from a list
 
-	var/list/XL = xenos_by_tier[X.tier]
-	if(!XL.Remove(X))
+	if(!xenos_by_tier[X.tier].Remove(X))
 		stack_trace("failed to remove a xeno from hive status tier list, nothing was removed!?")
 		return FALSE
 
-	XL = xenos_by_upgrade[X.upgrade]
-	if(!XL.Remove(X))
+	if(!xenos_by_upgrade[X.upgrade].Remove(X))
 		stack_trace("trying to remove a xeno from hivestatus upgrade list, nothing was removed!?")
 		return FALSE
 
@@ -211,8 +209,7 @@
 		stack_trace("trying to remove an invalid typepath from hivestatus list")
 		return FALSE
 
-	XL = xenos_by_typepath[X.caste_base_type]
-	if(!XL.Remove(X))
+	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
 

@@ -37,7 +37,7 @@ GLOBAL_LIST_EMPTY(all_languages)
 
 GLOBAL_LIST_EMPTY(all_species)
 
-GLOBAL_LIST_EMPTY(xeno_caste_datums)
+GLOBAL_LIST_EMPTY_TYPED(xeno_caste_datums, /list/datum/xeno_caste)
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 
