@@ -757,11 +757,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	if(species.tail)
 		if(!wear_suit || !(wear_suit.flags_inv_hide & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
-			var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
-			tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+			var/icon/T = new /icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+			if(species.ears)
+				var/icon/inner = new /icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.ears]")
+				T.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+				T.Blend(inner, ICON_OVERLAY)
+			else
+				T.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 
-			overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
-
+			overlays_standing[TAIL_LAYER] = image(T, layer = -TAIL_LAYER)
 			apply_overlay(TAIL_LAYER)
 
 

@@ -54,9 +54,10 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 	// Species
 	for(var/T in subtypesof(/datum/species))
-		rkey++
 		var/datum/species/S = new T
-		S.race_key = rkey //Used in mob icon caching.
+		if(!S.race_key)
+			rkey++
+			S.race_key = rkey //Used in mob icon caching.
 		GLOB.all_species[S.name] = S
 
 	// Our ammo stuff is initialized here.

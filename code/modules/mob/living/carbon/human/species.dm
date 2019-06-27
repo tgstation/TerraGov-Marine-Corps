@@ -14,6 +14,7 @@
 
 	var/primitive                              // Lesser form, if any (ie. monkey for humans)
 	var/tail                                   // Name of tail image in species effects icon file.
+	var/ears 								   // Icon state of the ears, gets combined with the tail.
 	var/datum/unarmed_attack/unarmed           // For empty hand harm-intent attack
 	var/datum/unarmed_attack/secondary_unarmed // For empty hand harm-intent attack if the first fails.
 	var/datum/hud_data/hud
@@ -245,12 +246,23 @@
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
 	show_paygrade = TRUE
 	count_human = TRUE
+	race_key = "human"
 
 	screams = list("male" = "male_scream", "female" = "female_scream")
 	paincries = list("male" = "male_pain", "female" = "female_pain")
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
+
+
+/datum/species/human/felinid
+	name = "Felinid"
+	name_plural = "Felinids"
+
+	default_language = /datum/language/felinid
+	tail = "felinidtail"
+	ears = "felinidears"
+
 
 //Slightly tougher humans.
 /datum/species/human/hero
