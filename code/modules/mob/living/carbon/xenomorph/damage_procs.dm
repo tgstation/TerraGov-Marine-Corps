@@ -1,26 +1,3 @@
-#define SOAK_REDUCTION_RATIO 0.25 // % of armor that is soak rest is % reduction
-
-#define ARMOR_SOAK(armor) ((armor * SOAK_REDUCTION_RATIO))
-#define ARMOR_REDUCTION(armor) ((armor * (1 - SOAK_REDUCTION_RATIO)))
-
-#define XENO_BOMB_RESIST_4 100
-#define XENO_BOMB_RESIST_3 80
-#define XENO_BOMB_RESIST_2 60
-#define XENO_BOMB_RESIST_1 40
-#define XENO_BOMB_RESIST_0 0
-
-/*
-// this will eventually be moved up to atom
-/mob/living/carbon/Xenomorph/proc/apply_armor_reduction(damage, damage_type)
-	var/armorval = armor.getRating(damage_type)
-	if(!armorval)
-		return damage
-	damage = max(0, damage - ARMOR_SOAK(armorval))
-	if(!damage)
-		return 0
-	return damage * ARMOR_REDUCTION(armorval)
-*/ //Spooky proc.
-
 /mob/living/carbon/xenomorph/ex_act(severity)
 
 	flash_eyes()

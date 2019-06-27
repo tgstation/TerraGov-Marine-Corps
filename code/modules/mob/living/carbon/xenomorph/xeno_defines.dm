@@ -158,8 +158,6 @@
 
 	var/fire_resist_modifier = 0
 
-	var/xeno_explosion_resistance = 0 //0 to 3. how explosions affects the xeno, can it stun it, etc...
-
 	var/obj/structure/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
