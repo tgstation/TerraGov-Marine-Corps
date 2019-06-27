@@ -138,7 +138,7 @@ Buildable meters
 	if(iswrench(I))
 		return wrench_act(user, I)
 
-/obj/item/pipe/wrench_act(mob/living/user, obj/item/wrench/W)
+/obj/item/pipe/wrench_act(mob/living/user, obj/item/tool/wrench/W)
 	if(!isturf(loc))
 		return TRUE
 
@@ -200,7 +200,7 @@ Buildable meters
 	if(!.)
 		return ..()
 
-/obj/item/pipe_meter/wrench_act(mob/living/user, obj/item/wrench/W)
+/obj/item/pipe_meter/wrench_act(mob/living/user, obj/item/tool/wrench/W)
 
 	var/obj/machinery/atmospherics/pipe/pipe
 	for(var/obj/machinery/atmospherics/pipe/P in loc)

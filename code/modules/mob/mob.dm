@@ -691,7 +691,7 @@ mob/proc/yank_out_object()
 	if(!pulling)
 		return forceMove(destination) //No need for a special proc if there's nothing being pulled.
 	pulledby?.stop_pulling() //The leader of the choo-choo train breaks the pull
-	var/atom/movable/list/conga_line[0]
+	var/list/conga_line = list()
 	var/end_of_conga = FALSE
 	var/mob/S = src
 	conga_line += S
