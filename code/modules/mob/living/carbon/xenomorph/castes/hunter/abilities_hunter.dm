@@ -46,7 +46,7 @@
 			last_stealth = world.time
 			stealth = TRUE
 			handle_stealth()
-			addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
+			addtimer(CALLBACK(src, .proc/stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
 			addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 	else
 		cancel_stealth()
@@ -68,7 +68,7 @@
 	can_sneak_attack = FALSE
 	alpha = 255 //no transparency/translucency
 	stealth_delay = world.time + HUNTER_STEALTH_COOLDOWN
-	addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
+	addtimer(CALLBACK(src, .proc/stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
 
 // ***************************************
 // *********** Pounce/sneak attack

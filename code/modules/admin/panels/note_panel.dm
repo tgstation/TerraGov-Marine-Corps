@@ -567,7 +567,7 @@
 					return
 				qdel(query_message_read)
 			if("watchlist entry")
-				addtimer(CALLBACK(GLOBAL_PROC, .print_watchlist, key_name(target_ckey), timestamp, text), 2 SECONDS)
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/print_watchlist, key_name(target_ckey), timestamp, text), 2 SECONDS)
 			if("memo")
 				output += "<span class='memo'>Memo by <span class='prefix'>[admin_key]</span> on [timestamp]"
 				if(editor_key)

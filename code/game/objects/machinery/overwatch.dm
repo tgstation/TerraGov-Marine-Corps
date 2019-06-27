@@ -511,14 +511,14 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
 		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //Placeholder
-	addtimer(CALLBACK(src, .send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
-	addtimer(CALLBACK(src, .send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
-	addtimer(CALLBACK(src, .do_fire_bombard, T, usr), 4.1 SECONDS)
+	addtimer(CALLBACK(src, .proc/send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 4.1 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
 	visible_message("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
 	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
-	addtimer(CALLBACK(src, .do_land_bombard, T, user), 2.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_land_bombard, T, user), 2.5 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_land_bombard(turf/T, user)
 	busy = FALSE
