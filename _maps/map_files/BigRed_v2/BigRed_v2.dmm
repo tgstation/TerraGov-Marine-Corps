@@ -5091,12 +5091,6 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/caves/lambda_lab)
-"aoJ" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 4
-	},
-/area/bigredv2/caves/lambda_lab)
 "aoK" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -7846,10 +7840,6 @@
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
-"awz" = (
-/obj/structure/table/holotable/wood,
-/turf/open/floor/carpet,
-/area/bigredv2/caves/lambda_lab)
 "awA" = (
 /obj/structure/table/holotable/wood,
 /obj/item/tool/pen,
@@ -12082,12 +12072,6 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aIY" = (
-/obj/machinery/embedded_controller/radio/airlock/access_controller{
-	id_tag = "viro_controller";
-	pixel_y = 28;
-	tag_exterior_door = "viro_ext";
-	tag_interior_door = "viro_int"
-	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
@@ -23919,11 +23903,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"bxJ" = (
-/turf/open/floor/tile/dark/yellow2{
-	dir = 4
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "bxK" = (
 /obj/machinery/light{
 	dir = 8
@@ -25421,9 +25400,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDi" = (
 /obj/machinery/computer/atmoscontrol,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"bDj" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDk" = (
@@ -52115,7 +52091,7 @@ bwJ
 bxb
 bxp
 bxp
-bxJ
+bxp
 bxQ
 bxp
 bys
@@ -53225,7 +53201,7 @@ bBt
 bxg
 bBt
 bBL
-bDj
+bxg
 bxN
 bxS
 bxS
@@ -63515,7 +63491,7 @@ adZ
 auj
 ltt
 auY
-awz
+asq
 arH
 adZ
 aac
@@ -66976,7 +66952,7 @@ alT
 amO
 ans
 anW
-aoJ
+alT
 alT
 aqh
 adZ
