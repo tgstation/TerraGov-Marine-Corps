@@ -186,3 +186,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 #define TANK_OVERDRIVE_BOOST_DURATION	5 SECONDS
 #define TANK_OVERDRIVE_BOOST_COOLDOWN	20 SECONDS
+
+//Closets
+#define CLOSET_ALLOW_OBJS (1<<0)
+#define CLOSET_ALLOW_DENSE_OBJ (1<<1)
+#define CLOSET_IS_SECURE (1<<2)

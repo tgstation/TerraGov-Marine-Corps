@@ -853,7 +853,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/play_tool_sound(atom/target, volume)
 	if(!target || !usesound || !volume)
 		return
-	playsound(target, usesound, volume, 1)
+	var/played_sound = usesound
+	if(islist(usesound))
+		played_sound = pick(usesound)
+	playsound(target, played_sound, volume, 1)
 
 
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
