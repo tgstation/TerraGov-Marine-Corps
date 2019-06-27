@@ -1,3 +1,9 @@
+#!/bin/bash
+
+#nb: must be bash to support shopt globstar
+set -e
+shopt -s globstar
+
 cd ~
 git clone https://github.com/SpaceManiac/SpacemanDMM.git
 cd SpacemanDMM
