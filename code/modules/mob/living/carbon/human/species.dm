@@ -14,7 +14,7 @@
 
 	var/primitive                              // Lesser form, if any (ie. monkey for humans)
 	var/tail                                   // Name of tail image in species effects icon file.
-	var/ears 								   // Icon state of the ears, gets combined with the tail.
+	var/ears 								   // Icon state of the ears in species effects icon file.
 	var/datum/unarmed_attack/unarmed           // For empty hand harm-intent attack
 	var/datum/unarmed_attack/secondary_unarmed // For empty hand harm-intent attack if the first fails.
 	var/datum/hud_data/hud
