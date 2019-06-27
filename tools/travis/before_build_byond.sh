@@ -1,15 +1,6 @@
 #!/bin/bash
 set -e
 
-git clone https://github.com/SpaceManiac/SpacemanDMM.git
-cd SpacemanDMM
-cargo build -p dreamchecker
-cd ..
-if [ SpacemanDMM/target/release/dreamchecker ]; then
-  echo "dreamchecker errors found"
-  exit 1
-fi
-
 #If this is the build tools step, we do not bother to install/build byond
 if [ "$BUILD_TOOLS" = true ]; then
   exit 0

@@ -32,4 +32,5 @@ before_script:
 
 script:
   - tools/travis/check_filedirs.sh tgmc.dme
+  - tools/travis/dreamchecker.sh
   - tools/travis/build_byond.sh
