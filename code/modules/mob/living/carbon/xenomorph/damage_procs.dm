@@ -7,6 +7,7 @@
 #define XENO_BOMB_RESIST_3 80
 #define XENO_BOMB_RESIST_2 60
 #define XENO_BOMB_RESIST_1 40
+#define XENO_BOMB_RESIST_0 0
 
 /*
 // this will eventually be moved up to atom
@@ -82,7 +83,7 @@
 					adjust_stagger(5)
 					add_slowdown(5)
 		if(3)
-			switch(xeno_explosion_resistance)
+			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					return //Immune
 				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
