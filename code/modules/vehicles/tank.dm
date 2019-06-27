@@ -151,7 +151,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	turret_icon = 'icons/obj/troop_apc.dmi'
 	turret_icon_state = "apc_turret"
 	icon_state = "apc"
-	move_delay = 0.5 SECONDS //Bulky, but not as slow as the tank
+	move_delay = 0.35 SECONDS //Bulky, but not as slow as the tank
 	pixel_x = -32
 	pixel_y = -20
 	max_passengers = 3 //Enough to ferry wounded men to and fro without being stupidly tardis like. Seats 5 total
@@ -190,6 +190,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	GLOB.tank_list += src
 
 /obj/vehicle/tank/Destroy()
+	obj_integrity = 10000 //Prevents this from being called over and over and over while we chuck the mobs out
 	remove_mobs()
 	QDEL_NULL(turret_overlay)
 	QDEL_NULL(primary_weapon)
@@ -238,6 +239,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		underlay.layer = OBJ_LAYER
 	damage_overlay.icon = icon //Applies a damage effect
 	damage_overlay.icon_state = null
+	damage_overlay.layer = layer+0.1 //So it's always above the sprite
 	switch(PERCENT(obj_integrity / max_integrity))
 		if(0 to 29)
 			damage_overlay.icon_state = "damage_major"
