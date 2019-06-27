@@ -233,14 +233,14 @@
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
 		GLOB.round_statistics.defender_crest_lowerings++
-		armor.modifyRating(bomb = XENO_BOMB_RESIST_2)
+		armor = armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		armor_bonus += xeno_caste.crest_defense_armor
 		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You raise your crest.</span>")
 		GLOB.round_statistics.defender_crest_raises++
-		armor.modifyRating(bomb = XENO_BOMB_RESIST_0)
+		armor = armor.setRating(bomb = XENO_BOMB_RESIST_0)
 		armor_bonus -= xeno_caste.crest_defense_armor
 		speed_modifier -= DEFENDER_CRESTDEFENSE_SLOWDOWN
 	update_icons()
@@ -290,12 +290,12 @@
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
 		armor_bonus += xeno_caste.fortify_armor
-		armor.modifyRating(bomb = XENO_BOMB_RESIST_3)
+		armor = armor.setRating(bomb = XENO_BOMB_RESIST_3)
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>You resume your normal stance.</span>")
 		armor_bonus -= xeno_caste.fortify_armor
-		armor.modifyRating(bomb = XENO_BOMB_RESIST_0)
+		armor = armor.setRating(bomb = XENO_BOMB_RESIST_0)
 	fortify = on
 	set_frozen(on)
 	anchored = on
