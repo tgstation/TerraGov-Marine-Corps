@@ -21,6 +21,7 @@ if [ -d "SpacemanDMM" ]; then
     if [ $(git rev-parse HEAD) == $(git rev-parse @{u}) ]; then
         compile=1
         git pull
+    fi
 else
     git clone https://github.com/SpaceManiac/SpacemanDMM.git
     cd SpacemanDMM
