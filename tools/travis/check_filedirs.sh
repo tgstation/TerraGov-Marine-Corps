@@ -28,7 +28,4 @@ cargo build --verbose -p dreamchecker
 kill %1
 
 cd ~/build/tgstation/TerraGov-Marine-Corps
-if [ ~/SpacemanDMM/target/release/dreamchecker ]; then
-  echo "dreamchecker errors found"
-  exit 1
-fi
+~/SpacemanDMM/target/release/dreamchecker
