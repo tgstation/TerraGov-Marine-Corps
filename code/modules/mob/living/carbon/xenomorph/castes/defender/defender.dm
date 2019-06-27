@@ -12,6 +12,7 @@
 	old_x = -16
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_ZERO
+	layer = LARGE_XENO_LAYER
 	pull_speed = -2
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -56,7 +57,7 @@
 /mob/living/carbon/xenomorph/defender/Bump(atom/A)
 	if(!throwing || !throw_source || !thrower)
 		return ..()
-	if(!ishuman(A)) 
+	if(!ishuman(A))
 		return ..()
 	var/mob/living/carbon/human/H = A
 	var/extra_dmg = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * 0.5 // 50% dmg reduction

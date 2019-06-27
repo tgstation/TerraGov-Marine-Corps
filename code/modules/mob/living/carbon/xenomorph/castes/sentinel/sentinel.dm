@@ -11,6 +11,7 @@
 	old_x = -12
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_ZERO
+	layer = LARGE_XENO_LAYER
 	speed = -0.8
 	pull_speed = -2
 	actions = list(

@@ -44,7 +44,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	icon_state = "APC uninstalled dualcannon"
 	default_ammo = /obj/item/ammo_magazine/tank/tank_slauncher
 	cooldown = 0.7 SECONDS //Minimal cooldown
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/towlauncher,/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/tank_slauncher)
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/towlauncher,/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/tank_slauncher, /obj/item/ammo_magazine/tank/tank_glauncher)
 	fire_sounds = list('sound/weapons/gun_shotgun_automatic.ogg', 'sound/weapons/gun_shotgun_light.ogg', 'sound/weapons/gun_shotgun_heavy.ogg')
 
 /obj/item/tank_weapon/proc/fire(atom/T,mob/user)
@@ -117,10 +117,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/max_passengers = 5 //This seems sane to me, change if you don't agree.
 	var/lights_on = FALSE //Tanks start with lights off
 	var/allow_diagonal_movement = FALSE //For smaller vehicles like a jeep you may want this. This forbids / allows you to move diagonally in these vehicles
-
+	var/has_underlay = FALSE //For larger vehicles that need seperately overlaying parts.
+	var/obj/effect/underlay = null
 
 /obj/vehicle/tank/tiny //SQUEEEE
-	name = "Mk-4 'pint pot' tank"
+	name = "Mk-4 'shortstreet' tank"
 	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that nanotrasen wants it to. This model contains advanced bluespace technology which allows a tardis like amount of room on the inside"
 	icon = 'icons/obj/tinytank.dmi'
 	turret_icon = 'icons/obj/tinytank_gun.dmi'
@@ -129,25 +130,41 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	pixel_y = -8
 	max_passengers = 0 //Bluespace's one hell of a drug.
 
-/obj/vehicle/tank/apc //SQUEEEE
-	name = "M557 Armoured Personnel Carrier"
-	desc = "A heavily armoured vehicle with light armaments. Though it doesn't pack the punch of a tank its utility launcher can provide cover for troops and allow for rapid deployment with minimal casualties."
+/obj/vehicle/tank/apc/mini //SQUEEEE
+	name = "M157 Replica Armoured Personnel Carrier"
+	desc = "A miniaturized replica of a popular personnel carrier. For ages 5 and up."
 	icon = 'icons/obj/tinytank.dmi'
 	turret_icon = 'icons/obj/tinytank_gun.dmi'
 	turret_icon_state = "apc_turret"
 	icon_state = "apc"
-	move_delay = 0.5 SECONDS //Faster because it's lightweight
+	move_delay = 0.1 SECONDS
 	pixel_x = -16
 	pixel_y = -8
-	max_passengers = 2 //It's a small carrier designed to get marines back from the operation safely.
+	max_passengers = 1
+	primary_weapon_type = null
+	secondary_weapon_type = null
+
+/obj/vehicle/tank/apc //Big boy troop carrier
+	name = "M557 Armoured Personnel Carrier"
+	desc = "A heavily armoured vehicle with light armaments designed to ferry troops around the battle field, or assist with search and rescue (SAR) operations."
+	icon = 'icons/obj/troop_apc.dmi'
+	turret_icon = 'icons/obj/troop_apc.dmi'
+	turret_icon_state = "apc_turret"
+	icon_state = "apc"
+	move_delay = 0.5 SECONDS //Bulky, but not as slow as the tank
+	pixel_x = -32
+	pixel_y = -20
+	max_passengers = 3 //Enough to ferry wounded men to and fro without being stupidly tardis like. Seats 5 total
 	primary_weapon_type = /obj/item/tank_weapon/apc_cannon //Only has a utility launcher, no offense as standard.
 	secondary_weapon_type = null
+	has_underlay = TRUE
 
 /obj/vehicle/tank/examine(mob/user)
 	. = ..()
-	to_chat(user, "<b><span class='notice'>To fire its main cannon, <i>ctrl</i> click a tile</b></span>")
-	to_chat(user, "<b><span class='notice'>To fire its secondary weapon, click a tile</b></span>")
-	to_chat(user, "<i><span class='notice'>It's currently holding [passengers.len] / [max_passengers] passengers</i></span>")
+	to_chat(user, "<b><span class='notice'>To fire its main cannon, <i>ctrl</i> click a tile.</b></span>")
+	to_chat(user, "<b><span class='notice'>To fire its secondary weapon, click a tile.</b></span>")
+	to_chat(user, "<b><span class='notice'>To forcibly remove someone from it, use grab intent.</b></span>")
+	to_chat(user, "<i><span class='notice'>It's currently holding [passengers.len] / [max_passengers] passengers (excluding its gunner and pilot).</i></span>")
 
 /obj/turret_overlay
 	name = "Tank gun turret"
@@ -178,7 +195,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	QDEL_NULL(primary_weapon)
 	QDEL_NULL(secondary_weapon)
 	playsound(get_turf(src), 'sound/weapons/tank_cannon_fire1.ogg', 100, 1) //Explosion sound
-	. = ..()
+	return ..()
 
 /obj/vehicle/tank/proc/remove_mobs()
 	for(var/x in contents) //Yeet the occupants out so they arent deleted
@@ -214,6 +231,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	if(!damage_overlay)
 		damage_overlay = new(src)
 	cut_overlays()
+	if(has_underlay && !underlay)
+		underlay = new(src)
+		underlay.icon = icon //Applies a damage effect
+		underlay.icon_state = "[icon_state]_underlay"
+		underlay.layer = OBJ_LAYER
 	damage_overlay.icon = icon //Applies a damage effect
 	damage_overlay.icon_state = null
 	switch(PERCENT(obj_integrity / max_integrity))
@@ -226,16 +248,53 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		if(71 to 90)
 			damage_overlay.icon_state = "damage_minor"
 	add_overlay(damage_overlay)
+	add_overlay(underlay)
 
-/obj/vehicle/tank/attack_hand(mob/user)
+/obj/vehicle/tank/attack_hand(mob/living/user)
 	if(!ishuman(user)) //Aliens can't get in a tank...as hilarious as that would be
 		return
+	if(user.a_intent == INTENT_GRAB) //Grab the tank to rip people out of it. Use this if someone dies in it.
+		if(!allowed(user))
+			to_chat(user, "<span class='warning'>[src]'s hatch won't budge!.</span>")
+			return FALSE
+		var/list/mobs = list() //Mobs inside src
+		for(var/x in contents)
+			if(ismob(x))
+				mobs += x
+		if(!mobs.len)
+			to_chat(user, "<span class='warning'>No one is currently occupying [src]!.</span>")
+			return
+		var/input
+		input = input(user, "Who do you want to forcibly remove from [src]?", "Your violent tendencies", input) as null|anything in mobs
+		var/mob/living/target = input
+		user.visible_message("<span class='warning'>[user] starts to force their way through [src]'s hatch!.</span>",
+		"<span class='notice'>You start to force your way through [src]'s hatch to grab [target].</span>")
+		var/time = 6 SECONDS - (1 SECONDS * user.mind.cm_skills.large_vehicle)
+		if(do_after(user, time, TRUE, src, BUSY_ICON_BUILD))
+			exit_tank(target)
+			target.SpinAnimation(1,1)
+			target.throw_at(user, 3)
+			target.apply_effect(6, STUN,)
+			target.apply_effect(6, WEAKEN)
+			target.apply_effect(6, STUTTER)
+			user.visible_message("<span class='warning'>[user] rips [target] out of [src] and bodyslams them!.</span>",
+			"<span class='notice'>You rip [target] out of [src] and bodyslam them!.</span>")
+			playsound(get_turf(src), 'sound/effects/throw.ogg', 100, 1)
+			return
 	if(user in operators)
 		exit_tank(user)
 		return
-	if(pilot && gunner)
-		to_chat(user, "You are unable to enter [src] because all of its seats are occupied!")
-		return ..()
+	if(user.pulling && ismob(user.pulling)) //If theyre pulling someone and click the tank, load that person into a passenger seat first. This allows for medics to put marines into the tank / apc safely
+		if(passengers.len >= max_passengers) //We have a few slots for people to enter as passengers without gunning / driving.
+			to_chat(user, "[user.pulling] won't fit in because [src] is already full!")
+			return
+
+		user.visible_message("<span class='notice'>[user] starts to load [user.pulling] into [src].</span>",
+		"<span class='notice'>You start to load [user.pulling] into [src].</span>")
+		var/time = 10 SECONDS - (2 SECONDS * user.mind.cm_skills.large_vehicle)
+		if(do_after(user, time, TRUE, src, BUSY_ICON_BUILD))
+			return enter(user.pulling, "passenger")
+			return TRUE
 	var/position = alert("What seat would you like to enter?.",name,"pilot","gunner", "passenger") //God I wish I had radials to work with
 	if(!position)
 		return
@@ -248,28 +307,28 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	if(passengers.len >= max_passengers && position == "passenger") //We have a few slots for people to enter as passengers without gunning / driving.
 		to_chat(user, "[src] is already full!")
 		return
-	if(can_enter(user)) //OWO can they enter us????
+	if(can_enter(user, position)) //OWO can they enter us????
 		to_chat(user, "You climb into [src] as a [position]!")
 		return enter(user, position) //Yeah i could do this with a define, but this way we're not using multiple things
 
-/obj/vehicle/tank/proc/can_enter(mob/living/carbon/M) //NO BENOS ALLOWED
+/obj/vehicle/tank/proc/can_enter(mob/living/carbon/M, position) //NO BENOS ALLOWED
 	if(!M.IsAdvancedToolUser())
 		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
 		return FALSE
-	if(!allowed(M))
+	if(!allowed(M) && position != "passenger")
 		to_chat(M, "<span class='warning'>Access denied.</span>")
 		return FALSE
 	var/obj/item/offhand = M.get_inactive_held_item()
 	if(offhand && !(offhand.flags_item & (NODROP|DELONDROP)))
-		to_chat(M, "<span class='warning'>You need your hands free to climb on [src].</span>")
+		to_chat(M, "<span class='warning'>You need your hands free to climb into [src].</span>")
 		return FALSE
-
 	if(M.mind?.cm_skills?.large_vehicle < SKILL_LARGE_VEHICLE_TRAINED)
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
 	var/time = 10 SECONDS - (2 SECONDS * M.mind.cm_skills.large_vehicle)
 	if(do_after(M, time, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
+
 
 /obj/vehicle/tank/proc/enter(mob/user, position) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
 	user.forceMove(src)

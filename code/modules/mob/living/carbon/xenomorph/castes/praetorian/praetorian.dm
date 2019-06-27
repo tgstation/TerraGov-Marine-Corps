@@ -14,6 +14,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
+	layer = LARGE_XENO_LAYER
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

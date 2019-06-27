@@ -10,6 +10,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	speed = 0
 	mob_size = MOB_SIZE_BIG
+	layer = LARGE_XENO_LAYER
 	var/list/huggers = list()
 	var/eggs_cur = 0
 	tier = XENO_TIER_TWO

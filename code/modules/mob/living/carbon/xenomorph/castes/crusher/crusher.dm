@@ -9,6 +9,7 @@
 	plasma_stored = 200
 	speed = 0.1
 	tier = XENO_TIER_THREE
+	layer = LARGE_XENO_LAYER
 	upgrade = XENO_UPGRADE_ZERO
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.

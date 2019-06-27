@@ -10,6 +10,7 @@
 	pixel_x = -16
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
+	layer = LARGE_XENO_LAYER
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 100

@@ -9,6 +9,7 @@
 	plasma_stored = 50
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
+	layer = LARGE_XENO_LAYER
 	var/stealth_delay = null
 	var/last_stealth = null
 	var/used_stealth = FALSE

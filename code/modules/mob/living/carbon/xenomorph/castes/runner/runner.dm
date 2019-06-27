@@ -11,6 +11,7 @@
 	flags_pass = PASSTABLE
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_ZERO
+	layer = LARGE_XENO_LAYER
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
 	hit_and_run = 1
@@ -47,7 +48,7 @@
 	damage *= bonus
 	hit_and_run = 1 //reset the hit and run bonus
 	return damage
-	
+
 /mob/living/carbon/xenomorph/runner/handle_status_effects()
 	if(hit_and_run)
 		var/last_move = last_move_intent - 10

@@ -12,6 +12,7 @@
 	xeno_explosion_resistance = 1 //can't be gibbed from explosions
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
+	layer = LARGE_XENO_LAYER
 	pixel_x = -16
 	old_x = -16
 	//Ravager vars

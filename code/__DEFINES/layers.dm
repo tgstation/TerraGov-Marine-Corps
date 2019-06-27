@@ -113,6 +113,7 @@
 #define FACEHUGGER_LAYER 4.05
 
 #define ABOVE_MOB_LAYER 4.1
+#define LARGE_XENO_LAYER 4.15 //For big xenos with a sprite size > x32
 
 #define ABOVE_ALL_MOB_LAYER 4.5
 

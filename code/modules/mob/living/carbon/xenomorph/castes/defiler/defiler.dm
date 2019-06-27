@@ -12,6 +12,7 @@
 	old_x = -16
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
+	layer = LARGE_XENO_LAYER
 	var/datum/effect_system/smoke_spread/smoke_system
 	var/neuro_claws = FALSE
 	var/emitting_gas = FALSE
