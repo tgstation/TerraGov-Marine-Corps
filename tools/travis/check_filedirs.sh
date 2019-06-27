@@ -23,7 +23,7 @@ do
     sleep 60
 done &
 
-cargo build --verbose -p dreamchecker
+cargo build --verbose -p dreamchecker --release
 
 kill %1
 
