@@ -76,6 +76,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 // You must manually set the offsets for your tank subtypes so that they move correctly, VV them in game to find the perfect values											//
 // You can set max_passengers to something different (eg, 2 for a jeep) if you don't want loads of marines to pile in														//
 // I have set the layer of this tank high so that it layers over lights. This is an issue with multi-tile sprites in byond 													//
+// If you want to make a vehicle which is larger than 48x48 you'll need to make an underlay. See the APC for reference, but this makes seperate parts of the tank layer		//
+// -differently so that you can get the effect of a large multi-tile vehicle without actually needing any multitile code.													//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/vehicle/tank
