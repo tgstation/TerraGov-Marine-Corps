@@ -315,9 +315,10 @@
 	dat += "<table><tr><td valign='top'>"
 	var/column_counter = 0
 	for(var/list/category in (list(JOBS_OFFICERS) + list(JOBS_REQUISITIONS) + list(JOBS_POLICE) + list(JOBS_MEDICAL) + list(JOBS_ENGINEERING) + list(JOBS_MARINES)))
-		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
+		var/datum/job/J = SSjob.name_occupations[category[1]]
+		var/cat_color = J.selection_color //use the color of the first job in the category (the department head) as the category color
 		dat += "<fieldset class='latejoin' style='border-color: [cat_color]'>"
-		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
+		dat += "<legend align='center' style='color: [cat_color]'>[J.exp_type_department]</legend>"
 		var/list/dept_dat = list()
 		for(var/job in category)
 			var/datum/job/job_datum = SSjob.name_occupations[job]

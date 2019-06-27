@@ -196,11 +196,14 @@
 // helper function
 /datum/hive_status/proc/remove_from_lists(mob/living/carbon/xenomorph/X)
 	// Remove() returns 1 if it removes an element from a list
-	if(!xenos_by_tier[X.tier].Remove(X))
+
+	var/list/XL = xenos_by_tier[X.tier]
+	if(!XL.Remove(X))
 		stack_trace("failed to remove a xeno from hive status tier list, nothing was removed!?")
 		return FALSE
 
-	if(!xenos_by_upgrade[X.upgrade].Remove(X))
+	XL = xenos_by_upgrade[X.upgrade]
+	if(!XL.Remove(X))
 		stack_trace("trying to remove a xeno from hivestatus upgrade list, nothing was removed!?")
 		return FALSE
 
@@ -208,7 +211,8 @@
 		stack_trace("trying to remove an invalid typepath from hivestatus list")
 		return FALSE
 
-	if(!xenos_by_typepath[X.caste_base_type].Remove(X))
+	XL = xenos_by_typepath[X.caste_base_type]
+	if(!XL.Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
 

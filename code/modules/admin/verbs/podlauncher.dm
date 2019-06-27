@@ -672,7 +672,8 @@
 				for(var/atom/movable/O in acceptableTurfs[launchCounter].contents)
 					launchList |= typecache_filter_list_reverse(acceptableTurfs[launchCounter].contents, ignored_atoms)
 			if(2)
-				launchList |= typecache_filter_list_reverse(pick_n_take(acceptableTurfs).contents, ignored_atoms)
+				var/turf/acceptable_turf = pick_n_take(acceptableTurfs)
+				launchList |= typecache_filter_list_reverse(acceptable_turf.contents, ignored_atoms)
 	updateSelector()
 
 

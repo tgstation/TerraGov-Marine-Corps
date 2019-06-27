@@ -550,8 +550,9 @@
 	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
-		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)
-			ammo = GLOB.ammo_list[xeno_caste.spit_types[i]]
+		var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
+		if(ammo.icon_state == A.icon_state)
+			ammo = A
 			return
 	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
 	return
