@@ -147,8 +147,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tank/apc //Big boy troop carrier
 	name = "M557 Armoured Personnel Carrier"
 	desc = "A heavily armoured vehicle with light armaments designed to ferry troops around the battle field, or assist with search and rescue (SAR) operations."
-	icon = 'icons/obj/troop_apc.dmi'
-	turret_icon = 'icons/obj/troop_apc.dmi'
+	icon = 'icons/obj/medium_vehicles.dmi'
+	turret_icon = 'icons/obj/medium_vehicles.dmi'
 	turret_icon_state = "apc_turret"
 	icon_state = "apc"
 	move_delay = 0.35 SECONDS //Bulky, but not as slow as the tank
@@ -157,6 +157,20 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	max_passengers = 3 //Enough to ferry wounded men to and fro without being stupidly tardis like. Seats 5 total
 	primary_weapon_type = /obj/item/tank_weapon/apc_cannon //Only has a utility launcher, no offense as standard.
 	secondary_weapon_type = null
+	has_underlay = TRUE
+
+/obj/vehicle/tank/medium //Bigass tank designed to cut through enemy lines
+	name = "M74A4 'Baker Street' Heavy Tank"
+	desc = "A metal behemoth which is designed to cleave through enemy lines. It comes pre installed with a main tank cannon capable of deploying heavy payloads, as well as a minigun which can tear through multiple targets in quick succession."
+	icon = 'icons/obj/medium_vehicles.dmi'
+	turret_icon = 'icons/obj/medium_vehicles.dmi'
+	turret_icon_state = "tank_turret"
+	icon_state = "tank"
+	pixel_x = -32
+	pixel_y = -20
+	obj_integrity = 750 //Heavily armoured. Will take a lot of friendly fire to kill it.
+	max_integrity = 750
+	max_passengers = 1 //Seats 3 total. It's designed to cut through enemy lines with 1 gunner, 1 pilot and 1 commander to oversee operations
 	has_underlay = TRUE
 
 /obj/vehicle/tank/examine(mob/user)
