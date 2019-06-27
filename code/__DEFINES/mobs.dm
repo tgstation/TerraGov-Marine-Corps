@@ -381,10 +381,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
-#define LASER_LAYER				27		//For sniper targeting laser
-#define MOTH_WINGS_LAYER		26
-#define MUTANTRACE_LAYER		25
-#define MUTATIONS_LAYER			24
+#define LASER_LAYER				25		//For sniper targeting laser
+#define MOTH_WINGS_LAYER		24
 #define DAMAGE_LAYER			23
 #define UNIFORM_LAYER			22
 #define TAIL_LAYER				21		//bs12 specific. this hack is probably gonna come back to haunt me
@@ -400,7 +398,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define EARS_LAYER				11
 #define FACEMASK_LAYER			10
 #define HEAD_LAYER				9
-#define COLLAR_LAYER			8
+#define EAR_LAYER				8
 #define HANDCUFF_LAYER			7
 #define LEGCUFF_LAYER			6
 #define L_HAND_LAYER			5
@@ -409,7 +407,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
 
-#define TOTAL_LAYERS			27
+#define TOTAL_LAYERS			25
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 

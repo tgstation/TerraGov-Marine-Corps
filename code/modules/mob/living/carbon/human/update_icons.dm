@@ -288,6 +288,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	species?.update_body(src)
 	update_tail_showing()
+	update_ears_showing()
 
 //HAIR OVERLAY
 /mob/living/carbon/human/proc/update_hair()
@@ -642,6 +643,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		overlays_standing[SUIT_LAYER]	= standing
 
 	update_tail_showing()
+	update_ears_showing()
 
 	species?.update_inv_wear_suit(src)
 
@@ -755,18 +757,38 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 /mob/living/carbon/human/proc/update_tail_showing()
 	remove_overlay(TAIL_LAYER)
 
-	if(species.tail)
-		if(!wear_suit || !(wear_suit.flags_inv_hide & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
-			var/icon/T = new /icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
-			if(species.ears)
-				var/icon/inner = new /icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.ears]")
-				T.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-				T.Blend(inner, ICON_OVERLAY)
-			else
-				T.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+	if(!species.tail)
+		return
 
-			overlays_standing[TAIL_LAYER] = image(T, layer = -TAIL_LAYER)
-			apply_overlay(TAIL_LAYER)
+	if(wear_suit && (wear_suit.flags_inv_hide & HIDETAIL) || istype(wear_suit, /obj/item/clothing/suit/space))
+		return
+
+	var/icon/T = new /icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+	if(species.ears)
+		T.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+	else
+		T.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+
+	overlays_standing[TAIL_LAYER] = image(T, layer = -TAIL_LAYER)
+	apply_overlay(TAIL_LAYER)
+
+
+/mob/living/carbon/human/proc/update_ears_showing()
+	remove_overlay(EAR_LAYER)
+
+	if(!species.ears)
+		return
+
+	if(head && (head.flags_inv_hide & HIDEEARS))
+		return
+
+	var/icon/T = new /icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.ears]")
+	var/icon/inner = new /icon("icon" = 'icons/effects/species.dmi', "icon_state" = "inner")
+	T.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+	T.Blend(inner, ICON_OVERLAY)
+
+	overlays_standing[EAR_LAYER] = image(T, layer = -EAR_LAYER)
+	apply_overlay(EAR_LAYER)
 
 
 // Used mostly for creating head items
