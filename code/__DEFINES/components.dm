@@ -63,6 +63,13 @@
 #define COMSIG_DBLCLICK_CTRL "dblclick_ctrl"
 
 
+// /client signals
+#define COMSIG_CLIENT_MOUSEDOWN "client_mousedown"			//from base of client/MouseDown(): (/client, object, location, control, params)
+	#define COMSIG_CLIENT_MOUSEDOWN_INTERCEPT (1<<0)
+#define COMSIG_CLIENT_MOUSEUP "client_mouseup"				//from base of client/MouseUp(): (/client, object, location, control, params)
+#define COMSIG_CLIENT_MOUSEDRAG "client_mousedrag"			//from base of client/MouseUp(): (/client, object, location, control, params)
+#define COMSIG_CLIENT_DISCONNECTED "client_disconnecred"	//from base of /client/Del(): (/client)
+
 
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
@@ -198,6 +205,10 @@
 
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
+
+
+// /obj/item/gun signals
+#define COMSIG_FULL_AUTO_FIRE "full_auto_fire"
 
 //keybindings
 

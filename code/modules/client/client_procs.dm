@@ -302,6 +302,7 @@
 //  DISCONNECT  //
 //////////////////
 /client/Del()
+	SEND_SIGNAL(src, COMSIG_CLIENT_DISCONNECTED)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
