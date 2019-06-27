@@ -16,7 +16,7 @@ fi
 cd ~
 git clone https://github.com/SpaceManiac/SpacemanDMM.git
 cd SpacemanDMM
-cargo build --verbose -p dreamchecker
+while true; do echo "heartbeat"; sleep 60; done &; cargo build --verbose -p dreamchecker; kill %1
 cd ~/tgstation/TerraGov-Marine-Corps
 if [ ~/SpacemanDMM/target/release/dreamchecker ]; then
   echo "dreamchecker errors found"
