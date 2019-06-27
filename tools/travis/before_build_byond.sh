@@ -2,7 +2,7 @@
 set -e
 
 git clone https://github.com/SpaceManiac/SpacemanDMM.git
-cd SpacemanDmm
+cd SpacemanDMM
 cargo build -p dreamchecker --release
 cd ..
 SpacemanDMM/target/release/dreamchecker
