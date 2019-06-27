@@ -55,7 +55,7 @@
 
 	pulsed()
 
-	addtimer(CALLBACK(src, .proc/update_icon), 1.5 SECONDS)
+	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
 
 
 /obj/machinery/button/proc/pulsed()

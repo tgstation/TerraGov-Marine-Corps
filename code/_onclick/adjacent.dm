@@ -75,7 +75,7 @@
 		return TRUE
 	if(!isturf(loc))
 		return FALSE
-	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+	if(loc.Adjacent(neighbor, neighbor, src))
 		return TRUE
 	return FALSE
 
@@ -92,7 +92,7 @@
 			return TRUE
 		if(!isturf(loc))
 			return FALSE
-		if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+		if(loc.Adjacent(neighbor, neighbor, src))
 			return TRUE
 	return FALSE
 
@@ -116,7 +116,7 @@
 			return TRUE
 		if(!isturf(loc))
 			return FALSE
-		if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+		if(loc.Adjacent(neighbor, neighbor, src))
 			return TRUE
 	return FALSE
 
@@ -132,11 +132,11 @@
 		else //Backpacks and other containers.
 			if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.
 				return FALSE
-			return loc.loc.Adjacent(neighbor, target = neighbor, mover = src)
+			return loc.loc.Adjacent(neighbor, neighbor, src)
 
 	if(!isturf(loc)) //Default behavior.
 		return FALSE
-	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+	if(loc.Adjacent(neighbor, neighbor, src))
 		return TRUE
 	return FALSE
 
