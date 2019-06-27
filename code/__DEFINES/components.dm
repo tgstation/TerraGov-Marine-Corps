@@ -266,3 +266,10 @@
 
 //Redirection component init flags
 #define REDIRECT_TRANSFER_WITH_TURF 1
+
+#define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"			//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
+
+#define COMSIG_HUMAN_GUN_FIRED "human_gun_fired"				//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
+#define COMSIG_HUMAN_ATTACHMENT_FIRED "human_attachment_fired"
+#define COMSIG_HUMAN_ITEM_ATTACK "human_item_attack"			//from base of obj/item/attack(): (/mob/living/target, obj/item/I, /mob/living/carbon/human/user)
+#define COMSIG_HUMAN_ITEM_THROW "human_item_throw"
