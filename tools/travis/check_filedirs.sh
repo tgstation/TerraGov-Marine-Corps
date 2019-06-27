@@ -13,3 +13,24 @@ then
     exit 1
 fi
 
+cd ~
+if [ -d "~/SpacemanDMM" ]; then
+    cd SpacemanDMM
+    git pull
+else
+    git clone https://github.com/SpaceManiac/SpacemanDMM.git
+    cd SpacemanDMM
+fi
+
+while true
+do
+    echo "heartbeat"
+    sleep 60
+done &
+
+cargo build --verbose -p dreamchecker --release
+
+kill %1
+
+cd ~/build/tgstation/TerraGov-Marine-Corps
+~/SpacemanDMM/target/release/dreamchecker
