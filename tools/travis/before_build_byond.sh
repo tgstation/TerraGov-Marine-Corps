@@ -3,7 +3,7 @@ set -e
 
 git clone https://github.com/SpaceManiac/SpacemanDMM.git
 cd SpacemanDMM
-cargo build -p dreamchecker --release
+cargo build -p dreamchecker
 cd ..
 if [ SpacemanDMM/target/release/dreamchecker ]; then
   echo "dreamchecker errors found"
