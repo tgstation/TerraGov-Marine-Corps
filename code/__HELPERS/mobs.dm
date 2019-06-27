@@ -170,4 +170,4 @@
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 		if(M.stat != DEAD)
-			. += 1
+			.++
