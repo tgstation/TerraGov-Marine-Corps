@@ -360,7 +360,7 @@
 
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
 	. = ..()
-	if(!Adjacent(usr))
+	if(.)
 		return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	if(!M)
@@ -428,16 +428,6 @@
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-
-
-/obj/machinery/computer/shuttle_control
-	name = "shuttle control console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-
-
-/obj/machinery/computer/shuttle_control/attack_ai(mob/living/silicon/ai/AI)
-	return attack_hand(AI)
 
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
@@ -742,35 +732,57 @@
 
 //Dropship control console
 
-/obj/machinery/computer/shuttle_control
-	var/onboard
+/obj/machinery/computer/shuttle/shuttle_control
+	name = "shuttle control console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
 
-/obj/machinery/computer/shuttle_control/dropship1
+
+/obj/machinery/computer/shuttle/shuttle_control/ui_interact(mob/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access Denied!</span>")
+		return
+	var/list/options = params2list(possible_destinations)
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	if(M)
+		var/destination_found
+		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+			if(!options.Find(S.id))
+				continue
+			if(!M.check_dock(S, silent=TRUE))
+				continue
+			destination_found = TRUE
+			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+		if(!destination_found)
+			dat += "<B>Shuttle Locked</B><br>"
+	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
+
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	popup.set_content("<center>[dat]</center>")
+	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+	popup.open()
+
+
+/obj/machinery/computer/shuttle/shuttle_control/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
+
+/obj/machinery/computer/shuttle/shuttle_control/dropship1
 	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
+	shuttleId = "alamo"
+	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle_control/dropship1/onboard
-	name = "\improper 'Alamo' flight controls"
-	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "console"
-	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-/obj/machinery/computer/shuttle_control/dropship2
+/obj/machinery/computer/shuttle/shuttle_control/dropship2
 	name = "\improper 'Normandy' dropship console"
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
-
-/obj/machinery/computer/shuttle_control/dropship2/onboard
-	name = "\improper 'Normandy' flight controls"
-	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "console"
-	req_access = list(ACCESS_MARINE_DROPSHIP)

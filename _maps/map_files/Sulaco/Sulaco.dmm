@@ -21996,7 +21996,7 @@
 	},
 /area/shuttle/drop2/sulaco)
 "aRr" = (
-/obj/machinery/computer/shuttle_control,
+/obj/machinery/computer/shuttle/shuttle_control,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin13"
 	},
@@ -22557,7 +22557,7 @@
 	},
 /area/shuttle/drop1/sulaco)
 "aSC" = (
-/obj/machinery/computer/shuttle_control,
+/obj/machinery/computer/shuttle/shuttle_control,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
 	},
@@ -23734,7 +23734,7 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "aVn" = (
-/obj/machinery/computer/shuttle_control,
+/obj/machinery/computer/shuttle/shuttle_control,
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "aVo" = (
@@ -24902,7 +24902,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/computer/shuttle_control,
+/obj/machinery/computer/shuttle/shuttle_control,
 /obj/machinery/camera/autoname{
 	dir = 4
 	},

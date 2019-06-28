@@ -2768,7 +2768,7 @@
 /area/almayer/command/cic)
 "agv" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/shuttle_control/dropship2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship2,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -2787,7 +2787,7 @@
 /area/almayer/command/cic)
 "agx" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},

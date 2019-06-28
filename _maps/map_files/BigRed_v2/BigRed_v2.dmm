@@ -440,7 +440,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aby" = (
-/obj/machinery/computer/shuttle_control/dropship1{
+/obj/machinery/computer/shuttle/shuttle_control/dropship1{
 	onboard = 0
 	},
 /obj/structure/table,
