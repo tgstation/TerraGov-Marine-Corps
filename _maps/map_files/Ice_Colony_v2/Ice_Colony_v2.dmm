@@ -2298,9 +2298,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "agV" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship1{
-	onboard = 0
-	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
