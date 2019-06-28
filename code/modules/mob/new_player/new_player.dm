@@ -107,8 +107,17 @@
 	if(src != usr)
 		return
 
-	if (SSticker?.mode?.new_player_topic(src, href, href_list))
+	if(SSticker?.mode?.new_player_topic(src, href, href_list))
 		return // Delegate to the gamemode to handle if they want to
+
+	//Determines Relevent Population Cap
+	var/relevant_cap
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	var/epc = CONFIG_GET(number/extreme_popcap)
+	if(hpc && epc)
+		relevant_cap = min(hpc, epc)
+	else
+		relevant_cap = max(hpc, epc)
 
 	switch(href_list["lobby_choice"])
 		if("show_preferences")
@@ -189,6 +198,22 @@
 				to_chat(src, "<span class='warning'>Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
 				return
 
+			if(href_list["override"])
+				LateChoices()
+				return
+
+			if(length(SSticker.queued_players) || (relevant_cap && living_player_count() >= relevant_cap && !(check_rights(R_ADMIN, FALSE) || GLOB.deadmins[ckey])))
+				to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
+
+				var/queue_position = SSticker.queued_players.Find(usr)
+				if(queue_position == 1)
+					to_chat(usr, "<span class='notice'>You are next in line to join the game. You will be notified when a slot opens up.</span>")
+				else if(queue_position)
+					to_chat(usr, "<span class='notice'>There are [queue_position - 1] players in front of you in the queue to join the game.</span>")
+				else
+					SSticker.queued_players += usr
+					to_chat(usr, "<span class='notice'>You have been added to the queue to join the game. Your position in queue is [length(SSticker.queued_players)].</span>")
+				return
 			LateChoices()
 
 
