@@ -38,7 +38,6 @@
 
 /datum/game_mode/crash/can_start()
 	. = ..()
-	return TRUE // TODO: Remove this check
 	// Check if enough players have signed up for xeno & queen roles.
 	initialize_xeno_leader()
 	initialize_xenomorphs()
@@ -62,7 +61,7 @@
 	GLOB.latejoin_cryo = shuttle.spawnpoints
 	GLOB.latejoin_gateway = shuttle.spawnpoints
 
-	
+
 	var/list/validdocks = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		// if(S.id != crash_target)
@@ -128,8 +127,8 @@
 		return FALSE
 
 	var/list/living_player_list = count_humans_and_xenos()
-	var/num_humans = living_player_list[1] + 2 // TODO: REmove this check
-	var/num_xenos = living_player_list[2] + 2
+	var/num_humans = living_player_list[1]
+	var/num_xenos = living_player_list[2]
 	
 	var/list/grounded_living_player_list = count_humans_and_xenos(SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)))
 	var/num_grounded_humans = grounded_living_player_list[1]
