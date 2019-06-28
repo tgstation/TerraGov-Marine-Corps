@@ -257,11 +257,11 @@
 			D = M
 	if(is_ground_level(D.z))
 		if(user)
-			to_chat(user, "<span class='warning'>We can't call the shuttle from here!</span>")
+			to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
 		return FALSE
 	if(D.hijack_state != HIJACK_STATE_NORMAL)
 		if(user)
-			to_chat(user, "<span class='warning'>The shuttle is already hijacked!</span>")
+			to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
 		return FALSE
 	var/humans_on_ground = 0
 	for(var/i in GLOB.alive_human_list)
