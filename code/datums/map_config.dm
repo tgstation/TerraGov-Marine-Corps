@@ -149,7 +149,7 @@
 		. += "_maps/[map_path]/[file]"
 
 
-/datum/map_config/proc/MakeNextMap(maptype)
+/datum/map_config/proc/MakeNextMap(maptype = GROUND_MAP)
 	if(maptype == GROUND_MAP)
 		return config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
 	else if(maptype == SHIP_MAP)
