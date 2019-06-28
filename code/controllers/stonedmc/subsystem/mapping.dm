@@ -178,6 +178,7 @@ SUBSYSTEM_DEF(mapping)
 #undef INIT_ANNOUNCE
 
 /datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM, maptype = GROUND_MAP)
+	LAZYINITLIST(next_map_configs)
 	if(maptype == GROUND_MAP)
 		if(!VM.MakeNextMap(maptype))
 			next_map_configs[GROUND_MAP] = load_map_configs(list(maptype), default = TRUE)

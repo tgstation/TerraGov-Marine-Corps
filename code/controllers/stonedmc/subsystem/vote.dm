@@ -124,10 +124,10 @@ SUBSYSTEM_DEF(vote)
 						GLOB.master_mode = .
 			if("groundmap")
 				var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
-				SSmapping.changemap(VM)
+				SSmapping.changemap(VM, GROUND_MAP)
 			if("shipmap")
 				var/datum/map_config/VM = config.maplist[SHIP_MAP][.]
-				SSmapping.changemap(VM)
+				SSmapping.changemap(VM, SHIP_MAP)
 	if(restart)
 		var/active_admins = 0
 		for(var/client/C in GLOB.admins)
