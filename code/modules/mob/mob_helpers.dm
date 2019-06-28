@@ -448,7 +448,6 @@ mob/proc/get_standard_bodytemperature()
 			if(higher_power > 48)
 				alert_overlay.pixel_y = -(iheight / 2) * diff
 				alert_overlay.pixel_x = -(iwidth / 2) * diff
-			to_chat(world, "iheight [iheight] iwidth [iwidth] diff [diff] pixel_y [alert_overlay.pixel_y] pixel_x [alert_overlay.pixel_x]")
 
 
 	alert_overlay.layer = FLOAT_LAYER
