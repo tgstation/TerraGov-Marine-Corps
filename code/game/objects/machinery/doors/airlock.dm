@@ -781,10 +781,6 @@
 	relativewall_neighbours()
 
 
-/obj/machinery/door/airlock/proc/hasPower()
-	return ((!secondsMainPowerLost || !secondsBackupPowerLost) && !(machine_stat & NOPOWER))
-
-
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)
 	secondsElectrified = seconds
 	if(secondsElectrified > MACHINE_NOT_ELECTRIFIED)

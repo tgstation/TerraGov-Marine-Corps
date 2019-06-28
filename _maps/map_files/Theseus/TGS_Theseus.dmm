@@ -1419,10 +1419,7 @@
 	icon_state = "fwindow";
 	dir = 1
 	},
-/obj/machinery/door/window/eastright{
-	req_access = null;
-	req_access_txt = "0"
-	},
+/obj/machinery/door/window/eastright/briefing,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/numbertwobunks)
 "adO" = (
@@ -7281,13 +7278,10 @@
 	name = "\improper Brig Lockdown Podlocks";
 	opacity = 0
 	},
-/obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
+/obj/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
-	icon_state = "shutter0";
 	id = "Conference Room Shutters";
-	name = "\improper Privacy Shutters";
-	opacity = 0
+	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/almayer,
 /obj/machinery/door/firedoor/theseus,
@@ -9030,12 +9024,9 @@
 /area/almayer/living/numbertwobunks)
 "auL" = (
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 2;
-	icon_state = "shutter0";
 	id = "Conference Room Shutters";
-	name = "\improper Privacy Shutters";
-	opacity = 0
+	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/almayer,
 /turf/open/floor/plating,
@@ -10443,13 +10434,10 @@
 	opacity = 0
 	},
 /obj/item/folder/black_random,
-/obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
+/obj/machinery/door/poddoor/shutters/almayer/open{
 	dir = 4;
-	icon_state = "shutter0";
 	id = "CIC Checkpoint Shutters";
-	name = "\improper CIC Checkpoint Shutters";
-	opacity = 0
+	name = "\improper CIC Checkpoint Shutters"
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westleft{
@@ -11575,7 +11563,7 @@
 "azZ" = (
 /obj/structure/window/framed/almayer/white,
 /obj/machinery/door/firedoor/theseus,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -12285,12 +12273,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 2;
-	icon_state = "shutter0";
 	id = "CMP Office Shutters";
-	name = "\improper Privacy Shutters";
-	opacity = 0
+	name = "\improper Privacy Shutters"
 	},
 /obj/machinery/door/firedoor/theseus{
 	dir = 2
@@ -12538,7 +12523,7 @@
 /area/almayer/medical/upper_medical)
 "aBQ" = (
 /obj/machinery/smartfridge/chemistry,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -13355,7 +13340,7 @@
 	req_one_access_txt = "0"
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -16098,7 +16083,7 @@
 /area/almayer/medical/upper_medical)
 "aJd" = (
 /obj/machinery/door/firedoor/theseus,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -16879,7 +16864,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/theseus,
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
@@ -17118,12 +17103,9 @@
 /area/almayer/shipboard/brig_cells)
 "aLi" = (
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "CMP Office Shutters";
-	name = "\improper Privacy Shutters";
-	opacity = 0
+	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/almayer,
 /turf/open/floor/plating,
@@ -26176,12 +26158,9 @@
 /area/almayer/hallways/starboard_hallway)
 "bjj" = (
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "northcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+	name = "\improper Checkpoint Shutters"
 	},
 /turf/open/floor/almayer{
 	icon_state = "redfull"
@@ -26714,12 +26693,9 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "northcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+	name = "\improper Checkpoint Shutters"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -32396,9 +32372,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "bAB" = (
-/obj/machinery/door/window/northright{
-	req_access_txt = "19"
-	},
+/obj/machinery/door/window/northright/briefing,
 /turf/open/floor/almayer{
 	icon_state = "silvercorner";
 	dir = 4
@@ -32816,10 +32790,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/briefing)
 "bBP" = (
-/obj/machinery/door/window/eastright{
-	req_access = null;
-	req_access_txt = "19"
-	},
+/obj/machinery/door/window/eastright/briefing,
 /obj/machinery/flasher{
 	id = "briefing_flash";
 	invisibility = 0;
@@ -33390,10 +33361,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "bDt" = (
-/obj/machinery/door/window/southleft{
-	opacity = 1;
-	req_access_txt = "19"
-	},
+/obj/machinery/door/window/southleft/briefing,
 /turf/open/floor/almayer{
 	icon_state = "silvercorner";
 	dir = 2
@@ -37501,12 +37469,9 @@
 /area/almayer/hallways/port_hallway)
 "bPD" = (
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "southcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+	name = "\improper Checkpoint Shutters"
 	},
 /turf/open/floor/almayer{
 	icon_state = "redfull"
@@ -37932,12 +37897,9 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
-	density = 0;
 	dir = 4;
-	icon_state = "shutter0";
 	id = "southcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+	name = "\improper Checkpoint Shutters"
 	},
 /obj/structure/cable{
 	d1 = 4;
