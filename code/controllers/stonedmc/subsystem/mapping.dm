@@ -9,7 +9,6 @@ SUBSYSTEM_DEF(mapping)
 	var/list/map_templates = list()
 
 	var/list/shuttle_templates = list()
-	var/list/shelter_templates = list()
 
 	var/list/areas_in_z = list()
 
@@ -86,7 +85,6 @@ SUBSYSTEM_DEF(mapping)
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
 	shuttle_templates = SSmapping.shuttle_templates
-	shelter_templates = SSmapping.shelter_templates
 	unused_turfs = SSmapping.unused_turfs
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
