@@ -58,7 +58,7 @@
 	var/gender = NEUTER // Determines if the accessory will be skipped or included in random hair generations
 	var/locked = FALSE		//Is this part locked from roundstart selection? Used for parts that apply effects
 
-	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics") // Restrict some styles to specific species
+	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Felinid") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
 
 
@@ -71,7 +71,7 @@
 */
 
 /datum/sprite_accessory/hair
-	species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic","Early Synthetic")
+	species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic","Early Synthetic", "Felinid")
 	icon = 'icons/mob/Human_face.dmi'
 
 /datum/sprite_accessory/hair/bald
