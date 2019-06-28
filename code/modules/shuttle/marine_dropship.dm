@@ -247,8 +247,7 @@
 
 /datum/game_mode/proc/can_summon_dropship(mob/user)
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-		if(user)
-			to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
+		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
 		return FALSE
 	var/obj/docking_port/mobile/marine_dropship/D
 	for(var/k in SSshuttle.dropships)
@@ -256,12 +255,10 @@
 		if(M.id == "alamo")
 			D = M
 	if(is_ground_level(D.z))
-		if(user)
-			to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
+		to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
 		return FALSE
 	if(D.hijack_state != HIJACK_STATE_NORMAL)
-		if(user)
-			to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
+		to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
 		return FALSE
 	var/humans_on_ground = 0
 	for(var/i in GLOB.alive_human_list)
@@ -271,8 +268,7 @@
 		if(is_ground_level(H.z))
 			humans_on_ground++
 	if((humans_on_ground/length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN)
-		if(user)
-			to_chat(user, "<span class='warning'>There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this.</span>")
+		to_chat(user, "<span class='warning'>There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this.</span>")
 		return FALSE
 	return TRUE
 
