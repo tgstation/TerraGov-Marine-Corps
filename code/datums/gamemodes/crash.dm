@@ -54,6 +54,15 @@
 
 /datum/game_mode/crash/post_setup()
 	. = ..()
+
+	// Reset all spawnpoints after spawning the ship
+	GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
+	GLOB.jobspawn_overrides = list()
+	GLOB.latejoin = shuttle.spawnpoints
+	GLOB.latejoin_cryo = shuttle.spawnpoints
+	GLOB.latejoin_gateway = shuttle.spawnpoints
+
+	
 	var/list/validdocks = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		// if(S.id != crash_target)
@@ -92,8 +101,8 @@
 	GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
 	GLOB.jobspawn_overrides = list()
 	GLOB.latejoin = shuttle.spawnpoints
-	GLOB.latejoin_cryo = list()
-	GLOB.latejoin_gateway = list()
+	GLOB.latejoin_cryo = shuttle.spawnpoints
+	GLOB.latejoin_gateway = shuttle.spawnpoints
 
 	// Create xenos
 	for(var/i in xenomorphs)

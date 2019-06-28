@@ -1,9 +1,6 @@
-// these use typepaths to avoid issues caused by mispellings when mapping or job titles changing
+// these use typepaths to avoid issues with spawning on different gamemodes.
 /obj/effect/landmark/start/marine/crash
-
-/obj/effect/landmark/start/marine/crash/Initialize()
-	. = ..()
-	return INITIALIZE_HINT_NORMAL
+	delete_after_roundstart = FALSE
 
 /obj/effect/landmark/start/marine/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	. = ..()
