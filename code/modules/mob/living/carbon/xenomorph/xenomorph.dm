@@ -9,9 +9,6 @@
 	. = ..()
 
 	set_datum()
-	//WO GAMEMODE
-	if(SSmapping.config.map_name == MAP_WHISKEY_OUTPOST)
-		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_inherent_verbs()
 	add_abilities()

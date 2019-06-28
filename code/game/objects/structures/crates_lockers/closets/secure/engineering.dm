@@ -119,11 +119,10 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	switch(SSmapping.config.map_name)
-		if(MAP_ICE_COLONY)
-			new /obj/item/clothing/suit/storage/snow_suit(src)
-			new /obj/item/clothing/mask/rebreather/scarf(src)
-			new /obj/item/clothing/mask/rebreather(src)	
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+		new /obj/item/clothing/suit/storage/snow_suit(src)
+		new /obj/item/clothing/mask/rebreather/scarf(src)
+		new /obj/item/clothing/mask/rebreather(src)	
 
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "technician's locker"

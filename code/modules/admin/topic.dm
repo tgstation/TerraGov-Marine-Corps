@@ -681,10 +681,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!dep)
 			return
 
-		if(dep == "Warden" && SSmapping.config.map_name != MAP_PRISON_STATION)
-			if(alert("Are you sure? By default noone will receive this fax unless you spawned the proper fax machine.", "Warning", "Yes", "No") != "Yes")
-				return
-
 		var/department = input("Which department do you want to reply as?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
 		if(!department)
 			return
@@ -794,10 +790,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Combat Information Center", "Command Master at Arms", "Brig", "Research", "Warden")
 		if(!dep)
 			return
-
-		if(dep == "Warden" && SSmapping.config.map_name != MAP_PRISON_STATION)
-			if(alert("Are you sure? By default noone will receive this fax unless you spawned the proper fax machine.", "Warning", "Yes", "No") != "Yes")
-				return
 
 		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
 		if(!department)

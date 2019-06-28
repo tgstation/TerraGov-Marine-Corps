@@ -692,14 +692,14 @@
 /obj/machinery/landinglight/ds1
 
 
-/obj/machinery/landinglight/ds1/New()
+/obj/machinery/landinglight/ds1/Initialize(mapload, ...)
 	. = ..()
 	id = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/machinery/landinglight/ds2
 
 
-/obj/machinery/landinglight/ds2/New()
+/obj/machinery/landinglight/ds2/Initialize(mapload, ...)
 	. = ..()
 	id = "[CONFIG_GET(string/ship_name)] Dropship 2" // ID for landing zone
 

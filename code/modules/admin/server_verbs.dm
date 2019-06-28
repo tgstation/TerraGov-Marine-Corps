@@ -431,18 +431,18 @@
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
 
 
-/datum/admins/proc/map_change()
+/datum/admins/proc/change_ground_map()
 	set category = "Server"
-	set name = "Change Map"
+	set name = "Change Ground Map"
 
 	if(!check_rights(R_SERVER))
 		return
 
 	var/list/maprotatechoices = list()
-	for(var/map in config.maplist)
-		var/datum/map_config/VM = config.maplist[map]
+	for(var/map in config.maplist[GROUND_MAP])
+		var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 		var/mapname = VM.map_name
-		if(VM == config.defaultmap)
+		if(VM == config.defaultmaps[GROUND_MAP])
 			mapname += " (Default)"
 
 		if(VM.config_min_users > 0 || VM.config_max_users > 0)
@@ -460,7 +460,7 @@
 
 		maprotatechoices[mapname] = VM
 
-	var/chosenmap = input("Choose a map to change to", "Change Map") as null|anything in maprotatechoices
+	var/chosenmap = input("Choose a ground map to change to", "Change Ground Map") as null|anything in maprotatechoices
 	if(!chosenmap)
 		return
 
@@ -468,6 +468,45 @@
 
 	log_admin("[key_name(usr)] changed the map to [VM.map_name].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed the map to [VM.map_name].")
+
+
+/datum/admins/proc/change_ship_map()
+	set category = "Server"
+	set name = "Change Ship Map"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	var/list/maprotatechoices = list()
+	for(var/map in config.maplist[SHIP_MAP])
+		var/datum/map_config/VM = config.maplist[SHIP_MAP][map]
+		var/mapname = VM.map_name
+		if(VM == config.defaultmaps[SHIP_MAP])
+			mapname += " (Default)"
+
+		if(VM.config_min_users > 0 || VM.config_max_users > 0)
+			mapname += " \["
+			if(VM.config_min_users > 0)
+				mapname += "[VM.config_min_users]"
+			else
+				mapname += "0"
+			mapname += "-"
+			if(VM.config_max_users > 0)
+				mapname += "[VM.config_max_users]"
+			else
+				mapname += "inf"
+			mapname += "\]"
+
+		maprotatechoices[mapname] = VM
+
+	var/chosenmap = input("Choose a ship map to change to", "Change Ship Map") as null|anything in maprotatechoices
+	if(!chosenmap)
+		return
+
+	var/datum/map_config/VM = maprotatechoices[chosenmap]
+
+	log_admin("[key_name(usr)] changed the ship map to [VM.map_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed ship the map to [VM.map_name].")
 
 
 /datum/admins/proc/panic_bunker()
