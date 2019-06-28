@@ -349,9 +349,38 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	freerange = TRUE
 
 
+/obj/item/radio/headset/almayer/marine/Initialize(mapload, squad, rank)
+	if(squad)
+		icon_state = "[squad]_headset"
+		var/dat = "marine [lowertext(squad)]"
+		switch(squad)
+			if("Alpha")
+				frequency = FREQ_ALPHA
+			if("Bravo")
+				frequency = FREQ_BRAVO
+			if("Charlie")
+				frequency = FREQ_CHARLIE
+			if("Delta")
+				frequency = FREQ_DELTA
+		switch(rank)
+			if("Squad Leader")
+				dat += " leader"
+				keyslot2 = new /obj/item/encryptionkey/squadlead
+				use_command = TRUE
+				command = TRUE
+			if("Squad Engineer")
+				dat += " engineer"
+				keyslot2 = new /obj/item/encryptionkey/engi
+			if("Squad Corpsman")
+				dat += " corpsman"
+				keyslot2 = new /obj/item/encryptionkey/med
+		name = dat + " radio headset"
+	return ..()
+
+
 /obj/item/radio/headset/almayer/marine/alpha
 	name = "marine alpha radio headset"
-	icon_state = "sec_headset"
+	icon_state = "Alpha_headset"
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 
 
@@ -375,7 +404,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/bravo
 	name = "marine bravo radio headset"
-	icon_state = "eng_headset"
+	icon_state = "Bravo_headset"
 	frequency = FREQ_BRAVO
 
 
@@ -399,7 +428,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/charlie
 	name = "marine charlie radio headset"
-	icon_state = "charlie_headset"
+	icon_state = "Charlie_headset"
 	frequency = FREQ_CHARLIE
 
 
@@ -423,7 +452,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/delta
 	name = "marine delta radio headset"
-	icon_state = "com_headset"
+	icon_state = "Delta_headset"
 	frequency = FREQ_DELTA
 
 
