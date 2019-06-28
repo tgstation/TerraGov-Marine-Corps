@@ -84,6 +84,27 @@
 
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS)
 
+/datum/game_mode/crash/setup()
+	SSjob.DivideOccupations() 
+	create_characters() //Create player characters
+	collect_minds()
+	reset_squads()
+
+	// Reassign everyone to the same squad
+	for(var/i in GLOB.new_player_list)
+		var/mob/new_player/N = i
+		var/mob/living/carbon/human/player = N.new_character
+		if(!istype(player) || !player?.mind.assigned_role)
+			continue
+
+		player.change_squad("Alpha") // TODO: There could be a better way to do this, but we need to rework squads / jobs / etc.
+
+	equip_characters()
+
+	transfer_characters()	//transfer keys to the new mobs
+
+	return TRUE
+
 /datum/game_mode/crash/pre_setup()
 	. = ..()
 	// Spawn the ship
