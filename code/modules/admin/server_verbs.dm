@@ -506,7 +506,7 @@
 	var/datum/map_config/VM = maprotatechoices[chosenmap]
 
 	log_admin("[key_name(usr)] changed the ship map to [VM.map_name].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed ship the map to [VM.map_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the ship map to [VM.map_name].")
 
 
 /datum/admins/proc/panic_bunker()
