@@ -309,7 +309,6 @@
 	if(mention_charge)
 		to_chat(user, "<span class='notice'>[warning]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 	update_icon()
-	return ..()
 
 /obj/item/storage/backpack/marine/corpsman/examine(mob/user)
 	. = ..()

@@ -11,9 +11,9 @@
 	var/color = null
 	var/prefix = ""
 	var/list/xeno_leader_list
-	var/list/xenos_by_typepath
-	var/list/xenos_by_tier
-	var/list/xenos_by_upgrade
+	var/list/list/xenos_by_typepath
+	var/list/list/xenos_by_tier
+	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 
 // ***************************************
@@ -196,6 +196,7 @@
 // helper function
 /datum/hive_status/proc/remove_from_lists(mob/living/carbon/xenomorph/X)
 	// Remove() returns 1 if it removes an element from a list
+
 	if(!xenos_by_tier[X.tier].Remove(X))
 		stack_trace("failed to remove a xeno from hive status tier list, nothing was removed!?")
 		return FALSE

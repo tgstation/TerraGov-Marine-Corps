@@ -69,8 +69,10 @@
 
 	var/new_caste_type
 	for(var/type in xeno_caste.evolves_to)
-		if(castepick == GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE].caste_name)
+		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+		if(castepick == XC.caste_name)
 			new_caste_type = type
+			break
 
 	if(!new_caste_type)
 		to_chat(src, "EVO8: Something went wrong with evolving")

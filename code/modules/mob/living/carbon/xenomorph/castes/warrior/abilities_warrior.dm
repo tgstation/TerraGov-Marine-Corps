@@ -277,7 +277,7 @@
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
 	"<span class='xenowarning'>You begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
 
-	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
+	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
@@ -293,9 +293,9 @@
 		"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
 		L.take_damage_limb(rand(15, 25))
 		L.fracture()
-	log_message(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
+	log_combat(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
 
-	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
+	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
@@ -304,7 +304,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \
 	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from [M.p_their()] body!</span>")
-	log_message(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
+	log_combat(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
 
 	L.droplimb()
 
