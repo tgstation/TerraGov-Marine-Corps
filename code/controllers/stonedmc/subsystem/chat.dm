@@ -3,12 +3,9 @@ SUBSYSTEM_DEF(chat)
 	flags = SS_TICKER
 	wait = 1
 	priority = FIRE_PRIORITY_CHAT
+	init_order = INIT_ORDER_CHAT
 
 	var/list/payload = list()
-
-
-/datum/controller/subsystem/chat/Initialize() //Used to make server bootup chat less laggy since it relies on an init check.
-	initialized = TRUE
 
 
 /datum/controller/subsystem/chat/fire()

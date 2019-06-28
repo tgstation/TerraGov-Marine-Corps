@@ -49,39 +49,27 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_TITLE 			22
-#define INIT_ORDER_CODEX 			21
 #define INIT_ORDER_GARBAGE			20
 #define INIT_ORDER_DBCORE			19
 #define INIT_ORDER_BLACKBOX			18
 #define INIT_ORDER_SERVER_MAINT		17
 #define INIT_ORDER_INPUT			16
-#define INIT_ORDER_VIS				15
-#define INIT_ORDER_RESEARCH			14
+#define INIT_ORDER_CODEX 			15
 #define INIT_ORDER_JOBS				12
-#define INIT_ORDER_QUIRKS			11
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
-#define INIT_ORDER_NETWORKS			8
-#define INIT_ORDER_ECONOMY			7
 #define INIT_ORDER_ATOMS			6
-#define INIT_ORDER_LANGUAGE			5
 #define INIT_ORDER_MACHINES			4
-#define INIT_ORDER_CIRCUIT			3
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_AIR				-1
 #define INIT_ORDER_ASSETS			-4
-#define INIT_ORDER_ICON_SMOOTHING	-5
 #define INIT_ORDER_OVERLAY			-6
-#define INIT_ORDER_XKEYSCORE		-10
 #define INIT_ORDER_STICKY_BAN		-10
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
-#define INIT_ORDER_SQUEAK			-40
 #define INIT_ORDER_PATH				-50
-#define INIT_ORDER_GLOBAL_IMAGES	-60
-#define INIT_ORDER_PERSISTENCE		-100
+#define INIT_ORDER_CHAT				-100
 
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
@@ -89,27 +77,15 @@
 #define FIRE_PRIORITY_PING			10
 #define FIRE_PRIORITY_IDLE_NPC		10
 #define FIRE_PRIORITY_SERVER_MAINT	10
-#define FIRE_PRIORITY_RESEARCH		10
-#define FIRE_PRIORITY_VIS			10
 #define FIRE_PRIORITY_WEED			11
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_DIRECTION		19
-#define FIRE_PRIORITY_WET_FLOORS	20
 #define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_NPC			20
 #define FIRE_PRIORITY_PROCESS		25
-#define FIRE_PRIORITY_THROWING		25
-#define FIRE_PRIORITY_SPACEDRIFT	30
-#define FIRE_PRIORITY_FIELDS		30
-#define FIRE_PRIORITY_SMOOTHING		35
-#define FIRE_PRIORITY_NETWORKS		40
 #define FIRE_PRIORITY_OBJ			40
-#define FIRE_PRIORITY_ACID			40
-#define FIRE_PRIORITY_BURNING		40
 #define FIRE_PRIORITY_NANO          40
 #define FIRE_PRIORITY_DEFAULT		50
-#define FIRE_PRIORITY_PARALLAX		65
-#define FIRE_PRIORITY_FLIGHTPACKS	80
 #define FIRE_PRIORITY_POINTS		90
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
