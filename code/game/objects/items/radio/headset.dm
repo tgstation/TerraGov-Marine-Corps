@@ -351,7 +351,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/Initialize(mapload, squad, rank)
 	if(squad)
-		icon_state = "[squad]_headset"
+		icon_state = "headset_marine_[lowertext(squad)]"
 		var/dat = "marine [lowertext(squad)]"
 		switch(squad)
 			if("Alpha")
@@ -380,7 +380,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/alpha
 	name = "marine alpha radio headset"
-	icon_state = "Alpha_headset"
+	icon_state = "headset_marine_alpha"
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 
 
@@ -404,7 +404,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/bravo
 	name = "marine bravo radio headset"
-	icon_state = "Bravo_headset"
+	icon_state = "headset_marine_bravo"
 	frequency = FREQ_BRAVO
 
 
@@ -428,7 +428,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/charlie
 	name = "marine charlie radio headset"
-	icon_state = "Charlie_headset"
+	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE
 
 
@@ -452,7 +452,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/delta
 	name = "marine delta radio headset"
-	icon_state = "Delta_headset"
+	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA
 
 

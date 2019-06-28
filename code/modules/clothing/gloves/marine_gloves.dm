@@ -27,14 +27,14 @@
 			siemens_coefficient = 0
 			desc = "Insulated marine tactical gloves that protect against electrical shocks."
 		name = dat + "[lowertext(squad)] squad gloves"
-		icon_state = "gloves_[squad]"
-		item_state = "marine_[squad]"
+		icon_state = "gloves_marine_[lowertext(squad)]"
+		item_state = "gloves_marine_[lowertext(squad)]"
 
 
 /obj/item/clothing/gloves/marine/alpha
 	name = "alpha squad gloves"
-	icon_state = "gloves_Alpha"
-	item_state = "marine_Alpha"
+	icon_state = "gloves_marine_alpha"
+	item_state = "gloves_marine_alpha"
 
 /obj/item/clothing/gloves/marine/alpha/insulated
 	name = "insulated alpha squad gloves"
@@ -43,8 +43,8 @@
 
 /obj/item/clothing/gloves/marine/bravo
 	name = "bravo squad gloves"
-	icon_state = "gloves_Bravo"
-	item_state = "marine_Bravo"
+	icon_state = "gloves_marine_bravo"
+	item_state = "gloves_marine_bravo"
 
 /obj/item/clothing/gloves/marine/bravo/insulated
 	name = "insulated bravo squad gloves"
@@ -53,8 +53,8 @@
 
 /obj/item/clothing/gloves/marine/charlie
 	name = "charlie squad gloves"
-	icon_state = "gloves_Charlie"
-	item_state = "marine_Charlie"
+	icon_state = "gloves_marine_charlie"
+	item_state = "gloves_marine_charlie"
 
 /obj/item/clothing/gloves/marine/charlie/insulated
 	name = "insulated charlie squad gloves"
@@ -63,8 +63,8 @@
 
 /obj/item/clothing/gloves/marine/delta
 	name = "delta squad gloves"
-	icon_state = "gloves_Delta"
-	item_state = "marine_Delta"
+	icon_state = "gloves_marine_delta"
+	item_state = "gloves_marine_delta"
 
 /obj/item/clothing/gloves/marine/delta/insulated
 	name = "insulated delta squad gloves"
