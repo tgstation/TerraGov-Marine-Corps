@@ -35112,7 +35112,7 @@
 /turf/open/floor/prison,
 /area/prison/quarters/security)
 "bGI" = (
-/obj/structure/holohoop,
+/obj/structure/hoop,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -36644,7 +36644,7 @@
 /turf/open/floor/prison,
 /area/prison/quarters/security)
 "bKf" = (
-/obj/item/toy/beach_ball/holoball,
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bKg" = (

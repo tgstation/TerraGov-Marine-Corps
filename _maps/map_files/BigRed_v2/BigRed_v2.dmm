@@ -5931,7 +5931,7 @@
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "ara" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
@@ -6134,7 +6134,7 @@
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "arH" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/paper_bin,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
@@ -6367,7 +6367,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "asq" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "asr" = (
@@ -7848,12 +7848,12 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "awA" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/tool/pen,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "awB" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/reagent_container/food/drinks/coffee,
 /obj/item/phone,
 /turf/open/floor/carpet,

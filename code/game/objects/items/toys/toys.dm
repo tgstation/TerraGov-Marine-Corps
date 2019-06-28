@@ -470,3 +470,74 @@
 		user.visible_message("<span class='notice'>[user] hugs [src]! How cute! </span>", \
 							"<span class='notice'>You hug [src]. Dawwww... </span>")
 		last_hug_time = world.time + 50 //5 second cooldown
+
+
+/obj/item/toy/beach_ball/basketball
+	name = "basketball"
+	icon_state = "basketball"
+	item_state = "basketball"
+	desc = "Here's your chance, do your dance at the Space Jam."
+	w_class = WEIGHT_CLASS_BULKY
+
+
+/obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/user)
+	attack_hand(user)
+
+
+/obj/structure/hoop
+	name = "basketball hoop"
+	desc = "Boom, Shakalaka!"
+	icon = 'icons/obj/structures/misc.dmi'
+	icon_state = "hoop"
+	anchored = TRUE
+	density = TRUE
+	throwpass = 1
+	var/side = ""
+	var/id = ""
+
+
+/obj/structure/hoop/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+		var/obj/item/grab/G = I
+		if(!isliving(G.grabbed_thing))
+			return
+
+		var/mob/living/L = G.grabbed_thing
+		if(user.grab_level < GRAB_AGGRESSIVE)
+			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			return
+		L.forceMove(loc)
+		L.KnockDown(5)
+		for(var/obj/machinery/scoreboard/X in GLOB.machines)
+			if(X.id == id)
+				X.score(side, 3)// 3 points for dunking a mob
+				// no break, to update multiple scoreboards
+		visible_message("<span class='danger'>[user] dunks [L] into the [src]!</span>")
+
+	else if(get_dist(src, user) < 2)
+		user.transferItemToLoc(I, loc)
+		for(var/obj/machinery/scoreboard/X in GLOB.machines)
+			if(X.id == id)
+				X.score(side)
+		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
+
+
+/obj/structure/hoop/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover,/obj/item) && mover.throwing)
+		var/obj/item/I = mover
+		if(istype(I, /obj/item/projectile))
+			return
+		if(prob(50))
+			I.forceMove(loc)
+			for(var/obj/machinery/scoreboard/X in GLOB.machines)
+				if(X.id == id)
+					X.score(side)
+					// no break, to update multiple scoreboards
+			visible_message("<span class='notice'> Swish! \the [I] lands in \the [src].</span>", 3)
+		else
+			visible_message("<span class='warning'> \the [I] bounces off of \the [src]'s rim!</span>", 3)
+		return FALSE
+	else
+		return ..()
