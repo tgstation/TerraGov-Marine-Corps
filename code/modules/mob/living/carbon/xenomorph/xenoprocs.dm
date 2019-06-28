@@ -60,8 +60,6 @@
 	xenoinfo += xeno_status_output(hive.xeno_leader_list, can_overwatch, FALSE, user)
 
 	for(var/typepath in hive.xenos_by_typepath)
-		if(typepath == /mob/living/carbon/xenomorph/queen)
-			continue
 		var/mob/living/carbon/xenomorph/T = typepath
 		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][XENO_UPGRADE_BASETYPE]
 		if(XC.caste_flags & CASTE_HIDE_IN_STATUS)
@@ -119,8 +117,8 @@
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		stat(null, "Evolve Progress (FINISHED)")
-	else if(!hive.living_xeno_queen)
-		stat(null, "Evolve Progress (HALTED - NO QUEEN)")
+	else if(!hive.living_xeno_ruler)
+		stat(null, "Evolve Progress (HALTED - NO RULER)")
 	else
 		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
 
@@ -257,7 +255,7 @@
 /mob/living/carbon/xenomorph/proc/update_progression()
 	if(upgrade_possible()) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
-			if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
+			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
@@ -269,7 +267,7 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(hive?.living_xeno_queen)
+	if(hive?.living_xeno_ruler)
 		evolution_stored++
 		if(evolution_stored == xeno_caste.evolution_threshold - 1)
 			to_chat(src, "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>")
@@ -386,25 +384,19 @@
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision()
-	if(!hud_used)
-		return
-
-	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-	if(!L)
-		return
-
-	if(L.alpha == 255)
+	if(see_in_dark == XENO_NIGHTVISION_DISABLED)
+		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 		see_in_dark = XENO_NIGHTVISION_ENABLED
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		ENABLE_BITFIELD(sight, SEE_OBJS)
 		ENABLE_BITFIELD(sight, SEE_TURFS)
-		L.alpha = 0
 	else
+		lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 		see_in_dark = XENO_NIGHTVISION_DISABLED
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		DISABLE_BITFIELD(sight, SEE_OBJS)
 		DISABLE_BITFIELD(sight, SEE_TURFS)
-		L.alpha = 255
+	update_sight()
 
 
 
@@ -558,8 +550,9 @@
 	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
-		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)
-			ammo = GLOB.ammo_list[xeno_caste.spit_types[i]]
+		var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
+		if(ammo.icon_state == A.icon_state)
+			ammo = A
 			return
 	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
 	return

@@ -45,7 +45,6 @@
 		return
 	usr.forceMove(src)
 	src.occupant = usr
-	update_use_power(2)
 	src.icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		//O = null
@@ -61,7 +60,6 @@
 		//Foreach goto(30)
 	src.occupant.forceMove(loc)
 	src.occupant = null
-	update_use_power(1)
 	src.icon_state = "body_scanner_0"
 	return
 
@@ -109,7 +107,6 @@
 
 	M.forceMove(src)
 	occupant = M
-	update_use_power(2)
 	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		O.forceMove(loc)

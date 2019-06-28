@@ -351,7 +351,7 @@
 
 /area/proc/get_apc()
 	for(var/obj/machinery/power/apc/APC in GLOB.apcs_list)
-		if(APC.area == src.master)
+		if(APC.area == src)
 			return APC
 
 

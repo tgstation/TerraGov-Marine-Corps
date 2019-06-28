@@ -4,7 +4,7 @@
 //Just about ALL the procs are tied to the parent, not to the children
 //This is so they can be easily transferred between them without copypasta
 
-/mob/living/carbon/xenomorph/Initialize()
+/mob/living/carbon/xenomorph/Initialize(mapload, can_spawn_in_centcomm)
 	verbs += /mob/living/proc/lay_down
 	. = ..()
 
@@ -28,6 +28,9 @@
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
 
+	if(!can_spawn_in_centcomm && is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
+		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
+	
 	set_initial_hivenumber()
 
 	generate_nicknumber()
@@ -228,8 +231,12 @@
 	hud_set_pheromone()
 	//and display them
 	add_to_all_mob_huds()
-	var/datum/atom_hud/MH = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	MH.add_hud_to(src)
+	
+	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_XENO_INFECTION]
+	hud_to_add.add_hud_to(src)
+	
+	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
+	hud_to_add.add_hud_to(src)
 
 
 

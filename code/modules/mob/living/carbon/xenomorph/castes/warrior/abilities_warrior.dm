@@ -1,7 +1,7 @@
 // ***************************************
 // *********** Agility
 // ***************************************
-/datum/action/xeno_action/activable/toggle_agility
+/datum/action/xeno_action/toggle_agility
 	name = "Toggle Agility"
 	action_icon_state = "agility_on"
 	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
@@ -10,12 +10,12 @@
 	use_state_flags = XACT_USE_AGILITY
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
 
-/datum/action/xeno_action/activable/toggle_agility/on_cooldown_finish()
+/datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(src, "<span class='notice'>You can [X.agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/toggle_agility/action_activate()
+/datum/action/xeno_action/toggle_agility/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.agility = !X.agility
@@ -187,6 +187,8 @@
 		return FALSE
 	if(!isliving(A))
 		return FALSE
+	if(!owner.Adjacent(A))
+		return FALSE
 	var/mob/living/L = A
 	if(L.stat == DEAD || isnestedhost(L)) //Can't bully the dead/nested hosts.
 		return FALSE
@@ -275,7 +277,7 @@
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
 	"<span class='xenowarning'>You begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
 
-	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
+	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
@@ -291,9 +293,9 @@
 		"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
 		L.take_damage_limb(rand(15, 25))
 		L.fracture()
-	log_message(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
+	log_combat(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
 
-	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
+	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
 		return FALSE
 
@@ -302,7 +304,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \
 	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from [M.p_their()] body!</span>")
-	log_message(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
+	log_combat(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
 
 	L.droplimb()
 

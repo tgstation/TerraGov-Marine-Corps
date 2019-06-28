@@ -21,7 +21,6 @@
 	var/welded = FALSE
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
-	var/air_properties_vary_with_direction = FALSE
 	var/list/fillers
 
 	//Multi-tile doors
@@ -205,10 +204,10 @@
 
 	do_animate("opening")
 	icon_state = "door0"
-	SetOpacity(FALSE)
+	set_opacity(FALSE)
 	for(var/t in fillers)
 		var/obj/effect/opacifier/O = t
-		O.SetOpacity(FALSE)
+		O.set_opacity(FALSE)
 	sleep(openspeed)
 	layer = open_layer
 	density = FALSE
@@ -236,14 +235,17 @@
 	sleep(openspeed)
 	update_icon()
 	if(visible && !glass)
-		SetOpacity(TRUE)	//caaaaarn!
+		set_opacity(TRUE)	//caaaaarn!
 		for(var/t in fillers)
 			var/obj/effect/opacifier/O = t
-			O.SetOpacity(TRUE)
+			O.set_opacity(TRUE)
 	operating = FALSE
 
 /obj/machinery/door/proc/requiresID()
 	return TRUE
+
+/obj/machinery/door/proc/hasPower()
+	return !CHECK_BITFIELD(machine_stat, NOPOWER)
 
 /obj/machinery/door/proc/update_flags_heat_protection(turf/source)
 

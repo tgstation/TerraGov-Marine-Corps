@@ -5,7 +5,7 @@
 /area/shuttle
 	name = "Shuttle"
 	requires_power = FALSE
-//	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 //	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
 //	valid_territory = FALSE
@@ -48,7 +48,7 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-//	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"
@@ -99,8 +99,7 @@
 	noteleport = TRUE
 
 /area/shuttle/escape/meteor
-	name = "\proper a meteor with engines strapped to it"
-	luminosity = NONE*/
+	name = "\proper a meteor with engines strapped to it"*/
 
 /area/shuttle/transport
 	name = "Transport Shuttle"

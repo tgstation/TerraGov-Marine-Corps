@@ -250,16 +250,11 @@
 		if(turned_on)
 			toggle_lights(SWITCH_OFF)
 			turned_on = FALSE
-		update_use_power(NO_POWER_USE)
 	update_icon()
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_power()
 	turned_on = !turned_on
 
-	if(turned_on)
-		update_use_power(ACTIVE_POWER_USE)
-	else
-		update_use_power(IDLE_POWER_USE)
 
 /obj/machinery/colony_floodlight_switch/proc/toggle_lights(switch_on)
 	for(var/obj/machinery/colony_floodlight/F in floodlist)
@@ -453,12 +448,12 @@
 	if(switch_on && !is_lit)
 		if(damaged || !anchored || !fswitch.turned_on)
 			return
-		SetLuminosity(lum_value)
+		set_light(lum_value)
 		fswitch.active_power_usage += FLOODLIGHT_TICK_CONSUMPTION
 		is_lit = TRUE
 		update_icon()
 	else if(!switch_on && is_lit)
-		SetLuminosity(0)
+		set_light(0)
 		fswitch.active_power_usage -= FLOODLIGHT_TICK_CONSUMPTION
 		is_lit = FALSE
 		update_icon()

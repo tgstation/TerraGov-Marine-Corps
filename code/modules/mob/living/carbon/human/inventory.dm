@@ -174,11 +174,12 @@
 	else if (I == glasses)
 		glasses = null
 		var/obj/item/clothing/glasses/G = I
-		if(G.vision_flags || G.darkness_view || G.see_invisible)
-			update_sight()
 		if(G.tint)
 			update_tint()
-		update_inv_glasses()
+		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+			update_sight()
+		if(!QDELETED(src))
+			update_inv_glasses()
 	else if (I == wear_ear)
 		wear_ear = null
 		update_inv_ears()
@@ -290,10 +291,10 @@
 			glasses = W
 			W.equipped(src, slot)
 			var/obj/item/clothing/glasses/G = W
-			if(G.vision_flags || G.darkness_view || G.see_invisible)
-				update_sight()
 			if(G.tint)
 				update_tint()
+			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+				update_sight()
 			update_inv_glasses()
 		if(SLOT_GLOVES)
 			gloves = W

@@ -3,9 +3,6 @@
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = 2.0
-	var/vision_flags = 0
-	var/darkness_view = 0//Base human is 2
-	var/see_invisible = 0
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = 0
 	var/toggleable = 0
@@ -14,7 +11,11 @@
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
-	var/fullscreen_vision
+	var/vision_flags = 0
+	var/darkness_view = 2 //Base human is 2
+	var/invis_view = SEE_INVISIBLE_LIVING
+	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
+	var/lighting_alpha
 
 
 /obj/item/clothing/glasses/update_clothing_icon()
@@ -30,11 +31,13 @@
 			icon_state = deactive_state
 			user.update_inv_glasses()
 			to_chat(user, "You deactivate the optical matrix on [src].")
+			playsound(user, 'sound/items/googles_off.ogg', 15)
 		else
 			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
 			to_chat(user, "You activate the optical matrix on [src].")
+			playsound(user, 'sound/items/googles_on.ogg', 15)
 
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
@@ -252,7 +255,7 @@
 	eye_protection = 2
 	darkness_view = 8
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
-	see_invisible = SEE_INVISIBLE_MINIMUM
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"

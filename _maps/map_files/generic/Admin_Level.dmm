@@ -2425,7 +2425,7 @@
 	},
 /area/centcom)
 "oe" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
@@ -2476,7 +2476,7 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "oY" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
@@ -2486,7 +2486,7 @@
 	},
 /area/centcom)
 "oZ" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"

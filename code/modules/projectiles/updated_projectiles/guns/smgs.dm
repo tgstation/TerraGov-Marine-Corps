@@ -262,17 +262,18 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/uzi/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
 
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
 	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
+	movement_acc_penalty_mult = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 //-------------------------------------------------------
 //FP9000 //Based on the FN P90

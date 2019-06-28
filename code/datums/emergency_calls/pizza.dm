@@ -27,4 +27,4 @@
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/other/pizza)
 	SSjob.AssignRole(H, J.title)
-	J.equip(H)
+	J.assign_equip(H)

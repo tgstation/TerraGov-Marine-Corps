@@ -207,7 +207,6 @@
 	if(mention_charge)
 		to_chat(user, "<span class='notice'><b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 	update_plasmacutter()
-	..()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
 	var/final_delay = PLASMACUTTER_CUT_DELAY
@@ -239,42 +238,15 @@
 		force = 5
 		damtype = "brute"
 		heat = 0
-		if(user)
-			user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(0)
+		set_light(0)
 	else
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
 		force = 40
 		damtype = "fire"
 		heat = 3800
-		if(user)
-			user.SetLuminosity(LIGHTER_LUMINOSITY)
-			SetLuminosity(0)
-		else
-			SetLuminosity(LIGHTER_LUMINOSITY)
+		set_light(LIGHTER_LUMINOSITY)
 
-
-/obj/item/tool/pickaxe/plasmacutter/pickup(mob/user)
-	if(powered && loc != user)
-		user.SetLuminosity(LIGHTER_LUMINOSITY)
-		SetLuminosity(0)
-	return ..()
-
-/obj/item/tool/pickaxe/plasmacutter/dropped(mob/user)
-	if(powered && loc != user)
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(LIGHTER_LUMINOSITY)
-	return ..()
-
-
-/obj/item/tool/pickaxe/plasmacutter/Destroy()
-	var/mob/user
-	if(ismob(loc))
-		user = loc
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-	SetLuminosity(0)
-	return ..()
 
 /obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)
 	. = ..()

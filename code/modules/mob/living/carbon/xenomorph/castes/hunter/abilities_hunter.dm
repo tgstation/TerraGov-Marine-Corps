@@ -1,18 +1,18 @@
 // ***************************************
 // *********** Stealth
 // ***************************************
-/datum/action/xeno_action/activable/stealth
+/datum/action/xeno_action/stealth
 	name = "Toggle Stealth"
 	action_icon_state = "stealth_on"
 	mechanics_text = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
 	ability_name = "stealth"
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
-/datum/action/xeno_action/activable/stealth/action_activate()
+/datum/action/xeno_action/stealth/action_activate()
 	var/mob/living/carbon/xenomorph/hunter/X = owner
 	X.Stealth()
 
-/datum/action/xeno_action/activable/stealth/action_cooldown_check()
+/datum/action/xeno_action/stealth/action_cooldown_check()
 	var/mob/living/carbon/xenomorph/hunter/X = owner
 	return !X.used_stealth
 
@@ -46,7 +46,7 @@
 			last_stealth = world.time
 			stealth = TRUE
 			handle_stealth()
-			addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
+			addtimer(CALLBACK(src, .proc/stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
 			addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 	else
 		cancel_stealth()
@@ -68,7 +68,7 @@
 	can_sneak_attack = FALSE
 	alpha = 255 //no transparency/translucency
 	stealth_delay = world.time + HUNTER_STEALTH_COOLDOWN
-	addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
+	addtimer(CALLBACK(src, .proc/stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
 
 // ***************************************
 // *********** Pounce/sneak attack

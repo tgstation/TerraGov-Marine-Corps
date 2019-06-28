@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	invisibility = INVISIBILITY_OBSERVER
 	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	hud_type = /datum/hud/ghost
-	var/lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
@@ -127,17 +127,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			ghostimage_default.icon_state = new_form
 
 
-/mob/dead/observer/sync_lighting_plane_alpha()
-	if(!hud_used)
-		return
-
-	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-	if(!L)
-		return
-
-	L.alpha = lighting_alpha
-
-
 /mob/dead/observer/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -190,6 +179,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/mob/dead/observer/A = usr
 
 		A.JoinResponseTeam()
+		return
+
+	else if(href_list["join_larva"])
+		if(!isobserver(usr))
+			return
+		var/mob/dead/observer/A = usr
+
+		SSticker.mode.attempt_to_join_as_larva(A)
 		return
 
 	else if(href_list["preference"])
@@ -820,9 +817,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(new_xeno)
 				SSticker.mode.transfer_xeno(src, new_xeno)
 		if("Larva")
-			if(!SSticker.mode.attempt_to_join_as_larva(src))
-				return
-			SSticker.mode.spawn_larva(src)
+			SSticker.mode.attempt_to_join_as_larva(src)
 
 
 /mob/dead/observer/verb/observe()

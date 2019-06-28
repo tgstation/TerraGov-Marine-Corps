@@ -26,6 +26,7 @@
 
 /obj/machinery/door/poddoor/proc/pry_open()
 	open()
+	set_opacity(FALSE)
 	density = FALSE
 	operating = FALSE
 	update_icon()
@@ -102,4 +103,15 @@
 
 /obj/machinery/door/poddoor/almayer/Initialize()
 	relativewall_neighbours()
+	return ..()
+
+
+/obj/machinery/door/poddoor/timed_late
+	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	name = "Timed Emergency Shutters"
+	use_power = FALSE
+
+
+/obj/machinery/door/poddoor/timed_late/Initialize()
+	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/open)
 	return ..()

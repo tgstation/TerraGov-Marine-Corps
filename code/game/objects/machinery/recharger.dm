@@ -78,11 +78,9 @@ obj/machinery/recharger/attack_paw(mob/user as mob)
 
 obj/machinery/recharger/process()
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
-		update_use_power(0)
 		update_icon()
 		return
 	if(!charging)
-		update_use_power(1)
 		percent_charge_complete = 0
 		update_icon()
 	//This is an awful check. Holy cow.
@@ -92,11 +90,9 @@ obj/machinery/recharger/process()
 			if(!E.cell.fully_charged())
 				E.cell.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = E.cell.percent()
-				update_use_power(2)
 				update_icon()
 			else
 				percent_charge_complete = 100
-				update_use_power(1)
 				update_icon()
 			return
 
@@ -106,15 +102,12 @@ obj/machinery/recharger/process()
 				if(!B.bcell.fully_charged())
 					B.bcell.give(active_power_usage*GLOB.CELLRATE)
 					percent_charge_complete = B.bcell.percent()
-					update_use_power(2)
 					update_icon()
 				else
 					percent_charge_complete = 100
-					update_use_power(1)
 					update_icon()
 			else
 				percent_charge_complete = 0
-				update_use_power(1)
 				update_icon()
 			return
 
@@ -123,11 +116,9 @@ obj/machinery/recharger/process()
 			if(!D.dcell.fully_charged())
 				D.dcell.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = D.dcell.percent()
-				update_use_power(2)
 				update_icon()
 			else
 				percent_charge_complete = 100
-				update_use_power(1)
 				update_icon()
 			return
 
@@ -136,11 +127,9 @@ obj/machinery/recharger/process()
 			if(!C.fully_charged())
 				C.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = C.percent()
-				update_use_power(2)
 				update_icon()
 			else
 				percent_charge_complete = 100
-				update_use_power(1)
 				update_icon()
 			return
 

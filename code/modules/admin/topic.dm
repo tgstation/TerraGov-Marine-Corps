@@ -322,6 +322,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/crusher, location, null, delmob)
 			if("defiler")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/Defiler, location, null, delmob)
+			if("shrike")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
 			if("queen")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
 			if("human")
@@ -1865,7 +1867,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!change || !istype(H) || !H.mind)
 					return
 				previous = H.mind.assigned_role
-				H.set_rank(change)
+				var/datum/job/J = SSjob.GetJob(change)
+				J.assign(H)
 			if("skills")
 				var/list/skilltypes = subtypesof(/datum/skills)
 				var/list/skills = list()

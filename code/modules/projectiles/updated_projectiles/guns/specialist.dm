@@ -575,7 +575,8 @@
 	if(length(grenades) == 0)
 		return list("empty", "empty")
 	else
-		return list(grenades[1].hud_state, grenades[1].hud_state_empty)
+		var/obj/item/explosive/grenade/F = grenades[1]
+		return list(F.hud_state, F.hud_state_empty)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_count()
 	return length(grenades)

@@ -253,6 +253,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				qdel(R.keyslot2)
 				R.keyslot2 = null
 			R.recalculateChannels()
+			R.use_command = FALSE
 		if(istype(old_lead.wear_id, /obj/item/card/id))
 			var/obj/item/card/id/ID = old_lead.wear_id
 			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)

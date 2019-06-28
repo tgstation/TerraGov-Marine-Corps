@@ -86,6 +86,8 @@
 	if(user.mind && user.mind.cm_skills)
 		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
 
+	SEND_SIGNAL(user, COMSIG_HUMAN_ITEM_ATTACK, M, src, user)
+
 	if(!ishuman(M))
 		var/showname = "."
 		if(user)
@@ -116,6 +118,5 @@
 		var/hit = H.attacked_by(src, user)
 		if (hit && hitsound)
 			playsound(loc, hitsound, 25, 1)
-		H.camo_off_process(SCOUT_CLOAK_OFF_ATTACK)
 		return hit
 	return 1

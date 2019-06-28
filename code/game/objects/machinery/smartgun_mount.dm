@@ -260,7 +260,6 @@
 
 /obj/machinery/m56d_hmg/Destroy() //Make sure we pick up our trash.
 	operator?.unset_interaction()
-	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 

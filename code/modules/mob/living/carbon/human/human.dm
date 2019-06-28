@@ -5,7 +5,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, XENO_EMBRYO_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
@@ -66,6 +66,9 @@
 	hud_set_order()
 	//and display them
 	add_to_all_mob_huds()
+	
+	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_BASIC]
+	hud_to_add.add_hud_to(src)
 
 
 
@@ -1067,9 +1070,6 @@
 	return ..()
 
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
-	if(luminosity <= 0)
-		return FALSE
-
 	if(sparks)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
@@ -1081,12 +1081,12 @@
 	if(armor)
 		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			if(S.turn_off_light(src))
-				light_off++
+			S.set_light(0)
+			light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/G in contents)
-			if(G.turn_off_light(src))
-				light_off++
+			G.set_light(0)
+			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
 			if(F.on)
@@ -1098,8 +1098,8 @@
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			if(H.turn_off_light(src))
-				light_off++
+			H.set_light(0)
+			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
 				continue
@@ -1130,38 +1130,9 @@
 			if(light_off > 1)
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
 			else
-				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
 		return TRUE
 
-
-/mob/living/carbon/human/update_sight()
-	if(!client)
-		return
-	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		return
-
-	sight = initial(sight)
-	see_in_dark = species.darksight
-	see_invisible = SEE_INVISIBLE_LIVING
-
-	if(glasses)
-		var/obj/item/clothing/glasses/G = glasses
-		//prescription applies regardless of it the glasses are active
-		if(G.active)
-			see_in_dark = max(G.darkness_view, see_in_dark)
-			sight |= G.vision_flags
-			if(G.fullscreen_vision)
-				overlay_fullscreen("glasses_vision", G.fullscreen_vision)
-			else
-				clear_fullscreen("glasses_vision", 0)
-			if(G.see_invisible)
-				see_invisible = min(G.see_invisible, see_invisible)
-		else
-			clear_fullscreen("glasses_vision", 0)
-	else
-		clear_fullscreen("glasses_vision", 0)
 
 /mob/living/carbon/human/get_total_tint()
 	. = ..()
@@ -1317,28 +1288,7 @@
 	if(!J)
 		return FALSE
 
-	var/datum/outfit/job/O = new J.outfit
-	var/id = O.id ? O.id : /obj/item/card/id
-	var/obj/item/card/id/I = new id
-	var/datum/skills/L = new J.skills_type
-	mind.cm_skills = L
-	mind.comm_title = J.comm_title
-
-	if(wear_id)
-		qdel(wear_id)
-
-	job = rank
-	faction = J.faction
-
-	equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-	SSjob.AssignRole(src, rank)
-	O.handle_id(src)
-
-	GLOB.datacore.manifest_update(real_name, real_name, job)
-
-	if(assigned_squad)
-		change_squad(assigned_squad.name)
+	J.assign(src)
 
 	return TRUE
 
@@ -1372,7 +1322,8 @@
 /mob/living/carbon/human/take_over(mob/M)
 	. = ..()
 
-	set_rank(job)
+	var/datum/job/J = SSjob.GetJob(job)
+	J.equip(src)
 
 	if(assigned_squad)
 		change_squad(assigned_squad.name)

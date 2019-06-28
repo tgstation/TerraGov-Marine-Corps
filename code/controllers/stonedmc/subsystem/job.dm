@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(job)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all jobs.
-	var/list/name_occupations = list()	//Dict of all jobs, keys are titles.
+	var/list/datum/job/name_occupations = list()	//Dict of all jobs, keys are titles.
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
 	var/list/squads = list()			//List of squads.
@@ -154,6 +154,8 @@ SUBSYSTEM_DEF(job)
 	for(var/level in levels)
 		// Loop through all unassigned players
 		for(var/mob/new_player/player in unassigned)
+			if(PopcapReached())
+				RejectPlayer(player)
 
 			// Loop through all jobs
 			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
@@ -177,7 +179,9 @@ SUBSYSTEM_DEF(job)
 
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/new_player/player)
-	if(player.client.prefs.alternate_option == BE_OVERFLOW)
+	if(PopcapReached())
+		RejectPlayer(player)
+	else if(player.client.prefs.alternate_option == BE_OVERFLOW)
 		if(!AssignRole(player, SSjob.overflow_role))
 			RejectPlayer(player)
 	else if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
@@ -224,8 +228,7 @@ SUBSYSTEM_DEF(job)
 			SendToLateJoin(L)
 
 	if(job && L.mind)
-		L.mind.assigned_role = rank
-		var/new_mob = job.equip(L, null, null, joined_late , null, M.client)
+		var/new_mob = job.assign_equip(L, null, null, joined_late , null, M.client)
 		if(ismob(new_mob))
 			L = new_mob
 			if(!joined_late)
@@ -269,7 +272,19 @@ SUBSYSTEM_DEF(job)
 	return L
 
 
+/datum/controller/subsystem/job/proc/PopcapReached()
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	var/epc = CONFIG_GET(number/extreme_popcap)
+	if(hpc || epc)
+		var/relevent_cap = max(hpc, epc)
+		if((initial_players_to_assign - length(unassigned)) >= relevent_cap)
+			return TRUE
+	return FALSE
+
+
 /datum/controller/subsystem/job/proc/RejectPlayer(mob/new_player/player)
+	if(PopcapReached())
+		JobDebug("Popcap overflow Check observer located, Player: [player]")
 	if(player.mind?.assigned_role)
 		JobDebug("Player already assigned a role :[player]")
 		unassigned -= player

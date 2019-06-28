@@ -463,7 +463,7 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_eyes()
+/mob/proc/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	return
 
 /mob/living/carbon/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)

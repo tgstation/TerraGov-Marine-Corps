@@ -260,7 +260,7 @@
 	var/list/stored_items = list()
 	for(var/obj/item/W in src)
 		stored_items.Add(W.store_in_cryo())
-	GLOB.cryoed_item_list[dept_console].Add(stored_items)
+	GLOB.cryoed_item_list[dept_console] += stored_items
 
 
 	for(var/datum/data/record/R in GLOB.datacore.medical)

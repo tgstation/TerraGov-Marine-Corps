@@ -44,7 +44,6 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
-				GLOB.lighting_controller.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -90,7 +89,7 @@
 
 /mob/proc/prepare_huds()
 	hud_list = new
-	for(var/hud in hud_possible)
+	for(var/hud in hud_possible) //Providing huds.
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
 
 
@@ -692,7 +691,7 @@ mob/proc/yank_out_object()
 	if(!pulling)
 		return forceMove(destination) //No need for a special proc if there's nothing being pulled.
 	pulledby?.stop_pulling() //The leader of the choo-choo train breaks the pull
-	var/atom/movable/list/conga_line[0]
+	var/list/conga_line = list()
 	var/end_of_conga = FALSE
 	var/mob/S = src
 	conga_line += S
@@ -776,6 +775,7 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
+	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
 	var/viewers = viewers()
 	for(var/mob/M in viewers)
 		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
@@ -887,4 +887,9 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/sync_lighting_plane_alpha()
-	return
+	if(!hud_used)
+		return
+
+	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+	if(L)
+		L.alpha = lighting_alpha
