@@ -27,6 +27,7 @@
 
 /obj/item/alien_embryo/Destroy()
 	if(affected_mob)
+		log_combat(affected_mob, null, "had their embryo removed")
 		affected_mob.status_flags &= ~(XENO_HOST)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
