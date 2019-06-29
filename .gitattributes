@@ -1,3 +1,6 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+*.dm text eol=crlf
+
 # merger hooks, run tools/hooks/install.bat or install.sh to set up
 *.dmm merge=dmm
 *.dmi merge=dmi
