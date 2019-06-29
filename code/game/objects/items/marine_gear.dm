@@ -40,32 +40,12 @@
 	closet_stun_delay = 0
 
 
-#define TARP_TIME_PER_CYCLE 1.5 SECONDS
-
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
 	if(!opened && bodybag_occupant)
 		anchored = TRUE
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-		addtimer(CALLBACK(src, .proc/gradual_fade_out), TARP_TIME_PER_CYCLE)
-
-
-#define TARP_ALPHA_LOSS_PER_CYCLE 85
-#define TARP_MINIMUM_ALPHA 13
-
-/obj/structure/closet/bodybag/tarp/proc/gradual_fade_out(iterations = 0)
-	if(opened || !bodybag_occupant)
-		return
-	if(alpha != (initial(alpha) - (TARP_ALPHA_LOSS_PER_CYCLE * iterations)))
-		return //There's likely more than one such process running around, such as when someone opens and closes the tarp quickly. Let's kill this one.
-	if(alpha <= TARP_MINIMUM_ALPHA)
-		return //Natural end of the cycle, reaching maximum concealment. Starting with 255 alpha and losing 85 each time it takes 3 iterations.
-	alpha = max(TARP_MINIMUM_ALPHA, alpha - TARP_ALPHA_LOSS_PER_CYCLE)
-	addtimer(CALLBACK(src, .proc/gradual_fade_out, ++iterations), TARP_TIME_PER_CYCLE)
-
-#undef TARP_ALPHA_LOSS_PER_CYCLE
-#undef TARP_MINIMUM_ALPHA
-#undef TARP_TIME_PER_CYCLE
+		animate(src, alpha = 13, time = 4 SECONDS) //Fade out gradually.
 
 
 /obj/structure/closet/bodybag/tarp/open()
@@ -73,6 +53,7 @@
 	if(alpha != initial(alpha))
 		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 		alpha = initial(alpha) //stealth mode disengaged
+		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED))
 	return ..()
