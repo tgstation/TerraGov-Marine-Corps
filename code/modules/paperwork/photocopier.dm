@@ -150,7 +150,7 @@
 			return
 
 		copy = I
-		do_insertion(O, user)
+		do_insertion(I, user)
 
 	else if(istype(I, /obj/item/photo))
 		if(!copier_empty())
@@ -171,7 +171,7 @@
 			return
 		qdel(I)
 		toner = 40
-		to_chat(user, "<span class='notice'>You insert [O] into [src].</span>")
+		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
 		updateUsrDialog()
 
 
