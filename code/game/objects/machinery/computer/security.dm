@@ -571,9 +571,12 @@ What a mess.*/
 	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!issilicon(user)))
 
 /obj/machinery/computer/secure_data/proc/get_photo(mob/user)
-	if(istype(user.get_active_held_item(), /obj/item/photo))
-		var/obj/item/photo/photo = user.get_active_held_item()
-		return photo.img
+	var/atom/A = user.get_active_held_item()
+	if(!istype(A, /obj/item/photo))
+		return
+
+	var/obj/item/photo/P = A
+	return P.picture.picture_icon
 
 /obj/machinery/computer/secure_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))

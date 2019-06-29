@@ -723,3 +723,17 @@ below 100 is not dizzy
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
+
+
+/mob/living/get_photo_description(obj/item/camera/camera)
+	var/holding
+	if(l_hand || r_hand)
+		if(l_hand) 
+			holding = "They are holding \a [l_hand]"
+		if(r_hand)
+			if(holding)
+				holding += " and \a [r_hand]"
+			else
+				holding = "They are holding \a [r_hand]"
+		holding += "."
+	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt" : ""][holding ? ". [holding]" : "."]"
