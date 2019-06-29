@@ -224,6 +224,19 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"aaR" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/radio/intercom/general/colony{
+	dir = 1;
+	frequency = 150;
+	name = "safe-room intercom"
+	},
+/turf/open/floor/elevatorshaft,
+/area/bigredv2/caves/lambda_lab)
 "aaS" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
@@ -290,6 +303,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/space_port)
+"abb" = (
+/obj/item/radio/intercom/general/colony{
+	frequency = 150;
+	name = "safe-room intercom"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/caves/lambda_lab)
 "abc" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
@@ -4273,6 +4293,13 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
+"amB" = (
+/obj/item/radio/intercom/general/colony{
+	icon_state = "intercom";
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "amC" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -5090,12 +5117,6 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/bigredv2/caves/lambda_lab)
-"aoJ" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 4
-	},
 /area/bigredv2/caves/lambda_lab)
 "aoK" = (
 /turf/open/floor/tile/dark/purple2{
@@ -6588,19 +6609,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"atc" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/item/radio/intercom/general/colony{
-	dir = 1;
-	name = "Safe-Room intercom";
-	pixel_y = -30
-	},
-/turf/open/floor/elevatorshaft,
-/area/bigredv2/caves/lambda_lab)
 "atd" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -6976,13 +6984,6 @@
 /area/bigredv2/outside/general_offices)
 "aui" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/wood,
-/area/bigredv2/caves/lambda_lab)
-"auj" = (
-/obj/item/radio/intercom/general/colony{
-	name = "Safe-Room intercom";
-	dir = 1
-	},
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "auk" = (
@@ -7846,10 +7847,6 @@
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
-"awz" = (
-/obj/structure/table/holotable/wood,
-/turf/open/floor/carpet,
-/area/bigredv2/caves/lambda_lab)
 "awA" = (
 /obj/structure/table/holotable/wood,
 /obj/item/tool/pen,
@@ -18137,13 +18134,6 @@
 /obj/effect/spawner/random/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bcB" = (
-/obj/item/radio/intercom/general/colony{
-	name = "General Listening Channel";
-	pixel_y = -30
-	},
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "bcC" = (
 /obj/machinery/door_control{
 	id = "Cargonia";
@@ -23919,11 +23909,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"bxJ" = (
-/turf/open/floor/tile/dark/yellow2{
-	dir = 4
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "bxK" = (
 /obj/machinery/light{
 	dir = 8
@@ -25423,9 +25408,6 @@
 /obj/machinery/computer/atmoscontrol,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"bDj" = (
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "bDk" = (
 /obj/machinery/light{
 	dir = 8
@@ -26165,6 +26147,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"hbe" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/asteroidfloor,
+/area/storage/testroom)
 "hcr" = (
 /obj/item/flashlight,
 /turf/open/floor,
@@ -26540,10 +26526,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"obN" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
-/area/storage/testroom)
 "onZ" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -26749,9 +26731,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"qSy" = (
-/turf/closed/wall/indestructible/mineral,
-/area/storage/testroom)
 "qUm" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -26901,6 +26880,9 @@
 "tco" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
+"tku" = (
+/turf/closed/wall/indestructible/mineral,
+/area/storage/testroom)
 "twQ" = (
 /obj/effect/spawner/random/tool,
 /turf/open/floor,
@@ -27653,9 +27635,9 @@ aaa
 (3,1,1) = {"
 aaa
 aab
-qSy
-qSy
-qSy
+tku
+tku
+tku
 aac
 aac
 aac
@@ -27870,9 +27852,9 @@ aaa
 (4,1,1) = {"
 aaa
 aab
-qSy
-obN
-qSy
+tku
+hbe
+tku
 aac
 aac
 aac
@@ -28087,9 +28069,9 @@ aaa
 (5,1,1) = {"
 aaa
 aab
-qSy
-qSy
-qSy
+tku
+tku
+tku
 aac
 aac
 aac
@@ -41204,7 +41186,7 @@ blb
 blb
 bbh
 aZO
-bcB
+amB
 aXK
 blb
 beh
@@ -52115,7 +52097,7 @@ bwJ
 bxb
 bxp
 bxp
-bxJ
+bxp
 bxQ
 bxp
 bys
@@ -53225,7 +53207,7 @@ bBt
 bxg
 bBt
 bBL
-bDj
+bxg
 bxN
 bxS
 bxS
@@ -63510,12 +63492,12 @@ adZ
 aqY
 arF
 arF
-atc
+aaR
 adZ
-auj
+abb
 ltt
 auY
-awz
+asq
 arH
 adZ
 aac
@@ -66976,7 +66958,7 @@ alT
 amO
 ans
 anW
-aoJ
+alT
 alT
 aqh
 adZ

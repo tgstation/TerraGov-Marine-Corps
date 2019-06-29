@@ -20,6 +20,35 @@
 	},
 /turf/open/floor/plating/almayer,
 /area/shuttle/big_ert)
+"ae" = (
+/obj/machinery/vending/engivend,
+/obj/item/radio/intercom/general,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate"
+	},
+/area/shuttle/big_ert)
+"af" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc/hyper{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/big_ert)
 "ag" = (
 /turf/closed/wall/almayer/white,
 /area/shuttle/big_ert)
@@ -320,18 +349,6 @@
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
-"aV" = (
-/obj/machinery/vending/engivend,
-/obj/item/radio/intercom/general{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	icon_state = "plate"
-	},
-/area/shuttle/big_ert)
 "aW" = (
 /obj/structure/rack,
 /turf/open/floor/almayer{
@@ -560,26 +577,6 @@
 /obj/machinery/computer/card,
 /turf/open/floor/almayer{
 	icon_state = "plate"
-	},
-/area/shuttle/big_ert)
-"bx" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/machinery/power/apc/almayer{
-	cell_type = /obj/item/cell/hyper;
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
 	},
 /area/shuttle/big_ert)
 "by" = (
@@ -1231,7 +1228,7 @@ aa
 ag
 ag
 bi
-bx
+af
 bK
 ag
 ag
@@ -1267,7 +1264,7 @@ ag
 ac
 ag
 ag
-aV
+ae
 bk
 bz
 bM
