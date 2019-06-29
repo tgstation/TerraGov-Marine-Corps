@@ -369,12 +369,11 @@
 	var/survivor_job = pick(subtypesof(/datum/job/survivor))
 	var/datum/job/J = new survivor_job
 
-	H.set_rank(J.title)
-	J.equip(H)
+	J.assign_equip(H)
 
 	H.mind.assigned_role = "Survivor"
 
-	if(SSmapping.config.map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
@@ -385,7 +384,6 @@
 	var/obj/item/weapon/W = weapons[1]
 	var/obj/item/ammo_magazine/A = weapons[2]
 	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
-
 	H.put_in_hands(new W(H))
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
@@ -396,7 +394,7 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
 	to_chat(H, "<h2>You are a survivor!</h2>")
-	switch(SSmapping.config.map_name)
+	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)
 			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
 		if(MAP_ICE_COLONY)
@@ -411,7 +409,7 @@
 
 
 /datum/game_mode/proc/transform_xeno(datum/mind/M, list/xeno_spawn = GLOB.xeno_spawn)
-	var/mob/living/carbon/xenomorph/larva/X = new (pick(xeno_spawn))
+	var/mob/living/carbon/xenomorph/larva/X = new (pick(GLOB.xeno_spawn))
 
 	if(isnewplayer(M.current))
 		var/mob/new_player/N = M.current
@@ -427,7 +425,12 @@
 
 
 /datum/game_mode/proc/transform_queen(datum/mind/M, list/xeno_spawn = GLOB.xeno_spawn)
-	var/mob/living/carbon/xenomorph/queen/X = new (pick(xeno_spawn))
+	var/mob/living/carbon/xenomorph/X
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(number_of_xenos < HN.xenos_per_queen)
+		X = new /mob/living/carbon/xenomorph/shrike(pick(GLOB.xeno_spawn))
+	else
+		X = new /mob/living/carbon/xenomorph/queen(pick(GLOB.xeno_spawn))
 
 	if(isnewplayer(M.current))
 		var/mob/new_player/N = M.current
@@ -435,12 +438,11 @@
 
 	M.transfer_to(X, TRUE)
 
-	to_chat(X, "<B>You are now the alien queen!</B>")
+	to_chat(X, "<B>You are now the alien ruler!</B>")
 	to_chat(X, "<B>Your job is to spread the hive.</B>")
 	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
 
 	X.update_icons()
-
 
 
 /datum/game_mode/proc/check_queen_status(queen_time)
