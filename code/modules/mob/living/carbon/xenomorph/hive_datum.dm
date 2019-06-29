@@ -513,16 +513,16 @@ to_chat will check for valid clients itself already so no need to double check f
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
 
 	if(!length(possible_mothers))
-		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to recive new larvas.</span>")
+		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to receive new larvas.</span>")
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/chosen_mother = input("Available Mothers") as null|anything in possible_mothers
 	if(length(possible_mothers) > 1)
-		chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+		chosen_mother = input("Available Mothers") as null|anything in (possible_mothers + "Cancel")
 	else
 		chosen_mother = possible_mothers[1]
 
-	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
+	if(chosen_mother == "Cancel" || QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
 	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))
