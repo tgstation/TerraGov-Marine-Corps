@@ -37,13 +37,13 @@
 	switch(bonus)
 		if(2)
 			visible_message("<span class='danger'>\The [src] strikes with lethal speed!</span>", \
-			"<span class='danger'>You strike with lethal speed!</span>")
+			"<span class='danger'>We strike with lethal speed!</span>")
 		if(1.5 to 1.99)
 			visible_message("<span class='danger'>\The [src] strikes with deadly speed!</span>", \
-			"<span class='danger'>You strike with deadly speed!</span>")
+			"<span class='danger'>We strike with deadly speed!</span>")
 		if(1.25 to 1.45)
 			visible_message("<span class='danger'>\The [src] strikes with vicious speed!</span>", \
-			"<span class='danger'>You strike with vicious speed!</span>")
+			"<span class='danger'>We strike with vicious speed!</span>")
 	damage *= bonus
 	hit_and_run = 1 //reset the hit and run bonus
 	return damage

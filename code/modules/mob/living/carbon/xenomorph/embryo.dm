@@ -148,7 +148,7 @@
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
 
-		to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva inside a host! Move to burst out of it!</span>")
+		to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva inside a host! Move to burst out of it!</span>")
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
 	stage = 6
@@ -159,7 +159,7 @@
 		return
 
 	victim.chestburst = 1
-	to_chat(src, "<span class='danger'>You start bursting out of [victim]'s chest!</span>")
+	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
 	victim.KnockOut(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \

@@ -115,7 +115,7 @@
 /datum/xeno_caste/drone/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A very mean architect."
-	ancient_message = "You are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out."
+	ancient_message = "We are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //

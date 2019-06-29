@@ -479,11 +479,11 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(picked)
 			var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(Q.loc)
 			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-			"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+			"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 			picked.mind.transfer_to(new_xeno, TRUE)
 
-			to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+			to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 
 			stored_larva--
@@ -553,11 +553,11 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(mother.loc)
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+	"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
-	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+	to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 	stored_larva--
 
 	log_game("[key_name(new_xeno)] has joined as [new_xeno].")

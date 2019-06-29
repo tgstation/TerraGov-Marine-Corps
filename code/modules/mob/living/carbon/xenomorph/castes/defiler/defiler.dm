@@ -53,7 +53,7 @@
 		return
 	use_plasma(50)
 	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
-	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
+	to_chat(src, "<span class='xenowarning'>Our claw spines inject our victim with neurotoxin!</span>")
 
 // ***************************************
 // *********** Datum override
