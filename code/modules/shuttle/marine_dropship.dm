@@ -280,13 +280,16 @@
 		if(locked_sides < 3)
 			to_chat(user, "<span class='warning'>At least one side is still unlocked!</span>")
 			return FALSE
-		to_chat(user, "<span class='warning'>You begin overriding the shuttle lockdown. This will take a while.</span>")
+		if(user.action_busy)
+			return FALSE
+		to_chat(user, "<span class='warning'>We begin overriding the shuttle lockdown. This will take a while...</span>")
 		if(!do_after(user, 60 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
-			to_chat(user, "<span class='warning'>You stop overriding the shuttle lockdown.</span>")
+			to_chat(user, "<span class='warning'>We cease overriding the shuttle lockdown.</span>")
 			return FALSE
 		D.hijack_state = HIJACK_STATE_CALLED_DOWN
 		D.unlock_all()
-		to_chat(user, "<span class='warning'>You override the shuttle lockdown.</span>")
+		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")
+		playsound(user, "alien_roar", 50)
 		return FALSE
 	if(D.hijack_state != HIJACK_STATE_NORMAL)
 		to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
