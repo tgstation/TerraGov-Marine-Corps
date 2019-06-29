@@ -1,4 +1,0 @@
-author: "Rohesie (implementation) and Sleepy (sprites)"
-delete-after: True
-changes: 
-  - imageadd: "Every job has gained an icon in the squad HUD, which should be default for everyone on the ship. Gold is for the ship crew (navy and attachées), silver for the deployed troops (marines). Blue is for command, light blue for medical, yellow for engineering, brown for requisitions, red for security."
