@@ -1,9 +1,9 @@
 /*
- * Data HUDs have been rewritten in a more generic way.
- * In short, they now use an observer-listener pattern.
- * See code/datum/hud.dm for the generic hud datum.
- * Update the HUD icons when needed with the appropriate hook. (see below)
- */
+* Data HUDs have been rewritten in a more generic way.
+* In short, they now use an observer-listener pattern.
+* See code/datum/hud.dm for the generic hud datum.
+* Update the HUD icons when needed with the appropriate hook. (see below)
+*/
 
 /* DATA HUD DATUMS */
 
@@ -51,6 +51,10 @@
 		if(!istype(hud, /datum/atom_hud/xeno))
 			continue
 		hud.remove_from_hud(src)
+
+
+/datum/atom_hud/simple //Naked-eye observable statuses.
+	hud_icons = list(STATUS_HUD_SIMPLE)
 
 
 /datum/atom_hud/medical
@@ -190,12 +194,14 @@
 
 
 /mob/living/carbon/human/med_hud_set_status()
-	var/image/status_hud = hud_list[STATUS_HUD]
-	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD]
+	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
+	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
+	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 
 	if(species.species_flags & IS_SYNTHETIC)
+		simple_status_hud.icon_state = ""
 		status_hud.icon_state = "hudsynth"
-		infection_hud.icon_state = ""
+		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
 
 	if(status_flags & XENO_HOST)
@@ -210,13 +216,12 @@
 		infection_hud.icon_state = ""
 
 	switch(stat)
-
 		if(DEAD)
-
+			simple_status_hud.icon_state = ""
+			infection_hud.icon_state = "huddead" //Xenos sense dead hosts, and no longer their larvas inside, which fall into stasis and no longer grow.
 			if(undefibbable || (!client && !get_ghost()))
 				status_hud.icon_state = "huddead"
 				return TRUE
-
 			var/stage = 1
 			if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 2
@@ -224,9 +229,39 @@
 				stage = 3
 			status_hud.icon_state = "huddeaddefib[stage]"
 			return TRUE
-
-		else
-			status_hud.icon_state = "hudhealthy"
+		if(UNCONSCIOUS)
+			if(!client) //Nobody home.
+				simple_status_hud.icon_state = "hud_uncon_afk"
+				status_hud.icon_state = "hud_uncon_afk"
+				return TRUE
+			if(knocked_out) //Should hopefully get out of it soon.
+				simple_status_hud.icon_state = "hud_uncon_ko"
+				status_hud.icon_state = "hud_uncon_ko"
+				return TRUE
+			status_hud.icon_state = "hud_uncon_sleep" //Regular sleep, else.
+			simple_status_hud.icon_state = "hud_uncon_sleep"
+			return TRUE
+		if(CONSCIOUS)
+			if(!key) //Nobody home. Shouldn't affect aghosting.
+				simple_status_hud.icon_state = "hud_uncon_afk"
+				status_hud.icon_state = "hud_uncon_afk"
+				return TRUE
+			if(knocked_down) //I've fallen and I can't get up.
+				simple_status_hud.icon_state = "hud_con_kd"
+				status_hud.icon_state = "hud_con_kd"
+				return TRUE
+			if(stunned)
+				simple_status_hud.icon_state = "hud_con_stun"
+				status_hud.icon_state = "hud_con_stun"
+				return TRUE
+			if(stagger || slowdown)
+				simple_status_hud.icon_state = "hud_con_stagger"
+				status_hud.icon_state = "hud_con_stagger"
+				return TRUE
+			else
+				simple_status_hud.icon_state = ""
+				status_hud.icon_state = "hudhealthy"
+				return TRUE
 
 
 /mob/proc/med_pain_set_perceived_health()
@@ -330,9 +365,6 @@
 
 
 /datum/atom_hud/security
-
-
-/datum/atom_hud/security/basic
 	hud_icons = list(ID_HUD)
 
 
@@ -407,37 +439,41 @@
 	return
 
 
+#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS "Squad Leader", "Squad Engineer", "Squad Specialist", "Squad Corpsman", "Squad Smartgunner", "Squad Marine"
+#define SQUAD_HUD_SUPPORTED_OTHER_JOBS "Captain", "Executive Officer", "Field Commander", "Intelligence Officer", "Pilot Officer", "Chief Ship Engineer", "Corporate Liaison", "Chief Medical Officer", "Requisitions Officer", "Command Master at Arms", "Tank Crewman", "Medical Officer", "Ship Engineer", "Synthetic", "Master at Arms", "Cargo Technician", "Medical Researcher"
+
 /mob/living/carbon/human/hud_set_squad()
 	var/image/holder = hud_list[SQUAD_HUD]
-	holder.icon_state = "hudblank"
+	holder.icon_state = ""
 	holder.overlays.Cut()
-	if(assigned_squad)
-		var/squad_clr = assigned_squad.color
-		var/marine_rk
-		var/obj/item/card/id/I = get_idcard()
-		var/_role
-		if(mind)
-			_role = mind.assigned_role
-		else if(I)
-			_role = I.rank
-		switch(_role)
-			if("Squad Engineer") marine_rk = "engi"
-			if("Squad Specialist") marine_rk = "spec"
-			if("Squad Corpsman") marine_rk = "med"
-			if("Squad Smartgunner") marine_rk = "gun"
-		if(assigned_squad.squad_leader == src)
-			marine_rk = "leader"
-		if(marine_rk)
-			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarinesquad")
-			IMG.color = squad_clr
-			holder.overlays += IMG
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudmarinesquad[marine_rk]")
-		if(I?.assigned_fireteam)
-			var/image/IMG2 = image('icons/mob/hud.dmi', src, "hudmarinesquadft[I.assigned_fireteam]")
-			IMG2.color = squad_clr
-			holder.overlays += IMG2
-	hud_list[SQUAD_HUD] = holder
 	
+	if(assigned_squad)
+		var/squad_color = assigned_squad.color
+		var/rank = job
+		if(assigned_squad.squad_leader == src)
+			rank = "Squad Leader"
+		switch(rank)
+			if(SQUAD_HUD_SUPPORTED_SQUAD_JOBS)
+				var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
+				IMG.color = squad_color
+				holder.overlays += IMG
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [rank]")
+		var/fireteam = wear_id?.assigned_fireteam
+		if(fireteam)
+			var/image/IMG2 = image('icons/mob/hud.dmi', src, "hudmarinesquadft[fireteam]")
+			IMG2.color = squad_color
+			holder.overlays += IMG2
+	
+	else
+		switch(job)
+			if(SQUAD_HUD_SUPPORTED_OTHER_JOBS)
+				holder.icon_state = "hudmarine [job]"
+	
+	hud_list[SQUAD_HUD] = holder
+
+#undef SQUAD_HUD_SUPPORTED_SQUAD_JOBS
+#undef SQUAD_HUD_SUPPORTED_OTHER_JOBS
+
 
 /datum/atom_hud/order
 	hud_icons = list(ORDER_HUD)	

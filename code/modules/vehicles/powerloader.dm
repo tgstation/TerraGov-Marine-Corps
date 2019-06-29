@@ -6,7 +6,6 @@
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
 	density = TRUE
-	luminosity = 5
 	move_delay = 8
 	max_integrity = 200
 	var/panel_open = FALSE
@@ -219,20 +218,20 @@
 
 	else if(istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/C = target
-		if(!C.anchored && !C.store_mobs)
-			for(var/X in C)
-				if(ismob(X)) //just in case.
-					to_chat(user, "<span class='warning'>Can't grab [loaded], it has a creature inside!</span>")
-					return
-			if(linked_powerloader)
-				C.forceMove(linked_powerloader)
-				loaded = C
-				playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				update_icon()
-				user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
-				"<span class='notice'>You grab [loaded] with [src].</span>")
-		else
+		if(C.mob_size_counter)
+			to_chat(user, "<span class='warning'>Can't grab [loaded], it has a creature inside!</span>")
+			return
+		if(C.anchored)
 			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
+			return
+		if(!linked_powerloader)
+			CRASH("[src] called afterattack on [C] without a linked_powerloader")
+		C.forceMove(linked_powerloader)
+		loaded = C
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
 
 	else if(istype(target, /obj/structure/largecrate))
 		var/obj/structure/largecrate/LC = target

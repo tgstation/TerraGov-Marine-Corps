@@ -1,21 +1,21 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /* Tools!
- * Note: Multitools are /obj/item
- *
- * Contains:
- * 		Wrench
- * 		Screwdriver
- * 		Wirecutters
- * 		Blowtorch
- * 		Crowbar
- */
+* Note: Multitools are /obj/item
+*
+* Contains:
+* 		Wrench
+* 		Screwdriver
+* 		Wirecutters
+* 		Blowtorch
+* 		Crowbar
+*/
 
 //toolspeed is used to change the speed of how fast this tool works lower is faster
 
 /*
- * Wrench
- */
+* Wrench
+*/
 /obj/item/tool/wrench
 	name = "wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
@@ -23,9 +23,10 @@
 	icon_state = "wrench"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
-	w_class = 2.0
+	force = 5
+	throwforce = 7
+	w_class = WEIGHT_CLASS_SMALL
+	usesound = 'sound/items/ratchet.ogg'
 	matter = list("metal" = 150)
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
@@ -34,8 +35,8 @@
 
 
 /*
- * Screwdriver
- */
+* Screwdriver
+*/
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
@@ -95,8 +96,8 @@
 	return eyestab(M,user)*/
 
 /*
- * Wirecutters
- */
+* Wirecutters
+*/
 /obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
@@ -123,19 +124,18 @@
 		item_state = "cutters_yellow"
 
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user)
-	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
+	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/restraints/handcuffs/cable)))
 		user.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
-		C.handcuffed = null
-		C.handcuff_update()
+		C.update_handcuffed(null)
 		return
 	else
 		..()
 
 /*
- * Blowtorch
- */
+* Blowtorch
+*/
 /obj/item/tool/weldingtool
 	name = "blowtorch"
 	icon = 'icons/obj/items/items.dmi'
@@ -144,11 +144,12 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 
 	//Amount of OUCH when it's thrown
-	force = 3.0
-	throwforce = 5.0
+	force = 3
+	throwforce = 5
+	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
 
 
@@ -172,10 +173,6 @@
 
 /obj/item/tool/weldingtool/Destroy()
 	if(welding)
-		if(ismob(loc))
-			loc.SetLuminosity(-LIGHTER_LUMINOSITY)
-		else
-			SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
@@ -287,7 +284,7 @@
 
 
 //Removes fuel from the blowtorch. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
-/obj/item/tool/weldingtool/proc/remove_fuel(var/amount = 1, var/mob/M = null)
+/obj/item/tool/weldingtool/proc/remove_fuel(amount = 1, mob/M = null)
 	if(!welding || !check_fuel())
 		return 0
 	if(get_fuel() >= amount)
@@ -314,7 +311,7 @@
 
 
 //Toggles the welder off and on
-/obj/item/tool/weldingtool/proc/toggle(var/message = 0)
+/obj/item/tool/weldingtool/proc/toggle(message = 0)
 	var/mob/M
 	if(ismob(loc))
 		M = loc
@@ -324,9 +321,7 @@
 			welding = 1
 			if(M)
 				to_chat(M, "<span class='notice'>You switch [src] on.</span>")
-				M.SetLuminosity(LIGHTER_LUMINOSITY)
-			else
-				SetLuminosity(LIGHTER_LUMINOSITY)
+			set_light(LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = "fire"
@@ -351,12 +346,11 @@
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")
 			else
 				to_chat(M, "<span class='warning'>[src] shuts off!</span>")
-			M.SetLuminosity(-LIGHTER_LUMINOSITY)
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
 				M.update_inv_l_hand()
-		SetLuminosity(0)
+		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
@@ -370,19 +364,6 @@
 	else
 		to_chat(user, "<span class='notice'>[src] can now be refuelled and emptied.</span>")
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
-
-/obj/item/tool/weldingtool/pickup(mob/user)
-	if(welding && loc != user)
-		SetLuminosity(0)
-		user.SetLuminosity(LIGHTER_LUMINOSITY)
-
-
-/obj/item/tool/weldingtool/dropped(mob/user)
-	if(welding && loc != user)
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(LIGHTER_LUMINOSITY)
-	return ..()
-
 
 /obj/item/tool/weldingtool/largetank
 	name = "industrial blowtorch"
@@ -414,8 +395,8 @@
 		reagents = max_fuel
 
 /*
- * Crowbar
- */
+* Crowbar
+*/
 
 /obj/item/tool/crowbar
 	name = "crowbar"
@@ -445,7 +426,7 @@
 
 
 /*
- Welding backpack
+Welding backpack
 */
 
 /obj/item/tool/weldpack
@@ -457,7 +438,8 @@
 	w_class = 4.0
 	var/max_fuel = 600 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
-/obj/item/tool/weldpack/New()
+/obj/item/tool/weldpack/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src

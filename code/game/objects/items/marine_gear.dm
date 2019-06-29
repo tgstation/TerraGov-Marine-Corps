@@ -86,7 +86,7 @@
 			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/tarp/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/closet/bodybag/tarp/bullet_act(obj/item/projectile/Proj)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
@@ -98,18 +98,6 @@
 		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 		alpha = initial(alpha) //stealth mode disengaged
 
-/obj/structure/closet/bodybag/tarp/store_mobs(var/stored_units)
-	var/list/mobs_can_store = list()
-	for(var/mob/living/carbon/human/H in loc)
-		if(H.buckled)
-			continue
-		mobs_can_store += H
-	var/mob/living/carbon/human/mob_to_store
-	if(mobs_can_store.len)
-		mob_to_store = pick(mobs_can_store)
-		mob_to_store.forceMove(src)
-		stored_units += mob_size
-	return stored_units
 
 /obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"

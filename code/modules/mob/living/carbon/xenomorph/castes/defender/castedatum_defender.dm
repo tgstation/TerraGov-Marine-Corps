@@ -119,7 +119,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "An unstoppable force that remains when others would fall."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "You are a incredibly resilient, you can control the battle through sheer force."
+	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 26

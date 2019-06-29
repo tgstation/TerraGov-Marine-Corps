@@ -77,37 +77,28 @@
 	message_admins("[ADMIN_TPMONTY(M)] has turned stealth mode [M.client.holder.fakekey ? "on - [M.client.holder.fakekey]" : "off"].")
 
 
-/datum/admins/proc/give_mob(mob/living/LGIVE in GLOB.mob_living_list)
+/datum/admins/proc/give_mob(mob/living/given_living in GLOB.mob_living_list)
 	set category = null
 	set name = "Give Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/MREC
-	switch(input("Who do you want to give it to:", "Give Mob") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			MREC = C.mob
-		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_list)
-			if(!N)
-				return
-			MREC = N
-
-	if(isliving(MREC) && MREC.client && alert("[key_name(MREC)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+	var/mob/mob_received = usr.client.holder.apicker("Who do you want to give it to:", "Give Mob", list(APICKER_CLIENT, APICKER_MOB))
+	if(!istype(mob_received))
 		return
 
-	if(!istype(LGIVE))
+	if(isliving(mob_received) && mob_received.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+		return
+
+	if(!istype(given_living))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
-	log_admin("[key_name(usr)] gave [key_name(LGIVE)] to [key_name(MREC)].")
-	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(LGIVE)] to [ADMIN_TPMONTY(MREC)].")
+	log_admin("[key_name(usr)] gave [key_name(given_living)] to [key_name(mob_received)].")
+	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(given_living)] to [ADMIN_TPMONTY(mob_received)].")
 
-	LGIVE.take_over(MREC, TRUE)
+	given_living.take_over(mob_received, TRUE)
 
 
 /datum/admins/proc/give_mob_panel()
@@ -117,47 +108,25 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/LGIVE
-	switch(input("Who do you want to give:", "Give Mob") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
-			if(!isliving(C?.mob))
-				return
-			LGIVE = C.mob
-		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!N)
-				return
-			LGIVE = N
-		else
-			return
-
-	var/mob/NREC
-	switch(input("Who do you want to give it to:", "Give Mob") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Give Mob") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			NREC = C.mob
-		if("Mob")
-			var/mob/M = input("Please, select a mob.", "Give Mob") as null|anything in sortNames(GLOB.mob_list)
-			if(!M)
-				return
-			NREC = M
-		else
-			return
-
-	if(isliving(NREC) && NREC.client && alert("[key_name(NREC)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+	var/mob/living/given_living = usr.client.holder.apicker("Who do you want to give:", "Give Mob", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!istype(given_living))
 		return
 
-	if(!istype(LGIVE))
+	var/mob/mob_received = usr.client.holder.apicker("Who do you want to give it to:", "Give Mob", list(APICKER_CLIENT, APICKER_MOB))
+	if(!istype(mob_received))
+		return
+
+	if(isliving(mob_received) && mob_received.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+		return
+
+	if(!istype(given_living))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
-	log_admin("[key_name(usr)] gave [key_name(LGIVE)] to [key_name(NREC)].")
-	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(LGIVE)] to [ADMIN_TPMONTY(NREC)].")
+	log_admin("[key_name(usr)] gave [key_name(given_living)] to [key_name(mob_received)].")
+	message_admins("[ADMIN_TPMONTY(usr)] gave [ADMIN_TPMONTY(given_living)] to [ADMIN_TPMONTY(mob_received)].")
 
-	LGIVE.take_over(NREC, TRUE)
+	given_living.take_over(mob_received, TRUE)
 
 
 /datum/admins/proc/rejuvenate(mob/living/L in GLOB.mob_living_list)
@@ -167,10 +136,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(L))
+	if(alert("Are you sure you want to rejuvenate [key_name(L)]?", "Rejuvenate", "Yes", "No") != "Yes")
 		return
 
-	if(alert("Are you sure you want to rejuvenate [key_name(L)]?", "Rejuvenate", "Yes", "No") != "Yes")
+	if(!istype(L))
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
 	L.revive()
@@ -186,29 +156,15 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/L
-	switch(input("Rejuvenate by:", "Rejuvenate") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Rejuvenate") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			if(!isliving(C.mob))
-				to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-				return
-			L = C.mob
-		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Rejuvenate") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!N)
-				return
-			L = N
-		else
-			return
-
+	var/mob/living/L = usr.client.holder.apicker("Rejuvenate by:", "Rejuvenate", list(APICKER_CLIENT, APICKER_MOB))
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
 	if(alert("Are you sure you want to rejuvenate [key_name(L)]?", "Rejuvenate", "Yes", "No") != "Yes")
+		return
+
+	if(!istype(L))
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
 	L.revive()
@@ -228,6 +184,9 @@
 		L.sleeping = 0
 	else if(alert("Are you sure you want to sleep [key_name(L)]?", "Toggle Sleeping", "Yes", "No") != "Yes")
 		return
+	else if(!istype(L))
+		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+		return
 	else
 		L.sleeping = 9999999
 
@@ -242,26 +201,8 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/L
-	switch(input("Toggle sleeping by:", "Toggle Sleeping") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Toggle Sleeping") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			if(!isliving(C.mob))
-				to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-				return
-			L = C.mob
-		if("Mob")
-			var/mob/living/N = input("Please, select a mob.", "Toggle Sleeping") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!N)
-				return
-			L = N
-		else
-			return
-
+	var/mob/living/L = usr.client.holder.apicker("Toggle sleeping by:", "Toggle Sleeping", list(APICKER_CLIENT, APICKER_MOB))
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
 	if(L.sleeping > 0)
@@ -280,7 +221,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	switch(alert("Sleep or unsleep everyone?", , "Sleep", "Unsleep", "Cancel"))
+	switch(alert("Sleep or unsleep everyone?", "Toggle Sleeping Area", "Sleep", "Unsleep", "Cancel"))
 		if("Sleep")
 			for(var/mob/living/L in view())
 				L.sleeping = 9999999
@@ -312,6 +253,9 @@
 			ghost.reenter_corpse()
 			return
 		else if(alert("This mob is being controlled by [L.key], they will be made a ghost. Are you sure?", "Take Over", "Yes", "No") != "Yes")
+			return
+		else if(!istype(L))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
 		L.ghostize()
@@ -399,6 +343,7 @@
 			to_chat(usr, "Going deeper: [folder][next]")
 			usr.client.holder.recursive_download(folder + next)
 		else
+			log_admin("[key_name(usr)] accessed file: [folder][next].")
 			to_chat(usr, "Downloading: [folder][next]")
 			var/fil = replacetext("[folder][next]", "/", "_")
 			usr << ftp(file(folder + next), fil)
@@ -668,37 +613,16 @@
 	if(isnewplayer(N))
 		return
 
-	var/turf/target
-	var/selection = input("Jump to:", "Jump") as null|anything in list("Area", "Turf", "Coords", "Mob", "Key")
-	switch(selection)
-		if("Area")
-			var/area/A = input("Area", "Jump") as null|anything in GLOB.sorted_areas
-			target = pick(get_area_turfs(A))
-		if("Turf")
-			var/turf/T = input("Turf", "Jump") as null|anything in GLOB.turfs
-			target = T
-		if("Coords")
-			var/tx = input("X", "Jump") as null|num
-			var/ty = input("Y", "Jump") as null|num
-			var/tz = input("Z", "Jump") as null|num
-			target = locate(tx, ty, tz)
-		if("Mob")
-			var/mob/M = input("Mob", "Jump") as null|anything in sortNames(GLOB.mob_list)
-			target = get_turf(M)
-		if("Key")
-			var/client/C = input("Mob", "Jump") as null|anything in sortKey(GLOB.clients)
-			target = get_turf(C.mob)
-		else
-			return
-
-	if(!istype(target))
+	var/atom/A = usr.client.holder.apicker("Jump to:", "Jump", list(APICKER_AREA, APICKER_TURF, APICKER_COORDS, APICKER_MOB, APICKER_CLIENT))
+	if(!istype(A))
 		return
 
-	N.forceMove(target)
+	var/turf/T = get_turf(A)
+	usr.forceMove(T)
 
-	log_admin("[key_name(usr)] jumped to [selection] at [AREACOORD(target)].")
+	log_admin("[key_name(usr)] jumped to [A] at [AREACOORD(T)].")
 	if(!isobserver(N))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to [selection] at [ADMIN_TPMONTY(target)].")
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to [A] at [ADMIN_TPMONTY(T)].")
 
 
 /datum/admins/proc/get_mob()
@@ -713,21 +637,7 @@
 	if(isnewplayer(N))
 		return
 
-	var/mob/M
-	switch(input("Get by:", "Get") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Get Key") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			M = C.mob
-		if("Mob")
-			var/mob/W = input("Please, select a mob.", "Get Mob") as null|anything in sortNames(GLOB.mob_list)
-			if(!W)
-				return
-			M = W
-		else
-			return
-
+	var/mob/M = usr.client.holder.apicker("Get by:", "Get Mob", list(APICKER_CLIENT, APICKER_MOB))
 	if(!istype(M))
 		return
 
@@ -746,47 +656,20 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/M
-	switch(input("Send by:", "Send Mob") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Send Mob") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			M = C.mob
-		if("Mob")
-			var/mob/N = input("Please, select a mob.", "Send Mob") as null|anything in sortNames(GLOB.mob_list)
-			if(!N)
-				return
-			M = N
-
+	var/mob/M = usr.client.holder.apicker("Send by:", "Send Mob", list(APICKER_CLIENT, APICKER_MOB))
 	if(!istype(M))
 		return
 
-	var/turf/target
-	switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key"))
-		if("Area")
-			var/area/A = input("Pick an area.", "Send Mob") as null|anything in GLOB.sorted_areas
-			if(!A)
-				return
-			target = pick(get_area_turfs(A))
-		if("Mob")
-			var/mob/N = input("Pick a mob.", "Send Mob") as null|anything in sortNames(GLOB.mob_list)
-			if(!N)
-				return
-			target = get_turf(N.loc)
-		if("Key")
-			var/client/C = input("Pick a key.", "Send Mob") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			target = get_turf(C.mob.loc)
-
-	if(!istype(M))
+	var/atom/target = usr.client.holder.apicker("Where do you want to send it to?", "Send Mob", list(APICKER_AREA, APICKER_MOB, APICKER_CLIENT))
+	if(!istype(target) || !istype(M))
 		return
 
-	M.forceMove(target)
+	var/turf/T = get_turf(target)
 
-	log_admin("[key_name(usr)] teleported [key_name(M)] to [AREACOORD(target)].")
-	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(target)].")
+	M.forceMove(T)
+
+	log_admin("[key_name(usr)] teleported [key_name(M)] to [AREACOORD(T)].")
+	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(T)].")
 
 
 /datum/admins/proc/jump_area(area/A in GLOB.sorted_areas)
@@ -797,22 +680,19 @@
 		return
 
 	var/mob/M = usr
-	var/target = pick(get_area_turfs(A))
-	M.forceMove(target)
+	var/turf/T = pick(get_area_turfs(A))
+	M.forceMove(T)
 
 	log_admin("[key_name(usr)] jumped to [AREACOORD(M)].")
 	if(!isobserver(M))
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M)].")
 
 
-/datum/admins/proc/jump_turf(turf/T in GLOB.turfs)
+/datum/admins/proc/jump_turf(turf/T as turf)
 	set category = null
 	set name = "Jump to Turf"
 
 	if(!check_rights(R_ADMIN))
-		return
-
-	if(!T)
 		return
 
 	var/mob/M = usr
@@ -831,10 +711,9 @@
 		return
 
 	var/mob/M = usr
-	M.x = tx
-	M.y = ty
-	M.z = tz
-	var/turf/T = get_turf(M)
+	var/turf/T = locate(tx, ty, tz)
+	if(!istype(T))
+		return
 	M.forceMove(T)
 
 	log_admin("[key_name(M)] jumped to coordinate [AREACOORD(T)].")
@@ -849,11 +728,10 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a mob.", "Jump to Mob") as null|anything in sortNames(GLOB.mob_list)
-	if(!selection)
+	var/mob/M = input("Please, select a mob.", "Jump to Mob") as null|anything in sortNames(GLOB.mob_list)
+	if(!istype(M))
 		return
 
-	var/mob/M = selection
 	var/mob/N = usr
 	var/turf/T = get_turf(M)
 
@@ -871,14 +749,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a key.", "Jump to Key") as null|anything in sortKey(GLOB.clients)
-	if(!selection)
+	var/client/C = input("Please, select a key.", "Jump to Key") as null|anything in sortKey(GLOB.clients)
+	if(!C?.mob)
 		return
 
-	var/mob/M = selection:mob
-	if(!M)
-		return
-
+	var/mob/M = C.mob
 	var/mob/N = usr
 	var/turf/T = get_turf(M)
 
@@ -896,9 +771,6 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(!istype(M))
-		return
-
 	private_message(M.client, null)
 
 
@@ -909,23 +781,11 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	var/client/target
-	switch(input("Select target:", "Private Message") as null|anything in list("Mob", "Key"))
-		if("Mob")
-			var/mob/M = input("Pick a mob.", "Private Message") as null|anything in sortNames(GLOB.player_list)
-			if(!M)
-				return
-			target = M.client
-		if("Key")
-			var/client/C = input("Pick a key.", "Private Message") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			target = C
-
-	if(!istype(target))
+	var/mob/picked = holder.apicker("Select target:", "Private Message", list(APICKER_MOB, APICKER_CLIENT))
+	if(!istype(picked))
 		return
 
-	private_message(target, null)
+	private_message(picked.client, null)
 
 
 /client/proc/ticket_reply(whom)
@@ -1263,50 +1123,6 @@
 	return "Message Successful"
 
 
-/datum/admins/proc/get_all_humans()
-	if(!check_rights(R_ADMIN))
-		return
-
-	for(var/i in GLOB.alive_human_list)
-		var/mob/living/carbon/human/H = i
-		if(!H.client)
-			continue
-		H.forceMove(get_turf(usr))
-
-
-/datum/admins/proc/get_all_xenos()
-	if(!check_rights(R_ADMIN))
-		return
-
-	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/xenomorph/X = i
-		if(!X.client)
-			continue
-		X.forceMove(get_turf(usr))
-
-
-/datum/admins/proc/get_all()
-	if(!check_rights(R_ADMIN))
-		return
-
-	for(var/i in GLOB.alive_mob_list)
-		var/mob/living/L = i
-		if(!L.client)
-			continue
-		L.forceMove(get_turf(usr))
-
-
-/datum/admins/proc/rejuv_all()
-	if(!check_rights(R_ADMIN))
-		return
-
-	for(var/i in GLOB.mob_living_list)
-		var/mob/living/L = i
-		if(!L.client)
-			continue
-		L.revive()
-
-
 /datum/admins/proc/remove_from_tank()
 	set category = "Admin"
 	set name = "Remove From Tank"
@@ -1314,7 +1130,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.object_list)
+	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.tank_list)
 		CA.remove_all_players()
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
@@ -1374,7 +1190,7 @@
 	if(alert("This will open the MCDB in your browser. Are you sure?", "MCDB", "Yes", "No") != "Yes")
 		return
 
-	usr << link(CONFIG_GET(string/dburl))
+	DIRECT_OUTPUT(usr, link(CONFIG_GET(string/dburl)))
 
 
 /datum/admins/proc/check_fingerprints(atom/A)
@@ -1384,7 +1200,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/dat
+	var/dat = "<br>"
 
 	if(!A.fingerprints)
 		dat += "No fingerprints detected."

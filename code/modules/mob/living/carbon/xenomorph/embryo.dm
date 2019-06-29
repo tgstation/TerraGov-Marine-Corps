@@ -72,7 +72,7 @@
 
 /obj/item/alien_embryo/proc/process_growth()
 
-	if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
+	if(CHECK_BITFIELD(affected_mob.restrained_flags, RESTRAINED_XENO_NEST)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
 		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
 	else if(stage <= 4)
 		counter++
@@ -104,7 +104,7 @@
 			if(prob(1))
 				if(affected_mob.knocked_out < 1)
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
-												 "<span class='danger'>You start shaking uncontrollably!</span>")
+												"<span class='danger'>You start shaking uncontrollably!</span>")
 					affected_mob.KnockOut(10)
 					affected_mob.Jitter(105)
 					affected_mob.take_limb_damage(1)
@@ -131,7 +131,7 @@
 	var/mob/picked
 
 	//If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva.
-	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !jobban_isbanned(affected_mob, ROLE_XENOMORPH) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
+	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
 		picked = affected_mob
 	else //Get a candidate from observers.
 		picked = get_alien_candidate()
@@ -148,7 +148,7 @@
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
 
-		to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva inside a host! Move to burst out of it!</span>")
+		to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva inside a host! Move to burst out of it!</span>")
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
 	stage = 6
@@ -159,11 +159,11 @@
 		return
 
 	victim.chestburst = 1
-	to_chat(src, "<span class='danger'>You start bursting out of [victim]'s chest!</span>")
+	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
 	victim.KnockOut(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
-								 "<span class='danger'>You feel something ripping up your insides!</span>")
+								"<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.Jitter(300)
 
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
@@ -186,7 +186,7 @@
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
-	round_statistics.total_larva_burst++
+	GLOB.round_statistics.total_larva_burst++
 	var/obj/item/alien_embryo/AE = locate() in victim
 
 	if(AE)

@@ -16,13 +16,6 @@
 	log_world(msg)
 
 
-//not an error or a warning, but worth to mention on the world log, just in case.
-#define NOTICE(MSG) notice(MSG)
-/proc/notice(msg)
-	msg = "## NOTICE: [msg]"
-	log_world(msg)
-
-
 /* Items with private are stripped from public logs. */
 /proc/log_admin(text)
 	LAZYADD(GLOB.admin_log, "\[[stationTimestamp()]\] ADMIN: [text]")
@@ -140,7 +133,8 @@
 
 
 /proc/log_href(text)
-	WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
+	if(CONFIG_GET(flag/log_hrefs))
+		WRITE_LOG(GLOB.world_href_log, "HREF: [text]")
 
 
 /proc/log_sql(text)
@@ -154,6 +148,7 @@
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
+	SEND_TEXT(world.log, text)
 
 
 /* Log to the logfile only. */
@@ -165,6 +160,10 @@
 /proc/log_config(text)
 	WRITE_LOG(GLOB.config_error_log, text)
 	SEND_TEXT(world.log, text)
+
+
+/proc/log_paper(text)
+	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
 
 
 /* For logging round startup. */

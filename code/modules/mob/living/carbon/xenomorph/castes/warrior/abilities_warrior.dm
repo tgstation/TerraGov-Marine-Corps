@@ -1,7 +1,7 @@
 // ***************************************
 // *********** Agility
 // ***************************************
-/datum/action/xeno_action/activable/toggle_agility
+/datum/action/xeno_action/toggle_agility
 	name = "Toggle Agility"
 	action_icon_state = "agility_on"
 	mechanics_text = "Move an all fours for greater speed. Cannot use abilities while in this mode."
@@ -10,23 +10,23 @@
 	use_state_flags = XACT_USE_AGILITY
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_AGILITY
 
-/datum/action/xeno_action/activable/toggle_agility/on_cooldown_finish()
+/datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(src, "<span class='notice'>You can [X.agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
+	to_chat(src, "<span class='notice'>We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/toggle_agility/action_activate()
+/datum/action/xeno_action/toggle_agility/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.agility = !X.agility
 
-	round_statistics.warrior_agility_toggles++
+	GLOB.round_statistics.warrior_agility_toggles++
 	if (X.agility)
-		to_chat(X, "<span class='xenowarning'>You lower yourself to all fours and loosen your armored scales to ease your movement.</span>")
+		to_chat(X, "<span class='xenowarning'>We lower ourselves to all fours and loosen our armored scales to ease our movement.</span>")
 		X.speed_modifier--
 		X.armor_bonus -= WARRIOR_AGILITY_ARMOR
 	else
-		to_chat(X, "<span class='xenowarning'>You raise yourself to stand on two feet, hard scales setting back into place.</span>")
+		to_chat(X, "<span class='xenowarning'>We raise ourselves to stand on two feet, hard scales setting back into place.</span>")
 		X.speed_modifier++
 		X.armor_bonus += WARRIOR_AGILITY_ARMOR
 	X.update_icons()
@@ -81,15 +81,15 @@
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>You get ready to lunge again.</span>")
+	to_chat(X, "<span class='notice'>We get ready to lunge again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	round_statistics.warrior_lunges++
+	GLOB.round_statistics.warrior_lunges++
 	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
-	"<span class='xenowarning'>You lunge at [A]!</span>")
+	"<span class='xenowarning'>We lunge at [A]!</span>")
 
 	succeed_activate()
 	X.throw_at(get_step_towards(A, X), 6, 2, X)
@@ -120,7 +120,7 @@
 	keybind_signal = COMSIG_XENOABILITY_FLING
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>You gather enough strength to fling something again.</span>")
+	to_chat(owner, "<span class='notice'>We gather enough strength to fling something again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/fling/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -140,10 +140,10 @@
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/H = A
-	round_statistics.warrior_flings++
+	GLOB.round_statistics.warrior_flings++
 
 	X.visible_message("<span class='xenowarning'>\The [X] effortlessly flings [H] to the side!</span>", \
-	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
+	"<span class='xenowarning'>We effortlessly fling [H] to the side!</span>")
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
 	succeed_activate()
 	H.apply_effects(1,2) 	// Stun
@@ -178,7 +178,7 @@
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
+	to_chat(src, "<span class='notice'>We gather enough strength to punch again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -186,6 +186,8 @@
 	if(!.)
 		return FALSE
 	if(!isliving(A))
+		return FALSE
+	if(!owner.Adjacent(A))
 		return FALSE
 	var/mob/living/L = A
 	if(L.stat == DEAD || isnestedhost(L)) //Can't bully the dead/nested hosts.
@@ -197,7 +199,7 @@
 	if(X.issamexenohive(M))
 		return M.attack_alien() //harmless nibbling.
 
-	round_statistics.warrior_punches++
+	GLOB.round_statistics.warrior_punches++
 
 	var/S = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 	var/target_zone = check_zone(X.zone_selected)
@@ -225,7 +227,7 @@
 		return
 
 	X.visible_message("<span class='xenowarning'>\The [X] hits [src] in the [L.display_name] with a devastatingly powerful punch!</span>", \
-		"<span class='xenowarning'>You hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
+		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
 
 	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
 		L.limb_status &= ~LIMB_SPLINTED
@@ -243,7 +245,7 @@
 // ***************************************
 
 // Called when pulling something and attacking yourself with the pull
-/mob/living/carbon/xenomorph/proc/pull_power(var/mob/M)
+/mob/living/carbon/xenomorph/proc/pull_power(mob/M)
 	if (isxenowarrior(src) && !ripping_limb && M.stat != DEAD)
 		ripping_limb = TRUE
 		if(rip_limb(M))
@@ -252,7 +254,7 @@
 
 
 // Warrior Rip Limb - called by pull_power()
-/mob/living/carbon/xenomorph/proc/rip_limb(var/mob/M)
+/mob/living/carbon/xenomorph/proc/rip_limb(mob/M)
 	if (!ishuman(M))
 		return FALSE
 
@@ -260,23 +262,23 @@
 		return FALSE
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
+		to_chat(src, "<span class='xenowarning'>Our limbs fail to respond as we try to shake up the shock!</span>")
 		return
 
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
 	if (!L || L.body_part == CHEST || L.body_part == GROIN || (L.limb_status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
-		to_chat(src, "<span class='xenowarning'>You can't rip off that limb.</span>")
+		to_chat(src, "<span class='xenowarning'>We can't rip off that limb.</span>")
 		return FALSE
-	round_statistics.warrior_limb_rips++
+	GLOB.round_statistics.warrior_limb_rips++
 	var/limb_time = rand(40,60)
 
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
-	"<span class='xenowarning'>You begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
+	"<span class='xenowarning'>We begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
 
-	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
-		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
+	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
+		to_chat(src, "<span class='notice'>We stop ripping off the limb.</span>")
 		return FALSE
 
 	if(L.limb_status & LIMB_DESTROYED)
@@ -291,10 +293,10 @@
 		"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
 		L.take_damage_limb(rand(15, 25))
 		L.fracture()
-	log_message(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
+	log_combat(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
 
-	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
-		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
+	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
+		to_chat(src, "<span class='notice'>We stop ripping off the limb.</span>")
 		return FALSE
 
 	if(L.limb_status & LIMB_DESTROYED)
@@ -302,7 +304,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \
 	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from [M.p_their()] body!</span>")
-	log_message(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
+	log_combat(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
 
 	L.droplimb()
 

@@ -19,20 +19,20 @@
 #define POD_NUMBER 4
 
 #define POD_STYLES list(\
-    list("supplypod", "supply pod", "A Nanotrasen supply drop pod.", STYLE_STANDARD),\
-    list("bluespacepod", "bluespace supply pod" , "A Nanotrasen Bluespace supply pod. Teleports back to CentCom after delivery.", STYLE_BLUESPACE),\
-    list("centcompod", "\improper Centcom supply pod", "A Nanotrasen supply pod, this one has been marked with Central Command's designations. Teleports back to Centcom after delivery.", STYLE_CENTCOM),\
-    list("syndiepod", "blood-red supply pod", "A dark, intimidating supply pod, covered in the blood-red markings of the Syndicate. It's probably best to stand back from this.", STYLE_SYNDICATE),\
-    list("squadpod", "\improper MK. II supply pod", "A Nanotrasen supply pod. This one has been marked the markings of some sort of elite strike team.", STYLE_BLUE),\
-    list("cultpod", "bloody supply pod", "A Nanotrasen supply pod covered in scratch-marks, blood, and strange runes.", STYLE_CULT),\
-    list("missilepod", "cruise missile", "A big ass missile that didn't seem to fully detonate. It was likely launched from some far-off deep space missile silo. There appears to be an auxillery payload hatch on the side, though manually opening it is likely impossible.", STYLE_MISSILE),\
-    list("smissilepod", "\improper Syndicate cruise missile", "A big ass, blood-red missile that didn't seem to fully detonate. It was likely launched from some deep space Syndicate missile silo. There appears to be an auxillery payload hatch on the side, though manually opening it is likely impossible.", STYLE_RED_MISSILE),\
-    list("boxpod", "\improper Aussec supply crate", "An incredibly sturdy supply crate, designed to withstand orbital re-entry. Has 'Aussec Armory - 2532' engraved on the side.", STYLE_BOX),\
-    list("honkpod", "\improper HONK pod", "A brightly-colored supply pod. It likely originated from the Clown Federation.", STYLE_HONK),\
-    list("fruitpod", "\improper Orange", "An angry orange.", STYLE_FRUIT),\
-    list("", "\improper S.T.E.A.L.T.H. pod MKVII", "A supply pod that, under normal circumstances, is completely invisible to conventional methods of detection. How are you even seeing this?", STYLE_INVISIBLE),\
-    list("gondolapod", "gondola", "The silent walker. This one seems to be part of a delivery agency.", STYLE_GONDOLA),\
-    list("", "", "", STYLE_SEETHROUGH)\
+	list("supplypod", "supply pod", "A Nanotrasen supply drop pod.", STYLE_STANDARD),\
+	list("bluespacepod", "bluespace supply pod" , "A Nanotrasen Bluespace supply pod. Teleports back to CentCom after delivery.", STYLE_BLUESPACE),\
+	list("centcompod", "\improper Centcom supply pod", "A Nanotrasen supply pod, this one has been marked with Central Command's designations. Teleports back to Centcom after delivery.", STYLE_CENTCOM),\
+	list("syndiepod", "blood-red supply pod", "A dark, intimidating supply pod, covered in the blood-red markings of the Syndicate. It's probably best to stand back from this.", STYLE_SYNDICATE),\
+	list("squadpod", "\improper MK. II supply pod", "A Nanotrasen supply pod. This one has been marked the markings of some sort of elite strike team.", STYLE_BLUE),\
+	list("cultpod", "bloody supply pod", "A Nanotrasen supply pod covered in scratch-marks, blood, and strange runes.", STYLE_CULT),\
+	list("missilepod", "cruise missile", "A big ass missile that didn't seem to fully detonate. It was likely launched from some far-off deep space missile silo. There appears to be an auxillery payload hatch on the side, though manually opening it is likely impossible.", STYLE_MISSILE),\
+	list("smissilepod", "\improper Syndicate cruise missile", "A big ass, blood-red missile that didn't seem to fully detonate. It was likely launched from some deep space Syndicate missile silo. There appears to be an auxillery payload hatch on the side, though manually opening it is likely impossible.", STYLE_RED_MISSILE),\
+	list("boxpod", "\improper Aussec supply crate", "An incredibly sturdy supply crate, designed to withstand orbital re-entry. Has 'Aussec Armory - 2532' engraved on the side.", STYLE_BOX),\
+	list("honkpod", "\improper HONK pod", "A brightly-colored supply pod. It likely originated from the Clown Federation.", STYLE_HONK),\
+	list("fruitpod", "\improper Orange", "An angry orange.", STYLE_FRUIT),\
+	list("", "\improper S.T.E.A.L.T.H. pod MKVII", "A supply pod that, under normal circumstances, is completely invisible to conventional methods of detection. How are you even seeing this?", STYLE_INVISIBLE),\
+	list("gondolapod", "gondola", "The silent walker. This one seems to be part of a delivery agency.", STYLE_GONDOLA),\
+	list("", "", "", STYLE_SEETHROUGH)\
 )
 
 
@@ -44,6 +44,7 @@
 	pixel_x = -16
 	pixel_y = -5
 	layer = TABLE_LAYER
+	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
 	anchored = TRUE
 	var/adminNamed = FALSE
@@ -306,7 +307,7 @@
 		L.forceMove(src)
 	if(pod.effectStun)
 		for(var/mob/living/M in get_turf(src))
-			M.Stun(pod.landingDelay + 10, ignore_canstun = TRUE)
+			M.Stun(pod.landingDelay + 10)
 	if(pod.effectStealth)
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)

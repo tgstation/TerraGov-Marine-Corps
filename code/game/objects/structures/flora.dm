@@ -57,7 +57,7 @@
 	START_PROCESSING(SSobj, src)
 	return
 
-/obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/flora/tree/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage * 0.5
 	. = ..()
 	START_PROCESSING(SSobj, src)
@@ -92,7 +92,7 @@
 /obj/structure/flora/tree/flamer_fire_act()
 	if(on_fire == FALSE)
 		on_fire = TRUE
-		SetLuminosity(5)
+		set_light(5)
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
@@ -436,7 +436,6 @@
 
 /obj/structure/jungle/plantbot1/alien
 	icon_state = "alienplant1"
-	luminosity = 2
 
 /obj/structure/jungle/planttop1
 	name = "strange tree"

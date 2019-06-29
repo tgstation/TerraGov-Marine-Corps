@@ -281,7 +281,7 @@
 
 		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
-/obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
+/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel)
 	set waitfor = 0
 
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
@@ -496,7 +496,6 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/flamer_fire/Destroy()
-	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -551,13 +550,13 @@
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
-			SetLuminosity(2)
+			set_light(2)
 		if(10 to 25)
 			icon_state = "[flame_color]_2"
-			SetLuminosity(4)
+			set_light(4)
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
-			SetLuminosity(6)
+			set_light(6)
 
 
 /obj/flamer_fire/process()

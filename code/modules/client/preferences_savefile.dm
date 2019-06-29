@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	30
+#define SAVEFILE_VERSION_MAX	31
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -20,8 +20,11 @@
 				break
 		return FALSE
 
+	if(savefile_version < 31)
+		WRITE_FILE(S["key_bindings"], null)
+
 	if(savefile_version < 30)
-		WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.keybinding_list_by_key))
+		WRITE_FILE(S["key_bindings"], null)
 
 	if(savefile_version < 29)
 		WRITE_FILE(S["metadata"], null)
@@ -43,7 +46,7 @@
 			WRITE_FILE(S["ui_style_alpha"], 230)
 
 	if(savefile_version < 26)
-		WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.keybinding_list_by_key))
+		WRITE_FILE(S["key_bindings"], null)
 
 	if(savefile_version < 25)
 		WRITE_FILE(S["ghost_vision"], TRUE)
@@ -137,7 +140,10 @@
 	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
-	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
+	key_bindings 	= sanitize_islist(key_bindings, list())
+
+	if(!length(key_bindings))
+		addtimer(CALLBACK(src, .proc/load_default_keybindings, parent), 5 SECONDS)
 
 	return TRUE
 
@@ -165,7 +171,7 @@
 	show_typing		= sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
-	key_bindings	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
+	key_bindings	= sanitize_islist(key_bindings, list())
 	ghost_vision	= sanitize_integer(ghost_vision, FALSE, TRUE, initial(ghost_vision))
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))

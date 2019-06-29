@@ -132,7 +132,7 @@
 	update_icon()
 	start_processing()
 
-/obj/machinery/portable_atmospherics/hydroponics/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/portable_atmospherics/hydroponics/bullet_act(obj/item/projectile/Proj)
 
 	//Don't act on seeds like dionaea that shouldn't change.
 	if(seed && seed.immutable > 0)
@@ -210,8 +210,6 @@
 	// Check that pressure, heat and light are all within bounds.
 	// First, handle an open system or an unconnected closed system.
 
-	var/turf/T = loc
-
 	// Process it.
 //	if(pressure < seed.lowkpa_tolerance || pressure > seed.highkpa_tolerance)
 //		health -= healthmod
@@ -222,17 +220,6 @@
 	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
 //	if (closed_system && connected_port)
 //		update_connected_network()
-
-	// Handle light requirements.
-	var/area/A = T.loc
-	if(A)
-		var/light_available
-		if(A.lighting_use_dynamic)
-			light_available = max(0,min(10,T.lighting_lumcount)-5)
-		else
-			light_available =  5
-		if(abs(light_available - seed.ideal_light) > seed.light_tolerance)
-			health -= healthmod
 
 	// Toxin levels beyond the plant's tolerance cause damage, but
 	// toxins are sucked up each tick and slowly reduce over time.
@@ -274,7 +261,7 @@
 
 	// If enough time (in cycles, not ticks) has passed since the plant was harvested, we're ready to harvest again.
 	else if(seed.products && seed.products.len && age > seed.production && \
-	 (age - lastproduce) > seed.production && (!harvest && !dead))
+	(age - lastproduce) > seed.production && (!harvest && !dead))
 		harvest = 1
 		lastproduce = age
 
@@ -338,7 +325,7 @@
 	update_icon()
 
 //Harvests the product of a plant.
-/obj/machinery/portable_atmospherics/hydroponics/proc/harvest(var/mob/user)
+/obj/machinery/portable_atmospherics/hydroponics/proc/harvest(mob/user)
 
 	//Harvest the product of the plant,
 	if(!seed || !harvest || !user)
@@ -367,7 +354,7 @@
 	return
 
 //Clears out a dead plant.
-/obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(var/mob/user)
+/obj/machinery/portable_atmospherics/hydroponics/proc/remove_dead(mob/user)
 	if(!user || !dead) return
 
 	if(closed_system)
@@ -432,17 +419,16 @@
 	// Update bioluminescence.
 	if(seed)
 		if(seed.biolum)
-			SetLuminosity(round(seed.potency/10))
 			if(seed.biolum_colour)
-				l_color = seed.biolum_colour
+				set_light(round(seed.potency / 10), l_color = seed.biolum_colour)
 			else
-				l_color = null
+				set_light(round(seed.potency / 10))
 			return
 
-	SetLuminosity(0)
+	set_light(0)
 	return
 
- // If a weed growth is sufficient, this proc is called.
+// If a weed growth is sufficient, this proc is called.
 /obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
 
 	//Remove the seed if something is already planted.
@@ -463,7 +449,7 @@
 
 	return
 
-/obj/machinery/portable_atmospherics/hydroponics/proc/mutate(var/severity)
+/obj/machinery/portable_atmospherics/hydroponics/proc/mutate(severity)
 
 	// No seed, no mutations.
 	if(!seed)
@@ -664,18 +650,6 @@
 		if(pestlevel >= 5)
 			to_chat(usr, "[src] is <span class='warning'> filled with tiny worms!</span>")
 
-		if(!istype(src,/obj/machinery/portable_atmospherics/hydroponics/soil))
-
-			var/turf/T = loc
-			var/area/A = T.loc
-			var/light_available
-			if(A)
-				if(A.lighting_use_dynamic)
-					light_available = max(0,min(10,T.lighting_lumcount)-5)
-				else
-					light_available =  5
-
-			to_chat(usr, "The tray's sensor suite is reporting a light level of [light_available] lumens.") // and a temperature of [temperature]K.")
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid()
 	set name = "Toggle Tray Lid"

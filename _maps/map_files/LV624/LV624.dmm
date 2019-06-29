@@ -56,7 +56,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "aaq" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/caves/east2)
 "aar" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -191,7 +191,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "aaV" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/caves/central2)
 "aaW" = (
 /turf/open/ground/coast/corner2{
@@ -199,7 +199,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "aaX" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/caves/west2)
 "aaY" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -273,7 +273,7 @@
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/east1)
 "abq" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/caves/east1)
 "abr" = (
 /turf/open/floor/engine/cult{
@@ -294,10 +294,10 @@
 	},
 /area/lv624/ground/caves/east1)
 "abu" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/caves/west1)
 "abv" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/caves/central1)
 "abw" = (
 /obj/effect/alien/weeds/node,
@@ -346,7 +346,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "abF" = (
-/turf/closed/wall/resin/membrane/ondirt,
+/turf/closed/wall/resin/membrane,
 /area/lv624/ground/caves/east1)
 "abG" = (
 /obj/structure/mineral_door/resin,
@@ -362,7 +362,7 @@
 /area/lv624/ground/caves/east1)
 "abJ" = (
 /obj/effect/alien/weeds/node,
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/caves/east1)
 "abK" = (
 /obj/structure/bed/nest,
@@ -560,10 +560,10 @@
 /area/lv624/ground/caves/west1)
 "ach" = (
 /obj/effect/alien/weeds/node,
-/turf/closed/wall/resin/membrane/ondirt,
+/turf/closed/wall/resin/membrane,
 /area/lv624/ground/caves/west1)
 "aci" = (
-/turf/closed/wall/resin/membrane/ondirt,
+/turf/closed/wall/resin/membrane,
 /area/lv624/ground/caves/west1)
 "acj" = (
 /obj/structure/bed/nest,
@@ -639,7 +639,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "acr" = (
-/turf/closed/wall/resin/membrane/ondirt,
+/turf/closed/wall/resin/membrane,
 /area/lv624/ground/caves/central1)
 "acs" = (
 /obj/effect/alien/weeds/node,
@@ -1328,7 +1328,7 @@
 /turf/closed/shuttle/wall3,
 /area/lv624/ground/sand6)
 "aeK" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/caves/central3)
 "aeL" = (
 /obj/machinery/mineral/unloading_machine,
@@ -1389,7 +1389,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "aeY" = (
-/turf/closed/wall/resin/membrane/ondirt,
+/turf/closed/wall/resin/membrane,
 /area/lv624/ground/caves/central3)
 "aeZ" = (
 /turf/open/ground/river,
@@ -1471,7 +1471,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1)
 "afo" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/sand5)
 "afp" = (
 /obj/structure/cargo_container/horizontal{
@@ -1878,7 +1878,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "agS" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/sand6)
 "agT" = (
 /obj/effect/alien/weeds/node,
@@ -1951,7 +1951,7 @@
 /turf/closed/mineral,
 /area/lv624/ground/sand3)
 "ahg" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/sand3)
 "ahh" = (
 /turf/open/floor/plating/ground/dirt,
@@ -2018,7 +2018,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "ahs" = (
-/turf/closed/wall/resin/ondirt,
+/turf/closed/wall/resin,
 /area/lv624/ground/sand2)
 "aht" = (
 /turf/open/floor/plating/ground/dirt,
@@ -11941,7 +11941,6 @@
 /area/lv624/lazarus/sleep_male)
 "aRF" = (
 /obj/structure/bed/chair/wood/wings{
-	tag = "icon-wooden_chair_wings (NORTH)";
 	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
@@ -16592,7 +16591,7 @@
 /area/lv624/lazarus/security)
 "bgn" = (
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/storage/firstaid/adv,
 /obj/machinery/light/small,
 /turf/open/floor/tile/red/redtaupecorner{

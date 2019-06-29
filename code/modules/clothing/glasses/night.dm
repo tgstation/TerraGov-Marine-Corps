@@ -8,8 +8,7 @@
 	item_state = "glasses"
 	origin_tech = "magnets=2"
 	darkness_view = 7
-	see_invisible = SEE_INVISIBLE_MINIMUM // Needed for no darkness overlay
-	fullscreen_vision = /obj/screen/fullscreen/nvg
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 
 /obj/item/clothing/glasses/night/M4RA
@@ -21,7 +20,6 @@
 	vision_flags = SEE_TURFS
 	darkness_view = 12
 	toggleable = 1
-	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
 
 
@@ -34,7 +32,6 @@
 	vision_flags = SEE_TURFS
 	darkness_view = 24
 	toggleable = 1
-	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
 
 
@@ -55,7 +52,6 @@
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
-	fullscreen_vision = null //Nulled out due to general dislike for the overlay.
 
 /obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
 	if(slot == SLOT_GLASSES)

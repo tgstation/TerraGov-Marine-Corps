@@ -10,6 +10,7 @@
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
 	animate_movement = 2
+	speech_span = SPAN_ROBOT
 	var/throwforce = 1
 
 	var/mob/living/buckled_mob
@@ -36,13 +37,14 @@
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
 
-	GLOB.object_list += src
-
 /obj/Destroy()
 	if(buckled_mob)
 		unbuckle()
-	. = ..()
-	GLOB.object_list -= src
+	return ..()
+
+/obj/proc/setAnchored(anchorvalue)
+	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
+	anchored = anchorvalue
 
 /obj/ex_act()
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
@@ -135,8 +137,14 @@
 
 			var/M = buckled_mob
 			buckled_mob = null
-
+			UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 			afterbuckle(M)
+
+
+/obj/proc/resisted_against(datum/source, mob/user) //COMSIG_LIVING_DO_RESIST
+	if(user.restrained(RESTRAINED_XENO_NEST))
+		return FALSE
+	manual_unbuckle(user)
 
 
 /obj/proc/manual_unbuckle(mob/user as mob)
@@ -182,13 +190,15 @@
 	do_buckle(M, user)
 
 //the actual buckling proc
-/obj/proc/do_buckle(mob/M, mob/user)
-	send_buckling_message(M, user)
+/obj/proc/do_buckle(mob/M, mob/user, silent = FALSE)
+	if(!silent)
+		send_buckling_message(M, user)
 	M.buckled = src
 	M.loc = src.loc
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 
 /obj/proc/send_buckling_message(mob/M, mob/user)

@@ -39,6 +39,6 @@
 		machinery_strings += "<U>It is made from the following parts</U>:"
 		for(var/X in component_parts)
 			var/obj/A = X
-			machinery_strings += "[initial(text2path(A).name)]"
+			machinery_strings += "[initial(A.name)]"
 
 	. += jointext(machinery_strings, "<br>")

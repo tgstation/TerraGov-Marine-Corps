@@ -129,7 +129,7 @@
 			return
 
 		user.visible_message("<span class='warning'>[user] throws [G] through [src]!</span>", \
-							 "<span class='warning'>You throw [G] through [src]</span>")
+							"<span class='warning'>You throw [G] through [src]</span>")
 		user.drop_held_item()
 		G.forceMove(T)
 		G.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
@@ -151,11 +151,12 @@
 			return
 
 		user.visible_message("<span class='warning'>[user] throws [F] through [src]!</span>", \
-							 "<span class='warning'>You throw [F] through [src]</span>")
+							"<span class='warning'>You throw [F] through [src]</span>")
 		user.drop_held_item()
 		F.forceMove(T)
 		F.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		step_away(F, src, rand(1,5))
-		F.SetLuminosity(0)
 		if(F.on && loc != user)
-			F.SetLuminosity(F.brightness_on)
+			F.set_light(F.brightness_on)
+		else
+			F.set_light(0)

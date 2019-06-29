@@ -4,6 +4,9 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
+
+	baseturfs = /turf/open/floor/plating
+	
 	var/icon_regular_floor = "floor" //Used to remember what icon the tile should have by default
 	var/icon_plating = "plating"
 	var/broken = 0
@@ -23,30 +26,26 @@
 
 
 //This is so damaged or burnt tiles or platings don't get remembered as the default tile
-var/list/icons_to_ignore_at_floor_init = list("damaged1", "damaged2", "damaged3", "damaged4",
-											  "damaged5", "panelscorched", "floorscorched1", "floorscorched2", "platingdmg1", "platingdmg2",
-											  "platingdmg3", "plating", "light_on", "light_on_flicker1", "light_on_flicker2",
-											  "light_on_clicker3", "light_on_clicker4", "light_on_clicker5", "light_broken",
-											  "light_on_broken", "light_off", "wall_thermite", "grass1", "grass2", "grass3", "grass4",
-											  "asteroid", "asteroid_dug",
-											  "asteroid0", "asteroid1", "asteroid2", "asteroid3", "asteroid4",
-											  "asteroid5", "asteroid6", "asteroid7", "asteroid8", "asteroid9",
-											  "asteroid10", "asteroid11", "asteroid12",
-											  "oldburning", "light-on-r", "light-on-y", "light-on-g", "light-on-b", "wood", "wood-broken",
-											  "carpet", "carpetcorner", "carpetside", "carpet", "ironsand1", "ironsand2", "ironsand3", "ironsand4", "ironsand5",
-											  "ironsand6", "ironsand7", "ironsand8", "ironsand9", "ironsand10", "ironsand11",
-											  "ironsand12", "ironsand13", "ironsand14", "ironsand15")
+GLOBAL_LIST_INIT(icons_to_ignore_at_floor_init, list("damaged1", "damaged2", "damaged3", "damaged4",
+											"damaged5", "panelscorched", "floorscorched1", "floorscorched2", "platingdmg1", "platingdmg2",
+											"platingdmg3", "plating", "light_on", "light_on_flicker1", "light_on_flicker2",
+											"light_on_clicker3", "light_on_clicker4", "light_on_clicker5", "light_broken",
+											"light_on_broken", "light_off", "wall_thermite", "grass1", "grass2", "grass3", "grass4",
+											"asteroid", "asteroid_dug",
+											"asteroid0", "asteroid1", "asteroid2", "asteroid3", "asteroid4",
+											"asteroid5", "asteroid6", "asteroid7", "asteroid8", "asteroid9",
+											"asteroid10", "asteroid11", "asteroid12",
+											"oldburning", "light-on-r", "light-on-y", "light-on-g", "light-on-b", "wood", "wood-broken",
+											"carpet", "carpetcorner", "carpetside", "carpet", "ironsand1", "ironsand2", "ironsand3", "ironsand4", "ironsand5",
+											"ironsand6", "ironsand7", "ironsand8", "ironsand9", "ironsand10", "ironsand11",
+											"ironsand12", "ironsand13", "ironsand14", "ironsand15"))
 
-var/list/plating_icons = list("plating", "platingdmg1", "platingdmg2", "platingdmg3", "asteroid", "asteroid_dug",
-							  "ironsand1", "ironsand2", "ironsand3", "ironsand4", "ironsand5", "ironsand6", "ironsand7",
-							  "ironsand8", "ironsand9", "ironsand10", "ironsand11",
-							  "ironsand12", "ironsand13", "ironsand14", "ironsand15")
-var/list/wood_icons = list("wood", "wood-broken")
+GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 
 
 /turf/open/floor/Initialize(mapload, ...)
 	. = ..()
-	if(icon_state in icons_to_ignore_at_floor_init)//So damaged/burned tiles or plating icons aren't saved as the default
+	if(icon_state in GLOB.icons_to_ignore_at_floor_init)//So damaged/burned tiles or plating icons aren't saved as the default
 		icon_regular_floor = "floor"
 	else
 		icon_regular_floor = icon_state
@@ -76,7 +75,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		burn_tile()
 
 
-/turf/open/floor/ceiling_debris_check(var/size = 1)
+/turf/open/floor/ceiling_debris_check(size = 1)
 	ceiling_debris(size)
 
 
@@ -93,19 +92,19 @@ var/list/wood_icons = list("wood", "wood-broken")
 			switch(T.state)
 				if(0)
 					icon_state = "light_on"
-					SetLuminosity(5)
+					set_light(5)
 				if(1)
 					var/num = pick("1", "2", "3", "4")
 					icon_state = "light_on_flicker[num]"
-					SetLuminosity(5)
+					set_light(5)
 				if(2)
 					icon_state = "light_on_broken"
-					SetLuminosity(5)
+					set_light(5)
 				if(3)
 					icon_state = "light_off"
-					SetLuminosity(0)
+					set_light(0)
 		else
-			SetLuminosity(0)
+			set_light(0)
 			icon_state = "light_off"
 	else if(is_grass_floor())
 		if(!broken && !burnt)
@@ -157,7 +156,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 	else if(is_wood_floor())
 		if(!broken && !burnt)
-			if(!(icon_state in wood_icons))
+			if(!(icon_state in GLOB.wood_icons))
 				icon_state = "wood"
 
 /turf/open/floor/return_siding_icon_state()
@@ -283,7 +282,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	qdel(floor_tile)
 	floor_tile = null
 	icon_plating = "plating"
-	SetLuminosity(0)
+	set_light(0)
 	intact_tile = 0
 	broken = 0
 	burnt = 0
@@ -298,7 +297,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact_tile = 1
-	SetLuminosity(0)
+	set_light(0)
 
 	if(!istype(newtile))
 		newtile = new
@@ -330,7 +329,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 //This proc will make a turf into a grass patch. Fun eh? Insert the grass tile to be used as the argument
 //If no argument is given a new one will be made.
-/turf/open/floor/proc/make_grass_floor(var/obj/item/stack/tile/grass/T = null)
+/turf/open/floor/proc/make_grass_floor(obj/item/stack/tile/grass/T = null)
 	broken = 0
 	burnt = 0
 	intact_tile = 1
@@ -348,7 +347,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 //This proc will make a turf into a wood floor. Fun eh? Insert the wood tile to be used as the argument
 //If no argument is given a new one will be made.
-/turf/open/floor/proc/make_wood_floor(var/obj/item/stack/tile/wood/T = null)
+/turf/open/floor/proc/make_wood_floor(obj/item/stack/tile/wood/T = null)
 	broken = 0
 	burnt = 0
 	intact_tile = 1
@@ -366,7 +365,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 //This proc will make a turf into a carpet floor. Fun eh? Insert the carpet tile to be used as the argument
 //If no argument is given a new one will be made.
-/turf/open/floor/proc/make_carpet_floor(var/obj/item/stack/tile/carpet/T = null)
+/turf/open/floor/proc/make_carpet_floor(obj/item/stack/tile/carpet/T = null)
 	broken = 0
 	burnt = 0
 	intact_tile = 1

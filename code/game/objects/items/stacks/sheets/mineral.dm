@@ -14,44 +14,44 @@ Mineral Sheets
 		- Osmium
 */
 
-var/global/list/datum/stack_recipe/sandstone_recipes = list ( \
+GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	new/datum/stack_recipe("pile of dirt", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, one_per_turf = 1, on_floor = 1), \
-	)
+	))
 
-var/global/list/datum/stack_recipe/silver_recipes = list ( \
+GLOBAL_LIST_INIT(silver_recipes, list ( \
 	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, one_per_turf = 1, on_floor = 1), \
-	)
+	))
 
-var/global/list/datum/stack_recipe/diamond_recipes = list ( \
+GLOBAL_LIST_INIT(diamond_recipes, list ( \
 	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, one_per_turf = 1, on_floor = 1), \
-	)
+	))
 
-var/global/list/datum/stack_recipe/uranium_recipes = list ( \
+GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	new/datum/stack_recipe("uranium door", /obj/structure/mineral_door/uranium, 10, one_per_turf = 1, on_floor = 1), \
-	)
+	))
 
-var/global/list/datum/stack_recipe/gold_recipes = list ( \
+GLOBAL_LIST_INIT(gold_recipes, list ( \
 	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1), \
-	)
+	))
 
-var/global/list/datum/stack_recipe/phoron_recipes = list ( \
+GLOBAL_LIST_INIT(phoron_recipes, list ( \
 	new/datum/stack_recipe("phoron door", /obj/structure/mineral_door/transparent/phoron, 10, one_per_turf = 1, on_floor = 1), \
-	)
+	))
 
-var/global/list/datum/stack_recipe/plastic_recipes = list ( \
+GLOBAL_LIST_INIT(plastic_recipes, list ( \
 	new/datum/stack_recipe("plastic crate", /obj/structure/closet/crate/plastic, 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("plastic ashtray", /obj/item/ashtray/plastic, 2, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("plastic fork", /obj/item/tool/kitchen/utensil/pfork, 1, on_floor = 1), \
 	new/datum/stack_recipe("plastic spoon", /obj/item/tool/kitchen/utensil/pspoon, 1, on_floor = 1), \
 	new/datum/stack_recipe("plastic knife", /obj/item/tool/kitchen/utensil/pknife, 1, on_floor = 1), \
 	new/datum/stack_recipe("plastic bag", /obj/item/storage/bag/plasticbag, 3, on_floor = 1), \
-	)
+	))
 
-var/global/list/datum/stack_recipe/iron_recipes = list ( \
+GLOBAL_LIST_INIT(iron_recipes, list ( \
 	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, one_per_turf = 1, on_floor = 1), \
 	null, \
-)
+	))
 
 /obj/item/stack/sheet/mineral
 	force = 5.0
@@ -78,7 +78,7 @@ obj/item/stack/sheet/mineral/iron
 
 obj/item/stack/sheet/mineral/iron/New()
 	..()
-	recipes = iron_recipes
+	recipes = GLOB.iron_recipes
 
 /obj/item/stack/sheet/mineral/sandstone
 	name = "sandstone brick"
@@ -93,7 +93,7 @@ obj/item/stack/sheet/mineral/iron/New()
 
 /obj/item/stack/sheet/mineral/sandstone/New()
 	..()
-	recipes = sandstone_recipes
+	recipes = GLOB.sandstone_recipes
 
 /obj/item/stack/sheet/mineral/diamond
 	name = "diamond"
@@ -107,7 +107,7 @@ obj/item/stack/sheet/mineral/iron/New()
 
 /obj/item/stack/sheet/mineral/diamond/New()
 	..()
-	recipes = diamond_recipes
+	recipes = GLOB.diamond_recipes
 
 /obj/item/stack/sheet/mineral/uranium
 	name = "uranium"
@@ -121,7 +121,7 @@ obj/item/stack/sheet/mineral/iron/New()
 
 /obj/item/stack/sheet/mineral/uranium/New()
 	..()
-	recipes = uranium_recipes
+	recipes = GLOB.uranium_recipes
 
 /obj/item/stack/sheet/mineral/phoron
 	name = "solid phoron"
@@ -158,7 +158,7 @@ obj/item/stack/sheet/mineral/iron/New()
 
 /obj/item/stack/sheet/mineral/plastic/New()
 	..()
-	recipes = plastic_recipes
+	recipes = GLOB.plastic_recipes
 
 /obj/item/stack/sheet/mineral/plastic/cyborg
 	name = "plastic sheets"
@@ -180,7 +180,7 @@ obj/item/stack/sheet/mineral/iron/New()
 
 /obj/item/stack/sheet/mineral/gold/New()
 	..()
-	recipes = gold_recipes
+	recipes = GLOB.gold_recipes
 
 /obj/item/stack/sheet/mineral/silver
 	name = "silver"
@@ -195,7 +195,7 @@ obj/item/stack/sheet/mineral/iron/New()
 
 /obj/item/stack/sheet/mineral/silver/New()
 	..()
-	recipes = silver_recipes
+	recipes = GLOB.silver_recipes
 
 
 //Valuable resource, cargo can sell it.

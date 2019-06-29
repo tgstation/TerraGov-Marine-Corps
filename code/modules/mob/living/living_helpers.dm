@@ -28,3 +28,11 @@
 	. = ..()
 	if(!.)
 		return (stunned || knocked_down || knocked_out)
+
+
+/mob/living/restrained(ignore_checks)
+	. = ..()
+	var/flags_to_check = RESTRAINED_NECKGRAB | RESTRAINED_XENO_NEST | RESTRAINED_STRAIGHTJACKET | RESTRAINED_RAZORWIRE | RESTRAINED_PSYCHICGRAB
+	if(ignore_checks)
+		DISABLE_BITFIELD(flags_to_check, ignore_checks)
+	return (. || CHECK_BITFIELD(restrained_flags, flags_to_check))

@@ -6,10 +6,10 @@
 	return TRUE
 
 
-/mob/living/carbon/restrained()
-	if(handcuffed)
-		return TRUE
-	return FALSE
+/mob/living/carbon/restrained(ignore_checks)
+	. = ..()
+	return (. || handcuffed)
+
 
 /mob/living/carbon/proc/need_breathe()
 	if(reagents.has_reagent("lexorin") || in_stasis)

@@ -30,7 +30,6 @@
 	icon = 'icons/turf/floors.dmi'
 	var/intact_tile = 1 //used by floors to distinguish floor with/without a floortile(e.g. plating).
 	var/can_bloody = TRUE //Can blood spawn on this turf?
-	var/oldTurf = "" //The previous turf's path as text. Used when deconning on LV --MadSnailDisease
 
 	// baseturfs can be either a list or a single turf type.
 	// In class definition like here it should always be a single type.
@@ -39,29 +38,55 @@
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+	var/changing_turf = FALSE
 
-/turf/Initialize(mapload, ...)
-	. = ..()
-	GLOB.turfs += src
-	for(var/atom/movable/AM in src)
-		Entered(AM)
+/turf/Initialize(mapload)
+	if(flags_atom & INITIALIZED)
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	ENABLE_BITFIELD(flags_atom, INITIALIZED)
+
+	// by default, vis_contents is inherited from the turf that was here before
+	vis_contents.Cut()
+
+	assemble_baseturfs()
 
 	levelupdate()
 
-	if(luminosity)
-		if(light)	
-			WARNING("[type] - Don't set lights up manually during New(), We do it automatically.")
-		trueLuminosity = luminosity * luminosity
-		light = new(src)
 	visibilityChanged()
 
-/turf/Destroy()
-	if(oldTurf != "")
-		ChangeTurf(text2path(oldTurf), TRUE)
-	else
-		ChangeTurf(/turf/open/floor/plating, TRUE)
+	for(var/atom/movable/AM in src)
+		Entered(AM)
+
+	var/area/A = loc
+	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
+		add_overlay(/obj/effect/fullbright)
+
+	if(light_power && light_range)
+		update_light()
+
+	if(opacity)
+		has_opaque_atom = TRUE
+
+	return INITIALIZE_HINT_NORMAL
+
+
+/turf/Destroy(force)
+	. = QDEL_HINT_IWILLGC
+	if(!changing_turf)
+		stack_trace("Incorrect turf deletion")
+	changing_turf = FALSE
+	if(force)
+		..()
+		//this will completely wipe turf state
+		var/turf/B = new world.turf(src)
+		for(var/A in B.contents)
+			qdel(A)
+		for(var/I in B.vars)
+			B.vars[I] = null
+		return
 	visibilityChanged()
-	return ..()
+	DISABLE_BITFIELD(flags_atom, INITIALIZED)
+	..()
 
 /turf/ex_act(severity)
 	return 0
@@ -157,36 +182,73 @@
 			O.hide(intact_tile)
 
 
-//Creates a new turf. this is called by every code that changes a turf ("spawn atom" verb, cdel, build mode stuff, etc)
-/turf/proc/ChangeTurf(new_turf_path, forget_old_turf, flags)
-	if (!new_turf_path)
-		return
+// Creates a new turf
+// new_baseturfs can be either a single type or list of types, formated the same as baseturfs. see turf.dm
+/turf/proc/ChangeTurf(path, list/new_baseturfs, flags)
+	switch(path)
+		if(null)
+			return
+		if(/turf/baseturf_bottom)
+			path = SSmapping.level_trait(z, ZTRAIT_BASETURF) || /turf/open/space
+			if (!ispath(path))
+				path = text2path(path)
+				if (!ispath(path))
+					warning("Z-level [z] has invalid baseturf '[SSmapping.level_trait(z, ZTRAIT_BASETURF)]'")
+					path = /turf/open/space
+		if(/turf/open/space/basic)
+			// basic doesn't initialize and this will cause issues
+			// no warning though because this can happen naturaly as a result of it being built on top of
+			path = /turf/open/space
 
-	var/old_lumcount = lighting_lumcount - initial(lighting_lumcount)
+	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP)) // Don't no-op if the map loader requires it to be reconstructed
+		return src
+	if(flags & CHANGETURF_SKIP)
+		return new path(src)
 
-	//to_chat(world, "Replacing [src.type] with [new_turf_path]")
+	var/old_opacity = opacity
+	var/old_dynamic_lighting = dynamic_lighting
+	var/old_affecting_lights = affecting_lights
+	var/old_lighting_object = lighting_object
+	var/old_corners = corners
 
-	var/path = "[src.type]"
-	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
-	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
-		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
+	var/list/old_baseturfs = baseturfs
 
 	var/list/transferring_comps = list()
-	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, flags, transferring_comps)
+	SEND_SIGNAL(src, COMSIG_TURF_CHANGE, path, new_baseturfs, flags, transferring_comps)
 	for(var/i in transferring_comps)
 		var/datum/component/comp = i
 		comp.RemoveComponent()
+
+	changing_turf = TRUE
+	qdel(src)	//Just get the side effects and call Destroy
+	var/turf/W = new path(src)
+
+	for(var/i in transferring_comps)
+		W.TakeComponent(i)
+
+	if(new_baseturfs)
+		W.baseturfs = new_baseturfs
+	else
+		W.baseturfs = old_baseturfs
 
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
 
-	W.lighting_lumcount += old_lumcount
-	if(old_lumcount != W.lighting_lumcount)
-		W.lighting_changed = 1
-		lighting_controller.changed_turfs += W
+	if(SSlighting.initialized)
+		recalc_atom_opacity()
+		lighting_object = old_lighting_object
+		affecting_lights = old_affecting_lights
+		corners = old_corners
+		if(old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
+			reconsider_lights()
 
-	W.levelupdate()
+		if(dynamic_lighting != old_dynamic_lighting)
+			if (IS_DYNAMIC_LIGHTING(src))
+				lighting_build_overlay()
+			else
+				lighting_clear_overlay()
+
 	return W
 
 // Take off the top layer turf and replace it with the next baseturf down
@@ -213,7 +275,7 @@
 
 /turf/proc/empty(turf_type=/turf/open/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
-	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port))
+	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /atom/movable/lighting_object))
 	var/list/allowed_contents = typecache_filter_list_reverse(GetAllContentsIgnoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
@@ -267,7 +329,7 @@
 
 
 //Blood stuff------------
-/turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/proc/AddTracks(typepath,bloodDNA,comingdir,goingdir,bloodcolor="#A10808")
 	if(!can_bloody)
 		return
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
@@ -303,10 +365,10 @@
 /turf/proc/can_be_dissolved()
 	return FALSE
 
-/turf/proc/ceiling_debris_check(var/size = 1)
+/turf/proc/ceiling_debris_check(size = 1)
 	return
 
-/turf/proc/ceiling_debris(var/size = 1) //debris falling in response to airstrikes, etc
+/turf/proc/ceiling_debris(size = 1) //debris falling in response to airstrikes, etc
 	var/area/A = get_area(src)
 	if(!A.ceiling) return
 
@@ -616,8 +678,11 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		T.icon_state = icon_state
 	if(T.icon != icon)
 		T.icon = icon
-	//if(T.dir != dir)//components
-	//	T.setDir(dir)
+	if(color)
+		T.atom_colours = atom_colours.Copy()
+		T.update_atom_colour()
+	if(T.dir != dir)
+		T.setDir(dir)
 	return T
 
 //If you modify this function, ensure it works correctly with lateloaded map templates.
@@ -724,7 +789,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	baseturfs = /turf/baseturf_bottom
 
 
-/turf/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
+/turf/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = 0)
 	var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
 	// Make toxins vomit look different

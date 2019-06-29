@@ -3,8 +3,8 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
-	var/datum/map_config/config
-	var/datum/map_config/next_map_config
+	var/list/configs
+	var/list/next_map_configs
 
 	var/list/map_templates = list()
 
@@ -27,29 +27,28 @@ SUBSYSTEM_DEF(mapping)
 
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
-	if(!config)
-#ifdef FORCE_MAP
-		config = load_map_config(FORCE_MAP)
-#else
-		config = load_map_config(error_if_missing = FALSE)
-#endif
+	if(!configs)
+		configs = load_map_configs(ALL_MAPTYPES, error_if_missing = FALSE)
+		CONFIG_SET(string/ship_name, configs[SHIP_MAP].map_name)
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
 	HACK_LoadMapConfig()
 	if(initialized)
 		return
-	if(config.defaulted)
-		var/old_config = config
-		config = global.config.defaultmap
-		if(!config || config.defaulted)
-			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to LV624</span>")
-			config = old_config
+
+	for(var/i in ALL_MAPTYPES)
+		var/datum/map_config/MC = configs[i]
+		if(MC.defaulted)
+			var/old_config = configs[i]
+			configs[i] = global.config.defaultmaps[i]
+			if(!configs || configs[i].defaulted)
+				to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting.</span>")
+				configs[i] = old_config
 	loadWorld()
-	repopulate_sorted_areas() // we dont have glob.sortedareas yet
+	repopulate_sorted_areas()
 	preloadTemplates()
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
 	// Set up Z-level transitions.
-	generate_station_area_list()
 	initialize_reserved_level()
 	return ..()
 
@@ -92,8 +91,8 @@ SUBSYSTEM_DEF(mapping)
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
 
-	config = SSmapping.config
-	next_map_config = SSmapping.next_map_config
+	configs = SSmapping.configs
+	next_map_configs = SSmapping.next_map_configs
 
 	clearing_reserved_turfs = SSmapping.clearing_reserved_turfs
 
@@ -155,17 +154,17 @@ SUBSYSTEM_DEF(mapping)
 
 	// load the ground level
 	ground_start = world.maxz + 1
-	INIT_ANNOUNCE("Loading [config.map_name]...")
-	LoadGroup(FailedZs, config.map_name, config.map_path, config.map_file, config.traits, ZTRAITS_GROUND)
 
-	var/datum/map_config/theseus = new
-	theseus.LoadConfig("_maps/theseus.json")
+	var/datum/map_config/ground_map = configs[GROUND_MAP]
+	INIT_ANNOUNCE("Loading [ground_map.map_name]...")
+	LoadGroup(FailedZs, ground_map.map_name, ground_map.map_path, ground_map.map_file, ground_map.traits, ZTRAITS_GROUND)
 
-	INIT_ANNOUNCE("Loading [CONFIG_GET(string/ship_name)]...")
-	LoadGroup(FailedZs, CONFIG_GET(string/ship_name), theseus.map_path, theseus.map_file, theseus.traits, ZTRAITS_MAIN_SHIP)
+	var/datum/map_config/ship_map = configs[SHIP_MAP]
+	INIT_ANNOUNCE("Loading [ship_map.map_name]...")
+	LoadGroup(FailedZs, ship_map.map_name, ship_map.map_path, ship_map.map_file, ship_map.traits, ZTRAITS_MAIN_SHIP)
 
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[config.map_name]' WHERE id = [GLOB.round_id]")
+		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[ground_map.map_name]' WHERE id = [GLOB.round_id]")
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
 
@@ -178,28 +177,25 @@ SUBSYSTEM_DEF(mapping)
 		INIT_ANNOUNCE(msg)
 #undef INIT_ANNOUNCE
 
-GLOBAL_LIST_EMPTY(the_station_areas)
+/datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM, maptype = GROUND_MAP)
+	LAZYINITLIST(next_map_configs)
+	if(maptype == GROUND_MAP)
+		if(!VM.MakeNextMap(maptype))
+			next_map_configs[GROUND_MAP] = load_map_configs(list(maptype), default = TRUE)
+			message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
+			return
 
-/datum/controller/subsystem/mapping/proc/generate_station_area_list()
-	var/list/station_areas_blacklist = typecacheof(list(/area/space))
-	for(var/area/A in world)
-		var/turf/picked = safepick(get_area_turfs(A.type))
-		if(picked && is_mainship_level(picked.z))
-			if(!(A.type in GLOB.the_station_areas) && !is_type_in_typecache(A, station_areas_blacklist))
-				GLOB.the_station_areas.Add(A.type)
+		next_map_configs[GROUND_MAP] = VM
+		return TRUE
 
-	if(!GLOB.the_station_areas.len)
-		log_world("ERROR: Station areas list failed to generate!")
+	else if(maptype == SHIP_MAP)
+		if(!VM.MakeNextMap(maptype))
+			next_map_configs[SHIP_MAP] = load_map_configs(list(maptype), default = TRUE)
+			message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
+			return
 
-
-/datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
-	if(!VM.MakeNextMap())
-		next_map_config = load_map_config(default_to_box = TRUE)
-		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
-		return
-
-	next_map_config = VM
-	return TRUE
+		next_map_configs[SHIP_MAP] = VM
+		return TRUE
 
 /datum/controller/subsystem/mapping/proc/preloadTemplates(path = "_maps/templates/") //see master controller setup
 	var/list/filelist = flist(path)

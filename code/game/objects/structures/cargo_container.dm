@@ -22,13 +22,13 @@
 		if(H.species.can_shred(H))
 
 			user.visible_message("<span class='warning'>[user] smashes [src] to no avail.</span>", \
-					 "<span class='warning'>You beat against [src] to no effect</span>", \
-					 "You hear twisting metal.")
+					"<span class='warning'>You beat against [src] to no effect</span>", \
+					"You hear twisting metal.")
 
 	if(!damage_dealt)
 		user.visible_message("<span class='warning'>[user] beats against the [src] to no avail.</span>", \
-						 "<span class='warning'>[user] beats against the [src].</span>", \
-						 "You hear twisting metal.")
+						"<span class='warning'>[user] beats against the [src].</span>", \
+						"You hear twisting metal.")
 
 /obj/structure/cargo_container/red
 	icon_state = "red"

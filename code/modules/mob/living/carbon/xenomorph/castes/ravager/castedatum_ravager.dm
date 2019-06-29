@@ -112,7 +112,7 @@
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "As I walk through the valley of the shadow of death."
-	ancient_message = "You are death incarnate. All will tremble before you."
+	ancient_message = "We are death incarnate. All will tremble before us."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //

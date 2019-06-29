@@ -61,13 +61,13 @@
 	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	var/obj/item/alien_embryo/embryo = new(C)
 	embryo.hivenumber = X.hivenumber
-	round_statistics.now_pregnant++
-	to_chat(X, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
+	GLOB.round_statistics.now_pregnant++
+	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
 	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
 	C.apply_damage(100, HALLOSS)
 	C.apply_damage(10, BRUTE, "chest")
 	C.emote("scream")
-	round_statistics.defiler_defiler_stings++
+	GLOB.round_statistics.defiler_defiler_stings++
 	succeed_activate()
 	return ..()
 
@@ -86,7 +86,7 @@
 
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurogas again.</span>")
+	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
@@ -94,7 +94,7 @@
 
 	//give them fair warning
 	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X]!</span>", \
-	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
+	"<span class='xenodanger'>Our dorsal vents widen, preparing to emit neurogas. We must keep still!</span>")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	succeed_activate()
@@ -105,7 +105,7 @@
 			X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 			X.smoke_system.set_up(1, get_turf(src))
 			X.smoke_system.start()
-			to_chat(X, "<span class='xenodanger'>You abort emitting neurogas, your expended plasma resulting in only a feeble wisp.</span>")
+			to_chat(X, "<span class='xenodanger'>We abort emitting neurogas, our expended plasma resulting in only a feeble wisp.</span>")
 			X.emitting_gas = FALSE
 			X.icon_state = "Defiler Running"
 			return fail_activate()
@@ -115,13 +115,13 @@
 	add_cooldown()
 
 	if(X.stagger) //If we got staggered, return
-		to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are staggered!</span>")
 		return fail_activate()
 
-	round_statistics.defiler_neurogas_uses++
+	GLOB.round_statistics.defiler_neurogas_uses++
 
 	X.visible_message("<span class='xenodanger'>[X] emits a noxious gas!</span>", \
-	"<span class='xenodanger'>You emit neurogas!</span>")
+	"<span class='xenodanger'>We emit neurogas!</span>")
 	dispense_gas()
 
 /datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
@@ -129,10 +129,10 @@
 	set waitfor = FALSE
 	while(count)
 		if(X.stagger) //If we got staggered, return
-			to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are staggered!</span>")
 			return
 		if(X.stunned || X.knocked_down)
-			to_chat(X, "<span class='xenowarning'>You try to emit neurogas but are disabled!</span>")
+			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are disabled!</span>")
 			return
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)

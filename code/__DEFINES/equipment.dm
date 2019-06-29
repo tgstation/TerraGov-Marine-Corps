@@ -35,6 +35,7 @@
 #define TWOHANDED				(1<<4)	// The item is twohanded.
 #define WIELDED					(1<<5)	// The item is wielded with both hands.
 #define	ITEM_ABSTRACT			(1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
+#define BEING_REMOVED			(1<<7)	//Cuffs and legcuffs
 
 //==========================================================================================
 

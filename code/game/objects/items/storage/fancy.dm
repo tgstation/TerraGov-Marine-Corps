@@ -1,16 +1,16 @@
 /*
- * The 'fancy' path is for objects like donut boxes that show how many items are in the storage item on the sprite itself
- * .. Sorry for the shitty path name, I couldnt think of a better one.
- *
- * WARNING: var/icon_type is used for both examine text and sprite name. Please look at the procs below and adjust your sprite names accordingly
- *
- * Contains:
- *		Donut Box
- *		Egg Box
- *		Candle Box
- *		Crayon Box
- *		Cigarette Box
- */
+* The 'fancy' path is for objects like donut boxes that show how many items are in the storage item on the sprite itself
+* .. Sorry for the shitty path name, I couldnt think of a better one.
+*
+* WARNING: var/icon_type is used for both examine text and sprite name. Please look at the procs below and adjust your sprite names accordingly
+*
+* Contains:
+*		Donut Box
+*		Egg Box
+*		Candle Box
+*		Crayon Box
+*		Cigarette Box
+*/
 
 /obj/item/storage/fancy
 	icon = 'icons/obj/items/food.dmi'
@@ -49,8 +49,8 @@
 
 
 /*
- * Egg Box
- */
+* Egg Box
+*/
 
 /obj/item/storage/fancy/egg_box
 	icon = 'icons/obj/items/food.dmi'
@@ -63,8 +63,8 @@
 	spawn_number = 12
 
 /*
- * Candle Box
- */
+* Candle Box
+*/
 
 /obj/item/storage/fancy/candle_box
 	name = "candle pack"
@@ -80,8 +80,8 @@
 	spawn_number = 5
 
 /*
- * Crayon Box
- */
+* Crayon Box
+*/
 
 /obj/item/storage/fancy/crayons
 	name = "box of crayons"
@@ -224,8 +224,8 @@
 		..()
 
 /*
- * Vial Box
- */
+* Vial Box
+*/
 
 /obj/item/storage/fancy/vials
 	icon = 'icons/obj/items/storage/vialbox.dmi'
@@ -255,7 +255,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vials/update_icon(var/itemremoved = 0)
+/obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
 	src.icon_state = "vialbox[total_contents]"
 	src.overlays.Cut()

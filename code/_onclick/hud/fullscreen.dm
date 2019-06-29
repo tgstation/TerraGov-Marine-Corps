@@ -1,6 +1,6 @@
-/mob/proc/overlay_fullscreen_timer(var/duration, var/animated, category, type, severity)
+/mob/proc/overlay_fullscreen_timer(duration, animated, category, type, severity)
 	overlay_fullscreen(category, type, severity)
-	addtimer(CALLBACK(src, .clear_fullscreen, category, animated), duration)
+	addtimer(CALLBACK(src, .proc/clear_fullscreen, category, animated), duration)
 
 /mob/proc/overlay_fullscreen(category, type, severity)
 	var/obj/screen/fullscreen/FS
@@ -123,21 +123,6 @@
 	icon_state = "druggy"
 	layer = FULLSCREEN_DRUGGY_LAYER
 
-/obj/screen/fullscreen/nvg
-	icon = 'icons/mob/screen/generic.dmi'
-	screen_loc = "WEST,SOUTH to EAST,NORTH"
-	icon_state = "nvg_hud"
-
-/obj/screen/fullscreen/thermal
-	icon = 'icons/mob/screen/generic.dmi'
-	screen_loc = "WEST,SOUTH to EAST,NORTH"
-	icon_state = "thermal_hud"
-
-/obj/screen/fullscreen/meson
-	icon = 'icons/mob/screen/generic.dmi'
-	screen_loc = "WEST,SOUTH to EAST,NORTH"
-	icon_state = "meson_hud"
-
 
 /obj/screen/fullscreen/pain
 	icon_state = "painoverlay"
@@ -154,7 +139,7 @@
 
 //Provides darkness to the back of the lighting plane
 /obj/screen/fullscreen/lighting_backdrop/lit
-	invisibility = SEE_INVISIBLE_LIVING + 1
+	invisibility = INVISIBILITY_LIGHTING
 	layer = BACKGROUND_LAYER + 21
 	color = "#000"
 
@@ -162,3 +147,10 @@
 //Provides whiteness in case you don't see lights so everything is still visible
 /obj/screen/fullscreen/lighting_backdrop/unlit
 	layer = BACKGROUND_LAYER + 20
+
+
+/obj/screen/fullscreen/see_through_darkness
+	icon_state = "nightvision"
+	plane = LIGHTING_PLANE
+	layer = LIGHTING_LAYER
+	blend_mode = BLEND_ADD

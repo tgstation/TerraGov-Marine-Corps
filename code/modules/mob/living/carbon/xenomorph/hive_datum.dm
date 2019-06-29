@@ -2,16 +2,18 @@
 	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
+	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	var/slashing_allowed = XENO_SLASHING_ALLOWED //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
 	var/queen_time = QUEEN_DEATH_TIMER //5 minutes between queen deaths
 	var/xeno_queen_timer
+	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
 	var/hive_orders = "" //What orders should the hive have
 	var/color = null
 	var/prefix = ""
 	var/list/xeno_leader_list
-	var/list/xenos_by_typepath
-	var/list/xenos_by_tier
-	var/list/xenos_by_upgrade
+	var/list/list/xenos_by_typepath
+	var/list/list/xenos_by_tier
+	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 
 // ***************************************
@@ -62,6 +64,11 @@
 		remove_from_hive()
 
 	add_to_hive(HS)
+
+
+/datum/hive_status/proc/can_hive_have_a_queen()
+	return get_total_xeno_number() < xenos_per_queen
+
 
 // ***************************************
 // *********** List getters
@@ -146,12 +153,21 @@
 
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
-	HS.update_queen()
-
 	if(HS.living_xeno_queen) // theres already a queen
 		return
 
-	HS.set_queen(src)
+	HS.living_xeno_queen = src
+
+	HS.update_ruler()
+
+
+/mob/living/carbon/xenomorph/shrike/add_to_hive(datum/hive_status/HS, force = FALSE) // override to ensure proper queen/hive behaviour
+	. = ..()
+
+	if(HS.living_xeno_ruler)
+		return
+	HS.update_ruler()
+
 
 /mob/living/carbon/xenomorph/proc/add_to_hive_by_hivenumber(hivenumber, force=FALSE) // helper function to add by given hivenumber
 	if(!GLOB.hive_datums[hivenumber])
@@ -180,6 +196,7 @@
 // helper function
 /datum/hive_status/proc/remove_from_lists(mob/living/carbon/xenomorph/X)
 	// Remove() returns 1 if it removes an element from a list
+
 	if(!xenos_by_tier[X.tier].Remove(X))
 		stack_trace("failed to remove a xeno from hive status tier list, nothing was removed!?")
 		return FALSE
@@ -214,11 +231,27 @@
 	hivenumber = XENO_HIVE_NONE // failsafe value
 
 /mob/living/carbon/xenomorph/queen/remove_from_hive() // override to ensure proper queen/hive behaviour
-	var/datum/hive_status/HS = hive
-	if(HS.living_xeno_queen == src)
-		HS.living_xeno_queen = null
+	var/datum/hive_status/hive_removed_from = hive
+	if(hive_removed_from.living_xeno_queen == src)
+		hive_removed_from.living_xeno_queen = null
+		
 	. = ..()
-	HS.update_queen()
+
+	if(hive_removed_from.living_xeno_ruler == src)
+		hive_removed_from.set_ruler(null)
+		hive_removed_from.update_ruler() //Try to find a successor.
+
+
+
+/mob/living/carbon/xenomorph/shrike/remove_from_hive()
+	var/datum/hive_status/hive_removed_from = hive
+		
+	. = ..()
+
+	if(hive_removed_from.living_xeno_ruler == src)
+		hive_removed_from.set_ruler(null)
+		hive_removed_from.update_ruler() //Try to find a successor.
+
 
 // ***************************************
 // *********** Xeno leaders
@@ -253,61 +286,102 @@
 	remove_from_lists(X)
 	dead_xenos += X
 
-	if(isxenoqueen(X))
-		on_queen_death(X)
+	SEND_SIGNAL(X, COMSIG_HIVE_XENO_DEATH)
+
+	if(X == living_xeno_ruler)
+		on_ruler_death(X)
+
 	return TRUE
+
 
 /datum/hive_status/proc/on_xeno_revive(mob/living/carbon/xenomorph/X)
 	dead_xenos -= X
 	add_to_lists(X)
 	return TRUE
 
+
+// ***************************************
+// *********** Ruler
+// ***************************************
+
+/datum/hive_status/proc/on_ruler_death(mob/living/carbon/xenomorph/ruler)
+	if(living_xeno_ruler == ruler)
+		set_ruler(null)
+	var/announce = TRUE
+	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
+		announce = FALSE
+	if(announce)
+		xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [ruler] has been slain! Vengeance!</span>", 3, TRUE)
+	if(slashing_allowed != XENO_SLASHING_ALLOWED)
+		if(announce)
+			xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>", 2, TRUE)
+		slashing_allowed = XENO_SLASHING_ALLOWED
+	notify_ghosts("\The <b>[ruler]</b> has been slain!", source = ruler, action = NOTIFY_JUMP)
+	update_ruler()
+	return TRUE
+
+
+// This proc attempts to find a new ruler to lead the hive.
+/datum/hive_status/proc/update_ruler()
+	if(living_xeno_ruler)
+		return TRUE //No succession required.
+
+	var/mob/living/carbon/xenomorph/successor
+
+	var/list/candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/queen]
+	if(length(candidates)) //Priority to the queens.
+		successor = candidates[1] //First come, first serve.
+	else
+		candidates = xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]
+		if(length(candidates))
+			successor = candidates[1]
+
+	var/announce = TRUE
+	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
+		announce = FALSE
+
+	set_ruler(successor)
+
+	if(!living_xeno_ruler) //Succession failed.
+		start_ruler_timer()
+		return TRUE
+
+	if(announce)
+		xeno_message("<span class='xenoannounce'>\A [successor] has risen to lead the Hive! Rejoice!</span>", 3)
+		notify_ghosts("\The [successor] has risen to lead the Hive!", source = successor, action = NOTIFY_ORBIT)
+
+
+/datum/hive_status/proc/set_ruler(mob/living/carbon/xenomorph/successor)
+	SSdirection.clear_leader(hivenumber)
+	if(!isnull(successor))
+		SSdirection.set_leader(hivenumber, successor)
+		SEND_SIGNAL(successor, COMSIG_HIVE_BECOME_RULER)
+	living_xeno_ruler = successor
+
+
+/mob/living/carbon/xenomorph/queen/proc/on_becoming_ruler()
+	hive.update_leader_pheromones()
+
+
+/datum/hive_status/proc/start_ruler_timer()
+	return
+
+
+// safe for use by gamemode code, this allows per hive overrides
+/datum/hive_status/proc/check_queen_timer()
+	if(xeno_queen_timer && --xeno_queen_timer <= 1)
+		xeno_message("The Hive is ready for a new ruler to evolve.", 3, TRUE)
+
+
 // ***************************************
 // *********** Queen
 // ***************************************
 
-// This proc attempts to find a new queen to lead the hive, if there isnt then it will announce her death
-/datum/hive_status/proc/update_queen()
-	if(living_xeno_queen)
-		return TRUE
-	var/announce = TRUE
-	if(SSticker.current_state == GAME_STATE_FINISHED || SSticker.current_state == GAME_STATE_SETTING_UP)
-		announce = FALSE
-	for(var/i in xenos_by_typepath[/mob/living/carbon/xenomorph/queen])
-		var/mob/living/carbon/xenomorph/queen/Q = i
-		if(is_centcom_level(Q.z))
-			continue
-		set_queen(Q)
-		if(announce)
-			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3)
-			notify_ghosts("A new <b>[Q]</b> has risen!", source = Q, action = NOTIFY_ORBIT)
-		update_leader_pheromones()
-		return TRUE
-	if(announce)
-		xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3,TRUE)
-		xeno_message("<span class='xenoannounce'>The slashing of hosts is now permitted.</span>",2,TRUE)
-	slashing_allowed = XENO_SLASHING_ALLOWED
-	update_leader_pheromones()
-	start_queen_timer()
-	return TRUE
-
-/datum/hive_status/proc/set_queen(mob/living/carbon/xenomorph/queen/Q)
-	SSdirection.clear_leader(hivenumber)
-	if (Q != null)
-		SSdirection.set_leader(hivenumber, Q)
-	living_xeno_queen = Q
-
-
 // These are defined for per-hive behaviour
 /datum/hive_status/proc/on_queen_death(mob/living/carbon/xenomorph/queen/Q)
-	if(living_xeno_queen == Q)
-		set_queen(null)
-	update_queen()
-	notify_ghosts("\The <b>[Q]</b> has been slain!", source = Q, action = NOTIFY_JUMP)
-	return TRUE
-
-/datum/hive_status/proc/start_queen_timer()
-	return
+	if(living_xeno_queen != Q)
+		return FALSE
+	living_xeno_queen = null
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
@@ -323,16 +397,12 @@
 /datum/hive_status/proc/on_queen_life(mob/living/carbon/xenomorph/queen/Q)
 	return
 
-// safe for use by gamemode code, this allows per hive overrides
-/datum/hive_status/proc/check_queen_timer()
-	if(xeno_queen_timer && --xeno_queen_timer <= 1)
-		xeno_message("The Hive is ready for a new Queen to evolve.",3,TRUE)
 
 // ***************************************
 // *********** Xeno messaging
 // ***************************************
 /datum/hive_status/proc/can_xeno_message() // This is defined for per-hive overrides
-	return living_xeno_queen
+	return living_xeno_ruler
 
 /*
 
@@ -387,7 +457,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		stored_larva--
 		CHECK_TICK // lets not lag everything
 
-/datum/hive_status/normal/start_queen_timer()
+/datum/hive_status/normal/start_ruler_timer()
 	if(!isdistress(SSticker?.mode))
 		return
 	var/datum/game_mode/distress/D = SSticker.mode
@@ -399,6 +469,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		D.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
 		addtimer(CALLBACK(D, /datum/game_mode.proc/check_queen_status, queen_time), QUEEN_DEATH_NOLARVA)
 
+
 /datum/hive_status/normal/on_queen_life(mob/living/carbon/xenomorph/queen/Q)
 	if(living_xeno_queen != Q || !is_ground_level(Q.z))
 		return
@@ -408,11 +479,11 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(picked)
 			var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(Q.loc)
 			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-			"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+			"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 			picked.mind.transfer_to(new_xeno, TRUE)
 
-			to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+			to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 
 			stored_larva--
@@ -425,51 +496,74 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 	L.visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
 	stored_larva++
-	round_statistics.total_xenos_created-- // keep stats sane
+	GLOB.round_statistics.total_xenos_created-- // keep stats sane
 	qdel(L)
 
 
-/datum/hive_status/normal/proc/can_spawn_larva(mob/xeno_candidate)
+// This proc checks for available mothers and offers a choice if there's more than one.
+/datum/hive_status/normal/proc/attempt_to_spawn_larva(mob/xeno_candidate)
+	if(!xeno_candidate?.client)
+		return FALSE
+
 	if(!stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 
-	if(!living_xeno_queen?.ovipositor)
-		to_chat(xeno_candidate, "<span class='warning'>There are no mothers with an ovipositor deployed.</span>")
+	var/list/possible_mothers = list()
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
+
+	if(!length(possible_mothers))
+		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to receive new larvas.</span>")
 		return FALSE
 
-	if (!xeno_candidate || !xeno_candidate.client)
-		return FALSE
+	var/mob/living/carbon/xenomorph/chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+	if(length(possible_mothers) > 1)
+		chosen_mother = input("Available Mothers") as null|anything in (possible_mothers + "Cancel")
+	else
+		chosen_mother = possible_mothers[1]
 
-	if(living_xeno_queen?.incapacitated(TRUE))
-		to_chat(xeno_candidate, "<span class='warning'>Mother is not in a state to receive us.</span>")
+	if(chosen_mother == "Cancel" || QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
 	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 
-	return TRUE
+	return spawn_larva(xeno_candidate, chosen_mother)
 
-/datum/hive_status/normal/proc/spawn_larva(mob/xeno_candidate)
+
+/datum/hive_status/normal/proc/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	if(!xeno_candidate?.mind)
 		return FALSE
 
-	if(!stored_larva || !istype(living_xeno_queen))
-		to_chat(xeno_candidate, "<span class='warning'>Something went awry. Can't spawn at the moment.</span>")
+	if(QDELETED(mother) || !istype(mother))
+		to_chat(xeno_candidate, "<span class='warning'>Something went awry with mom. Can't spawn at the moment.</span>")
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(living_xeno_queen.loc)
+	if(!stored_larva)
+		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
+		return FALSE
+
+	var/list/possible_mothers = list()
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
+
+	if(!(mother in possible_mothers))
+		to_chat(xeno_candidate, "<span class='warning'>This mother is not in a state to receive us.</span>")
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(mother.loc)
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+	"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
-	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+	to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 	stored_larva--
 
-	log_admin("[key_name(new_xeno)] has joined as [new_xeno].")
+	log_game("[key_name(new_xeno)] has joined as [new_xeno].")
 	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
+
+	return TRUE
 
 
 // ***************************************
@@ -525,6 +619,14 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/queen/Zeta
 	hivenumber = XENO_HIVE_ZETA
+
+/datum/hive_status/admeme
+	name = "Admeme"
+	hivenumber = XENO_HIVE_ADMEME
+	prefix = "Admeme "
+
+/mob/living/carbon/xenomorph/queen/admeme
+	hivenumber = XENO_HIVE_ADMEME
 
 // ***************************************
 // *********** Xeno hive compare helpers

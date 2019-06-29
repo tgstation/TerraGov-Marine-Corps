@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 			dirs = list("[NORTH]" = "Vertical", "[EAST]" = "Horizontal")
 			if(dirtype == PIPE_BENDABLE)
 				dirs += list("[NORTHWEST]" = "West to North", "[NORTHEAST]" = "North to East",
-							 "[SOUTHWEST]" = "South to West", "[SOUTHEAST]" = "East to South")
+							"[SOUTHWEST]" = "South to West", "[SOUTHEAST]" = "East to South")
 		if(PIPE_TRINARY)
 			dirs = list("[NORTH]" = "West South East", "[EAST]" = "North West South",
 						"[SOUTH]" = "East North West", "[WEST]" = "South East North")

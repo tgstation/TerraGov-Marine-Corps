@@ -66,12 +66,13 @@
 	open_sound = 'sound/items/zip.ogg'
 	close_sound = 'sound/items/zip.ogg'
 	var/item_path = /obj/item/bodybag
-	density = 0
-	storage_capacity = (mob_size * 2) - 1
-	anchored = 0
+	density = FALSE
+	mob_storage_capacity = 1
+	storage_capacity = 3 //Just room enough for that stripped armor, gun and whatnot.
+	anchored = FALSE
 	drag_delay = 2 //slightly easier than to drag the body directly.
 	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
-	store_items = FALSE
+
 
 /obj/structure/closet/bodybag/proc/update_name()
 	if(opened)
@@ -107,27 +108,15 @@
 		overlays.Cut()
 
 
-/obj/structure/closet/bodybag/store_mobs(var/stored_units) // overriding this
-	var/list/dead_mobs = list()
-	for(var/mob/living/M in loc)
-		if(M.buckled)
-			continue
-		if(M.stat != DEAD) // covers alive mobs
-			continue
-		if(!ishuman(M)) // all the dead other shit
-			dead_mobs += M
-			continue
-		var/mob/living/carbon/human/H = M
-		if(check_tod(H) || issynth(H)) // revivable
-			if(H.is_revivable() && H.get_ghost()) // definitely revivable
-				continue
-		dead_mobs += M
-	var/mob/living/mob_to_store
-	if(dead_mobs.len)
-		mob_to_store = pick(dead_mobs)
-		mob_to_store.forceMove(src)
-		stored_units += mob_size
-	return stored_units
+/obj/structure/closet/bodybag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
+	if(mob_to_stuff.stat != DEAD) //Only the dead for bodybags.
+		return FALSE
+	if(ishuman(mob_to_stuff))
+		var/mob/living/carbon/human/human_to_stuff = mob_to_stuff
+		if((!check_tod(human_to_stuff) || issynth(human_to_stuff)) && human_to_stuff.is_revivable())
+			return FALSE //We don't want to store those that can be revived.
+	return TRUE
+
 
 /obj/structure/closet/bodybag/close()
 	if(..())
@@ -190,7 +179,6 @@
 	desc = "A reusable plastic bag designed to prevent additional damage to an occupant."
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
-	store_items = FALSE
 	var/mob/living/carbon/human/stasis_mob //the mob in stasis
 	var/used = 0
 	var/last_use = 0 //remembers the value of used, to delay crostasis start.
@@ -242,20 +230,12 @@
 		new /obj/item/trash/used_stasis_bag(loc)
 		qdel(src)
 
-/obj/structure/closet/bodybag/cryobag/store_mobs(var/stored_units) // overriding this
-	var/list/mobs_can_store = list()
-	for(var/mob/living/carbon/human/H in loc)
-		if(H.buckled)
-			continue
-		if(H.stat == DEAD) // dead, nope
-			continue
-		mobs_can_store += H
-	var/mob/living/carbon/human/mob_to_store
-	if(mobs_can_store.len)
-		mob_to_store = pick(mobs_can_store)
-		mob_to_store.forceMove(src)
-		stored_units += mob_size
-	return stored_units
+
+/obj/structure/closet/bodybag/cryobag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
+	if(mob_to_stuff.stat == DEAD) // dead, nope
+		return FALSE
+	return TRUE
+
 
 /obj/structure/closet/bodybag/cryobag/close()
 	. = ..()

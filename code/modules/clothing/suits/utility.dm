@@ -1,13 +1,13 @@
 /*
- * Contains:
- *		Fire protection
- *		Bomb protection
- *		Radiation protection
- */
+* Contains:
+*		Fire protection
+*		Bomb protection
+*		Radiation protection
+*/
 
 /*
- * Fire protection
- */
+* Fire protection
+*/
 
 /obj/item/clothing/suit/fire
 	name = "firesuit"
@@ -41,8 +41,8 @@
 	slowdown = 1.5
 
 /*
- * Bomb protection
- */
+* Bomb protection
+*/
 /obj/item/clothing/head/bomb_hood
 	name = "bomb hood"
 	desc = "Use in case of bomb."
@@ -78,12 +78,12 @@
 /obj/item/clothing/suit/bomb_suit/security
 	icon_state = "bombsuitsec"
 	item_state = "bombsuitsec"
-	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/handcuffs)
+	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/restraints/handcuffs)
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
 /*
- * Radiation protection
- */
+* Radiation protection
+*/
 /obj/item/clothing/head/radiation
 	name = "Radiation Hood"
 	icon_state = "rad"

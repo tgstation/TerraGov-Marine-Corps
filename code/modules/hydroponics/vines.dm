@@ -132,6 +132,7 @@
 				V.loc = src.loc
 				V.update_canmove()
 				src.buckled_mob = V
+				RegisterSignal(V, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 				to_chat(V, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
 
 		// FEED ME, SEYMOUR.
@@ -172,14 +173,13 @@
 
 	// Update bioluminescence.
 	if(seed.biolum)
-		SetLuminosity(1+round(seed.potency/10))
 		if(seed.biolum_colour)
-			l_color = seed.biolum_colour
+			set_light(1 + round(seed.potency / 10), l_color = seed.biolum_colour)
 		else
-			l_color = null
+			set_light(1 + round(seed.potency / 10))
 		return
 	else
-		SetLuminosity(0)
+		set_light(0)
 
 	// Update flower/product overlay.
 	overlays.Cut()
@@ -258,16 +258,6 @@
 		die()
 		return
 
-	var/area/A = T.loc
-	if(A)
-		var/light_available
-		if(A.lighting_use_dynamic)
-			light_available = max(0,min(10,T.lighting_lumcount)-5)
-		else
-			light_available =  5
-		if(abs(light_available - seed.ideal_light) > seed.light_tolerance)
-			die()
-			return
 
 /obj/effect/plantsegment/flamer_fire_act()
 	qdel(src)
@@ -306,7 +296,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/effect/plant_controller/proc/spawn_piece(var/turf/location)
+/obj/effect/plant_controller/proc/spawn_piece(turf/location)
 	var/obj/effect/plantsegment/SV = new(location)
 	SV.limited_growth = src.limited_growth
 	growth_queue += SV

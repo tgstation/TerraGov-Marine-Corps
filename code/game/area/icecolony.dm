@@ -1,12 +1,12 @@
 /*
- * Areas for the Ice Colony map (nickname is "Shiva's Snowball")
- * Area inheritance logic :
- * Exterior Areas all use the same code, under /exterior branch. Those are NOT homogenous but used to give rough locations to area scanners. THIS INCLUDES UNDERGROUND UNBUILT AREAS
- * Exterior is divided into /surface and /underground for ease of navigation. BOTH PATHS MUST INHERIT EXTERIOR
- * Otherwise, all areas on the surface excluding external areas use /surface, no exceptions. All areas underground use /underground, no exceptions
- * Areas are grouped by building if possible, this excludes some repeating buildings like storage units
- * ELEVATORS AND SHUTTLES ARE SEGREGATED AT THE END OF THE FILE IF APPLICABLE
- */
+* Areas for the Ice Colony map (nickname is "Shiva's Snowball")
+* Area inheritance logic :
+* Exterior Areas all use the same code, under /exterior branch. Those are NOT homogenous but used to give rough locations to area scanners. THIS INCLUDES UNDERGROUND UNBUILT AREAS
+* Exterior is divided into /surface and /underground for ease of navigation. BOTH PATHS MUST INHERIT EXTERIOR
+* Otherwise, all areas on the surface excluding external areas use /surface, no exceptions. All areas underground use /underground, no exceptions
+* Areas are grouped by building if possible, this excludes some repeating buildings like storage units
+* ELEVATORS AND SHUTTLES ARE SEGREGATED AT THE END OF THE FILE IF APPLICABLE
+*/
 
 //Base Instance
 /area/ice_colony
@@ -15,17 +15,17 @@
 	icon_state = "cliff_blocked"
 
 /*
- *  ----------------
- * | Exterior Areas |
- *  ----------------
- */
+*  ----------------
+* | Exterior Areas |
+*  ----------------
+*/
 
 /area/ice_colony/exterior
 	name = "\improper Ice Colony"
 	icon_state = "cliff_blocked"
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -33,8 +33,8 @@
 	temperature = ICE_COLONY_TEMPERATURE
 
 /*
- * Exterior - Surface
- */
+* Exterior - Surface
+*/
 
 //Rough color code for the surface exteriors
 //Mountains : Deep Blue/Purple
@@ -137,8 +137,8 @@
 	icon_state = "clear_north"
 
 /*
- * Exterior - Underground
- */
+* Exterior - Underground
+*/
 
 /area/ice_colony/exterior/underground
 	name = "\improper Ice Colony - Exterior Underground"
@@ -166,10 +166,10 @@
 
 
 /*
- *  ---------------------
- * | Built Surface Areas |
- *  ---------------------
- */
+*  ---------------------
+* | Built Surface Areas |
+*  ---------------------
+*/
 
 /area/ice_colony/surface
 	name = "\improper Ice Colony - Built Surface"
@@ -177,8 +177,8 @@
 	ceiling = CEILING_METAL
 
 /*
- * Surface - Bar
- */
+* Surface - Bar
+*/
 
 
 /area/ice_colony/surface/bar
@@ -193,8 +193,8 @@
 	icon_state = "kitchen"
 
 /*
- * Surface - Clinic
- */
+* Surface - Clinic
+*/
 
 /area/ice_colony/surface/clinic
 	name = "\improper Aurora Medical Clinic"
@@ -212,8 +212,8 @@
 	icon_state = "medbay3"
 
 /*
- * Surface - Colony Administration
- */
+* Surface - Colony Administration
+*/
 
 /area/ice_colony/surface/command
 	name = "\improper Colony Administration"
@@ -244,16 +244,16 @@
 	icon_state = "head_quarters"
 
 /*
- * Surface - Disposals
- */
+* Surface - Disposals
+*/
 
 /area/ice_colony/surface/disposals
 	name = "\improper Surface Disposals"
 	icon_state = "disposal"
 
 /*
- * Surface - Dormitories
- */
+* Surface - Dormitories
+*/
 
 /area/ice_colony/surface/dorms
 	name = "\improper Dormitories"
@@ -276,8 +276,8 @@
 	icon_state = "toilet"
 
 /*
- * Surface - Engineering
- */
+* Surface - Engineering
+*/
 
 /area/ice_colony/surface/engineering
 	name = "\improper Engineering"
@@ -296,8 +296,8 @@
 	icon_state = "storage"
 
 /*
- * Surface - Excavation Preparation
- */
+* Surface - Excavation Preparation
+*/
 
 /area/ice_colony/surface/excavation
 	name = "\improper Excavation Outpost"
@@ -312,8 +312,8 @@
 	icon_state = "mining_storage"
 
 /*
- * Surface - Garage
- */
+* Surface - Garage
+*/
 
 /area/ice_colony/surface/garage
 	name = "\improper Garage"
@@ -332,8 +332,8 @@
 	icon_state = "engine"
 
 /*
- * Surface - Hangar
- */
+* Surface - Hangar
+*/
 
 /area/ice_colony/surface/hangar
 	name = "\improper Aerodrome Hangar"
@@ -355,8 +355,8 @@
 	icon_state = "security"
 
 /*
- * Surface - Hydroponics
- */
+* Surface - Hydroponics
+*/
 
 /area/ice_colony/surface/hydroponics
 	name = "\improper Ice Colony Hydroponics"
@@ -376,16 +376,16 @@
 	icon_state = "hydro_south"
 
 /*
- * Surface - Mining
- */
+* Surface - Mining
+*/
 
 /area/ice_colony/surface/mining
 	name = "\improper Mining Outpost"
 	icon_state = "mining_production"
 
 /*
- * Surface - Power
- */
+* Surface - Power
+*/
 
 /area/ice_colony/surface/substation
 	name = "\improper Surface Power Substation"
@@ -396,16 +396,16 @@
 	icon_state = "substation"
 
 /*
- * Surface - Requesitions
- */
+* Surface - Requesitions
+*/
 
 /area/ice_colony/surface/requesitions
 	name = "\improper Surface Requesition Warehouse"
 	icon_state = "quartstorage"
 
 /*
- * Surface - Research
- */
+* Surface - Research
+*/
 
 /area/ice_colony/surface/research
 
@@ -425,8 +425,8 @@
 	icon_state = "storage"
 
 /*
- * Surface - Storage Units
- */
+* Surface - Storage Units
+*/
 
 /area/ice_colony/surface/storage_unit
 	name = "\improper Storage Unit"
@@ -445,18 +445,18 @@
 	icon_state = "storage"
 
 /*
- * Surface - Telecommunications
- */
+* Surface - Telecommunications
+*/
 
 /area/ice_colony/surface/tcomms
 	name = "\improper Colony Telecommunications"
 	icon_state = "tcomsatcham"
 
 /*
- *  -------------------------
- * | Built Underground Areas |
- *  -------------------------
- */
+*  -------------------------
+* | Built Underground Areas |
+*  -------------------------
+*/
 
 /area/ice_colony/underground
 	name = "\improper Ice Colony - Built Underground"
@@ -464,8 +464,8 @@
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /*
- * Underground - Crew Areas
- */
+* Underground - Crew Areas
+*/
 
 /area/ice_colony/underground/crew
 	name = "\improper Underground Crew Area"
@@ -509,8 +509,8 @@
 	icon_state = "morgue"
 
 /*
- * Underground - Colony Administration
- */
+* Underground - Colony Administration
+*/
 
 /area/ice_colony/underground/command
 	name = "\improper Underground Colonial Administration"
@@ -533,8 +533,8 @@
 	icon_state = "green"
 
 /*
- * Underground - Engineering
- */
+* Underground - Engineering
+*/
 
 /area/ice_colony/underground/engineering
 	name = "\improper Underground Engineering"
@@ -550,8 +550,8 @@
 	icon_state = "substation"
 
 /*
- * Underground - Hallways
- */
+* Underground - Hallways
+*/
 
 /area/ice_colony/underground/hallway
 	name = "\improper Underground Hallway"
@@ -565,8 +565,8 @@
 	icon_state = "hallF"
 
 /*
- * Underground - Maintenance
- */
+* Underground - Maintenance
+*/
 
 /area/ice_colony/underground/maintenance
 	name = "\improper Underground Maintenance"
@@ -604,8 +604,8 @@
 	icon_state = "asmaint"
 
 /*
- * Underground - Medbay
- */
+* Underground - Medbay
+*/
 
 /area/ice_colony/underground/medical
 	name = "\improper Underground Medical Laboratory"
@@ -631,8 +631,8 @@
 	icon_state = "surgery"
 
 /*
- * Underground - Reception
- */
+* Underground - Reception
+*/
 
 /area/ice_colony/underground/reception
 	name = "\improper Underground Reception"
@@ -655,8 +655,8 @@
 	icon_state = "toilet"
 
 /*
- * Underground - Requesition
- */
+* Underground - Requesition
+*/
 
 /area/ice_colony/underground/requesition
 	name = "\improper Underground Requesitions"
@@ -675,8 +675,8 @@
 	icon_state = "storage"
 
 /*
- * Underground - Research
- */
+* Underground - Research
+*/
 
 /area/ice_colony/underground/research
 	name = "\improper Theta-V Research Laboratory"
@@ -695,8 +695,8 @@
 	icon_state = "anosample"
 
 /*
- * Underground - Security
- */
+* Underground - Security
+*/
 
 /area/ice_colony/underground/security
 	name = "\improper Underground Security Center"
@@ -731,8 +731,8 @@
 	icon_state = "brig"
 
 /*
- * Underground - Hangar
- */
+* Underground - Hangar
+*/
 
 /area/ice_colony/underground/hangar
 	name = "\improper Underground Hangar"
@@ -746,8 +746,8 @@
 	name = "\improper West Road Tunnel"
 
 /*
- * Underground - Storage
- */
+* Underground - Storage
+*/
 
 /area/ice_colony/underground/storage
 	name = "\improper Underground Technical Storage"

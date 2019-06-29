@@ -169,7 +169,7 @@
 		boxes.update_fullness(src)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
+/obj/item/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
 	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
@@ -200,7 +200,7 @@
 	if(show_storage_fullness)
 		boxes.update_fullness(src)
 
-/obj/item/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
+/obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
 
 	var/baseline_max_storage_space = 21 //should be equal to default backpack capacity
 	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
@@ -669,7 +669,7 @@
 	return depth
 
 
-/obj/item/storage/on_stored_atom_del(atom/movable/AM)
+/obj/item/storage/handle_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
 		remove_from_storage(AM)
 

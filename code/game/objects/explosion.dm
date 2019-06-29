@@ -1,20 +1,14 @@
 //TODO: Flash range does nothing currently
 
 //A very crude linear approximatiaon of pythagoras theorem.
-/proc/cheap_pythag(var/dx, var/dy)
+/proc/cheap_pythag(dx, dy)
 	dx = abs(dx); dy = abs(dy);
 	if(dx>=dy)	return dx + (0.5*dy)	//The longest side add half the shortest side approximates the hypotenuse
 	else		return dy + (0.5*dx)
 
 
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = FALSE, flame_range = 0)
-	src = null	//so we don't abort once src is deleted
 	spawn(0)
-		if(CONFIG_GET(flag/use_recursive_explosions))
-			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
-			explosion_rec(epicenter, power)
-			return
-
 		var/start = world.timeofday
 		epicenter = get_turf(epicenter)
 		if(!epicenter) return
@@ -78,11 +72,10 @@
 			log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
 
-		var/approximate_intensity = (devastation_range * 3) + (heavy_impact_range * 2) + light_impact_range
-
-		if(approximate_intensity > 30)
-			lighting_controller.processing = 0
-
+		//postpone processing for a bit
+		var/postponeCycles = max(round(devastation_range / 8), 1)
+		SSlighting.postpone(postponeCycles)
+		SSmachines.postpone(postponeCycles)
 
 		if(heavy_impact_range > 1)
 			var/datum/effect_system/explosion/E = new/datum/effect_system/explosion()
@@ -140,10 +133,6 @@
 //				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,took)
 
 		sleep(8)
-
-		if(!lighting_controller.processing)
-			lighting_controller.processing = 1
-			lighting_controller.process() //Restart the lighting controller
 
 		SSmachines.makepowernets()
 

@@ -2,7 +2,7 @@
 	caste_name = "Drone"
 	display_name = "Drone"
 	upgrade_name = ""
-	caste_desc = "A builder of hives. Only drones may evolve into Queens."
+	caste_desc = "A builder of hives. Only drones may evolve into Shrikes."
 	caste_type_path = /mob/living/carbon/xenomorph/drone
 
 	tier = XENO_TIER_ONE
@@ -29,7 +29,7 @@
 	evolution_threshold = 100
 	upgrade_threshold = 100
 
-	evolves_to = list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/hivelord)
+	evolves_to = list(/mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/hivelord)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -115,7 +115,7 @@
 /datum/xeno_caste/drone/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A very mean architect."
-	ancient_message = "You are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out."
+	ancient_message = "We are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //

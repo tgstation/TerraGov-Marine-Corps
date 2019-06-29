@@ -32,7 +32,7 @@
 /obj/item/weapon/gun/flare/load_into_chamber()
 	if(num_flares)
 		in_chamber = create_bullet(ammo)
-		in_chamber.SetLuminosity(4)
+		in_chamber.set_light(4)
 		num_flares--
 		return in_chamber
 
@@ -40,7 +40,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/flare/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/flare/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund)
 		num_flares++

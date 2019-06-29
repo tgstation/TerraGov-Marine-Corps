@@ -1,16 +1,16 @@
 /* Cards
- * Contains:
- *		DATA CARD
- *		ID CARD
- *		FINGERPRINT CARD HOLDER
- *		FINGERPRINT CARD
- */
+* Contains:
+*		DATA CARD
+*		ID CARD
+*		FINGERPRINT CARD HOLDER
+*		FINGERPRINT CARD
+*/
 
 
 
 /*
- * DATA CARDS - Used for the teleporter
- */
+* DATA CARDS - Used for the teleporter
+*/
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
@@ -51,8 +51,8 @@
 	data = "Clown Land"
 
 /*
- * ID CARDS
- */
+* ID CARDS
+*/
 
 /obj/item/card/emag_broken
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
@@ -96,7 +96,7 @@
 		)
 
 
-/obj/item/card/emag/afterattack(var/obj/item/O as obj, mob/user as mob)
+/obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
 
 	for(var/type in devices)
 		if(istype(O,type))
@@ -139,6 +139,11 @@
 		return
 	var/mob/living/carbon/human/H = loc
 	blood_type = H.blood_type
+	GLOB.id_card_list += src
+
+/obj/item/card/id/Destroy()
+	GLOB.id_card_list -= src
+	return ..()
 
 /obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")

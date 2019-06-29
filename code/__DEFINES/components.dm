@@ -20,6 +20,13 @@
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
 
+// global signals
+// These are signals which can be listened to by any component on any parent
+// start global signals with "!", this used to be necessary but now it's just a formatting choice
+#define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
+
+//////////////////////////////////////////////////////////////////
+
 // /datum signals
 #define COMSIG_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (/datum/component)
 #define COMSIG_COMPONENT_REMOVING "component_removing"			//before a component is removed from a datum because of RemoveComponent: (/datum/component)
@@ -41,10 +48,20 @@
 #define COMSIG_CLICK_ALT "alt_click"							//from base of atom/AltClick(): (/mob)
 #define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"				//from base of atom/CtrlShiftClick(/mob)
 
+#define COMSIG_DBLCLICK_SHIFT_MIDDLE "dblclick_shift_middle"
+#define COMSIG_DBLCLICK_CTRL_SHIFT "dblclick_ctrl_shift"
+#define COMSIG_DBLCLICK_CTRL_MIDDLE "dblclick_ctrl_middle"
+#define COMSIG_DBLCLICK_MIDDLE "dblclick_middle"
+#define COMSIG_DBLCLICK_SHIFT "dblclick_shift"
+#define COMSIG_DBLCLICK_ALT "dblclick_alt"
+#define COMSIG_DBLCLICK_CTRL "dblclick_ctrl"
+
+
 
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
 	#define COMPONENT_NO_AFTERATTACK 1								//Return this in response if you don't want afterattack to be called
+#define COMSIG_ATOM_CONTENTS_DEL "atom_contents_del"			//from base of atom/handle_atom_del(): (atom/deleted)
 #define COMSIG_ATOM_ENTERED "atom_entered"                      //from base of atom/Entered(): (atom/movable/entering, /atom)
 #define COMSIG_ATOM_EXIT "atom_exit"							//from base of atom/Exit(): (/atom/movable/exiting, /atom/newloc)
 	#define COMPONENT_ATOM_BLOCK_EXIT 1
@@ -58,6 +75,7 @@
 	#define COMPONENT_NO_ATTACK_HAND 1							//works on all attack_hands.
 #define COMSIG_PARENT_EXAMINE "atom_examine"                    //from base of atom/examine(): (/mob)
 #define COMSIG_ATOM_EX_ACT "atom_ex_act"						//from base of atom/ex_act(): (severity, target)
+#define COMSIG_ATOM_SET_LIGHT "atom_set_light"					//from base of atom/set_light(): (l_range, l_power, l_color)
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"					//from base of atom/movable/Moved(): (/atom)
@@ -73,9 +91,13 @@
 	#define COMPONENT_MOVABLE_BLOCK_UNCROSS 1
 #define COMSIG_MOVABLE_UNCROSSED "movable_uncrossed"            //from base of atom/movable/Uncrossed(): (/atom/movable)
 #define COMSIG_MOVABLE_RELEASED_FROM_STOMACH "movable_released_from_stomach" //from base of mob/living/carbon/xenomorph/proc/empty_gut(): (prey, predator)
+#define COMSIG_MOVABLE_CLOSET_DUMPED "movable_closet_dumped"
 
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
+
+// /obj signals
+#define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
 
 // /obj/item signals
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -99,6 +121,12 @@
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
+#define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+
+//mob/living signals
+#define COMSIG_LIVING_DO_RESIST			"living_do_resist"		//from the base of /mob/living/do_resist()
+#define COMSIG_LIVING_DO_MOVE_RESIST	"living_do_move_resist"
+	#define COMSIG_LIVING_RESIST_SUCCESSFUL (1<<0)
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
@@ -108,6 +136,11 @@
 
 
 // xeno stuff
+#define COMSIG_HIVE_BECOME_RULER "hive_become_ruler"
+#define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
+#define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
+#define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
+
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
 #define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"
 	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
@@ -206,6 +239,12 @@
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
 
+#define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"
+#define COMSIG_XENOABILITY_CALL_OF_THE_BURROWED "xenoability_call_of_the_burrowed"
+#define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
+#define COMSIG_XENOABILITY_PSYCHIC_CHOKE "xenoability_psychic_choke"
+#define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
+
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"
 #define COMSIG_XENOABILITY_SECOND_WIND "xenoability_second_wind"
@@ -227,3 +266,10 @@
 
 //Redirection component init flags
 #define REDIRECT_TRANSFER_WITH_TURF 1
+
+#define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"			//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
+
+#define COMSIG_HUMAN_GUN_FIRED "human_gun_fired"				//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
+#define COMSIG_HUMAN_ATTACHMENT_FIRED "human_attachment_fired"
+#define COMSIG_HUMAN_ITEM_ATTACK "human_item_attack"			//from base of obj/item/attack(): (/mob/living/target, obj/item/I, /mob/living/carbon/human/user)
+#define COMSIG_HUMAN_ITEM_THROW "human_item_throw"

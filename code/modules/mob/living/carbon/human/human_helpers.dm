@@ -10,7 +10,7 @@
 		g = "f"
 	return g
 
-/proc/get_limb_icon_name(var/datum/species/S, var/body_type, var/gender, var/limb_name, var/ethnicity)
+/proc/get_limb_icon_name(datum/species/S, body_type, gender, limb_name, ethnicity)
 	if(S.name == "Human")
 		switch(limb_name)
 			if ("torso")
@@ -183,7 +183,7 @@
 				if(wear_suit?.flags_inventory & BLOCKSHARPOBJ)
 					. = FALSE
 	if(!. && error_msg && user)
- 		// Might need re-wording.
+		// Might need re-wording.
 		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>")
 
 
@@ -211,19 +211,6 @@
 	if(get_total_tint() >= TINT_BLIND)
 		return FALSE
 	return TRUE
-
-/mob/living/carbon/human/restrained(var/check_grab = 1)
-	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)
-		return 1
-	if (handcuffed)
-		return 1
-	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
-		return 1
-
-	if (istype(buckled, /obj/structure/bed/nest))
-		return 1
-
-	return 0
 
 
 /mob/living/carbon/human/has_legs()
@@ -256,29 +243,6 @@
 mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
 
-/mob/living/proc/camo_off_process(code = 0, damage = 0)
-	return
-
-/mob/living/carbon/human/camo_off_process(code = 0, damage = 0)
-	if(!code)
-		return
-	if(!istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak) )
-		return
-	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
-	if(!S.camo_active)
-		return
-	switch(code)
-		if(SCOUT_CLOAK_OFF_ATTACK)
-			to_chat(src, "<span class='danger'>Your cloak shimmers from your actions!</span>")
-			S.camo_last_shimmer = world.time //Reduces transparency to 50%
-			alpha = max(alpha,S.shimmer_alpha)
-		if(SCOUT_CLOAK_OFF_DAMAGE)
-			if(damage >= 15)
-				to_chat(src, "<span class='danger'>Your cloak shimmers from the damage!</span>")
-				S.camo_last_shimmer = world.time //Reduces transparency to 50%
-				alpha = max(alpha,S.shimmer_alpha)
-
-
 /mob/living/carbon/human/throw_item(atom/target)
 	. = ..()
-	camo_off_process(SCOUT_CLOAK_OFF_ATTACK)
+	SEND_SIGNAL(src, COMSIG_HUMAN_ITEM_THROW, target, null, src)

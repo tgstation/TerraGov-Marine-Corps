@@ -43,7 +43,7 @@
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/cell/lasgun
-	 )
+	)
 	max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/Initialize()
@@ -64,11 +64,6 @@
 		armor_overlays["lamp"] = null
 	user?.update_inv_wear_suit()
 
-/obj/item/clothing/suit/storage/marine/pickup(mob/user)
-	if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
-		user.SetLuminosity(brightness_on)
-		SetLuminosity(0)
-	return ..()
 
 /obj/item/clothing/suit/storage/marine/dropped(mob/user)
 	if(loc != user)
@@ -77,16 +72,12 @@
 
 /obj/item/clothing/suit/storage/marine/proc/turn_off_light(mob/wearer)
 	if(flags_marine_armor & ARMOR_LAMP_ON)
-		SetLuminosity(0)
+		set_light(0)
 		toggle_armor_light(wearer) //turn the light off
 		return TRUE
 	return FALSE
 
 /obj/item/clothing/suit/storage/marine/Destroy()
-	if(ismob(loc))
-		var/mob/user = loc
-		user.SetLuminosity(-brightness_on)
-	SetLuminosity(0)
 	if(pockets)
 		qdel(pockets)
 	return ..()
@@ -116,15 +107,9 @@
 	//message_admins("TOGGLE ARMOR LIGHT DEBUG 1: flags_marine_armor: [flags_marine_armor] user: [user]")
 	flashlight_cooldown = world.time + 2 SECONDS //2 seconds cooldown every time the light is toggled
 	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
-		if(user)
-			user.SetLuminosity(-brightness_on)
-		else
-			SetLuminosity(0)
+		set_light(0)
 	else //Turn it on.
-		if(user)
-			user.SetLuminosity(brightness_on)
-		else
-			SetLuminosity(brightness_on)
+		set_light(brightness_on)
 	flags_marine_armor ^= ARMOR_LAMP_ON
 	playsound(src,'sound/items/flashlight.ogg', 15, 1)
 	update_icon(user)
@@ -197,7 +182,7 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
@@ -611,7 +596,7 @@
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
@@ -773,25 +758,6 @@
 	else armor_overlays["lamp"] = null
 	if(user) user.update_inv_wear_suit()
 
-/obj/item/clothing/suit/storage/faction/pickup(mob/user)
-	if(flags_faction_armor & ARMOR_LAMP_ON && src.loc != user)
-		user.SetLuminosity(brightness_on)
-		SetLuminosity(0)
-	..()
-
-/obj/item/clothing/suit/storage/faction/dropped(mob/user)
-	if(flags_faction_armor & ARMOR_LAMP_ON && src.loc != user)
-		user.SetLuminosity(-brightness_on)
-		SetLuminosity(brightness_on)
-		toggle_armor_light() //turn the light off
-	..()
-
-/obj/item/clothing/suit/storage/faction/Destroy()
-	if(ismob(src.loc))
-		src.loc.SetLuminosity(-brightness_on)
-	else
-		SetLuminosity(0)
-	. = ..()
 
 /obj/item/clothing/suit/storage/faction/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -816,15 +782,13 @@
 /obj/item/clothing/suit/storage/faction/proc/toggle_armor_light(mob/user)
 	flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
 	if(flags_faction_armor & ARMOR_LAMP_ON) //Turn it off.
-		if(user) user.SetLuminosity(-brightness_on)
-		else SetLuminosity(0)
+		set_light(0)
 	else //Turn it on.
-		if(user) user.SetLuminosity(brightness_on)
-		else SetLuminosity(brightness_on)
+		set_light(brightness_on)
 
 	flags_faction_armor ^= ARMOR_LAMP_ON
 
-	playsound(src,'sound/machines/click.ogg', 15, 1)
+	playsound(src,'sound/items/flashlight.ogg', 15, 1)
 	update_icon(user)
 
 	update_action_button_icons()
@@ -922,7 +886,7 @@
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
@@ -941,7 +905,7 @@
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,
@@ -960,7 +924,7 @@
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine/,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/explosive/grenade,

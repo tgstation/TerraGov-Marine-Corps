@@ -31,7 +31,7 @@
 		return
 
 	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
-						 "<span class='notice'>You label [A] as \"[label]\".</span>")
+						"<span class='notice'>You label [A] as \"[label]\".</span>")
 	A.name = "[initial(A.name)] ([label])"
 	labels_left--
 
@@ -66,8 +66,8 @@
 
 
 /*
- * Pens
- */
+* Pens
+*/
 /obj/item/tool/pen
 	desc = "It's a normal black ink pen."
 	name = "pen"
@@ -111,8 +111,8 @@
 
 
 /*
- * Sleepy Pens
- */
+* Sleepy Pens
+*/
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -135,9 +135,9 @@
 
 
 /*
- * Parapens
- */
- /obj/item/tool/pen/paralysis
+* Parapens
+*/
+/obj/item/tool/pen/paralysis
 	flags_equip_slot = ITEM_SLOT_BELT
 	origin_tech = "materials=2;syndicate=5"
 
@@ -153,7 +153,7 @@
 
 
 
-/obj/item/tool/pen/paralysis/New()
+/obj/item/tool/pen/paralysis/Initialize()
 	. = ..()
 	create_reagents(50, OPENCONTAINER, list("zombiepowder" = 10, "cryptobiolin" = 15))
 

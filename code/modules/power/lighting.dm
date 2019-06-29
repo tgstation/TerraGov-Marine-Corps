@@ -143,6 +143,8 @@
 	var/on = FALSE
 	var/on_gs = FALSE
 	var/brightness = 8			// luminosity when on, also used in power calculation
+	var/bulb_power = 1			// basically the alpha of the emitted light source
+	var/bulb_colour = LIGHT_COLOR_WHITE
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item
@@ -179,22 +181,20 @@
 	..()
 
 // create a new lighting fixture
-/obj/machinery/light/New()
-	..()
+/obj/machinery/light/Initialize(mapload, ...)
+	. = ..()
 
-	spawn(2)
-		switch(fitting)
-			if("tube")
-				brightness = 8
-				if(prob(2))
-					broken(1)
-			if("bulb")
-				brightness = 4
-				if(prob(5))
-					broken(1)
+	switch(fitting)
+		if("tube")
+			brightness = 8
+			if(prob(2))
+				broken(TRUE)
+		if("bulb")
+			brightness = 4
+			if(prob(5))
+				broken(TRUE)
 
-		spawn(1)
-			update(0)
+	update(FALSE)
 
 	switch(dir)
 		if(NORTH)
@@ -204,13 +204,19 @@
 		if(WEST)
 			pixel_x = -10
 
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/light/LateInitialize()
+	var/area/A = get_area(src)
+	seton(A.lightswitch && A.power_light)
+	
+
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE
-//		A.update_lights()
-	SetLuminosity(0)
-	. = ..()
+	return ..()
 
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)
@@ -234,36 +240,41 @@
 	return
 
 // update the icon_state and luminosity of the light depending on its state
-/obj/machinery/light/proc/update(var/trigger = 1)
-
-	update_icon()
+/obj/machinery/light/proc/update(trigger = TRUE)
+	switch(status)
+		if(LIGHT_BROKEN, LIGHT_BURNED, LIGHT_EMPTY)
+			on = FALSE
 	if(on)
-		if(luminosity != brightness)
+		var/BR = brightness
+		var/PO = bulb_power
+		var/CO = bulb_colour
+		if(color)
+			CO = color
+		var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
+		if(!matching)
 			switchcount++
 			if(rigged)
 				if(status == LIGHT_OK && trigger)
 					explode()
-			else if( prob( min(60, switchcount*switchcount*0.01) ) )
-				if(status == LIGHT_OK && trigger)
-					status = LIGHT_BURNED
-					icon_state = "[base_state]-burned"
-					on = FALSE
-					SetLuminosity(0)
+			else if(prob(min(60, (switchcount ^ 2) * 0.01)))
+				if(trigger)
+					broken()
 			else
-				use_power = 2
-				SetLuminosity(brightness)
+				use_power = ACTIVE_POWER_USE
+				set_light(BR, PO, CO)
 	else
-		use_power = 1
-		SetLuminosity(0)
+		use_power = IDLE_POWER_USE
+		set_light(0)
 
 	active_power_usage = (luminosity * 10)
 	if(on != on_gs)
 		on_gs = on
+	update_icon()
 
 
 // attempt to set the light's on/off status
 // will not switch on if broken/burned/empty
-/obj/machinery/light/proc/seton(var/s)
+/obj/machinery/light/proc/seton(s)
 	on = (s && status == LIGHT_OK)
 	update()
 
@@ -310,7 +321,6 @@
 		switchcount = L.switchcount
 		rigged = L.rigged
 		brightness = L.brightness
-		l_color = L.color
 		on = has_power()
 		update()
 
@@ -362,10 +372,10 @@
 // returns whether this light has power
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
-	var/area/A = src.loc.loc
-	return A.master.lightswitch && A.master.power_light
+	var/area/A = get_area(src)
+	return A.lightswitch && A.power_light
 
-/obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
+/obj/machinery/light/proc/flicker(amount = rand(10, 20))
 	if(flickering)
 		return
 	flickering = TRUE
@@ -454,7 +464,6 @@
 	L.status = status
 	L.rigged = rigged
 	L.brightness = src.brightness
-	L.color = l_color
 
 	// light item inherits the switchcount, then zero it
 	L.switchcount = switchcount
@@ -469,7 +478,7 @@
 
 // break the light and make sparks if was on
 
-/obj/machinery/light/proc/broken(var/skip_sound_and_sparks = 0)
+/obj/machinery/light/proc/broken(skip_sound_and_sparks = 0)
 	if(status == LIGHT_EMPTY)
 		return
 
@@ -519,11 +528,8 @@
 
 // called when area power state changes
 /obj/machinery/light/power_change()
-	spawn(10)
-		if(loc)
-			var/area/A = src.loc.loc
-			A = A.master
-			seton(A.lightswitch && A.power_light)
+	var/area/A = get_area(src)
+	seton(A.lightswitch && A.power_light)
 
 // called when on fire
 
@@ -631,7 +637,7 @@
 
 		if(S.reagents.has_reagent("phoron", 5))
 
-			log_admin("[key_name(user)] injected a light with phoron, rigging it to explode.")
+			log_game("[key_name(user)] injected a light with phoron, rigging it to explode.")
 			message_admins("[ADMIN_TPMONTY(user)] injected a light with phoron, rigging it to explode.")
 
 			rigged = TRUE
@@ -681,46 +687,46 @@
 
 /obj/machinery/landinglight/proc/turn_off()
 	icon_state = "landingstripe"
-	SetLuminosity(0)
+	set_light(0)
 
 /obj/machinery/landinglight/ds1
 
 
-/obj/machinery/landinglight/ds1/New()
+/obj/machinery/landinglight/ds1/Initialize(mapload, ...)
 	. = ..()
 	id = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/machinery/landinglight/ds2
 
 
-/obj/machinery/landinglight/ds2/New()
+/obj/machinery/landinglight/ds2/Initialize(mapload, ...)
 	. = ..()
 	id = "[CONFIG_GET(string/ship_name)] Dropship 2" // ID for landing zone
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds1/delayone/turn_on()
 	icon_state = "landingstripe1"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds1/delaytwo/turn_on()
 	icon_state = "landingstripe2"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds1/delaythree/turn_on()
 	icon_state = "landingstripe3"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds2/delayone/turn_on()
 	icon_state = "landingstripe1"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds2/delaytwo/turn_on()
 	icon_state = "landingstripe2"
-	SetLuminosity(2)
+	set_light(2)
 
 /obj/machinery/landinglight/ds2/delaythree/turn_on()
 	icon_state = "landingstripe3"
-	SetLuminosity(2)
+	set_light(2)

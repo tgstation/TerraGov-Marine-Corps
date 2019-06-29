@@ -4,15 +4,18 @@
 	icon_state = "secure_locked_basic"
 	icon_opened = "secure_open_basic"
 	icon_closed = "secure_locked_basic"
+	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ|CLOSET_IS_SECURE
 	var/icon_locked = "secure_locked_basic"
 	var/icon_unlocked = "secure_unlocked_basic"
 	var/sparks = "securecratesparks"
 	var/emag = "securecrateemag"
-	var/broken = 0
-	var/locked = 1
+	locked = TRUE
+	max_integrity = 500
+	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 
-/obj/structure/closet/crate/secure/New()
-	..()
+
+/obj/structure/closet/crate/secure/Initialize(mapload, ...)
+	. = ..()
 	update_icon()
 
 
@@ -29,23 +32,6 @@
 /obj/structure/closet/crate/secure/can_open()
 	return !locked
 
-/obj/structure/closet/crate/secure/proc/togglelock(mob/user)
-	if(!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
-	if(opened)
-		to_chat(user, "<span class='notice'>Close the crate first.</span>")
-		return
-	if(broken)
-		to_chat(user, "<span class='warning'>The crate appears to be broken.</span>")
-		return
-	if(allowed(user))
-		locked = !locked
-		user.visible_message("<span class='notice'>\the [src] has been [locked ? "" : "un"]locked by [user].</span>", \
-							"<span class='notice'>You [locked ? "" : "un"]lock \the [src].</span>", null, 3)
-		update_icon()
-	else
-		to_chat(user, "<span class='notice'>Access Denied</span>")
 
 /obj/structure/closet/crate/secure/verb/verb_togglelock()
 	set src in oview(1) // One square distance
@@ -56,22 +42,6 @@
 		return
 	togglelock(usr)
 
-
-/obj/structure/closet/crate/secure/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(locked && istype(I, /obj/item/card/emag))
-		overlays.Cut()
-		overlays += emag
-		flick(src, sparks)
-		playsound(loc, "sparks", 25, 1)
-		locked = FALSE
-		broken = TRUE
-		update_icon()
-		to_chat(user, "<span class='notice'>You unlock \the [src].</span>")
-
-	else if(!opened)
-		togglelock(user)
 
 /obj/structure/closet/crate/secure/emp_act(severity)
 	for(var/obj/O in src)

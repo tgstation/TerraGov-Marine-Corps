@@ -1,6 +1,6 @@
 /*
- * Backpack
- */
+* Backpack
+*/
 
 /obj/item/storage/backpack
 	name = "backpack"
@@ -30,9 +30,8 @@
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	
-	if(use_sound)
+	if (use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
-
 
 /obj/item/storage/backpack/mob_can_equip(M as mob, slot)
 	if (!..())
@@ -76,8 +75,8 @@
 	..()
 
 /*
- * Backpack Types
- */
+* Backpack Types
+*/
 
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
@@ -108,8 +107,6 @@
 
 	else
 		return ..()
-
-
 
 /obj/item/storage/backpack/santabag
 	name = "Santa's Gift Bag"
@@ -177,8 +174,8 @@
 	icon_state = "chempack"
 
 /*
- * Satchel Types
- */
+* Satchel Types
+*/
 
 /obj/item/storage/backpack/satchel
 	name = "leather satchel"
@@ -312,7 +309,6 @@
 	if(mention_charge)
 		to_chat(user, "<span class='notice'>[warning]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 	update_icon()
-	return ..()
 
 /obj/item/storage/backpack/marine/corpsman/examine(mob/user)
 	. = ..()
@@ -421,7 +417,6 @@
 	var/shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA
 	var/stealth_delay = null
 	actions_types = list(/datum/action/item_action/toggle)
-	var/process_count = 0
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/scout
 
@@ -432,7 +427,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
 	camo_off(user)
 	wearer = null
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/verb/use_camouflage()
@@ -482,58 +477,83 @@
 	else
 		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(M)
+		var/datum/atom_hud/simple/basic = GLOB.huds[DATA_HUD_BASIC]
+		basic.remove_from_hud(M)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(M)
 
-	spawn(1)
-		anim(M.loc, M,'icons/mob/mob.dmi',,"cloak",,M.dir)
+	addtimer(CALLBACK(src, .proc/on_cloak), 1)
+	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
+	RegisterSignal(M, list(
+		COMSIG_HUMAN_GUN_FIRED,
+		COMSIG_HUMAN_ATTACHMENT_FIRED,
+		COMSIG_HUMAN_ITEM_THROW,
+		COMSIG_HUMAN_ITEM_ATTACK), .proc/action_taken)
 
-	START_PROCESSING(SSfastprocess, src)
+	START_PROCESSING(SSprocessing, src)
 	wearer.cloaking = TRUE
 
 	return TRUE
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(var/mob/user)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_cloak()
+	if(wearer)
+		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"cloak",,wearer.dir)
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_decloak()
+	if(wearer)
+		anim(wearer.loc,wearer,'icons/mob/mob.dmi',,"uncloak",,wearer.dir)
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(mob/user)
 	if (!user)
 		camo_active = FALSE
 		wearer = null
-		STOP_PROCESSING(SSfastprocess, src)
-		return 0
+		STOP_PROCESSING(SSprocessing, src)
+		return FALSE
 
 	if(!camo_active)
 		return FALSE
 
 	camo_active = FALSE
 
-	user.visible_message("[user.name] shimmers into existence!", "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
+	user.visible_message("<span class='warning'>[user.name] shimmers into existence!</span>", "<span class='danger'>Your cloak's camouflage has deactivated!</span>")
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
 	var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	SA.add_to_hud(user)
+	var/datum/atom_hud/simple/basic = GLOB.huds[DATA_HUD_BASIC]
+	basic.add_to_hud(user)
 	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 	XI.add_to_hud(user)
 
-	spawn(1)
-		anim(user.loc, user, 'icons/mob/mob.dmi', , "uncloak", , user.dir)
+	addtimer(CALLBACK(src, .proc/on_decloak), 1)
 
 	var/cooldown = round( (initial(camo_energy) - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
 	if(cooldown)
 		camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
 		to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		process_camo_cooldown(user, cooldown)
-	STOP_PROCESSING(SSfastprocess, src)
+
+	UnregisterSignal(user, list(
+		COMSIG_HUMAN_DAMAGE_TAKEN,
+		COMSIG_HUMAN_GUN_FIRED,
+		COMSIG_HUMAN_ATTACHMENT_FIRED,
+		COMSIG_HUMAN_ITEM_THROW,
+		COMSIG_HUMAN_ITEM_ATTACK))
+	STOP_PROCESSING(SSprocessing, src)
 	wearer.cloaking = FALSE
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
 	if(!camo_cooldown_timer)
 		return
-	spawn(cooldown)
-		camo_cooldown_timer = null
-		camo_energy = initial(camo_energy)
-		playsound(loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
-		if(wearer)
-			to_chat(wearer, "<span class='danger'>Your thermal cloak has recalibrated and is ready to cloak again.</span>")
+	addtimer(CALLBACK(src, .proc/cooldown_finished), cooldown)
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/cooldown_finished()
+	camo_cooldown_timer = null
+	camo_energy = initial(camo_energy)
+	playsound(loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
+	if(wearer)
+		to_chat(wearer, "<span class='danger'>Your thermal cloak has recalibrated and is ready to cloak again.</span>")
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
 	. = ..()
@@ -569,6 +589,19 @@
 		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
+	if(damage >= 15)
+		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
+		apply_shimmer()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken(datum/source, atom/target, obj/item/I, mob/living/wearer)
+	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
+	apply_shimmer()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/apply_shimmer()
+	camo_last_shimmer = world.time //Reduces transparency to 50%
+	wearer.alpha = max(wearer.alpha,shimmer_alpha)
+
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
 	if(!wearer)
 		camo_off()
@@ -576,11 +609,6 @@
 	else if(wearer.stat == DEAD)
 		camo_off(wearer)
 		return
-
-	if(process_count++ < 4)
-		return
-
-	process_count = 0
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
 	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions; no energy regeneration

@@ -162,11 +162,6 @@
 	target 			= null
 	last_moved_mob 	= null
 	muzzle 			= null
-	if(flags_gun_features & GUN_FLASHLIGHT_ON)//Handle flashlight.
-		flags_gun_features &= ~GUN_FLASHLIGHT_ON
-		if(ismob(loc))
-			loc.SetLuminosity(-(rail.light_mod) )
-		SetLuminosity(0)
 	rail 			= null
 	under 			= null
 	stock 			= null
@@ -227,7 +222,7 @@
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
 
-/obj/item/weapon/gun/wield(var/mob/user)
+/obj/item/weapon/gun/wield(mob/user)
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
@@ -287,7 +282,7 @@
 	do_wield(user, wdelay)
 	return TRUE
 
-/obj/item/weapon/gun/unwield(var/mob/user)
+/obj/item/weapon/gun/unwield(mob/user)
 
 	if((flags_item|TWOHANDED|WIELDED) != flags_item)
 		return //Have to be actually a twohander and wielded.
@@ -318,10 +313,9 @@
 			//						   	        \\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/proc/replace_ammo(mob/user = null, obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
-		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
-		log_runtime("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
+		stack_trace("null ammo while reloading. User: [user]")
 		ammo = GLOB.ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else
 		ammo = GLOB.ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
@@ -527,7 +521,7 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
- 	//If we have a round chambered and no active attachable, we're good to go.
+	//If we have a round chambered and no active attachable, we're good to go.
 	if(in_chamber && !active_attachable)
 		return in_chamber //Already set!
 
@@ -553,8 +547,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/create_bullet(datum/ammo/chambered)
 	if(!chambered)
-		to_chat(usr, "Something has gone horribly wrong. Ahelp the following: ERROR CODE I2: null ammo while create_bullet()")
-		log_runtime("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
+		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
 	var/obj/item/projectile/P = new /obj/item/projectile(src)
@@ -583,14 +576,14 @@ and you're good to go.
 
 	return in_chamber //Returns the projectile if it's actually successful.
 
-/obj/item/weapon/gun/proc/delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
+/obj/item/weapon/gun/proc/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
 		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
 			active_attachable.current_rounds += ammo_per_shot //Refund the bullet.
 		return TRUE
 
-/obj/item/weapon/gun/proc/clear_jam(var/obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
+/obj/item/weapon/gun/proc/clear_jam(obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
 	flags_gun_features &= ~GUN_BURST_FIRING // Also want to turn off bursting, in case that was on. It probably was.
 	delete_bullet(projectile_to_fire, 1) //We're going to clear up anything inside if we need to.
 	//If it's a regular bullet, we're just going to keep it chambered.
@@ -629,11 +622,17 @@ and you're good to go.
 				to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
 				to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
 				active_attachable.activate_attachment(src, null, TRUE)
-			else
-				active_attachable.fire_attachment(target,src,user) //Fire it.
-				user.camo_off_process(SCOUT_CLOAK_OFF_ATTACK) //Cause cloak to shimmer.
-				last_fired = world.time
-			return
+				return FALSE
+			if(!CHECK_BITFIELD(flags_item, WIELDED))
+				to_chat(user, "<span class='warning'>You need a more secure grip to fire [active_attachable]!")
+				return FALSE
+			if(!wielded_stable())
+				to_chat(user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
+				return FALSE
+			active_attachable.fire_attachment(target,src,user) //Fire it.
+			SEND_SIGNAL(user, COMSIG_HUMAN_ATTACHMENT_FIRED, target, active_attachable, user)
+			last_fired = world.time
+			return TRUE
 			//If there's more to the attachment, it will be processed farther down, through in_chamber and regular bullet act.
 
 	/*
@@ -709,8 +708,7 @@ and you're good to go.
 
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
-			to_chat(user, "Your gun is malfunctioning. Ahelp the following: ERROR CODE I1: projectile malfunctioned while firing.")
-			log_runtime("ERROR CODE I1: projectile malfunctioned while firing. User: <b>[user]</b>")
+			stack_trace("projectile malfunctioned while firing. User: [user]")
 			flags_gun_features &= ~GUN_BURST_FIRING
 			return
 
@@ -741,7 +739,7 @@ and you're good to go.
 			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
 			sleep(burst_delay)
 
-		user.camo_off_process(SCOUT_CLOAK_OFF_ATTACK) //Cause cloak to shimmer.
+		SEND_SIGNAL(user, COMSIG_HUMAN_GUN_FIRED, target, src, user)
 
 	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
@@ -1111,16 +1109,17 @@ and you're good to go.
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE
 
-/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, var/x_offset = 0, var/y_offset = 5)
+/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, x_offset = 0, y_offset = 5)
 	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || isnull(angle))
 		return //We have to check for null angle here, as 0 can also be an angle.
 	if(!istype(user) || !istype(user.loc,/turf))
 		return
 
-	if(user.luminosity <= muzzle_flash_lum)
-		user.SetLuminosity(muzzle_flash_lum)
+	var/prev_light = light_range
+	if(light_range <= muzzle_flash_lum)
+		set_light(muzzle_flash_lum)
 		spawn(10)
-			user.SetLuminosity(-muzzle_flash_lum)
+			set_light(prev_light)
 
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1

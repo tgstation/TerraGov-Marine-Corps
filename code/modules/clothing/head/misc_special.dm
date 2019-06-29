@@ -1,16 +1,16 @@
 /*
- * Contents:
- *		Welding mask
- *		Cakehat
- *		Ushanka
- *		Pumpkin head
- *		Kitty ears
- *
- */
+* Contents:
+*		Welding mask
+*		Cakehat
+*		Ushanka
+*		Pumpkin head
+*		Kitty ears
+*
+*/
 
 /*
- * Welding mask
- */
+* Welding mask
+*/
 /obj/item/clothing/head/welding
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
@@ -79,8 +79,8 @@
 	toggle()
 
 /*
- * Cakehat
- */
+* Cakehat
+*/
 /obj/item/clothing/head/cakehat
 	name = "cake-hat"
 	desc = "It's tasty looking!"
@@ -113,8 +113,8 @@
 
 
 /*
- * Pumpkin head
- */
+* Pumpkin head
+*/
 /obj/item/clothing/head/pumpkinhead
 	name = "carved pumpkin"
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
@@ -123,44 +123,13 @@
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|EYES
-	var/brightness_on = 2 //luminosity when on
-	var/on = 0
 	w_class = 3
 	anti_hug = 1
 
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			to_chat(user, "You cannot turn the light on while in [user.loc]")
-			return
-		on = !on
-		icon_state = "hardhat[on]_pumpkin"
 
-		if(on)	user.SetLuminosity(brightness_on)
-		else	user.SetLuminosity(-brightness_on)
-
-	pickup(mob/user)
-		..()
-		if(on)
-			user.SetLuminosity(brightness_on)
-//			user.UpdateLuminosity()
-			SetLuminosity(0)
-
-	dropped(mob/user)
-		..()
-		if(on)
-			user.SetLuminosity(-brightness_on)
-//			user.UpdateLuminosity()
-			SetLuminosity(brightness_on)
-
-	Destroy()
-		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
-		else
-			SetLuminosity(0)
-		. = ..()
 /*
- * Kitty ears
- */
+* Kitty ears
+*/
 /obj/item/clothing/head/kitty
 	name = "kitty ears"
 	desc = "A pair of kitty ears. Meow!"

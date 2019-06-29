@@ -4,7 +4,7 @@
 	TODO: Proper documentation
 	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][ethnicity]
 */
-var/global/list/human_icon_cache = list()
+GLOBAL_LIST_EMPTY(human_icon_cache)
 
 	///////////////////////
 	//UPDATE_ICONS SYSTEM//
@@ -86,9 +86,9 @@ There are several things that need to be remembered:
 		underlays -= underlays_standing[cache_index]
 		underlays_standing[cache_index] = null
 
-var/global/list/damage_icon_parts = list()
+GLOBAL_LIST_EMPTY(damage_icon_parts)
 /mob/living/carbon/human/proc/get_damage_icon_part(damage_state, body_part)
-	if(damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] == null)
+	if(GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] == null)
 		var/brutestate = copytext(damage_state, 1, 2)
 		var/burnstate = copytext(damage_state, 2)
 		var/icon/DI
@@ -99,10 +99,10 @@ var/global/list/damage_icon_parts = list()
 			DI = new /icon('icons/mob/dam_human.dmi', "human_[brutestate]")
 		DI.Blend(new /icon('icons/mob/dam_human.dmi', "burn_[burnstate]"), ICON_OVERLAY)//adding burns
 		DI.Blend(new /icon('icons/mob/dam_mask.dmi', body_part), ICON_MULTIPLY)		// mask with this organ's pixels
-		damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
+		GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
 		return DI
 	else
-		return damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
+		return GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
 
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
@@ -142,7 +142,7 @@ var/global/list/damage_icon_parts = list()
 	apply_overlay(DAMAGE_LAYER)
 
 //BASE MOB SPRITE
-/mob/living/carbon/human/proc/update_body(var/update_icons = 1, var/force_cache_update = 0)
+/mob/living/carbon/human/proc/update_body(update_icons = 1, force_cache_update = 0)
 	var/necrosis_color_mod = rgb(10,50,0)
 
 	var/g = get_gender_name(gender)
@@ -176,11 +176,11 @@ var/global/list/damage_icon_parts = list()
 	icon_key = "[icon_key][0][0][0][0][ethnicity]"
 
 	var/icon/base_icon
-	if(!force_cache_update && human_icon_cache[icon_key])
+	if(!force_cache_update && GLOB.human_icon_cache[icon_key])
 		//Icon is cached, use existing icon.
-		base_icon = human_icon_cache[icon_key]
+		base_icon = GLOB.human_icon_cache[icon_key]
 
-		//log_debug("Retrieved cached mob icon ([icon_key] \icon[human_icon_cache[icon_key]]) for [src].")
+		//log_debug("Retrieved cached mob icon ([icon_key] \icon[GLOB.human_icon_cache[icon_key]]) for [src].")
 
 	else
 
@@ -247,9 +247,9 @@ var/global/list/damage_icon_parts = list()
 
 				base_icon.Blend(temp, ICON_OVERLAY)
 
-		human_icon_cache[icon_key] = base_icon
+		GLOB.human_icon_cache[icon_key] = base_icon
 
-		//log_debug("Generated new cached mob icon ([icon_key] \icon[human_icon_cache[icon_key]]) for [src]. [human_icon_cache.len] cached mob icons.")
+		//log_debug("Generated new cached mob icon ([icon_key] \icon[GLOB.human_icon_cache[icon_key]]) for [src]. [GLOB.human_icon_cache.len] cached mob icons.")
 
 	//END CACHED ICON GENERATION.
 

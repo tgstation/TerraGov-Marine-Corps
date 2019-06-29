@@ -5,7 +5,7 @@
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
-/mob/living/proc/adjustBruteLoss(var/amount)
+/mob/living/proc/adjustBruteLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	bruteloss = CLAMP(bruteloss+amount,0,maxHealth*2)
@@ -13,12 +13,12 @@
 /mob/living/proc/getOxyLoss()
 	return oxyloss
 
-/mob/living/proc/adjustOxyLoss(var/amount)
+/mob/living/proc/adjustOxyLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	oxyloss = CLAMP(oxyloss+amount,0,maxHealth*2)
 
-/mob/living/proc/setOxyLoss(var/amount)
+/mob/living/proc/setOxyLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	oxyloss = amount
@@ -26,12 +26,12 @@
 /mob/living/proc/getToxLoss()
 	return toxloss
 
-/mob/living/proc/adjustToxLoss(var/amount)
+/mob/living/proc/adjustToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	toxloss = CLAMP(toxloss+amount,0,maxHealth*2)
 
-/mob/living/proc/setToxLoss(var/amount)
+/mob/living/proc/setToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	toxloss = amount
@@ -39,7 +39,7 @@
 /mob/living/proc/getFireLoss()
 	return fireloss
 
-/mob/living/proc/adjustFireLoss(var/amount)
+/mob/living/proc/adjustFireLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	fireloss = CLAMP(fireloss+amount,0,maxHealth*2)
@@ -47,12 +47,12 @@
 /mob/living/proc/getCloneLoss()
 	return cloneloss
 
-/mob/living/proc/adjustCloneLoss(var/amount)
+/mob/living/proc/adjustCloneLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	cloneloss = CLAMP(cloneloss+amount,0,maxHealth*2)
 
-/mob/living/proc/setCloneLoss(var/amount)
+/mob/living/proc/setCloneLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	cloneloss = amount
@@ -60,12 +60,12 @@
 /mob/living/proc/getBrainLoss()
 	return brainloss
 
-/mob/living/proc/adjustBrainLoss(var/amount)
+/mob/living/proc/adjustBrainLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	brainloss = CLAMP(brainloss+amount,0,maxHealth*2)
 
-/mob/living/proc/setBrainLoss(var/amount)
+/mob/living/proc/setBrainLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	brainloss = amount
@@ -73,7 +73,7 @@
 /mob/living/proc/getMaxHealth()
 	return maxHealth
 
-/mob/living/proc/setMaxHealth(var/newMaxHealth)
+/mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 
 mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
@@ -94,13 +94,13 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 
 // heal ONE limb, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_limb_damage(var/brute, var/burn)
+/mob/living/proc/heal_limb_damage(brute, burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.updatehealth()
 
 // damage ONE limb, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_limb_damage(var/brute, var/burn)
+/mob/living/proc/take_limb_damage(brute, burn)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	adjustBruteLoss(brute)
@@ -108,13 +108,13 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	src.updatehealth()
 
 // heal MANY limbs, in random order
-/mob/living/proc/heal_overall_damage(var/brute, var/burn)
+/mob/living/proc/heal_overall_damage(brute, burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.updatehealth()
 
 // damage MANY limbs, in random order
-/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null, var/blocked = 0)
+/mob/living/proc/take_overall_damage(brute, burn, used_weapon = null, blocked = 0)
 	if(status_flags & GODMODE)
 		return 0//godmode
 
@@ -178,6 +178,15 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 	// fix all of our organs
 	restore_all_organs()
+
+	//remove larva
+	var/obj/item/alien_embryo/A = locate() in src
+	var/mob/living/carbon/xenomorph/larva/L = locate() in src //the larva was fully grown, ready to burst.
+	if(A)
+		qdel(A)
+	if(L)
+		qdel(L)
+	DISABLE_BITFIELD(status_flags, XENO_HOST)
 
 	// remove the character from the list of the dead
 	if(stat == DEAD)

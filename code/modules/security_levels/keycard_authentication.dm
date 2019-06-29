@@ -47,8 +47,7 @@
 			event_triggered_by = user
 			broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
-/obj/machinery/keycard_auth/power_change()
-	. = ..()
+/obj/machinery/keycard_auth/update_icon()
 	if(machine_stat &NOPOWER)
 		icon_state = "auth_off"
 
@@ -135,7 +134,7 @@
 		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered and [ADMIN_TPMONTY(event_confirmed_by)] confirmed event [event].")
 	reset()
 
-/obj/machinery/keycard_auth/proc/receive_request(var/obj/machinery/keycard_auth/source)
+/obj/machinery/keycard_auth/proc/receive_request(obj/machinery/keycard_auth/source)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	event_source = source
@@ -153,24 +152,13 @@
 /obj/machinery/keycard_auth/proc/trigger_event()
 	switch(event)
 		if("Red alert")
-			set_security_level(SEC_LEVEL_RED)
+			GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED)
 		if("Grant Emergency Maintenance Access")
-			make_maint_all_access()
+			GLOB.marine_main_ship.make_maint_all_access()
 		if("Revoke Emergency Maintenance Access")
-			revoke_maint_all_access()
-
-
-var/global/maint_all_access = 0
-
-/proc/make_maint_all_access()
-	maint_all_access = 1
-	priority_announce("The maintenance access requirement has been revoked on all airlocks.", "Attention!", sound = 'sound/misc/notice1.ogg')
-
-/proc/revoke_maint_all_access()
-	maint_all_access = 0
-	priority_announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!", sound = 'sound/misc/notice2.ogg')
+			GLOB.marine_main_ship.revoke_maint_all_access()
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(maint_all_access && src.check_access_list(list(ACCESS_MARINE_ENGINEERING)))
+	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && src.check_access_list(list(ACCESS_MARINE_ENGINEERING)))
 		return 1
 	return ..(M)

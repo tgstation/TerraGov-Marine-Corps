@@ -24,7 +24,7 @@
 	pickup(mob/user)
 		unwield(user)
 
-/obj/item/proc/wield(var/mob/user)
+/obj/item/proc/wield(mob/user)
 	if( !(flags_item & TWOHANDED) || flags_item & WIELDED ) return
 
 	if(user.get_inactive_held_item())
@@ -53,7 +53,7 @@
 	remove_offhand(user)
 	return 1
 
-/obj/item/proc/place_offhand(var/mob/user,item_name)
+/obj/item/proc/place_offhand(mob/user,item_name)
 	to_chat(user, "<span class='notice'>You grab [item_name] with both hands.</span>")
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
@@ -63,7 +63,7 @@
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
 
-/obj/item/proc/remove_offhand(var/mob/user)
+/obj/item/proc/remove_offhand(mob/user)
 	to_chat(user, "<span class='notice'>You are now carrying [name] with one hand.</span>")
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand)) offhand.unwield(user)
@@ -115,8 +115,8 @@
 		if(main_hand) main_hand.unwield(user)
 
 /*
- * Fireaxe
- */
+* Fireaxe
+*/
 /obj/item/weapon/twohanded/fireaxe
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
@@ -149,8 +149,8 @@
 		qdel(A)
 
 /*
- * Double-Bladed Energy Swords - Cheridan
- */
+* Double-Bladed Energy Swords - Cheridan
+*/
 /obj/item/weapon/twohanded/dualsaber
 	name = "double-bladed energy sword"
 	desc = "Handle with care."

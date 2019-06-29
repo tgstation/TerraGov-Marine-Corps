@@ -15,12 +15,8 @@ SUBSYSTEM_DEF(atoms)
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
-	populate_spawn_points()
-
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
-
-	lighting_controller.Initialize()
 
 	return ..()
 
@@ -53,10 +49,10 @@ SUBSYSTEM_DEF(atoms)
 
 	initialized = INITIALIZATION_INNEW_REGULAR
 
-	if(late_loaders.len)
+	if(length(late_loaders))
 		for(var/I in late_loaders)
 			var/atom/A = I
-			A.LateInitialize()
+			A.LateInitialize(TRUE)
 		late_loaders.Cut()
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
@@ -80,7 +76,7 @@ SUBSYSTEM_DEF(atoms)
 				if(arguments[1])	//mapload
 					late_loaders += A
 				else
-					A.LateInitialize()
+					A.LateInitialize(FALSE)
 			if(INITIALIZE_HINT_QDEL)
 				qdel(A)
 				qdeleted = TRUE

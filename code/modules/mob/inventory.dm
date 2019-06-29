@@ -224,7 +224,7 @@
 				equipped = 1
 		if(SLOT_HANDCUFFED)
 			if(!src.handcuffed)
-				src.handcuffed = W
+				update_handcuffed(W)
 				equipped = 1
 		if(SLOT_L_HAND)
 			if(!src.l_hand)

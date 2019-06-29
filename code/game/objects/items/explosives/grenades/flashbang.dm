@@ -32,7 +32,7 @@
 	qdel(src)
 	return
 
-/obj/item/explosive/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
+/obj/item/explosive/grenade/flashbang/proc/bang(turf/T , mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
 	if (locate(/obj/item/cloaking_device, M))			// Called during the loop that bangs people in lockers/containers and when banging
 		for(var/obj/item/cloaking_device/S in M)			// people in normal view.  Could theroetically be called during other explosions.
 			S.active = 0										// -- Polymorph

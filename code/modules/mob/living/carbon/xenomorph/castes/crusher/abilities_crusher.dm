@@ -16,11 +16,11 @@
 	succeed_activate()
 	add_cooldown()
 
-	round_statistics.crusher_stomps++
+	GLOB.round_statistics.crusher_stomps++
 
 	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
 	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
-	"<span class='xenodanger'>You smash into the ground!</span>")
+	"<span class='xenodanger'>We smash into the ground!</span>")
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(2,X.loc))
@@ -30,7 +30,7 @@
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
 		damage += FRENZY_DAMAGE_BONUS(X)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
-			round_statistics.crusher_stomp_victims++
+			GLOB.round_statistics.crusher_stomp_victims++
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -61,7 +61,7 @@
 /datum/action/xeno_action/ready_charge/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	X.is_charging = !X.is_charging
-	to_chat(X, "<span class='xenonotice'>You will [X.is_charging ? "now" : "no longer"] charge when moving.</span>")
+	to_chat(X, "<span class='xenonotice'>We will [X.is_charging ? "now" : "no longer"] charge when moving.</span>")
 
 // ***************************************
 // *********** Cresttoss
@@ -76,7 +76,7 @@
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
-	to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")
+	to_chat(src, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
 	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
@@ -119,7 +119,7 @@
 					break
 				T = temp
 		else
-			to_chat(X, "<span class='xenowarning'>You try to fling [L] behind you, but there's no room!</span>")
+			to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
 			return fail_activate()
 
 	//The target location deviates up to 1 tile in any direction
@@ -132,7 +132,7 @@
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
 	X.visible_message("<span class='xenowarning'>\The [X] flings [L] away with its crest!</span>", \
-	"<span class='xenowarning'>You fling [L] away with your crest!</span>")
+	"<span class='xenowarning'>We fling [L] away with our crest!</span>")
 
 	succeed_activate()
 

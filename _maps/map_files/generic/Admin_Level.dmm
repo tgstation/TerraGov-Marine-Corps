@@ -215,7 +215,6 @@
 /area/centcom/supplypod/loading/two)
 "aH" = (
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/centcom/supplypod/loading/one)
@@ -258,7 +257,6 @@
 /area/centcom)
 "aO" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /turf/open/floor/almayer,
@@ -320,7 +318,6 @@
 "ba" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHEAST)";
 	icon_state = "plating";
 	dir = 5
 	},
@@ -365,13 +362,11 @@
 /area/centcom)
 "bi" = (
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/centcom/supplypod/loading/two)
 "bj" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHWEST)";
 	icon_state = "blue";
 	dir = 9
 	},
@@ -427,7 +422,6 @@
 /area/tdome/tdomeadmin)
 "bs" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue (SOUTHWEST)";
 	icon_state = "blue";
 	dir = 10
 	},
@@ -610,8 +604,7 @@
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/floor/almayer{
 	dir = 9;
-	icon_state = "red";
-	tag = "icon-blue (NORTHWEST)"
+	icon_state = "red"
 	},
 /area/centcom)
 "bY" = (
@@ -622,8 +615,7 @@
 /obj/item/ammo_magazine/rocket/m57a4,
 /turf/open/floor/almayer{
 	dir = 1;
-	icon_state = "red";
-	tag = "icon-blue (NORTH)"
+	icon_state = "red"
 	},
 /area/centcom)
 "bZ" = (
@@ -632,14 +624,12 @@
 /obj/item/storage/box/flashbangs,
 /turf/open/floor/almayer{
 	dir = 1;
-	icon_state = "red";
-	tag = "icon-blue (NORTH)"
+	icon_state = "red"
 	},
 /area/centcom)
 "ca" = (
 /obj/machinery/door/airlock/almayer/command,
 /turf/open/floor/almayer{
-	tag = "icon-blue";
 	icon_state = "blue"
 	},
 /area/centcom)
@@ -660,8 +650,7 @@
 /obj/item/storage/box/explosive_mines,
 /turf/open/floor/almayer{
 	dir = 1;
-	icon_state = "red";
-	tag = "icon-blue (NORTH)"
+	icon_state = "red"
 	},
 /area/centcom)
 "cd" = (
@@ -675,8 +664,7 @@
 /obj/item/storage/box/spec/sniper,
 /turf/open/floor/almayer{
 	dir = 5;
-	icon_state = "red";
-	tag = "icon-blue (NORTHEAST)"
+	icon_state = "red"
 	},
 /area/centcom)
 "ce" = (
@@ -688,13 +676,11 @@
 /area/centcom)
 "cf" = (
 /turf/open/floor/almayer{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/centcom/supplypod/podStorage)
 "cg" = (
 /turf/open/floor/almayer{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/centcom/supplypod/flyMeToTheMoon)
@@ -735,7 +721,6 @@
 /area/centcom)
 "cl" = (
 /obj/structure/bed/chair/comfy{
-	tag = "icon-comfychair (NORTH)";
 	icon_state = "comfychair";
 	dir = 1
 	},
@@ -760,13 +745,11 @@
 /area/centcom)
 "cp" = (
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/centcom/supplypod/loading/three)
 "cq" = (
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/centcom/supplypod/loading/four)
@@ -795,6 +778,35 @@
 	},
 /turf/open/floor/almayer,
 /area/centcom)
+"cv" = (
+/obj/machinery/vending/engivend,
+/obj/item/radio/intercom/general,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate"
+	},
+/area/shuttle/distress/start_big)
+"cw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc/hyper{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/distress/start_big)
 "cS" = (
 /obj/structure/closet/walllocker/medical_wall/full{
 	icon_state = "medical_wall";
@@ -822,14 +834,12 @@
 	name = "ultra-reinforced window"
 	},
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHEAST)";
 	icon_state = "plating";
 	dir = 5
 	},
 /area/centcom)
 "ej" = (
 /turf/open/floor/plating{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/centcom/supply)
@@ -871,7 +881,6 @@
 "fe" = (
 /obj/structure/window/framed/almayer/toughened,
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHEAST)";
 	icon_state = "plating";
 	dir = 5
 	},
@@ -886,7 +895,6 @@
 /area/centcom/control)
 "fh" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHEAST)";
 	icon_state = "plating";
 	dir = 5
 	},
@@ -920,8 +928,7 @@
 "fY" = (
 /turf/open/floor/almayer{
 	dir = 2;
-	icon_state = "orange";
-	tag = "icon-orange (NORTH)"
+	icon_state = "orange"
 	},
 /area/centcom)
 "fZ" = (
@@ -934,7 +941,6 @@
 /area/centcom)
 "gc" = (
 /turf/open/floor/almayer{
-	tag = "icon-orangecorner (WEST)";
 	icon_state = "orangecorner";
 	dir = 8
 	},
@@ -970,28 +976,24 @@
 /area/centcom/supply)
 "gl" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHEAST)";
 	icon_state = "blue";
 	dir = 5
 	},
 /area/centcom)
 "gn" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTH)";
 	icon_state = "blue";
 	dir = 1
 	},
 /area/centcom)
 "gv" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue (EAST)";
 	icon_state = "blue";
 	dir = 4
 	},
 /area/centcom)
 "gw" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue (WEST)";
 	icon_state = "blue";
 	dir = 8
 	},
@@ -1014,15 +1016,13 @@
 /area/start)
 "in" = (
 /turf/open/floor/almayer{
-	tag = "icon-test_floor4";
 	icon_state = "test_floor4"
 	},
 /area/centcom/supply)
 "ip" = (
 /turf/open/floor/almayer{
 	dir = 8;
-	icon_state = "red";
-	tag = "icon-blue (WEST)"
+	icon_state = "red"
 	},
 /area/centcom)
 "ir" = (
@@ -1040,7 +1040,6 @@
 /area/shuttle/distress/start_big)
 "iV" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue";
 	icon_state = "blue"
 	},
 /area/centcom)
@@ -1051,8 +1050,7 @@
 "je" = (
 /obj/structure/closet/crate,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "ji" = (
@@ -1067,25 +1065,21 @@
 /area/shuttle/distress/start_big)
 "kd" = (
 /turf/open/floor/almayer{
-	tag = "icon-bluecorner";
 	icon_state = "bluecorner"
 	},
 /area/centcom)
 "kj" = (
 /turf/open/floor/almayer{
-	tag = "icon-blue (SOUTHEAST)";
 	icon_state = "blue";
 	dir = 6
 	},
 /area/centcom)
 "kp" = (
 /obj/structure/bed/chair/wood/normal{
-	tag = "icon-wooden_chair (EAST)";
 	icon_state = "wooden_chair";
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -1102,16 +1096,14 @@
 "ky" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kz" = (
 /obj/structure/table/almayer,
 /obj/item/flashlight/lamp,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kA" = (
@@ -1120,15 +1112,13 @@
 	},
 /obj/structure/rack,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kB" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kC" = (
@@ -1136,15 +1126,13 @@
 	stored_metal = 1000
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kD" = (
 /obj/structure/sink,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kE" = (
@@ -1154,24 +1142,21 @@
 	pixel_y = -5
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kF" = (
 /obj/item/storage/surgical_tray,
 /obj/structure/table/almayer,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kG" = (
 /obj/machinery/microwave,
 /obj/structure/table/almayer,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kH" = (
@@ -1188,14 +1173,12 @@
 "kJ" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kK" = (
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kL" = (
@@ -1204,8 +1187,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kM" = (
@@ -1216,8 +1198,7 @@
 	dir = 4
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kN" = (
@@ -1225,8 +1206,7 @@
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kO" = (
@@ -1261,8 +1241,7 @@
 "kS" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kT" = (
@@ -1273,8 +1252,7 @@
 /obj/item/reagent_container/blood/OMinus,
 /obj/item/reagent_container/blood/OMinus,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kU" = (
@@ -1287,8 +1265,7 @@
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/reagent_container/spray/surgery,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "kV" = (
@@ -1329,8 +1306,7 @@
 	dir = 4
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lb" = (
@@ -1338,8 +1314,7 @@
 	dir = 8
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lc" = (
@@ -1349,8 +1324,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "ld" = (
@@ -1384,28 +1358,13 @@
 /obj/item/cell/infinite,
 /obj/item/cell/infinite,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
-	},
-/area/shuttle/distress/start_big)
-"lh" = (
-/obj/machinery/vending/engivend,
-/obj/item/radio/intercom/general{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "li" = (
 /obj/structure/rack,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lj" = (
@@ -1420,8 +1379,7 @@
 "lk" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "ll" = (
@@ -1430,8 +1388,7 @@
 	dir = 1
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lm" = (
@@ -1439,8 +1396,7 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/radio,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "ln" = (
@@ -1448,13 +1404,11 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/belt/combatLifesaver,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lo" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /turf/open/floor/wood,
@@ -1476,35 +1430,31 @@
 /obj/structure/table/almayer,
 /obj/machinery/computer/security,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "ls" = (
 /obj/structure/table/almayer,
 /obj/item/clipboard,
 /obj/item/folder/red,
-/obj/item/handcuffs,
-/obj/item/handcuffs,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lt" = (
 /obj/structure/table/almayer,
 /obj/machinery/computer/secure_data,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lu" = (
 /obj/machinery/autolathe,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lv" = (
@@ -1584,7 +1534,6 @@
 	dir = 2
 	},
 /turf/open/floor/almayer{
-	tag = "icon-blue (NORTHEAST)";
 	icon_state = "plating";
 	dir = 5
 	},
@@ -1639,28 +1588,7 @@
 /obj/structure/table/almayer,
 /obj/machinery/computer/card,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
-	},
-/area/shuttle/distress/start_big)
-"lJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/machinery/power/apc/almayer{
-	cell_type = /obj/item/cell/hyper;
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lK" = (
@@ -1810,8 +1738,7 @@
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "lX" = (
@@ -1904,8 +1831,7 @@
 /obj/structure/table/almayer,
 /obj/machinery/computer/communications,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mh" = (
@@ -1917,8 +1843,7 @@
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mi" = (
@@ -1927,32 +1852,28 @@
 	dir = 4
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mj" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mk" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/light,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "ml" = (
 /obj/structure/table/almayer,
 /obj/item/clothing/suit/armor/bulletproof,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mm" = (
@@ -1966,8 +1887,7 @@
 /obj/item/weapon/gun/shotgun/combat,
 /obj/item/weapon/gun/shotgun/combat,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mo" = (
@@ -1977,8 +1897,7 @@
 /obj/item/ammo_magazine/smg/m39,
 /obj/item/weapon/gun/smg/m39/elite,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mp" = (
@@ -1988,15 +1907,13 @@
 /obj/structure/table/almayer,
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mq" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mr" = (
@@ -2006,8 +1923,7 @@
 /obj/item/tool/pen,
 /obj/item/tool/pen,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "ms" = (
@@ -2039,8 +1955,7 @@
 	pixel_y = 4
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mv" = (
@@ -2073,15 +1988,13 @@
 	name = "captain's secure box"
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "my" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mz" = (
@@ -2098,15 +2011,13 @@
 /obj/item/storage/box/m94,
 /obj/item/storage/box/zipcuffs,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mA" = (
 /obj/structure/closet,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mB" = (
@@ -2114,14 +2025,12 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	tag = "icon-shower (EAST)";
 	icon_state = "shower";
 	dir = 4
 	},
 /obj/item/tool/soap,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mC" = (
@@ -2130,8 +2039,7 @@
 /obj/item/ammo_magazine/smg/m39,
 /obj/item/weapon/gun/smg/m39/elite,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mD" = (
@@ -2162,15 +2070,13 @@
 	dir = 4
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mG" = (
 /obj/structure/largecrate/random/barrel/white,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mH" = (
@@ -2179,8 +2085,7 @@
 	dir = 8
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mI" = (
@@ -2224,8 +2129,7 @@
 /obj/item/tool/pen,
 /obj/item/tool/pen,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mM" = (
@@ -2239,8 +2143,7 @@
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mN" = (
@@ -2259,8 +2162,7 @@
 /obj/item/radio,
 /obj/item/radio,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mO" = (
@@ -2269,20 +2171,17 @@
 	},
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mP" = (
 /obj/structure/table/almayer,
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "mQ" = (
 /obj/structure/toilet{
-	tag = "icon-toilet00 (NORTH)";
 	icon_state = "toilet00";
 	dir = 1
 	},
@@ -2290,19 +2189,16 @@
 /area/shuttle/distress/start_big)
 "mR" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHWEST)";
 	icon_state = "carpetside";
 	dir = 9
 	},
 /area/centcom)
 "mS" = (
 /obj/structure/bed/chair/wood/normal{
-	tag = "icon-wooden_chair (WEST)";
 	icon_state = "wooden_chair";
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -2310,28 +2206,24 @@
 "mT" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
 /area/centcom)
 "mU" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
 /area/centcom)
 "mV" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHEAST)";
 	icon_state = "carpetside";
 	dir = 5
 	},
 /area/centcom)
 "na" = (
 /obj/structure/bed/chair/wood/normal{
-	tag = "icon-wooden_chair (EAST)";
 	icon_state = "wooden_chair";
 	dir = 4
 	},
@@ -2339,14 +2231,12 @@
 /area/centcom)
 "nb" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
 /area/centcom)
 "nc" = (
 /obj/structure/bed/chair/wood/normal{
-	tag = "icon-wooden_chair (WEST)";
 	icon_state = "wooden_chair";
 	dir = 8
 	},
@@ -2361,7 +2251,6 @@
 /area/centcom)
 "nf" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -2388,13 +2277,11 @@
 	pixel_x = 32
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "nk" = (
 /turf/open/floor/almayer{
-	tag = "icon-bluecorner (EAST)";
 	icon_state = "bluecorner";
 	dir = 4
 	},
@@ -2415,7 +2302,6 @@
 /area/centcom/supply)
 "nr" = (
 /turf/open/floor/almayer{
-	tag = "icon-bluecorner";
 	icon_state = "bluecorner";
 	dir = 8
 	},
@@ -2473,7 +2359,6 @@
 /area/centcom)
 "nP" = (
 /obj/structure/bed/chair/wood/normal{
-	tag = "icon-wooden_chair (EAST)";
 	icon_state = "wooden_chair";
 	dir = 4
 	},
@@ -2483,14 +2368,12 @@
 /area/centcom)
 "nQ" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHWEST)";
 	icon_state = "carpetside";
 	dir = 10
 	},
 /area/centcom)
 "nR" = (
 /obj/structure/bed/chair/wood/normal{
-	tag = "icon-wooden_chair (WEST)";
 	icon_state = "wooden_chair";
 	dir = 8
 	},
@@ -2511,7 +2394,6 @@
 /area/centcom)
 "nU" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHEAST)";
 	icon_state = "carpetside";
 	dir = 6
 	},
@@ -2538,13 +2420,12 @@
 /area/centcom/ferry)
 "od" = (
 /turf/open/floor/almayer{
-	tag = "icon-orange (NORTH)";
 	icon_state = "orange";
 	dir = 1
 	},
 /area/centcom)
 "oe" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
@@ -2553,7 +2434,6 @@
 /area/centcom)
 "of" = (
 /turf/open/floor/almayer{
-	tag = "icon-orangecorner (NORTH)";
 	icon_state = "orangecorner";
 	dir = 1
 	},
@@ -2577,13 +2457,11 @@
 	pixel_x = 32
 	},
 /turf/open/floor/almayer{
-	icon_state = "plate";
-	tag = "icon-sterile"
+	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
 "oW" = (
 /turf/open/floor/almayer{
-	tag = "icon-bluecorner";
 	icon_state = "bluecorner";
 	dir = 1
 	},
@@ -2598,24 +2476,22 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "oY" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
 	},
 /turf/open/floor/almayer{
-	tag = "icon-orangecorner";
 	icon_state = "orangecorner"
 	},
 /area/centcom)
 "oZ" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
 	},
 /turf/open/floor/almayer{
-	tag = "icon-orangecorner (EAST)";
 	icon_state = "orangecorner";
 	dir = 4
 	},
@@ -3214,28 +3090,24 @@
 "sO" = (
 /turf/open/floor/almayer{
 	dir = 4;
-	icon_state = "red";
-	tag = "icon-blue (EAST)"
+	icon_state = "red"
 	},
 /area/centcom)
 "zQ" = (
 /turf/open/floor/almayer{
 	dir = 4;
-	icon_state = "redcorner";
-	tag = "icon-bluecorner (EAST)"
+	icon_state = "redcorner"
 	},
 /area/centcom)
 "Pw" = (
 /turf/open/floor/almayer{
 	dir = 1;
-	icon_state = "redcorner";
-	tag = "icon-bluecorner"
+	icon_state = "redcorner"
 	},
 /area/centcom)
 "TC" = (
 /obj/docking_port/stationary/supply,
 /turf/open/floor/plating{
-	tag = "icon-test_floor5";
 	icon_state = "test_floor5"
 	},
 /area/centcom/supply)
@@ -4394,7 +4266,7 @@ fC
 iU
 iU
 lu
-lJ
+cw
 lW
 iU
 iU
@@ -4596,7 +4468,7 @@ iU
 iW
 iU
 iU
-lh
+cv
 lw
 lL
 lY

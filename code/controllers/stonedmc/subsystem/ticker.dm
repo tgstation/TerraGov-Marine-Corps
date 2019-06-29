@@ -17,7 +17,6 @@ SUBSYSTEM_DEF(ticker)
 	var/login_music							//Music played in pregame lobby
 
 	var/list/datum/mind/minds = list()		//The characters in the game. Used for objective tracking.
-	var/datum/mind/liaison
 
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
@@ -25,16 +24,16 @@ SUBSYSTEM_DEF(ticker)
 	var/time_left							//Pre-game timer
 	var/start_at
 
-	var/gametime_offset = 432000			//Deciseconds to add to world.time for station time.
-
 	var/roundend_check_paused = FALSE
 
 	var/round_start_time = 0
 	var/list/round_start_events
 	var/list/round_end_events
-	var/end_state = "undefined"
 
 	var/tipped = FALSE
+
+	var/queue_delay = 0
+	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
 
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
@@ -95,14 +94,16 @@ SUBSYSTEM_DEF(ticker)
 
 		if(GAME_STATE_PLAYING)
 			mode.process(wait * 0.1)
+			check_queue()
 
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
 				current_state = GAME_STATE_FINISHED
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "map", "SERVER"), 1 MINUTES)
-				addtimer(CALLBACK(src, .proc/Reboot), 1 MINUTES)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "shipmap", "SERVER"), 2 SECONDS)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "groundmap", "SERVER"), 63 SECONDS)
+				addtimer(CALLBACK(src, .proc/Reboot), 63 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 
@@ -225,6 +226,9 @@ SUBSYSTEM_DEF(ticker)
 
 	tipped = SSticker.tipped
 
+	queue_delay = SSticker.queue_delay
+	queued_players = SSticker.queued_players
+
 	switch(current_state)
 		if(GAME_STATE_SETTING_UP)
 			Master.SetRunLevel(RUNLEVEL_SETUP)
@@ -262,10 +266,16 @@ SUBSYSTEM_DEF(ticker)
 	WRITE_FILE(F, the_mode)
 
 
-/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
+/datum/controller/subsystem/ticker/proc/Reboot(reason, delay)
 	set waitfor = FALSE
 
 	if(usr && !check_rights(R_SERVER))
+		return
+
+	var/datum/tgs_api/v3210/TGS = GLOB.tgs
+	if(istype(TGS) && TGS.reboot_mode == 1)
+		to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
+		world.Reboot(FALSE)
 		return
 
 	if(!delay)
@@ -284,13 +294,12 @@ SUBSYSTEM_DEF(ticker)
 	if(delay_end && !skip_delay)
 		to_chat(world, "<span class='boldnotice'>Reboot was cancelled by an admin.</span>")
 		return
-	if(end_string)
-		end_state = end_string
 
-	log_game("<span class='boldnotice'>Rebooting World. [reason]</span>")
+	log_game("Rebooting World. [reason]")
 	to_chat_immediate(world, "<h3><span class='boldnotice'>Rebooting...</span></h3>")
 
 	world.Reboot(TRUE)
+
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/tip
@@ -307,3 +316,37 @@ SUBSYSTEM_DEF(ticker)
 
 	if(tip)
 		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")
+
+
+/datum/controller/subsystem/ticker/proc/check_queue()
+	if(!length(queued_players))
+		return
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	if(!hpc)
+		listclearnulls(queued_players)
+		for(var/mob/new_player/NP in queued_players)
+			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a></span>")
+			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
+			NP.LateChoices()
+		queued_players.Cut()
+		queue_delay = 0
+		return
+
+	queue_delay++
+	var/mob/new_player/next_in_line = queued_players[1]
+
+	switch(queue_delay)
+		if(5) //every 5 ticks check if there is a slot available
+			listclearnulls(queued_players)
+			if(living_player_count() < hpc)
+				if(next_in_line?.client)
+					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a></span>")
+					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
+					next_in_line.LateChoices()
+					return
+				queued_players -= next_in_line //Client disconnected, remove he
+			queue_delay = 0 //No vacancy: restart timer
+		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
+			to_chat(next_in_line, "<span class='danger'>No response received. You have been removed from the line.</span>")
+			queued_players -= next_in_line
+			queue_delay = 0

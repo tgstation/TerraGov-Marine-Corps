@@ -35,7 +35,7 @@
 	var/list/colors = list() // Dictionary of colors to wire.
 	var/list/assemblies = list() // List of attached assemblies.
 	var/randomize = 0 // If every instance of these wires should be random.
-					  // Prevents wires from showing up in station blueprints
+						// Prevents wires from showing up in station blueprints
 
 
 /datum/wires/New(atom/holder)

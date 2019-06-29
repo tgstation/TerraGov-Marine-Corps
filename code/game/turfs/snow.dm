@@ -57,7 +57,7 @@
 		L.y = y
 		L.pixel_x += rand(-5,5)
 		L.pixel_y += rand(-5,5)
-		L.SetLuminosity(2)
+		L.set_light(2)
 		playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 
@@ -86,7 +86,7 @@
 
 
 //Update icon
-/turf/open/floor/plating/ground/snow/update_icon(var/update_full, var/skip_sides)
+/turf/open/floor/plating/ground/snow/update_icon(update_full, skip_sides)
 	icon_state = "snow_[slayer]"
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 	switch(slayer)

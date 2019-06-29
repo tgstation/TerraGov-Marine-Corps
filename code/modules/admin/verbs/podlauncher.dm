@@ -14,7 +14,7 @@
 
 
 /datum/podlauncher
-	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector))
+	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector, /atom/movable/lighting_object))
 	var/turf/oldTurf
 	var/client/holder
 	var/area/bay
@@ -43,8 +43,8 @@
 	else if(ismob(user))
 		var/mob/M = user
 		holder = M.client
-	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.all_areas
-	podarea = locate(/area/centcom/supplypod/podStorage) in GLOB.all_areas
+	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas
+	podarea = locate(/area/centcom/supplypod/podStorage) in GLOB.sorted_areas
 	createPod(podarea)
 	selector = new()
 	launchList = list()
@@ -109,31 +109,31 @@
 
 
 	if(href_list["bay1"])
-		bay = locate(/area/centcom/supplypod/loading/one) in GLOB.all_areas
+		bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas
 		refreshBay()
 		. = TRUE
 
 
 	else if(href_list["bay2"])
-		bay = locate(/area/centcom/supplypod/loading/two) in GLOB.all_areas
+		bay = locate(/area/centcom/supplypod/loading/two) in GLOB.sorted_areas
 		refreshBay()
 		. = TRUE
 
 
 	else if(href_list["bay3"])
-		bay = locate(/area/centcom/supplypod/loading/three) in GLOB.all_areas
+		bay = locate(/area/centcom/supplypod/loading/three) in GLOB.sorted_areas
 		refreshBay()
 		. = TRUE
 
 
 	else if(href_list["bay4"])
-		bay = locate(/area/centcom/supplypod/loading/four) in GLOB.all_areas
+		bay = locate(/area/centcom/supplypod/loading/four) in GLOB.sorted_areas
 		refreshBay()
 		. = TRUE
 
 
 	else if(href_list["bay5"])
-		bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.all_areas
+		bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.sorted_areas
 		refreshBay()
 		. = TRUE
 
@@ -141,7 +141,7 @@
 	else if(href_list["teleportCentcom"])
 		var/mob/M = holder.mob
 		oldTurf = get_turf(M)
-		var/area/A = locate(bay) in GLOB.all_areas
+		var/area/A = locate(bay) in GLOB.sorted_areas
 		var/list/turfs = list()
 		for(var/turf/T in A)
 			turfs.Add(T)
@@ -672,7 +672,8 @@
 				for(var/atom/movable/O in acceptableTurfs[launchCounter].contents)
 					launchList |= typecache_filter_list_reverse(acceptableTurfs[launchCounter].contents, ignored_atoms)
 			if(2)
-				launchList |= typecache_filter_list_reverse(pick_n_take(acceptableTurfs).contents, ignored_atoms)
+				var/turf/acceptable_turf = pick_n_take(acceptableTurfs)
+				launchList |= typecache_filter_list_reverse(acceptable_turf.contents, ignored_atoms)
 	updateSelector()
 
 

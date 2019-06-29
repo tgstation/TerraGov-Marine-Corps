@@ -37,7 +37,7 @@
 	desc = "[initial(desc)] This appears to be a modular general circuit that can switch between pre-programmed modes with a multitool."
 
 //Called when the circuitboard is used to contruct a new machine.
-/obj/item/circuitboard/proc/construct(var/obj/machinery/M)
+/obj/item/circuitboard/proc/construct(obj/machinery/M)
 	if (istype(M, build_path))
 		return 1
 	return 0
@@ -45,7 +45,7 @@
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/circuitboard/proc/deconstruct(var/obj/machinery/M)
+/obj/item/circuitboard/proc/deconstruct(obj/machinery/M)
 	if (istype(M, build_path))
 		return 1
 	return 0
@@ -172,7 +172,7 @@
 	attack_self(usr)
 
 
-/obj/item/circuitboard/airlock/proc/toggle_access(var/acc)
+/obj/item/circuitboard/airlock/proc/toggle_access(acc)
 	if (acc == "all")
 		conf_access = null
 	else

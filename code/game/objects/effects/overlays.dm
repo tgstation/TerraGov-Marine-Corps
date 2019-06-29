@@ -77,7 +77,6 @@
 	name = "laser"
 	anchored = TRUE
 	mouse_opacity = 1
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target_coordinate"
 	effect_duration = 600
@@ -88,14 +87,12 @@
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc.coord = null
 		source_binoc = null
-	SetLuminosity(0)
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target
 	name = "laser"
 	anchored = TRUE
 	mouse_opacity = 1
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target2"
 	effect_duration = 600
@@ -109,14 +106,14 @@
 	if(named)
 		name = "[named] laser"
 	target_id = UNIQUEID //giving it a unique id.
-	active_laser_targets += src
+	GLOB.active_laser_targets += src
 	squad = assigned_squad
 	if(squad)
 		squad.squad_laser_targets += src
 	linked_cam = new(loc, name)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
-	active_laser_targets -= src
+	GLOB.active_laser_targets -= src
 	if(squad)
 		squad.squad_laser_targets -= src
 		squad = null
@@ -127,7 +124,6 @@
 	if(linked_cam)
 		qdel(linked_cam)
 		linked_cam = null
-	SetLuminosity(0)
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
@@ -143,26 +139,18 @@
 /obj/effect/overlay/temp/blinking_laser
 	name = "blinking laser"
 	anchored = TRUE
-	luminosity = 2
 	effect_duration = 10
 	mouse_opacity = 0
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 
-/obj/effect/overlay/temp/blinking_laser/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/effect/overlay/temp/sniper_laser
 	name = "laser"
 	mouse_opacity = 0
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "sniper_laser"
 
-/obj/effect/overlay/temp/blinking_laser/Destroy()
-	SetLuminosity(0)
-	return ..()
 
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
@@ -185,14 +173,10 @@
 	name = "tanklaser"
 	anchored = TRUE
 	mouse_opacity = 0
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 	effect_duration = 20
 
-/obj/effect/overlay/temp/tank_laser/Destroy()
-	SetLuminosity(0)
-	return ..()
 
 
 //gib animation

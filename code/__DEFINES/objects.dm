@@ -38,27 +38,6 @@
 #define MAX_STACK_AMOUNT_GLASS	50
 #define MAX_STACK_AMOUNT_RODS	60
 
-var/list/liftable_structures = list(
-	/obj/machinery/autolathe,
-	/obj/machinery/constructable_frame,
-	/obj/machinery/portable_atmospherics/hydroponics,
-	/obj/machinery/computer,
-	/obj/machinery/optable,
-	/obj/structure/dispenser,
-	/obj/machinery/gibber,
-	/obj/machinery/microwave,
-	/obj/machinery/vending,
-	/obj/machinery/seed_extractor,
-	/obj/machinery/space_heater,
-	/obj/machinery/recharge_station,
-	/obj/machinery/flasher,
-	/obj/structure/bed/stool,
-	/obj/structure/closet,
-	/obj/machinery/photocopier,
-	/obj/structure/filingcabinet,
-	/obj/structure/reagent_dispensers,
-	/obj/machinery/portable_atmospherics/canister)
-
 //Pulse levels, very simplified
 #define PULSE_NONE		0	//so !M.pulse checks would be possible
 #define PULSE_SLOW		1	//<60 bpm
@@ -66,21 +45,16 @@ var/list/liftable_structures = list(
 #define PULSE_FAST		3	//90-120 bpm
 #define PULSE_2FAST		4	//>120 bpm
 #define PULSE_THREADY	5	//occurs during hypovolemic shock
-//feel free to add shit to lists below
-var/list/tachycardics = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine")	//increase heart rate
-var/list/bradycardics = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "sleeptoxin")					//decrease heart rate
-var/list/heartstopper = list("potassium_phorochloride", "zombie_powder") //this stops the heart
-var/list/cheartstopper = list("potassium_chloride") //this stops the heart when overdose is met -- c = conditional
 
 //proc/get_pulse methods
 #define GETPULSE_HAND	0	//less accurate (hand)
 #define GETPULSE_TOOL	1	//more accurate (med scanner, sleeper, etc)
 
-var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
+GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
 	"thunder",
 	"ERT",
 	"NUKE"
-	)
+	))
 
 #define STASIS_IN_BAG 		1
 #define STASIS_IN_CRYO_CELL 2
@@ -212,3 +186,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 #define TANK_OVERDRIVE_BOOST_DURATION	5 SECONDS
 #define TANK_OVERDRIVE_BOOST_COOLDOWN	20 SECONDS
+
+//Closets
+#define CLOSET_ALLOW_OBJS (1<<0)
+#define CLOSET_ALLOW_DENSE_OBJ (1<<1)
+#define CLOSET_IS_SECURE (1<<2)

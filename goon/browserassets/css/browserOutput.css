@@ -303,6 +303,9 @@ h1.alert, h2.alert		{color: #000000;}
 .highdanger				{color: #ff0000;	font-weight: bold; font-size: 1.5em;}
 .xenohighdanger			{color: #2a623d; 	font-weight: bold; font-size: 1.5em;}
 .xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
+.hivemind				{color: purple;		font-style: italic;}
+.xenoqueen				{					font-size: 1.6em;}
+.xenoshrike				{					font-size: 1.3em;}
 
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}

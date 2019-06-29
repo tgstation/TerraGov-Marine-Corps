@@ -16,7 +16,7 @@
 		forceMove(get_turf(A))
 
 
-/mob/dead/observer/ClickOn(var/atom/A, var/params)
+/mob/dead/observer/ClickOn(atom/A, params)
 	if(check_click_intercept(params, A))
 		return
 
@@ -45,6 +45,18 @@
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
 	A.attack_ghost(src)
+
+
+/mob/dead/observer/MouseWheelOn(atom/A, delta_x, delta_y, params)
+	var/list/modifier = params2list(params)
+	if(modifier["shift"])
+		var/view = client.view
+		if(delta_y > 0)
+			view--
+		else
+			view++
+		view = CLAMP(view, world.view, 14)
+		client.change_view(view)
 
 
 // Oh by the way this didn't work with old click code which is why clicking shit didn't spam you

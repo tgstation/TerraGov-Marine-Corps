@@ -48,7 +48,7 @@
 	var/late_joiner = FALSE
 
 
-/datum/mind/New(var/key)
+/datum/mind/New(key)
 	src.key = key
 
 
@@ -99,46 +99,6 @@
 	output += memory
 
 	recipient << browse(output, "window=memory")
-
-
-/datum/mind/proc/edit_memory()
-	if(!SSticker?.mode)
-		to_chat(usr, "<span class='warning'>Wait for the round to start.</span>")
-		return
-
-	var/out = "<b>[name]</b>[(current && current.real_name != name ) ?" (as [current.real_name])":""]<br>"
-	out += "Mind currently owned by key: [key] [active ? "(synced)" : "(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
-
-	out += "<br>"
-
-	out += "<b>Memory:</b><br>"
-	out += memory
-	out += "<br><a href='?src=\ref[src];memory_edit=1'>Edit memory</a><br>"
-
-	usr << browse(out, "window=edit_memory[src]")
-
-
-/datum/mind/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in SSjob.name_occupations
-		if(!new_role)
-			return
-		assigned_role = new_role
-
-	else if(href_list["memory_edit"])
-		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null|message),1,MAX_MESSAGE_LEN)
-		if(isnull(new_memo))
-			return
-		memory = noscript(new_memo)
-
-	edit_memory()
 
 
 /mob/proc/mind_initialize()

@@ -73,7 +73,7 @@
 			if(H.m_intent == MOVE_INTENT_RUN)
 				triggered(H)
 				H.visible_message("<span class='warning'>[H] accidentally steps on [src].</span>", \
-								  "<span class='warning'>You accidentally step on [src]</span>")
+								"<span class='warning'>You accidentally step on [src]</span>")
 		else if(ismouse(AM))
 			triggered(AM)
 		else if(AM.density) // For mousetrap grenades, set off by anything heavy
@@ -85,7 +85,7 @@
 	if(armed)
 		if(finder)
 			finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
-							   "<span class='warning'>You accidentally trigger [src]!</span>")
+								"<span class='warning'>You accidentally trigger [src]!</span>")
 			triggered(finder, pick(BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_PRECISE_L_HAND))
 			return TRUE	//end the search!
 		else
@@ -95,7 +95,7 @@
 	return FALSE
 
 
-/obj/item/assembly/mousetrap/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+/obj/item/assembly/mousetrap/hitby(atom/movable/AM, skipcatch, hitpush, blocked)
 	if(!armed)
 		return ..()
 	visible_message("<span class='warning'>[src] is triggered by [AM].</span>")
