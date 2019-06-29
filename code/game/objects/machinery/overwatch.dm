@@ -119,9 +119,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
 					dat += "<b>Secondary Objective:</b> "
 					if(current_squad.secondary_objective)
-						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]<br></a>"
+						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
 					else
-						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]<br></a>"
+						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
 					dat += "<br>"
 					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
 					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"

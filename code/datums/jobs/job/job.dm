@@ -97,23 +97,29 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!H?.mind)
 		return FALSE
 
-	var/datum/outfit/job/O = new outfit
-	var/id = O.id ? O.id : /obj/item/card/id
-	var/obj/item/card/id/I = new id
-	var/datum/skills/L = new skills_type
-	H.mind.assigned_role = title
-	H.mind.cm_skills = L
-	H.mind.comm_title = comm_title
 
-	if(H.wear_id)
-		QDEL_NULL(H.wear_id)
+	var/datum/outfit/job/O
+	if(outfit)
+		O = new outfit
+		var/id = O.id ? O.id : /obj/item/card/id
+		var/obj/item/card/id/I = new id
+		if(H.wear_id)
+			QDEL_NULL(H.wear_id)
+
+		H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+
+	if(skills_type)
+		var/datum/skills/L = new skills_type
+		H.mind.cm_skills = L
+
+	H.mind.assigned_role = title
+	H.mind.comm_title = comm_title
 
 	H.job = title
 	H.faction = faction
 
-	H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-	O.handle_id(H)
+	O?.handle_id(H)
 
 	GLOB.datacore.manifest_update(H.real_name, H.real_name, H.job)
 

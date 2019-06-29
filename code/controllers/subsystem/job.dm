@@ -37,6 +37,10 @@ SUBSYSTEM_DEF(job)
 		var/datum/job/job = new J()
 		if(!job)
 			continue
+		if(!job.config_check())
+			continue
+		if(!job.map_check())
+			continue
 		occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job

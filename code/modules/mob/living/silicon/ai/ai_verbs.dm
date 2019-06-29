@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/verb/ai_network_change()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Jump To Network"
 
 	if(incapacitated())
@@ -31,7 +31,7 @@
 
 
 /mob/living/silicon/ai/verb/display_status()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Display Status"
 
 	if(incapacitated())
@@ -60,7 +60,7 @@
 
 
 /mob/living/silicon/ai/verb/change_hologram()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Change Hologram"
 
 	if(incapacitated())
@@ -129,7 +129,7 @@
 
 
 /mob/living/silicon/ai/verb/toggle_sensors()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Toggle Sensors"
 
 	if(incapacitated())
@@ -139,7 +139,7 @@
 
 
 /mob/living/silicon/ai/verb/make_announcement()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Make Announcement"
 
 	if(incapacitated() || last_announcement > world.time + 60 SECONDS)
@@ -154,7 +154,7 @@
 
 
 /mob/living/silicon/ai/verb/ai_core_display()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "AI Core Display"
 
 	if(incapacitated())
@@ -177,14 +177,14 @@
 
 
 /mob/living/silicon/ai/cancel_camera()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Cancel Camera View"
 
 	view_core()
 
 
 /mob/living/silicon/ai/verb/toggle_acceleration()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Toggle Camera Acceleration"
 
 	if(incapacitated())
@@ -192,11 +192,11 @@
 
 	acceleration = !acceleration
 
-	to_chat(src, "<span class='notice'>Camera acceleration has been toggled [acceleration ? "on" : "off"].</span>")
+	to_chat(src, "<span class='notice'>Camera acceleration has been [acceleration ? "enabled" : "disabled"].</span>")
 
 
 /mob/living/silicon/ai/verb/radio_settings()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Radio Settings"
 
 	if(incapacitated())
@@ -211,7 +211,7 @@
 
 
 /mob/living/silicon/ai/verb/toggle_floor_bolts()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Toggle Floor Bolts"
 
 	if(!isturf(loc))
@@ -227,7 +227,7 @@
 
 
 /mob/living/silicon/ai/verb/view_manifest()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "View Crew Manifest"
 
 	if(incapacitated())

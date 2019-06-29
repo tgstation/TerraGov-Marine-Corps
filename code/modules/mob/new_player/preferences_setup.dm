@@ -126,6 +126,12 @@
 			previewJob = SSjob.GetJob(job)
 			highest_pref = job_preferences[job]
 
+	if(previewJob)
+		// Silicons only need a very basic preview since there is no customization for them.
+		if(istype(previewJob, /datum/job/ai))
+			parent.show_character_previews(image('icons/mob/ai.dmi', icon_state = "ai", dir = SOUTH))
+			return
+
 	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	copy_to(mannequin)
