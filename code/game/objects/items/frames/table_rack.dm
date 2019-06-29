@@ -2,8 +2,8 @@
 
 
 /*
- * Table Parts
- */
+* Table Parts
+*/
 
 /obj/item/frame/table
 	name = "table parts"
@@ -57,14 +57,13 @@
 		to_chat(user, "<span class='warning'>No. This area is needed for the dropship.</span>")
 		return
 
-	var/obj/structure/table/T = new table_type(user.loc)
-	T.add_fingerprint(user)
+	new table_type(user.loc)
 	user.drop_held_item()
 	qdel(src)
 
 /*
- * Reinforced Table Parts
- */
+* Reinforced Table Parts
+*/
 
 /obj/item/frame/table/reinforced
 	name = "reinforced table parts"
@@ -76,8 +75,8 @@
 
 
 /*
- * Wooden Table Parts
- */
+* Wooden Table Parts
+*/
 
 /obj/item/frame/table/wood
 	name = "wooden table parts"
@@ -100,8 +99,8 @@
 		qdel(src)
 
 /*
- * Gambling Table Parts
- */
+* Gambling Table Parts
+*/
 
 /obj/item/frame/table/gambling
 	name = "gamble table parts"
@@ -126,8 +125,8 @@
 
 
 /*
- * Rack Parts
- */
+* Rack Parts
+*/
 
 /obj/item/frame/rack
 	name = "rack parts"
@@ -159,7 +158,6 @@
 		to_chat(user, "<span class='warning'>There already is a rack here.</span>")
 		return
 
-	var/obj/structure/rack/R = new /obj/structure/rack(user.loc)
-	R.add_fingerprint(user)
+	new /obj/structure/rack(user.loc)
 	user.drop_held_item()
 	qdel(src)

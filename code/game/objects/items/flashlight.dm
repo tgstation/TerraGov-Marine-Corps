@@ -18,33 +18,18 @@
 	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		SetLuminosity(brightness_on)
-	else
-		icon_state = initial(icon_state)
-		SetLuminosity(0)
-
-/obj/item/flashlight/Destroy()
-	if(ismob(src.loc))
-		loc.SetLuminosity(-brightness_on)
-	SetLuminosity(0)
-	. = ..()
+	update_brightness()
 
 
-/obj/item/flashlight/proc/update_brightness(var/mob/user = null)
+/obj/item/flashlight/proc/update_brightness(mob/user = null)
 	if(!user && ismob(loc))
 		user = loc
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		if(loc && loc == user)
-			user.SetLuminosity(brightness_on)
-		else if(isturf(loc))
-			SetLuminosity(brightness_on)
+		set_light(brightness_on)
 	else
 		icon_state = initial(icon_state)
-		if(loc && loc == user)
-			user.SetLuminosity(-brightness_on)
-		else if(isturf(loc))
-			SetLuminosity(0)
+		set_light(0)
 
 /obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -91,7 +76,6 @@
 
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
-	add_fingerprint(user)
 	if(on && user.zone_selected == "eyes")
 
 		if((user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
@@ -106,11 +90,11 @@
 		if(M == user)	//they're using it on themselves
 			M.flash_eyes()
 			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
-									 "<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
+								"<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
 			return
 
 		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
-							 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
+							"<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
 		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
@@ -121,19 +105,6 @@
 	else
 		return ..()
 
-
-/obj/item/flashlight/pickup(mob/user)
-	if(on && loc != user)
-		user.SetLuminosity(brightness_on)
-		SetLuminosity(0)
-	..()
-
-
-/obj/item/flashlight/dropped(mob/user)
-	if(on && loc != user)
-		user.SetLuminosity(-brightness_on)
-		SetLuminosity(brightness_on)
-	..()
 
 /obj/item/flashlight/pen
 	name = "penlight"
@@ -228,7 +199,7 @@
 /obj/item/flashlight/flare/proc/turn_off()
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
 	on = 0
-	heat_source = 0
+	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
@@ -251,7 +222,7 @@
 	if(.)
 		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 		force = on_damage
-		heat_source = 1500
+		heat = 1500
 		damtype = "fire"
 		START_PROCESSING(SSobj, src)
 
@@ -261,7 +232,7 @@
 
 		..()
 		on = 1
-		heat_source = 1500
+		heat = 1500
 		update_brightness()
 		force = on_damage
 		damtype = "fire"
@@ -279,11 +250,6 @@
 	on = TRUE //Bio-luminesence has one setting, on.
 	raillight_compatible = FALSE
 
-/obj/item/flashlight/slime/New()
-	SetLuminosity(brightness_on)
-	spawn(1) //Might be sloppy, but seems to be necessary to prevent further runtimes and make these work as intended... don't judge me!
-		update_brightness()
-		icon_state = initial(icon_state)
 
 /obj/item/flashlight/slime/attack_self(mob/user)
 	return //Bio-luminescence does not toggle.

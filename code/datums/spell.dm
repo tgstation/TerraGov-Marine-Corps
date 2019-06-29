@@ -1,8 +1,6 @@
 /obj/effect/proc_holder
 	var/panel = "Debug"//What panel the proc holder needs to go on.
 
-var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin verb for now
-
 /obj/effect/proc_holder/spell
 	name = "Spell"
 	desc = "A wizard spell"
@@ -119,8 +117,8 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 
 
 /obj/effect/proc_holder/spell/Click()
-    if(cast_check())
-        choose_targets()
+	if(cast_check())
+		choose_targets()
 
 
 
@@ -155,7 +153,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			var/obj/effect/overlay/spell = new /obj/effect/overlay(location)
 			spell.icon = overlay_icon
 			spell.icon_state = overlay_icon_state
-			spell.anchored = 1
+			spell.anchored = TRUE
 			spell.density = 0
 			spawn(overlay_lifespan)
 				qdel(spell)

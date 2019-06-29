@@ -35,6 +35,9 @@
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target)
@@ -170,11 +173,6 @@
 /obj/structure/mineral_door/uranium
 	mineralType = "uranium"
 	hardness = 3
-	luminosity = 2
-
-/obj/structure/mineral_door/uranium/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/structure/mineral_door/sandstone
 	mineralType = "sandstone"

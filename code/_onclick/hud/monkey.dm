@@ -142,7 +142,7 @@
 
 
 
-/datum/hud/monkey/persistant_inventory_update()
+/datum/hud/monkey/persistent_inventory_update()
 	if(!mymob)
 		return
 	var/mob/living/carbon/monkey/M = mymob

@@ -1,5 +1,7 @@
 /mob/living/carbon/human/attack_hand(mob/living/carbon/human/M)
-	..()
+	. = ..()
+	if(.)
+		return
 
 	if((M != src) && check_shields(0, M.name))
 		visible_message("<span class='danger'>[M] attempted to touch [src]!</span>", null, null, 5)
@@ -52,8 +54,6 @@
 		if(INTENT_GRAB)
 			if(M == src || anchored)
 				return 0
-			if(w_uniform)
-				w_uniform.add_fingerprint(M)
 
 			M.start_pulling(src)
 
@@ -102,8 +102,6 @@
 
 			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
 
-			if(w_uniform)
-				w_uniform.add_fingerprint(M)
 			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 
 			//Accidental gun discharge

@@ -24,7 +24,9 @@
 	update_icon()
 
 /obj/item/reagent_container/glass/bottle/attack_hand()
-	..()
+	. = ..()
+	if(.)
+		return
 	update_icon()
 
 /obj/item/reagent_container/glass/bottle/New()

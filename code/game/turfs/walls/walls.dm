@@ -5,6 +5,8 @@
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "metal"
+	baseturfs = /turf/open/floor/plating
+	
 	opacity = 1
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
@@ -223,7 +225,6 @@
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
-	transfer_fingerprints_to(G)
 	G.icon_state = "girder[junctiontype]"
 	G.original = src.type
 
@@ -245,10 +246,7 @@
 	else
 		make_girder(FALSE)
 
-	if(oldTurf != "")
-		ChangeTurf(text2path(oldTurf), TRUE)
-	else
-		ChangeTurf(/turf/open/floor/plating, TRUE)
+	ScrapeAway()
 
 
 /turf/closed/wall/ex_act(severity)
@@ -273,8 +271,8 @@
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "2"
-	O.anchored = 1
-	O.density = 1
+	O.anchored = TRUE
+	O.density = TRUE
 	O.layer = FLY_LAYER
 
 	to_chat(user, "<span class='warning'>The thermite starts melting through [src].</span>")
@@ -308,10 +306,6 @@
 				take_damage(rand(25, 75))
 				return
 
-/turf/closed/wall/attack_hand(mob/user as mob)
-	add_fingerprint(user)
-
-
 
 /turf/closed/wall/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -321,7 +315,7 @@
 		return
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
-	if(thermite && I.heat_source >= 1000)
+	if(thermite && I.heat >= 1000)
 		if(hull)
 			to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [I]</span>.")
 			return
@@ -512,8 +506,7 @@
 					if(!iswallturf(src) || !WT?.isOn())
 						return
 
-					var/obj/item/stack/rods/R = new(src)
-					transfer_fingerprints_to(R)
+					new /obj/item/stack/rods(src)
 					user.visible_message("<span class='notice'>The support rods drop out as [user] slices through the final layer.</span>",
 					"<span class='notice'>The support rods drop out as you slice through the final layer.</span>")
 					dismantle_wall()

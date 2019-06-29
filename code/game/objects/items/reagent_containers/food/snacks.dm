@@ -27,7 +27,7 @@
 		else
 			reagents.add_reagent(rid, amount, data)
 
-/obj/item/reagent_container/food/snacks/proc/On_Consume(var/mob/M)
+/obj/item/reagent_container/food/snacks/proc/On_Consume(mob/M)
 	if(!usr)
 		return
 
@@ -77,7 +77,7 @@
 				to_chat(M, "<span class='warning'>You take a bite of [src].</span>")
 			if (fullness > 350 && fullness <= 550)
 				to_chat(M, "<span class='warning'>You unwillingly chew a bit of [src].</span>")
-			if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
+			if (fullness > (550 * (1 + C.overeatduration / 2000)))	// The more you eat - the more you can eat
 				to_chat(M, "<span class='warning'>You cannot force any more of [src] to go down your throat.</span>")
 				return FALSE
 		else
@@ -88,7 +88,7 @@
 					return
 
 
-			if (fullness <= (550 * (1 + M.overeatduration / 1000)))
+			if (fullness <= (550 * (1 + C.overeatduration / 1000)))
 				for(var/mob/O in viewers(world.view, user))
 					O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
 			else
@@ -114,8 +114,8 @@
 				reagents.reaction(M, INGEST)
 				if(reagents.total_volume > bitesize)
 					/*
-					 * I totally cannot understand what this code supposed to do.
-					 * Right now every snack consumes in 2 bites, my popcorn does not work right, so I simplify it. -- rastaf0
+					* I totally cannot understand what this code supposed to do.
+					* Right now every snack consumes in 2 bites, my popcorn does not work right, so I simplify it. -- rastaf0
 					var/temp_bitesize =  max(reagents.total_volume /2, bitesize)
 					reagents.trans_to(M, temp_bitesize)
 					*/
@@ -209,7 +209,7 @@
 			something.loc = get_turf(src)
 	. = ..()
 
-/obj/item/reagent_container/food/snacks/attack_animal(var/mob/M)
+/obj/item/reagent_container/food/snacks/attack_animal(mob/M)
 	if(isanimal(M))
 		if(iscorgi(M))
 			var/mob/living/L = M
@@ -1291,7 +1291,7 @@
 		to_chat(user, "You unwrap the cube.")
 		package = FALSE
 
-/obj/item/reagent_container/food/snacks/monkeycube/On_Consume(var/mob/M)
+/obj/item/reagent_container/food/snacks/monkeycube/On_Consume(mob/M)
 	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
 
 	if (ishuman(M))
@@ -2238,8 +2238,8 @@
 
 	icon_state = "pizzabox[boxes.len+1]"
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/pizzabox/attack_hand( mob/user as mob )
-
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
@@ -2248,10 +2248,9 @@
 		update_icon()
 		return
 
-	if( boxes.len > 0 )
+	else if( boxes.len > 0 )
 		if( user.get_inactive_held_item() != src )
-			..()
-			return
+			return ..()
 
 		var/obj/item/pizzabox/box = boxes[boxes.len]
 		boxes -= box
@@ -2260,8 +2259,9 @@
 		to_chat(user, "<span class='warning'>You remove the topmost [src] from your hand.</span>")
 		box.update_icon()
 		update_icon()
-		return
-	..()
+
+	else
+		return ..()
 
 /obj/item/pizzabox/attack_self( mob/user as mob )
 

@@ -183,19 +183,6 @@
 	icon_state = "glowberrypile"
 	plantname = "glowberries"
 
-/obj/item/reagent_container/food/snacks/grown/glowberries/Destroy()
-	if(istype(loc,/mob))
-		loc.SetLuminosity(round(-potency/5,1))
-	. = ..()
-
-/obj/item/reagent_container/food/snacks/grown/glowberries/pickup(mob/user)
-	src.SetLuminosity(0)
-	user.SetLuminosity(round((potency/5),1))
-
-/obj/item/reagent_container/food/snacks/grown/glowberries/dropped(mob/user)
-	user.SetLuminosity(-(round((potency/5),1)))
-	src.SetLuminosity(round(potency/5,1))
-
 /obj/item/reagent_container/food/snacks/grown/cocoapod
 	name = "cocoa pod"
 	desc = "Can be ground into cocoa powder."
@@ -384,14 +371,6 @@
 	potency = 30
 	plantname = "killertomato"
 
-/obj/item/reagent_container/food/snacks/grown/killertomato/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	new /mob/living/simple_animal/tomato(user.loc)
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You plant the killer-tomato.</span>")
-
 /obj/item/reagent_container/food/snacks/grown/bloodtomato
 	name = "blood-tomato"
 	desc = "So bloody...so...very...bloody....AHHHH!!!!"
@@ -519,14 +498,6 @@
 	potency = 30
 	plantname = "walkingmushroom"
 
-/obj/item/reagent_container/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	new /mob/living/simple_animal/mushroom(user.loc)
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
-
 /obj/item/reagent_container/food/snacks/grown/mushroom/chanterelle
 	name = "chanterelle cluster"
 	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
@@ -553,19 +524,6 @@
 	qdel(src)
 
 	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/Destroy()
-	if(istype(loc,/mob))
-		loc.SetLuminosity(round(-potency/10,1))
-	. = ..()
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/pickup(mob/user)
-	SetLuminosity(0)
-	user.SetLuminosity(round((potency/10),1))
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/dropped(mob/user)
-	user.SetLuminosity(round(-(potency/10),1))
-	SetLuminosity(round(potency/10,1))
 
 
 // *************************************

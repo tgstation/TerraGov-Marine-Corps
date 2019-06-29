@@ -20,6 +20,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 	scannable = TRUE
+	trait_flags = TACHYCARDIC
 
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
@@ -598,6 +599,7 @@
 	scannable = TRUE
 	purge_list = list() //Does this purge any specific chems?
 	purge_rate = 15 //rate at which it purges specific chems
+	trait_flags = TACHYCARDIC
 
 /datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/L, metabolism)
 	var/amount = current_cycle * 4
@@ -766,6 +768,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = TRUE
 	taste_description = "sludge"
+	trait_flags = BRADYCARDICS
 
 /datum/reagent/medicine/cryoxadone/on_mob_life(mob/living/L, metabolism)
 	if(L.bodytemperature < 170)
@@ -781,6 +784,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = TRUE
 	taste_description = "muscle"
+	trait_flags = BRADYCARDICS
 
 /datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, metabolism)
 	if(L.bodytemperature < 170)

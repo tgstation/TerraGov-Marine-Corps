@@ -1,13 +1,11 @@
 #define DRYING_TIME 5 * 60*10                        //for 1 unit of depth in puddle (amount var)
 
-var/global/list/image/splatter_cache=list()
-
 /obj/effect/decal/cleanable/blood
 	name = "blood"
 	desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 	gender = PLURAL
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
@@ -73,9 +71,10 @@ var/global/list/image/splatter_cache=list()
 		amount = 0
 
 /obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
-	..()
+	. = ..()
+	if(.)
+		return
 	if (amount && istype(user))
-		add_fingerprint(user)
 		if (user.gloves)
 			return
 		var/taken = rand(1,amount)
@@ -128,7 +127,7 @@ var/global/list/image/splatter_cache=list()
 	desc = "They look bloody and gruesome."
 	gender = PLURAL
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
@@ -166,7 +165,7 @@ var/global/list/image/splatter_cache=list()
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 
-/obj/effect/decal/cleanable/blood/gibs/proc/streak(var/list/directions)
+/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
@@ -185,7 +184,7 @@ var/global/list/image/splatter_cache=list()
 	desc = "Disgusting mucus."
 	gender = PLURAL
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mucus"

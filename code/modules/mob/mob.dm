@@ -4,6 +4,10 @@
 	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
 	GLOB.offered_mob_list -= src
+	if(length(observers))
+		for(var/i in observers)
+			var/mob/dead/D = i
+			D.reset_perspective(null)
 	ghostize()
 	clear_fullscreens()
 	return ..()
@@ -40,8 +44,6 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
-				shuttle_controller?.stat_entry()
-				lighting_controller.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -87,11 +89,20 @@
 
 /mob/proc/prepare_huds()
 	hud_list = new
-	for(var/hud in hud_possible)
+	for(var/hud in hud_possible) //Providing huds.
 		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
 
 
 /mob/proc/show_message(msg, type, alt_msg, alt_type)
+	if(!client)
+		return
+
+	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+
+	to_chat(src, msg)
+
+
+/mob/living/show_message(msg, type, alt_msg, alt_type)
 	if(!client)
 		return
 
@@ -190,12 +201,6 @@
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
 
 
-/mob/proc/findname(msg)
-	for(var/mob/M in GLOB.mob_list)
-		if (M.real_name == text("[]", msg))
-			return M
-	return 0
-
 /mob/proc/movement_delay()
 	. += next_move_slowdown
 	next_move_slowdown = 0
@@ -218,39 +223,36 @@
 //unset redraw_mob to prevent the mob from being redrawn at the end.
 /mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, permanent = FALSE)
 	if(!istype(W))
-		return
+		return FALSE
 	if(!W.mob_can_equip(src, slot, warning))
 		if(del_on_fail)
 			qdel(W)
-		else if(warning)
+			return FALSE
+		if(warning)
 			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
-		return
-	var/start_loc = W.loc
+		return FALSE
 	if(W.time_to_equip && !ignore_delay)
-		spawn(0)
-			if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
-				to_chat(src, "You stop putting on \the [W]")
-			else
-				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
-				if(permanent)
-					W.flags_item |= NODROP
-				if(W.loc == start_loc && get_active_held_item() != W)
-					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-					if(W.zoom)
-						W.zoom(src)
-					if(W.flags_item & TWOHANDED)
-						W.unwield(src)
+		if(!do_after(src, W.time_to_equip, TRUE, W, BUSY_ICON_FRIENDLY))
+			to_chat(src, "You stop putting on \the [W]")
+			return FALSE
+		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
+		if(permanent)
+			W.flags_item |= NODROP
+			//This will unzoom and unwield items -without- triggering lights.
+		if(W.zoom)
+			W.zoom(src)
+		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
+			W.unwield(src)
 		return TRUE
 	else
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
 			W.flags_item |= NODROP
-		if(W.loc == start_loc && get_active_held_item() != W)
-			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-			if(W.zoom)
-				W.zoom(src)
-			if(W.flags_item & TWOHANDED)
-				W.unwield(src)
+		//This will unzoom and unwield items -without- triggering lights.
+		if(W.zoom)
+			W.zoom(src)
+		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
+			W.unwield(src)
 		return TRUE
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
@@ -258,7 +260,7 @@
 /mob/proc/equip_to_slot(obj/item/W as obj, slot)
 	return
 
-//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
+//This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, permanent = FALSE)
 	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, permanent)
 
@@ -338,21 +340,6 @@
 		return TRUE
 
 
-/mob/proc/reset_view(atom/A)
-	if (client)
-		if (ismovableatom(A))
-			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
-		else
-			if (isturf(loc))
-				client.eye = client.mob
-				client.perspective = MOB_PERSPECTIVE
-			else
-				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-	return
-
-
 /mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
 	var/dat = {"
@@ -370,51 +357,10 @@
 	return
 
 
-
-/mob/proc/point_to_atom(atom/A, turf/T)
-	//Squad Leaders and above have reduced cooldown and get a bigger arrow
-	if(!mind || !mind.cm_skills || mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
-		recently_pointed_to = world.time + 50
-		new /obj/effect/overlay/temp/point(T)
-
-	else
-		recently_pointed_to = world.time + 10
-		new /obj/effect/overlay/temp/point/big(T)
-	visible_message("<b>[src]</b> points to [A]", null, null, 5)
-	return 1
-
-
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
 	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
-
-
-/mob/proc/update_flavor_text()
-	set src in usr
-	if(usr != src)
-		to_chat(usr, "No.")
-	var/msg = input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null
-
-	if(msg != null)
-		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-		msg = html_encode(msg)
-
-		flavor_text = msg
-
-/mob/proc/warn_flavor_changed()
-	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
-		to_chat(src, "<h2 class='alert'>OOC Warning:</h2>")
-		to_chat(src, "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>")
-
-/mob/proc/print_flavor_text()
-	if (flavor_text && flavor_text != "")
-		var/msg = oldreplacetext(flavor_text, "\n", " ")
-		if(lentext(msg) <= 40)
-			return "<span class='notice'> [msg]</span>"
-		else
-			return "<span class='notice'> [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></span>"
-
 
 
 /client/verb/changes()
@@ -461,16 +407,13 @@
 		winset(src, "infowindow.changelog", "background-color=none;font-style=;")
 
 /mob/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["mach_close"])
 		var/t1 = text("window=[href_list["mach_close"]]")
 		unset_interaction()
 		src << browse(null, t1)
-
-	else if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, oldreplacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(usr, "[name]")
-	else if(href_list["flavor_change"])
-		update_flavor_text()
 
 	else if(href_list["default_language"])
 		var/language = text2path(href_list["default_language"])
@@ -498,7 +441,7 @@
 	show_inv(M)
 
 
-/mob/living/start_pulling(atom/movable/AM, no_msg)
+/mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
@@ -521,9 +464,6 @@
 	var/mob/M
 	if(ismob(AM))
 		M = AM
-
-	else if(istype(AM, /obj))
-		AM.add_fingerprint(src)
 
 	if(AM.pulledby && AM.pulledby.grab_level < GRAB_NECK)
 		if(M)
@@ -548,7 +488,7 @@
 		log_combat(src, M, "grabbed")
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
-		if(!no_msg)
+		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
@@ -567,12 +507,6 @@
 //returns true if the pull isn't severed by the response
 /atom/movable/proc/pull_response(mob/puller)
 	return TRUE
-
-
-/mob/proc/show_viewers(message)
-	for(var/mob/M in viewers())
-		if(!M.stat)
-			to_chat(src, message)
 
 
 /mob/GenerateTag()
@@ -601,7 +535,7 @@
 	return
 
 
-/mob/proc/facedir(var/ndir)
+/mob/proc/facedir(ndir)
 	if(!canface())
 		return FALSE
 	setDir(ndir)
@@ -630,7 +564,7 @@
 	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
-/mob/proc/get_visible_implants(var/class = 0)
+/mob/proc/get_visible_implants(class = 0)
 	var/list/visible_implants = list()
 	for(var/obj/item/O in embedded)
 		if(O.w_class > class)
@@ -742,19 +676,14 @@ mob/proc/yank_out_object()
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/on_stored_atom_del(atom/movable/AM)
-	if(istype(AM, /obj/item))
-		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
-
 /mob/forceMove(atom/destination)
+	. = ..()
+	if(!.)
+		return
 	stop_pulling()
-	if(pulledby)
-		pulledby.stop_pulling()
 	if(buckled)
 		buckled.unbuckle()
-	. = ..()
-	if(.)
-		reset_view(destination)
+
 
 /mob/proc/trainteleport(atom/destination)
 	if(!destination || anchored)
@@ -762,7 +691,7 @@ mob/proc/yank_out_object()
 	if(!pulling)
 		return forceMove(destination) //No need for a special proc if there's nothing being pulled.
 	pulledby?.stop_pulling() //The leader of the choo-choo train breaks the pull
-	var/atom/movable/list/conga_line[0]
+	var/list/conga_line = list()
 	var/end_of_conga = FALSE
 	var/mob/S = src
 	conga_line += S
@@ -825,7 +754,7 @@ mob/proc/yank_out_object()
 			AM.Moved(oldLoc)
 		var/mob/M = AM
 		if(istype(M))
-			M.reset_view(destination)
+			M.reset_perspective(destination)
 	return TRUE
 
 
@@ -846,6 +775,7 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
+	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
 	var/viewers = viewers()
 	for(var/mob/M in viewers)
 		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
@@ -957,4 +887,9 @@ mob/proc/yank_out_object()
 
 
 /mob/proc/sync_lighting_plane_alpha()
-	return
+	if(!hud_used)
+		return
+
+	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
+	if(L)
+		L.alpha = lighting_alpha

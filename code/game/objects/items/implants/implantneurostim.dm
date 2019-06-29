@@ -17,12 +17,12 @@
 <b>Integrity:</b> Implant will be degraded by the body's immune system and thus occasionally malfunction."}
 	return dat
 
-/obj/item/implant/neurostim/hear(var/msg)
+/obj/item/implant/neurostim/hear(msg)
 	msg = sanitize(msg)
 	if(findtext(msg,phrase))
 		activate(0)
 
-/obj/item/implant/neurostim/activate(var/accidental = 0)
+/obj/item/implant/neurostim/activate(accidental = 0)
 	set waitfor = 0
 
 	if(malfunction == MALFUNCTION_PERMANENT)

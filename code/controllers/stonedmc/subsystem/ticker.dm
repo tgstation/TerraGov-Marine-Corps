@@ -17,7 +17,6 @@ SUBSYSTEM_DEF(ticker)
 	var/login_music							//Music played in pregame lobby
 
 	var/list/datum/mind/minds = list()		//The characters in the game. Used for objective tracking.
-	var/datum/mind/liaison
 
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
@@ -25,27 +24,28 @@ SUBSYSTEM_DEF(ticker)
 	var/time_left							//Pre-game timer
 	var/start_at
 
-	var/gametime_offset = 432000			//Deciseconds to add to world.time for station time.
-
 	var/roundend_check_paused = FALSE
 
 	var/round_start_time = 0
 	var/list/round_start_events
 	var/list/round_end_events
-	var/end_state = "undefined"
 
 	var/tipped = FALSE
+
+	var/queue_delay = 0
+	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
 
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
 	login_music = pick(
-	'sound/music/SpaceHero.ogg',
-	'sound/music/ManOfWar.ogg',
-	'sound/music/PraiseTheLord.ogg',
-	'sound/music/BloodUponTheRisers.ogg',
-	'sound/music/DawsonChristian.ogg')
+		'sound/music/SpaceHero.ogg',
+		'sound/music/ManOfWar.ogg',
+		'sound/music/PraiseTheLord.ogg',
+		'sound/music/BloodUponTheRisers.ogg',
+		'sound/music/DawsonChristian.ogg',
+	)
 
 	return ..()
 
@@ -94,6 +94,7 @@ SUBSYSTEM_DEF(ticker)
 
 		if(GAME_STATE_PLAYING)
 			mode.process(wait * 0.1)
+			check_queue()
 
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
 				current_state = GAME_STATE_FINISHED
@@ -110,6 +111,8 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 	//Create and announce mode
 	mode = config.pick_mode(GLOB.master_mode)
+
+	CHECK_TICK
 	if(!mode.can_start())
 		to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		QDEL_NULL(mode)
@@ -117,40 +120,35 @@ SUBSYSTEM_DEF(ticker)
 		return FALSE
 
 	CHECK_TICK
-	var/can_continue = mode.pre_setup()
-	CHECK_TICK
-	SSjob.DivideOccupations() 
-	CHECK_TICK
-
-	if(!GLOB.Debug2)
-		if(!can_continue)
+	var/success = mode.pre_setup()
+	if (!success)
+		if(GLOB.Debug2)
+			message_admins("<span class='notice'>DEBUG: Bypassing failing prestart checks...</span>")
+		else
 			QDEL_NULL(mode)
-			to_chat(world, "<b>Error setting up [GLOB.master_mode].</b> Reverting to pre-game lobby.")
+			to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
 			SSjob.ResetOccupations()
 			return FALSE
-	else
-		message_admins("<span class='notice'>DEBUG: Bypassing prestart checks...</span>")
 
 	CHECK_TICK
-
+	if (!mode.setup())
+		QDEL_NULL(mode)
+		to_chat(world, "<b>Error in setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
+		SSjob.ResetOccupations()
+		return FALSE
+	
+	CHECK_TICK
 	mode.announce()
 
 	if(CONFIG_GET(flag/autooocmute))
 		GLOB.ooc_allowed = TRUE
 
 	CHECK_TICK
-	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
-	create_characters() //Create player characters
-	collect_minds()
-	reset_squads()
-	equip_characters()
-
-	transfer_characters()	//transfer keys to the new mobs
-
 	for(var/I in round_start_events)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
+	CHECK_TICK
 
 	GLOB.datacore.manifest()
 
@@ -161,6 +159,7 @@ SUBSYSTEM_DEF(ticker)
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
+	CHECK_TICK
 	PostSetup()
 	return TRUE
 
@@ -171,6 +170,7 @@ SUBSYSTEM_DEF(ticker)
 
 	setup_done = TRUE
 
+	GLOB.start_landmarks_list = shuffle(GLOB.start_landmarks_list) //Shuffle the order of spawn points so they dont always predictably spawn bottom-up and right-to-left
 	for(var/i in GLOB.start_landmarks_list)
 		var/obj/effect/landmark/start/S = i
 		if(istype(S))							//we can not runtime here. not in this important of a proc.
@@ -202,59 +202,6 @@ SUBSYSTEM_DEF(ticker)
 		if(epi)
 			explosion(epi, 0, 256, 512, 0, TRUE, TRUE, 0, TRUE)
 
-
-/datum/controller/subsystem/ticker/proc/create_characters()
-	for(var/mob/new_player/player in GLOB.player_list)
-		if(player.ready && player.mind)
-			GLOB.joined_player_list += player.ckey
-			player.create_character(FALSE)
-		else
-			player.new_player_panel()
-		CHECK_TICK
-
-
-/datum/controller/subsystem/ticker/proc/collect_minds()
-	for(var/mob/new_player/P in GLOB.player_list)
-		if(P.new_character && P.new_character.mind)
-			SSticker.minds += P.new_character.mind
-		CHECK_TICK
-
-
-/datum/controller/subsystem/ticker/proc/equip_characters()
-	var/captainless = TRUE
-	for(var/mob/new_player/N in GLOB.player_list)
-		var/mob/living/carbon/human/player = N.new_character
-		if(istype(player) && player.mind && player.mind.assigned_role)
-			if(player.mind.assigned_role == "Captain")
-				captainless = FALSE
-			if(player.mind.assigned_role)
-				SSjob.EquipRank(N, player.mind.assigned_role, 0)
-		CHECK_TICK
-	if(captainless)
-		for(var/mob/new_player/N in GLOB.player_list)
-			if(N.new_character)
-				to_chat(N, "Marine Captain position not forced on anyone.")
-			CHECK_TICK
-
-
-/datum/controller/subsystem/ticker/proc/transfer_characters()
-	var/list/livings = list()
-	for(var/mob/new_player/player in GLOB.mob_list)
-		var/mob/living = player.transfer_character()
-		if(living)
-			qdel(player)
-			living.notransform = TRUE
-			livings += living
-	if(length(livings))
-		addtimer(CALLBACK(src, .proc/release_characters, livings), 30, TIMER_CLIENT_TIME)
-
-
-/datum/controller/subsystem/ticker/proc/release_characters(list/livings)
-	for(var/I in livings)
-		var/mob/living/L = I
-		L.notransform = FALSE
-
-
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
 
@@ -277,6 +224,9 @@ SUBSYSTEM_DEF(ticker)
 	time_left = SSticker.time_left
 
 	tipped = SSticker.tipped
+
+	queue_delay = SSticker.queue_delay
+	queued_players = SSticker.queued_players
 
 	switch(current_state)
 		if(GAME_STATE_SETTING_UP)
@@ -315,10 +265,16 @@ SUBSYSTEM_DEF(ticker)
 	WRITE_FILE(F, the_mode)
 
 
-/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
+/datum/controller/subsystem/ticker/proc/Reboot(reason, delay)
 	set waitfor = FALSE
 
 	if(usr && !check_rights(R_SERVER))
+		return
+
+	var/datum/tgs_api/v3210/TGS = GLOB.tgs
+	if(istype(TGS) && TGS.reboot_mode == 1)
+		to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
+		world.Reboot(FALSE)
 		return
 
 	if(!delay)
@@ -337,13 +293,12 @@ SUBSYSTEM_DEF(ticker)
 	if(delay_end && !skip_delay)
 		to_chat(world, "<span class='boldnotice'>Reboot was cancelled by an admin.</span>")
 		return
-	if(end_string)
-		end_state = end_string
 
-	log_game("<span class='boldnotice'>Rebooting World. [reason]</span>")
+	log_game("Rebooting World. [reason]")
 	to_chat_immediate(world, "<h3><span class='boldnotice'>Rebooting...</span></h3>")
 
 	world.Reboot(TRUE)
+
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/tip
@@ -360,3 +315,37 @@ SUBSYSTEM_DEF(ticker)
 
 	if(tip)
 		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")
+
+
+/datum/controller/subsystem/ticker/proc/check_queue()
+	if(!length(queued_players))
+		return
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	if(!hpc)
+		listclearnulls(queued_players)
+		for(var/mob/new_player/NP in queued_players)
+			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a></span>")
+			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
+			NP.LateChoices()
+		queued_players.Cut()
+		queue_delay = 0
+		return
+
+	queue_delay++
+	var/mob/new_player/next_in_line = queued_players[1]
+
+	switch(queue_delay)
+		if(5) //every 5 ticks check if there is a slot available
+			listclearnulls(queued_players)
+			if(living_player_count() < hpc)
+				if(next_in_line?.client)
+					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a></span>")
+					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
+					next_in_line.LateChoices()
+					return
+				queued_players -= next_in_line //Client disconnected, remove he
+			queue_delay = 0 //No vacancy: restart timer
+		if(25 to INFINITY)  //No response from the next in line when a vacancy exists, remove he
+			to_chat(next_in_line, "<span class='danger'>No response received. You have been removed from the line.</span>")
+			queued_players -= next_in_line
+			queue_delay = 0

@@ -87,7 +87,7 @@
 		qdel(D)
 
 
-/obj/item/reagent_container/spray/attack_self(var/mob/user)
+/obj/item/reagent_container/spray/attack_self(mob/user)
 	if(!possible_transfer_amounts)
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)

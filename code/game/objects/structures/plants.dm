@@ -8,7 +8,7 @@
 	icon = 'icons/obj/structures/jungle.dmi'
 	icon_state = "bush1"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	layer = BUSH_LAYER
 	var/indestructable = 0
 	var/stump = 0
@@ -106,15 +106,9 @@
 // Strange, fruit-bearing plants //
 //*******************************//
 
-var/list/fruit_icon_states = list("badrecipe","kudzupod","reishi","lime","grapes","boiledrorocore","chocolateegg")
-var/list/reagent_effects = list(/datum/reagent/toxin, /datum/reagent/medicine/dylovene, /datum/reagent/toxin/sleeptoxin, /datum/reagent/space_drugs,
-								/datum/reagent/toxin/mindbreaker, /datum/reagent/toxin/zombiepowder, /datum/reagent/impedrezene)
-var/jungle_plants_init = 0
-
-/proc/init_jungle_plants()
-	jungle_plants_init = 1
-	fruit_icon_states = shuffle(fruit_icon_states)
-	reagent_effects = shuffle(reagent_effects)
+GLOBAL_LIST_INIT(fruit_icon_states, list("badrecipe","kudzupod","reishi","lime","grapes","boiledrorocore","chocolateegg"))
+GLOBAL_LIST_INIT(reagent_effects, list(/datum/reagent/toxin, /datum/reagent/medicine/dylovene, /datum/reagent/toxin/sleeptoxin, /datum/reagent/space_drugs,
+								/datum/reagent/toxin/mindbreaker, /datum/reagent/toxin/zombiepowder, /datum/reagent/impedrezene))
 
 /obj/item/reagent_container/food/snacks/grown/jungle_fruit
 	name = "jungle fruit"
@@ -135,12 +129,8 @@ var/jungle_plants_init = 0
 	var/fruit_g
 	var/fruit_b
 
-
-/obj/structure/jungle_plant/New()
+/obj/structure/jungle_plant/Initialize()
 	. = ..()
-	if(!jungle_plants_init)
-		init_jungle_plants()
-
 	fruit_type = rand(1,7)
 	icon_state = "plant[fruit_type]"
 	fruits_left = rand(1,5)
@@ -152,15 +142,18 @@ var/jungle_plants_init = 0
 	overlays += fruit_overlay
 	plant_strength = rand(20,200)
 
-/obj/structure/jungle_plant/attack_hand(var/mob/user as mob)
+/obj/structure/jungle_plant/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(fruits_left > 0)
 		fruits_left--
 		to_chat(user, "<span class='notice'>You pick a fruit off [src].</span>")
 
 		var/obj/item/reagent_container/food/snacks/grown/jungle_fruit/J = new (src.loc)
 		J.potency = plant_strength
-		J.icon_state = fruit_icon_states[fruit_type]
-		J.reagents.add_reagent(reagent_effects[fruit_type], 1+round((plant_strength / 20), 1))
+		J.icon_state = GLOB.fruit_icon_states[fruit_type]
+		J.reagents.add_reagent(GLOB.reagent_effects[fruit_type], 1+round((plant_strength / 20), 1))
 		J.bitesize = 1+round(J.reagents.total_volume / 2, 1)
 		J.attack_hand(user)
 

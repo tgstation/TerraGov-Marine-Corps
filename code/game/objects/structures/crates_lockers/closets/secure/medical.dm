@@ -98,10 +98,11 @@
 	new /obj/item/clothing/gloves/latex(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/head/surgery/green(src)
+	new /obj/item/clothing/head/cmo(src)
 	new /obj/item/clothing/suit/storage/labcoat(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/radio/headset/almayer/cmo(src)
+	new /obj/item/radio/headset/almayer/mcom(src)
 	new /obj/item/reagent_container/hypospray/advanced/tricordrazine(src)
 	new /obj/item/flash(src)
 	new /obj/item/storage/pouch/medical(src)
@@ -121,9 +122,9 @@
 /obj/structure/closet/secure_closet/animal/Initialize()
 	. = ..()
 	new /obj/item/assembly/signaler(src)
-	new /obj/item/radio/electropack(src)
-	new /obj/item/radio/electropack(src)
-	new /obj/item/radio/electropack(src)
+	new /obj/item/electropack(src)
+	new /obj/item/electropack(src)
+	new /obj/item/electropack(src)
 
 
 

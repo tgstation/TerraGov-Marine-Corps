@@ -10,8 +10,9 @@
 	climbable = 1
 	climb_delay = 20 //Doesn't need as long to climb over a crate
 	anchored = 0
-	store_mobs = FALSE
+	mob_storage_capacity = 0
 	var/rigged = 0
+	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 
 /obj/structure/closet/crate/can_open()
 	return 1
@@ -38,7 +39,7 @@
 	if(!can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/radio/electropack) in src)
+	if(rigged && locate(/obj/item/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -96,7 +97,7 @@
 		to_chat(user, "<span class='notice'>You rig [src].</span>")
 		rigged = TRUE
 
-	else if(istype(I, /obj/item/radio/electropack))
+	else if(istype(I, /obj/item/electropack))
 		if(!rigged)
 			return
 
@@ -334,7 +335,7 @@
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
 	icon_state = "miningcar"
-	density = 1
+	density = TRUE
 	icon_opened = "miningcaropen"
 	icon_closed = "miningcar"
 

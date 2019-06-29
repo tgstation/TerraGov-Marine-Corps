@@ -12,6 +12,9 @@
 	var/no_destination_swap = 0
 
 /obj/machinery/computer/shuttle/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!user || user.incapacitated())
 		return
 	ui_interact(user)
@@ -43,15 +46,21 @@
 	popup.open()
 
 /obj/machinery/computer/shuttle/Topic(href, href_list)
-	if(..())
-		return TRUE
-//	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	. = ..()
+	if(.)
+		return
+
+	if(isxeno(usr))
+		return
+
 	if(!allowed(usr))
 		to_chat(usr, "<span class='danger'>Access denied.</span>")
 		return TRUE
 
 	if(href_list["move"])
+		if(world.time < SSticker.round_start_time + SHUTTLE_LAUNCH_LOCK)
+			to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
+			return TRUE
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 		if(M.mode == SHUTTLE_RECHARGING)
 			to_chat(usr, "<span class='warning'>The engines are not ready to use yet!</span>")

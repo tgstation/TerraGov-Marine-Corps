@@ -12,6 +12,7 @@
 // Consider these images/atoms as part of the UI/HUD
 #define APPEARANCE_UI_IGNORE_ALPHA			(RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 #define APPEARANCE_UI						(RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
+#define APPEARANCE_UI_TRANSFORM				(RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 
 //dirt type for each turf types.
 #define NO_DIRT				0
@@ -30,8 +31,8 @@
 
 #define RESIZE_DEFAULT_SIZE 1
 
-/var/static/global_unique_id = 1
-#define UNIQUEID (global_unique_id++)
+GLOBAL_VAR_INIT(global_unique_id, 1)
+#define UNIQUEID (GLOB.global_unique_id++)
 
 // Maploader bounds indices
 #define MAP_MINX 1
@@ -40,7 +41,6 @@
 #define MAP_MAXX 4
 #define MAP_MAXY 5
 #define MAP_MAXZ 6
-var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 
@@ -97,9 +97,3 @@ var/global/TAB = "&nbsp;&nbsp;&nbsp;&nbsp;"
 #define LUMA_R 0.213
 #define LUMA_G 0.715
 #define LUMA_B 0.072
-
-
-#define LIGHTING_PLANE_ALPHA_VISIBLE 255
-#define LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE 192
-#define LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE 128
-#define LIGHTING_PLANE_ALPHA_INVISIBLE 0

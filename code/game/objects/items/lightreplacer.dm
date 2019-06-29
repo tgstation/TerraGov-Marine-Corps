@@ -53,7 +53,6 @@
 
 	var/max_uses = 50
 	var/uses = 0
-	var/emagged = 0
 	var/failmsg = ""
 	var/charge = 1
 
@@ -69,7 +68,7 @@
 /obj/item/lightreplacer/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I,  /obj/item/card/emag) && !emagged)
+	if(istype(I,  /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		Emag()
 
 	else if(istype(I, /obj/item/stack/sheet/glass))
@@ -105,26 +104,26 @@
 	to_chat(usr, "It has [uses] lights remaining.")
 
 /obj/item/lightreplacer/update_icon()
-	icon_state = "lightreplacer[emagged]"
+	icon_state = "lightreplacer[CHECK_BITFIELD(obj_flags, EMAGGED)]"
 
 
-/obj/item/lightreplacer/proc/Use(var/mob/user)
+/obj/item/lightreplacer/proc/Use(mob/user)
 
 	playsound(src.loc, 'sound/machines/click.ogg', 25, 1)
 	AddUses(-1)
 	return 1
 
 // Negative numbers will subtract
-/obj/item/lightreplacer/proc/AddUses(var/amount = 1)
+/obj/item/lightreplacer/proc/AddUses(amount = 1)
 	uses = min(max(uses + amount, 0), max_uses)
 
-/obj/item/lightreplacer/proc/Charge(var/mob/user)
+/obj/item/lightreplacer/proc/Charge(mob/user)
 	charge += 1
 	if(charge > 7)
 		AddUses(1)
 		charge = 1
 
-/obj/item/lightreplacer/proc/ReplaceLight(var/obj/machinery/light/target, var/mob/living/U)
+/obj/item/lightreplacer/proc/ReplaceLight(obj/machinery/light/target, mob/living/U)
 
 	if(target.status != LIGHT_OK)
 		if(CanUse(U))
@@ -148,7 +147,7 @@
 
 			target.status = L2.status
 			target.switchcount = L2.switchcount
-			target.rigged = emagged
+			target.rigged = CHECK_BITFIELD(obj_flags, EMAGGED)
 			target.brightness = L2.brightness
 			target.on = target.has_power()
 			target.update()
@@ -166,9 +165,9 @@
 		return
 
 /obj/item/lightreplacer/proc/Emag()
-	emagged = !emagged
+	TOGGLE_BITFIELD(obj_flags, EMAGGED)
 	playsound(src.loc, "sparks", 25, 1)
-	if(emagged)
+	if(CHECK_BITFIELD(obj_flags, EMAGGED))
 		name = "Shortcircuited [initial(name)]"
 	else
 		name = initial(name)
@@ -176,8 +175,7 @@
 
 //Can you use it?
 
-/obj/item/lightreplacer/proc/CanUse(var/mob/living/user)
-	src.add_fingerprint(user)
+/obj/item/lightreplacer/proc/CanUse(mob/living/user)
 	//Not sure what else to check for. Maybe if clumsy?
 	if(uses > 0)
 		return 1

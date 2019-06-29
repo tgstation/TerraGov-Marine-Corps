@@ -20,37 +20,6 @@
 		next_move = world.time + 2
 	return
 
-/mob/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
-	set name = "Point To"
-	set category = "Object"
-
-	if(!isturf(loc))
-		return FALSE
-
-	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
-		return FALSE
-
-	if(!A.mouse_opacity) //Can't click it? can't point at it.
-		return FALSE
-
-	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
-		return FALSE
-
-	var/tile = get_turf(A)
-	if(!tile)
-		return FALSE
-
-	if(next_move > world.time)
-		return FALSE
-
-	if(recently_pointed_to > world.time)
-		return FALSE
-
-	next_move = world.time + 2
-
-	point_to_atom(A, tile)
-	return TRUE
-
 
 /mob/verb/memory()
 	set name = "Notes"
@@ -105,34 +74,26 @@
 		else
 			to_chat(usr, "You can respawn now, enjoy your new life!")
 
-	log_game("[usr.name]/[usr.key] used abandon mob.")
-
 	to_chat(usr, "<span class='boldnotice'>Make sure to play a different character, and please roleplay correctly!</span>")
 
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
 		return
 	client.screen.Cut()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
 		return
 
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
 		qdel(M)
 		return
 
 	M.key = key
-	if(M.client)
-		M.client.change_view(world.view)
-	return
 
 
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "Object"
-	reset_view(null)
+	reset_perspective(null)
 	unset_interaction()
 	if(isliving(src))
 		var/mob/living/M = src

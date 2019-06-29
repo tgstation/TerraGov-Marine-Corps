@@ -12,7 +12,7 @@
 	flags_atom = CONDUCT
 	max_amount = 60
 
-/obj/item/stack/tile/plasteel/New(var/loc, var/amount=null)
+/obj/item/stack/tile/plasteel/New(loc, amount=null)
 	..()
 	src.pixel_x = rand(1, 14)
 	src.pixel_y = rand(1, 14)
@@ -30,7 +30,6 @@
 		to_chat(user, "<span class='warning'>You cannot build on or repair this turf!</span>")
 		return
 	src.build(T)
-	src.add_fingerprint(user)
 	use(1)
 	return
 */

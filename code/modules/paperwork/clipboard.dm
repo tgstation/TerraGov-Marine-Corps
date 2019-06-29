@@ -29,7 +29,6 @@
 					M.dropItemToGround(src)
 					M.put_in_l_hand(src)
 
-			add_fingerprint(usr)
 			return
 
 /obj/item/clipboard/update_icon()
@@ -79,11 +78,12 @@
 
 	user << browse(dat, "window=clipboard")
 	onclose(user, "clipboard")
-	add_fingerprint(usr)
 	return
 
 /obj/item/clipboard/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if((usr.stat || usr.restrained()))
 		return
 

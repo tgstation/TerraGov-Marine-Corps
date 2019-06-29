@@ -178,7 +178,7 @@
 		user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
 		"<span class='notice'>You begin removing the barbed wire on [src].</span>")
 
-		if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -193,7 +193,7 @@
 		climbable = TRUE
 		new /obj/item/stack/barbed_wire(loc)
 
-	else if(I.force > barricade_resistance)
+	else if(I.force > barricade_resistance && user.a_intent != INTENT_HELP)
 		if(barricade_hitsound)
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(I)
@@ -379,7 +379,7 @@
 	update_icon()
 	return
 
-/obj/structure/barricade/snow/bullet_act(var/obj/item/projectile/P)
+/obj/structure/barricade/snow/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
 	obj_integrity -= round(P.damage/2) //Not that durable.
 
@@ -449,7 +449,7 @@
 			obj_integrity -= I.force * 0.75
 	update_health()
 
-/obj/structure/barricade/wooden/bullet_act(var/obj/item/projectile/P)
+/obj/structure/barricade/wooden/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
 	obj_integrity -= round(P.damage/2) //Not that durable.
 
@@ -746,7 +746,7 @@
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		busy = TRUE
 
-		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
 			busy = FALSE
 			return
 
@@ -860,6 +860,9 @@
 
 
 /obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(isxeno(user))
 		return
 

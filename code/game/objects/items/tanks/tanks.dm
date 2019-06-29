@@ -70,7 +70,7 @@
 
 	ui_interact(user)
 
-/obj/item/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/tank/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	var/using_internal
 	if(istype(loc,/mob/living/carbon))
@@ -96,7 +96,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "tanks.tmpl", "Tank", 500, 300)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -106,7 +106,9 @@
 		ui.set_auto_update(1)
 
 /obj/item/tank/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if (usr.stat|| usr.restrained())
 		return 0
 	if (src.loc != usr)
@@ -138,7 +140,6 @@
 				else
 					to_chat(usr, "<span class='notice'>You need something to connect to \the [src].</span>")
 
-	src.add_fingerprint(usr)
 	return 1
 
 

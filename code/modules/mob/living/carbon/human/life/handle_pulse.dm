@@ -21,15 +21,15 @@
 
 	//Handles different chems' influence on pulse
 	for(var/datum/reagent/R in reagents.reagent_list)
-		if(R.type in GLOB.bradycardics)
+		if(R.trait_flags & BRADYCARDICS)
 			if(temp <= PULSE_THREADY && temp >= PULSE_NORM)
 				temp--
-		if(R.type in GLOB.tachycardics)
+		if(R.trait_flags & TACHYCARDIC)
 			if(temp <= PULSE_FAST && temp >= PULSE_NONE)
 				temp++
-		if(R.type in GLOB.heartstoppers) //To avoid using fakedeath
+		if(R.trait_flags & HEARTSTOPPER) //To avoid using fakedeath
 			temp = PULSE_NONE
-		if(R.type in GLOB.conditional_heartstoppers) //Conditional heart-stoppage
+		if(R.trait_flags & CHEARTSTOPPER) //Conditional heart-stoppage
 			if(R.volume >= R.overdose_threshold)
 				temp = PULSE_NONE
 

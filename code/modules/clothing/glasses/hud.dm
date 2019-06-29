@@ -56,7 +56,6 @@
 	icon_state = "jensenshades"
 	item_state = "jensenshades"
 	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING // the define name is just misleading, don't worry
 	toggleable = 0
 	actions_types = list()
 
@@ -67,4 +66,12 @@
 	flags_armor_protection = 0
 	toggleable = TRUE
 	hud_type = DATA_HUD_XENO_STATUS
+	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/clothing/glasses/hud/painhud
+	name = "Pain HUD"
+	desc = "A heads-up display that scans human pain and perceived health."
+	icon_state = "securityhud"
+	toggleable = TRUE
+	hud_type = DATA_HUD_MEDICAL_PAIN
 	actions_types = list(/datum/action/item_action/toggle)

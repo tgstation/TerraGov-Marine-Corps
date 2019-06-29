@@ -1,18 +1,18 @@
 /*
- *	These absorb the functionality of the plant bag, ore satchel, etc.
- *	They use the use_to_pickup, quick_gather, and quick_empty functions
- *	that were already defined in weapon/storage, but which had been
- *	re-implemented in other classes.
- *
- *	Contains:
- *		Trash Bag
- *		Mining Satchel
- *		Plant Bag
- *		Sheet Snatcher
- *		Cash Bag
- *
- *	-Sayu
- */
+*	These absorb the functionality of the plant bag, ore satchel, etc.
+*	They use the use_to_pickup, quick_gather, and quick_empty functions
+*	that were already defined in weapon/storage, but which had been
+*	re-implemented in other classes.
+*
+*	Contains:
+*		Trash Bag
+*		Mining Satchel
+*		Plant Bag
+*		Sheet Snatcher
+*		Cash Bag
+*
+*	-Sayu
+*/
 
 //  Generic non-item
 /obj/item/storage/bag

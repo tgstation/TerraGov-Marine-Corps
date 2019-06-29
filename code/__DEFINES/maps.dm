@@ -6,15 +6,6 @@ The list DEFAULT_MAP_TRAITS at the bottom of this file should correspond to
 the maps that are hardcoded, as set in _maps/_basemap.dm. SSmapping is
 responsible for loading every non-hardcoded z-level.
 
-As of 2018-02-04, the typical z-levels for a single-level station are:
-1: CentCom
-2: Station
-3-4: Randomized space
-5: Mining
-6: City of Cogs
-7-11: Randomized space
-12: Empty space
-13: Transit space
 
 Multi-Z stations are supported and multi-Z mining and away missions would
 require only minor tweaks.
@@ -31,14 +22,8 @@ require only minor tweaks.
 // boolean - marks a level as having that property if present
 #define ZTRAIT_CENTCOM "CentCom"
 #define ZTRAIT_STATION "Station"
-#define ZTRAIT_MINING "Mining"
-#define ZTRAIT_REEBE "Reebe"
 #define ZTRAIT_RESERVED "Transit/Reserved"
-#define ZTRAIT_AWAY "Away Mission"
-#define ZTRAIT_SPACE_RUINS "Space Ruins"
-#define ZTRAIT_LAVA_RUINS "Lava Ruins"
 #define ZTRAIT_GROUND "Ground"
-#define ZTRAIT_LOW_ORBIT "Low Orbit"
 #define ZTRAIT_MARINE_MAIN_SHIP "Marine Main Ship"
 
 // number - bombcap is multiplied by this before being applied to bombs
@@ -53,28 +38,27 @@ require only minor tweaks.
 
 // enum - how space transitions should affect this level
 #define ZTRAIT_LINKAGE "Linkage"
-    // UNAFFECTED if absent - no space transitions
-    #define UNAFFECTED null
-    // SELFLOOPING - space transitions always self-loop
-    #define SELFLOOPING "Self"
-    // CROSSLINKED - mixed in with the cross-linked space pool
-    #define CROSSLINKED "Cross"
+	// UNAFFECTED if absent - no space transitions
+	#define UNAFFECTED null
+	// SELFLOOPING - space transitions always self-loop
+	#define SELFLOOPING "Self"
+	// CROSSLINKED - mixed in with the cross-linked space pool
+	#define CROSSLINKED "Cross"
 
 // string - type path of the z-level's baseturf (defaults to space)
 #define ZTRAIT_BASETURF "Baseturf"
 
 // default trait definitions, used by SSmapping
 #define ZTRAITS_MAIN_SHIP list(ZTRAIT_MARINE_MAIN_SHIP = TRUE)
-#define ZTRAITS_LOW_ORBIT list(ZTRAIT_LOW_ORBIT = TRUE, ZTRAIT_STATION = FALSE)
 #define ZTRAITS_GROUND list(ZTRAIT_GROUND = TRUE)
 #define ZTRAITS_CENTCOM list(ZTRAIT_CENTCOM = TRUE)
 #define ZTRAITS_STATION list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_STATION = TRUE)
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
 #define ZTRAITS_LAVALAND list(\
-    ZTRAIT_MINING = TRUE, \
-    ZTRAIT_LAVA_RUINS = TRUE, \
-    ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
-    ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
+	ZTRAIT_MINING = TRUE, \
+	ZTRAIT_LAVA_RUINS = TRUE, \
+	ZTRAIT_BOMBCAP_MULTIPLIER = 2, \
+	ZTRAIT_BASETURF = /turf/open/lava/smooth/lava_land_surface)
 #define ZTRAITS_REEBE list(ZTRAIT_REEBE = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0.5)
 
 #define DL_NAME "name"
@@ -83,14 +67,13 @@ require only minor tweaks.
 
 // must correspond to _basemap.dm for things to work correctly
 #define DEFAULT_MAP_TRAITS list(\
-    DECLARE_LEVEL("CentCom", ZTRAITS_CENTCOM),\
+	DECLARE_LEVEL("CentCom", ZTRAITS_CENTCOM),\
 )
 
 // Camera lock flags
-#define CAMERA_LOCK_STATION 1
-#define CAMERA_LOCK_MINING 2
-#define CAMERA_LOCK_CENTCOM 4
-#define CAMERA_LOCK_REEBE 8
+#define CAMERA_LOCK_SHIP    (1<<0)
+#define CAMERA_LOCK_GROUND  (1<<1)
+#define CAMERA_LOCK_CENTCOM (1<<2)
 
 //Reserved/Transit turf type
 #define RESERVED_TURF_TYPE /turf/open/space			//What the turf is when not being used

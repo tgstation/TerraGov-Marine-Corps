@@ -10,7 +10,7 @@
 							/obj/item/weapon/gun/flamer, \
 							/obj/item/ammo_magazine/flamer_tank, \
 							/obj/item/ammo_magazine/flamer_tank \
-							 ), \
+							), \
 						list(/obj/item/weapon/gun/rifle/lmg, \
 							/obj/item/ammo_magazine/rifle/lmg, \
 							/obj/item/ammo_magazine/rifle/lmg, \

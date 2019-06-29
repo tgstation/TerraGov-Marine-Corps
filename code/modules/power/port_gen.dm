@@ -182,7 +182,7 @@
 		addstack.use(amount)
 
 	else if(istype(I, /obj/item/card/emag))
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		emp_act(TRUE)
 
 	else if(!active && iswrench(I))
@@ -199,6 +199,9 @@
 
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
@@ -207,7 +210,7 @@
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
+/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	. = ..()
 
 	var/list/data = list()
@@ -234,10 +237,10 @@
 		ui.set_auto_update(TRUE)
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
-	add_fingerprint(usr)
 	if(href_list["toggle_power"])
 		TogglePower()
 		. = TRUE
@@ -250,12 +253,9 @@
 			power_output--
 			. = TRUE
 	if (href_list["higher_power"])
-		if (power_output < 4 || emagged)
+		if (power_output < 4 || CHECK_BITFIELD(obj_flags, EMAGGED))
 			power_output++
 			. = TRUE
-
-/obj/machinery/power/port_gen/pacman/inoperable(var/additional_flags)
-	. = (machine_stat & (BROKEN|additional_flags))
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"

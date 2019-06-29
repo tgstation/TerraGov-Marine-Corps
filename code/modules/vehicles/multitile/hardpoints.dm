@@ -247,6 +247,9 @@ Currently only has the tank hardpoints
 		return
 
 	next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+	var/obj/item/hardpoint/secondary/towlauncher/HP = owner.hardpoints[HDPT_SECDGUN]
+	if(istype(HP))
+		HP.next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 
 	var/delay = 5
 	var/turf/T = get_turf(A)
@@ -434,6 +437,10 @@ Currently only has the tank hardpoints
 	qdel(TL)
 
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+	var/obj/item/hardpoint/primary/cannon/HP = owner.hardpoints[HDPT_PRIMARY]
+	if(istype(HP))
+		HP.next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		T = get_step(T, pick(GLOB.cardinals))
 	var/obj/item/projectile/P = new
@@ -642,9 +649,9 @@ Currently only has the tank hardpoints
 	owner.misc_ratios["move"] = 0.2
 	if(M)
 		to_chat(M, "<span class='danger'>You hit the nitros! RRRRRRRMMMM!!</span>")
-	playsound(M, 'sound/mecha/hydraulic.ogg', 100, 1, vary = 0)
-	addtimer(CALLBACK(src, .boost_off), TANK_OVERDRIVE_BOOST_DURATION)
-	addtimer(CALLBACK(src, .boost_ready_notice), TANK_OVERDRIVE_BOOST_COOLDOWN)
+	playsound(M, 'sound/mecha/hydraulic.ogg', 60, 1, vary = 0)
+	addtimer(CALLBACK(src, .proc/boost_off), TANK_OVERDRIVE_BOOST_DURATION)
+	addtimer(CALLBACK(src, .proc/boost_ready_notice), TANK_OVERDRIVE_BOOST_COOLDOWN)
 
 /obj/item/hardpoint/support/overdrive_enhancer/remove_buff()
 	var/obj/vehicle/multitile/root/cm_armored/tank/C = owner

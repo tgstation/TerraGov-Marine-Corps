@@ -13,7 +13,8 @@
 	var/mopcount = 0
 
 
-/obj/item/tool/mop/New()
+/obj/item/tool/mop/Initialize()
+	. = ..()
 	create_reagents(5)
 
 /turf/proc/clean(atom/source)

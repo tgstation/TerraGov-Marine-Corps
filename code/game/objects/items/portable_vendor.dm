@@ -26,10 +26,11 @@
 
 
 /obj/item/portable_vendor/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(loc == user)
 		attack_self(user)
-	else
-		..()
 
 
 /obj/item/portable_vendor/attack_self(mob/user)
@@ -38,8 +39,6 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-
-	src.add_fingerprint(usr)
 
 	if(broken)
 		to_chat(user, "<span class='notice'>[src] is irrepairably broken.</span>")
@@ -67,7 +66,7 @@
 	ui_interact(user)
 
 
-/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 
 	if(!ishuman(user)) return
 
@@ -108,6 +107,9 @@
 
 
 /obj/item/portable_vendor/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(broken)
 		return
 	if(usr.incapacitated())
@@ -166,7 +168,6 @@
 				fabricating = 0
 				update_overlays()
 
-		src.add_fingerprint(usr)
 		ui_interact(usr) //updates the nanoUI window
 
 

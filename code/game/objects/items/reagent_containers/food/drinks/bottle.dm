@@ -28,7 +28,6 @@
 
 	playsound(src, "shatter", 25, 1)
 	user.put_in_active_hand(B)
-	src.transfer_fingerprints_to(B)
 
 	qdel(src)
 

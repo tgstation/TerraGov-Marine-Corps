@@ -19,7 +19,7 @@ log transactions
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "atm"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
 	var/datum/money_account/authenticated_account
@@ -67,11 +67,11 @@ log transactions
 	. = ..()
 
 	if(istype(I, /obj/item/card/emag))
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>[icon2html(src, user)] CARD READER ERROR. This system has been compromised!</span>")
 			return
 
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		spark_system.start()
 		spawn_money(rand(100,500), loc)
 		release_held_id(user)
@@ -82,7 +82,7 @@ log transactions
 
 	else if(istype(I, /obj/item/card))
 		var/obj/item/card/id/idcard = I
-		if(emagged)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			to_chat(user, "<span class='warning'>[icon2html(src, user)] CARD READER ERROR. This system has been compromised!</span>")
 			return
 
@@ -120,6 +120,9 @@ log transactions
 
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(issilicon(user))
 		to_chat(user, "<span class='warning'>[icon2html(src, user)] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per Nanotrasen regulation #1005.</span>")
 		return
@@ -130,7 +133,7 @@ log transactions
 		dat += "For all your monetary needs!<br>"
 		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Nanotrasen IT Support</i><br/>"
 
-		if(emagged > 0)
+		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			dat += "Card: <span style='color: red;'>LOCKED</span><br><br><span style='color: red;'>Unauthorized terminal access detected! This ATM has been locked. Please contact Nanotrasen IT Support.</span>"
 		else
 			dat += "Card: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
@@ -217,7 +220,10 @@ log transactions
 	else
 		user << browse(null,"window=atm")
 
-/obj/machinery/atm/Topic(var/href, var/href_list)
+/obj/machinery/atm/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("transfer")
@@ -428,7 +434,7 @@ log transactions
 			if("insert_card")
 				if(!held_card)
 					//this might happen if the user had the browser window open when somebody emagged it
-					if(emagged > 0)
+					if(CHECK_BITFIELD(obj_flags, EMAGGED))
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] The ATM card reader rejected your ID because this machine has been sabotaged!</span>")
 					else
 						var/obj/item/I = usr.get_active_held_item()
@@ -480,7 +486,7 @@ log transactions
 	held_card = null
 
 
-/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
+/obj/machinery/atm/proc/spawn_ewallet(sum, loc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/spacecash/ewallet/E = new /obj/item/spacecash/ewallet(loc)
 	if(ishuman(human_user) && !human_user.get_active_held_item())
 		human_user.put_in_hands(E)

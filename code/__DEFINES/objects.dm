@@ -38,27 +38,6 @@
 #define MAX_STACK_AMOUNT_GLASS	50
 #define MAX_STACK_AMOUNT_RODS	60
 
-var/list/liftable_structures = list(
-	/obj/machinery/autolathe,
-	/obj/machinery/constructable_frame,
-	/obj/machinery/portable_atmospherics/hydroponics,
-	/obj/machinery/computer,
-	/obj/machinery/optable,
-	/obj/structure/dispenser,
-	/obj/machinery/gibber,
-	/obj/machinery/microwave,
-	/obj/machinery/vending,
-	/obj/machinery/seed_extractor,
-	/obj/machinery/space_heater,
-	/obj/machinery/recharge_station,
-	/obj/machinery/flasher,
-	/obj/structure/bed/stool,
-	/obj/structure/closet,
-	/obj/machinery/photocopier,
-	/obj/structure/filingcabinet,
-	/obj/structure/reagent_dispensers,
-	/obj/machinery/portable_atmospherics/canister)
-
 //Pulse levels, very simplified
 #define PULSE_NONE		0	//so !M.pulse checks would be possible
 #define PULSE_SLOW		1	//<60 bpm
@@ -71,11 +50,11 @@ var/list/liftable_structures = list(
 #define GETPULSE_HAND	0	//less accurate (hand)
 #define GETPULSE_TOOL	1	//more accurate (med scanner, sleeper, etc)
 
-var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
+GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
 	"thunder",
 	"ERT",
 	"NUKE"
-	)
+	))
 
 #define STASIS_IN_BAG 		1
 #define STASIS_IN_CRYO_CELL 2
@@ -165,26 +144,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define B18_PAIN_MIN					50
 #define B18_PAIN_MAX					150
 
-//Obj skill check defines
-
-#define OBJ_SKILL_CQC			1
-#define OBJ_SKILL_MELEE_WEAPONS	2
-#define OBJ_SKILL_FIREARMS		3
-#define OBJ_SKILL_PISTOLS		4
-#define OBJ_SKILL_RIFLES		5
-#define OBJ_SKILL_SMG			6
-#define OBJ_SKILL_SHOTGUNS		7
-#define OBJ_SKILL_HEAVYWEAPONS	8
-#define OBJ_SKILL_SMARTGUN		9
-#define OBJ_SKILL_SPEC_WEAPONS	10
-#define OBJ_SKILL_LEADERSHIP	11
-#define OBJ_SKILL_MEDICAL		12
-#define OBJ_SKILL_SURGERY		13
-#define OBJ_SKILL_PILOT			14
-#define OBJ_SKILL_ENGINEER		15
-#define OBJ_SKILL_CONSTRUCTION	16
-#define OBJ_SKILL_POLICE		17
-#define OBJ_SKILL_POWERLOADER	18
 
 //Razor wire
 
@@ -227,3 +186,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 #define TANK_OVERDRIVE_BOOST_DURATION	5 SECONDS
 #define TANK_OVERDRIVE_BOOST_COOLDOWN	20 SECONDS
+
+//Closets
+#define CLOSET_ALLOW_OBJS (1<<0)
+#define CLOSET_ALLOW_DENSE_OBJ (1<<1)
+#define CLOSET_IS_SECURE (1<<2)

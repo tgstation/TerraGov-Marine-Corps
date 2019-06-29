@@ -57,7 +57,7 @@
 	// Light Overload - X% chance to overload each lighting circuit in connected powernet. APC based.
 	// APC Failure - X% chance to destroy APC causing very weak explosion too. Won't cause hull breach or serious harm.
 	// SMES Explosion - X% chance to destroy the SMES, in moderate explosion. May cause small hull breach.
-/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/proc/total_system_failure(intensity = 0, mob/user as mob)
 	if (!intensity)
 		return
 
@@ -126,7 +126,7 @@
 				empulse(src.loc, 8, 16)
 			charge = 0
 			apcs_overload(1, 10)
-			src.ping("Caution. Output regulators malfunction. Uncontrolled discharge detected.")
+			visible_message("Caution. Output regulators malfunction. Uncontrolled discharge detected.")
 
 		if (61 to INFINITY)
 			// Massive overcharge
@@ -141,21 +141,21 @@
 				empulse(src.loc, 32, 64)
 			charge = 0
 			apcs_overload(5, 25)
-			src.ping("Caution. Output regulators malfunction. Significant uncontrolled discharge detected.")
+			visible_message("Caution. Output regulators malfunction. Significant uncontrolled discharge detected.")
 
 			if (prob(50))
 				// Added admin-notifications so they can stop it when griffed.
 				log_game("SMES explosion imminent [AREACOORD(src.loc)].")
 				message_admins("SMES explosion imminent [ADMIN_VERBOSEJMP(src.loc)].")
-				src.ping("DANGER! Magnetic containment field unstable! Containment field failure imminent!")
+				visible_message("DANGER! Magnetic containment field unstable! Containment field failure imminent!")
 				failing = 1
 				// 30 - 60 seconds and then BAM!
 				spawn(rand(300,600))
 					if(!failing) // Admin can manually set this var back to 0 to stop overload, for use when griffed.
 						update_icon()
-						src.ping("Magnetic containment stabilised.")
+						visible_message("Magnetic containment stabilised.")
 						return
-					src.ping("DANGER! Magnetic containment field failure in 3 ... 2 ... 1 ...")
+					visible_message("DANGER! Magnetic containment field failure in 3 ... 2 ... 1 ...")
 					explosion(src.loc,1,2,4,8)
 					// Not sure if this is necessary, but just in case the SMES *somehow* survived..
 					qdel(src)
@@ -163,7 +163,7 @@
 
 
 	// Gets powernet APCs and overloads lights or breaks the APC completely, depending on percentages.
-/obj/machinery/power/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance)
+/obj/machinery/power/smes/buildable/proc/apcs_overload(failure_chance, overload_chance)
 	if (!src.powernet)
 		return
 

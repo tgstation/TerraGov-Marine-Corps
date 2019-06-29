@@ -29,7 +29,7 @@
 
 #define isbrain(A) (istype(A, /mob/living/brain))
 
-#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && istype(A.buckled, /obj/structure/bed/nest)))
+#define isnestedhost(A)	((CHECK_BITFIELD(A.status_flags, XENO_HOST) && CHECK_BITFIELD(A.restrained_flags, RESTRAINED_XENO_NEST)))
 
 //Carbon mobs
 #define iscarbon(A) (istype(A, /mob/living/carbon))
@@ -80,6 +80,7 @@
 #define isxenowarrior(A) (istype(A, /mob/living/carbon/xenomorph/warrior))
 #define isxenolarva(A) (istype(A, /mob/living/carbon/xenomorph/larva))
 #define isxenoqueen(A) (istype(A, /mob/living/carbon/xenomorph/queen))
+#define isxenoshrike(A) (istype(A, /mob/living/carbon/xenomorph/shrike))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))

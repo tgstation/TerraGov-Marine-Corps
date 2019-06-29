@@ -1,6 +1,6 @@
 //This is the output of the stringpercent(print) proc, and means about 80% of
 //the print must be there for it to be complete.  (Prints are 32 digits)
-var/const/FINGERPRINT_COMPLETE = 6
+#define FINGERPRINT_COMPLETE 6
 proc/is_complete_print(var/print)
 	return stringpercent(print) <= FINGERPRINT_COMPLETE
 
@@ -40,15 +40,15 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	name = "forensic data"
 	var/uid
 
-/datum/data/record/forensic/New(var/atom/A)
+/datum/data/record/forensic/New(atom/A)
 	uid = "\ref [A]"
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
-	fields["fprints"] = A.return_fingerprints()
+	fields["fprints"] = "unavailable"
 	fields["fibers"] = A.suit_fibers ? A.suit_fibers.Copy() : list()
 	fields["time"] = world.time
 
-/datum/data/record/forensic/proc/merge(var/datum/data/record/other)
+/datum/data/record/forensic/proc/merge(datum/data/record/other)
 	var/list/prints = fields["fprints"]
 	var/list/o_prints = other.fields["fprints"]
 	for(var/print in o_prints)
@@ -70,41 +70,3 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 
 	fields["area"] = other.fields["area"]
 	fields["time"] = other.fields["time"]
-
-
-/atom/proc/add_fingerprint(mob/M, ignoregloves = FALSE)
-	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
-	. = D.add_fingerprint(M, ignoregloves)
-
-
-/atom/proc/add_fingerprint_list(list/fingerprints)
-	if(length(fingerprints))
-		. = AddComponent(/datum/component/forensics, fingerprints)
-
-
-/atom/proc/add_hiddenprint_list(list/hiddenprints)
-	if(length(hiddenprints))
-		. = AddComponent(/datum/component/forensics, null, hiddenprints)
-
-
-/atom/proc/add_hiddenprint(mob/M)
-	var/datum/component/forensics/D = AddComponent(/datum/component/forensics)
-	. = D.add_hiddenprint(M)
-
-
-/atom/proc/return_fingerprints()
-	GET_COMPONENT(D, /datum/component/forensics)
-	if(D)
-		. = D.fingerprints
-
-
-/atom/proc/return_hiddenprints()
-	GET_COMPONENT(D, /datum/component/forensics)
-	if(D)
-		. = D.hiddenprints
-
-
-/atom/proc/transfer_fingerprints_to(atom/A)
-	A.add_fingerprint_list(return_fingerprints())
-	A.add_hiddenprint_list(return_hiddenprints())
-	A.fingerprintslast = fingerprintslast

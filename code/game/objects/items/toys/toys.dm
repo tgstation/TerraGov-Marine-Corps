@@ -1,16 +1,16 @@
 /* Toys!
- * Contains:
- *		Balloons
- *		Fake telebeacon
- *		Fake singularity
- *      Toy mechs
- *		Crayons
- *		Snap pops
- *		Water flower
- *      Therapy dolls
- *      Inflatable duck
- *		Other things
- */
+* Contains:
+*		Balloons
+*		Fake telebeacon
+*		Fake singularity
+*      Toy mechs
+*		Crayons
+*		Snap pops
+*		Water flower
+*      Therapy dolls
+*      Inflatable duck
+*		Other things
+*/
 
 
 //recreational items
@@ -24,8 +24,8 @@
 
 
 /*
- * Balloons
- */
+* Balloons
+*/
 /obj/item/toy/balloon
 	name = "water balloon"
 	desc = "A translucent balloon. There's nothing in it."
@@ -105,8 +105,8 @@
 	w_class = 4.0
 
 /*
- * Fake telebeacon
- */
+* Fake telebeacon
+*/
 /obj/item/toy/blink
 	name = "electronic blink toy game"
 	desc = "Blink.  Blink.  Blink. Ages 8 and up."
@@ -115,8 +115,8 @@
 	item_state = "signaler"
 
 /*
- * Fake singularity
- */
+* Fake singularity
+*/
 /obj/item/toy/spinningtoy
 	name = "Gravitational Singularity"
 	desc = "\"Singulo\" brand spinning toy."
@@ -126,8 +126,8 @@
 
 
 /*
- * Crayons
- */
+* Crayons
+*/
 
 /obj/item/toy/crayon
 	name = "crayon"
@@ -147,8 +147,8 @@
 	return (BRUTELOSS|OXYLOSS)
 
 /*
- * Snap pops
- */
+* Snap pops
+*/
 /obj/item/toy/snappop
 	name = "snap pop"
 	desc = "Wow!"
@@ -180,8 +180,8 @@
 			qdel(src)
 
 /*
- * Water flower
- */
+* Water flower
+*/
 /obj/item/toy/waterflower
 	name = "Water Flower"
 	desc = "A seemingly innocent sunflower...with a twist."
@@ -246,8 +246,8 @@
 
 
 /*
- * Mech prizes
- */
+* Mech prizes
+*/
 /obj/item/toy/prize
 	icon_state = "ripleytoy"
 	var/cooldown = 0
@@ -260,13 +260,15 @@
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, "<span class='notice'>You play with [src].</span>")
 			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1)
 			cooldown = world.time
 			return
-	..()
 
 /obj/item/toy/prize/ripley
 	name = "toy ripley"
@@ -426,8 +428,8 @@
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
 	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \
-						 "<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
-						 "<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
+						"<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
+						"<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
 
 
 
@@ -461,5 +463,5 @@
 /obj/item/toy/farwadoll/attack_self(mob/user)
 	if(world.time > last_hug_time)
 		user.visible_message("<span class='notice'>[user] hugs [src]! How cute! </span>", \
-							 "<span class='notice'>You hug [src]. Dawwww... </span>")
+							"<span class='notice'>You hug [src]. Dawwww... </span>")
 		last_hug_time = world.time + 50 //5 second cooldown

@@ -1,7 +1,7 @@
 /obj/machinery/chem_dispenser
 	name = "chem dispenser"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "dispenser"
 	use_power = 0
@@ -62,21 +62,21 @@
 				return
 
 
-/obj/machinery/chem_dispenser/on_stored_atom_del(atom/movable/AM)
+/obj/machinery/chem_dispenser/handle_atom_del(atom/movable/AM)
 	if(AM == beaker)
 		beaker = null
 
- /**
-  * The ui_interact proc is used to open and update Nano UIs
-  * If ui_interact is not used then the UI will not update correctly
-  * ui_interact is currently defined for /atom/movable
-  *
-  * @param user /mob The mob who is interacting with this ui
-  * @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
-  *
-  * @return nothing
-  */
-/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 0)
+/**
+* The ui_interact proc is used to open and update Nano UIs
+* If ui_interact is not used then the UI will not update correctly
+* ui_interact is currently defined for /atom/movable
+*
+* @param user /mob The mob who is interacting with this ui
+* @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
+*
+* @return nothing
+*/
+/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",datum/nanoui/ui = null, force_open = 0)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(user.stat || user.restrained())
@@ -115,7 +115,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "chem_dispenser.tmpl", ui_title, 390, 655)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -123,6 +123,9 @@
 		ui.open()
 
 /obj/machinery/chem_dispenser/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE // don't update UIs attached to this object
 
@@ -148,7 +151,6 @@
 			B.loc = loc
 			beaker = null
 
-	add_fingerprint(usr)
 	attack_hand(usr)
 	return TRUE // update UIs attached to this object
 
@@ -177,6 +179,9 @@
 	return src.attack_hand(user)
 
 /obj/machinery/chem_dispenser/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & BROKEN)
 		return
 	var/mob/living/carbon/human/H = user
@@ -243,8 +248,8 @@
 
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "mixer0"
 	use_power = 1
@@ -314,6 +319,9 @@
 				source.reagents.trans_type_to(dest, reagent_type, amount)
 
 /obj/machinery/chem_master/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!ishuman(usr))
@@ -324,7 +332,6 @@
 	if(!in_range(src, user))
 		return
 
-	add_fingerprint(user)
 	user.set_interaction(src)
 
 
@@ -543,6 +550,9 @@
 
 
 /obj/machinery/chem_master/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & BROKEN)
 		return
 	user.set_interaction(src)
@@ -623,8 +633,8 @@
 	name = "Disease Analyser"
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "analyser"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 
 /obj/machinery/computer/pandemic
@@ -755,6 +765,9 @@
 	return FALSE
 
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	interact(user)
 
@@ -807,7 +820,8 @@
 
 
 /obj/machinery/reagentgrinder/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	switch(href_list["action"])
@@ -844,28 +858,28 @@
 		holdingitems -= O
 	holdingitems = list()
 
-/obj/machinery/reagentgrinder/proc/is_allowed(var/obj/item/reagent_container/O)
+/obj/machinery/reagentgrinder/proc/is_allowed(obj/item/reagent_container/O)
 	for (var/i in blend_items)
 		if(istype(O, i))
 			return TRUE
 	return FALSE
 
-/obj/machinery/reagentgrinder/proc/get_allowed_by_id(var/obj/item/grown/O)
+/obj/machinery/reagentgrinder/proc/get_allowed_by_id(obj/item/grown/O)
 	for (var/i in blend_items)
 		if (istype(O, i))
 			return blend_items[i]
 
-/obj/machinery/reagentgrinder/proc/get_allowed_snack_by_id(var/obj/item/reagent_container/food/snacks/O)
+/obj/machinery/reagentgrinder/proc/get_allowed_snack_by_id(obj/item/reagent_container/food/snacks/O)
 	for(var/i in blend_items)
 		if(istype(O, i))
 			return blend_items[i]
 
-/obj/machinery/reagentgrinder/proc/get_allowed_juice_by_id(var/obj/item/reagent_container/food/snacks/O)
+/obj/machinery/reagentgrinder/proc/get_allowed_juice_by_id(obj/item/reagent_container/food/snacks/O)
 	for(var/i in juice_items)
 		if(istype(O, i))
 			return juice_items[i]
 
-/obj/machinery/reagentgrinder/proc/get_grownweapon_amount(var/obj/item/grown/O)
+/obj/machinery/reagentgrinder/proc/get_grownweapon_amount(obj/item/grown/O)
 	if (!istype(O))
 		return 5
 	else if (O.potency == -1)
@@ -873,7 +887,7 @@
 	else
 		return round(O.potency)
 
-/obj/machinery/reagentgrinder/proc/get_juice_amount(var/obj/item/reagent_container/food/snacks/grown/O)
+/obj/machinery/reagentgrinder/proc/get_juice_amount(obj/item/reagent_container/food/snacks/grown/O)
 	if (!istype(O))
 		return 5
 	else if (O.potency == -1)
@@ -881,7 +895,7 @@
 	else
 		return round(5*sqrt(O.potency))
 
-/obj/machinery/reagentgrinder/proc/remove_object(var/obj/item/O)
+/obj/machinery/reagentgrinder/proc/remove_object(obj/item/O)
 	holdingitems -= O
 	qdel(O)
 

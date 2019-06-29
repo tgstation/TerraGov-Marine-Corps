@@ -94,7 +94,6 @@
 	post_equip(H, visualsOnly)
 
 	if(!visualsOnly)
-		apply_fingerprints(H)
 		if(internals_slot)
 			H.internal = H.get_item_by_slot(internals_slot)
 			H.update_action_buttons()
@@ -103,39 +102,77 @@
 	return TRUE
 
 
-/datum/outfit/proc/apply_fingerprints(mob/living/carbon/human/H)
-	if(!istype(H))
-		return
-	if(H.back)
-		H.back.add_fingerprint(H, TRUE)
-		for(var/obj/item/I in H.back.contents)
-			I.add_fingerprint(H, TRUE)
-	if(H.wear_id)
-		H.wear_id.add_fingerprint(H, TRUE)
-	if(H.w_uniform)
-		H.w_uniform.add_fingerprint(H, TRUE)
-	if(H.wear_suit)
-		H.wear_suit.add_fingerprint(H, TRUE)
-	if(H.wear_mask)
-		H.wear_mask.add_fingerprint(H, TRUE)
-	if(H.head)
-		H.head.add_fingerprint(H, TRUE)
-	if(H.shoes)
-		H.shoes.add_fingerprint(H, TRUE)
-	if(H.gloves)
-		H.gloves.add_fingerprint(H, TRUE)
-	if(H.wear_ear)
-		H.wear_ear.add_fingerprint(H, TRUE)
-	if(H.glasses)
-		H.glasses.add_fingerprint(H, TRUE)
-	if(H.belt)
-		H.belt.add_fingerprint(H, TRUE)
-		for(var/obj/item/I in H.belt.contents)
-			I.add_fingerprint(H, TRUE)
-	if(H.s_store)
-		H.s_store.add_fingerprint(H, TRUE)
-	if(H.l_store)
-		H.l_store.add_fingerprint(H, TRUE)
-	if(H.r_store)
-		H.r_store.add_fingerprint(H, TRUE)
-	return TRUE
+/datum/outfit/proc/get_json_data()
+	. = list()
+	.["outfit_type"] = type
+	.["name"] = name
+	.["uniform"] = w_uniform
+	.["suit"] = wear_suit
+	.["toggle_helmet"] = toggle_helmet
+	.["back"] = back
+	.["belt"] = belt
+	.["gloves"] = gloves
+	.["shoes"] = shoes
+	.["head"] = head
+	.["mask"] = mask
+	.["neck"] = neck
+	.["ears"] = ears
+	.["glasses"] = glasses
+	.["id"] = id
+	.["l_store"] = l_store
+	.["r_store"] = r_store
+	.["suit_store"] = suit_store
+	.["r_hand"] = r_hand
+	.["l_hand"] = l_hand
+	.["internals_slot"] = internals_slot
+	.["backpack_contents"] = backpack_contents
+	.["box"] = box
+	.["implants"] = implants
+	.["accessory"] = accessory
+
+
+/datum/outfit/proc/save_to_file()
+	var/stored_data = get_json_data()
+	var/json = json_encode(stored_data)
+	//Kinda annoying but as far as i can tell you need to make actual file.
+	var/f = file("data/TempOutfitUpload") 
+	fdel(f)
+	WRITE_FILE(f, json)
+	usr << ftp(f, "[name].json")
+
+
+/datum/outfit/proc/load_from(list/outfit_data)
+	name = outfit_data["name"]
+	w_uniform = text2path(outfit_data["w_uniform"])
+	wear_suit = text2path(outfit_data["wear_suit"])
+	toggle_helmet = outfit_data["toggle_helmet"]
+	back = text2path(outfit_data["back"])
+	belt = text2path(outfit_data["belt"])
+	gloves = text2path(outfit_data["gloves"])
+	shoes = text2path(outfit_data["shoes"])
+	head = text2path(outfit_data["head"])
+	mask = text2path(outfit_data["mask"])
+	ears = text2path(outfit_data["ears"])
+	glasses = text2path(outfit_data["glasses"])
+	id = text2path(outfit_data["id"])
+	l_store = text2path(outfit_data["l_store"])
+	r_store = text2path(outfit_data["r_store"])
+	suit_store = text2path(outfit_data["suit_store"])
+	r_hand = text2path(outfit_data["r_hand"])
+	l_hand = text2path(outfit_data["l_hand"])
+	internals_slot = outfit_data["internals_slot"]
+	var/list/backpack = outfit_data["backpack_contents"]
+	backpack_contents = list()
+	for(var/item in backpack)
+		var/itype = text2path(item)
+		if(itype)
+			backpack_contents[itype] = backpack[item]
+	box = text2path(outfit_data["box"])
+	var/list/impl = outfit_data["implants"]
+	implants = list()
+	for(var/I in impl)
+		var/imptype = text2path(I)
+		if(imptype)
+			implants += imptype
+	accessory = text2path(outfit_data["accessory"])
+	return TRUE 

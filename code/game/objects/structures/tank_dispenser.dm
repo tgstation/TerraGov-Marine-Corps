@@ -3,8 +3,8 @@
 	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten phoron tanks."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	var/oxygentanks = 10
 	var/phorontanks = 10
 	var/list/oxytanks = list()	//sorry for the similar var names
@@ -38,6 +38,9 @@
 	..()
 
 /obj/structure/dispenser/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
@@ -80,6 +83,9 @@
 
 
 /obj/structure/dispenser/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr.stat || usr.restrained())
 		return
 	if(Adjacent(usr))
@@ -108,7 +114,6 @@
 				to_chat(usr, "<span class='notice'>You take [P] out of [src].</span>")
 				phorontanks--
 				update_icon()
-		add_fingerprint(usr)
 		updateUsrDialog()
 	else
 		usr << browse(null, "window=dispenser")

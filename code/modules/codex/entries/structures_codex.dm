@@ -41,11 +41,10 @@
 	if(CHECK_BITFIELD(resistance_flags, FREEZE_PROOF))
 		structure_strings += "You cannot freeze this structure."
 						
-	if(length(parts) > 0)
+	if(parts)
 		structure_strings += "<U>It is made from the following parts</U>:"
-		for(var/X in parts)
-			var/obj/A = X
-			structure_strings += "[initial(text2path(A).name)]"
+		var/obj/A = parts
+		structure_strings += "[initial(A.name)]"
 
 	if(anchored)
 		structure_strings += "It is anchored in place."

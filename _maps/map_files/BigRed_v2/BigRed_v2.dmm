@@ -89,8 +89,9 @@
 	},
 /area/bigredv2/outside/space_port)
 "aau" = (
+/obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
+/area/shuttle/drop1/lz1)
 "aav" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -223,6 +224,19 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"aaR" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/radio/intercom/general/colony{
+	dir = 1;
+	frequency = 150;
+	name = "safe-room intercom"
+	},
+/turf/open/floor/elevatorshaft,
+/area/bigredv2/caves/lambda_lab)
 "aaS" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
@@ -290,9 +304,12 @@
 	},
 /area/bigredv2/outside/space_port)
 "abb" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
+/obj/item/radio/intercom/general/colony{
+	frequency = 150;
+	name = "safe-room intercom"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/caves/lambda_lab)
 "abc" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
@@ -641,7 +658,7 @@
 "acd" = (
 /obj/effect/landmark/random_item/good,
 /turf/open/floor/plating,
-/area/shuttle/drop1/BigRed)
+/area/shuttle/drop1/lz1)
 "ace" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -755,9 +772,6 @@
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/telecomm)
-"acv" = (
-/turf/open/floor/plating,
-/area/shuttle/drop1/LV624)
 "acw" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -941,7 +955,6 @@
 /area/bigredv2/outside/telecomm)
 "ada" = (
 /obj/structure/showcase{
-	tag = "icon-bus";
 	icon_state = "bus"
 	},
 /turf/open/floor/greengrid,
@@ -1159,12 +1172,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
-"adK" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "1"
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "adL" = (
 /obj/machinery/light{
 	dir = 4
@@ -1245,7 +1252,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeb" = (
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aec" = (
@@ -1254,7 +1261,6 @@
 /area/bigredv2/outside/telecomm)
 "aed" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
 /turf/open/floor/tile/dark,
@@ -1275,7 +1281,7 @@
 /area/bigredv2/outside/telecomm)
 "aef" = (
 /obj/structure/table,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeg" = (
@@ -1602,7 +1608,6 @@
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor/bluegrid{
-	tag = "icon-bcircuitoff";
 	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -1730,7 +1735,6 @@
 /area/bigredv2/caves/lambda_lab)
 "afw" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
 /obj/structure/bed/chair{
@@ -1833,7 +1837,6 @@
 /area/bigredv2/outside/telecomm)
 "afL" = (
 /obj/structure/showcase{
-	tag = "icon-broadcaster_send";
 	icon_state = "broadcaster_send"
 	},
 /turf/open/floor/greengrid,
@@ -1945,7 +1948,6 @@
 "agf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
-	tag = "icon-left";
 	icon_state = "left";
 	dir = 2
 	},
@@ -2198,7 +2200,6 @@
 /area/bigredv2/caves/lambda_lab)
 "agN" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
 /obj/item/shard,
@@ -2853,7 +2854,7 @@
 /area/bigredv2/outside/marshal_office)
 "aiG" = (
 /obj/structure/table,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aiH" = (
@@ -2894,7 +2895,7 @@
 /area/bigredv2/outside/marshal_office)
 "aiM" = (
 /obj/structure/table,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aiN" = (
@@ -3164,7 +3165,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajC" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/animated/bcircuit,
 /area/bigredv2/outside/marshal_office)
 "ajD" = (
@@ -4292,6 +4293,13 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
+"amB" = (
+/obj/item/radio/intercom/general/colony{
+	icon_state = "intercom";
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "amC" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -5109,13 +5117,6 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/bigredv2/caves/lambda_lab)
-"aoJ" = (
-/obj/structure/table/reinforced,
-/obj/item/XenoBio/Resin,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 4
-	},
 /area/bigredv2/caves/lambda_lab)
 "aoK" = (
 /turf/open/floor/tile/dark/purple2{
@@ -6608,20 +6609,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"atc" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/item/radio/intercom{
-	dir = 1;
-	frequency = 150;
-	name = "Safe-Room intercom";
-	pixel_y = -30
-	},
-/turf/open/floor/elevatorshaft,
-/area/bigredv2/caves/lambda_lab)
 "atd" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -6644,7 +6631,7 @@
 /obj/item/storage/firstaid/o2,
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/rad,
-/obj/item/radio/marine,
+/obj/item/radio/survivor,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "atg" = (
@@ -6999,14 +6986,6 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
-"auj" = (
-/obj/item/radio/intercom{
-	frequency = 150;
-	name = "Safe-Room intercom";
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/bigredv2/caves/lambda_lab)
 "auk" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -7112,7 +7091,6 @@
 /area/bigredv2/caves/lambda_lab)
 "auv" = (
 /obj/structure/showcase{
-	tag = "icon-bus";
 	icon_state = "bus"
 	},
 /obj/structure/cable{
@@ -7129,7 +7107,6 @@
 /area/bigredv2/caves/lambda_lab)
 "auw" = (
 /obj/structure/showcase{
-	tag = "icon-mechfab1";
 	icon_state = "mechfab1"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -7398,7 +7375,6 @@
 /area/bigredv2/caves/lambda_lab)
 "avj" = (
 /obj/structure/showcase{
-	tag = "icon-broadcaster_send";
 	icon_state = "broadcaster_send"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -7871,11 +7847,6 @@
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
-"awz" = (
-/obj/structure/table/holotable/wood,
-/obj/item/XenoBio/Chitin,
-/turf/open/floor/carpet,
-/area/bigredv2/caves/lambda_lab)
 "awA" = (
 /obj/structure/table/holotable/wood,
 /obj/item/tool/pen,
@@ -8047,7 +8018,7 @@
 /area/bigredv2/outside/dorms)
 "axb" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "axd" = (
@@ -8106,7 +8077,6 @@
 /area/bigredv2/caves/lambda_lab)
 "axp" = (
 /obj/structure/bed/chair/comfy/lime{
-	tag = "icon-comfychair (EAST)";
 	icon_state = "comfychair";
 	dir = 4
 	},
@@ -9329,7 +9299,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aAP" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -9343,7 +9312,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aAR" = (
 /obj/structure/barricade/metal{
-	tag = "icon-barricade (EAST)";
 	icon_state = "barricade";
 	dir = 4
 	},
@@ -9372,8 +9340,7 @@
 /obj/machinery/conveyor{
 	dir = 9;
 	icon_state = "conveyor0";
-	id = "anomalybelt";
-	tag = "icon-conveyor0 (NORTHWEST)"
+	id = "anomalybelt"
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/dark,
@@ -9545,7 +9512,6 @@
 /area/bigredv2/outside/library)
 "aBA" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
 /obj/structure/cable{
@@ -9610,7 +9576,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aBG" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-U-S";
 	icon_state = "U-S"
 	},
 /turf/open/floor/tile/dark,
@@ -9816,7 +9781,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aCs" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
 /obj/item/clipboard,
@@ -9835,7 +9799,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aCu" = (
 /obj/structure/barricade/metal{
-	tag = "icon-barricade (EAST)";
 	icon_state = "barricade";
 	dir = 4
 	},
@@ -9875,11 +9838,9 @@
 /obj/machinery/power/emitter{
 	anchored = 1;
 	dir = 1;
-	icon_state = "emitter";
-	tag = "icon-emitter (NORTH)"
+	icon_state = "emitter"
 	},
 /obj/effect/decal/warning_stripes{
-	tag = "icon-U-N";
 	icon_state = "U-N"
 	},
 /turf/open/floor/tile/dark,
@@ -10109,7 +10070,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aDj" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
 /obj/structure/cable{
@@ -10135,7 +10095,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aDm" = (
 /obj/structure/barricade/metal{
-	tag = "icon-barricade (EAST)";
 	icon_state = "barricade";
 	dir = 4
 	},
@@ -11064,7 +11023,7 @@
 /area/bigredv2/outside/dorms)
 "aFT" = (
 /obj/structure/table/woodentable,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aFU" = (
@@ -11449,12 +11408,10 @@
 /area/bigredv2/caves/lambda_lab)
 "aHb" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-fwindow (NORTH)";
 	icon_state = "fwindow";
 	dir = 1
 	},
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-rwindow (WEST)";
 	icon_state = "rwindow";
 	dir = 8
 	},
@@ -11465,12 +11422,10 @@
 /area/bigredv2/caves/lambda_lab)
 "aHc" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-fwindow (NORTH)";
 	icon_state = "fwindow";
 	dir = 1
 	},
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-rwindow (EAST)";
 	icon_state = "rwindow";
 	dir = 4
 	},
@@ -11732,12 +11687,10 @@
 /area/bigredv2/caves/lambda_lab)
 "aHU" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-rwindow (WEST)";
 	icon_state = "rwindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-fwindow (NORTH)";
 	icon_state = "fwindow";
 	dir = 1
 	},
@@ -11765,12 +11718,10 @@
 /area/bigredv2/caves/lambda_lab)
 "aHX" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-rwindow (EAST)";
 	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-fwindow (NORTH)";
 	icon_state = "fwindow";
 	dir = 1
 	},
@@ -12067,7 +12018,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aIQ" = (
 /turf/open/floor/bluegrid{
-	tag = "icon-damaged5";
 	icon_state = "damaged5"
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12076,7 +12026,6 @@
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
 /turf/open/floor/bluegrid{
-	tag = "icon-damaged4";
 	icon_state = "damaged4"
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12150,7 +12099,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aJa" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-fwindow (NORTH)";
 	icon_state = "fwindow";
 	dir = 1
 	},
@@ -12179,7 +12127,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aJe" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-fwindow (NORTH)";
 	icon_state = "fwindow";
 	dir = 1
 	},
@@ -12483,7 +12430,6 @@
 	dir = 4
 	},
 /turf/open/floor/bluegrid{
-	tag = "icon-damaged3";
 	icon_state = "damaged3"
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -12961,7 +12907,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aKV" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-SW-in";
 	icon_state = "SW-in"
 	},
 /turf/open/floor/tile/green/whitegreencorner{
@@ -12970,7 +12915,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aKW" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-rwindow (WEST)";
 	icon_state = "rwindow";
 	dir = 8
 	},
@@ -13003,7 +12947,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aKZ" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-rwindow (EAST)";
 	icon_state = "rwindow";
 	dir = 4
 	},
@@ -13233,13 +13176,11 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/bluegrid{
-	tag = "icon-bcircuitoff";
 	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLJ" = (
 /turf/open/floor/bluegrid{
-	tag = "icon-bcircuitoff";
 	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -13254,7 +13195,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aLM" = (
 /obj/machinery/shower{
-	tag = "icon-shower (NORTH)";
 	icon_state = "shower";
 	dir = 1
 	},
@@ -13267,8 +13207,7 @@
 /obj/machinery/door/window{
 	dir = 1;
 	icon_state = "left";
-	opacity = 1;
-	tag = "icon-left (NORTH)"
+	opacity = 1
 	},
 /turf/open/floor/tile/white/warningstripe{
 	dir = 2
@@ -13291,7 +13230,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aLP" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-SW-in";
 	icon_state = "SW-in"
 	},
 /obj/structure/cable{
@@ -13305,12 +13243,10 @@
 /area/bigredv2/caves/lambda_lab)
 "aLQ" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-fwindow";
 	icon_state = "fwindow";
 	dir = 2
 	},
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-rwindow (WEST)";
 	icon_state = "rwindow";
 	dir = 8
 	},
@@ -13321,12 +13257,10 @@
 /area/bigredv2/caves/lambda_lab)
 "aLR" = (
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-fwindow";
 	icon_state = "fwindow";
 	dir = 2
 	},
 /obj/structure/window/reinforced/toughened{
-	tag = "icon-rwindow (EAST)";
 	icon_state = "rwindow";
 	dir = 4
 	},
@@ -13630,7 +13564,6 @@
 /obj/effect/landmark/monkey_spawn,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/bluegrid{
-	tag = "icon-bcircuitoff";
 	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/caves/lambda_lab)
@@ -15678,7 +15611,6 @@
 /area/bigredv2/outside/admin_building)
 "aUa" = (
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/bigredv2/outside/admin_building)
@@ -16499,7 +16431,6 @@
 /area/bigredv2/outside/admin_building)
 "aWE" = (
 /turf/open/floor{
-	tag = "icon-darkbluecorners2";
 	icon_state = "darkbluecorners2";
 	dir = 2
 	},
@@ -16616,7 +16547,7 @@
 /area/bigredv2/outside/general_store)
 "aWY" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/handcuffs/cable/cyan,
+/obj/item/restraints/handcuffs/cable/cyan,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aWZ" = (
@@ -17512,7 +17443,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/bigredv2/outside/admin_building)
@@ -17634,7 +17564,7 @@
 /area/bigredv2/outside/chapel)
 "ban" = (
 /obj/structure/table/woodentable,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -18204,16 +18134,6 @@
 /obj/effect/spawner/random/technology_scanner,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bcB" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	frequency = 1469;
-	name = "General Listening Channel";
-	pixel_y = -30
-	},
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "bcC" = (
 /obj/machinery/door_control{
 	id = "Cargonia";
@@ -18477,7 +18397,6 @@
 /area/bigredv2/outside/office_complex)
 "bdy" = (
 /obj/structure/bed/chair/comfy/lime{
-	tag = "icon-comfychair (EAST)";
 	icon_state = "comfychair";
 	dir = 4
 	},
@@ -19298,8 +19217,7 @@
 /obj/structure/table,
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-15";
-	pixel_y = 10;
-	tag = "icon-plant-15"
+	pixel_y = 10
 	},
 /turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
@@ -20073,8 +19991,9 @@
 	},
 /area/bigredv2/outside/w)
 "biI" = (
+/obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "biJ" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -20225,7 +20144,7 @@
 "bjo" = (
 /obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "bjp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2{
@@ -20397,7 +20316,6 @@
 /area/bigredv2/outside/cargo)
 "bjQ" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-W-corner";
 	icon_state = "W-corner"
 	},
 /turf/open/floor,
@@ -20608,14 +20526,12 @@
 	name = "\improper coolant feed"
 	},
 /turf/open/floor/bluegrid{
-	tag = "icon-bcircuitoff";
 	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/outside/filtration_plant)
 "bkJ" = (
 /obj/structure/cryofeed,
 /turf/open/floor/bluegrid{
-	tag = "icon-bcircuitoff";
 	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/outside/filtration_plant)
@@ -20715,7 +20631,7 @@
 /area/bigredv2/outside/cargo)
 "blf" = (
 /obj/structure/table,
-/obj/item/radio,
+/obj/item/radio/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blg" = (
@@ -21126,7 +21042,7 @@
 "bmM" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/plating,
-/area/shuttle/drop2/BigRed)
+/area/shuttle/drop2/lz2)
 "bmO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -21199,7 +21115,6 @@
 	dir = 4
 	},
 /turf/open/floor/bluegrid{
-	tag = "icon-bcircuitoff";
 	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/outside/filtration_plant)
@@ -21293,7 +21208,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bno" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/radio/headset,
+/obj/item/radio/headset/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bnp" = (
@@ -21531,9 +21446,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
-"boh" = (
-/turf/open/floor/plating,
-/area/shuttle/drop2/LV624)
 "boi" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -22305,7 +22217,6 @@
 /area/bigredv2/outside/filtration_plant)
 "bqw" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /obj/structure/cable{
@@ -22668,12 +22579,6 @@
 "brE" = (
 /turf/open/floor/greengrid,
 /area/bigredv2/outside/se)
-"brF" = (
-/obj/effect/landmark/shuttle_loc/marine_trg/landing{
-	name = "2"
-	},
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "brG" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -24004,12 +23909,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"bxJ" = (
-/obj/machinery/r_n_d/organic_analyzer,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 4
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "bxK" = (
 /obj/machinery/light{
 	dir = 8
@@ -24141,7 +24040,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byn" = (
-/obj/machinery/r_n_d/bioprinter,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
@@ -25093,7 +24991,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBP" = (
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -25200,8 +25097,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCg" = (
 /obj/structure/table,
-/obj/item/XenoBio/Blood,
-/obj/item/XenoBio/Blood,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
@@ -25209,11 +25104,8 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCh" = (
 /obj/structure/table,
-/obj/item/XenoBio/Blood,
-/obj/item/XenoBio/Blood,
 /obj/item/paper,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -25399,7 +25291,6 @@
 "bCN" = (
 /obj/structure/closet/crate/secure,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -25457,7 +25348,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -25484,7 +25374,6 @@
 "bDc" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -25517,10 +25406,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDi" = (
 /obj/machinery/computer/atmoscontrol,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"bDj" = (
-/obj/machinery/computer/NTresearch,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDk" = (
@@ -25706,7 +25591,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/alien/weeds/node,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -25789,14 +25673,12 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEl" = (
 /obj/structure/showcase{
-	tag = "icon-mechfab1";
 	icon_state = "mechfab1"
 	},
 /turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEm" = (
 /obj/structure/showcase{
-	tag = "icon-bus";
 	icon_state = "bus"
 	},
 /turf/open/floor/carpet/edge2,
@@ -26265,6 +26147,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"hbe" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/asteroidfloor,
+/area/storage/testroom)
 "hcr" = (
 /obj/item/flashlight,
 /turf/open/floor,
@@ -26640,10 +26526,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"obN" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/asteroidfloor,
-/area/storage/testroom)
 "onZ" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -26849,9 +26731,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"qSy" = (
-/turf/closed/wall/indestructible/mineral,
-/area/storage/testroom)
 "qUm" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -27001,6 +26880,9 @@
 "tco" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
+"tku" = (
+/turf/closed/wall/indestructible/mineral,
+/area/storage/testroom)
 "twQ" = (
 /obj/effect/spawner/random/tool,
 /turf/open/floor,
@@ -27753,9 +27635,9 @@ aaa
 (3,1,1) = {"
 aaa
 aab
-qSy
-qSy
-qSy
+tku
+tku
+tku
 aac
 aac
 aac
@@ -27970,9 +27852,9 @@ aaa
 (4,1,1) = {"
 aaa
 aab
-qSy
-obN
-qSy
+tku
+hbe
+tku
 aac
 aac
 aac
@@ -28187,9 +28069,9 @@ aaa
 (5,1,1) = {"
 aaa
 aab
-qSy
-qSy
-qSy
+tku
+tku
+tku
 aac
 aac
 aac
@@ -32107,22 +31989,22 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
+aao
+aao
+aao
 aao
 aao
 aao
 aaF
 aao
 aao
-aau
-aau
-aau
-aau
 aao
 aao
-adK
+aao
+aao
+aao
+aao
+aao
 aeh
 aaf
 aaf
@@ -32323,23 +32205,23 @@ aao
 aao
 aaF
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aaF
 aao
-aau
+aao
 aei
 aaf
 aaf
@@ -32540,23 +32422,23 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 adx
-aau
+aao
 aej
 aaf
 aaf
@@ -32754,26 +32636,26 @@ aae
 aaf
 aal
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aek
 aaf
 aaf
@@ -32971,24 +32853,24 @@ aae
 aaf
 aai
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 acd
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aeh
@@ -33188,24 +33070,24 @@ aae
 aaf
 aaj
 aao
+aao
+aao
+aao
+adx
+aao
+aao
+aao
+aao
+aao
 aau
-aau
-aau
-abb
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aao
 aao
 aei
@@ -33405,24 +33287,24 @@ aae
 aaf
 aak
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 acd
-aau
-aau
+aao
+aao
 aao
 aao
 aej
@@ -33509,22 +33391,22 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
+bie
+bie
+bie
 bie
 bie
 bje
 bie
 bie
 bie
-biI
-biI
-biI
-biI
 bie
 bie
-brF
+bie
+bie
+bie
+bie
+bie
 bsb
 bpv
 bpv
@@ -33622,26 +33504,26 @@ aae
 aaf
 aal
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-abb
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+adx
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aek
 aaf
 aaf
@@ -33725,23 +33607,23 @@ bie
 bie
 bje
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
 bie
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bjo
-biI
+bie
 bje
 bie
-biI
+bie
 bsc
 bpv
 bpv
@@ -33842,23 +33724,23 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-acv
-aau
-aau
-aau
-aau
-aau
 aao
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aeh
 aaf
 aaf
@@ -33942,23 +33824,23 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
 bie
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bsd
 bpv
 bpv
@@ -34059,23 +33941,23 @@ aao
 aao
 aaF
 aao
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
-aau
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
+aao
 aaF
 aao
-aau
+aao
 aei
 aaf
 aaf
@@ -34156,26 +34038,26 @@ aSB
 aVG
 bhx
 bie
-biI
-biI
+bie
+bie
 bjo
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bse
 bpv
 bpv
@@ -34277,19 +34159,19 @@ aao
 aao
 aao
 aao
-aau
-aau
-aau
+aao
+aao
+aao
 aao
 aao
 aao
 aaF
 aao
 aao
-aau
-aau
-aau
-aau
+aao
+aao
+aao
+aao
 aao
 aao
 aao
@@ -34373,24 +34255,24 @@ sBV
 aVG
 bhu
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bmM
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsb
@@ -34590,24 +34472,24 @@ aSB
 aVG
 bhy
 bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsc
@@ -34807,24 +34689,24 @@ aSB
 aVG
 bhw
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bie
 bsd
@@ -35024,26 +34906,26 @@ aWk
 aVG
 bhz
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bse
 bpv
 bpv
@@ -35244,21 +35126,21 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-boh
-biI
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bie
 bjo
 bsb
@@ -35461,23 +35343,23 @@ bie
 bie
 bje
 bie
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
-biI
 bie
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
+bie
 bje
 bie
-biI
+bie
 bsc
 bpv
 bpv
@@ -35679,19 +35561,19 @@ bie
 bie
 bie
 bie
-biI
-biI
-biI
+bie
+bie
+bie
 bie
 bie
 bje
 bie
 bie
 bie
-biI
-biI
-biI
-biI
+bie
+bie
+bie
+bie
 bie
 bie
 bie
@@ -41304,7 +41186,7 @@ blb
 blb
 bbh
 aZO
-bcB
+amB
 aXK
 blb
 beh
@@ -52215,7 +52097,7 @@ bwJ
 bxb
 bxp
 bxp
-bxJ
+bxp
 bxQ
 bxp
 bys
@@ -53325,7 +53207,7 @@ bBt
 bxg
 bBt
 bBL
-bDj
+bxg
 bxN
 bxS
 bxS
@@ -63610,12 +63492,12 @@ adZ
 aqY
 arF
 arF
-atc
+aaR
 adZ
-auj
+abb
 ltt
 auY
-awz
+asq
 arH
 adZ
 aac
@@ -67076,7 +66958,7 @@ alT
 amO
 ans
 anW
-aoJ
+alT
 alT
 aqh
 adZ

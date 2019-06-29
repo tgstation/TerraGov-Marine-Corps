@@ -44,7 +44,13 @@
 	. = FALSE
 
 
-/obj/machinery/power/terminal/dismantle(mob/living/user)
+/obj/machinery/power/apc/can_terminal_dismantle()
+	. = FALSE
+	if(opened)
+		. = TRUE
+
+
+/obj/machinery/power/terminal/deconstruct(mob/living/user)
 	var/turf/T = get_turf(src)
 	if(T.intact_tile)
 		to_chat(user, "<span class='warning'>You must first expose the power terminal!</span>")
@@ -56,7 +62,7 @@
 	user.visible_message("<span class='notice'>[user] starts removing [master]'s wiring and terminal.</span>",
 		"<span class='notice'>You start removing [master]'s wiring and terminal.</span>")
 
-	playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
+	playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 	if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 

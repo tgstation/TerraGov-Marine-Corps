@@ -137,7 +137,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 
 
 /mob/camera/aiEye/pic_in_pic/GetViewerClient()
-	return screen?.ai.client
+	return screen?.ai?.client
 
 /mob/camera/aiEye/pic_in_pic/setLoc(turf/T)
 	if(T)

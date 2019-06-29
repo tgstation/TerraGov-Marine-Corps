@@ -217,7 +217,7 @@ SUBSYSTEM_DEF(garbage)
 	if (time > highest_del_time)
 		highest_del_time = time
 	if (time > 10)
-		log_game("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete).")
+		WARNING("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete).")
 		message_admins("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete).")
 		postpone(time)
 
@@ -260,10 +260,13 @@ SUBSYSTEM_DEF(garbage)
 
 
 	if(isnull(D.gc_destroyed))
+		if(SEND_SIGNAL(D, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
+			return
 		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
+		SEND_SIGNAL(D, COMSIG_PARENT_QDELETED, force, hint) // Let the (remaining) components know about the result of Destroy
 		if(world.time != start_time)
 			I.slept_destroy++
 		else

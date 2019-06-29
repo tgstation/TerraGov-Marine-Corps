@@ -311,13 +311,13 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 //returns random gauss number
 /proc/GaussRand(sigma)
-  var/x,y,rsq
-  do
-    x = 2 * rand() - 1
-    y = 2 * rand() - 1
-    rsq = x * x + y * y
-  while(rsq > 1 || !rsq)
-  return sigma * y * sqrt(-2 * log(rsq) / rsq)
+	var/x,y,rsq
+	do
+		x = 2 * rand() - 1
+		y = 2 * rand() - 1
+		rsq = x * x + y * y
+	while(rsq > 1 || !rsq)
+	return sigma * y * sqrt(-2 * log(rsq) / rsq)
 
 
 //returns random gauss number, rounded to 'roundto'
@@ -344,16 +344,25 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	qdel(animation)
 
 
-//Will return the contents of an atom recursivly to a depth of 'searchDepth'
-/atom/proc/GetAllContents(searchDepth = 5)
-	var/list/toReturn = list()
-
-	for(var/atom/part in contents)
-		toReturn += part
-		if(length(part.contents) && searchDepth)
-			toReturn += part.GetAllContents(searchDepth - 1)
-
-	return toReturn
+/atom/proc/GetAllContents(T)
+	var/list/processing_list = list(src)
+	var/list/assembled = list()
+	if(T)
+		while(length(processing_list))
+			var/atom/A = processing_list[1]
+			processing_list.Cut(1, 2)
+			//Byond does not allow things to be in multiple contents, or double parent-child hierarchies, so only += is needed
+			//This is also why we don't need to check against assembled as we go along
+			processing_list += A.contents
+			if(istype(A, T))
+				assembled += A
+	else
+		while(length(processing_list))
+			var/atom/A = processing_list[1]
+			processing_list.Cut(1, 2)
+			processing_list += A.contents
+			assembled += A
+	return assembled
 
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
@@ -383,41 +392,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(A.density)
 			return TRUE
 
-
-var/global/image/busy_indicator_clock
-var/global/image/busy_indicator_medical
-var/global/image/busy_indicator_build
-var/global/image/busy_indicator_friendly
-var/global/image/busy_indicator_hostile
-
-/proc/get_busy_icon(busy_type)
-	if(busy_type == BUSY_ICON_GENERIC)
-		if(!busy_indicator_clock)
-			busy_indicator_clock = image('icons/mob/mob.dmi', null, "busy_generic", "pixel_y" = 22)
-			busy_indicator_clock.layer = FLY_LAYER
-		return busy_indicator_clock
-	else if(busy_type == BUSY_ICON_MEDICAL)
-		if(!busy_indicator_medical)
-			busy_indicator_medical = image('icons/mob/mob.dmi', null, "busy_medical", "pixel_y" = 0) //This shows directly on top of the mob, no offset!
-			busy_indicator_medical.layer = FLY_LAYER
-		return busy_indicator_medical
-	else if(busy_type == BUSY_ICON_BUILD)
-		if(!busy_indicator_build)
-			busy_indicator_build = image('icons/mob/mob.dmi', null, "busy_build", "pixel_y" = 22)
-			busy_indicator_build.layer = FLY_LAYER
-		return busy_indicator_build
-	else if(busy_type == BUSY_ICON_FRIENDLY)
-		if(!busy_indicator_friendly)
-			busy_indicator_friendly = image('icons/mob/mob.dmi', null, "busy_friendly", "pixel_y" = 22)
-			busy_indicator_friendly.layer = FLY_LAYER
-		return busy_indicator_friendly
-	else if(busy_type == BUSY_ICON_HOSTILE)
-		if(!busy_indicator_hostile)
-			busy_indicator_hostile = image('icons/mob/mob.dmi', null, "busy_hostile", "pixel_y" = 22)
-			busy_indicator_hostile.layer = FLY_LAYER
-		return busy_indicator_hostile
-
-
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: TRUE if found, FALSE if not.
 /proc/hasvar(datum/A, varname)
@@ -440,7 +414,7 @@ var/global/image/busy_indicator_hostile
 		areatype = areatemp.type
 
 	var/list/turfs = list()
-	for(var/i in GLOB.all_areas)
+	for(var/i in GLOB.sorted_areas)
 		var/area/A = i
 		if(!istype(A, areatype))
 			continue
@@ -526,8 +500,8 @@ var/global/image/busy_indicator_hostile
 						// Spawn a new shuttle corner object
 						var/obj/corner = new()
 						corner.loc = X
-						corner.density = 1
-						corner.anchored = 1
+						corner.density = TRUE
+						corner.anchored = TRUE
 						corner.icon = X.icon
 						corner.icon_state = oldreplacetext(X.icon_state, "_s", "_f")
 						corner.tag = "delete me"
@@ -562,9 +536,9 @@ var/global/image/busy_indicator_hostile
 
 //					var/area/AR = X.loc
 
-//					if(AR.lighting_use_dynamic)							//TODO: rewrite this code so it's not messed by lighting ~Carn
+//					if(AR.dynamic_lighting)							//TODO: rewrite this code so it's not messed by lighting ~Carn
 //						X.opacity = !X.opacity
-//						X.SetOpacity(!X.opacity)
+//						X.set_opacity(!X.opacity)
 
 					toupdate += X
 
@@ -745,9 +719,9 @@ var/global/image/busy_indicator_hostile
 
 //					var/area/AR = X.loc
 
-//					if(AR.lighting_use_dynamic)
+//					if(AR.dynamic_lighting)
 //						X.opacity = !X.opacity
-//						X.sd_SetOpacity(!X.opacity)			//TODO: rewrite this code so it's not messed by lighting ~Carn
+//						X.sd_set_opacity(!X.opacity)			//TODO: rewrite this code so it's not messed by lighting ~Carn
 
 					toupdate += X
 
@@ -818,24 +792,24 @@ var/global/image/busy_indicator_hostile
 
 
 //Quick type checks for some tools
-var/global/list/common_tools = list(
+GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 /obj/item/stack/cable_coil,
 /obj/item/tool/wrench,
 /obj/item/tool/weldingtool,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wirecutters,
 /obj/item/multitool,
-/obj/item/tool/crowbar)
+/obj/item/tool/crowbar)))
 
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
+	if(O && is_type_in_typecache(O, GLOB.common_tools))
 		return TRUE
 	return FALSE
 
 
 /proc/is_hot(obj/item/I)
-	return I.heat_source
+	return I.heat
 
 
 //Whether or not the given item counts as sharp in terms of dealing damage
@@ -877,11 +851,15 @@ var/global/list/common_tools = list(
 /proc/can_puncture(obj/item/I)
 	if(!istype(I)) 
 		return FALSE
-	return (I.sharp || I.heat_source >= 400 	|| \
+	return (I.sharp || I.heat >= 400 	|| \
 		isscrewdriver(I)	 || \
 		istype(I, /obj/item/tool/pen) 		 || \
 		istype(I, /obj/item/tool/shovel) \
 	)
+
+
+//Actually better performant than reverse_direction()
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
 
 
 /proc/reverse_direction(direction)
@@ -927,23 +905,20 @@ var/global/list/common_tools = list(
 /*
 Checks if that loc and dir has a item on the wall
 */
-var/list/WALLITEMS = list(
-	"/obj/machinery/power/apc", "/obj/machinery/alarm", "/obj/item/radio/intercom",
-	"/obj/structure/extinguisher_cabinet", "/obj/structure/reagent_dispensers/peppertank",
-	"/obj/machinery/status_display", "/obj/machinery/requests_console", "/obj/machinery/light_switch", "/obj/effect/sign",
-	"/obj/machinery/newscaster", "/obj/machinery/firealarm", "/obj/structure/noticeboard", "/obj/machinery/door_control",
-	"/obj/machinery/computer/security/telescreen", "/obj/machinery/embedded_controller/radio/simple_vent_controller",
-	"/obj/item/storage/secure/safe", "/obj/machinery/door_timer", "/obj/machinery/flasher", "/obj/machinery/keycard_auth",
-	"/obj/structure/mirror", "/obj/structure/closet/fireaxecabinet", "/obj/machinery/computer/security/telescreen/entertainment"
-	)
+GLOBAL_LIST_INIT(wallitems, typecacheof(list(
+	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom,
+	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/wallmounted/peppertank,
+	/obj/machinery/status_display, /obj/machinery/light_switch, /obj/structure/sign,
+	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,
+	/obj/machinery/computer/security/telescreen,
+	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
+	/obj/structure/mirror, /obj/structure/closet/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
+	)))
 
 
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
-		for(var/item in WALLITEMS)
-			if(!istype(O, text2path(item)))
-				continue
-
+		if(is_type_in_typecache(O, GLOB.wallitems))
 			//Direction works sometimes
 			if(O.dir == dir)
 				return TRUE
@@ -966,10 +941,7 @@ var/list/WALLITEMS = list(
 
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in get_step(loc, dir))
-		for(var/item in WALLITEMS)
-			if(!istype(O, text2path(item)))
-				continue
-
+		if(is_type_in_typecache(O, GLOB.wallitems))
 			if(O.pixel_x != 0 || O.pixel_y != 0)
 				continue
 			
@@ -1127,16 +1099,16 @@ var/list/WALLITEMS = list(
 
 /*
 
- Gets the turf this atom's *ICON* appears to inhabit
- It takes into account:
- * Pixel_x/y
- * Matrix x/y
+Gets the turf this atom's *ICON* appears to inhabit
+It takes into account:
+* Pixel_x/y
+* Matrix x/y
 
- NOTE: if your atom has non-standard bounds then this proc
- will handle it, but:
- * if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
- (this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
- * if the bounds are odd, the true middle turf of the atom is returned
+NOTE: if your atom has non-standard bounds then this proc
+will handle it, but:
+* if the bounds are even, then there are an even amount of "middle" turfs, the one to the EAST, NORTH, or BOTH is picked
+(this may seem bad, but you're atleast as close to the center of the atom as possible, better than byond's default loc being all the way off)
+* if the bounds are odd, the true middle turf of the atom is returned
 
 */
 
@@ -1171,3 +1143,21 @@ var/list/WALLITEMS = list(
 
 	if(final_x || final_y)
 		return locate(final_x, final_y, T.z)
+
+/proc/animate_speech_bubble(image/I, list/show_to, duration)
+	var/matrix/M = matrix()
+	M.Scale(0,0)
+	I.transform = M
+	I.alpha = 0
+	for(var/client/C in show_to)
+		C.images += I
+	animate(I, transform = 0, alpha = 255, time = 0.5 SECONDS, easing = ELASTIC_EASING)
+	addtimer(CALLBACK(GLOBAL_PROC, /.proc/fade_out, I), duration - 0.5 SECONDS)
+
+/proc/fade_out(image/I, list/show_to)
+	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
+	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
+
+
+/proc/send_global_signal(signal) //Wrapper for callbacks and the likes.
+	SEND_GLOBAL_SIGNAL(signal)

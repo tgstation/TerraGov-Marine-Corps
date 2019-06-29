@@ -9,16 +9,14 @@
 	plasma_stored = 50
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	var/stealth_delay = null
 	var/last_stealth = null
-	var/used_stealth = FALSE
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/pounce,
-		/datum/action/xeno_action/activable/stealth,
+		/datum/action/xeno_action/stealth,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
@@ -84,14 +82,14 @@
 		if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
 			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly
 			if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-				to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
+				to_chat(src, "<span class='xenodanger'>Our sneak attack is now at maximum power.</span>")
 	//Running stealth
 	else
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * 0.5)
 		sneak_bonus = round(max(sneak_bonus - HUNTER_SNEAKATTACK_RUN_REDUCTION, 1.25), 0.01) //Rapidly lose sneak attack damage while running and stealthed
 	if(!plasma_stored)
-		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
+		to_chat(src, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
 /mob/living/carbon/xenomorph/hunter/handle_status_effects()
@@ -119,7 +117,7 @@
 		alpha = HUNTER_STEALTH_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!plasma_stored)
-		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
+		to_chat(src, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
 /mob/living/carbon/xenomorph/hunter/stealth_router(code = 0)
@@ -152,7 +150,7 @@
 		plasma_stored += xeno_caste.plasma_gain * modifier
 		if(recovery_aura)
 			plasma_stored += round(xeno_caste.plasma_gain * recovery_aura * 0.25 * modifier) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
-	else if(!hive?.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z) //We only regenerate plasma off weeds while on the same Z level as the queen; if one's alive
+	else if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z) //We only regenerate plasma off weeds while on the same Z level as the ruler; if one's alive
 		plasma_stored++
 	if(plasma_stored > xeno_caste.plasma_max)
 		plasma_stored = xeno_caste.plasma_max
@@ -160,7 +158,7 @@
 		plasma_stored = 0
 		if(current_aura)
 			current_aura = null
-			to_chat(src, "<span class='warning'>You have ran out of plasma and stopped emitting pheromones.</span>")
+			to_chat(src, "<span class='warning'>We have ran out of plasma and stopped emitting pheromones.</span>")
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
@@ -179,7 +177,7 @@
 
 	return ..()
 
-/mob/living/carbon/xenomorph/hunter/apply_alpha_channel(var/image/I)
+/mob/living/carbon/xenomorph/hunter/apply_alpha_channel(image/I)
 	I.alpha = src.alpha
 	return I
 

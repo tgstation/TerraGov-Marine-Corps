@@ -26,7 +26,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	populate_seed_list()
 	populate_gear_list()
 	make_datum_references_lists()
-	loadShuttleInfoDatums()
 
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
@@ -59,10 +58,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
-	spawn(3000)
-		if(CONFIG_GET(flag/kick_inactive))
-			KickInactiveClients()
-
 	return ..()
 
 
@@ -88,6 +83,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
+	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
@@ -97,6 +93,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_qdel_log)
 	start_log(GLOB.world_runtime_log)
+	start_log(GLOB.world_paper_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
@@ -110,11 +107,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	// but those are both private, so let's put the commit info in the runtime
 	// log which is ultimately public.
 	log_runtime(GLOB.revdata.get_log_message())
-
-
-var/world_topic_spam_protect_ip = "0.0.0.0"
-var/world_topic_spam_protect_time = world.timeofday
-
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC	//redirect to server tools if necessary
@@ -150,23 +142,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	return ..()
 
 
-#define INACTIVITY_KICK	6000	//10 minutes in ticks (approx.)
-/world/proc/KickInactiveClients()
-	spawn(-1)
-		set background = TRUE
-		while(1)
-			sleep(INACTIVITY_KICK)
-			for(var/client/C in GLOB.clients)
-				if(check_other_rights(C, R_ADMIN, FALSE))
-					continue
-				if(C.is_afk(INACTIVITY_KICK))
-					if(!istype(C.mob, /mob/dead))
-						log_access("AFK: [key_name(C)].")
-						to_chat(C, "<span class='warning'>You have been inactive for more than 10 minutes and have been disconnected.</span>")
-						qdel(C)
-#undef INACTIVITY_KICK
-
-
 /world/proc/load_mode()
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
@@ -175,7 +150,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			log_config("Saved mode is '[GLOB.master_mode]'")
 
 
-/world/proc/save_mode(var/the_mode)
+/world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	WRITE_FILE(F, the_mode)
@@ -215,6 +190,7 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/incrementMaxZ()
 	maxz++
 	SSmobs.MaxZChanged()
+	SSidlenpcpool.MaxZChanged()
 
 
 /world/proc/SetupExternalRSC()

@@ -1,6 +1,14 @@
-/mob/living/carbon/Destroy()
+/mob/living/carbon/Initialize()
 	. = ..()
-	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
+	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
+
+
+/mob/living/carbon/Destroy()
+	if(iscarbon(loc))
+		var/mob/living/carbon/C = loc
+		C.stomach_contents -= src
+	stomach_contents.Cut()
+	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -32,35 +40,19 @@
 	if(legcuffed)
 		dropItemToGround(legcuffed)
 
-	for(var/atom/movable/A in stomach_contents)
-		stomach_contents.Remove(A)
-		A.forceMove(loc)
-		if(ismob(A))
-			var/mob/M = A
-			M.SetKnockeddown(1)
-			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
-
-	. = ..()
+	return ..()
 
 
 /mob/living/carbon/revive()
 	if (handcuffed && !initial(handcuffed))
 		dropItemToGround(handcuffed)
-	handcuffed = initial(handcuffed)
+	update_handcuffed(initial(handcuffed))
 
 	if (legcuffed && !initial(legcuffed))
 		dropItemToGround(legcuffed)
-	legcuffed = initial(legcuffed)
+	update_legcuffed(initial(legcuffed))
 
 	return ..()
-
-
-/mob/living/carbon/human/attack_hand(mob/living/carbon/M)
-	if(!iscarbon(M))
-		return
-
-	next_move += 7 //Adds some lag to the 'attack'
-	return
 
 
 /mob/living/carbon/attack_paw(mob/living/carbon/M)
@@ -70,7 +62,7 @@
 	next_move += 7 //Adds some lag to the 'attack'
 	return
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 	shock_damage *= siemens_coeff
 	if (shock_damage<1)
@@ -125,7 +117,7 @@
 			hud_used.r_hand_hud_object.add_overlay("hand_active")
 	return
 
-/mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+/mob/living/carbon/proc/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
 
 	if(istext(selhand))
 		selhand = lowertext(selhand)
@@ -160,10 +152,8 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(CALLBACK(src, .proc/do_vomit_cooldown), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(VARSET_CALLBACK(src, lastpuke, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
-/mob/living/carbon/proc/do_vomit_cooldown()
-	lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if(health >= get_crit_threshold())
@@ -272,7 +262,7 @@
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
-		playsound(src, 'sound/effects/throw.ogg', 50, 1)
+		playsound(src, 'sound/effects/throw.ogg', 30, 1)
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
@@ -299,7 +289,7 @@
 	return
 
 //generates realistic-ish pulse output based on preset levels
-/mob/living/carbon/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
+/mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
@@ -324,11 +314,11 @@
 	set name = "Sleep"
 	set category = "IC"
 
-	if(usr.sleeping)
-		to_chat(usr, "<span class='warning'>You are already sleeping</span>")
+	if(sleeping)
+		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		usr.sleeping = 20 //Short nap
+		sleeping = 20 //Short nap
 
 
 /mob/living/carbon/Bump(atom/movable/AM, yes)
@@ -353,16 +343,6 @@
 			step(src, slide_dir)
 			sleep(2)
 			if(!lying)
-				break
-
-
-
-/mob/living/carbon/on_stored_atom_del(atom/movable/AM)
-	..()
-	if(stomach_contents.len && ismob(AM))
-		for(var/X in stomach_contents)
-			if(AM == X)
-				stomach_contents -= AM
 				break
 
 
@@ -402,3 +382,48 @@
 		if(!G || !gear.Find(i))
 			continue
 		equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
+
+
+
+/mob/living/carbon/human/update_sight()
+	if(!client)
+		return
+
+	if(stat == DEAD)
+		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_OBSERVER
+		return
+
+	sight = initial(sight)
+	lighting_alpha = initial(lighting_alpha)
+	see_in_dark = species.darksight
+	see_invisible = initial(see_invisible)
+
+	if(species)
+		if(species.lighting_alpha)
+			lighting_alpha = initial(species.lighting_alpha)
+		if(species.see_in_dark)
+			see_in_dark = initial(species.see_in_dark)
+
+	if(client.eye != src)
+		var/atom/A = client.eye
+		if(A.update_remote_sight(src)) //returns 1 if we override all other sight updates.
+			return
+
+	if(glasses)
+		var/obj/item/clothing/glasses/G = glasses
+		if((G.toggleable && G.active) || !G.toggleable)
+			sight |= G.vision_flags
+			see_in_dark = max(G.darkness_view, see_in_dark)
+			if(G.invis_override)
+				see_invisible = G.invis_override
+			else
+				see_invisible = min(G.invis_view, see_invisible)
+			if(!isnull(G.lighting_alpha))
+				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+
+	if(see_override)
+		see_invisible = see_override
+
+	return ..()

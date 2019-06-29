@@ -1,25 +1,25 @@
 /*
- *	Everything derived from the common cardboard box.
- *	Basically everything except the original is a kit (starts full).
- *
- *	Contains:
- *		Empty box, starter boxes (survival/engineer),
- *		Latex glove and sterile mask boxes,
- *		Syringe, beaker, dna injector boxes,
- *		Blanks, flashbangs, and EMP grenade boxes,
- *		Tracking and chemical implant boxes,
- *		Prescription glasses and drinking glass boxes,
- *		Condiment bottle and silly cup boxes,
- *		Donkpocket and monkeycube boxes,
- *		ID and security PDA cart boxes,
- *		Handcuff, mousetrap, and pillbottle boxes,
- *		Snap-pops and matchboxes,
- *		Replacement light boxes.
- *
- *		For syndicate call-ins see uplink_kits.dm
- *
- *  EDITED BY APOPHIS 09OCT2015 to prevent in-game abuse of boxes.
- */
+*	Everything derived from the common cardboard box.
+*	Basically everything except the original is a kit (starts full).
+*
+*	Contains:
+*		Empty box, starter boxes (survival/engineer),
+*		Latex glove and sterile mask boxes,
+*		Syringe, beaker, dna injector boxes,
+*		Blanks, flashbangs, and EMP grenade boxes,
+*		Tracking and chemical implant boxes,
+*		Prescription glasses and drinking glass boxes,
+*		Condiment bottle and silly cup boxes,
+*		Donkpocket and monkeycube boxes,
+*		ID and security PDA cart boxes,
+*		Handcuff, mousetrap, and pillbottle boxes,
+*		Snap-pops and matchboxes,
+*		Replacement light boxes.
+*
+*		For syndicate call-ins see uplink_kits.dm
+*
+*  EDITED BY APOPHIS 09OCT2015 to prevent in-game abuse of boxes.
+*/
 
 
 
@@ -114,7 +114,6 @@
 		new /obj/item/implantcase/tracking(src)
 	new /obj/item/implanter(src)
 	new /obj/item/implantpad(src)
-	new /obj/item/locator(src)
 
 /obj/item/storage/box/chemimp
 	name = "boxed chemical implant kit"
@@ -208,14 +207,14 @@
 	name = "box of handcuffs"
 	desc = "A box full of handcuffs."
 	icon_state = "handcuff"
-	spawn_type = /obj/item/handcuffs
+	spawn_type = /obj/item/restraints/handcuffs
 	spawn_number = 7
 
 /obj/item/storage/box/zipcuffs
 	name = "box of zip cuffs"
 	desc = "A box full of zip cuffs."
 	icon_state = "handcuff"
-	spawn_type = /obj/item/handcuffs/zip
+	spawn_type = /obj/item/restraints/handcuffs/zip
 	spawn_number = 14
 
 /obj/item/storage/box/mousetraps
@@ -255,7 +254,7 @@
 	if(istype(I, /obj/item/tool/match))
 		var/obj/item/tool/match/M = I
 
-		if(M.heat_source || M.burnt)
+		if(M.heat || M.burnt)
 			return ..()
 
 		if(prob(50))
@@ -328,29 +327,32 @@
 	desc = "A secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
 	w_class = 3
-	max_storage_space = 8
+	max_storage_space = 10
 	spawn_type = /obj/item/explosive/mine
 	spawn_number = 5
+
+/obj/item/storage/box/explosive_mines/update_icon()
+	icon_state = initial(icon_state)
+	if(!length(contents))
+		icon_state += "_e"
 
 /obj/item/storage/box/explosive_mines/pmc
 	name = "\improper M20P mine box"
 	spawn_type = /obj/item/explosive/mine/pmc
-	spawn_number = 5
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
 	desc = "A packet of five M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
-	icon_state = "m94"
+	icon_state = "m40"
 	w_class = 3
 	max_storage_space = 10
 	spawn_type = /obj/item/explosive/grenade/flare
 	spawn_number = 5
 
 /obj/item/storage/box/m94/update_icon()
-	if(!contents.len)
-		icon_state = "m94_e"
-	else
-		icon_state = "m94"
+	icon_state = initial(icon_state)
+	if(!length(contents))
+		icon_state += "_e"
 
 
 /obj/item/storage/box/nade_box

@@ -6,7 +6,7 @@
 	gender = NEUTER
 	flags_pass = PASSTABLE
 	hud_type = /datum/hud/monkey
-	hud_possible = list(STATUS_HUD_XENO_INFECTION)
+	hud_possible = list(XENO_EMBRYO_HUD)
 
 	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/greaterform_type = /datum/species/human
@@ -114,6 +114,9 @@
 	return FALSE
 
 /mob/living/carbon/monkey/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["mach_close"])
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_interaction()
@@ -140,7 +143,6 @@
 
 			if(do_mob(usr, src, 30, BUSY_ICON_GENERIC))
 				if (internal)
-					internal.add_fingerprint(usr)
 					internal = null
 					if (hud_used && hud_used.internals)
 						hud_used.internals.icon_state = "internal0"
@@ -149,7 +151,6 @@
 						if (istype(back, /obj/item/tank))
 							internal = back
 							visible_message("[src] is now running on internals.", null, 3)
-							internal.add_fingerprint(usr)
 							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
@@ -177,6 +178,9 @@
 	return
 
 /mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
+	. = ..()
+	if(.)
+		return
 	if (!SSticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -269,11 +273,6 @@
 
 	return 1
 
-/mob/living/carbon/get_standard_pixel_y_offset()
-	if(lying)
-		return -6
-	else
-		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
 	. = ..()
@@ -323,20 +322,6 @@
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
 	return FALSE
 
-
-/mob/living/carbon/monkey/update_sight()
-	if (stat == DEAD)
-		sight |= SEE_TURFS
-		sight |= SEE_MOBS
-		sight |= SEE_OBJS
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		return
-	sight &= ~SEE_TURFS
-	sight &= ~SEE_MOBS
-	sight &= ~SEE_OBJS
-	see_in_dark = 2
-	see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/carbon/monkey/get_idcard(hand_first)
 	//Check hands

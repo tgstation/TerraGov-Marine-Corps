@@ -31,9 +31,9 @@
 	var/image/LT = null
 	var/obj/item/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
-                        /obj/item/attachable/bipod,
-                        /obj/item/attachable/lasersight,
-                        )
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/lasersight,
+						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
@@ -239,7 +239,7 @@
 	max_shells = 10 //codex
 	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
-	fire_sound = 'sound/weapons/gun_kt42.ogg'
+	fire_sound = 'sound/weapons/gun_svd.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -575,7 +575,8 @@
 	if(length(grenades) == 0)
 		return list("empty", "empty")
 	else
-		return list(grenades[1].hud_state, grenades[1].hud_state_empty)
+		var/obj/item/explosive/grenade/F = grenades[1]
+		return list(F.hud_state, F.hud_state_empty)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_count()
 	return length(grenades)
@@ -686,15 +687,15 @@
 	set waitfor = 0
 	last_fired = world.time
 	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
-						 "<span class='warning'>You fire the grenade launcher!</span>")
+						"<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")
-		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
+		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
+		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1
 		F.updateicon()
@@ -738,8 +739,9 @@
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
-	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
-	unload_sound = 'sound/weapons/gun_mortar_reload.ogg'
+	dry_fire_sound = 'sound/weapons/gun_launcher_empty.ogg'
+	reload_sound = 'sound/weapons/gun_launcher_reload.ogg'
+	unload_sound = 'sound/weapons/gun_launcher_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
@@ -764,13 +766,13 @@
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
-	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
+	playsound(loc,'sound/weapons/gun_launcher.ogg', 50, 1)
 	. = ..()
 
 
 	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
 
-	if(!current_mag.current_rounds)
+	if(current_mag && !current_mag.current_rounds)
 		current_mag.loc = get_turf(src)
 		current_mag.update_icon()
 		current_mag = null
@@ -910,7 +912,7 @@
 	caliber = "12 gauge shotgun shells" //codex
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
+	fire_sound = 'sound/weapons/gun_shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT

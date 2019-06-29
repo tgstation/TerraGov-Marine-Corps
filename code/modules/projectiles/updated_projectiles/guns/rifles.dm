@@ -51,6 +51,7 @@
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	fire_sound = "gun_pulse"
+	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
 	caliber = "10x24mm caseless" //codex
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
@@ -131,6 +132,7 @@
 	icon_state = "m41a"
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
+	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
 	max_shells = 95 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
@@ -232,7 +234,7 @@
 	caliber = "5.56x45mm" //codex
 	max_shells = 20 //codex
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_mar40.ogg'
+	fire_sound = 'sound/weapons/gun_m16.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -279,6 +281,7 @@
 	wield_delay = WIELD_DELAY_NORMAL + WIELD_DELAY_VERY_FAST
 	origin_tech = "combat=5;materials=4"
 	fire_sound =  'sound/weapons/gun_rifle.ogg'
+	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,

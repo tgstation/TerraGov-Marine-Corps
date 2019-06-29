@@ -22,7 +22,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		log_world("BYOND out of memory. Restarting")
 		log_game("BYOND out of memory. Restarting")
 		TgsEndProcess()
-		Reboot(reason = 1)
+		Reboot(ping = 1)
 		return ..()
 	
 	if(islist(stack_trace_storage))

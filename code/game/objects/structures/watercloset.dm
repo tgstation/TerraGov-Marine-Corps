@@ -6,7 +6,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet00"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
@@ -18,6 +18,9 @@
 	update_icon()
 
 /obj/structure/toilet/attack_hand(mob/living/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(swirlie)
 		user.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
 		swirlie.apply_damage(8, BRUTE)
@@ -82,7 +85,6 @@
 				return
 
 			user.visible_message("<span class='danger'>[user] gives [C] a swirlie!</span>", "<span class='notice'>You give [C] a swirlie!</span>", "You hear a toilet flushing.")
-			log_admin("[key_name(user)] gives [key_name(C)] a swirlie.")
 			log_combat(user, C, "given a swirlie")
 			msg_admin_attack("[key_name(user)] gave [key_name(C)] a swirlie.")
 			if(!C.internal)
@@ -90,7 +92,6 @@
 			swirlie = null
 		else
 			user.visible_message("<span class='danger'>[user] slams [C] into the [src]!</span>", "<span class='notice'>You slam [C] into the [src]!</span>")
-			log_admin("[key_name(user)] slams [key_name(C)] into the \the [src].")
 			log_combat(user, C, "slammed", "", "into the \the [src]")
 			msg_admin_attack("[key_name(user)] slammed [key_name(C)] into the \the [src].")
 			C.apply_damage(8, BRUTE)
@@ -117,7 +118,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/urinal/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -150,7 +151,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	use_power = 0
 	var/on = 0
 	var/obj/effect/mist/mymist = null
@@ -159,8 +160,8 @@
 	var/mobpresent = 0		//true if there is a mob on the shower's loc, this is to ease process()
 	var/is_washing = 0
 
-/obj/machinery/shower/New()
-	..()
+/obj/machinery/shower/Initialize()
+	. = ..()
 	create_reagents(2)
 
 //add heat controls? when emagged, you can freeze to death in it?
@@ -170,10 +171,13 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 
 /obj/machinery/shower/attack_hand(mob/M as mob)
+	. = ..()
+	if(.)
+		return
 	on = !on
 	update_icon()
 	if(on)
@@ -377,7 +381,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
-	anchored = 1
+	anchored = TRUE
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/Initialize()
@@ -391,6 +395,9 @@
 			pixel_x = 12
 
 /obj/structure/sink/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(isAI(user))
 		return
 
@@ -475,9 +482,10 @@
 	name = "puddle"
 	icon_state = "puddle"
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/sink/puddle/attack_hand(mob/M as mob)
 	icon_state = "puddle-splash"
-	..()
+	. = ..()
 	icon_state = "puddle"
 
 /obj/structure/sink/puddle/attackby(obj/item/I, mob/user, params)

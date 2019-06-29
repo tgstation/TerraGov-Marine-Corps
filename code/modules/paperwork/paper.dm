@@ -1,7 +1,7 @@
 /*
- * Paper
- * also scraps of paper
- */
+* Paper
+* also scraps of paper
+*/
 
 /obj/item/paper
 	name = "paper"
@@ -80,11 +80,10 @@
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text), 1, MAX_NAME_LEN)
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
-	add_fingerprint(usr)
 	return
 
 
-/obj/item/paper/attack_ai(var/mob/living/silicon/ai/user as mob)
+/obj/item/paper/attack_ai(mob/living/silicon/ai/user as mob)
 	var/dist
 	if(istype(user) && user.current) //is AI
 		dist = get_dist(src, user.current)
@@ -114,14 +113,14 @@
 				H.update_body()
 			else
 				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
-								 	 "<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
+									"<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
 				if(do_after(user, 10, TRUE, H, BUSY_ICON_FRIENDLY))
 					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
-										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
+										"<span class='notice'>You wipe off [H]'s lipstick.</span>")
 					H.lip_style = null
 					H.update_body()
 
-/obj/item/paper/proc/addtofield(var/id, var/text, var/links = 0)
+/obj/item/paper/proc/addtofield(id, text, links = 0)
 	var/locid = 0
 	var/laststart = 1
 	var/textindex = 1
@@ -179,7 +178,7 @@
 	update_icon()
 
 
-/obj/item/paper/proc/parsepencode(var/t, var/obj/item/tool/pen/P, mob/user as mob, var/iscrayon = 0)
+/obj/item/paper/proc/parsepencode(t, obj/item/tool/pen/P, mob/user as mob, iscrayon = 0)
 //	t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
 	t = oldreplacetext(t, "\[center\]", "<center>")
@@ -275,7 +274,7 @@
 /obj/item/paper/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.heat_source >= 400 && !user.restrained())
+	if(P.heat >= 400 && !user.restrained())
 		if(istype(P, /obj/item/tool/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -283,7 +282,7 @@
 		"[class]You hold \the [P] up to \the [src], burning it slowly.</span>")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat_source)
+			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat)
 				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
@@ -298,15 +297,16 @@
 
 
 /obj/item/paper/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if(!usr || (usr.stat || usr.restrained()))
 		return
 
 	if(href_list["write"])
 		var/id = href_list["write"]
 		var/t =  stripped_multiline_input(usr, "Enter what you want to write:", "Write", "", MAX_MESSAGE_LEN)
-		var/shortened_t = copytext(t,1,100)
-		log_admin("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
+		log_paper("[key_name(usr)] wrote: [t]")
 
 		var/obj/item/i = usr.get_active_held_item() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
@@ -395,13 +395,13 @@
 		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
 		playsound(src, 'sound/items/stamp.ogg', 15, 1)
 
-	else if(I.heat_source >= 400)
+	else if(I.heat >= 400)
 		burnpaper(I, user)
 
 
 /*
- * Premade paper
- */
+* Premade paper
+*/
 
 
 /obj/item/paper/commendation
@@ -441,7 +441,7 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/flag
 	icon_state = "flag_neutral"
 	item_state = "paper"
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/item/paper/jobs
 	name = "Job Information"

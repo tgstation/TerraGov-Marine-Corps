@@ -2,16 +2,16 @@
 NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.
 
 Structure: ///////////////////          //////////////////////////
-		   // Mob or object // -------> // Reagents var (datum) // 	    Is a reference to the datum that holds the reagents.
-		   ///////////////////          //////////////////////////
-		   			|				    			 |
-    The object that holds everything.   			 V
-		   							      reagent_list var (list)   	A List of datums, each datum is a reagent.
+		// Mob or object // -------> // Reagents var (datum) // 	    Is a reference to the datum that holds the reagents.
+		///////////////////          //////////////////////////
+				|				    			 |
+	The object that holds everything.   			 V
+										reagent_list var (list)   	A List of datums, each datum is a reagent.
 
-		   							     |        |         |
-		   							      V          V          V
+										|        |         |
+										V          V          V
 
-		   							         reagents (datums)	    	Reagents. I.e. Water , dylovene or mercury.
+											reagents (datums)	    	Reagents. I.e. Water , dylovene or mercury.
 
 
 Random important notes:

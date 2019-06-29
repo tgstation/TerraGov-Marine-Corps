@@ -67,7 +67,6 @@
 				if("l_hand")
 					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
-			add_fingerprint(usr)
 
 /obj/item/storage/proc/return_inv()
 
@@ -170,7 +169,7 @@
 		boxes.update_fullness(src)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
+/obj/item/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
 	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
@@ -201,7 +200,7 @@
 	if(show_storage_fullness)
 		boxes.update_fullness(src)
 
-/obj/item/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
+/obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
 
 	var/baseline_max_storage_space = 21 //should be equal to default backpack capacity
 	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
@@ -225,7 +224,7 @@
 
 	for(var/obj/item/O in contents)
 		startpoint = endpoint + 1
-		endpoint += storage_width * O.get_storage_cost()/max_storage_space
+		endpoint += storage_width * O.w_class / max_storage_space
 
 		click_border_start.Add(startpoint)
 		click_border_end.Add(endpoint)
@@ -360,9 +359,9 @@
 			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
 		return FALSE
 
-	var/sum_storage_cost = W.get_storage_cost()
+	var/sum_storage_cost = W.w_class
 	for(var/obj/item/I in contents)
-		sum_storage_cost += I.get_storage_cost() //Adds up the combined storage costs which will be in the storage item if the item is added to it.
+		sum_storage_cost += I.w_class
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
@@ -399,7 +398,6 @@
 	if(user)
 		if (user.client && user.s_active != src)
 			user.client.screen -= W
-		add_fingerprint(user)
 		if(!prevent_warning)
 			var/visidist = W.w_class >= 3 ? 3 : 1
 			user.visible_message("<span class='notice'>[usr] puts [W] into [src].</span>",\
@@ -466,10 +464,13 @@
 		else
 			open(user)
 	else
-		..()
+		. = ..()
 		for(var/mob/M in content_watchers)
 			close(M)
-	add_fingerprint(user)
+
+
+/obj/item/storage/attack_ghost(mob/user)
+	open(user)
 
 
 /obj/item/storage/verb/toggle_gathering_mode()
@@ -631,27 +632,6 @@
 	qdel(src)
 //BubbleWrap END
 
-
-/obj/item/proc/get_storage_cost() //framework for adjusting storage costs
-	if (storage_cost)
-		return storage_cost
-	else
-		return w_class
-/*
-		if(w_class == 1)
-			return 1
-		if(w_class == 2)
-			return 2
-		if(w_class == 3)
-			return 4
-		if(w_class == 4)
-			return 8
-		if(w_class == 5)
-			return 16
-		else
-			return 1000
-*/
-
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.
 /atom/proc/storage_depth(atom/container)
@@ -689,7 +669,7 @@
 	return depth
 
 
-/obj/item/storage/on_stored_atom_del(atom/movable/AM)
+/obj/item/storage/handle_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
 		remove_from_storage(AM)
 
@@ -714,3 +694,9 @@
 	for(var/X in lookers)
 		var/mob/M = X //There is no need to typecast here, really, but for clarity.
 		show_to(M)
+
+
+/obj/item/storage/contents_explosion(severity, target)
+	for(var/i in contents)
+		var/atom/A = i
+		A.ex_act(severity, target)

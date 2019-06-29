@@ -20,12 +20,14 @@
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
+	add_fingerprint(user, "attack_self")
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user) & COMPONENT_NO_INTERACT)
 		return
 	return
 
 
 /atom/proc/attackby(obj/item/I, mob/user, params)
+	add_fingerprint(user, "attackby", I)
 	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
 	return FALSE
@@ -54,10 +56,12 @@
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
 	return
 
 
-/obj/item/proc/attack(mob/living/M, mob/living/user, def_zone)
+/obj/item/proc/attack(mob/living/M, mob/living/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
 
 	if(flags_item & NOBLUDGEON)
@@ -77,12 +81,12 @@
 
 	/////////////////////////
 
-	add_fingerprint(user)
-
 	var/power = force
 
 	if(user.mind && user.mind.cm_skills)
 		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
+
+	SEND_SIGNAL(user, COMSIG_HUMAN_ITEM_ATTACK, M, src, user)
 
 	if(!ishuman(M))
 		var/showname = "."
@@ -111,9 +115,8 @@
 		M.updatehealth()
 	else
 		var/mob/living/carbon/human/H = M
-		var/hit = H.attacked_by(src, user, def_zone)
+		var/hit = H.attacked_by(src, user)
 		if (hit && hitsound)
 			playsound(loc, hitsound, 25, 1)
-		H.camo_off_process(SCOUT_CLOAK_OFF_ATTACK)
 		return hit
 	return 1

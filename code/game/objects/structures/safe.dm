@@ -24,8 +24,8 @@ FLOOR SAFES
 	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "safe"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/spawnkey = 1 //Spawn safe code on top of it?
@@ -103,6 +103,9 @@ FLOOR SAFES
 
 
 /obj/structure/safe/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	var/dat = "<center>"
 	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a><br>"
@@ -118,6 +121,9 @@ FLOOR SAFES
 	onclose(user, "safe")
 
 /obj/structure/safe/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(usr))	return
 	var/mob/living/carbon/human/user = usr
 
@@ -202,7 +208,7 @@ FLOOR SAFES
 	hide(T.intact_tile)
 
 
-/obj/structure/safe/floor/hide(var/intact)
+/obj/structure/safe/floor/hide(intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
 
 /obj/structure/safe/floor/lvcolony

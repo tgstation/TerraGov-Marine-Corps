@@ -13,11 +13,11 @@ GLOBAL_LIST_INIT(cable_colors, list(
 
 /* Cable directions (d1 and d2)
 
-  9   1   5
-	\ | /
-  8 - 0 - 4
-	/ | \
-  10  2   6
+//  9   1   5
+//    \ | /
+//  8 - 0 - 4
+//    / | \
+//  10  2   6
 
 If d1 = 0 and d2 = 0, there's no cable
 If d1 = 0 and d2 = dir, it's a O-X cable, getting from the center of the tile to dir (knot cable)
@@ -150,7 +150,6 @@ By design, d1 is the smallest direction and d2 is the highest
 		if (shock(user, 50))
 			return
 		user.visible_message("[user] cuts the cable.", "<span class='notice'>You cut the cable.</span>")
-		stored.add_fingerprint(user)
 		deconstruct()
 		return
 
@@ -171,7 +170,6 @@ By design, d1 is the smallest direction and d2 is the highest
 	if (I.flags_atom & CONDUCT)
 		shock(user, 5, 0.7)
 
-	add_fingerprint(user)
 
 // Items usable on a cable :
 /obj/structure/cable/attackby(obj/item/I, mob/user, params)

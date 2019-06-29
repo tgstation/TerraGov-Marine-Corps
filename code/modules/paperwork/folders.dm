@@ -71,11 +71,12 @@
 		dat += "<A href='?src=\ref[src];remove=\ref[Pb]'>Remove</A> - <A href='?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
 	user << browse(dat, "window=folder")
 	onclose(user, "folder")
-	add_fingerprint(usr)
 	return
 
 /obj/item/folder/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if((usr.stat || usr.restrained()))
 		return
 

@@ -21,15 +21,16 @@
 		knife = null
 	. = ..()
 
-/obj/item/clothing/shoes/marine/attack_hand(var/mob/living/M)
+//ATTACK HAND IGNORING PARENT RETURN VALUE
+/obj/item/clothing/shoes/marine/attack_hand(mob/living/M)
 	if(knife && src.loc == M && !M.incapacitated()) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
 		if(M.put_in_active_hand(knife))
 			to_chat(M, "<span class='notice'>You slide [knife] out of [src].</span>")
 			playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
 			knife = 0
 			update_icon()
-		return
-	..()
+	else
+		return ..()
 
 /obj/item/clothing/shoes/marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -55,6 +56,7 @@
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
 	desc = "Protects you from fire and even contains a pouch for your knife!"
+	icon_state = "marine_armored"
 
 
 /obj/item/clothing/shoes/marinechief

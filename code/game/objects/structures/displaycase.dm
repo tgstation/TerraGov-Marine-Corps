@@ -3,8 +3,8 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox1"
 	desc = "A display case for prized possessions. It taunts you to kick it."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	max_integrity = 30
 	var/occupied = 1
@@ -27,7 +27,7 @@
 				src.healthcheck()
 
 
-/obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/displaycase/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.ammo.damage
 	..()
 	src.healthcheck()
@@ -64,10 +64,12 @@
 	return src.attack_hand(user)
 
 /obj/structure/displaycase/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (src.destroyed && src.occupied)
 		to_chat(user, "\b You deactivate the hover field built into the case.")
 		src.occupied = 0
-		src.add_fingerprint(user)
 		update_icon()
 		return
 	else

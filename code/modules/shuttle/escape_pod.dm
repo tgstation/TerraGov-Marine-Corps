@@ -116,6 +116,9 @@
 	popup.open()
 
 /obj/machinery/computer/shuttle/escape_pod/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/H = usr
@@ -186,7 +189,6 @@
 		//The occupant is actually automatically ejected once the evac is canceled.
 		if(occupant != usr) to_chat(usr, "<span class='warning'>You are unable to eject the occupant unless the evacuation is canceled.</span>")
 
-	add_fingerprint(usr)
 
 /obj/machinery/cryopod/evacuation/go_out() //When the system ejects the occupant.
 	if(occupant)
@@ -243,7 +245,6 @@
 	to_chat(M, "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>")
 	occupant = M
 	occupant.in_stasis = STASIS_IN_CRYO_CELL
-	add_fingerprint(M)
 	icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"
 
 /obj/machinery/door/airlock/evacuation
@@ -287,7 +288,7 @@
 /obj/machinery/door/airlock/evacuation/attackby()
 	return FALSE
 /obj/machinery/door/airlock/evacuation/attack_hand()
-	return FALSE
+	return TRUE
 /obj/machinery/door/airlock/evacuation/attack_alien()
 	return FALSE //Probably a better idea that these cannot be forced open.
 /obj/machinery/door/airlock/evacuation/attack_ai()

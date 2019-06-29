@@ -51,7 +51,12 @@
 	Destroy()
 		if(part)
 			part.implants.Remove(src)
+		GLOB.implant_list -= src
 		. = ..()
+
+/obj/item/implant/Initialize()
+	. = ..()
+	GLOB.implant_list += src
 
 /obj/item/implant/tracking
 	name = "tracking implant"
@@ -353,12 +358,13 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	trigger(emote, mob/source as mob)
 		if (src.uses < 1)	return 0
-		if (emote == "pale")
+		if (emote == "pale" && isliving(source))
+			var/mob/living/L = source
 			src.uses--
 			to_chat(source, "<span class='notice'>You feel a sudden surge of energy!</span>")
-			source.SetStunned(0)
-			source.SetKnockeddown(0)
-			source.SetKnockedout(0)
+			L.SetStunned(0)
+			L.SetKnockeddown(0)
+			L.SetKnockedout(0)
 
 		return
 
@@ -476,6 +482,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	name = "codex implant"
 	desc = "It has 'DON'T PANIC' embossed on the casing in friendly letters."
 
-/obj/item/implant/codex/implanted(var/mob/source)
+/obj/item/implant/codex/implanted(mob/source)
 	. = ..()
 	to_chat(usr, "<span class='notice'>You feel the brief sensation of having an entire encyclopedia at the tip of your tongue as the codex implant meshes with your nervous system.</span>")

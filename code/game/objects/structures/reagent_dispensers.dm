@@ -5,7 +5,7 @@
 	desc = "..."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
-	density = 1
+	density = TRUE
 	anchored = 0
 	var/tank_volume = 1000
 	var/amount_per_transfer_from_this = 10
@@ -16,7 +16,7 @@
 	if(!I.is_refillable())
 		return ..()
 
-/obj/structure/reagent_dispensers/New()
+/obj/structure/reagent_dispensers/Initialize()
 	. = ..()
 	create_reagents(tank_volume, AMOUNT_VISIBLE, list_reagents)
 	if (!possible_transfer_amounts)
@@ -89,6 +89,9 @@
 		to_chat(user, "<span class='notice'>There is some kind of device rigged to the tank.</span>")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
+	. = ..()
+	if(.)
+		return
 	if (rig)
 		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src]...")
 		if(do_after(usr, 20, TRUE, src, BUSY_ICON_GENERIC))

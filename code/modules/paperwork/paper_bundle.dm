@@ -40,7 +40,7 @@
 		user.dropItemToGround(I)
 		attach_doc(I, user)
 
-	else if(I.heat_source >= 400)
+	else if(I.heat >= 400)
 		burnpaper(I, user)
 
 	else if(istype(I, /obj/item/paper_bundle))
@@ -63,7 +63,7 @@
 /obj/item/paper_bundle/proc/burnpaper(obj/item/P, mob/user)
 	var/class = "<span class='warning'>"
 
-	if(P.heat_source >= 400 && !user.restrained())
+	if(P.heat >= 400 && !user.restrained())
 		if(istype(P, /obj/item/tool/lighter/zippo))
 			class = "<span class='rose'>"
 
@@ -71,7 +71,7 @@
 		"[class]You hold \the [P] up to \the [src], burning it slowly.")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat_source)
+			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat)
 				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
@@ -115,7 +115,6 @@
 			else
 				dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
 			human_user << browse(dat, "window=[name]")
-			P.add_fingerprint(usr)
 		else if(istype(src[page], /obj/item/photo))
 			var/obj/item/photo/P = src[page]
 			human_user << browse_rsc(P.img, "tmp_photo.png")
@@ -124,13 +123,13 @@
 			+ "<div> <img src='tmp_photo.png' width = '180'" \
 			+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : ""]"\
 			+ "</body></html>", "window=[name]")
-			P.add_fingerprint(usr)
-		add_fingerprint(usr)
 		update_icon()
 	return
 
 /obj/item/paper_bundle/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)))
 		if(href_list["next_page"])
 			if(page == amount-1)
@@ -182,7 +181,6 @@
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the bundle?", "Bundle Labelling", null)  as text), 1, MAX_NAME_LEN)
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
-	add_fingerprint(usr)
 
 /obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
@@ -192,7 +190,6 @@
 	to_chat(usr, "<span class='notice'>You loosen the bundle.</span>")
 	for(var/obj/O in src)
 		O.forceMove(usr.loc)
-		O.add_fingerprint(usr)
 	usr.dropItemToGround(src)
 	qdel(src)
 
@@ -231,7 +228,6 @@
 	if(I.loc == user)
 		user.dropItemToGround(I)
 	I.forceMove(src)
-	I.add_fingerprint(user)
 	amount++
 	if(!no_message)
 		to_chat(user, "<span class='notice'>You add [I] to [src].</span>")

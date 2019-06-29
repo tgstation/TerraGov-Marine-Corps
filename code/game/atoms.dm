@@ -6,7 +6,7 @@
 	var/flags_atom = NONE
 	var/datum/reagents/reagents = null
 
-	var/fingerprintslast
+	var/list/fingerprints
 	var/blood_color
 	var/list/blood_DNA
 
@@ -46,6 +46,9 @@ directive is properly returned.
 	LAZYCLEARLIST(priority_overlays)
 
 	QDEL_NULL(light)
+
+	if(isturf(loc))
+		loc.fingerprints = fingerprints
 
 	return ..()
 
@@ -138,14 +141,14 @@ directive is properly returned.
 
 
 /*
- *	atom/proc/search_contents_for(path,list/filter_path=null)
- * Recursevly searches all atom contens (including contents contents and so on).
- *
- * ARGS: path - search atom contents for atoms of this type
- *	   list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
- *
- * RETURNS: list of found atoms
- */
+*	atom/proc/search_contents_for(path,list/filter_path=null)
+* Recursevly searches all atom contens (including contents contents and so on).
+*
+* ARGS: path - search atom contents for atoms of this type
+*	   list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
+*
+* RETURNS: list of found atoms
+*/
 
 /atom/proc/search_contents_for(path,list/filter_path=null)
 	var/list/found = list()
@@ -203,7 +206,7 @@ directive is properly returned.
 	if(get_dist(user,src) <= 2)
 		if(reagents)
 			if(CHECK_BITFIELD(reagents.reagent_flags, TRANSPARENT))
-				to_chat(user, "It contains:")
+				to_chat(user, "It contains these reagents:")
 				if(reagents.reagent_list.len) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)
@@ -220,7 +223,7 @@ directive is properly returned.
 				if(isxeno(user))
 					return
 				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_NOVICE) // If they have no skillset(admin-spawn, etc), or are properly skilled.
-					to_chat(user, "It contains:")
+					to_chat(user, "It contains these reagents:")
 					if(reagents.reagent_list.len)
 						for(var/datum/reagent/R in reagents.reagent_list)
 							to_chat(user, "[R.volume] units of [R.name]")
@@ -249,8 +252,9 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
-/atom/proc/ex_act()
-	return
+/atom/proc/ex_act(severity, target)
+	contents_explosion(severity, target)
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
 
 /atom/proc/fire_act()
 	return
@@ -265,14 +269,22 @@ directive is properly returned.
 	return
 
 
+/atom/proc/prevent_content_explosion()
+	return FALSE
+
+
+/atom/proc/contents_explosion(severity, target)
+	return //For handling the effects of explosions on contents that would not normally be effected
+
+
 //Generalized Fire Proc.
 /atom/proc/flamer_fire_act()
 	return
 
 
-//things that object need to do when a movable atom inside it is deleted
-/atom/proc/on_stored_atom_del(atom/movable/AM)
-	return
+//This proc is called on the location of an atom when the atom is Destroy()'d
+/atom/proc/handle_atom_del(atom/A)
+	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
 
 // Generic logging helper
@@ -449,11 +461,18 @@ Proc for attack log creation, because really why not
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
+	if(light_power && light_range)
+		update_light()
+
+	if(opacity && isturf(loc))
+		var/turf/T = loc
+		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+
 	return INITIALIZE_HINT_NORMAL
 
 
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
-/atom/proc/LateInitialize()
+/atom/proc/LateInitialize(mapload)
 	return
 
 
@@ -588,3 +607,36 @@ Proc for attack log creation, because really why not
 
 /atom/proc/AllowDrop()
 	return FALSE
+
+
+/atom/proc/add_fingerprint(mob/M, type, special)
+	if(!islist(fingerprints))
+		fingerprints = list()
+
+	if(!type)
+		CRASH("Attempted to add fingerprint without an action type.")
+
+	if(!istype(M))
+		CRASH("Invalid mob type [M]([M.type]) when attempting to add fingerprint of type [type].")
+
+	if(!M.key)
+		return
+
+	var/current_time = stationTimestamp()
+
+	if(!LAZYACCESS(fingerprints, M.key))
+		LAZYSET(fingerprints, M.key, "First: [M.real_name] | [current_time] | [type] [special ? "| [special]" : ""]")
+	else
+		var/laststamppos = findtext(LAZYACCESS(fingerprints, M.key), " Last: ")
+		if(laststamppos)
+			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
+		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] [special ? " | [special]" : ""]"
+	
+	return TRUE
+
+
+/atom/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+	add_fingerprint(usr, "topic")

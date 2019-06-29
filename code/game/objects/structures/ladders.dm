@@ -7,7 +7,7 @@
 	var/height = 0							//The 'height' of the ladder. higher numbers are considered physically higher
 	var/obj/structure/ladder/down = null	//The ladder below this one
 	var/obj/structure/ladder/up = null		//The ladder above this one
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = LADDER_LAYER
 	var/is_watching = 0
@@ -19,7 +19,14 @@
 	cam.network = list("LADDER")
 	cam.c_tag = name
 
-	for(var/obj/structure/ladder/L in GLOB.structure_list)
+	GLOB.ladder_list += src
+	
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/structure/ladder/LateInitialize()
+	. = ..()
+	for(var/obj/structure/ladder/L in GLOB.ladder_list)
 		if(L.id == id)
 			if(L.height == (height - 1))
 				down = L
@@ -42,6 +49,7 @@
 	if(cam)
 		qdel(cam)
 		cam = null
+	GLOB.ladder_list -= src
 	. = ..()
 
 /obj/structure/ladder/update_icon()
@@ -64,6 +72,9 @@
 	return attack_hand(M)
 
 /obj/structure/ladder/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(user.incapacitated() || !Adjacent(user) || user.lying || user.buckled || user.anchored)
 		return
 	var/ladder_dir_name
@@ -86,14 +97,12 @@
 	step(user, get_dir(user, src))
 	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You start climbing [ladder_dir_name] [src].</span>")
-	add_fingerprint(user)
 	if(!do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC) || user.lying || user.anchored)
 		return
 	user.trainteleport(ladder_dest.loc)
 	visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
 	user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
-	ladder_dest.add_fingerprint(user)
 
 /obj/structure/ladder/attack_paw(mob/user as mob)
 	return attack_hand(user)
@@ -116,11 +125,11 @@
 /obj/structure/ladder/on_set_interaction(mob/user)
 	if (is_watching == 1)
 		if (down || down.cam || down.cam.can_use()) //Camera works
-			user.reset_view(down.cam)
+			user.reset_perspective(down.cam)
 			return
 	else if (is_watching == 2)
 		if (up || up.cam || up.cam.can_use())
-			user.reset_view(up.cam)
+			user.reset_perspective(up.cam)
 			return
 
 	user.unset_interaction() //No usable cam, we stop interacting right away
@@ -130,7 +139,7 @@
 /obj/structure/ladder/on_unset_interaction(mob/user)
 	..()
 	is_watching = 0
-	user.reset_view(null)
+	user.reset_perspective(null)
 
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
@@ -171,7 +180,6 @@
 			is_watching = 1
 			usr.set_interaction(src)
 
-	add_fingerprint(usr)
 
 //Throwing Shiet
 /obj/structure/ladder/attackby(obj/item/I, mob/user, params)

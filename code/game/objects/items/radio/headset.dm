@@ -130,14 +130,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		to_chat(user, "<span class='notice'>You toggle high-volume mode [use_command ? "on" : "off"].</span>")
 
 
-/obj/item/radio/headset/can_receive(freq, level, AIuser)
+/obj/item/radio/headset/can_receive(freq, level)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(H.wear_ear == src)
-			return ..(freq, level)
-	else if(AIuser)
-		return ..(freq, level)
+			return ..()
+	else if(issilicon(loc))
+		return ..()
 	return FALSE
+
+
+/obj/item/radio/headset/survivor
+	freqlock = TRUE
+	frequency = FREQ_CIV_GENERAL
 
 
 //MARINE HEADSETS
@@ -156,8 +161,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/Initialize()
 	. = ..()
-	camera = new /obj/machinery/camera(src)
-	camera.network = list("marine")
+	camera = new /obj/machinery/camera/headset(src)
 
 
 /obj/item/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
@@ -221,17 +225,29 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
 		return
 
+	var/is_squadleader = (user.assigned_squad.squad_leader == user)
+	var/tracking_id = user.assigned_squad.tracking_id
 	if(sl_direction)
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 0
-			SSdirection.stop_tracking(user.assigned_squad.tracking_id, user)
+
+		if(is_squadleader)
+			SSdirection.clear_leader(tracking_id)
+			SSdirection.stop_tracking("marine-sl", user)
+		else
+			SSdirection.stop_tracking(tracking_id, user)
 		sl_direction = FALSE
 		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
 		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 	else
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 128
-			SSdirection.start_tracking(user.assigned_squad.tracking_id, user)
+			if(is_squadleader)
+				SSdirection.set_leader(tracking_id, user)
+				SSdirection.start_tracking("marine-sl", user)
+			else
+				SSdirection.start_tracking(tracking_id, user)
+
 		sl_direction = TRUE
 		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
 		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
@@ -285,21 +301,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	else
 		usr << browse(null, "window=radio")
 
-
-/obj/item/radio/headset/almayer/ce
-	name = "chief ship engineer's headset"
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/ce
-	use_command = TRUE
-	command = TRUE
-
-
-/obj/item/radio/headset/almayer/cmo
-	name = "chief medical officer's headset"
-	icon_state = "com_headset"
-	keyslot = new /obj/item/encryptionkey/cmo
-	use_command = TRUE
-	command = TRUE
 
 
 /obj/item/radio/headset/almayer/mt

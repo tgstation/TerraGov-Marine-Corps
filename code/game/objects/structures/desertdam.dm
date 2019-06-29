@@ -4,7 +4,7 @@
 	name = "desert foliage"
 	icon = 'icons/turf/desertdam_map.dmi'
 	density = 0
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 //loose sand overlay
@@ -29,4 +29,4 @@
 	icon_state = "laz_sign"
 	bound_width = 64
 	bound_height = 64
-	density = 1
+	density = TRUE

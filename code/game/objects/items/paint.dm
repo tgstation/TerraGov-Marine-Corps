@@ -3,10 +3,12 @@
 
 /obj/item/paint
 	gender= PLURAL
-	name = "paint"
+	name = "paint bucket"
 	desc = "Used to recolor floors and walls. Can be removed by the janitor."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "paint_neutral"
+	item_state = "paintcan"
+	matter = list("metal" = 200)
 	var/item_color = "FFFFFF"
 	item_state = "paintcan"
 	w_class = WEIGHT_CLASS_NORMAL

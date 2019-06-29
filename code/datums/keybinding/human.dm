@@ -2,9 +2,12 @@
 	category = CATEGORY_HUMAN
 	weight = WEIGHT_MOB
 
-/datum/keybinding/human/down(client/user)
+/datum/keybinding/human/New()
+	. = ..()
 	if(!keybind_signal)
 		CRASH("Keybind [src] called unredefined down() without a keybind_signal.")
+
+/datum/keybinding/human/down(client/user)
 	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal), COMSIG_KB_ACTIVATED)
 
 

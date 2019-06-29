@@ -5,8 +5,8 @@
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_MOB_LAYER
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/recycle_dir = NORTH
 	var/list/stored_matter =  list("metal" = 0, "glass" = 0)
 	var/last_recycle_sound //for sound cooldown
@@ -15,12 +15,6 @@
 /obj/machinery/recycler/New()
 	..()
 	update_icon()
-
-
-/obj/machinery/recycler/power_change()
-	..()
-	update_icon()
-
 
 /obj/machinery/recycler/update_icon()
 	icon_state = "separator-AO[(machine_stat & (BROKEN|NOPOWER)) ? "0":"1"]"

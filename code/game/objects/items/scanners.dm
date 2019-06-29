@@ -56,13 +56,6 @@ REAGENT SCANNER
 							O.invisibility = INVISIBILITY_MAXIMUM
 							O.alpha = 255
 
-		var/mob/living/M = locate() in T
-		if(M && M.invisibility == INVISIBILITY_LEVEL_TWO)
-			M.invisibility = 0
-			spawn(2)
-				if(M)
-					M.invisibility = INVISIBILITY_LEVEL_TWO
-
 
 /obj/item/healthanalyzer
 	name = "\improper HF2 health analyzer"
@@ -92,9 +85,9 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if(!check_skill_level(skill_threshold, OBJ_SKILL_MEDICAL, user) )
+	if(user.mind?.cm_skills && user.mind.cm_skills.medical < skill_threshold)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_PRACTICED, OBJ_SKILL_MEDICAL, user)
+		var/fduration = max(SKILL_TASK_AVERAGE - (user.mind.cm_skills.medical * 10), 0)
 		if(!do_after(user, fduration, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
@@ -104,7 +97,7 @@ REAGENT SCANNER
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 
 	// Doesn't work on non-humans and synthetics
-	if(!iscarbon(M) || (ishuman(M) && (M:species.species_flags & IS_SYNTHETIC)))
+	if(!iscarbon(M) || !issynth(M))
 		user.show_message("\n<span class='notice'> Health Analyzer results for ERROR:\n\t Overall Status: ERROR</span>")
 		user.show_message("\tType: <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
 		user.show_message("\tDamage: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
@@ -485,7 +478,6 @@ REAGENT SCANNER
 		user << browse(dat, "window=handscanner;size=500x400")
 	else
 		user.show_message(dat, 1)
-	src.add_fingerprint(user)
 	return
 
 /obj/item/healthanalyzer/verb/toggle_mode()
@@ -511,7 +503,7 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/integrated
 	name = "\improper HF2 integrated health analyzer"
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
-	skill_threshold = 0
+	skill_threshold = SKILL_MEDICAL_UNTRAINED
 
 /obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
@@ -551,7 +543,6 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'> Gas Type: [env_gas]</span>", 1)
 		user.show_message("<span class='notice'> Temperature: [round(env_temp-T0C)]&deg;C</span>", 1)
 
-	src.add_fingerprint(user)
 	return
 
 /obj/item/mass_spectrometer

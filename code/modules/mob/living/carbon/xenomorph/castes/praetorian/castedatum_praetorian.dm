@@ -125,7 +125,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "Its mouth looks like a minigun."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream."
+	ancient_message = "We are the strongest range fighter around. Our spit is devestating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 48

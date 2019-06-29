@@ -1,6 +1,8 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
+	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
+	var/living_flags = NONE
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
 
 	//Health and life related vars
@@ -15,16 +17,33 @@
 	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/radiation = 0	//If the mob is irradiated.
-	var/drowsyness = 0	//Carbon
+	var/drowsyness = 0
 
 	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
 	var/druggy = 0
+	var/sleeping = 0
+	var/sdisabilities = NONE
+
+	var/eye_blind = 0
+	var/eye_blurry = 0
+	var/ear_deaf = 0
+	var/ear_damage = 0
+
+	var/knocked_out = 0
+	var/stunned = 0
+	var/frozen = 0
+	var/knocked_down = 0
+
+	var/dizziness = 0
+	var/jitteriness = 0
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 
-	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
+	var/restrained_flags = NONE
+
+	var/last_special = 0
 
 	var/now_pushing
 
@@ -63,9 +82,6 @@
 
 	var/image/attack_icon //the image used as overlay on the things we attack.
 
-	var/list/datum/action/actions = list()
-	var/list/actions_by_path = list()
-
 	var/zoom_cooldown = 0 //Cooldown on using zooming items, to limit spam
 	var/do_bump_delay = FALSE	// Flag to tell us to delay movement because of being bumped
 
@@ -89,6 +105,9 @@
 
 	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 
-
+	var/job
+	var/faction = "Neutral"
 
 	var/away_time = 0 //When the player has disconnected.
+
+	var/recently_pointed_to = 0 //used as cooldown for the pointing verb.

@@ -53,6 +53,9 @@
 	},
 /area/shuttle/ert/pmc)
 "k" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin6"
 	},
@@ -63,6 +66,9 @@
 	},
 /area/shuttle/ert/pmc)
 "m" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin7"
 	},
@@ -92,7 +98,6 @@
 "q" = (
 /obj/effect/landmark/distress,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/shuttle/ert/pmc)
@@ -128,8 +133,7 @@
 /area/shuttle/ert/pmc)
 "v" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin4";
-	tag = "icon-rasputin7"
+	icon_state = "rasputin4"
 	},
 /area/shuttle/ert/pmc)
 "w" = (
@@ -173,9 +177,25 @@
 	icon_state = "wy13"
 	},
 /area/shuttle/ert/pmc)
+"E" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert/pmc)
 "F" = (
 /turf/closed/shuttle/ert{
 	icon_state = "wy4"
+	},
+/area/shuttle/ert/pmc)
+"G" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
 	},
 /area/shuttle/ert/pmc)
 "H" = (
@@ -280,7 +300,7 @@ q
 q
 v
 g
-g
+E
 g
 I
 "}
@@ -310,7 +330,7 @@ q
 q
 w
 g
-g
+G
 g
 I
 "}

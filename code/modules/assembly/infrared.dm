@@ -154,7 +154,7 @@
 	olddir = dir
 
 
-/obj/item/assembly/infra/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/assembly/infra/throw_impact(atom/hit_atom)
 	. = ..()
 	if(!olddir)
 		return
@@ -209,6 +209,8 @@
 
 /obj/item/assembly/infra/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(!usr.canUseTopic(src, TRUE))
 		usr << browse(null, "window=infra")
 		onclose(usr, "infra")

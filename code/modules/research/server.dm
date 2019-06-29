@@ -125,6 +125,9 @@
 		return TRUE
 
 /obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (disabled)
 		return
 	if (shocked)
@@ -176,12 +179,12 @@
 	var/badmin = 0
 
 /obj/machinery/computer/rdservercontrol/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
-	add_fingerprint(usr)
 	usr.set_interaction(src)
-	if(!src.allowed(usr) && !emagged)
+	if(!src.allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		to_chat(usr, "<span class='warning'>You do not have the required access level</span>")
 		return
 
@@ -247,6 +250,9 @@
 	return
 
 /obj/machinery/computer/rdservercontrol/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	user.set_interaction(src)
@@ -313,9 +319,9 @@
 /obj/machinery/computer/rdservercontrol/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag) && !emagged)
+	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
 		playsound(loc, 'sound/effects/sparks4.ogg', 25, 1)
-		emagged = TRUE
+		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 	
 	updateUsrDialog()

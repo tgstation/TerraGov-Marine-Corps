@@ -77,12 +77,14 @@
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
 	if(!issamexenohive(user) && stat != DEAD)
 		user.animation_attack_on(src)
-		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
+		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
+			"<span class='xenowarning'>We crush \the [src]")
 		Die()
 		return
 	else
 		attack_hand(user)
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/mask/facehugger/attack_hand(mob/user)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
@@ -104,7 +106,7 @@
 		to_chat(user, "<span class='warning'>The facehugger refuses to attach.</span>")
 		return ..()
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
-	"<span class='warning'>You attempt to plant [src] on [M]'s face!</span>")
+	"<span class='warning'>We attempt to plant [src] on [M]'s face!</span>")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
 		if(!do_after(user, 10, TRUE, M, BUSY_ICON_DANGER))
 			return
@@ -224,7 +226,7 @@
 		if(!i)
 			break
 		if(M.can_be_facehugged(src))
-			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, 4)
+			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, null, 4)
 			leaping = TRUE
 			throw_at(M, 4, 1)
 			break
@@ -306,6 +308,9 @@
 	if(!provoked)
 		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
+
+	if(on_fire)
+		return FALSE
 
 	if(check_mask)
 		if(wear_mask)
@@ -433,7 +438,7 @@
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
-			round_statistics.now_pregnant++
+			GLOB.round_statistics.now_pregnant++
 			sterile = TRUE
 		Die()
 	else

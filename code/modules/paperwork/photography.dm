@@ -1,10 +1,10 @@
 /*	Photography!
- *	Contains:
- *		Camera
- *		Camera Film
- *		Photos
- *		Photo Albums
- */
+*	Contains:
+*		Camera
+*		Camera Film
+*		Photos
+*		Photo Albums
+*/
 
 /datum/picture
 	var/name = "image"
@@ -77,7 +77,6 @@
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "photo")]"
-	add_fingerprint(usr)
 	return
 
 
@@ -106,7 +105,6 @@
 				if("l_hand")
 					M.dropItemToGround(src)
 					M.put_in_l_hand(src)
-			add_fingerprint(usr)
 			return
 		if(over_object == usr && in_range(src, usr) || usr.contents.Find(src))
 			if(usr.s_active)
@@ -311,7 +309,7 @@
 
 	return P
 
-/obj/item/camera/proc/printpicture(mob/user, var/datum/picture/P)
+/obj/item/camera/proc/printpicture(mob/user, datum/picture/P)
 	var/obj/item/photo/Photo = new/obj/item/photo()
 	Photo.loc = user.loc
 	if(!user.get_inactive_held_item())
@@ -328,7 +326,7 @@
 	pictures_left = 30
 
 
-/obj/item/photo/proc/construct(var/datum/picture/P)
+/obj/item/photo/proc/construct(datum/picture/P)
 	icon = P.fields["icon"]
 	tiny = P.fields["tiny"]
 	img = P.fields["img"]

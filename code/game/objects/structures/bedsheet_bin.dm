@@ -23,7 +23,6 @@ LINEN BINS
 		layer = ABOVE_MOB_LAYER
 	else
 		layer = initial(layer)
-	add_fingerprint(user)
 
 
 /obj/item/bedsheet/blue
@@ -82,7 +81,7 @@ LINEN BINS
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "linenbin-full"
-	anchored = 1
+	anchored = TRUE
 	var/amount = 20
 	var/list/sheets = list()
 	var/obj/item/hidden = null
@@ -132,6 +131,9 @@ LINEN BINS
 
 
 /obj/structure/bedsheetbin/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(amount >= 1)
 		amount--
 
@@ -153,4 +155,3 @@ LINEN BINS
 			hidden = null
 
 
-	add_fingerprint(user)

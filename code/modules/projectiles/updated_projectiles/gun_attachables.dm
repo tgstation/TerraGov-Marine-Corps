@@ -96,7 +96,7 @@ Defined in conflicts.dm of the #defines folder.
 		return TRUE
 
 
-/obj/item/attachable/attack_hand(var/mob/user as mob)
+/obj/item/attachable/attack_hand(mob/user as mob)
 	if(src.attach_applied == TRUE)
 		return
 	else
@@ -268,6 +268,11 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/suppressor/unremovable/invisible
 	attach_icon = ""
 	icon_state = ""
+
+
+/obj/item/attachable/suppressor/unremovable/invisible/Initialize(mapload, ...)
+	. = ..()
+	attach_icon = ""
 
 /obj/item/attachable/suppressor/Initialize()
 	. = ..()
@@ -463,17 +468,11 @@ Defined in conflicts.dm of the #defines folder.
 	if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
-		if(user && G.loc == user)
-			user.SetLuminosity(-light_mod)
-		else
-			G.SetLuminosity(0)
+		G.set_light(0)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
-		if(user && G.loc == user)
-			user.SetLuminosity(light_mod)
-		else
-			G.SetLuminosity(light_mod)
+		G.set_light(light_mod)
 
 	G.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
@@ -603,6 +602,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
+	attach_icon = "slavicscope"
 
 /obj/item/attachable/scope/pmc
 	icon_state = "pmcscope"
@@ -774,8 +774,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
-		I.attack_hand(user)
-		return
+		return I.attack_hand(user)
 	else if(pockets.handle_attack_hand(user))
 		return ..()
 

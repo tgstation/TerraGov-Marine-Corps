@@ -23,16 +23,16 @@
 	var/mob/living/carbon/xenomorph/defender/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
 		if(!silent)
-			to_chat(X, "<span class='xenowarning'>You don't have enough plasma, you need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
+			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
 		return FALSE
 	if(get_dist(X, H) > 2)
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
-			to_chat(X, "<span class='xenowarning'>Your target is too far away!</span>")
+			to_chat(X, "<span class='xenowarning'>Our target is too far away!</span>")
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 
 /datum/action/xeno_action/activable/headbutt/on_cooldown_finish()
-	to_chat(owner, "<span class='notice'>You gather enough strength to headbutt again.</span>")
+	to_chat(owner, "<span class='notice'>We gather enough strength to headbutt again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/headbutt/use_ability(atom/A)
@@ -51,10 +51,10 @@
 	if (!X.Adjacent(H))
 		return fail_activate()
 
-	round_statistics.defender_headbutts++
+	GLOB.round_statistics.defender_headbutts++
 
 	X.visible_message("<span class='xenowarning'>\The [X] rams [H] with it's armored crest!</span>", \
-	"<span class='xenowarning'>You ram [H] with your armored crest!</span>")
+	"<span class='xenowarning'>We ram [H] with our armored crest!</span>")
 
 	succeed_activate()
 	if(X.crest_defense)
@@ -109,19 +109,19 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
 		if(!silent)
-			to_chat(X, "<span class='xenowarning'>You don't have enough plasma, you need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
+			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/tail_sweep/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>You gather enough strength to tail sweep again.</span>")
+	to_chat(src, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/tail_sweep/use_ability()
 	var/mob/living/carbon/xenomorph/X = owner
 
-	round_statistics.defender_tail_sweeps++
+	GLOB.round_statistics.defender_tail_sweeps++
 	X.visible_message("<span class='xenowarning'>\The [X] sweeps it's tail in a wide circle!</span>", \
-	"<span class='xenowarning'>You sweep your tail in a wide circle!</span>")
+	"<span class='xenowarning'>We sweep our tail in a wide circle!</span>")
 
 	X.spin(4, 1)
 
@@ -139,10 +139,10 @@
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
 			H.KnockDown(1, 1)
-		round_statistics.defender_tail_sweep_hits++
+		GLOB.round_statistics.defender_tail_sweep_hits++
 		shake_camera(H, 2, 1)
 
-		to_chat(H, "<span class='xenowarning'>You are struck by \the [X]'s tail sweep!</span>")
+		to_chat(H, "<span class='xenowarning'>We are struck by \the [X]'s tail sweep!</span>")
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 	succeed_activate()
@@ -156,7 +156,7 @@
 /datum/action/xeno_action/activable/forward_charge
 	name = "Forward Charge"
 	action_icon_state = "charge"
-	mechanics_text = "Charge up to 4 tiles and knockdown any targets in your way."
+	mechanics_text = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 80
@@ -169,7 +169,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/forward_charge/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Forward Charge again.</span>")
+	to_chat(owner, "<span class='xenodanger'>Our exoskeleton quivers as we get ready to use Forward Charge again.</span>")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
 
@@ -180,7 +180,7 @@
 		return fail_activate()
 
 	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
-	"<span class='danger'>You charge towards \the [A]!</span>" )
+	"<span class='danger'>We charge towards \the [A]!</span>" )
 	X.emote("roar")
 	succeed_activate()
 
@@ -191,7 +191,7 @@
 // ***************************************
 // *********** Crest defense
 // ***************************************
-/datum/action/xeno_action/activable/toggle_crest_defense
+/datum/action/xeno_action/toggle_crest_defense
 	name = "Toggle Crest Defense"
 	action_icon_state = "crest_defense"
 	mechanics_text = "Increase your resistance to projectiles at the cost of move speed. Can use abilities while in Crest Defense."
@@ -200,12 +200,12 @@
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CREST_DEFENSE
 
-/datum/action/xeno_action/activable/toggle_crest_defense/on_cooldown_finish()
+/datum/action/xeno_action/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
-	to_chat(X, "<span class='notice'>You can [X.crest_defense ? "raise" : "lower"] your crest.</span>")
+	to_chat(X, "<span class='notice'>We can [X.crest_defense ? "raise" : "lower"] our crest.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/toggle_crest_defense/action_activate()
+/datum/action/xeno_action/toggle_crest_defense/action_activate()
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
 	if(X.crest_defense)
@@ -215,13 +215,13 @@
 
 	var/was_fortified = X.fortify
 	if(X.fortify)
-		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/activable/fortify]
+		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
 		if(FT.on_cooldown)
-			to_chat(src, "<span class='xenowarning'>You cannot yet untuck yourself!</span>")
+			to_chat(src, "<span class='xenowarning'>We cannot yet untuck ourselves!</span>")
 			return fail_activate()
 		X.set_fortify(FALSE, TRUE)
 		FT.add_cooldown()
-		to_chat(X, "<span class='xenowarning'>You carefully untuck, keeping your crest lowered.</span>")
+		to_chat(X, "<span class='xenowarning'>We carefully untuck, keeping our crest lowered.</span>")
 
 	X.set_crest_defense(TRUE, was_fortified)
 	add_cooldown()
@@ -231,15 +231,15 @@
 	crest_defense = on
 	if(on)
 		if(!silent)
-			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
-		round_statistics.defender_crest_lowerings++
+			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
+		GLOB.round_statistics.defender_crest_lowerings++
 		xeno_explosion_resistance = 2
 		armor_bonus += xeno_caste.crest_defense_armor
 		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN
 	else
 		if(!silent)
-			to_chat(src, "<span class='xenowarning'>You raise your crest.</span>")
-		round_statistics.defender_crest_raises++
+			to_chat(src, "<span class='xenowarning'>We raise our crest.</span>")
+		GLOB.round_statistics.defender_crest_raises++
 		xeno_explosion_resistance = 0
 		armor_bonus -= xeno_caste.crest_defense_armor
 		speed_modifier -= DEFENDER_CRESTDEFENSE_SLOWDOWN
@@ -248,7 +248,7 @@
 // ***************************************
 // *********** Fortify
 // ***************************************
-/datum/action/xeno_action/activable/fortify
+/datum/action/xeno_action/fortify
 	name = "Fortify"
 	action_icon_state = "fortify"	// TODO
 	mechanics_text = "Plant yourself for a large defensive boost."
@@ -257,12 +257,12 @@
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
 
-/datum/action/xeno_action/activable/fortify/on_cooldown_finish()
+/datum/action/xeno_action/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>You can [X.fortify ? "stand up" : "fortify"] again.</span>")
+	to_chat(X, "<span class='notice'>We can [X.fortify ? "stand up" : "fortify"] again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/fortify/action_activate()
+/datum/action/xeno_action/fortify/action_activate()
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
 	if(X.fortify)
@@ -272,28 +272,28 @@
 
 	var/was_crested = X.crest_defense
 	if(X.crest_defense)
-		var/datum/action/xeno_action/CD = X.actions_by_path[/datum/action/xeno_action/activable/toggle_crest_defense]
+		var/datum/action/xeno_action/CD = X.actions_by_path[/datum/action/xeno_action/toggle_crest_defense]
 		if(CD.on_cooldown)
-			to_chat(X, "<span class='xenowarning'>You cannot yet transition to a defensive stance!</span>")
+			to_chat(X, "<span class='xenowarning'>We cannot yet transition to a defensive stance!</span>")
 			return fail_activate()
 		X.set_crest_defense(FALSE, TRUE)
 		CD.add_cooldown()
-		to_chat(X, "<span class='xenowarning'>You tuck your lowered crest into yourself.</span>")
+		to_chat(X, "<span class='xenowarning'>We tuck our lowered crest into ourselves.</span>")
 	
 	X.set_fortify(TRUE, was_crested)
 	add_cooldown()
 	return succeed_activate()
 
 /mob/living/carbon/xenomorph/defender/proc/set_fortify(on, silent = FALSE)
-	round_statistics.defender_fortifiy_toggles++
+	GLOB.round_statistics.defender_fortifiy_toggles++
 	if(on)
 		if(!silent)
-			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
+			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		armor_bonus += xeno_caste.fortify_armor
 		xeno_explosion_resistance = 3
 	else
 		if(!silent)
-			to_chat(src, "<span class='xenowarning'>You resume your normal stance.</span>")
+			to_chat(src, "<span class='xenowarning'>We resume our normal stance.</span>")
 		armor_bonus -= xeno_caste.fortify_armor
 		xeno_explosion_resistance = 0
 	fortify = on

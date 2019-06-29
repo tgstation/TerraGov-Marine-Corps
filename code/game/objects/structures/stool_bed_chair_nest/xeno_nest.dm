@@ -45,7 +45,6 @@
 	if(!buckled_mob || buckled_mob.buckled != src)
 		return
 
-	add_fingerprint(user)
 
 	if(buckled_mob != user)
 		if(user.incapacitated())
@@ -87,7 +86,7 @@
 	to_chat(buckled_mob, "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>")
 
 
-/obj/structure/bed/nest/buckle_mob(mob/living/L, mob/living/user)
+/obj/structure/bed/nest/buckle_mob(mob/living/L, mob/living/carbon/xenomorph/user)
 
 	if(user.incapacitated() || (get_dist(src, user) > 1) || (L.loc != loc) || L.buckled)
 		return
@@ -113,6 +112,8 @@
 	"<span class='warning'>[user] pins [L] into [src], preparing the securing resin.</span>")
 	if(!do_after(user, 15, TRUE, L, BUSY_ICON_HOSTILE))
 		return
+	if(QDELETED(src))
+		return
 	if(buckled_mob)
 		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
 		return
@@ -121,6 +122,11 @@
 		return
 
 	do_buckle(L, user)
+
+
+/obj/structure/bed/nest/do_buckle(mob/living/victim, mob/living/carbon/xenomorph/user, silent)
+	ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_XENO_NEST)
+	return ..()
 
 
 /obj/structure/bed/nest/send_buckling_message(mob/M, mob/user)
@@ -140,6 +146,7 @@
 /obj/structure/bed/nest/unbuckle(mob/user)
 	if(!buckled_mob)
 		return
+	DISABLE_BITFIELD(buckled_mob.restrained_flags, RESTRAINED_XENO_NEST)
 	resisting_time = 0 //Reset it to keep track on if someone is actively resisting.
 	buckled_mob.pixel_y = 0
 	buckled_mob.old_y = 0

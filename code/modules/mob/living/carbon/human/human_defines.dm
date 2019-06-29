@@ -51,7 +51,7 @@
 	var/obj/item/clothing/glasses/glasses = null
 	var/obj/item/head = null
 	var/obj/item/wear_ear = null
-	var/obj/item/wear_id = null
+	var/obj/item/card/id/wear_id = null
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
 	var/obj/item/s_store = null
@@ -69,6 +69,12 @@
 
 	var/list/flavor_texts = list()
 	var/last_unbuckled = 0 //Unbuckled cooldown.
+
+	var/flavor_text = ""
+	var/med_record = ""
+	var/sec_record = ""
+	var/gen_record = ""
+	var/exploit_record = ""
 
 
 	//Life variables

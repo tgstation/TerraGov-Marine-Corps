@@ -67,7 +67,7 @@
 
 
 /*
-/datum/limb/proc/get_icon(var/icon/race_icon, var/icon/deform_icon)
+/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
 	return icon('icons/mob/human.dmi',"blank")
 */
 
@@ -92,7 +92,7 @@
 
 
 /****************************************************
-			   DAMAGE PROCS
+			DAMAGE PROCS
 ****************************************************/
 
 /datum/limb/proc/emp_act(severity)
@@ -278,7 +278,7 @@ This function completely restores a damaged organ to perfect condition.
 	owner.updatehealth()
 
 
-/datum/limb/proc/createwound(var/type = CUT, var/damage)
+/datum/limb/proc/createwound(type = CUT, damage)
 	if(!damage) return
 
 	//moved this before the open_wound check so that having many small wounds for example doesn't somehow protect you from taking internal damage (because of the return)
@@ -328,7 +328,7 @@ This function completely restores a damaged organ to perfect condition.
 
 
 /****************************************************
-			   PROCESSING & UPDATING
+			PROCESSING & UPDATING
 ****************************************************/
 
 //Determines if we even need to process this organ.
@@ -611,7 +611,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return "[tbrute][tburn]"
 
 /****************************************************
-			   DISMEMBERMENT
+			DISMEMBERMENT
 ****************************************************/
 
 //Recursive setting of all child organs to amputated
@@ -620,7 +620,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		O.limb_status |= LIMB_AMPUTATED
 		O.setAmputatedTree()
 
-/mob/living/carbon/human/proc/remove_random_limb(var/delete_limb = 0)
+/mob/living/carbon/human/proc/remove_random_limb(delete_limb = 0)
 	var/list/limbs_to_remove = list()
 	for(var/datum/limb/E in limbs)
 		if(istype(E, /datum/limb/chest) || istype(E, /datum/limb/groin) || istype(E, /datum/limb/head))
@@ -634,7 +634,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return null
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(amputation, var/delete_limb = 0)
+/datum/limb/proc/droplimb(amputation, delete_limb = 0)
 	if(limb_status & LIMB_DESTROYED)
 		return
 	else
@@ -729,7 +729,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(vital) owner.death()
 
 /****************************************************
-			   HELPERS
+			HELPERS
 ****************************************************/
 
 /datum/limb/proc/release_restraints()
@@ -880,7 +880,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			return 1
 	return 0
 
-/datum/limb/proc/get_icon(var/icon/race_icon, var/icon/deform_icon,gender="")
+/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon,gender="")
 
 	if (limb_status & LIMB_ROBOT && !(owner.species && owner.species.species_flags & IS_SYNTHETIC))
 		return new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
@@ -919,7 +919,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return ((limb_status & LIMB_ROBOT) && prob(brute_dam + burn_dam))
 
 //for arms and hands
-/datum/limb/proc/process_grasp(var/obj/item/c_hand, var/hand_name)
+/datum/limb/proc/process_grasp(obj/item/c_hand, hand_name)
 	if (!c_hand)
 		return
 
@@ -940,7 +940,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				qdel(spark_system)
 				spark_system = null
 
-/datum/limb/proc/embed(var/obj/item/W, var/silent = 0)
+/datum/limb/proc/embed(obj/item/W, silent = 0)
 	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))
 		return
 	if(!silent)
@@ -1004,7 +1004,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 /****************************************************
-			   LIMB TYPES
+			LIMB TYPES
 ****************************************************/
 
 /datum/limb/chest
@@ -1123,9 +1123,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/face_surgery_stage = 0
 
 /*
-/datum/limb/head/get_icon(var/icon/race_icon, var/icon/deform_icon)
+/datum/limb/head/get_icon(icon/race_icon, icon/deform_icon)
 	if (!owner)
-	 return ..()
+		return ..()
 	var/g = "m"
 	if(owner.gender == FEMALE)	g = "f"
 	if (limb_status & LIMB_MUTATED)
@@ -1143,7 +1143,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if (burn_dam > 40)
 			disfigure("burn")
 
-/datum/limb/head/proc/disfigure(var/type = "brute")
+/datum/limb/head/proc/disfigure(type = "brute")
 	if (disfigured)
 		return
 	if(type == "brute")

@@ -49,7 +49,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/energy/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/energy/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund)
 		cell.charge = min(cell.charge + charge_cost, cell.maxcharge) //Safeguard against 'overcharging' the cell.
@@ -190,6 +190,11 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
 	return toggle_chargemode(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
+	. = ..()
+	update_icon()
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.

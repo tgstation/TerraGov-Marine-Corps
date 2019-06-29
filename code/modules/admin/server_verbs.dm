@@ -13,11 +13,12 @@
 		return
 
 	var/message = FALSE
-	switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
-		if("Yes")
-			message = TRUE
-		if("Cancel")
-			return
+	if(CONFIG_GET(string/restart_message))
+		switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
+			if("Yes")
+				message = TRUE
+			if("Cancel")
+				return
 
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
@@ -102,7 +103,7 @@
 		return
 
 	to_chat(world, "<span class='danger'>Server shutting down.</span> <span class='notice'>Initiated by: [shuttingdown]</span>")
-	log_game("Server shutting down. Initiated by: [shuttingdown]")
+	log_admin("Server shutting down. Initiated by: [shuttingdown]")
 
 #ifdef TGS_V3_API
 	if(GLOB.tgs)
@@ -115,15 +116,15 @@
 			else
 				var/msg = "WARNING: Couldn't find tgstation-server3 instancename, server might restart after shutdown."
 				message_admins(msg)
-				log_game(msg)
+				log_admin(msg)
 		else
 			var/msg = "WARNING: Couldn't find tgstation-server3 command line interface, server will very likely restart after shutdown."
 			message_admins(msg)
-			log_game(msg)
+			log_admin(msg)
 	else
 		var/msg = "WARNING: Couldn't find tgstation-server3 api object, server could restart after shutdown, but it will very likely be just fine"
 		message_admins(msg)
-		log_game(msg)
+		log_admin(msg)
 #endif
 
 	sleep(world.tick_lag) //so messages can get sent to players.
@@ -465,9 +466,35 @@
 
 	var/datum/map_config/VM = maprotatechoices[chosenmap]
 
-	log_admin("[key_name(usr)] is changing the map to [VM.map_name].")
-	message_admins("[ADMIN_TPMONTY(usr)] is changing the map to [VM.map_name].")
+	log_admin("[key_name(usr)] changed the map to [VM.map_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the map to [VM.map_name].")
 
-	if(SSmapping.changemap(VM) == 0)
-		log_admin("[key_name(usr)] has changed the map to [VM.map_name].")
-		message_admins("[ADMIN_TPMONTY(usr)] has changed the map to [VM.map_name].")
+
+/datum/admins/proc/panic_bunker()
+	set category = "Server"
+	set name = "Toggle Panic Bunker"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(!CONFIG_GET(flag/sql_enabled))
+		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
+		return
+
+	CONFIG_SET(flag/panic_bunker, !CONFIG_GET(flag/panic_bunker))
+
+	log_admin("[key_name(usr)] has [CONFIG_GET(flag/panic_bunker) ? "enabled" : "disabled"] the panic bunker.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/panic_bunker) ? "enabled" : "disabled"] the panic bunker.")
+
+
+/datum/admins/proc/mode_check()
+	set category = "Server"
+	set name = "Toggle Mode Check"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	SSticker.roundend_check_paused = !SSticker.roundend_check_paused
+
+	log_admin("[key_name(usr)] has [SSticker.roundend_check_paused ? "enabled" : "disabled"] gamemode end condition checking.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [SSticker.roundend_check_paused ? "enabled" : "disabled"] gamemode end condition checking.")

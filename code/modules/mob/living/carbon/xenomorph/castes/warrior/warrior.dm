@@ -15,7 +15,7 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/toggle_agility,
+		/datum/action/xeno_action/toggle_agility,
 		/datum/action/xeno_action/activable/fling,
 		/datum/action/xeno_action/activable/lunge,
 		/datum/action/xeno_action/activable/punch
@@ -42,13 +42,14 @@
 	throw_mode_off()
 
 /mob/living/carbon/xenomorph/warrior/stop_pulling()
-	if(isliving(pulling))
+	if(isliving(pulling) && !isxeno(pulling))
 		var/mob/living/L = pulling
 		grab_resist_level = 0 //zero it out
 		L.SetStunned(0)
+		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 
-/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, no_msg)
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, suppress_message = TRUE)
 	if(!check_state() || agility || !isliving(AM))
 		return FALSE
 
@@ -57,31 +58,39 @@
 	if(isxeno(L))
 		return ..()
 
-	if(lunge && ..(L, TRUE))
+	if(lunge && ..(L, suppress_message))
 		return neck_grab(L)
 
 	if(SEND_SIGNAL(src, COMSIG_WARRIOR_NECKGRAB, L) & COMSIG_WARRIOR_CANT_NECKGRAB)
 		return FALSE
 
-	. = ..(L, TRUE) //no_msg = true because we don't want to show the defaul pull message
+	. = ..(L, suppress_message)
 
 	if(.) //successful pull
 		neck_grab(L)
 
 	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
 
+
 /mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
 	use_plasma(10)
 
-	round_statistics.warrior_grabs++
+	GLOB.round_statistics.warrior_grabs++
 	grab_level = GRAB_NECK
+	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	L.drop_all_held_items()
 	L.KnockDown(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
-	"<span class='xenowarning'>You grab [L] by the throat!</span>")
+	"<span class='xenowarning'>We grab [L] by the throat!</span>")
 	return TRUE
 
-/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+
+/mob/living/carbon/xenomorph/warrior/proc/resisted_against(datum/source, mob/living/victim)
+	victim.do_resist_grab()
+
+
+/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM, speed = 5)
 	if(ishuman(AM))
 		return
 	..()

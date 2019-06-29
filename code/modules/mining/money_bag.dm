@@ -10,6 +10,8 @@
 
 /obj/item/moneybag/attack_hand(mob/user)
 	. = ..()
+	if(.)
+		return
 	var/amt_gold = 0
 	var/amt_silver = 0
 	var/amt_diamond = 0
@@ -62,10 +64,10 @@
 		to_chat(user, "<span class='notice'>You empty the [C.name] into the bag.</span>")
 
 /obj/item/moneybag/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 	if(href_list["remove"])
 		var/obj/item/coin/COIN
 		switch(href_list["remove"])

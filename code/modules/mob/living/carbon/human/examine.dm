@@ -133,7 +133,7 @@
 
 	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/handcuffs/cable))
+		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
 			msg += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!</span>\n"
 		else
 			msg += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] handcuffed!</span>\n"
@@ -523,7 +523,7 @@
 				msg += "<a href='?src=\ref[src];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
 
-	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
+	msg += "[flavor_text]<br>"
 
 	msg += "*---------*</span>"
 

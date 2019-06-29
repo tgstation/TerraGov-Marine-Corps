@@ -26,7 +26,7 @@
 	if(make_hit_sound)
 		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
-/obj/structure/fence/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/fence/bullet_act(obj/item/projectile/Proj)
 	//Tasers and the like should not damage windows.
 	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
 		return FALSE
@@ -59,6 +59,9 @@
 	healthcheck()
 
 /obj/structure/fence/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(ishuman(user) && user.a_intent == INTENT_HARM)
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
@@ -127,7 +130,7 @@
 		R.use(amount_needed)
 		obj_integrity = max_integrity
 		cut = 0
-		density = 1
+		density = TRUE
 		update_icon()
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] repairs [src] with [R].</span>",
@@ -187,7 +190,7 @@
 		healthcheck(1, 1, user, I)
 
 
-/obj/structure/fence/proc/cut_grille(var/create_debris = 1)
+/obj/structure/fence/proc/cut_grille(create_debris = 1)
 	if(create_debris)
 		new /obj/item/stack/rods(loc)
 	cut = 1

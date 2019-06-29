@@ -13,7 +13,7 @@
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
-/obj/item/disk/botany/attack_self(var/mob/user as mob)
+/obj/item/disk/botany/attack_self(mob/user as mob)
 	if(genes.len)
 		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", "No", "Yes")
 		if(src && user && genes && choice == "Yes")
@@ -32,8 +32,8 @@
 /obj/machinery/botany
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 
 	var/obj/item/seeds/seed // Currently loaded seed packet.
@@ -62,6 +62,9 @@
 	return attack_hand(user)
 
 /obj/machinery/botany/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/botany/proc/finished_task()
@@ -102,7 +105,7 @@
 		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 
 	else if(iscrowbar(I) && open)
-		dismantle()
+		deconstruct()
 
 	else if(istype(I, /obj/item/disk/botany))
 		var/obj/item/disk/botany/B = I
@@ -131,7 +134,7 @@
 	var/datum/seed/genetics // Currently scanned seed genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 
-/obj/machinery/botany/extractor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/botany/extractor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	if(!user)
 		return
@@ -173,9 +176,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/botany/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	if(href_list["eject_packet"])
 		if(!seed) return
@@ -198,15 +201,13 @@
 		loaded_disk = null
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 
 /obj/machinery/botany/extractor/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)
 
 	if(href_list["scan_genome"])
 
@@ -264,7 +265,7 @@
 	icon_state = "traitgun"
 	disk_needs_genes = 1
 
-/obj/machinery/botany/editor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/botany/editor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	if(!user)
 		return
@@ -305,9 +306,9 @@
 		ui.set_auto_update(1)
 
 /obj/machinery/botany/editor/Topic(href, href_list)
-
-	if(..())
-		return 1
+	. = ..()
+	if(.)
+		return
 
 	if(href_list["apply_gene"])
 		if(!loaded_disk || !seed) return
@@ -330,4 +331,3 @@
 			seed.modified += rand(5,10)
 
 	usr.set_interaction(src)
-	src.add_fingerprint(usr)

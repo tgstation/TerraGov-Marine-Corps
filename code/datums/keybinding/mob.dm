@@ -5,6 +5,7 @@
 
 /datum/keybinding/mob/face_north
 	key = "Ctrl-W"
+	classic_key = "Ctrl-North"
 	name = "face_north"
 	full_name = "Face North"
 	description = ""
@@ -17,6 +18,7 @@
 
 /datum/keybinding/mob/face_east
 	key = "Ctrl-D"
+	classic_key = "Ctrl-East"
 	name = "face_east"
 	full_name = "Face East"
 	description = ""
@@ -29,6 +31,7 @@
 
 /datum/keybinding/mob/face_south
 	key = "Ctrl-S"
+	classic_key = "Ctrl-South"
 	name = "face_south"
 	full_name = "Face South"
 	description = ""
@@ -40,6 +43,7 @@
 
 /datum/keybinding/mob/face_west
 	key = "Ctrl-A"
+	classic_key = "Ctrl-West"
 	name = "face_west"
 	full_name = "Face West"
 	description = ""
@@ -57,9 +61,7 @@
 
 /datum/keybinding/mob/stop_pulling/down(client/user)
 	var/mob/M = user.mob
-	if (M.pulling)
-		to_chat(user, "<span class='notice'>You are not pulling anything.</span>")
-	else
+	if(M.pulling)
 		M.stop_pulling()
 	return TRUE
 
@@ -97,6 +99,7 @@
 
 /datum/keybinding/mob/activate_inhand
 	key = "Z"
+	classic_key = "PAGEDOWN"
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
 	description = "Uses whatever item you have inhand"

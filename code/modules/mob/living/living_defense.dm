@@ -8,18 +8,18 @@
 	Returns
 	The armour percentage which is deducted om the damage.
 */
-/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/absorb_text = null, var/soften_text = null)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null)
 	var/armor = 0.00 //Define our float
 	armor = getarmor(def_zone, attack_flag) * 0.01 //Change the armour into a %
 	return armor
 
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
-/mob/living/proc/getarmor(var/def_zone, var/type)
+/mob/living/proc/getarmor(def_zone, type)
 	return 0
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone, used_weapon=null)
 	flash_pain()
 
 	if (stun_amount)
@@ -33,8 +33,8 @@
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 
-/mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
-	  return 0 //only carbon liveforms have this proc
+/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
+	return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
 	var/list/L = src.get_contents()
@@ -43,7 +43,7 @@
 	..()
 
 //this proc handles being hit by a thrown atom
-/mob/living/hitby(atom/movable/AM as mob|obj,var/speed = 5)//Standardization and logging -Sieve
+/mob/living/hitby(atom/movable/AM as mob|obj,speed = 5)//Standardization and logging -Sieve
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 		var/dtype = BRUTE
@@ -100,10 +100,10 @@
 				verbs += /mob/proc/yank_out_object
 
 //This is called when the mob is thrown into a dense turf
-/mob/living/proc/turf_collision(var/turf/T, var/speed)
+/mob/living/proc/turf_collision(turf/T, speed)
 	src.take_limb_damage(speed*5)
 
-/mob/living/proc/near_wall(var/direction,var/distance=1)
+/mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
 	var/turf/last_turf = src.loc
 	var/i = 1
@@ -126,6 +126,7 @@
 		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
+		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
 		to_chat(src, "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>")
 		update_fire()
 		return TRUE
@@ -141,9 +142,9 @@
 	if(.)
 		var/fire_light = min(fire_stacks,5)
 		if(fire_light > fire_luminosity) // light up xenos if new light source greater than
-			SetLuminosity(-fire_luminosity) //Remove old fire_luminosity
+			set_light(0) //Remove old fire_luminosity
 			fire_luminosity = fire_light
-			SetLuminosity(fire_luminosity) //Add new fire luminosity
+			set_light(fire_luminosity) //Add new fire luminosity
 		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 		if(istype(F))
@@ -153,15 +154,19 @@
 			G.Die()
 			dropItemToGround(G)
 
+
 /mob/living/proc/ExtinguishMob()
-	if(on_fire)
-		on_fire = FALSE
-		fire_stacks = 0
-		update_fire()
+	if(!on_fire)
+		return FALSE
+	on_fire = FALSE
+	fire_stacks = 0
+	update_fire()
+	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
+
 
 /mob/living/carbon/xenomorph/ExtinguishMob()
 	. = ..()
-	SetLuminosity(-fire_luminosity) //Reset lighting
+	set_light(0) //Reset lighting
 
 /mob/living/proc/update_fire()
 	return
@@ -183,6 +188,18 @@
 /mob/living/fire_act()
 	adjust_fire_stacks(rand(1,2))
 	IgniteMob()
+
+
+/mob/living/proc/resist_fire(datum/source)
+	fire_stacks = max(fire_stacks - rand(3, 6), 0)
+	KnockDown(4, TRUE)
+	visible_message("<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>", \
+	"<span class='notice'>You stop, drop, and roll!</span>", null, 5)
+	if(fire_stacks <= 0)
+		visible_message("<span class='danger'>[src] has successfully extinguished themselves!</span>", \
+		"<span class='notice'>You extinguish yourself.</span>", null, 5)
+		ExtinguishMob()
+
 
 //Mobs on Fire end
 // When they are affected by a queens screech

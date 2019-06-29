@@ -1,6 +1,6 @@
 /*
- * Book
- */
+* Book
+*/
 /obj/item/book
 	name = "book"
 	icon = 'icons/obj/items/books.dmi'
@@ -17,7 +17,7 @@
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
 
-/obj/item/book/attack_self(var/mob/user as mob)
+/obj/item/book/attack_self(mob/user as mob)
 	if(carved)
 		if(store)
 			to_chat(user, "<span class='notice'>[store] falls out of [title]!</span>")
@@ -102,3 +102,25 @@
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
 
 
+
+/obj/item/book/codebook
+	name = "Theseus Code Book"
+	unique = TRUE
+	dat = ""
+
+
+/obj/item/book/codebook/Initialize(mapload, ...)
+	var/letters = list("Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu",\
+		"Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega")
+	var/number
+	var/letter
+	dat = "<table><tr><th>Call</th><th>Response<th></tr>"
+	for(var/i in 1 to 10)
+		letter = pick(letters)
+		number = rand(100, 999)
+		dat += "<tr><td>[letter]-[number]</td>"
+		letter = pick(letters)
+		number = rand(100, 999)
+		dat += "<td>[letter]-[number]</td></tr>"
+
+	dat += "</table>"

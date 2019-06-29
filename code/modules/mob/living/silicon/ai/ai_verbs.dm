@@ -150,7 +150,7 @@
 		return
 
 	last_announcement = world.time
-	priority_announce(input, "AI Announcement", sound = 'sound/AI/aireport.ogg')
+	priority_announce(input, "[src] Announcement", sound = 'sound/AI/aireport.ogg')
 
 
 /mob/living/silicon/ai/verb/ai_core_display()
@@ -223,3 +223,18 @@
 	anchored = !anchored
 
 	to_chat(src, "<span class='notice'>You are now [anchored ? "" : "un"]anchored.</span>")
+
+
+
+/mob/living/silicon/ai/verb/view_manifest()
+	set category = "AI Commands"
+	set name = "View Crew Manifest"
+
+	if(incapacitated())
+		return
+
+	var/dat = GLOB.datacore.get_manifest()
+
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)

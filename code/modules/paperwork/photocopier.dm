@@ -2,8 +2,8 @@
 	name = "photocopier"
 	icon = 'icons/obj/machines/library.dmi'
 	icon_state = "bigscanner"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200
@@ -216,7 +216,7 @@
 	return copy
 
 
-/obj/machinery/photocopier/on_stored_atom_del(atom/movable/AM)
+/obj/machinery/photocopier/handle_atom_del(atom/movable/AM)
 	if(AM == copy)
 		copy = null
 	else if(AM == photocopy)

@@ -11,7 +11,7 @@
 	..()
 
 /obj/item/storage/internal/attack_hand()
-	return		//make sure this is never picked up
+	return TRUE
 
 /obj/item/storage/internal/mob_can_equip()
 	return 0	//make sure this is never picked up
@@ -74,7 +74,6 @@
 					else
 						user.dropItemToGround(master_item)
 						user.put_in_l_hand(master_item)
-			master_item.add_fingerprint(user)
 			return 0
 	return 0
 
@@ -97,7 +96,6 @@
 			H.r_store = null
 			return 0
 
-	src.add_fingerprint(user)
 	if(master_item.loc == user)
 		src.open(user)
 		return 0
@@ -107,7 +105,7 @@
 			src.close(M)
 	return 1
 
-/obj/item/storage/internal/Adjacent(var/atom/neighbor)
+/obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)
 
 

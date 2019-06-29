@@ -37,7 +37,6 @@
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 
-	add_fingerprint(user)
 	activate(user)
 
 	user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
@@ -68,7 +67,7 @@
 	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
-		round_statistics.grenades_thrown++
+		GLOB.round_statistics.grenades_thrown++
 		updateicon()
 	spawn(det_time)
 		prime()
@@ -103,8 +102,10 @@
 				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
 
 /obj/item/explosive/grenade/attack_hand()
+	. = ..()
+	if(.)
+		return
 	walk(src, null, null)
-	..()
 	return
 
 /obj/item/explosive/grenade/attack_paw(mob/user as mob)

@@ -2,7 +2,7 @@
 	name = "stool"
 	desc = "Apply butt."
 	icon_state = "stool"
-	anchored = 1
+	anchored = TRUE
 	can_buckle = FALSE
 	foldabletype = /obj/item/stool
 
@@ -18,7 +18,7 @@
 	w_class = 5.0
 	var/obj/structure/bed/stool/origin = null
 
-/obj/item/stool/proc/deploy(var/mob/user)
+/obj/item/stool/proc/deploy(mob/user)
 
 	if(!origin)
 		user.temporarilyRemoveItemFromInventory(src)
