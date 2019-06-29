@@ -311,6 +311,7 @@
 		var/mob/living/L
 		if(!isliving(M))
 			L = new /mob/living/carbon/human
+			M.mind.transfer_to(L, TRUE)
 		else
 			L = M
 
@@ -333,9 +334,6 @@
 			to_chat(L, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
 			continue
 
-		if(!L.mind)
-			M.mind.transfer_to(L, TRUE)
-			
 		L.mind.bypass_ff = TRUE
 		INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
 		L.revive()
