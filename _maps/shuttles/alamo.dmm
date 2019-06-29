@@ -609,6 +609,12 @@
 /obj/machinery/computer/shuttle/marine_dropship/one,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
+"Zx" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/shuttle/dropship1{
+	icon_state = "63"
+	},
+/area/shuttle/dropship/alamo)
 
 (1,1,1) = {"
 ao
@@ -734,7 +740,7 @@ aC
 aL
 aT
 aZ
-aZ
+Zx
 aZ
 bg
 bk
