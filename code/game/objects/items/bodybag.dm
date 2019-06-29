@@ -5,55 +5,47 @@
 	desc = "A folded bag designed for the storage and transportation of cadavers."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag_folded"
-	w_class = 2.0
-	var/unfolded_path = /obj/structure/closet/bodybag
+	w_class = WEIGHT_CLASS_SMALL
+	var/unfoldedbag_path = /obj/structure/closet/bodybag
+	var/obj/structure/closet/bodybag/unfoldedbag_instance = null
+
+
+/obj/item/bodybag/Initialize(mapload, unfoldedbag)
+	. = ..()
+	unfoldedbag_instance = unfoldedbag
+
+
+/obj/item/bodybag/Destroy()
+	if(QDELETED(unfoldedbag_instance))
+		unfoldedbag_instance = null
+	else
+		if(!isnull(unfoldedbag_instance.loc))
+			stack_trace("[src] destroyed while the [unfoldedbag_instance] unfoldedbag_instance was neither destroyed nor in nullspace. This shouldn't happen.")
+		QDEL_NULL(unfoldedbag_instance)
+	return ..()
+
 
 /obj/item/bodybag/attack_self(mob/user)
 	deploy_bodybag(user, user.loc)
 
+
 /obj/item/bodybag/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
-	if(isturf(target))
-		var/turf/T = target
-		if(!T.density)
-			deploy_bodybag(user, T)
+	if(!isopenturf(target))
+		return
+	deploy_bodybag(user, target)
+
 
 /obj/item/bodybag/proc/deploy_bodybag(mob/user, atom/location)
-	if(!isturf(user.loc))
-		return FALSE
-	for(var/obj/O in location)
-		if(istype(O, /obj/structure/closet) || O.density)
-			to_chat(user, "<span class='warning'>\the [src] can't be deployed here.</span>")
-			return FALSE
-	var/obj/structure/closet/bodybag/R = new unfolded_path(location, src)
-	R.open(user)
+	if(QDELETED(unfoldedbag_instance))
+		unfoldedbag_instance = new unfoldedbag_path(location, src)
+	else
+		unfoldedbag_instance.forceMove(location)
+	unfoldedbag_instance.open(user)
 	user.temporarilyRemoveItemFromInventory(src)
-	qdel(src)
-	return TRUE
+	moveToNullspace()
 
-
-/obj/item/bodybag/cryobag
-	name = "stasis bag"
-	desc = "A folded, reusable bag designed to prevent additional damage to an occupant."
-	icon = 'icons/obj/cryobag.dmi'
-	icon_state = "bodybag_folded"
-	unfolded_path = /obj/structure/closet/bodybag/cryobag
-	var/used = 0
-
-/obj/item/bodybag/cryobag/New(loc, obj/structure/closet/bodybag/cryobag/CB)
-	..()
-	if(CB)
-		used = CB.used
-
-
-/obj/item/storage/box/bodybags
-	name = "body bags"
-	desc = "This box contains body bags."
-	icon_state = "bodybags"
-	w_class = 3
-	spawn_type = /obj/item/bodybag
-	spawn_number = 7
 
 /obj/structure/closet/bodybag
 	name = "body bag"
@@ -65,24 +57,42 @@
 	icon_opened = "bodybag_open"
 	open_sound = 'sound/items/zip.ogg'
 	close_sound = 'sound/items/zip.ogg'
-	var/item_path = /obj/item/bodybag
 	density = FALSE
 	mob_storage_capacity = 1
 	storage_capacity = 3 //Just room enough for that stripped armor, gun and whatnot.
 	anchored = FALSE
 	drag_delay = 2 //slightly easier than to drag the body directly.
+	var/foldedbag_path = /obj/item/bodybag
+	var/obj/item/bodybag/foldedbag_instance = null
 	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
+	var/mob/living/carbon/human/bodybag_occupant
+
+
+/obj/structure/closet/bodybag/Initialize(mapload, foldedbag)
+	. = ..()
+	foldedbag_instance = foldedbag
+
+
+/obj/structure/closet/bodybag/Destroy()
+	open()
+	if(QDELETED(foldedbag_instance))
+		foldedbag_instance = null
+	else
+		if(!isnull(foldedbag_instance.loc))
+			stack_trace("[src] destroyed while the [foldedbag_instance] foldedbag_instance was neither destroyed nor in nullspace. This shouldn't happen.")
+		QDEL_NULL(foldedbag_instance)
+	return ..()
 
 
 /obj/structure/closet/bodybag/proc/update_name()
 	if(opened)
 		name = bag_name
 	else
-		var/mob/living/carbon/human/H = locate() in contents
-		if(H)
-			name = "[bag_name] ([H.get_visible_name()])"
+		if(bodybag_occupant)
+			name = "[bag_name] ([bodybag_occupant.get_visible_name()])"
 		else
 			name = "[bag_name] (empty)"
+
 
 /obj/structure/closet/bodybag/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -108,41 +118,49 @@
 		overlays.Cut()
 
 
-/obj/structure/closet/bodybag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
+/obj/structure/closet/bodybag/closet_special_handling(mob/living/carbon/human/mob_to_stuff) // overriding this
+	if(!ishuman(mob_to_stuff))
+		return FALSE //Only humans.
 	if(mob_to_stuff.stat != DEAD) //Only the dead for bodybags.
 		return FALSE
-	if(ishuman(mob_to_stuff))
-		var/mob/living/carbon/human/human_to_stuff = mob_to_stuff
-		if((!check_tod(human_to_stuff) || issynth(human_to_stuff)) && human_to_stuff.is_revivable())
-			return FALSE //We don't want to store those that can be revived.
+	if((!check_tod(mob_to_stuff) || issynth(mob_to_stuff)) && mob_to_stuff.is_revivable())
+		return FALSE //We don't want to store those that can be revived.
 	return TRUE
 
 
 /obj/structure/closet/bodybag/close()
-	if(..())
-		density = 0
+	. = ..()
+	if(.)
+		density = FALSE //A bit dumb, but closets become dense when closed, and this is a closet.
+		var/mob/living/carbon/human/new_guest = locate() in contents
+		if(new_guest)
+			bodybag_occupant = new_guest
 		update_name()
 		return TRUE
 	return FALSE
 
+
 /obj/structure/closet/bodybag/open()
 	. = ..()
+	if(bodybag_occupant)
+		bodybag_occupant = null
 	update_name()
 
+
 /obj/structure/closet/bodybag/MouseDrop(over_object, src_location, over_location)
-	..()
+	. = ..()
 	if(over_object == usr && Adjacent(usr) && !roller_buckled)
 		if(!ishuman(usr))
 			return
 		if(opened)
 			return FALSE
-		if(contents.len)
+		if(length(contents))
 			return FALSE
 		visible_message("<span class='notice'>[usr] folds up [name].</span>")
-		var/obj/item/I = new item_path(get_turf(src), src)
-		usr.put_in_hands(I)
-		qdel(src)
-
+		if(QDELETED(foldedbag_instance))
+			foldedbag_instance = new foldedbag_path(loc, src)
+		usr.put_in_hands(foldedbag_instance)
+		moveToNullspace()
 
 
 /obj/structure/closet/bodybag/Move(NewLoc, direct)
@@ -156,10 +174,8 @@
 
 
 /obj/structure/closet/bodybag/forceMove(atom/destination)
-	if(roller_buckled)
-		roller_buckled.unbuckle()
-	. = ..()
-
+	roller_buckled?.unbuckle()
+	return ..()
 
 
 /obj/structure/closet/bodybag/update_icon()
@@ -172,22 +188,41 @@
 		icon_state = icon_opened
 
 
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno)
+	if(opened)
+		return FALSE // stop xeno closing things
+	xeno.animation_attack_on(src)
+	open()
+	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
+		"<span class='danger'>We slash \the [src] open!</span>", null, 5)
+	return TRUE
+
+
+/obj/item/storage/box/bodybags
+	name = "body bags"
+	desc = "This box contains body bags."
+	icon_state = "bodybags"
+	w_class = WEIGHT_CLASS_NORMAL
+	spawn_type = /obj/item/bodybag
+	spawn_number = 7
+
+
+/obj/item/bodybag/cryobag
+	name = "stasis bag"
+	desc = "A folded, reusable bag designed to prevent additional damage to an occupant."
+	icon = 'icons/obj/cryobag.dmi'
+	icon_state = "bodybag_folded"
+	unfoldedbag_path = /obj/structure/closet/bodybag/cryobag
+	var/used = FALSE
+
 
 /obj/structure/closet/bodybag/cryobag
 	name = "stasis bag"
 	bag_name = "stasis bag"
 	desc = "A reusable plastic bag designed to prevent additional damage to an occupant."
 	icon = 'icons/obj/cryobag.dmi'
-	item_path = /obj/item/bodybag/cryobag
-	var/mob/living/carbon/human/stasis_mob //the mob in stasis
-	var/used = 0
-	var/last_use = 0 //remembers the value of used, to delay crostasis start.
-	var/max_uses = 1800 //15 mins of usable cryostasis
+	foldedbag_path = /obj/item/bodybag/cryobag
 
-/obj/structure/closet/bodybag/cryobag/New(loc, obj/item/bodybag/cryobag/CB)
-	..()
-	if(CB)
-		used = CB.used
 
 /obj/structure/closet/bodybag/cryobag/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -195,113 +230,77 @@
 	if(!istype(I, /obj/item/healthanalyzer))
 		return
 
-	if(!stasis_mob)
+	if(!bodybag_occupant)
 		to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 		return
 
 	var/obj/item/healthanalyzer/J = I
-	J.attack(stasis_mob, user) // yes this is awful -spookydonut
+	J.attack(bodybag_occupant, user) // yes this is awful -spookydonut
 
-/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/M)
-	if(opened)
-		return FALSE // stop xeno closing things
-	M.animation_attack_on(src)
-	open()
-	M.visible_message("<span class='danger'>\The [M] slashes \the [src] open!</span>", \
-		"<span class='danger'>You slash \the [src] open!</span>", null, 5)
-	return TRUE
-
-/obj/structure/closet/bodybag/cryobag/Destroy()
-	var/mob/living/L = locate() in contents
-	if(L)
-		L.in_stasis = FALSE
-		stasis_mob = null
-		STOP_PROCESSING(SSobj, src)
-	. = ..()
 
 /obj/structure/closet/bodybag/cryobag/open()
-	var/mob/living/L = locate() in contents
-	if(L)
-		L.in_stasis = FALSE
-		stasis_mob = null
-		STOP_PROCESSING(SSobj, src)
-	. = ..()
-	if(used > max_uses)
-		new /obj/item/trash/used_stasis_bag(loc)
-		qdel(src)
+	if(bodybag_occupant)
+		bodybag_occupant.in_stasis = FALSE
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED))
+	return ..()
 
 
 /obj/structure/closet/bodybag/cryobag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
 	if(mob_to_stuff.stat == DEAD) // dead, nope
 		return FALSE
+	if(!ishuman(mob_to_stuff))
+		return FALSE //Humans only.
 	return TRUE
 
 
 /obj/structure/closet/bodybag/cryobag/close()
 	. = ..()
-	last_use = used + 1
-	var/mob/living/carbon/human/H = locate() in contents
-	if(H)
-		stasis_mob = H
-		START_PROCESSING(SSobj, src)
+	if(bodybag_occupant)
+		bodybag_occupant.in_stasis = STASIS_IN_BAG
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED), .proc/on_stasis_mob_death)
 
-/obj/structure/closet/bodybag/cryobag/process()
-	used++
-	if(!stasis_mob)
-		STOP_PROCESSING(SSobj, src)
-		open()
-		return
-	if(stasis_mob.stat == DEAD)// || !stasis_mob.key || !stasis_mob.client) // stop using cryobags for corpses and SSD/Ghosted
-		STOP_PROCESSING(SSobj, src)
-		open()
+
+/obj/structure/closet/bodybag/cryobag/proc/on_stasis_mob_death(datum/source)
+	if(!QDELETED(bodybag_occupant))
 		visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
-		return
-	if(used > last_use) //cryostasis takes a couple seconds to kick in.
-		if(!stasis_mob.in_stasis)
-			stasis_mob.in_stasis = STASIS_IN_BAG
-	if(used > max_uses)
-		open()
+	open()
+
 
 /obj/structure/closet/bodybag/cryobag/examine(mob/living/user)
-	..()
-	if(stasis_mob)
-		if(ishuman(stasis_mob))
-			if(hasHUD(user,"medical"))
-				var/mob/living/carbon/human/H = stasis_mob
-				for(var/datum/data/record/R in GLOB.datacore.medical)
-					if (R.fields["name"] == H.real_name)
-						if(!(R.fields["last_scan_time"]))
-							to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
-						else
-							to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [R.fields["last_scan_time"]]</a></span>\n")
-						break
+	. = ..()
+	if(!ishuman(bodybag_occupant))
+		return
+	if(!hasHUD(user,"medical"))
+		return
+	for(var/r in GLOB.datacore.medical)
+		var/datum/data/record/medical_record = r
+		if(medical_record.fields["name"] != bodybag_occupant.real_name)
+			continue
+		if(!(medical_record.fields["last_scan_time"]))
+			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+		else
+			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>\n")
+		break
 
-
-
-	switch(used)
-		if(0 to 600) to_chat(user, "It looks new.")
-		if(601 to 1200) to_chat(user, "It looks a bit used.")
-		if(1201 to 1800) to_chat(user, "It looks really used.")
 
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if (href_list["scanreport"])
-		if(hasHUD(usr,"medical"))
-			if(get_dist(usr, src) > 7)
-				to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
-				return
-			if(ishuman(stasis_mob))
-				var/mob/living/carbon/human/H = stasis_mob
-				for(var/datum/data/record/R in GLOB.datacore.medical)
-					if (R.fields["name"] == H.real_name)
-						if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
-							var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
-							popup.set_content(R.fields["last_scan_result"])
-							popup.open(FALSE)
-						break
-
+	if(href_list["scanreport"])
+		if(!hasHUD(usr,"medical"))
+			return
+		if(get_dist(usr, src) > world.view)
+			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
+			return
+		for(var/datum/data/record/R in GLOB.datacore.medical)
+			if(R.fields["name"] != bodybag_occupant.real_name)
+				continue
+			if(R.fields["last_scan_time"] && R.fields["last_scan_result"])
+				var/datum/browser/popup = new(usr, "scanresults", "<div align='center'>Last Scan Result</div>", 430, 600)
+				popup.set_content(R.fields["last_scan_result"])
+				popup.open(FALSE)
+			break
 
 
 /obj/item/trash/used_stasis_bag
