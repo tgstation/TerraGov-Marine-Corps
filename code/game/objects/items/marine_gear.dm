@@ -60,10 +60,10 @@
 
 
 /obj/structure/closet/bodybag/tarp/closet_special_handling(mob/living/mob_to_stuff) // overriding this
-	if(mob_to_stuff.stat == DEAD) //Only the dead for bodybags.
-		return FALSE
 	if(!ishuman(mob_to_stuff))
 		return FALSE //Humans only.
+	if(mob_to_stuff.stat == DEAD) //Only the dead for bodybags.
+		return FALSE
 	return TRUE
 
 
