@@ -16,6 +16,7 @@
 	if(isliving(loc))
 		affected_mob = loc
 		affected_mob.status_flags |= XENO_HOST
+		log_combat(affected_mob, null, "been infected with an embryo")
 		START_PROCESSING(SSobj, src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
@@ -83,6 +84,7 @@
 	if(stage < 5 && counter >= 120)
 		counter = 0
 		stage++
+		log_combat(affected_mob, null, "had their embryo advance to stage [stage]")
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
@@ -203,8 +205,8 @@
 	victim.death() // Certain species were still surviving bursting, DEFINITELY kill them this time.
 	victim.chestburst = 2
 	victim.update_burst()
-	log_combat(src, src, "chestbursted as a [src].")
-	log_game("[key_name(src)] chestbursted as a [src] at [AREACOORD(src)].")
+	log_combat(src, null, "chestbursted as a larva.")
+	log_game("[key_name(src)] chestbursted as a larva at [AREACOORD(src)].")
 
 	if((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen?.z == loc.z)
 		burrow()
