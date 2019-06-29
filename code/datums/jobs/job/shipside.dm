@@ -699,7 +699,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	selection_color = "#92c255"
 	supervisors = "your laws"
 	exp_requirements = XP_REQ_EXPERIENCED
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
 
