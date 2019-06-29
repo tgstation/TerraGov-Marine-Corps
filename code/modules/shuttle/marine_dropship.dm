@@ -255,7 +255,38 @@
 		if(M.id == "alamo")
 			D = M
 	if(is_ground_level(D.z))
-		to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
+		var/locked_sides = 0
+		for(var/i in D.left_airlocks)
+			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		for(var/i in D.right_airlocks)
+			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		for(var/i in D.rear_airlocks)
+			var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		if(!locked_sides)
+			to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
+			return FALSE
+		if(locked_sides < 3)
+			to_chat(user, "<span class='warning'>At least one side is still unlocked!</span>")
+			return FALSE
+		to_chat(user, "<span class='warning'>You begin overriding the shuttle lockdown. This will take a while.</span>")
+		if(!do_after(user, 60 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+			to_chat(user, "<span class='warning'>You stop overriding the shuttle lockdown.</span>")
+			return FALSE
+		D.hijack_state = HIJACK_STATE_CALLED_DOWN
+		D.unlock_all()
+		to_chat(user, "<span class='warning'>You override the shuttle lockdown.</span>")
 		return FALSE
 	if(D.hijack_state != HIJACK_STATE_NORMAL)
 		to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
