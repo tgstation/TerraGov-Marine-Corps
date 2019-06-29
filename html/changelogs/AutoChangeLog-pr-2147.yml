@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - tweak: "Improved feedback of the Summon Dropship xeno ruler ability. Nested and infected tallhosts no longer count towards the limit of marines on the ground to summon it."
