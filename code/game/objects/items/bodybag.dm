@@ -257,10 +257,10 @@
 	. = ..()
 	if(bodybag_occupant)
 		bodybag_occupant.in_stasis = STASIS_IN_BAG
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED), .proc/on_stasis_mob_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED), .proc/on_bodybag_occupant_death)
 
 
-/obj/structure/closet/bodybag/cryobag/proc/on_stasis_mob_death(datum/source)
+/obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(datum/source, gibbed)
 	if(!QDELETED(bodybag_occupant))
 		visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
 	open()
