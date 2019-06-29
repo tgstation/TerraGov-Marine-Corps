@@ -238,3 +238,62 @@
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+
+/mob/living/silicon/ai/verb/show_laws()
+	set category = "Silicon"
+	set name = "Show Laws"
+
+	if(incapacitated())
+		return
+
+	to_chat(src, "<span class='notice'><b>Obey these laws:</b></span>")
+	for(var/i in laws)
+		to_chat(src, "<span class='notice'>[i]</span>")
+
+
+/mob/living/silicon/ai/verb/state_laws()
+	set category = "Silicon"
+	set name = "State Laws"
+
+	if(incapacitated())
+		return
+
+	if(input(src, "Are you sure you want to announce your laws[radiomod ? " over the [radiomod] channel" : ""]?", "State Laws", "Yes", "No") != "Yes")
+		return
+
+	say("[radiomod] Current Active Lawset:")
+
+	var/delay = 1 SECONDS
+	for(var/i in laws)
+		addtimer(CALLBACK(src, .say, "[radiomod] [i]"), delay)
+		delay += 1 SECONDS
+
+
+/mob/living/silicon/ai/verb/set_autosay()
+	set category = "Silicon"
+	set name = "Set Announce Mode"
+
+	if(incapacitated())
+		return
+
+	if(!radio)
+		to_chat(src, "Radio not detected.")
+		return
+
+	var/chan = input("Select a channel:") as null|anything in list("Default", "None") + radio.channels
+	if(!chan)
+		return
+
+	if(chan == "Default")
+		radiomod = ";"
+		chan += " ([radio.frequency])"
+	else if(chan == "None")
+		radiomod = ""
+	else
+		for(var/key in GLOB.department_radio_keys)
+			if(GLOB.department_radio_keys[key] == chan)
+				radiomod = ":" + key
+				break
+
+	to_chat(src, "<span class='notice'>Automatic announcements [chan == "None" ? "will not use the radio." : "set to [chan]."]</span>")

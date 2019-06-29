@@ -33,6 +33,8 @@
 	var/list/datum/AI_Module/current_modules = list()
 
 	var/control_disabled = FALSE
+	var/radiomod = ";"
+	var/list/laws
 
 	var/camera_light_on = FALSE
 	var/list/obj/machinery/camera/lit_cameras = list()
@@ -48,6 +50,12 @@
 	builtInCamera.network = list("marinemainship")
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+
+	laws = list()
+	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
+	laws += "Serve: Serve the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
+	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
+	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
 	create_eye()
 

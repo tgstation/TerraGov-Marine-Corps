@@ -697,7 +697,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	faction = "Marine"
 	total_positions = 1
 	selection_color = "#92c255"
-	supervisors = "the acting captain"
+	supervisors = "your laws"
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_LIVING
 	exp_type_department = EXP_TYPE_SILICON
