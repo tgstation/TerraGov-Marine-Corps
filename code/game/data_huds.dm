@@ -439,8 +439,8 @@
 	return
 
 
-#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS "Squad Leader", "Squad Engineer", "Squad Specialist", "Squad Corpsman", "Squad Smartgunner"
-#define SQUAD_HUD_SUPPORTED_OTHER_JOBS "Captain", "Executive Officer", "Field Commander", "Intelligence Officer", "Pilot Officer", "Tank Crewman"
+#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS "Squad Leader", "Squad Engineer", "Squad Specialist", "Squad Corpsman", "Squad Smartgunner", "Squad Marine"
+#define SQUAD_HUD_SUPPORTED_OTHER_JOBS "Captain", "Executive Officer", "Field Commander", "Intelligence Officer", "Pilot Officer", "Chief Ship Engineer", "Corporate Liaison", "Chief Medical Officer", "Requisitions Officer", "Command Master at Arms", "Tank Crewman", "Medical Officer", "Ship Engineer", "Synthetic", "Master at Arms", "Cargo Technician", "Medical Researcher"
 
 /mob/living/carbon/human/hud_set_squad()
 	var/image/holder = hud_list[SQUAD_HUD]
