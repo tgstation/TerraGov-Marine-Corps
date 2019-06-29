@@ -22,7 +22,7 @@
 
 
 /datum/game_mode/distress/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
+	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
 
 
 /datum/game_mode/distress/can_start()
@@ -56,10 +56,10 @@
 
 
 /datum/game_mode/distress/proc/map_announce()
-	if(!SSmapping.config.announce_text)
+	if(!SSmapping.configs[GROUND_MAP].announce_text)
 		return
 
-	priority_announce(SSmapping.config.announce_text, "[CONFIG_GET(string/ship_name)]")
+	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, "[CONFIG_GET(string/ship_name)]")
 
 
 /datum/game_mode/distress/process()
@@ -109,7 +109,7 @@
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
 	var/musical_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
@@ -289,7 +289,7 @@
 
 	H.mind.assigned_role = "Survivor"
 
-	if(SSmapping.config.map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
@@ -310,7 +310,7 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
 	to_chat(H, "<h2>You are a survivor!</h2>")
-	switch(SSmapping.config.map_name)
+	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)
 			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
 		if(MAP_ICE_COLONY)

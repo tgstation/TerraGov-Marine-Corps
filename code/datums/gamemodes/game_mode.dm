@@ -232,7 +232,7 @@
 
 /datum/game_mode/proc/spawn_map_items()
 	var/turf/T
-	switch(SSmapping.config.map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
+	switch(SSmapping.configs[GROUND_MAP].map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
 		if(MAP_LV_624)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
@@ -286,7 +286,7 @@
 			new /obj/effect/forcefield/fog(T)
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
-	switch(SSmapping.config.map_name)
+	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 50 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.

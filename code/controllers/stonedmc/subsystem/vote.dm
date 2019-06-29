@@ -122,9 +122,12 @@ SUBSYSTEM_DEF(vote)
 						restart = TRUE
 					else
 						GLOB.master_mode = .
-			if("map")
-				var/datum/map_config/VM = config.maplist[.]
-				SSmapping.changemap(VM)
+			if("groundmap")
+				var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
+				SSmapping.changemap(VM, GROUND_MAP)
+			if("shipmap")
+				var/datum/map_config/VM = config.maplist[SHIP_MAP][.]
+				SSmapping.changemap(VM, SHIP_MAP)
 	if(restart)
 		var/active_admins = 0
 		for(var/client/C in GLOB.admins)
@@ -175,14 +178,26 @@ SUBSYSTEM_DEF(vote)
 				choices.Add("Restart Round", "Continue Playing")
 			if("gamemode")
 				choices.Add(config.votable_modes)
-			if("map")
+			if("groundmap")
 				var/list/maps = list()
-				for(var/i in config.maplist)
-					var/datum/map_config/VM = config.maplist[i]
+				for(var/i in config.maplist[GROUND_MAP])
+					var/datum/map_config/VM = config.maplist[GROUND_MAP][i]
 					if(!VM.voteweight)
 						continue
 					maps += i
 				choices.Add(maps)
+				if(length(choices) < 2)
+					return FALSE
+			if("shipmap")
+				var/list/maps = list()
+				for(var/i in config.maplist[SHIP_MAP])
+					var/datum/map_config/VM = config.maplist[SHIP_MAP][i]
+					if(!VM.voteweight)
+						continue
+					maps += i
+				choices.Add(maps)
+				if(length(choices) < 2)
+					return FALSE
 			if("custom")
 				question = stripped_input(usr, "What is the vote for?")
 				if(!question)
@@ -253,7 +268,8 @@ SUBSYSTEM_DEF(vote)
 
 		. += "</li>"
 		if(admin)
-			. += "<li><a href='?src=[REF(src)];vote=map'>Map Vote</a></li>"
+			. += "<li><a href='?src=[REF(src)];vote=groundmap'>Ground Map Vote</a></li>"
+			. += "<li><a href='?src=[REF(src)];vote=shipmap'>Ship Map Vote</a></li>"
 			. += "<li><a href='?src=[REF(src)];vote=custom'>Custom</a></li>"
 		. += "</ul><hr>"
 	. += "<a href='?src=[REF(src)];vote=close' style='position:absolute;right:50px'>Close</a>"
@@ -275,6 +291,7 @@ SUBSYSTEM_DEF(vote)
 		if("cancel")
 			if(check_other_rights(usr.client, R_ADMIN, FALSE))
 				reset()
+				to_chat(world, "<b><font color='purple'>The vote has been cancelled.</font></b>")
 		if("toggle_restart")
 			if(check_other_rights(usr.client, R_ADMIN, FALSE))
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
@@ -290,9 +307,12 @@ SUBSYSTEM_DEF(vote)
 		if("custom")
 			if(check_other_rights(usr.client, R_ADMIN, FALSE))
 				initiate_vote("custom", usr.key)
-		if("map")
+		if("groundmap")
 			if(check_other_rights(usr.client, R_ADMIN, FALSE))
-				initiate_vote("map", usr.key)
+				initiate_vote("groundmap", usr.key)
+		if("shipmap")
+			if(check_other_rights(usr.client, R_ADMIN, FALSE))
+				initiate_vote("shipmap", usr.key)
 		else
 			submit_vote(round(text2num(href_list["vote"])))
 	usr.vote()

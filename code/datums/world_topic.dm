@@ -131,7 +131,7 @@
 	.["admins"] = length(presentmins) + length(afkmins)
 	.["gamestate"] = SSticker.current_state
 
-	.["map_name"] = SSmapping.config?.map_name || "Loading..."
+	.["map_name"] = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
 
 	if(key_valid)
 		if(SSticker.HasRoundStarted())
