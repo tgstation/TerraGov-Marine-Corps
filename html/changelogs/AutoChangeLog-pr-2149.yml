@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscdel: "Xenos can no longer play basketball unless fun_allowed is turned on. And, by default, fun is not allowed."
