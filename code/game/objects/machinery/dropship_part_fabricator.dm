@@ -59,7 +59,7 @@
 	SSpoints.dropship_points -= cost
 	update_icon()
 	busy = TRUE
-	addtimer(CALLBACK(src, .do_build_dropship_part, part_type), 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_build_dropship_part, part_type), 10 SECONDS)
 
 /obj/machinery/dropship_part_fabricator/proc/do_build_dropship_part(part_type)
 	busy = FALSE

@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(direction)
 
 	// this is a two d list of defines to lists of mobs tracking that leader
 	// eg; list(CHARLIE_SL = list(<list of references to squad marines), XENO_NORMAL_QUEEN = list(<list of xeno mob refs))
-	var/list/processing_mobs = list()
+	var/list/list/processing_mobs = list()
 
 	var/list/mobs_in_processing = list() // reference lookup
 
@@ -17,7 +17,7 @@ SUBSYSTEM_DEF(direction)
 	//  leader when the leader changes, and its cached to avoid looking up via hive/squad datums.
 	// it's up to the user of this subsystem to remove themselves via the macros
 
-	var/list/currentrun
+	var/list/list/currentrun
 
 	var/last_faction_id = 0 // use to create unique faction ids
 
@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(direction)
 	init_squad(null, null, "marine-sl")
 	for (var/hivenumber in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
-		init_squad(null, HS.living_xeno_queen, hivenumber)
+		init_squad(null, HS.living_xeno_ruler, hivenumber)
 
 /datum/controller/subsystem/direction/stat_entry()
 	var/mobcount = 0

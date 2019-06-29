@@ -7,6 +7,7 @@
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_GRABBING 10
 #define CLICK_CD_RESIST 10
+#define CLICK_CD_RESIST_PSYCHIC_GRAB 30
 #define CLICK_CD_BREAKOUT 100
 
 //Grab levels
@@ -14,6 +15,10 @@
 #define GRAB_AGGRESSIVE	1
 #define GRAB_NECK		2
 #define GRAB_KILL		3
+
+//TK Grab levels
+#define TKGRAB_NONLETHAL	3	//Values should be different as they are identifiers.
+#define TKGRAB_LETHAL		4	//Also serves as a measure of how many attempts to resist it.
 
 //intent defines
 #define INTENT_HELP   "help"
@@ -145,3 +150,4 @@
 #define RESTRAINED_NECKGRAB (1<<1)
 #define RESTRAINED_STRAIGHTJACKET (1<<2)
 #define RESTRAINED_RAZORWIRE (1<<3)
+#define RESTRAINED_PSYCHICGRAB (1<<4)

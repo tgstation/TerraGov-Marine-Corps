@@ -238,7 +238,7 @@
 				new headset_type(loc)
 				new gloves_type(loc)
 				//if(istype(SSticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
-				if(SSmapping.config.map_name == MAP_ICE_COLONY)
+				if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 

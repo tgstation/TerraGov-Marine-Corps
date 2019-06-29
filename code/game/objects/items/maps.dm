@@ -86,9 +86,9 @@
 
 /obj/item/map/current_map/Initialize()
 	. = ..()
-	if(!SSmapping.config?.map_name)
+	if(!length(SSmapping.configs))
 		return INITIALIZE_HINT_QDEL
-	switch(SSmapping.config.map_name)
+	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_LV_624)
 			name = "\improper Lazarus Landing Map"
 			desc = "A satellite printout of the Lazarus Landing colony on LV-624."

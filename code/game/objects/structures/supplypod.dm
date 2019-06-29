@@ -44,6 +44,7 @@
 	pixel_x = -16
 	pixel_y = -5
 	layer = TABLE_LAYER
+	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
 	anchored = TRUE
 	var/adminNamed = FALSE
@@ -306,7 +307,7 @@
 		L.forceMove(src)
 	if(pod.effectStun)
 		for(var/mob/living/M in get_turf(src))
-			M.Stun(pod.landingDelay + 10, ignore_canstun = TRUE)
+			M.Stun(pod.landingDelay + 10)
 	if(pod.effectStealth)
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)

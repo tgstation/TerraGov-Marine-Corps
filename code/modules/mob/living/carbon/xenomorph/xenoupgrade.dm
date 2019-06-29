@@ -6,18 +6,18 @@
 	upgrade = newlevel
 	upgrade_stored = 0
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
-	"<span class='xenonotice'>You begin to twist and contort.</span>")
+	"<span class='xenonotice'>We begin to twist and contort.</span>")
 	do_jitter_animation(1000)
 	set_datum()
 
 	switch(upgrade)
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
-			to_chat(src, "<span class='xenodanger'>You feel a bit stronger.</span>")
+			to_chat(src, "<span class='xenodanger'>We feel a bit stronger.</span>")
 
 		//SECOND UPGRADE
 		if(XENO_UPGRADE_TWO)
-			to_chat(src, "<span class='xenodanger'>You feel a whole lot stronger.</span>")
+			to_chat(src, "<span class='xenodanger'>We feel a whole lot stronger.</span>")
 
 		//Final UPGRADE
 		if(XENO_UPGRADE_THREE)
@@ -166,4 +166,13 @@
 	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/xenomorph/Defiler/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/shrike/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/shrike/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE

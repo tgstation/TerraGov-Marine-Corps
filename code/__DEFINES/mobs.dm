@@ -47,9 +47,9 @@
 
 #define CARBON_KO_OXYLOSS 50
 
-#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
-#define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
-#define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
+#define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
+#define HEAT_DAMAGE_LEVEL_3 4 //Amount of damage applied when your body temperature passes the 1000K point
 
 #define COLD_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
 #define COLD_DAMAGE_LEVEL_2 1.0 //Amount of damage applied when your body temperature passes the 200K point
@@ -138,6 +138,7 @@
 #define XENO_HIVE_ALPHA "alpha_hive"
 #define XENO_HIVE_BETA "beta_hive"
 #define XENO_HIVE_ZETA "zeta_hive"
+#define XENO_HIVE_ADMEME "admeme_hive"
 
 // =============================
 // xeno tiers
@@ -541,6 +542,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT				4
+
+//Shrike defines
+
+#define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
+#define SHRIKE_CURE_HEAL_MULTIPLIER	10
 
 //misc
 

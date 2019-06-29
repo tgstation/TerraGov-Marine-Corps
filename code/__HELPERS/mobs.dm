@@ -163,3 +163,11 @@
 	for(var/mob/M in mobs)
 		if(M.ckey == key)
 			return M
+
+
+/proc/living_player_count()
+	. = 0
+	for(var/i in GLOB.player_list)
+		var/mob/M = i
+		if(M.stat != DEAD)
+			.++

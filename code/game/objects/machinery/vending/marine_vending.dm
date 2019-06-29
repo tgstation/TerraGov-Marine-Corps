@@ -48,12 +48,8 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(SSmapping.config.map_name)
-		if(MAP_ICE_COLONY)
-			products2 = list(
-						/obj/item/clothing/mask/rebreather/scarf = 10,
-						/obj/item/clothing/mask/rebreather = 10
-							)
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+		products2 = list(/obj/item/clothing/mask/rebreather/scarf = 10, /obj/item/clothing/mask/rebreather = 10)
 	build_inventory(products2)
 
 /obj/machinery/vending/marine/New()
@@ -633,7 +629,7 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(SSmapping.config.map_name)
+	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_ICE_COLONY)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
 		if(MAP_BIG_RED)

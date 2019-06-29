@@ -42,6 +42,10 @@
 		unbuckle()
 	return ..()
 
+/obj/proc/setAnchored(anchorvalue)
+	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
+	anchored = anchorvalue
+
 /obj/ex_act()
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return

@@ -98,18 +98,6 @@
 		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 		alpha = initial(alpha) //stealth mode disengaged
 
-/obj/structure/closet/bodybag/tarp/store_mobs(stored_units)
-	var/list/mobs_can_store = list()
-	for(var/mob/living/carbon/human/H in loc)
-		if(H.buckled)
-			continue
-		mobs_can_store += H
-	var/mob/living/carbon/human/mob_to_store
-	if(mobs_can_store.len)
-		mob_to_store = pick(mobs_can_store)
-		mob_to_store.forceMove(src)
-		stored_units += mob_size
-	return stored_units
 
 /obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"

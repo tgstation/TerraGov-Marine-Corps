@@ -29,7 +29,7 @@
 	upgrade_threshold = 800
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE|CASTE_HIDE_IN_STATUS
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -126,7 +126,7 @@
 
 /datum/xeno_caste/queen/ancient
 	caste_desc = "The most perfect Xeno form imaginable."
-	ancient_message = "You are the Alpha and the Omega. The beginning and the end."
+	ancient_message = "We are the Alpha and the Omega. The beginning and the end."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //

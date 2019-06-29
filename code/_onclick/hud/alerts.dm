@@ -138,6 +138,15 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 				G.forceMove(T)
 		if(NOTIFY_ORBIT)
 			G.ManualFollow(target)
+		if(NOTIFY_JOIN_AS_LARVA)
+			if(!isxeno(target))
+				return FALSE
+			switch(alert(G, "What would you like to do?", "Burrowed larva source available", "Join as Larva", "Jump to it", "Cancel"))
+				if("Join as Larva")
+					SSticker.mode.spawn_larva(G, target)
+				if("Jump to it")
+					G.forceMove(get_turf(target))
+			
 
 //OBJECT-BASED
 

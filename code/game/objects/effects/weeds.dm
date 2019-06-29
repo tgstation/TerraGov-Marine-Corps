@@ -8,7 +8,6 @@
 
 	anchored = TRUE
 	density = 0
-	plane = FLOOR_PLANE
 	layer = TURF_LAYER
 	var/parent_node
 	max_integrity = 4

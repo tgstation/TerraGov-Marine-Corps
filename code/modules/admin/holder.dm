@@ -406,7 +406,10 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/map_change
+	/datum/admins/proc/change_ground_map,
+	/datum/admins/proc/change_ship_map,
+	/datum/admins/proc/panic_bunker,
+	/datum/admins/proc/mode_check
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 GLOBAL_PROTECT(admin_verbs_server)
@@ -651,6 +654,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			chosen = input("Please, select a living mob.", title) as null|anything in sortNames(GLOB.mob_living_list)
 		if(APICKER_AREA)
 			chosen = input("Please, select an area.", title) as null|anything in GLOB.sorted_areas
+			chosen = pick(get_area_turfs(chosen))
 		if(APICKER_TURF)
 			chosen = input("Please, select a turf.", title) as null|turf in world
 		if(APICKER_COORDS)

@@ -25,7 +25,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
-		/datum/action/xeno_action/activable/second_wind,
+		/datum/action/xeno_action/second_wind,
 		)
 
 // ***************************************

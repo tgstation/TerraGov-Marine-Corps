@@ -119,7 +119,7 @@
 /datum/xeno_caste/spitter/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A ranged destruction machine."
-	ancient_message = "You are a master of ranged stuns and damage. Go fourth and generate salt."
+	ancient_message = "We are a master of ranged stuns and damage. Let's go fourth and generate salt."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //

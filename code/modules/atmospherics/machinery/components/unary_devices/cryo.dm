@@ -528,7 +528,7 @@
 	//	return G.temperature
 	//return ..()
 /*
-/obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/wrench/W)
+/obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/tool/wrench/W)
 	. = ..()
 	if(.)
 		SetInitDirections()

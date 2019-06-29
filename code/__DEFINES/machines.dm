@@ -43,6 +43,11 @@
 #define FIREDOOR_CLOSED 2
 
 
+#define DOOR_NOT_FORCED 0
+#define DOOR_FORCED_NORMAL 1
+#define DOOR_FORCED_EMAG 2
+
+
 //Cables directions and helping
 #define CABLE_NODE 0
 
