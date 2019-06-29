@@ -127,7 +127,7 @@
 
 	if(locked)
 		bolt_raise(usr)
-	else
+	else if(hasPower())
 		bolt_drop(usr)
 
 
