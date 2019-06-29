@@ -441,8 +441,7 @@
 		<br> Special: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
 		<a href='?src=[ref];transform=ai;mob=[REF(M)]'>AI</a>
 		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
-		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
-		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a>
+		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a>
 		<br> Alien Tier 0:
 		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
 		<br> Alien Tier 1:

@@ -45,7 +45,6 @@
 #define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
 #define isIPC(H) (is_species(H, /datum/species/machine))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
-#define ismoth(H) (is_species(H, /datum/species/moth))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
 //Job/role helpers

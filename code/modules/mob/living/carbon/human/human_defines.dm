@@ -24,9 +24,6 @@
 	var/g_skin = 0
 	var/b_skin = 0
 
-	//Species specific
-	var/moth_wings = "Plain"
-
 	var/lip_style		//no lipstick by default- arguably misleading, as it could be used for general makeup
 
 	var/age = 30		//Player's age (pure fluff)

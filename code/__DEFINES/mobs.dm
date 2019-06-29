@@ -321,7 +321,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_SKRELL (1<<4)
 #define IS_UNATHI (1<<5)
 #define IS_HORROR (1<<6)
-#define IS_MOTH (1<<7)
 //=================================================
 
 //Mob sizes
@@ -381,8 +380,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
-#define LASER_LAYER				27		//For sniper targeting laser
-#define MOTH_WINGS_LAYER		26
+#define LASER_LAYER				26		//For sniper targeting laser
 #define MUTANTRACE_LAYER		25
 #define MUTATIONS_LAYER			24
 #define DAMAGE_LAYER			23
@@ -409,9 +407,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
 
-#define TOTAL_LAYERS			27
-
-#define MOTH_WINGS_BEHIND_LAYER	1
+#define TOTAL_LAYERS			26
 
 #define TOTAL_UNDERLAYS			1
 

@@ -28,11 +28,6 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		GLOB.facial_hair_styles_list[H.name] = H
 
-	// Species specific
-	for(var/path in subtypesof(/datum/sprite_accessory/moth_wings))
-		var/datum/sprite_accessory/moth_wings/wings = new path()
-		GLOB.moth_wings_list[wings.name] = wings
-
 	// Ethnicity - Initialise all /datum/ethnicity into a list indexed by ethnicity name
 	for(var/path in subtypesof(/datum/ethnicity))
 		var/datum/ethnicity/E = new path()

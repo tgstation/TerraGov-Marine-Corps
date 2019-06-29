@@ -13,7 +13,6 @@
 	randomize_hair_color("hair")
 	randomize_hair_color("facial")
 	randomize_eyes_color()
-	randomize_species_specific()
 	underwear = rand(1, GLOB.underwear_m.len)
 	undershirt = rand(1, GLOB.undershirt_t.len)
 	backpack = 2
@@ -139,10 +138,6 @@
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 
 
-/datum/preferences/proc/randomize_species_specific()
-	moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
-
-
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
 	if(random_name)
 		var/datum/species/S = GLOB.all_species[species]
@@ -188,7 +183,6 @@
 	character.citizenship = citizenship
 	character.religion = religion
 
-	character.moth_wings = moth_wings
 	character.underwear = underwear
 	character.undershirt = undershirt
 	character.backpack = backpack

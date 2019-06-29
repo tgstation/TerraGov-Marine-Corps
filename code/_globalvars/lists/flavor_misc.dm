@@ -30,7 +30,6 @@ GLOBAL_LIST_EMPTY(ears_list)
 GLOBAL_LIST_EMPTY(wings_list)
 GLOBAL_LIST_EMPTY(wings_open_list)
 GLOBAL_LIST_EMPTY(r_wings_list)
-GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(caps_list)
 
 GLOBAL_LIST_INIT(ghost_forms_with_directions_list, list("ghost")) //stores the ghost forms that support directional sprites

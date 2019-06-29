@@ -82,9 +82,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/g_eyes = 0
 	var/b_eyes = 0
 
-	//Species specific
-	var/moth_wings = "Plain"
-
 	//Lore
 	var/citizenship = "TerraGov"
 	var/religion = "None"
@@ -212,7 +209,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age'>[age]</a><br>"
 	dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[gender == MALE ? MALE : FEMALE]</a><br>"
 	dat += "<b>Ethnicity:</b> <a href='?_src_=prefs;preference=ethnicity'>[ethnicity]</a><br>"
-	dat += "<b>Species:</b> <a href='?_src_=prefs;preference=species'>[species]</a><br>"
 	dat += "<b>Body Type:</b> <a href='?_src_=prefs;preference=body_type'>[body_type]</a><br>"
 	dat += "<b>Good Eyesight:</b> <a href='?_src_=prefs;preference=eyesight'>[good_eyesight ? "Yes" : "No"]</a><br>"
 	dat += "<br>"
@@ -221,11 +217,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=facialstyle'>[f_style]</a> | <a href='?_src_=prefs;preference=facialcolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
 	dat += "<b>Eye:</b> <a href='?_src_=prefs;preference=eyecolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
-
-	var/datum/species/current_species = GLOB.all_species[species]
-	if(current_species.preferences)
-		for(var/preference_id in current_species.preferences)
-			dat += "<b>[current_species.preferences[preference_id]]:</b> <a href='?_src_=prefs;preference=[preference_id]'><b>[vars[preference_id]]</b></a><br>"
 
 	dat += "<a href='?_src_=prefs;preference=random'>Randomize</a>"
 
@@ -642,12 +633,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				return
 			ethnicity = new_ethnicity
 
-		if("species")
-			var/new_species = input(user, "Choose your species:", "Species") as null|anything in GLOB.all_species[DEFAULT_SPECIES]
-			if(!new_species)
-				return
-			species = new_species
-
 		if("body_type")
 			var/new_body_type = input(user, "Choose your character's body type:", "Body Type") as null|anything in GLOB.body_types_list
 			if(!new_body_type)
@@ -656,14 +641,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("eyesight")
 			good_eyesight = !good_eyesight
-
-		if("moth_wings")
-			if(species != "Moth")
-				return
-			var/new_wings = input(user, "Choose your character's wings: ", "Moth Wings") as null|anything in (GLOB.moth_wings_list - "Burnt Off")
-			if(!new_wings)
-				return
-			moth_wings = new_wings
 
 		if("be_special")
 			var/flag = text2num(href_list["flag"])
