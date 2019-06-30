@@ -57,16 +57,7 @@
 
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
-	var/obj/item/radio/radio
 
-
-/obj/machinery/autodoc/Initialize(mapload)
-	. = ..()
-	radio = new(src)
-
-/obj/machinery/autodoc/Destroy()
-	QDEL_NULL(radio)
-	return ..()
 
 /obj/machinery/autodoc/power_change(area/master_area = null)
 	..()
@@ -707,11 +698,9 @@
 			qdel(O)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	for(var/A in contents)
-		var/atom/movable/B = A
-		if(B == radio)
-			continue
-		B.forceMove(loc)
+	for(var/i in contents)
+		var/atom/movable/AM = i
+		AM.forceMove(loc)
 	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
@@ -732,7 +721,7 @@
 			if(AUTODOC_NOTICE_IDIOT_EJECT)
 				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 				reason = "Reason for discharge: Unauthorized manual release during surgery. Alerting security advised."
-		radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
+		connected.radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	surgery_todo_list = list()
 	update_icon()
@@ -845,11 +834,19 @@
 
 	use_power = 1
 	idle_power_usage = 40
+	var/obj/item/radio/radio
+
 
 /obj/machinery/autodoc_console/Initialize()
 	. = ..()
 	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 	connected.connected = src
+	radio = new(src)
+
+
+/obj/machinery/autodoc_console/Destroy()
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/machinery/autodoc_console/update_icon()
 	if(machine_stat & NOPOWER)
