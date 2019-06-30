@@ -48,6 +48,7 @@
 		text = input(usr,"Write your [type]","Create [type]") as null|message
 		if(!text)
 			return
+	var/original_text = text
 	text = sanitizeSQL(text)
 	if(!timestamp)
 		timestamp = SQLtime()
@@ -109,7 +110,7 @@
 	var/client/C = GLOB.directory[target_ckey]
 	if(!istype(C))
 		return
-	to_chat(C, "<span class='boldannounce'>A note has been added to your account:</span><br><span class='danger'>[text]</span>")
+	to_chat(C, "<span class='boldannounce'>A note has been added to your account:</span><br><span class='danger'>[original_text]</span>")
 
 
 /proc/delete_message(message_id, logged = TRUE, browse)
