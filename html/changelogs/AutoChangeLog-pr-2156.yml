@@ -1,5 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscdel: "Removed an unknown feature: cryobags actually had a lifetime of around an hour of holding mobs inside them. Maybe more."
-  - balance: "Tarps now fade out gradually instead of in janky steps. They don't accept dead bodies in them anymore (and will spit out whoever dies inside them). You can now drag them even if closed, as long as they don't contain someone. They will no longer show the name of the person inside."
