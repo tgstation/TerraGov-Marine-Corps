@@ -66,3 +66,8 @@
 /obj/machinery/telecomms/relay/preset/telecomms
 	id = "Telecomms Relay"
 	autolinkers = list("relay")
+
+
+/obj/machinery/telecomms/relay/preset/telecomms/onboard
+	icon_state = ""
+	alpha = 0
