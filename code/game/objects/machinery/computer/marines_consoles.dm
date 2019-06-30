@@ -195,10 +195,10 @@
 			accesses += "<div align='center'><b>Access</b></div>"
 			accesses += "<table style='width:100%'>"
 			accesses += "<tr>"
-			for(var/i = 1; i <= 6; i++)
+			for(var/i in 1 to 6)
 				accesses += "<td style='width:14%'><b>[get_region_accesses_name(i)]:</b></td>"
 			accesses += "</tr><tr>"
-			for(var/i = 1; i <= 6; i++)
+			for(var/i in 1 to 6)
 				accesses += "<td style='width:14%' valign='top'>"
 				for(var/A in get_region_accesses(i))
 					if(A in modify.access)

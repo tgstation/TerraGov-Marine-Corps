@@ -1848,6 +1848,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/change
 		var/previous
+		var/addition
 
 		switch(href_list["rank"])
 			if("createmind")
@@ -1862,6 +1863,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					previous = H.mind.assigned_role
 					var/datum/job/J = SSjob.GetJob(change)
 					J.assign(H)
+					if(href_list["doequip"])
+						H.set_equipment(J.title)
+						addition = ", equipping them"
 				else
 					previous = H.job
 					H.job = change
@@ -1969,11 +1973,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		usr.client.holder.rank_and_equipment(H)
 
 		if(change)
-			log_admin("[key_name(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change] of [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change] of [ADMIN_TPMONTY(H)].")
+			log_admin("[key_name(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change][addition] of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change][addition] of [ADMIN_TPMONTY(H)].")
 		else
 			log_admin("[key_name(usr)] updated the rank: [href_list["rank"]] of [key_name(H)].")
 			message_admins("[ADMIN_TPMONTY(usr)] updated the rank: [href_list["rank"]] of [ADMIN_TPMONTY(H)].")
 
-		if(href_list["doequip"])
+		if(href_list["doset"])
 			Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "rank" = "equipment", "mob" = REF(H)))
