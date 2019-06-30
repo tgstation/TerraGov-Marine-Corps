@@ -109,14 +109,6 @@
 		to_chat(usr, "<span class='warning'>You ghosted too recently. Try again later.</span>")
 		return
 
-	if(!usr.mind) //How? Give them a new one anyway.
-		usr.mind = new /datum/mind(usr.key)
-		usr.mind.active = TRUE
-		usr.mind.current = usr
-
-	if(usr.mind.key != usr.key) //This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
-		usr.mind.key = usr.key
-
 	if(usr.mind in distress.candidates)
 		to_chat(usr, "<span class='warning'>You are already a candidate for this emergency response team.</span>")
 		return

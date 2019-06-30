@@ -1171,10 +1171,11 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 		if(H.mind?.assigned_role)
 			role = H.mind.assigned_role
-		else
+		else if(H.job)
+			role H.job
+		else if(istype(H.wear_id, /obj/item/card/id))
 			var/obj/item/card/id/ID = H.wear_id //we use their ID to get their role.
-			if(ID?.rank)
-				role = ID.rank
+			role = ID.rank
 		if(current_squad.squad_leader)
 			if(H == current_squad.squad_leader)
 				dist = "<b>N/A</b>"
