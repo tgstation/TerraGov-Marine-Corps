@@ -652,7 +652,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		affecting_armor -= penetration
 
 		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
+		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[affecting_armor]</b></span>"
 		#endif
 		if(affecting_armor > 0) //Armor check. We should have some to continue.
 			/*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
