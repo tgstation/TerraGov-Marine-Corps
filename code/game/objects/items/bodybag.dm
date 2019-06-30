@@ -118,12 +118,13 @@
 		overlays.Cut()
 
 
-/obj/structure/closet/bodybag/closet_special_handling(mob/living/carbon/human/mob_to_stuff) // overriding this
+/obj/structure/closet/bodybag/closet_special_handling(mob/living/mob_to_stuff) // overriding this
 	if(!ishuman(mob_to_stuff))
 		return FALSE //Only humans.
 	if(mob_to_stuff.stat != DEAD) //Only the dead for bodybags.
 		return FALSE
-	if((!check_tod(mob_to_stuff) || issynth(mob_to_stuff)) && mob_to_stuff.is_revivable())
+	var/mob/living/carbon/human/human_to_stuff = mob_to_stuff
+	if((!check_tod(human_to_stuff) || issynth(human_to_stuff)) && human_to_stuff.is_revivable())
 		return FALSE //We don't want to store those that can be revived.
 	return TRUE
 
