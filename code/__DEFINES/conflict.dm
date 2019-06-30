@@ -159,3 +159,18 @@
 #define XENO_BOMB_RESIST_2 60
 #define XENO_BOMB_RESIST_1 40
 #define XENO_BOMB_RESIST_0 0
+
+#define SINGLE_CASING	(1 << 0)
+#define SPEEDLOADER		(1 << 1)
+#define MAGAZINE		(1 << 2)
+#define CELL			(1 << 3)
+#define POWERPACK		(1 << 4)
+
+#define EGG_BURST 0
+#define EGG_BURSTING 1
+#define EGG_GROWING 2
+#define EGG_GROWN 3
+#define EGG_DESTROYED 4
+
+#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
+#define EGG_MAX_GROWTH_TIME 15 SECONDS
