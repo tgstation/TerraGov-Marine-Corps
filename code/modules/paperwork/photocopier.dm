@@ -2,7 +2,7 @@
 	name = "photocopier"
 	desc = "Used to copy important documents and anatomy studies."
 	icon = 'icons/obj/machines/library.dmi'
-	icon_state = "photocopier"
+	icon_state = "bigscanner"
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
@@ -125,7 +125,7 @@
 /obj/machinery/photocopier/proc/do_insertion(obj/item/O, mob/user)
 	O.forceMove(src)
 	to_chat(user, "<span class ='notice'>You insert [O] into [src].</span>")
-	flick("photocopier1", src)
+	flick("bigscanner1", src)
 	updateUsrDialog()
 
 
