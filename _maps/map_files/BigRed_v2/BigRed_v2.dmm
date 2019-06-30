@@ -12077,12 +12077,6 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aIY" = (
-/obj/machinery/embedded_controller/radio/airlock/access_controller{
-	id_tag = "viro_controller";
-	pixel_y = 28;
-	tag_exterior_door = "viro_ext";
-	tag_interior_door = "viro_int"
-	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
