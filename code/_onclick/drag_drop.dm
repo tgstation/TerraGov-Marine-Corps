@@ -31,6 +31,17 @@
 /client/MouseUp(object, location, control, params)
 	if(mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
+
+
+/client/MouseDrag(src_object,atom/over_object,src_location,over_location,src_control,over_control,params)
+	var/list/L = params2list(params)
+	if(L["middle"])
+		if(src_object && src_location != over_location)
+			middragtime = world.time
+			middragatom = src_object
+		else
+			middragtime = 0
+			middragatom = null		mouse_pointer_icon = mouse_up_icon
 	if(istype(mob.loc, /obj/vehicle/tank))//This code is related to tank + vehicle autofire code, as seen in tank.dm
 		var/obj/vehicle/tank/our_tank = mob.loc
 		our_tank.onMouseUp(object,mob)

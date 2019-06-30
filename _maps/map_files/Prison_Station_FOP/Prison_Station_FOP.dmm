@@ -5632,6 +5632,26 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/north/north)
+"aqC" = (
+/obj/structure/table/woodentable,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/tool/pen{
+	pixel_x = 12;
+	pixel_y = 8
+	},
+/obj/item/taperecorder{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/radio/intercom/general/colony{
+	dir = 8;
+	frequency = 1499
+	},
+/turf/open/floor/wood,
+/area/prison/chapel)
 "aqD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
@@ -7479,6 +7499,14 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
+"auK" = (
+/obj/item/radio/intercom/general/colony{
+	dir = 8;
+	frequency = 1499
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/wood,
+/area/prison/chapel)
 "auL" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -11467,26 +11495,6 @@
 	dir = 10
 	},
 /area/prison/chapel)
-"aEg" = (
-/obj/structure/table/woodentable,
-/obj/item/paper_bin{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/tool/pen{
-	pixel_x = 12;
-	pixel_y = 8
-	},
-/obj/item/taperecorder{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/obj/item/radio/intercom/general/colony{
-	pixel_x = 28;
-	pixel_y = -28
-	},
-/turf/open/floor/wood,
-/area/prison/chapel)
 "aEh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -12311,14 +12319,6 @@
 /obj/item/flashlight/lamp{
 	on = 0
 	},
-/turf/open/floor/wood,
-/area/prison/chapel)
-"aGt" = (
-/obj/item/radio/intercom/general/colony{
-	pixel_x = 28;
-	pixel_y = 21
-	},
-/obj/structure/table/reinforced,
 /turf/open/floor/wood,
 /area/prison/chapel)
 "aGu" = (
@@ -34279,8 +34279,7 @@
 /area/prison/maintenance/hangar_barracks)
 "bEO" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle_control/dropship1{
-	onboard = 0;
+/obj/machinery/computer/shuttle/shuttle_control/dropship1{
 	use_power = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -35112,7 +35111,7 @@
 /turf/open/floor/prison,
 /area/prison/quarters/security)
 "bGI" = (
-/obj/structure/holohoop,
+/obj/structure/hoop,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -36644,7 +36643,7 @@
 /turf/open/floor/prison,
 /area/prison/quarters/security)
 "bKf" = (
-/obj/item/toy/beach_ball/holoball,
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bKg" = (
@@ -85599,9 +85598,9 @@ axN
 aAl
 axM
 aCJ
-aEg
+aqC
 aFk
-aGt
+auK
 aHJ
 azA
 axM

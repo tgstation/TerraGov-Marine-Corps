@@ -11,7 +11,6 @@
 	flags_pass = PASSTABLE
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_ZERO
-	layer = LARGE_XENO_LAYER
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
 	hit_and_run = 1
@@ -38,17 +37,17 @@
 	switch(bonus)
 		if(2)
 			visible_message("<span class='danger'>\The [src] strikes with lethal speed!</span>", \
-			"<span class='danger'>You strike with lethal speed!</span>")
+			"<span class='danger'>We strike with lethal speed!</span>")
 		if(1.5 to 1.99)
 			visible_message("<span class='danger'>\The [src] strikes with deadly speed!</span>", \
-			"<span class='danger'>You strike with deadly speed!</span>")
+			"<span class='danger'>We strike with deadly speed!</span>")
 		if(1.25 to 1.45)
 			visible_message("<span class='danger'>\The [src] strikes with vicious speed!</span>", \
-			"<span class='danger'>You strike with vicious speed!</span>")
+			"<span class='danger'>We strike with vicious speed!</span>")
 	damage *= bonus
 	hit_and_run = 1 //reset the hit and run bonus
 	return damage
-
+	
 /mob/living/carbon/xenomorph/runner/handle_status_effects()
 	if(hit_and_run)
 		var/last_move = last_move_intent - 10

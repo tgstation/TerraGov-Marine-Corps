@@ -5800,7 +5800,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "avK" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 1
 	},
 /obj/machinery/light,
@@ -9880,7 +9880,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "aKW" = (
-/obj/structure/holohoop,
+/obj/structure/hoop,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
@@ -13745,9 +13745,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "aXE" = (
-/obj/machinery/computer/shuttle_control/dropship1{
-	onboard = 0
-	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},

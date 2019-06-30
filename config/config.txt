@@ -18,9 +18,8 @@ TITLE Change Me
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
 
-## Add a # infront of this if you want to use the SQL based systems, the legacy system uses admins.txt and files in the data folder. You need to set up your database to use the SQL based system.
+## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt and files in the data folder. You need to set up your database to use the SQL based system.
 ADMIN_LEGACY_SYSTEM
-BAN_LEGACY_SYSTEM
 
 ## Add a # infront of this to disable the shutdown server verb.
 ALLOW_SHUTDOWN

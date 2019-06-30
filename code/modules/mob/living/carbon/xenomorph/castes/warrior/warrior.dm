@@ -12,7 +12,6 @@
 	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	layer = LARGE_XENO_LAYER
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -83,7 +82,7 @@
 	L.drop_all_held_items()
 	L.KnockDown(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
-	"<span class='xenowarning'>You grab [L] by the throat!</span>")
+	"<span class='xenowarning'>We grab [L] by the throat!</span>")
 	return TRUE
 
 

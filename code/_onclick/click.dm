@@ -35,6 +35,15 @@
 /client/Click(atom/object, atom/location, control, params)
 	if(!control)
 		return
+	var/ab = FALSE
+	var/list/L = params2list(params)
+
+	var/dragged = L["drag"]
+	if(dragged && !L[dragged])
+		return
+
+	if(object && object == middragatom && L["left"])
+		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
 		
 	var/mcl = CONFIG_GET(number/minute_click_limit)
 	if(mcl && !check_rights(R_ADMIN, FALSE))
@@ -51,6 +60,9 @@
 				clicklimiter[5] = minute
 				log_admin_private("[key_name(src)] has hit the per-minute click limit of [mcl].")
 				message_admins("[ADMIN_TPMONTY(mob)] has hit the per-minute click limit of [mcl].")
+				if(ab)
+					log_admin_private("[key_name(src)] is likely using the middle click aimbot exploit.")
+					message_admins("[ADMIN_TPMONTY(mob)] is likely using the middle click aimbot exploit.")
 			to_chat(src, "<span class='danger'>[msg]</span>")
 			return
 

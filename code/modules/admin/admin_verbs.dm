@@ -618,6 +618,7 @@
 		return
 
 	var/turf/T = get_turf(A)
+	usr.forceMove(T)
 
 	log_admin("[key_name(usr)] jumped to [A] at [AREACOORD(T)].")
 	if(!isobserver(N))

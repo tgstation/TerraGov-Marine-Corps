@@ -37,5 +37,5 @@
 	else
 		padloc = "(UNKNOWN)"
 	log_talk(message, LOG_SAY, tag = "HOLOPAD in [padloc]")
-	send_speech(message, 7, T, "robot", language = language)
+	send_speech(message, 7, T, "robot", message_language = language)
 	to_chat(src, "<span class='notice'>Holopad transmitted: [real_name]: \"[message]\"</span>")

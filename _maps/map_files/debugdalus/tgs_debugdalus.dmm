@@ -1726,6 +1726,19 @@
 	pixel_z = -1
 	},
 /area/almayer/hallways/hangar)
+"adY" = (
+/obj/structure/table/almayer,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/item/radio/intercom/general{
+	pixel_x = -12;
+	pixel_y = -48
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
 "adZ" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 4
@@ -1886,6 +1899,33 @@
 	pixel_z = -1
 	},
 /area/almayer/hallways/hangar)
+"aer" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/machinery/light/small,
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aes" = (
+/obj/structure/closet/emcloset,
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/telecomms)
+"aet" = (
+/obj/structure/prop/almayer/mapping_computer,
+/obj/item/radio/intercom/general{
+	icon_state = "intercom";
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/command/cic)
 "aeu" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -2762,7 +2802,7 @@
 /area/almayer/command/cic)
 "agv" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/shuttle_control/dropship2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship2,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -2781,7 +2821,7 @@
 /area/almayer/command/cic)
 "agx" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
@@ -2943,21 +2983,6 @@
 "agQ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
-	},
-/turf/open/floor/almayer{
-	pixel_z = -1
-	},
-/area/almayer/command/cic)
-"agR" = (
-/obj/structure/table/almayer,
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 7
-	},
-/obj/structure/window/reinforced/toughened{
-	dir = 4
 	},
 /turf/open/floor/almayer{
 	pixel_z = -1
@@ -3543,25 +3568,6 @@
 /obj/structure/window/framed/almayer/requisitions,
 /turf/open/floor/plating,
 /area/almayer/squads/req)
-"aio" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
-/obj/machinery/light/small,
-/turf/open/floor/almayer{
-	pixel_z = -1
-	},
-/area/almayer/command/telecomms)
-"aip" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/almayer{
-	pixel_z = -1
-	},
-/area/almayer/command/telecomms)
 "aiq" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/incendiary,
@@ -3664,18 +3670,6 @@
 	pixel_z = -1
 	},
 /area/almayer/medical/operating_room_four)
-"aiC" = (
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
-/obj/structure/prop/almayer/mapping_computer,
-/turf/open/floor/almayer{
-	pixel_z = -1
-	},
-/area/almayer/command/cic)
 "aiD" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/almayer,
@@ -6850,7 +6844,7 @@ afd
 afd
 ahW
 afd
-aio
+aer
 aoJ
 aaa
 aaa
@@ -6977,7 +6971,7 @@ afd
 afd
 aoJ
 afd
-aip
+aes
 aoJ
 aaa
 aaa
@@ -9899,7 +9893,7 @@ afq
 afq
 aff
 ait
-aiC
+aet
 bgb
 acH
 acH
@@ -10273,7 +10267,7 @@ afq
 afq
 afq
 agx
-agR
+adY
 ahs
 afq
 afq
@@ -10407,7 +10401,7 @@ afq
 afq
 aff
 ait
-aiC
+aet
 bgb
 acH
 acH

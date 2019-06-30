@@ -190,7 +190,7 @@
 		
 	chatOutput.start() // Starts the chat
 
-	if(byond_version < 512)
+	if(byond_version < 512 || (byond_build && byond_build < 1421))
 		to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
 		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
@@ -414,6 +414,21 @@
 		qdel(query_client_in_db)
 		return
 	if(!query_client_in_db.NextRow())
+		if(CONFIG_GET(flag/panic_bunker) && !(holder?.rank?.rights & R_ADMIN) && !GLOB.deadmins[ckey])
+			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
+			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker.</span>")
+			to_chat(src, CONFIG_GET(string/panic_bunker_message))
+			var/list/connectiontopic_a = params2list(connectiontopic)
+			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
+			if(panic_addr && !connectiontopic_a["redirect"])
+				var/panic_name = CONFIG_GET(string/panic_server_name)
+				to_chat(src, "<span class='notice'>Sending you to [panic_name ? panic_name : panic_addr].</span>")
+				winset(src, null, "command=.options")
+				DIRECT_OUTPUT(src, link("[panic_addr]?redirect=1"))
+			qdel(query_client_in_db)
+			qdel(src)
+			return
+
 		new_player = 1
 		account_join_date = sanitizeSQL(findJoinDate())
 		var/sql_key = sanitizeSQL(key)

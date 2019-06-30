@@ -3,49 +3,77 @@
 	desc = "A strong door."
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
+	layer = ABOVE_WINDOW_LAYER
+	resistance_flags = ACID_PROOF
 	var/base_state = "left"
 	max_integrity = 150 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
-	visible = 0.0
+	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
+	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
-	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
-	air_properties_vary_with_direction = 1
 
-/obj/machinery/door/window/New()
-	..()
-	if (src.req_access && src.req_access.len)
-		src.icon_state = "[src.icon_state]"
-		src.base_state = src.icon_state
+
+/obj/machinery/door/window/Initialize(mapload, set_dir)
+	. = ..()
+	if(set_dir)
+		setDir(set_dir)
+	if(length(req_access))
+		icon_state = "[icon_state]"
+		base_state = icon_state
+
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	playsound(src, "shatter", 50, 1)
 	. = ..()
 
-/obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
-	if (!( ismob(AM) ))
-		var/obj/machinery/bot/bot = AM
+
+/obj/machinery/door/window/update_icon()
+	if(operating)
+		return
+	icon_state = density ? base_state : "[base_state]open"
+
+
+/obj/machinery/door/window/proc/open_and_close()
+	open()
+	if(check_access(null))
+		sleep(5 SECONDS)
+	else //secure doors close faster
+		sleep(2 SECONDS)
+	close()
+
+
+/obj/machinery/door/window/Bumped(atom/movable/bumper)
+	if(operating || !density)
+		return
+	if(!(isliving(bumper)))
+		var/obj/machinery/bot/bot = bumper
 		if(istype(bot))
-			if(density && src.check_access(bot.botcard))
-				open()
-				sleep(50)
-				close()
+			if(density && check_access(bot.botcard))
+				open_and_close()
+			else
+				do_animate("deny")
 		return
-	var/mob/M = AM // we've returned by here if M is not a mob
-	if (!( SSticker ))
+	var/mob/living/living_bumper = bumper
+	if (living_bumper.mob_size <= MOB_SIZE_SMALL || living_bumper.restrained())
 		return
-	if (src.operating)
+	bumpopen(living_bumper)
+
+
+/obj/machinery/door/window/bumpopen(mob/user)
+	if(operating || !density)
 		return
-	if (src.density && M.mob_size > MOB_SIZE_SMALL && src.allowed(AM))
-		open()
-		if(src.check_access(null))
-			sleep(50)
-		else //secure doors close faster
-			sleep(20)
-		close()
-	return
+	add_fingerprint(user, "bumpopen")
+	if(!requiresID())
+		user = null
+
+	if(allowed(user))
+		open_and_close()
+	else
+		do_animate("deny")
+
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
@@ -63,38 +91,52 @@
 	else
 		return TRUE
 
-/obj/machinery/door/window/open()
-	if (src.operating == 1) //doors can still open when emag-disabled
+/obj/machinery/door/window/open(forced = DOOR_NOT_FORCED)
+	if(operating) //doors can still open when emag-disabled
 		return FALSE
-	if (!SSticker)
-		return FALSE
-	if(!src.operating) //in case of emag
-		src.operating = 1
-	flick(text("[]opening", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
-	src.icon_state = text("[]open", src.base_state)
-	sleep(10)
+	switch(forced)
+		if(DOOR_NOT_FORCED)
+			if(!hasPower())
+				return FALSE
+		if(DOOR_FORCED_NORMAL)
+			if(CHECK_BITFIELD(obj_flags, EMAGGED))
+				return FALSE
+	if(!operating) //in case of emag
+		operating = TRUE
+	icon_state = "[base_state]open"
+	do_animate("opening")
+	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
+	sleep(1 SECONDS)
 
-	src.density = FALSE
+	density = FALSE
 
 	if(operating == 1) //emag again
-		src.operating = 0
+		operating = FALSE
 	return TRUE
 
-/obj/machinery/door/window/close()
-	if (src.operating)
-		return 0
-	src.operating = 1
-	flick(text("[]closing", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
-	src.icon_state = src.base_state
 
-	src.density = TRUE
+/obj/machinery/door/window/close(forced = DOOR_NOT_FORCED)
+	if(operating)
+		return FALSE
+	switch(forced)
+		if(DOOR_NOT_FORCED)
+			if(!hasPower())
+				return FALSE
+		if(DOOR_FORCED_NORMAL)
+			if(CHECK_BITFIELD(obj_flags, EMAGGED))
+				return FALSE
+	operating = TRUE
+	icon_state = base_state
+	do_animate("closing")
+	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
 
-	sleep(10)
+	density = TRUE
 
-	src.operating = 0
+	sleep(1 SECONDS)
+
+	operating = FALSE
 	return TRUE
+
 
 /obj/machinery/door/window/take_damage(damage)
 	src.obj_integrity = max(0, src.obj_integrity - damage)
@@ -237,6 +279,14 @@
 		return try_to_activate_door(user)
 
 
+/obj/machinery/door/window/do_animate(animation)
+	switch(animation)
+		if("opening")
+			flick("[base_state]opening", src)
+		if("closing")
+			flick("[base_state]closing", src)
+		if("deny")
+			flick("[base_state]deny", src)
 
 
 /obj/machinery/door/window/brigdoor
@@ -290,15 +340,24 @@
 /obj/machinery/door/window/southleft
 	dir = SOUTH
 
+/obj/machinery/door/window/southleft/briefing
+	req_access = list(ACCESS_MARINE_BRIG)
+
 /obj/machinery/door/window/northright
 	dir = NORTH
 	icon_state = "right"
 	base_state = "right"
 
+/obj/machinery/door/window/northright/briefing
+	req_access = list(ACCESS_MARINE_BRIG)
+
 /obj/machinery/door/window/eastright
 	dir = EAST
 	icon_state = "right"
 	base_state = "right"
+
+/obj/machinery/door/window/eastright/briefing
+	req_access = list(ACCESS_MARINE_BRIG)
 
 /obj/machinery/door/window/westright
 	dir = WEST

@@ -112,7 +112,7 @@
 /datum/xeno_caste/warrior/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "An hulking beast capable of effortlessly breaking and tearing through its enemies."
-	ancient_message = "None can stand before you. You will annihilate all weaklings who try."
+	ancient_message = "None can stand before us. We will annihilate all weaklings who try."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //

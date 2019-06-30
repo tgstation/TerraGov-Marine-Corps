@@ -307,7 +307,7 @@
 		L.forceMove(src)
 	if(pod.effectStun)
 		for(var/mob/living/M in get_turf(src))
-			M.Stun(pod.landingDelay + 10, ignore_canstun = TRUE)
+			M.Stun(pod.landingDelay + 10)
 	if(pod.effectStealth)
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)

@@ -21,7 +21,6 @@
 	var/welded = FALSE
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
-	var/air_properties_vary_with_direction = FALSE
 	var/list/fillers
 
 	//Multi-tile doors
@@ -244,6 +243,9 @@
 
 /obj/machinery/door/proc/requiresID()
 	return TRUE
+
+/obj/machinery/door/proc/hasPower()
+	return !CHECK_BITFIELD(machine_stat, NOPOWER)
 
 /obj/machinery/door/proc/update_flags_heat_protection(turf/source)
 

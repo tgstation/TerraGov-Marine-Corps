@@ -29,9 +29,6 @@
 	|| istype(A, /obj/item/reagent_container) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart || istype(A, /obj/structure/ladder)))
 		return
 
-	if(istype(A, /obj/effect/proc_holder/spell))
-		return
-
 	if((A.is_drainable() && !A.is_refillable()) && get_dist(src,A) <= 1)
 		if(!A.reagents.total_volume)
 			to_chat(user, "<span class='warning'>[A] is empty.</span>")

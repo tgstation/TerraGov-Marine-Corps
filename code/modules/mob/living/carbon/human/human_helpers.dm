@@ -243,29 +243,6 @@
 mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
 
-/mob/living/proc/camo_off_process(code = 0, damage = 0)
-	return
-
-/mob/living/carbon/human/camo_off_process(code = 0, damage = 0)
-	if(!code)
-		return
-	if(!istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak) )
-		return
-	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
-	if(!S.camo_active)
-		return
-	switch(code)
-		if(SCOUT_CLOAK_OFF_ATTACK)
-			to_chat(src, "<span class='danger'>Your cloak shimmers from your actions!</span>")
-			S.camo_last_shimmer = world.time //Reduces transparency to 50%
-			alpha = max(alpha,S.shimmer_alpha)
-		if(SCOUT_CLOAK_OFF_DAMAGE)
-			if(damage >= 15)
-				to_chat(src, "<span class='danger'>Your cloak shimmers from the damage!</span>")
-				S.camo_last_shimmer = world.time //Reduces transparency to 50%
-				alpha = max(alpha,S.shimmer_alpha)
-
-
 /mob/living/carbon/human/throw_item(atom/target)
 	. = ..()
-	camo_off_process(SCOUT_CLOAK_OFF_ATTACK)
+	SEND_SIGNAL(src, COMSIG_HUMAN_ITEM_THROW, target, null, src)

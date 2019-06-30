@@ -11,9 +11,9 @@
 	var/color = null
 	var/prefix = ""
 	var/list/xeno_leader_list
-	var/list/xenos_by_typepath
-	var/list/xenos_by_tier
-	var/list/xenos_by_upgrade
+	var/list/list/xenos_by_typepath
+	var/list/list/xenos_by_tier
+	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 
 // ***************************************
@@ -196,6 +196,7 @@
 // helper function
 /datum/hive_status/proc/remove_from_lists(mob/living/carbon/xenomorph/X)
 	// Remove() returns 1 if it removes an element from a list
+
 	if(!xenos_by_tier[X.tier].Remove(X))
 		stack_trace("failed to remove a xeno from hive status tier list, nothing was removed!?")
 		return FALSE
@@ -478,11 +479,11 @@ to_chat will check for valid clients itself already so no need to double check f
 		if(picked)
 			var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(Q.loc)
 			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-			"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+			"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 			picked.mind.transfer_to(new_xeno, TRUE)
 
-			to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+			to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 
 			stored_larva--
@@ -512,16 +513,16 @@ to_chat will check for valid clients itself already so no need to double check f
 	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
 
 	if(!length(possible_mothers))
-		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to recive new larvas.</span>")
+		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to receive new larvas.</span>")
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/chosen_mother = input("Available Mothers") as null|anything in possible_mothers
 	if(length(possible_mothers) > 1)
-		chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+		chosen_mother = input("Available Mothers") as null|anything in (possible_mothers + "Cancel")
 	else
 		chosen_mother = possible_mothers[1]
 
-	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
+	if(chosen_mother == "Cancel" || QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
 	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))
@@ -552,11 +553,11 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(mother.loc)
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-	"<span class='xenodanger'>You burrow out of the ground and awaken from your slumber. For the Hive!</span>")
+	"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
-	to_chat(new_xeno, "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>")
+	to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 	stored_larva--
 
 	log_game("[key_name(new_xeno)] has joined as [new_xeno].")

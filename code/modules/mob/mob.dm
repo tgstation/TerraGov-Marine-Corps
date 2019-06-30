@@ -32,7 +32,8 @@
 		if(GLOB.round_id)
 			stat("Round ID: [GLOB.round_id]")
 		stat("Operation Time: [worldtime2text()]")
-		stat("Current Map: [SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]")
+		stat("Current Map: [length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]")
+		stat("Current Ship: [length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]")
 		stat("Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 
@@ -691,7 +692,7 @@ mob/proc/yank_out_object()
 	if(!pulling)
 		return forceMove(destination) //No need for a special proc if there's nothing being pulled.
 	pulledby?.stop_pulling() //The leader of the choo-choo train breaks the pull
-	var/atom/movable/list/conga_line[0]
+	var/list/conga_line = list()
 	var/end_of_conga = FALSE
 	var/mob/S = src
 	conga_line += S

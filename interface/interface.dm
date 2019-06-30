@@ -84,7 +84,7 @@
 				return
 			DIRECT_OUTPUT(src, link(ship_link))
 		if("Ground")
-			switch(SSmapping.config.map_name)
+			switch(SSmapping.configs[GROUND_MAP].map_name)
 				if("Ice Colony")
 					ground_link = CONFIG_GET(string/icecolonyurl)
 				if("LV624")

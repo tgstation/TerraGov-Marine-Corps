@@ -2,17 +2,14 @@
 	caste_base_type = /mob/living/carbon/xenomorph/hunter
 	name = "Hunter"
 	desc = "A beefy, fast alien with sharp claws."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Hunter Running"
 	health = 150
 	maxHealth = 150
 	plasma_stored = 50
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	layer = LARGE_XENO_LAYER
-	var/stealth_delay = null
 	var/last_stealth = null
-	var/used_stealth = FALSE
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	actions = list(
@@ -85,14 +82,14 @@
 		if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
 			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly
 			if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-				to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
+				to_chat(src, "<span class='xenodanger'>Our sneak attack is now at maximum power.</span>")
 	//Running stealth
 	else
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * 0.5)
 		sneak_bonus = round(max(sneak_bonus - HUNTER_SNEAKATTACK_RUN_REDUCTION, 1.25), 0.01) //Rapidly lose sneak attack damage while running and stealthed
 	if(!plasma_stored)
-		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
+		to_chat(src, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
 /mob/living/carbon/xenomorph/hunter/handle_status_effects()
@@ -120,7 +117,7 @@
 		alpha = HUNTER_STEALTH_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!plasma_stored)
-		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
+		to_chat(src, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
 /mob/living/carbon/xenomorph/hunter/stealth_router(code = 0)
@@ -161,7 +158,7 @@
 		plasma_stored = 0
 		if(current_aura)
 			current_aura = null
-			to_chat(src, "<span class='warning'>You have ran out of plasma and stopped emitting pheromones.</span>")
+			to_chat(src, "<span class='warning'>We have ran out of plasma and stopped emitting pheromones.</span>")
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
