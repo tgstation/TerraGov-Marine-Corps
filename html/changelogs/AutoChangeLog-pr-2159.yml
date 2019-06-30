@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "rebalanced boiler bombard, overall reduced 2 seconds from total time needed to fire, but also frontloaded most of the wait to toggling the ability, and reduced the wait when firing."
