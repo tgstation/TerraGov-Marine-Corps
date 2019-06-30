@@ -102,9 +102,6 @@
 		else
 			flick("door_deny", src)
 
-/obj/machinery/door/attack_ai(mob/user)
-	return src.attack_hand(user)
-
 
 /obj/machinery/door/attack_paw(mob/user)
 	return src.attack_hand(user)
@@ -119,17 +116,19 @@
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
 	if(operating || CHECK_BITFIELD(obj_flags, EMAGGED))
 		return
+	var/can_open
 	if(!Adjacent(user))
-		user = null //so allowed(user) always succeeds
+		can_open = TRUE
 	if(!requiresID())
-		user = null //so allowed(user) always succeeds
+		can_open = TRUE
 	if(allowed(user))
+		can_open = TRUE
+	if(can_open)
 		if(density)
 			open()
 		else
 			close()
-		return
-	if(density)
+	else if(density)
 		flick("door_deny", src)
 
 
