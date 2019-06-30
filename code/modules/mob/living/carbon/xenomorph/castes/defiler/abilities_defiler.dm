@@ -39,8 +39,10 @@
 	return ..()
 
 /datum/action/xeno_action/neuroclaws/proc/slash(datum/source, mob/living/carbon/human/H, damage, list/damage_mod)
-	if(!active || !H)
-		return
+	if(!active)
+		CRASH("neuroclaws slash callback invoked without neuroclaws active")
+	if(!H)
+		CRASH("neuroclaws slash callback invoked with a null human reference")
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	if(!X.check_plasma(50))
 		return
