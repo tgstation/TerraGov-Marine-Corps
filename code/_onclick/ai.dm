@@ -158,3 +158,19 @@
 //
 /mob/living/silicon/ai/TurfAdjacent(turf/T)
 	return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(T))
+
+
+/obj/structure/ladder/attack_ai(mob/living/silicon/ai/AI)
+	if(up && down)
+		switch(alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel"))
+			if("Up")
+				AI.forceMove(get_turf(up))
+			if("Down")
+				AI.forceMove(get_turf(down))
+			if("Cancel")
+				return
+	else if(up)
+		AI.forceMove(get_turf(up))
+
+	else if(down)
+		AI.forceMove(get_turf(down))
