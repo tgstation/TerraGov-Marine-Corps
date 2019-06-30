@@ -2012,11 +2012,11 @@
 	},
 /area/desert_dam/building/lab_northwest/kitchen)
 "ahk" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/desert_dam/building/lab_northwest/dormitory)
 "ahl" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/desert_dam/building/lab_northwest/dormitory)
@@ -57963,7 +57963,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_south_west)
 "cMJ" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 4
 	},
 /turf/open/floor{
@@ -57977,7 +57977,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_south_west)
 "cML" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 8
 	},
 /turf/open/floor{

@@ -27601,7 +27601,7 @@
 	icon_state = "E-corner"
 	},
 /obj/effect/decal/warning_stripes,
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 8;
 	icon_state = "hoop"
 	},
@@ -27987,7 +27987,7 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes,
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 4;
 	icon_state = "hoop"
 	},
@@ -28008,7 +28008,7 @@
 	icon_state = "NS-center"
 	},
 /obj/effect/decal/warning_stripes,
-/obj/item/toy/beach_ball/holoball,
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvT" = (
@@ -29023,7 +29023,7 @@
 /area/ice_colony/underground/maintenance/central)
 "byt" = (
 /obj/structure/rack,
-/obj/item/toy/beach_ball/holoball,
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "byu" = (

@@ -5800,7 +5800,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "avK" = (
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 1
 	},
 /obj/machinery/light,
@@ -9880,7 +9880,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "aKW" = (
-/obj/structure/holohoop,
+/obj/structure/hoop,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
