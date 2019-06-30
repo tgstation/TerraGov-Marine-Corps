@@ -64,16 +64,6 @@
 	icon_state = "wallet"
 
 
-/obj/item/storage/wallet/GetID()
-	return front_id
-
-/obj/item/storage/wallet/GetAccess()
-	var/obj/item/I = GetID()
-	if(I)
-		return I.GetAccess()
-	else
-		return ..()
-
 /obj/item/storage/wallet/random/Initialize()
 	. = ..()
 	var/item1_type = pick( /obj/item/spacecash/c10,/obj/item/spacecash/c100,/obj/item/spacecash/c1000,/obj/item/spacecash/c20,/obj/item/spacecash/c200,/obj/item/spacecash/c50, /obj/item/spacecash/c500)

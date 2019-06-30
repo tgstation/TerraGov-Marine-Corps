@@ -120,7 +120,7 @@
 		header += "<hr>"
 
 		var/jobs_all = ""
-		var/list/alljobs = (get_marine_jobs()) + "Custom"
+		var/list/alljobs = JOBS_REGULAR_ALL + "Custom"
 		for(var/job in alljobs)
 			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[oldreplacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 
@@ -192,30 +192,22 @@
 				paygrade += "<input type='submit' value='Modify'>"
 				paygrade += "</form>"
 			var/accesses = ""
-			if(istype(src,/obj/machinery/computer/card/centcom))
-				accesses += "<h5>Central Command:</h5>"
-				for(var/A in get_all_centcom_access())
+			accesses += "<div align='center'><b>Access</b></div>"
+			accesses += "<table style='width:100%'>"
+			accesses += "<tr>"
+			for(var/i = 1; i <= 6; i++)
+				accesses += "<td style='width:14%'><b>[get_region_accesses_name(i)]:</b></td>"
+			accesses += "</tr><tr>"
+			for(var/i = 1; i <= 6; i++)
+				accesses += "<td style='width:14%' valign='top'>"
+				for(var/A in get_region_accesses(i))
 					if(A in modify.access)
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[oldreplacetext(get_centcom_access_desc(A), " ", "&nbsp")]</font></a> "
+						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[oldreplacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
 					else
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[oldreplacetext(get_centcom_access_desc(A), " ", "&nbsp")]</a> "
-			else
-				accesses += "<div align='center'><b>Access</b></div>"
-				accesses += "<table style='width:100%'>"
-				accesses += "<tr>"
-				for(var/i = 1; i <= 6; i++)
-					accesses += "<td style='width:14%'><b>[get_region_accesses_name(i)]:</b></td>"
-				accesses += "</tr><tr>"
-				for(var/i = 1; i <= 6; i++)
-					accesses += "<td style='width:14%' valign='top'>"
-					for(var/A in get_region_accesses(i))
-						if(A in modify.access)
-							accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[oldreplacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
-						else
-							accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[oldreplacetext(get_access_desc(A), " ", "&nbsp")]</a> "
-						accesses += "<br>"
-					accesses += "</td>"
-				accesses += "</tr></table>"
+						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[oldreplacetext(get_access_desc(A), " ", "&nbsp")]</a> "
+					accesses += "<br>"
+				accesses += "</td>"
+			accesses += "</tr></table>"
 			body = "[carddesc]<br>[jobs]<br>[paygrade]<br><br>[accesses]" //CHECK THIS
 		else
 			body = "<a href='?src=\ref[src];choice=auth'>{Log in}</a> <br><hr>"
@@ -280,7 +272,7 @@
 				if(authenticated)
 					var/access_type = text2num(href_list["access_target"])
 					var/access_allowed = text2num(href_list["allowed"])
-					if(access_type in get_all_marine_access())
+					if(access_type in ALL_MARINE_ACCESS)
 						modify.access -= access_type
 						if(access_allowed == 1)
 							modify.access += access_type

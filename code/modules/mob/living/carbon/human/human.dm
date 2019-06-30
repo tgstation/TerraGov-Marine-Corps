@@ -306,44 +306,39 @@
 		return "Unknown"
 	return real_name
 
-//gets name from ID or PDA itself, ID inside PDA doesn't matter
-//Useful when player is being seen by other mobs
+
 /mob/living/carbon/human/proc/get_id_name(if_no_id = "Unknown")
 	. = if_no_id
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			return I.registered_name
-	return
+	if(!wear_id)
+		return
+
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		return I.registered_name
 
 //Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
-	//Check hands
-	var/obj/item/card/id/id_card
-	var/obj/item/held_item
-	held_item = get_active_held_item()
-	if(held_item) //Check active hand
-		id_card = held_item.GetID()
+	var/obj/item/card/id/id_card = get_active_held_item()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_held_item()
-		if(held_item)
-			id_card = held_item.GetID()
+		id_card = get_inactive_held_item()
 
-	if(id_card)
-		if(hand_first)
-			return id_card
-		else
-			. = id_card
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
 
-	//Check inventory slots
+	if(istype(id_card) && hand_first)
+		return id_card
+
 	if(wear_id)
-		id_card = wear_id.GetID()
-		if(id_card)
-			return id_card
+		id_card = wear_id
 	else if(belt)
-		id_card = belt.GetID()
-		if(id_card)
-			return id_card
+		id_card = belt
+
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
+			
+	return istype(id_card) ? id_card : null
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
@@ -555,8 +550,8 @@
 			var/modified = 0
 			var/perpname = "wot"
 			if(wear_id)
-				var/obj/item/card/id/I = wear_id.GetID()
-				if(I)
+				var/obj/item/card/id/I = get_idcard()
+				if(istype(I))
 					perpname = I.registered_name
 				else
 					perpname = name
@@ -1323,10 +1318,8 @@
 	. = ..()
 
 	var/datum/job/J = SSjob.GetJob(job)
-	J.equip(src)
-
-	if(assigned_squad)
-		change_squad(assigned_squad.name)
+	J?.assign(src)
+	change_squad(assigned_squad?.name)
 
 
 /mob/living/carbon/human/proc/change_squad(squad)
