@@ -302,7 +302,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		usr << browse(null, "window=radio")
 
 
-
 /obj/item/radio/headset/almayer/mt
 	name = "engineering radio headset"
 	icon_state = "eng_headset"
@@ -321,9 +320,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = new /obj/item/encryptionkey/req
 
 
+/obj/item/radio/headset/almayer/mmpo
+	name = "marine master at arms radio headset"
+	icon_state = "sec_headset"
+	keyslot = new /obj/item/encryptionkey/mmpo
+
+
 /obj/item/radio/headset/almayer/cmpcom
-	name = "marine Command Master at Arms radio headset"
-	icon_state = "med_headset"
+	name = "marine command master at arms radio headset"
+	icon_state = "sec_headset_alt"
 	keyslot = new /obj/item/encryptionkey/cmpcom
 	use_command = TRUE
 	command = TRUE
@@ -331,7 +336,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/mcom
 	name = "marine command radio headset"
-	icon_state = "med_headset"
+	icon_state = "com_headset_alt"
 	keyslot = new /obj/item/encryptionkey/mcom
 	use_command = TRUE
 	command = TRUE
@@ -342,16 +347,43 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = new /obj/item/encryptionkey/mcom/ai
 
 
-
-
 /obj/item/radio/headset/almayer/marine
 	keyslot = new /obj/item/encryptionkey/general
 	freerange = TRUE
 
 
+/obj/item/radio/headset/almayer/marine/Initialize(mapload, squad, rank)
+	if(squad)
+		icon_state = "headset_marine_[lowertext(squad)]"
+		var/dat = "marine [lowertext(squad)]"
+		switch(squad)
+			if("Alpha")
+				frequency = FREQ_ALPHA
+			if("Bravo")
+				frequency = FREQ_BRAVO
+			if("Charlie")
+				frequency = FREQ_CHARLIE
+			if("Delta")
+				frequency = FREQ_DELTA
+		switch(rank)
+			if("Squad Leader")
+				dat += " leader"
+				keyslot2 = new /obj/item/encryptionkey/squadlead
+				use_command = TRUE
+				command = TRUE
+			if("Squad Engineer")
+				dat += " engineer"
+				keyslot2 = new /obj/item/encryptionkey/engi
+			if("Squad Corpsman")
+				dat += " corpsman"
+				keyslot2 = new /obj/item/encryptionkey/med
+		name = dat + " radio headset"
+	return ..()
+
+
 /obj/item/radio/headset/almayer/marine/alpha
 	name = "marine alpha radio headset"
-	icon_state = "sec_headset"
+	icon_state = "headset_marine_alpha"
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 
 
@@ -375,7 +407,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/bravo
 	name = "marine bravo radio headset"
-	icon_state = "eng_headset"
+	icon_state = "headset_marine_bravo"
 	frequency = FREQ_BRAVO
 
 
@@ -399,7 +431,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/charlie
 	name = "marine charlie radio headset"
-	icon_state = "charlie_headset"
+	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE
 
 
@@ -423,7 +455,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/marine/delta
 	name = "marine delta radio headset"
-	icon_state = "com_headset"
+	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA
 
 
@@ -442,14 +474,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/marine/delta/med
 	name = "marine delta corpsman radio headset"
 	keyslot2 = new /obj/item/encryptionkey/med
-
-
-
-/obj/item/radio/headset/almayer/mmpo
-	name = "marine military police radio headset"
-	icon_state = "cargo_headset"
-	keyslot = new /obj/item/encryptionkey/mmpo
-
 
 
 //Distress headsets.
