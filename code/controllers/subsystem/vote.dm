@@ -197,9 +197,6 @@ SUBSYSTEM_DEF(vote)
 					maps += i
 				choices.Add(maps)
 				if(length(choices) < 2)
-					var/datum/map_config/VM = SSmapping.configs[SHIP_MAP]
-					SSmapping.changemap(VM, SHIP_MAP)
-					message_admins("Defaulting next ship map to the current one. Set a different one now if you want it.")
 					return FALSE
 			if("custom")
 				question = stripped_input(usr, "What is the vote for?")
