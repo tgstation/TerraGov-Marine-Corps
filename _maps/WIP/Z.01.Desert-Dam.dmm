@@ -15972,7 +15972,7 @@
 /area/desert_dam/building/administration/control_room)
 "aQG" = (
 /obj/structure/table,
-/obj/machinery/computer/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /turf/open/floor{
 	icon_state = "darkblue2";
 	dir = 1

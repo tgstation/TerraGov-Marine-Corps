@@ -10375,7 +10375,7 @@
 /area/almayer/command/cic)
 "axR" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/shuttle_control/dropship2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship2,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -10390,7 +10390,7 @@
 /area/almayer/command/cic)
 "axT" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
@@ -32715,7 +32715,7 @@
 /area/almayer/hallways/hangar)
 "bBv" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/shuttle_control/dropship2,
+/obj/machinery/computer/shuttle/shuttle_control/dropship2,
 /turf/open/floor/almayer{
 	dir = 9;
 	icon_state = "red"
@@ -32723,7 +32723,7 @@
 /area/almayer/hallways/hangar)
 "bBw" = (
 /obj/structure/table/almayer,
-/obj/machinery/computer/shuttle_control/dropship1,
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /turf/open/floor/almayer{
 	dir = 5;
 	icon_state = "red"
