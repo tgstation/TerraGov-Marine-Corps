@@ -16,13 +16,15 @@
 	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
-	w_class = 3.0
-	unfolded_path = /obj/structure/closet/bodybag/tarp
+	w_class = WEIGHT_CLASS_NORMAL
+	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
+
 
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "snowtarp_folded"
-	unfolded_path = /obj/structure/closet/bodybag/tarp/snow
+	unfoldedbag_path = /obj/structure/closet/bodybag/tarp/snow
+
 
 /obj/structure/closet/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp"
@@ -34,35 +36,50 @@
 	icon_opened = "jungletarp_open"
 	open_sound = 'sound/effects/vegetation_walk_1.ogg'
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
-	item_path = /obj/item/bodybag/tarp
-	anchored = TRUE
+	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0
-	var/process_count = 0
+
 
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
+	if(!opened && bodybag_occupant)
+		anchored = TRUE
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-		START_PROCESSING(SSfastprocess, src)
+		animate(src, alpha = 13, time = 4 SECONDS) //Fade out gradually.
 
-/obj/structure/closet/bodybag/tarp/process() //We only process until stealth fully achieved to save resources.
-	if(process_count++ < 4)
-		return
 
-	process_count = 0
+/obj/structure/closet/bodybag/tarp/open()
+	anchored = FALSE
+	if(alpha != initial(alpha))
+		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
+		alpha = initial(alpha) //stealth mode disengaged
+		animate(src) //Cancel the fade out if still ongoing.
+	if(bodybag_occupant)
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED))
+	return ..()
 
-	var/mob/M = locate() in src //need to be occupied
-	if(opened || !M) //Abort if no mob inside.
-		alpha = initial(alpha)
-		STOP_PROCESSING(SSfastprocess, src)
-		return
 
-	alpha = max(alpha - 85, 13)
+/obj/structure/closet/bodybag/tarp/closet_special_handling(mob/living/mob_to_stuff) // overriding this
+	if(!ishuman(mob_to_stuff))
+		return FALSE //Humans only.
+	if(mob_to_stuff.stat == DEAD) //Only the dead for bodybags.
+		return FALSE
+	return TRUE
 
-	if(alpha <= 13)
-		STOP_PROCESSING(SSfastprocess, src)
-		return
+
+/obj/structure/closet/bodybag/tarp/close()
+	. = ..()
+	if(bodybag_occupant)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED), .proc/on_bodybag_occupant_death)
+
+
+/obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(datum/source, gibbed)
+	open()
+
+
+/obj/structure/closet/bodybag/tarp/update_name()
+	return //Shouldn't be revealing who's inside.
+
 
 /obj/structure/closet/bodybag/tarp/fire_act(exposed_temperature, exposed_volume)
 	var/mob/M = locate() in src //need to be occupied
@@ -91,19 +108,12 @@
 	if(!opened && M)
 		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
 
-/obj/structure/closet/bodybag/tarp/open()
-	. = ..()
-	STOP_PROCESSING(SSfastprocess, src)
-	if(alpha != initial(alpha))
-		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
-		alpha = initial(alpha) //stealth mode disengaged
-
 
 /obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"
 	icon_closed = "snowtarp_closed"
 	icon_opened = "snowtarp_open"
-	item_path = /obj/item/bodybag/tarp/snow
+	foldedbag_path = /obj/item/bodybag/tarp/snow
 
 
 /obj/item/coin/marine
