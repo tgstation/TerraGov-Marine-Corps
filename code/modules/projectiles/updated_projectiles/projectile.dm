@@ -621,7 +621,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		var/initial_armor = armor.getRating(P.ammo.armor_type)
 		var/affecting_armor = initial_armor + armor_bonus + armor_pheromone_bonus
 		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
+		world << "<span class='debuginfo'>Initial armor is: <b>[affecting_armor]</b></span>"
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/xenomorph/charger = src
@@ -631,16 +631,16 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 			if(P.dir == charger.dir)
 				if(isxenoqueen(src))
-					affecting_armor = max(0, armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_low))) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
+					affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_low))) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
-					affecting_armor = max(0, armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_lmed))) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
+					affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_lmed))) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
 			else if(P.dir == reverse_direction(charger.dir))
 				affecting_armor += round(initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_low)) //We are facing the bullet.
 			else if(isxenocrusher(src))
 				affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_vlow))) //side armour eats a bit of shit if we're a Crusher
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
+			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[affecting_armor]</b></span>")
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || affecting_armor > 0 ? P.ammo.penetration : 0
@@ -663,7 +663,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			affecting_armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
 													//This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_XENO_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
+			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[affecting_armor]</b></span>")
 			#endif
 			var/i = 0
 			if(damage)
@@ -673,7 +673,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 						affecting_armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
 						damage 		-= armor_soak
 						#if DEBUG_XENO_DEFENSE
-						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
+						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[affecting_armor]</b></span>")
 						#endif
 					else break //If we failed to block the damage, it's time to get out of the loop.
 					i++
