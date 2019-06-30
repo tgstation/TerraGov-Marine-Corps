@@ -302,7 +302,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		usr << browse(null, "window=radio")
 
 
-
 /obj/item/radio/headset/almayer/mt
 	name = "engineering radio headset"
 	icon_state = "eng_headset"
@@ -321,9 +320,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = new /obj/item/encryptionkey/req
 
 
+/obj/item/radio/headset/almayer/mmpo
+	name = "marine master at arms radio headset"
+	icon_state = "sec_headset"
+	keyslot = new /obj/item/encryptionkey/mmpo
+
+
 /obj/item/radio/headset/almayer/cmpcom
-	name = "marine Command Master at Arms radio headset"
-	icon_state = "med_headset"
+	name = "marine command master at arms radio headset"
+	icon_state = "sec_headset_alt"
 	keyslot = new /obj/item/encryptionkey/cmpcom
 	use_command = TRUE
 	command = TRUE
@@ -331,7 +336,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/almayer/mcom
 	name = "marine command radio headset"
-	icon_state = "med_headset"
+	icon_state = "com_headset_alt"
 	keyslot = new /obj/item/encryptionkey/mcom
 	use_command = TRUE
 	command = TRUE
@@ -340,8 +345,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/mcom/silicon
 	name = "silicon radio"
 	keyslot = new /obj/item/encryptionkey/mcom/ai
-
-
 
 
 /obj/item/radio/headset/almayer/marine
@@ -471,14 +474,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/almayer/marine/delta/med
 	name = "marine delta corpsman radio headset"
 	keyslot2 = new /obj/item/encryptionkey/med
-
-
-
-/obj/item/radio/headset/almayer/mmpo
-	name = "marine military police radio headset"
-	icon_state = "cargo_headset"
-	keyslot = new /obj/item/encryptionkey/mmpo
-
 
 
 //Distress headsets.
