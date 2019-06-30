@@ -273,7 +273,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 
 	if(GLOB.tgs)
-		var/datum/tgs_api/TGA = GLOB.tgs
+		var/datum/tgs_api/TGS = GLOB.tgs
 		if(TGS.reboot_mode == 1)
 			to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
 			world.Reboot(FALSE)
