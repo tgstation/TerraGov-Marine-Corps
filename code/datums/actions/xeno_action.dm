@@ -114,13 +114,17 @@
 /datum/action/xeno_action/proc/action_cooldown_check()
 	return !on_cooldown
 
+
 /datum/action/xeno_action/proc/clear_cooldown()
-	for(var/timer in active_timers)
-		qdel(timer)
-		on_cooldown_finish()
+	if(!cooldown_id)
+		return
+	deltimer(cooldown_id)
+	on_cooldown_finish()
+
 
 /datum/action/xeno_action/proc/get_cooldown()
 	return cooldown_timer
+
 
 /datum/action/xeno_action/proc/add_cooldown()
 	if(on_cooldown) // stop doubling up
@@ -131,11 +135,10 @@
 	button.overlays += cooldown_image
 	update_button_icon()
 
+
 /datum/action/xeno_action/proc/cooldown_remaining()
-	for(var/i in active_timers)
-		var/datum/timedevent/timer = i
-		return (timer.timeToRun - world.time) * 0.1
-	return 0
+	return timeleft(cooldown_id) * 0.1
+
 
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
