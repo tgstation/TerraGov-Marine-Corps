@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.clear_leader(tracking_id)
 	SSdirection.stop_tracking("marine-sl", old_lead)
 
-	if(old_lead.mind.assigned_role)
+	if(old_lead.mind?.assigned_role)
 		if(old_lead.mind.cm_skills)
 			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Corpsman" || "Squad Smartgunner"))
 				old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER

@@ -52,7 +52,7 @@
 		ghostize(TRUE)
 		return
 
-	if(alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body") != "Ghost")
+	if(alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", "Yes", "No") != "Yes")
 		return
 
 	set_resting(TRUE)
