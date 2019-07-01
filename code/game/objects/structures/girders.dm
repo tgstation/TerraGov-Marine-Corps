@@ -320,7 +320,7 @@
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	max_integrity = 50
 
 /obj/structure/girder/reinforced

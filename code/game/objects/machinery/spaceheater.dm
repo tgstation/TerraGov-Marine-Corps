@@ -1,5 +1,5 @@
 /obj/machinery/space_heater
-	anchored = 0
+	anchored = FALSE
 	density = 0
 	icon = 'icons/obj/machines/atmos.dmi'
 	icon_state = "sheater0"

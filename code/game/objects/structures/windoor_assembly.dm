@@ -14,7 +14,7 @@ obj/structure/windoor_assembly
 
 	name = "Windoor Assembly"
 	icon_state = "l_windoor_assembly01"
-	anchored = 0
+	anchored = FALSE
 	density = 0
 	dir = NORTH
 
@@ -29,7 +29,7 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	..()
 	if(constructed)
 		state = "01"
-		anchored = 0
+		anchored = FALSE
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
 			setDir(start_dir)

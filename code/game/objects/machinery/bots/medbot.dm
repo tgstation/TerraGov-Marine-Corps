@@ -9,7 +9,7 @@
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "medibot0"
 	density = 0
-	anchored = 0
+	anchored = FALSE
 	max_integrity = 20
 	req_access =list(ACCESS_MARINE_MEDBAY)
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
@@ -214,7 +214,7 @@
 		if(user) src.oldpatient = user
 		src.currently_healing = 0
 		src.last_found = world.time
-		src.anchored = 0
+		src.anchored = FALSE
 		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		src.safety_checks = 0
 		src.on = 1

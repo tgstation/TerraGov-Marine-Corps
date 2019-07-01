@@ -262,7 +262,7 @@
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 	opacity = 0
 
 

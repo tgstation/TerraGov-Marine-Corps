@@ -123,7 +123,7 @@
 	color = rgb(255,251,0)
 
 /obj/structure/bed/chair/office
-	anchored = 0
+	anchored = FALSE
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
@@ -154,11 +154,11 @@
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/chair/dropship/pilot
 	icon_state = "pilot_chair"
