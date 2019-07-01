@@ -117,7 +117,7 @@
 				cooldown_message = world.time
 
 		if("award")
-			if(!usr.mind || usr.mind.assigned_role != "Captain")
+			if(!usr.mind || usr.mind.assigned_role != CAPTAIN)
 				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
 				return
 

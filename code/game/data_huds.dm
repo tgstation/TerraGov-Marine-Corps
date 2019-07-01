@@ -437,8 +437,8 @@
 	return
 
 
-#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS "Squad Leader", "Squad Engineer", "Squad Specialist", "Squad Corpsman", "Squad Smartgunner", "Squad Marine"
-#define SQUAD_HUD_SUPPORTED_OTHER_JOBS "Captain", "Executive Officer", "Field Commander", "Intelligence Officer", "Pilot Officer", "Chief Ship Engineer", "Corporate Liaison", "Chief Medical Officer", "Requisitions Officer", "Command Master at Arms", "Tank Crewman", "Medical Officer", "Ship Engineer", "Synthetic", "Master at Arms", "Cargo Technician", "Medical Researcher"
+#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS SQUAD_LEADER, SQUAD_ENGINEER, SQUAD_SPECIALIST, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_MARINE
+#define SQUAD_HUD_SUPPORTED_OTHER_JOBS CAPTAIN, EXECUTIVE_OFFICER, FIELD_COMMANDER, INTELLIGENCE_OFFICER, PILOT_OFFICER, CHIEF_SHIP_ENGINEER, CORPORATE_LIAISON, CHIEF_MEDICAL_OFFICER, REQUISITIONS_OFFICER, COMMAND_MASTER_AT_ARMS, TANK_CREWMAN, MEDICAL_OFFICER, SHIP_ENGINEER, SYNTHETIC, MASTER_AT_ARMS, CARGO_TECHNICIAN, MEDICAL_RESEARCHER
 
 /mob/living/carbon/human/hud_set_squad()
 	var/image/holder = hud_list[SQUAD_HUD]
@@ -449,7 +449,7 @@
 		var/squad_color = assigned_squad.color
 		var/rank = job
 		if(assigned_squad.squad_leader == src)
-			rank = "Squad Leader"
+			rank = SQUAD_LEADER
 		switch(rank)
 			if(SQUAD_HUD_SUPPORTED_SQUAD_JOBS)
 				var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
