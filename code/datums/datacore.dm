@@ -172,8 +172,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
 
-	var/icon/front = new(get_id_photo(H), dir = SOUTH)
-	var/icon/side = new(get_id_photo(H), dir = WEST)
+	var/icon/front = new(get_id_photo(H, show_directions = list(SOUTH)))
+	var/icon/side = new(get_id_photo(H, show_directions = list(WEST)))
 	//General Record
 	var/datum/data/record/G = new()
 	G.fields["id"]			= id

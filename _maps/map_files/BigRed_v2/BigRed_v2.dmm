@@ -17826,7 +17826,6 @@
 /area/bigredv2/outside/admin_building)
 "bbr" = (
 /obj/structure/table,
-/obj/item/storage/photo_album,
 /obj/item/tool/pen/red,
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)

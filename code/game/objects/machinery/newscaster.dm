@@ -493,7 +493,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				newMsg.author = src.scanned_user
 				newMsg.body = src.msg
 				if(photo)
-					newMsg.img = photo.img
+					newMsg.img = photo.picture.picture_icon
 				for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 					if(FC.channel_name == src.channel_name)
 						FC.messages += newMsg                  //Adding message to the network's appropriate feed_channel
@@ -567,7 +567,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 						WANTED.body = src.msg
 						WANTED.backup_author = src.scanned_user //I know, a bit wacky
 						if(photo)
-							WANTED.img = photo.img
+							WANTED.img = photo.picture.picture_icon
 						GLOB.news_network.wanted_issue = WANTED
 						for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.all_casters)
 							NEWSCASTER.newsAlert()
@@ -581,7 +581,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 						GLOB.news_network.wanted_issue.body = src.msg
 						GLOB.news_network.wanted_issue.backup_author = src.scanned_user
 						if(photo)
-							GLOB.news_network.wanted_issue.img = photo.img
+							GLOB.news_network.wanted_issue.img = photo.picture.picture_icon
 						src.screen = 19
 
 			src.updateUsrDialog()
