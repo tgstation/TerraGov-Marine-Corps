@@ -72,7 +72,7 @@
 		return FALSE
 	for(var/g in GLOB.observer_list)
 		var/mob/dead/observer/ghost = g
-		if(ghost.mind != mind)
+		if(ghost.current != src)
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
