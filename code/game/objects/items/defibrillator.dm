@@ -68,7 +68,7 @@
 
 
 /mob/living/carbon/human/proc/get_ghost()
-	if(!mind || client) //Let's call up the correct ghost!
+	if(client) //Let's call up the correct ghost!
 		return FALSE
 	for(var/g in GLOB.observer_list)
 		var/mob/dead/observer/ghost = g
