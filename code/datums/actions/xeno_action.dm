@@ -123,12 +123,13 @@
 	return cooldown_timer
 
 /datum/action/xeno_action/proc/add_cooldown()
-	if(!length(active_timers)) // stop doubling up
-		last_use = world.time
-		on_cooldown = TRUE
-		cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
-		button.overlays += cooldown_image
-		update_button_icon()
+	if(on_cooldown) // stop doubling up
+		return
+	last_use = world.time
+	on_cooldown = TRUE
+	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
+	button.overlays += cooldown_image
+	update_button_icon()
 
 /datum/action/xeno_action/proc/cooldown_remaining()
 	for(var/i in active_timers)
