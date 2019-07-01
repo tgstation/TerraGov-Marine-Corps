@@ -3,7 +3,6 @@
 	var/plasma_cost = 0
 	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
-	var/on_cooldown
 	var/last_use
 	var/cooldown_timer
 	var/ability_name
@@ -112,7 +111,7 @@
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
-	return !on_cooldown
+	return !cooldown_id
 
 
 /datum/action/xeno_action/proc/clear_cooldown()
@@ -127,10 +126,9 @@
 
 
 /datum/action/xeno_action/proc/add_cooldown()
-	if(on_cooldown) // stop doubling up
+	if(cooldown_id) // stop doubling up
 		return
 	last_use = world.time
-	on_cooldown = TRUE
 	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
 	button.overlays += cooldown_image
 	update_button_icon()
@@ -142,7 +140,7 @@
 
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
-	on_cooldown = FALSE
+	cooldown_id = null
 	if(!button)
 		CRASH("no button object on finishing xeno action cooldown")
 	button.overlays -= cooldown_image

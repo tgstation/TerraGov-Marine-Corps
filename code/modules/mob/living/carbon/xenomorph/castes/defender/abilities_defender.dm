@@ -216,7 +216,7 @@
 	var/was_fortified = X.fortify
 	if(X.fortify)
 		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
-		if(FT.on_cooldown)
+		if(FT.cooldown_id)
 			to_chat(src, "<span class='xenowarning'>We cannot yet untuck ourselves!</span>")
 			return fail_activate()
 		X.set_fortify(FALSE, TRUE)
@@ -273,7 +273,7 @@
 	var/was_crested = X.crest_defense
 	if(X.crest_defense)
 		var/datum/action/xeno_action/CD = X.actions_by_path[/datum/action/xeno_action/toggle_crest_defense]
-		if(CD.on_cooldown)
+		if(CD.cooldown_id)
 			to_chat(X, "<span class='xenowarning'>We cannot yet transition to a defensive stance!</span>")
 			return fail_activate()
 		X.set_crest_defense(FALSE, TRUE)
