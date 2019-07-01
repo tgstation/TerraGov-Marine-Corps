@@ -19,3 +19,6 @@ endmap
 
 map theseus
 endmap
+
+map pillar_of_spring
+endmap
