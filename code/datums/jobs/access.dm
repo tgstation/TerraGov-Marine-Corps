@@ -266,7 +266,7 @@
 		if("O5")
 			. = size ? "CDR " : "Commander"
 		if("O6")
-			. = size ? "CPT " : CAPTAIN
+			. = size ? "CPT " : "Captain"
 		if("O7")
 			. = size ? "COMM " : "Commodore"
 		if("O8")
