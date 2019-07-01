@@ -161,18 +161,18 @@
 
 
 /obj/structure/ladder/attack_ai(mob/living/silicon/ai/AI)
-	var/turf/up = get_turf(up)
-	var/turf/down = get_turf(down)
+	var/turf/TU = get_turf(up)
+	var/turf/TD = get_turf(down)
 	if(up && down)
 		switch(alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel"))
 			if("Up")
-				up.move_camera_by_click()
+				TU.move_camera_by_click()
 			if("Down")
-				down.move_camera_by_click()
+				TD.move_camera_by_click()
 			if("Cancel")
 				return
 	else if(up)
-		up.move_camera_by_click()
+		TU.move_camera_by_click()
 
 	else if(down)
-		down.move_camera_by_click()
+		TD.move_camera_by_click()
