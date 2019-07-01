@@ -7791,8 +7791,8 @@
 	},
 /area/prison/medbay)
 "avu" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 28
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/floor/prison/whitegreen{
 	dir = 4
@@ -10937,8 +10937,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/maxsec)
 "aCR" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = -28
+/obj/machinery/vending/nanomed{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11611,9 +11611,7 @@
 /turf/open/floor/freezer,
 /area/prison/toilet/research)
 "aEx" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = 28
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor/freezer,
 /area/prison/toilet/research)
 "aEy" = (
@@ -19215,8 +19213,8 @@
 	},
 /area/prison/canteen)
 "aVY" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -28
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/prison/toilet/staff)
@@ -39818,8 +39816,8 @@
 	},
 /area/prison/hallway/engineering)
 "bSb" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = -28
+/obj/machinery/vending/nanomed{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -39839,8 +39837,8 @@
 	},
 /area/prison/toilet/security)
 "bSd" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = -28
+/obj/machinery/vending/nanomed{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
