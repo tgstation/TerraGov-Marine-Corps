@@ -9,7 +9,7 @@
 //Captain
 /datum/job/command/captain
 	title = "Captain"
-	paygrade = "O6"
+	paygrade = /datum/paygrade/cpt
 	comm_title = "CPT"
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
@@ -51,7 +51,7 @@ Godspeed, captain! And remember, you are not above the law."})
 //Field Commander
 /datum/job/command/fieldcommander
 	title = "Field Commander"
-	paygrade = "MO4"
+	paygrade = /datum/paygrade/maj
 	comm_title = "FCDR"
 	skills_type = /datum/skills/FO
 	access = ALL_MARINE_ACCESS
@@ -95,7 +95,7 @@ Make the TGMC proud!"})
 //Intelligence Officer
 /datum/job/command/intelligenceofficer
 	title = "Intelligence Officer"
-	paygrade = "O3"
+	paygrade = /datum/paygrade/lt
 	comm_title = "IO"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -131,7 +131,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 //Pilot Officer
 /datum/job/command/pilot
 	title = "Pilot Officer"
-	paygrade = "WO"
+	paygrade = /datum/paygrade/wo
 	comm_title = "PO"
 	total_positions = 2
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
@@ -168,7 +168,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 //Tank Crewmen
 /datum/job/command/tank_crew
 	title = "Tank Crewman"
-	paygrade = "E7"
+	paygrade = /datum/paygrade/gysgt
 	comm_title = "TC"
 	total_positions = 2
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
@@ -215,7 +215,7 @@ You could use MTs help to repair and replace hardpoints."})
 //Military Police
 /datum/job/police/officer
 	title = "Master at Arms"
-	paygrade = "PO"
+	paygrade = /datum/paygrade/po
 	comm_title = "MA"
 	total_positions = 5
 	selection_color = "#ffdddd"
@@ -255,7 +255,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 //Command Master at Arms
 /datum/job/police/chief
 	title = "Command Master at Arms"
-	paygrade = "O3"
+	paygrade = /datum/paygrade/lt
 	comm_title = "CMA"
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
@@ -304,7 +304,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 //Chief Ship Engineer
 /datum/job/engineering/chief
 	title = "Chief Ship Engineer"
-	paygrade = "O3"
+	paygrade = /datum/paygrade/lt
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
@@ -345,7 +345,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/engineering/tech
 	title = "Ship Engineer"
 	comm_title = "SE"
-	paygrade = "PO"
+	paygrade = /datum/paygrade/po
 	total_positions = 4
 	supervisors = "the chief ship engineer"
 	selection_color = "#fff5cc"
@@ -390,7 +390,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 //Requisitions Officer
 /datum/job/requisitions/officer
 	title = "Requisitions Officer"
-	paygrade = "CPO"
+	paygrade = /datum/paygrade/cpo
 	comm_title = "RO"
 	selection_color = "#9990B2"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -429,7 +429,7 @@ A happy ship is a well-functioning ship."})
 //Cargo Tech
 /datum/job/requisitions/tech
 	title = "Cargo Technician"
-	paygrade = "PO"
+	paygrade = /datum/paygrade/po
 	comm_title = "CT"
 	total_positions = 2
 	supervisors = "the requisitions officer"
@@ -473,7 +473,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 /datum/job/medical/professor
 	title = "Chief Medical Officer"
 	comm_title = "CMO"
-	paygrade = "O3"
+	paygrade = /datum/paygrade/lt
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
@@ -517,7 +517,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 /datum/job/medical/medicalofficer
 	title = "Medical Officer"
 	comm_title = "MO"
-	paygrade = "O1"
+	paygrade = /datum/paygrade/ens
 	total_positions = 6
 	supervisors = "the chief medical officer"
 	selection_color = "#BBFFBB"
@@ -557,7 +557,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/job/medical/researcher
 	title = "Medical Researcher"
 	comm_title = "Rsr"
-	paygrade = "CD"
+	paygrade = /datum/paygrade/civilian_doctor
 	total_positions = 2
 	supervisors = "the NT corporate office"
 	selection_color = "#BBFFBB"
@@ -603,7 +603,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 //Liaison
 /datum/job/civilian/liaison
 	title = "Corporate Liaison"
-	paygrade = "NT"
+	paygrade = /datum/paygrade/executive
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
 	selection_color = "#ffeedd"

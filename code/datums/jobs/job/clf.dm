@@ -8,7 +8,7 @@
 //CLF Standard
 /datum/job/clf/standard
 	title = "CLF Standard"
-	paygrade = "CLF1"
+	paygrade = /datum/paygrade/clfs
 	outfit = /datum/outfit/job/clf/standard
 
 
@@ -53,7 +53,7 @@
 //CLF Medic
 /datum/job/clf/medic
 	title = "CLF Medic"
-	paygrade = "CLF2"
+	paygrade = /datum/paygrade/clfm
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/clf/medic
 
@@ -102,7 +102,7 @@
 //CLF Leader
 /datum/job/clf/leader
 	title = "CLF Leader"
-	paygrade = "CLF3"
+	paygrade = /datum/paygrade/clfl
 	outfit = /datum/outfit/job/clf/leader
 
 

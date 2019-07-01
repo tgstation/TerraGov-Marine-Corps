@@ -286,144 +286,336 @@ proc/get_all_job_icons()
 				"Command Master at Arms"
 				)
 
-/proc/get_paygrades(paygrade, size, gender)
-	if(!paygrade)
-		return
-	switch(paygrade)
-		if("C")
-			. = size ? "" : "Civilian"
-		if("CD")
-			. = size ? "Dr. " : "Doctor"
-		if("CCMO")
-			. = size ? "Prof. " : "Professor"
-		if("PMC1")
-			. = size ? "PMC " : "PM Contractor"
-		if("PMC2")
-			. = size ? "PMSC " : "PM Senior Contractor"
-		if("PMC3")
-			. = size ? "PMSC " : "PM Senior Contractor"
-		if("PMC4")
-			. = size ? "PMTL " : "PM Team Leader"
-		if("PMCDS")
-			. = size ? "APS " : "Assets Protection Specialist"
-		if("PMCDSL")
-			. = size ? "APTL " : "Assets Protection Team Leader"
-		if("NT")
-			. = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
-		if("E1")
-			. = size ? "PVT " : "Private"
-		if("E2")
-			. = size ? "PFC " : "Private First Class"
-		if("E3")
-			. = size ? "LCPL " : "Lance Corporal"
-		if("E4")
-			. = size ? "CPL " : "Corporal"
-		if("E5")
-			. = size ? "SGT " : "Sergeant"
-		if("E6")
-			. = size ? "SSGT " : "Staff Sergeant"
-		if("E7")
-			. = size ? "GYSGT " : "Gunnery Sergeant"
-		if("E8")
-			. = size ? "MSGT " : "Master Sergeant"
-		if("E8E")
-			. = size ? "FSGT " : "First Sergeant"
-		if("E9")
-			. = size ? "SGM " : "Sergeant Major"
-		if("E9E")
-			. = size ? "CSGM " : "Command Sergeant Major"
-		if("O1")
-			. = size ? "ENS " : "Ensign"
-		if("O2")
-			. = size ? "LTJG " : "Lieutenant Junior Grade"
-		if("O3")
-			. = size ? "LT " : "Lieutenant"
-		if("O4")
-			. = size ? "LCDR " : "Lieutenant Commander"
-		if("O5")
-			. = size ? "CDR " : "Commander"
-		if("O6")
-			. = size ? "CPT " : "Captain"
-		if("O7")
-			. = size ? "COMM " : "Commodore"
-		if("O8")
-			. = size ? "RADM " : "Rear Admiral"
-		if("O9")
-			. = size ? "VADM " : "Vice Admiral"
-		if("10")
-			. = size ? "ADM " : "Admiral"
-		if("11")
-			. = size ? "FADM " : "Fleet Admiral"		
-		if("WO")
-			. = size ? "WO " : "Warrant Officer"
-		if("CWO")
-			. = size ? "CWO " : "Chief Warrant Officer"
-		if("PO")
-			. = size ? "PO " : "Petty Officer"
-		if("CPO")
-			. = size ? "CPO " : "Chief Petty Officer"
-		if("MO4")
-			. = size ? "MAJ " : "Major"
-		if("UPP1")
-			. = size ? "UPVT " : "UPP Private"
-		if("UPP2")
-			. = size ? "UPFC " : "UPP Private First Class"
-		if("UPP3")
-			. = size ? "UCPL " : "UPP Corporal"
-		if("UPP4")
-			. = size ? "ULCPL " : "UPP Lance Corporal"
-		if("UPP5")
-			. = size ? "USGT " : "UPP Sergeant"
-		if("UPP6")
-			. = size ? "USSGT " : "UPP Staff Sergeant"
-		if("UPP7")
-			. = size ? "UENS " : "UPP Ensign"
-		if("UPP8")
-			. = size ? "ULT " : "UPP Lieutenant"
-		if("UPP9")
-			. = size ? "ULCDR " : "UPP Lieutenant Commander"
-		if("UPP10")
-			. = size ? "UCDR " : "UPP Commander"
-		if("UPP11")
-			. = size ? "UADM " : "UPP Admiral"
-		if("UPPC1")
-			. = size ? "UPPC " : "UPP Commando Standard"
-		if("UPPC2")
-			. = size ? "UPPC " : "UPP Commando Medic"
-		if("UPPC3")
-			. = size ? "UPPC " : "UPP Commando Leader"
-		if("FRE1")
-			. = size ? "FRE " : "Freelancer Standard"
-		if("FRE2")
-			. = size ? "FRE " : "Freelancer Medic"
-		if("FRE3")
-			. = size ? "FRE " : "Freelancer Leader"
-		if("CLF1")
-			. = size ? "CLF " : "CLF Standard"
-		if("CLF2")
-			. = size ? "CLF " : "CLF Medic"
-		if("CLF3")
-			. = size ? "CLF " : "CLF Leader"
-		if("SOM1")
-			. = size ? "SOM " : "SOM Standard"
-		if("SOM2")
-			. = size ? "SOM " : "SOM Medic"
-		if("SOM3")
-			. = size ? "SOM " : "SOM Veteran"
-		if("SOM4")
-			. = size ? "SOM " : "SOM Leader"
-		if("MRC1")
-			. = size ? "MERC " : "MERC Heavy"
-		if("MRC2")
-			. = size ? "MERC " : "MERC Miner"
-		if("MRC3")
-			. = size ? "MERC " : "MERC Engineer"
-		else
-			. = paygrade + " " //custom paygrade
+/datum/paygrade
+	var/index
+	var/short
+	var/female
+	var/long
 
-#define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O5","O6","WO","CWO","PO","CPO","MAJ")
-#define PAYGRADES_OFFICER list("O1","O2","O3","O4","O5","O6","WO","CWO","CPO","MAJ")
-#define PAYGRADES_ENLISTED list("C","E1","E2","E3","E4","E5","E6","E7","E8","E9","PO")
+/datum/paygrade/civilian
+	index = "C"
+	short = ""
+	long = "Civilian"
+
+/datum/paygrade/civilian_doctor
+	index = "CD"
+	short = "Dr. "
+	long = "Doctor"
+
+/datum/paygrade/civilian_doctor_chief
+	index = "CCMO"
+	short = "Prof. "
+	long = "Professor"
+
+/datum/paygrade/pmcontractor
+	index = "PMC1"
+	short = "PMC "
+	long = "PM Contractor"
+
+/datum/paygrade/pmsenior_contractor
+	index = "PMC2"
+	short = "PMSC "
+	long = "PM Senior Contractor"
+
+/datum/paygrade/pmsenior_contractor2
+	index = "PMC3"
+	short = "PMSC "
+	long = "PM Senior Contractor"
+
+/datum/paygrade/pm_team_leader
+	index = "PMC4"
+	short = "PMTL "
+	long = "PM Team Leader"
+
+/datum/paygrade/assets_protection_specialist
+	index = "PMCDS"
+	short = "APS "
+	long = "Assets Protection Specialist"
+
+/datum/paygrade/assets_protection_team_leader
+	index = "PMCDSL"
+	short = "APTL "
+	long = "Assets Protection Team Leader"
+
+/datum/paygrade/executive
+	index = "NT"
+	short = "Mr. "
+	female = "Ms. "
+	long = "Junior Executive"
+
+/datum/paygrade/private
+	index = "E1"
+	short = "PVT "
+	long = "Private"
+
+/datum/paygrade/pfc
+	index = "E2"
+	short = "PFC "
+	long = "Private First Class"
+
+/datum/paygrade/lcpl
+	index = "E3"
+	short = "LCPL "
+	long = "Lance Corporal"
+
+/datum/paygrade/cpl
+	index = "E4"
+	short = "CPL "
+	long = "Corporal"
+
+/datum/paygrade/sgt
+	index = "E5"
+	short = "SGT "
+	long = "Sergeant"
+
+/datum/paygrade/ssgt
+	index = "E6"
+	short = "SSGT "
+	long = "Staff Sergeant"
+
+/datum/paygrade/gysgt
+	index = "E7"
+	short = "GYSGT "
+	long = "Gunnery Sergeant"
+
+/datum/paygrade/msgt
+	index = "E8"
+	short = "MSGT "
+	long = "Master Sergeant"
+
+/datum/paygrade/fsgt
+	index = "E8E"
+	short = "FSGT "
+	long = "First Sergeant"
+
+/datum/paygrade/sgm
+	index = "E9"
+	short = "SGM "
+	long = "Sergeant Major"
+
+/datum/paygrade/csm
+	index = "E9E"
+	short = "CSGM "
+	long = "Command Sergeant Major"
+
+/datum/paygrade/ens
+	index = "O1"
+	short = "ENS "
+	long = "Ensign"
+
+/datum/paygrade/ltjg
+	index = "O2"
+	short = "LTJG "
+	long = "Lieutenant Junior Grade"
+
+/datum/paygrade/lt
+	index = "O3"
+	short = "LT "
+	long = "Lieutenant"
+
+/datum/paygrade/lcdr
+	index = "O4"
+	short = "LCDR "
+	long = "Lieutenant Commander"
+
+/datum/paygrade/cdr
+	index = "O5"
+	short = "CDR "
+	long = "Commander"
+
+/datum/paygrade/cpt
+	index = "O6"
+	short = "CPT "
+	long = "Captain"
+
+/datum/paygrade/comm
+	index = "O7"
+	short = "COMM "
+	long = "Commodore"
+
+/datum/paygrade/radm
+	index = "O8"
+	short = "RADM "
+	long = "Rear Admiral"
+
+/datum/paygrade/vadm
+	index = "O9"
+	short = "VADM "
+	long = "Vice Admiral"
+
+/datum/paygrade/adm
+	index = "10"
+	short = "ADM "
+	long = "Admiral"
+
+/datum/paygrade/fadm
+	index = "11"
+	short = "FADM "
+	long = "Fleet Admiral"
+
+/datum/paygrade/wo
+	index = "WO"
+	short = "WO "
+	long = "Warrant Officer"
+
+/datum/paygrade/cwo
+	index = "CWO"
+	short = "CWO "
+	long = "Chief Warrant Officer"
+
+/datum/paygrade/po
+	index = "PO"
+	short = "PO "
+	long = "Petty Officer"
+
+/datum/paygrade/cpo
+	index = "CPO"
+	short = "CPO "
+	long = "Chief Petty Officer"
+
+/datum/paygrade/maj
+	index = "MO4"
+	short = "MAJ "
+	long = "Major"
+
+/datum/paygrade/upvt
+	index = "UPP1"
+	short = "UPVT "
+	long = "UPP Private"
+
+/datum/paygrade/upfc
+	index = "UPP2"
+	short = "UPFC "
+	long = "UPP Private First Class"
+
+/datum/paygrade/ucpl
+	index = "UPP3"
+	short = "UCPL "
+	long = "UPP Corporal"
+
+/datum/paygrade/ulcpl
+	index = "UPP4"
+	short = "ULCPL "
+	long = "UPP Lance Corporal"
+
+/datum/paygrade/usgt
+	index = "UPP5"
+	short = "USGT "
+	long = "UPP Sergeant"
+
+/datum/paygrade/ussgt
+	index = "UPP6"
+	short = "USSGT "
+	long = "UPP Staff Sergeant"
+
+/datum/paygrade/uens
+	index = "UPP7"
+	short = "UENS "
+	long = "UPP Ensign"
+
+/datum/paygrade/ult
+	index = "UPP8"
+	short = "ULT "
+	long = "UPP Lieutenant"
+
+/datum/paygrade/ulcdr
+	index = "UPP9"
+	short = "ULCDR "
+	long = "UPP Lieutenant Commander"
+
+/datum/paygrade/ucdr
+	index = "UPP10"
+	short = "UCDR "
+	long = "UPP Commander"
+
+/datum/paygrade/uadm
+	index = "UPP11"
+	short = "UADM "
+	long = "UPP Admiral"
+
+/datum/paygrade/uppc
+	index = "UPPC1"
+	short = "UPPC "
+	long = "UPP Commando Standard"
+
+/datum/paygrade/uppcm
+	index = "UPPC2"
+	short = "UPPC "
+	long = "UPP Commando Medic"
+
+/datum/paygrade/uppcl
+	index = "UPPC3"
+	short = "UPPC "
+	long = "UPP Commando Leader"
+
+/datum/paygrade/fres
+	index = "FRE1"
+	short = "FRE "
+	long = "Freelancer Standard"
+
+/datum/paygrade/frem
+	index = "FRE2"
+	short = "FRE "
+	long = "Freelancer Medic"
+
+/datum/paygrade/frel
+	index = "FRE3"
+	short = "FRE "
+	long = "Freelancer Leader"
+
+/datum/paygrade/clfs
+	index = "CLF1"
+	short = "CLF "
+	long = "CLF Standard"
+
+/datum/paygrade/clfm
+	index = "CLF2"
+	short = "CLF "
+	long = "CLF Medic"
+
+/datum/paygrade/clfl
+	index = "CLF3"
+	short = "CLF "
+	long = "CLF Leader"
+
+/datum/paygrade/soms
+	index = "SOM1"
+	short = "SOM "
+	long = "SOM Standard"
+
+/datum/paygrade/somm
+	index = "SOM2"
+	short = "SOM "
+	long = "SOM Medic"
+
+/datum/paygrade/somv
+	index = "SOM3"
+	short = "SOM "
+	long = "SOM Veteran"
+
+/datum/paygrade/soml
+	index = "SOM4"
+	short = "SOM "
+	long = "SOM Leader"
+
+/datum/paygrade/merch
+	index = "MRC1"
+	short = "MERC "
+	long = "MERC Heavy"
+
+/datum/paygrade/mercm
+	index = "MRC2"
+	short = "MERC "
+	long = "MERC Miner"
+
+/datum/paygrade/merce
+	index = "MRC3"
+	short = "MERC "
+	long = "MERC Engineer"
+
+GLOBAL_LIST_EMPTY(paygrades_marine)
+GLOBAL_LIST_EMPTY(paygrades_officer)
+GLOBAL_LIST_EMPTY(paygrades_enlisted)
 
 //Just marines
 #define ALL_MARINE_ACCESS list(ACCESS_IFF_MARINE, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_ENGINEERING)

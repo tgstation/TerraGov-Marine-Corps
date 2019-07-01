@@ -20,7 +20,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job
 	var/title = ""
-	var/paygrade = ""
+	var/datum/paygrade/paygrade
 	var/comm_title = ""
 
 	var/list/minimal_access = list()

@@ -8,7 +8,7 @@
 //Freelancer Standard
 /datum/job/freelancer/standard
 	title = "Freelancer Standard"
-	paygrade = "FRE1"
+	paygrade = /datum/paygrade/fres
 	outfit = /datum/outfit/job/freelancer/standard
 
 
@@ -58,7 +58,7 @@
 //Freelancer Medic
 /datum/job/freelancer/medic
 	title = "Freelancer Medic"
-	paygrade = "FRE2"
+	paygrade = /datum/paygrade/frem
 	skills_type = /datum/skills/combat_medic
 	outfit = /datum/outfit/job/freelancer/medic
 
@@ -116,7 +116,7 @@
 //Freelancer Leader
 /datum/job/freelancer/leader
 	title = "Freelancer Leader"
-	paygrade = "FRE3"
+	paygrade = /datum/paygrade/frel
 	skills_type = /datum/skills/SL
 	outfit = /datum/outfit/job/freelancer/leader
 

@@ -162,6 +162,20 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			GLOB.chemical_reactions_list[id] += D
 			break // Don't bother adding ourselves to other reagent ids, it is redundant
 
+	for(var/type in subtypesof(/datum/job))
+		var/datum/job/J = type
+		if(initial(J.faction) == "Marine" && initial(J.paygrade))
+			GLOB.paygrades_marine += initial(J.paygrade)
+
+	for(var/type in subtypesof(/datum/job/marine))
+		var/datum/job/J = type
+		if(initial(J.paygrade))
+			GLOB.paygrades_enlisted += initial(J.paygrade) 
+
+	for(var/type in subtypesof(/datum/job/command))
+		var/datum/job/J = type
+		if(initial(J.paygrade))
+			GLOB.paygrades_officer += initial(J.paygrade) 
 
 	return TRUE
 

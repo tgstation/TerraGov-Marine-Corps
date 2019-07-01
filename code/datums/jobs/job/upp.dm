@@ -8,7 +8,7 @@
 //UPP Standard
 /datum/job/upp/standard
 	title = "UPP Standard"
-	paygrade = "UPP1"
+	paygrade = /datum/paygrade/upvt
 	outfit = /datum/outfit/job/upp/standard
 
 
@@ -57,7 +57,7 @@
 //UPP Medic
 /datum/job/upp/medic
 	title = "UPP Medic"
-	paygrade = "UPP2"
+	paygrade = /datum/paygrade/upfc
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/upp/medic
 
@@ -109,7 +109,7 @@
 //UPP Heavy
 /datum/job/upp/heavy
 	title = "UPP Heavy"
-	paygrade = "UPP3"
+	paygrade = /datum/paygrade/ucpl
 	skills_type = /datum/skills/specialist/upp
 	outfit = /datum/outfit/job/upp/heavy
 
@@ -160,7 +160,7 @@
 //UPP Leader
 /datum/job/upp/leader
 	title = "UPP Leader"
-	paygrade = "UPP4"
+	paygrade = /datum/paygrade/ulcpl
 	skills_type = /datum/skills/SL/upp
 	outfit = /datum/outfit/job/upp/leader
 

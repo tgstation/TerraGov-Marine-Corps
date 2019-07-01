@@ -14,7 +14,7 @@
 //SOM Standard
 /datum/job/som/standard
 	title = "SOM Standard"
-	paygrade = "SOM1"
+	paygrade = /datum/paygrade/soms
 	outfit = /datum/outfit/job/som/standard
 
 
@@ -60,7 +60,7 @@
 //SOM Medic
 /datum/job/som/medic
 	title = "SOM Medic"
-	paygrade = "SOM2"
+	paygrade = /datum/paygrade/somm
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
 
@@ -110,7 +110,7 @@
 //SOM Veteran
 /datum/job/som/veteran
 	title = "SOM Veteran"
-	paygrade = "SOM3"
+	paygrade = /datum/paygrade/somv
 	outfit = /datum/outfit/job/som/veteran
 
 
@@ -162,7 +162,7 @@
 //SOM Leader
 /datum/job/som/leader
 	title = "SOM Leader"
-	paygrade = "SOM3"
+	paygrade = /datum/paygrade/soml
 	outfit = /datum/outfit/job/som/leader
 
 

@@ -20,7 +20,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 //Squad Marine
 /datum/job/marine/standard
 	title = "Squad Marine"
-	paygrade = "E2"
+	paygrade = /datum/paygrade/pfc
 	comm_title = "Mar"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
@@ -46,7 +46,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 //Squad Engineer
 /datum/job/marine/engineer
 	title = "Squad Engineer"
-	paygrade = "E3"
+	paygrade = /datum/paygrade/lcpl
 	comm_title = "Eng"
 	total_positions = 12
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
@@ -100,7 +100,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 //Squad Smartgunner
 /datum/job/marine/smartgunner
 	title = "Squad Smartgunner"
-	paygrade = "E4"
+	paygrade = /datum/paygrade/cpl
 	comm_title = "SGnr"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -126,7 +126,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 //Squad Specialist
 /datum/job/marine/specialist
 	title = "Squad Specialist"
-	paygrade = "E5"
+	paygrade = /datum/paygrade/sgt
 	comm_title = "Spec"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
@@ -156,7 +156,7 @@ You can serve a variety of roles, so choose carefully."})
 //Squad Leader
 /datum/job/marine/leader
 	title = "Squad Leader"
-	paygrade = "E6"
+	paygrade = /datum/paygrade/ssgt
 	comm_title = "SL"
 	total_positions = 4
 	supervisors = "the acting field commander"

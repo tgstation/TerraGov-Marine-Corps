@@ -8,7 +8,7 @@
 //PMC Standard
 /datum/job/pmc/standard
 	title = "PMC Standard"
-	paygrade = "PMC1"
+	paygrade = /datum/paygrade/pmcontractor
 	outfit = /datum/outfit/job/pmc/standard
 
 
@@ -50,7 +50,7 @@
 //PMC Gunner
 /datum/job/pmc/gunner
 	title = "PMC Gunner"
-	paygrade = "PMC2"
+	paygrade = /datum/paygrade/pmsenior_contractor
 	skills_type = /datum/skills/smartgunner/pmc
 	outfit = /datum/outfit/job/pmc/gunner
 
@@ -91,7 +91,7 @@
 //PMC Sniper
 /datum/job/pmc/sniper
 	title = "PMC Sniper"
-	paygrade = "PMC3"
+	paygrade = /datum/paygrade/pmsenior_contractor2
 	skills_type = /datum/skills/specialist/pmc
 	outfit = /datum/outfit/job/pmc/sniper
 
@@ -134,7 +134,7 @@
 //PMC Leader
 /datum/job/pmc/leader
 	title = "PMC Leader"
-	paygrade = "PMC4"
+	paygrade = /datum/paygrade/pm_team_leader
 	skills_type = /datum/skills/SL/pmc
 	outfit = /datum/outfit/job/pmc/leader
 

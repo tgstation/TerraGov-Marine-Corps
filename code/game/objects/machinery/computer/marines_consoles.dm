@@ -170,24 +170,24 @@
 			carddesc += "<b>Assignment:</b> "
 			var/jobs = "<span id='alljobsslot'><a href='#' onclick='showAll()'>[target_rank]</a></span><br>" //CHECK THIS
 			var/paygrade = ""
-			if(!(modify.paygrade in PAYGRADES_MARINE))
-				paygrade += "<b>Paygrade:<b> [get_paygrades(modify.paygrade)] -- UNABLE TO MODIFY"
+			if(!(modify.paygrade in GLOB.paygrades_marine))
+				paygrade += "<b>Paygrade:<b> [initial(modify.paygrade.long)] -- UNABLE TO MODIFY"
 			else
 				paygrade += "<form name='paygrade' action='?src=\ref[src]' method='get'>"
 				paygrade += "<input type='hidden' name='src' value='\ref[src]'>"
 				paygrade += "<input type='hidden' name='choice' value='paygrade'>"
 				paygrade += "<b>Paygrade:</b> <select name='paygrade'>"
 				var/i
-				for(i in PAYGRADES_ENLISTED)
-					if(i == modify.paygrade) paygrade += "<option value='[i]' selected=selected>[get_paygrades(i)]</option>"
+				for(i in GLOB.paygrades_enlisted)
+					if(i == modify.paygrade) paygrade += "<option value='[i]' selected=selected>[initial(i.long)]</option>"
 					else paygrade += "<option value='[i]'>[get_paygrades(i)]</option>"
 				if(copytext(scan.paygrade,1,2) == "O")
 					var/r = text2num(copytext(scan.paygrade,2))
 					r = r > 4 ? 4 : r
 					while(--r > 0)
 						i = "O[r]"
-						if(i == modify.paygrade) paygrade += "<option value='[i]' selected=selected>[get_paygrades(i)]</option>"
-						else paygrade += "<option value='[i]'>[get_paygrades(i)]</option>"
+						if(i == modify.paygrade) paygrade += "<option value='[i]' selected=selected>[initial(i.long)]</option>"
+						else paygrade += "<option value='[i]'>[initial(i.long)]</option>"
 				paygrade += "</select>"
 				paygrade += "<input type='submit' value='Modify'>"
 				paygrade += "</form>"

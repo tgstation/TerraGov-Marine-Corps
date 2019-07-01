@@ -8,7 +8,7 @@
 //UPP Commando Standard
 /datum/job/upp/commando/standard
 	title = "UPP Commando Standard"
-	paygrade = "UPPC1"
+	paygrade = /datum/paygrade/uppc
 	outfit = /datum/outfit/job/upp/commando/standard
 
 
@@ -58,7 +58,7 @@
 //UPP Commando Medic
 /datum/job/upp/commando/medic
 	title = "UPP Commando Medic"
-	paygrade = "UPPC2"
+	paygrade = /datum/paygrade/uppcm
 	skills_type = /datum/skills/commando/medic
 	outfit = /datum/outfit/job/upp/commando/medic
 
@@ -111,7 +111,7 @@
 //UPP Commando Leader
 /datum/job/upp/commando/leader
 	title = "UPP Commando Leader"
-	paygrade = "UPPC3"
+	paygrade = /datum/paygrade/uppcl
 	skills_type = /datum/skills/commando/leader
 	outfit = /datum/outfit/job/upp/commando/leader
 

@@ -8,7 +8,7 @@
 //Mercenary Heavy
 /datum/job/mercenaries/heavy
 	title = "Mercenary Heavy"
-	paygrade = "MRC1"
+	paygrade = /datum/paygrade/merch
 	outfit = /datum/outfit/job/mercenaries/heavy
 
 
@@ -31,7 +31,7 @@
 //Mercenary Miner
 /datum/job/mercenaries/miner
 	title = "Mercenary Miner"
-	paygrade = "MRC2"
+	paygrade = /datum/paygrade/mercm
 	outfit = /datum/outfit/job/mercenaries/miner
 
 
@@ -53,7 +53,7 @@
 //Mercenary Engineer
 /datum/job/mercenaries/engineer
 	title = "Mercenary Engineer"
-	paygrade = "MRC3"
+	paygrade = /datum/paygrade/merce
 	outfit = /datum/outfit/job/mercenaries/engineer
 
 
