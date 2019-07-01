@@ -212,7 +212,7 @@
 /turf/open/floor/plating,
 /area/almayer/hull/upper_hull)
 "aaF" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -1321,7 +1321,7 @@
 	height = 2;
 	id = "l4"
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/aft_hallway)
 "adD" = (
@@ -3548,7 +3548,7 @@
 /turf/open/floor/wood,
 /area/almayer/living/commandbunks)
 "aiZ" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	icon_state = "greencorner";
 	dir = 1
@@ -4414,7 +4414,7 @@
 	},
 /area/almayer/hallways/stern_hallway)
 "akO" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	icon_state = "orangecorner";
 	dir = 4
@@ -4752,7 +4752,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -5052,7 +5052,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -6055,7 +6055,7 @@
 /obj/item/storage/pouch/medical,
 /obj/item/storage/pouch/medical,
 /obj/item/storage/pouch/medical,
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	icon_state = "bluefull"
 	},
@@ -6147,7 +6147,7 @@
 	},
 /area/almayer/command/cic)
 "aoe" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -7536,7 +7536,7 @@
 	},
 /area/almayer/shipboard/starboard_missiles)
 "arx" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/machinery/vending/cigarette,
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig)
@@ -8134,7 +8134,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/chief_mp_office)
 "asU" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	dir = 9;
 	icon_state = "red"
@@ -15052,7 +15052,7 @@
 	},
 /area/almayer/engineering/upper_engineering)
 "aGS" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -15820,7 +15820,7 @@
 /area/almayer/squads/delta)
 "aIF" = (
 /obj/machinery/body_scanconsole,
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	icon_state = "dark_sterile"
 	},
@@ -17550,7 +17550,7 @@
 /turf/open/floor/almayer,
 /area/almayer/living/cafeteria_starboard)
 "aMi" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer,
 /area/almayer/hallways/stern_hallway)
 "aMj" = (
@@ -18389,7 +18389,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -18471,7 +18471,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -19276,7 +19276,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	icon_state = "sterile"
 	},
@@ -19723,7 +19723,7 @@
 /area/almayer/hallways/aft_hallway)
 "aQR" = (
 /obj/structure/table/almayer,
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/almayer{
@@ -20101,7 +20101,7 @@
 	height = 2;
 	id = "l7"
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/plating/almayer,
 /area/almayer/hallways/aft_hallway)
 "aRR" = (
@@ -22031,7 +22031,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/wood,
 /area/almayer/living/basketball)
 "aXE" = (
@@ -25961,7 +25961,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "bir" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer,
 /area/almayer/hallways/starboard_hallway)
 "bit" = (
@@ -25986,7 +25986,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
 "biy" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/starboard_hallway)
 "biz" = (
@@ -26119,7 +26119,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "biT" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/hangar)
 "biU" = (
@@ -28241,7 +28241,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bog" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/briefing)
 "boh" = (
@@ -28827,7 +28827,7 @@
 /area/almayer/engineering/lower_engineering)
 "bpU" = (
 /obj/structure/table/almayer,
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/item/lightreplacer,
 /turf/open/floor/almayer{
 	dir = 1;
@@ -35192,7 +35192,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/hangar)
 "bJo" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -35431,7 +35431,7 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bJV" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	icon_state = "orangecorner";
 	dir = 1
@@ -37102,7 +37102,7 @@
 	},
 /area/almayer/hallways/port_hallway)
 "bON" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	dir = 8;
 	icon_regular_floor = "cargo_arrow";
@@ -37366,7 +37366,7 @@
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_hallway)
 "bPB" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer,
 /area/almayer/hallways/port_hallway)
 "bPC" = (
@@ -43719,7 +43719,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/shipboard/brig_cells)
 "cgJ" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -44249,7 +44249,7 @@
 /obj/item/megaphone,
 /obj/item/megaphone,
 /obj/effect/landmark/map_item,
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/bridgebunks)
 "chR" = (

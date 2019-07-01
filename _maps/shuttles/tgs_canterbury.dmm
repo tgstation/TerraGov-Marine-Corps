@@ -528,7 +528,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	dir = 4;
 	icon_regular_floor = "cargo_arrow";
@@ -953,7 +953,7 @@
 	},
 /area/shuttle/canterbury/general)
 "bR" = (
-/obj/machinery/vending/wallmed,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/almayer{
 	icon_state = "orangefull"
 	},

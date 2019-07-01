@@ -399,7 +399,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed{
+/obj/machinery/vending/nanomed{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
@@ -412,7 +412,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/machinery/vending/wallmed{
+/obj/machinery/vending/nanomed{
 	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,

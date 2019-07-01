@@ -204,7 +204,7 @@
 					/obj/item/transfer_valve = 6,/obj/item/assembly/timer = 6,/obj/item/assembly/signaler = 6,
 					/obj/item/assembly/prox_sensor = 6,/obj/item/assembly/igniter = 6)
 
-/obj/machinery/vending/wallmed
+/obj/machinery/vending/nanomed
 	name = "NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
@@ -222,15 +222,15 @@
 						/obj/item/reagent_container/syringe/antiviral = 2)
 
 
-/obj/machinery/vending/wallmed/Initialize(mapload, ...)
+/obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = -25
+			pixel_y = -28
 		if(SOUTH)
-			pixel_y = 25
+			pixel_y = 26
 		if(EAST)
-			pixel_x = -25
+			pixel_x = -30
 		if(WEST)
 			pixel_x = 25
 

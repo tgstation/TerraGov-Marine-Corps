@@ -10061,7 +10061,7 @@
 	},
 /area/lv624/lazarus/fitness)
 "aLH" = (
-/obj/machinery/vending/wallmed{
+/obj/machinery/vending/nanomed{
 	dir = 8
 	},
 /obj/structure/reagent_dispensers/watertank,
