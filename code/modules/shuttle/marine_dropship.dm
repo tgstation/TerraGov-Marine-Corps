@@ -376,12 +376,16 @@
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		var/destination_found
+		var/list/valid_destionations = list()
 		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 			if(!options.Find(S.id))
 				continue
 			if(!M.check_dock(S, silent=TRUE))
 				continue
 			destination_found = TRUE
+			valid_destionations[S.name] = S
+		for(var/i in sortList(valid_destionations))
+			var/obj/docking_port/stationary/S = valid_destionations[i]
 			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		dat += "Left Doors: <a href='?src=[REF(src)];lock=left'>Lockdown</a> <a href='?src=[REF(src)];unlock=left'>Unlock</a><br>"
 		dat += "Right Doors: <a href='?src=[REF(src)];lock=right'>Lockdown</a> <a href='?src=[REF(src)];unlock=right'>Unlock</a><br>"
@@ -391,7 +395,7 @@
 			dat += "<B>Shuttle Locked</B><br>"
 	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
-	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 400, 300)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
