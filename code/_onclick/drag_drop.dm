@@ -20,22 +20,22 @@
 		return
 
 
-/client/MouseDown(object, location, control, params)
+/client/MouseDown(atom/object, turf/location, control, params)
 	if(!control)
 		return
 	if(mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
-	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDOWN, object, location, params) & COMSIG_CLIENT_MOUSEDOWN_INTERCEPT)
+	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDOWN, object, location, control, params) & COMSIG_CLIENT_MOUSEDOWN_INTERCEPT)
 		return
 	return ..()
 
 
-/client/MouseUp(object, location, control, params)
+/client/MouseUp(atom/object, turf/location, control, params)
 	if(!control)
 		return
 	if(mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
-	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP)
+	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP, object, location, control, params)
 	return ..()
 
 

@@ -35,7 +35,7 @@
 	return ..()
 
 
-/datum/component/full_auto_fire/proc/on_mouse_down(client/source, atom/target, turf/location, params)
+/datum/component/full_auto_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
 	var/list/modifiers = params2list(params) //If they're shift+clicking, for example, let's not have them accidentally shoot.
 	if(modifiers["shift"])
 		return NONE
@@ -64,7 +64,7 @@
 	START_PROCESSING(SSfastprocess, src)
 
 
-/datum/component/full_auto_fire/proc/stop_autofiring()
+/datum/component/full_auto_fire/proc/stop_autofiring(datum/source, atom/object, turf/location, control, params)
 	var/client/holder = parent
 	holder.mouse_pointer_icon = initial(holder.mouse_pointer_icon)
 	UnregisterSignal(parent, list(COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG))
@@ -72,10 +72,10 @@
 	STOP_PROCESSING(SSfastprocess, src)
 
 
-/datum/component/full_auto_fire/proc/on_mouse_drag(client/source, atom/target, turf/target_loc)
-	if(isnull(target_loc))
+/datum/component/full_auto_fire/proc/on_mouse_drag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	if(isnull(over_location))
 		return //This happens when the mouse is over an inventory or screen object, for example.
-	src.target = target
+	target = src_object
 
 
 /datum/component/full_auto_fire/process()
