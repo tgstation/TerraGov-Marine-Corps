@@ -393,7 +393,7 @@
 	name = "beach ball"
 	icon_state = "beachball"
 	item_state = "beachball"
-	density = 0
+	density = FALSE
 	anchored = FALSE
 	w_class = 2.0
 	force = 0.0

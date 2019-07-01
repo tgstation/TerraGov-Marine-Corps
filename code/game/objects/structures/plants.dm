@@ -7,7 +7,7 @@
 	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
 	icon = 'icons/obj/structures/jungle.dmi'
 	icon_state = "bush1"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = BUSH_LAYER
 	var/indestructable = 0

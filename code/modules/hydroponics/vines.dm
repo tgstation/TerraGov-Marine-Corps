@@ -6,7 +6,7 @@
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	layer = FLY_LAYER
 	flags_pass = PASSTABLE|PASSGRILLE
 

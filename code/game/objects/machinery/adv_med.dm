@@ -166,7 +166,7 @@
 	name = "Body Scanner Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 
 

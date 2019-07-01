@@ -2,7 +2,7 @@
 	name = "\improper gear"
 	icon_state = "gear"
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	resistance_flags = UNACIDABLE
 	use_power = 0
 	var/id
@@ -19,7 +19,7 @@
 	icon = 'icons/obj/elevator_strut.dmi'
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
-	density = 0
+	density = FALSE
 	use_power = 0
 	opacity = 1
 	layer = ABOVE_MOB_LAYER

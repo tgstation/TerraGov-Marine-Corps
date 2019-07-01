@@ -830,7 +830,7 @@
 	var/locked = FALSE //Medics, Doctors and so on can lock this.
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
 	anchored = TRUE //About time someone fixed this.
-	density = 0
+	density = FALSE
 
 	use_power = 1
 	idle_power_usage = 40

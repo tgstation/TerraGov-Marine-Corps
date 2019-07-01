@@ -152,7 +152,7 @@
 /obj/structure/inflatable/popped
 	name = "popped inflatable wall"
 	desc = "It used to be an inflatable wall, now it's just a mess of plastic."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	deflated = TRUE
 
@@ -228,7 +228,7 @@
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_opening",src)
 	sleep(10)
-	density = 0
+	density = FALSE
 	opacity = 0
 	state = 1
 	update_icon()

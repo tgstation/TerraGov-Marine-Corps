@@ -42,7 +42,7 @@
 				return
 		if(3.0)
 			if (prob(25))
-				src.density = 0
+				src.density = FALSE
 		else
 	return
 

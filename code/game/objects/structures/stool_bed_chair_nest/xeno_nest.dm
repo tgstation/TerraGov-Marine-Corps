@@ -163,7 +163,7 @@
 
 /obj/structure/bed/nest/proc/healthcheck()
 	if(obj_integrity <= 0)
-		density = 0
+		density = FALSE
 		qdel(src)
 
 /obj/structure/bed/nest/flamer_fire_act()

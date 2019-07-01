@@ -13,7 +13,7 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "splatter"
-	density = 0
+	density = FALSE
 	opacity = 0
 	anchored = TRUE
 
@@ -27,7 +27,7 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acidblob"
-	density = 0
+	density = FALSE
 	opacity = 0
 	anchored = TRUE
 
@@ -41,7 +41,7 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acid2"
-	density = 0
+	density = FALSE
 	opacity = 0
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
@@ -101,7 +101,7 @@
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
 	icon_state = "acid_normal"
-	density = 0
+	density = FALSE
 	opacity = 0
 	anchored = TRUE
 	var/atom/acid_t

@@ -2,7 +2,7 @@
 	icon = 'icons/obj/decals.dmi'
 	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	layer = WALL_OBJ_LAYER
 
 /obj/structure/sign/Initialize()
@@ -225,7 +225,7 @@
 	desc = "A sign warning of a particular hazard"
 	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 
 /obj/structure/sign/safety/airlock
 	name = "\improper Airlock"

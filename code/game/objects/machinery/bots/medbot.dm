@@ -8,7 +8,7 @@
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "medibot0"
-	density = 0
+	density = FALSE
 	anchored = FALSE
 	max_integrity = 20
 	req_access =list(ACCESS_MARINE_MEDBAY)

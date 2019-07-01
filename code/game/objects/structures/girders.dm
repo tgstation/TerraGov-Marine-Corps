@@ -284,7 +284,7 @@
 	if (obj_integrity <= 0)
 		icon_state = "[icon_state]_damaged"
 		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
-		density = 0
+		density = FALSE
 	else
 		var/underscore_position =  findtext(icon_state,"_")
 		var/new_state = copytext(icon_state, 1, underscore_position)

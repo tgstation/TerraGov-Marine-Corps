@@ -4,7 +4,7 @@
 	name = "glowshroom"
 	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "glowshroomf"
 	layer = ABOVE_TURF_LAYER

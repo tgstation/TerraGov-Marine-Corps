@@ -2,7 +2,7 @@
 	name = "\improper IV drip"
 	icon = 'icons/obj/iv_drip.dmi'
 	anchored = FALSE
-	density = 0
+	density = FALSE
 	drag_delay = 1
 
 	var/mob/living/carbon/human/attached = null

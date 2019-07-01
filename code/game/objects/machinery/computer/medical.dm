@@ -510,4 +510,4 @@
 	name = "Medical Laptop"
 	desc = "Cheap Nanotrasen Laptop."
 	icon_state = "medlaptop"
-	density = 0
+	density = FALSE
