@@ -111,10 +111,10 @@
 	data["all_centcom_access"] = null
 	data["regions"] = null
 
-	data["command_jobs"] = format_jobs(JOBS_COMMAND)
-	data["engineering_jobs"] = format_jobs(JOBS_ENGINEERING)
-	data["medical_jobs"] = format_jobs(JOBS_MEDICAL)
-	data["marine_jobs"] = format_jobs(JOBS_UNASSIGNED)
+	data["command_jobs"] = format_jobs(GLOB.jobs_command)
+	data["engineering_jobs"] = format_jobs(GLOB.jobs_engineering)
+	data["medical_jobs"] = format_jobs(GLOB.jobs_medical)
+	data["marine_jobs"] = format_jobs(GLOB.jobs_unassigned)
 	data["civilian_jobs"] = format_jobs(list("Colonist","Passenger"))
 
 	if(modify)

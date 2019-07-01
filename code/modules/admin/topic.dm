@@ -1930,9 +1930,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
 				if(!change || !istype(H))
 					return
-				if(H.mind && !(H.mind.assigned_role in JOBS_MARINES))
+				if(H.mind && !(H.mind.assigned_role in GLOB.jobs_marines))
 					return
-				else if(!(H.job in JOBS_MARINES))
+				else if(!(H.job in GLOB.jobs_marines))
 					return
 
 				H.change_squad(change)
