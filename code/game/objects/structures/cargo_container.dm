@@ -7,7 +7,7 @@
 	bound_height = 64
 	density = TRUE
 	max_integrity = 200
-	opacity = 1
+	opacity = TRUE
 	anchored = TRUE
 
 /obj/structure/cargo_container/attack_hand(mob/user as mob)
@@ -62,7 +62,7 @@
 	bound_width = 64
 	bound_height = 32
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 
 
 

@@ -793,7 +793,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	desc = "Place unanchored supplies on here to allow bridge Overwatch officers to drop them on people's heads."
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
 	var/squad_name = "Alpha"

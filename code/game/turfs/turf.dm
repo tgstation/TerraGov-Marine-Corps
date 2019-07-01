@@ -2,7 +2,7 @@
 /*
 /turf
 
-	/open - all turfs with density = 0 are turf/open
+	/open - all turfs with density = FALSE are turf/open
 
 		/floor - floors are constructed floor as opposed to natural grounds
 

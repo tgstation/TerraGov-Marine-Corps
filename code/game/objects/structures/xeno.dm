@@ -141,8 +141,8 @@
 	name = "sticky resin"
 	desc = "A layer of disgusting sticky slime."
 	icon_state = "sticky"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
 	var/slow_amt = 8
@@ -166,8 +166,8 @@
 	desc = "It looks like a hiding hole."
 	name = "resin hole"
 	icon_state = "trap0"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
@@ -370,8 +370,8 @@
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
 	sleep(10)
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -394,7 +394,7 @@
 	flick("[mineralType]closing",src)
 	sleep(10)
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
@@ -470,7 +470,7 @@
 	desc = "It looks like a weird egg"
 	name = "egg"
 	icon_state = "Egg Growing"
-	density = 0
+	density = FALSE
 
 	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
@@ -696,8 +696,8 @@ TUNNEL
 	icon = 'icons/Xeno/effects.dmi'
 	icon_state = "hole"
 
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER

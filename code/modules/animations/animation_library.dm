@@ -127,7 +127,7 @@ proc/animation_teleport_spooky_in(atom/A, speed = 4)
 proc/animation_destruction_fade(atom/A, speed = 12)
 	A.flags_atom |= NOINTERACT
 	A.mouse_opacity = 0 //We don't want them to click this while the animation is still playing.
-	A.density = 0 //So it doesn't block anything.
+	A.density = FALSE //So it doesn't block anything.
 	var/i = 1 + (0.1 * rand(1,5))
 	animate(A, transform = matrix() * i, color = "#808080", time = speed, easing = SINE_EASING)
 	animate(alpha = 0, time = speed)
@@ -137,7 +137,7 @@ proc/animation_destruction_fade(atom/A, speed = 12)
 proc/animation_destruction_knock_fade(atom/A, speed = 7, x_n = rand(10,18), y_n = rand(10,18))
 	A.flags_atom |= NOINTERACT
 	A.mouse_opacity = 0
-	A.density = 0
+	A.density = FALSE
 	var/x_o = initial(A.pixel_x)
 	var/y_o = initial(A.pixel_y)
 	animate(A, transform = matrix() * 1.2,  alpha = 100, pixel_x = x_o + pick(x_n,-x_n), pixel_y = y_o + pick(y_n,-y_n), time = speed, easing = QUAD_EASING|EASE_IN)
@@ -148,7 +148,7 @@ proc/animation_destruction_knock_fade(atom/A, speed = 7, x_n = rand(10,18), y_n 
 proc/animation_destruction_long_fade(atom/A, speed = 4, x_n = 4, y_n = 4)
 	A.flags_atom |= NOINTERACT
 	A.mouse_opacity = 0
-	A.density = 0
+	A.density = FALSE
 	var/x_o = initial(A.pixel_x)
 	var/y_o = initial(A.pixel_y)
 	animate(A, pixel_x = x_o+rand(-x_n, x_n), pixel_y = y_o+rand(-y_n, y_n), time = speed, easing = ELASTIC_EASING|EASE_IN)

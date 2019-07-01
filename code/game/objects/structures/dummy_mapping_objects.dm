@@ -49,7 +49,7 @@
 
 /obj/structure/computer3frame
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 	name = "computer frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "0"

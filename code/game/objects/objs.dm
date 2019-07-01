@@ -179,7 +179,7 @@
 		return
 
 	if(density)
-		density = 0
+		density = FALSE
 		if(!step(M, get_dir(M, src)) && loc != M.loc)
 			density = TRUE
 			return

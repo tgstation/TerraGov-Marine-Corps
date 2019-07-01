@@ -12,7 +12,7 @@
 
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
 
 /turf/closed/wall/almayer/handle_icon_junction(junction)
@@ -163,7 +163,7 @@
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "riveted"
-	opacity = 1
+	opacity = TRUE
 	hull = 1
 
 /turf/closed/wall/indestructible/ex_act(severity)
@@ -190,7 +190,7 @@
 /turf/closed/wall/indestructible/fakeglass
 	name = "window"
 	icon_state = "fakewindows"
-	opacity = 0
+	opacity = FALSE
 
 /turf/closed/wall/indestructible/splashscreen
 	name = "Space Station 13"
@@ -395,7 +395,7 @@
 	icon_state = "membrane0"
 	walltype = "membrane"
 	damage_cap = 120
-	opacity = 0
+	opacity = FALSE
 	alpha = 180
 
 /turf/closed/wall/resin/membrane/thicken()

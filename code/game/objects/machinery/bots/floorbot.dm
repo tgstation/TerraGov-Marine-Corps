@@ -8,8 +8,8 @@
 	desc = "A little floor repairing robot, he looks so excited!"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "floorbot0"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	max_integrity = 25
 	//weight = 1.0E7
 	var/amount = 10
@@ -251,7 +251,7 @@
 			visible_message("<span class='warning'> [src] makes an excited booping sound.</span>")
 			spawn(50)
 				src.amount ++
-				src.anchored = 0
+				src.anchored = FALSE
 				src.repairing = 0
 				src.target = null
 		src.path = new()
@@ -279,7 +279,7 @@
 			src.repairing = 0
 			src.amount -= 1
 			src.updateicon()
-			src.anchored = 0
+			src.anchored = FALSE
 			src.target = null
 	else
 		visible_message("<span class='warning'> [src] begins to improve the floor.</span>")
@@ -289,7 +289,7 @@
 			src.repairing = 0
 			src.amount -= 1
 			src.updateicon()
-			src.anchored = 0
+			src.anchored = FALSE
 			src.target = null
 
 /obj/machinery/bot/floorbot/proc/eattile(obj/item/stack/tile/plasteel/T)

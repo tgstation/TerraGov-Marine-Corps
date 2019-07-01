@@ -4,7 +4,7 @@
 	name = "blood"
 	desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
@@ -126,7 +126,7 @@
 	name = "gibs"
 	desc = "They look bloody and gruesome."
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
@@ -183,7 +183,7 @@
 	name = "mucus"
 	desc = "Disgusting mucus."
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'

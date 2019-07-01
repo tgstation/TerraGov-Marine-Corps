@@ -23,7 +23,7 @@
 	name = "cargo train trolley"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_trailer"
-	anchored = 0
+	anchored = FALSE
 	locked = 0
 	can_buckle = FALSE
 
@@ -213,7 +213,7 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 		if(verbs.Find(/atom/movable/verb/pull))
 			return
 		else
