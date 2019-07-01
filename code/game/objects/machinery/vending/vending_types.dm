@@ -210,7 +210,7 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
-	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
+	density = FALSE
 	wrenchable = FALSE
 	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = 1,
 					/obj/item/reagent_container/hypospray/autoinjector/tramadol = 1,
