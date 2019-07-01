@@ -71,7 +71,7 @@
 	if(!mind || client) //Let's call up the correct ghost!
 		return FALSE
 	for(var/g in GLOB.observer_list)
-		var/mob/dead/observer/ghost
+		var/mob/dead/observer/ghost = g
 		if(G.mind != mind)
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
