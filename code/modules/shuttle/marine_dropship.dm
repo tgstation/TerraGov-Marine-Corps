@@ -246,6 +246,8 @@
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
 /datum/game_mode/proc/can_summon_dropship(mob/user)
+	if(user.action_busy)
+		return FALSE
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
 		return FALSE
@@ -279,8 +281,6 @@
 			return FALSE
 		if(locked_sides < 3)
 			to_chat(user, "<span class='warning'>At least one side is still unlocked!</span>")
-			return FALSE
-		if(user.action_busy)
 			return FALSE
 		to_chat(user, "<span class='warning'>We begin overriding the shuttle lockdown. This will take a while...</span>")
 		if(!do_after(user, 60 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
