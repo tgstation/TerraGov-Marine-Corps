@@ -21,7 +21,7 @@
 	resistance_flags = UNACIDABLE
 	density = FALSE
 	use_power = 0
-	opacity = 1
+	opacity = TRUE
 	layer = ABOVE_MOB_LAYER
 	var/id
 

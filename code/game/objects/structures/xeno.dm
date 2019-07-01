@@ -142,7 +142,7 @@
 	desc = "A layer of disgusting sticky slime."
 	icon_state = "sticky"
 	density = FALSE
-	opacity = 0
+	opacity = FALSE
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
 	var/slow_amt = 8
@@ -167,7 +167,7 @@
 	name = "resin hole"
 	icon_state = "trap0"
 	density = FALSE
-	opacity = 0
+	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
@@ -371,7 +371,7 @@
 	flick("[mineralType]opening",src)
 	sleep(10)
 	density = FALSE
-	opacity = 0
+	opacity = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -394,7 +394,7 @@
 	flick("[mineralType]closing",src)
 	sleep(10)
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
@@ -697,7 +697,7 @@ TUNNEL
 	icon_state = "hole"
 
 	density = FALSE
-	opacity = 0
+	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER

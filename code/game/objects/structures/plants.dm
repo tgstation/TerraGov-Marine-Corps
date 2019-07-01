@@ -17,7 +17,7 @@
 /obj/structure/bush/New()
 	obj_integrity = rand(50,75)
 	if(prob(75))
-		opacity = 1
+		opacity = TRUE
 
 	//Randomise a bit
 	var/matrix/M = matrix()
@@ -86,7 +86,7 @@
 
 /obj/structure/bush/proc/healthcheck()
 	if(obj_integrity < 35 && opacity)
-		opacity = 0
+		opacity = FALSE
 	if(obj_integrity < 0)
 		if(prob(10))
 			icon_state = "stump[rand(1,2)]"

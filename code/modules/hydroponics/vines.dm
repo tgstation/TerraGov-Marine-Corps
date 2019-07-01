@@ -112,7 +112,7 @@
 			energy = 2
 			return
 
-		src.opacity = 1
+		src.opacity = TRUE
 		layer = FLY_LAYER
 	else if(!limited_growth)
 		src.icon_state = pick("Hvy1", "Hvy2", "Hvy3")

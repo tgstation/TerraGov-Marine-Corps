@@ -5,7 +5,7 @@
 	icon_state = "book-0"
 	anchored = TRUE
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/bookcase/Initialize()
 	. = ..()

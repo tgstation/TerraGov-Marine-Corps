@@ -145,7 +145,7 @@ obj/item/alienjar
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
 	density = FALSE
-	opacity = 0
+	opacity = FALSE
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"

@@ -466,7 +466,7 @@
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/jungle/vines/heavy/Initialize()
 	. = ..()

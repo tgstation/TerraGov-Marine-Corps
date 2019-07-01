@@ -9,7 +9,7 @@
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
-	opacity = 0
+	opacity = FALSE
 
 
 /obj/effect/decal/mecha_wreckage/ex_act(severity)

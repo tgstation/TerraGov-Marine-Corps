@@ -7,7 +7,7 @@
 	icon_state = "metal"
 	baseturfs = /turf/open/floor/plating
 	
-	opacity = 1
+	opacity = TRUE
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
 	var/junctiontype //when walls smooth with one another, the type of junction each wall is.

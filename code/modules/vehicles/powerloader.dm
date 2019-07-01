@@ -263,7 +263,7 @@
 	icon_state = "wreck"
 	density = TRUE
 	anchored = FALSE
-	opacity = 0
+	opacity = FALSE
 
 
 /obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)

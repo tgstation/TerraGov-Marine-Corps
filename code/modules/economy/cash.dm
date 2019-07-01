@@ -4,7 +4,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "spacecash1"
-	opacity = 0
+	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
 	force = 1.0
