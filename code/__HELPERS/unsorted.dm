@@ -1159,5 +1159,9 @@ will handle it, but:
 	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
 
 
-/proc/send_global_signal(signal) //Wrapper for callbacks and the likes.
-	SEND_GLOBAL_SIGNAL(signal)
+/proc/send_global_signal(signal, ...) //Wrapper for callbacks and the likes.
+	SEND_GLOBAL_SIGNAL(signal, args) //Passes the arguments as a list.
+
+
+/proc/send_signal(source, signal, ...) //Wrapper for callbacks and the likes.
+	SEND_SIGNAL(source, signal, args) //Passes the arguments as a list.

@@ -203,26 +203,26 @@
 	else
 		return
 	spawn (10)
-		send_signal(m_id, list("init" = new_name) )
+		send_alarm_signal(m_id, list("init" = new_name) )
 
 /obj/machinery/alarm/proc/refresh_all()
 	for(var/id_tag in alarm_area.air_vent_names)
 		var/list/I = alarm_area.air_vent_info[id_tag]
 		if (I && I["timestamp"]+AALARM_REPORT_TIMEOUT/2 > world.time)
 			continue
-		send_signal(id_tag, list("status") )
+		send_alarm_signal(id_tag, list("status") )
 	for(var/id_tag in alarm_area.air_scrub_names)
 		var/list/I = alarm_area.air_scrub_info[id_tag]
 		if (I && I["timestamp"]+AALARM_REPORT_TIMEOUT/2 > world.time)
 			continue
-		send_signal(id_tag, list("status") )
+		send_alarm_signal(id_tag, list("status") )
 
 /obj/machinery/alarm/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_TO_AIRALARM)
 
-/obj/machinery/alarm/proc/send_signal(target, list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
+/obj/machinery/alarm/proc/send_alarm_signal(target, list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)
 		return 0
 
@@ -243,33 +243,33 @@
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 1, "co2_scrub"= 1, "scrubbing"= 1, "panic_siphon"= 0) )
+				send_alarm_signal(device_id, list("power"= 1, "co2_scrub"= 1, "scrubbing"= 1, "panic_siphon"= 0) )
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 1, "checks"= "default", "set_external_pressure"= "default") )
+				send_alarm_signal(device_id, list("power"= 1, "checks"= "default", "set_external_pressure"= "default") )
 
 		if(AALARM_MODE_PANIC, AALARM_MODE_CYCLE)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 1, "panic_siphon"= 1) )
+				send_alarm_signal(device_id, list("power"= 1, "panic_siphon"= 1) )
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 0) )
+				send_alarm_signal(device_id, list("power"= 0) )
 
 		if(AALARM_MODE_REPLACEMENT)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 1, "panic_siphon"= 1) )
+				send_alarm_signal(device_id, list("power"= 1, "panic_siphon"= 1) )
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 1, "checks"= "default", "set_external_pressure"= "default") )
+				send_alarm_signal(device_id, list("power"= 1, "checks"= "default", "set_external_pressure"= "default") )
 
 		if(AALARM_MODE_FILL)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 0) )
+				send_alarm_signal(device_id, list("power"= 0) )
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 1, "checks"= "default", "set_external_pressure"= "default") )
+				send_alarm_signal(device_id, list("power"= 1, "checks"= "default", "set_external_pressure"= "default") )
 
 		if(AALARM_MODE_OFF)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 0) )
+				send_alarm_signal(device_id, list("power"= 0) )
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 0) )
+				send_alarm_signal(device_id, list("power"= 0) )
 
 /obj/machinery/alarm/proc/apply_danger_level(new_danger_level)
 	if (apply_danger_level && alarm_area.atmosalert(new_danger_level))
@@ -625,7 +625,7 @@ table tr:first-child th:first-child { border: none;}
 					"panic_siphon",
 					"scrubbing")
 
-					send_signal(device_id, list(href_list["command"] = text2num(href_list["val"]) ) )
+					send_alarm_signal(device_id, list(href_list["command"] = text2num(href_list["val"]) ) )
 
 				if("set_threshold")
 					var/env = href_list["env"]
