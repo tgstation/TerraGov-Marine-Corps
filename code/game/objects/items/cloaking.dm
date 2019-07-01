@@ -11,7 +11,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "syndicate=4;magnets=4"
 	var/chameleon_on = FALSE
 	var/datum/effect_system/spark_spread/spark_system
@@ -73,7 +73,7 @@
 	throwforce = 10.0
 	throw_speed = 2
 	throw_range = 10
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "magnets=3;syndicate=4"
 
 

@@ -9,7 +9,7 @@
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/claymore/suicide_act(mob/user)
@@ -37,7 +37,7 @@
 	icon_state = "machete"
 	force = 40
 	attack_speed = 9
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
@@ -52,7 +52,7 @@
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/katana/suicide_act(mob/user)
@@ -80,7 +80,7 @@
 	sharp = IS_SHARP_ITEM_ACCURATE
 	matter = list("metal" = 1000)
 	force = 25
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
@@ -135,7 +135,7 @@
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 10
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 35
 	throw_speed = 4
 	throw_range = 7

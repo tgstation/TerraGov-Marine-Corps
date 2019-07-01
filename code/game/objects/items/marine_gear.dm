@@ -170,7 +170,7 @@
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
 	filling_color = "#ED1169"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	list_reagents = list("nutriment" = 8)
 	bitesize = 4
 	tastes = list("nutraloafed food" = 7, "cocoa" = 1)
@@ -180,7 +180,7 @@
 	name = "\improper generic MRE pack"
 	//trash = /obj/item/trash/TGMCtray
 	trash = null
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal1
 	name = "\improper TGMC Prepared Meal (banana bread)"
@@ -286,7 +286,7 @@
 	desc = "A prepackaged, long-lasting food box from Nanotrasen Industries.\nOn the box is the Nanotrasen logo, with a slogan surrounding it: \n<b>NANOTRASEN. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
 	can_hold = list(/obj/item/reagent_container/food/snacks)
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/box/wy_mre/Initialize(mapload, ...)
 	. = ..()

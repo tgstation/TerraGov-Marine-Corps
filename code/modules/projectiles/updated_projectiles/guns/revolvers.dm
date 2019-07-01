@@ -3,7 +3,7 @@
 
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
 	fire_sound = 'sound/weapons/gun_44mag.ogg'

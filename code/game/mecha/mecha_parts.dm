@@ -6,7 +6,7 @@
 	name = "mecha part"
 	icon = 'icons/mecha/mech_construct.dmi'
 	icon_state = "blank"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 
 
 /obj/item/mecha_parts/chassis

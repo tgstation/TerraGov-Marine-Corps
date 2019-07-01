@@ -15,7 +15,7 @@
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/items/card.dmi'
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	var/associated_account_number = 0
 
 	var/list/files = list(  )
@@ -318,7 +318,7 @@
 	desc = "A fallen marine's information dog tag."
 	icon_state = "dogtag_taken"
 	icon = 'icons/obj/items/card.dmi'
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/fallen_names[0]
 	var/fallen_assignements[0]
 

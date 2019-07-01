@@ -7,7 +7,7 @@
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "m43"
 	maxcharge = 1000
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	matter = list("metal" = 700, "glass" = 60)
 	var/base_ammo_icon = "m43"
 	var/gun_type = /obj/item/weapon/gun/energy/lasgun

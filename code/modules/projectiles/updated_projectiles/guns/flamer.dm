@@ -7,7 +7,7 @@
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	fire_sound = "gun_flamethrower"
 	dry_fire_sound = 'sound/weapons/gun_flamethrower_empty.ogg'
