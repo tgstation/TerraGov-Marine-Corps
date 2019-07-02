@@ -459,11 +459,9 @@
 
 	camo_active = TRUE
 	camo_last_stealth = world.time
-	to_chat(M, "<span class='notice'>You activate your cloak's camouflage.</span>")
 	wearer = M
 
-	for (var/mob/O in oviewers(M))
-		O.show_message("[M] fades into thin air!", 1)
+	M.visible_message("[M] fades into thin air!", "<span class='notice'>You activate your cloak's camouflage.</span>")
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
