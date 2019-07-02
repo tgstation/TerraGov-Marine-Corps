@@ -33,8 +33,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
-	world.log = file("[GLOB.log_directory]/runtime.log")
-
 	LoadVerbs(/datum/verbs/menu)
 	load_admins()
 
