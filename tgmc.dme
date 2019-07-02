@@ -621,6 +621,7 @@
 #include "code\modules\crates_lockers\largecrate.dm"
 #include "code\modules\crates_lockers\largecrate_supplies.dm"
 #include "code\modules\crates_lockers\secure_crates.dm"
+#include "code\modules\crates_lockers\walllocker.dm"
 #include "code\modules\crates_lockers\closets\coffin.dm"
 #include "code\modules\crates_lockers\closets\crittercrate.dm"
 #include "code\modules\crates_lockers\closets\fireaxe.dm"
