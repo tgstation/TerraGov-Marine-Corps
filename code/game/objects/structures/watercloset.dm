@@ -462,7 +462,7 @@
 
 	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
 
-	if(!do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	if(user.loc != location || user.get_active_held_item() != I) 
