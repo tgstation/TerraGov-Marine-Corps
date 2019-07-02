@@ -3,7 +3,7 @@
 	singular_name = "light floor tile"
 	desc = "A floor tile, made out off glass. It produces light."
 	icon_state = "tile_e"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 5

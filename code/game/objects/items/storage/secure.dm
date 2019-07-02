@@ -22,7 +22,7 @@
 	var/l_setshort = 0
 	var/l_hacking = 0
 	var/open = 0
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	max_w_class = 2
 	max_storage_space = 14
 
@@ -137,7 +137,7 @@
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 	New()
 		..()

@@ -8,7 +8,7 @@
 	icon_state = "dropper0"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(1,2,3,4,5)
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	volume = 5
 	init_reagent_flags = TRANSPARENT
 	var/filled = 0

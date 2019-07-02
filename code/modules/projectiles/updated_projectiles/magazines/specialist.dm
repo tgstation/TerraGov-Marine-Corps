@@ -7,7 +7,7 @@
 	desc = "A magazine of sniper rifle ammo."
 	caliber = "10x28mm"
 	icon_state = "m42a"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
 	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
@@ -106,7 +106,7 @@
 	icon_state = "rocket"
 	origin_tech = "combat=3;materials=3"
 	matter = list("metal" = 10000)
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
@@ -187,6 +187,6 @@
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 300
 	reload_delay = 50 //Hard to reload.
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/minigun
 

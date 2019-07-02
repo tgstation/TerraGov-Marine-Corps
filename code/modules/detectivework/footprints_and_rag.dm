@@ -7,7 +7,7 @@
 /obj/item/reagent_container/glass/rag
 	name = "damp rag"
 	desc = "For cleaning up messes, you suppose."
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "rag"
 	amount_per_transfer_from_this = 5

@@ -835,7 +835,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	name = "squad supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
 	icon_state = "motion0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/activated = 0
 	var/activation_time = 60
 	var/datum/squad/squad = null
@@ -901,7 +901,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	name = "orbital beacon"
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
 	icon_state = "motion4"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	activation_time = 80
 	icon_activated = "motion1"
 

@@ -48,7 +48,7 @@
 	name = "sign"
 	desc = ""
 	icon = 'icons/obj/decals.dmi'
-	w_class = 3		//big
+	w_class = WEIGHT_CLASS_NORMAL		//big
 	var/sign_state = ""
 
 /obj/item/sign/attackby(obj/item/I, mob/user, params)	//construction

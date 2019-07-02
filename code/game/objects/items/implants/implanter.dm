@@ -5,7 +5,7 @@
 	item_state = "syringe_0"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/obj/item/implant/imp = null
 
 /obj/item/implanter/Initialize(mapload, ...)
