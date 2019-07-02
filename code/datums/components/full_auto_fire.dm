@@ -11,33 +11,43 @@
 	var/shots_fired = 0
 
 
+/datum/component/automatic_fire/Initialize(...)
+	. = ..()
+	if(isgun(parent))
+		RegisterSignal(parent, COMSIG_GUN_FULLAUTOMODE_TOGGLEON, .proc/autofire_on)
+		RegisterSignal(parent, COMSIG_GUN_FULLAUTOMODE_TOGGLEOFF, .proc/autofire_off)
+		return
+	return COMPONENT_INCOMPATIBLE
+
+
 /datum/component/automatic_fire/Destroy()
 	autofire_off()
 	return ..()
 
 
-/datum/component/automatic_fire/proc/autofire_on(client/usercli, new_delay, flags)
+/datum/component/automatic_fire/proc/autofire_on(datum/source, client/usercli, new_delay, flags)
 	clicker = usercli
 	if(!isnull(flags))
 		autofire_flags = flags
 	if(!isnull(new_delay))
 		delay = new_delay
+	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDOWN, .proc/on_mouse_down)
+	RegisterSignal(clicker.mob, COMSIG_MOB_LOGOUT, .proc/autofire_off)
 	RegisterSignal(parent, COMSIG_PARENT_QDELETED, .proc/autofire_off)
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/autofire_off)
-	RegisterSignal(clicker, COMSIG_CLIENT_DISCONNECTED, .proc/autofire_off)
-	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDOWN, .proc/on_mouse_down)
-	SEND_SIGNAL(parent, COMSIG_GUN_AUTOFIRE_ON, clicker)
+	parent.RegisterSignal(parent, COMSIG_FULL_AUTO_FIRE, /obj/item/weapon/gun/.proc/do_autofire)
 
 
 /datum/component/automatic_fire/proc/autofire_off()
 	if(!isnull(target))
 		stop_autofiring()
 	if(!QDELETED(clicker))
-		UnregisterSignal(clicker, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG, COMSIG_CLIENT_DISCONNECTED))
+		UnregisterSignal(clicker, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG))
+		if(!QDELETED(clicker.mob))
+			UnregisterSignal(clicker.mob, COMSIG_MOB_LOGOUT)
 	clicker = null
-	if(!QDELETED(parent))
-		SEND_SIGNAL(parent, COMSIG_GUN_AUTOFIRE_OFF)
-		UnregisterSignal(parent, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETED))
+	parent.UnregisterSignal(parent, COMSIG_FULL_AUTO_FIRE)
+	UnregisterSignal(parent, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETED))
 	delay = initial(delay)
 
 
@@ -89,6 +99,15 @@
 	SEND_SIGNAL(parent, COMSIG_FULL_AUTO_FIRE, target, clicker.mob, mouse_parameters, ++shots_fired)
 
 
+// obj/item/gun
+/datum/component/automatic_fire/proc/itemgun_equipped(datum/source, mob/shooter, slot)
+	switch(slot)
+		if(SLOT_L_HAND, SLOT_R_HAND)
+			autofire_on(source, shooter.client)
+		else
+			autofire_off()
+	
+
 /*
 //Full auto action.
 /datum/action/toggle_full_auto
@@ -126,23 +145,6 @@
 
 
 //Procs to be put elsewhere later on.
-/obj/item/weapon/gun/proc/on_autofire_on(datum/source, mob/shooter)
-	RegisterSignal(src, COMSIG_FULL_AUTO_FIRE, .proc/do_autofire)
-	RegisterSignal(src, COMSIG_GUN_AUTOFIRE_OFF, .proc/on_autofire_off)
-
-
-/obj/item/weapon/gun/proc/on_autofire_off(datum/source)
-	UnregisterSignal(src, COMSIG_FULL_AUTO_FIRE)
-	UnregisterSignal(src, COMSIG_GUN_AUTOFIRE_OFF)
-
-
-/obj/item/weapon/gun/proc/autofire_on_equipped(datum/source, mob/shooter, slot)
-	var/datum/component/automatic_fire/fullauto = LoadComponent(/datum/component/automatic_fire)
-	switch(slot)
-		if(SLOT_L_HAND, SLOT_R_HAND)
-			fullauto.autofire_on(shooter)
-		else
-			fullauto.autofire_off()
 
 
 /obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/shooter, params, shots_fired)

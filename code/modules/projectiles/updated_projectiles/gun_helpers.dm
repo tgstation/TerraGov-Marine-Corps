@@ -681,6 +681,9 @@ should be alright.
 						actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
 					if(GUN_FIREMODE_BURSTFIRE)
 						actions_types += list(/datum/action/item_action/firemode/burst_firemode)
+					if(GUN_FIREMODE_AUTOFIRE)
+						actions_types += list(/datum/action/item_action/firemode/automatic_firemode)
+						AddComponent(/datum/component/automatic_fire)
 				var/action_type = actions_types[length(actions_types)]
 				var/datum/action/new_action = new action_type(src)
 				if(isliving(loc))

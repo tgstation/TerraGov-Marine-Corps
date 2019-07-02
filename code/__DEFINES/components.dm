@@ -138,9 +138,9 @@
 #define COMSIG_GRAB_SELF_ATTACK "grab_self_attack"				//from base of obj/item/grab/attack() if attacked is the same as attacker: (mob/living/user)
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
 
-// /obj/item/gun signals
-#define COMSIG_GUN_AUTOFIRE_ON "gun_autofire_on"
-#define COMSIG_GUN_AUTOFIRE_OFF "gun_autofire_off"
+// /obj/item/weapon/gun/ signals
+#define COMSIG_GUN_FULLAUTOMODE_TOGGLEON "gun_fullautomode_toggleon"	//from /obj/item/weapon/gun/verb/toggle_burst()
+#define COMSIG_GUN_FULLAUTOMODE_TOGGLEOFF "gun_fullautomode_toggleoff"	//from /obj/item/weapon/gun/verb/toggle_burst()
 
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
@@ -151,6 +151,7 @@
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+#define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): () 
 
 //mob/living signals
 #define COMSIG_LIVING_DO_RESIST			"living_do_resist"		//from the base of /mob/living/do_resist()
@@ -211,7 +212,7 @@
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
 
 
-// /obj/item/gun signals
+// /obj/item/weapon/gun/ signals
 #define COMSIG_FULL_AUTO_FIRE "full_auto_fire"
 
 //keybindings

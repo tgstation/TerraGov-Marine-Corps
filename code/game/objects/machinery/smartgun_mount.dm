@@ -527,7 +527,6 @@
 	user.verbs += /mob/living/proc/toogle_mg_burst_fire
 	user.client.click_intercept = src
 
-
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
 	if(user.client)
 		user.client.change_view(world.view)
@@ -537,7 +536,6 @@
 	if(operator == user)
 		operator = null
 	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
-
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)
 	if(user.lying || !Adjacent(user) || user.incapacitated() || !user.client)
