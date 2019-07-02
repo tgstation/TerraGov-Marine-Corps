@@ -231,7 +231,8 @@ Instead of this you should do it like this:
 	do something
 
 /atom/movable/do_a_thing(mob/user)
-	optional istype() check
+	if istype(user, mob/living/carbon/human)
+	typecast
 	do something
 ````
 
