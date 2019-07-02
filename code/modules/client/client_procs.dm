@@ -22,10 +22,10 @@
 
 	//Asset cache
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = text2num(href_list["asset_cache_confirm_arrival"])
+		var/job = round(text2num(href_list["asset_cache_confirm_arrival"]))
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
 		//into letting append to a list without limit.
-		if(job && job <= last_asset_job && !(job in completed_asset_jobs))
+		if(job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
 			completed_asset_jobs += job
 			return
 		else if(job in completed_asset_jobs) //byond bug ID:2256651
@@ -46,7 +46,7 @@
 			var/msg = "Your previous action was ignored because you've done too many in a minute."
 			if(minute != topiclimiter[5]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
 				topiclimiter[5] = minute
-				log_admin("[key_name(src)] has hit the per-minute topic limit of [mtl] topic calls.")
+				log_admin_private("[key_name(src)] has hit the per-minute topic limit of [mtl] topic calls.")
 				message_admins("[ADMIN_LOOKUP(src)] has hit the per-minute topic limit of [mtl] topic calls.")
 			to_chat(src, "<span class='danger'>[msg]</span>")
 			return
@@ -82,12 +82,20 @@
 		if("usr")
 			hsrc = mob
 		if("prefs")
-			return prefs.process_link(usr, href_list)
+			if(inprefs)
+				return
+			inprefs = TRUE
+			. = prefs.process_link(usr, href_list)
+			inprefs = FALSE
+			return
 		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 		if("chat")
 			return chatOutput.Topic(href, href_list)
 
+	switch(href_list["action"])
+		if("openLink")
+			DIRECT_OUTPUT(src, link(href_list["link"]))
 
 	if(hsrc)
 		var/datum/real_src = hsrc
@@ -182,7 +190,7 @@
 		
 	chatOutput.start() // Starts the chat
 
-	if(byond_version < 512)
+	if(byond_version < 512 || (byond_build && byond_build < 1421))
 		to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
 		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
@@ -334,6 +342,7 @@
 		'html/panels.css',
 		'html/browser/common.css',
 		'html/browser/scannernew.css',
+		'html/browser/latechoices.css'
 		)
 	spawn(10) //removing this spawn causes all clients to not get verbs.
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
@@ -405,6 +414,21 @@
 		qdel(query_client_in_db)
 		return
 	if(!query_client_in_db.NextRow())
+		if(CONFIG_GET(flag/panic_bunker) && !(holder?.rank?.rights & R_ADMIN) && !GLOB.deadmins[ckey])
+			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
+			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker.</span>")
+			to_chat(src, CONFIG_GET(string/panic_bunker_message))
+			var/list/connectiontopic_a = params2list(connectiontopic)
+			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
+			if(panic_addr && !connectiontopic_a["redirect"])
+				var/panic_name = CONFIG_GET(string/panic_server_name)
+				to_chat(src, "<span class='notice'>Sending you to [panic_name ? panic_name : panic_addr].</span>")
+				winset(src, null, "command=.options")
+				DIRECT_OUTPUT(src, link("[panic_addr]?redirect=1"))
+			qdel(query_client_in_db)
+			qdel(src)
+			return
+
 		new_player = 1
 		account_join_date = sanitizeSQL(findJoinDate())
 		var/sql_key = sanitizeSQL(key)

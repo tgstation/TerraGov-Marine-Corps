@@ -60,7 +60,8 @@ Code:
 
 /obj/item/assembly/signaler/Topic(href, href_list)
 	. = ..()
-
+	if(.)
+		return
 	if(!usr.canUseTopic(src, TRUE))
 		usr << browse(null, "window=radio")
 		onclose(usr, "radio")

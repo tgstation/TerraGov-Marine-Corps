@@ -8,7 +8,7 @@
 	sharp = 0
 	edge = 0
 	throwforce = 7
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "combat=2"
 	attack_verb = list("beaten")
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_CAPTAIN, ACCESS_NT_CORPORATE, ACCESS_NT_PMC_GREEN)
@@ -35,7 +35,7 @@
 	update_icon()
 	return
 
-/obj/item/weapon/baton/proc/deductcharge(var/chrgdeductamt)
+/obj/item/weapon/baton/proc/deductcharge(chrgdeductamt)
 	if(bcell)
 		if(bcell.use(chrgdeductamt))
 			return 1
@@ -60,8 +60,10 @@
 		to_chat(user, "<span class='warning'>The baton does not have a power source installed.</span>")
 
 /obj/item/weapon/baton/attack_hand(mob/user)
-	if(check_user_auth(user))
-		..()
+	. = ..()
+	if(.)
+		return
+	check_user_auth(user)
 
 
 /obj/item/weapon/baton/equipped(mob/user, slot)

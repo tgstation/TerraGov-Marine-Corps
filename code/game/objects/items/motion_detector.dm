@@ -37,7 +37,7 @@
 	var/list/blip_pool = list()
 	var/detector_range = 14
 	var/detector_mode = MOTION_DETECTOR_LONG
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/active = 0
 	var/recycletime = 120
 	var/long_range_cooldown = 2
@@ -238,7 +238,9 @@
 
 
 /obj/item/motiondetector/Topic(href, href_list)
-	//..()
+	. = ..()
+	if(.)
+		return
 	if(usr.stat || usr.restrained())
 		return
 	if(ishuman(usr) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))
@@ -300,18 +302,18 @@
 <BR>
 <B>Detection Settings:</B><BR>
 <BR>
- <B>Detection Mode:</B> [detector_mode ? "Short Range" : "Long Range"]<BR>
+<B>Detection Mode:</B> [detector_mode ? "Short Range" : "Long Range"]<BR>
 <A href='?src=\ref[src];detector_mode=1'><B>Set Detector Mode:</B> [detector_mode ? "Long Range" : "Short Range"]</A><BR>
 <BR>
- <B>Friendly Detection Status:</B> [detect_friendlies ? "ACTIVE" : "INACTIVE"]<BR>
+<B>Friendly Detection Status:</B> [detect_friendlies ? "ACTIVE" : "INACTIVE"]<BR>
 <A href='?src=\ref[src];detect_friendlies=1'><B>Set Friendly Detection:</B> [detect_friendlies ? "Off" : "On"]</A><BR>
 <BR>
- <B>Revivable Detection Status:</B> [detect_revivable ? "ACTIVE" : "INACTIVE"]<BR>
+<B>Revivable Detection Status:</B> [detect_revivable ? "ACTIVE" : "INACTIVE"]<BR>
 <A href='?src=\ref[src];detect_revivable=1'><B>Set Revivable Detection:</B> [detect_revivable ? "Off" : "On"]</A><BR>
 <BR>
- <B>Unrevivable Detection Status:</B> [detect_fubar ? "ACTIVE" : "INACTIVE"]<BR>
+<B>Unrevivable Detection Status:</B> [detect_fubar ? "ACTIVE" : "INACTIVE"]<BR>
 <A href='?src=\ref[src];detect_fubar=1'><B>Set Unrevivable Detection:</B> [detect_fubar ? "Off" : "On"]</A><BR>
- </TT>"}
+</TT>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 
@@ -320,7 +322,7 @@
 	name = "MK2 recon tactical sensor"
 	desc = "A device that detects hostile movement; this one is specially minaturized for reconnaissance units. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector_off"
-	w_class = 1 //We can have this in our pocket and still get pings
+	w_class = WEIGHT_CLASS_TINY //We can have this in our pocket and still get pings
 	ping = FALSE //Stealth modo
 
 

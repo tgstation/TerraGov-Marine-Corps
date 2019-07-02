@@ -114,14 +114,14 @@
 	desc = "Fluffy!"
 	icon_state = "slippers"
 	item_state = "slippers"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/shoes/slippers_worn
 	name = "worn bunny slippers"
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
 	item_state = "slippers_worn"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/shoes/laceup
 	name = "laceup shoes"

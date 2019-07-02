@@ -3,7 +3,7 @@
 	desc = "The ultimate in janitorial carts! Has space for water, mops, signs, trash bags, and more!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
-	anchored = 0
+	anchored = FALSE
 	density = TRUE
 	drag_delay = 1
 	throwpass = TRUE
@@ -104,6 +104,9 @@
 
 
 /obj/structure/janitorialcart/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	var/dat
 	if(mybag)

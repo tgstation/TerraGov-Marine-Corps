@@ -2,7 +2,7 @@
 	name = "abstract pouch"
 	icon = 'icons/Marine/marine-pouches.dmi'
 	icon_state = "small_drop"
-	w_class = 4 //does not fit in backpack
+	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 2
 	flags_equip_slot = ITEM_SLOT_POCKET
 	storage_slots = 1
@@ -299,7 +299,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
-	    /obj/item/reagent_container/hypospray)
+		/obj/item/reagent_container/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()
 	. = ..()
@@ -314,7 +314,7 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-	    /obj/item/reagent_container/hypospray/autoinjector
+		/obj/item/reagent_container/hypospray/autoinjector
 	)
 
 
@@ -329,7 +329,7 @@
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
-	w_class = 4.1 //does not fit in backpack
+	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
 	draw_mode = 1
 	icon_state = "medkit"

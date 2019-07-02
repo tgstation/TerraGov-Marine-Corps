@@ -142,9 +142,7 @@
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "aaF" = (
-/obj/structure/tunnel{
-	id = "north_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "aaG" = (
@@ -822,9 +820,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/requesitions)
 "acZ" = (
-/obj/structure/tunnel{
-	id = "east_cargo_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/northwest)
 "ada" = (
@@ -847,9 +843,7 @@
 /turf/closed/ice_rock/single,
 /area/ice_colony/exterior/surface/cliff)
 "ade" = (
-/obj/structure/tunnel{
-	id = "engineering_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "adf" = (
@@ -1366,12 +1360,6 @@
 /area/ice_colony/exterior/surface/valley/northeast)
 "aeC" = (
 /turf/closed/ice_rock/singleEnd,
-/area/ice_colony/exterior/surface/valley/north)
-"aeD" = (
-/obj/structure/tunnel{
-	id = "dig_site_tunnel"
-	},
-/turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
 "aeE" = (
 /obj/effect/landmark/monkey_spawn,
@@ -2310,9 +2298,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "agV" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle_control/dropship1{
-	onboard = 0
-	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -2551,7 +2537,6 @@
 /area/ice_colony/surface/substation/smes)
 "ahy" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (EAST)";
 	icon_state = "term";
 	dir = 4
 	},
@@ -2604,7 +2589,6 @@
 /area/ice_colony/surface/substation/smes)
 "ahD" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (NORTH)";
 	icon_state = "term";
 	dir = 1
 	},
@@ -3038,7 +3022,6 @@
 /area/ice_colony/surface/substation/smes)
 "aiK" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (NORTH)";
 	icon_state = "term";
 	dir = 1
 	},
@@ -3144,7 +3127,6 @@
 /area/ice_colony/surface/engineering)
 "aiW" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (WEST)";
 	icon_state = "term";
 	dir = 8
 	},
@@ -3205,7 +3187,6 @@
 /area/ice_colony/surface/substation/smes)
 "ajd" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (EAST)";
 	icon_state = "term";
 	dir = 4
 	},
@@ -3253,7 +3234,6 @@
 /area/ice_colony/exterior/surface/valley/northwest)
 "aji" = (
 /obj/machinery/conveyor{
-	tag = "icon-conveyor-1 (EAST)";
 	icon_state = "conveyor-1";
 	dir = 4
 	},
@@ -3297,7 +3277,6 @@
 /area/ice_colony/surface/hydroponics/north)
 "ajo" = (
 /obj/machinery/conveyor{
-	tag = "icon-conveyor-1 (EAST)";
 	icon_state = "conveyor-1";
 	dir = 4
 	},
@@ -3367,7 +3346,6 @@
 /area/ice_colony/surface/engineering)
 "ajw" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (WEST)";
 	icon_state = "term";
 	dir = 8
 	},
@@ -3936,12 +3914,6 @@
 "akK" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/junction,
-/area/ice_colony/exterior/surface/valley/northeast)
-"akL" = (
-/obj/structure/tunnel{
-	id = "construction_tunnel"
-	},
-/turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
 "akM" = (
 /obj/item/lightstick/anchored,
@@ -5129,7 +5101,6 @@
 /area/ice_colony/surface/clinic/treatment)
 "aoc" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (EAST)";
 	icon_state = "term";
 	dir = 4
 	},
@@ -5313,9 +5284,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 17
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -5644,7 +5613,6 @@
 /area/ice_colony/surface/hydroponics/north)
 "apj" = (
 /obj/effect/decal/cleanable/blood/oil{
-	tag = "icon-armorblood";
 	icon_state = "armorblood"
 	},
 /turf/open/floor/plating/icefloor,
@@ -7299,12 +7267,6 @@
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/lobby)
-"atk" = (
-/obj/structure/tunnel{
-	id = "hydroponics_tunnel"
-	},
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/west)
 "atl" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -7432,8 +7394,8 @@
 	},
 /area/ice_colony/underground/hangar)
 "atA" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /turf/open/floor/tile/red/whitered{
 	dir = 8
@@ -9106,7 +9068,6 @@
 /area/ice_colony/surface/disposals)
 "axF" = (
 /obj/structure/disposaloutlet{
-	tag = "icon-outlet (EAST)";
 	icon_state = "outlet";
 	dir = 4
 	},
@@ -10690,7 +10651,6 @@
 /area/ice_colony/surface/garage/one)
 "aBQ" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -10699,7 +10659,6 @@
 /area/ice_colony/surface/garage/one)
 "aBR" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -10709,7 +10668,6 @@
 /area/ice_colony/surface/garage/one)
 "aBS" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
 /obj/structure/cable{
@@ -10738,7 +10696,6 @@
 /area/ice_colony/surface/garage/one)
 "aBV" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -10758,7 +10715,6 @@
 /area/ice_colony/surface/garage/two)
 "aBY" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
 /obj/structure/disposalpipe/segment,
@@ -11097,7 +11053,6 @@
 /area/ice_colony/surface/garage/two)
 "aCT" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11107,7 +11062,6 @@
 /area/ice_colony/surface/garage/two)
 "aCU" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
 /obj/structure/cable{
@@ -12210,6 +12164,7 @@
 "aFD" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -12218,6 +12173,7 @@
 "aFE" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -12236,6 +12192,7 @@
 /area/ice_colony/surface/command/control/office)
 "aFG" = (
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -12266,6 +12223,7 @@
 /area/ice_colony/surface/hydroponics/south)
 "aFJ" = (
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -12274,6 +12232,7 @@
 "aFK" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -12283,6 +12242,7 @@
 "aFL" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -12292,6 +12252,7 @@
 "aFM" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -12477,9 +12438,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/two)
 "aGp" = (
-/obj/structure/tunnel{
-	id = "west_tcomms_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aGq" = (
@@ -12748,6 +12707,7 @@
 "aGQ" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -13136,6 +13096,7 @@
 "aHJ" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/almayer{
+	dir = 2;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -13772,7 +13733,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "aJz" = (
 /obj/structure/table/woodentable,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/tool/stamp,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
@@ -14222,7 +14183,6 @@
 /area/ice_colony/surface/garage/one)
 "aKW" = (
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -15161,9 +15121,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
 "aNs" = (
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
 /obj/machinery/power/apc,
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -15177,12 +15134,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
-"aNu" = (
-/obj/structure/tunnel{
-	id = "north_research_tunnel"
-	},
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/west)
 "aNv" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -16024,7 +15975,6 @@
 "aPI" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-swall_f6";
 	icon_state = "swall_f6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -16040,7 +15990,6 @@
 "aPK" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-swall_f10";
 	icon_state = "swall_f10"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -16113,7 +16062,6 @@
 "aPW" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-swall_f10";
 	icon_state = "swall_f10"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -16369,7 +16317,6 @@
 "aQD" = (
 /obj/effect/turf_underlay/shuttle/floor6,
 /turf/closed/shuttle{
-	tag = "icon-swall_f5";
 	icon_state = "swall_f5"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -16467,7 +16414,6 @@
 "aQM" = (
 /obj/effect/turf_underlay/shuttle/floor6,
 /turf/closed/shuttle{
-	tag = "icon-swall_f5";
 	icon_state = "swall_f5"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -16771,14 +16717,12 @@
 /area/ice_colony/surface/bar/bar)
 "aRy" = (
 /turf/closed/shuttle{
-	tag = "icon-swall3";
 	icon_state = "swall3"
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aRz" = (
 /obj/machinery/light,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -16808,13 +16752,11 @@
 "aRD" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-swall_f6";
 	icon_state = "swall_f6"
 	},
 /area/ice_colony/surface/hangar/beta)
 "aRE" = (
 /turf/closed/shuttle{
-	tag = "icon-swall3";
 	icon_state = "swall3"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -16839,7 +16781,6 @@
 /obj/machinery/light,
 /obj/item/weapon/gun/pistol/holdout,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -16863,7 +16804,6 @@
 /area/ice_colony/surface/research/field_gear)
 "aRK" = (
 /obj/machinery/door/airlock/almayer/engineering{
-	tag = "icon-door_closed (WEST)";
 	name = "\improper Omicron Field Gear Storage";
 	icon_state = "door_closed";
 	dir = 8;
@@ -17046,7 +16986,6 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aSa" = (
 /obj/structure/device/piano{
-	tag = "icon-pianobroken";
 	icon_state = "pianobroken"
 	},
 /turf/open/floor/wood,
@@ -17082,7 +17021,6 @@
 /area/ice_colony/surface/hangar/alpha)
 "aSg" = (
 /turf/closed/shuttle{
-	tag = "icon-swall7";
 	icon_state = "swall7"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17098,19 +17036,16 @@
 "aSi" = (
 /obj/machinery/door/airlock/unpowered/shuttle,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aSj" = (
 /turf/closed/shuttle{
-	tag = "icon-swall4";
 	icon_state = "swall4"
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aSk" = (
 /turf/closed/shuttle{
-	tag = "icon-swall11";
 	icon_state = "swall11"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17134,33 +17069,28 @@
 /area/ice_colony/surface/hangar/beta)
 "aSp" = (
 /turf/closed/shuttle{
-	tag = "icon-swall7";
 	icon_state = "swall7"
 	},
 /area/ice_colony/surface/hangar/beta)
 "aSq" = (
 /obj/effect/turf_underlay/shuttle/floor6,
 /turf/closed/shuttle{
-	tag = "icon-swall_f9";
 	icon_state = "swall_f9"
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aSr" = (
 /obj/machinery/door/airlock/unpowered/shuttle,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
 "aSs" = (
 /turf/closed/shuttle{
-	tag = "icon-swall4";
 	icon_state = "swall4"
 	},
 /area/ice_colony/surface/hangar/beta)
 "aSt" = (
 /turf/closed/shuttle{
-	tag = "icon-swall11";
 	icon_state = "swall11"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -17174,7 +17104,6 @@
 "aSv" = (
 /obj/structure/computerframe,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17206,14 +17135,12 @@
 "aSy" = (
 /obj/effect/turf_underlay/shuttle/floor6,
 /turf/closed/shuttle{
-	tag = "icon-swall_f9";
 	icon_state = "swall_f9"
 	},
 /area/ice_colony/surface/hangar/beta)
 "aSz" = (
 /obj/structure/computerframe,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -17381,7 +17308,6 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aSV" = (
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17413,7 +17339,6 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aSZ" = (
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -17490,7 +17415,6 @@
 /area/ice_colony/surface/research)
 "aTn" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-N-corner";
 	icon_state = "N-corner"
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -17519,7 +17443,6 @@
 	dir = 1
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17551,7 +17474,6 @@
 "aTv" = (
 /obj/machinery/light,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -17561,7 +17483,6 @@
 	},
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -17580,7 +17501,6 @@
 /area/ice_colony/surface/research)
 "aTy" = (
 /turf/closed/shuttle{
-	tag = "icon-swall0";
 	icon_state = "swall0"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17811,14 +17731,12 @@
 "aTW" = (
 /obj/effect/turf_overlay/shuttle/heater,
 /turf/closed/shuttle{
-	tag = "icon-swall0";
 	icon_state = "swall0"
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aTX" = (
 /obj/effect/turf_overlay/shuttle/heater,
 /turf/closed/shuttle{
-	tag = "icon-swall0";
 	icon_state = "swall0"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -17827,13 +17745,11 @@
 /area/ice_colony/exterior/surface/cliff)
 "aTZ" = (
 /turf/closed/shuttle{
-	tag = "icon-swall8";
 	icon_state = "swall8"
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aUa" = (
 /turf/closed/shuttle{
-	tag = "icon-swall8";
 	icon_state = "swall8"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -17880,7 +17796,6 @@
 /area/ice_colony/surface/research/temporary)
 "aUh" = (
 /turf/closed/shuttle{
-	tag = "icon-swall1";
 	icon_state = "swall1"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17890,7 +17805,6 @@
 	dir = 1
 	},
 /turf/closed/shuttle{
-	tag = "icon-burst_l";
 	icon_state = "burst_l"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17900,7 +17814,6 @@
 	dir = 1
 	},
 /turf/closed/shuttle{
-	tag = "icon-burst_r";
 	icon_state = "burst_r"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -17931,7 +17844,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "aUn" = (
 /turf/closed/shuttle{
-	tag = "icon-swall1";
 	icon_state = "swall1"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -17953,7 +17865,6 @@
 	dir = 1
 	},
 /turf/closed/shuttle{
-	tag = "icon-burst_r";
 	icon_state = "burst_r"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -18233,7 +18144,6 @@
 /area/ice_colony/surface/bar/bar)
 "aVd" = (
 /turf/closed/shuttle{
-	tag = "icon-swall0";
 	icon_state = "swall0"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -18414,7 +18324,6 @@
 /area/ice_colony/exterior/surface/container_yard)
 "aVy" = (
 /turf/closed/shuttle{
-	tag = "icon-swall2";
 	icon_state = "swall2"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -18450,7 +18359,6 @@
 /area/ice_colony/surface/research/temporary)
 "aVD" = (
 /turf/closed/shuttle{
-	tag = "icon-swall2";
 	icon_state = "swall2"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -18568,7 +18476,6 @@
 	dir = 1
 	},
 /turf/closed/shuttle{
-	tag = "icon-burst_l";
 	icon_state = "burst_l"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -18642,7 +18549,6 @@
 "aWb" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-swall_f5";
 	icon_state = "swall_f5"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -18657,14 +18563,12 @@
 "aWd" = (
 /obj/effect/turf_underlay/shuttle/floor6,
 /turf/closed/shuttle{
-	tag = "icon-swall_f6";
 	icon_state = "swall_f6"
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aWe" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-swall_f9";
 	icon_state = "swall_f9"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -18724,14 +18628,12 @@
 "aWm" = (
 /obj/effect/turf_underlay/shuttle/floor6,
 /turf/closed/shuttle{
-	tag = "icon-swall_f6";
 	icon_state = "swall_f6"
 	},
 /area/ice_colony/surface/hangar/beta)
 "aWn" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-swall_f9";
 	icon_state = "swall_f9"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -18875,7 +18777,6 @@
 	pixel_y = -4
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -18996,9 +18897,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aWV" = (
-/obj/structure/tunnel{
-	id = "south_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
 "aWW" = (
@@ -19119,7 +19018,6 @@
 "aXn" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-wall (NORTHEAST)";
 	icon_state = "wall";
 	dir = 5
 	},
@@ -19194,7 +19092,6 @@
 "aXv" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-wall (NORTHEAST)";
 	icon_state = "wall";
 	dir = 5
 	},
@@ -19312,7 +19209,6 @@
 "aXL" = (
 /obj/effect/turf_underlay/shuttle/floor6,
 /turf/closed/shuttle{
-	tag = "icon-swall_f10";
 	icon_state = "swall_f10"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -19343,14 +19239,12 @@
 "aXP" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-swall_f5";
 	icon_state = "swall_f5"
 	},
 /area/ice_colony/surface/hangar/beta)
 "aXQ" = (
 /obj/effect/turf_underlay/shuttle/floor6,
 /turf/closed/shuttle{
-	tag = "icon-swall_f10";
 	icon_state = "swall_f10"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -19466,7 +19360,6 @@
 /area/ice_colony/surface/hangar/alpha)
 "aYg" = (
 /turf/closed/shuttle{
-	tag = "icon-swall14";
 	icon_state = "swall14"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -19493,7 +19386,6 @@
 /area/ice_colony/surface/hangar/beta)
 "aYk" = (
 /turf/closed/shuttle{
-	tag = "icon-swall14";
 	icon_state = "swall14"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -19722,7 +19614,6 @@
 "aZc" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-wall (NORTHWEST)";
 	icon_state = "wall";
 	dir = 9
 	},
@@ -19760,7 +19651,6 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "aZg" = (
 /turf/closed/shuttle{
-	tag = "icon-swall13";
 	icon_state = "swall13"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -19819,14 +19709,12 @@
 "aZp" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-wall (NORTHWEST)";
 	icon_state = "wall";
 	dir = 9
 	},
 /area/ice_colony/surface/hangar/beta)
 "aZq" = (
 /turf/closed/shuttle{
-	tag = "icon-swall13";
 	icon_state = "swall13"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -19986,7 +19874,6 @@
 "aZO" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-wall (SOUTHEAST)";
 	icon_state = "wall";
 	dir = 6
 	},
@@ -19994,7 +19881,6 @@
 "aZP" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-wall (SOUTHWEST)";
 	icon_state = "wall";
 	dir = 10
 	},
@@ -20174,7 +20060,6 @@
 "bap" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-wall (SOUTHEAST)";
 	icon_state = "wall";
 	dir = 6
 	},
@@ -20182,7 +20067,6 @@
 "baq" = (
 /obj/effect/turf_underlay/tiles/dark2,
 /turf/closed/shuttle{
-	tag = "icon-wall (SOUTHWEST)";
 	icon_state = "wall";
 	dir = 10
 	},
@@ -20255,19 +20139,7 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southeast)
 "baB" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpseback = /obj/item/storage/backpack/satchel;
-	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
-	corpsemask = /obj/item/clothing/mask/gas/PMC;
-	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
-	corpsepocket2 = /obj/item/flashlight;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
-	mobname = "Unknown";
-	name = "Unknown PMC"
-	},
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "baC" = (
@@ -20346,6 +20218,7 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
 	id = "hangar_ice_1";
 	name = "\improper Hangar Shutters"
 	},
@@ -20361,6 +20234,7 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
 	id = "hangar_ice_1";
 	name = "\improper Hangar Shutters"
 	},
@@ -20376,6 +20250,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
 	id = "hangar_ice_1";
 	name = "\improper Hangar Shutters"
 	},
@@ -20438,6 +20313,7 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
 	id = "hangar_ice_2";
 	name = "\improper Hangar Shutters"
 	},
@@ -20461,6 +20337,7 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
 	id = "hangar_ice_2";
 	name = "\improper Hangar Shutters"
 	},
@@ -20493,6 +20370,7 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
 	id = "hangar_ice_2";
 	name = "\improper Hangar Shutters"
 	},
@@ -20505,9 +20383,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bbc" = (
-/obj/structure/tunnel{
-	id = "south_research_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bbd" = (
@@ -22461,7 +22337,6 @@
 "bgA" = (
 /obj/machinery/conveyor_switch,
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /turf/open/floor/tile/dark2,
@@ -22484,14 +22359,12 @@
 /area/ice_colony/underground/requesition)
 "bgE" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
 "bgF" = (
 /obj/machinery/computer3,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -22532,7 +22405,6 @@
 /area/ice_colony/surface/excavation)
 "bgM" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /turf/open/floor/tile/dark2,
@@ -22745,10 +22617,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/requesition)
-"bho" = (
-/obj/structure/sign/electricshock,
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/hangar)
 "bhp" = (
 /obj/machinery/door/airlock/almayer/secure{
 	dir = 2;
@@ -23133,15 +23001,13 @@
 /area/ice_colony/underground/requesition/lobby)
 "biq" = (
 /obj/structure/table/woodentable{
-	tag = "icon-reinf_table";
 	icon_state = "reinf_table"
 	},
 /obj/machinery/door/window/brigdoor/westleft{
 	dir = 1;
 	icon_state = "leftsecure";
 	id = null;
-	name = "Requesitions Desk";
-	tag = "icon-leftsecure (NORTH)"
+	name = "Requesitions Desk"
 	},
 /obj/machinery/door/window/northright{
 	dir = 2;
@@ -23201,7 +23067,6 @@
 /area/ice_colony/underground/hangar)
 "biw" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (WEST)";
 	icon_state = "term";
 	dir = 8
 	},
@@ -23279,9 +23144,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "biF" = (
-/obj/structure/tunnel{
-	id = "construction_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "biG" = (
@@ -23362,13 +23225,11 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/multitool,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
 "biP" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin6";
 	icon_state = "rasputin6"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -23386,7 +23247,6 @@
 /area/ice_colony/underground/requesition/lobby)
 "biS" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -23419,7 +23279,6 @@
 /area/ice_colony/underground/hangar)
 "biW" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (WEST)";
 	icon_state = "term";
 	dir = 8
 	},
@@ -23463,8 +23322,7 @@
 "bjb" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/shuttle/dropship{
-	icon_state = "floor8";
-	tag = "icon-rasputin7"
+	icon_state = "floor8"
 	},
 /area/ice_colony/underground/responsehangar)
 "bjc" = (
@@ -23549,7 +23407,6 @@
 /area/ice_colony/underground/requesition/sec_storage)
 "bjp" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /obj/structure/cable/yellow{
@@ -23635,7 +23492,6 @@
 /area/ice_colony/underground/hangar)
 "bjx" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin7";
 	icon_state = "rasputin7"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -23778,7 +23634,6 @@
 "bjT" = (
 /obj/structure/rack,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -24145,7 +24000,6 @@
 "blf" = (
 /obj/machinery/door/airlock/almayer/generic,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -24210,7 +24064,6 @@
 /area/ice_colony/underground/hallway/north_west)
 "bll" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -24279,7 +24132,6 @@
 "blx" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -24512,7 +24364,6 @@
 	dir = 4
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -24605,7 +24456,6 @@
 /area/ice_colony/underground/crew/library)
 "bmq" = (
 /obj/structure/table/woodentable{
-	tag = "icon-reinf_table";
 	icon_state = "reinf_table"
 	},
 /obj/item/frame/light_fixture,
@@ -24725,7 +24575,6 @@
 	dir = 4
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -24737,7 +24586,6 @@
 	dir = 8
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -24754,7 +24602,6 @@
 	dir = 8
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -24950,7 +24797,6 @@
 	dir = 4
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -24997,7 +24843,6 @@
 	dir = 8
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -25006,7 +24851,6 @@
 	dir = 4
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -25035,7 +24879,6 @@
 	dir = 8
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -25044,7 +24887,6 @@
 	dir = 4
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -25053,7 +24895,6 @@
 	dir = 8
 	},
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/beta)
@@ -25135,7 +24976,6 @@
 /area/ice_colony/underground/hallway/north_west)
 "bnO" = (
 /obj/structure/table/woodentable{
-	tag = "icon-reinf_table";
 	icon_state = "reinf_table"
 	},
 /obj/item/storage/box/lightstick,
@@ -25145,7 +24985,6 @@
 /area/ice_colony/underground/engineering)
 "bnP" = (
 /obj/structure/table/woodentable{
-	tag = "icon-reinf_table";
 	icon_state = "reinf_table"
 	},
 /obj/item/inflatable,
@@ -25157,7 +24996,6 @@
 /area/ice_colony/underground/engineering)
 "bnQ" = (
 /obj/structure/table/woodentable{
-	tag = "icon-reinf_table";
 	icon_state = "reinf_table"
 	},
 /obj/item/stack/cable_coil/blue,
@@ -25226,7 +25064,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bob" = (
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
@@ -25377,9 +25215,7 @@
 	},
 /area/ice_colony/underground/hallway/south_east)
 "bov" = (
-/obj/structure/tunnel{
-	id = "north_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
 "bow" = (
@@ -25923,7 +25759,6 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25941,7 +25776,6 @@
 "bpY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westleft{
-	tag = "icon-leftsecure (EAST)";
 	icon_state = "leftsecure";
 	dir = 4;
 	id = "brg"
@@ -26134,7 +25968,6 @@
 "bqv" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/shuttle{
-	tag = "icon-floor6";
 	icon_state = "floor6"
 	},
 /area/ice_colony/surface/hangar/alpha)
@@ -26352,7 +26185,6 @@
 /area/ice_colony/underground/engineering)
 "brd" = (
 /obj/structure/table/woodentable{
-	tag = "icon-reinf_table";
 	icon_state = "reinf_table"
 	},
 /obj/item/storage/box/lights,
@@ -26564,10 +26396,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southeast)
-"brF" = (
-/obj/structure/sign/electricshock,
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/engineering/substation)
 "brG" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26736,10 +26564,6 @@
 /area/ice_colony/underground/engineering/substation)
 "bsi" = (
 /turf/open/floor/tile/dark2,
-/area/ice_colony/underground/medical/lobby)
-"bsj" = (
-/obj/structure/sign/greencross,
-/turf/closed/wall/r_wall,
 /area/ice_colony/underground/medical/lobby)
 "bsk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26985,8 +26809,7 @@
 	dir = 2;
 	icon_state = "leftsecure";
 	id = "brg";
-	name = "Security Desk";
-	tag = "icon-leftsecure (NORTH)"
+	name = "Security Desk"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/window/northright{
@@ -27214,8 +27037,7 @@
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes{
-	icon_state = "E-corner";
-	tag = "icon-E-corner"
+	icon_state = "E-corner"
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -27224,7 +27046,6 @@
 /area/ice_colony/underground/crew/bball)
 "bty" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -27469,7 +27290,6 @@
 /area/ice_colony/underground/crew/bball)
 "bue" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /obj/machinery/door/window/eastleft{
@@ -27644,8 +27464,7 @@
 /area/ice_colony/underground/crew/bball)
 "buB" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "NS-center";
-	tag = "icon-W"
+	icon_state = "NS-center"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -27767,8 +27586,7 @@
 /area/ice_colony/underground/crew/bball)
 "buS" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "NS-center";
-	tag = "icon-W"
+	icon_state = "NS-center"
 	},
 /obj/effect/decal/warning_stripes,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27778,14 +27596,12 @@
 /area/ice_colony/underground/crew/bball)
 "buT" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /obj/effect/decal/warning_stripes,
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 8;
-	icon_state = "hoop";
-	tag = "icon-hoop (NORTH)"
+	icon_state = "hoop"
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -27933,8 +27749,7 @@
 /area/ice_colony/underground/crew/bball)
 "bvo" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "E-corner";
-	tag = "icon-E-corner"
+	icon_state = "E-corner"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -27943,8 +27758,7 @@
 /area/ice_colony/underground/crew/bball)
 "bvp" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "NS-center";
-	tag = "icon-W"
+	icon_state = "NS-center"
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -28062,7 +27876,6 @@
 /area/ice_colony/underground/crew/bball)
 "bvC" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /obj/machinery/door/window/eastright{
@@ -28172,10 +27985,9 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes,
-/obj/structure/holohoop{
+/obj/structure/hoop{
 	dir = 4;
-	icon_state = "hoop";
-	tag = "icon-hoop (NORTH)"
+	icon_state = "hoop"
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -28184,19 +27996,17 @@
 /area/ice_colony/underground/crew/bball)
 "bvR" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "NS-center";
-	tag = "icon-W"
+	icon_state = "NS-center"
 	},
 /obj/effect/decal/warning_stripes,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvS" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "NS-center";
-	tag = "icon-W"
+	icon_state = "NS-center"
 	},
 /obj/effect/decal/warning_stripes,
-/obj/item/toy/beach_ball/holoball,
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvT" = (
@@ -28266,15 +28076,13 @@
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes{
-	icon_state = "E-corner";
-	tag = "icon-E-corner"
+	icon_state = "E-corner"
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bwc" = (
 /obj/effect/decal/warning_stripes{
-	tag = "icon-E-corner";
 	icon_state = "E-corner"
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -28451,8 +28259,7 @@
 /area/ice_colony/underground/crew/bball)
 "bwA" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "E-corner";
-	tag = "icon-E-corner"
+	icon_state = "E-corner"
 	},
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -28638,8 +28445,7 @@
 /area/ice_colony/underground/crew/bball)
 "bwW" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "NS-center";
-	tag = "icon-W"
+	icon_state = "NS-center"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -29215,7 +29021,7 @@
 /area/ice_colony/underground/maintenance/central)
 "byt" = (
 /obj/structure/rack,
-/obj/item/toy/beach_ball/holoball,
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "byu" = (
@@ -29664,7 +29470,7 @@
 /area/ice_colony/underground/security/marshal)
 "bzw" = (
 /obj/structure/table/woodentable,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/item/weapon/baton,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
@@ -29958,12 +29764,6 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
-"bAo" = (
-/obj/structure/tunnel{
-	id = "west_tcomms_tunnel"
-	},
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open)
 "bAp" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -30796,7 +30596,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/ice_colony/underground/security/hallway)
@@ -31888,13 +31687,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/storage/highsec)
-"bFe" = (
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("interrogation")
-	},
-/turf/open/floor/tile/dark/red2,
-/area/ice_colony/underground/security/interrogation)
 "bFf" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 6
@@ -32111,7 +31903,7 @@
 /area/ice_colony/underground/security/interrogation)
 "bFL" = (
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /obj/machinery/flasher_button{
 	id = "sec_checkpoint";
 	pixel_y = 24
@@ -32309,7 +32101,6 @@
 "bGg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westleft{
-	tag = "icon-leftsecure (EAST)";
 	icon_state = "leftsecure";
 	dir = 4;
 	id = "brg"
@@ -32488,7 +32279,6 @@
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -33127,8 +32917,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bId" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin4";
-	tag = "icon-rasputin7"
+	icon_state = "rasputin4"
 	},
 /area/ice_colony/underground/responsehangar)
 "bIe" = (
@@ -33481,8 +33270,7 @@
 /area/ice_colony/underground/command/checkpoint)
 "bIY" = (
 /turf/open/shuttle/dropship{
-	icon_state = "floor8";
-	tag = "icon-rasputin7"
+	icon_state = "floor8"
 	},
 /area/ice_colony/underground/responsehangar)
 "bIZ" = (
@@ -33817,8 +33605,7 @@
 /area/ice_colony/underground/storage)
 "bJJ" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin8";
-	tag = "icon-rasputin7"
+	icon_state = "rasputin8"
 	},
 /area/ice_colony/underground/responsehangar)
 "bJK" = (
@@ -34315,7 +34102,6 @@
 "bKR" = (
 /obj/structure/table,
 /obj/item/tool/stamp{
-	tag = "icon-stamp-ce";
 	icon_state = "stamp-ce"
 	},
 /obj/machinery/firealarm{
@@ -34404,7 +34190,6 @@
 /area/ice_colony/underground/security/brig)
 "bLf" = (
 /obj/machinery/door/window/brigdoor/westleft{
-	tag = "icon-leftsecure (EAST)";
 	icon_state = "leftsecure";
 	dir = 4;
 	id = "brg"
@@ -35037,9 +34822,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/south)
 "bMO" = (
-/obj/structure/tunnel{
-	id = "dig_site_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bMP" = (
@@ -35051,7 +34834,6 @@
 /area/ice_colony/underground/security/armory)
 "bMQ" = (
 /obj/machinery/door/window/brigdoor/westleft{
-	tag = "icon-leftsecure (NORTH)";
 	icon_state = "leftsecure";
 	dir = 1;
 	id = "brg"
@@ -35106,7 +34888,7 @@
 "bMX" = (
 /obj/item/book/manual/marine_law,
 /obj/structure/table/reinforced,
-/obj/item/handcuffs,
+/obj/item/restraints/handcuffs,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -35744,7 +35526,6 @@
 	dir = 1
 	},
 /obj/structure/disposaloutlet{
-	tag = "icon-outlet (EAST)";
 	icon_state = "outlet";
 	dir = 4
 	},
@@ -36319,7 +36100,6 @@
 /area/ice_colony/surface/excavationbarracks)
 "bQA" = (
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -36465,7 +36245,6 @@
 	dir = 2
 	},
 /turf/open/shuttle/dropship{
-	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
 	},
 /area/ice_colony/underground/responsehangar)
@@ -37335,7 +37114,6 @@
 /area/ice_colony/underground/hallway/north_west)
 "bTf" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (EAST)";
 	icon_state = "term";
 	dir = 4
 	},
@@ -37361,7 +37139,6 @@
 /area/ice_colony/underground/engineering/substation)
 "bTh" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (EAST)";
 	icon_state = "term";
 	dir = 4
 	},
@@ -37577,9 +37354,7 @@
 	},
 /area/ice_colony/exterior/underground/caves/open)
 "bTM" = (
-/obj/structure/tunnel{
-	id = "south_tcomms_tunnel"
-	},
+/obj/effect/landmark/xeno_tunnel,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
 "bTN" = (
@@ -37946,20 +37721,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/checkpoint)
 "bUT" = (
-/obj/effect/landmark/corpsespawner/security{
-	corpseback = /obj/item/storage/backpack/satchel;
-	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
-	corpsehelmet = null;
-	corpsemask = null;
-	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
-	corpsepocket2 = /obj/item/flashlight;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
-	mobname = "Unknown";
-	name = "Unknown PMC"
-	},
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
 "bUU" = (
@@ -38228,8 +37991,8 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bVK" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 26
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
@@ -38239,7 +38002,6 @@
 /area/ice_colony/surface/excavationbarracks)
 "bVL" = (
 /obj/machinery/shower{
-	tag = "icon-shower (EAST)";
 	icon_state = "shower";
 	dir = 4
 	},
@@ -38487,7 +38249,6 @@
 /area/ice_colony/surface/excavationbarracks)
 "bWo" = (
 /obj/structure/bed/chair/wood/wings{
-	tag = "icon-wooden_chair_wings (NORTH)";
 	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
@@ -38604,7 +38365,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "bWG" = (
 /obj/machinery/shower{
-	tag = "icon-shower (EAST)";
 	icon_state = "shower";
 	dir = 4
 	},
@@ -38708,7 +38468,6 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bWV" = (
 /obj/effect/decal/cleanable/blood/oil{
-	tag = "icon-armorblood";
 	icon_state = "armorblood"
 	},
 /obj/machinery/landinglight/ds2/delaythree{
@@ -39569,12 +39328,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
-"bZc" = (
-/obj/structure/tunnel{
-	id = "east_cargo_tunnel"
-	},
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/open)
 "bZd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -40186,19 +39939,7 @@
 /area/ice_colony/underground/engineering/substation)
 "caP" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/corpsespawner/security{
-	corpseback = /obj/item/storage/backpack/satchel;
-	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
-	corpsemask = /obj/item/clothing/mask/gas/PMC;
-	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
-	corpsepocket2 = /obj/item/flashlight;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
-	mobname = "Unknown";
-	name = "Unknown PMC"
-	},
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
 "cbQ" = (
@@ -40261,20 +40002,8 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "ccA" = (
-/obj/effect/landmark/corpsespawner/security{
-	name = "Unknown PMC";
-	mobname = "Unknown";
-	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC;
-	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpsemask = /obj/item/clothing/mask/gas/PMC;
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC;
-	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70;
-	corpsepocket1 = /obj/item/storage/pouch/magazine/large/pmc_m39;
-	corpsepocket2 = /obj/item/flashlight;
-	corpseback = /obj/item/storage/backpack/satchel
-	},
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
 	},
@@ -40532,10 +40261,55 @@
 "cLf" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/storage/testroom)
+"dfU" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/sign/greencross{
+	dir = 4
+	},
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/ice_colony/underground/hallway/north_west)
+"hot" = (
+/obj/structure/sign/greencross,
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/ice_colony/underground/hallway/north_west)
+"jQI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/sign/electricshock,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/south/excavation)
+"lbl" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/sign/electricshock,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/south/excavation)
 "rcI" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
 /area/storage/testroom)
+"rpH" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/structure/sign/electricshock,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/underground/hangar)
 
 (1,1,1) = {"
 aaa
@@ -43458,7 +43232,7 @@ aaC
 aaQ
 alJ
 alJ
-atk
+aWV
 alJ
 alJ
 alJ
@@ -46390,7 +46164,7 @@ bms
 blD
 bmU
 bmU
-bZc
+bov
 bmU
 bmU
 bmU
@@ -48389,7 +48163,7 @@ alJ
 alJ
 alJ
 alJ
-aNu
+aWV
 alJ
 aaQ
 acj
@@ -49488,7 +49262,7 @@ bna
 bqQ
 bod
 bod
-bod
+dfU
 bod
 bod
 bod
@@ -49737,15 +49511,15 @@ bkC
 bok
 bkr
 byE
-bqq
-bsj
+hot
+bqX
 bqU
 bqU
 btW
 buI
 bqU
 bqU
-bsj
+bqX
 bqU
 bqU
 bqX
@@ -51536,8 +51310,8 @@ bkC
 bnz
 bkr
 byE
-bqq
-bsj
+hot
+bqX
 bsH
 bto
 bua
@@ -53055,8 +52829,8 @@ baJ
 bWj
 bWu
 alP
-bXb
-bho
+rpH
+beB
 alP
 biw
 biW
@@ -53569,8 +53343,8 @@ alP
 bNe
 bWv
 alP
-bXb
-bho
+rpH
+beB
 alP
 biA
 biY
@@ -65911,8 +65685,8 @@ bci
 bbJ
 bbK
 bbK
-bYo
-brF
+jQI
+btz
 bSX
 bSX
 buj
@@ -66425,8 +66199,8 @@ bci
 bbJ
 bXY
 bbJ
-brC
-brF
+lbl
+btz
 buj
 bsy
 bte
@@ -66468,7 +66242,7 @@ bDc
 bDO
 bRU
 bEv
-bFe
+bFa
 bFK
 bGb
 bGX
@@ -72741,7 +72515,7 @@ acj
 aag
 aac
 aar
-aeD
+aaF
 aaE
 aaD
 add
@@ -75453,7 +75227,7 @@ bnT
 bmi
 bmQ
 bmT
-bAo
+bov
 bmU
 bmU
 bmU
@@ -90211,7 +89985,7 @@ bSw
 aac
 aae
 abc
-akL
+ade
 adj
 alG
 aml

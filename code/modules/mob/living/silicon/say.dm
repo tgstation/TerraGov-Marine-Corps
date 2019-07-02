@@ -1,14 +1,10 @@
-/mob/living/silicon/get_spans()
-	return ..() | SPAN_ROBOT
-
-
 /mob/living/proc/robot_talk(message)
 	log_talk(message, LOG_SAY)
 	var/desig = "Silicon"
 	if(issilicon(src))
 		var/mob/living/silicon/S = src
 		desig = trim_left(S.job)
-	var/message_a = say_quote(message, get_spans())
+	var/message_a = say_quote(message)
 	var/rendered = "Robotic Talk, <span class='name'>[name]</span> <span class='message'>[message_a]</span>"
 	for(var/mob/M in GLOB.player_list)
 		if(M.binarycheck())

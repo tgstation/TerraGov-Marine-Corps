@@ -1,15 +1,13 @@
 /* Stack type objects!
- * Contains:
- * 		Stacks
- * 		Recipe datum
- * 		Recipe list datum
- */
-
-#define STACK_WEIGHT_STEPS 3 //Currently weight updates in 3 intervals
+* Contains:
+* 		Stacks
+* 		Recipe datum
+* 		Recipe list datum
+*/
 
 /*
- * Stacks
- */
+* Stacks
+*/
 /obj/item/stack
 	icon = 'icons/obj/stack_objects.dmi'
 	gender = PLURAL
@@ -142,6 +140,8 @@
 
 /obj/item/stack/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(usr.incapacitated() || usr.get_active_held_item() != src)
 		return
 	if(href_list["sublist"] && !href_list["make"])
@@ -157,7 +157,7 @@
 		var/multiplier = text2num(href_list["multiplier"])
 		var/max_multiplier = round(max_amount / R.req_amount)
 		if(multiplier <= 0 || multiplier > max_multiplier) //href protection
-			log_game("[key_name(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier] at [AREACOORD(usr.loc)].")
+			log_admin_private("[key_name(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier] at [AREACOORD(usr.loc)].")
 			message_admins("[ADMIN_TPMONTY(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier]. Possible HREF exploit.")
 			return
 		if(!building_checks(R, multiplier))
@@ -329,8 +329,8 @@
 	return ..()
 
 /*
- * Recipe datum
- */
+* Recipe datum
+*/
 /datum/stack_recipe
 	var/title = "ERROR"
 	var/result_type
@@ -355,8 +355,8 @@
 	src.skill_req = skill_req
 
 /*
- * Recipe list datum
- */
+* Recipe list datum
+*/
 /datum/stack_recipe_list
 	var/title = "ERROR"
 	var/list/recipes

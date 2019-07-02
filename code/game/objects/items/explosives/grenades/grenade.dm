@@ -1,7 +1,7 @@
 /obj/item/explosive/grenade
 	name = "grenade"
 	desc = "A hand held grenade, with an adjustable timer."
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
 	item_state = "flashbang"
@@ -67,7 +67,7 @@
 	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
-		round_statistics.grenades_thrown++
+		GLOB.round_statistics.grenades_thrown++
 		updateicon()
 	spawn(det_time)
 		prime()
@@ -102,8 +102,10 @@
 				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
 
 /obj/item/explosive/grenade/attack_hand()
+	. = ..()
+	if(.)
+		return
 	walk(src, null, null)
-	..()
 	return
 
 /obj/item/explosive/grenade/attack_paw(mob/user as mob)

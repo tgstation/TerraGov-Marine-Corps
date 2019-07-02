@@ -4,7 +4,7 @@
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "bluetie"
 	flags_equip_slot = NONE
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
 
@@ -303,7 +303,7 @@
 			unholster(user)
 		return
 
-	..(user)
+	return ..()
 
 /obj/item/clothing/tie/holster/attackby(obj/item/I, mob/user, params)
 	holster(I, user)
@@ -408,7 +408,7 @@
 	name = "load bearing equipment"
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	var/obj/item/storage/internal/hold = /obj/item/storage/internal/tie
 
 /obj/item/storage/internal/tie

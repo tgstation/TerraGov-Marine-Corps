@@ -183,19 +183,6 @@
 	icon_state = "glowberrypile"
 	plantname = "glowberries"
 
-/obj/item/reagent_container/food/snacks/grown/glowberries/Destroy()
-	if(istype(loc,/mob))
-		loc.SetLuminosity(round(-potency/5,1))
-	. = ..()
-
-/obj/item/reagent_container/food/snacks/grown/glowberries/pickup(mob/user)
-	src.SetLuminosity(0)
-	user.SetLuminosity(round((potency/5),1))
-
-/obj/item/reagent_container/food/snacks/grown/glowberries/dropped(mob/user)
-	user.SetLuminosity(-(round((potency/5),1)))
-	src.SetLuminosity(round(potency/5,1))
-
 /obj/item/reagent_container/food/snacks/grown/cocoapod
 	name = "cocoa pod"
 	desc = "Can be ground into cocoa powder."
@@ -537,19 +524,6 @@
 	qdel(src)
 
 	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/Destroy()
-	if(istype(loc,/mob))
-		loc.SetLuminosity(round(-potency/10,1))
-	. = ..()
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/pickup(mob/user)
-	SetLuminosity(0)
-	user.SetLuminosity(round((potency/10),1))
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/dropped(mob/user)
-	user.SetLuminosity(round(-(potency/10),1))
-	SetLuminosity(round(potency/10,1))
 
 
 // *************************************

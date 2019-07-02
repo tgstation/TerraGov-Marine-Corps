@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "cypherkey"
 	item_state = ""
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/list/channels = list()
 
 
@@ -75,9 +75,9 @@
 	channels = list(RADIO_CHANNEL_DELTA = TRUE)
 
 /obj/item/encryptionkey/general
-    	name = "\improper General radio encryption key"
-    	icon_state = "cypherkey"
-    	channels = list(RADIO_CHANNEL_COMMON = TRUE)
+	name = "\improper General radio encryption key"
+	icon_state = "cypherkey"
+	channels = list(RADIO_CHANNEL_COMMON = TRUE)
 
 
 //ERT

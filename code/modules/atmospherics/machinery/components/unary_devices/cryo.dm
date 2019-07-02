@@ -159,7 +159,6 @@
 				reason = "<b>Reason for release:</b> Patient death."
 			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
 	occupant = null
-	update_use_power(1)
 	update_icon()
 	return
 
@@ -228,9 +227,6 @@
 		air1.gases[/datum/gas/oxygen][MOLES] = max(0,air1.gases[/datum/gas/oxygen][MOLES] - 0.5 / efficiency) // Magically consume gas? Why not, we run on cryo magic.
 		air1.garbage_collect()
 */
-/obj/machinery/atmospherics/components/unary/cryo_cell/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
 	if(message_cooldown <= world.time)
@@ -301,7 +297,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		log_admin("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(loc)].")
+		log_game("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(loc)].")
 		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
 
 		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
@@ -329,10 +325,10 @@
 
 	else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.stasis_mob)
+		if(!C.bodybag_occupant)
 			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 			return
-		M = C.stasis_mob
+		M = C.bodybag_occupant
 		C.open()
 		user.start_pulling(M)
 
@@ -372,12 +368,14 @@
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		to_chat(M, "<span class='boldnotice'>You feel a cold liquid surround you. Your skin starts to freeze up.</span>")
 	occupant = M
-	update_use_power(2)
 //	M.metabslow = 1
 	update_icon()
 	return 1
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (!href_list["scanreport"])
 		return
 	if(!hasHUD(usr,"medical"))
@@ -398,9 +396,12 @@
 		break
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	if(user == occupant || user.stat)
 		return
@@ -453,7 +454,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 430)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -471,10 +472,10 @@
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr == occupant)
-		return 0 // don't update UIs attached to this object
-
-	if(..())
 		return 0 // don't update UIs attached to this object
 
 	if(href_list["switchOn"])
@@ -527,7 +528,7 @@
 	//	return G.temperature
 	//return ..()
 /*
-/obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/wrench/W)
+/obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/tool/wrench/W)
 	. = ..()
 	if(.)
 		SetInitDirections()

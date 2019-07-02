@@ -32,7 +32,7 @@
 				src.healthcheck()
 
 
-/obj/structure/lamarr/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/lamarr/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage
 	..()
 	src.healthcheck()
@@ -41,7 +41,7 @@
 /obj/structure/lamarr/proc/healthcheck()
 	if (src.obj_integrity <= 0)
 		if (!( src.destroyed ))
-			src.density = 0
+			src.density = FALSE
 			src.destroyed = 1
 			new /obj/item/shard( src.loc )
 			playsound(src, "shatter", 25, 1)
@@ -69,6 +69,9 @@
 	return src.attack_hand(user)
 
 /obj/structure/lamarr/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (src.destroyed)
 		return
 	else

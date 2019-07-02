@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
@@ -74,7 +74,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 25
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_1, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 25)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
@@ -105,14 +105,14 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 28
+	armor = list("melee" = 28, "bullet" = 28, "laser" = 28, "energy" = 28, "bomb" = XENO_BOMB_RESIST_1, "bio" = 28, "rad" = 28, "fire" = 28, "acid" = 28)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "As I walk through the valley of the shadow of death."
-	ancient_message = "You are death incarnate. All will tremble before you."
+	ancient_message = "We are death incarnate. All will tremble before us."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
@@ -136,7 +136,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 30
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 	

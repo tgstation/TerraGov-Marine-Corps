@@ -1,12 +1,12 @@
 /*
- * Contains:
- * 		Beds
- *		Roller beds
- */
+* Contains:
+* 		Beds
+*		Roller beds
+*/
 
 /*
- * Beds
- */
+* Beds
+*/
 /obj/structure/bed
 	name = "bed"
 	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
@@ -197,8 +197,8 @@ obj/structure/bed/Destroy()
 
 
 /*
- * Roller beds
- */
+* Roller beds
+*/
 /obj/structure/bed/roller
 	name = "roller bed"
 	desc = "A basic cushioned leather board resting on a small frame. Not very comfortable at all, but allows the patient to rest lying down while moved to another location rapidly."
@@ -229,7 +229,7 @@ obj/structure/bed/Destroy()
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
-	w_class = 2 //Fits in a backpack
+	w_class = WEIGHT_CLASS_SMALL //Fits in a backpack
 	drag_delay = 1 //Pulling something on wheels is easy
 	var/rollertype = /obj/structure/bed/roller
 
@@ -299,7 +299,7 @@ obj/structure/bed/Destroy()
 //////////////////////////////////////////////
 
 //List of all activated medevac stretchers
-var/global/list/activated_medevac_stretchers = list()
+GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher
 	name = "medevac stretcher"
@@ -328,7 +328,7 @@ var/global/list/activated_medevac_stretchers = list()
 	QDEL_NULL(radio)
 	if(stretcher_activated)
 		stretcher_activated = FALSE
-		activated_medevac_stretchers -= src
+		GLOB.activated_medevac_stretchers -= src
 		if(linked_medevac)
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
@@ -363,7 +363,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 	if(stretcher_activated)
 		stretcher_activated = FALSE
-		activated_medevac_stretchers -= src
+		GLOB.activated_medevac_stretchers -= src
 		if(linked_medevac)
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
@@ -382,7 +382,7 @@ var/global/list/activated_medevac_stretchers = list()
 
 		if(buckled_mob || buckled_bodybag)
 			stretcher_activated = TRUE
-			activated_medevac_stretchers += src
+			GLOB.activated_medevac_stretchers += src
 			to_chat(user, "<span class='notice'>You activate [src]'s beacon.</span>")
 			update_icon()
 		else
@@ -615,6 +615,9 @@ var/global/list/activated_medevac_stretchers = list()
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 
 /obj/item/medevac_beacon/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(locked)
 		to_chat(user, "<span class='warning'>[src]'s interface is locked! Only a Squad Leader, Corpsman, or Medical Officer can unlock it now.</span>")
 		return
@@ -624,7 +627,6 @@ var/global/list/activated_medevac_stretchers = list()
 		to_chat(user, "<span class='warning'>You retrieve and deactivate [src].</span>")
 		icon_state = "med_beacon0"
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
-	return ..()
 
 /obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
 	. = ..()
@@ -652,9 +654,9 @@ var/global/list/activated_medevac_stretchers = list()
 
 /obj/item/medevac_beacon/proc/check_power()
 	var/area/A = loc?.loc
-	if(!A || !isarea(A) || !A.master)
+	if(!A || !isarea(A))
 		return FALSE
-	return(A.master.powered(1))
+	return(A.powered(1))
 
 /obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()

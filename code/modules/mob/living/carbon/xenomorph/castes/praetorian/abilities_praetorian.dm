@@ -22,13 +22,13 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	round_statistics.praetorian_acid_sprays++
+	GLOB.round_statistics.praetorian_acid_sprays++
 
 	succeed_activate()
 
 	playsound(X.loc, 'sound/effects/refill.ogg', 25, 1)
 	X.visible_message("<span class='xenowarning'>\The [X] spews forth a wide cone of acid!</span>", \
-	"<span class='xenowarning'>You spew forth a cone of acid!</span>", null, 5)
+	"<span class='xenowarning'>We spew forth a cone of acid!</span>", null, 5)
 
 	X.speed += 2
 	do_acid_spray_cone(target, X.xeno_caste.acid_spray_range)

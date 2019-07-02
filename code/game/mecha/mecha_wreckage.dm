@@ -8,8 +8,8 @@
 	desc = "Remains of some unfortunate mecha. There is nothing left to Salvage."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
-	anchored = 0
-	opacity = 0
+	anchored = FALSE
+	opacity = FALSE
 
 
 /obj/effect/decal/mecha_wreckage/ex_act(severity)
@@ -18,7 +18,7 @@
 			qdel(src)
 	return
 
-/obj/effect/decal/mecha_wreckage/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/decal/mecha_wreckage/bullet_act(obj/item/projectile/Proj)
 	return 1
 
 

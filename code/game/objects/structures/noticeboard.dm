@@ -3,7 +3,7 @@
 	desc = "A board for pinning important notices upon."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	var/notices = 0
 
@@ -32,6 +32,9 @@
 		to_chat(user, "<span class='notice'>You pin the paper to the noticeboard.</span>")
 
 /obj/structure/noticeboard/attack_hand(user as mob)
+	. = ..()
+	if(.)
+		return
 	var/dat = "<B>Noticeboard</B><BR>"
 	for(var/obj/item/paper/P in src)
 		dat += "<A href='?src=\ref[src];read=\ref[P]'>[P.name]</A> <A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A><BR>"
@@ -40,7 +43,9 @@
 
 
 /obj/structure/noticeboard/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	usr.set_interaction(src)
 	if(href_list["remove"])
 		if((usr.stat || usr.restrained()))	//For when a player is handcuffed while they have the notice window open

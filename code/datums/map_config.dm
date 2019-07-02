@@ -12,16 +12,13 @@
 	var/config_min_users = 0
 	var/voteweight = 1
 
-	// Config actually from the JSON - should default to Box
+	// Config actually from the JSON - default values
 	var/map_name = "LV624"
 	var/map_path = "map_files/LV624"
 	var/map_file = "LV624.dmm"
 
 	var/traits = null
-	var/space_ruin_levels = 7
 	var/space_empty_levels = 1
-
-	var/minetype = "lavaland"
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list()
@@ -29,16 +26,34 @@
 	var/announce_text = ""
 
 
-/proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
+/proc/load_map_config(filename, default, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
-	if (default_to_box)
+	if(default)
 		return config
-	if (!config.LoadConfig(filename, error_if_missing))
+	if(!config.LoadConfig(filename, error_if_missing))
 		qdel(config)
-		config = new /datum/map_config  // Fall back to Box
-	if (delete_after)
+		config = new /datum/map_config
+	if(delete_after)
 		fdel(filename)
 	return config
+
+
+/proc/load_map_configs(list/maptypes, default, delete_after, error_if_missing = TRUE)
+	var/list/configs = list()
+
+	for(var/i in maptypes)
+		var/filename = MAP_TO_FILENAME[i]
+		var/datum/map_config/config = new
+		if(default)
+			configs[i] = config
+			continue
+		if(!config.LoadConfig(filename, error_if_missing))
+			qdel(config)
+			config = new /datum/map_config
+		if(delete_after)
+			fdel(filename)
+		configs[i] = config
+	return configs
 
 #define CHECK_EXISTS(X) if(!istext(json[X])) { log_world("[##X] missing from json!"); return; }
 /datum/map_config/proc/LoadConfig(filename, error_if_missing)
@@ -130,5 +145,9 @@
 	for (var/file in map_file)
 		. += "_maps/[map_path]/[file]"
 
-/datum/map_config/proc/MakeNextMap()
-	return config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
+
+/datum/map_config/proc/MakeNextMap(maptype = GROUND_MAP)
+	if(maptype == GROUND_MAP)
+		return config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
+	else if(maptype == SHIP_MAP)
+		return config_filename == "data/next_ship.json" || fcopy(config_filename, "data/next_ship.json")

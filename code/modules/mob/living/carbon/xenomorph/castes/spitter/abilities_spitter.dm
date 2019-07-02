@@ -26,7 +26,7 @@
 
 	playsound(X.loc, 'sound/effects/refill.ogg', 50, 1)
 	X.visible_message("<span class='xenowarning'>\The [X] spews forth a virulent spray of acid!</span>", \
-	"<span class='xenowarning'>You spew forth a spray of acid!</span>", null, 5)
+	"<span class='xenowarning'>We spew forth a spray of acid!</span>", null, 5)
 	var/turflist = getline(X, target)
 	spray_turfs(turflist)
 	add_cooldown()

@@ -1,6 +1,6 @@
 /*
- * Morgue
- */
+* Morgue
+*/
 /obj/structure/morgue
 	name = "morgue"
 	desc = "Used to keep bodies in untill someone fetches them."
@@ -50,6 +50,9 @@
 	toggle_morgue(user)
 
 /obj/structure/morgue/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	toggle_morgue(user)
 
 /atom/movable/proc/can_be_morgue_trayed()
@@ -108,8 +111,8 @@
 
 
 /*
- * Morgue tray
- */
+* Morgue tray
+*/
 
 /obj/structure/morgue_tray
 	name = "morgue tray"
@@ -135,6 +138,9 @@
 	return src.attack_hand(user)
 
 /obj/structure/morgue_tray/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(linked_morgue)
 		linked_morgue.toggle_morgue(user)
 
@@ -154,8 +160,8 @@
 
 
 /*
- * Crematorium
- */
+* Crematorium
+*/
 
 /obj/structure/morgue/crematorium
 	name = "crematorium"
@@ -227,8 +233,8 @@
 
 
 /*
- * Crematorium tray
- */
+* Crematorium tray
+*/
 
 /obj/structure/morgue_tray/crematorium
 	name = "crematorium tray"
@@ -237,10 +243,13 @@
 
 
 /*
- * Crematorium switch
- */
+* Crematorium switch
+*/
 
 /obj/machinery/crema_switch/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(allowed(user))
 		for (var/obj/structure/morgue/crematorium/C in range(7,src))
 			if (C.id == id)
@@ -252,22 +261,22 @@
 
 
 /*
- * Sarcophagus
- */
+* Sarcophagus
+*/
 
 /obj/structure/morgue/sarcophagus
-    name = "sarcophagus"
-    desc = "Used to store mummies."
-    icon_state = "sarcophagus1"
-    morgue_type = "sarcophagus"
-    tray_path = /obj/structure/morgue_tray/sarcophagus
+	name = "sarcophagus"
+	desc = "Used to store mummies."
+	icon_state = "sarcophagus1"
+	morgue_type = "sarcophagus"
+	tray_path = /obj/structure/morgue_tray/sarcophagus
 
 
 /*
- * Sarcophagus tray
- */
+* Sarcophagus tray
+*/
 
 /obj/structure/morgue_tray/sarcophagus
-    name = "sarcophagus tray"
-    desc = "Apply corpse before closing."
-    icon_state = "sarcomat"
+	name = "sarcophagus tray"
+	desc = "Apply corpse before closing."
+	icon_state = "sarcomat"

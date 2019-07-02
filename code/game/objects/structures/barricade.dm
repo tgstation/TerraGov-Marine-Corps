@@ -193,7 +193,7 @@
 		climbable = TRUE
 		new /obj/item/stack/barbed_wire(loc)
 
-	else if(I.force > barricade_resistance)
+	else if(I.force > barricade_resistance && user.a_intent != INTENT_HELP)
 		if(barricade_hitsound)
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(I)
@@ -379,7 +379,7 @@
 	update_icon()
 	return
 
-/obj/structure/barricade/snow/bullet_act(var/obj/item/projectile/P)
+/obj/structure/barricade/snow/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
 	obj_integrity -= round(P.damage/2) //Not that durable.
 
@@ -449,7 +449,7 @@
 			obj_integrity -= I.force * 0.75
 	update_health()
 
-/obj/structure/barricade/wooden/bullet_act(var/obj/item/projectile/P)
+/obj/structure/barricade/wooden/bullet_act(obj/item/projectile/P)
 	bullet_ping(P)
 	obj_integrity -= round(P.damage/2) //Not that durable.
 
@@ -860,6 +860,9 @@
 
 
 /obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(isxeno(user))
 		return
 

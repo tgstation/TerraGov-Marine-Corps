@@ -1,14 +1,14 @@
 /* Filing cabinets!
- * Contains:
- *		Filing Cabinets
- *		Security Record Cabinets
- *		Medical Record Cabinets
- */
+* Contains:
+*		Filing Cabinets
+*		Security Record Cabinets
+*		Medical Record Cabinets
+*/
 
 
 /*
- * Filing Cabinets
- */
+* Filing Cabinets
+*/
 /obj/structure/filingcabinet
 	name = "filing cabinet"
 	desc = "A large cabinet with drawers."
@@ -57,6 +57,9 @@
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(contents.len <= 0)
 		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
 		return
@@ -71,6 +74,9 @@
 	return
 
 /obj/structure/filingcabinet/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["retrieve"])
 		usr << browse("", "window=filingcabinet") // Close the menu
 
@@ -86,8 +92,8 @@
 
 
 /*
- * Security Record Cabinets
- */
+* Security Record Cabinets
+*/
 /obj/structure/filingcabinet/security
 	var/virgin = 1
 
@@ -113,15 +119,16 @@
 				P.name = "Security Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
 /obj/structure/filingcabinet/security/attack_hand()
+	. = ..()
+	if(.)
+		return
 	populate()
-	..()
 
 /*
- * Medical Record Cabinets
- */
+* Medical Record Cabinets
+*/
 /obj/structure/filingcabinet/medical
 	var/virgin = 1
 
@@ -147,8 +154,9 @@
 				P.name = "Medical Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
 /obj/structure/filingcabinet/medical/attack_hand()
+	. = ..()
+	if(.)
+		return
 	populate()
-	..()

@@ -1,17 +1,19 @@
 /obj/structure/cargo_container
 	name = "Cargo Container"
 	desc = "A huge industrial shipping container."
-	icon = 'icons/contain.dmi'
+	icon = 'icons/obj/structures/contain.dmi'
 	icon_state = "blue"
 	bound_width = 32
 	bound_height = 64
 	density = TRUE
 	max_integrity = 200
-	opacity = 1
+	opacity = TRUE
 	anchored = TRUE
 
 /obj/structure/cargo_container/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	playsound(loc, 'sound/effects/clang.ogg', 25, 1)
 
 	var/damage_dealt
@@ -20,13 +22,13 @@
 		if(H.species.can_shred(H))
 
 			user.visible_message("<span class='warning'>[user] smashes [src] to no avail.</span>", \
-					 "<span class='warning'>You beat against [src] to no effect</span>", \
-					 "You hear twisting metal.")
+					"<span class='warning'>You beat against [src] to no effect</span>", \
+					"You hear twisting metal.")
 
 	if(!damage_dealt)
 		user.visible_message("<span class='warning'>[user] beats against the [src] to no avail.</span>", \
-						 "<span class='warning'>[user] beats against the [src].</span>", \
-						 "You hear twisting metal.")
+						"<span class='warning'>[user] beats against the [src].</span>", \
+						"You hear twisting metal.")
 
 /obj/structure/cargo_container/red
 	icon_state = "red"
@@ -55,12 +57,12 @@
 /obj/structure/cargo_container/horizontal
 	name = "Cargo Container"
 	desc = "A huge industrial shipping container,"
-	icon = 'icons/containHorizont.dmi'
+	icon = 'icons/obj/structures/containHorizont.dmi'
 	icon_state = "blue"
 	bound_width = 64
 	bound_height = 32
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 
 
 

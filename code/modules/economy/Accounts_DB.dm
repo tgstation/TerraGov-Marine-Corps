@@ -58,10 +58,13 @@
 	attack_hand(user)
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
-/obj/machinery/account_database/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/account_database/ui_interact(mob/user, ui_key="main", datum/nanoui/ui = null, force_open = 1)
 	user.set_interaction(src)
 
 	var/data[0]
@@ -113,8 +116,3 @@
 		ui = new(user, src, ui_key, "accounts_terminal.tmpl", src.name, 400, 640)
 		ui.set_initial_data(data)
 		ui.open()
-
-/obj/machinery/account_database/Topic(href, href_list)
-	if(..())
-		return 1
-	return 1

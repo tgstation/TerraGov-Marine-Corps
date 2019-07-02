@@ -31,27 +31,27 @@
 
 /obj/effect/landmark/start/marine/masteratarms
 	icon_state = "MAA"
-	job = /datum/job/command/masteratarms
+	job = /datum/job/police/officer
 
 /obj/effect/landmark/start/marine/commandmasteratarms
 	icon_state = "CMAA"
-	job = /datum/job/command/commandmasteratarms
+	job = /datum/job/police/chief
 
 /obj/effect/landmark/start/marine/chiefshipengineer
 	icon_state = "CSE"
-	job = /datum/job/logistics/engineering
+	job = /datum/job/engineering/chief
 
 /obj/effect/landmark/start/marine/requisitionsofficer
 	icon_state = "RO"
-	job = /datum/job/logistics/requisition
+	job = /datum/job/requisitions/officer
 
 /obj/effect/landmark/start/marine/maintenancetech
 	icon_state = "SE"
-	job = /datum/job/logistics/tech/maint
+	job = /datum/job/engineering/tech
 
 /obj/effect/landmark/start/marine/cargotechnician
 	icon_state = "CT"
-	job = /datum/job/logistics/tech/cargo
+	job = /datum/job/requisitions/tech
 
 /obj/effect/landmark/start/marine/cmo
 	icon_state = "CMO"

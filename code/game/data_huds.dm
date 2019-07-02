@@ -1,9 +1,9 @@
 /*
- * Data HUDs have been rewritten in a more generic way.
- * In short, they now use an observer-listener pattern.
- * See code/datum/hud.dm for the generic hud datum.
- * Update the HUD icons when needed with the appropriate hook. (see below)
- */
+* Data HUDs have been rewritten in a more generic way.
+* In short, they now use an observer-listener pattern.
+* See code/datum/hud.dm for the generic hud datum.
+* Update the HUD icons when needed with the appropriate hook. (see below)
+*/
 
 /* DATA HUD DATUMS */
 
@@ -20,8 +20,6 @@
 
 /mob/living/carbon/monkey/add_to_all_mob_huds()
 	for(var/datum/atom_hud/hud in GLOB.huds)
-		if(!istype(hud, /datum/atom_hud/xeno_infection)) //monkey only appear on this hud
-			continue
 		hud.add_to_hud(src)
 
 
@@ -45,8 +43,6 @@
 
 /mob/living/carbon/monkey/remove_from_all_mob_huds()
 	for(var/datum/atom_hud/hud in GLOB.huds)
-		if(!istype(hud, /datum/atom_hud/xeno_infection))
-			continue
 		hud.add_to_hud(src)
 
 
@@ -55,6 +51,10 @@
 		if(!istype(hud, /datum/atom_hud/xeno))
 			continue
 		hud.remove_from_hud(src)
+
+
+/datum/atom_hud/simple //Naked-eye observable statuses.
+	hud_icons = list(STATUS_HUD_SIMPLE)
 
 
 /datum/atom_hud/medical
@@ -99,7 +99,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, STATUS_HUD_OBSERVER_INFECTION, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, STATUS_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -180,7 +180,7 @@
 
 
 /mob/living/carbon/monkey/med_hud_set_status()
-	var/image/holder = hud_list[STATUS_HUD_XENO_INFECTION]
+	var/image/holder = hud_list[XENO_EMBRYO_HUD]
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
@@ -192,70 +192,76 @@
 	else
 		holder.icon_state = ""
 
+
 /mob/living/carbon/human/med_hud_set_status()
-	var/image/holder = hud_list[STATUS_HUD]
-	var/image/holder2 = hud_list[STATUS_HUD_OOC]
-	var/image/holder3 = hud_list[STATUS_HUD_XENO_INFECTION]
-	var/image/holder4 = hud_list[STATUS_HUD_OBSERVER_INFECTION]
+	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
+	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
+	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 
 	if(species.species_flags & IS_SYNTHETIC)
-		holder.icon_state = "hudsynth"
-		holder2.icon_state = "hudsynth"
-		holder3.icon_state = "hudsynth"
-	else
-		var/revive_enabled = TRUE
-		var/stage = 1
-		if(!check_tod(src) || !is_revivable())
-			revive_enabled = FALSE
-		else if(!client)
-			var/mob/dead/observer/G = get_ghost()
-			if(!istype(G))
-				revive_enabled = FALSE
+		simple_status_hud.icon_state = ""
+		status_hud.icon_state = "hudsynth"
+		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
+		return TRUE
 
-		if(stat == DEAD && !undefibbable)
+	if(status_flags & XENO_HOST)
+		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
+		if(E)
+			infection_hud.icon_state = "infected[E.stage]"
+		else if(locate(/mob/living/carbon/xenomorph/larva) in src)
+			infection_hud.icon_state = "infected6"
+		else
+			infection_hud.icon_state = ""
+	else
+		infection_hud.icon_state = ""
+
+	switch(stat)
+		if(DEAD)
+			simple_status_hud.icon_state = ""
+			infection_hud.icon_state = "huddead" //Xenos sense dead hosts, and no longer their larvas inside, which fall into stasis and no longer grow.
+			if(undefibbable || (!client && !get_ghost()))
+				status_hud.icon_state = "huddead"
+				return TRUE
+			var/stage = 1
 			if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 2
 			else if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 3
-
-		var/holder2_set = 0
-		if(status_flags & XENO_HOST)
-			holder2.icon_state = "hudxeno"//Observer and admin HUD only
-			holder2_set = 1
-			var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
-			if(E)
-				holder3.icon_state = "infected[E.stage]"
-				holder4.icon_state = "infected[E.stage]"
-			else if(locate(/mob/living/carbon/xenomorph/larva) in src)
-				holder.icon_state = "infected5"
-				holder4.icon_state = "infected5"
+			status_hud.icon_state = "huddeaddefib[stage]"
+			return TRUE
+		if(UNCONSCIOUS)
+			if(!client) //Nobody home.
+				simple_status_hud.icon_state = "hud_uncon_afk"
+				status_hud.icon_state = "hud_uncon_afk"
+				return TRUE
+			if(knocked_out) //Should hopefully get out of it soon.
+				simple_status_hud.icon_state = "hud_uncon_ko"
+				status_hud.icon_state = "hud_uncon_ko"
+				return TRUE
+			status_hud.icon_state = "hud_uncon_sleep" //Regular sleep, else.
+			simple_status_hud.icon_state = "hud_uncon_sleep"
+			return TRUE
+		if(CONSCIOUS)
+			if(!key) //Nobody home. Shouldn't affect aghosting.
+				simple_status_hud.icon_state = "hud_uncon_afk"
+				status_hud.icon_state = "hud_uncon_afk"
+				return TRUE
+			if(knocked_down) //I've fallen and I can't get up.
+				simple_status_hud.icon_state = "hud_con_kd"
+				status_hud.icon_state = "hud_con_kd"
+				return TRUE
+			if(stunned)
+				simple_status_hud.icon_state = "hud_con_stun"
+				status_hud.icon_state = "hud_con_stun"
+				return TRUE
+			if(stagger || slowdown)
+				simple_status_hud.icon_state = "hud_con_stagger"
+				status_hud.icon_state = "hud_con_stagger"
+				return TRUE
 			else
-				holder4.icon_state = ""
-		else
-			holder4.icon_state = ""
-
-		if(stat == DEAD)
-			if(revive_enabled)
-				holder.icon_state = "huddeaddefib[stage]"
-				if(!holder2_set)
-					holder2.icon_state = "huddeaddefib[stage]"
-					holder3.icon_state = "huddead"
-					holder2_set = 1
-			else
-				holder.icon_state = "huddead"
-				holder4.icon_state = ""
-				if(!holder2_set || check_tod(src))
-					holder2.icon_state = "huddead"
-					holder3.icon_state = "huddead"
-					holder2_set = 1
-
-			return
-
-
-		holder.icon_state = "hudhealthy"
-		if(!holder2_set)
-			holder2.icon_state = "hudhealthy"
-			holder3.icon_state = ""
+				simple_status_hud.icon_state = ""
+				status_hud.icon_state = "hudhealthy"
+				return TRUE
 
 
 /mob/proc/med_pain_set_perceived_health()
@@ -276,16 +282,8 @@
 	switch(perceived_health)
 		if(100 to INFINITY)
 			holder.icon_state = "hudhealth100"
-		if(80 to 100)
-			holder.icon_state = "hudhealth80"
-		if(60 to 80)
-			holder.icon_state = "hudhealth60"
-		if(40 to 60)
-			holder.icon_state = "hudhealth40"
-		if(20 to 40)
-			holder.icon_state = "hudhealth20"
-		if(0 to 20)
-			holder.icon_state = "hudhealth0"
+		if(0 to 100)
+			holder.icon_state = "hudhealth[round(perceived_health, 10)]"
 		if(-50 to 0)
 			holder.icon_state = "hudhealth-0"
 		else
@@ -294,9 +292,9 @@
 	return TRUE
 
 
-//infection status that appears on humans, viewed by xenos only.
+//infection status that appears on humans and monkeys, viewed by xenos only.
 /datum/atom_hud/xeno_infection
-	hud_icons = list(STATUS_HUD_XENO_INFECTION)
+	hud_icons = list(XENO_EMBRYO_HUD)
 
 
 //Xeno status hud, for xenos
@@ -367,9 +365,6 @@
 
 
 /datum/atom_hud/security
-
-
-/datum/atom_hud/security/basic
 	hud_icons = list(ID_HUD)
 
 
@@ -380,10 +375,9 @@
 /mob/living/carbon/human/sec_hud_set_ID()
 	var/image/holder = hud_list[ID_HUD]
 	holder.icon_state = "hudunknown"
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			holder.icon_state = "hud[ckey(I.GetJobName())]"
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		holder.icon_state = "hud[ckey(mind && (mind.assigned_role in GLOB.jobs_regular_all) ? mind.assigned_role : "Unknown")]"
 
 
 /datum/atom_hud/security/advanced
@@ -417,10 +411,9 @@
 	var/image/holder = hud_list[WANTED_HUD]
 	holder.icon_state = "hudblank"
 	var/perpname = name
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			perpname = I.registered_name
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		perpname = I.registered_name
 
 	for(var/datum/data/record/E in GLOB.datacore.general)
 		if(E.fields["name"] == perpname)
@@ -444,37 +437,41 @@
 	return
 
 
+#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS SQUAD_LEADER, SQUAD_ENGINEER, SQUAD_SPECIALIST, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_MARINE
+#define SQUAD_HUD_SUPPORTED_OTHER_JOBS CAPTAIN, EXECUTIVE_OFFICER, FIELD_COMMANDER, INTELLIGENCE_OFFICER, PILOT_OFFICER, CHIEF_SHIP_ENGINEER, CORPORATE_LIAISON, CHIEF_MEDICAL_OFFICER, REQUISITIONS_OFFICER, COMMAND_MASTER_AT_ARMS, TANK_CREWMAN, MEDICAL_OFFICER, SHIP_ENGINEER, SYNTHETIC, MASTER_AT_ARMS, CARGO_TECHNICIAN, MEDICAL_RESEARCHER
+
 /mob/living/carbon/human/hud_set_squad()
 	var/image/holder = hud_list[SQUAD_HUD]
-	holder.icon_state = "hudblank"
+	holder.icon_state = ""
 	holder.overlays.Cut()
-	if(assigned_squad)
-		var/squad_clr = assigned_squad.color
-		var/marine_rk
-		var/obj/item/card/id/I = get_idcard()
-		var/_role
-		if(mind)
-			_role = mind.assigned_role
-		else if(I)
-			_role = I.rank
-		switch(_role)
-			if("Squad Engineer") marine_rk = "engi"
-			if("Squad Specialist") marine_rk = "spec"
-			if("Squad Corpsman") marine_rk = "med"
-			if("Squad Smartgunner") marine_rk = "gun"
-		if(assigned_squad.squad_leader == src)
-			marine_rk = "leader"
-		if(marine_rk)
-			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarinesquad")
-			IMG.color = squad_clr
-			holder.overlays += IMG
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudmarinesquad[marine_rk]")
-		if(I?.assigned_fireteam)
-			var/image/IMG2 = image('icons/mob/hud.dmi', src, "hudmarinesquadft[I.assigned_fireteam]")
-			IMG2.color = squad_clr
-			holder.overlays += IMG2
-	hud_list[SQUAD_HUD] = holder
 	
+	if(assigned_squad)
+		var/squad_color = assigned_squad.color
+		var/rank = job
+		if(assigned_squad.squad_leader == src)
+			rank = SQUAD_LEADER
+		switch(rank)
+			if(SQUAD_HUD_SUPPORTED_SQUAD_JOBS)
+				var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
+				IMG.color = squad_color
+				holder.overlays += IMG
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [rank]")
+		var/fireteam = wear_id?.assigned_fireteam
+		if(fireteam)
+			var/image/IMG2 = image('icons/mob/hud.dmi', src, "hudmarinesquadft[fireteam]")
+			IMG2.color = squad_color
+			holder.overlays += IMG2
+	
+	else
+		switch(job)
+			if(SQUAD_HUD_SUPPORTED_OTHER_JOBS)
+				holder.icon_state = "hudmarine [job]"
+	
+	hud_list[SQUAD_HUD] = holder
+
+#undef SQUAD_HUD_SUPPORTED_SQUAD_JOBS
+#undef SQUAD_HUD_SUPPORTED_OTHER_JOBS
+
 
 /datum/atom_hud/order
 	hud_icons = list(ORDER_HUD)	

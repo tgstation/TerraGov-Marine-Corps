@@ -12,7 +12,6 @@
 	old_x = -16
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
-	var/datum/effect_system/smoke_spread/smoke_system
 	var/neuro_claws = FALSE
 	var/emitting_gas = FALSE
 	var/neuro_claws_dose = DEFILER_CLAW_AMOUNT
@@ -35,7 +34,7 @@
 /mob/living/carbon/xenomorph/Defiler/throw_item(atom/target)
 	throw_mode_off()
 
-/mob/living/carbon/xenomorph/Defiler/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+/mob/living/carbon/xenomorph/Defiler/hitby(atom/movable/AM as mob|obj,speed = 5)
 	if(ishuman(AM))
 		return
 	return ..()
@@ -53,7 +52,7 @@
 		return
 	use_plasma(50)
 	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
-	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
+	to_chat(src, "<span class='xenowarning'>Our claw spines inject our victim with neurotoxin!</span>")
 
 // ***************************************
 // *********** Datum override

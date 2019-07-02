@@ -6,46 +6,46 @@
 	attack_speed = 11 //Used to be 4 which made them attack insanely fast.
 
 /*
- * Retractor
- */
+* Retractor
+*/
 /obj/item/tool/surgery/retractor
 	name = "retractor"
 	desc = "Retracts stuff."
 	icon_state = "retractor"
 	matter = list("metal" = 10000, "glass" = 5000)
 	flags_atom = CONDUCT
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "materials=1;biotech=1"
 
 /*
- * Hemostat
- */
+* Hemostat
+*/
 /obj/item/tool/surgery/hemostat
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
 	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = CONDUCT
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("attacked", "pinched")
 
 /*
- * Cautery
- */
+* Cautery
+*/
 /obj/item/tool/surgery/cautery
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon_state = "cautery"
 	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = CONDUCT
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("burnt")
 
 /*
- * Surgical Drill
- */
+* Surgical Drill
+*/
 /obj/item/tool/surgery/surgicaldrill
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
@@ -54,7 +54,7 @@
 	matter = list("metal" = 15000, "glass" = 10000)
 	flags_atom = CONDUCT
 	force = 15.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("drilled")
 
@@ -63,8 +63,8 @@
 	return (BRUTELOSS)
 
 /*
- * Scalpel
- */
+* Scalpel
+*/
 /obj/item/tool/surgery/scalpel
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
@@ -73,7 +73,7 @@
 	force = 10.0
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
@@ -88,8 +88,8 @@
 	return (BRUTELOSS)
 
 /*
- * Researchable Scalpels
- */
+* Researchable Scalpels
+*/
 /obj/item/tool/surgery/scalpel/laser1
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
@@ -117,8 +117,8 @@
 	force = 7.5
 
 /*
- * Circular Saw
- */
+* Circular Saw
+*/
 /obj/item/tool/surgery/circular_saw
 	name = "circular saw"
 	desc = "For heavy duty cutting."
@@ -126,7 +126,7 @@
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	flags_atom = CONDUCT
 	force = 15.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
@@ -141,7 +141,7 @@
 	name = "bone gel"
 	icon_state = "bone-gel"
 	force = 0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 1.0
 
 /obj/item/tool/surgery/FixOVein
@@ -150,7 +150,7 @@
 	force = 0
 	throwforce = 1.0
 	origin_tech = "materials=1;biotech=3"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/usage_amount = 10
 
 /obj/item/tool/surgery/bonesetter
@@ -160,5 +160,5 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "hit", "bludgeoned")

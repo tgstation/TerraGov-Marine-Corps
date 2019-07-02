@@ -1,16 +1,16 @@
 /*
- * The 'fancy' path is for objects like donut boxes that show how many items are in the storage item on the sprite itself
- * .. Sorry for the shitty path name, I couldnt think of a better one.
- *
- * WARNING: var/icon_type is used for both examine text and sprite name. Please look at the procs below and adjust your sprite names accordingly
- *
- * Contains:
- *		Donut Box
- *		Egg Box
- *		Candle Box
- *		Crayon Box
- *		Cigarette Box
- */
+* The 'fancy' path is for objects like donut boxes that show how many items are in the storage item on the sprite itself
+* .. Sorry for the shitty path name, I couldnt think of a better one.
+*
+* WARNING: var/icon_type is used for both examine text and sprite name. Please look at the procs below and adjust your sprite names accordingly
+*
+* Contains:
+*		Donut Box
+*		Egg Box
+*		Candle Box
+*		Crayon Box
+*		Cigarette Box
+*/
 
 /obj/item/storage/fancy
 	icon = 'icons/obj/items/food.dmi'
@@ -49,8 +49,8 @@
 
 
 /*
- * Egg Box
- */
+* Egg Box
+*/
 
 /obj/item/storage/fancy/egg_box
 	icon = 'icons/obj/items/food.dmi'
@@ -63,8 +63,8 @@
 	spawn_number = 12
 
 /*
- * Candle Box
- */
+* Candle Box
+*/
 
 /obj/item/storage/fancy/candle_box
 	name = "candle pack"
@@ -80,15 +80,15 @@
 	spawn_number = 5
 
 /*
- * Crayon Box
- */
+* Crayon Box
+*/
 
 /obj/item/storage/fancy/crayons
 	name = "box of crayons"
 	desc = "A box of crayons for all your rune drawing needs."
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonbox"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 6
 	icon_type = "crayon"
 	can_hold = list(/obj/item/toy/crayon)
@@ -129,7 +129,7 @@
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_BELT
 	storage_slots = 6
@@ -196,9 +196,9 @@
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/items/cigarettes.dmi'
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	flags_equip_slot = ITEM_SLOT_BELT
 	storage_slots = 7
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar
@@ -224,8 +224,8 @@
 		..()
 
 /*
- * Vial Box
- */
+* Vial Box
+*/
 
 /obj/item/storage/fancy/vials
 	icon = 'icons/obj/items/storage/vialbox.dmi'
@@ -255,7 +255,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vials/update_icon(var/itemremoved = 0)
+/obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
 	src.icon_state = "vialbox[total_contents]"
 	src.overlays.Cut()

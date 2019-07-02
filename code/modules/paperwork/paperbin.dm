@@ -4,7 +4,7 @@
 	icon_state = "paper_bin1"
 	item_state = "sheet-metal"
 	throwforce = 1
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 7
 	layer = LOWER_ITEM_LAYER
@@ -25,6 +25,9 @@
 
 
 /obj/item/paper_bin/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	var/response = ""
 	if(!papers.len > 0)
 		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon-Copy", "Cancel")

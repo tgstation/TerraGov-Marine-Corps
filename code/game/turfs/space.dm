@@ -12,6 +12,11 @@
 	can_bloody = FALSE
 
 
+/turf/open/space/basic/New()	//Do not convert to Initialize
+	//This is used to optimize the map loader
+	return
+
+
 // override for space turfs, since they should never hide anything
 /turf/open/space/levelupdate()
 	for(var/obj/O in src)
@@ -25,23 +30,6 @@
 
 /turf/open/space/attack_paw(mob/user)
 	return src.attack_hand(user)
-
-/turf/open/space/attack_hand(mob/user)
-	if ((user.restrained() || !( user.pulling )))
-		return
-	if (user.pulling.anchored || !isturf(user.pulling.loc))
-		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
-		return
-	if (ismob(user.pulling))
-		var/mob/M = user.pulling
-		var/atom/movable/t = M.pulling
-		M.stop_pulling()
-		step(user.pulling, get_dir(user.pulling.loc, src))
-		M.start_pulling(t)
-	else
-		step(user.pulling, get_dir(user.pulling.loc, src))
-	return
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()

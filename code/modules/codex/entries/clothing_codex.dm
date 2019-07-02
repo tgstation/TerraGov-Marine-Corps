@@ -1,19 +1,4 @@
-
-// Clothing armour values.
-/obj/item/clothing
-	var/list/armour_to_descriptive_term = list(
-		"melee" = "melee attacks",
-		"bullet" = "ballistics",
-		"laser" = "lasers",
-		"energy" = "energy",
-		"bomb" = "explosions",
-		"bio" = "biohazards",
-		"rad" = "radiation",
-		"fire" = "fire",
-		"acid" = "acid"
-		)
-
-var/list/string_part_flags = list("head" = HEAD,
+GLOBAL_LIST_INIT(string_part_flags, list("head" = HEAD,
 								"face" = FACE,
 								"eyes" = EYES,
 								"chest" = CHEST,
@@ -21,9 +6,9 @@ var/list/string_part_flags = list("head" = HEAD,
 								"legs" = LEGS,
 								"feet" = FEET,
 								"arms" = ARMS,
-								"hands" = HANDS)
+								"hands" = HANDS))
 
-var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
+GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 									"uniform" = ITEM_SLOT_ICLOTHING,
 									"gloves" = ITEM_SLOT_GLOVES,
 									"eyes" = ITEM_SLOT_EYES,
@@ -34,7 +19,7 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 									"ID" = ITEM_SLOT_ID,
 									"belt" = ITEM_SLOT_BELT,
 									"back" = ITEM_SLOT_BACK,
-									"pocket" = ITEM_SLOT_POCKET)
+									"pocket" = ITEM_SLOT_POCKET))
 
 /obj/item/clothing/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(name)
@@ -56,28 +41,28 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 	if(general_entry && general_entry.mechanics_text)
 		armor_strings += general_entry.mechanics_text + "<br>"
 
-	for(var/armor_type in armour_to_descriptive_term)
+	for(var/armor_type in GLOB.armour_to_descriptive_term)
 		switch(armor.getRating(armor_type))
 			if(0)
-				armor_strings += "It provides no protection against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "It provides no protection against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(1 to 20)
-				armor_strings += "It barely protects against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "It barely protects against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(21 to 30)
-				armor_strings += "It provides a very small defense against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "It provides a very small defense against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(31 to 40)
-				armor_strings += "It offers a small amount of protection against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "It offers a small amount of protection against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(41 to 50)
-				armor_strings += "It offers a moderate defense against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "It offers a moderate defense against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(51 to 60)
-				armor_strings += "It provides a strong defense against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "It provides a strong defense against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(61 to 70)
-				armor_strings += "It is very strong against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "It is very strong against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(71 to 80)
-				armor_strings += "This gives a very robust defense against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "This gives a very robust defense against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(81 to 99)
-				armor_strings += "Wearing this would make you nigh-invulerable against [armour_to_descriptive_term[armor_type]]."
+				armor_strings += "Wearing this would make you nigh-invulerable against [GLOB.armour_to_descriptive_term[armor_type]]."
 			if(100 to INFINITY)
-				armor_strings += "You would have godly protection against [armour_to_descriptive_term[armor_type]] if you wore this."
+				armor_strings += "You would have godly protection against [GLOB.armour_to_descriptive_term[armor_type]] if you wore this."
 
 	if(slowdown)
 		switch(slowdown)
@@ -110,11 +95,11 @@ var/list/string_equip_flags = list( "suit slot" = ITEM_SLOT_OCLOTHING,
 
 	var/list/covers = list()
 	var/list/slots = list()
-	for(var/name in string_part_flags)
-		if(flags_armor_protection & string_part_flags[name])
+	for(var/name in GLOB.string_part_flags)
+		if(flags_armor_protection & GLOB.string_part_flags[name])
 			covers += name
-	for(var/name in string_equip_flags)
-		if(flags_equip_slot & string_equip_flags[name])
+	for(var/name in GLOB.string_equip_flags)
+		if(flags_equip_slot & GLOB.string_equip_flags[name])
 			slots += name
 
 	if(covers.len)

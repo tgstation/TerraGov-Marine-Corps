@@ -75,7 +75,7 @@
 		return TRUE
 	if(!isturf(loc))
 		return FALSE
-	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+	if(loc.Adjacent(neighbor, neighbor, src))
 		return TRUE
 	return FALSE
 
@@ -92,7 +92,7 @@
 			return TRUE
 		if(!isturf(loc))
 			return FALSE
-		if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+		if(loc.Adjacent(neighbor, neighbor, src))
 			return TRUE
 	return FALSE
 
@@ -116,13 +116,16 @@
 			return TRUE
 		if(!isturf(loc))
 			return FALSE
-		if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+		if(loc.Adjacent(neighbor, neighbor, src))
 			return TRUE
 	return FALSE
 
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(atom/neighbor)
+	if(isnull(loc)) //User input can sometimes cause adjacency checks to things no longer in the map.
+		return FALSE
+
 	if(neighbor == loc || neighbor == loc.loc) //Item is in the neighbor or something that it holds.
 		return TRUE
 
@@ -132,11 +135,11 @@
 		else //Backpacks and other containers.
 			if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.
 				return FALSE
-			return loc.loc.Adjacent(neighbor, target = neighbor, mover = src)
+			return loc.loc.Adjacent(neighbor, neighbor, src)
 
 	if(!isturf(loc)) //Default behavior.
 		return FALSE
-	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+	if(loc.Adjacent(neighbor, neighbor, src))
 		return TRUE
 	return FALSE
 

@@ -12,7 +12,7 @@
 	force = 15.0
 	throwforce = 4.0
 	item_state = "pickaxe"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	matter = list("metal" = 3750)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	origin_tech = "materials=1;engineering=1"
@@ -91,7 +91,7 @@
 	name = "plasma cutter"
 	icon_state = "plasma_cutter_off"
 	item_state = "plasmacutter"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 40.0
 	damtype = "fire"
@@ -123,7 +123,7 @@
 	return
 
 //Toggles the cutter off and on
-/obj/item/tool/pickaxe/plasmacutter/proc/toggle(var/message = 0)
+/obj/item/tool/pickaxe/plasmacutter/proc/toggle(message = 0)
 	var/mob/M
 	if(ismob(loc))
 		M = loc
@@ -207,7 +207,6 @@
 	if(mention_charge)
 		to_chat(user, "<span class='notice'><b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 	update_plasmacutter()
-	..()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
 	var/final_delay = PLASMACUTTER_CUT_DELAY
@@ -226,7 +225,7 @@
 	update_plasmacutter()
 	..()
 
-/obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, var/silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
+/obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
 	if(!user && ismob(loc) )
 		user = loc
 	if(!cell || cell.charge <= 0 || powered == FALSE)
@@ -239,42 +238,15 @@
 		force = 5
 		damtype = "brute"
 		heat = 0
-		if(user)
-			user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(0)
+		set_light(0)
 	else
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
 		force = 40
 		damtype = "fire"
 		heat = 3800
-		if(user)
-			user.SetLuminosity(LIGHTER_LUMINOSITY)
-			SetLuminosity(0)
-		else
-			SetLuminosity(LIGHTER_LUMINOSITY)
+		set_light(LIGHTER_LUMINOSITY)
 
-
-/obj/item/tool/pickaxe/plasmacutter/pickup(mob/user)
-	if(powered && loc != user)
-		user.SetLuminosity(LIGHTER_LUMINOSITY)
-		SetLuminosity(0)
-	return ..()
-
-/obj/item/tool/pickaxe/plasmacutter/dropped(mob/user)
-	if(powered && loc != user)
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(LIGHTER_LUMINOSITY)
-	return ..()
-
-
-/obj/item/tool/pickaxe/plasmacutter/Destroy()
-	var/mob/user
-	if(ismob(loc))
-		user = loc
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-	SetLuminosity(0)
-	return ..()
 
 /obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -297,10 +269,13 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(user.get_inactive_held_item() != src)
-		return ..()
+		return
 	if(!cell)
-		return ..()
+		return
 	cell.updateicon()
 	user.put_in_active_hand(cell)
 	cell = null

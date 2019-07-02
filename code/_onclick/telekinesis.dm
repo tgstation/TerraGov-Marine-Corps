@@ -19,7 +19,7 @@ To add TK to a living mob, just make it register this proc on ranged attacks and
 Redefine as needed.
 */
 /mob/living/proc/on_ranged_attack_tk(mob/user, atom/target)
-    target.attack_tk(user)
+	target.attack_tk(user)
 
 
 /atom/proc/attack_tk(mob/user)
@@ -217,6 +217,163 @@ Redefine as needed.
 	add_overlay(focus) //this is kind of ick, but it's better than using icon()
 	focus.layer = old_layer
 	focus.plane = old_plane
+	
+
+//===// Shrike TK Grab //===//
+
+
+/obj/item/tk_grab/shrike
+	var/grab_level = TKGRAB_NONLETHAL
+	var/last_grab_change = 0 //Time
+	var/last_life_tick = 0
+	var/turf/starting_master_loc
+	var/turf/starting_victim_loc
+	var/datum/action/xeno_action/activable/psychic_choke/master_action
+
+
+/obj/item/tk_grab/shrike/Initialize(mapload, mob/living/carbon/human/victim, xeno_action)
+	var/mob/living/carbon/xenomorph/shrike/master = loc
+	if(!istype(master) || QDELETED(victim) || !xeno_action || !master.put_in_hands(src))
+		return INITIALIZE_HINT_QDEL
+
+	master_action = xeno_action
+	tk_user = master
+	focus = victim
+	starting_master_loc = get_turf(tk_user)
+	starting_victim_loc = get_turf(victim)
+	last_life_tick = victim.life_tick
+
+	ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
+	RegisterSignal(victim, list(COMSIG_LIVING_DO_RESIST, COMSIG_LIVING_DO_MOVE_RESIST), .proc/resisted_against)
+
+	return ..() //Starts processing.
+
+
+/obj/item/tk_grab/shrike/Destroy()
+	if(focus)
+		var/mob/living/carbon/human/victim = focus
+		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
+		victim.SetStunned(0)
+		victim.grab_resist_level = 0
+		victim.update_canmove()
+		focus = null
+	
+	if(master_action && master_action.psychic_hold == src)
+		master_action.psychic_hold = null
+		master_action = null
+
+	starting_master_loc = null
+	starting_victim_loc = null
+
+	tk_user = null
+
+	return ..() //Stops processing.
+
+
+/obj/item/tk_grab/shrike/resisted_against(datum/source, mob/living/carbon/human/victim)
+	if(victim.restrained(RESTRAINED_PSYCHICGRAB))
+		return COMSIG_LIVING_RESIST_SUCCESSFUL
+	if(victim.last_special >= world.time)
+		return COMSIG_LIVING_RESIST_SUCCESSFUL
+	victim.last_special = world.time + CLICK_CD_RESIST_PSYCHIC_GRAB
+
+	var/mob/living/carbon/xenomorph/shrike/master = tk_user
+
+	if(grab_level == TKGRAB_LETHAL && master.hive.living_xeno_ruler == master)
+		to_chat(victim, "<span class='warning'>The grip is too strong, you are at its mercy!</span>")
+		return COMSIG_LIVING_RESIST_SUCCESSFUL
+
+	victim.visible_message("<span class='danger'>[victim] resists against the invisible force's grip!</span>")
+
+	if(++victim.grab_resist_level < grab_level)
+		return COMSIG_LIVING_RESIST_SUCCESSFUL
+
+	playsound(victim.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+	victim.visible_message("<span class='danger'>[victim] has broken free of the invisible force's grip!</span>", null, null, 5)
+	stop_psychic_grab()
+	return COMSIG_LIVING_RESIST_SUCCESSFUL
+
+
+/obj/item/tk_grab/shrike/proc/stop_psychic_grab()
+	if(QDELETED(tk_user) || loc != tk_user)
+		qdel(src)
+		return
+	tk_user.temporarilyRemoveItemFromInventory(src)
+
+
+/obj/item/tk_grab/shrike/process()
+	if(QDELETED(tk_user) || loc != tk_user)
+		qdel(src)
+		return FALSE
+	
+	if(QDELETED(focus))
+		stop_psychic_grab()
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/shrike/assailant = tk_user
+	var/mob/living/carbon/human/victim = focus
+
+	if(!assailant.check_state() || assailant.stagger || assailant.loc != starting_master_loc || victim.loc != starting_victim_loc || victim.stat == DEAD || isnestedhost(victim))
+		stop_psychic_grab()
+		return FALSE
+
+	if(victim.life_tick <= last_life_tick) //One per life tick, no more.
+		return FALSE
+
+	switch(grab_level)
+		if(TKGRAB_NONLETHAL)
+			victim.SetStagger(4)
+		if(TKGRAB_LETHAL)
+			victim.SetStagger(2)
+			victim.Losebreath(3)
+
+	apply_focus_overlay()
+
+	last_life_tick = victim.life_tick
+
+
+/obj/item/tk_grab/shrike/proc/swap_psychic_grab()
+	var/mob/living/carbon/xenomorph/shrike/assailant = tk_user
+	var/mob/living/carbon/human/victim = focus //Typecasting merely for clarity, because it's free.
+
+	if(last_grab_change + 3 SECONDS > world.time)
+		return FALSE
+
+	switch(grab_level)
+		if(TKGRAB_NONLETHAL)
+			if(assailant.action_busy)
+				return FALSE
+			if(!do_mob(assailant, victim, 2 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+				return FALSE
+			grab_level = TKGRAB_LETHAL
+			victim.SetKnockeddown(2)
+			log_combat(assailant, victim, "psychically strangled", addition="(kill intent)")
+			msg_admin_attack("[key_name(assailant)] psychically strangled (kill intent) [key_name(victim)]")
+			to_chat(assailant, "<span class='danger'>We tighten our psychic grip on [victim]'s neck!</span>")
+			victim.visible_message("<span class='danger'>The invisible force has tightened its grip on [victim]'s neck!</span>", null, null, 5)
+			assailant.do_attack_animation(victim, "bite")
+			playsound(victim,'sound/effects/blobattack.ogg', 75, 1)
+		if(TKGRAB_LETHAL)
+			grab_level = TKGRAB_NONLETHAL
+			log_combat(assailant, victim, "neck grabbed")
+			msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(victim)]")
+			to_chat(assailant, "<span class='warning'>We loosen our psychic grip on [victim]'s neck!</span>")
+			victim.visible_message("<span class='warning'>The invisible force has loosened its grip on [victim]'s neck...</span>", null, null, 5)
+			assailant.flick_attack_overlay(victim, "grab")
+			playsound(victim,'sound/effects/magic.ogg', 75, 1)
+
+	last_grab_change = world.time
+
+
+/obj/item/tk_grab/shrike/afterattack(atom/target, mob/living/carbon/user, proximity, params)
+	if(target != focus)
+		return FALSE
+
+	swap_psychic_grab()
+
+
+/obj/item/tk_grab/shrike/attack_self(mob/user)
+	swap_psychic_grab()
 
 
 #undef TK_MAXRANGE

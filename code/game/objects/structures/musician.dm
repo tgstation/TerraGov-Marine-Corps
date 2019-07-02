@@ -44,7 +44,7 @@
 		desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
 		icon_state = "piano"
 
-/obj/structure/device/piano/proc/playnote(var/note as text)
+/obj/structure/device/piano/proc/playnote(note as text)
 	//to_chat(world, "Note: [note]")
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
@@ -270,7 +270,10 @@
 	playing = 0
 	updateUsrDialog()
 
-/obj/structure/device/piano/attack_hand(var/mob/user as mob)
+/obj/structure/device/piano/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(!anchored)
 		return
 
@@ -324,7 +327,9 @@
 	onclose(user, "piano")
 
 /obj/structure/device/piano/Topic(href, href_list)
-
+	. = ..()
+	if(.)
+		return
 	if(!in_range(src, usr) || issilicon(usr) || !anchored || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=piano;size=700x300")
 		onclose(usr, "piano")

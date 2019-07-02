@@ -1,8 +1,8 @@
 
-/proc/gibs(atom/location, var/datum/dna/MobDNA)		//CARN MARKER
+/proc/gibs(atom/location)		//CARN MARKER
 	new /obj/effect/spawner/gibspawner/generic(get_turf(location))
 
-/proc/hgibs(atom/location, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+/proc/hgibs(atom/location, fleshcolor, bloodcolor)
 	new /obj/effect/spawner/gibspawner/human(get_turf(location),fleshcolor,bloodcolor)
 
 /proc/xgibs(atom/location)

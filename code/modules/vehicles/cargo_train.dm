@@ -4,7 +4,6 @@
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
 	on = 0
-	luminosity = 5 //Pretty strong because why not
 	powered = 1
 	locked = 0
 	charge_use = 15
@@ -18,14 +17,13 @@
 	desc = "A keyring with a small steel key, and a yellow fob reading \"Choo Choo!\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "train_keys"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/vehicle/train/cargo/trolley
 	name = "cargo train trolley"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_trailer"
-	luminosity = 0
-	anchored = 0
+	anchored = FALSE
 	locked = 0
 	can_buckle = FALSE
 
@@ -70,14 +68,14 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/vehicle/train/cargo/trolley/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/cargo/trolley/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
 	return
 
-/obj/vehicle/train/cargo/engine/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/train/cargo/engine/insert_cell(obj/item/cell/C, mob/living/carbon/human/H)
 	..()
 	update_stats()
 
-/obj/vehicle/train/cargo/engine/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle/train/cargo/engine/remove_cell(mob/living/carbon/human/H)
 	..()
 	update_stats()
 
@@ -206,16 +204,16 @@
 // more engines increases this limit by car_limit per
 // engine.
 //-------------------------------------------------------
-/obj/vehicle/train/cargo/engine/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/cargo/engine/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines															//makes cargo trains 10% slower than running when not overweight
 
-/obj/vehicle/train/cargo/trolley/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/cargo/trolley/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 		if(verbs.Find(/atom/movable/verb/pull))
 			return
 		else

@@ -7,7 +7,7 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	flags_atom = CONDUCT
 	throwforce = 10
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 10
 	force = 10.0
@@ -29,14 +29,10 @@
 	item_state = "miniFE"
 	hitsound = null	//it is much lighter, after all.
 	throwforce = 2
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	force = 3.0
 	max_water = 30
 	sprite_name = "miniFE"
-
-/obj/item/tool/extinguisher/New()
-	create_reagents(max_water)
-	reagents.add_reagent("water", max_water)
 
 /obj/item/tool/extinguisher/examine(mob/user)
 	..()

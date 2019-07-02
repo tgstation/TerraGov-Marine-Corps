@@ -225,7 +225,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	name = "package wrapper"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "deliveryPaper"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	var/amount = 25.0
 
 
@@ -319,7 +319,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	icon_state = "dest_tagger"
 	var/currTag = 0
 
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	item_state = "electronic"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -370,7 +370,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/machinery/disposal/deliveryChute/update()
 	return
 
-/obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
+/obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
 	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))
 		return
 	switch(dir)

@@ -24,7 +24,9 @@
 	shattered = TRUE
 
 /obj/structure/mirror/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(shattered)
 		return
 
@@ -105,7 +107,7 @@
 	desc = "Oh no, seven years of bad luck!"
 
 
-/obj/structure/mirror/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/mirror/bullet_act(obj/item/projectile/Proj)
 	if(prob(Proj.damage * 2))
 		if(!shattered)
 			shatter()

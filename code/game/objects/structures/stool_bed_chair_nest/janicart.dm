@@ -5,7 +5,7 @@
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
-	anchored = 0
+	anchored = FALSE
 	density = TRUE
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	//copypaste sorry
@@ -14,7 +14,7 @@
 	var/callme = "pimpin' ride"	//how do people refer to it?
 	var/move_delay = 2
 
-/obj/structure/bed/chair/janicart/New()
+/obj/structure/bed/chair/janicart/Initialize()
 	. = ..()
 	create_reagents(100, OPENCONTAINER)
 
@@ -47,12 +47,13 @@
 		mybag = I
 
 /obj/structure/bed/chair/janicart/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(mybag)
 		mybag.loc = get_turf(user)
 		user.put_in_hands(mybag)
 		mybag = null
-	else
-		..()
 
 
 /obj/structure/bed/chair/janicart/relaymove(mob/user, direction)
@@ -99,7 +100,7 @@
 				buckled_mob.pixel_y = 7
 
 
-/obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/bed/chair/janicart/bullet_act(obj/item/projectile/Proj)
 	if(buckled_mob)
 		if(prob(85))
 			return buckled_mob.bullet_act(Proj)
@@ -111,4 +112,4 @@
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "keys"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY

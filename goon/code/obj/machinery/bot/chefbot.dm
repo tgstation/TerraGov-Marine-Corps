@@ -4,7 +4,7 @@
 	icon = 'goon/icons/obj/aibots.dmi'
 	icon_state = "chefbot-idle"
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 	on = 1 // ACTION
 	health = 100
 	var/raging = 0
@@ -177,6 +177,9 @@
 		explode()
 
 /obj/machinery/bot/chefbot/attack_hand(mob/living/carbon/human/M)
+	. = ..()
+	if(.)
+		return
 	if(Adjacent(M) && !M.incapacitated() && !M.lying)
 		switch(M.a_intent)
 			if (INTENT_HELP)
@@ -197,7 +200,6 @@
 				if(src.health <= 0)
 					src.explode()
 			M.delayNextAttack(10)
-	..()
 
 /obj/machinery/bot/chefbot/kick_act()
 	..()

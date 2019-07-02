@@ -20,35 +20,16 @@
 		on = !on
 		icon_state = "rig[on]-[rig_color]"
 
-		if(on)	user.SetLuminosity(brightness_on)
-		else	user.SetLuminosity(-brightness_on)
+		if(on)	
+			set_light(brightness_on)
+		else	
+			set_light(0)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
 			H.update_inv_head()
 
 		update_action_button_icons()
-
-	pickup(mob/user)
-		if(on)
-			user.SetLuminosity(brightness_on)
-//			user.UpdateLuminosity()
-			SetLuminosity(0)
-		..()
-
-	dropped(mob/user)
-		if(on)
-			user.SetLuminosity(-brightness_on)
-//			user.UpdateLuminosity()
-			SetLuminosity(brightness_on)
-		..()
-
-	Destroy()
-		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
-		else
-			SetLuminosity(0)
-		. = ..()
 
 /obj/item/clothing/suit/space/rig
 	name = "hardsuit"
@@ -331,9 +312,9 @@
 	desc = "An advanced suit that protects against injuries during special operations. Property of Gorlex Marauders."
 	item_state = "syndie_hardsuit"
 	slowdown = 1
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 15, "acid" = 15)
-	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/weapon/energy/sword,/obj/item/handcuffs)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/weapon/energy/sword,/obj/item/restraints/handcuffs)
 	siemens_coefficient = 0.6
 
 
@@ -354,7 +335,7 @@
 	desc = "A bizarre gem-encrusted suit that radiates magical energies."
 	item_state = "wiz_hardsuit"
 	slowdown = 1
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = UNACIDABLE
 	armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 20, "acid" = 20)
 	siemens_coefficient = 0.7

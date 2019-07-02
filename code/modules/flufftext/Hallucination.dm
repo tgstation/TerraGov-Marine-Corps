@@ -234,9 +234,9 @@ proc/check_panel(mob/M)
 	icon_state = null
 	name = ""
 	desc = ""
-	density = 0
+	density = FALSE
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 	var/mob/living/carbon/human/my_target = null
 	var/weapon_name = null
 	var/obj/item/weap = null
@@ -350,7 +350,7 @@ proc/check_panel(mob/M)
 		collapse = 1
 		updateimage()
 
-/proc/fake_blood(var/mob/target)
+/proc/fake_blood(mob/target)
 	var/obj/effect/overlay/O = new/obj/effect/overlay(target.loc)
 	O.name = "blood"
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
@@ -362,7 +362,7 @@ proc/check_panel(mob/M)
 GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/disk/nuclear,\
 	/obj/item/clothing/suit/space/uscm, /obj/item/tank))
 
-/proc/fake_attack(var/mob/living/target)
+/proc/fake_attack(mob/living/target)
 //	var/list/possible_clones = new/list()
 	var/mob/living/carbon/human/clone = null
 	var/clone_weapon = null

@@ -34,7 +34,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	flags_atom = CONDUCT
 	matter = list("metal" = 2000)
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
 
@@ -96,7 +96,7 @@ Defined in conflicts.dm of the #defines folder.
 		return TRUE
 
 
-/obj/item/attachable/attack_hand(var/mob/user as mob)
+/obj/item/attachable/attack_hand(mob/user as mob)
 	if(src.attach_applied == TRUE)
 		return
 	else
@@ -468,17 +468,11 @@ Defined in conflicts.dm of the #defines folder.
 	if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
-		if(user && G.loc == user)
-			user.SetLuminosity(-light_mod)
-		else
-			G.SetLuminosity(0)
+		G.set_light(0)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
-		if(user && G.loc == user)
-			user.SetLuminosity(light_mod)
-		else
-			G.SetLuminosity(light_mod)
+		G.set_light(light_mod)
 
 	G.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
@@ -753,7 +747,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the MOD88, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
 	slot = "stock"
 	flags_equip_slot = ITEM_SLOT_POCKET
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	wield_delay_mod = WIELD_DELAY_FAST
 	melee_mod = 5
 	size_mod = 1
@@ -780,8 +774,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
-		I.attack_hand(user)
-		return
+		return I.attack_hand(user)
 	else if(pockets.handle_attack_hand(user))
 		return ..()
 
@@ -881,7 +874,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A weapon-mounted, reloadable, one-shot grenade launcher."
 	icon_state = "grenade"
 	attach_icon = "grenade_a"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	current_rounds = 0
 	max_rounds = 2
 	max_range = 7
@@ -962,7 +955,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "flamethrower"
 	attach_icon = "flamethrower_a"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	current_rounds = 20
 	max_rounds = 20
 	max_range = 4
@@ -1109,7 +1102,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "masterkey"
 	attach_icon = "masterkey_a"
 	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 3
 	current_rounds = 3
 	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey

@@ -1,7 +1,7 @@
 
 /*
- * effect/alien
- */
+* effect/alien
+*/
 /obj/effect/alien
 	name = "alien thing"
 	desc = "theres something alien about this"
@@ -29,7 +29,7 @@
 /obj/effect/alien/fire_act()
 	take_damage(50)
 
-/obj/effect/alien/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/alien/bullet_act(obj/item/projectile/Proj)
 	if(Proj.damtype == "fire")
 		take_damage(Proj.damage*2)
 	else
@@ -53,8 +53,8 @@
 		take_damage(rand(0.2, 2))
 
 /*
- * Resin
- */
+* Resin
+*/
 /obj/effect/alien/resin
 	name = "resin"
 	desc = "Looks like some kind of slimy growth."
@@ -100,6 +100,7 @@
 
 /obj/effect/alien/resin/attack_hand()
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	return TRUE
 
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
@@ -140,8 +141,8 @@
 	name = "sticky resin"
 	desc = "A layer of disgusting sticky slime."
 	icon_state = "sticky"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
 	var/slow_amt = 8
@@ -165,8 +166,8 @@
 	desc = "It looks like a hiding hole."
 	name = "resin hole"
 	icon_state = "trap0"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
@@ -339,10 +340,10 @@
 	playsound(src, "alien_resin_break", 25)
 	if(do_after(M, 80, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
-		 "<span class='danger'>You rip down \the [src]!</span>", null, 5)
+		"<span class='danger'>You rip down \the [src]!</span>", null, 5)
 		qdel(src)
 
-/obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/mineral_door/resin/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage * 0.5
 	..()
 	healthcheck()
@@ -369,8 +370,8 @@
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
 	sleep(10)
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -393,7 +394,7 @@
 	flick("[mineralType]closing",src)
 	sleep(10)
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
@@ -453,23 +454,14 @@
 	return FALSE
 
 /*
- * Egg
- */
-
-#define EGG_BURST 0
-#define EGG_BURSTING 1
-#define EGG_GROWING 2
-#define EGG_GROWN 3
-#define EGG_DESTROYED 4
-
-#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
-#define EGG_MAX_GROWTH_TIME 15 SECONDS
+* Egg
+*/
 
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
 	name = "egg"
 	icon_state = "Egg Growing"
-	density = 0
+	density = FALSE
 
 	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
@@ -560,7 +552,7 @@
 		hugger.fast_activate(TRUE)
 		hugger = null
 
-/obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
+/obj/effect/alien/egg/bullet_act(obj/item/projectile/P)
 	..()
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
 		return
@@ -695,8 +687,8 @@ TUNNEL
 	icon = 'icons/Xeno/effects.dmi'
 	icon_state = "hole"
 
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
@@ -744,7 +736,7 @@ TUNNEL
 			other = null
 		qdel(src)
 
-/obj/structure/tunnel/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/tunnel/bullet_act(obj/item/projectile/Proj)
 	return 0
 
 /obj/structure/tunnel/ex_act(severity)
@@ -775,8 +767,8 @@ TUNNEL
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!M.hive.living_xeno_queen)
-			to_chat(M, "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>")
+		if(!M.hive.living_xeno_ruler)
+			to_chat(M, "<span class='xenowarning'>There is no ruler. You must choose one first.</span>")
 			return FALSE
 		else if(isxenoqueen(M))
 			to_chat(M, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")

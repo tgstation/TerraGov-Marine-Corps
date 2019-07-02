@@ -30,7 +30,7 @@
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_HIDE_IN_STATUS
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
@@ -78,7 +78,7 @@
 	var/turf/T
 	playsound(src, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
 	visible_message("<span class='xenowarning'>\The [src] sprays out a stream of flame from its mouth!</span>", \
-	"<span class='xenowarning'>You unleash a spray of fire on your enemies!</span>")
+	"<span class='xenowarning'>We unleash a spray of fire on our enemies!</span>")
 	used_fire_breath = world.time
 	for(T in turfs)
 		if(T == loc)
@@ -126,4 +126,4 @@
 				continue
 
 		M.adjustFireLoss(rand(20, 50) * fire_mod) //Fwoom!
-		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")
+		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>Augh! We":"<span class='highdanger'>Augh! You"] are roasted by the flames!</Sspan>")

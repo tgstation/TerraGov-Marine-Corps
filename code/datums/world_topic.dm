@@ -6,13 +6,13 @@
 		var/datum/world_topic/WT = I
 		var/keyword = initial(WT.keyword)
 		if(!keyword)
-			warning("[WT] has no keyword! Ignoring...")
+			stack_trace("[WT] has no keyword! Ignoring...")
 			continue
 		var/existing_path = .[keyword]
 		if(existing_path)
-			warning("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
+			stack_trace("[existing_path] and [WT] have the same keyword! Ignoring [WT]...")
 		else if(keyword == "key")
-			warning("[WT] has keyword 'key'! Ignoring...")
+			stack_trace("[WT] has keyword 'key'! Ignoring...")
 		else
 			.[keyword] = WT
 
@@ -131,16 +131,21 @@
 	.["admins"] = length(presentmins) + length(afkmins)
 	.["gamestate"] = SSticker.current_state
 
-	.["map_name"] = SSmapping.config?.map_name || "Loading..."
+	.["map_name"] = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
 
 	if(key_valid)
 		if(SSticker.HasRoundStarted())
 			.["real_mode"] = SSticker.mode.name
 
-	.["security_level"] = get_security_level()
+	.["security_level"] = GLOB.marine_main_ship?.get_security_level()
 	.["round_duration"] = SSticker ? round((world.time - SSticker.round_start_time) / 10) : 0
 
 	.["time_dilation_current"] = SStime_track.time_dilation_current
 	.["time_dilation_avg"] = SStime_track.time_dilation_avg
 	.["time_dilation_avg_slow"] = SStime_track.time_dilation_avg_slow
 	.["time_dilation_avg_fast"] = SStime_track.time_dilation_avg_fast
+
+	.["soft_popcap"] = CONFIG_GET(number/soft_popcap) || 0
+	.["hard_popcap"] = CONFIG_GET(number/hard_popcap) || 0
+	.["extreme_popcap"] = CONFIG_GET(number/extreme_popcap) || 0
+	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases

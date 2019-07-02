@@ -156,7 +156,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
 
 
-/datum/admins/proc/narage_direct(var/mob/M in GLOB.mob_list)
+/datum/admins/proc/narage_direct(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Direct Narrate"
 
@@ -590,14 +590,14 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/sec_level = input(usr, "It's currently code [get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - get_security_level())
+	var/sec_level = input(usr, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level") as null|anything in (list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
 	if(!sec_level)
 		return
 
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
+	if(alert("Switch from code [GLOB.marine_main_ship.get_security_level()] to code [sec_level]?", "Set Security Level", "Yes", "No") != "Yes")
 		return
 
-	set_security_level(sec_level)
+	GLOB.marine_main_ship.set_security_level(sec_level)
 
 	log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
@@ -615,18 +615,24 @@
 
 	if(!H.mind)
 		dat += "No mind! <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=createmind;mob=[REF(H)]'>Create</a><br>"
+		dat += "Take-over job: [H.job ? H.job : "None"] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a><br>"
+		if(H.job in GLOB.jobs_marines)
+			dat += "Squad: [H.assigned_squad] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=squad;mob=[REF(H)]'>Edit</a><br>"
 	else
-		dat += "Job: [H.mind.assigned_role] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a><br>"
+		dat += "Job: [H.mind.assigned_role] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a> "
+		dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;doequip=1;mob=[REF(H)]'>Edit and Equip</a> "
+		dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;doset=1;mob=[REF(H)]'>Edit and Set</a><br>"
 		dat += "<br>"
 		dat += "Skillset: [H.mind.cm_skills.name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=skills;mob=[REF(H)]'>Edit</a><br>"
 		dat += "Comms title: [H.mind.comm_title] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=commstitle;mob=[REF(H)]'>Edit</a><br>"
-		if(H.job in JOBS_MARINES)
+		if(H.mind.assigned_role in GLOB.jobs_marines)
 			dat += "Squad: [H.assigned_squad] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=squad;mob=[REF(H)]'>Edit</a><br>"
 	if(istype(C))
 		dat += "<br>"
-		dat += "Chat title: [C.paygrade] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=chattitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
+		dat += "Chat title: [get_paygrades(C.paygrade, FALSE, H.gender)] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=chattitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
 		dat += "ID title: [C.assignment] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=idtitle;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
 		dat += "ID name: [C.registered_name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=idname;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
+		dat += "Access: [get_access_job_name(C)] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=access;mob=[REF(H)];id=[REF(C)]'>Edit</a><br>"
 	else
 		dat += "No ID! <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=createid;mob=[REF(H)]'>Give ID</a><br>"
 
@@ -634,15 +640,35 @@
 	dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=equipment;mob=[REF(H)]'>Select Equipment</a>"
 
 
-	var/datum/browser/browser = new(usr, "edit_rank_[key_name(H)]", "<div align='center'>Edit Rank [key_name(H)]</div>")
+	var/datum/browser/browser = new(usr, "edit_rank_[key_name(H)]", "<div align='center'>Edit Rank [key_name(H)]</div>", 400, 350)
+	browser.set_content(dat)
+	browser.open(FALSE)
+
+
+/datum/admins/proc/outfit_manager()
+	set category = "Fun"
+	set name = "Outfit Manager"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/dat = "<ul>"
+	for(var/datum/outfit/O in GLOB.custom_outfits)
+		var/vv = FALSE
+		var/datum/outfit/varedit/VO = O
+		if(istype(VO))
+			vv = length(VO.vv_values)
+		dat += "<li>[O.name][vv ? "(VV)" : ""]</li> <a href='?src=holder;[HrefToken()];save_outfit=1;chosen_outfit=[REF(O)]'>Save</a> <a href='?src=holder;[HrefToken()];delete_outfit=1;chosen_outfit=[REF(O)]'>Delete</a>"
+	dat += "</ul>"
+	dat += "<a href='?_src_=holder;[HrefToken()];create_outfit_menu=1'>Create</a><br>"
+	dat += "<a href='?_src_=holder;[HrefToken()];load_outfit=1'>Load from file</a>"
+
+	var/datum/browser/browser = new(usr, "outfitmanager", "<div align='center'>Outfit Manager</div>")
 	browser.set_content(dat)
 	browser.open(FALSE)
 
 
 /datum/admins/proc/create_outfit()
-	set category = "Fun"
-	set name = "Create Custom Outfit"
-
 	if(!check_rights(R_FUN))
 		return
 
@@ -650,6 +676,7 @@
 	<form name="outfit" action="byond://?src=[REF(usr.client.holder)];[HrefToken()]" method="get">
 	<input type="hidden" name="src" value="[REF(usr.client.holder)];[HrefToken()]">
 	[HrefTokenFormField()]
+	<input type="hidden" name="create_outfit_finalize" value="1">
 	<table>
 		<tr>
 			<th>Name:</th>
@@ -660,7 +687,7 @@
 		<tr>
 			<th>Uniform:</th>
 			<td>
-			   <input type="text" name="outfit_uniform" value="">
+				<input type="text" name="outfit_uniform" value="">
 			</td>
 		</tr>
 		<tr>
@@ -867,6 +894,8 @@
 			newhivenumber = XENO_HIVE_BETA
 		if("Zeta")
 			newhivenumber = XENO_HIVE_ZETA
+		if("Admeme")
+			newhivenumber = XENO_HIVE_ADMEME
 		else
 			return
 
@@ -881,7 +910,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
-/datum/admins/proc/release(obj/O in GLOB.object_list)
+/datum/admins/proc/release()
 	set category = null
 	set name = "Release Obj"
 
@@ -892,6 +921,8 @@
 
 	if(!M.control_object)
 		return
+
+	var/obj/O = M.control_object
 
 	var/datum/player_details/P = GLOB.player_details[M.ckey]
 
@@ -910,7 +941,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
 
 
-/datum/admins/proc/possess(obj/O in GLOB.object_list)
+/datum/admins/proc/possess(obj/O in world)
 	set category = null
 	set name = "Possess Obj"
 
@@ -1039,3 +1070,21 @@
 
 	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
 	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
+
+
+
+/datum/admins/proc/play_cinematic()
+	set category = "Fun"
+	set name = "Play Cinematic"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/datum/cinematic/choice = input(usr, "Choose a cinematic to play.", "Play Cinematic") as anything in subtypesof(/datum/cinematic)
+	if(!choice)
+		return
+
+	Cinematic(initial(choice.id), world)
+
+	log_admin("[key_name(usr)] played the [choice] cinematic.")
+	message_admins("[ADMIN_TPMONTY(usr)] played the [choice] cinematic.")

@@ -45,7 +45,7 @@
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 	see_in_dark = 4
-	see_invisible = SEE_INVISIBLE_MINIMUM
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	var/playable_spider = FALSE
 
 

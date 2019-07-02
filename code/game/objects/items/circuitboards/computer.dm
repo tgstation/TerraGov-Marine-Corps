@@ -11,11 +11,11 @@
 	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
 
-/obj/item/circuitboard/computer/security/construct(var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/computer/security/construct(obj/machinery/computer/security/C)
 	if (..(C))
 		C.network = network
 
-/obj/item/circuitboard/computer/security/deconstruct(var/obj/machinery/computer/security/C)
+/obj/item/circuitboard/computer/security/deconstruct(obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network
 
@@ -95,11 +95,11 @@
 	name = "Circuit board (Injector Control)"
 	build_path = /obj/machinery/computer/general_air_control/fuel_injection
 
-/obj/item/circuitboard/computer/air_management/construct(var/obj/machinery/computer/general_air_control/C)
+/obj/item/circuitboard/computer/air_management/construct(obj/machinery/computer/general_air_control/C)
 	if (..(C))
 		C.frequency = frequency
 
-/obj/item/circuitboard/computer/air_management/deconstruct(var/obj/machinery/computer/general_air_control/C)
+/obj/item/circuitboard/computer/air_management/deconstruct(obj/machinery/computer/general_air_control/C)
 	if (..(C))
 		frequency = C.frequency
 
@@ -196,7 +196,7 @@
 			return
 
 		var/list/tempnetwork = text2list(input, ",")
-		tempnetwork = difflist(tempnetwork, RESTRICTED_CAMERA_NETWORKS, 1)
+		tempnetwork = difflist(tempnetwork, GLOB.restricted_camera_networks, 1)
 		if(!length(tempnetwork))
 			to_chat(user, "No network found please hang up and try your call again.")
 			return

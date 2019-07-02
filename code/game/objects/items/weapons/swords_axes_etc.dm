@@ -1,21 +1,21 @@
 /* Weapons
- * Contains:
- *		Banhammer
- *		Classic Baton
- *		Energy Shield
- */
+* Contains:
+*		Banhammer
+*		Classic Baton
+*		Energy Shield
+*/
 
 /*
- * Banhammer
- */
+* Banhammer
+*/
 /obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
 	to_chat(M, "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>")
 	to_chat(user, "<font color='red'> You have <b>BANNED</b> [M]</font>")
 
 
 /*
- * Classic Baton
- */
+* Classic Baton
+*/
 /obj/item/weapon/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."
@@ -42,7 +42,7 @@
 	icon_state = "telebaton_0"
 	item_state = "telebaton_0"
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	force = 3
 	var/on = 0
 
@@ -55,7 +55,7 @@
 		"You hear an ominous click.")
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
-		w_class = 3
+		w_class = WEIGHT_CLASS_NORMAL
 		force = 10
 		attack_verb = list("smacked", "struck", "slapped")
 	else
@@ -64,7 +64,7 @@
 		"You hear a click.")
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"
-		w_class = 2
+		w_class = WEIGHT_CLASS_SMALL
 		force = 3//not so robust now
 		attack_verb = list("hit", "punched")
 
@@ -98,8 +98,8 @@
 
 
 /*
- * Energy Shield
- */
+* Energy Shield
+*/
 /obj/item/weapon/shield/energy/IsShield()
 	if(active)
 		return 1
@@ -111,14 +111,14 @@
 	if (active)
 		force = 10
 		icon_state = "eshield[active]"
-		w_class = 4
+		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 
 	else
 		force = 3
 		icon_state = "eshield[active]"
-		w_class = 1
+		w_class = WEIGHT_CLASS_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 

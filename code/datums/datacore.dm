@@ -1,5 +1,13 @@
 GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
+/datum/data
+	var/name = "data"
+
+
+/datum/data/record
+	name = "record"
+	var/list/fields = list()
+
 
 /datum/datacore
 	var/list/medical = list()
@@ -50,23 +58,23 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			isactive[name] = t.fields["p_stat"]
 
 		var/department = 0
-		if(real_rank in JOBS_COMMAND)
+		if(real_rank in GLOB.jobs_command)
 			heads[name] = rank
 			department = 1
-		if(real_rank in JOBS_POLICE)
+		if(real_rank in GLOB.jobs_police)
 			police[name] = rank
 			department = 1
-		if(real_rank in JOBS_ENGINEERING)
+		if(real_rank in GLOB.jobs_engineering)
 			eng[name] = rank
 			department = 1
-		if(real_rank in JOBS_MEDICAL)
+		if(real_rank in GLOB.jobs_medical)
 			med[name] = rank
 			department = 1
-		if(real_rank in JOBS_MARINES)
+		if(real_rank in GLOB.jobs_marines)
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads) && (real_rank in JOBS_REGULAR_ALL))
+		if(!department && !(name in heads) && (real_rank in GLOB.jobs_regular_all))
 			misc[name] = rank
 	if(length(heads) > 0)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
@@ -150,7 +158,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		foundrecord.fields["real_rank"] = rank
 
 
-/datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
+/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
 	if(!H.mind)
 		return
 
@@ -164,8 +172,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
 
-	var/icon/front = new(get_id_photo(H), dir = SOUTH)
-	var/icon/side = new(get_id_photo(H), dir = WEST)
+	var/icon/front = new(get_id_photo(H, show_directions = list(SOUTH)))
+	var/icon/side = new(get_id_photo(H, show_directions = list(WEST)))
 	//General Record
 	var/datum/data/record/G = new()
 	G.fields["id"]			= id

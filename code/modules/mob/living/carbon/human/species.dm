@@ -101,6 +101,8 @@
 	var/knock_down_reduction = 1 //how much the knocked_down effect is reduced per Life call.
 	var/stun_reduction = 1 //how much the stunned effect is reduced per Life call.
 	var/knock_out_reduction = 1 //same thing
+	var/lighting_alpha
+	var/see_in_dark
 
 /datum/species/New()
 	if(hud_type)
@@ -111,7 +113,7 @@
 	if(unarmed_type) unarmed = new unarmed_type()
 	if(secondary_unarmed_type) secondary_unarmed = new secondary_unarmed_type()
 
-/datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs and limbs.
+/datum/species/proc/create_organs(mob/living/carbon/human/H) //Handles creation of mob organs and limbs.
 
 	H.limbs = list()
 	H.internal_organs = list()
@@ -148,7 +150,7 @@
 			I.mechanize()
 
 
-/datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
+/datum/species/proc/hug(mob/living/carbon/human/H,mob/living/target)
 	if(H.zone_selected == "head")
 		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
 					"<span class='notice'>You pat [target] on the head.</span>", null, 4)
@@ -166,45 +168,45 @@
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	return
 
-/datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
+/datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			H.verbs -= verb_path
 	return
 
-/datum/species/proc/add_inherent_verbs(var/mob/living/carbon/human/H)
+/datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			H.verbs |= verb_path
 	return
 
-/datum/species/proc/handle_post_spawn(var/mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
+/datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
 	add_inherent_verbs(H)
 
-/datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events.
+/datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events.
 
 //Only used by horrors at the moment. Only triggers if the mob is alive and not dead.
-/datum/species/proc/handle_unique_behavior(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_unique_behavior(mob/living/carbon/human/H)
 	return
 
 // Used to update alien icons for aliens.
-/datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_login_special(mob/living/carbon/human/H)
 	return
 
 // As above.
-/datum/species/proc/handle_logout_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_logout_special(mob/living/carbon/human/H)
 	return
 
 // Builds the HUD using species-specific icons and usable slots.
-/datum/species/proc/build_hud(var/mob/living/carbon/human/H)
+/datum/species/proc/build_hud(mob/living/carbon/human/H)
 	return
 
 // Grabs the window recieved when you click-drag someone onto you.
-/datum/species/proc/get_inventory_dialogue(var/mob/living/carbon/human/H)
+/datum/species/proc/get_inventory_dialogue(mob/living/carbon/human/H)
 	return
 
 //Used by xenos understanding larvae and dionaea understanding nymphs.
-/datum/species/proc/can_understand(var/mob/other)
+/datum/species/proc/can_understand(mob/other)
 	return
 
 /datum/species/proc/handle_fire(mob/living/carbon/human/H)
@@ -585,6 +587,9 @@
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	see_in_dark = 8
+
 
 /datum/species/early_synthetic
 	name = "Early Synthetic"
@@ -618,6 +623,9 @@
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+	see_in_dark = 6
+
 
 /mob/living/carbon/human/proc/reset_jitteriness()
 	jitteriness = 0
@@ -625,7 +633,7 @@
 
 
 // Called when using the shredding behavior.
-/datum/species/proc/can_shred(var/mob/living/carbon/human/H)
+/datum/species/proc/can_shred(mob/living/carbon/human/H)
 
 	if(H.a_intent != INTENT_HARM)
 		return 0
@@ -649,7 +657,7 @@
 	var/sharp = 0
 	var/edge = 0
 
-/datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user)
+/datum/unarmed_attack/proc/is_usable(mob/living/carbon/human/user)
 	if(user.restrained())
 		return 0
 
@@ -672,7 +680,7 @@
 	sharp = 1
 	edge = 1
 
-/datum/unarmed_attack/bite/is_usable(var/mob/living/carbon/human/user)
+/datum/unarmed_attack/bite/is_usable(mob/living/carbon/human/user)
 	if (user.wear_mask && istype(user.wear_mask, /obj/item/clothing/mask/muzzle))
 		return 0
 	return 1

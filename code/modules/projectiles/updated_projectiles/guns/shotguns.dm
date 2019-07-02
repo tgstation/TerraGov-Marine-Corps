@@ -9,7 +9,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	origin_tech = "combat=4;materials=3"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 14.0
 	caliber = "12 gauge shotgun shells" //codex
 	max_shells = 9 //codex

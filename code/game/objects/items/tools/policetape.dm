@@ -4,7 +4,7 @@
 	icon = 'icons/obj/policetape.dmi'
 	icon_state = "rollstart"
 	flags_item = NOBLUDGEON
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/item/tape
@@ -98,7 +98,7 @@
 	//is_blocked_turf(var/turf/T)
 		to_chat(usr, "<span class='notice'> You finish placing the [src].</span>"	)
 
-/obj/item/tool/taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/tool/taperoll/afterattack(atom/A, mob/user as mob, proximity)
 	if (proximity && istype(A, /obj/machinery/door/airlock))
 		var/turf/T = get_turf(A)
 		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)
@@ -126,8 +126,11 @@
 	breaktape(I, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (user.a_intent == INTENT_HELP && allowed(user))
-		user.show_viewers("<span class='notice'>[user] lifts [src], allowing passage.</span>")
+		user.visible_message("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()
 		lifted = 1
 		spawn(200)
@@ -142,7 +145,7 @@
 	if(user.a_intent == INTENT_HELP && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break the [src] with that!")
 		return
-	user.show_viewers("<span class='notice'> [user] breaks the [src]!</span>")
+	user.visible_message("<span class='notice'> [user] breaks the [src]!</span>")
 
 	var/dir[2]
 	var/icon_dir = src.icon_state

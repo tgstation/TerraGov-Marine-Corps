@@ -1,47 +1,5 @@
 #define CHEMICAL_QUANTISATION_LEVEL 0.0001 //stops floating point errors causing issues with checking reagent amounts
 
-/proc/build_chemical_reagent_list()
-	//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
-
-	if(GLOB.chemical_reagents_list)
-		return
-
-	var/paths = subtypesof(/datum/reagent)
-	GLOB.chemical_reagents_list = list()
-
-	for(var/path in paths)
-		var/datum/reagent/D = new path()
-		GLOB.chemical_reagents_list[D.id] = D
-
-/proc/build_chemical_reactions_list()
-	//Chemical Reactions - Initialises all /datum/chemical_reaction into a list
-	// It is filtered into multiple lists within a list.
-	// For example:
-	// chemical_reaction_list["plasma"] is a list of all reactions relating to plasma
-
-	if(GLOB.chemical_reactions_list)
-		return
-
-	var/paths = subtypesof(/datum/chemical_reaction)
-	GLOB.chemical_reactions_list = list()
-
-	for(var/path in paths)
-
-		var/datum/chemical_reaction/D = new path()
-		var/list/reaction_ids = list()
-
-		if(D.required_reagents && D.required_reagents.len)
-			for(var/reaction in D.required_reagents)
-				reaction_ids += reaction
-
-		// Create filters based on each reagent id in the required reagents list
-		for(var/id in reaction_ids)
-			if(!GLOB.chemical_reactions_list[id])
-				GLOB.chemical_reactions_list[id] = list()
-			GLOB.chemical_reactions_list[id] += D
-			break // Don't bother adding ourselves to other reagent ids, it is redundant
-
-
 /datum/reagents
 	var/list/datum/reagent/reagent_list = new/list()
 	var/total_volume = 0
@@ -55,12 +13,6 @@
 
 /datum/reagents/New(maximum = 100, new_flags)
 	maximum_volume = maximum
-
-	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!GLOB.chemical_reagents_list)
-		build_chemical_reagent_list()
-	if(!GLOB.chemical_reactions_list)
-		build_chemical_reactions_list()
 
 	reagent_flags = new_flags
 
@@ -88,7 +40,7 @@
 		//Using IDs because SOME chemicals (I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
 	return english_list(data)
 
-/datum/reagents/proc/remove_any(var/amount=1)
+/datum/reagents/proc/remove_any(amount=1)
 	var/list/cached_reagents = reagent_list
 	var/total_transfered = 0
 	var/current_list_element= 1
@@ -434,7 +386,7 @@
 			if(cached_my_atom)
 				if(!ismob(cached_my_atom)) //no bubbling mobs
 					if(selected_reaction.mix_sound)
-						playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 80, 1)
+						playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 30, 1)
 
 					for(var/mob/M in seen)
 						to_chat(M, "<span class='notice'>[selected_reaction.mix_message]</span>") //TODO [iconhtml]
@@ -447,7 +399,7 @@
 	return 0
 
 
-/datum/reagents/proc/isolate_reagent(var/reagent)
+/datum/reagents/proc/isolate_reagent(reagent)
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
@@ -494,7 +446,7 @@
 
 
 
-/datum/reagents/proc/reaction(var/atom/A, var/method=TOUCH, var/volume_modifier=1, show_message = 1)
+/datum/reagents/proc/reaction(atom/A, method=TOUCH, volume_modifier=1, show_message = 1)
 	var/react_type
 	if(isliving(A))
 		react_type = "LIVING"
@@ -773,7 +725,7 @@
 
 	return english_list(out, "something indescribable")
 
-/datum/reagents/proc/expose_temperature(var/temperature, var/coeff=0.02)
+/datum/reagents/proc/expose_temperature(temperature, coeff=0.02)
 	var/temp_delta = (temperature - chem_temp) * coeff
 	if(temp_delta > 0)
 		chem_temp = min(chem_temp + max(temp_delta, 1), temperature)

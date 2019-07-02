@@ -18,10 +18,6 @@
 	var/busy = FALSE
 	var/screen = TANKFAB_MAIN_MENU
 
-/obj/machinery/tank_part_fabricator/power_change()
-	. = ..()
-	update_icon()
-
 /obj/machinery/tank_part_fabricator/proc/set_busy(business = TRUE, timer)
 	busy = business
 	if(timer)

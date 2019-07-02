@@ -6,7 +6,6 @@
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
 	density = TRUE
-	luminosity = 5
 	move_delay = 8
 	max_integrity = 200
 	var/panel_open = FALSE
@@ -37,6 +36,9 @@
 				pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25))
 
 /obj/vehicle/powerloader/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(buckled_mob && user != buckled_mob)
 		buckled_mob.visible_message("<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",\
 		"<span class='danger'>[user] tries to move you out of [src]!</span>")
@@ -216,20 +218,20 @@
 
 	else if(istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/C = target
-		if(!C.anchored && !C.store_mobs)
-			for(var/X in C)
-				if(ismob(X)) //just in case.
-					to_chat(user, "<span class='warning'>Can't grab [loaded], it has a creature inside!</span>")
-					return
-			if(linked_powerloader)
-				C.forceMove(linked_powerloader)
-				loaded = C
-				playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				update_icon()
-				user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
-				"<span class='notice'>You grab [loaded] with [src].</span>")
-		else
+		if(C.mob_size_counter)
+			to_chat(user, "<span class='warning'>Can't grab [loaded], it has a creature inside!</span>")
+			return
+		if(C.anchored)
 			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
+			return
+		if(!linked_powerloader)
+			CRASH("[src] called afterattack on [C] without a linked_powerloader")
+		C.forceMove(linked_powerloader)
+		loaded = C
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
 
 	else if(istype(target, /obj/structure/largecrate))
 		var/obj/structure/largecrate/LC = target
@@ -260,8 +262,8 @@
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
 	density = TRUE
-	anchored = 0
-	opacity = 0
+	anchored = FALSE
+	opacity = FALSE
 
 
 /obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)

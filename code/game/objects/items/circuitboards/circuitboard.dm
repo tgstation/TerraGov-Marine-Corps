@@ -1,5 +1,5 @@
 /obj/item/circuitboard
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	name = "Circuit board"
 	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "id_mod"
@@ -37,7 +37,7 @@
 	desc = "[initial(desc)] This appears to be a modular general circuit that can switch between pre-programmed modes with a multitool."
 
 //Called when the circuitboard is used to contruct a new machine.
-/obj/item/circuitboard/proc/construct(var/obj/machinery/M)
+/obj/item/circuitboard/proc/construct(obj/machinery/M)
 	if (istype(M, build_path))
 		return 1
 	return 0
@@ -45,7 +45,7 @@
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/circuitboard/proc/deconstruct(var/obj/machinery/M)
+/obj/item/circuitboard/proc/deconstruct(obj/machinery/M)
 	if (istype(M, build_path))
 		return 1
 	return 0
@@ -85,7 +85,7 @@
 /obj/item/circuitboard/airlock
 	name = "airlock electronics"
 	icon_state = "door_electronics"
-	w_class = 2 //It should be tiny! -Agouri
+	w_class = WEIGHT_CLASS_SMALL //It should be tiny! -Agouri
 	matter = list("metal" = 50,"glass" = 50)
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	var/list/conf_access = null
@@ -120,7 +120,7 @@
 
 		t1 += "<br>"
 
-		var/list/accesses = get_all_accesses()
+		var/list/accesses = ALL_ACCESS
 		for (var/acc in accesses)
 			var/aname = get_access_desc(acc)
 
@@ -139,6 +139,8 @@
 
 /obj/item/circuitboard/airlock/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if (usr.stat || usr.restrained() || (!ishuman(usr) && !issilicon(usr)))
 		return
 	if (href_list["close"])
@@ -170,7 +172,7 @@
 	attack_self(usr)
 
 
-/obj/item/circuitboard/airlock/proc/toggle_access(var/acc)
+/obj/item/circuitboard/airlock/proc/toggle_access(acc)
 	if (acc == "all")
 		conf_access = null
 	else

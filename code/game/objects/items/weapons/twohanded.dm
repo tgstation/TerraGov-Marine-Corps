@@ -24,7 +24,7 @@
 	pickup(mob/user)
 		unwield(user)
 
-/obj/item/proc/wield(var/mob/user)
+/obj/item/proc/wield(mob/user)
 	if( !(flags_item & TWOHANDED) || flags_item & WIELDED ) return
 
 	if(user.get_inactive_held_item())
@@ -53,7 +53,7 @@
 	remove_offhand(user)
 	return 1
 
-/obj/item/proc/place_offhand(var/mob/user,item_name)
+/obj/item/proc/place_offhand(mob/user,item_name)
 	to_chat(user, "<span class='notice'>You grab [item_name] with both hands.</span>")
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
@@ -63,7 +63,7 @@
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
 
-/obj/item/proc/remove_offhand(var/mob/user)
+/obj/item/proc/remove_offhand(mob/user)
 	to_chat(user, "<span class='notice'>You are now carrying [name] with one hand.</span>")
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand)) offhand.unwield(user)
@@ -93,7 +93,7 @@
 
 ///////////OFFHAND///////////////
 /obj/item/weapon/twohanded/offhand
-	w_class = 5.0
+	w_class = WEIGHT_CLASS_HUGE
 	icon_state = "offhand"
 	name = "offhand"
 	flags_item = DELONDROP|TWOHANDED|WIELDED
@@ -115,8 +115,8 @@
 		if(main_hand) main_hand.unwield(user)
 
 /*
- * Fireaxe
- */
+* Fireaxe
+*/
 /obj/item/weapon/twohanded/fireaxe
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
@@ -125,7 +125,7 @@
 	force = 20
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
@@ -149,8 +149,8 @@
 		qdel(A)
 
 /*
- * Double-Bladed Energy Swords - Cheridan
- */
+* Double-Bladed Energy Swords - Cheridan
+*/
 /obj/item/weapon/twohanded/dualsaber
 	name = "double-bladed energy sword"
 	desc = "Handle with care."
@@ -160,7 +160,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	force_wielded = 70
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
@@ -198,7 +198,7 @@
 	icon_state = "spearglass"
 	item_state = "spearglass"
 	force = 14
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	force_wielded = 24
 	throwforce = 30
@@ -217,7 +217,7 @@
 	item_state = "glaive"
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
 	force = 28
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	force_wielded = 60
 	throwforce = 50

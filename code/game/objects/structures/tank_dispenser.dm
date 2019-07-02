@@ -38,6 +38,9 @@
 	..()
 
 /obj/structure/dispenser/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
@@ -80,6 +83,9 @@
 
 
 /obj/structure/dispenser/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr.stat || usr.restrained())
 		return
 	if(Adjacent(usr))
