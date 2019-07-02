@@ -894,3 +894,7 @@ mob/proc/yank_out_object()
 	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
 	if(L)
 		L.alpha = lighting_alpha
+
+
+/mob/proc/get_photo_description(obj/item/camera/camera)
+	return "a ... thing?"

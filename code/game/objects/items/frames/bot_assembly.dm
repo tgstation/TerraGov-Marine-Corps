@@ -10,7 +10,7 @@
 	throwforce = 10.0
 	throw_speed = 2
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	var/created_name = "Cleanbot"
 
 
@@ -48,7 +48,7 @@
 	throwforce = 10.0
 	throw_speed = 2
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	var/created_name = "Floorbot"
 
 
@@ -84,7 +84,7 @@
 	throwforce = 10.0
 	throw_speed = 2
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	var/created_name = "Floorbot"
 
 /obj/item/frame/toolbox_tiles_sensor/attackby(obj/item/I, mob/user, params)
@@ -122,7 +122,7 @@
 	var/build_step = 0
 	var/created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/frame/firstaid_arm_assembly/Initialize()
 	. = ..()

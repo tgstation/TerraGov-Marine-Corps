@@ -234,9 +234,9 @@ proc/check_panel(mob/M)
 	icon_state = null
 	name = ""
 	desc = ""
-	density = 0
+	density = FALSE
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 	var/mob/living/carbon/human/my_target = null
 	var/weapon_name = null
 	var/obj/item/weap = null

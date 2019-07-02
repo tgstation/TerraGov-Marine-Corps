@@ -5,7 +5,7 @@
 	icon_state = "paper"
 	item_state = "paper"
 	throwforce = 0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_range = 2
 	throw_speed = 1
 	layer = MOB_LAYER
@@ -117,7 +117,7 @@
 			human_user << browse(dat, "window=[name]")
 		else if(istype(src[page], /obj/item/photo))
 			var/obj/item/photo/P = src[page]
-			human_user << browse_rsc(P.img, "tmp_photo.png")
+			human_user << browse_rsc(P.picture.picture_icon, "tmp_photo.png")
 			human_user << browse(dat + "<html><head><title>[P.name]</title></head>" \
 			+ "<body style='overflow:hidden'>" \
 			+ "<div> <img src='tmp_photo.png' width = '180'" \
@@ -213,7 +213,7 @@
 			i++
 		else if(istype(O, /obj/item/photo))
 			var/obj/item/photo/PH = O
-			IMG = PH.tiny
+			IMG = PH.picture.picture_icon
 			photo = 1
 			overlays += IMG
 	if(i>1)

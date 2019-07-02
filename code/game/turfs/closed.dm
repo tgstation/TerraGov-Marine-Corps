@@ -3,7 +3,7 @@
 //turfs with density = TRUE
 /turf/closed
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 
 
 
@@ -114,7 +114,7 @@
 	icon = 'icons/turf/icewalllight.dmi'
 	icon_state = "Single"
 	desc = "It is very thin."
-	opacity = 0
+	opacity = FALSE
 
 /turf/closed/ice/thin/single
 	icon_state = "Single"
@@ -268,7 +268,7 @@
 	icon_state = "1"
 
 /turf/closed/shuttle/dropship1/transparent
-	opacity = 0
+	opacity = FALSE
 
 /turf/closed/shuttle/dropship2
 	name = "\improper Normandy"
@@ -276,7 +276,7 @@
 	icon_state = "1"
 
 /turf/closed/shuttle/dropship2/transparent
-	opacity = 0
+	opacity = FALSE
 
 /turf/closed/shuttle/escapepod
 	name = "wall"

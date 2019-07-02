@@ -1,7 +1,7 @@
 
 // Used for spray that you spray at walls, tables, hydrovats etc
 /obj/effect/decal/spraystill
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = FLY_LAYER
 

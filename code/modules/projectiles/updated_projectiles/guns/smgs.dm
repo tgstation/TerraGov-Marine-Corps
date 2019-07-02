@@ -6,7 +6,7 @@
 	type_of_casings = "bullet"
 	load_method = MAGAZINE //codex
 	force = 8
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	movement_acc_penalty_mult = 3
 	wield_delay = WIELD_DELAY_FAST
 	attachable_allowed = list(

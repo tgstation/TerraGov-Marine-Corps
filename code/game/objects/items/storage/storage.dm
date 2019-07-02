@@ -8,7 +8,7 @@
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit

@@ -1,11 +1,3 @@
-/obj/var/list/req_access = null
-/obj/var/list/req_one_access = null
-
-//Don't directly use these two, please. No: magic numbers, Yes: defines.
-/obj/var/req_one_access_txt = "0"
-/obj/var/req_access_txt = "0"
-
-//returns 1 if this mob has sufficient access to use this object
 /obj/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
 	if(check_access())
@@ -17,47 +9,51 @@
 	if(check_access(I))
 		return TRUE
 
-/obj/item/proc/GetAccess()
-	return list()
 
-/obj/item/proc/GetID()
-	return
-
-/obj/proc/check_access(obj/item/I)
+/obj/proc/check_access(obj/item/card/id/ID)
 	//These generations have been moved out of /obj/New() because they were slowing down the creation of objects that never even used the access system.
 	var/i
 	if(!req_access)
 		req_access = list()
 		if(req_access_txt)
-			var/req_access_str[] = text2list(req_access_txt,";")
+			var/list/req_access_str = text2list(req_access_txt, ";")
 			var/n
 			for(i in req_access_str)
 				n = text2num(i)
-				if(n) req_access += n
+				if(!n)
+					continue
+				req_access += n
 
 	if(!req_one_access)
 		req_one_access = list()
 		if(req_one_access_txt)
-			var/req_one_access_str[] = text2list(req_one_access_txt,";")
+			var/list/req_one_access_str = text2list(req_one_access_txt, ";")
 			var/n
 			for(i in req_one_access_str)
 				n = text2num(i)
-				if(n) req_one_access += n
+				if(!n) 
+					continue
+				req_one_access += n
 
-	if(!islist(req_access)) return 1//something's very wrong
-	var/L[] = req_access
-	if(!L.len && (!req_one_access || !req_one_access.len)) return 1//no requirements
-	if(!I) return
+	if(!length(req_one_access) && !length(req_one_access)) 
+		return TRUE
 
-	var/A[] = I.GetAccess()
+	if(!istype(ID)) 
+		return FALSE
+
 	for(i in req_access)
-		if(!(i in A)) return//doesn't have this access
+		if(!(i in ID.access)) 
+			return FALSE
 
-	if(req_one_access && req_one_access.len)
+	if(length(req_one_access))
 		for(i in req_one_access)
-			if(i in A) return 1//has an access from the single access list
-		return
-	return 1
+			if(!(i in ID.access))
+				continue
+			return TRUE
+		return FALSE
+	
+	return TRUE
+
 
 /obj/proc/check_access_list(L[])
 	if(!req_access  && !req_one_access)	return 1
@@ -73,59 +69,49 @@
 		return
 	return 1
 
-/proc/get_centcom_access(job)
-	return get_all_centcom_access()
-
-/proc/get_all_accesses()
-	return get_all_marine_access() + list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
-
-/proc/get_all_marine_access()
-	return list(ACCESS_IFF_MARINE, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG,
-				ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING,
-				ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP,
-				ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE,
-				ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP,
-				ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK)
-
-/proc/get_all_centcom_access()
-	return list(ACCESS_NT_PMC_GREEN, ACCESS_NT_PMC_ORANGE, ACCESS_NT_PMC_RED, ACCESS_NT_PMC_BLACK, ACCESS_NT_PMC_WHITE, ACCESS_NT_CORPORATE)
-
-/proc/get_all_syndicate_access()
-	return list(ACCESS_ILLEGAL_PIRATE)
-
-/proc/get_antagonist_access()
-	var/L[] = get_all_accesses() + get_all_syndicate_access()
-	return L - ACCESS_IFF_MARINE
-
-/proc/get_antagonist_pmc_access()
-	return get_antagonist_access() + ACCESS_IFF_PMC
-
-/proc/get_freelancer_access()
-	return list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 
 /proc/get_region_accesses(code)
 	switch(code)
-		if(0) return get_all_accesses()
-		if(1) return list(ACCESS_MARINE_WO, ACCESS_MARINE_BRIG)//security
-		if(2) return list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)//medbay
-		if(3) return list(ACCESS_MARINE_RESEARCH)//research
-		if(4) return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)//engineering and maintenance
-		if(5) return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO)//command
-		if(6) return list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP)//spess mahreens
-		if(7) return list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)//squads
-		if(8) return list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_LOGISTICS, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING)//Civilian
+		if(0) 
+			return ALL_ACCESS
+		if(1) 
+			return list(ACCESS_MARINE_WO, ACCESS_MARINE_BRIG)//security
+		if(2) 
+			return list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)//medbay
+		if(3) 
+			return list(ACCESS_MARINE_RESEARCH)//research
+		if(4) 
+			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)//engineering and maintenance
+		if(5) 
+			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO)//command
+		if(6) 
+			return list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP)//spess mahreens
+		if(7) 
+			return list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)//squads
+		if(8) 
+			return list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_LOGISTICS, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING)//Civilian
+
 
 /proc/get_region_accesses_name(code)
 	switch(code)
-		if(0) return "All"
-		if(1) return "[CONFIG_GET(string/ship_name)] Security"//security
-		if(2) return "[CONFIG_GET(string/ship_name)] Medbay"//medbay
-		if(3) return "[CONFIG_GET(string/ship_name)] Research"//research
-		if(4) return "[CONFIG_GET(string/ship_name)] Engineering"//engineering and maintenance
-		if(5) return "[CONFIG_GET(string/ship_name)] Command"//command
-		if(6) return "Marines"//marine prep
-		if(7) return "Squads"//squads
-		if(8) return "Civilian"//Civilian
+		if(0) 
+			return "All"
+		if(1) 
+			return "[CONFIG_GET(string/ship_name)] Security"//security
+		if(2) 
+			return "[CONFIG_GET(string/ship_name)] Medbay"//medbay
+		if(3) 
+			return "[CONFIG_GET(string/ship_name)] Research"//research
+		if(4) 
+			return "[CONFIG_GET(string/ship_name)] Engineering"//engineering and maintenance
+		if(5) 
+			return "[CONFIG_GET(string/ship_name)] Command"//command
+		if(6) 
+			return "Marines"//marine prep
+		if(7) 
+			return "Squads"//squads
+		if(8) 
+			return "Civilian"//Civilian
 
 
 /proc/get_access_desc(A)
@@ -207,84 +193,21 @@
 			return "NT Identification"
 
 
-/proc/get_all_jobs_titles()
-	var/list/all_jobs_titles = new
-	var/list/all_datums = subtypesof(/datum/job) - /datum/job/pmc
-	var/datum/job/jobdatum
-	for(var/jobtype in all_datums)
-		jobdatum = new jobtype
-		all_jobs_titles += jobdatum.title
-	return all_jobs_titles
+/proc/get_access_job_name(obj/item/card/id/ID)
+	var/first_matched
+	for(var/i in SSjob.occupations)
+		var/datum/job/J = i
+		if(J.title == ID.rank)
+			return J.title
+		if(!first_matched && (J.access ~= ID.access))
+			first_matched = J.title
+	if(first_matched)
+		return first_matched
+	else if(length(ID.access))
+		return "Custom [ADMIN_VV(ID.access)]"
+	else
+		return "None"
 
-
-/proc/get_all_centcom_jobs()
-	return list()
-
-
-//gets the actual job rank (ignoring alt titles)
-//this is used solely for sechuds
-/obj/proc/GetJobRealName()
-	if (!istype(src,/obj/item/card/id))
-		return
-	var/obj/item/card/id/I = src
-	if(I.rank in SSjob.name_occupations)
-		return I.rank
-	if(I.assignment in SSjob.name_occupations)
-		return I.assignment
-	return "Unknown"
-
-proc/FindNameFromID(mob/living/carbon/human/H)
-	ASSERT(istype(H))
-	var/obj/item/card/id/I = H.wear_id
-	if(istype(I))
-		return I.registered_name
-	I = H.get_active_held_item()
-	if(istype(I))
-		return I.registered_name
-
-proc/get_all_job_icons()
-	return SSjob.name_occupations + list("Prisoner")//For all existing HUD icons
-
-/obj/proc/GetJobName() //Used in secHUD icon generation
-	var/obj/item/card/id/I = src
-	if(istype(I))
-		var/job_icons = get_all_job_icons()
-		var/centcom = get_all_centcom_jobs()
-		if(I.assignment	in job_icons)
-			return I.assignment//Check if the job has a hud icon
-		if(I.rank in job_icons)
-			return I.rank
-		if(I.assignment	in centcom)
-			return "Centcom"//Return with the NT logo if it is a Centcom job
-		if(I.rank in centcom)
-			return "Centcom"
-	return "Unknown" //Return unknown if none of the above apply
-
-
-/proc/get_marine_jobs()
-		return list(
-				"Captain",
-				"Field Commander",
-				"Intelligence Officer",
-				"Pilot Officer",
-				"Tank Crewman",
-				"Corporate Liaison",
-				"Chief Ship Engineer",
-				"Ship Engineer",
-				"Requisitions Officer",
-				"Cargo Technician",
-				"Squad Leader",
-				"Squad Engineer",
-				"Squad Corpsman",
-				"Squad Specialist",
-				"Squad Smartgunner",
-				"Squad Marine",
-				"Chief Medical Officer",
-				"Medical Officer",
-				"Medical Researcher",
-				"Master at Arms",
-				"Command Master at Arms"
-				)
 
 /proc/get_paygrades(paygrade, size, gender)
 	if(!paygrade)
@@ -420,16 +343,3 @@ proc/get_all_job_icons()
 			. = size ? "MERC " : "MERC Engineer"
 		else
 			. = paygrade + " " //custom paygrade
-
-#define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O5","O6","WO","CWO","PO","CPO","MAJ")
-#define PAYGRADES_OFFICER list("O1","O2","O3","O4","O5","O6","WO","CWO","CPO","MAJ")
-#define PAYGRADES_ENLISTED list("C","E1","E2","E3","E4","E5","E6","E7","E8","E9","PO")
-
-//Just marines
-#define ALL_MARINE_ACCESS list(ACCESS_IFF_MARINE, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_ENGINEERING)
-
-//Literally everything
-#define ALL_ACCESS list(ACCESS_IFF_MARINE, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_NT_PMC_GREEN, ACCESS_NT_PMC_ORANGE, ACCESS_NT_PMC_RED, ACCESS_NT_PMC_BLACK, ACCESS_NT_PMC_WHITE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_IFF_PMC)
-
-//Removes PMC and Marine IFF
-#define ALL_ANTAGONIST_ACCESS list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_NT_PMC_GREEN, ACCESS_NT_PMC_ORANGE, ACCESS_NT_PMC_RED, ACCESS_NT_PMC_BLACK, ACCESS_NT_PMC_WHITE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE)

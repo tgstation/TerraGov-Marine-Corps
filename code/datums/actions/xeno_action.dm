@@ -3,7 +3,6 @@
 	var/plasma_cost = 0
 	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
-	var/on_cooldown
 	var/last_use
 	var/cooldown_timer
 	var/ability_name
@@ -112,33 +111,36 @@
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
 /datum/action/xeno_action/proc/action_cooldown_check()
-	return !on_cooldown
+	return !cooldown_id
+
 
 /datum/action/xeno_action/proc/clear_cooldown()
-	for(var/timer in active_timers)
-		qdel(timer)
-		on_cooldown_finish()
+	if(!cooldown_id)
+		return
+	deltimer(cooldown_id)
+	on_cooldown_finish()
+
 
 /datum/action/xeno_action/proc/get_cooldown()
 	return cooldown_timer
 
+
 /datum/action/xeno_action/proc/add_cooldown()
-	if(!length(active_timers)) // stop doubling up
-		last_use = world.time
-		on_cooldown = TRUE
-		cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
-		button.overlays += cooldown_image
-		update_button_icon()
+	if(cooldown_id) // stop doubling up
+		return
+	last_use = world.time
+	cooldown_id = addtimer(CALLBACK(src, .proc/on_cooldown_finish), get_cooldown(), TIMER_STOPPABLE)
+	button.overlays += cooldown_image
+	update_button_icon()
+
 
 /datum/action/xeno_action/proc/cooldown_remaining()
-	for(var/i in active_timers)
-		var/datum/timedevent/timer = i
-		return (timer.timeToRun - world.time) * 0.1
-	return 0
+	return timeleft(cooldown_id) * 0.1
+
 
 //override this for cooldown completion.
 /datum/action/xeno_action/proc/on_cooldown_finish()
-	on_cooldown = FALSE
+	cooldown_id = null
 	if(!button)
 		CRASH("no button object on finishing xeno action cooldown")
 	button.overlays -= cooldown_image

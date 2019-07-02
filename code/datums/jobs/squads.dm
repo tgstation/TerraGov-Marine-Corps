@@ -121,23 +121,23 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		return FALSE
 
 	switch(H.mind.assigned_role)
-		if("Squad Engineer")
+		if(SQUAD_ENGINEER)
 			num_engineers++
 			C.claimedgear = 0
-		if("Squad Corpsman")
+		if(SQUAD_CORPSMAN)
 			num_medics++
 			C.claimedgear = 0
-		if("Squad Specialist")
+		if(SQUAD_SPECIALIST)
 			num_specialists++
-		if("Squad Smartgunner")
+		if(SQUAD_SMARTGUNNER)
 			num_smartgun++
-		if("Squad Leader")
-			if(squad_leader && (!squad_leader.mind || squad_leader.mind.assigned_role != "Squad Leader")) //field promoted SL
+		if(SQUAD_LEADER)
+			if(squad_leader && (!squad_leader.mind || squad_leader.mind.assigned_role != SQUAD_LEADER)) //field promoted SL
 				demote_squad_leader() //replaced by the real one
 			squad_leader = H
 			SSdirection.set_leader(tracking_id, H)
 			SSdirection.start_tracking("marine-sl", H)
-			if(H.mind.assigned_role == "Squad Leader") //field promoted SL don't count as real ones
+			if(H.mind.assigned_role == SQUAD_LEADER) //field promoted SL don't count as real ones
 				num_leaders++
 
 	count++ //Add up the tally. This is important in even squad distribution.
@@ -179,7 +179,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 	if(H.assigned_squad.squad_leader == H)
-		if(H.mind.assigned_role != "Squad Leader") //a field promoted SL, not a real one
+		if(H.mind.assigned_role != SQUAD_LEADER) //a field promoted SL, not a real one
 			demote_squad_leader()
 		else
 			H.assigned_squad.squad_leader = null
@@ -192,15 +192,15 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	H.assigned_squad = null
 
 	switch(H.mind.assigned_role)
-		if("Squad Engineer")
+		if(SQUAD_ENGINEER)
 			num_engineers--
-		if("Squad Corpsman")
+		if(SQUAD_CORPSMAN)
 			num_medics--
-		if("Squad Specialist")
+		if(SQUAD_SPECIALIST)
 			num_specialists--
-		if("Squad Smartgunner")
+		if(SQUAD_SMARTGUNNER)
 			num_smartgun--
-		if("Squad Leader")
+		if(SQUAD_LEADER)
 			num_leaders--
 
 
@@ -230,12 +230,12 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.clear_leader(tracking_id)
 	SSdirection.stop_tracking("marine-sl", old_lead)
 
-	if(old_lead.mind.assigned_role)
+	if(old_lead.mind?.assigned_role)
 		if(old_lead.mind.cm_skills)
-			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Corpsman" || "Squad Smartgunner"))
+			if(old_lead.mind.assigned_role == (SQUAD_SPECIALIST || SQUAD_ENGINEER || SQUAD_CORPSMAN || SQUAD_SMARTGUNNER))
 				old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
 
-			else if(old_lead.mind == "Squad Leader")
+			else if(old_lead.mind == SQUAD_LEADER)
 				if(!leader_killed)
 					old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
 			else
@@ -243,7 +243,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 		old_lead.update_action_buttons()
 
-	if(!old_lead.mind || old_lead.mind.assigned_role != "Squad Leader" || !leader_killed)
+	if(!old_lead.mind || old_lead.mind.assigned_role != SQUAD_LEADER || !leader_killed)
 		if(istype(old_lead.wear_ear, /obj/item/radio/headset/almayer/marine))
 			var/obj/item/radio/headset/almayer/marine/R = old_lead.wear_ear
 			if(istype(R.keyslot, /obj/item/encryptionkey/squadlead))
@@ -291,25 +291,25 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 /datum/squad/proc/check_entry(rank)
 	switch(rank)
-		if("Squad Marine")
+		if(SQUAD_MARINE)
 			return TRUE
-		if("Squad Engineer")
+		if(SQUAD_ENGINEER)
 			if(num_engineers >= max_engineers)
 				return FALSE
 			return TRUE
-		if("Squad Corpsman")
+		if(SQUAD_CORPSMAN)
 			if(num_medics >= max_medics)
 				return FALSE
 			return TRUE
-		if("Squad Smartgunner")
+		if(SQUAD_SMARTGUNNER)
 			if(num_smartgun >= max_smartgun)
 				return FALSE
 			return TRUE
-		if("Squad Specialist")
+		if(SQUAD_SPECIALIST)
 			if(num_specialists >= max_specialists)
 				return FALSE
 			return TRUE
-		if("Squad Leader")
+		if(SQUAD_LEADER)
 			if(num_leaders >= max_leaders)
 				return FALSE
 			return TRUE
@@ -321,30 +321,30 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(!rank || !M?.mind)
 		return FALSE
 	switch(rank)
-		if("Squad Marine")
+		if(SQUAD_MARINE)
 			M.mind.assigned_squad = src
 			return TRUE
-		if("Squad Engineer")
+		if(SQUAD_ENGINEER)
 			M.mind.assigned_squad = src
 			if(!latejoin)
 				num_engineers++
 			return TRUE
-		if("Squad Corpsman")
+		if(SQUAD_CORPSMAN)
 			M.mind.assigned_squad = src
 			if(!latejoin)
 				num_medics++
 			return TRUE
-		if("Squad Smartgunner")
+		if(SQUAD_SMARTGUNNER)
 			M.mind.assigned_squad = src
 			if(!latejoin)
 				num_smartgun++
 			return TRUE
-		if("Squad Specialist")
+		if(SQUAD_SPECIALIST)
 			M.mind.assigned_squad = src
 			if(!latejoin)
 				num_specialists++
 			return TRUE
-		if("Squad Leader")
+		if(SQUAD_LEADER)
 			M.mind.assigned_squad = src
 			if(!latejoin)
 				num_leaders++
@@ -360,12 +360,12 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(M.client?.prefs?.be_special && (M.client.prefs.be_special & BE_SQUAD_STRICT))
 		strict = TRUE
 	switch(rank)
-		if("Squad Marine")
+		if(SQUAD_MARINE)
 			if(P && P.assign(M, rank))
 				return TRUE
 			else if(R.assign(M, rank))
 				return TRUE
-		if("Squad Engineer")
+		if(SQUAD_ENGINEER)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
@@ -380,7 +380,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 					continue
 				else if(S.assign(M, rank, latejoin))
 					return TRUE
-		if("Squad Corpsman")
+		if(SQUAD_CORPSMAN)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 					continue
 				else if(S.assign(M, rank, latejoin))
 					return TRUE
-		if("Squad Smartgunner")
+		if(SQUAD_SMARTGUNNER)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
@@ -410,7 +410,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 					continue
 				else if(S.assign(M, rank, latejoin))
 					return TRUE
-		if("Squad Specialist")
+		if(SQUAD_SPECIALIST)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
@@ -425,7 +425,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 					continue
 				else if(S.assign(M, rank, latejoin))
 					return TRUE
-		if("Squad Leader")
+		if(SQUAD_LEADER)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))

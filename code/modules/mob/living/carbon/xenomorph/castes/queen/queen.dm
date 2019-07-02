@@ -20,7 +20,6 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
-	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
 	job = ROLE_XENO_QUEEN
 
 	var/breathing_counter = 0

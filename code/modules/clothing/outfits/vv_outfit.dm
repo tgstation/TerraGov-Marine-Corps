@@ -80,9 +80,9 @@
 
 	//Copy access
 	O.stored_access = list()
-	var/obj/item/id_slot = get_item_by_slot(SLOT_WEAR_ID)
-	if(id_slot)
-		O.stored_access = id_slot.GetAccess()
+	var/obj/item/card/id/ID = get_idcard()
+	if(istype(ID))
+		O.stored_access = ID.access
 	//Copy hands
 	var/obj/item/left_hand = l_hand
 	var/obj/item/right_hand = r_hand
@@ -121,7 +121,7 @@
 	//Apply access
 	var/obj/item/id_slot = H.get_item_by_slot(SLOT_WEAR_ID)
 	if(id_slot)
-		var/obj/item/card/id/card = id_slot.GetID()
+		var/obj/item/card/id/card = id_slot
 		var/datum/job/J = SSjob.GetJob(H.job)
 		if(istype(card))
 			card.access = stored_access

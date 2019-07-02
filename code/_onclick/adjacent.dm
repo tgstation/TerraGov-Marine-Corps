@@ -123,6 +123,9 @@
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(atom/neighbor)
+	if(isnull(loc)) //User input can sometimes cause adjacency checks to things no longer in the map.
+		return FALSE
+
 	if(neighbor == loc || neighbor == loc.loc) //Item is in the neighbor or something that it holds.
 		return TRUE
 

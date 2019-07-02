@@ -14,7 +14,7 @@
 		var/turf/closed/wall/W = loc
 		W.acided_hole = src
 		holed_wall = W
-		holed_wall.opacity = 0
+		holed_wall.opacity = FALSE
 		if(W.junctiontype & (NORTH|SOUTH))
 			setDir(EAST)
 		if(W.junctiontype & (EAST|WEST))

@@ -36,8 +36,8 @@
 			if(!locked)
 				open()
 			else
-				src.req_access = list()
-				src.req_access += pick(get_all_accesses())
+				req_access = list()
+				req_access += pick(ALL_ACCESS)
 	..()
 
 

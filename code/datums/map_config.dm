@@ -12,16 +12,13 @@
 	var/config_min_users = 0
 	var/voteweight = 1
 
-	// Config actually from the JSON - should default to Box
+	// Config actually from the JSON - default values
 	var/map_name = "LV624"
 	var/map_path = "map_files/LV624"
 	var/map_file = "LV624.dmm"
 
 	var/traits = null
-	var/space_ruin_levels = 7
 	var/space_empty_levels = 1
-
-	var/minetype = "lavaland"
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list()

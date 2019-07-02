@@ -17,7 +17,7 @@
 	var/mentor_msg = msg
 	var/liaison = FALSE
 
-	if(mind?.assigned_role && mind.assigned_role == "Corporate Liaison")
+	if(mind?.assigned_role && mind.assigned_role == CORPORATE_LIAISON)
 		liaison = TRUE
 
 	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"
