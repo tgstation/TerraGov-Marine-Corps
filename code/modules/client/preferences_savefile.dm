@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	31
+#define SAVEFILE_VERSION_MAX	32
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -20,7 +20,7 @@
 				break
 		return FALSE
 
-	if(savefile_version < 31)
+	if(savefile_version < 32)
 		WRITE_FILE(S["ambientocclusion"], TRUE)
 
 	if(savefile_version < 31)
