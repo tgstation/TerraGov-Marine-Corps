@@ -457,15 +457,6 @@
 * Egg
 */
 
-#define EGG_BURST 0
-#define EGG_BURSTING 1
-#define EGG_GROWING 2
-#define EGG_GROWN 3
-#define EGG_DESTROYED 4
-
-#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
-#define EGG_MAX_GROWTH_TIME 15 SECONDS
-
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
 	name = "egg"
