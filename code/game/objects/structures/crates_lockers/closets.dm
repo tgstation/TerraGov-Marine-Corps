@@ -213,7 +213,8 @@
 		user.transferItemToLoc(I, drop_location())
 		return ..()
 
-	if(I.GetID())
+	var/obj/item/card/id/ID = user.get_idcard()
+	if(istype(ID))
 		if(!togglelock(user, TRUE))
 			toggle(user)
 

@@ -148,14 +148,6 @@
 /obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")
 
-	return
-
-/obj/item/card/id/GetAccess()
-	return access
-
-/obj/item/card/id/GetID()
-	return src
-
 
 /obj/item/card/id/proc/update_label(newname, newjob)
 	if(newname || newjob)
@@ -163,6 +155,9 @@
 		return
 
 	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+	if(isliving(loc))
+		var/mob/living/L = loc
+		L.name = L.get_visible_name()
 
 
 /obj/item/card/id/verb/read()
@@ -255,6 +250,7 @@
 	assignment = "Syndicate Overlord"
 	access = list(ACCESS_ILLEGAL_PIRATE)
 
+
 /obj/item/card/id/captains_spare
 	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
@@ -262,19 +258,7 @@
 	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
-	New()
-		access = get_all_marine_access()
-		..()
-
-/obj/item/card/id/centcom
-	name = "\improper CentCom. ID"
-	desc = "An ID straight from Cent. Com."
-	icon_state = "centcom"
-	registered_name = "Central Command"
-	assignment = "General"
-	New()
-		access = get_all_centcom_access()
-		..()
+	access = ALL_MARINE_ACCESS
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)

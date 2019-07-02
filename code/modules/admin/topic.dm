@@ -1848,6 +1848,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/change
 		var/previous
+		var/addition
 
 		switch(href_list["rank"])
 			if("createmind")
@@ -1856,11 +1857,18 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				H.mind_initialize()
 			if("rank")
 				change = input("Select a rank.", "Edit Rank") as null|anything in sortList(SSjob.name_occupations)
-				if(!change || !istype(H) || !H.mind)
+				if(!change || !istype(H))
 					return
-				previous = H.mind.assigned_role
-				var/datum/job/J = SSjob.GetJob(change)
-				J.assign(H)
+				if(H.mind)
+					previous = H.mind.assigned_role
+					var/datum/job/J = SSjob.GetJob(change)
+					J.assign(H)
+					if(href_list["doequip"])
+						H.set_equipment(J.title)
+						addition = ", equipping them"
+				else
+					previous = H.job
+					H.job = change
 			if("skills")
 				var/list/skilltypes = subtypesof(/datum/skills)
 				var/list/skills = list()
@@ -1892,7 +1900,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("idtitle")
 				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input an ID title - Jane Doe (Title)", "Edit Rank") as null|text
-				if(isnull(change) || !istype(H) || !H.mind)
+				if(isnull(change) || !istype(H) || !istype(C))
 					return
 				previous = C.assignment
 				C.assignment = change
@@ -1900,11 +1908,19 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("idname")
 				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input an ID name - Jane Doe (Title)", "Edit Rank") as null|text
-				if(isnull(change) || !istype(H) || !H.mind)
+				if(isnull(change) || !istype(H) || !istype(C))
 					return
 				previous = C.registered_name
 				C.registered_name = change
 				C.update_label()
+			if("access")
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
+				change = input("Choose the new access.", "Edit Rank") as null|anything in sortList(SSjob.name_occupations)
+				if(!change || !istype(H) || !istype(C))
+					return
+				var/datum/job/J = SSjob.name_occupations[change]
+				previous = get_access_job_name(C)
+				C.access = J.access
 			if("createid")
 				if(!istype(H) || H.wear_id)
 					return
@@ -1912,7 +1928,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("squad")
 				previous = H.assigned_squad
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
-				if(!change || !istype(H) || !(H.job in JOBS_MARINES))
+				if(!change || !istype(H))
+					return
+				if(H.mind && !(H.mind.assigned_role in JOBS_MARINES))
+					return
+				else if(!(H.job in JOBS_MARINES))
 					return
 
 				H.change_squad(change)
@@ -1953,11 +1973,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		usr.client.holder.rank_and_equipment(H)
 
 		if(change)
-			log_admin("[key_name(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change] of [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change] of [ADMIN_TPMONTY(H)].")
+			log_admin("[key_name(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change][addition] of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change][addition] of [ADMIN_TPMONTY(H)].")
 		else
 			log_admin("[key_name(usr)] updated the rank: [href_list["rank"]] of [key_name(H)].")
 			message_admins("[ADMIN_TPMONTY(usr)] updated the rank: [href_list["rank"]] of [ADMIN_TPMONTY(H)].")
 
-		if(href_list["doequip"])
+		if(href_list["doset"])
 			Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "rank" = "equipment", "mob" = REF(H)))

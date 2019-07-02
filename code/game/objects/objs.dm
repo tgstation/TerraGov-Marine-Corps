@@ -24,6 +24,13 @@
 
 	var/item_fire_stacks = 0	//How many fire stacks it applies
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+	
+	var/list/req_access = null
+	var/list/req_one_access = null
+
+	//Don't directly use these two, please. No: magic numbers, Yes: defines.
+	var/req_one_access_txt = "0"
+	var/req_access_txt = "0"
 
 /obj/Initialize()
 	. = ..()

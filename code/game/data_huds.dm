@@ -375,10 +375,9 @@
 /mob/living/carbon/human/sec_hud_set_ID()
 	var/image/holder = hud_list[ID_HUD]
 	holder.icon_state = "hudunknown"
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			holder.icon_state = "hud[ckey(I.GetJobName())]"
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		holder.icon_state = "hud[ckey(mind && (mind.assigned_role in JOBS_REGULAR_ALL) ? mind.assigned_role : "Unknown")]"
 
 
 /datum/atom_hud/security/advanced
@@ -412,10 +411,9 @@
 	var/image/holder = hud_list[WANTED_HUD]
 	holder.icon_state = "hudblank"
 	var/perpname = name
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			perpname = I.registered_name
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		perpname = I.registered_name
 
 	for(var/datum/data/record/E in GLOB.datacore.general)
 		if(E.fields["name"] == perpname)
