@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead.
 
-	var/overflow_role = "Squad Marine"
+	var/overflow_role = SQUAD_MARINE
 
 
 /datum/controller/subsystem/job/Initialize(timeofday)
@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(job)
 		if(!job.player_old_enough(player.client))
 			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 			return FALSE
-		if(rank in JOBS_MARINES)
+		if(rank in GLOB.jobs_marines)
 			if(handle_squad(player, rank, latejoin))
 				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key] Rank: [rank]")
 			else
@@ -235,7 +235,7 @@ SUBSYSTEM_DEF(job)
 				N.new_character = L
 			else
 				M = L
-		if(rank in JOBS_MARINES)
+		if(rank in GLOB.jobs_marines)
 			if(L.mind.assigned_squad)
 				var/datum/squad/S = L.mind.assigned_squad
 				S.put_marine_in_squad(L)

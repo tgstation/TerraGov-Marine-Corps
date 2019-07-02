@@ -528,12 +528,12 @@
 			var/mob/living/carbon/human/H = usr
 			if(mind)
 				var/obj/item/card/id/ID = get_idcard()
-				if(ID && (ID.rank in JOBS_MARINES))//still a marine, with an ID.
+				if(ID && (ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
-						if(ID && ID.rank in JOBS_MARINES)//still a marine with an ID
+						if(ID && ID.rank in GLOB.jobs_marines)//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
 									if("None") ID.assigned_fireteam = 0
@@ -1323,7 +1323,7 @@
 
 
 /mob/living/carbon/human/proc/change_squad(squad)
-	if(!squad || !(job in JOBS_MARINES))
+	if(!squad || !(job in GLOB.jobs_marines))
 		return FALSE
 
 	var/datum/squad/S = SSjob.squads[squad]

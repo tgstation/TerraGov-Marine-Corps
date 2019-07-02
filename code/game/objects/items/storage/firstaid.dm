@@ -377,5 +377,5 @@
 	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
 
 	req_access = list(ACCESS_NT_CORPORATE)
-	req_id_role = "Corporate Liaison"
+	req_id_role = CORPORATE_LIAISON
 	scan_name = TRUE

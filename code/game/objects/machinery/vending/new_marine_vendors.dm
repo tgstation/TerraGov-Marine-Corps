@@ -195,8 +195,8 @@
 
 			var/bitf = L[4]
 			if(bitf)
-				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == "Squad Specialist")
-					if(!H.mind || H.mind.assigned_role != "Squad Specialist")
+				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
+					if(!H.mind || H.mind.assigned_role != SQUAD_SPECIALIST)
 						to_chat(H, "<span class='warning'>Only specialists can take specialist sets.</span>")
 						return
 					else if(!H.mind.cm_skills || H.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
@@ -241,7 +241,7 @@
 
 
 			if(bitf == MARINE_CAN_BUY_ESSENTIALS)
-				if(vendor_role == "Squad Specialist" && H.mind && H.mind.assigned_role == "Squad Specialist")
+				if(vendor_role == SQUAD_SPECIALIST && H.mind && H.mind.assigned_role == SQUAD_SPECIALIST)
 					var/p_name = L[1]
 					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 						p_name = "Scout Set"
@@ -270,7 +270,7 @@
 	name = "GHMME Automated Closet"
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
-	vendor_role = "Squad Marine"
+	vendor_role = SQUAD_MARINE
 
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
@@ -357,7 +357,7 @@
 /obj/machinery/marine_selector/clothes/engi
 	name = "GHMME Automated Engineer Closet"
 	req_access = list(ACCESS_MARINE_ENGPREP)
-	vendor_role = "Squad Engineer"
+	vendor_role = SQUAD_ENGINEER
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -421,7 +421,7 @@
 /obj/machinery/marine_selector/clothes/medic
 	name = "GHMME Automated Corpsman Closet"
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	vendor_role = "Squad Corpsman"
+	vendor_role = SQUAD_CORPSMAN
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -489,7 +489,7 @@
 /obj/machinery/marine_selector/clothes/smartgun
 	name = "GHMME Automated Smartgunner Closet"
 	req_access = list(ACCESS_MARINE_SMARTPREP)
-	vendor_role = "Squad Smartgunner"
+	vendor_role = SQUAD_SMARTGUNNER
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -544,7 +544,7 @@
 /obj/machinery/marine_selector/clothes/specialist
 	name = "GHMME Automated Specialist Closet"
 	req_access = list(ACCESS_MARINE_SPECPREP)
-	vendor_role = "Squad Specialist"
+	vendor_role = SQUAD_SPECIALIST
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -604,7 +604,7 @@
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
-	vendor_role = "Squad Leader"
+	vendor_role = SQUAD_LEADER
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -687,7 +687,7 @@
 	name = "NEXUS Automated Medical Equipment Rack"
 	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
 	icon_state = "medic"
-	vendor_role = "Squad Corpsman"
+	vendor_role = SQUAD_CORPSMAN
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 	listed_products = list(
@@ -756,7 +756,7 @@
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
 	icon_state = "engineer"
-	vendor_role = "Squad Engineer"
+	vendor_role = SQUAD_ENGINEER
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
 	listed_products = list(
@@ -813,7 +813,7 @@
 	name = "NEXUS Automated Smartgunner Equipment Rack"
 	desc = "An automated smartgunner equipment rack hooked up to a colossal storage unit."
 	icon_state = "smartgunner"
-	vendor_role = "Squad Smartgunner"
+	vendor_role = SQUAD_SMARTGUNNER
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
@@ -859,7 +859,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	name = "NEXUS Automated Specialist Equipment Rack"
 	desc = "An automated specialist equipment rack hooked up to a colossal storage unit."
 	icon_state = "specialist"
-	vendor_role = "Squad Specialist"
+	vendor_role = SQUAD_SPECIALIST
 	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	listed_products = list(
@@ -908,7 +908,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
 	icon_state = "squadleader"
-	vendor_role = "Squad Leader"
+	vendor_role = SQUAD_LEADER
 	req_access = list(ACCESS_MARINE_LEADER)
 
 	listed_products = list(

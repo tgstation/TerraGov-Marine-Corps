@@ -1,11 +1,11 @@
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_REGULAR_ALL = list("titles" = JOBS_REGULAR_ALL),
-	EXP_TYPE_COMMAND = list("titles" = JOBS_COMMAND),
-	EXP_TYPE_ENGINEERING = list("titles" = JOBS_ENGINEERING),
-	EXP_TYPE_MEDICAL = list("titles" = JOBS_MEDICAL),
-	EXP_TYPE_MARINES = list("titles" = JOBS_MARINES),
-	EXP_TYPE_REQUISITIONS = list("titles" = JOBS_REQUISITIONS),
-	EXP_TYPE_POLICE = list("titles" = JOBS_POLICE)
+	EXP_TYPE_REGULAR_ALL = list("titles" = GLOB.jobs_regular_all),
+	EXP_TYPE_COMMAND = list("titles" = GLOB.jobs_command),
+	EXP_TYPE_ENGINEERING = list("titles" = GLOB.jobs_engineering),
+	EXP_TYPE_MEDICAL = list("titles" = GLOB.jobs_medical),
+	EXP_TYPE_MARINES = list("titles" = GLOB.jobs_marines),
+	EXP_TYPE_REQUISITIONS = list("titles" = GLOB.jobs_requisitions),
+	EXP_TYPE_POLICE = list("titles" = GLOB.jobs_police)
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
@@ -214,4 +214,4 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /proc/guest_jobbans(job)
-	return (job in JOBS_COMMAND)
+	return (job in GLOB.jobs_command)

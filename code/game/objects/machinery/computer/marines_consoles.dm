@@ -120,7 +120,7 @@
 		header += "<hr>"
 
 		var/jobs_all = ""
-		var/list/alljobs = JOBS_REGULAR_ALL + "Custom"
+		var/list/alljobs = (GLOB.jobs_regular_all - SYNTHETIC + "Custom")
 		for(var/job in alljobs)
 			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[oldreplacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 

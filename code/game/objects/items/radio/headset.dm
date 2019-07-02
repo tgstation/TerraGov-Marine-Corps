@@ -366,15 +366,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			if("Delta")
 				frequency = FREQ_DELTA
 		switch(rank)
-			if("Squad Leader")
+			if(SQUAD_LEADER)
 				dat += " leader"
 				keyslot2 = new /obj/item/encryptionkey/squadlead
 				use_command = TRUE
 				command = TRUE
-			if("Squad Engineer")
+			if(SQUAD_ENGINEER)
 				dat += " engineer"
 				keyslot2 = new /obj/item/encryptionkey/engi
-			if("Squad Corpsman")
+			if(SQUAD_CORPSMAN)
 				dat += " corpsman"
 				keyslot2 = new /obj/item/encryptionkey/med
 		name = dat + " radio headset"

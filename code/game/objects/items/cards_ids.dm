@@ -256,8 +256,8 @@
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
-	registered_name = "Captain"
-	assignment = "Captain"
+	registered_name = CAPTAIN
+	assignment = CAPTAIN
 	access = ALL_MARINE_ACCESS
 
 
