@@ -1,4 +1,4 @@
-#define NODERANGE 3
+#define NODERANGE 2
 
 /obj/effect/alien/weeds
 	name = "weeds"
