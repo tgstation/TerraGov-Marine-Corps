@@ -377,7 +377,7 @@
 	holder.icon_state = "hudunknown"
 	var/obj/item/card/id/I = get_idcard()
 	if(istype(I))
-		holder.icon_state = "hud[ckey(mind && (mind.assigned_role in JOBS_REGULAR_ALL) ? mind.assigned_role : "Unknown")]"
+		holder.icon_state = "hud[ckey(mind && (mind.assigned_role in GLOB.jobs_regular_all) ? mind.assigned_role : "Unknown")]"
 
 
 /datum/atom_hud/security/advanced
