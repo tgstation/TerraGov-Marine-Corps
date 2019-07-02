@@ -133,7 +133,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 /world/Reboot(ping)
 	if(ping)
 		send2update(CONFIG_GET(string/restart_message))
-		send2update("Round ID [GLOB.round_id] finished | Next Ground Map: [length(SSmapping?.next_map_configs) ? SSmapping.next_map_configs[GROUND_MAP].map_name : "Default"] | Next Ship Map: [length(SSmapping?.next_map_configs) ? SSmapping.next_map_configs[SHIP_MAP].map_name : "Default"] | Round End State: [SSticker?.mode?.round_finished] | Players: [length(GLOB.clients)]")
+		send2update("Round ID [GLOB.round_id] finished | Next Ground Map: [SSmapping.next_map_configs[GROUND_MAP] ? SSmapping.next_map_configs[GROUND_MAP].map_name : SSmapping.configs[GROUND_MAP].map_name] | Next Ship Map: [SSmapping.next_map_configs[SHIP_MAP] ? SSmapping.next_map_configs[SHIP_MAP].map_name : SSmapping.configs[SHIP_MAP].map_name] | Round End State: [SSticker.mode?.round_finished] | Players: [length(GLOB.clients)]")
 	TgsReboot()
 	for(var/i in GLOB.clients)
 		var/client/C = i
