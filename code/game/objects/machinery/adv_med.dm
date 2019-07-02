@@ -45,7 +45,6 @@
 		return
 	usr.forceMove(src)
 	src.occupant = usr
-	update_use_power(2)
 	src.icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		//O = null
@@ -61,7 +60,6 @@
 		//Foreach goto(30)
 	src.occupant.forceMove(loc)
 	src.occupant = null
-	update_use_power(1)
 	src.icon_state = "body_scanner_0"
 	return
 
@@ -91,10 +89,10 @@
 	var/obj/item/grab/G = I
 	if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.stasis_mob)
+		if(!C.bodybag_occupant)
 			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 			return
-		M = C.stasis_mob
+		M = C.bodybag_occupant
 		C.open()
 		user.start_pulling(M)
 	else if(ismob(G.grabbed_thing))
@@ -109,7 +107,6 @@
 
 	M.forceMove(src)
 	occupant = M
-	update_use_power(2)
 	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		O.forceMove(loc)
@@ -169,7 +166,7 @@
 	name = "Body Scanner Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 
 

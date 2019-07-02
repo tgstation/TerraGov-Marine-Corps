@@ -25,22 +25,3 @@
 /mob/living/brain/update_canmove()
 	canmove = 0
 	return canmove
-
-
-
-
-
-/mob/living/brain/update_sight()
-	if (stat == DEAD)
-		sight |= SEE_TURFS
-		sight |= SEE_MOBS
-		sight |= SEE_OBJS
-		see_in_dark = 8
-		return
-
-	sight &= ~SEE_TURFS
-	sight &= ~SEE_MOBS
-	sight &= ~SEE_OBJS
-	see_in_dark = 2
-	see_invisible = SEE_INVISIBLE_LIVING
-

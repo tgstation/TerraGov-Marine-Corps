@@ -2,7 +2,7 @@
 	name = "\improper Space"
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -31,10 +31,9 @@
 //place to another. Look at escape shuttle for example.
 //All shuttles show now be under shuttle since we have smooth-wall code.
 
-/area/shuttle //DO NOT TURN THE lighting_use_dynamic STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
+/area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = 0
-	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/arrival
 	name = "\improper Abandoned Arrival Shuttle"
@@ -218,8 +217,7 @@
 	name = "start area"
 	icon_state = "start"
 	requires_power = 0
-	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = 1
 
 
@@ -259,7 +257,8 @@
 /area/tdome
 	name = "\improper Abandoned Thunderdome"
 	icon_state = "thunder"
-	requires_power = 0
+	requires_power = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 
 /area/tdome/tdome1
@@ -368,96 +367,7 @@
 	icon_state = "north"
 	requires_power = 0
 
-//PRISON
-/*
-/area/prison
-	name = "\improper Abandoned Prison Station"
-	icon_state = "brig"
 
-/area/prison/arrival_airlock
-	name = "\improper Abandoned Prison Station Airlock"
-	icon_state = "green"
-	requires_power = 0
-
-/area/prison/control
-	name = "\improper Abandoned Prison Security Checkpoint"
-	icon_state = "security"
-
-/area/prison/crew_quarters
-	name = "\improper Abandoned Prison Security Quarters"
-	icon_state = "security"
-
-/area/prison/rec_room
-	name = "\improper Abandoned Prison Rec Room"
-	icon_state = "green"
-
-/area/prison/closet
-	name = "\improper Abandoned Prison Supply Closet"
-	icon_state = "dk_yellow"
-
-/area/prison/hallway/fore
-	name = "\improper Abandoned Prison Fore Hallway"
-	icon_state = "yellow"
-
-/area/prison/hallway/aft
-	name = "\improper Abandoned Prison Aft Hallway"
-	icon_state = "yellow"
-
-/area/prison/hallway/port
-	name = "\improper Abandoned Prison Port Hallway"
-	icon_state = "yellow"
-
-/area/prison/hallway/starboard
-	name = "\improper Abandoned Prison Starboard Hallway"
-	icon_state = "yellow"
-
-/area/prison/morgue
-	name = "\improper Abandoned Prison Morgue"
-	icon_state = "morgue"
-
-/area/prison/medical_research
-	name = "\improper Abandoned Prison Genetic Research"
-	icon_state = "medresearch"
-
-/area/prison/medical
-	name = "\improper Abandoned Prison Medbay"
-	icon_state = "medbay"
-
-/area/prison/solar
-	name = "\improper Abandoned Prison Solar Array"
-	icon_state = "storage"
-	requires_power = 0
-
-/area/prison/podbay
-	name = "\improper Abandoned Prison Podbay"
-	icon_state = "dk_yellow"
-
-/area/prison/solar_control
-	name = "\improper Abandoned Prison Solar Array Control"
-	icon_state = "dk_yellow"
-
-/area/prison/solitary
-	name = "Solitary Confinement"
-	icon_state = "brig"
-
-/area/prison/cell_block/A
-	name = "Prison Cell Block A"
-	icon_state = "brig"
-
-/area/prison/cell_block/B
-	name = "Prison Cell Block B"
-	icon_state = "brig"
-
-/area/prison/cell_block/C
-	name = "Prison Cell Block C"
-	icon_state = "brig"
-
-//STATION13
-
-/area/atmos
-	name = "Atmospherics"
-	icon_state = "atmos"
-*/
 //Maintenance
 
 /area/maintenance/aft
@@ -810,8 +720,7 @@
 /area/holodeck
 	name = "\improper Abandoned Holodeck"
 	icon_state = "Holodeck"
-	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/holodeck/alphadeck
 	name = "\improper Abandoned Holodeck Alpha"
@@ -950,8 +859,7 @@
 /area/solar
 	requires_power = 1
 	always_unpowered = 1
-	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 	auxport
 		name = "\improper Abandoned Fore Port Solar Array"
@@ -1412,159 +1320,7 @@
 	name = "\improper Abandoned Listening Post Solars"
 	icon_state = "LPS"
 
-//DERELICT
-/*
-/area/derelict
-	name = "\improper Abandoned Derelict Station"
-	icon_state = "storage"
 
-/area/derelict/hallway/primary
-	name = "\improper Abandoned Derelict Primary Hallway"
-	icon_state = "hallP"
-
-/area/derelict/hallway/secondary
-	name = "\improper Abandoned Derelict Secondary Hallway"
-	icon_state = "hallS"
-
-/area/derelict/arrival
-	name = "\improper Abandoned Derelict Arrival Centre"
-	icon_state = "yellow"
-
-/area/derelict/storage/equipment
-	name = "Derelict Equipment Storage"
-
-/area/derelict/storage/storage_access
-	name = "Derelict Storage Access"
-
-/area/derelict/storage/engine_storage
-	name = "Derelict Engine Storage"
-	icon_state = "green"
-
-/area/derelict/bridge
-	name = "\improper Abandoned Derelict Control Room"
-	icon_state = "bridge"
-
-/area/derelict/secret
-	name = "\improper Abandoned Derelict Secret Room"
-	icon_state = "library"
-
-/area/derelict/bridge/access
-	name = "Derelict Control Room Access"
-	icon_state = "auxstorage"
-
-/area/derelict/bridge/ai_upload
-	name = "\improper Abandoned Derelict Computer Core"
-	icon_state = "ai"
-
-/area/derelict/solar_control
-	name = "\improper Abandoned Derelict Solar Control"
-	icon_state = "engine"
-
-/area/derelict/crew_quarters
-	name = "\improper Abandoned Derelict Crew Quarters"
-	icon_state = "fitness"
-
-/area/derelict/medical
-	name = "Derelict Medbay"
-	icon_state = "medbay"
-
-/area/derelict/medical/morgue
-	name = "\improper Abandoned Derelict Morgue"
-	icon_state = "morgue"
-
-/area/derelict/medical/chapel
-	name = "\improper Abandoned Derelict Chapel"
-	icon_state = "chapel"
-
-/area/derelict/teleporter
-	name = "\improper Abandoned Derelict Teleporter"
-	icon_state = "teleporter"
-
-/area/derelict/eva
-	name = "Derelict EVA Storage"
-	icon_state = "eva"
-
-/area/derelict/ship
-	name = "\improper Abandoned Abandoned Ship"
-	icon_state = "yellow"
-
-/area/solar/derelict_starboard
-	name = "\improper Abandoned Derelict Starboard Solar Array"
-	icon_state = "panelsS"
-
-/area/solar/derelict_aft
-	name = "\improper Abandoned Derelict Aft Solar Array"
-	icon_state = "aft"
-
-/area/derelict/singularity_engine
-	name = "\improper Abandoned Derelict Singularity Engine"
-	icon_state = "engine"
-*/
-//HALF-BUILT STATION (REPLACES DERELICT IN BAYCODE, ABOVE IS LEFT FOR DOWNSTREAM)
-/*
-/area/shuttle/constructionsite
-	name = "\improper Abandoned Construction Site Shuttle"
-	icon_state = "yellow"
-
-/area/shuttle/constructionsite/station
-	name = "\improper Abandoned Construction Site Shuttle"
-
-/area/shuttle/constructionsite/site
-	name = "\improper Abandoned Construction Site Shuttle"
-
-/area/constructionsite
-	name = "\improper Abandoned Construction Site"
-	icon_state = "storage"
-
-/area/constructionsite/storage
-	name = "\improper Abandoned Construction Site Storage Area"
-
-/area/constructionsite/science
-	name = "\improper Abandoned Construction Site Research"
-
-/area/constructionsite/bridge
-	name = "\improper Abandoned Construction Site Bridge"
-	icon_state = "bridge"
-
-/area/constructionsite/maintenance
-	name = "\improper Abandoned Construction Site Maintenance"
-	icon_state = "yellow"
-
-/area/constructionsite/hallway/aft
-	name = "\improper Abandoned Construction Site Aft Hallway"
-	icon_state = "hallP"
-
-/area/constructionsite/hallway/fore
-	name = "\improper Abandoned Construction Site Fore Hallway"
-	icon_state = "hallS"
-
-/area/constructionsite/atmospherics
-	name = "\improper Abandoned Construction Site Atmospherics"
-	icon_state = "green"
-
-/area/constructionsite/medical
-	name = "\improper Abandoned Construction Site Medbay"
-	icon_state = "medbay"
-
-/area/constructionsite/ai
-	name = "\improper Abandoned Construction Computer Core"
-	icon_state = "ai"
-
-/area/constructionsite/engineering
-	name = "\improper Abandoned Construction Site Engine Bay"
-	icon_state = "engine"
-
-/area/solar/constructionsite
-	name = "\improper Abandoned Construction Site Solars"
-	icon_state = "aft"
-
-//area/constructionsite
-//	name = "\improper Abandoned Construction Site Shuttle"
-
-//area/constructionsite
-//	name = "\improper Abandoned Construction Site Shuttle"
-
-*/
 //Construction
 
 /area/construction

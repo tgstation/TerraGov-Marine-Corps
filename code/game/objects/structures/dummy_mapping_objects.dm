@@ -49,7 +49,7 @@
 
 /obj/structure/computer3frame
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 	name = "computer frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "0"
@@ -67,7 +67,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "hdd1"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/computer3_part/storage
 	name = "Storage Device"

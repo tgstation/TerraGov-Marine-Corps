@@ -92,7 +92,6 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	var/c_locked=0;        //Will our new channel be locked to public submissions?
 	var/hitstaken = 0      //Death at 3 hits from an item with force>=15
 	var/datum/feed_channel/viewing_channel = null
-	luminosity = 0
 	anchored = TRUE
 
 
@@ -110,7 +109,6 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 
 	Destroy()
 		GLOB.all_casters -= src
-		SetLuminosity(0)
 		. = ..()
 
 /obj/machinery/newscaster/update_icon()
@@ -495,7 +493,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				newMsg.author = src.scanned_user
 				newMsg.body = src.msg
 				if(photo)
-					newMsg.img = photo.img
+					newMsg.img = photo.picture.picture_icon
 				for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 					if(FC.channel_name == src.channel_name)
 						FC.messages += newMsg                  //Adding message to the network's appropriate feed_channel
@@ -569,7 +567,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 						WANTED.body = src.msg
 						WANTED.backup_author = src.scanned_user //I know, a bit wacky
 						if(photo)
-							WANTED.img = photo.img
+							WANTED.img = photo.picture.picture_icon
 						GLOB.news_network.wanted_issue = WANTED
 						for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.all_casters)
 							NEWSCASTER.newsAlert()
@@ -583,7 +581,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 						GLOB.news_network.wanted_issue.body = src.msg
 						GLOB.news_network.wanted_issue.backup_author = src.scanned_user
 						if(photo)
-							GLOB.news_network.wanted_issue.img = photo.img
+							GLOB.news_network.wanted_issue.img = photo.picture.picture_icon
 						src.screen = 19
 
 			src.updateUsrDialog()
@@ -744,7 +742,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "newspaper"
-	w_class = 1	//Let's make it fit in trashbags!
+	w_class = WEIGHT_CLASS_TINY	//Let's make it fit in trashbags!
 	attack_verb = list("bapped")
 	var/screen = 0
 	var/pages = 0

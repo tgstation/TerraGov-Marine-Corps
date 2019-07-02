@@ -5,7 +5,7 @@
 	item_state = "map"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	// color = ... (Colors can be names - "red, green, grey, cyan" or a HEX color code "#FF0000")
 	var/dat        // Page content
 	var/html_link = ""
@@ -86,9 +86,9 @@
 
 /obj/item/map/current_map/Initialize()
 	. = ..()
-	if(!SSmapping.config?.map_name)
+	if(!length(SSmapping.configs))
 		return INITIALIZE_HINT_QDEL
-	switch(SSmapping.config.map_name)
+	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_LV_624)
 			name = "\improper Lazarus Landing Map"
 			desc = "A satellite printout of the Lazarus Landing colony on LV-624."

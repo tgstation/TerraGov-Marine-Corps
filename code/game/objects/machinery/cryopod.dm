@@ -244,23 +244,23 @@
 /mob/living/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 
 	//Handle job slot/tater cleanup.
-	if(job in JOBS_REGULAR_ALL)
+	if(job in GLOB.jobs_regular_all)
 		var/datum/job/J = SSjob.name_occupations[job]
 		J.current_positions--
-		if((J.title in JOBS_REGULAR_ALL) && isdistress(SSticker?.mode))
+		if((J.title in GLOB.jobs_regular_all) && isdistress(SSticker?.mode))
 			var/datum/game_mode/distress/D = SSticker.mode
 			D.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
-		if(J.title in JOBS_POLICE)
+		if(J.title in GLOB.jobs_police)
 			dept_console = CRYO_SEC
-		else if(J.title in JOBS_MEDICAL)
+		else if(J.title in GLOB.jobs_medical)
 			dept_console = CRYO_MED
-		else if(J.title in JOBS_ENGINEERING)
+		else if(J.title in GLOB.jobs_engineering)
 			dept_console = CRYO_ENGI
 
 	var/list/stored_items = list()
 	for(var/obj/item/W in src)
 		stored_items.Add(W.store_in_cryo())
-	GLOB.cryoed_item_list[dept_console].Add(stored_items)
+	GLOB.cryoed_item_list[dept_console] += stored_items
 
 
 	for(var/datum/data/record/R in GLOB.datacore.medical)

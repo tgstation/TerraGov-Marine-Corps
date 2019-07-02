@@ -12,7 +12,6 @@
 	old_x = -16
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
-	var/datum/effect_system/smoke_spread/smoke_system
 	var/neuro_claws = FALSE
 	var/emitting_gas = FALSE
 	var/neuro_claws_dose = DEFILER_CLAW_AMOUNT
@@ -53,7 +52,7 @@
 		return
 	use_plasma(50)
 	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
-	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
+	to_chat(src, "<span class='xenowarning'>Our claw spines inject our victim with neurotoxin!</span>")
 
 // ***************************************
 // *********** Datum override

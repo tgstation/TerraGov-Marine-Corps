@@ -144,15 +144,15 @@ obj/item/alienjar
 	icon = 'icons/obj/structures/structures.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
 	desc = "Completely impassable - or are they?"
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = MOB_LAYER
 

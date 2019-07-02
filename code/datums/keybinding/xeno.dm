@@ -293,6 +293,41 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
+/datum/keybinding/xeno/lay_egg
+	key = "Unbound"
+	name = "lay_egg"
+	full_name = "Lay Egg"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
+
+/datum/keybinding/xeno/call_of_the_burrowed
+	key = "Unbound"
+	name = "call_of_the_burrowed"
+	full_name = "Call of the Burrowed"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CALL_OF_THE_BURROWED
+
+/datum/keybinding/xeno/psychic_fling
+	key = "Unbound"
+	name = "psychic_fling"
+	full_name = "Psychic Fling"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
+
+/datum/keybinding/xeno/psychic_choke
+	key = "Unbound"
+	name = "psychic_choke"
+	full_name = "Psychic Choke"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
+
+/datum/keybinding/xeno/psychic_heal
+	key = "Unbound"
+	name = "psychic_cure"
+	full_name = "Psychic Cure"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+
 /datum/keybinding/xeno/toggle_queen_zoom
 	key = "Unbound"
 	name = "toggle_queen_zoom"

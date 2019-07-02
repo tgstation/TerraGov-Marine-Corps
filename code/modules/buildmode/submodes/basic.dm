@@ -36,7 +36,7 @@
 		to_chat(c, "<span class='notice'>Success.</span>")
 		if(isturf(object))
 			var/turf/T = object
-			T.ChangeTurf(/turf/open/space)
+			T.ScrapeAway()
 		else if(isobj(object))
 			qdel(object)
 	else if(istype(object,/turf) && alt_click && left_click)

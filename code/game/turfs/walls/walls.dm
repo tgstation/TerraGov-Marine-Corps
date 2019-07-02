@@ -5,7 +5,9 @@
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "metal"
-	opacity = 1
+	baseturfs = /turf/open/floor/plating
+	
+	opacity = TRUE
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
 	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
@@ -244,10 +246,7 @@
 	else
 		make_girder(FALSE)
 
-	if(oldTurf != "")
-		ChangeTurf(text2path(oldTurf), TRUE)
-	else
-		ChangeTurf(/turf/open/floor/plating, TRUE)
+	ScrapeAway()
 
 
 /turf/closed/wall/ex_act(severity)

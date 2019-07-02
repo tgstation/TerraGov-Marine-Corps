@@ -511,14 +511,14 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	send_to_squads("Initializing fire coordinates...")
 	if(selected_target)
 		playsound(selected_target.loc,'sound/effects/alert.ogg', 50, 1, 20)  //Placeholder
-	addtimer(CALLBACK(src, .send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
-	addtimer(CALLBACK(src, .send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
-	addtimer(CALLBACK(src, .do_fire_bombard, T, usr), 4.1 SECONDS)
+	addtimer(CALLBACK(src, .proc/send_to_squads, "Transmitting beacon feed..."), 1.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/send_to_squads, "Calibrating trajectory window..."), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_fire_bombard, T, usr), 4.1 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_fire_bombard(turf/T, user)
 	visible_message("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
 	send_to_squads("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
-	addtimer(CALLBACK(src, .do_land_bombard, T, user), 2.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_land_bombard, T, user), 2.5 SECONDS)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_land_bombard(turf/T, user)
 	busy = FALSE
@@ -537,7 +537,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		return
 	var/sl_candidates = list()
 	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
-		if(istype(H) && H.stat != DEAD && H.mind && !is_banned_from(H.ckey, "Squad Leader"))
+		if(istype(H) && H.stat != DEAD && H.mind && !is_banned_from(H.ckey, SQUAD_LEADER))
 			sl_candidates += H
 	var/new_lead = input(usr, "Choose a new Squad Leader") as null|anything in sl_candidates
 	if(!new_lead || new_lead == "Cancel") return
@@ -548,7 +548,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(H == current_squad.squad_leader)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[H] is already the Squad Leader!</span>")
 		return
-	if(is_banned_from(H.ckey, "Squad Leader"))
+	if(is_banned_from(H.ckey, SQUAD_LEADER))
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[H] is unfit to lead!</span>")
 		return
 	if(current_squad.squad_leader)
@@ -559,13 +559,13 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		current_squad.message_squad("Attention: A new Squad Leader has been set: [H.real_name].")
 		visible_message("<span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")
 
-	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
+	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == SQUAD_LEADER ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.squad_leader = H
 	SSdirection.set_leader(current_squad.tracking_id, H)
 	SSdirection.start_tracking("marine-sl", H)
 
-	if(H.mind.assigned_role == "Squad Leader")
+	if(H.mind.assigned_role == SQUAD_LEADER)
 		H.mind.comm_title = "SL"
 	else
 		H.mind.comm_title = "aSL"
@@ -580,6 +580,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		else if(!R.keyslot2)
 			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
 		R.recalculateChannels()
+		R.use_command = TRUE
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
 		ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
@@ -658,19 +659,19 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	var/no_place = FALSE
 	switch(transfer_marine.mind.assigned_role)
-		if("Squad Leader")
+		if(SQUAD_LEADER)
 			if(new_squad.num_leaders == new_squad.max_leaders)
 				no_place = TRUE
-		if("Squad Specialist")
+		if(SQUAD_SPECIALIST)
 			if(new_squad.num_specialists == new_squad.max_specialists)
 				no_place = TRUE
-		if("Squad Engineer")
+		if(SQUAD_ENGINEER)
 			if(new_squad.num_engineers >= new_squad.max_engineers)
 				no_place = TRUE
-		if("Squad Corpsman")
+		if(SQUAD_CORPSMAN)
 			if(new_squad.num_medics >= new_squad.max_medics)
 				no_place = TRUE
-		if("Squad Smartgunner")
+		if(SQUAD_SMARTGUNNER)
 			if(new_squad.num_smartgun == new_squad.max_smartgun)
 				no_place = TRUE
 
@@ -792,7 +793,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	desc = "Place unanchored supplies on here to allow bridge Overwatch officers to drop them on people's heads."
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_TURF_LAYER
 	var/squad_name = "Alpha"
@@ -834,7 +835,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	name = "squad supply beacon"
 	desc = "A rugged, glorified laser pointer capable of sending a beam into space. Activate and throw this to call for a supply drop."
 	icon_state = "motion0"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/activated = 0
 	var/activation_time = 60
 	var/datum/squad/squad = null
@@ -852,7 +853,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(beacon_cam)
 		qdel(beacon_cam)
 		beacon_cam = null
-	SetLuminosity(0)
 	return ..()
 
 /obj/item/squad_beacon/attack_self(mob/user)
@@ -901,7 +901,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	name = "orbital beacon"
 	desc = "A bulky device that fires a beam up to an orbiting vessel to send local coordinates."
 	icon_state = "motion4"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	activation_time = 80
 	icon_activated = "motion1"
 
@@ -957,7 +957,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		w_class = 10
 		layer = ABOVE_FLY_LAYER
 		icon_state = "[icon_activated]"
-		SetLuminosity(2)
+		set_light(2)
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 		H.visible_message("[H] activates [src]",
 		"You activate [src]")
@@ -982,7 +982,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		layer = initial(layer)
 		name = initial(name)
 		icon_state = initial(icon_state)
-		SetLuminosity(0)
+		set_light(0)
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")
@@ -1171,14 +1171,15 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 		if(H.mind?.assigned_role)
 			role = H.mind.assigned_role
-		else
+		else if(H.job)
+			role = H.job
+		else if(istype(H.wear_id, /obj/item/card/id))
 			var/obj/item/card/id/ID = H.wear_id //we use their ID to get their role.
-			if(ID?.rank)
-				role = ID.rank
+			role = ID.rank
 		if(current_squad.squad_leader)
 			if(H == current_squad.squad_leader)
 				dist = "<b>N/A</b>"
-				if(H.mind && H.mind.assigned_role != "Squad Leader")
+				if(H.mind && H.mind.assigned_role != SQUAD_LEADER)
 					act_sl = " (acting SL)"
 			else if(M_turf && SL_z && M_turf.z == SL_z)
 				dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
@@ -1203,22 +1204,22 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			fteam = " \[[ID.assigned_fireteam]\]"
 		var/marine_infos = "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl][fteam]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 		switch(role)
-			if("Squad Leader")
+			if(SQUAD_LEADER)
 				leader_text += marine_infos
 				leader_count++
-			if("Squad Specialist")
+			if(SQUAD_SPECIALIST)
 				spec_text += marine_infos
 				spec_count++
-			if("Squad Corpsman")
+			if(SQUAD_CORPSMAN)
 				medic_text += marine_infos
 				medic_count++
-			if("Squad Engineer")
+			if(SQUAD_ENGINEER)
 				engi_text += marine_infos
 				engi_count++
-			if("Squad Smartgunner")
+			if(SQUAD_SMARTGUNNER)
 				smart_text += marine_infos
 				smart_count++
-			if("Squad Marine")
+			if(SQUAD_MARINE)
 				marine_text += marine_infos
 				marine_count++
 			else
@@ -1233,22 +1234,22 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			gibbed_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 			var/marine_infos = "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 			switch(role)
-				if("Squad Leader")
+				if(SQUAD_LEADER)
 					leader_text += marine_infos
 					leader_count++
-				if("Squad Specialist")
+				if(SQUAD_SPECIALIST)
 					spec_text += marine_infos
 					spec_count++
-				if("Squad Corpsman")
+				if(SQUAD_CORPSMAN)
 					medic_text += marine_infos
 					medic_count++
-				if("Squad Engineer")
+				if(SQUAD_ENGINEER)
 					engi_text += marine_infos
 					engi_count++
-				if("Squad Smartgunner")
+				if(SQUAD_SMARTGUNNER)
 					smart_text += marine_infos
 					smart_count++
-				if("Squad Marine")
+				if(SQUAD_MARINE)
 					marine_text += marine_infos
 					marine_count++
 				else

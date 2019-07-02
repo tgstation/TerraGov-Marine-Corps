@@ -50,7 +50,7 @@
 
 //Job/role helpers
 #define issurvivor(H) (H?.mind?.assigned_role == "Survivor")
-#define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role in JOBS_MARINES))
+#define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role in GLOB.jobs_marines))
 #define ispmc(H) (H?.faction == "PMC")
 
 //more carbon mobs
@@ -80,6 +80,7 @@
 #define isxenowarrior(A) (istype(A, /mob/living/carbon/xenomorph/warrior))
 #define isxenolarva(A) (istype(A, /mob/living/carbon/xenomorph/larva))
 #define isxenoqueen(A) (istype(A, /mob/living/carbon/xenomorph/queen))
+#define isxenoshrike(A) (istype(A, /mob/living/carbon/xenomorph/shrike))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))

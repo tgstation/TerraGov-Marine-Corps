@@ -15,7 +15,7 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/toggle_agility,
+		/datum/action/xeno_action/toggle_agility,
 		/datum/action/xeno_action/activable/fling,
 		/datum/action/xeno_action/activable/lunge,
 		/datum/action/xeno_action/activable/punch
@@ -82,7 +82,7 @@
 	L.drop_all_held_items()
 	L.KnockDown(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
-	"<span class='xenowarning'>You grab [L] by the throat!</span>")
+	"<span class='xenowarning'>We grab [L] by the throat!</span>")
 	return TRUE
 
 

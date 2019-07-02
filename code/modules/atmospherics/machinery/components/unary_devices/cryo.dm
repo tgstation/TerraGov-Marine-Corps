@@ -159,7 +159,6 @@
 				reason = "<b>Reason for release:</b> Patient death."
 			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
 	occupant = null
-	update_use_power(1)
 	update_icon()
 	return
 
@@ -326,10 +325,10 @@
 
 	else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.stasis_mob)
+		if(!C.bodybag_occupant)
 			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 			return
-		M = C.stasis_mob
+		M = C.bodybag_occupant
 		C.open()
 		user.start_pulling(M)
 
@@ -369,7 +368,6 @@
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		to_chat(M, "<span class='boldnotice'>You feel a cold liquid surround you. Your skin starts to freeze up.</span>")
 	occupant = M
-	update_use_power(2)
 //	M.metabslow = 1
 	update_icon()
 	return 1
@@ -530,7 +528,7 @@
 	//	return G.temperature
 	//return ..()
 /*
-/obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/wrench/W)
+/obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/tool/wrench/W)
 	. = ..()
 	if(.)
 		SetInitDirections()

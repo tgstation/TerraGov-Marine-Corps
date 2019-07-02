@@ -25,7 +25,7 @@
 	flags_armor_protection = HEAD|FACE|EYES
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 2
 	eye_protection = 2
 	tint = TINT_HEAVY
@@ -123,41 +123,10 @@
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|EYES
-	var/brightness_on = 2 //luminosity when on
-	var/on = 0
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 1
 
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			to_chat(user, "You cannot turn the light on while in [user.loc]")
-			return
-		on = !on
-		icon_state = "hardhat[on]_pumpkin"
 
-		if(on)	user.SetLuminosity(brightness_on)
-		else	user.SetLuminosity(-brightness_on)
-
-	pickup(mob/user)
-		..()
-		if(on)
-			user.SetLuminosity(brightness_on)
-//			user.UpdateLuminosity()
-			SetLuminosity(0)
-
-	dropped(mob/user)
-		..()
-		if(on)
-			user.SetLuminosity(-brightness_on)
-//			user.UpdateLuminosity()
-			SetLuminosity(brightness_on)
-
-	Destroy()
-		if(ismob(src.loc))
-			src.loc.SetLuminosity(-brightness_on)
-		else
-			SetLuminosity(0)
-		. = ..()
 /*
 * Kitty ears
 */

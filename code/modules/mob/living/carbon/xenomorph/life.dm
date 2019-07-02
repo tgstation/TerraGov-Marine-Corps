@@ -85,7 +85,7 @@
 			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly when stationary or unstealthed
 
 		if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-			to_chat(src, "<span class='xenodanger'>Your sneak attack is now at maximum power.</span>")
+			to_chat(src, "<span class='xenodanger'>Our sneak attack is now at maximum power.</span>")
 	handle_stealth()
 
 /mob/living/carbon/xenomorph/handle_fire()
@@ -107,15 +107,15 @@
 	if(!T || !istype(T))
 		return
 
-	var/queen_healing_penalty = 0.5
-	if(hive?.living_xeno_queen?.loc?.z == T.z) //if the living queen's z-level is the same as ours.
-		queen_healing_penalty = 1
+	var/ruler_healing_penalty = 0.5
+	if(hive?.living_xeno_ruler?.loc?.z == T.z) //if the living queen's z-level is the same as ours.
+		ruler_healing_penalty = 1
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying || resting)
-			heal_wounds(XENO_RESTING_HEAL * queen_healing_penalty)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
 		else
-			heal_wounds(XENO_STANDING_HEAL * queen_healing_penalty) //Major healing nerf if standing.
+			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
 	updatehealth()
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
@@ -144,7 +144,7 @@
 		if(plasma_stored < 5)
 			use_plasma(plasma_stored)
 			current_aura = null
-			to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
+			to_chat(src, "<span class='warning'>We have run out of plasma and stopped emitting pheromones.</span>")
 		else
 			use_plasma(5)
 
@@ -271,7 +271,7 @@
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
-				to_chat(src, "<span class='warning'>You feel a searing heat!</span>")
+				to_chat(src, "<span class='warning'>We feel a searing heat!</span>")
 		else
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
@@ -333,5 +333,5 @@
 
 	SSticker.mode.transfer_xeno(picked, src)
 
-	to_chat(src, "<span class='xenoannounce'>You are an old xenomorph re-awakened from slumber!</span>")
+	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
 	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))

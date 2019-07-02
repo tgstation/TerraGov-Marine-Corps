@@ -63,7 +63,7 @@
 	for(var/i in 1 to frames)
 		alpha -= step
 		if(alpha < 160)
-			SetOpacity(FALSE) //if we were blocking view, we aren't now because we're fading out
+			set_opacity(FALSE) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
 
 /obj/effect/particle_effect/smoke/process()

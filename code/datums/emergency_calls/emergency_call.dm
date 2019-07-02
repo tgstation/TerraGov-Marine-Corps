@@ -109,14 +109,6 @@
 		to_chat(usr, "<span class='warning'>You ghosted too recently. Try again later.</span>")
 		return
 
-	if(!usr.mind) //How? Give them a new one anyway.
-		usr.mind = new /datum/mind(usr.key)
-		usr.mind.active = TRUE
-		usr.mind.current = usr
-
-	if(usr.mind.key != usr.key) //This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
-		usr.mind.key = usr.key
-
 	if(usr.mind in distress.candidates)
 		to_chat(usr, "<span class='warning'>You are already a candidate for this emergency response team.</span>")
 		return
@@ -159,7 +151,7 @@
 
 	SSticker.mode.on_distress_cooldown = TRUE
 
-	candidate_timer = addtimer(CALLBACK(src, .do_activate, announce), 1 MINUTES, TIMER_STOPPABLE)
+	candidate_timer = addtimer(CALLBACK(src, .proc/do_activate, announce), 1 MINUTES, TIMER_STOPPABLE)
 
 /datum/emergency_call/proc/do_activate(announce = TRUE)
 	candidate_timer = null
@@ -195,7 +187,7 @@
 		SSticker.mode.picked_call = null
 		SSticker.mode.on_distress_cooldown = TRUE
 
-		cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
+		cooldown_timer = addtimer(CALLBACK(src, .proc/reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 		return
 
 	var/datum/mind/picked_candidates = list()
@@ -263,7 +255,7 @@
 
 	candidates = list() //Blank out the candidates list for next time.
 
-	cooldown_timer = addtimer(CALLBACK(src, .reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
+	cooldown_timer = addtimer(CALLBACK(src, .proc/reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 
 /datum/emergency_call/proc/add_candidate(mob/M)
 	if(!M.client)

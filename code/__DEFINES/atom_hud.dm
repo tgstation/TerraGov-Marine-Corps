@@ -3,7 +3,8 @@
 // /datum/atom_hud expects these to be unique
 // these need to be strings in order to make them associative lists
 #define HEALTH_HUD					"health_hud" // a simple line rounding the mob's number health
-#define STATUS_HUD					"status_hud" // alive, dead, diseased, etc.
+#define STATUS_HUD_SIMPLE			"status_hud_simple" // basic statuses: dead, asleep, knocked out, sluggish, etc.
+#define STATUS_HUD					"status_hud" // medical hud, shows simple status plus defib stages.
 #define ID_HUD						"id_hud" // the job asigned to your ID
 #define WANTED_HUD					"wanted_hud" // wanted, released, parroled, security status
 #define IMPLOYAL_HUD				"loyalty_implant_hud" // loyality implant
@@ -28,7 +29,7 @@
 
 
 //data HUD defines
-#define DATA_HUD_SECURITY_BASIC		1
+#define DATA_HUD_BASIC				1
 #define DATA_HUD_SECURITY_ADVANCED	2
 #define DATA_HUD_MEDICAL_BASIC		3
 #define DATA_HUD_MEDICAL_ADVANCED	4
@@ -45,3 +46,4 @@
 #define NOTIFY_JUMP "jump"
 #define NOTIFY_ATTACK "attack"
 #define NOTIFY_ORBIT "orbit"
+#define NOTIFY_JOIN_AS_LARVA "join_as_larva"

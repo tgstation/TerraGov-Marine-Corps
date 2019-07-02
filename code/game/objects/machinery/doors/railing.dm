@@ -4,7 +4,7 @@
 	icon_state = "railing1"
 	use_power = 0
 	flags_atom = ON_BORDER
-	opacity = 0
+	opacity = FALSE
 
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	open_layer = CATWALK_LAYER

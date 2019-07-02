@@ -326,32 +326,18 @@
 	return FALSE
 
 
-/mob/living/carbon/monkey/update_sight()
-	if (stat == DEAD)
-		sight |= SEE_TURFS
-		sight |= SEE_MOBS
-		sight |= SEE_OBJS
-		see_in_dark = 8
-		return
-	sight &= ~SEE_TURFS
-	sight &= ~SEE_MOBS
-	sight &= ~SEE_OBJS
-	see_in_dark = 2
-	see_invisible = SEE_INVISIBLE_LIVING
-
 /mob/living/carbon/monkey/get_idcard(hand_first)
-	//Check hands
 	var/obj/item/card/id/id_card
-	var/obj/item/held_item
-	held_item = get_active_held_item()
-	if(held_item) //Check active hand
-		id_card = held_item.GetID()
+	id_card = get_active_held_item()
+
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_held_item()
-		if(held_item)
-			id_card = held_item.GetID()
-	if(id_card)
-		return id_card
+		id_card = get_inactive_held_item()
+
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
+	
+	return istype(id_card) ? id_card : null
 
 
 /mob/living/carbon/monkey/get_reagent_tags()

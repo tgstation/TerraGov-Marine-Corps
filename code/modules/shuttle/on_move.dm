@@ -17,7 +17,7 @@ All ShuttleMove procs go here
 // returns the new move_mode (based on the old)
 /turf/proc/toShuttleMove(turf/oldT, move_mode, obj/docking_port/mobile/shuttle)
 	. = move_mode
-	if(!(. & MOVE_TURF|MOVE_CONTENTS))
+	if(!(. & (MOVE_TURF|MOVE_CONTENTS)))
 		return
 
 //	var/shuttle_dir = shuttle.dir
@@ -332,8 +332,8 @@ All ShuttleMove procs go here
 
 /************************************Misc move procs************************************/
 
-///atom/movable/lighting_object/onShuttleMove()
-//	return FALSE
+/atom/movable/lighting_object/onShuttleMove()
+	return FALSE
 
 /obj/docking_port/mobile/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()

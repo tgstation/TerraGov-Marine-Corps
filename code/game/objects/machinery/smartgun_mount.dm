@@ -11,7 +11,7 @@
 /obj/item/ammo_magazine/m56d
 	name = "M56D drum magazine (10x28mm Caseless)"
 	desc = "A box of 700, 10x28mm caseless tungsten rounds for the M56D mounted smartgun system. Just click the M56D with this to reload it."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "ammo_drum"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x28mm"
@@ -26,7 +26,7 @@
 	desc = "A large metal case with Japanese writing on the top. However it also comes with English text to the side. This is a M56D smartgun, it clearly has various labeled warnings. The most major one is that this does not have IFF features due to specialized ammo."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	bypass_w_limit = list(
 		/obj/item/m56d_gun,
@@ -47,7 +47,7 @@
 	name = "\improper M56D Mounted Smartgun"
 	desc = "The top half of a M56D Machinegun post. However it ain't much use without the tripod."
 	resistance_flags = UNACIDABLE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_gun_e"
 	var/rounds = 0 // How many rounds are in the weapon. This is useful if we break down our guns.
@@ -93,7 +93,7 @@
 	name = "\improper M56D folded mount"
 	desc = "The folded, foldable tripod mount for the M56D.  (Place on ground and drag to you to unfold)."
 	resistance_flags = UNACIDABLE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "folded_mount"
 
@@ -260,7 +260,6 @@
 
 /obj/machinery/m56d_hmg/Destroy() //Make sure we pick up our trash.
 	operator?.unset_interaction()
-	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 

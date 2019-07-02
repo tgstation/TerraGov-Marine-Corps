@@ -141,8 +141,8 @@
 	name = "sticky resin"
 	desc = "A layer of disgusting sticky slime."
 	icon_state = "sticky"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
 	var/slow_amt = 8
@@ -166,8 +166,8 @@
 	desc = "It looks like a hiding hole."
 	name = "resin hole"
 	icon_state = "trap0"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
@@ -370,8 +370,8 @@
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
 	sleep(10)
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -394,7 +394,7 @@
 	flick("[mineralType]closing",src)
 	sleep(10)
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
@@ -457,20 +457,11 @@
 * Egg
 */
 
-#define EGG_BURST 0
-#define EGG_BURSTING 1
-#define EGG_GROWING 2
-#define EGG_GROWN 3
-#define EGG_DESTROYED 4
-
-#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
-#define EGG_MAX_GROWTH_TIME 15 SECONDS
-
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
 	name = "egg"
 	icon_state = "Egg Growing"
-	density = 0
+	density = FALSE
 
 	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
@@ -696,8 +687,8 @@ TUNNEL
 	icon = 'icons/Xeno/effects.dmi'
 	icon_state = "hole"
 
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
@@ -776,8 +767,8 @@ TUNNEL
 
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!M.hive.living_xeno_queen)
-			to_chat(M, "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>")
+		if(!M.hive.living_xeno_ruler)
+			to_chat(M, "<span class='xenowarning'>There is no ruler. You must choose one first.</span>")
 			return FALSE
 		else if(isxenoqueen(M))
 			to_chat(M, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")

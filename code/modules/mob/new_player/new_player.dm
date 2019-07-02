@@ -107,8 +107,17 @@
 	if(src != usr)
 		return
 
-	if (SSticker?.mode?.new_player_topic(src, href, href_list))
+	if(SSticker?.mode?.new_player_topic(src, href, href_list))
 		return // Delegate to the gamemode to handle if they want to
+
+	//Determines Relevent Population Cap
+	var/relevant_cap
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	var/epc = CONFIG_GET(number/extreme_popcap)
+	if(hpc && epc)
+		relevant_cap = min(hpc, epc)
+	else
+		relevant_cap = max(hpc, epc)
 
 	switch(href_list["lobby_choice"])
 		if("show_preferences")
@@ -189,6 +198,22 @@
 				to_chat(src, "<span class='warning'>Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
 				return
 
+			if(href_list["override"])
+				LateChoices()
+				return
+
+			if(length(SSticker.queued_players) || (relevant_cap && living_player_count() >= relevant_cap && !(check_rights(R_ADMIN, FALSE) || GLOB.deadmins[ckey])))
+				to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
+
+				var/queue_position = SSticker.queued_players.Find(usr)
+				if(queue_position == 1)
+					to_chat(usr, "<span class='notice'>You are next in line to join the game. You will be notified when a slot opens up.</span>")
+				else if(queue_position)
+					to_chat(usr, "<span class='notice'>There are [queue_position - 1] players in front of you in the queue to join the game.</span>")
+				else
+					SSticker.queued_players += usr
+					to_chat(usr, "<span class='notice'>You have been added to the queue to join the game. Your position in queue is [length(SSticker.queued_players)].</span>")
+				return
 			LateChoices()
 
 
@@ -205,7 +230,6 @@
 				if("Burrowed Larva")
 					if(SSticker.mode.attempt_to_join_as_larva(src))
 						close_spawn_windows()
-						SSticker.mode.spawn_larva(src)
 				if("Living Xenomorph")
 					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
 					if(new_xeno)
@@ -315,7 +339,7 @@
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	dat += "<table><tr><td valign='top'>"
 	var/column_counter = 0
-	for(var/list/category in (list(JOBS_OFFICERS) + list(JOBS_REQUISITIONS) + list(JOBS_POLICE) + list(JOBS_MEDICAL) + list(JOBS_ENGINEERING) + list(JOBS_MARINES)))
+	for(var/list/category in (list(GLOB.jobs_officers) + list(GLOB.jobs_requisitions) + list(GLOB.jobs_police) + list(GLOB.jobs_medical) + list(GLOB.jobs_engineering) + list(GLOB.jobs_marines)))
 		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
 		dat += "<fieldset class='latejoin' style='border-color: [cat_color]'>"
 		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
@@ -324,7 +348,7 @@
 			var/datum/job/job_datum = SSjob.name_occupations[job]
 			if(job_datum && IsJobAvailable(job_datum.title, TRUE))
 				var/command_bold = ""
-				if(job in JOBS_COMMAND)
+				if(job in GLOB.jobs_command)
 					command_bold = " command"
 				dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
 		if(!length(dept_dat))

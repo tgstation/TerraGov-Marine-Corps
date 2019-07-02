@@ -618,7 +618,7 @@
 		return
 
 	var/turf/T = get_turf(A)
-	N.forceMove(T)
+	usr.forceMove(T)
 
 	log_admin("[key_name(usr)] jumped to [A] at [AREACOORD(T)].")
 	if(!isobserver(N))
@@ -1155,7 +1155,7 @@
 
 	for(var/j in SSjob.occupations)
 		var/datum/job/job = j
-		if(!(job.title in JOBS_REGULAR_ALL))
+		if(!(job.title in GLOB.jobs_regular_all))
 			continue
 		count++
 		var/J_title = html_encode(job.title)

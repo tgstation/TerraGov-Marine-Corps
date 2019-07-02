@@ -24,6 +24,13 @@
 
 	var/item_fire_stacks = 0	//How many fire stacks it applies
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+	
+	var/list/req_access = null
+	var/list/req_one_access = null
+
+	//Don't directly use these two, please. No: magic numbers, Yes: defines.
+	var/req_one_access_txt = "0"
+	var/req_access_txt = "0"
 
 /obj/Initialize()
 	. = ..()
@@ -41,6 +48,10 @@
 	if(buckled_mob)
 		unbuckle()
 	return ..()
+
+/obj/proc/setAnchored(anchorvalue)
+	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
+	anchored = anchorvalue
 
 /obj/ex_act()
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
@@ -175,7 +186,7 @@
 		return
 
 	if(density)
-		density = 0
+		density = FALSE
 		if(!step(M, get_dir(M, src)) && loc != M.loc)
 			density = TRUE
 			return

@@ -4,6 +4,9 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
+
+	baseturfs = /turf/open/floor/plating
+	
 	var/icon_regular_floor = "floor" //Used to remember what icon the tile should have by default
 	var/icon_plating = "plating"
 	var/broken = 0
@@ -89,19 +92,19 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			switch(T.state)
 				if(0)
 					icon_state = "light_on"
-					SetLuminosity(5)
+					set_light(5)
 				if(1)
 					var/num = pick("1", "2", "3", "4")
 					icon_state = "light_on_flicker[num]"
-					SetLuminosity(5)
+					set_light(5)
 				if(2)
 					icon_state = "light_on_broken"
-					SetLuminosity(5)
+					set_light(5)
 				if(3)
 					icon_state = "light_off"
-					SetLuminosity(0)
+					set_light(0)
 		else
-			SetLuminosity(0)
+			set_light(0)
 			icon_state = "light_off"
 	else if(is_grass_floor())
 		if(!broken && !burnt)
@@ -279,7 +282,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 	qdel(floor_tile)
 	floor_tile = null
 	icon_plating = "plating"
-	SetLuminosity(0)
+	set_light(0)
 	intact_tile = 0
 	broken = 0
 	burnt = 0
@@ -294,7 +297,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 	broken = 0
 	burnt = 0
 	intact_tile = 1
-	SetLuminosity(0)
+	set_light(0)
 
 	if(!istype(newtile))
 		newtile = new
@@ -397,7 +400,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			update_icon()
 			to_chat(user, "<span class='notice'>You replace the light bulb.</span>")
 
-	else if(iscrowbar(I) && !is_plating())
+	else if(iscrowbar(I) && !is_plating() && floor_tile)
 		if(broken || burnt)
 			to_chat(user, "<span class='warning'>You remove the broken plating.</span>")
 			return

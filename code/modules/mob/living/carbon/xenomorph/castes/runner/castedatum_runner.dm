@@ -41,7 +41,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 5
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce - Runner
@@ -81,7 +81,7 @@
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor_deflection = 10
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 3.5 SECONDS
@@ -115,7 +115,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 10
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 3.0 SECONDS
@@ -123,7 +123,7 @@
 /datum/xeno_caste/runner/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
-	ancient_message = "You are the fastest assassin of all time. Your speed is unmatched."
+	ancient_message = "We are the fastest assassin of all time. Our speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
 
@@ -150,7 +150,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 10
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 3.0 SECONDS

@@ -1,628 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aaa" = (
-/turf/closed/wall,
-/area/space)
 "aab" = (
-/turf/open/beach/water,
-/area/space)
-"aac" = (
-/turf/open/floor/prison/darkred/corners,
-/area/space)
-"aad" = (
-/turf/open/floor/prison/darkred/corners{
-	dir = 8
-	},
-/area/space)
-"aae" = (
-/turf/open/floor/tile/dark/green2/corner,
-/area/space)
-"aaf" = (
-/turf/open/floor/tile/dark/green2/corner{
-	dir = 8
-	},
-/area/space)
-"aag" = (
-/turf/open/floor/tile/dark/blue2/corner,
-/area/space)
-"aah" = (
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 8
-	},
-/area/space)
-"aai" = (
-/turf/open/floor/prison/darkyellow/corner,
-/area/space)
-"aaj" = (
-/turf/open/floor/prison/darkyellow/corner{
-	dir = 8
-	},
-/area/space)
-"aak" = (
-/turf/open/floor/prison/darkbrown/corner,
-/area/space)
-"aal" = (
-/turf/open/floor/prison/darkbrown/corner{
-	dir = 8
-	},
-/area/space)
-"aam" = (
-/turf/open/floor/prison/green/corner,
-/area/space)
-"aan" = (
-/turf/open/floor/prison/green/corner{
-	dir = 8
-	},
-/area/space)
-"aao" = (
-/turf/open/floor/prison/blue/corner,
-/area/space)
-"aap" = (
-/turf/open/floor/prison/blue/corner{
-	dir = 8
-	},
-/area/space)
-"aaq" = (
-/turf/open/floor/prison/yellow/corner,
-/area/space)
-"aar" = (
-/turf/open/floor/prison/yellow/corner{
-	dir = 8
-	},
-/area/space)
-"aas" = (
-/turf/open/floor/prison/red/corner,
-/area/space)
-"aat" = (
-/turf/open/floor/prison/red/corner{
-	dir = 8
-	},
-/area/space)
-"aau" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/beach/water,
-/area/space)
-"aav" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/beach/water,
-/area/space)
-"aaw" = (
-/turf/open/floor,
-/area/space)
-"aax" = (
-/obj/machinery/door_control/timed_automatic{
-	id = "central";
-	name = "timed automatic door-control (central)";
-	trigger_delay = 50
-	},
-/turf/open/floor,
-/area/space)
-"aay" = (
-/turf/open/floor/prison/trim/red{
-	dir = 9
-	},
-/area/space)
-"aaz" = (
-/turf/open/floor/prison/trim/red{
-	dir = 1
-	},
-/area/space)
-"aaA" = (
-/turf/open/floor/prison/trim/red{
-	dir = 5
-	},
-/area/space)
-"aaB" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 9
-	},
-/area/space)
-"aaC" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 1
-	},
-/area/space)
-"aaD" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 5
-	},
-/area/space)
-"aaE" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 9
-	},
-/area/space)
-"aaF" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/space)
-"aaG" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 5
-	},
-/area/space)
-"aaH" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 9
-	},
-/area/space)
-"aaI" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 1
-	},
-/area/space)
-"aaJ" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 5
-	},
-/area/space)
-"aaK" = (
-/turf/open/floor/prison/darkbrown{
-	dir = 9
-	},
-/area/space)
-"aaL" = (
-/turf/open/floor/prison/darkbrown{
-	dir = 1
-	},
-/area/space)
-"aaM" = (
-/turf/open/floor/prison/darkbrown{
-	dir = 5
-	},
-/area/space)
-"aaN" = (
-/turf/open/floor/prison/green{
-	dir = 9
-	},
-/area/space)
-"aaO" = (
-/turf/open/floor/prison/green{
-	dir = 1
-	},
-/area/space)
-"aaP" = (
-/turf/open/floor/prison/green{
-	dir = 5
-	},
-/area/space)
-"aaQ" = (
-/turf/open/floor/prison/blue{
-	dir = 9
-	},
-/area/space)
-"aaR" = (
-/turf/open/floor/prison/blue{
-	dir = 1
-	},
-/area/space)
-"aaS" = (
-/turf/open/floor/prison/blue{
-	dir = 5
-	},
-/area/space)
-"aaT" = (
-/turf/open/floor/prison/yellow{
-	dir = 9
-	},
-/area/space)
-"aaU" = (
-/turf/open/floor/prison/yellow{
-	dir = 1
-	},
-/area/space)
-"aaV" = (
-/turf/open/floor/prison/yellow{
-	dir = 5
-	},
-/area/space)
-"aaW" = (
-/turf/open/floor/prison/red{
-	dir = 9
-	},
-/area/space)
-"aaX" = (
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/space)
-"aaY" = (
-/turf/open/floor/prison/red{
-	dir = 5
-	},
-/area/space)
-"aaZ" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 9
-	},
-/turf/open/beach/water,
-/area/space)
-"aba" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/beach/water,
-/area/space)
-"abb" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "SW-in"
-	},
-/turf/open/beach/water,
-/area/space)
-"abc" = (
-/obj/machinery/door_control/timed_automatic{
-	id = "civ";
-	name = "timed automatic door-control (civ)";
-	trigger_delay = 35
-	},
-/turf/open/floor,
-/area/space)
-"abd" = (
-/turf/open/floor/prison/trim/red{
-	dir = 8
-	},
-/area/space)
-"abe" = (
-/turf/open/floor/prison/darkred/full,
-/area/space)
-"abf" = (
-/turf/open/floor/prison/trim/red{
-	dir = 4
-	},
-/area/space)
-"abg" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 8
-	},
-/area/space)
-"abh" = (
-/turf/open/floor/prison,
-/area/space)
-"abi" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 4
-	},
-/area/space)
-"abj" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
-/area/space)
-"abk" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/space)
-"abl" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 8
-	},
-/area/space)
-"abm" = (
-/turf/open/floor/prison/darkyellow/full,
-/area/space)
-"abn" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 4
-	},
-/area/space)
-"abo" = (
-/turf/open/floor/prison/darkbrown{
-	dir = 8
-	},
-/area/space)
-"abp" = (
-/turf/open/floor/prison/darkbrown{
-	dir = 4
-	},
-/area/space)
-"abq" = (
-/turf/open/floor/prison/green{
-	dir = 8
-	},
-/area/space)
-"abr" = (
-/turf/open/floor/prison/green/full,
-/area/space)
-"abs" = (
-/turf/open/floor/prison/green{
-	dir = 4
-	},
-/area/space)
-"abt" = (
-/turf/open/floor/prison/blue{
-	dir = 8
-	},
-/area/space)
-"abu" = (
-/turf/open/floor/prison/blue/full,
-/area/space)
-"abv" = (
-/turf/open/floor/prison/blue{
-	dir = 4
-	},
-/area/space)
-"abw" = (
-/turf/open/floor/prison/yellow{
-	dir = 8
-	},
-/area/space)
-"abx" = (
-/turf/open/floor/prison/yellow/full,
-/area/space)
-"aby" = (
-/turf/open/floor/prison/yellow{
-	dir = 4
-	},
-/area/space)
-"abz" = (
-/turf/open/floor/prison/red{
-	dir = 8
-	},
-/area/space)
-"abA" = (
-/turf/open/floor/prison/red/full,
-/area/space)
-"abB" = (
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/space)
-"abC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/beach/water,
-/area/space)
-"abD" = (
-/obj/effect/decal/warning_stripes,
-/turf/open/beach/water,
-/area/space)
-"abE" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/beach/water,
-/area/space)
-"abF" = (
-/turf/open/floor/prison/trim/red{
-	dir = 10
-	},
-/area/space)
-"abG" = (
-/turf/open/floor/prison/trim/red,
-/area/space)
-"abH" = (
-/turf/open/floor/prison/trim/red{
-	dir = 6
-	},
-/area/space)
-"abI" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 10
-	},
-/area/space)
-"abJ" = (
-/turf/open/floor/tile/dark/green2,
-/area/space)
-"abK" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 6
-	},
-/area/space)
-"abL" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 10
-	},
-/area/space)
-"abM" = (
-/turf/open/floor/tile/dark/blue2,
-/area/space)
-"abN" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
-	},
-/area/space)
-"abO" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 10
-	},
-/area/space)
-"abP" = (
-/turf/open/floor/prison/darkyellow,
-/area/space)
-"abQ" = (
-/turf/open/floor/prison/darkyellow{
-	dir = 6
-	},
-/area/space)
-"abR" = (
-/turf/open/floor/prison/darkbrown{
-	dir = 10
-	},
-/area/space)
-"abS" = (
-/turf/open/floor/prison/darkbrown,
-/area/space)
-"abT" = (
-/turf/open/floor/prison/darkbrown{
-	dir = 6
-	},
-/area/space)
-"abU" = (
-/turf/open/floor/prison/green{
-	dir = 10
-	},
-/area/space)
-"abV" = (
-/turf/open/floor/prison/green,
-/area/space)
-"abW" = (
-/turf/open/floor/prison/green{
-	dir = 6
-	},
-/area/space)
-"abX" = (
-/turf/open/floor/prison/blue{
-	dir = 10
-	},
-/area/space)
-"abY" = (
-/turf/open/floor/prison/blue,
-/area/space)
-"abZ" = (
-/turf/open/floor/prison/blue{
-	dir = 6
-	},
-/area/space)
-"aca" = (
-/turf/open/floor/prison/yellow{
-	dir = 10
-	},
-/area/space)
-"acb" = (
-/turf/open/floor/prison/yellow,
-/area/space)
-"acc" = (
-/turf/open/floor/prison/yellow{
-	dir = 6
-	},
-/area/space)
-"acd" = (
-/turf/open/floor/prison/red{
-	dir = 10
-	},
-/area/space)
-"ace" = (
-/turf/open/floor/prison/red,
-/area/space)
-"acf" = (
-/turf/open/floor/prison/red{
-	dir = 6
-	},
-/area/space)
-"acg" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 10
-	},
-/turf/open/beach/water,
-/area/space)
-"ach" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/beach/water,
-/area/space)
-"aci" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 6
-	},
-/turf/open/beach/water,
-/area/space)
-"acj" = (
-/turf/open/floor/prison/darkred/corners{
-	dir = 1
-	},
-/area/space)
-"ack" = (
-/turf/open/floor/prison/darkred/corners{
-	dir = 4
-	},
-/area/space)
-"acl" = (
-/turf/open/floor/tile/dark/green2/corner{
-	dir = 4
-	},
-/area/space)
-"acm" = (
-/turf/open/floor/tile/dark/green2/corner{
-	dir = 1
-	},
-/area/space)
-"acn" = (
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 4
-	},
-/area/space)
-"aco" = (
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 1
-	},
-/area/space)
-"acp" = (
-/turf/open/floor/prison/darkyellow/corner{
-	dir = 1
-	},
-/area/space)
-"acq" = (
-/turf/open/floor/prison/darkyellow/corner{
-	dir = 4
-	},
-/area/space)
-"acr" = (
-/turf/open/floor/prison/darkbrown/corner{
-	dir = 1
-	},
-/area/space)
-"acs" = (
-/turf/open/floor/prison/darkbrown/corner{
-	dir = 4
-	},
-/area/space)
-"act" = (
-/turf/open/floor/prison/green/corner{
-	dir = 1
-	},
-/area/space)
-"acu" = (
-/turf/open/floor/prison/green/corner{
-	dir = 4
-	},
-/area/space)
-"acv" = (
-/turf/open/floor/prison/blue/corner{
-	dir = 1
-	},
-/area/space)
-"acw" = (
-/turf/open/floor/prison/blue/corner{
-	dir = 4
-	},
-/area/space)
-"acx" = (
-/turf/open/floor/prison/yellow/corner{
-	dir = 1
-	},
-/area/space)
-"acy" = (
-/turf/open/floor/prison/yellow/corner{
-	dir = 4
-	},
-/area/space)
-"acz" = (
-/turf/open/floor/prison/red/corner{
-	dir = 1
-	},
-/area/space)
-"acA" = (
-/turf/open/floor/prison/red/corner{
-	dir = 4
-	},
-/area/space)
-"acB" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/beach/water,
-/area/space)
-"acC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
 /turf/open/beach/water,
 /area/space)
 "acD" = (
@@ -5138,11 +4515,8 @@
 /area/prison/maintenance/research_medbay)
 "anT" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/maxsec)
@@ -5345,11 +4719,8 @@
 /area/prison/hangar/main)
 "aov" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/n)
@@ -6172,11 +5543,8 @@
 /area/prison/cellblock/highsec/north/north)
 "aqp" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/s)
@@ -6264,6 +5632,26 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/north/north)
+"aqC" = (
+/obj/structure/table/woodentable,
+/obj/item/paper_bin{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/tool/pen{
+	pixel_x = 12;
+	pixel_y = 8
+	},
+/obj/item/taperecorder{
+	pixel_x = 1;
+	pixel_y = 3
+	},
+/obj/item/radio/intercom/general/colony{
+	dir = 8;
+	frequency = 1499
+	},
+/turf/open/floor/wood,
+/area/prison/chapel)
 "aqD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
@@ -8006,11 +7394,8 @@
 /area/prison/cellblock/highsec/north/north)
 "auu" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/medsec)
@@ -8114,6 +7499,14 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
+"auK" = (
+/obj/item/radio/intercom/general/colony{
+	dir = 8;
+	frequency = 1499
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/wood,
+/area/prison/chapel)
 "auL" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -8398,8 +7791,8 @@
 	},
 /area/prison/medbay)
 "avu" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 28
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/floor/prison/whitegreen{
 	dir = 4
@@ -10351,11 +9744,8 @@
 	},
 /area/prison/security/checkpoint/maxsec)
 "aAo" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/n)
@@ -11547,8 +10937,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/maxsec)
 "aCR" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = -28
+/obj/machinery/vending/nanomed{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12105,26 +11495,6 @@
 	dir = 10
 	},
 /area/prison/chapel)
-"aEg" = (
-/obj/structure/table/woodentable,
-/obj/item/paper_bin{
-	pixel_x = -6;
-	pixel_y = 4
-	},
-/obj/item/tool/pen{
-	pixel_x = 12;
-	pixel_y = 8
-	},
-/obj/item/taperecorder{
-	pixel_x = 1;
-	pixel_y = 3
-	},
-/obj/item/radio/intercom/general/colony{
-	pixel_x = 28;
-	pixel_y = -28
-	},
-/turf/open/floor/wood,
-/area/prison/chapel)
 "aEh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -12241,9 +11611,7 @@
 /turf/open/floor/freezer,
 /area/prison/toilet/research)
 "aEx" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = 28
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor/freezer,
 /area/prison/toilet/research)
 "aEy" = (
@@ -12951,14 +12319,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/chapel)
-"aGt" = (
-/obj/item/radio/intercom/general/colony{
-	pixel_x = 28;
-	pixel_y = 21
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/wood,
-/area/prison/chapel)
 "aGu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -12987,11 +12347,8 @@
 /area/prison/security/checkpoint/maxsec)
 "aGx" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/maxsec)
@@ -14682,11 +14039,8 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/hallway/central)
 "aKb" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "rampbottom"
@@ -14701,11 +14055,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "rampbottom"
@@ -14989,11 +14340,8 @@
 /area/prison/security/checkpoint/highsec/n)
 "aKM" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/n)
@@ -16138,11 +15486,8 @@
 	},
 /area/prison/security/checkpoint/highsec/n)
 "aNm" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/red{
 	dir = 1
@@ -16467,11 +15812,8 @@
 	},
 /area/prison/hallway/central)
 "aOk" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -17054,11 +16396,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/n)
@@ -17265,11 +16604,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -17747,11 +17083,8 @@
 	},
 /area/prison/security/checkpoint/highsec/n)
 "aQM" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/red,
 /area/prison/security/checkpoint/highsec/n)
@@ -17873,11 +17206,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/lowsec/ne)
 "aRf" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -19883,8 +19213,8 @@
 	},
 /area/prison/canteen)
 "aVY" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -28
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/prison/toilet/staff)
@@ -23675,11 +23005,8 @@
 	},
 /area/prison/hallway/central)
 "bfB" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -24740,11 +24067,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -26961,11 +26285,8 @@
 	},
 /area/prison/security/checkpoint/vip)
 "bmt" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/blue{
 	dir = 9
@@ -27333,11 +26654,8 @@
 /turf/open/floor/prison/blue/full,
 /area/prison/security/checkpoint/vip)
 "bnt" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/blue/full,
 /area/prison/security/checkpoint/vip)
@@ -27871,11 +27189,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/blue/full,
 /area/prison/security/checkpoint/vip)
@@ -28498,11 +27813,8 @@
 /turf/open/floor/prison/blue,
 /area/prison/security/checkpoint/vip)
 "bpC" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/blue{
 	dir = 10
@@ -32721,11 +32033,8 @@
 /area/prison/security/checkpoint/highsec/s)
 "bzR" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec/s)
@@ -33904,11 +33213,8 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/cellblock/lowsec/se)
 "bCG" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -34686,11 +33992,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -34862,11 +34165,8 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/cellblock/lowsec/se)
 "bEy" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -34977,8 +34277,7 @@
 /area/prison/maintenance/hangar_barracks)
 "bEO" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle_control/dropship1{
-	onboard = 0;
+/obj/machinery/computer/shuttle/shuttle_control/dropship1{
 	use_power = 0
 	},
 /turf/open/floor/prison/darkred/full,
@@ -35810,7 +35109,7 @@
 /turf/open/floor/prison,
 /area/prison/quarters/security)
 "bGI" = (
-/obj/structure/holohoop,
+/obj/structure/hoop,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -36095,11 +35394,8 @@
 /area/prison/security/checkpoint/highsec/s)
 "bHu" = (
 /obj/effect/decal/cleanable/blood,
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/red{
 	dir = 1
@@ -36581,11 +35877,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/s)
@@ -37167,11 +36460,8 @@
 /turf/open/floor/prison/red/full,
 /area/prison/security/checkpoint/highsec/s)
 "bJL" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/security/checkpoint/highsec/s)
@@ -37351,7 +36641,7 @@
 /turf/open/floor/prison,
 /area/prison/quarters/security)
 "bKf" = (
-/obj/item/toy/beach_ball/holoball,
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bKg" = (
@@ -37485,11 +36775,8 @@
 	},
 /area/prison/security/checkpoint/highsec/s)
 "bKz" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 4
 	},
 /turf/open/floor/prison/red,
 /area/prison/security/checkpoint/highsec/s)
@@ -39190,11 +38477,8 @@
 /turf/open/floor/plating,
 /area/prison/storage/medsec)
 "bOB" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison/blue,
 /area/prison/hallway/central)
@@ -39207,11 +38491,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison/blue,
 /area/prison/hallway/central)
@@ -39227,11 +38508,8 @@
 /turf/open/floor/prison,
 /area/prison/cellblock/mediumsec/south)
 "bOE" = (
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -39246,11 +38524,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/poddoor/almayer{
-	dir = 2;
-	id = "central";
-	name = "Timed Emergency Blast Door";
-	use_power = 0
+/obj/machinery/door/poddoor/timed_late{
+	dir = 2
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -39650,11 +38925,8 @@
 /area/prison/security/checkpoint/medsec)
 "bPE" = (
 /obj/structure/window/framed/prison/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
-	dir = 4;
-	id = "central";
-	name = "Timed Emergency Shutters";
-	use_power = 0
+/obj/machinery/door/poddoor/shutters/timed_late{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/medsec)
@@ -40544,8 +39816,8 @@
 	},
 /area/prison/hallway/engineering)
 "bSb" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = -28
+/obj/machinery/vending/nanomed{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -40565,8 +39837,8 @@
 	},
 /area/prison/toilet/security)
 "bSd" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = -28
+/obj/machinery/vending/nanomed{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -54615,11 +53887,11 @@
 /area/prison/cellblock/mediumsec/south)
 
 (1,1,1) = {"
-aaa
-aaa
-aaa
-aaa
-aaa
+aab
+aab
+aab
+aab
+aab
 aab
 aab
 aab
@@ -54872,11 +54144,11 @@ aab
 aab
 "}
 (2,1,1) = {"
-aaa
-aaw
-aaw
-aaw
-aaa
+aab
+aab
+aab
+aab
+aab
 aab
 aab
 aab
@@ -55129,11 +54401,11 @@ aab
 aab
 "}
 (3,1,1) = {"
-aaa
-aaw
-abc
-aaw
-aaa
+aab
+aab
+aab
+aab
+aab
 aab
 aab
 aab
@@ -55386,11 +54658,11 @@ aab
 aab
 "}
 (4,1,1) = {"
-aaa
-aax
-aaw
-aaw
-aaa
+aab
+aab
+aab
+aab
+aab
 aab
 aab
 aab
@@ -55643,11 +54915,11 @@ aab
 aab
 "}
 (5,1,1) = {"
-aaa
-aaa
-aaa
-aaa
-aaa
+aab
+aab
+aab
+aab
+aab
 aab
 aab
 aab
@@ -56157,11 +55429,11 @@ aab
 aab
 "}
 (7,1,1) = {"
-aac
 aab
 aab
 aab
-acj
+aab
+aab
 aab
 aab
 aab
@@ -56415,9 +55687,9 @@ aab
 "}
 (8,1,1) = {"
 aab
-aay
-abd
-abF
+aab
+aab
+aab
 aab
 aab
 aab
@@ -56672,9 +55944,9 @@ aab
 "}
 (9,1,1) = {"
 aab
-aaz
-abe
-abG
+aab
+aab
+aab
 aab
 aab
 aab
@@ -56929,9 +56201,9 @@ aab
 "}
 (10,1,1) = {"
 aab
-aaA
-abf
-abH
+aab
+aab
+aab
 aab
 aab
 aab
@@ -57185,11 +56457,11 @@ aab
 aab
 "}
 (11,1,1) = {"
-aad
 aab
 aab
 aab
-ack
+aab
+aab
 aab
 aab
 aab
@@ -57699,11 +56971,11 @@ aab
 aab
 "}
 (13,1,1) = {"
-aae
 aab
 aab
 aab
-acl
+aab
+aab
 aab
 aab
 aab
@@ -57957,9 +57229,9 @@ aab
 "}
 (14,1,1) = {"
 aab
-aaB
-abg
-abI
+aab
+aab
+aab
 aab
 aab
 aab
@@ -58214,9 +57486,9 @@ aab
 "}
 (15,1,1) = {"
 aab
-aaC
-abh
-abJ
+aab
+aab
+aab
 aab
 aab
 aab
@@ -58471,9 +57743,9 @@ aab
 "}
 (16,1,1) = {"
 aab
-aaD
-abi
-abK
+aab
+aab
+aab
 aab
 aab
 aab
@@ -58727,11 +57999,11 @@ aab
 aab
 "}
 (17,1,1) = {"
-aaf
 aab
 aab
 aab
-acm
+aab
+aab
 aab
 aab
 aab
@@ -59241,11 +58513,11 @@ aab
 aab
 "}
 (19,1,1) = {"
-aag
 aab
 aab
 aab
-acn
+aab
+aab
 aab
 aab
 aab
@@ -59499,9 +58771,9 @@ aab
 "}
 (20,1,1) = {"
 aab
-aaE
-abj
-abL
+aab
+aab
+aab
 aab
 aab
 aab
@@ -59756,9 +59028,9 @@ aab
 "}
 (21,1,1) = {"
 aab
-aaF
-abh
-abM
+aab
+aab
+aab
 aab
 aab
 aab
@@ -60013,9 +59285,9 @@ aab
 "}
 (22,1,1) = {"
 aab
-aaG
-abk
-abN
+aab
+aab
+aab
 aab
 aab
 aab
@@ -60269,11 +59541,11 @@ aab
 aab
 "}
 (23,1,1) = {"
-aah
 aab
 aab
 aab
-aco
+aab
+aab
 aab
 aab
 aab
@@ -60783,11 +60055,11 @@ aab
 aab
 "}
 (25,1,1) = {"
-aai
 aab
 aab
 aab
-acp
+aab
+aab
 aab
 aab
 aab
@@ -61041,9 +60313,9 @@ aab
 "}
 (26,1,1) = {"
 aab
-aaH
-abl
-abO
+aab
+aab
+aab
 aab
 aab
 aab
@@ -61298,9 +60570,9 @@ aab
 "}
 (27,1,1) = {"
 aab
-aaI
-abm
-abP
+aab
+aab
+aab
 aab
 aab
 aab
@@ -61555,9 +60827,9 @@ aab
 "}
 (28,1,1) = {"
 aab
-aaJ
-abn
-abQ
+aab
+aab
+aab
 aab
 aab
 aab
@@ -61811,11 +61083,11 @@ aab
 aab
 "}
 (29,1,1) = {"
-aaj
 aab
 aab
 aab
-acq
+aab
+aab
 aab
 aab
 aab
@@ -62325,11 +61597,11 @@ aab
 aab
 "}
 (31,1,1) = {"
-aak
 aab
 aab
 aab
-acr
+aab
+aab
 aab
 aab
 aab
@@ -62583,9 +61855,9 @@ aab
 "}
 (32,1,1) = {"
 aab
-aaK
-abo
-abR
+aab
+aab
+aab
 aab
 aab
 aab
@@ -62840,9 +62112,9 @@ aab
 "}
 (33,1,1) = {"
 aab
-aaL
-abh
-abS
+aab
+aab
+aab
 aab
 aab
 aab
@@ -63097,9 +62369,9 @@ aab
 "}
 (34,1,1) = {"
 aab
-aaM
-abp
-abT
+aab
+aab
+aab
 aab
 aab
 aab
@@ -63353,11 +62625,11 @@ aab
 aab
 "}
 (35,1,1) = {"
-aal
 aab
 aab
 aab
-acs
+aab
+aab
 aab
 aab
 aab
@@ -63867,11 +63139,11 @@ aab
 aab
 "}
 (37,1,1) = {"
-aam
 aab
 aab
 aab
-act
+aab
+aab
 aab
 aab
 aab
@@ -64125,9 +63397,9 @@ aab
 "}
 (38,1,1) = {"
 aab
-aaN
-abq
-abU
+aab
+aab
+aab
 aab
 aab
 aab
@@ -64382,9 +63654,9 @@ aab
 "}
 (39,1,1) = {"
 aab
-aaO
-abr
-abV
+aab
+aab
+aab
 aab
 aab
 aab
@@ -64639,9 +63911,9 @@ aab
 "}
 (40,1,1) = {"
 aab
-aaP
-abs
-abW
+aab
+aab
+aab
 aab
 aab
 aab
@@ -64895,11 +64167,11 @@ aab
 aab
 "}
 (41,1,1) = {"
-aan
 aab
 aab
 aab
-acu
+aab
+aab
 aab
 aab
 aab
@@ -65409,11 +64681,11 @@ aab
 aab
 "}
 (43,1,1) = {"
-aao
 aab
 aab
 aab
-acv
+aab
+aab
 aab
 aab
 aab
@@ -65667,9 +64939,9 @@ aab
 "}
 (44,1,1) = {"
 aab
-aaQ
-abt
-abX
+aab
+aab
+aab
 aab
 aab
 aab
@@ -65924,9 +65196,9 @@ aab
 "}
 (45,1,1) = {"
 aab
-aaR
-abu
-abY
+aab
+aab
+aab
 aab
 aab
 aab
@@ -66181,9 +65453,9 @@ aab
 "}
 (46,1,1) = {"
 aab
-aaS
-abv
-abZ
+aab
+aab
+aab
 aab
 aab
 aab
@@ -66437,11 +65709,11 @@ aab
 aab
 "}
 (47,1,1) = {"
-aap
 aab
 aab
 aab
-acw
+aab
+aab
 aab
 aab
 aab
@@ -66951,11 +66223,11 @@ aab
 aab
 "}
 (49,1,1) = {"
-aaq
 aab
 aab
 aab
-acx
+aab
+aab
 aab
 aab
 aab
@@ -67209,9 +66481,9 @@ aab
 "}
 (50,1,1) = {"
 aab
-aaT
-abw
-aca
+aab
+aab
+aab
 aab
 aab
 aab
@@ -67466,9 +66738,9 @@ aab
 "}
 (51,1,1) = {"
 aab
-aaU
-abx
-acb
+aab
+aab
+aab
 aab
 aab
 aab
@@ -67723,9 +66995,9 @@ aab
 "}
 (52,1,1) = {"
 aab
-aaV
-aby
-acc
+aab
+aab
+aab
 aab
 aab
 aab
@@ -67979,11 +67251,11 @@ aab
 aab
 "}
 (53,1,1) = {"
-aar
 aab
 aab
 aab
-acy
+aab
+aab
 aab
 aab
 aab
@@ -68493,11 +67765,11 @@ aab
 aab
 "}
 (55,1,1) = {"
-aas
 aab
 aab
 aab
-acz
+aab
+aab
 aab
 aab
 aab
@@ -68751,9 +68023,9 @@ aab
 "}
 (56,1,1) = {"
 aab
-aaW
-abz
-acd
+aab
+aab
+aab
 aab
 aab
 aab
@@ -69008,9 +68280,9 @@ aab
 "}
 (57,1,1) = {"
 aab
-aaX
-abA
-ace
+aab
+aab
+aab
 aab
 aab
 aab
@@ -69265,9 +68537,9 @@ aab
 "}
 (58,1,1) = {"
 aab
-aaY
-abB
-acf
+aab
+aab
+aab
 aab
 aab
 aab
@@ -69521,11 +68793,11 @@ aab
 aab
 "}
 (59,1,1) = {"
-aat
 aab
 aab
 aab
-acA
+aab
+aab
 aab
 aab
 aab
@@ -70035,11 +69307,11 @@ aab
 aab
 "}
 (61,1,1) = {"
-aau
 aab
 aab
 aab
-acB
+aab
+aab
 aab
 aab
 aab
@@ -70293,9 +69565,9 @@ aab
 "}
 (62,1,1) = {"
 aab
-aaZ
-abC
-acg
+aab
+aab
+aab
 aab
 aab
 aab
@@ -70550,9 +69822,9 @@ aab
 "}
 (63,1,1) = {"
 aab
-aba
-abD
-ach
+aab
+aab
+aab
 aab
 aab
 aab
@@ -70807,9 +70079,9 @@ aab
 "}
 (64,1,1) = {"
 aab
-abb
-abE
-aci
+aab
+aab
+aab
 aab
 aab
 aab
@@ -71063,11 +70335,11 @@ aab
 aab
 "}
 (65,1,1) = {"
-aav
 aab
 aab
 aab
-acC
+aab
+aab
 aab
 aab
 aab
@@ -86324,9 +85596,9 @@ axN
 aAl
 axM
 aCJ
-aEg
+aqC
 aFk
-aGt
+auK
 aHJ
 azA
 axM

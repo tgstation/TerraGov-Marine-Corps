@@ -9,7 +9,7 @@
 	anchored = TRUE
 	icon_closed = "walllocker"
 	icon_opened = "walllockeropen"
-	store_mobs = FALSE
+	mob_storage_capacity = 0
 	wall_mounted = TRUE
 	storage_capacity = 20
 	overlay_welded = "walllockerwelded"
@@ -99,7 +99,7 @@
 	overlay_welded = "emergwelded"
 	density = FALSE
 	anchored = TRUE
-	store_mobs = FALSE
+	mob_storage_capacity = 0
 	wall_mounted = TRUE
 	large = FALSE
 	storage_capacity = 20
@@ -159,7 +159,7 @@
 	overlay_welded = "emergwelded"
 	density = FALSE
 	anchored = TRUE
-	store_mobs = FALSE
+	mob_storage_capacity = 0
 	wall_mounted = TRUE
 	large = FALSE
 	storage_capacity = 20

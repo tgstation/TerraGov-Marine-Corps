@@ -13,10 +13,8 @@
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 	var/ai_interact = FALSE
 
-
 	//Preferences related
 	var/datum/preferences/prefs 	= null
-	var/list/keybindings[0]
 	var/inprefs = FALSE
 
 
@@ -45,6 +43,8 @@
 	var/connection_time //world.time they connected
 	var/connection_realtime //world.realtime they connected
 	var/connection_timeofday //world.timeofday they connected
+	var/middragtime = 0 //MMB exploit detection
+	var/atom/middragatom //MMB exploit detection
 
 
 	//Database related

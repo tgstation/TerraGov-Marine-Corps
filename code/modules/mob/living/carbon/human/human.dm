@@ -5,7 +5,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, XENO_EMBRYO_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
@@ -66,6 +66,9 @@
 	hud_set_order()
 	//and display them
 	add_to_all_mob_huds()
+	
+	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_BASIC]
+	hud_to_add.add_hud_to(src)
 
 
 
@@ -303,44 +306,39 @@
 		return "Unknown"
 	return real_name
 
-//gets name from ID or PDA itself, ID inside PDA doesn't matter
-//Useful when player is being seen by other mobs
+
 /mob/living/carbon/human/proc/get_id_name(if_no_id = "Unknown")
 	. = if_no_id
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			return I.registered_name
-	return
+	if(!wear_id)
+		return
+
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		return I.registered_name
 
 //Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
-	//Check hands
-	var/obj/item/card/id/id_card
-	var/obj/item/held_item
-	held_item = get_active_held_item()
-	if(held_item) //Check active hand
-		id_card = held_item.GetID()
+	var/obj/item/card/id/id_card = get_active_held_item()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_held_item()
-		if(held_item)
-			id_card = held_item.GetID()
+		id_card = get_inactive_held_item()
 
-	if(id_card)
-		if(hand_first)
-			return id_card
-		else
-			. = id_card
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
 
-	//Check inventory slots
+	if(istype(id_card) && hand_first)
+		return id_card
+
 	if(wear_id)
-		id_card = wear_id.GetID()
-		if(id_card)
-			return id_card
+		id_card = wear_id
 	else if(belt)
-		id_card = belt.GetID()
-		if(id_card)
-			return id_card
+		id_card = belt
+
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
+			
+	return istype(id_card) ? id_card : null
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
@@ -530,12 +528,12 @@
 			var/mob/living/carbon/human/H = usr
 			if(mind)
 				var/obj/item/card/id/ID = get_idcard()
-				if(ID && (ID.rank in JOBS_MARINES))//still a marine, with an ID.
+				if(ID && (ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
-						if(ID && ID.rank in JOBS_MARINES)//still a marine with an ID
+						if(ID && ID.rank in GLOB.jobs_marines)//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
 									if("None") ID.assigned_fireteam = 0
@@ -552,8 +550,8 @@
 			var/modified = 0
 			var/perpname = "wot"
 			if(wear_id)
-				var/obj/item/card/id/I = wear_id.GetID()
-				if(I)
+				var/obj/item/card/id/I = get_idcard()
+				if(istype(I))
 					perpname = I.registered_name
 				else
 					perpname = name
@@ -1067,9 +1065,6 @@
 	return ..()
 
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
-	if(luminosity <= 0)
-		return FALSE
-
 	if(sparks)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
@@ -1081,12 +1076,12 @@
 	if(armor)
 		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			if(S.turn_off_light(src))
-				light_off++
+			S.set_light(0)
+			light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/G in contents)
-			if(G.turn_off_light(src))
-				light_off++
+			G.set_light(0)
+			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
 			if(F.on)
@@ -1098,8 +1093,8 @@
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			if(H.turn_off_light(src))
-				light_off++
+			H.set_light(0)
+			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
 				continue
@@ -1130,38 +1125,9 @@
 			if(light_off > 1)
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
 			else
-				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
 		return TRUE
 
-
-/mob/living/carbon/human/update_sight()
-	if(!client)
-		return
-	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		return
-
-	sight = initial(sight)
-	see_in_dark = species.darksight
-	see_invisible = SEE_INVISIBLE_LIVING
-
-	if(glasses)
-		var/obj/item/clothing/glasses/G = glasses
-		//prescription applies regardless of it the glasses are active
-		if(G.active)
-			see_in_dark = max(G.darkness_view, see_in_dark)
-			sight |= G.vision_flags
-			if(G.fullscreen_vision)
-				overlay_fullscreen("glasses_vision", G.fullscreen_vision)
-			else
-				clear_fullscreen("glasses_vision", 0)
-			if(G.see_invisible)
-				see_invisible = min(G.see_invisible, see_invisible)
-		else
-			clear_fullscreen("glasses_vision", 0)
-	else
-		clear_fullscreen("glasses_vision", 0)
 
 /mob/living/carbon/human/get_total_tint()
 	. = ..()
@@ -1317,28 +1283,7 @@
 	if(!J)
 		return FALSE
 
-	var/datum/outfit/job/O = new J.outfit
-	var/id = O.id ? O.id : /obj/item/card/id
-	var/obj/item/card/id/I = new id
-	var/datum/skills/L = new J.skills_type
-	mind.cm_skills = L
-	mind.comm_title = J.comm_title
-
-	if(wear_id)
-		qdel(wear_id)
-
-	job = rank
-	faction = J.faction
-
-	equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-	SSjob.AssignRole(src, rank)
-	O.handle_id(src)
-
-	GLOB.datacore.manifest_update(real_name, real_name, job)
-
-	if(assigned_squad)
-		change_squad(assigned_squad.name)
+	J.assign(src)
 
 	return TRUE
 
@@ -1372,14 +1317,13 @@
 /mob/living/carbon/human/take_over(mob/M)
 	. = ..()
 
-	set_rank(job)
-
-	if(assigned_squad)
-		change_squad(assigned_squad.name)
+	var/datum/job/J = SSjob.GetJob(job)
+	J?.assign(src)
+	change_squad(assigned_squad?.name)
 
 
 /mob/living/carbon/human/proc/change_squad(squad)
-	if(!squad || !(job in JOBS_MARINES))
+	if(!squad || !(job in GLOB.jobs_marines))
 		return FALSE
 
 	var/datum/squad/S = SSjob.squads[squad]

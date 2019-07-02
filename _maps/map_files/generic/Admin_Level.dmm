@@ -778,6 +778,35 @@
 	},
 /turf/open/floor/almayer,
 /area/centcom)
+"cv" = (
+/obj/machinery/vending/engivend,
+/obj/item/radio/intercom/general,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_state = "plate"
+	},
+/area/shuttle/distress/start_big)
+"cw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc/hyper{
+	dir = 4
+	},
+/turf/open/floor/almayer{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/shuttle/distress/start_big)
 "cS" = (
 /obj/structure/closet/walllocker/medical_wall/full{
 	icon_state = "medical_wall";
@@ -1332,18 +1361,6 @@
 	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
-"lh" = (
-/obj/machinery/vending/engivend,
-/obj/item/radio/intercom/general{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/almayer{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
 "li" = (
 /obj/structure/rack,
 /turf/open/floor/almayer{
@@ -1572,26 +1589,6 @@
 /obj/machinery/computer/card,
 /turf/open/floor/almayer{
 	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/machinery/power/apc/almayer{
-	cell_type = /obj/item/cell/hyper;
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/turf/open/floor/almayer{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
 	},
 /area/shuttle/distress/start_big)
 "lK" = (
@@ -2428,7 +2425,7 @@
 	},
 /area/centcom)
 "oe" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
@@ -2479,7 +2476,7 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/distress/start_big)
 "oY" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
@@ -2489,7 +2486,7 @@
 	},
 /area/centcom)
 "oZ" = (
-/obj/machinery/door/poddoor/shutters/almayer/open{
+/obj/machinery/door/poddoor/shutters/almayer/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
@@ -4269,7 +4266,7 @@ fC
 iU
 iU
 lu
-lJ
+cw
 lW
 iU
 iU
@@ -4471,7 +4468,7 @@ iU
 iW
 iU
 iU
-lh
+cv
 lw
 lL
 lY

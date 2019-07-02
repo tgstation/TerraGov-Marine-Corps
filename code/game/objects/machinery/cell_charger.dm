@@ -98,13 +98,9 @@
 /obj/machinery/cell_charger/process()
 	//to_chat(world, "ccpt [charging] [stat]")
 	if((machine_stat & (BROKEN|NOPOWER)) || !anchored)
-		update_use_power(0)
 		return
 
 	if (charging && !charging.fully_charged())
 		charging.give(active_power_usage*GLOB.CELLRATE)
-		update_use_power(2)
 
 		updateicon()
-	else
-		update_use_power(1)

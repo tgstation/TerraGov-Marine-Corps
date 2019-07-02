@@ -7,7 +7,7 @@
 	icon = 'icons/obj/podwindows.dmi'
 	icon_state = "1"
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	layer = WINDOW_LAYER
@@ -32,7 +32,7 @@
 /obj/structure/shuttle/engine/propulsion
 	name = "propulsion"
 	icon_state = "propulsion"
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/shuttle/engine/propulsion/burst
 	name = "burst"

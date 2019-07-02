@@ -252,6 +252,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
 		if(!istype(J))
 			job = ""
+		else if(H.mind)
+			job = H.mind.comm_title
 		else
 			job = J.comm_title
 	else if(isAI(M))  // AI

@@ -23,9 +23,10 @@
 	icon_state = "wrench"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	force = 5.0
-	throwforce = 7.0
-	w_class = 2.0
+	force = 5
+	throwforce = 7
+	w_class = WEIGHT_CLASS_SMALL
+	usesound = 'sound/items/ratchet.ogg'
 	matter = list("metal" = 150)
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
@@ -44,7 +45,7 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
@@ -107,7 +108,7 @@
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter = list("metal" = 80)
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("pinched", "nipped")
@@ -143,11 +144,12 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 
 	//Amount of OUCH when it's thrown
-	force = 3.0
-	throwforce = 5.0
+	force = 3
+	throwforce = 5
+	usesound = list('sound/items/welder.ogg', 'sound/items/welder2.ogg')
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
 
 
@@ -171,10 +173,6 @@
 
 /obj/item/tool/weldingtool/Destroy()
 	if(welding)
-		if(ismob(loc))
-			loc.SetLuminosity(-LIGHTER_LUMINOSITY)
-		else
-			SetLuminosity(0)
 		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
@@ -323,14 +321,12 @@
 			welding = 1
 			if(M)
 				to_chat(M, "<span class='notice'>You switch [src] on.</span>")
-				M.SetLuminosity(LIGHTER_LUMINOSITY)
-			else
-				SetLuminosity(LIGHTER_LUMINOSITY)
+			set_light(LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = "fire"
 			icon_state = "welder1"
-			w_class = 4
+			w_class = WEIGHT_CLASS_BULKY
 			heat = 3800
 			START_PROCESSING(SSobj, src)
 		else
@@ -350,12 +346,11 @@
 				to_chat(M, "<span class='notice'>You switch [src] off.</span>")
 			else
 				to_chat(M, "<span class='warning'>[src] shuts off!</span>")
-			M.SetLuminosity(-LIGHTER_LUMINOSITY)
 			if(M.r_hand == src)
 				M.update_inv_r_hand()
 			if(M.l_hand == src)
 				M.update_inv_l_hand()
-		SetLuminosity(0)
+		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
@@ -370,19 +365,6 @@
 		to_chat(user, "<span class='notice'>[src] can now be refuelled and emptied.</span>")
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
-/obj/item/tool/weldingtool/pickup(mob/user)
-	if(welding && loc != user)
-		SetLuminosity(0)
-		user.SetLuminosity(LIGHTER_LUMINOSITY)
-
-
-/obj/item/tool/weldingtool/dropped(mob/user)
-	if(welding && loc != user)
-		user.SetLuminosity(-LIGHTER_LUMINOSITY)
-		SetLuminosity(LIGHTER_LUMINOSITY)
-	return ..()
-
-
 /obj/item/tool/weldingtool/largetank
 	name = "industrial blowtorch"
 	max_fuel = 40
@@ -392,14 +374,14 @@
 /obj/item/tool/weldingtool/hugetank
 	name = "high-capacity industrial blowtorch"
 	max_fuel = 80
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	matter = list("metal" = 70, "glass" = 120)
 	origin_tech = "engineering=3"
 
 /obj/item/tool/weldingtool/experimental
 	name = "experimental blowtorch"
 	max_fuel = 40 //?
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	matter = list("metal" = 70, "glass" = 120)
 	origin_tech = "engineering=4;phorontech=3"
 	var/last_gen = 0
@@ -426,7 +408,7 @@
 	force = 5.0
 	throwforce = 7.0
 	item_state = "crowbar"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter = list("metal" = 50)
 	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -453,7 +435,7 @@ Welding backpack
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welderpack"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	var/max_fuel = 600 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
 /obj/item/tool/weldpack/Initialize()

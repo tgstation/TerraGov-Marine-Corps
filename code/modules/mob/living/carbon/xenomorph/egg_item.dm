@@ -4,7 +4,7 @@
 	desc = "Some sort of egg."
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "egg_item"
-	w_class = 6
+	w_class = WEIGHT_CLASS_GIGANTIC
 	flags_atom = NONE
 	flags_item = NOBLUDGEON
 	throw_range = 1
@@ -63,7 +63,7 @@
 		to_chat(user, "<span class='xenowarning'>[src] can only be planted on weeds.</span>")
 		return
 	user.visible_message("<span class='xenonotice'>[user] starts planting [src].</span>", \
-					"<span class='xenonotice'>You start planting [src].</span>", null, 5)
+					"<span class='xenonotice'>We start planting [src].</span>", null, 5)
 	var/plant_time = 35
 	if(!isxenodrone(user))
 		plant_time = 25
@@ -98,7 +98,7 @@
 			attack_hand(user)
 		if(CAN_HOLD_TWO_HANDS)
 			if(user.r_hand || user.l_hand)
-				to_chat(user, "<span class='xenowarning'>You need two hands to hold [src].</span>")
+				to_chat(user, "<span class='xenowarning'>We need two hands to hold [src].</span>")
 			else
 				attack_hand(user)
 

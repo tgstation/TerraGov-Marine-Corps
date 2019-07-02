@@ -8,7 +8,7 @@
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/connected = null
 	anchored = TRUE //About time someone fixed this.
-	density = 0
+	density = FALSE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
 	use_power = 1
@@ -310,7 +310,6 @@
 		return
 
 	visible_message("[user] puts [M] into the sleeper.", 3)
-	update_use_power(2)
 	occupant = M
 	start_processing()
 	connected.start_processing()
@@ -379,7 +378,6 @@
 	occupant = null
 	stop_processing()
 	connected.stop_processing()
-	update_use_power(1)
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
 	return
@@ -469,7 +467,6 @@
 	if(!user.forceMove(src))
 		return
 	visible_message("[user] climbs into the sleeper.", 3)
-	update_use_power(2)
 	occupant = usr
 	start_processing()
 	connected.start_processing()

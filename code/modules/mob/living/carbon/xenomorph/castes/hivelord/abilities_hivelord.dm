@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		var/oldname = DR.name
 		if(DR.thicken())
 			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-				"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+				"<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
 			playsound(owner.loc, "alien_resin_build", 25)
 			return succeed_activate()
 		to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
@@ -65,13 +65,13 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 /datum/action/xeno_action/toggle_speed/action_activate()
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	if(X.speed_activated)
-		to_chat(X, "<span class='warning'>You feel less in tune with the resin.</span>")
+		to_chat(X, "<span class='warning'>We feel less in tune with the resin.</span>")
 		X.speed_activated = FALSE
 		return fail_activate()
 
 	succeed_activate()
 	X.speed_activated = TRUE
-	to_chat(X, "<span class='notice'>You become one with the resin. You feel the urge to run!</span>")
+	to_chat(X, "<span class='notice'>We become one with the resin. We feel the urge to run!</span>")
 
 // ***************************************
 // *********** Tunnel
@@ -94,24 +94,24 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		return
 	if(!T.can_dig_xeno_tunnel())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You scrape around, but you can't seem to dig through that kind of floor.</span>")
+			to_chat(owner, "<span class='warning'>We scrape around, but we can't seem to dig through that kind of floor.</span>")
 		return FALSE
 	if(owner.get_active_held_item())
 		if(!silent)
-			to_chat(owner, "<span class='warning'>You need an empty claw for this!</span>")
+			to_chat(owner, "<span class='warning'>We need an empty claw for this!</span>")
 		return FALSE
 
 /datum/action/xeno_action/build_tunnel/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>You are ready to dig a tunnel again.</span>")
+	to_chat(src, "<span class='notice'>We are ready to dig a tunnel again.</span>")
 	return ..()
 
 /datum/action/xeno_action/build_tunnel/action_activate()
 	var/turf/T = get_turf(owner)
 
 	owner.visible_message("<span class='xenonotice'>[owner] begins digging out a tunnel entrance.</span>", \
-	"<span class='xenonotice'>You begin digging out a tunnel entrance.</span>", null, 5)
+	"<span class='xenonotice'>We begin digging out a tunnel entrance.</span>", null, 5)
 	if(!do_after(owner, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
-		to_chat(owner, "<span class='warning'>Your tunnel caves in as you stop digging it.</span>")
+		to_chat(owner, "<span class='warning'>Our tunnel caves in as we stop digging it.</span>")
 		return fail_activate()
 
 	if(!can_use_action(TRUE))
@@ -120,13 +120,13 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	if(!X.start_dig) //Let's start a new one.
 		X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
-		"<span class='xenonotice'>You dig out the first entrance to your tunnel.</span>", null, 5)
+		"<span class='xenonotice'>We dig out the first entrance to our tunnel.</span>", null, 5)
 		X.start_dig = new /obj/structure/tunnel(T)
 		X.start_dig.creator = X
 		playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 		return succeed_activate()
 
-	to_chat(X, "<span class='xenonotice'>You dig your tunnel all the way to the original entrance, connecting both entrances!</span>")
+	to_chat(X, "<span class='xenonotice'>We dig our tunnel all the way to the original entrance, connecting both entrances!</span>")
 	var/obj/structure/tunnel/newt = new /obj/structure/tunnel(T)
 	newt.other = X.start_dig
 	newt.creator = X
@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	add_cooldown()
 
-	to_chat(X, "<span class='xenonotice'>You dig your tunnel all the way to the original entrance, connecting both entrances! You now have [X.tunnels.len * 0.5] of [HIVELORD_TUNNEL_SET_LIMIT] tunnel sets.</span>")
+	to_chat(X, "<span class='xenonotice'>We dig our tunnel all the way to the original entrance, connecting both entrances! We now have [length(X.tunnels) * 0.5] of [HIVELORD_TUNNEL_SET_LIMIT] tunnel sets.</span>")
 
 	var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
 	newt.other.tunnel_desc = "[get_area(newt.other)] (X: [newt.other.x], Y: [newt.other.y]) [msg]"
@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
 		old_tunnel.obj_integrity = 0
 		old_tunnel.healthcheck()
-		to_chat(X, "<span class='xenodanger'>Having exceeding your tunnel set limit, your oldest tunnel set has collapsed.</span>")
+		to_chat(X, "<span class='xenodanger'>Having exceeding our tunnel set limit, our oldest tunnel set has collapsed.</span>")
 
 	succeed_activate()
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)

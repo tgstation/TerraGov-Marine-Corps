@@ -4,7 +4,7 @@
 /obj/item/ammo_magazine/sentry
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -19,7 +19,7 @@
 	desc = "A large case containing all you need to set up an automated sentry, minus the tools."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	max_w_class = 5
 	storage_slots = 4
 	max_storage_space = 16
@@ -42,7 +42,7 @@
 	name = "\improper UA 571-C turret"
 	desc = "The turret part of an automated sentry turret."
 	resistance_flags = UNACIDABLE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
 
@@ -51,7 +51,7 @@
 	name = "\improper UA 571-C turret tripod"
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	resistance_flags = UNACIDABLE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
 
@@ -306,7 +306,6 @@
 	QDEL_NULL(cell)
 	target = null
 	alert_list = list()
-	SetLuminosity(0)
 	stop_processing()
 	. = ..()
 
@@ -472,7 +471,7 @@
 				visible_message("<span class='notice'>The [name] buzzes in a monotone voice: 'Default systems initiated'.</span>'")
 				target = null
 				ENABLE_BITFIELD(turret_flags, TURRET_ON)
-				SetLuminosity(7)
+				set_light(7)
 				if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
@@ -782,7 +781,7 @@
 		sentry_alert(SENTRY_ALERT_BATTERY)
 		visible_message("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
 		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
-		SetLuminosity(0)
+		set_light(0)
 		update_icon()
 		return FALSE
 
@@ -982,9 +981,9 @@
 /obj/machinery/marine_turret/proc/muzzle_flash(angle)
 	if(isnull(angle)) return
 
-	SetLuminosity(muzzle_flash_lum)
+	set_light(muzzle_flash_lum)
 	spawn(10)
-		SetLuminosity(-muzzle_flash_lum)
+		set_light(0)
 
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
@@ -1104,7 +1103,7 @@
 		visible_message("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		ENABLE_BITFIELD(turret_flags, TURRET_ON)
-		SetLuminosity(7)
+		set_light(7)
 		update_icon()
 	else
 		DISABLE_BITFIELD(turret_flags, TURRET_ON)
@@ -1116,7 +1115,7 @@
 /obj/item/ammo_magazine/sentry/premade/dumb
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -1144,7 +1143,7 @@
 /obj/item/ammo_magazine/sentry/premade/dropship
 	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
 	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -1266,7 +1265,7 @@
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_integrity = 155 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
@@ -1294,7 +1293,7 @@
 /obj/item/ammo_magazine/minisentry
 	name = "M30 box magazine (10x20mm Caseless)"
 	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "ua580"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x20mm"
@@ -1307,7 +1306,7 @@
 	desc = "A large case containing all you need to set up an UA-580 point defense sentry."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 4
 	can_hold = list(
 		/obj/item/marine_turret/mini, //gun itself
@@ -1327,7 +1326,7 @@
 		return FALSE
 	target = null
 	ENABLE_BITFIELD(turret_flags, TURRET_ON)
-	SetLuminosity(7)
+	set_light(7)
 	if(!camera && CHECK_BITFIELD(turret_flags, TURRET_HAS_CAMERA))
 		camera = new /obj/machinery/camera(src)
 		camera.network = list("military")

@@ -226,7 +226,7 @@
 	if(obj_integrity <= 0)
 		if(!destroyed)
 			icon_state = "brokengrille"
-			density = 0
+			density = FALSE
 			destroyed = 1
 			new /obj/item/stack/rods(loc)
 

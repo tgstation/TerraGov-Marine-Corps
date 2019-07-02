@@ -333,7 +333,6 @@
 //Timed process, charge the gas reservoir and perform flush if ready
 /obj/machinery/disposal/process()
 	if(machine_stat & BROKEN) //Nothing can happen if broken
-		update_use_power(0)
 		return
 
 	flush_count++
@@ -349,9 +348,7 @@
 	if(flush && disposal_pressure >= SEND_PRESSURE) //Flush can happen even without power
 		flush()
 
-	if(mode != 1) //If off or ready, no need to charge
-		update_use_power(1)
-	else if(disposal_pressure >= SEND_PRESSURE)
+	if(mode == 1 && disposal_pressure >= SEND_PRESSURE)
 		mode = 2 //If full enough, switch to ready mode
 		update()
 	else
@@ -499,8 +496,7 @@
 	while(active)
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
-				if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
-					H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
+				H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		sleep(1) //Was 1
 		var/obj/structure/disposalpipe/curr = loc
@@ -574,7 +570,7 @@
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
 	anchored = TRUE
-	density = 0
+	density = FALSE
 
 	level = 1			//Underfloor only
 	var/dpdir = 0		//Bitmask of pipe directions
@@ -814,7 +810,7 @@
 		if("pipe-tagger-partial")
 			C.ptype = 14
 	C.setDir(dir)
-	C.density = 0
+	C.density = FALSE
 	C.anchored = TRUE
 	C.update()
 	qdel(src)

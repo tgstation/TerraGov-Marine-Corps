@@ -7,7 +7,7 @@
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	frequency = 1457
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "syndicate=2"
 	on = FALSE
 	layer = MOB_LAYER - 0.1
@@ -291,7 +291,7 @@
 /obj/item/radio/detpack/proc/change_to_loud_sound()
 	if(sound_timer)
 		deltimer(sound_timer)
-		sound_timer = addtimer(CALLBACK(src, .do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
+		sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
 
 /obj/item/radio/detpack/proc/do_play_sound_normal()
 	timer--

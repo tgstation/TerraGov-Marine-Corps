@@ -229,7 +229,7 @@ obj/structure/bed/Destroy()
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
-	w_class = 2 //Fits in a backpack
+	w_class = WEIGHT_CLASS_SMALL //Fits in a backpack
 	drag_delay = 1 //Pulling something on wheels is easy
 	var/rollertype = /obj/structure/bed/roller
 
@@ -654,9 +654,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/medevac_beacon/proc/check_power()
 	var/area/A = loc?.loc
-	if(!A || !isarea(A) || !A.master)
+	if(!A || !isarea(A))
 		return FALSE
-	return(A.master.powered(1))
+	return(A.powered(1))
 
 /obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
 	. = ..()

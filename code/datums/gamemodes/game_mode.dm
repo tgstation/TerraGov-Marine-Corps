@@ -34,9 +34,7 @@
 	if(flags_landmarks & MODE_LANDMARK_SPAWN_MAP_ITEM)
 		spawn_map_items()
 
-	if(flags_round_type & MODE_FOG_ACTIVATED)
-		spawn_fog_blockers()
-		addtimer(CALLBACK(src, .proc/disperse_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-2500, 2500))
+	setup_blockers()
 
 	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
@@ -234,7 +232,7 @@
 
 /datum/game_mode/proc/spawn_map_items()
 	var/turf/T
-	switch(SSmapping.config.map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
+	switch(SSmapping.configs[GROUND_MAP].map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
 		if(MAP_LV_624)
 			while(GLOB.map_items.len)
 				T = GLOB.map_items[GLOB.map_items.len]
@@ -279,12 +277,19 @@
 			TWO.other = ONE
 
 
-/datum/game_mode/proc/spawn_fog_blockers()
-	var/turf/T
-	while(GLOB.fog_blocker_locations.len)
-		T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
-		GLOB.fog_blocker_locations.len--
-		new /obj/effect/forcefield/fog(T)
+/datum/game_mode/proc/setup_blockers()
+	if(flags_round_type & MODE_FOG_ACTIVATED)
+		var/turf/T
+		while(GLOB.fog_blocker_locations.len)
+			T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
+			GLOB.fog_blocker_locations.len--
+			new /obj/effect/forcefield/fog(T)
+		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
+
+	switch(SSmapping.configs[GROUND_MAP].map_name)
+		if(MAP_PRISON_STATION)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 50 MINUTES)
+			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 
 /datum/game_mode/proc/end_of_round_deathmatch()
@@ -306,6 +311,7 @@
 		var/mob/living/L
 		if(!isliving(M))
 			L = new /mob/living/carbon/human
+			M.mind.transfer_to(L, TRUE)
 		else
 			L = M
 
@@ -328,9 +334,6 @@
 			to_chat(L, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
 			continue
 
-		if(!L.mind)
-			M.mind.transfer_to(L, TRUE)
-			
 		L.mind.bypass_ff = TRUE
 		INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
 		L.revive()
@@ -343,8 +346,8 @@
 			var/mob/living/carbon/human/H = L
 			if(!H.w_uniform)
 				var/job = pick(/datum/job/clf/leader, /datum/job/upp/commando/leader, /datum/job/freelancer/leader)
-				var/datum/job/J = new job
-				J.equip(H)
+				var/datum/job/J = SSjob.GetJobType(job)
+				J.assign_equip(H)
 				H.regenerate_icons()
 
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
@@ -440,13 +443,15 @@
 	return list(num_humans, num_xenos)
 
 
-/datum/game_mode/proc/disperse_fog()
+/datum/game_mode/proc/remove_fog()
 	set waitfor = FALSE
 
-	flags_round_type &= ~MODE_FOG_ACTIVATED
+	DISABLE_BITFIELD(flags_round_type, MODE_FOG_ACTIVATED)
+	
 	for(var/i in GLOB.fog_blockers)
 		qdel(i)
-		sleep(1)
+		stoplag(1)
+
 
 /datum/game_mode/proc/mode_new_player_panel(mob/new_player/NP)
 

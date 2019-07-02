@@ -20,8 +20,6 @@
 
 	var/is_zoomed = FALSE
 
-	luminosity = 7
-
 	req_access = list(ACCESS_MARINE_TANK)
 
 /obj/effect/multitile_spawner/cm_armored/tank

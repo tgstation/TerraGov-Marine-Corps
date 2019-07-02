@@ -89,15 +89,13 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "at" = (
-/obj/item/radio/intercom{
-	canhear_range = 7;
-	frequency = 1441;
-	name = "dropship intercom";
+/obj/item/radio/intercom/dropship{
 	pixel_x = 21;
-	pixel_y = 43
+	pixel_y = 16
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
@@ -187,12 +185,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aJ" = (
-/obj/item/radio/intercom{
-	canhear_range = 7;
-	frequency = 1441;
-	name = "dropship intercom";
-	pixel_y = 24
-	},
+/obj/item/radio/intercom/dropship,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin6"
 	},
@@ -209,12 +202,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aM" = (
-/obj/item/radio/intercom{
-	canhear_range = 7;
-	frequency = 1441;
-	name = "dropship intercom";
-	pixel_y = 24
-	},
+/obj/item/radio/intercom/dropship,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin7"
 	},
@@ -312,6 +300,24 @@
 /obj/machinery/door/airlock/dropship_hatch/right,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
+"bd" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"be" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "bf" = (
 /turf/closed/shuttle/dropship1{
 	icon_state = "52"
@@ -339,12 +345,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bk" = (
-/obj/item/radio/intercom{
-	canhear_range = 7;
-	frequency = 1441;
-	name = "dropship intercom";
-	pixel_y = 24
-	},
+/obj/item/radio/intercom/dropship,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin5"
 	},
@@ -398,8 +399,8 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_x = -30
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
@@ -411,8 +412,8 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_x = 30
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
@@ -590,6 +591,12 @@
 /obj/machinery/computer/shuttle/marine_dropship/one,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
+"Zx" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/shuttle/dropship1{
+	icon_state = "63"
+	},
+/area/shuttle/dropship/alamo)
 
 (1,1,1) = {"
 ao
@@ -676,7 +683,7 @@ bj
 aI
 bv
 bD
-aI
+be
 aI
 aI
 bX
@@ -692,7 +699,7 @@ aB
 aK
 aN
 aN
-aN
+bd
 aN
 aN
 aK
@@ -715,7 +722,7 @@ aC
 aL
 aT
 aZ
-aZ
+Zx
 aZ
 bg
 bk
@@ -738,7 +745,7 @@ aD
 aK
 aI
 aI
-aI
+be
 aI
 aI
 aK
@@ -768,7 +775,7 @@ bl
 aN
 bx
 aN
-aN
+bd
 aN
 aN
 ca

@@ -22,7 +22,7 @@
 
 
 /datum/game_mode/distress/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
+	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
 
 
 /datum/game_mode/distress/can_start()
@@ -38,11 +38,11 @@
 
 /datum/game_mode/distress/pre_setup()
 	. = ..()
-
+	var/number_of_xenos = length(xenomorphs)
 	for(var/i in xenomorphs)
 		var/datum/mind/M = i
 		if(M.assigned_role == ROLE_XENO_QUEEN)
-			transform_queen(M)
+			transform_queen(M, number_of_xenos)
 		else
 			transform_xeno(M)
 
@@ -56,10 +56,10 @@
 
 
 /datum/game_mode/distress/proc/map_announce()
-	if(!SSmapping.config.announce_text)
+	if(!SSmapping.configs[GROUND_MAP].announce_text)
 		return
 
-	priority_announce(SSmapping.config.announce_text, "[CONFIG_GET(string/ship_name)]")
+	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, "[CONFIG_GET(string/ship_name)]")
 
 
 /datum/game_mode/distress/process()
@@ -109,7 +109,7 @@
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
 	var/musical_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
@@ -131,7 +131,6 @@
 	announce_survivors()
 	announce_medal_awards()
 	announce_round_stats()
-	end_of_round_deathmatch()
 
 
 /datum/game_mode/distress/proc/initialize_scales()
@@ -252,8 +251,13 @@
 	X.update_icons()
 
 
-/datum/game_mode/distress/proc/transform_queen(datum/mind/M)
-	var/mob/living/carbon/xenomorph/queen/X = new (pick(GLOB.xeno_spawn))
+/datum/game_mode/distress/proc/transform_queen(datum/mind/M, number_of_xenos)
+	var/mob/living/carbon/xenomorph/X
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(number_of_xenos < HN.xenos_per_queen)
+		X = new /mob/living/carbon/xenomorph/shrike(pick(GLOB.xeno_spawn))
+	else
+		X = new /mob/living/carbon/xenomorph/queen(pick(GLOB.xeno_spawn))
 
 	if(isnewplayer(M.current))
 		var/mob/new_player/N = M.current
@@ -261,7 +265,7 @@
 
 	M.transfer_to(X, TRUE)
 
-	to_chat(X, "<B>You are now the alien queen!</B>")
+	to_chat(X, "<B>You are now the alien ruler!</B>")
 	to_chat(X, "<B>Your job is to spread the hive.</B>")
 	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
 
@@ -281,12 +285,11 @@
 	var/survivor_job = pick(subtypesof(/datum/job/survivor))
 	var/datum/job/J = new survivor_job
 
-	H.set_rank(J.title)
-	J.equip(H)
+	J.assign_equip(H)
 
 	H.mind.assigned_role = "Survivor"
 
-	if(SSmapping.config.map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
@@ -307,7 +310,7 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
 	to_chat(H, "<h2>You are a survivor!</h2>")
-	switch(SSmapping.config.map_name)
+	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)
 			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
 		if(MAP_ICE_COLONY)
@@ -546,7 +549,7 @@
 	if(!length(xenomorphs))
 		return
 
-	var/dat = "<span class='round_body'>The xenomorph Queen(s) were:</span>"
+	var/dat = "<span class='round_body'>The xenomorph ruler(s) were:</span>"
 
 	for(var/i in xenomorphs)
 		var/datum/mind/M = i
@@ -707,7 +710,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	queen_death_countdown = 0
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
-	if(!round_finished && !hive.living_xeno_queen)
+	if(!round_finished && !hive.living_xeno_ruler)
 		round_finished = MODE_INFESTATION_M_MINOR
 
 
@@ -729,9 +732,9 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 /datum/game_mode/distress/attempt_to_join_as_larva(mob/xeno_candidate)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.can_spawn_larva(xeno_candidate)
+	return HS.attempt_to_spawn_larva(xeno_candidate)
 
 
-/datum/game_mode/distress/spawn_larva(mob/xeno_candidate)
+/datum/game_mode/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	return HS.spawn_larva(xeno_candidate)
+	return HS.spawn_larva(xeno_candidate, mother)

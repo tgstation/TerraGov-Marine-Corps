@@ -4,7 +4,7 @@
 	desc = "Those could work as a pretty decent throwing weapon"
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "catwalk_tile"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 6.0
 	throwforce = 8.0
 	throw_speed = 3

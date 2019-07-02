@@ -15,7 +15,7 @@
 	var/obj/item/paper/message = null
 	var/sendcooldown = FALSE
 
-	var/department = "Corporate Liaison"
+	var/department = CORPORATE_LIAISON
 	var/selected = "Nanotrasen"
 
 
@@ -173,7 +173,7 @@
 	department = "Combat Information Center"
 
 /obj/machinery/faxmachine/cmp
-	department = "Command Master at Arms"
+	department = COMMAND_MASTER_AT_ARMS
 
 /obj/machinery/faxmachine/brig
 	department = "Brig"

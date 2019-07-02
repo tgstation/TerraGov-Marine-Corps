@@ -67,10 +67,10 @@
 	var/list/progbar_towers //for stacking the total pixel height of the aboves.
 	var/list/fullscreens = list()
 	var/list/alerts = list() // contains /obj/screen/alert only, used by alerts.dm
-	var/list/light_sources = list()
 	var/luminosity_total = 0 //For max luminosity stuff.
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
+	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 
 
 	//Interaction

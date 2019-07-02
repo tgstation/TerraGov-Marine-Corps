@@ -228,12 +228,6 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
-	if(isturf(loc))
-		if(opacity)
-			oldloc.UpdateAffectingLights()
-		else if(light)
-			light.changed()
-
 	return TRUE
 
 

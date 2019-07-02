@@ -7,8 +7,7 @@
 	icon_state = "base"
 
 	anchored = TRUE
-	density = 0
-	plane = FLOOR_PLANE
+	density = FALSE
 	layer = TURF_LAYER
 	var/parent_node
 	max_integrity = 4

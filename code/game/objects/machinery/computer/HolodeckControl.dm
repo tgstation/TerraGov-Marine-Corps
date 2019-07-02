@@ -65,15 +65,17 @@
 	icon_state = "basketball"
 	item_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
-	w_class = 4 //Stops people from hiding it in their bags/pockets
+	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 
-	//Can be picked up by aliens
+	//Can be picked up by aliens if the fun_allowed config is enabled.
 /obj/item/toy/beach_ball/holoball/attack_paw(user as mob)
 	if(!isxeno(user))
 		return FALSE
 	attack_alien(user)
 
 /obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/xenomorph/user)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
 	attack_hand(user)
 
 /obj/structure/holohoop

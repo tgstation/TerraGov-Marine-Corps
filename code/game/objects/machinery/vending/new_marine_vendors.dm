@@ -45,8 +45,6 @@
 	req_one_access = null
 	req_one_access_txt = "0"
 
-	var/gloves_type
-	var/headset_type
 	var/gives_webbing = FALSE
 	var/vendor_role = "" //to be compared with assigned_role to only allow those to use that machine.
 	var/squad_tag = ""
@@ -197,8 +195,8 @@
 
 			var/bitf = L[4]
 			if(bitf)
-				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == "Squad Specialist")
-					if(!H.mind || H.mind.assigned_role != "Squad Specialist")
+				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
+					if(!H.mind || H.mind.assigned_role != SQUAD_SPECIALIST)
 						to_chat(H, "<span class='warning'>Only specialists can take specialist sets.</span>")
 						return
 					else if(!H.mind.cm_skills || H.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
@@ -235,15 +233,15 @@
 			new type_p(loc)
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM)
-				new headset_type(loc)
-				new gloves_type(loc)
+				new /obj/item/radio/headset/almayer/marine(loc, H.assigned_squad.name, vendor_role)
+				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
 				//if(istype(SSticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
-				if(SSmapping.config.map_name == MAP_ICE_COLONY)
+				if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 
 			if(bitf == MARINE_CAN_BUY_ESSENTIALS)
-				if(vendor_role == "Squad Specialist" && H.mind && H.mind.assigned_role == "Squad Specialist")
+				if(vendor_role == SQUAD_SPECIALIST && H.mind && H.mind.assigned_role == SQUAD_SPECIALIST)
 					var/p_name = L[1]
 					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 						p_name = "Scout Set"
@@ -272,7 +270,7 @@
 	name = "GHMME Automated Closet"
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
-	vendor_role = "Squad Marine"
+	vendor_role = SQUAD_MARINE
 
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
@@ -341,32 +339,25 @@
 /obj/machinery/marine_selector/clothes/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ALPHA)
-	gloves_type = /obj/item/clothing/gloves/marine/alpha
-	headset_type = /obj/item/radio/headset/almayer/marine/alpha
 
 /obj/machinery/marine_selector/clothes/bravo
 	squad_tag = "Bravo"
 	req_access = list(ACCESS_MARINE_BRAVO)
-	gloves_type = /obj/item/clothing/gloves/marine/bravo
-	headset_type = /obj/item/radio/headset/almayer/marine/bravo
 
 /obj/machinery/marine_selector/clothes/charlie
 	squad_tag = "Charlie"
 	req_access = list(ACCESS_MARINE_CHARLIE)
-	gloves_type = /obj/item/clothing/gloves/marine/charlie
-	headset_type = /obj/item/radio/headset/almayer/marine/charlie
 
 /obj/machinery/marine_selector/clothes/delta
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_DELTA)
-	gloves_type = /obj/item/clothing/gloves/marine/delta
-	headset_type = /obj/item/radio/headset/almayer/marine/delta
 
 
 
 /obj/machinery/marine_selector/clothes/engi
+	name = "GHMME Automated Engineer Closet"
 	req_access = list(ACCESS_MARINE_ENGPREP)
-	vendor_role = "Squad Engineer"
+	vendor_role = SQUAD_ENGINEER
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -412,32 +403,25 @@
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_ALPHA)
-	gloves_type = /obj/item/clothing/gloves/marine/alpha/insulated
-	headset_type = /obj/item/radio/headset/almayer/marine/alpha/engi
 
 /obj/machinery/marine_selector/clothes/engi/bravo
 	squad_tag = "Bravo"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_BRAVO)
-	gloves_type = /obj/item/clothing/gloves/marine/bravo/insulated
-	headset_type = /obj/item/radio/headset/almayer/marine/bravo/engi
 
 /obj/machinery/marine_selector/clothes/engi/charlie
 	squad_tag = "Charlie"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_CHARLIE)
-	gloves_type = /obj/item/clothing/gloves/marine/charlie/insulated
-	headset_type = /obj/item/radio/headset/almayer/marine/charlie/engi
 
 /obj/machinery/marine_selector/clothes/engi/delta
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_DELTA)
-	gloves_type = /obj/item/clothing/gloves/marine/delta/insulated
-	headset_type = /obj/item/radio/headset/almayer/marine/delta/engi
 
 
 
 /obj/machinery/marine_selector/clothes/medic
+	name = "GHMME Automated Corpsman Closet"
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	vendor_role = "Squad Corpsman"
+	vendor_role = SQUAD_CORPSMAN
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -483,26 +467,18 @@
 /obj/machinery/marine_selector/clothes/medic/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ALPHA)
-	gloves_type = /obj/item/clothing/gloves/marine/alpha
-	headset_type = /obj/item/radio/headset/almayer/marine/alpha/med
 
 /obj/machinery/marine_selector/clothes/medic/bravo
 	squad_tag = "Bravo"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_BRAVO)
-	gloves_type = /obj/item/clothing/gloves/marine/bravo
-	headset_type = /obj/item/radio/headset/almayer/marine/bravo/med
 
 /obj/machinery/marine_selector/clothes/medic/charlie
 	squad_tag = "Charlie"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_CHARLIE)
-	gloves_type = /obj/item/clothing/gloves/marine/charlie
-	headset_type = /obj/item/radio/headset/almayer/marine/charlie/med
 
 /obj/machinery/marine_selector/clothes/medic/delta
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_DELTA)
-	gloves_type = /obj/item/clothing/gloves/marine/delta
-	headset_type = /obj/item/radio/headset/almayer/marine/delta/med
 
 
 
@@ -511,8 +487,9 @@
 
 
 /obj/machinery/marine_selector/clothes/smartgun
+	name = "GHMME Automated Smartgunner Closet"
 	req_access = list(ACCESS_MARINE_SMARTPREP)
-	vendor_role = "Squad Smartgunner"
+	vendor_role = SQUAD_SMARTGUNNER
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -549,32 +526,25 @@
 /obj/machinery/marine_selector/clothes/smartgun/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_ALPHA)
-	gloves_type = /obj/item/clothing/gloves/marine/alpha
-	headset_type = /obj/item/radio/headset/almayer/marine/alpha
 
 /obj/machinery/marine_selector/clothes/smartgun/bravo
 	squad_tag = "Bravo"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_BRAVO)
-	gloves_type = /obj/item/clothing/gloves/marine/bravo
-	headset_type = /obj/item/radio/headset/almayer/marine/bravo
 
 /obj/machinery/marine_selector/clothes/smartgun/charlie
 	squad_tag = "Charlie"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_CHARLIE)
-	gloves_type = /obj/item/clothing/gloves/marine/charlie
-	headset_type = /obj/item/radio/headset/almayer/marine/charlie
 
 /obj/machinery/marine_selector/clothes/smartgun/delta
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
-	gloves_type = /obj/item/clothing/gloves/marine/delta
-	headset_type = /obj/item/radio/headset/almayer/marine/delta
 
 
 
 /obj/machinery/marine_selector/clothes/specialist
+	name = "GHMME Automated Specialist Closet"
 	req_access = list(ACCESS_MARINE_SPECPREP)
-	vendor_role = "Squad Specialist"
+	vendor_role = SQUAD_SPECIALIST
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -616,32 +586,25 @@
 /obj/machinery/marine_selector/clothes/specialist/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA)
-	gloves_type = /obj/item/clothing/gloves/marine/alpha
-	headset_type = /obj/item/radio/headset/almayer/marine/alpha
 
 /obj/machinery/marine_selector/clothes/specialist/bravo
 	squad_tag = "Bravo"
 	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_BRAVO)
-	gloves_type = /obj/item/clothing/gloves/marine/bravo
-	headset_type = /obj/item/radio/headset/almayer/marine/bravo
 
 /obj/machinery/marine_selector/clothes/specialist/charlie
 	squad_tag = "Charlie"
 	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_CHARLIE)
-	gloves_type = /obj/item/clothing/gloves/marine/charlie
-	headset_type = /obj/item/radio/headset/almayer/marine/charlie
 
 /obj/machinery/marine_selector/clothes/specialist/delta
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_SPECPREP, ACCESS_MARINE_DELTA)
-	gloves_type = /obj/item/clothing/gloves/marine/delta
-	headset_type = /obj/item/radio/headset/almayer/marine/delta
 
 
 
 /obj/machinery/marine_selector/clothes/leader
+	name = "GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
-	vendor_role = "Squad Leader"
+	vendor_role = SQUAD_LEADER
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -687,26 +650,18 @@
 /obj/machinery/marine_selector/clothes/leader/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
-	gloves_type = /obj/item/clothing/gloves/marine/alpha
-	headset_type = /obj/item/radio/headset/almayer/marine/alpha/lead
 
 /obj/machinery/marine_selector/clothes/leader/bravo
 	squad_tag = "Bravo"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
-	gloves_type = /obj/item/clothing/gloves/marine/bravo
-	headset_type = /obj/item/radio/headset/almayer/marine/bravo/lead
 
 /obj/machinery/marine_selector/clothes/leader/charlie
 	squad_tag = "Charlie"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
-	gloves_type = /obj/item/clothing/gloves/marine/charlie
-	headset_type = /obj/item/radio/headset/almayer/marine/charlie/lead
 
 /obj/machinery/marine_selector/clothes/leader/delta
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
-	gloves_type = /obj/item/clothing/gloves/marine/delta
-	headset_type = /obj/item/radio/headset/almayer/marine/delta/lead
 
 
 
@@ -727,27 +682,12 @@
 		list("Laser Sight", 0, /obj/item/attachable/lasersight,  MARINE_CAN_BUY_ATTACHMENT, "black")
 		)
 
-/obj/machinery/marine_selector/gear/alpha
-	squad_tag = "Alpha"
-	req_access = list(ACCESS_MARINE_ALPHA)
-
-/obj/machinery/marine_selector/gear/bravo
-	squad_tag = "Bravo"
-	req_access = list(ACCESS_MARINE_BRAVO)
-
-/obj/machinery/marine_selector/gear/charlie
-	squad_tag = "Charlie"
-	req_access = list(ACCESS_MARINE_CHARLIE)
-
-/obj/machinery/marine_selector/gear/delta
-	squad_tag = "Delta"
-	req_access = list(ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/gear/medic
 	name = "NEXUS Automated Medical Equipment Rack"
 	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
 	icon_state = "medic"
-	vendor_role = "Squad Corpsman"
+	vendor_role = SQUAD_CORPSMAN
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 	listed_products = list(
@@ -816,7 +756,7 @@
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
 	icon_state = "engineer"
-	vendor_role = "Squad Engineer"
+	vendor_role = SQUAD_ENGINEER
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
 	listed_products = list(
@@ -873,7 +813,7 @@
 	name = "NEXUS Automated Smartgunner Equipment Rack"
 	desc = "An automated smartgunner equipment rack hooked up to a colossal storage unit."
 	icon_state = "smartgunner"
-	vendor_role = "Squad Smartgunner"
+	vendor_role = SQUAD_SMARTGUNNER
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
@@ -919,7 +859,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	name = "NEXUS Automated Specialist Equipment Rack"
 	desc = "An automated specialist equipment rack hooked up to a colossal storage unit."
 	icon_state = "specialist"
-	vendor_role = "Squad Specialist"
+	vendor_role = SQUAD_SPECIALIST
 	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	listed_products = list(
@@ -968,7 +908,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
 	icon_state = "squadleader"
-	vendor_role = "Squad Leader"
+	vendor_role = SQUAD_LEADER
 	req_access = list(ACCESS_MARINE_LEADER)
 
 	listed_products = list(
