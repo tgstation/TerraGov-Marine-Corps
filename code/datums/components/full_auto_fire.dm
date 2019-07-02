@@ -25,12 +25,8 @@
 	return ..()
 
 
-/datum/component/automatic_fire/proc/autofire_on(datum/source, client/usercli, new_delay, flags)
+/datum/component/automatic_fire/proc/autofire_on(datum/source, client/usercli)
 	clicker = usercli
-	if(!isnull(flags))
-		autofire_flags = flags
-	if(!isnull(new_delay))
-		delay = new_delay
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDOWN, .proc/on_mouse_down)
 	RegisterSignal(clicker.mob, COMSIG_MOB_LOGOUT, .proc/autofire_off)
 	RegisterSignal(parent, COMSIG_PARENT_QDELETED, .proc/autofire_off)
@@ -48,7 +44,6 @@
 	clicker = null
 	parent.UnregisterSignal(parent, COMSIG_FULL_AUTO_FIRE)
 	UnregisterSignal(parent, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETED))
-	delay = initial(delay)
 
 
 /datum/component/automatic_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
@@ -81,7 +76,6 @@
 	shots_fired = 0
 	clicker.mouse_pointer_icon = initial(clicker.mouse_pointer_icon)
 	UnregisterSignal(clicker, list(COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG))
-	autofire_flags = initial(autofire_flags)
 	target = null
 	mouse_parameters = null
 	if(delay_timer)
