@@ -1,41 +1,47 @@
-/datum/component/full_auto_fire
-	var/atom/movable/gun
+#define AUTOFIRE_TRACKTARGET (1<<0)
+
+
+/datum/component/automatic_fire
+	var/client/clicker
 	var/atom/target
-	var/datum/callback/extra_checks
+	var/mouse_parameters
 	var/delay = 0.2 SECONDS //How long between each fire signal.
-	var/next_fire = 0
+	var/delay_timer
+	var/autofire_flags = AUTOFIRE_TRACKTARGET
+	var/shots_fired = 0
 
 
-/datum/component/full_auto_fire/proc/fullauto_on(new_gun, new_delay, datum/callback/extra_checks)
-	gun = new_gun
-	if(!isnull(new_delay))
-		delay = new_delay
-	src.extra_checks = extra_checks
-	RegisterSignal(gun, COMSIG_PARENT_QDELETED, .proc/fullauto_off)
-	RegisterSignal(gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), .proc/fullauto_off)
-	RegisterSignal(parent, COMSIG_CLIENT_DISCONNECTED, .proc/fullauto_off)
-	RegisterSignal(parent, COMSIG_CLIENT_MOUSEDOWN, .proc/on_mouse_down)
-	gun.RegisterSignal(gun, COMSIG_FULL_AUTO_FIRE, .proc/do_auto_fire)
-
-
-/datum/component/full_auto_fire/proc/fullauto_off()
-	if(!isnull(target))
-		stop_autofiring()
-	UnregisterSignal(parent, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG, COMSIG_CLIENT_DISCONNECTED))
-	if(!QDELETED(gun))
-		UnregisterSignal(gun, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETED))
-		gun.UnregisterSignal(gun, COMSIG_FULL_AUTO_FIRE)
-	gun = null
-	delay = initial(delay)
-	extra_checks = null
-
-
-/datum/component/full_auto_fire/Destroy()
-	fullauto_off()
+/datum/component/automatic_fire/Destroy()
+	autofire_off()
 	return ..()
 
 
-/datum/component/full_auto_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
+/datum/component/automatic_fire/proc/autofire_on(client/usercli, new_delay, flags)
+	clicker = usercli
+	if(!isnull(flags))
+		autofire_flags = flags
+	if(!isnull(new_delay))
+		delay = new_delay
+	RegisterSignal(parent, COMSIG_PARENT_QDELETED, .proc/autofire_off)
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/autofire_off)
+	RegisterSignal(clicker, COMSIG_CLIENT_DISCONNECTED, .proc/autofire_off)
+	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDOWN, .proc/on_mouse_down)
+	SEND_SIGNAL(parent, COMSIG_GUN_AUTOFIRE_ON, clicker)
+
+
+/datum/component/automatic_fire/proc/autofire_off()
+	if(!isnull(target))
+		stop_autofiring()
+	if(!QDELETED(clicker))
+		UnregisterSignal(clicker, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG, COMSIG_CLIENT_DISCONNECTED))
+	clicker = null
+	if(!QDELETED(parent))
+		SEND_SIGNAL(parent, COMSIG_GUN_AUTOFIRE_OFF)
+		UnregisterSignal(parent, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETED))
+	delay = initial(delay)
+
+
+/datum/component/automatic_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
 	var/list/modifiers = params2list(params) //If they're shift+clicking, for example, let's not have them accidentally shoot.
 	if(modifiers["shift"])
 		return NONE
@@ -47,49 +53,43 @@
 		return NONE
 	if(isnull(location))
 		return NONE //If we click and drag on our worn backpack, for example, we want it to open instead.
-	. = extra_checks?.Invoke(target) //If there are no extra checks, it will be null and go on as normal.
-	switch(.) //Here we give the chance for custom behavior.
-		if(NONE, COMSIG_CLIENT_MOUSEDOWN_INTERCEPT)
-			return //Null lets things progress. NONE lets the click pass .COMSIG_CLIENT_MOUSEDOWN_INTERCEPT doesn't.
 	src.target = target
+	mouse_parameters = params
 	start_autofiring()
 	return COMSIG_CLIENT_MOUSEDOWN_INTERCEPT
 
 
-/datum/component/full_auto_fire/proc/start_autofiring()
-	var/client/holder = parent
-	holder.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
-	RegisterSignal(parent, COMSIG_CLIENT_MOUSEUP, .proc/stop_autofiring)
-	RegisterSignal(parent, COMSIG_CLIENT_MOUSEDRAG, .proc/on_mouse_drag)
-	START_PROCESSING(SSfastprocess, src)
+/datum/component/automatic_fire/proc/start_autofiring()
+	clicker.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/stop_autofiring)
+	if(autofire_flags & AUTOFIRE_TRACKTARGET)
+		RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDRAG, .proc/on_mouse_drag)
+	delay_timer = addtimer(CALLBACK(src, .proc/process), delay, TIMER_STOPPABLE|TIMER_LOOP)
 
 
-/datum/component/full_auto_fire/proc/stop_autofiring(datum/source, atom/object, turf/location, control, params)
-	var/client/holder = parent
-	holder.mouse_pointer_icon = initial(holder.mouse_pointer_icon)
-	UnregisterSignal(parent, list(COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG))
+/datum/component/automatic_fire/proc/stop_autofiring(datum/source, atom/object, turf/location, control, params)
+	shots_fired = 0
+	clicker.mouse_pointer_icon = initial(clicker.mouse_pointer_icon)
+	UnregisterSignal(clicker, list(COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG))
+	autofire_flags = initial(autofire_flags)
 	target = null
-	STOP_PROCESSING(SSfastprocess, src)
+	mouse_parameters = null
+	if(delay_timer)
+		deltimer(delay_timer)
 
 
-/datum/component/full_auto_fire/proc/on_mouse_drag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+/datum/component/automatic_fire/proc/on_mouse_drag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	if(isnull(over_location))
 		return //This happens when the mouse is over an inventory or screen object, for example.
-	target = src_object
+	target = over_object
+	mouse_parameters = params
 
 
-/datum/component/full_auto_fire/process()
-	if(world.time < next_fire)
-		return
-	next_fire = world.time + delay
-	. = extra_checks?.Invoke(target)
-	switch(.) //Here we give the chance for custom behavior.
-		if(NONE, COMSIG_CLIENT_MOUSEDOWN_INTERCEPT)
-			return //Null lets things progress. NONE and COMSIG_CLIENT_MOUSEDOWN_INTERCEPT don't.
-	var/client/holder = parent
-	SEND_SIGNAL(gun, COMSIG_FULL_AUTO_FIRE, target, holder.mob)
+/datum/component/automatic_fire/process()
+	SEND_SIGNAL(parent, COMSIG_FULL_AUTO_FIRE, target, clicker.mob, mouse_parameters, ++shots_fired)
 
 
+/*
 //Full auto action.
 /datum/action/toggle_full_auto
 	name = "Toggle Full Auto"
@@ -107,13 +107,13 @@
 	if(!owner.client)
 		return
 	if(active)
-		var/datum/component/full_auto_fire/fullauto = owner.client.LoadComponent(/datum/component/full_auto_fire)
-		fullauto.fullauto_off()
+		var/datum/component/automatic_fire/fullauto = owner.client.LoadComponent(/datum/component/automatic_fire)
+		fullauto.autofire_off()
 		button.overlays -= selected_frame
 		active = FALSE
 		return
-	var/datum/component/full_auto_fire/fullauto = owner.client.LoadComponent(/datum/component/full_auto_fire)
-	fullauto.fullauto_on(target)
+	var/datum/component/automatic_fire/fullauto = owner.client.LoadComponent(/datum/component/automatic_fire)
+	fullauto.autofire_on(target)
 	button.overlays += selected_frame
 	active = TRUE
 
@@ -122,8 +122,41 @@
 	if(active)
 		action_activate()
 	return ..()
+*/
 
 
-//Full auto proc.
-/datum/proc/do_auto_fire()
-	CRASH("[usr] calling for undefined do_auto_fire() on [src]")
+//Procs to be put elsewhere later on.
+/obj/item/weapon/gun/proc/on_autofire_on(datum/source, mob/shooter)
+	RegisterSignal(src, COMSIG_FULL_AUTO_FIRE, .proc/do_autofire)
+	RegisterSignal(src, COMSIG_GUN_AUTOFIRE_OFF, .proc/on_autofire_off)
+
+
+/obj/item/weapon/gun/proc/on_autofire_off(datum/source)
+	UnregisterSignal(src, COMSIG_FULL_AUTO_FIRE)
+	UnregisterSignal(src, COMSIG_GUN_AUTOFIRE_OFF)
+
+
+/obj/item/weapon/gun/proc/autofire_on_equipped(datum/source, mob/shooter, slot)
+	var/datum/component/automatic_fire/fullauto = LoadComponent(/datum/component/automatic_fire)
+	switch(slot)
+		if(SLOT_L_HAND, SLOT_R_HAND)
+			fullauto.autofire_on(shooter)
+		else
+			fullauto.autofire_off()
+
+
+/obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/shooter, params, shots_fired)
+	if(get_dist(shooter, target) < 1)
+		return //Can't autofire-shoot ourselves or on the same tile.
+
+	Fire(target, shooter, params) //Otherwise, fire normally.
+
+
+/obj/item/weapon/gun/minigun/do_autofire(datum/source, atom/target, mob/shooter, params, shots_fired)
+	if(shooter.action_busy)
+		return
+	if(shots_fired == 1) //First shot.
+		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
+		if(!do_after(shooter, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+			return
+	return ..()

@@ -78,3 +78,8 @@
 /datum/action/item_action/firemode/burst_firemode
 	name = "Burst Firemode"
 	action_firemode = GUN_FIREMODE_BURSTFIRE
+
+
+/datum/action/item_action/firemode/automatic_firemode
+	name = "Automatic Firemode"
+	action_firemode = GUN_FIREMODE_BURSTFIRE

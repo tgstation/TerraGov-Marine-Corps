@@ -242,11 +242,10 @@
 	var/icon_empty = "M56D_e" //Empty
 	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards MG direction
 	var/view_tiles = 7		//this is amount of tiles we want person to see in each direction (7 by default)
-	var/datum/action/toggle_full_auto/toggle_full_auto_action
+
 
 /obj/machinery/m56d_hmg/Initialize()
 	. = ..()
-	toggle_full_auto_action = new(src)
 	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
 	update_icon()
 
@@ -428,10 +427,10 @@
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
 
-
+/*
 /obj/machinery/m56d_hmg/do_auto_fire(datum/source, atom/autofire_target, mob/living/user)
 	InterceptClickOn(user, null, autofire_target)
-
+*/
 
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
 	if(!ishuman(usr))
@@ -527,7 +526,6 @@
 	operator = user
 	user.verbs += /mob/living/proc/toogle_mg_burst_fire
 	user.client.click_intercept = src
-	toggle_full_auto_action.give_action(user)
 
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
@@ -539,7 +537,6 @@
 	if(operator == user)
 		operator = null
 	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
-	toggle_full_auto_action.remove_action(user)
 
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)

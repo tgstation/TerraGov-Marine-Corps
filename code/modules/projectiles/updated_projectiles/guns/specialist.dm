@@ -995,18 +995,11 @@
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE)
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOFIRE)
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-
-/obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(user.action_busy)
-		return
-	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-	if(do_after(user, 5, TRUE, src, BUSY_ICON_DANGER)) //Half second wind up
-		return ..()
 
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
@@ -1018,7 +1011,8 @@
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
+	//recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 

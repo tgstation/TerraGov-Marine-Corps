@@ -620,6 +620,8 @@ should be alright.
 				actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
 			if(GUN_FIREMODE_BURSTFIRE)
 				actions_types += list(/datum/action/item_action/firemode/burst_firemode)
+			if(GUN_FIREMODE_AUTOFIRE)
+				actions_types += list(/datum/action/item_action/firemode/automatic_firemode)
 		var/action_type = actions_types[length(actions_types)]
 		var/datum/action/new_action = new action_type(src)
 		if(user)
@@ -645,6 +647,8 @@ should be alright.
 				action_type = /datum/action/item_action/firemode/semiauto_firemode
 			if(GUN_FIREMODE_BURSTFIRE)
 				action_type = /datum/action/item_action/firemode/burst_firemode
+			if(GUN_FIREMODE_AUTOFIRE)
+				action_type = /datum/action/item_action/firemode/automatic_firemode
 		actions_types -= action_type
 
 		var/datum/action/old_action = locate(action_type) in actions

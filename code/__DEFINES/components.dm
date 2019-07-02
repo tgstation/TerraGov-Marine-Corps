@@ -138,6 +138,10 @@
 #define COMSIG_GRAB_SELF_ATTACK "grab_self_attack"				//from base of obj/item/grab/attack() if attacked is the same as attacker: (mob/living/user)
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
 
+// /obj/item/gun signals
+#define COMSIG_GUN_AUTOFIRE_ON "gun_autofire_on"
+#define COMSIG_GUN_AUTOFIRE_OFF "gun_autofire_off"
+
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)

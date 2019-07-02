@@ -71,6 +71,7 @@
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst fire mode"
+#define GUN_FIREMODE_AUTOFIRE "automatic fire mode"
 
 //Gun attachable related flags.
 //flags_attach_features
