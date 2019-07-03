@@ -8,7 +8,7 @@
 	item_state = "utility"
 	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
 
 
@@ -254,7 +254,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
 	item_state = "marinebelt"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 5
 	max_w_class = 3
 	max_storage_space = 15
@@ -302,7 +302,7 @@
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets."
 	icon_state = "shotgunbelt"
 	item_state = "shotgunbelt"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 10
 	max_w_class = 2
 	max_storage_space = 20
@@ -343,7 +343,7 @@
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
 	item_state="knifebelt"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 6
 	max_w_class = 1
 	max_storage_space = 6
@@ -364,7 +364,7 @@
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt" // temp
 	item_state="grenadebelt"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 8
 	max_w_class = 3
 	max_storage_space = 24
@@ -384,7 +384,7 @@
 
 /obj/item/storage/belt/grenade/b18
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 16
 	max_w_class = 3
 	max_storage_space = 48
@@ -413,7 +413,7 @@
 	name= "\improper G8 general utility pouch"
 	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage."
 	storage_slots = 3
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
@@ -429,7 +429,7 @@
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
 	use_sound = null
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 5
 	max_storage_space = 11
 	max_w_class = 3

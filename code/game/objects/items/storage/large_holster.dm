@@ -4,7 +4,7 @@
 	name = "\improper Rifle Holster"
 	desc = "holster"
 	icon = 'icons/obj/items/storage/storage.dmi'
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 4
 	storage_slots = 1

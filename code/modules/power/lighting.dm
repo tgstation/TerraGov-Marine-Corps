@@ -556,7 +556,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
@@ -578,7 +578,7 @@
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	name = "large light tube"
 	brightness = 15
 
@@ -692,14 +692,14 @@
 /obj/machinery/landinglight/ds1
 
 
-/obj/machinery/landinglight/ds1/New()
+/obj/machinery/landinglight/ds1/Initialize(mapload, ...)
 	. = ..()
 	id = "[CONFIG_GET(string/ship_name)] Dropship 1"
 
 /obj/machinery/landinglight/ds2
 
 
-/obj/machinery/landinglight/ds2/New()
+/obj/machinery/landinglight/ds2/Initialize(mapload, ...)
 	. = ..()
 	id = "[CONFIG_GET(string/ship_name)] Dropship 2" // ID for landing zone
 

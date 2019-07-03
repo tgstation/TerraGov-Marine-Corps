@@ -6,7 +6,7 @@
 	desc = "Some empty sandbags, best to fill them up if you want to use them."
 	singular_name = "sandbag"
 	icon_state = "sandbag_stack"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 2
 	throwforce = 0
 	throw_speed = 5
@@ -61,7 +61,7 @@
 	desc = "Some bags filled with sand. For now, just cumbersome, but soon to be used for fortifications."
 	singular_name = "sandbag"
 	icon_state = "sandbag_pile"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	force = 9.0
 	throwforce = 15.0
 	throw_speed = 5

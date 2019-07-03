@@ -9,7 +9,7 @@
 	default_ammo = /datum/ammo/flamethrower //doesn't actually need bullets. But we'll get null ammo error messages if we don't
 	max_rounds = 60 //Per turf.
 	current_rounds = 60
-	w_class = 3.0 //making sure you can't sneak this onto your belt.
+	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	gun_type = /obj/item/weapon/gun/flamer
 	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
 	flags_magazine = NONE

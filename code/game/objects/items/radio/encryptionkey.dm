@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "cypherkey"
 	item_state = ""
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/list/channels = list()
 
 

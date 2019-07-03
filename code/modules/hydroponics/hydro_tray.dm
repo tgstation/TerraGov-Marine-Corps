@@ -666,7 +666,7 @@
 	name = "soil"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "soil"
-	density = 0
+	density = FALSE
 	use_power = 0
 	draw_warnings = 0
 

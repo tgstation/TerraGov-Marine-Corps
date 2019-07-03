@@ -25,9 +25,8 @@
 
 /obj/structure/closet/secure_closet/marine/PopulateContents()
 	new /obj/item/clothing/shoes/marine(src)
-	switch(SSmapping.config.map_name)
-		if(MAP_ICE_COLONY)
-			new /obj/item/clothing/mask/rebreather/scarf(src)
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+		new /obj/item/clothing/mask/rebreather/scarf(src)
 
 
 // STANDARD MARINE
@@ -346,10 +345,9 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	switch(SSmapping.config.map_name)
-		if(MAP_ICE_COLONY)
-			new /obj/item/clothing/mask/rebreather/scarf(src)
-			new /obj/item/clothing/mask/rebreather/scarf(src)
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+		new /obj/item/clothing/mask/rebreather/scarf(src)
+		new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/military_police
@@ -463,10 +461,9 @@
 	new /obj/item/clothing/head/surgery/green(src)
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/clothing/suit/surgical(src)
-	switch(SSmapping.config.map_name)
-		if(MAP_ICE_COLONY)
-			new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
-			new /obj/item/clothing/mask/rebreather/scarf(src)
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+		new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
+		new /obj/item/clothing/mask/rebreather/scarf(src)
 
 
 //ALAMAYER CARGO CLOSET

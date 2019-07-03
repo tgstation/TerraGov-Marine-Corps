@@ -8,8 +8,8 @@
 	var/list/entries
 	var/list/entries_by_type
 
-	var/list/maplist
-	var/datum/map_config/defaultmap
+	var/list/list/maplist
+	var/list/defaultmaps
 
 	var/list/modes // allowed modes
 	var/list/gamemode_cache
@@ -44,7 +44,8 @@
 				for(var/J in legacy_configs)
 					LoadEntries(J)
 				break
-	loadmaplist(CONFIG_MAPS_FILE)
+	loadmaplist(CONFIG_GROUND_MAPS_FILE, GROUND_MAP)
+	loadmaplist(CONFIG_SHIP_MAPS_FILE, SHIP_MAP)
 	LoadMOTD()
 
 
@@ -54,9 +55,11 @@
 	entries_by_type.Cut()
 	QDEL_LIST_ASSOC_VAL(entries)
 	entries = null
-	QDEL_LIST_ASSOC_VAL(maplist)
+	for(var/list/L in maplist)
+		QDEL_LIST_ASSOC_VAL(L)
 	maplist = null
-	QDEL_NULL(defaultmap)
+	QDEL_LIST_ASSOC_VAL(defaultmaps)
+	defaultmaps = null
 
 
 /datum/controller/configuration/Destroy()
@@ -245,12 +248,12 @@
 	GLOB.motd = motd
 
 
-/datum/controller/configuration/proc/loadmaplist(filename)
+/datum/controller/configuration/proc/loadmaplist(filename, maptype)
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
 	var/list/Lines = world.file2list(filename)
 
-	var/datum/map_config/currentmap = null
+	var/datum/map_config/currentmap
 	for(var/t in Lines)
 		if(!t)
 			continue
@@ -274,31 +277,34 @@
 		if(!command)
 			continue
 
-		if (!currentmap && command != "map")
+		if(!currentmap && command != "map")
 			continue
 
-		switch (command)
-			if ("map")
+		switch(command)
+			if("map")
 				currentmap = load_map_config("_maps/[data].json")
 				if(currentmap.defaulted)
 					log_config("Failed to load map config for [data]!")
 					currentmap = null
-			if ("minplayers","minplayer")
+			if("minplayers", "minplayer")
 				currentmap.config_min_users = text2num(data)
-			if ("maxplayers","maxplayer")
+			if("maxplayers", "maxplayer")
 				currentmap.config_max_users = text2num(data)
-			if ("weight","voteweight")
+			if("weight", "voteweight")
 				currentmap.voteweight = text2num(data)
-			if ("default","defaultmap")
-				defaultmap = currentmap
-			if ("endmap")
+			if("default", "defaultmap")
+				LAZYINITLIST(defaultmaps)
+				defaultmaps[maptype] = currentmap
+			if("endmap")
 				LAZYINITLIST(maplist)
-				maplist[currentmap.map_name] = currentmap
+				LAZYINITLIST(maplist[maptype])
+				maplist[maptype][currentmap.map_name] = currentmap
 				currentmap = null
-			if ("disabled")
+			if("disabled")
 				currentmap = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
+
 
 /datum/controller/configuration/proc/pick_mode(mode_name)
 	for(var/T in gamemode_cache)

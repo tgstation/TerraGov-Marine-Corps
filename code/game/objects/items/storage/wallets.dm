@@ -3,7 +3,7 @@
 	desc = "It can hold a few small and personal things."
 	storage_slots = 10
 	icon_state = "wallet"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	can_hold = list(
 		/obj/item/spacecash,
 		/obj/item/card,
@@ -63,16 +63,6 @@
 				return
 	icon_state = "wallet"
 
-
-/obj/item/storage/wallet/GetID()
-	return front_id
-
-/obj/item/storage/wallet/GetAccess()
-	var/obj/item/I = GetID()
-	if(I)
-		return I.GetAccess()
-	else
-		return ..()
 
 /obj/item/storage/wallet/random/Initialize()
 	. = ..()

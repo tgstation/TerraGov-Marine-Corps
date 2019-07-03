@@ -261,7 +261,7 @@ datum/tech/robotics
 	desc = "A disk for storing technology data for further research."
 	icon_state = "datadisk2"
 	item_state = "card-id"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	matter = list("metal" = 30, "glass" = 10)
 	var/datum/tech/stored
 

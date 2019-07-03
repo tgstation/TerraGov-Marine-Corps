@@ -246,7 +246,7 @@
 	icon_state = "bucket"
 	item_state = "bucket"
 	matter = list("metal" = 200)
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120

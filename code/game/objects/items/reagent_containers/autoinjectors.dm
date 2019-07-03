@@ -5,7 +5,7 @@
 	icon_state = "autoinjector"
 	item_state = "hypo"
 	amount_per_transfer_from_this = 15
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	volume = 15
 	skilllock = 0
 	init_reagent_flags = DRAWABLE

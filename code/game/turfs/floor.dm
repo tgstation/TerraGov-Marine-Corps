@@ -400,7 +400,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			update_icon()
 			to_chat(user, "<span class='notice'>You replace the light bulb.</span>")
 
-	else if(iscrowbar(I) && !is_plating())
+	else if(iscrowbar(I) && !is_plating() && floor_tile)
 		if(broken || burnt)
 			to_chat(user, "<span class='warning'>You remove the broken plating.</span>")
 			return

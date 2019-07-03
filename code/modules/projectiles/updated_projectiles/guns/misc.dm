@@ -93,7 +93,7 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = "syringegun"
 	item_state = "syringegun"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 10
 	force = 4.0
@@ -214,7 +214,7 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "null"
 	anchored = TRUE
-	density = 0
+	density = FALSE
 
 /obj/effect/syringe_gun_dummy/Initialize()
 	create_reagents(15)

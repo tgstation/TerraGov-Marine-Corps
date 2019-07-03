@@ -42,7 +42,7 @@
 				return
 		if(3.0)
 			if (prob(25))
-				src.density = 0
+				src.density = FALSE
 		else
 	return
 
@@ -206,9 +206,9 @@
 			return
 	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.stasis_mob)
+		if(!C.bodybag_occupant)
 			return
-		M = C.stasis_mob
+		M = C.bodybag_occupant
 		C.open()
 		user.stop_pulling()
 		user.start_pulling(M)

@@ -460,9 +460,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aby" = (
-/obj/machinery/computer/shuttle_control/dropship1{
-	onboard = 0
-	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
@@ -2511,8 +2509,8 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "ahE" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = -32
+/obj/machinery/vending/nanomed{
+	dir = 1
 	},
 /obj/machinery/light,
 /obj/effect/alien/weeds/node,
@@ -4487,10 +4485,8 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "ane" = (
-/obj/machinery/vending/wallmed1{
-	name = "Emergency NanoMed";
-	pixel_x = 30;
-	req_access_txt = "0"
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 6
@@ -5554,8 +5550,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "apY" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -30
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /obj/machinery/light/built{
 	dir = 1
@@ -5869,8 +5865,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "aqQ" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 30
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/machinery/light/built{
 	dir = 1
@@ -5931,7 +5927,7 @@
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "ara" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
@@ -6134,7 +6130,7 @@
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "arH" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/paper_bin,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
@@ -6367,7 +6363,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "asq" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "asr" = (
@@ -7848,12 +7844,12 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
 "awA" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/tool/pen,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "awB" = (
-/obj/structure/table/holotable/wood,
+/obj/structure/table/woodentable,
 /obj/item/reagent_container/food/drinks/coffee,
 /obj/item/phone,
 /turf/open/floor/carpet,
@@ -12079,12 +12075,6 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aIY" = (
-/obj/machinery/embedded_controller/radio/airlock/access_controller{
-	id_tag = "viro_controller";
-	pixel_y = 28;
-	tag_exterior_door = "viro_ext";
-	tag_interior_door = "viro_int"
-	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
@@ -17834,7 +17824,6 @@
 /area/bigredv2/outside/admin_building)
 "bbr" = (
 /obj/structure/table,
-/obj/item/storage/photo_album,
 /obj/item/tool/pen/red,
 /turf/open/floor,
 /area/bigredv2/outside/admin_building)

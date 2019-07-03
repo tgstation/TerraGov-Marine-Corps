@@ -11,7 +11,7 @@
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
 	icon_state = "firstaid"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 8
 	cant_hold = list(
@@ -151,7 +151,7 @@
 	throw_speed = 2
 	throw_range = 8
 	storage_slots = 3
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/reagent_container/pill,
 		/obj/item/reagent_container/glass/bottle,
@@ -202,7 +202,7 @@
 	icon_state = "pill_canister1"
 	icon = 'icons/obj/items/chemistry.dmi'
 	item_state = "contsolid"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/reagent_container/pill,
 		/obj/item/toy/dice,
@@ -377,5 +377,5 @@
 	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
 
 	req_access = list(ACCESS_NT_CORPORATE)
-	req_id_role = "Corporate Liaison"
+	req_id_role = CORPORATE_LIAISON
 	scan_name = TRUE

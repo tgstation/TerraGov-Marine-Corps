@@ -6,7 +6,7 @@
 	icon_state = "plastic-explosive_off"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "syndicate=2"
 	var/timer = 10
 	var/atom/plant_target = null //which atom the plstique explosive is planted on

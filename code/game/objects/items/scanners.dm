@@ -15,7 +15,7 @@ REAGENT SCANNER
 	var/on = 0
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	item_state = "electronic"
 
 	matter = list("metal" = 150)
@@ -65,7 +65,7 @@ REAGENT SCANNER
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
 	matter = list("metal" = 200)
@@ -97,7 +97,7 @@ REAGENT SCANNER
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 
 	// Doesn't work on non-humans and synthetics
-	if(!iscarbon(M) || !issynth(M))
+	if(!iscarbon(M) || issynth(M))
 		user.show_message("\n<span class='notice'> Health Analyzer results for ERROR:\n\t Overall Status: ERROR</span>")
 		user.show_message("\tType: <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
 		user.show_message("\tDamage: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
@@ -510,7 +510,7 @@ REAGENT SCANNER
 	name = "analyzer"
 	icon_state = "atmos"
 	item_state = "analyzer"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
@@ -550,7 +550,7 @@ REAGENT SCANNER
 	name = "mass-spectrometer"
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
@@ -620,7 +620,7 @@ REAGENT SCANNER
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5

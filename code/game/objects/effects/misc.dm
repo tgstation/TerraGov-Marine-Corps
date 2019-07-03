@@ -5,19 +5,8 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "strangepresent"
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 
-
-
-
-
-
-/obj/effect/mark
-	var/mark = ""
-	icon = 'icons/misc/mark.dmi'
-	anchored = TRUE
-	layer = 99
-	mouse_opacity = 0
 
 /obj/effect/beam
 	name = "beam"

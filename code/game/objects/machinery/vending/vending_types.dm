@@ -204,13 +204,13 @@
 					/obj/item/transfer_valve = 6,/obj/item/assembly/timer = 6,/obj/item/assembly/signaler = 6,
 					/obj/item/assembly/prox_sensor = 6,/obj/item/assembly/igniter = 6)
 
-/obj/machinery/vending/wallmed1
+/obj/machinery/vending/nanomed
 	name = "NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	density = FALSE
 	wrenchable = FALSE
 	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = 1,
 					/obj/item/reagent_container/hypospray/autoinjector/tramadol = 1,
@@ -221,21 +221,19 @@
 	contraband = list(/obj/item/reagent_container/syringe/dylovene = 2,
 						/obj/item/reagent_container/syringe/antiviral = 2)
 
-/obj/machinery/vending/wallmed2
-	name = "NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser."
-	icon_state = "wallmed"
-	icon_deny = "wallmed-deny"
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	wrenchable = FALSE
-	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = 1,
-					/obj/item/reagent_container/hypospray/autoinjector/tramadol = 1,
-					/obj/item/reagent_container/syringe/dylovene = 3,
-					/obj/item/stack/medical/bruise_pack = 3,
-					/obj/item/stack/medical/ointment =3,
-					/obj/item/healthanalyzer = 3,
-					/obj/item/stack/medical/splint = 1)
-	contraband = list(/obj/item/reagent_container/pill/tox = 3)
+
+/obj/machinery/vending/nanomed/Initialize(mapload, ...)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -28
+		if(SOUTH)
+			pixel_y = 26
+		if(EAST)
+			pixel_x = -30
+		if(WEST)
+			pixel_x = 25
+
 
 /obj/machinery/vending/security
 	name = "SecTech"

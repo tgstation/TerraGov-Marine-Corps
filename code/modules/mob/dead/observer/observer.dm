@@ -215,44 +215,34 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.icon_state = icon_state
 		ghost.overlays = overlays
 
-	ghost.gender = gender
-
 	if(mind?.name)
 		ghost.real_name = mind.name
-
 	else if(real_name)
 		ghost.real_name = real_name
-
 	else if(gender == MALE)
 		ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
-
 	else
 		ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 	ghost.name = ghost.real_name
-
-	if(mind)
-		ghost.mind = mind
-
-	if(!T)
-		T = pick(GLOB.latejoin)
-
-	ghost.loc = T
-
-	if(!name)
-		ghost.name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+	ghost.gender = gender
+	ghost.alpha = 127
+	ghost.can_reenter_corpse = can_reenter_corpse
+	ghost.timeofdeath = timeofdeath
+	ghost.mind = mind
+	mind = null
+	ghost.key = key
 
 	if(!can_reenter_corpse)
 		set_away_time()
 		ghost.mind?.current = ghost
-		// if you ghost while alive your current mob is now your ghost
-		// aghosting is invoked with can_reenter_corpse = TRUE so this won't mess with aghosting
 
-	ghost.alpha = 127
+	if(!T)
+		T = safepick(GLOB.latejoin)
+	if(!T)
+		stack_trace("no latejoin landmark detected")
 
-	ghost.can_reenter_corpse = can_reenter_corpse
-	ghost.timeofdeath = timeofdeath
-	ghost.key = key
+	ghost.forceMove(T)
 
 	return ghost
 
@@ -892,3 +882,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
 	return IsAdminGhost(usr)
+
+
+/mob/dead/observer/get_photo_description(obj/item/camera/camera)
+	if(!invisibility || camera.see_ghosts)
+		return "You can also see a g-g-g-g-ghooooost!"

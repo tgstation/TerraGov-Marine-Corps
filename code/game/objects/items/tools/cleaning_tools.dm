@@ -7,7 +7,7 @@
 	throwforce = 10.0
 	throw_speed = 5
 	throw_range = 10
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	var/mopping = 0
 	var/mopcount = 0
@@ -51,7 +51,7 @@
 	throwforce = 3
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
 
 /obj/item/tool/warning_cone
@@ -63,7 +63,7 @@
 	throwforce = 3
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
 
 
@@ -76,7 +76,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "soap"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20

@@ -151,3 +151,39 @@
 #define RESTRAINED_STRAIGHTJACKET (1<<2)
 #define RESTRAINED_RAZORWIRE (1<<3)
 #define RESTRAINED_PSYCHICGRAB (1<<4)
+
+
+//Explosion resistance
+#define XENO_BOMB_RESIST_4 100
+#define XENO_BOMB_RESIST_3 80
+#define XENO_BOMB_RESIST_2 60
+#define XENO_BOMB_RESIST_1 40
+#define XENO_BOMB_RESIST_0 0
+
+#define SINGLE_CASING	(1 << 0)
+#define SPEEDLOADER		(1 << 1)
+#define MAGAZINE		(1 << 2)
+#define CELL			(1 << 3)
+#define POWERPACK		(1 << 4)
+
+#define EGG_BURST 0
+#define EGG_BURSTING 1
+#define EGG_GROWING 2
+#define EGG_GROWN 3
+#define EGG_DESTROYED 4
+
+#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
+#define EGG_MAX_GROWTH_TIME 15 SECONDS
+
+//Xeno Overlays Indexes//////////
+#define X_LASER_LAYER			9
+#define X_WOUND_LAYER			8
+#define X_HEAD_LAYER			7
+#define X_SUIT_LAYER			6
+#define X_L_HAND_LAYER			5
+#define X_R_HAND_LAYER			4
+#define X_TARGETED_LAYER		3
+#define X_LEGCUFF_LAYER			2
+#define X_FIRE_LAYER			1
+#define X_TOTAL_LAYERS			9
+/////////////////////////////////

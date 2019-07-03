@@ -80,7 +80,7 @@
 	item_state = "grenade_stick"
 	hud_state = "greande_frag"
 	force = 10
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
@@ -268,7 +268,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	throwforce = 1
 	dangerous = FALSE
 	underslug_launchable = TRUE
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	hud_state = "grenade_frag"
 	var/fuel = 0
 

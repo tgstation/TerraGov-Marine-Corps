@@ -216,7 +216,7 @@
 	var/was_fortified = X.fortify
 	if(X.fortify)
 		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
-		if(FT.on_cooldown)
+		if(FT.cooldown_id)
 			to_chat(src, "<span class='xenowarning'>We cannot yet untuck ourselves!</span>")
 			return fail_activate()
 		X.set_fortify(FALSE, TRUE)
@@ -233,14 +233,14 @@
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		GLOB.round_statistics.defender_crest_lowerings++
-		xeno_explosion_resistance = 2
+		armor = armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		armor_bonus += xeno_caste.crest_defense_armor
 		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We raise our crest.</span>")
 		GLOB.round_statistics.defender_crest_raises++
-		xeno_explosion_resistance = 0
+		armor = armor.setRating(bomb = XENO_BOMB_RESIST_0)
 		armor_bonus -= xeno_caste.crest_defense_armor
 		speed_modifier -= DEFENDER_CRESTDEFENSE_SLOWDOWN
 	update_icons()
@@ -273,7 +273,7 @@
 	var/was_crested = X.crest_defense
 	if(X.crest_defense)
 		var/datum/action/xeno_action/CD = X.actions_by_path[/datum/action/xeno_action/toggle_crest_defense]
-		if(CD.on_cooldown)
+		if(CD.cooldown_id)
 			to_chat(X, "<span class='xenowarning'>We cannot yet transition to a defensive stance!</span>")
 			return fail_activate()
 		X.set_crest_defense(FALSE, TRUE)
@@ -290,12 +290,12 @@
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		armor_bonus += xeno_caste.fortify_armor
-		xeno_explosion_resistance = 3
+		armor = armor.setRating(bomb = XENO_BOMB_RESIST_3)
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We resume our normal stance.</span>")
 		armor_bonus -= xeno_caste.fortify_armor
-		xeno_explosion_resistance = 0
+		armor = armor.setRating(bomb = XENO_BOMB_RESIST_0)
 	fortify = on
 	set_frozen(on)
 	anchored = on

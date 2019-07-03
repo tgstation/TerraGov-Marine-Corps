@@ -405,7 +405,8 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/map_change,
+	/datum/admins/proc/change_ground_map,
+	/datum/admins/proc/change_ship_map,
 	/datum/admins/proc/panic_bunker,
 	/datum/admins/proc/mode_check
 	)

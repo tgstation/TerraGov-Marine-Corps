@@ -37,7 +37,7 @@
 	var/list/blip_pool = list()
 	var/detector_range = 14
 	var/detector_mode = MOTION_DETECTOR_LONG
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/active = 0
 	var/recycletime = 120
 	var/long_range_cooldown = 2
@@ -322,7 +322,7 @@
 	name = "MK2 recon tactical sensor"
 	desc = "A device that detects hostile movement; this one is specially minaturized for reconnaissance units. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector_off"
-	w_class = 1 //We can have this in our pocket and still get pings
+	w_class = WEIGHT_CLASS_TINY //We can have this in our pocket and still get pings
 	ping = FALSE //Stealth modo
 
 

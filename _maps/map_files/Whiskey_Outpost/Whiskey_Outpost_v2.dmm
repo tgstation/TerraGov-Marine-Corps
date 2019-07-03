@@ -3501,10 +3501,8 @@
 	},
 /area/whiskey_outpost)
 "jE" = (
-/obj/machinery/vending/wallmed1{
-	name = "Emergency NanoMed";
-	pixel_x = 30;
-	req_access_txt = "0"
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/item/storage/firstaid/regular,
 /turf/open/floor{
@@ -3565,10 +3563,8 @@
 	},
 /area/whiskey_outpost)
 "jO" = (
-/obj/machinery/vending/wallmed1{
-	name = "Emergency NanoMed";
-	pixel_x = 30;
-	req_access_txt = "0"
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/item/roller,
 /turf/open/floor{
@@ -3638,10 +3634,8 @@
 	},
 /area/whiskey_outpost)
 "jZ" = (
-/obj/machinery/vending/wallmed1{
-	name = "Emergency NanoMed";
-	pixel_x = 30;
-	req_access_txt = "0"
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/item/storage/box/sentry,
 /obj/item/flashlight,
@@ -3652,9 +3646,7 @@
 	},
 /area/whiskey_outpost)
 "kb" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
-	},
+/obj/machinery/vending/nanomed,
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
 	dir = 4
@@ -3664,8 +3656,8 @@
 	},
 /area/whiskey_outpost/outside/east)
 "kc" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 32
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";

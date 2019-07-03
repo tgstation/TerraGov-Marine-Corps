@@ -8,7 +8,7 @@
 	sharp = 0
 	edge = 0
 	throwforce = 7
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "combat=2"
 	attack_verb = list("beaten")
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_CAPTAIN, ACCESS_NT_CORPORATE, ACCESS_NT_PMC_GREEN)

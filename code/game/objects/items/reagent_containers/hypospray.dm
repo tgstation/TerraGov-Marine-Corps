@@ -15,7 +15,7 @@
 	init_reagent_flags = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = NOBLUDGEON
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/skilllock = 1
 	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	var/core_name = "hypospray"

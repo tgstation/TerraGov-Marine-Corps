@@ -45,7 +45,7 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
@@ -108,7 +108,7 @@
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter = list("metal" = 80)
 	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("pinched", "nipped")
@@ -326,7 +326,7 @@
 			force = 15
 			damtype = "fire"
 			icon_state = "welder1"
-			w_class = 4
+			w_class = WEIGHT_CLASS_BULKY
 			heat = 3800
 			START_PROCESSING(SSobj, src)
 		else
@@ -374,14 +374,14 @@
 /obj/item/tool/weldingtool/hugetank
 	name = "high-capacity industrial blowtorch"
 	max_fuel = 80
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	matter = list("metal" = 70, "glass" = 120)
 	origin_tech = "engineering=3"
 
 /obj/item/tool/weldingtool/experimental
 	name = "experimental blowtorch"
 	max_fuel = 40 //?
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	matter = list("metal" = 70, "glass" = 120)
 	origin_tech = "engineering=4;phorontech=3"
 	var/last_gen = 0
@@ -408,7 +408,7 @@
 	force = 5.0
 	throwforce = 7.0
 	item_state = "crowbar"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter = list("metal" = 50)
 	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -435,7 +435,7 @@ Welding backpack
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welderpack"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	var/max_fuel = 600 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
 /obj/item/tool/weldpack/Initialize()

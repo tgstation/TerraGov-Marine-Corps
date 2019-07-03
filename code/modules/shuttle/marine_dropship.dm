@@ -8,8 +8,32 @@
 	width = 11
 	height = 21
 
-// clear areas around the shuttle with explosions
+
 /obj/docking_port/stationary/marine_dropship/on_crash()
+	for(var/i in GLOB.apcs_list) //break APCs
+		var/obj/machinery/power/apc/A = i
+		if(!is_mainship_level(A.z)) 
+			continue
+		if(prob(A.crash_break_probability))
+			A.overload_lighting()
+			A.set_broken()
+		CHECK_TICK
+
+	for(var/mob/living/carbon/M in GLOB.alive_mob_list) //knock down mobs
+		if(!is_mainship_level(M.z)) 
+			continue
+		if(M.buckled)
+			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
+			shake_camera(M, 3, 1)
+		else
+			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
+			shake_camera(M, 10, 1)
+			M.KnockDown(3)
+		CHECK_TICK
+
+	GLOB.enter_allowed = FALSE //No joining after dropship crash
+
+	//clear areas around the shuttle with explosions
 	var/turf/C = return_center_turf()
 
 	var/cos = 1
@@ -99,28 +123,6 @@
 	. = ..()
 	SSshuttle.dropships += src
 
-/obj/docking_port/mobile/marine_dropship/on_crash()
-	for(var/obj/machinery/power/apc/A in GLOB.machines) //break APCs
-		if(!is_mainship_level(A.z)) 
-			continue
-		if(prob(A.crash_break_probability))
-			A.overload_lighting()
-			A.set_broken()
-		CHECK_TICK
-
-	for(var/mob/living/carbon/M in GLOB.alive_mob_list) //knock down mobs
-		if(!is_mainship_level(M.z)) 
-			continue
-		if(M.buckled)
-			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
-			shake_camera(M, 3, 1)
-		else
-			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
-			shake_camera(M, 10, 1)
-			M.KnockDown(3)
-		CHECK_TICK
-
-	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")
@@ -228,8 +230,7 @@
 
 	var/datum/game_mode/D = SSticker.mode
 
-	if(!D.can_summon_dropship())
-		to_chat(src, "<span class='warning'>You can't call down the shuttle.</span>")
+	if(!D.can_summon_dropship(src))
 		return
 
 	to_chat(src, "<span class='warning'>You begin calling down the shuttle.</span>")
@@ -246,8 +247,11 @@
 
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
-/datum/game_mode/proc/can_summon_dropship()
+/datum/game_mode/proc/can_summon_dropship(mob/user)
+	if(user.action_busy)
+		return FALSE
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
+		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
 		return FALSE
 	var/obj/docking_port/mobile/marine_dropship/D
 	for(var/k in SSshuttle.dropships)
@@ -255,15 +259,54 @@
 		if(M.id == "alamo")
 			D = M
 	if(is_ground_level(D.z))
+		var/locked_sides = 0
+		for(var/i in D.left_airlocks)
+			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		for(var/i in D.right_airlocks)
+			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		for(var/i in D.rear_airlocks)
+			var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		if(!locked_sides)
+			to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
+			return FALSE
+		if(locked_sides < 3)
+			to_chat(user, "<span class='warning'>At least one side is still unlocked!</span>")
+			return FALSE
+		to_chat(user, "<span class='warning'>We begin overriding the shuttle lockdown. This will take a while...</span>")
+		if(!do_after(user, 60 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+			to_chat(user, "<span class='warning'>We cease overriding the shuttle lockdown.</span>")
+			return FALSE
+		D.hijack_state = HIJACK_STATE_CALLED_DOWN
+		D.unlock_all()
+		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")
+		playsound(user, "alien_roar", 50)
 		return FALSE
 	if(D.hijack_state != HIJACK_STATE_NORMAL)
+		to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
 		return FALSE
 	var/humans_on_ground = 0
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
+		if(isnestedhost(H))
+			continue
 		if(is_ground_level(H.z))
 			humans_on_ground++
-	return (humans_on_ground/length(GLOB.alive_human_list)) <= ALIVE_HUMANS_FOR_CALLDOWN
+	if((humans_on_ground/length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN)
+		to_chat(user, "<span class='warning'>There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this.</span>")
+		return FALSE
+	return TRUE
 
 // summon dropship to closest lz to A
 /datum/game_mode/proc/summon_dropship(atom/A)
@@ -333,12 +376,16 @@
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		var/destination_found
+		var/list/valid_destionations = list()
 		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 			if(!options.Find(S.id))
 				continue
 			if(!M.check_dock(S, silent=TRUE))
 				continue
 			destination_found = TRUE
+			valid_destionations[S.name] = S
+		for(var/i in sortList(valid_destionations))
+			var/obj/docking_port/stationary/S = valid_destionations[i]
 			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		dat += "Left Doors: <a href='?src=[REF(src)];lock=left'>Lockdown</a> <a href='?src=[REF(src)];unlock=left'>Unlock</a><br>"
 		dat += "Right Doors: <a href='?src=[REF(src)];lock=right'>Lockdown</a> <a href='?src=[REF(src)];unlock=right'>Unlock</a><br>"
@@ -348,7 +395,7 @@
 			dat += "<B>Shuttle Locked</B><br>"
 	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
-	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 400, 300)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
@@ -360,7 +407,7 @@
 
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
 	. = ..()
-	if(!Adjacent(usr))
+	if(.)
 		return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	if(!M)
@@ -428,16 +475,6 @@
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-
-
-/obj/machinery/computer/shuttle_control
-	name = "shuttle control console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-
-
-/obj/machinery/computer/shuttle_control/attack_ai(mob/living/silicon/ai/AI)
-	return attack_hand(AI)
 
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
@@ -742,35 +779,57 @@
 
 //Dropship control console
 
-/obj/machinery/computer/shuttle_control
-	var/onboard
+/obj/machinery/computer/shuttle/shuttle_control
+	name = "shuttle control console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
 
-/obj/machinery/computer/shuttle_control/dropship1
+
+/obj/machinery/computer/shuttle/shuttle_control/ui_interact(mob/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access Denied!</span>")
+		return
+	var/list/options = params2list(possible_destinations)
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	if(M)
+		var/destination_found
+		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+			if(!options.Find(S.id))
+				continue
+			if(!M.check_dock(S, silent=TRUE))
+				continue
+			destination_found = TRUE
+			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+		if(!destination_found)
+			dat += "<B>Shuttle Locked</B><br>"
+	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
+
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	popup.set_content("<center>[dat]</center>")
+	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+	popup.open()
+
+
+/obj/machinery/computer/shuttle/shuttle_control/attack_ai(mob/living/silicon/ai/AI)
+	return attack_hand(AI)
+
+
+/obj/machinery/computer/shuttle/shuttle_control/dropship1
 	name = "\improper 'Alamo' dropship console"
 	desc = "The remote controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texans to rally to the flag."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
+	shuttleId = "alamo"
+	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle_control/dropship1/onboard
-	name = "\improper 'Alamo' flight controls"
-	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "console"
-	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-/obj/machinery/computer/shuttle_control/dropship2
+/obj/machinery/computer/shuttle/shuttle_control/dropship2
 	name = "\improper 'Normandy' dropship console"
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "shuttle"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
-
-/obj/machinery/computer/shuttle_control/dropship2/onboard
-	name = "\improper 'Normandy' flight controls"
-	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "console"
-	req_access = list(ACCESS_MARINE_DROPSHIP)

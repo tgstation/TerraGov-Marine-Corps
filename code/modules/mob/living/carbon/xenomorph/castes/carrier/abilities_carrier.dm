@@ -48,7 +48,7 @@
 		to_chat(X, "<span class='warning'>We need a facehugger in our hand to throw one!</span>")
 		return fail_activate()
 
-	if(!on_cooldown)
+	if(!cooldown_id)
 		X.dropItemToGround(F)
 		playsound(X, 'sound/effects/throw.ogg', 30, 1)
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)

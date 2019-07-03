@@ -5,8 +5,8 @@
 	desc = "A little cleaning robot, he looks so excited!"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "cleanbot0"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	//weight = 1.0E7
 	max_integrity = 25
 	var/cleaning = 0
@@ -291,7 +291,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		cleaning = 0
 		qdel(target)
 		icon_state = "cleanbot[on]"
-		anchored = 0
+		anchored = FALSE
 		target = null
 
 /obj/machinery/bot/cleanbot/explode()

@@ -33,8 +33,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
-	world.log = file("[GLOB.log_directory]/runtime.log")
-
 	LoadVerbs(/datum/verbs/menu)
 	load_admins()
 
@@ -133,7 +131,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 /world/Reboot(ping)
 	if(ping)
 		send2update(CONFIG_GET(string/restart_message))
-		send2update("Round ID [GLOB.round_id] finished | Next Map: [SSmapping?.next_map_config?.map_name] | Round End State: [SSticker?.mode?.round_finished] | Players: [length(GLOB.clients)]")
+		send2update("Round ID [GLOB.round_id] finished | Next Ground Map: [SSmapping.next_map_configs[GROUND_MAP] ? SSmapping.next_map_configs[GROUND_MAP].map_name : SSmapping.configs[GROUND_MAP].map_name] | Next Ship Map: [SSmapping.next_map_configs[SHIP_MAP] ? SSmapping.next_map_configs[SHIP_MAP].map_name : SSmapping.configs[SHIP_MAP].map_name] | Round End State: [SSticker.mode?.round_finished] | Players: [length(GLOB.clients)]")
 	TgsReboot()
 	for(var/i in GLOB.clients)
 		var/client/C = i
@@ -165,24 +163,25 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</a></b>"
 		else
 			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</b>"
+		var/map_name = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : null
 		if(Master?.current_runlevel && GLOB.master_mode)
-			switch(SSmapping.config.map_name)
+			switch(map_name)
 				if("Ice Colony")
-					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[map_name]</a></b>"
 				if("LV624")
-					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[map_name]</a></b>"
 				if("Big Red")
-					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[map_name]</a></b>"
 				if("Prison Station")
-					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[map_name]</a></b>"
 				if("Whiskey Outpost")
-					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[map_name]</a></b>"
 				else
-					s += "<br>Map: <b>[SSmapping.config.map_name]</b>"
+					s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
 			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
-			s += "<br>Map: <b>[SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]</b>"
+			s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
 
 		status = s
 

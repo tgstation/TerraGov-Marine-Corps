@@ -3,7 +3,7 @@
 	singular_name = "floor tile"
 	desc = "Those could work as a pretty decent throwing weapon"
 	icon_state = "tile"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 6.0
 	matter = list("metal" = 937.5)
 	throwforce = 8.0

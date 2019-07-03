@@ -32,7 +32,7 @@
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_EARS
 
@@ -62,7 +62,7 @@
 	var/blood_overlay_type = "suit"
 	var/list/supporting_limbs = null
 	siemens_coefficient = 0.9
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if(ismob(loc))
@@ -97,7 +97,7 @@
 /obj/item/clothing/gloves
 	name = "gloves"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
 	siemens_coefficient = 0.50
 	var/wired = 0

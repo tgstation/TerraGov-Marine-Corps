@@ -13,8 +13,8 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "splatter"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 
 /obj/effect/xenomorph/splatter/New() //Self-deletes after creation & animation
@@ -27,8 +27,8 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acidblob"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 
 /obj/effect/xenomorph/splatterblob/New() //Self-deletes after creation & animation
@@ -41,8 +41,8 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acid2"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
@@ -101,8 +101,8 @@
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
 	icon_state = "acid_normal"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0

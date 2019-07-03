@@ -102,9 +102,9 @@
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
-			X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
-			X.smoke_system.set_up(1, get_turf(src))
-			X.smoke_system.start()
+			var/datum/effect_system/smoke_spread/xeno/neuro/NS = new(X)
+			NS.set_up(1, get_turf(src))
+			NS.start()
 			to_chat(X, "<span class='xenodanger'>We abort emitting neurogas, our expended plasma resulting in only a feeble wisp.</span>")
 			X.emitting_gas = FALSE
 			X.icon_state = "Defiler Running"
@@ -136,12 +136,12 @@
 			return
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
-		X.smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+		var/datum/effect_system/smoke_spread/xeno/neuro/N = new(X)
 		if(count > 1)
-			X.smoke_system.set_up(2, T)
+			N.set_up(2, T)
 		else //last emission is larger
-			X.smoke_system.set_up(3, T)
-		X.smoke_system.start()
+			N.set_up(3, T)
+		N.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)

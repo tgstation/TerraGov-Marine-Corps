@@ -5,7 +5,7 @@
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet00"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
@@ -117,7 +117,7 @@
 	desc = "The HU-452, an experimental urinal."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 
 /obj/structure/urinal/attackby(obj/item/I, mob/user, params)
@@ -150,7 +150,7 @@
 	desc = "The HS-451. Installed in the 2050s by the Nanotrasen Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	use_power = 0
 	var/on = 0
@@ -461,7 +461,7 @@
 
 	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
 
-	if(!do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	if(user.loc != location || user.get_active_held_item() != I)

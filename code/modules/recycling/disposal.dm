@@ -496,8 +496,7 @@
 	while(active)
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
-				if(SSmapping.config.map_name != MAP_WHISKEY_OUTPOST)
-					H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
+				H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
 		sleep(1) //Was 1
 		var/obj/structure/disposalpipe/curr = loc
@@ -571,7 +570,7 @@
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
 	anchored = TRUE
-	density = 0
+	density = FALSE
 
 	level = 1			//Underfloor only
 	var/dpdir = 0		//Bitmask of pipe directions
@@ -811,7 +810,7 @@
 		if("pipe-tagger-partial")
 			C.ptype = 14
 	C.setDir(dir)
-	C.density = 0
+	C.density = FALSE
 	C.anchored = TRUE
 	C.update()
 	qdel(src)

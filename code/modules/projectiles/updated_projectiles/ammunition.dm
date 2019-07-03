@@ -15,7 +15,7 @@ They're all essentially identical when it comes to getting the job done.
 	matter = list("metal" = 1000)
 	origin_tech = "combat=2'materials=2" //Low.
 	throwforce = 2
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
 	throw_range = 6
 	var/default_ammo = /datum/ammo/bullet
@@ -172,7 +172,7 @@ bullets/shells. ~N
 	matter = list("metal" = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
 	flags_equip_slot = null // It only fits into pockets and such.
 	origin_tech = "combat=1'materials=1"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
 	flags_atom = CONDUCT|DIRLOCK
@@ -236,7 +236,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/casings.dmi'
 	icon_state = "casing_"
 	throwforce = 1
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	layer = LOWER_ITEM_LAYER //Below other objects
 	dir = 1 //Always north when it spawns.
 	flags_atom = CONDUCT|DIRLOCK
@@ -265,8 +265,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		var/base_direction = current_casings - (current_icon * 8)
 		setDir(base_direction + round(base_direction)/3)
 		switch(current_casings)
-			if(3 to 5) w_class = 2 //Slightly heavier.
-			if(9 to 10) w_class = 3 //Can't put it in your pockets and stuff.
+			if(3 to 5) w_class = WEIGHT_CLASS_SMALL //Slightly heavier.
+			if(9 to 10) w_class = WEIGHT_CLASS_NORMAL //Can't put it in your pockets and stuff.
 
 
 //Making child objects so that locate() and istype() doesn't screw up.
@@ -288,7 +288,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box
 	name = "big ammo box (10x24mm)"
 	desc = "A large ammo box. It comes with a leather strap."
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
 	item_state = "big_ammo_box"
@@ -373,7 +373,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammobox
 	name = "M41A Ammo Box"
 	desc = "A large, deployable ammo box."
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
 	var/magazine_amount = 10
@@ -455,7 +455,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	gun_type = /obj/item/weapon/gun/shotgun
 	max_rounds = 100
 	current_rounds = 100
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	var/base = /obj/item/ammo_magazine/shotgunbox
 	var/deployed = FALSE
 
