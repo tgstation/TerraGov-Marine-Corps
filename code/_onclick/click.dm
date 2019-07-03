@@ -358,8 +358,10 @@
 	For most objects, pull
 */
 /mob/proc/CtrlClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMSIG_ITEM_CLICKCTRLON_INTERCEPTED)
+		return
 	A.CtrlClick(src)
-	return
 
 
 /atom/proc/CtrlClick(mob/user)

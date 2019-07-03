@@ -853,12 +853,12 @@ Defined in conflicts.dm of the #defines folder.
 	if(G.active_attachable == src)
 		if(user)
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-		G.active_attachable = null
+		G.on_gun_attachment_detach(src)
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
-		G.active_attachable = src
+		G.on_gun_attachment_attach(src)
 		icon_state += "-on"
 
 	for(var/X in G.actions)
