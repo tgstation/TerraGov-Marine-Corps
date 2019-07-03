@@ -55,6 +55,11 @@
 	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
 
 
+/datum/game_mode/distress/post_setup()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/announce_bioscans), rand(30 SECONDS, 1 MINUTES))
+
+
 /datum/game_mode/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
 		return

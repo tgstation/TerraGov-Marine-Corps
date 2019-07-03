@@ -13,6 +13,13 @@
 
 	var/distress_cancelled = FALSE
 
+//Distress call variables.
+	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
+	var/datum/emergency_call/picked_call = null //Which distress call is currently active
+	var/on_distress_cooldown = FALSE
+	var/waiting_for_candidates = FALSE
+
+
 /datum/game_mode/New()
 	initialize_emergency_calls()
 
