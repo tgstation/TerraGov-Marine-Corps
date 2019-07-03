@@ -57,6 +57,9 @@
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(contents.len <= 0)
 		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
 		return
@@ -116,8 +119,10 @@
 	..()
 
 /obj/structure/filingcabinet/security/attack_hand()
+	. = ..()
+	if(.)
+		return
 	populate()
-	..()
 
 /*
  * Medical Record Cabinets
@@ -150,5 +155,7 @@
 	..()
 
 /obj/structure/filingcabinet/medical/attack_hand()
+	. = ..()
+	if(.)
+		return
 	populate()
-	..()

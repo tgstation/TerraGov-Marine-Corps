@@ -23,7 +23,8 @@
 
 
 /obj/machinery/computer/prisoner/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	user.set_interaction(src)
 	var/dat

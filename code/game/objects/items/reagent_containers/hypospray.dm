@@ -156,6 +156,8 @@
 
 /obj/item/reagent_container/hypospray/attack_hand()
 	. = ..()
+	if(.)
+		return
 	update_icon()
 
 /obj/item/reagent_container/hypospray/pickup(mob/user)

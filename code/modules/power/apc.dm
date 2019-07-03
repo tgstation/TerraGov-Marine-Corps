@@ -660,6 +660,8 @@
 //Attack with hand - remove cell (if cover open) or interact with the APC
 /obj/machinery/power/apc/attack_hand(mob/user)
 	. = ..()
+	if(.)
+		return
 
 
 	//Human mob special interaction goes here.

@@ -22,6 +22,9 @@
 	return
 
 /obj/effect/portal/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	spawn(0)
 		src.teleport(user)
 		return

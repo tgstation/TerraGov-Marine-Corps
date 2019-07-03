@@ -311,7 +311,9 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(!cell || cell.charge <= 0)
 		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
 		return
@@ -1082,7 +1084,9 @@
 
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	if(!cell || cell.charge <= 0)
 		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
 		return

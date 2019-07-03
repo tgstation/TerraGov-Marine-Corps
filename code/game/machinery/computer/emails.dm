@@ -27,7 +27,8 @@
 
 
 /obj/machinery/computer/emails/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	var/dat

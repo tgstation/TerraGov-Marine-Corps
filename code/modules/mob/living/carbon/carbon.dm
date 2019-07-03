@@ -55,14 +55,6 @@
 	return ..()
 
 
-/mob/living/carbon/human/attack_hand(mob/living/carbon/M)
-	if(!iscarbon(M))
-		return
-
-	next_move += 7 //Adds some lag to the 'attack'
-	return
-
-
 /mob/living/carbon/attack_paw(mob/living/carbon/M)
 	if(!iscarbon(M))
 		return

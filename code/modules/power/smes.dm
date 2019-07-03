@@ -190,6 +190,9 @@
 
 
 /obj/machinery/power/smes/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 

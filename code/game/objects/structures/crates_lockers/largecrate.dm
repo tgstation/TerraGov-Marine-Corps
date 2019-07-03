@@ -22,7 +22,7 @@
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
-	return FALSE
+	return TRUE
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -149,7 +149,7 @@
 
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
-	return FALSE
+	return TRUE
 
 
 /obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/xenomorph/X)
@@ -222,7 +222,7 @@
 
 /obj/structure/largecrate/random/barrel/attack_hand(mob/user)
 	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
-	return FALSE
+	return TRUE
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"

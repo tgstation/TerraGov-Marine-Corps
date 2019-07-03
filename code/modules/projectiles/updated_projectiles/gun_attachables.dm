@@ -780,8 +780,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/stock/vp70/attack_hand(mob/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
-		I.attack_hand(user)
-		return
+		return I.attack_hand(user)
 	else if(pockets.handle_attack_hand(user))
 		return ..()
 

@@ -54,7 +54,8 @@
 	return 0
 
 /obj/machinery/computer/marine_card/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	user.set_interaction(src)
@@ -400,7 +401,8 @@
 	return 0
 
 /obj/machinery/computer/squad_changer/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	usr.set_interaction(src)

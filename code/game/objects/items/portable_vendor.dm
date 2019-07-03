@@ -26,10 +26,11 @@
 
 
 /obj/item/portable_vendor/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(loc == user)
 		attack_self(user)
-	else
-		..()
 
 
 /obj/item/portable_vendor/attack_self(mob/user)

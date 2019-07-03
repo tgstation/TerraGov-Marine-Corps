@@ -73,7 +73,9 @@ var/global/list/image/splatter_cache=list()
 		amount = 0
 
 /obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
-	..()
+	. = ..()
+	if(.)
+		return
 	if (amount && istype(user))
 		if (user.gloves)
 			return

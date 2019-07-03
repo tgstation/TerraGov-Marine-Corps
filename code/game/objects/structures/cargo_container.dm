@@ -11,7 +11,9 @@
 	anchored = TRUE
 
 /obj/structure/cargo_container/attack_hand(mob/user as mob)
-
+	. = ..()
+	if(.)
+		return
 	playsound(loc, 'sound/effects/clang.ogg', 25, 1)
 
 	var/damage_dealt

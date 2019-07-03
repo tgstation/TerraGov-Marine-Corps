@@ -939,6 +939,9 @@
 
 
 /obj/structure/dropship_equipment/medevac_system/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(user))
 		return
 	if(!ship_base) //not installed

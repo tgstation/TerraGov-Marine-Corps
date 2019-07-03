@@ -23,7 +23,8 @@
 	return
 
 /obj/machinery/computer/area_atmos/attack_hand(var/mob/user as mob)
-	if(..(user))
+	. = ..()
+	if(.)
 		return
 	var/dat = {"
 	<html>

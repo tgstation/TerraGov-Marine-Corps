@@ -29,6 +29,9 @@
 	interact(user)
 
 /obj/machinery/power/monitor/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)

@@ -42,6 +42,9 @@
 
 
 /obj/machinery/faxmachine/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 
 	var/dat

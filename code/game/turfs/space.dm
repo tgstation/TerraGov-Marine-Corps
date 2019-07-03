@@ -26,23 +26,6 @@
 /turf/open/space/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/turf/open/space/attack_hand(mob/user)
-	if ((user.restrained() || !( user.pulling )))
-		return
-	if (user.pulling.anchored || !isturf(user.pulling.loc))
-		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
-		return
-	if (ismob(user.pulling))
-		var/mob/M = user.pulling
-		var/atom/movable/t = M.pulling
-		M.stop_pulling()
-		step(user.pulling, get_dir(user.pulling.loc, src))
-		M.start_pulling(t)
-	else
-		step(user.pulling, get_dir(user.pulling.loc, src))
-	return
-
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()
 

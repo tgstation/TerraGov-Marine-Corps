@@ -75,7 +75,8 @@
 // Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
 /obj/machinery/door_display/attack_hand(var/mob/user as mob)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	user.set_interaction(src)

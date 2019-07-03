@@ -214,7 +214,11 @@
 	return ..()
 
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/silicon/attack_hand(mob/living/user)
+	. = FALSE
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
+		. = TRUE
 	switch(user.a_intent)
 		if(INTENT_HELP)
 			user.visible_message("[user] pets [src].", "<span class='notice'>You pet [src].</span>")

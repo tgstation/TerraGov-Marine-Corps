@@ -174,6 +174,9 @@
 	return src.attack_hand(user)
 
 /obj/machinery/chem_dispenser/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & BROKEN)
 		return
 	var/mob/living/carbon/human/H = user
@@ -531,6 +534,9 @@
 
 
 /obj/machinery/chem_master/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & BROKEN)
 		return
 	user.set_interaction(src)
@@ -743,6 +749,9 @@
 	return FALSE
 
 /obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	interact(user)
 

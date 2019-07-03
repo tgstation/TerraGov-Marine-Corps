@@ -14,7 +14,8 @@
 
 
 /obj/machinery/computer/dropship_weapons/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")

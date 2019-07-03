@@ -398,6 +398,9 @@
 		break
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	ui_interact(user)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)

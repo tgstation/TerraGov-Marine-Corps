@@ -56,6 +56,9 @@
 
 
 /obj/machinery/power/generator_type2/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER)) return
 	interact(user)
 

@@ -126,6 +126,9 @@
 	breaktape(I, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
+	. = ..()
+	if(.)
+		return
 	if (user.a_intent == INTENT_HELP && allowed(user))
 		user.show_viewers("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()

@@ -178,6 +178,9 @@
 	return
 
 /mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
+	. = ..()
+	if(.)
+		return
 	if (!SSticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
