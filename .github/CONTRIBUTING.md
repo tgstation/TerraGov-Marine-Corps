@@ -231,7 +231,8 @@ Instead of this you should do it like this:
 	do something
 
 /atom/movable/do_a_thing(mob/user)
-	if istype(user, /mob/living/carbon/human)
+	if !(istype(user, /mob/living/carbon/human))
+		return
 	var/mob/living/carbon/human/H = user
 	do something
 ````
