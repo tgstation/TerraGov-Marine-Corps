@@ -278,11 +278,11 @@
 
 /obj/item/storage/pouch/explosive/full
 	fill_type = /obj/item/explosive/grenade/frag
-	fill_number = 3
+	fill_number = 4
 
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/plastique
-	fill_number = 3
+	fill_number = 4
 
 /obj/item/storage/pouch/medical
 	name = "medical pouch"
@@ -356,7 +356,7 @@
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares. Refillable with a M94 flare pack."
 	max_w_class = 2
-	storage_slots = 5
+	storage_slots = 7
 	draw_mode = 1
 	icon_state = "flare"
 	can_hold = list(
@@ -394,7 +394,7 @@
 
 /obj/item/storage/pouch/flare/full
 	fill_type = /obj/item/explosive/grenade/flare
-	fill_number = 5
+	fill_number = 7
 
 /obj/item/storage/pouch/radio
 	name = "radio pouch"
@@ -496,8 +496,8 @@
 /obj/item/storage/pouch/shotgun //New shotgun shell pouch that is actually worth a shit and will be replacing light general in vendors
 	name = "shotgun shell pouch"
 	desc = "A pouch specialized for holding shotgun ammo."
-	icon_state = "small_drop"
-	storage_slots = 4
+	icon_state = "shotshells"
+	storage_slots = 5
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
 

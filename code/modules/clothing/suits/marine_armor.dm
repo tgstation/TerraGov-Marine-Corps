@@ -142,7 +142,7 @@
 /obj/item/storage/internal/suit/marine/M3IS
 	bypass_w_limit = list()
 	storage_slots = null
-	max_storage_space = 14
+	max_storage_space = 15 // Same as satchel
 	max_w_class = 3 //Can fit larger items
 
 /obj/item/clothing/suit/storage/marine/M3E
