@@ -1077,7 +1077,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 
 /datum/ammo/energy/lasgun/M43
-	name = "M43 laser bolt"
+	name = "laser bolt"
 	hud_state = "laser"
 
 /datum/ammo/energy/lasgun/M43/New()
@@ -1085,7 +1085,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = CONFIG_GET(number/combat_define/med_armor_penetration)
 
 /datum/ammo/energy/lasgun/M43/overcharge
-	name = "M43 overcharged laser bolt"
+	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_overcharge"
 
