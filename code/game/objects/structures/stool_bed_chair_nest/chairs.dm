@@ -123,7 +123,7 @@
 	color = rgb(255,251,0)
 
 /obj/structure/bed/chair/office
-	anchored = 0
+	anchored = FALSE
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
@@ -154,11 +154,11 @@
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/chair/dropship/pilot
 	icon_state = "pilot_chair"
@@ -179,7 +179,7 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/is_animating = 0
 
-/obj/structure/bed/chair/dropship/passenger/CanPass(var/atom/movable/mover, var/turf/target, var/height = 0, var/air_group = 0)
+/obj/structure/bed/chair/dropship/passenger/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
 		spawn(0)
@@ -206,7 +206,7 @@
 		return
 	..()
 
-/obj/structure/bed/chair/dropship/passenger/proc/fold_down(var/break_it = 0)
+/obj/structure/bed/chair/dropship/passenger/proc/fold_down(break_it = 0)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
 		is_animating = 1
 		flick("shuttle_chair_new_folding", src)

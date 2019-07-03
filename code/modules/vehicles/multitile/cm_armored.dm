@@ -14,15 +14,6 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	HDPT_ARMOR = 0.5,
 	HDPT_TREADS = 0.15))
 
-//Currently unused, I thought I was gonna need to fuck with stuff but we good
-/*
-var/list/TANK_HARDPOINT_OFFSETS = list(
-	HDPT_MAINGUN = "0,0",
-	HDPT_SECDGUN = "0,0",
-	HDPT_SUPPORT = "0,0",
-	HDPT_ARMOR = "0,0",
-	HDPT_TREADS = "0,0")*/
-
 //The main object, should be an abstract class
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"
@@ -79,13 +70,20 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
 
+
+/obj/vehicle/multitile/root/cm_armored/Initialize()
+	. = ..()
+	GLOB.tank_list += src
+	set_light(15)
+
+
 /obj/vehicle/multitile/root/cm_armored/Destroy()
 	for(var/i in linked_objs)
 		var/obj/O = linked_objs[i]
 		if(O == src)
 			continue
 		qdel(O, TRUE) //Delete all of the hitboxes etc
-
+	GLOB.tank_list -= src
 	return ..()
 
 //What to do if all ofthe installed modules have been broken
@@ -311,7 +309,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
-	luminosity = 7
 	throwpass = 1 //You can lob nades over tanks, and there's some dumb check somewhere that requires this
 	var/lastsound = 0
 

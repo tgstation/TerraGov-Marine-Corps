@@ -12,7 +12,7 @@
 	hitsound = "swing_hit"
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 	var/req_role = "" //to be compared with assigned_role to only allow those to use that machine.
 	var/points = 40
@@ -66,7 +66,7 @@
 	ui_interact(user)
 
 
-/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 
 	if(!ishuman(user)) return
 
@@ -107,6 +107,9 @@
 
 
 /obj/item/portable_vendor/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(broken)
 		return
 	if(usr.incapacitated())
@@ -231,7 +234,7 @@
 	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items. This one has the Nanotrasen logo stamped on its side."
 
 	req_access_txt = "200"
-	req_role = "Corporate Liaison"
+	req_role = CORPORATE_LIAISON
 	listed_products = list(
 							list("INCENTIVES", 0, null, null, null),
 							list("Neurostimulator Implant", 30, /obj/item/implanter/neurostim, "white", "Implant which regulates nociception and sensory function. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, negative stimulus is applied if the implant hears a (non-radio) spoken codephrase. Implant will be degraded by the body's immune system over time, and thus malfunction with gradually increasing frequency. Personal use not recommended."),

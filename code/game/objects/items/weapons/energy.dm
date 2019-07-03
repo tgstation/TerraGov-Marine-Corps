@@ -17,7 +17,7 @@
 	throwforce = 25.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	flags_atom = CONDUCT|NOBLOODY
 	flags_item = NOSHIELD
 	origin_tech = "combat=3"
@@ -35,13 +35,13 @@
 		to_chat(user, "<span class='notice'>The axe is now energised.</span>")
 		force = 150
 		icon_state = "axe1"
-		w_class = 5
+		w_class = WEIGHT_CLASS_HUGE
 		heat = 3500
 	else
 		to_chat(user, "<span class='notice'>The axe can now be concealed.</span>")
 		force = 40
 		icon_state = "axe0"
-		w_class = 5
+		w_class = WEIGHT_CLASS_HUGE
 		heat = 0
 
 
@@ -54,7 +54,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = NOBLOODY
 	flags_item = NOSHIELD
 	origin_tech = "magnets=3;syndicate=4"
@@ -82,7 +82,7 @@
 			icon_state = "[base_sword_icon]1"
 		else
 			icon_state = "sword[sword_color]"
-		w_class = 4
+		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 
@@ -90,7 +90,7 @@
 		force = 3
 		heat = 0
 		icon_state = "[base_sword_icon]0"
-		w_class = 2
+		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 

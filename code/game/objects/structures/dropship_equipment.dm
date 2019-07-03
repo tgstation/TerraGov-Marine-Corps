@@ -468,19 +468,16 @@
 	var/spotlights_cooldown
 	var/brightness = 11
 
-/obj/structure/dropship_equipment/electronics/spotlights/get_light_range()
-	return min(luminosity, LIGHTING_MAX_LUMINOSITY_SHIPLIGHTS)
-
 /obj/structure/dropship_equipment/electronics/spotlights/equipment_interact(mob/user)
 	if(spotlights_cooldown > world.time)
 		to_chat(user, "<span class='warning'>[src] is busy.</span>")
 		return //prevents spamming deployment/undeployment
 	if(luminosity != brightness)
-		SetLuminosity(brightness)
+		set_light(brightness)
 		icon_state = "spotlights_on"
 		to_chat(user, "<span class='notice'>You turn on [src].</span>")
 	else
-		SetLuminosity(0)
+		set_light(0)
 		icon_state = "spotlights_off"
 		to_chat(user, "<span class='notice'>You turn off [src].</span>")
 	spotlights_cooldown = world.time + 50
@@ -495,13 +492,13 @@
 	else
 		icon_state = "spotlights"
 		if(luminosity)
-			SetLuminosity(0)
+			set_light(0)
 
 /obj/structure/dropship_equipment/electronics/spotlights/on_launch()
-	SetLuminosity(0)
+	set_light(0)
 
 /obj/structure/dropship_equipment/electronics/spotlights/on_arrival()
-	SetLuminosity(brightness)
+	set_light(brightness)
 
 #undef LIGHTING_MAX_LUMINOSITY_SHIPLIGHTS
 
@@ -846,7 +843,7 @@
 		return
 
 	var/list/possible_stretchers = list()
-	for(var/obj/structure/bed/medevac_stretcher/MS in activated_medevac_stretchers)
+	for(var/obj/structure/bed/medevac_stretcher/MS in GLOB.activated_medevac_stretchers)
 		var/area/AR = get_area(MS)
 		var/evaccee
 		if(MS.buckled_mob)

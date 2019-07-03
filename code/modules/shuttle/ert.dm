@@ -110,7 +110,8 @@
 	popup.open()
 
 /obj/machinery/computer/shuttle/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if(href_list["depart"])
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)

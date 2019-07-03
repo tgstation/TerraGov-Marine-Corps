@@ -13,7 +13,7 @@
 
 
 
-/obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/girder/bullet_act(obj/item/projectile/Proj)
 	//Tasers and the like should not damage girders.
 	if(Proj.ammo.damage_type == HALLOSS || Proj.ammo.damage_type == TOX || Proj.ammo.damage_type == CLONE || Proj.damage == 0)
 		return 0
@@ -284,7 +284,7 @@
 	if (obj_integrity <= 0)
 		icon_state = "[icon_state]_damaged"
 		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
-		density = 0
+		density = FALSE
 	else
 		var/underscore_position =  findtext(icon_state,"_")
 		var/new_state = copytext(icon_state, 1, underscore_position)
@@ -320,7 +320,7 @@
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	max_integrity = 50
 
 /obj/structure/girder/reinforced

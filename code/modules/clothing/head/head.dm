@@ -3,7 +3,7 @@
 	icon = 'icons/obj/clothing/hats.dmi'
 	flags_armor_protection = HEAD
 	flags_equip_slot = ITEM_SLOT_HEAD
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/anti_hug = 0
 
 /obj/item/clothing/head/update_clothing_icon()

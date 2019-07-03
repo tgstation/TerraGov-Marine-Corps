@@ -2,8 +2,8 @@
 
 
 /*
- * Table Parts
- */
+* Table Parts
+*/
 
 /obj/item/frame/table
 	name = "table parts"
@@ -62,8 +62,8 @@
 	qdel(src)
 
 /*
- * Reinforced Table Parts
- */
+* Reinforced Table Parts
+*/
 
 /obj/item/frame/table/reinforced
 	name = "reinforced table parts"
@@ -75,8 +75,8 @@
 
 
 /*
- * Wooden Table Parts
- */
+* Wooden Table Parts
+*/
 
 /obj/item/frame/table/wood
 	name = "wooden table parts"
@@ -99,8 +99,8 @@
 		qdel(src)
 
 /*
- * Gambling Table Parts
- */
+* Gambling Table Parts
+*/
 
 /obj/item/frame/table/gambling
 	name = "gamble table parts"
@@ -125,8 +125,8 @@
 
 
 /*
- * Rack Parts
- */
+* Rack Parts
+*/
 
 /obj/item/frame/rack
 	name = "rack parts"

@@ -4,7 +4,7 @@
 	icon = 'goon/icons/obj/aibots.dmi'
 	icon_state = "chefbot-idle"
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 	on = 1 // ACTION
 	health = 100
 	var/raging = 0

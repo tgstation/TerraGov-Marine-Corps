@@ -58,6 +58,6 @@ GLOBAL_LIST_EMPTY(medal_awards)
 		MD.medal_citation = citation
 		MD.recipient_rank = recipient_rank
 		
-	log_admin("[key_name(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
+	log_game("[key_name(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
 	message_admins("[ADMIN_TPMONTY(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
 	return TRUE

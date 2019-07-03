@@ -113,9 +113,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(load_preferences() && load_character())
 			return
 
-	key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
-
+	// We don't have a savefile or we failed to load them
 	random_character()
+	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 5 SECONDS)
+	
+
+/datum/preferences/proc/load_default_keybindings(client/C)
+	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
+	hotkeys = (choice == "Hotkey")
+	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+	save_preferences()
 
 
 /datum/preferences/proc/ShowChoices(mob/user)
@@ -129,13 +136,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += {"
 	<style>
 	.column {
-	  float: left;
-	  width: 50%;
+		float: left;
+		width: 50%;
 	}
 	.row:after {
-	  content: "";
-	  display: table;
-	  clear: both;
+		content: "";
+		display: table;
+		clear: both;
 	}
 	</style>
 	"}
@@ -240,8 +247,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if("Survivor")
 				ban_check_name = ROLE_SURVIVOR
 
-		if(jobban_isbanned(user, ban_check_name) || is_banned_from(user.ckey, ban_check_name))
-			dat += "<b>[role]:</b> <font color=red><b> \[BANNED]</b></font><br>"
+		if(is_banned_from(user.ckey, ban_check_name))
+			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
 		else
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
 		n++
@@ -300,10 +307,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=corporation'>[nanotrasen_relation]</a><br>"
 	dat += "<br>"
 
-	if(jobban_isbanned(user, "Records"))
-		dat += "<b>You are banned from using character records.</b><br>"
-	else
-		dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
+	dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
 
 	dat += "<a href ='?_src_=prefs;preference=flavor_text'>Character Description</a><br>"
 
@@ -363,7 +367,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/job/overflow = SSjob.GetJob(SSjob.overflow_role)
 
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-			if(!(job.title in JOBS_REGULAR_ALL))
+			if(!(job.title in GLOB.jobs_regular_all))
 				continue
 
 			index += 1
@@ -381,7 +385,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/rank = job.title
 			lastJob = job
 			if(is_banned_from(user.ckey, rank))
-				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
+				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;preference=bancheck;role=[rank]'> BANNED</a></td></tr>"
 				continue
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 			if(required_playtime_remaining)
@@ -391,7 +395,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/available_in_days = job.available_in_days(user.client)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[IN [(available_in_days)] DAYS\]</font></td></tr>"
 				continue
-			if((rank in JOBS_COMMAND) || rank == "AI")//Bold head jobs
+			if((rank in GLOB.jobs_command) || rank == "AI")//Bold head jobs
 				HTML += "<b><span class='dark'>[rank]</span></b>"
 			else
 				HTML += "<span class='dark'>[rank]</span>"
@@ -507,7 +511,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		kb_categories[kb.category] += list(kb)
 
 	var/HTML = "<style>label { display: inline-block; width: 200px; }</style><body>"
-
+	HTML += "<br>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_done'>Close</a>"
+	HTML += "<a href ='?_src_=prefs;preference=keybindings_reset'>Reset to default</a>"
+	HTML += "<br><br>"
 	for(var/category in kb_categories)
 		HTML += "<h3>[category]</h3>"
 		for(var/i in kb_categories[category])
@@ -515,7 +522,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/bound_key = user_binds[kb.name]
 			bound_key = (bound_key) ? bound_key : "Unbound"
 
-			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [kb.key] )</a>"
+			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [hotkeys ? kb.hotkey_key : kb.classic_key] )</a>"
 			HTML += "<br>"
 
 	HTML += "<br><br>"
@@ -530,7 +537,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	onclose(user, "keybindings", src)
 
 
-/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, var/old_key)
+/datum/preferences/proc/CaptureKeybinding(mob/user, datum/keybinding/kb, old_key)
 	var/HTML = {"
 	<div id='focus' style="outline: 0;" tabindex=0>Keybinding: [kb.full_name]<br>[kb.description]<br><br><b>Press any key to change<br>Press ESC to clear</b></div>
 	<script>
@@ -555,6 +562,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/Topic(href, href_list, hsrc)
 	. = ..()
+	if(.)
+		return
 	if(href_list["close"])
 		var/client/C = usr.client
 		if(C)
@@ -957,6 +966,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			// This is a mapping from JS keys to Byond - ref: https://keycode.info/
 			var/list/_kbMap = list(
+				"UP" = "North", "RIGHT" = "East", "DOWN" = "South", "LEFT" = "West",
 				"INSERT" = "Insert", "HOME" = "Northwest", "PAGEUP" = "Northeast",
 				"DEL" = "Delete", "END" = "Southwest",  "PAGEDOWN" = "Southeast",
 				"SPACEBAR" = "Space", "ALT" = "Alt", "SHIFT" = "Shift", "CONTROL" = "Ctrl"
@@ -980,10 +990,33 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=keybindings")
 
 		if("keybindings_reset")
-			key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
+			var/choice = tgalert(usr, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
+			if (choice == "Cancel")
+				ShowKeybindings(user)
+				return
+			hotkeys = (choice == "Hotkey")
+			key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 			save_preferences()
 			ShowKeybindings(user)
 			return
+
+		if("bancheck")
+			var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, href_list["role"])
+			var/admin = FALSE
+			if(GLOB.admin_datums[user.ckey] || GLOB.deadmins[user.ckey])
+				admin = TRUE
+			for(var/i in ban_details)
+				if(admin && !text2num(i["applies_to_admins"]))
+					continue
+				ban_details = i
+				break //we only want to get the most recent ban's details
+			if(!length(ban_details))
+				return
+
+			var/expires = "This is a permanent ban."
+			if(ban_details["expiration_time"])
+				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
+			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
 
 	save_preferences()
 	save_character()

@@ -43,6 +43,7 @@
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
+	var/breakouttime = 0
 
 	var/list/allowed = null //suit storage stuff.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
@@ -76,7 +77,6 @@
 /obj/item/Initialize()
 	. = ..()
 
-	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
 	if(w_class <= 3) //pulling small items doesn't slow you down much
@@ -86,27 +86,13 @@
 /obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
+	if(ismob(loc))
+		var/mob/m = loc
+		m.temporarilyRemoveItemFromInventory(src, TRUE)
 	for(var/X in actions)
 		qdel(X)
 	master = null
-	GLOB.item_list -= src
 	return ..()
-
-
-/obj/item/ex_act(severity)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(!prob(50))
-				return
-			qdel(src)
-		if(3)
-			if(!prob(5))
-				return
-			qdel(src)
 
 
 //user: The mob that is suiciding
@@ -210,7 +196,7 @@
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
-/obj/item/proc/dropped(mob/user as mob)
+/obj/item/proc/dropped(mob/user)
 	if(user && user.client) //Dropped when disconnected, whoops
 		if(zoom) //binoculars, scope, etc
 			zoom(user, 11, 12)
@@ -427,13 +413,13 @@
 			if(SLOT_HANDCUFFED)
 				if(H.handcuffed)
 					return FALSE
-				if(!istype(src, /obj/item/handcuffs))
+				if(!istype(src, /obj/item/restraints/handcuffs))
 					return FALSE
 				return TRUE
 			if(SLOT_LEGCUFFED)
 				if(H.legcuffed)
 					return FALSE
-				if(!istype(src, /obj/item/legcuffs))
+				if(!istype(src, /obj/item/restraints/legcuffs))
 					return FALSE
 				return TRUE
 			if(SLOT_ACCESSORY)
@@ -867,7 +853,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/play_tool_sound(atom/target, volume)
 	if(!target || !usesound || !volume)
 		return
-	playsound(target, usesound, volume, 1)
+	var/played_sound = usesound
+	if(islist(usesound))
+		played_sound = pick(usesound)
+	playsound(target, played_sound, volume, 1)
 
 
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.

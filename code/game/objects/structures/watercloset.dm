@@ -5,7 +5,7 @@
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet00"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
@@ -85,7 +85,6 @@
 				return
 
 			user.visible_message("<span class='danger'>[user] gives [C] a swirlie!</span>", "<span class='notice'>You give [C] a swirlie!</span>", "You hear a toilet flushing.")
-			log_admin("[key_name(user)] gives [key_name(C)] a swirlie.")
 			log_combat(user, C, "given a swirlie")
 			msg_admin_attack("[key_name(user)] gave [key_name(C)] a swirlie.")
 			if(!C.internal)
@@ -93,7 +92,6 @@
 			swirlie = null
 		else
 			user.visible_message("<span class='danger'>[user] slams [C] into the [src]!</span>", "<span class='notice'>You slam [C] into the [src]!</span>")
-			log_admin("[key_name(user)] slams [key_name(C)] into the \the [src].")
 			log_combat(user, C, "slammed", "", "into the \the [src]")
 			msg_admin_attack("[key_name(user)] slammed [key_name(C)] into the \the [src].")
 			C.apply_damage(8, BRUTE)
@@ -119,7 +117,7 @@
 	desc = "The HU-452, an experimental urinal."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 
 /obj/structure/urinal/attackby(obj/item/I, mob/user, params)
@@ -152,7 +150,7 @@
 	desc = "The HS-451. Installed in the 2050s by the Nanotrasen Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	use_power = 0
 	var/on = 0
@@ -162,8 +160,8 @@
 	var/mobpresent = 0		//true if there is a mob on the shower's loc, this is to ease process()
 	var/is_washing = 0
 
-/obj/machinery/shower/New()
-	..()
+/obj/machinery/shower/Initialize()
+	. = ..()
 	create_reagents(2)
 
 //add heat controls? when emagged, you can freeze to death in it?
@@ -464,7 +462,7 @@
 
 	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
 
-	if(!do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	if(user.loc != location || user.get_active_held_item() != I) 

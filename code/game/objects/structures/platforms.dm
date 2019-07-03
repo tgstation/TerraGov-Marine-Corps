@@ -1,6 +1,6 @@
 /*
- * Platforms
- */
+* Platforms
+*/
 /obj/structure/platform
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
@@ -58,7 +58,7 @@ obj/structure/platform_decoration
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform_deco"
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	throwpass = TRUE
 	layer = 3.5
 	flags_atom = ON_BORDER

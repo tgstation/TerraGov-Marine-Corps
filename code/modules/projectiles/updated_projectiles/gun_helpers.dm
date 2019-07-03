@@ -147,28 +147,12 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/dropped(mob/user)
 	. = ..()
 
-	turn_off_light(user)
-
 	unwield(user)
 	harness_check(user)
 
 
-/obj/item/weapon/gun/proc/turn_off_light(mob/bearer)
-	if(!bearer && ismob(loc))
-		bearer = loc
-	if(flags_gun_features & GUN_FLASHLIGHT_ON && bearer)
-		bearer.SetLuminosity( rail.light_mod * -1 )
-		SetLuminosity(rail.light_mod)
-		return TRUE
-	return FALSE
-
-
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
-
-	if(flags_gun_features & GUN_FLASHLIGHT_ON)
-		user.SetLuminosity(rail.light_mod)
-		SetLuminosity(0)
 
 	unwield(user)
 
@@ -253,7 +237,7 @@ should be alright.
 		attach_to_gun(user, I)
 		return
 
- 	//the active attachment is reloadable
+	//the active attachment is reloadable
 	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
 		active_attachable.reload_attachment(I, user)
 		return

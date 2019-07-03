@@ -6,7 +6,7 @@
 	icon_state = "moneybag"
 	force = 10.0
 	throwforce = 2.0
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/moneybag/attack_hand(mob/user)
 	. = ..()
@@ -64,7 +64,8 @@
 		to_chat(user, "<span class='notice'>You empty the [C.name] into the bag.</span>")
 
 /obj/item/moneybag/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	usr.set_interaction(src)
 	if(href_list["remove"])

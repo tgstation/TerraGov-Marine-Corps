@@ -22,7 +22,7 @@
 	var/frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	var/turf/turf_source = get_turf(source)
 	if(!turf_source) return
- 	// Looping through the player list has the added bonus of working for mobs inside containers
+	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/mob/M
 	var/turf/T
 	for(var/i in GLOB.player_list)

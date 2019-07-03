@@ -7,7 +7,7 @@
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	allowed = list(/obj/item/weapon/gun)//Guns only.
 	uniform_restricted = list(/obj/item/clothing/under)
 
@@ -43,7 +43,7 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
@@ -65,7 +65,7 @@
 	icon_state = "admiral_jacket"
 	item_state = "admiral_jacket"
 	flags_armor_protection = CHEST|GROIN|ARMS
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
@@ -134,7 +134,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 1
 	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
@@ -214,9 +214,9 @@
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"
 	item_state = "centcom"
-	w_class = 4//bulky item
+	w_class = WEIGHT_CLASS_BULKY//bulky item
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/tank/emergency_oxygen)
 	flags_inventory = NONE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -228,7 +228,7 @@
 	desc = "A heavily armored suit that protects against moderate damage."
 	icon_state = "heavy"
 	item_state = "swat_suit"
-	w_class = 4//bulky item
+	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 3

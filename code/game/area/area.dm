@@ -27,13 +27,6 @@
 
 	var/has_gravity = TRUE
 
-
-	var/list/apc = list()
-	var/list/area_machines = list() // list of machines only for master areas
-	var/area/master				// master area used for power calcluations
-								// (original area before splitting due to sd_DAL)
-	var/list/related			// the other areas of the same type as this
-
 	var/global/global_uid = 0
 	var/uid
 
@@ -67,18 +60,30 @@
 	return ..()
 
 
-/area/Initialize(mapload, ...)
-	. = ..()
-	
+/area/Initialize(mapload, ...)	
 	icon_state = "" //Used to reset the icon overlay, I assume.
 	layer = AREAS_LAYER
-	master = src //moved outside the spawn(1) to avoid runtimes in lighting.dm when it references loc.loc.master ~Carn
 	uid = ++global_uid
-	related = list(src)
-	active_areas += src
-	GLOB.all_areas += src
 
-	initialize_power_and_lighting()
+	if(requires_power)
+		luminosity = 0
+	else
+		power_light = TRUE
+		power_equip = TRUE
+		power_environ = TRUE
+
+		if(dynamic_lighting == DYNAMIC_LIGHTING_FORCED)
+			dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+			luminosity = 0
+		else
+			dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+
+	. = ..()
+
+	blend_mode = BLEND_MULTIPLY // Putting this in the constructor so that it stops the icons being screwed up in the map editor.
+
+	if(!IS_DYNAMIC_LIGHTING(src))
+		add_overlay(/obj/effect/fullbright)
 
 	reg_in_areas_in_z()
 
@@ -158,37 +163,11 @@
 	return flags
 
 
-/area/proc/initialize_power_and_lighting(override_power)
-	if(requires_power)
-		luminosity = 0
-		if(override_power) //Reset everything if you want to override.
-			power_light = 1
-			power_equip = 1
-			power_environ = 1
-			SetDynamicLighting()
-	else
-		power_light = 0			//rastaf0
-		power_equip = 0			//rastaf0
-		power_environ = 0		//rastaf0
-		luminosity = 1
-		lighting_use_dynamic = 0
-
-	power_change()		// all machines set to current power level, also updates lighting icon
-	InitializeLighting()
-
-
-/area/proc/poweralert(var/state, var/obj/source as obj)
+/area/proc/poweralert(state, obj/source)
 	if(state != poweralm)
 		poweralm = state
 		if(istype(source))	//Only report power alarms on the z-level where the source is located.
 			var/list/cameras = list()
-			for (var/area/RA in related)
-				for (var/obj/machinery/camera/C in RA)
-					cameras += C
-					if(state == 1)
-						C.network.Remove("Power Alarms")
-					else
-						C.network.Add("Power Alarms")
 			for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 				if(a.z == source.z)
 					if(state == 1)
@@ -198,50 +177,29 @@
 
 
 /area/proc/atmosalert(danger_level)
-	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
-	for (var/area/RA in related)
-		for (var/obj/machinery/alarm/AA in RA)
-			if ( !(AA.machine_stat & (NOPOWER|BROKEN)) && !AA.shorted)
-				danger_level = max(danger_level, AA.danger_level)
-
 	if(danger_level != atmosalm)
 		if (danger_level < 1 && atmosalm >= 1)
 			//closing the doors on red and opening on green provides a bit of hysteresis that will hopefully prevent fire doors from opening and closing repeatedly due to noise
 			air_doors_open()
 
 		if (danger_level < 2 && atmosalm >= 2)
-			for(var/area/RA in related)
-				for(var/obj/machinery/camera/C in RA)
-					C.network.Remove("Atmosphere Alarms")
 			for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 				a.cancelAlarm("Atmosphere", src, src)
 
 		if (danger_level >= 2 && atmosalm < 2)
 			var/list/cameras = list()
-			for(var/area/RA in related)
-				//updateicon()
-				for(var/obj/machinery/camera/C in RA)
-					cameras += C
-					C.network.Add("Atmosphere Alarms")
 			for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 				a.triggerAlarm("Atmosphere", src, cameras, src)
 			air_doors_close()
 
 		atmosalm = danger_level
-		for(var/area/RA in related)
-			for (var/obj/machinery/alarm/AA in RA)
-				AA.update_icon()
 
 		return TRUE
 	return FALSE
 
 
 /area/proc/air_doors_close()
-	if(master.air_doors_activated)
-		return
-
-	master.air_doors_activated = TRUE
-	for(var/obj/machinery/door/firedoor/E in master.all_doors)
+	for(var/obj/machinery/door/firedoor/E in all_doors)
 		if(E.blocked)
 			continue
 
@@ -253,11 +211,7 @@
 
 
 /area/proc/air_doors_open()
-	if(!master.air_doors_activated)
-		return
-
-	master.air_doors_activated = FALSE
-	for(var/obj/machinery/door/firedoor/E in master.all_doors)
+	for(var/obj/machinery/door/firedoor/E in all_doors)
 		if(E.blocked)
 			continue
 
@@ -273,21 +227,16 @@
 		return
 	if(!(flags_alarm_state & ALARM_WARNING_FIRE))
 		flags_alarm_state |= ALARM_WARNING_FIRE
-		master.flags_alarm_state |= ALARM_WARNING_FIRE		//used for firedoor checks
-		updateicon()
+		update_icon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
 			if(!D.blocked)
 				if(D.operating)
-					D.nextstate = CLOSED
+					D.nextstate = FIREDOOR_CLOSED
 				else if(!D.density)
 					spawn()
 						D.close()
 		var/list/cameras = list()
-		for(var/area/RA in related)
-			for (var/obj/machinery/camera/C in RA)
-				cameras.Add(C)
-				C.network.Add("Fire Alarms")
 		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.triggerAlarm("Fire", src, cameras, src)
 
@@ -295,9 +244,8 @@
 /area/proc/firereset()
 	if(flags_alarm_state & ALARM_WARNING_FIRE)
 		flags_alarm_state &= ~ALARM_WARNING_FIRE
-		master.flags_alarm_state &= ~ALARM_WARNING_FIRE		//used for firedoor checks
 		mouse_opacity = 0
-		updateicon()
+		update_icon()
 
 		for(var/obj/machinery/door/firedoor/D in all_doors)
 			if(!D.blocked)
@@ -311,7 +259,7 @@
 			a.cancelAlarm("Fire", src, src)
 
 
-/area/proc/updateicon()
+/area/proc/update_icon()
 	var/I //More important == bottom. Fire normally takes priority over everything.
 	if(flags_alarm_state && (!requires_power || power_environ)) //It either doesn't require power or the environment is powered. And there is an alarm.
 		if(flags_alarm_state & ALARM_WARNING_READY) I = "alarm_ready" //Area is ready for something.
@@ -324,63 +272,57 @@
 
 
 /area/proc/powered(chan)
-	if(!master.requires_power)
+	if(!requires_power)
 		return TRUE
 
-	if(master.always_unpowered)
+	if(always_unpowered)
 		return FALSE
 
 	switch(chan)
 		if(EQUIP)
-			return master.power_equip
+			return power_equip
 		if(LIGHT)
-			return master.power_light
+			return power_light
 		if(ENVIRON)
-			return master.power_environ
+			return power_environ
 
 	return FALSE
 
 
 /area/proc/power_change()
-	powerupdate = 2
-	for(var/area/RA in related)
-		for(var/obj/machinery/M in RA)	// for each machine in the area
-			M.power_change()				// reverify power status (to update icons etc.)
-		if(flags_alarm_state)
-			RA.updateicon()
+	for(var/obj/machinery/M in src)
+		M.power_change()
+	update_icon()
 
 
 /area/proc/usage(chan)
 	var/used = 0
 	switch(chan)
 		if(LIGHT)
-			used += master.used_light
+			used += used_light
 		if(EQUIP)
-			used += master.used_equip
+			used += used_equip
 		if(ENVIRON)
-			used += master.used_environ
+			used += used_environ
 		if(TOTAL)
-			used += master.used_light + master.used_equip + master.used_environ
-
+			used += used_light + used_equip + used_environ
 	return used
 
 
 /area/proc/clear_usage()
-	master.used_equip = 0
-	master.used_light = 0
-	master.used_environ = 0
+	used_equip = 0
+	used_light = 0
+	used_environ = 0
 
 
 /area/proc/use_power(amount, chan)
 	switch(chan)
 		if(EQUIP)
-			master.used_equip += amount
+			used_equip += amount
 		if(LIGHT)
-			master.used_light += amount
+			used_light += amount
 		if(ENVIRON)
-			master.used_environ += amount
-
-	master.powerupdate = TRUE
+			used_environ += amount
 
 
 

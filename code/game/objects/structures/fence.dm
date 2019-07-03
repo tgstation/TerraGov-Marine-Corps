@@ -26,7 +26,7 @@
 	if(make_hit_sound)
 		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
-/obj/structure/fence/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/fence/bullet_act(obj/item/projectile/Proj)
 	//Tasers and the like should not damage windows.
 	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
 		return FALSE
@@ -190,11 +190,11 @@
 		healthcheck(1, 1, user, I)
 
 
-/obj/structure/fence/proc/cut_grille(var/create_debris = 1)
+/obj/structure/fence/proc/cut_grille(create_debris = 1)
 	if(create_debris)
 		new /obj/item/stack/rods(loc)
 	cut = 1
-	density = 0
+	density = FALSE
 	update_icon() //Make it appear cut through!
 
 /obj/structure/fence/New(Loc, start_dir = null, constructed = 0)
@@ -206,7 +206,7 @@
 	update_nearby_icons()
 
 /obj/structure/fence/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_icons()
 	. = ..()
 

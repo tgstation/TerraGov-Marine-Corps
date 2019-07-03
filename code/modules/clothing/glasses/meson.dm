@@ -9,9 +9,8 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	origin_tech = "magnets=2;engineering=2"
 	toggleable = 1
-	fullscreen_vision = /obj/screen/fullscreen/meson
 	vision_flags = SEE_TURFS|SEE_OBJS
-	see_invisible = SEE_INVISIBLE_MINIMUM
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 
 /obj/item/clothing/glasses/meson/prescription

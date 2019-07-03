@@ -161,7 +161,7 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item,var/cost)
+/obj/machinery/biogenerator/proc/create_product(item,cost)
 	if(cost > points)
 		menustat = "nopoints"
 		return 0
@@ -217,6 +217,9 @@
 	return 1
 
 /obj/machinery/biogenerator/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & BROKEN) return
 	if(usr.stat || usr.restrained()) return
 	if(!in_range(src, usr)) return

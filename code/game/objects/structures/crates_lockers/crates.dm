@@ -9,9 +9,10 @@
 	icon_closed = "closed_basic"
 	climbable = 1
 	climb_delay = 20 //Doesn't need as long to climb over a crate
-	anchored = 0
-	store_mobs = FALSE
+	anchored = FALSE
+	mob_storage_capacity = 0
 	var/rigged = 0
+	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 
 /obj/structure/closet/crate/can_open()
 	return 1

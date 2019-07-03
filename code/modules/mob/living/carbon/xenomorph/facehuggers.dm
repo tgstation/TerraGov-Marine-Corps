@@ -13,7 +13,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
-	w_class = 1 //Note: can be picked up by aliens unlike most other items of w_class below 4
+	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
 	flags_armor_protection = FACE|EYES
 	flags_atom = NONE
@@ -77,7 +77,8 @@
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
 	if(!issamexenohive(user) && stat != DEAD)
 		user.animation_attack_on(src)
-		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
+		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
+			"<span class='xenowarning'>We crush \the [src]")
 		Die()
 		return
 	else
@@ -105,7 +106,7 @@
 		to_chat(user, "<span class='warning'>The facehugger refuses to attach.</span>")
 		return ..()
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
-	"<span class='warning'>You attempt to plant [src] on [M]'s face!</span>")
+	"<span class='warning'>We attempt to plant [src] on [M]'s face!</span>")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
 		if(!do_after(user, 10, TRUE, M, BUSY_ICON_DANGER))
 			return
@@ -308,6 +309,9 @@
 		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
 
+	if(on_fire)
+		return FALSE
+
 	if(check_mask)
 		if(wear_mask)
 			var/obj/item/W = wear_mask
@@ -434,7 +438,7 @@
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
-			round_statistics.now_pregnant++
+			GLOB.round_statistics.now_pregnant++
 			sterile = TRUE
 		Die()
 	else

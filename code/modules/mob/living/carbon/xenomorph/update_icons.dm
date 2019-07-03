@@ -1,18 +1,3 @@
-//Straight up copied from old Bay
-//Abby
-
-//Xeno Overlays Indexes//////////
-#define X_LASER_LAYER			9
-#define X_WOUND_LAYER			8
-#define X_HEAD_LAYER			7
-#define X_SUIT_LAYER			6
-#define X_L_HAND_LAYER			5
-#define X_R_HAND_LAYER			4
-#define X_TARGETED_LAYER		3
-#define X_LEGCUFF_LAYER			2
-#define X_FIRE_LAYER			1
-#define X_TOTAL_LAYERS			9
-/////////////////////////////////
 
 /mob/living/carbon/xenomorph/apply_overlay(cache_index)
 	var/image/I = overlays_standing[cache_index]
@@ -121,7 +106,7 @@
 		overlays_standing[X_FIRE_LAYER] = I
 		apply_overlay(X_FIRE_LAYER)
 
-/mob/living/carbon/xenomorph/proc/apply_alpha_channel(var/image/I)
+/mob/living/carbon/xenomorph/proc/apply_alpha_channel(image/I)
 	return I
 
 /mob/living/carbon/xenomorph/proc/update_wounds()

@@ -31,9 +31,9 @@
 	var/image/LT = null
 	var/obj/item/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
-                        /obj/item/attachable/bipod,
-                        /obj/item/attachable/lasersight,
-                        )
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/lasersight,
+						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
@@ -322,7 +322,7 @@
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
 	flags_equip_slot = NONE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 16
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
@@ -455,7 +455,7 @@
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 6000)
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
@@ -575,7 +575,8 @@
 	if(length(grenades) == 0)
 		return list("empty", "empty")
 	else
-		return list(grenades[1].hud_state, grenades[1].hud_state_empty)
+		var/obj/item/explosive/grenade/F = grenades[1]
+		return list(F.hud_state, F.hud_state_empty)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_count()
 	return length(grenades)
@@ -591,7 +592,7 @@
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 7000)
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
@@ -686,15 +687,15 @@
 	set waitfor = 0
 	last_fired = world.time
 	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
-						 "<span class='warning'>You fire the grenade launcher!</span>")
+						"<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")
-		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
+		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
+		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1
 		F.updateicon()
@@ -727,7 +728,7 @@
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
 	flags_equip_slot = NONE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	force = 15
 	wield_delay = 12
 	wield_penalty = WIELD_DELAY_VERY_SLOW
@@ -961,7 +962,7 @@
 	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/minigun
 	type_of_casings = "cartridge"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC

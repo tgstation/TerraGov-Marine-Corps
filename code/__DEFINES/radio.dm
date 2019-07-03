@@ -48,7 +48,8 @@
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
 #define RADIO_CHANNEL_SOM "Sons of Mars"
-
+#define RADIO_CHANNEL_DS1 "Alamo"
+#define RADIO_CHANNEL_DS2 "Normandy"
 
 
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
@@ -78,6 +79,9 @@
 #define MIN_FREQ 1441 // ------------------------------------------------------
 // Only the 1441 to 1489 range is freely available for general conversation.
 // This represents 1/8th of the available spectrum.
+
+#define FREQ_DROPSHIP_1	1441
+#define FREQ_DROPSHIP_2	1443
 
 #define FREQ_ELECTROPACK 1449
 #define FREQ_SIGNALER	1457  // the default for new signalers

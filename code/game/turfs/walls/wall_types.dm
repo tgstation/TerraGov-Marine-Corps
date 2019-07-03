@@ -12,7 +12,7 @@
 
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
 
 /turf/closed/wall/almayer/handle_icon_junction(junction)
@@ -163,7 +163,7 @@
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "riveted"
-	opacity = 1
+	opacity = TRUE
 	hull = 1
 
 /turf/closed/wall/indestructible/ex_act(severity)
@@ -190,7 +190,7 @@
 /turf/closed/wall/indestructible/fakeglass
 	name = "window"
 	icon_state = "fakewindows"
-	opacity = 0
+	opacity = FALSE
 
 /turf/closed/wall/indestructible/splashscreen
 	name = "Space Station 13"
@@ -368,24 +368,16 @@
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
 
-/turf/closed/wall/resin/ChangeTurf(new_turf_path, forget_old_turf, flags)
+/turf/closed/wall/resin/ChangeTurf(path, new_baseturf, flags)
 	. = ..()
-	if(!forget_old_turf)
-		return
 	new /obj/effect/alien/weeds(.)
 
 /turf/closed/wall/resin/flamer_fire_act()
 	take_damage(50)
 
 /turf/closed/wall/resin/proc/thicken()
-	var/prev_oldturf = oldTurf
 	ChangeTurf(/turf/closed/wall/resin/thick)
-	oldTurf = prev_oldturf
 	return TRUE
-
-//this one is only for map use
-/turf/closed/wall/resin/ondirt
-	oldTurf = "/turf/open/floor/plating/ground/dirt"
 
 /turf/closed/wall/resin/thick
 	name = "thick resin wall"
@@ -403,17 +395,12 @@
 	icon_state = "membrane0"
 	walltype = "membrane"
 	damage_cap = 120
-	opacity = 0
+	opacity = FALSE
 	alpha = 180
 
 /turf/closed/wall/resin/membrane/thicken()
-	var/prev_oldturf = oldTurf
 	ChangeTurf(/turf/closed/wall/resin/membrane/thick)
-	oldTurf = prev_oldturf
 
-//this one is only for map use
-/turf/closed/wall/resin/membrane/ondirt
-	oldTurf = "/turf/open/floor/plating/ground/dirt"
 
 /turf/closed/wall/resin/membrane/thick
 	name = "thick resin membrane"
@@ -423,7 +410,7 @@
 	walltype = "thickmembrane"
 	alpha = 210
 
-/turf/closed/wall/resin/bullet_act(var/obj/item/projectile/Proj)
+/turf/closed/wall/resin/bullet_act(obj/item/projectile/Proj)
 	take_damage(Proj.damage*0.5)
 	..()
 	return TRUE
@@ -503,10 +490,7 @@
 	return !density
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
-	if(oldTurf != "")
-		ChangeTurf(text2path(oldTurf), TRUE)
-	else
-		ChangeTurf(/turf/open/floor/plating, TRUE)
+	ScrapeAway()
 
 
 /turf/closed/wall/resin/ChangeTurf(newtype)
@@ -515,7 +499,8 @@
 		var/turf/T
 		for(var/i in GLOB.cardinals)
 			T = get_step(src, i)
-			if(!istype(T)) continue
+			if(!istype(T)) 
+				continue
 			for(var/obj/structure/mineral_door/resin/R in T)
 				R.check_resin_support()
 

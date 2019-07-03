@@ -80,9 +80,9 @@
 
 	//Copy access
 	O.stored_access = list()
-	var/obj/item/id_slot = get_item_by_slot(SLOT_WEAR_ID)
-	if(id_slot)
-		O.stored_access = id_slot.GetAccess()
+	var/obj/item/card/id/ID = get_idcard()
+	if(istype(ID))
+		O.stored_access = ID.access
 	//Copy hands
 	var/obj/item/left_hand = l_hand
 	var/obj/item/right_hand = r_hand
@@ -121,7 +121,7 @@
 	//Apply access
 	var/obj/item/id_slot = H.get_item_by_slot(SLOT_WEAR_ID)
 	if(id_slot)
-		var/obj/item/card/id/card = id_slot.GetID()
+		var/obj/item/card/id/card = id_slot
 		var/datum/job/J = SSjob.GetJob(H.job)
 		if(istype(card))
 			card.access = stored_access
@@ -135,3 +135,24 @@
 
 	H.name = H.get_visible_name()
 	H.hud_set_squad()
+
+
+/datum/outfit/varedit/get_json_data()
+	. = .. ()
+	.["stored_access"] = stored_access
+	var/list/stripped_vv = list()
+	for(var/slot in vv_values)
+		var/list/vedits = vv_values[slot]
+		var/list/stripped_edits = list()
+		for(var/edit in vedits)
+			if(istext(vedits[edit]) || isnum(vedits[edit]) || isnull(vedits[edit]))
+				stripped_edits[edit] = vedits[edit]
+		if(stripped_edits.len)
+			stripped_vv[slot] = stripped_edits
+	.["vv_values"] = stripped_vv
+
+
+/datum/outfit/varedit/load_from(list/outfit_data)
+	. = ..()
+	stored_access = outfit_data["stored_access"]
+	vv_values = outfit_data["vv_values"]

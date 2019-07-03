@@ -7,7 +7,6 @@
 
 	var/list/gift_types = list(
 		/obj/item/storage/wallet,
-		/obj/item/storage/photo_album,
 		/obj/item/storage/box/snappops,
 		/obj/item/storage/fancy/crayons,
 		/obj/item/storage/belt/champion,

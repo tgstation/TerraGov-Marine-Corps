@@ -3,7 +3,7 @@
 	desc = "A board for pinning important notices upon."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	var/notices = 0
 
@@ -43,7 +43,9 @@
 
 
 /obj/structure/noticeboard/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	usr.set_interaction(src)
 	if(href_list["remove"])
 		if((usr.stat || usr.restrained()))	//For when a player is handcuffed while they have the notice window open

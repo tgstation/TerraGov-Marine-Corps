@@ -1,16 +1,16 @@
 /* Diffrent misc types of sheets
- * Contains:
- *		Metal
- *		Plasteel
- *		Wood
- *		Cloth
- *		Cardboard
- */
+* Contains:
+*		Metal
+*		Plasteel
+*		Wood
+*		Cloth
+*		Cardboard
+*/
 
 /*
- * Metal
- */
-var/global/list/datum/stack_recipe/metal_recipes = list ( \
+* Metal
+*/
+GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("stool", /obj/structure/bed/stool, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("chair", /obj/structure/bed/chair, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("bed", /obj/structure/bed, 2, one_per_turf = 1, on_floor = 1), \
@@ -63,7 +63,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	new/datum/stack_recipe("apc frame", /obj/item/frame/apc, 2), \
 	new/datum/stack_recipe("air alarm frame", /obj/item/frame/air_alarm, 2), \
 	new/datum/stack_recipe("fire alarm frame", /obj/item/frame/fire_alarm, 2), \
-)
+	))
 
 /obj/item/stack/sheet/metal
 	name = "metal"
@@ -88,17 +88,17 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 
 /obj/item/stack/sheet/metal/cyborg
 
-/obj/item/stack/sheet/metal/New(var/loc, var/amount=null)
-	recipes = metal_recipes
+/obj/item/stack/sheet/metal/New(loc, amount=null)
+	recipes = GLOB.metal_recipes
 	return ..()
 
 /*
- * Plasteel
- */
-var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
+* Plasteel
+*/
+GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 50, one_per_turf = 1), \
 	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 80, one_per_turf = 1, on_floor = 1, skill_req =  SKILL_CONSTRUCTION_PLASTEEL)
-	)
+	))
 
 /obj/item/stack/sheet/plasteel
 	name = "plasteel"
@@ -113,8 +113,8 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	merge_type = /obj/item/stack/sheet/plasteel
 
 
-/obj/item/stack/sheet/plasteel/New(var/loc, var/amount=null)
-	recipes = plasteel_recipes
+/obj/item/stack/sheet/plasteel/New(loc, amount=null)
+	recipes = GLOB.plasteel_recipes
 	return ..()
 
 
@@ -128,21 +128,21 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	amount = 50
 
 /*
- * Wood
- */
-var/global/list/datum/stack_recipe/wood_recipes = list ( \
+* Wood
+*/
+GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("pair of wooden sandals", /obj/item/clothing/shoes/sandal, 1), \
 	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
 	/*
 	new/datum/stack_recipe("table parts", /obj/item/frame/table/wood, 2), \
-	 */
+	*/
 	new/datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood/normal, 1, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 50, one_per_turf = 2, on_floor = 1), \
 
 	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 20, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/coffin, 5, time = 15, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("baseball bat", /obj/item/weapon/baseballbat, 10, time = 20, one_per_turf = 0, on_floor = 1) \
-	)
+	))
 
 /obj/item/stack/sheet/wood
 	name = "wooden plank"
@@ -163,13 +163,13 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
 
-/obj/item/stack/sheet/wood/New(var/loc, var/amount=null)
-	recipes = wood_recipes
+/obj/item/stack/sheet/wood/New(loc, amount=null)
+	recipes = GLOB.wood_recipes
 	return ..()
 
 /*
- * Cloth
- */
+* Cloth
+*/
 /obj/item/stack/sheet/cloth
 	name = "cloth"
 	desc = "This roll of cloth is made from only the finest chemicals and bunny rabbits."
@@ -179,9 +179,9 @@ var/global/list/datum/stack_recipe/wood_recipes = list ( \
 
 
 /*
- * Cardboard
- */
-var/global/list/datum/stack_recipe/cardboard_recipes = list ( \
+* Cardboard
+*/
+GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	new/datum/stack_recipe("box", /obj/item/storage/box), \
 	new/datum/stack_recipe("donut box", /obj/item/storage/donut_box/empty), \
 	new/datum/stack_recipe("egg box", /obj/item/storage/fancy/egg_box), \
@@ -199,7 +199,7 @@ var/global/list/datum/stack_recipe/cardboard_recipes = list ( \
 		new/datum/stack_recipe("white folder", /obj/item/folder/white), \
 		new/datum/stack_recipe("yellow folder", /obj/item/folder/yellow), \
 		)) \
-)
+	))
 
 /obj/item/stack/sheet/cardboard	//BubbleWrap
 	name = "cardboard"
@@ -209,6 +209,6 @@ var/global/list/datum/stack_recipe/cardboard_recipes = list ( \
 	origin_tech = "materials=1"
 
 
-/obj/item/stack/sheet/cardboard/New(var/loc, var/amount=null)
-		recipes = cardboard_recipes
-		return ..()
+/obj/item/stack/sheet/cardboard/New(loc, amount=null)
+	recipes = GLOB.cardboard_recipes
+	return ..()

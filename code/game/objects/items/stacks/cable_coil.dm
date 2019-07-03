@@ -70,13 +70,12 @@
 		if(amount <= 14)
 			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")
 			return
-		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
+		var/obj/item/restraints/handcuffs/cable/B = new /obj/item/restraints/handcuffs/cable(usr.loc)
 		B.color = color
 		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 		use(15)
 	else
 		to_chat(usr, "<span class='notice'><span class='notice'> You cannot do that.</span>")
-	..()
 
 /obj/item/stack/cable_coil/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -114,7 +113,7 @@
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
 		user.put_in_hands(F)
 		use(1)
-    
+
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
 		var/mob/living/carbon/human/H = M
@@ -144,13 +143,13 @@
 	return new path(location, item_color)
 
 
-/obj/item/stack/cable_coil/use(var/used)
+/obj/item/stack/cable_coil/use(used)
 	if( ..() )
 		updateicon()
 		update_wclass()
 		return TRUE
 
-/obj/item/stack/cable_coil/add(var/extra)
+/obj/item/stack/cable_coil/add(extra)
 	if( ..() )
 		updateicon()
 		update_wclass()
@@ -215,7 +214,7 @@
 
 // called when cable_coil is click on an installed obj/cable
 // or click on a turf that already contains a "node" cable
-/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, var/showerror = TRUE)
+/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, showerror = TRUE)
 	var/turf/U = get_turf(user)
 	if(!isturf(U))
 		return

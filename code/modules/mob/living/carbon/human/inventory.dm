@@ -174,11 +174,12 @@
 	else if (I == glasses)
 		glasses = null
 		var/obj/item/clothing/glasses/G = I
-		if(G.vision_flags || G.darkness_view || G.see_invisible)
-			update_sight()
 		if(G.tint)
 			update_tint()
-		update_inv_glasses()
+		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+			update_sight()
+		if(!QDELETED(src))
+			update_inv_glasses()
 	else if (I == wear_ear)
 		wear_ear = null
 		update_inv_ears()
@@ -217,9 +218,9 @@
 	return ..()
 
 
-//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
+//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot)
 	if(!slot)
 		return
 	if(!istype(W))
@@ -259,12 +260,10 @@
 			sec_hud_set_ID()
 			wear_mask_update(W, TRUE)
 		if(SLOT_HANDCUFFED)
-			handcuffed = W
-			handcuff_update()
+			update_handcuffed(W)
 		if(SLOT_LEGCUFFED)
-			legcuffed = W
+			update_legcuffed(W)
 			W.equipped(src, slot)
-			legcuff_update()
 		if(SLOT_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)
@@ -292,10 +291,10 @@
 			glasses = W
 			W.equipped(src, slot)
 			var/obj/item/clothing/glasses/G = W
-			if(G.vision_flags || G.darkness_view || G.see_invisible)
-				update_sight()
 			if(G.tint)
 				update_tint()
+			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+				update_sight()
 			update_inv_glasses()
 		if(SLOT_GLOVES)
 			gloves = W
@@ -398,8 +397,7 @@
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
 		else
-			to_chat(src, "<span class='warning'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</span>")
-			return
+			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
 	return TRUE
 
 
@@ -471,7 +469,7 @@
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			if(isidcard(I))
-				log_admin("[key_name(src)] took the [I] of [key_name(M)].")
+				log_game("[key_name(src)] took the [I] of [key_name(M)].")
 				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
 	if(M)

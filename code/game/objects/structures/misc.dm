@@ -36,8 +36,8 @@
 	anchored = FALSE
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
-/obj/structure/mopbucket/New()
-	..()
+/obj/structure/mopbucket/Initialize()
+	. = ..()
 	create_reagents(100, OPENCONTAINER)
 
 /obj/structure/mopbucket/examine(mob/user)
@@ -65,7 +65,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/shipmast/attack_hand(var/mob/user)
+/obj/structure/shipmast/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -144,15 +144,15 @@ obj/item/alienjar
 	icon = 'icons/obj/structures/structures.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
 	desc = "Completely impassable - or are they?"
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = MOB_LAYER
 

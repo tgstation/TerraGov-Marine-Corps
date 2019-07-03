@@ -314,7 +314,7 @@
 						});
 						$( "#sortable" ).disableSelection();
 						$('form').submit(function(){
-						    $('#IRVdata').val($( "#sortable" ).sortable("toArray", { attribute: "voteid" }));
+							$('#IRVdata').val($( "#sortable" ).sortable("toArray", { attribute: "voteid" }));
 						});
 					});
 
@@ -383,7 +383,7 @@
 		if(!usr || !src)
 			return FALSE
 		//we gots ourselfs a dirty cheater on our hands!
-		log_game("[key_name(usr)] attempted to rig the vote by voting as [key].")
+		log_admin_private("[key_name(usr)] attempted to rig the vote by voting as [key].")
 		message_admins("[ADMIN_TPMONTY(usr)] attempted to rig the vote by voting as [key].")
 		to_chat(usr, "<span class='danger'>You don't seem to be [key].</span>")
 		to_chat(src, "<span class='danger'>Something went horribly wrong processing your vote. Please contact an administrator, they should have gotten a message about this.</span>")

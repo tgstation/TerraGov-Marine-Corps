@@ -39,7 +39,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/space/Initialize()
 	. = ..()
-	SetLuminosity(4)
+	set_light(4)
 
 
 /mob/living/simple_animal/hostile/syndicate/space/stormtrooper
@@ -73,7 +73,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/melee/space/Initialize()
 	. = ..()
-	SetLuminosity(4)
+	set_light(4)
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/space/stormtrooper
@@ -99,7 +99,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/melee/sword/Initialize()
 	. = ..()
-	SetLuminosity(2)
+	set_light(2)
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/item/projectile/Proj)
@@ -154,7 +154,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/ranged/space/Initialize()
 	. = ..()
-	SetLuminosity(4)
+	set_light(4)
 
 
 /mob/living/simple_animal/hostile/syndicate/ranged/space/stormtrooper
@@ -187,7 +187,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/space/Initialize()
 	. = ..()
-	SetLuminosity(4)
+	set_light(4)
 
 
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/space/stormtrooper
@@ -218,7 +218,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/ranged/shotgun/space/Initialize()
 	. = ..()
-	SetLuminosity(4)
+	set_light(4)
 
 
 /mob/living/simple_animal/hostile/syndicate/ranged/shotgun/space/stormtrooper

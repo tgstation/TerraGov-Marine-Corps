@@ -7,4 +7,4 @@
 	name = "ore box"
 	desc = "A heavy box used for storing ore."
 	density = TRUE
-	anchored = 0
+	anchored = FALSE

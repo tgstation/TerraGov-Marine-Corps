@@ -35,7 +35,7 @@
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/blade1.ogg'
 
- 
+
 /mob/living/simple_animal/hostile/pirate/melee/space
 	name = "Space Pirate Swashbuckler"
 	icon_state = "piratespace"
@@ -46,7 +46,7 @@
 
 /mob/living/simple_animal/hostile/pirate/melee/Initialize()
 	. = ..()
-	SetLuminosity(2)
+	set_light(2)
 
 
 /mob/living/simple_animal/hostile/pirate/ranged

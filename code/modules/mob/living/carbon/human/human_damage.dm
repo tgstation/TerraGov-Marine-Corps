@@ -71,14 +71,14 @@
 	return brainloss
 
 //These procs fetch a cumulative total damage from all limbs
-/mob/living/carbon/human/getBruteLoss(var/organic_only=0)
+/mob/living/carbon/human/getBruteLoss(organic_only=0)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
 		if(!(organic_only && O.limb_status & LIMB_ROBOT))
 			amount += O.brute_dam
 	return amount
 
-/mob/living/carbon/human/getFireLoss(var/organic_only=0)
+/mob/living/carbon/human/getFireLoss(organic_only=0)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
 		if(!(organic_only && O.limb_status & LIMB_ROBOT))
@@ -86,7 +86,7 @@
 	return amount
 
 
-/mob/living/carbon/human/adjustBruteLoss(var/amount)
+/mob/living/carbon/human/adjustBruteLoss(amount)
 	if(species && species.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
@@ -96,7 +96,7 @@
 		heal_overall_damage(-amount, 0)
 
 
-/mob/living/carbon/human/adjustFireLoss(var/amount)
+/mob/living/carbon/human/adjustFireLoss(amount)
 	if(species && species.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
@@ -106,7 +106,7 @@
 		heal_overall_damage(0, -amount)
 
 
-/mob/living/carbon/human/proc/adjustBruteLossByPart(var/amount, var/organ_name, var/obj/damage_source = null)
+/mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
 	if(species && species.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
@@ -122,7 +122,7 @@
 
 
 
-/mob/living/carbon/human/proc/adjustFireLossByPart(var/amount, var/organ_name, var/obj/damage_source = null)
+/mob/living/carbon/human/proc/adjustFireLossByPart(amount, organ_name, obj/damage_source = null)
 	if(species && species.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
@@ -143,13 +143,13 @@
 		cloneloss = 0
 	return ..()
 
-/mob/living/carbon/human/setCloneLoss(var/amount)
+/mob/living/carbon/human/setCloneLoss(amount)
 	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
 		cloneloss = 0
 	else
 		..()
 
-/mob/living/carbon/human/adjustCloneLoss(var/amount)
+/mob/living/carbon/human/adjustCloneLoss(amount)
 	..()
 
 	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
@@ -199,13 +199,13 @@
 		toxloss = 0
 	return ..()
 
-/mob/living/carbon/human/adjustToxLoss(var/amount)
+/mob/living/carbon/human/adjustToxLoss(amount)
 	if(species.species_flags & NO_POISON)
 		toxloss = 0
 	else
 		..()
 
-/mob/living/carbon/human/setToxLoss(var/amount)
+/mob/living/carbon/human/setToxLoss(amount)
 	if(species.species_flags & NO_POISON)
 		toxloss = 0
 	else
@@ -214,7 +214,7 @@
 ////////////////////////////////////////////
 
 //Returns a list of damaged limbs
-/mob/living/carbon/human/proc/get_damaged_limbs(var/brute, var/burn)
+/mob/living/carbon/human/proc/get_damaged_limbs(brute, burn)
 	var/list/datum/limb/parts = list()
 	for(var/datum/limb/O in limbs)
 		if((brute && O.brute_dam) || (burn && O.burn_dam) || !(O.surgery_open_stage == 0))
@@ -232,7 +232,7 @@
 //Heals ONE external organ, organ gets randomly selected from damaged ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
-/mob/living/carbon/human/heal_limb_damage(var/brute, var/burn)
+/mob/living/carbon/human/heal_limb_damage(brute, burn)
 	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
 	if(!parts.len)	return
 	var/datum/limb/picked = pick(parts)
@@ -247,24 +247,21 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 //Damages ONE external organ, organ gets randomly selected from damagable ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
-/mob/living/carbon/human/take_limb_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0)
+/mob/living/carbon/human/take_limb_damage(brute, burn, sharp = 0, edge = 0)
 	var/list/datum/limb/parts = get_damageable_limbs()
 	if(!parts.len)	return
 	var/datum/limb/picked = pick(parts)
 	if(picked.take_damage_limb(brute, burn, sharp, edge))
 		UpdateDamageIcon()
 
-	if(brute)
-		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, brute) //If we have the Scout cloak, check for a short out
-	if(burn)
-		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, burn) //If we have the Scout cloak, check for a short out
+	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, brute + burn)
 
 	updatehealth()
 	speech_problem_flag = 1
 
 
 //Heal MANY limbs, in random order
-/mob/living/carbon/human/heal_overall_damage(var/brute, var/burn)
+/mob/living/carbon/human/heal_overall_damage(brute, burn)
 	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
 
 	var/update = 0
@@ -285,7 +282,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(update)	UpdateDamageIcon()
 
 // damage MANY limbs, in random order
-/mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0, var/used_weapon = null, var/blocked = 0)
+/mob/living/carbon/human/take_overall_damage(brute, burn, sharp = 0, edge = 0, used_weapon = null, blocked = 0)
 	if(status_flags & GODMODE)	return	//godmode
 
 	if(blocked >= 1) //Complete negation
@@ -306,6 +303,8 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		if(burn)
 			burn = round(burn * ((15 - protection_aura) / 15))
 
+	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, brute + burn)
+
 	var/list/datum/limb/parts = get_damageable_limbs()
 	var/update = 0
 	while(parts.len && (brute>0 || burn>0) )
@@ -319,11 +318,6 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		burn	-= (picked.burn_dam - burn_was)
 
 		parts -= picked
-
-	if(brute)
-		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, brute) //If we have the Scout cloak, check for a short out
-	if(burn)
-		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, burn) //If we have the Scout cloak, check for a short out
 
 	updatehealth()
 	if(update)	UpdateDamageIcon()
@@ -365,7 +359,7 @@ This function restores all limbs.
 		if(EO.name == zone)
 			return EO
 
-/mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
+/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, sharp = 0, edge = 0, obj/used_weapon = null)
 
 	if(blocked >= 1) //total negation
 		return 0
@@ -416,7 +410,7 @@ This function restores all limbs.
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
 
-	camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, damage) //If we have the Scout cloak, check for a short out
+	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, damage)
 
 	updatehealth()
 	return damage

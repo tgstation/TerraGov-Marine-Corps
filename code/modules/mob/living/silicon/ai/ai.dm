@@ -61,7 +61,7 @@
 	return ..()
 
 
-/mob/living/silicon/ai/restrained(ignore_grab)
+/mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
 
 
@@ -83,10 +83,12 @@
 
 
 /mob/living/silicon/ai/Topic(href, href_list)
-	if(usr != src || incapacitated())
+	. = ..()
+	if(.)
 		return
 
-	. = ..()
+	if(usr != src || incapacitated())
+		return
 
 	if(href_list["switchcamera"])
 		switchCamera(locate(href_list["switchcamera"]) in GLOB.cameranet.cameras)
@@ -128,7 +130,7 @@
 /mob/living/silicon/ai/proc/toggle_camera_light()
 	if(camera_light_on)
 		for(var/obj/machinery/camera/C in lit_cameras)
-			C.SetLuminosity(0)
+			C.set_light(0)
 			lit_cameras = list()
 		to_chat(src, "<span class='notice'>Camera lights deactivated.</span>")
 	else

@@ -1,6 +1,6 @@
 /*
- * Morgue
- */
+* Morgue
+*/
 /obj/structure/morgue
 	name = "morgue"
 	desc = "Used to keep bodies in untill someone fetches them."
@@ -111,8 +111,8 @@
 
 
 /*
- * Morgue tray
- */
+* Morgue tray
+*/
 
 /obj/structure/morgue_tray
 	name = "morgue tray"
@@ -160,8 +160,8 @@
 
 
 /*
- * Crematorium
- */
+* Crematorium
+*/
 
 /obj/structure/morgue/crematorium
 	name = "crematorium"
@@ -233,8 +233,8 @@
 
 
 /*
- * Crematorium tray
- */
+* Crematorium tray
+*/
 
 /obj/structure/morgue_tray/crematorium
 	name = "crematorium tray"
@@ -243,8 +243,8 @@
 
 
 /*
- * Crematorium switch
- */
+* Crematorium switch
+*/
 
 /obj/machinery/crema_switch/attack_hand(mob/user)
 	. = ..()
@@ -261,22 +261,22 @@
 
 
 /*
- * Sarcophagus
- */
+* Sarcophagus
+*/
 
 /obj/structure/morgue/sarcophagus
-    name = "sarcophagus"
-    desc = "Used to store mummies."
-    icon_state = "sarcophagus1"
-    morgue_type = "sarcophagus"
-    tray_path = /obj/structure/morgue_tray/sarcophagus
+	name = "sarcophagus"
+	desc = "Used to store mummies."
+	icon_state = "sarcophagus1"
+	morgue_type = "sarcophagus"
+	tray_path = /obj/structure/morgue_tray/sarcophagus
 
 
 /*
- * Sarcophagus tray
- */
+* Sarcophagus tray
+*/
 
 /obj/structure/morgue_tray/sarcophagus
-    name = "sarcophagus tray"
-    desc = "Apply corpse before closing."
-    icon_state = "sarcomat"
+	name = "sarcophagus tray"
+	desc = "Apply corpse before closing."
+	icon_state = "sarcomat"

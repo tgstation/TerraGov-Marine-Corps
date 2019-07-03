@@ -210,7 +210,7 @@
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = TRUE)
+/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	. = ..()
 
 	var/list/data = list()
@@ -237,7 +237,8 @@
 		ui.set_auto_update(TRUE)
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
-	if(..())
+	. = ..()
+	if(.)
 		return
 
 	if(href_list["toggle_power"])

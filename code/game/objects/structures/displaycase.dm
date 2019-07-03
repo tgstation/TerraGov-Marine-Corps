@@ -27,7 +27,7 @@
 				src.healthcheck()
 
 
-/obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/displaycase/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.ammo.damage
 	..()
 	src.healthcheck()
@@ -36,7 +36,7 @@
 /obj/structure/displaycase/proc/healthcheck()
 	if (src.obj_integrity <= 0)
 		if (!( src.destroyed ))
-			src.density = 0
+			src.density = FALSE
 			src.destroyed = 1
 			new /obj/item/shard( src.loc )
 			playsound(src, "shatter", 25, 1)

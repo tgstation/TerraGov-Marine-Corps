@@ -121,6 +121,9 @@ FLOOR SAFES
 	onclose(user, "safe")
 
 /obj/structure/safe/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(usr))	return
 	var/mob/living/carbon/human/user = usr
 
@@ -194,7 +197,7 @@ FLOOR SAFES
 /obj/structure/safe/floor
 	name = "floor safe"
 	icon_state = "floorsafe"
-	density = 0
+	density = FALSE
 	level = 1	//underfloor
 	layer = UNDERFLOOR_OBJ_LAYER
 
@@ -205,7 +208,7 @@ FLOOR SAFES
 	hide(T.intact_tile)
 
 
-/obj/structure/safe/floor/hide(var/intact)
+/obj/structure/safe/floor/hide(intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
 
 /obj/structure/safe/floor/lvcolony

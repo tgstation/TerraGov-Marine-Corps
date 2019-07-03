@@ -1,21 +1,21 @@
 /* Cards
- * Contains:
- *		DATA CARD
- *		ID CARD
- *		FINGERPRINT CARD HOLDER
- *		FINGERPRINT CARD
- */
+* Contains:
+*		DATA CARD
+*		ID CARD
+*		FINGERPRINT CARD HOLDER
+*		FINGERPRINT CARD
+*/
 
 
 
 /*
- * DATA CARDS - Used for the teleporter
- */
+* DATA CARDS - Used for the teleporter
+*/
 /obj/item/card
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/items/card.dmi'
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	var/associated_account_number = 0
 
 	var/list/files = list(  )
@@ -51,8 +51,8 @@
 	data = "Clown Land"
 
 /*
- * ID CARDS
- */
+* ID CARDS
+*/
 
 /obj/item/card/emag_broken
 	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
@@ -96,7 +96,7 @@
 		)
 
 
-/obj/item/card/emag/afterattack(var/obj/item/O as obj, mob/user as mob)
+/obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
 
 	for(var/type in devices)
 		if(istype(O,type))
@@ -139,17 +139,14 @@
 		return
 	var/mob/living/carbon/human/H = loc
 	blood_type = H.blood_type
+	GLOB.id_card_list += src
+
+/obj/item/card/id/Destroy()
+	GLOB.id_card_list -= src
+	return ..()
 
 /obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")
-
-	return
-
-/obj/item/card/id/GetAccess()
-	return access
-
-/obj/item/card/id/GetID()
-	return src
 
 
 /obj/item/card/id/proc/update_label(newname, newjob)
@@ -158,6 +155,9 @@
 		return
 
 	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+	if(isliving(loc))
+		var/mob/living/L = loc
+		L.name = L.get_visible_name()
 
 
 /obj/item/card/id/verb/read()
@@ -250,26 +250,15 @@
 	assignment = "Syndicate Overlord"
 	access = list(ACCESS_ILLEGAL_PIRATE)
 
+
 /obj/item/card/id/captains_spare
 	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
-	registered_name = "Captain"
-	assignment = "Captain"
-	New()
-		access = get_all_marine_access()
-		..()
-
-/obj/item/card/id/centcom
-	name = "\improper CentCom. ID"
-	desc = "An ID straight from Cent. Com."
-	icon_state = "centcom"
-	registered_name = "Central Command"
-	assignment = "General"
-	New()
-		access = get_all_centcom_access()
-		..()
+	registered_name = CAPTAIN
+	assignment = CAPTAIN
+	access = ALL_MARINE_ACCESS
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
@@ -313,7 +302,7 @@
 	desc = "A fallen marine's information dog tag."
 	icon_state = "dogtag_taken"
 	icon = 'icons/obj/items/card.dmi'
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/fallen_names[0]
 	var/fallen_assignements[0]
 

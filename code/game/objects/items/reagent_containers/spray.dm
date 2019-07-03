@@ -8,7 +8,7 @@
 	flags_item = NOBLUDGEON
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 10
 	amount_per_transfer_from_this = 10
@@ -27,9 +27,6 @@
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
 	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \
 	|| istype(A, /obj/item/reagent_container) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart || istype(A, /obj/structure/ladder)))
-		return
-
-	if(istype(A, /obj/effect/proc_holder/spell))
 		return
 
 	if((A.is_drainable() && !A.is_refillable()) && get_dist(src,A) <= 1)
@@ -87,7 +84,7 @@
 		qdel(D)
 
 
-/obj/item/reagent_container/spray/attack_self(var/mob/user)
+/obj/item/reagent_container/spray/attack_self(mob/user)
 	if(!possible_transfer_amounts)
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
@@ -169,7 +166,7 @@
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	throwforce = 3
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	possible_transfer_amounts = null
 	volume = 600
 	origin_tech = "combat=3;materials=3;engineering=3"

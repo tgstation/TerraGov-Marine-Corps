@@ -1,5 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
+	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/living_flags = NONE
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
@@ -40,7 +41,9 @@
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 
-	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
+	var/restrained_flags = NONE
+
+	var/last_special = 0
 
 	var/now_pushing
 

@@ -57,7 +57,7 @@
 	START_PROCESSING(SSobj, src)
 	return
 
-/obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/flora/tree/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage * 0.5
 	. = ..()
 	START_PROCESSING(SSobj, src)
@@ -92,7 +92,7 @@
 /obj/structure/flora/tree/flamer_fire_act()
 	if(on_fire == FALSE)
 		on_fire = TRUE
-		SetLuminosity(5)
+		set_light(5)
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
@@ -104,7 +104,7 @@
 
 /obj/structure/flora/tree/process()
 	if(obj_integrity <= 0)
-		density = 0
+		density = FALSE
 		var/obj/structure/flora/stump/S = new(loc)
 		S.name = "[name] stump"
 		STOP_PROCESSING(SSobj, src)
@@ -419,7 +419,7 @@
 /obj/structure/jungle
 	name = "jungle foliage"
 	icon = 'icons/turf/ground_map.dmi'
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
@@ -436,7 +436,6 @@
 
 /obj/structure/jungle/plantbot1/alien
 	icon_state = "alienplant1"
-	luminosity = 2
 
 /obj/structure/jungle/planttop1
 	name = "strange tree"
@@ -467,7 +466,7 @@
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/jungle/vines/heavy/Initialize()
 	. = ..()

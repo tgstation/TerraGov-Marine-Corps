@@ -74,28 +74,20 @@
 		else
 			to_chat(usr, "You can respawn now, enjoy your new life!")
 
-	log_game("[usr.name]/[usr.key] used abandon mob.")
-
 	to_chat(usr, "<span class='boldnotice'>Make sure to play a different character, and please roleplay correctly!</span>")
 
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
 		return
 	client.screen.Cut()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
 		return
 
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
 		qdel(M)
 		return
 
 	M.key = key
-	if(M.client)
-		M.client.change_view(world.view)
-	return
 
 
 /mob/verb/cancel_camera()

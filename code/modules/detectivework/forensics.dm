@@ -1,6 +1,6 @@
 //This is the output of the stringpercent(print) proc, and means about 80% of
 //the print must be there for it to be complete.  (Prints are 32 digits)
-var/const/FINGERPRINT_COMPLETE = 6
+#define FINGERPRINT_COMPLETE 6
 proc/is_complete_print(var/print)
 	return stringpercent(print) <= FINGERPRINT_COMPLETE
 
@@ -40,7 +40,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	name = "forensic data"
 	var/uid
 
-/datum/data/record/forensic/New(var/atom/A)
+/datum/data/record/forensic/New(atom/A)
 	uid = "\ref [A]"
 	fields["name"] = sanitize(A.name)
 	fields["area"] = sanitize("[get_area(A)]")
@@ -48,7 +48,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 	fields["fibers"] = A.suit_fibers ? A.suit_fibers.Copy() : list()
 	fields["time"] = world.time
 
-/datum/data/record/forensic/proc/merge(var/datum/data/record/other)
+/datum/data/record/forensic/proc/merge(datum/data/record/other)
 	var/list/prints = fields["fprints"]
 	var/list/o_prints = other.fields["fprints"]
 	for(var/print in o_prints)

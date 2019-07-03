@@ -49,7 +49,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/energy/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/energy/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund)
 		cell.charge = min(cell.charge + charge_cost, cell.maxcharge) //Safeguard against 'overcharging' the cell.
@@ -125,7 +125,7 @@
 
 	ammo = /datum/ammo/energy/lasgun
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER

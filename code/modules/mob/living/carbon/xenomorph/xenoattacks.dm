@@ -36,7 +36,7 @@
 				M.flick_attack_overlay(src, "punch")
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				visible_message("<span class='danger'>\The [M] bites \the [src].</span>", \
-				"<span class='danger'>You are bit by \the [M].</span>", null, 5)
+				"<span class='danger'>We are bit by \the [M].</span>", null, 5)
 				apply_damage(rand(1, 3), BRUTE)
 				updatehealth()
 
@@ -91,7 +91,7 @@
 	if(src != M)
 		if(isxenolarva(M)) //Larvas can't eat people
 			M.visible_message("<span class='danger'>[M] nudges its head against \the [src].</span>", \
-			"<span class='danger'>You nudge your head against \the [src].</span>")
+			"<span class='danger'>We nudge our head against \the [src].</span>")
 			return 0
 
 		switch(M.a_intent)
@@ -101,15 +101,15 @@
 					fire_stacks = max(fire_stacks - 1, 0)
 					playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 					M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
-						"<span class='warning'>You try to put out the fire on [src]!</span>", null, 5)
+						"<span class='warning'>We try to put out the fire on [src]!</span>", null, 5)
 					if(fire_stacks <= 0)
 						M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
-							"<span class='notice'>You extinguished the fire on [src].</span>", null, 5)
+							"<span class='notice'>We extinguished the fire on [src].</span>", null, 5)
 						ExtinguishMob()
 					return 1
 				else
 					M.visible_message("<span class='notice'>\The [M] caresses \the [src] with its scythe-like arm.</span>", \
-					"<span class='notice'>You caress \the [src] with your scythe-like arm.</span>", null, 5)
+					"<span class='notice'>We caress \the [src] with our scythe-like arm.</span>", null, 5)
 
 			if(INTENT_GRAB)
 				if(M == src || anchored)
@@ -119,14 +119,14 @@
 					M.start_pulling(src)
 
 					M.visible_message("<span class='warning'>[M] grabs \the [src]!</span>", \
-					"<span class='warning'>You grab \the [src]!</span>", null, 5)
+					"<span class='warning'>We grab \the [src]!</span>", null, 5)
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
 			if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
 				M.animation_attack_on(src)
 				if(issamexenohive(M))
 					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
-					"<span class='warning'>You nibble \the [src].</span>", null, 5)
+					"<span class='warning'>We nibble \the [src].</span>", null, 5)
 					return 1
 				else
 					// copypasted from attack_alien.dm
@@ -137,11 +137,11 @@
 					if(!damage)
 						playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 						M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
-						"<span class='danger'>You lunge at [src]!</span>", null, 5)
+						"<span class='danger'>We lunge at [src]!</span>", null, 5)
 						return 0
 
 					M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
-					"<span class='danger'>You slash [src]!</span>", null, 5)
+					"<span class='danger'>We slash [src]!</span>", null, 5)
 					log_combat(M, src, "slashed")
 
 					M.flick_attack_overlay(src, "slash")
@@ -153,7 +153,7 @@
 				M.flick_attack_overlay(src, "disarm")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
-				"<span class='warning'>You shove \the [src]!</span>", null, 5)
+				"<span class='warning'>We shove \the [src]!</span>", null, 5)
 				if(ismonkey(src))
 					KnockDown(8)
 		return 1

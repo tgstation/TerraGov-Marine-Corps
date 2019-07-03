@@ -115,7 +115,7 @@
 			return
 
 		user.visible_message("<span class='notice'>[user] labels [src] as \"[tmp_label]\".</span>", \
-							 "<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
+							"<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
 
 		label_text = tmp_label
 		update_name_label()
@@ -246,7 +246,7 @@
 	icon_state = "bucket"
 	item_state = "bucket"
 	matter = list("metal" = 200)
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120

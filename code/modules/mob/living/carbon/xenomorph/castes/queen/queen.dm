@@ -20,7 +20,6 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
-	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
 	job = ROLE_XENO_QUEEN
 
 	var/breathing_counter = 0
@@ -50,17 +49,18 @@
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
 		/mob/living/carbon/xenomorph/queen/proc/hive_Message,
-		/mob/living/carbon/xenomorph/queen/proc/calldown_dropship
+		/mob/living/carbon/xenomorph/proc/calldown_dropship
 		)
 
 // ***************************************
 // *********** Init
 // ***************************************
 /mob/living/carbon/xenomorph/queen/Initialize()
+	RegisterSignal(src, COMSIG_HIVE_BECOME_RULER, .proc/on_becoming_ruler)
 	. = ..()
-	if(!is_centcom_level(z))//so admins can safely spawn Queens in Thunderdome for tests.
-		hive.update_queen()
+	hive.RegisterSignal(src, COMSIG_HIVE_XENO_DEATH, /datum/hive_status.proc/on_queen_death)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
+
 
 /mob/living/carbon/xenomorph/queen/Destroy()
 	. = ..()
@@ -192,6 +192,9 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/queen/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["watch_xeno_number"])
 		if(!check_state())
 			return
@@ -208,7 +211,6 @@
 				set_queen_overwatch(X)
 			break
 		return
-	..()
 
 // ***************************************
 // *********** Death
@@ -228,3 +230,12 @@
 		set_queen_overwatch(observed_xeno, TRUE)
 	if(ovipositor)
 		dismount_ovipositor(TRUE)
+
+
+// ***************************************
+// *********** Larva Mother
+// ***************************************
+
+/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers)
+	if(!incapacitated(TRUE))
+		mothers += src //Adding us to the list.

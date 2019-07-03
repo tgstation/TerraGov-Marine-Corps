@@ -1,5 +1,5 @@
 /*
-    Contains most of the procs that are called when a xeno is attacked by something
+Contains most of the procs that are called when a xeno is attacked by something
 */
 
 /mob/living/carbon/xenomorph/screech_act(mob/living/carbon/xenomorph/queen/Q)
@@ -15,6 +15,6 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS))
 		use_plasma(15)
 		if(prob(15))
-			to_chat(src, "<span class='xenowarning'>You feel your plasma reserves being drained.</span>")
+			to_chat(src, "<span class='xenowarning'>We feel our plasma reserves being drained.</span>")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)

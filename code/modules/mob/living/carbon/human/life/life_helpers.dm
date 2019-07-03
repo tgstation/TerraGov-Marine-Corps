@@ -1,10 +1,10 @@
 //Refer to life.dm for caller
 
 /*
- * This is the Life() proc junkyard
- * If you can't find a proc, it's probably here
- * Mostly for procs that are not called in the direct Life() loop, except for exact functionality matches (handle_breath, breathe, get_breath_from_internal for example)
- */
+* This is the Life() proc junkyard
+* If you can't find a proc, it's probably here
+* Mostly for procs that are not called in the direct Life() loop, except for exact functionality matches (handle_breath, breathe, get_breath_from_internal for example)
+*/
 
 //Calculate how vulnerable the human is to under- and overpressure.
 //Returns 0 (equals 0 %) if sealed in an undamaged suit, 1 if unprotected (equals 100%).
@@ -26,7 +26,7 @@
 	return pressure_adjustment_coefficient
 
 //Calculate how much of the enviroment pressure-difference affects the human.
-/mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
+/mob/living/carbon/human/calculate_affecting_pressure(pressure)
 	var/pressure_difference
 
 	//First get the absolute pressure difference.
@@ -136,7 +136,7 @@
 
 
 //See proc/get_flags_heat_protection_flags(temperature) for the description of this proc.
-/mob/living/carbon/human/proc/get_flags_cold_protection_flags(temperature, var/deficit = 0)
+/mob/living/carbon/human/proc/get_flags_cold_protection_flags(temperature, deficit = 0)
 
 	var/thermal_protection_flags = 0
 

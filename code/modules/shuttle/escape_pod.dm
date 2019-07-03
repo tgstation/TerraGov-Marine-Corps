@@ -116,6 +116,9 @@
 	popup.open()
 
 /obj/machinery/computer/shuttle/escape_pod/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/H = usr
