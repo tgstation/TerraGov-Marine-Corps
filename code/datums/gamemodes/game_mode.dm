@@ -13,6 +13,8 @@
 
 	var/distress_cancelled = FALSE
 
+	var/deploy_time_lock = 15 MINUTES
+
 /datum/game_mode/New()
 	initialize_emergency_calls()
 
