@@ -588,3 +588,4 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_ZOOM		"zoom"
 #define COOLDOWN_BUMP		"bump"
 #define COOLDOWN_ENTANGLE	"entangle"
+#define COOLDOWN_NEST		"nest"
