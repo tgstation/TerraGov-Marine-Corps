@@ -334,7 +334,7 @@
 	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		breakdown()
 	else
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
 		obj_integrity  = max(obj_integrity - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
 		if(!obj_integrity)

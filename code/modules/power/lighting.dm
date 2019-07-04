@@ -413,7 +413,7 @@
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
 	"<span class='danger'>You smash [src]!</span>", null, 5)
 	broken() //Smashola!

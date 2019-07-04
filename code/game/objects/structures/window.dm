@@ -175,7 +175,7 @@
 /obj/structure/window/proc/attack_generic(mob/living/user, damage = 0)
 	if(damageable) //Possible to destroy
 		obj_integrity -= damage
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, 1, user)
 

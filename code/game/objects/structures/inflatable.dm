@@ -73,7 +73,7 @@
 
 /obj/structure/inflatable/proc/attack_generic(mob/living/user, damage = 0)	//used by attack_animal
 	obj_integrity -= damage
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	if(obj_integrity <= 0)
 		user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
 		deflate(1)
@@ -87,7 +87,7 @@
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/inflatable/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	deflate(1)
 
 /obj/structure/inflatable/attackby(obj/item/I, mob/user, params)

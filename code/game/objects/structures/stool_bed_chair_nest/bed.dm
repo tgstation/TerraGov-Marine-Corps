@@ -152,7 +152,7 @@ obj/structure/bed/Destroy()
 
 /obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		playsound(src, hit_bed_sound, 25, 1)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)

@@ -118,7 +118,7 @@
 	return attack_alien(user)
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)

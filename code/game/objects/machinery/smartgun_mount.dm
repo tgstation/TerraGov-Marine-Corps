@@ -140,7 +140,7 @@
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
@@ -360,7 +360,7 @@
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
