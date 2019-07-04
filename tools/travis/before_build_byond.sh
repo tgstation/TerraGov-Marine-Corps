@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+wget https://github.com/SpaceManiac/SpacemanDMM/releases/download/suite-1.0/dreamchecker
+chmod +x dreamchecker
+./dreamchecker
+
 #If this is the build tools step, we do not bother to install/build byond
 if [ "$BUILD_TOOLS" = true ]; then
   exit 0
