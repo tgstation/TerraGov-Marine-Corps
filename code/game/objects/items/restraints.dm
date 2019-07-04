@@ -3,11 +3,13 @@
 
 
 /obj/item/restraints/resisted_against(datum/source, mob/living/carbon/perp)
-	if(perp.last_special >= world.time)
+	if(perp.cooldowns[COOLDOWN_RESIST])
 		return FALSE
 
 	perp.changeNext_move(CLICK_CD_RESIST)
-	perp.last_special = world.time + CLICK_CD_BREAKOUT
+
+	perp.cooldowns[COOLDOWN_RESIST] = TRUE
+	addtimer(VARSET_CALLBACK(perp, cooldowns[COOLDOWN_RESIST], FALSE), CLICK_CD_BREAKOUT)
 
 	perp.resist_restraints(src)
 

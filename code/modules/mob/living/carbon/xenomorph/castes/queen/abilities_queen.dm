@@ -14,7 +14,7 @@
 		return
 	if(!check_plasma(50))
 		return
-	if(last_special > world.time)
+	if(cooldowns[COOLDOWN_ORDER])
 		return
 	plasma_stored -= 50
 	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
@@ -25,7 +25,8 @@
 	else
 		hive.hive_orders = ""
 
-	last_special = world.time + 150
+	cooldowns[COOLDOWN_ORDER] = TRUE
+	addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_ORDER], FALSE), 15 SECONDS)
 
 // ***************************************
 // *********** Hive message
@@ -168,7 +169,7 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(X.last_special > world.time)
+	if(X.cooldowns[COOLDOWN_GUT])
 		return FALSE
 	if(!iscarbon(A))
 		return FALSE
@@ -201,7 +202,8 @@
 
 	succeed_activate()
 
-	X.last_special = world.time + 5 SECONDS
+	X.cooldowns[COOLDOWN_GUT] = TRUE
+	addtimer(VARSET_CALLBACK(X, cooldowns[COOLDOWN_GUT], FALSE), 5 SECONDS)
 
 	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")

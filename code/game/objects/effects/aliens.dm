@@ -63,9 +63,10 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		var/armor_block
-		if(H.acid_process_cooldown > world.time - 10) //one second reprieve
+		if(H.cooldowns[COOLDOWN_ACID])
 			return
-		H.acid_process_cooldown = world.time
+		H.cooldowns[COOLDOWN_ACID] = TRUE
+		addtimer(VARSET_CALLBACK(H, cooldowns[COOLDOWN_ACID], FALSE), 1 SECONDS)
 		if(!H.lying)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			H.emote("pain")

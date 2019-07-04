@@ -604,13 +604,15 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
-		user.zoom_cooldown = world.time + 20
+		user.cooldowns[COOLDOWN_ZOOM] = TRUE
+		addtimer(VARSET_CALLBACK(user, cooldowns[COOLDOWN_ZOOM], FALSE), 2 SECONDS)
 		if(user.client.click_intercept)
 			user.client.click_intercept = null
 	else //Otherwise we want to zoom in.
-		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
+		if(user.cooldowns[COOLDOWN_ZOOM]) //If we are spamming the zoom, cut it out
 			return
-		user.zoom_cooldown = world.time + 20
+		user.cooldowns[COOLDOWN_ZOOM] = TRUE
+		addtimer(VARSET_CALLBACK(user, cooldowns[COOLDOWN_ZOOM], FALSE), 2 SECONDS)
 
 		if(user.client)
 			user.client.change_view(viewsize)

@@ -221,9 +221,10 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(last_special >= world.time)
+	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
-	last_special = world.time + CLICK_CD_RESIST
+	cooldowns[COOLDOWN_RESIST] = TRUE
+	addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_RESIST], FALSE), CLICK_CD_RESIST)
 	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
 
@@ -231,9 +232,10 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(last_special >= world.time)
+	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
-	last_special = world.time + CLICK_CD_RESIST
+	cooldowns[COOLDOWN_RESIST] = TRUE
+	addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_RESIST], FALSE), CLICK_CD_RESIST)
 	visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
 
@@ -408,11 +410,6 @@
 						return
 			step(AM, t)
 		now_pushing = 0
-
-
-/mob/living/Bumped(atom/movable/AM)
-	. = ..()
-	last_bumped = world.time
 
 
 /mob/living/throw_at(atom/target, range, speed, thrower)
@@ -716,10 +713,12 @@ below 100 is not dizzy
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
-		recently_pointed_to = world.time + 50
+		cooldowns[COOLDOWN_POINT] = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_POINT], FALSE), 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
-		recently_pointed_to = world.time + 10
+		cooldowns[COOLDOWN_POINT] = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_POINT], FALSE), 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE

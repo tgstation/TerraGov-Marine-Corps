@@ -298,9 +298,10 @@
 #define VENT_SOUND_DELAY 30
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
-	if(user.ventcrawl_message_busy > world.time)
+	if(user.cooldowns[COOLDOWN_VENTCRAWL])
 		return FALSE
-	user.ventcrawl_message_busy = world.time + 20
+	user.cooldowns[COOLDOWN_VENTCRAWL] = TRUE
+	addtimer(VARSET_CALLBACK(user, cooldowns[COOLDOWN_VENTCRAWL], FALSE), 2 SECONDS)
 	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
 		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")

@@ -353,7 +353,8 @@
 		return FALSE
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.cooldowns[COOLDOWN_RESIST] = TRUE
+	addtimer(VARSET_CALLBACK(user, cooldowns[COOLDOWN_RESIST], FALSE), CLICK_CD_BREAKOUT)
 	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='italics'>You hear banging from [src].</span>")

@@ -273,9 +273,10 @@ Redefine as needed.
 /obj/item/tk_grab/shrike/resisted_against(datum/source, mob/living/carbon/human/victim)
 	if(victim.restrained(RESTRAINED_PSYCHICGRAB))
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	if(victim.last_special >= world.time)
+	if(victim.cooldowns[COOLDOWN_RESIST])
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	victim.last_special = world.time + CLICK_CD_RESIST_PSYCHIC_GRAB
+	victim.cooldowns[COOLDOWN_RESIST] = TRUE
+	addtimer(VARSET_CALLBACK(victim, cooldowns[COOLDOWN_RESIST], FALSE), CLICK_CD_RESIST_PSYCHIC_GRAB)
 
 	var/mob/living/carbon/xenomorph/shrike/master = tk_user
 

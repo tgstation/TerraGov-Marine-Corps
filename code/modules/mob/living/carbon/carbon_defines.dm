@@ -29,8 +29,6 @@
 	var/traumatic_shock = 0
 	var/shock_stage = 0
 
-	var/acid_process_cooldown //Variable to store the last world time the person was exposed to acid, in order to make it temporarily invulnerable to it for a time..
-
 	//Stagger vars
 	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
 	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.
@@ -44,5 +42,4 @@
 
 	var/blood_type
 
-	var/lastpuke = 0
 	var/overeatduration = 0		// How long this guy is overeating

@@ -556,10 +556,11 @@
 
 	var/mob/living/U = user
 
-	if(U.stat || U.last_special <= world.time)
+	if(U.stat || U.cooldowns[COOLDOWN_DISPOSAL])
 		return
 
-	U.last_special = world.time + 100
+	U.cooldowns[COOLDOWN_DISPOSAL] = TRUE
+	addtimer(VARSET_CALLBACK(U, cooldowns[COOLDOWN_DISPOSAL], FALSE), 10 SECONDS)
 
 	playsound(src.loc, 'sound/effects/clang.ogg', 25, 0)
 
