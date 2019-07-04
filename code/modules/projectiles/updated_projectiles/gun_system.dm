@@ -1144,15 +1144,14 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
+		return NONE //By default, let people CTRL+grab others if they are one-handing the weapon.
 	. = COMSIG_ITEM_CLICKCTRLON_INTERCEPTED
 	if(!able_to_fire(user))
 		return
 	if(active_attachable.current_rounds <= 0)
 		click_empty(user) //If it's empty, let them know.
 		to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-		return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, "<span class='warning'>You need a more secure grip to fire [active_attachable]!")
 		return
 	if(!wielded_stable())
 		to_chat(user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
