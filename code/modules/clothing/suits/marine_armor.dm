@@ -134,9 +134,6 @@
 	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and carrying capacity."
 	icon_state = "4"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	var/obj/item/weapon/gun/current_gun
-	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
-	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
 /obj/item/storage/internal/suit/marine/M3IS

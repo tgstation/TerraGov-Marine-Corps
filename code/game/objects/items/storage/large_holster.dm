@@ -6,9 +6,9 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
-	max_w_class = 4
+	max_w_class = 5
 	storage_slots = 1
-	max_storage_space = 4
+	max_storage_space = 5
 	draw_mode = 1
 	var/base_icon = "m37_holster"
 	var/drawSound = 'sound/weapons/gun_rifle_draw.ogg'

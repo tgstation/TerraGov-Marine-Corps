@@ -2174,7 +2174,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_weapons
-	name = "weapons pouches crate (1x bayonet, pistol, explosive)"
+	name = "weapons pouches crate (1x bayonet, sidearm, explosive)"
 	contains = list(
 					/obj/item/storage/pouch/bayonet,
 					/obj/item/storage/pouch/pistol,

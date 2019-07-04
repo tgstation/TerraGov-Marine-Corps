@@ -409,7 +409,7 @@
 	name = "field utility pouch"
 	storage_slots = 5
 	max_w_class = 3
-	icon_state = "radio"
+	icon_state = "utility"
 	draw_mode = 1
 	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
 	can_hold = list(
@@ -436,7 +436,7 @@
 	name = "electronics pouch"
 	desc = "It is designed to hold most electronics, power cells and circuitboards."
 	icon_state = "electronics"
-	storage_slots = 5
+	storage_slots = 6
 	can_hold = list(
 		/obj/item/circuitboard,
 		/obj/item/cell)
@@ -497,7 +497,7 @@
 	name = "shotgun shell pouch"
 	desc = "A pouch specialized for holding shotgun ammo."
 	icon_state = "shotshells"
-	storage_slots = 5
+	storage_slots = 4
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
