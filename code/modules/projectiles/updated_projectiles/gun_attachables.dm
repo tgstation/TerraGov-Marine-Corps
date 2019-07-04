@@ -968,7 +968,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/flamer/Initialize()
 	. = ..()
-	attachment_firing_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
+	AddComponent(/datum/component/flamethrower, FLAMER_ALWAYS_LIT|FLAMER_INTERNAL_TANK, null, CONFIG_GET(number/combat_define/max_fire_delay) * 5, 4)
 
 /obj/item/attachable/attached_gun/flamer/examine(mob/user)
 	..()
@@ -976,126 +976,6 @@ Defined in conflicts.dm of the #defines folder.
 		to_chat(user, "It has [current_rounds] unit\s of fuel left.")
 	else
 		to_chat(user, "It's empty.")
-
-/obj/item/attachable/attached_gun/flamer/reload_attachment(object, mob/user)
-	if(istype(object, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/I = object
-		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(I.current_rounds <= 0)
-			to_chat(user, "<span class='warning'>[I] is empty!</span>")
-		else
-			var/transfered_rounds = min(max_rounds - current_rounds, I.current_rounds)
-			current_rounds += transfered_rounds
-			I.current_rounds -= transfered_rounds
-			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-			to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
-	else if(istype(object, /obj/item/tool/weldpack))
-		var/obj/item/tool/weldpack/FT = object
-		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
-		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
-			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
-			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else if(istype(object, /obj/item/storage/backpack/marine/engineerpack))
-		var/obj/item/storage/backpack/marine/engineerpack/FT = object
-		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
-		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
-			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
-			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else if(istype(object, /obj/item/reagent_container))
-		var/obj/item/reagent_container/FT = object
-		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
-		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
-			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
-			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else
-		to_chat(user, "<span class='warning'>[src] can be refilled only with welding fuel.</span>")
-
-/obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
-	if(get_dist(user,target) > max_range+3)
-		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
-		return
-	if(current_rounds)
-		unleash_flame(target, user)
-
-
-/obj/item/attachable/attached_gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
-	set waitfor = 0
-	var/list/turf/turfs = getline(user,target)
-	var/distance = 0
-	var/turf/prev_T
-	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
-	for(var/turf/T in turfs)
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if(!current_rounds)
-			break
-		if(distance >= max_range)
-			break
-		if(prev_T && LinkBlocked(prev_T, T))
-			break
-		current_rounds--
-		flame_turf(T,user)
-		distance++
-		prev_T = T
-		sleep(1)
-
-
-/obj/item/attachable/attached_gun/flamer/proc/flame_turf(turf/T, mob/living/user)
-	if(!istype(T))
-		return
-
-	T.ignite()
-
-	var/fire_mod
-	for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
-		if(M.stat == DEAD)
-			continue
-
-		fire_mod = 1
-
-		if(isxeno(M))
-			var/mob/living/carbon/xenomorph/X = M
-			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-				continue
-			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
-		else if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-
-			if(user)
-				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "shot", src)
-					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
-				else
-					log_combat(user, H, "shot", src)
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
-
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
-				continue
-
-		M.adjust_fire_stacks(rand(3,5))
-		M.adjustFireLoss(rand(20,40) * fire_mod) //fwoom!
-		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/attachable/attached_gun/shotgun
 	name = "masterkey shotgun"

@@ -17,22 +17,7 @@
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
-		var/obj/structure/reagent_dispensers/fueltank/FT = target
-		if(current_rounds)
-			to_chat(user, "<span class='warning'>You can't mix fuel mixtures!</span>")
-			return
-		var/fuel_available = FT.reagents.get_reagent_amount("fuel") < max_rounds ? FT.reagents.get_reagent_amount("fuel") : max_rounds
-		if(!fuel_available)
-			to_chat(user, "<span class='warning'>[FT] is empty!</span>")
-			return
-
-		FT.reagents.remove_reagent("fuel", fuel_available)
-		current_rounds = fuel_available
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		caliber = "Fuel"
-		to_chat(user, "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>")
-		update_icon()
-
+		refill_from(target, user)
 	else
 		..()
 
@@ -58,3 +43,84 @@
 	desc = "A large fuel tank of Ultra Thick Napthal Fuel type X,a sticky combustable liquid chemical that burns extremely hot, for use in the M240-T incinerator unit. Handle with care."
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue
+
+/obj/item/ammo_magazine/flamer_tank/internal
+	name = "internal flamer tank"
+	max_rounds = 20
+	current_rounds = 20
+
+GLOBAL_LIST_INIT(fuel_sources, typecacheof(list(
+	/obj/structure/reagent_dispensers/fueltank,
+	/obj/item/tool/weldpack,
+	/obj/item/reagent_container
+)))
+
+GLOBAL_LIST_INIT(flamer_refill_objects, typecacheof(list(
+	/obj/structure/reagent_dispensers/fueltank,
+	/obj/item/tool/weldpack,
+	/obj/item/reagent_container,
+	/obj/item/ammo_magazine/flamer_tank,
+	/obj/item/storage/backpack/marine/engineerpack
+)))
+
+// this mess is until napalm becomes a proper reagent
+// but at least all this refill code is in one place now
+/obj/item/ammo_magazine/flamer_tank/proc/refill_from(obj/O, mob/user)
+	if(istype(O, /obj/item/ammo_magazine/flamer_tank))
+		var/obj/item/ammo_magazine/flamer_tank/FT = O
+		if(!FT.current_rounds)
+			to_chat(user, "<span class='warning'>That [FT] is empty!</span>")
+			return FALSE
+		if(current_rounds && FT.caliber != caliber)
+			to_chat(user, "<span class='warning'>You can't mix fuel types like that.</span>")
+			return FALSE
+		caliber = FT.caliber
+		var/amount_to_transfer = min(max_rounds - current_rounds, FT.current_rounds)
+		FT.current_rounds -= amount_to_transfer
+		current_rounds += amount_to_transfer
+		playsound(get_turf(O), 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>")
+		update_icon()
+		return TRUE
+
+	if(!O.reagents?.total_volume)
+		return FALSE
+
+	var/new_fuel_type
+
+	if(istype(O, /obj/item/storage/backpack/marine/engineerpack))
+		var/obj/item/storage/backpack/marine/engineerpack/EP = O
+		new_fuel_type = EP.fuel_type
+
+	else if(is_type_in_typecache(O, GLOB.fuel_sources))
+		new_fuel_type = "Fuel"
+
+	else
+		CRASH("Tried to refill a flamertank from something that isnt a fuel source")
+
+	if(current_rounds && new_fuel_type != caliber)
+		to_chat(user, "<span class='warning'>You can't mix fuel types like this.</span>")
+		return FALSE
+
+	var/fuel_amount_in_source = O.reagents.get_reagent_amount("fuel")
+
+	if(!fuel_amount_in_source)
+		to_chat(user, "<span class='warning'>[O] has no fuel in it!</span>")
+		return FALSE
+
+	var/fuel_to_transfer = min(max_rounds - current_rounds, fuel_amount_in_source)
+
+	O.reagents.remove_reagent("fuel", fuel_to_transfer)
+
+	current_rounds += fuel_to_transfer
+	caliber = new_fuel_type
+	to_chat(user, "<span class='notice'>You refill [src] with [lowertext(caliber)] from the [O].</span>")
+	playsound(get_turf(O), 'sound/effects/refill.ogg', 25, 1, 3)
+	update_icon()
+	return TRUE
+
+/obj/item/ammo_magazine/flamer_tank/internal/refill_from(obj/O, mob/user)
+	. = ..()
+	if(.)
+		caliber = "Fuel" // just hardset to fuel for internal tanks until napalm reagent
+

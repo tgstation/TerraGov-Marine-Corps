@@ -220,6 +220,7 @@
 #include "code\datums\actions\skill.dm"
 #include "code\datums\actions\xeno_action.dm"
 #include "code\datums\components\component.dm"
+#include "code\datums\components\flamethrower.dm"
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\signal_redirect.dm"

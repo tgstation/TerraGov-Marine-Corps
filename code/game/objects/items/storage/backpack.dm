@@ -651,6 +651,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
+	var/fuel_type = "Fuel"
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -675,17 +676,7 @@
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
-		if(FT.current_rounds || !reagents.total_volume)
-			return ..()
-
-		var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
-		reagents.remove_reagent("fuel", fuel_available)
-		FT.current_rounds = fuel_available
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		FT.caliber = "Fuel"
-		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
-		FT.update_icon()
-
+		FT.refill_from(src, user)
 	else
 		return ..()
 
@@ -712,30 +703,7 @@
 	desc = "A specialized fueltank worn by TGMC Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
 	max_fuel = 500
-
-
-/obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine/flamer_tank))
-		var/obj/item/ammo_magazine/flamer_tank/FTL = I
-		if(FTL.default_ammo != /datum/ammo/flamethrower)
-			return ..()
-		if(FTL.max_rounds == FTL.current_rounds)
-			return ..()
-		if(reagents.total_volume <= 0)
-			to_chat(user, "<span class='warning'>You try to refill \the [FTL] but \the [src] fuel reserve is empty.</span>")
-			return ..()
-		var/fuel_refill = FTL.max_rounds - FTL.current_rounds
-		if(reagents.total_volume < fuel_refill)
-			fuel_refill = reagents.total_volume
-		reagents.remove_reagent("fuel", fuel_refill)
-		FTL.current_rounds = FTL.current_rounds + fuel_refill
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")
-		FTL.update_icon()
-
-	else
-		return ..()
-
+	fuel_type = "UT-Napthal Fuel"
 
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"

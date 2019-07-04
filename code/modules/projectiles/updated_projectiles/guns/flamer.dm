@@ -14,7 +14,6 @@
 	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
-	var/lit = 0 //Turn the flamer on/off
 
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
@@ -22,6 +21,11 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
+
+/obj/item/weapon/gun/flamer/Initialize()
+	. = ..()
+	AddComponent(/datum/component/flamethrower, null, new /obj/item/ammo_magazine/flamer_tank, CONFIG_GET(number/combat_define/max_fire_delay) * 5, 6)
+	RegisterSignal(src, COMSIG_FLAMER_LIT_STATE, .proc/toggle_flame)
 
 /obj/item/weapon/gun/flamer/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
@@ -32,7 +36,7 @@
 
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
-	to_chat(user, "It's turned [lit? "on" : "off"].")
+	//to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
 	else
@@ -45,14 +49,13 @@
 			return
 
 
-/obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user, lit ? 'sound/weapons/gun_flamethrower_off.ogg' : 'sound/weapons/gun_flamethrower_on.ogg', 25, 1)
-	lit = !lit
+/obj/item/weapon/gun/flamer/proc/toggle_flame(datum/source, newstate)
+	playsound(loc, newstate ? 'sound/weapons/gun_flamethrower_on.ogg' : 'sound/weapons/gun_flamethrower_off.ogg', 25, 1)
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
 	I.pixel_x += 3
 
-	if (lit)
+	if (newstate)
 		overlays += I
 	else
 		overlays -= I
@@ -60,31 +63,6 @@
 
 	return TRUE
 
-
-/obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
-	set waitfor = 0
-
-	if(!able_to_fire(user))
-		return
-
-	var/turf/curloc = get_turf(user) //In case the target or we are expired.
-	var/turf/targloc = get_turf(target)
-	if(!targloc || !curloc)
-		return //Something has gone wrong...
-
-	if(!lit)
-		to_chat(user, "<span class='alert'>The weapon isn't lit</span>")
-		return
-
-	if(!current_mag)
-		return
-
-	if(current_mag.current_rounds <= 0)
-		click_empty(user)
-	else
-		unleash_flame(target, user)
-		var/obj/screen/ammo/A = user.hud_used.ammo
-		A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -143,208 +121,6 @@
 	update_icon()
 
 	return TRUE
-
-
-/obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
-	set waitfor = 0
-
-	last_fired = world.time
-	var/burnlevel
-	var/burntime
-	var/fire_color = "red"
-	switch(ammo.name)
-		if("flame")
-			burnlevel = 24
-			burntime = 17
-			max_range = 6
-
-		// Area denial, light damage, large AOE, long burntime
-		if("green flame")
-			burnlevel = 10
-			burntime = 50
-			max_range = 4
-			playsound(user, fire_sound, 50, 1)
-			triangular_flame(target, user, burntime, burnlevel)
-			return
-
-		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
-			burnlevel = 45
-			burntime = 40
-			max_range = 7
-			fire_color = "blue"
-
-		else
-			return
-
-	var/list/turf/turfs = getline(user,target)
-	playsound(user, fire_sound, 50, 1)
-	var/distance = 1
-	var/turf/prev_T
-
-	for(var/F in turfs)
-		var/turf/T = F
-
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if((T.density && !istype(T, /turf/closed/wall/resin)) || isspaceturf(T))
-			break
-		if(loc != user)
-			break
-		if(!current_mag?.current_rounds)
-			break
-		if(distance > max_range)
-			break
-
-		var/blocked = FALSE
-		for(var/obj/O in T)
-			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
-				blocked = TRUE
-				break
-
-		var/turf/TF
-		if(!prev_T.Adjacent(T) && (T.x != prev_T.x || T.y != prev_T.y)) //diagonally blocked, it will seek for a cardinal turf by the former target.
-			blocked = TRUE
-			var/turf/Ty = locate(prev_T.x, T.y, prev_T.z)
-			var/turf/Tx = locate(T.x, prev_T.y, prev_T.z)
-			for(var/turf/TB in shuffle(list(Ty, Tx)))
-				if(prev_T.Adjacent(TB) && ((!TB.density && !isspaceturf(T)) || istype(T, /turf/closed/wall/resin)))
-					TF = TB
-					break
-			if(!TF)
-				break
-		else
-			TF = T
-
-		current_mag.current_rounds--
-		flame_turf(TF,user, burntime, burnlevel, fire_color)
-		if(blocked)
-			break
-		distance++
-		prev_T = T
-		sleep(1)
-
-/obj/item/weapon/gun/flamer/proc/flame_turf(turf/T, mob/living/user, heat, burn, f_color = "red")
-	if(!istype(T))
-		return
-
-	T.ignite(heat, burn, f_color)
-
-	// Melt a single layer of snow
-	if(istype(T, /turf/open/floor/plating/ground/snow))
-		var/turf/open/floor/plating/ground/snow/S = T
-
-		if (S.slayer > 0)
-			S.slayer -= 1
-			S.update_icon(1, 0)
-
-	for(var/obj/structure/jungle/vines/V in T)
-		qdel(V)
-
-	var/fire_mod
-	for(var/mob/living/M in T) //Deal bonus damage if someone's caught directly in initial stream
-		if(M.stat == DEAD)
-			continue
-
-		fire_mod = 1
-
-		if(isxeno(M))
-			var/mob/living/carbon/xenomorph/X = M
-			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-				continue
-			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
-		else if(ishuman(M))
-			var/mob/living/carbon/human/H = M //fixed :s
-
-			if(user)
-				var/area/A = get_area(user)
-				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "shot", src)
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
-				else
-					log_combat(user, H, "shot", src)
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
-
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				continue
-
-		var/armor_block = M.run_armor_check(null, "fire")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from most of the flames."), 1)
-				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
-		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
-
-		M.adjust_fire_stacks(rand(5,burn*2))
-		M.IgniteMob()
-
-		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
-
-/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel)
-	set waitfor = 0
-
-	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
-	var/list/turf/turfs = getline(user,target)
-	playsound(user, fire_sound, 50, 1)
-	var/distance = 1
-	var/turf/prev_T
-
-	for(var/turf/T in turfs)
-		if(T == user.loc)
-			prev_T = T
-			continue
-		if(T.density)
-			break
-		if(loc != user)
-			break
-		if(!current_mag || !current_mag.current_rounds)
-			break
-		if(distance > max_range)
-			break
-		if(prev_T && LinkBlocked(prev_T, T))
-			break
-		current_mag.current_rounds--
-		flame_turf(T,user, burntime, burnlevel, "green")
-		prev_T = T
-		sleep(1)
-
-		var/list/turf/right = list()
-		var/list/turf/left = list()
-		var/turf/right_turf = T
-		var/turf/left_turf = T
-		var/right_dir = turn(unleash_dir, 90)
-		var/left_dir = turn(unleash_dir, -90)
-		for (var/i = 0, i < distance - 1, i++)
-			right_turf = get_step(right_turf, right_dir)
-			right += right_turf
-			left_turf = get_step(left_turf, left_dir)
-			left += left_turf
-
-		var/turf/prev_R = T
-		for (var/turf/R in right)
-
-			if (R.density)
-				break
-			if(prev_R && LinkBlocked(prev_R, R))
-				break
-
-			flame_turf(R, user, burntime, burnlevel, "green")
-			prev_R = R
-			sleep(1)
-
-		var/turf/prev_L = T
-		for (var/turf/L in left)
-			if (L.density)
-				break
-			if(prev_L && LinkBlocked(prev_L, L))
-				break
-
-			flame_turf(L, user, burntime, burnlevel, "green")
-			prev_L = L
-			sleep(1)
-
-		distance++
 
 /obj/item/weapon/gun/flamer/get_ammo_type()
 	if(!ammo)
@@ -450,13 +226,13 @@
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 
-/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/turf/proc/ignite(burntime, burnlevel, f_color, fire_stacks = 0, fire_damage = 0)
 	//extinguish any flame present
 	var/obj/flamer_fire/F = locate(/obj/flamer_fire) in src
 	if(F)
 		qdel(F)
 
-	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new /obj/flamer_fire(src, burntime, burnlevel, f_color, fire_stacks, fire_damage)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.
@@ -473,17 +249,17 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/obj/flamer_fire/Initialize(mapload, burntime, burnlevel, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 
 	if(f_color)
 		flame_color = f_color
 
 	icon_state = "[flame_color]_2"
-	if(fire_lvl)
-		firelevel = fire_lvl
-	if(burn_lvl)
-		burnlevel = burn_lvl
+	if(burntime)
+		firelevel = burntime
+	if(burnlevel)
+		src.burnlevel = burnlevel
 	if(fire_stacks || fire_damage)
 		for(var/mob/living/C in get_turf(src))
 			C.flamer_fire_act(fire_stacks)

@@ -287,6 +287,8 @@ should be alright.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
+	if(SEND_SIGNAL(src, COMSIG_GUN_UNIQUE_ACTION) & COMPONENT_GUN_HAS_UNIQUE_ACTION)
+		return TRUE
 	return FALSE
 
 
