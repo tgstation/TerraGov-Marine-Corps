@@ -80,7 +80,7 @@
 	obj_integrity -= damage_dealt
 	healthcheck()
 
-/obj/structure/grille/attack_hand(mob/user as mob)
+/obj/structure/grille/attack_hand(mob/living/user)
 
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 

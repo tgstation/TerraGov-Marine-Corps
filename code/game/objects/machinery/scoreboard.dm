@@ -57,7 +57,7 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/scoreboard_button/attack_hand(mob/user as mob)
+/obj/machinery/scoreboard_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

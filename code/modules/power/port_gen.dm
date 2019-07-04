@@ -198,7 +198,7 @@
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 
-/obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
+/obj/machinery/power/port_gen/pacman/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

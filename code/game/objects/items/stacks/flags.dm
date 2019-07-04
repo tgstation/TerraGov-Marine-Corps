@@ -35,7 +35,7 @@
 	if(upright && istype(I, type))
 		return attack_hand(user)
 
-/obj/item/stack/flag/attack_hand(user as mob)
+/obj/item/stack/flag/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

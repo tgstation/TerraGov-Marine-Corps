@@ -154,7 +154,7 @@
 		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	update_icon()
 
-/obj/item/reagent_container/hypospray/attack_hand()
+/obj/item/reagent_container/hypospray/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

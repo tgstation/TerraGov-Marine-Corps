@@ -77,7 +77,7 @@
 			else
 				INVOKE_ASYNC(M, /obj/machinery/door/.proc/close)
 
-/obj/machinery/door_control/attack_hand(mob/user)
+/obj/machinery/door_control/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -136,7 +136,7 @@
 	else
 		return attack_hand(user)
 
-/obj/machinery/driver_button/attack_hand(mob/user as mob)
+/obj/machinery/driver_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

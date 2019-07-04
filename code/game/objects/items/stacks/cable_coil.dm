@@ -105,7 +105,7 @@
 			C.add(amt)
 			use(amt)
 
-/obj/item/stack/cable_coil/attack_hand(mob/user as mob)
+/obj/item/stack/cable_coil/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

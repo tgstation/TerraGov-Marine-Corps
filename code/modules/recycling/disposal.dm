@@ -183,7 +183,7 @@
 	interact(user, 1)
 
 //Human interact with machine
-/obj/machinery/disposal/attack_hand(mob/user as mob)
+/obj/machinery/disposal/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

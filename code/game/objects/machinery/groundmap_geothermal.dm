@@ -92,7 +92,7 @@
 		return TRUE
 	return FALSE //Nope, all fine
 
-/obj/machinery/power/geothermal/attack_hand(mob/user as mob)
+/obj/machinery/power/geothermal/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -263,7 +263,7 @@
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/colony_floodlight_switch/attack_hand(mob/user as mob)
+/obj/machinery/colony_floodlight_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -409,7 +409,7 @@
 		"<span class='notice'>You mend [src]'s damaged cables.</span>")
 		return TRUE
 
-/obj/machinery/colony_floodlight/attack_hand(mob/user)
+/obj/machinery/colony_floodlight/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

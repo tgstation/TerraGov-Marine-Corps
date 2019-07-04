@@ -200,7 +200,7 @@
 		damage = 40
 	take_damage(damage)
 
-/obj/machinery/door/window/attack_hand(mob/user)
+/obj/machinery/door/window/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

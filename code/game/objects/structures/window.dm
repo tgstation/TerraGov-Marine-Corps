@@ -140,7 +140,7 @@
 	else
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
-/obj/structure/window/attack_hand(mob/user as mob)
+/obj/structure/window/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

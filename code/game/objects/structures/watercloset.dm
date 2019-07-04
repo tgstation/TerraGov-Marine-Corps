@@ -17,7 +17,7 @@
 	open = round(rand(0, 1))
 	update_icon()
 
-/obj/structure/toilet/attack_hand(mob/living/user as mob)
+/obj/structure/toilet/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -174,7 +174,7 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/machinery/shower/attack_hand(mob/M as mob)
+/obj/machinery/shower/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -182,9 +182,9 @@
 	update_icon()
 	if(on)
 		start_processing()
-		if (M.loc == loc)
-			wash(M)
-			check_heat(M)
+		if (user.loc == loc)
+			wash(user)
+			check_heat(user)
 		for (var/atom/movable/G in src.loc)
 			G.clean_blood()
 	else
@@ -395,7 +395,7 @@
 		if(EAST)
 			pixel_x = 12
 
-/obj/structure/sink/attack_hand(mob/user)
+/obj/structure/sink/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -484,7 +484,7 @@
 	icon_state = "puddle"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/structure/sink/puddle/attack_hand(mob/M as mob)
+/obj/structure/sink/puddle/attack_hand(mob/living/user)
 	icon_state = "puddle-splash"
 	. = ..()
 	icon_state = "puddle"

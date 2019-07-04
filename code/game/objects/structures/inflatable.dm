@@ -190,7 +190,7 @@
 /obj/structure/inflatable/door/attack_paw(mob/user as mob)
 	return TryToSwitchState(user)
 
-/obj/structure/inflatable/door/attack_hand(mob/user as mob)
+/obj/structure/inflatable/door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

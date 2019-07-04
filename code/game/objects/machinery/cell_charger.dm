@@ -70,7 +70,7 @@
 		to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-/obj/machinery/cell_charger/attack_hand(mob/user)
+/obj/machinery/cell_charger/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

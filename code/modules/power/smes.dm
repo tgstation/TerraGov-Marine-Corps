@@ -189,7 +189,7 @@
 	ui_interact(user)
 
 
-/obj/machinery/power/smes/attack_hand(mob/user)
+/obj/machinery/power/smes/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -43,7 +43,7 @@
 			return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_hand()
+/obj/item/reagent_container/syringe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

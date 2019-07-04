@@ -22,11 +22,11 @@
 	. = ..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/clothing/shoes/marine/attack_hand(mob/living/M)
-	if(knife && src.loc == M && !M.incapacitated()) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
-		if(M.put_in_active_hand(knife))
-			to_chat(M, "<span class='notice'>You slide [knife] out of [src].</span>")
-			playsound(M, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
+/obj/item/clothing/shoes/marine/attack_hand(mob/living/user)
+	if(knife && src.loc == user && !user.incapacitated()) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
+		if(user.put_in_active_hand(knife))
+			to_chat(user, "<span class='notice'>You slide [knife] out of [src].</span>")
+			playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 15, 1)
 			knife = 0
 			update_icon()
 	else

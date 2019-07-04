@@ -127,7 +127,7 @@
 	onclose(user, "biogenerator")
 	return
 
-/obj/machinery/biogenerator/attack_hand(mob/user as mob)
+/obj/machinery/biogenerator/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

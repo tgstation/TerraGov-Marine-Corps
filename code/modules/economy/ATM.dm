@@ -119,7 +119,7 @@ log transactions
 		qdel(I)
 
 
-/obj/machinery/atm/attack_hand(mob/user as mob)
+/obj/machinery/atm/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

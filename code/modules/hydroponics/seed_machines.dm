@@ -61,7 +61,7 @@
 /obj/machinery/botany/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/botany/attack_hand(mob/user as mob)
+/obj/machinery/botany/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -110,7 +110,7 @@
 	if(can_buckle) return src.attack_hand(user)
 	else . = ..()
 
-/obj/attack_hand(mob/user)
+/obj/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

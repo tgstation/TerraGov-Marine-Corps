@@ -146,7 +146,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_container/glass/beaker/attack_hand()
+/obj/item/reagent_container/glass/beaker/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 /obj/machinery/nuclearbomb/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

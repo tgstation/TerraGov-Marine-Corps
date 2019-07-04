@@ -456,7 +456,7 @@
 	return handle_item_insertion(I, FALSE, user)
 
 
-/obj/item/storage/attack_hand(mob/user)
+/obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
 		if(draw_mode && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]

@@ -21,7 +21,7 @@
 		return
 	return
 
-/obj/effect/portal/attack_hand(mob/user as mob)
+/obj/effect/portal/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

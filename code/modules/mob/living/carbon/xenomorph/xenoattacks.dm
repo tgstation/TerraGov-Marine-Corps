@@ -41,47 +41,53 @@
 				updatehealth()
 
 
-/mob/living/carbon/xenomorph/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/xenomorph/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
-	switch(M.a_intent)
+
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+
+	H.changeNext_move(7)
+	switch(H.a_intent)
 
 		if(INTENT_HELP)
 			if(stat == DEAD)
-				M.visible_message("<span class='warning'>\The [M] pokes \the [src], but nothing happens.</span>", \
+				H.visible_message("<span class='warning'>\The [H] pokes \the [src], but nothing happens.</span>", \
 				"<span class='warning'>You poke \the [src], but nothing happens.</span>", null, 5)
 			else
-				M.visible_message("<span class='notice'>\The [M] pets \the [src].</span>", \
+				H.visible_message("<span class='notice'>\The [H] pets \the [src].</span>", \
 					"<span class='notice'>You pet \the [src].</span>", null, 5)
 
 		if(INTENT_GRAB)
-			if(M == src || anchored)
+			if(H == src || anchored)
 				return 0
 
-			M.start_pulling(src)
+			H.start_pulling(src)
 
 		else
-			var/datum/unarmed_attack/attack = M.species.unarmed
-			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
-			if(!attack.is_usable(M))
+			var/datum/unarmed_attack/attack = H.species.unarmed
+			if(!attack.is_usable(H)) attack = H.species.secondary_unarmed
+			if(!attack.is_usable(H))
 				return 0
 
-			M.do_attack_animation(src)
-			M.flick_attack_overlay(src, "punch")
+			H.do_attack_animation(src)
+			H.flick_attack_overlay(src, "punch")
 
 			var/damage = rand(1, 3)
 			if(prob(85))
 				damage += attack.damage > 5 ? attack.damage : 0
 
 				playsound(loc, attack.attack_sound, 25, 1)
-				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
+				visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 				apply_damage(damage, BRUTE)
 				updatehealth()
 			else
 				playsound(loc, attack.miss_sound, 25, 1)
-				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
+				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
 
 	return
 

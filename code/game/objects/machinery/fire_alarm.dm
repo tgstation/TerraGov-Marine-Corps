@@ -146,7 +146,7 @@ FIRE ALARM
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				qdel(src)
 
-/obj/machinery/firealarm/attack_hand(mob/user as mob)
+/obj/machinery/firealarm/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

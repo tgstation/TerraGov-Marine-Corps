@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 /obj/machinery/newscaster/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
+/obj/machinery/newscaster/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -752,7 +752,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	var/scribble=""
 	var/scribble_page = null
 
-/*obj/item/newspaper/attack_hand(mob/user as mob)
+/*obj/item/newspaper/attack_hand(mob/living/user)
 	..()
 	to_chat(world, "derp")*/
 

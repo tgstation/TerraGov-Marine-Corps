@@ -196,7 +196,7 @@
 		M.visible_message("<span class='danger'>\The [M] tears some shreds off [src]!</span>", \
 		"<span class='danger'>You tear some shreds off [src]!</span>", null, 5)
 
-/obj/structure/foamedmetal/attack_hand(mob/user)
+/obj/structure/foamedmetal/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
 	return TRUE
 

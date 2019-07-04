@@ -8,7 +8,7 @@
 	var/admin_controlled
 	var/no_destination_swap = 0
 
-/obj/machinery/computer/shuttle/attack_hand(mob/user)
+/obj/machinery/computer/shuttle/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

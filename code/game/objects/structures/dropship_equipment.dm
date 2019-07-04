@@ -935,7 +935,7 @@
 		linked_stretcher = null
 
 
-/obj/structure/dropship_equipment/medevac_system/attack_hand(mob/user)
+/obj/structure/dropship_equipment/medevac_system/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

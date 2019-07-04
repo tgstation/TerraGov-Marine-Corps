@@ -859,7 +859,7 @@
 				destroy_structure(TRUE) //Note : Handles deconstruction too !
 
 
-/obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
+/obj/structure/barricade/plasteel/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

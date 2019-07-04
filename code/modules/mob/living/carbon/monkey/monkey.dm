@@ -180,22 +180,20 @@
 					O.show_message("<span class='danger'>[M.name] has attempted to bite [name]!</span>", 1)
 	return
 
-/mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/monkey/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if (!SSticker)
-		to_chat(M, "You cannot attack people before the game has started.")
+
+	if(!ishuman(user))
 		return
 
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
-		to_chat(M, "No attacking people at spawn, you jackass.")
-		return
+	var/mob/living/carbon/human/H = user
 
-	if(M.gloves)
-		var/obj/item/clothing/gloves/G = M.gloves
+	if(H.gloves)
+		var/obj/item/clothing/gloves/G = H.gloves
 		if(G.cell)
-			if(M.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
+			if(H.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
 					KnockDown(5)
@@ -203,21 +201,19 @@
 						stuttering = 5
 					Stun(5)
 
-					for(var/mob/O in viewers(src, null))
-						if (O.client)
-							O.show_message("<span class='danger'>[src] has been touched with the stun gloves by [M]!</span>", 1, "<span class='warning'> You hear someone fall</span>", 2)
+					visible_message("<span class='danger'>[src] has been touched with the stun gloves by [H]!</span>", "<span class='warning'> You hear someone fall</span>")
 					return
 				else
-					to_chat(M, "<span class='warning'>Not enough charge! </span>")
+					to_chat(H, "<span class='warning'>Not enough charge! </span>")
 					return
 
-	if (M.a_intent == INTENT_HELP)
-		help_shake_act(M)
+	if (H.a_intent == INTENT_HELP)
+		help_shake_act(H)
 	else
-		if (M.a_intent == INTENT_HARM)
-			var/datum/unarmed_attack/attack = M.species.unarmed
+		if (H.a_intent == INTENT_HARM)
+			var/datum/unarmed_attack/attack = H.species.unarmed
 			if ((prob(75) && health > 0))
-				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
+				visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>")
 
 				playsound(loc, "punch", 25, 1)
 				var/damage = rand(5, 10)
@@ -225,39 +221,35 @@
 					damage = rand(10, 15)
 					if (knocked_out < 5)
 						KnockOut(rand(10, 15))
-						visible_message("<span class='danger'>[M] has knocked out [src]!</span>")
+						visible_message("<span class='danger'>[H] has knocked out [src]!</span>")
 
 				adjustBruteLoss(damage)
 
-				log_combat(M, src, "[pick(attack.attack_verb)]ed")
-				msg_admin_attack("[key_name(M)] [pick(attack.attack_verb)]ed [key_name(src)]")
+				log_combat(H, src, "[pick(attack.attack_verb)]ed")
+				msg_admin_attack("[key_name(H)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
+				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>")
 		else
-			if (M.a_intent == INTENT_GRAB)
-				if(M == src || anchored)
+			if (H.a_intent == INTENT_GRAB)
+				if(H == src || anchored)
 					return 0
 
-				M.start_pulling(src)
+				H.start_pulling(src)
 				return 1
 			else
 				if (!( knocked_out ))
 					if (prob(25))
 						KnockOut(2)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-						for(var/mob/O in viewers(src, null))
-							if ((O.client && !is_blind(O)))
-								O.show_message(text("<span class='danger'>[] has pushed down [name]!</span>", M), 1)
+						visible_message("<span class='danger'>[H] has pushed down [src]!</span>")
 					else
 						drop_held_item()
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-						for(var/mob/O in viewers(src, null))
-							if ((O.client && !is_blind(O)))
-								O.show_message(text("<span class='danger'>[] has disarmed [name]!</span>", M), 1)
-	return
+						visible_message("<span class='danger'>[H] has pushed down [src]!</span>")
+
 
 /mob/living/carbon/monkey/attack_animal(mob/living/M as mob)
 	if (!..())

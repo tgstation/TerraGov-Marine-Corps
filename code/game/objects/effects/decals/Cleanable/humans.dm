@@ -70,20 +70,25 @@
 		color = adjust_brightness(color, -50)
 		amount = 0
 
-/obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
+/obj/effect/decal/cleanable/blood/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if (amount && istype(user))
-		if (user.gloves)
-			return
-		var/taken = rand(1,amount)
-		amount -= taken
-		to_chat(user, "<span class='notice'>You get some of \the [src] on your hands.</span>")
+	if(!amount || !ishuman(user))
+		return
 
-		user.add_blood(basecolor)
-		user.bloody_hands += taken
-		user.update_inv_gloves()
+	var/mob/living/carbon/human/H = user
+
+	if(H.gloves)
+		return
+
+	var/taken = rand(1,amount)
+	amount -= taken
+	to_chat(H, "<span class='notice'>You get some of \the [src] on your hands.</span>")
+
+	H.add_blood(basecolor)
+	H.bloody_hands += taken
+	H.update_inv_gloves()
 
 
 

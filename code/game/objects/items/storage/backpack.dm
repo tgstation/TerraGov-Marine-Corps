@@ -14,7 +14,7 @@
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
 	var/list/uniform_restricted //Need to wear this uniform to equip this
 
-/obj/item/storage/backpack/attack_hand(mob/user)
+/obj/item/storage/backpack/attack_hand(mob/living/user)
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)

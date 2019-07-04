@@ -439,7 +439,7 @@
 	return
 
 
-/obj/machinery/computer/orbital_cannon_console/attack_hand(mob/user)
+/obj/machinery/computer/orbital_cannon_console/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

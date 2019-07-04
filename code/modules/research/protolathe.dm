@@ -183,5 +183,5 @@ Note: Must be placed west/left of and R&D console to function.
 		updateUsrDialog()
 
 //This is to stop these machines being hackable via clicking.
-/obj/machinery/r_n_d/protolathe/attack_hand(mob/user as mob)
+/obj/machinery/r_n_d/protolathe/attack_hand(mob/living/user)
 	return TRUE

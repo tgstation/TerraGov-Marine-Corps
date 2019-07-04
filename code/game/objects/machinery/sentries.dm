@@ -309,7 +309,7 @@
 	stop_processing()
 	. = ..()
 
-/obj/machinery/marine_turret/attack_hand(mob/user as mob)
+/obj/machinery/marine_turret/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -1085,7 +1085,7 @@
 	rounds = 500
 
 
-/obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
+/obj/machinery/marine_turret/premade/dumb/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

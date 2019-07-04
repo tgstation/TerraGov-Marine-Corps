@@ -43,7 +43,7 @@
 	icon_state = "doorctrl0"
 	var/id
 
-/obj/machinery/line_nexter_control/attack_hand(mob/user)
+/obj/machinery/line_nexter_control/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

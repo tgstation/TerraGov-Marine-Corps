@@ -51,7 +51,7 @@
 	if(machine_stat &NOPOWER)
 		icon_state = "auth_off"
 
-/obj/machinery/keycard_auth/attack_hand(mob/user as mob)
+/obj/machinery/keycard_auth/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

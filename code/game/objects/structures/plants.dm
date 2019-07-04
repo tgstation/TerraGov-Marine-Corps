@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(reagent_effects, list("toxin","dylovene","sleeptoxin","space_dr
 	overlays += fruit_overlay
 	plant_strength = rand(20,200)
 
-/obj/structure/jungle_plant/attack_hand(mob/user as mob)
+/obj/structure/jungle_plant/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

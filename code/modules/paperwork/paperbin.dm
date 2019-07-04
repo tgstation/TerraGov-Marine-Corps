@@ -24,7 +24,7 @@
 	return attack_hand(user)
 
 
-/obj/item/paper_bin/attack_hand(mob/user)
+/obj/item/paper_bin/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

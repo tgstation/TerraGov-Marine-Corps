@@ -80,7 +80,7 @@
 
 
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/user)
+/obj/machinery/suit_storage_unit/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

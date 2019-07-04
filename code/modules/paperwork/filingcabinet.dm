@@ -56,7 +56,7 @@
 		to_chat(user, "<span class='notice'>You can't put [I] in [src]!</span>")
 
 
-/obj/structure/filingcabinet/attack_hand(mob/user as mob)
+/obj/structure/filingcabinet/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -120,7 +120,7 @@
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
 
-/obj/structure/filingcabinet/security/attack_hand()
+/obj/structure/filingcabinet/security/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -155,7 +155,7 @@
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
 
-/obj/structure/filingcabinet/medical/attack_hand()
+/obj/structure/filingcabinet/medical/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

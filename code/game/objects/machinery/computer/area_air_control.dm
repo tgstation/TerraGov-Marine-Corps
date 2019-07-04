@@ -22,7 +22,7 @@
 /obj/machinery/computer/area_atmos/attack_paw(mob/user as mob)
 	return
 
-/obj/machinery/computer/area_atmos/attack_hand(mob/user as mob)
+/obj/machinery/computer/area_atmos/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
