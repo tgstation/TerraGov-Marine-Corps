@@ -17,7 +17,7 @@
 	var/rage = 0
 	var/rage_resist = 1.00
 	var/last_rage = null
-	var/last_damage = null
+	var/next_damage = null
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -26,6 +26,17 @@
 		/datum/action/xeno_action/activable/ravage,
 		/datum/action/xeno_action/second_wind,
 		)
+
+// ***************************************
+// *********** Init
+// ***************************************
+/mob/living/carbon/xenomorph/ravager/Initialize(mapload, can_spawn_in_centcomm)
+	. = ..()
+	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_HUMAN, .proc/process_rage_attack)
+	RegisterSignal(src, list(
+		COMSIG_XENOMORPH_BRUTE_DAMAGE,
+		COMSIG_XENOMORPH_BURN_DAMAGE), 
+		.proc/process_rage_damage)
 
 // ***************************************
 // *********** Mob overrides
@@ -76,29 +87,17 @@
 // ***************************************
 // *********** Rage
 // ***************************************
-/mob/living/carbon/xenomorph/ravager/process_rage_damage(damage)
-	if(damage < 1 || world.time < last_damage)
-		return damage
+/mob/living/carbon/xenomorph/ravager/proc/process_rage_damage(datum/source, damage, list/damage_mod)
+	if(damage < 1 || world.time < next_damage)
+		return
 	rage += round(damage * RAV_DAMAGE_RAGE_MULITPLIER)
 	last_rage = world.time //We incremented rage, so bookmark this.
-	last_damage = world.time + 2 //Limit how often this proc can trigger; once per 0.2 seconds
-	damage *= rage_resist //reduce damage by rage resist %
+	next_damage = world.time + 2 //Limit how often this proc can trigger; once per 0.2 seconds
+	damage_mod += damage * (1 - rage_resist) //reduce damage by rage resist %
+
 	rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //Update rage resistance _after_ we take damage
-	return damage
 
-/mob/living/carbon/xenomorph/ravager/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
-	if(hit)
-		var/extra_dam = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
-		M.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
-		var/target_turf = get_step_away(src,M,rand(1,3)) //This is where we blast our target
-		target_turf =  get_step_rand(target_turf) //Scatter
-		throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, M)
-		M.KnockDown(1)
-		rage = 0
-	else
-		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
-
-/mob/living/carbon/xenomorph/ravager/process_rage_attack()
+/mob/living/carbon/xenomorph/ravager/proc/process_rage_attack()
 	rage += RAV_RAGE_ON_HIT
 	last_rage = world.time //We incremented rage, so bookmark this.
 
