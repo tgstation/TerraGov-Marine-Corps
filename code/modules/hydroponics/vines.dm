@@ -6,7 +6,7 @@
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	layer = FLY_LAYER
 	flags_pass = PASSTABLE|PASSGRILLE
 
@@ -112,7 +112,7 @@
 			energy = 2
 			return
 
-		src.opacity = 1
+		src.opacity = TRUE
 		layer = FLY_LAYER
 	else if(!limited_growth)
 		src.icon_state = pick("Hvy1", "Hvy2", "Hvy3")

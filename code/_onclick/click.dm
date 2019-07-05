@@ -140,7 +140,9 @@
 	if(next_move > world.time)
 		return
 
-	if(istype(loc, /obj/vehicle))
+	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
+		var/obj/vehicle/multitile/root/cm_armored/N = loc
+		N.click_action(A, src, params)
 		return
 
 	if(restrained())

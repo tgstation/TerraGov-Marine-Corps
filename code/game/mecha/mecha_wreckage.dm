@@ -8,8 +8,8 @@
 	desc = "Remains of some unfortunate mecha. There is nothing left to Salvage."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
-	anchored = 0
-	opacity = 0
+	anchored = FALSE
+	opacity = FALSE
 
 
 /obj/effect/decal/mecha_wreckage/ex_act(severity)

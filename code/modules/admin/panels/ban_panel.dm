@@ -262,7 +262,7 @@
 		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden'>Command</label><div class='content'>"
 		//all heads are listed twice so have a javascript call to toggle both their checkboxes when one is pressed
 		//for simplicity this also includes the captain even though it doesn't do anything
-		for(var/job in JOBS_OFFICERS)
+		for(var/job in GLOB.jobs_officers)
 			if(break_counter > 0 && (break_counter % 3 == 0))
 				output += "<br>"
 			output += {"<label class='inputlabel checkbox'>[job]
@@ -272,11 +272,11 @@
 			break_counter++
 		output += "</div></div>"
 		//standard departments all have identical handling
-		var/list/job_lists = list("Police" = JOBS_POLICE,
-							"Engineering" = JOBS_ENGINEERING,
-							"Medical" = JOBS_MEDICAL,
-							"Requisitions" = JOBS_REQUISITIONS,
-							"Marines" = JOBS_MARINES)
+		var/list/job_lists = list("Police" = GLOB.jobs_police,
+							"Engineering" = GLOB.jobs_engineering,
+							"Medical" = GLOB.jobs_medical,
+							"Requisitions" = GLOB.jobs_requisitions,
+							"Marines" = GLOB.jobs_marines)
 		for(var/department in job_lists)
 			//the first element is the department head so they need the same javascript call as above
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"

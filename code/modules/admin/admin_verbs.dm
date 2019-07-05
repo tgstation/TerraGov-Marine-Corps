@@ -307,7 +307,7 @@
 	var/path = usr.client.holder.browse_folders()
 	if(!path)
 		return
-
+	
 	usr.client.holder.recursive_download(path)
 
 
@@ -858,6 +858,7 @@
 
 	else if(istype(whom, /client))
 		recipient = whom
+		
 
 
 	if(irc)
@@ -1129,7 +1130,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/obj/vehicle/tank/CA in GLOB.tank_list)
+	for(var/obj/vehicle/multitile/root/cm_armored/CA in GLOB.tank_list)
 		CA.remove_all_players()
 
 		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
@@ -1154,7 +1155,7 @@
 
 	for(var/j in SSjob.occupations)
 		var/datum/job/job = j
-		if(!(job.title in JOBS_REGULAR_ALL))
+		if(!(job.title in GLOB.jobs_regular_all))
 			continue
 		count++
 		var/J_title = html_encode(job.title)

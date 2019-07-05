@@ -628,10 +628,138 @@ WEAPONS
 	group = "Weapons"
 
 /*******************************************************************************
-TANK AMMO
+HARDPOINT MODULES (and their ammo)
 *******************************************************************************/
 
-/datum/supply_packs/tank_ltb_cannon_ammo
+/datum/supply_packs/ltb_cannon
+	name = "LTB Cannon Assembly (x1)"
+	contains = list(/obj/item/hardpoint/primary/cannon)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/ltaaap_minigun
+	name = "LTAA-AP Minigun Assembly (x1)"
+	contains = list(/obj/item/hardpoint/primary/minigun)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/flamer_module
+	name = "Secondary Flamer Assembly (x1)"
+	contains = list(/obj/item/hardpoint/secondary/flamer)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/towlauncher
+	name = "Secondary TOW Launcher Assembly (x1)"
+	contains = list(/obj/item/hardpoint/secondary/towlauncher)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/m56_cupola
+	name = "Secondary M56 Cupola Assembly (x1)"
+	contains = list(/obj/item/hardpoint/secondary/m56cupola)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/tank_glauncher
+	name = "Secondary Grenade Launcher Assembly (x1)"
+	contains = list(/obj/item/hardpoint/secondary/grenade_launcher)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/tank_slauncher
+	name = "Smoke Launcher Assembly (x1)"
+	contains = list(/obj/item/hardpoint/support/smoke_launcher)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/weapons_sensor
+	name = "Weapons Sensor Array (x1)"
+	contains = list(/obj/item/hardpoint/support/weapons_sensor)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/artillery_module
+	name = "Artillery Module (x1)"
+	contains = list(/obj/item/hardpoint/support/artillery_module)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/overdrive_enhancer
+	name = "Overdrive Enhancer (x1)"
+	contains = list(/obj/item/hardpoint/support/overdrive_enhancer)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/ballistic_armor
+	name = "Ballistic Armor Plating (x1)"
+	contains = list(/obj/item/hardpoint/armor/ballistic)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/caustic_armor
+	name = "Caustic Armor Plating (x1)"
+	contains = list(/obj/item/hardpoint/armor/caustic)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/concussive_armor
+	name = "Concussive Armor Plating (x1)"
+	contains = list(/obj/item/hardpoint/armor/concussive)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/paladin_armor
+	name = "Paladin Armor Module (x1)"
+	contains = list(/obj/item/hardpoint/armor/paladin)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/snowplow_armor
+	name = "Snowplow Module (x1)"
+	contains = list(/obj/item/hardpoint/armor/snowplow)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/tank_treads
+	name = "Tank Treads (x1)"
+	contains = list(/obj/item/hardpoint/treads/standard)
+	cost = RO_PRICE_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper hardpoint module assembly crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/ltb_cannon_ammo
 	name = "LTB Cannon Magazines (x10)"
 	contains = list(
 					/obj/item/ammo_magazine/tank/ltb_cannon,
@@ -650,7 +778,7 @@ TANK AMMO
 	containername = "\improper tank ammo crate"
 	group = "Hardpoint Modules"
 
-/datum/supply_packs/tank_ltaaap_minigun_ammo
+/datum/supply_packs/ltaaap_minigun_ammo
 	name = "LTAA AP Minigun Magazines (x3)"
 	contains = list(
 					/obj/item/ammo_magazine/tank/ltaaap_minigun,
@@ -662,35 +790,14 @@ TANK AMMO
 	containername = "\improper tank ammo crate"
 	group = "Hardpoint Modules"
 
-/datum/supply_packs/tank_flamer_ammo //The tank absolutely shits out flames so i'm making this pricier
-	name = "Tank flamethrower fuel (x3)"
-	contains = list(
-					/obj/item/ammo_magazine/tank/flamer,
-					/obj/item/ammo_magazine/tank/flamer,
-					/obj/item/ammo_magazine/tank/flamer
-					)
-	cost = RO_PRICE_NORMAL
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper tank ammo crate"
-	group = "Hardpoint Modules"
-
-/datum/supply_packs/tank_tow_ammo
-	name = "TOW Launcher Ammo (x5)"
-	contains = list(
-					/obj/item/ammo_magazine/tank/towlauncher,
-					/obj/item/ammo_magazine/tank/towlauncher,
-					/obj/item/ammo_magazine/tank/towlauncher,
-					/obj/item/ammo_magazine/tank/towlauncher,
-					/obj/item/ammo_magazine/tank/towlauncher
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper tank ammo crate"
-	group = "Hardpoint Modules"
-
 /datum/supply_packs/tank_glauncher_ammo
-	name = "Tank mounted grenade launcher ammo (x5)"
+	name = "Grenade Launcher Magazines (x10)"
 	contains = list(
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
+					/obj/item/ammo_magazine/tank/tank_glauncher,
 					/obj/item/ammo_magazine/tank/tank_glauncher,
 					/obj/item/ammo_magazine/tank/tank_glauncher,
 					/obj/item/ammo_magazine/tank/tank_glauncher,
@@ -703,8 +810,13 @@ TANK AMMO
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_slauncher_ammo
-	name = "Tank mounted smoke launcher ammo (x5)"
+	name = "Smoke Launcher Magazines (x10)"
 	contains = list(
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
+					/obj/item/ammo_magazine/tank/tank_slauncher,
 					/obj/item/ammo_magazine/tank/tank_slauncher,
 					/obj/item/ammo_magazine/tank/tank_slauncher,
 					/obj/item/ammo_magazine/tank/tank_slauncher,
@@ -715,6 +827,45 @@ TANK AMMO
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper tank ammo crate"
 	group = "Hardpoint Modules"
+
+/datum/supply_packs/tank_towlauncher_ammo
+	name = "TOW Launcher Magazines (x4)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/towlauncher,
+					/obj/item/ammo_magazine/tank/towlauncher,
+					/obj/item/ammo_magazine/tank/towlauncher,
+					/obj/item/ammo_magazine/tank/towlauncher
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper tank ammo crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/tank_cupola_ammo
+	name = "M56 Cupola Magazines (x2)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/m56_cupola,
+					/obj/item/ammo_magazine/tank/m56_cupola
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper tank ammo crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/tank_flamer_ammo
+	name = "Flamer Magazines (x5)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper tank ammo crate"
+	group = "Hardpoint Modules"
+
 
 /*******************************************************************************
 ATTACHMENTS

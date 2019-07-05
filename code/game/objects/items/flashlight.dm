@@ -4,7 +4,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
 	item_state = "flashlight"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 50,"glass" = 20)
@@ -113,7 +113,7 @@
 	item_state = ""
 	flags_atom = CONDUCT
 	brightness_on = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
 
 /obj/item/flashlight/drone
@@ -122,7 +122,7 @@
 	icon_state = "penlight"
 	item_state = ""
 	brightness_on = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
 
 //The desk lamps are a bit special
@@ -132,7 +132,7 @@
 	icon_state = "lamp"
 	item_state = "lamp"
 	brightness_on = 5
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	on = 1
 	raillight_compatible = FALSE
 
@@ -143,7 +143,7 @@
 	icon_state = "menorah"
 	item_state = "menorah"
 	brightness_on = 2
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	on = TRUE
 
 //Green-shaded desk lamp
@@ -170,7 +170,7 @@
 /obj/item/flashlight/flare
 	name = "flare"
 	desc = "A red TGMC issued flare. There are instructions on the side, it reads 'pull cord, make light'."
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	brightness_on = 5 //As bright as a flashlight, but more disposable. Doesn't burn forever though
 	icon_state = "flare"
 	item_state = "flare"
@@ -245,7 +245,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	brightness_on = 6
 	on = TRUE //Bio-luminesence has one setting, on.
 	raillight_compatible = FALSE

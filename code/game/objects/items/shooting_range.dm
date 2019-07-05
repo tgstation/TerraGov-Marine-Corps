@@ -4,7 +4,7 @@
 	desc = "A shooting target."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_h"
-	density = 0
+	density = FALSE
 	var/hp = 1800
 	var/icon/virtualIcon
 	var/list/bulletholes = list()
@@ -52,7 +52,7 @@
 		if(stake)
 			if(stake.pinned_target)
 				stake.density = TRUE
-				density = 0
+				density = FALSE
 				layer = OBJ_LAYER
 
 				loc = user.loc

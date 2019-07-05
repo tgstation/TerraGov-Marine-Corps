@@ -24,16 +24,43 @@
 #define JOB_DISPLAY_ORDER_SQUAD_MARINE 22
 
 
-#define JOBS_COMMAND 		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Requisitions Officer", "Chief Ship Engineer", "Chief Medical Officer", "Synthetic", "Command Master at Arms")
-#define JOBS_POLICE			list("Command Master at Arms", "Master at Arms")
-#define JOBS_OFFICERS		list("Captain", "Field Commander", "Intelligence Officer", "Pilot Officer", "Tank Crewman", "Corporate Liaison", "Synthetic")
-#define JOBS_ENGINEERING 	list("Chief Ship Engineer", "Ship Engineer")
-#define JOBS_REQUISITIONS 	list("Requisitions Officer", "Cargo Technician")
-#define JOBS_MEDICAL 		list("Chief Medical Officer", "Medical Officer", "Medical Researcher")
-#define JOBS_MARINES		list("Squad Leader", "Squad Specialist", "Squad Smartgunner", "Squad Corpsman", "Squad Engineer", "Squad Marine")
-#define JOBS_SQUADS			list("Alpha", "Bravo", "Charlie" ,"Delta")
-#define JOBS_REGULAR_ALL	JOBS_OFFICERS + JOBS_POLICE + JOBS_ENGINEERING + JOBS_REQUISITIONS + JOBS_MEDICAL + JOBS_MARINES
-#define JOBS_UNASSIGNED		list("Squad Marine")
+#define CAPTAIN "Captain"
+#define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
+#define FIELD_COMMANDER "Field Commander"
+#define INTELLIGENCE_OFFICER "Intelligence Officer"
+#define PILOT_OFFICER "Pilot Officer"
+#define REQUISITIONS_OFFICER "Requisitions Officer"
+#define CHIEF_SHIP_ENGINEER "Chief Ship Engineer"
+#define CHIEF_MEDICAL_OFFICER "Chief Medical Officer"
+#define COMMAND_MASTER_AT_ARMS "Command Master at Arms"
+#define TANK_CREWMAN "Tank Crewman"
+#define CORPORATE_LIAISON "Corporate Liaison"
+#define SYNTHETIC "Synthetic"
+#define MASTER_AT_ARMS "Master at Arms"
+#define SHIP_ENGINEER "Ship Engineer"
+#define CARGO_TECHNICIAN "Cargo Technician"
+#define MEDICAL_OFFICER "Medical Officer"
+#define MEDICAL_RESEARCHER "Medical Researcher"
+#define SQUAD_LEADER "Squad Leader"
+#define SQUAD_SPECIALIST "Squad Specialist"
+#define SQUAD_SMARTGUNNER "Squad Smartgunner"
+#define SQUAD_CORPSMAN "Squad Corpsman"
+#define SQUAD_ENGINEER "Squad Engineer"
+#define SQUAD_MARINE "Squad Marine"
+
+
+GLOBAL_LIST_INIT(jobs_command, list(CAPTAIN, FIELD_COMMANDER, INTELLIGENCE_OFFICER, PILOT_OFFICER, REQUISITIONS_OFFICER, CHIEF_SHIP_ENGINEER, \
+CHIEF_MEDICAL_OFFICER, SYNTHETIC, COMMAND_MASTER_AT_ARMS))
+GLOBAL_LIST_INIT(jobs_police, list(COMMAND_MASTER_AT_ARMS, MASTER_AT_ARMS))
+GLOBAL_LIST_INIT(jobs_officers, list(CAPTAIN, FIELD_COMMANDER, INTELLIGENCE_OFFICER, PILOT_OFFICER, TANK_CREWMAN, CORPORATE_LIAISON, SYNTHETIC))
+GLOBAL_LIST_INIT(jobs_engineering, list(CHIEF_SHIP_ENGINEER, SHIP_ENGINEER))
+GLOBAL_LIST_INIT(jobs_requisitions, list(REQUISITIONS_OFFICER, CARGO_TECHNICIAN))
+GLOBAL_LIST_INIT(jobs_medical, list(CHIEF_MEDICAL_OFFICER, MEDICAL_OFFICER, MEDICAL_RESEARCHER))
+GLOBAL_LIST_INIT(jobs_marines, list(SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE))
+GLOBAL_LIST_INIT(jobs_regular_all, list(CAPTAIN, FIELD_COMMANDER, INTELLIGENCE_OFFICER, PILOT_OFFICER, REQUISITIONS_OFFICER, CHIEF_SHIP_ENGINEER, \
+CHIEF_MEDICAL_OFFICER, SYNTHETIC, COMMAND_MASTER_AT_ARMS, MASTER_AT_ARMS, TANK_CREWMAN, CORPORATE_LIAISON, SHIP_ENGINEER, CARGO_TECHNICIAN, \
+MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE))
+GLOBAL_LIST_INIT(jobs_unassigned, list(SQUAD_MARINE))
 
 
 #define ROLE_XENOMORPH "Xenomorph"

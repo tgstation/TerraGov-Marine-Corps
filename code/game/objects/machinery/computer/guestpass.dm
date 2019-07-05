@@ -22,4 +22,4 @@
 /obj/machinery/computer/guestpass
 	name = "guest pass terminal"
 	icon_state = "guest"
-	density = 0
+	density = FALSE

@@ -15,7 +15,6 @@
 	var/speed_activated = 0
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	layer = LARGE_XENO_LAYER
 	var/list/tunnels = list() //list of active tunnels
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

@@ -262,8 +262,8 @@
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
 	density = TRUE
-	anchored = 0
-	opacity = 0
+	anchored = FALSE
+	opacity = FALSE
 
 
 /obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)

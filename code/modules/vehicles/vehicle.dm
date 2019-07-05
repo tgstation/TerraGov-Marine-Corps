@@ -20,8 +20,6 @@
 
 	var/obj/item/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
-	var/lastsound = 0
-	var/demolish_on_ram = FALSE //For tank collision code. Stops cargo tugs from demolishing walls
 
 //-------------------------------------------
 // Standard procs
@@ -51,7 +49,7 @@
 		open = !open
 		update_icon()
 		to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
-
+	
 	else if(iscrowbar(I) && cell && open)
 		remove_cell(user)
 
@@ -73,13 +71,13 @@
 
 		obj_integrity = min(max_integrity, obj_integrity + 10)
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
-
+		
 	else if(I.force)
 		switch(I.damtype)
 			if("fire")
-				take_damage(I.force * fire_dam_coeff)
+				obj_integrity -= I.force * fire_dam_coeff
 			if("brute")
-				take_damage(I.force * brute_dam_coeff)
+				obj_integrity -= I.force * brute_dam_coeff
 		playsound(loc, "smash.ogg", 25, 1)
 		user.visible_message("<span class='danger'>[user] hits [src] with [I].</span>","<span class='danger'>You hit [src] with [I].</span>")
 		healthcheck()
@@ -90,7 +88,7 @@
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
-		take_damage(15)
+		obj_integrity -= 15
 		playsound(src.loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>", null, 5)
 		healthcheck()
@@ -100,7 +98,7 @@
 /obj/vehicle/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)
 		return
-	take_damage(M.melee_damage_upper)
+	obj_integrity -= M.melee_damage_upper
 	src.visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
 	log_combat(M, src, "attacked")
 	if(prob(10))
@@ -108,7 +106,7 @@
 	healthcheck()
 
 /obj/vehicle/bullet_act(obj/item/projectile/Proj)
-	take_damage(Proj.damage)
+	obj_integrity -= Proj.damage
 	..()
 	healthcheck()
 	return TRUE
@@ -119,14 +117,14 @@
 			explode()
 			return
 		if(2.0)
-			take_damage(rand(5,10)*fire_dam_coeff)
-			take_damage(rand(10,20)*brute_dam_coeff)
+			obj_integrity -= rand(5,10)*fire_dam_coeff
+			obj_integrity -= rand(10,20)*brute_dam_coeff
 			healthcheck()
 			return
 		if(3.0)
 			if (prob(50))
-				take_damage(rand(1,5)*fire_dam_coeff)
-				take_damage(rand(1,5)*brute_dam_coeff)
+				obj_integrity -= rand(1,5)*fire_dam_coeff
+				obj_integrity -= rand(1,5)*brute_dam_coeff
 				healthcheck()
 				return
 	return
@@ -248,8 +246,3 @@
 //-------------------------------------------------------
 /obj/vehicle/proc/update_stats()
 	return
-
-/obj/vehicle/proc/take_damage(damage)
-	if(damage) //This prevents the vehicle taking negative damage and thus healing.
-		obj_integrity -= damage
-		healthcheck()

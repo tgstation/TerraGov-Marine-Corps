@@ -12,7 +12,6 @@
 	mob_size = MOB_SIZE_BIG
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
-	layer = LARGE_XENO_LAYER
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"

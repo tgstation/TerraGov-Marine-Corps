@@ -4,7 +4,7 @@
 
 /obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary
 	for(var/turf/T in locs)
-		for(var/obj/vehicle/M in T)
+		for(var/obj/vehicle/multitile/M in T)
 			if(M) return FALSE
 
 	return ..()

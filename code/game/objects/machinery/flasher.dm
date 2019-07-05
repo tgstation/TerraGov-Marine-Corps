@@ -18,7 +18,7 @@
 	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
 	icon_state = "pflash1"
 	strength = 8
-	anchored = 0
+	anchored = FALSE
 	base_state = "pflash"
 	density = TRUE
 

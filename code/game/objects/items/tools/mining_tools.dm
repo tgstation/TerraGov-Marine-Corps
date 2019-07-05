@@ -12,7 +12,7 @@
 	force = 15.0
 	throwforce = 4.0
 	item_state = "pickaxe"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	matter = list("metal" = 3750)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	origin_tech = "materials=1;engineering=1"
@@ -91,7 +91,7 @@
 	name = "plasma cutter"
 	icon_state = "plasma_cutter_off"
 	item_state = "plasmacutter"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 40.0
 	damtype = "fire"

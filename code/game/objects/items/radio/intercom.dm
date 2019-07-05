@@ -6,7 +6,7 @@
 	pixel_x = -16
 	pixel_y = -16
 	anchored = TRUE
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	canhear_range = 2
 	flags_atom = CONDUCT|NOBLOODY
 	var/number = 0

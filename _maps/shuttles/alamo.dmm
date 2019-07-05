@@ -399,8 +399,8 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_x = -30
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
@@ -412,8 +412,8 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_x = 30
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)

@@ -194,7 +194,7 @@
 	if(create_debris)
 		new /obj/item/stack/rods(loc)
 	cut = 1
-	density = 0
+	density = FALSE
 	update_icon() //Make it appear cut through!
 
 /obj/structure/fence/New(Loc, start_dir = null, constructed = 0)
@@ -206,7 +206,7 @@
 	update_nearby_icons()
 
 /obj/structure/fence/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_icons()
 	. = ..()
 

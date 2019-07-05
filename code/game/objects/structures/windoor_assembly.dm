@@ -14,8 +14,8 @@ obj/structure/windoor_assembly
 
 	name = "Windoor Assembly"
 	icon_state = "l_windoor_assembly01"
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	dir = NORTH
 
 	var/obj/item/circuitboard/airlock/electronics = null
@@ -29,7 +29,7 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	..()
 	if(constructed)
 		state = "01"
-		anchored = 0
+		anchored = FALSE
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
 			setDir(start_dir)
@@ -38,7 +38,7 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 
 
 obj/structure/windoor_assembly/Destroy()
-	density = 0
+	density = FALSE
 	. = ..()
 
 /obj/structure/windoor_assembly/setDir(newdir)

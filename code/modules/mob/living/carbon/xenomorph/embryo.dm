@@ -183,8 +183,9 @@
 	victim.update_burst()
 
 	victim.emote("scream")
-	if(istype(victim.loc, /obj/vehicle))
-		victim.forceMove(get_turf(victim.loc))
+	if(istype(victim.loc, /obj/vehicle/multitile/root))
+		var/obj/vehicle/multitile/root/V = victim.loc
+		V.handle_player_exit(src)
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
@@ -210,4 +211,4 @@
 
 	if((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen?.z == loc.z)
 		burrow()
-
+		

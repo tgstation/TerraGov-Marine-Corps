@@ -8,7 +8,7 @@
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/connected = null
 	anchored = TRUE //About time someone fixed this.
-	density = 0
+	density = FALSE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
 	use_power = 1

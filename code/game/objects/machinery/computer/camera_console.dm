@@ -164,7 +164,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "telescreen"
 	network = list("thunder")
-	density = 0
+	density = FALSE
 	circuit = null
 
 

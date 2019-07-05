@@ -23,6 +23,7 @@
 /client/MouseDown(object, location, control, params)
 	if(mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
+
 	if(istype(mob.loc, /obj/vehicle/tank)) //This code is related to tank + vehicle autofire code, as seen in tank.dm
 		var/obj/vehicle/tank/our_tank = mob.loc
 		our_tank.onMouseDown(object,mob,params)
@@ -41,7 +42,4 @@
 			middragatom = src_object
 		else
 			middragtime = 0
-			middragatom = null		mouse_pointer_icon = mouse_up_icon
-	if(istype(mob.loc, /obj/vehicle/tank))//This code is related to tank + vehicle autofire code, as seen in tank.dm
-		var/obj/vehicle/tank/our_tank = mob.loc
-		our_tank.onMouseUp(object,mob)
+			middragatom = null

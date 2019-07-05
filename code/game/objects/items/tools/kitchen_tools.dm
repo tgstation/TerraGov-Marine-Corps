@@ -18,7 +18,7 @@
 */
 /obj/item/tool/kitchen/utensil
 	force = 5
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
@@ -125,7 +125,7 @@
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 	force = 10.0
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 6.0
 	throw_speed = 3
 	throw_range = 6
@@ -154,7 +154,7 @@
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	flags_atom = CONDUCT
 	force = 15.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6
@@ -180,7 +180,7 @@
 	throwforce = 10.0
 	throw_speed = 2
 	throw_range = 7
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked") //I think the rollingpin attackby will end up ignoring this anyway.
 
 /obj/item/tool/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
@@ -222,7 +222,7 @@
 	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	flags_atom = CONDUCT
 	matter = list("metal" = 3000)
 	/* // NOPE
@@ -241,9 +241,9 @@
 	var/miscfood_amt = 0
 	*/
 	var/list/carrying = list() // List of things on the tray. - Doohl
-	var/max_carry = 10 // w_class = 1 -- takes up 1
-						// w_class = 2 -- takes up 3
-						// w_class = 3 -- takes up 5
+	var/max_carry = 10 // w_class = WEIGHT_CLASS_TINY -- takes up 1
+						// w_class = WEIGHT_CLASS_SMALL -- takes up 3
+						// w_class = WEIGHT_CLASS_NORMAL -- takes up 5
 
 /obj/item/tool/kitchen/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 

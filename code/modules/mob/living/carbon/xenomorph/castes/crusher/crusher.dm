@@ -9,10 +9,8 @@
 	plasma_stored = 200
 	speed = 0.1
 	tier = XENO_TIER_THREE
-	layer = LARGE_XENO_LAYER
 	upgrade = XENO_UPGRADE_ZERO
 	drag_delay = 6 //pulling a big dead xeno is hard
-	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	mob_size = MOB_SIZE_BIG
 
 	is_charging = 1 //Crushers start with charging enabled
@@ -81,14 +79,14 @@
 			stop_momentum(charge_dir)
 			return FALSE
 
-	if(istype(target, /obj/vehicle))
-		var/obj/vehicle/carcrash = target
+	if(istype(target, /obj/vehicle/multitile/hitbox))
+		var/obj/vehicle/multitile/hitbox/H = target
 		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
-			visible_message("<span class='danger'>[src] rams into [carcrash] and skids to a halt!</span>",
-			"<span class='xenowarning'>You ram into [carcrash] and skid to a halt!</span>")
+			visible_message("<span class='danger'>[src] rams into [H.root] and skids to a halt!</span>",
+			"<span class='xenowarning'>We ram into [H.root] and skid to a halt!</span>")
 			flags_pass = 0
 			update_icons()
-			carcrash.Bumped(src)
+			H.root.Bumped(src)
 			stop_momentum(charge_dir)
 			return TRUE
 		else

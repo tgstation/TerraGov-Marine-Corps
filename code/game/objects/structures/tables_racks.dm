@@ -606,5 +606,5 @@
 			new parts(loc)
 	else
 		new /obj/item/stack/sheet/metal(loc)
-	density = 0
+	density = FALSE
 	qdel(src)

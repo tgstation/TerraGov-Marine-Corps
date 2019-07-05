@@ -3,7 +3,7 @@
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/inflatable/attack_self(mob/user)
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
@@ -34,7 +34,7 @@
 	desc = "An inflated membrane. Do not puncture."
 	density = TRUE
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
@@ -152,7 +152,7 @@
 /obj/structure/inflatable/popped
 	name = "popped inflatable wall"
 	desc = "It used to be an inflatable wall, now it's just a mess of plastic."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	deflated = TRUE
 
@@ -178,7 +178,7 @@
 	name = "inflatable door"
 	density = TRUE
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "door_closed"
@@ -228,8 +228,8 @@
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_opening",src)
 	sleep(10)
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -240,7 +240,7 @@
 	flick("door_closing",src)
 	sleep(10)
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0

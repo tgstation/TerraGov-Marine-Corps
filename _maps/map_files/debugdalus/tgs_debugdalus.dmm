@@ -1543,6 +1543,11 @@
 	pixel_z = -1
 	},
 /area/almayer/hallways/exoarmor)
+"adA" = (
+/turf/open/floor/almayer{
+	pixel_z = -1
+	},
+/area/almayer/hallways/exoarmor)
 "adB" = (
 /obj/machinery/light{
 	dir = 1
@@ -1560,6 +1565,7 @@
 	},
 /area/almayer/hallways/exoarmor)
 "adD" = (
+/obj/machinery/tank_part_fabricator,
 /turf/open/floor/almayer{
 	pixel_z = -1
 	},
@@ -1840,7 +1846,7 @@
 	},
 /area/almayer/living/cryo_cells)
 "aej" = (
-/obj/vehicle/tank/apc,
+/obj/effect/multitile_spawner/cm_armored/tank,
 /turf/open/floor/almayer{
 	pixel_z = -1
 	},
@@ -19402,10 +19408,10 @@ acO
 acX
 aWV
 ady
-adD
-adD
-adD
-adD
+adA
+adA
+adA
+adA
 aVs
 adw
 adw
@@ -19529,9 +19535,9 @@ acP
 acY
 aWV
 adz
-adD
-adD
-adD
+adA
+adA
+adA
 aeW
 aVs
 adw
@@ -19655,11 +19661,11 @@ aax
 aax
 aax
 aWV
-adD
-adD
-adD
-adD
-adD
+adA
+adA
+adA
+adA
+adA
 aVs
 adw
 adw
@@ -19782,11 +19788,11 @@ aax
 aax
 aax
 aWV
-adD
-adD
-adD
-adD
-adD
+adA
+adA
+adA
+adA
+adA
 aVs
 afE
 adw
@@ -19909,11 +19915,11 @@ aax
 aax
 acZ
 aWV
-adD
-adD
-adD
-adD
-adD
+adA
+adA
+adA
+adA
+adA
 aVs
 adw
 adw
@@ -20039,7 +20045,7 @@ aWV
 adB
 adU
 adU
-adD
+adA
 aeW
 aVs
 adw
@@ -20164,10 +20170,10 @@ aax
 aax
 aWV
 adC
-adD
-adD
-adD
-adD
+adA
+adA
+adA
+adA
 aVs
 adw
 aga
@@ -20291,10 +20297,10 @@ aax
 aax
 aWV
 adD
-adD
+adA
 aej
-adD
-adD
+adA
+adA
 aVs
 adw
 adw
@@ -20417,11 +20423,11 @@ aax
 aax
 acZ
 aWV
-adD
-adD
-adD
-adD
-adD
+adA
+adA
+adA
+adA
+adA
 aVs
 adw
 adw
@@ -20545,9 +20551,9 @@ aax
 aax
 aWV
 adz
-adD
-adD
-adD
+adA
+adA
+adA
 aeW
 aVs
 afE

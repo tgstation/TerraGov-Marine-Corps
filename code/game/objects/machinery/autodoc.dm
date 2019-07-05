@@ -771,10 +771,10 @@
 		M = G.grabbed_thing
 	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.stasis_mob)
+		if(!C.bodybag_occupant)
 			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 			return
-		M = C.stasis_mob
+		M = C.bodybag_occupant
 		C.open()
 		user.start_pulling(M)
 
@@ -830,7 +830,7 @@
 	var/locked = FALSE //Medics, Doctors and so on can lock this.
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
 	anchored = TRUE //About time someone fixed this.
-	density = 0
+	density = FALSE
 
 	use_power = 1
 	idle_power_usage = 40

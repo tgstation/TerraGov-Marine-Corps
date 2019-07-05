@@ -42,7 +42,7 @@
 	force = 5
 	flags_atom = NONE
 	throwforce = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 3
 	origin_tech = "materials=1"
@@ -71,7 +71,7 @@
 	force = 0
 	flags_atom = NONE
 	throwforce = 1
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 1
 	throw_range = 3
 
@@ -89,7 +89,7 @@
 	force = 15
 	flags_atom = NONE
 	throwforce = 1
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
 	throw_range = 3
 	origin_tech = "combat=1"
@@ -171,7 +171,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "corncob"
 	item_state = "corncob"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20

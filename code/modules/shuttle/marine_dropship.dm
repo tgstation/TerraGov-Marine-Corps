@@ -248,6 +248,8 @@
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1
 
 /datum/game_mode/proc/can_summon_dropship(mob/user)
+	if(user.action_busy)
+		return FALSE
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(user, "<span class='warning'>It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)].</span>")
 		return FALSE
@@ -257,7 +259,39 @@
 		if(M.id == "alamo")
 			D = M
 	if(is_ground_level(D.z))
-		to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
+		var/locked_sides = 0
+		for(var/i in D.left_airlocks)
+			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		for(var/i in D.right_airlocks)
+			var/obj/machinery/door/airlock/dropship_hatch/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		for(var/i in D.rear_airlocks)
+			var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/DH = i
+			if(!DH.locked)
+				continue
+			locked_sides++
+			break
+		if(!locked_sides)
+			to_chat(user, "<span class='warning'>We can't call the bird from here!</span>")
+			return FALSE
+		if(locked_sides < 3)
+			to_chat(user, "<span class='warning'>At least one side is still unlocked!</span>")
+			return FALSE
+		to_chat(user, "<span class='warning'>We begin overriding the shuttle lockdown. This will take a while...</span>")
+		if(!do_after(user, 60 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+			to_chat(user, "<span class='warning'>We cease overriding the shuttle lockdown.</span>")
+			return FALSE
+		D.hijack_state = HIJACK_STATE_CALLED_DOWN
+		D.unlock_all()
+		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")
+		playsound(user, "alien_roar", 50)
 		return FALSE
 	if(D.hijack_state != HIJACK_STATE_NORMAL)
 		to_chat(user, "<span class='warning'>The bird's mind is already tampered with!</span>")
@@ -342,12 +376,16 @@
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
 		var/destination_found
+		var/list/valid_destionations = list()
 		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 			if(!options.Find(S.id))
 				continue
 			if(!M.check_dock(S, silent=TRUE))
 				continue
 			destination_found = TRUE
+			valid_destionations[S.name] = S
+		for(var/i in sortList(valid_destionations))
+			var/obj/docking_port/stationary/S = valid_destionations[i]
 			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		dat += "Left Doors: <a href='?src=[REF(src)];lock=left'>Lockdown</a> <a href='?src=[REF(src)];unlock=left'>Unlock</a><br>"
 		dat += "Right Doors: <a href='?src=[REF(src)];lock=right'>Lockdown</a> <a href='?src=[REF(src)];unlock=right'>Unlock</a><br>"
@@ -357,7 +395,7 @@
 			dat += "<B>Shuttle Locked</B><br>"
 	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
-	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 400, 300)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()

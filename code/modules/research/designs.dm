@@ -1729,7 +1729,7 @@ datum/design/security_hud
 	desc = "A disk for storing device design data for construction in lathes."
 	icon_state = "datadisk2"
 	item_state = "card-id"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	matter = list("metal" = 30,"glass" = 10)
 	var/datum/design/blueprint
 

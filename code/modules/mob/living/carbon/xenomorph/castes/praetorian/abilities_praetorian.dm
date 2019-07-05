@@ -38,7 +38,7 @@
 /mob/living/carbon/xenomorph/proc/reset_speed()
 	speed = xeno_caste.speed
 
-GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle, /obj/structure/razorwire)))
+GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
 
 /datum/action/xeno_action/activable/spray_acid/cone/proc/do_acid_spray_cone(turf/T, range)
 	set waitfor = FALSE

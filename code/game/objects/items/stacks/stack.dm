@@ -5,8 +5,6 @@
 * 		Recipe list datum
 */
 
-#define STACK_WEIGHT_STEPS 3 //Currently weight updates in 3 intervals
-
 /*
 * Stacks
 */

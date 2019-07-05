@@ -303,7 +303,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 				if (href_list["anchor"])
 
 					if(removal_stage == 5)
-						src.anchored = 0
+						src.anchored = FALSE
 						visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 						return
 

@@ -8,7 +8,7 @@
 	item_state = "implantcase"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	var/obj/item/implant/imp = null
 
 /obj/item/implantcase/Initialize(mapload, ...)
