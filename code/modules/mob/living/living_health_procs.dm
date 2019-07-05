@@ -168,7 +168,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	// shut down ongoing problems
 	radiation = 0
 	bodytemperature = get_standard_bodytemperature()
-	sdisabilities = 0
+	disabilities = 0
 
 	// fix blindness and deafness
 	set_blindness(0, TRUE)

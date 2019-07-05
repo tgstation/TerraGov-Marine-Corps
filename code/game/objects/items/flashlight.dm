@@ -97,11 +97,12 @@
 							"<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
 		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
-			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
-				to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
+			var/mob/living/carbon/C = M
+			if(C.stat == DEAD || C.disabilities & BLIND)	//mob is dead or fully blind
+				to_chat(user, "<span class='notice'>[C] pupils does not react to the light!</span>")
 			else	//they're okay!
-				M.flash_eyes()
-				to_chat(user, "<span class='notice'>[M]'s pupils narrow.</span>")
+				C.flash_eyes()
+				to_chat(user, "<span class='notice'>[C]'s pupils narrow.</span>")
 	else
 		return ..()
 

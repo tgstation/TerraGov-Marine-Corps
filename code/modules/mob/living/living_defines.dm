@@ -23,7 +23,6 @@
 	var/is_dizzy = FALSE
 	var/druggy = 0
 	var/sleeping = 0
-	var/sdisabilities = NONE
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
@@ -40,6 +39,7 @@
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
+	var/disabilities = NONE
 
 	var/restrained_flags = NONE
 

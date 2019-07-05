@@ -26,28 +26,6 @@
 		if(prob(1))
 			emote(pick("scratch","jump","roll","tail"))
 
-/mob/living/carbon/monkey/handle_disabilities()
-	. = ..()
-
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && knocked_out < 10))
-			to_chat(src, "<span class='warning'>You have a seizure!</span>")
-			knock_out(10)
-	if (disabilities & COUGHING)
-		if ((prob(5) && knocked_out <= 1))
-			drop_held_item()
-			spawn( 0 )
-				emote("cough")
-				return
-	if (disabilities & TOURETTES)
-		if ((prob(10) && knocked_out <= 1))
-			stun(10)
-			spawn( 0 )
-				emote("twitch")
-				return
-	if (disabilities & NERVOUS)
-		if (prob(10))
-			stuttering = max(10, stuttering)
 
 /mob/living/carbon/monkey/proc/handle_mutations_and_radiation()
 

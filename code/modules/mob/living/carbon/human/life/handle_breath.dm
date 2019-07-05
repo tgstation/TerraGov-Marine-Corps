@@ -9,12 +9,13 @@
 		return FALSE
 	return ..()
 
+
 /mob/living/carbon/human/handle_breath(list/air_info)
 	if(status_flags & GODMODE)
 		return
-	. = ..(air_info)
+	. = ..()
 	if(!.)
-		if(prob(10) && !(species?.species_flags & NO_BREATHE))
+		if(prob(10) && !(species.species_flags & NO_BREATHE))
 			emote("gasp")
 		return FALSE
 

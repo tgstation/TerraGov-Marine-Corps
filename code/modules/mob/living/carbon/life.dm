@@ -21,27 +21,24 @@
 	if(.)
 		return FALSE
 
-	if (hud_used)
-		if(hud_used.healths)
-			if (stat != DEAD)
-				switch(round(health * 100 / maxHealth))
-					if(100 to INFINITY)
-						hud_used.healths.icon_state = "health0"
-					if(75 to 99)
-						hud_used.healths.icon_state = "health1"
-					if(50 to 74)
-						hud_used.healths.icon_state = "health2"
-					if(25 to 49)
-						hud_used.healths.icon_state = "health3"
-					if(10 to 24)
-						hud_used.healths.icon_state = "health4"
-					if(0 to 9)
-						hud_used.healths.icon_state = "health5"
-					else
-						hud_used.healths.icon_state = "health6"
+	if(hud_used?.healths)
+		switch(round(health * 100 / maxHealth))
+			if(100 to INFINITY)
+				hud_used.healths.icon_state = "health0"
+			if(75 to 99)
+				hud_used.healths.icon_state = "health1"
+			if(50 to 74)
+				hud_used.healths.icon_state = "health2"
+			if(25 to 49)
+				hud_used.healths.icon_state = "health3"
+			if(10 to 24)
+				hud_used.healths.icon_state = "health4"
+			if(0 to 9)
+				hud_used.healths.icon_state = "health5"
 			else
-				hud_used.healths.icon_state = "health7"
-		return TRUE
+				hud_used.healths.icon_state = "health6"
+	return TRUE
+
 
 /mob/living/carbon/update_stat()
 	.=..()
@@ -120,8 +117,7 @@
 				adjust_sleeping(-1)
 		if(!isxeno(src))
 			if(prob(2) && health && !hal_crit)
-				spawn()
-					emote("snore")
+				emote("snore")
 
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.03), 0)
