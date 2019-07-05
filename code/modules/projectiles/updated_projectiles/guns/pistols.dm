@@ -81,7 +81,7 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
 
 //-------------------------------------------------------
-//M4A3 45 //Inspired by the 1911
+//M1911
 
 /obj/item/weapon/gun/pistol/m1911
 	name = "\improper M1911 service pistol"
@@ -106,7 +106,7 @@
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
-	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature"
+	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature."
 	icon_state = "m1911c"
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -178,7 +178,7 @@
 
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
-	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally"
+	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally."
 	icon_state = "m9"
 	item_state = "m9"
 	caliber = "9x19mm tranquilizer" //codex
