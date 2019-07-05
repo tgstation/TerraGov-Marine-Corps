@@ -3,10 +3,9 @@
 	width = 2
 
 /obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary
-	for(var/turf/T in locs)
-		for(var/obj/vehicle/M in T)
-			if(M) return FALSE
-
+	for(var/turf/T in locs) //If a multitile tank is present in either location, don't close.
+		if(locate(/obj/vehicle) in T)
+			return FALSE
 	return ..()
 
 /obj/machinery/door/airlock/multi_tile/glass
