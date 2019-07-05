@@ -140,9 +140,6 @@
 	if(next_move > world.time)
 		return
 
-	if(istype(loc, /obj/vehicle/tank))
-		return
-
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)
 		RestrainedClickOn(A)
