@@ -520,11 +520,11 @@
 
 	succeed_activate()
 
-	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
-		var/obj/vehicle/multitile/root/cm_armored/R = A
-		R.take_damage_type( (1 / newacid.acid_strength) * 20, "acid", X)
-		X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", \
-			"<span class='xenowarning'>We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!</span>", null, 5)
+	if(istype(A, /obj/vehicle))
+		var/obj/vehicle/roadtrafficaccident = A
+		roadtrafficaccident.take_damage((1 / newacid.acid_strength) * 20)
+		X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff at \the [A]. It sizzles under the bubbling mess of acid!</span>", \
+			"<span class='xenowarning'>We vomit globs of vile stuff at \the [A]. It sizzles under the bubbling mess of acid!</span>", null, 5)
 		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
 		QDEL_IN(newacid, 20)
 		return TRUE

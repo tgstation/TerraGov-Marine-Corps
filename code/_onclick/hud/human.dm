@@ -5,7 +5,7 @@
 	layer = ABOVE_HUD_LAYER
 
 /obj/screen/human/equip/Click()
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech
+	if(istype(usr.loc, /obj/vehicle)) // stops inventory actions in a mech
 		return TRUE
 	SEND_SIGNAL(usr, COMSIG_CLICK_QUICKEQUIP)
 
@@ -245,7 +245,7 @@
 
 
 /datum/hud/human/hidden_inventory_update(mob/viewer)
-	if(!mymob) 
+	if(!mymob)
 		return
 
 	var/mob/living/carbon/human/H = mymob
@@ -280,26 +280,26 @@
 			H.head.screen_loc = ui_head
 			screenmob.client.screen += H.head
 	else
-		if(H.shoes)		
+		if(H.shoes)
 			screenmob.client.screen -= H.shoes
-		if(H.gloves)	
+		if(H.gloves)
 			screenmob.client.screen -= H.gloves
-		if(H.wear_ear)		
+		if(H.wear_ear)
 			screenmob.client.screen -= H.wear_ear
-		if(H.glasses)	
+		if(H.glasses)
 			screenmob.client.screen -= H.glasses
-		if(H.w_uniform)	
+		if(H.w_uniform)
 			screenmob.client.screen -= H.w_uniform
-		if(H.wear_suit)	
+		if(H.wear_suit)
 			screenmob.client.screen -= H.wear_suit
-		if(H.wear_mask)	
+		if(H.wear_mask)
 			screenmob.client.screen -= H.wear_mask
-		if(H.head)		
+		if(H.head)
 			screenmob.client.screen -= H.head
 
 
 /datum/hud/human/persistent_inventory_update(mob/viewer)
-	if(!mymob) 
+	if(!mymob)
 		return
 
 	. = ..()

@@ -44,7 +44,7 @@
 
 	if(object && object == middragatom && L["left"])
 		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
-		
+
 	var/mcl = CONFIG_GET(number/minute_click_limit)
 	if(mcl && !check_rights(R_ADMIN, FALSE))
 		var/minute = round(world.time, 600)
@@ -140,9 +140,7 @@
 	if(next_move > world.time)
 		return
 
-	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
-		var/obj/vehicle/multitile/root/cm_armored/N = loc
-		N.click_action(A, src, params)
+	if(istype(loc, /obj/vehicle/tank))
 		return
 
 	if(restrained())
@@ -402,7 +400,7 @@
 
 /mob/living/ShiftMiddleClickOn(atom/A)
 	point_to(A)
-		
+
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)

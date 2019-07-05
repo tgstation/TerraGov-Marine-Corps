@@ -37232,7 +37232,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bTt" = (
-/obj/effect/multitile_spawner/cm_armored/tank,
+/obj/vehicle/tank/apc,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/underground/caves/open)
 "bTu" = (

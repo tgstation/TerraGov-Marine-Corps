@@ -20,6 +20,8 @@
 
 	var/obj/item/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
+	var/demolish_on_ram = FALSE //Do we crash into walls and destroy them?
+	var/lastsound = 0 //Last time we played an engine noise
 
 //-------------------------------------------
 // Standard procs
@@ -27,6 +29,12 @@
 /obj/vehicle/New()
 	..()
 	//spawn the cell you want in each vehicle
+
+/obj/vehicle/proc/take_damage(amount)
+	if(amount <= 0)
+		return FALSE
+	obj_integrity -= amount
+	healthcheck()
 
 /obj/vehicle/relaymove(mob/user, direction)
 	if(user.incapacitated())
@@ -49,7 +57,7 @@
 		open = !open
 		update_icon()
 		to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
-	
+
 	else if(iscrowbar(I) && cell && open)
 		remove_cell(user)
 
@@ -71,13 +79,13 @@
 
 		obj_integrity = min(max_integrity, obj_integrity + 10)
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
-		
+
 	else if(I.force)
 		switch(I.damtype)
 			if("fire")
-				obj_integrity -= I.force * fire_dam_coeff
+				take_damage(I.force * fire_dam_coeff)
 			if("brute")
-				obj_integrity -= I.force * brute_dam_coeff
+				take_damage(I.force * brute_dam_coeff)
 		playsound(loc, "smash.ogg", 25, 1)
 		user.visible_message("<span class='danger'>[user] hits [src] with [I].</span>","<span class='danger'>You hit [src] with [I].</span>")
 		healthcheck()
@@ -88,7 +96,7 @@
 		M.animation_attack_on(src)
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.flick_attack_overlay(src, "slash")
-		obj_integrity -= 15
+		take_damage(15)
 		playsound(src.loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>", null, 5)
 		healthcheck()
@@ -98,7 +106,7 @@
 /obj/vehicle/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)
 		return
-	obj_integrity -= M.melee_damage_upper
+	take_damage(M.melee_damage_upper)
 	src.visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
 	log_combat(M, src, "attacked")
 	if(prob(10))
@@ -106,9 +114,8 @@
 	healthcheck()
 
 /obj/vehicle/bullet_act(obj/item/projectile/Proj)
-	obj_integrity -= Proj.damage
+	take_damage(Proj.damage)
 	..()
-	healthcheck()
 	return TRUE
 
 /obj/vehicle/ex_act(severity)
@@ -117,15 +124,13 @@
 			explode()
 			return
 		if(2.0)
-			obj_integrity -= rand(5,10)*fire_dam_coeff
-			obj_integrity -= rand(10,20)*brute_dam_coeff
-			healthcheck()
+			take_damage(rand(5,10)*fire_dam_coeff)
+			take_damage(rand(10,20)*brute_dam_coeff)
 			return
 		if(3.0)
 			if (prob(50))
-				obj_integrity -= rand(1,5)*fire_dam_coeff
-				obj_integrity -= rand(1,5)*brute_dam_coeff
-				healthcheck()
+				take_damage(rand(1,5)*fire_dam_coeff)
+				take_damage(rand(1,5)*brute_dam_coeff)
 				return
 	return
 

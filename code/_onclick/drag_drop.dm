@@ -28,7 +28,6 @@
 		var/obj/vehicle/tank/our_tank = mob.loc
 		our_tank.onMouseDown(object,mob,params)
 
-
 /client/MouseUp(object, location, control, params)
 	if(mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon

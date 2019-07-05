@@ -100,7 +100,10 @@
 				return FALSE
 		return TRUE
 
-	if(istype(mover, /obj/vehicle/multitile))
+	if(istype(mover, /obj/vehicle))
+		var/obj/vehicle/roadtrafficaccident = mover
+		if(!roadtrafficaccident.demolish_on_ram)
+			return
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
 		destroy_structure(0)
 		return FALSE
@@ -614,7 +617,7 @@
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
 					return
-					
+
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				build_state = 1

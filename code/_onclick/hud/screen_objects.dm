@@ -76,7 +76,7 @@
 	if(isobserver(usr) || usr.incapacitated(TRUE))
 		return TRUE
 
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+	if(istype(usr.loc, /obj/vehicle)) // stops inventory actions in a mech/tank
 		return TRUE
 
 	if(!istype(src, /obj/screen/inventory/hand) && usr.attack_ui(slot_id)) // until we get a proper hands refactor
@@ -99,7 +99,7 @@
 		return TRUE
 	if(usr.incapacitated() || !iscarbon(usr))
 		return TRUE
-	if (istype(usr.loc, /obj/vehicle/multitile/root/cm_armored))
+	if (istype(usr.loc, /obj/vehicle))
 		return TRUE
 	var/mob/living/carbon/C = usr
 	C.activate_hand(hand_tag)

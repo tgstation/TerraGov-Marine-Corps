@@ -23481,9 +23481,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
-"bbE" = (
-/turf/open/floor/almayer/mono,
-/area/almayer/hallways/exoarmor)
 "bbF" = (
 /turf/closed/wall/almayer,
 /area/almayer/hallways/exoarmor)
@@ -23532,7 +23529,6 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "bbO" = (
-/obj/machinery/tank_part_fabricator,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "bbP" = (
@@ -24613,7 +24609,7 @@
 	},
 /area/almayer/hallways/exoarmor)
 "beR" = (
-/obj/effect/multitile_spawner/cm_armored/tank,
+/obj/vehicle/tank/apc,
 /turf/open/floor/almayer/mono,
 /area/almayer/hallways/exoarmor)
 "beT" = (
@@ -62059,10 +62055,10 @@ aVk
 aVm
 aVs
 bbD
-bbE
-bbE
-bbE
-bbE
+bbO
+bbO
+bbO
+bbO
 bgY
 bgb
 biJ
@@ -62315,12 +62311,12 @@ aaa
 aVk
 aVm
 aVs
-bbE
-bbE
+bbO
+bbO
 bfU
-bbE
+bbO
 bfT
-bbE
+bbO
 aTt
 biK
 bjC
@@ -62572,12 +62568,12 @@ aaa
 aVk
 aVm
 aVs
-bbE
+bbO
 hhV
-bbE
-bbE
-bbE
-bbE
+bbO
+bbO
+bbO
+bbO
 aTt
 biK
 bjC
@@ -62829,12 +62825,12 @@ aaa
 aVk
 aVm
 aVs
-bbE
+bbO
 bdL
 bfU
-bbE
+bbO
 bfU
-bbE
+bbO
 aTr
 biK
 bjC
@@ -63089,9 +63085,9 @@ aVs
 bbD
 bdL
 bfX
-bbE
+bbO
 bfV
-bbE
+bbO
 bgb
 biL
 bjC
@@ -63859,9 +63855,9 @@ aVn
 aVs
 bbG
 bdL
-bbE
-bbE
-bbE
+bbO
+bbO
+bbO
 aaL
 bgb
 aaJ
@@ -64116,9 +64112,9 @@ aVn
 aVs
 bbH
 bdL
-bbE
-bbE
-bbE
+bbO
+bbO
+bbO
 bgZ
 bgb
 biJ
@@ -64376,7 +64372,7 @@ bdL
 beM
 beM
 beM
-bbE
+bbO
 bia
 biK
 bjC
@@ -64633,7 +64629,7 @@ bdL
 beN
 beN
 beN
-bbE
+bbO
 bia
 biK
 bjC
@@ -65147,7 +65143,7 @@ bdL
 beP
 beP
 beP
-bbE
+bbO
 bia
 biK
 bjE
@@ -65401,9 +65397,9 @@ aVm
 aVs
 bbM
 bdL
-bbE
-bbE
-bbE
+bbO
+bbO
+bbO
 bgZ
 bgb
 biL
@@ -65658,10 +65654,10 @@ aVm
 aVs
 bbN
 bdL
-bbE
-bbE
-bbE
-bbE
+bbO
+bbO
+bbO
+bbO
 bgb
 bbQ
 bjF
@@ -66429,10 +66425,10 @@ aVm
 aVs
 bdV
 bdL
-bbE
-bbE
+bbO
+bbO
 bfX
-bbE
+bbO
 bgb
 abJ
 bjE
@@ -66687,9 +66683,9 @@ aVs
 bfZ
 bdL
 bfU
-bbE
+bbO
 bfY
-bbE
+bbO
 aTu
 biK
 bjE
@@ -66943,10 +66939,10 @@ aVm
 aVs
 bbO
 hxX
-bbE
+bbO
 beR
-bbE
-bbE
+bbO
+bbO
 aTu
 biK
 bjE
@@ -67198,12 +67194,12 @@ aaa
 aVk
 aVm
 aVs
-bbE
-bbE
+bbO
+bbO
 bfU
-bbE
+bbO
 bfU
-bbE
+bbO
 aTc
 biK
 bjE
@@ -67456,11 +67452,11 @@ aVk
 bag
 aVs
 bbD
-bbE
-bbE
-bbE
-bbE
-bbE
+bbO
+bbO
+bbO
+bbO
+bbO
 bgb
 biL
 bjE
