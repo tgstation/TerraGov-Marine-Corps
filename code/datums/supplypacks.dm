@@ -8,8 +8,8 @@
 #define RO_PRICE_VERY_CHEAP		20
 #define RO_PRICE_CHEAP			30
 #define RO_PRICE_NORMAL			40
-#define RO_PRICE_PRICY			60
 #define RO_PRICE_KINDA_PRICY	50
+#define RO_PRICE_PRICY			60
 #define RO_PRICE_PRETTY_PRICY	80
 #define RO_PRICE_VERY_PRICY		100
 #define RO_PRICE_MAX_PRICY		120
@@ -91,7 +91,7 @@ OPERATIONS
 	contains = list(
 					/obj/item/binoculars
 					)
-	cost = RO_PRICE_VERY_CHEAP
+	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate
 	containername = "\improper binoculars crate"
 	group = "Operations"
@@ -101,13 +101,13 @@ OPERATIONS
 	contains = list(
 					/obj/item/binoculars/tactical
 					)
-	cost = RO_PRICE_NORMAL
+	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper tactical binoculars crate"
 	group = "Operations"
 
 /datum/supply_packs/flares
-	name = "flare packs crate (x20)"
+	name = "flare packs crate (x28)"
 	contains = list(
 					/obj/item/storage/box/m94,
 					/obj/item/storage/box/m94,
@@ -268,7 +268,7 @@ WEAPONS
 					/obj/item/weapon/gun/flamer,
 					/obj/item/weapon/gun/flamer
 					)
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_KINDA_PRICY
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M240 Flamethrower crate"
 	group = "Weapons"
@@ -359,9 +359,11 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle/ap,
-					/obj/item/ammo_magazine/rifle/ap
+					/obj/item/ammo_magazine/rifle/ap,
+					/obj/item/ammo_magazine/rifle/extended,
+					/obj/item/ammo_magazine/rifle/extended
 					)
-	name = "surplus rifles crate (M41A x2, M41A ammo x2 AP, 2x Standard)"
+	name = "surplus rifles crate (M41A x2, M41A ammo x2 AP, 2x Standard, 2x Extended)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper rifles crate"
@@ -462,11 +464,13 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives
-	name = "surplus explosives crate (claymore mine x4, M40 HIDP x2, M40 HEDP x2, M15 HE x2)"
+	name = "surplus explosives crate (claymore mine x5, M40 HEDP x2, M40 IMDP 2x, M40 HIDP x2, M15 HE x2)"
 	contains = list(
 					/obj/item/storage/box/explosive_mines,
 					/obj/item/explosive/grenade/frag,
 					/obj/item/explosive/grenade/frag,
+					/obj/item/explosive/grenade/impact,
+					/obj/item/explosive/grenade/impact,
 					/obj/item/explosive/grenade/incendiary,
 					/obj/item/explosive/grenade/incendiary,
 					/obj/item/explosive/grenade/frag/m15,
@@ -478,7 +482,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_mines
-	name = "claymore mines crate (x8)"
+	name = "claymore mines crate (x10)"
 	contains = list(
 					/obj/item/storage/box/explosive_mines,
 					/obj/item/storage/box/explosive_mines
@@ -555,7 +559,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hidp
-	name = "M40 HIDP incendiary explosive grenade box crate (x15)"
+	name = "M40 HIDP incendiary explosive grenade box crate (x25)"
 	contains = list(
 					/obj/item/storage/box/nade_box/HIDP
 					)
@@ -565,7 +569,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_m15
-	name = "M15 fragmentation grenade box crate (x25)"
+	name = "M15 fragmentation grenade box crate (x15)"
 	contains = list(
 					/obj/item/storage/box/nade_box/M15
 					)
@@ -1891,7 +1895,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_he
 	name = "M402 mortar ammo crate (x8 HE)"
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_KINDA_PRICY
 	contains = list(
 					/obj/item/mortal_shell/he,
 					/obj/item/mortal_shell/he,
@@ -1908,7 +1912,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_incend
 	name = "M402 mortar ammo crate (x8 Incend)"
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_KINDA_PRICY
 	contains = list(
 					/obj/item/mortal_shell/incendiary,
 					/obj/item/mortal_shell/incendiary,
@@ -2315,7 +2319,7 @@ MEDICAL
 	group = "Medical"
 
 /datum/supply_packs/surgery
-	name = "surgery crate (x1 surgical tray)"
+	name = "surgery crate (x1 surgical tray, 1x surgical vest)"
 	contains = list(
 					/obj/item/storage/surgical_tray,
 					/obj/item/clothing/tie/storage/white_vest
@@ -2358,7 +2362,7 @@ MEDICAL
 	group = "Medical"
 
 /datum/supply_packs/hypospray
-	name = "hypospray crate (x5 hyposprays)"
+	name = "advanced hypospray crate (x5 advanced hyposprays)"
 	contains = list(
 					/obj/item/reagent_container/hypospray/advanced,
 					/obj/item/reagent_container/hypospray/advanced,
@@ -2368,7 +2372,7 @@ MEDICAL
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/secure/surgery
-	containername = "\improper hypospray crate"
+	containername = "\improper advanced hypospray crate"
 	access = ACCESS_MARINE_MEDBAY
 	group = "Medical"
 

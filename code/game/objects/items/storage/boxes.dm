@@ -380,10 +380,7 @@
 	name = "\improper HIDP incendiary grenade box"
 	desc = "A secure box holding 25 incendiary grenades. Warning: highly flammable!!."
 	icon_state = "nade_incendiary"
-	storage_slots = 15
-	max_storage_space = 30
 	spawn_type = /obj/item/explosive/grenade/incendiary
-	spawn_number = 15
 
 /obj/item/storage/box/nade_box/M15
 	name = "\improper M15 grenade box"
