@@ -159,7 +159,7 @@
 
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
-	desc = "It can contain a pistol. Useful for emergencies."
+	desc = "It can contain a pistol or revolver. Useful for emergencies."
 	icon_state = "pistol"
 	max_w_class = 3
 	can_hold = list(
