@@ -14,12 +14,11 @@
 		layer = PODDOOR_CLOSED_LAYER
 
 /obj/machinery/door/poddoor/shutters/open()
-	if(operating) //doors can still open when emag-disabled
+	if(operating)
 		return FALSE
 	if(!SSticker)
 		return FALSE
-	if(!operating) //in case of emag
-		operating = TRUE
+	operating = TRUE
 	do_animate("opening")
 	icon_state = "shutter0"
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
@@ -31,14 +30,13 @@
 	layer = open_layer
 	set_opacity(FALSE)
 
-	if(operating) //emag again
-		operating = FALSE
+	operating = FALSE
 	if(autoclose)
-		addtimer(CALLBACK(src, .proc/autoclose), 150)
+		addtimer(CALLBACK(src, .proc/autoclose), 15 SECONDS)
 
 /obj/machinery/door/poddoor/shutters/close()
 	if(operating)
-		return
+		return FALSE
 	operating = TRUE
 	do_animate("closing")
 	icon_state = "shutter1"

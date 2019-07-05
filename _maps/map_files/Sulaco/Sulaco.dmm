@@ -21499,11 +21499,8 @@
 	layer = 3.3;
 	name = "Dropship Shutters"
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 1;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 1
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin14"
@@ -21722,11 +21719,8 @@
 	layer = 3.3;
 	name = "Dropship Shutters"
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 8;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 8
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -21776,11 +21770,8 @@
 	layer = 3.3;
 	name = "Dropship Shutters"
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 4
 	},
 /turf/open/floor/plating{
 	icon_state = "platebotc"
@@ -21891,11 +21882,8 @@
 	layer = 3.3;
 	name = "Dropship Shutters"
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 8;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 8
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin14"
@@ -21927,11 +21915,8 @@
 	layer = 3.3;
 	name = "Dropship Shutters"
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 4
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin14"
@@ -22137,11 +22122,8 @@
 	name = "Shuttle Doors";
 	opacity = 0
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 1;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 1
 	},
 /turf/open/shuttle{
 	icon_state = "floor7"
@@ -22471,11 +22453,8 @@
 	name = "Shuttle Doors";
 	opacity = 0
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 8;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 8
 	},
 /turf/open/shuttle{
 	icon_state = "floor7"
@@ -22500,11 +22479,8 @@
 	name = "Shuttle Doors";
 	opacity = 0
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 4
 	},
 /turf/open/shuttle{
 	icon_state = "floor7"
@@ -22737,10 +22713,8 @@
 	layer = 3.3;
 	name = "Dropship Shutters"
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0"
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 2
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin14"
@@ -25629,11 +25603,8 @@
 	name = "Shuttle Doors";
 	opacity = 0
 	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 2
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin15"
@@ -25648,27 +25619,6 @@
 	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin10"
-	},
-/area/shuttle/drop1/sulaco)
-"aZn" = (
-/obj/machinery/door/airlock/hatch{
-	name = "Dropship Hatch"
-	},
-/obj/machinery/door/poddoor/shutters{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "dropshut";
-	name = "Shuttle Doors";
-	opacity = 0
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0"
-	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
 	},
 /area/shuttle/drop1/sulaco)
 "aZo" = (
@@ -63635,8 +63585,8 @@ aUI
 aUI
 aXL
 aTN
-aZn
-aZn
+aZl
+aZl
 baW
 bbK
 aYE

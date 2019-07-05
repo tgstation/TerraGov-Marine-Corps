@@ -34931,22 +34931,14 @@
 /area/prison/monorail/east)
 "bGi" = (
 /obj/machinery/door/airlock/unpowered/shuttle,
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	icon_state = "shutter0";
-	opacity = 0
-	},
+/obj/machinery/door/poddoor/shutters/transit/open,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin3"
 	},
 /area/prison/monorail/east)
 "bGj" = (
 /obj/machinery/door/airlock/almayer/generic,
-/obj/machinery/door/poddoor/shutters/transit{
-	density = 0;
-	icon_state = "shutter0";
-	opacity = 0
-	},
+/obj/machinery/door/poddoor/shutters/transit/open,
 /turf/open/floor/prison,
 /area/prison/monorail/east)
 "bGk" = (
