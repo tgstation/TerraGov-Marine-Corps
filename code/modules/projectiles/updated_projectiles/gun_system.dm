@@ -26,7 +26,7 @@
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
 	var/cocked_sound 	= null
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
-	var/cock_delay		= 30					//Delay before we can cock again, in tenths of seconds
+	var/cock_delay		= 3 SECONDS				//Delay before we can cock again
 
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
@@ -693,11 +693,11 @@ and you're good to go.
 			return
 
 		if(get_turf(target) != get_turf(user))
-			simulate_recoil(recoil_comp, user, target)
+			simulate_recoil(recoil_comp, user)
 
 			//This is where the projectile leaves the barrel and deals with projectile code only.
 			//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-			projectile_to_fire.fire_at(target,user,src,projectile_to_fire.ammo.max_range,projectile_to_fire.ammo.shell_speed)
+			projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed)
 			//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 			last_fired = world.time
 
@@ -725,6 +725,7 @@ and you're good to go.
 
 	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 	A.update_hud(user)
+
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(!CHECK_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)) // If it can't point blank, you can't suicide and such.
@@ -1054,7 +1055,7 @@ and you're good to go.
 	projectile_to_fire.original = target
 	return target
 
-/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user, atom/target)
+/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
 	var/total_recoil = recoil_bonus
 	if(flags_item & WIELDED && wielded_stable())
 		total_recoil += recoil
@@ -1063,7 +1064,7 @@ and you're good to go.
 		if(flags_gun_features & GUN_BURST_FIRING)
 			total_recoil += 1
 
-	if(user && user.mind && user.mind.cm_skills)
+	if(user?.mind?.cm_skills)
 
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
 			total_recoil += CONFIG_GET(number/combat_define/min_recoil_value)

@@ -220,7 +220,7 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/max_recoil_value)
 
-/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user, atom/target)
+/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
 	. = ..()
 	if(.)
 		var/mob/living/carbon/human/PMC_sniper = user
