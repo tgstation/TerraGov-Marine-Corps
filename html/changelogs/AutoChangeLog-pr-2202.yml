@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "A bioscan now happens at the start of the game, providing rough information for both sides on what they will be facing and giving them a chance to prepare. No locations are shown, but the scanner is a bit more precise, giving only a +/- 1 variation."
