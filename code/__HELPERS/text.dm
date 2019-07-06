@@ -356,23 +356,19 @@
 		. += .(rest)
 
 
+GLOBAL_LIST_INIT(sanitize, list("<script", "/script>", "<iframe", "/iframe>", "<input", "<video", "<body", "<form", "<link", "<applet", "<frameset", "onerror",
+	"onpageshow", "onscroll", "onforminput", "oninput", "onstorage", "onresize", "onpopstate", "onpagehide", "ononline", "onoffline", "onmessage", "onload",
+	"onhashchange", "onbeforeunload", "onbeforeprint", "onafterprint", "onkeydown", "onkeyup", "onkeypress", "onfocus", "oncontextmenu", "onchange", "onblur",
+	"oninvalid", "onreset", "onsearch", "onselect", "onsubmit", "ondblclick", "onclick", "onmousedown", "onmousemove", "onmousewheel", "onwheel", "onmouseup",
+	"onmouseover", "onmouseout", "ondrop", "ondragstart", "ondragover", "ondragleave", "ondragenter", "ondragend", "ondrag", "onpaste", "oncut", "oncopy",
+	"ontoggle", "onvolumechange", "onwaiting", "ontimeupdate", "onsuspend", "onstalled", "onseeking", "onseeked", "onratechange", "onprogress", "onplaying",
+	"onplay", "onpause", "onloadstart", "onloadedmetadata", "onloadeddata", "onended", "onemptied", "ondurationchange", "oncuechange", "oncanplaythrough",
+	"oncanplay", "onabort", "<source", "<event-source"))
+GLOBAL_PROTECT(sanitize)
+
 /proc/noscript(text)
-	text = replacetext(text, "<script", "")
-	text = replacetext(text, "/script>", "")
-	text = replacetext(text, "<iframe", "")
-	text = replacetext(text, "/iframe>", "")
-	text = replacetext(text, "<input", "")
-	text = replacetext(text, "<video", "")
-	text = replacetext(text, "<body", "")
-	text = replacetext(text, "<form", "")
-	text = replacetext(text, "<link", "")
-	text = replacetext(text, "<applet", "")
-	text = replacetext(text, "<frameset", "")
-	text = replacetext(text, "onerror", "")
-	text = replacetext(text, "onpageshow", "")
-	text = replacetext(text, "onscroll", "")
-	text = replacetext(text, "onforminput", "")
-	text = replacetext(text, "oninput", "")
+	for(var/i in GLOB.sanitize)
+		text = replacetext(text, i, "")
 	return text
 
 
