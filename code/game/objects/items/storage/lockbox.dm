@@ -57,18 +57,6 @@
 		return
 
 
-/obj/item/storage/lockbox/loyalty
-	name = "\improper lockbox of loyalty implants"
-	req_access = list(ACCESS_MARINE_BRIG)
-
-	New()
-		..()
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implanter/loyalty(src)
-
-
 /obj/item/storage/lockbox/clusterbang
 	name = "lockbox of clusterbangs"
 	desc = "You have a bad feeling about opening this."
