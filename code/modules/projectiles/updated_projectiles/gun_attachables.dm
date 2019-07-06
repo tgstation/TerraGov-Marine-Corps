@@ -665,7 +665,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
-	desc = "A non-standard heavy wooden stock for Slavic firearms."
+	desc = "A standard heavy wooden stock for Slavic firearms."
 	icon_state = "slavicstock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	pixel_shift_x = 32
@@ -682,8 +682,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/mosin
-	name = "wooden stock"
-	desc = "A standard heavy wooden stock for Slavic firearms."
+	name = "mosin wooden stock"
+	desc = "A non-standard long wooden stock for Slavic firearms."
 	icon_state = "mosinstock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	pixel_shift_x = 32
