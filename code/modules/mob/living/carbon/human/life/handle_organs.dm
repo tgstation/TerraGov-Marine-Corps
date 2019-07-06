@@ -1,5 +1,4 @@
-
-// Takes care of organ & limb related updates, such as broken and missing limbs
+//Takes care of organ & limb related updates, such as broken and missing limbs
 /mob/living/carbon/human/handle_organs()
 	. = ..()
 
@@ -21,11 +20,11 @@
 			nutrition = max (0, nutrition - HUNGER_FACTOR)
 
 		if(nutrition > 450)
-			if(overeatduration < 600) //Capped so people don't take forever to unfat
+			if(overeatduration < 600)	//Capped so people don't take forever to unfat
 				overeatduration++
 		else
 			if(overeatduration > 1)
-				overeatduration -= 2 //Doubled the unfat rate
+				overeatduration -= 2	//Doubled the unfat rate
 
 	var/leg_tally = 2
 
@@ -56,9 +55,9 @@
 
 		if(E.name in list("l_leg", "l_foot", "r_leg", "r_foot") && !lying)
 			if(!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.limb_status & LIMB_SPLINTED) && !(E.limb_status & LIMB_STABILIZED) ) )
-				leg_tally--			// let it fail even if just foot&leg
+				leg_tally--			//let it fail even if just foot&leg
 
-	// standing is poor
+	//standing is poor
 	if(leg_tally <= 0 && !knocked_out && !lying && prob(5))
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
