@@ -329,7 +329,7 @@
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
-	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
+	w_class = 4.1 // So it actualy holds medkits
 	max_w_class = 4
 	draw_mode = 1
 	icon_state = "medkit"
