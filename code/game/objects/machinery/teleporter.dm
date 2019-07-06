@@ -318,20 +318,20 @@
 	. = ..()
 	return attack_hand()
 
-/obj/machinery/teleport/station/attack_paw()
-	src.attack_hand()
+/obj/machinery/teleport/station/attack_paw(mob/living/user)
+	attack_hand(user)
 
-/obj/machinery/teleport/station/attack_ai()
-	src.attack_hand()
+/obj/machinery/teleport/station/attack_ai(mob/living/silicon/ai/AI)
+	attack_hand(AI)
 
-/obj/machinery/teleport/station/attack_hand()
+/obj/machinery/teleport/station/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(engaged)
-		src.disengage()
+		disengage()
 	else
-		src.engage()
+		engage()
 
 /obj/machinery/teleport/station/proc/engage()
 	if(machine_stat & (BROKEN|NOPOWER))
