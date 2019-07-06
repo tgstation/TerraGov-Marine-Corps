@@ -584,7 +584,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/scope/m4ra
-	name = "m4ra rail scope"
+	name = "M4RA rail scope"
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	zoom_offset = 5
