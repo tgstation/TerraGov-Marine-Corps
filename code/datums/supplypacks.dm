@@ -8,8 +8,8 @@
 #define RO_PRICE_VERY_CHEAP		20
 #define RO_PRICE_CHEAP			30
 #define RO_PRICE_NORMAL			40
-#define RO_PRICE_KINDA_PRICY	50
 #define RO_PRICE_PRICY			60
+#define RO_PRICE_KINDA_PRICY	50
 #define RO_PRICE_PRETTY_PRICY	80
 #define RO_PRICE_VERY_PRICY		100
 #define RO_PRICE_MAX_PRICY		120
@@ -91,7 +91,7 @@ OPERATIONS
 	contains = list(
 					/obj/item/binoculars
 					)
-	cost = RO_PRICE_NEAR_FREE
+	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper binoculars crate"
 	group = "Operations"
@@ -101,7 +101,7 @@ OPERATIONS
 	contains = list(
 					/obj/item/binoculars/tactical
 					)
-	cost = RO_PRICE_VERY_CHEAP
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate
 	containername = "\improper tactical binoculars crate"
 	group = "Operations"
@@ -268,7 +268,7 @@ WEAPONS
 					/obj/item/weapon/gun/flamer,
 					/obj/item/weapon/gun/flamer
 					)
-	cost = RO_PRICE_KINDA_PRICY
+	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M240 Flamethrower crate"
 	group = "Weapons"
@@ -359,11 +359,9 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle/ap,
-					/obj/item/ammo_magazine/rifle/ap,
-					/obj/item/ammo_magazine/rifle/extended,
-					/obj/item/ammo_magazine/rifle/extended
+					/obj/item/ammo_magazine/rifle/ap
 					)
-	name = "surplus rifles crate (M41A x2, M41A ammo x2 AP, 2x Standard, 2x Extended)"
+	name = "surplus rifles crate (M41A x2, M41A ammo x2 AP, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper rifles crate"
@@ -464,13 +462,11 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives
-	name = "surplus explosives crate (claymore mine x5, M40 HEDP x2, M40 IMDP 2x, M40 HIDP x2, M15 HE x2)"
+	name = "surplus explosives crate (claymore mine x4, M40 HIDP x2, M40 HEDP x2, M15 HE x2)"
 	contains = list(
 					/obj/item/storage/box/explosive_mines,
 					/obj/item/explosive/grenade/frag,
 					/obj/item/explosive/grenade/frag,
-					/obj/item/explosive/grenade/impact,
-					/obj/item/explosive/grenade/impact,
 					/obj/item/explosive/grenade/incendiary,
 					/obj/item/explosive/grenade/incendiary,
 					/obj/item/explosive/grenade/frag/m15,
@@ -1895,7 +1891,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_he
 	name = "M402 mortar ammo crate (x8 HE)"
-	cost = RO_PRICE_KINDA_PRICY
+	cost = RO_PRICE_PRICY
 	contains = list(
 					/obj/item/mortal_shell/he,
 					/obj/item/mortal_shell/he,
@@ -1912,7 +1908,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_incend
 	name = "M402 mortar ammo crate (x8 Incend)"
-	cost = RO_PRICE_KINDA_PRICY
+	cost = RO_PRICE_PRICY
 	contains = list(
 					/obj/item/mortal_shell/incendiary,
 					/obj/item/mortal_shell/incendiary,
