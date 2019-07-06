@@ -584,7 +584,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/scope/m4ra
-	name = "m4ra rail scope"
+	name = "M4RA rail scope"
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	zoom_offset = 5
@@ -625,7 +625,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/shotgun
 	name = "\improper M37 wooden stock"
-	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
+	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_FAST
 	matter = null
@@ -665,7 +665,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
-	desc = "A non-standard heavy wooden stock for Slavic firearms."
+	desc = "A standard heavy wooden stock for Slavic firearms."
 	icon_state = "slavicstock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	pixel_shift_x = 32
@@ -682,8 +682,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/mosin
-	name = "wooden stock"
-	desc = "A standard heavy wooden stock for Slavic firearms."
+	name = "mosin wooden stock"
+	desc = "A non-standard long wooden stock for Slavic firearms."
 	icon_state = "mosinstock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	pixel_shift_x = 32
@@ -698,8 +698,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/rifle
-	name = "\improper M41A skeleton stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	name = "\improper M41A1 skeleton stock"
+	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A1, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	melee_mod = 5
@@ -717,15 +717,15 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/rifle/marksman
-	name = "\improper M41A marksman stock"
+	name = "\improper M4RA marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
 	flags_attach_features = NONE
 
 
 /obj/item/attachable/stock/smg
-	name = "submachinegun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	name = "M39 submachinegun stock"
+	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_FAST
 	melee_mod = 5
@@ -743,8 +743,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/vp70
-	name = "VP70 stock and holster"
-	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the MOD88, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	name = "88 Mod 4 stock and holster"
+	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the 88 Mod 4, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL

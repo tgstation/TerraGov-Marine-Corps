@@ -371,7 +371,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //Deployable ammo box
 /obj/item/ammobox
-	name = "M41A Ammo Box"
+	name = "M41A1 Ammo Box"
 	desc = "A large, deployable ammo box."
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
@@ -524,13 +524,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 /obj/item/ammobox/ap
-	name = "M41A AP Ammo Box"
+	name = "M41A1 AP Ammo Box"
 	icon_state = "ammoboxap"
 	ammo_type = /datum/ammo/bullet/rifle/ap
 	magazine_type = /obj/item/ammo_magazine/rifle/ap
 
 /obj/item/ammobox/ext
-	name = "M41A Extended Ammo Box"
+	name = "M41A1 Extended Ammo Box"
 	icon_state = "ammoboxext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/rifle/extended
