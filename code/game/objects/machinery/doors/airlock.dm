@@ -569,7 +569,7 @@
 			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
 								"<span class='notice'>You finish repairing the airlock.</span>")
 			update_icon()
-				
+
 
 	else if(isscrewdriver(I))
 		if(no_panel)
@@ -579,7 +579,7 @@
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] [src]'s panel.</span>")
 		update_icon()
-		
+
 	else if(iswirecutter(I))
 		return attack_hand(user)
 
@@ -607,7 +607,7 @@
 
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
-		
+
 		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
@@ -697,37 +697,34 @@
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
 			return
-	if(safe)
-		for(var/turf/turf in locs)
-			if(locate(/mob/living) in turf)
-			//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
+
+	for(var/i in bounds())
+		var/atom/thing = i
+		if(isliving(thing))
+			if(safe)
 				spawn (60 + openspeed)
 					close()
 				return
-
-	for(var/turf/turf in locs)
-		for(var/mob/living/M in turf)
-			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-			M.SetStunned(5)
-			M.SetKnockeddown(5)
-			if (iscarbon(M))
-				var/mob/living/carbon/C = M
-				var/datum/species/S = C.species
-				if(S?.species_flags & NO_PAIN)
-					M.emote("pain")
-			var/turf/location = src.loc
-			if(istype(location, /turf))
-				location.add_mob_blood(M)
-
+			else
+				var/mob/living/M = thing
+				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
+				M.SetStunned(5)
+				M.SetKnockeddown(5)
+				if (iscarbon(M))
+					var/mob/living/carbon/C = M
+					var/datum/species/S = C.species
+					if(S?.species_flags & NO_PAIN)
+						M.emote("pain")
+				var/turf/location = src.loc
+				if(istype(location, /turf))
+					location.add_mob_blood(M)
+		if(thing.density)
+			return //Can't close with shit ontop
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
 		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
 		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
-	for(var/turf/turf in locs)
-		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
-		if(killthis)
-			killthis.ex_act(2)//Smashin windows
 	..()
 	return
 
@@ -872,7 +869,7 @@
 		return
 
 	if(emergency)
-		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")		
+		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")
 		return
 
 	emergency = TRUE
@@ -909,7 +906,7 @@
 		return
 
 	unbolt()
-		
+
 
 
 /obj/machinery/door/airlock/proc/bolt_drop(mob/user)

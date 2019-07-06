@@ -2,12 +2,6 @@
 /obj/machinery/door/airlock/multi_tile
 	width = 2
 
-/obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary
-	for(var/turf/T in locs) //If a multitile tank is present in either location, don't close.
-		if(locate(/obj/vehicle) in T)
-			return FALSE
-	return ..()
-
 /obj/machinery/door/airlock/multi_tile/glass
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Door2x1glass.dmi'
