@@ -1,0 +1,7 @@
+author: "MoXuT0"
+delete-after: True
+changes: 
+  - tweak: "M4A3 (.45) is now named M1911."
+  - balance: "Increased magazine size for M4A3 up to 12 (24 for extended)."
+  - balance: "Increased magazine size for M1911 up to 10."
+  - imageadd: "88Mod4 aka VP70 magazine now uses it's own sprite."
