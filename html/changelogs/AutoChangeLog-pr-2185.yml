@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - balance: "Removes the roundstart tanker jobs until the old tank is decommissioned and sold for scrap and we implement the new vehicles."

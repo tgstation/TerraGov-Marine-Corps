@@ -1,4 +1,0 @@
-author: "MoXuT0"
-delete-after: True
-changes: 
-  - rscadd: "Eye blur effect now uses byond's filters."
