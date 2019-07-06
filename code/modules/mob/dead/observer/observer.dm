@@ -184,9 +184,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else if(href_list["join_larva"])
 		if(!isobserver(usr))
 			return
-		var/mob/dead/observer/A = usr
+		var/mob/dead/observer/ghost = usr
 
-		SSticker.mode.attempt_to_join_as_larva(A)
+		switch(alert(ghost, "What would you like to do?", "Burrowed larva source available", "Join as Larva", "Cancel"))
+			if("Join as Larva")
+				SSticker.mode.attempt_to_join_as_larva(ghost)
 		return
 
 	else if(href_list["preference"])
