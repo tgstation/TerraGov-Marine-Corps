@@ -575,11 +575,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
 		var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
-		if(!R.keyslot)
-			R.keyslot = new /obj/item/encryptionkey/squadlead (src)
-		else if(!R.keyslot2)
-			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
-		R.recalculateChannels()
+		R.channels[RADIO_CHANNEL_COMMAND] = TRUE
+		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 		R.use_command = TRUE
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
