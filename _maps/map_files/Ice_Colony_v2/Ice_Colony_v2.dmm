@@ -31730,7 +31730,6 @@
 /area/ice_colony/underground/storage/highsec)
 "bFj" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/trackimp,
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
 	},
@@ -33847,7 +33846,6 @@
 /area/ice_colony/underground/security/backroom)
 "bKi" = (
 /obj/structure/table,
-/obj/item/storage/box/trackimp,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
