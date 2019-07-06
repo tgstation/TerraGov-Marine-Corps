@@ -330,7 +330,7 @@
 			spawns -= picked
 
 		if(!picked)
-			to_chat(L, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
+			to_chat(M, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
 			continue
 
 		var/mob/living/L
