@@ -140,6 +140,9 @@
 	if(next_move > world.time)
 		return
 
+	if(!modifiers["catcher"] && A.IsObscured())
+		return
+
 	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/N = loc
 		N.click_action(A, src, params)
@@ -235,6 +238,25 @@
 
 /mob/living/DirectAccess(atom/target)
 	return ..() + GetAllContents()
+
+
+/atom/proc/IsObscured()
+	if(!isturf(loc)) //This only makes sense for things directly on turfs for now
+		return FALSE
+	var/turf/T = get_turf_pixel(src)
+	if(!T)
+		return FALSE
+	for(var/atom/movable/AM in T)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
+			return TRUE
+	return FALSE
+
+
+/turf/IsObscured()
+	for(var/atom/movable/AM in src)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density)
+			return TRUE
+	return FALSE
 
 
 /atom/proc/AllowClick()
