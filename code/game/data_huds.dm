@@ -364,11 +364,7 @@
 	hud_list[QUEEN_OVERWATCH_HUD] = holder
 
 
-/datum/atom_hud/security //Legacy for now, as the squad hud takes over for job slots.
-
-
-
-/datum/atom_hud/security/advanced
+/datum/atom_hud/security
 	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
 
 
