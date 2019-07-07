@@ -488,7 +488,6 @@
 						)
 
 		CG.contraband = list(
-						/obj/item/storage/box/nade_box/impact = round(scale * 1),
 						/obj/item/storage/box/nade_box/HIDP = round(scale * 1),
 						/obj/item/storage/box/nade_box/M15 = round(scale * 1),
 						/obj/item/weapon/gun/flamer = round(scale * 2),

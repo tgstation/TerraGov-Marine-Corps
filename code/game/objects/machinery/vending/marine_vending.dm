@@ -128,7 +128,6 @@
 					)
 
 	contraband = list(
-					/obj/item/storage/box/nade_box/impact = 1,
 					/obj/item/storage/box/nade_box/HIDP = 1,
 					/obj/item/storage/box/nade_box/M15 = 1,
 					/obj/item/weapon/gun/flamer = 2,
