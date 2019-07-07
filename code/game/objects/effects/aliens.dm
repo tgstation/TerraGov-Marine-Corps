@@ -65,8 +65,7 @@
 		var/armor_block
 		if(H.cooldowns[COOLDOWN_ACID])
 			return
-		H.cooldowns[COOLDOWN_ACID] = TRUE
-		addtimer(VARSET_CALLBACK(H, cooldowns[COOLDOWN_ACID], FALSE), 1 SECONDS)
+		H.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_CALLBACK(H, cooldowns[COOLDOWN_ACID], null), 1 SECONDS)
 		if(!H.lying)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			H.emote("pain")

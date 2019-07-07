@@ -216,8 +216,7 @@
 					SwitchState()
 			else
 				SwitchState()
-			M.cooldowns[COOLDOWN_BUMP] = TRUE
-			addtimer(VARSET_CALLBACK(M, cooldowns[COOLDOWN_BUMP], FALSE), 6 SECONDS)
+			M.cooldowns[COOLDOWN_BUMP] = addtimer(VARSET_CALLBACK(M, cooldowns[COOLDOWN_BUMP], null), 6 SECONDS)
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)

@@ -1299,8 +1299,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		T = get_turf(P)
 	drop_nade(T)
 
-	M.cooldowns[COOLDOWN_ACID] = TRUE
-	addtimer(VARSET_CALLBACK(M, cooldowns[COOLDOWN_ACID], FALSE), 1 SECONDS)
+	M.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_CALLBACK(M, cooldowns[COOLDOWN_ACID], null), 1 SECONDS)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
 	var/turf/T = get_turf(O)

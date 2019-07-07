@@ -275,8 +275,7 @@ Redefine as needed.
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
 	if(victim.cooldowns[COOLDOWN_RESIST])
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	victim.cooldowns[COOLDOWN_RESIST] = TRUE
-	addtimer(VARSET_CALLBACK(victim, cooldowns[COOLDOWN_RESIST], FALSE), CLICK_CD_RESIST_PSYCHIC_GRAB)
+	victim.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_CALLBACK(victim, cooldowns[COOLDOWN_RESIST], null), CLICK_CD_RESIST_PSYCHIC_GRAB)
 
 	var/mob/living/carbon/xenomorph/shrike/master = tk_user
 

@@ -300,8 +300,7 @@
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
 	if(user.cooldowns[COOLDOWN_VENTCRAWL])
 		return FALSE
-	user.cooldowns[COOLDOWN_VENTCRAWL] = TRUE
-	addtimer(VARSET_CALLBACK(user, cooldowns[COOLDOWN_VENTCRAWL], FALSE), 2 SECONDS)
+	user.cooldowns[COOLDOWN_VENTCRAWL] = addtimer(VARSET_CALLBACK(user, cooldowns[COOLDOWN_VENTCRAWL], null), 2 SECONDS)
 	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
 		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")

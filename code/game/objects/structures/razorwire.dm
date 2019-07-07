@@ -51,8 +51,7 @@
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src) || obj_integrity <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		return
-	M.cooldowns[COOLDOWN_ENTANGLE] = FALSE
-	addtimer(VARSET_CALLBACK(M, cooldowns[COOLDOWN_ENTANGLE], FALSE), duration)
+	M.cooldowns[COOLDOWN_ENTANGLE] = addtimer(VARSET_CALLBACK(M, cooldowns[COOLDOWN_ENTANGLE], null), duration)
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
 	M.set_frozen(TRUE)
