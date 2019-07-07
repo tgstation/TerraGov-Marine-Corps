@@ -123,7 +123,7 @@
 				log_combat(user, plant_target, "removed [src] from")
 				log_game("[key_name(usr)] disarmed [src.name] on [key_name(plant_target)].")
 			else
-				log_game("[key_name(user)] disarmed [src.name] on [plant_target.name] at [AREACOORD(plant_target.loc)].")
+				log_game("[key_name(user)] disarmed [src] on [plant_target] at [AREACOORD(get_turf(plant_target))].")
 	return
 
 /obj/item/explosive/plastique/proc/detonate()
