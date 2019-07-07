@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscdel: "Now that the jobs display are handled by the squad HUD, the security one for jobs is removed. SecHUDs still allow to set people as wanted statuses and whatnot."
