@@ -55,6 +55,11 @@
 	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
 
 
+/datum/game_mode/distress/post_setup()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
+
+
 /datum/game_mode/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
 		return
@@ -617,7 +622,7 @@
 	return TRUE
 
 
-/datum/game_mode/distress/proc/announce_bioscans(delta = 2)
+/datum/game_mode/distress/proc/announce_bioscans(show_locations = TRUE, delta = 2)
 	var/list/xenoLocationsP = list()
 	var/list/xenoLocationsS = list()
 	var/list/hostLocationsP = list()
@@ -671,7 +676,7 @@
 		var/mob/M = i
 		SEND_SOUND(M, sound(get_sfx("queen"), wait = 0, volume = 50))
 		to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
-		to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[numHostsShipr > 0 && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[hostLocationP ? ", including one in [hostLocationP]":""].</span>")
+		to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[show_locations && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[show_locations && hostLocationP ? ", including one in [hostLocationP]":""].</span>")
 
 	var/xenoLocationP
 	var/xenoLocationS
@@ -685,7 +690,7 @@
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
 	var/input = {"Bioscan complete.
 
-Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[numXenosPlanetr > 0 && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
+Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[show_locations && xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[show_locations && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
 	
 	priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
 
@@ -699,7 +704,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 [numHostsPlanet] human\s on the planet.
 [numHostsShip] human\s on the ship.</span>"})
 
-	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[numHostsShipr && hostLocationS ? " Location: [hostLocationS].":""]")
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]")
 	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]")
 
 

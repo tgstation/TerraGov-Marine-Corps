@@ -3,8 +3,8 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
-	var/list/configs
-	var/list/next_map_configs
+	var/list/datum/map_config/configs
+	var/list/datum/map_config/next_map_configs
 
 	var/list/map_templates = list()
 

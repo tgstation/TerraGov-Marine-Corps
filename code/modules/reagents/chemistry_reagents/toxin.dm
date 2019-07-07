@@ -439,7 +439,7 @@
 	taste_multi = 1.5
 
 /datum/reagent/toxin/xeno_neurotoxin
-	name = "Neurotoxin"
+	name = "Xeno neurotoxin" //"neurotoxin" is too generic and already taken by other reagents.
 	description = "A debilitating nerve toxin. Impedes motor control. Causes temporary blindness, hallucinations and deafness at higher doses."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0

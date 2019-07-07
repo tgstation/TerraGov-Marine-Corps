@@ -97,8 +97,8 @@
 	icon_state = "chest"
 
 /obj/structure/largecrate/supply/weapons/m41a
-	name = "\improper M41A pulse rifle weapons chest (x10)"
-	desc = "A weapons chest containing ten M41A rifles."
+	name = "\improper M41A1 pulse rifle weapons chest (x10)"
+	desc = "A weapons chest containing ten M41A1 rifles."
 	supplies = list(/obj/item/weapon/gun/rifle/m41a = 10)
 
 /obj/structure/largecrate/supply/weapons/shotgun
@@ -143,13 +143,13 @@
 	icon_state = "case"
 
 /obj/structure/largecrate/supply/ammo/m41a
-	name = "\improper M41A magazine case (x20)"
-	desc = "An ammunition case containing 20 M41A magazines."
+	name = "\improper M41A1 magazine case (x20)"
+	desc = "An ammunition case containing 20 M41A1 magazines."
 	supplies = list(/obj/item/ammo_magazine/rifle = 20)
 
 /obj/structure/largecrate/supply/ammo/m41a_box
-	name = "\improper M41A ammunition box case (x4)"
-	desc = "An ammunition case containing four M41A 600 round boxes of ammunition."
+	name = "\improper M41A1 ammunition box case (x4)"
+	desc = "An ammunition case containing four M41A1 600 round boxes of ammunition."
 	supplies = list(/obj/item/big_ammo_box = 4)
 
 /obj/structure/largecrate/supply/ammo/shotgun
@@ -335,7 +335,7 @@
 	. = ..()
 	if(!.)
 		return
-	
+
 	if(iscrowbar(I))
 		var/turf/T = get_turf(loc)
 		if(!isopenturf(T))

@@ -194,14 +194,14 @@
 /obj/item/reagent_container/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"
 	icon_state = "bottle16"
-	fertilizer = "eznutrient"
+	fertilizer = /datum/reagent/toxin/fertilizer/eznutrient
 
 /obj/item/reagent_container/glass/fertilizer/l4z
 	name = "bottle of Left 4 Zed"
 	icon_state = "bottle18"
-	fertilizer = "left4zed"
+	fertilizer = /datum/reagent/toxin/fertilizer/left4zed
 
 /obj/item/reagent_container/glass/fertilizer/rh
 	name = "bottle of Robust Harvest"
 	icon_state = "bottle15"
-	fertilizer = "robustharvest"
+	fertilizer = /datum/reagent/toxin/fertilizer/robustharvest

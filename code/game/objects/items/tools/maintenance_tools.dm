@@ -188,7 +188,7 @@
 	if(get_fuel() < used)
 		return FALSE
 
-	reagents.remove_reagent("fuel", used)
+	reagents.remove_reagent(/datum/reagent/fuel, used)
 	check_fuel()
 	return TRUE
 

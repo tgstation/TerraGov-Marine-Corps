@@ -419,7 +419,7 @@
 					src.reagent_glass.reagents.trans_to(src.patient,src.injection_amount) //Inject from beaker instead.
 					src.reagent_glass.reagents.reaction(src.patient, 2)
 				else
-					src.patient.reagents.add_reagent(reagent_id,src.injection_amount)
+					patient.reagents.add_reagent(reagent_id, injection_amount)
 				visible_message("<span class='danger'>[src] injects [src.patient] with the syringe!</span>")
 
 			src.icon_state = "medibot[src.on]"

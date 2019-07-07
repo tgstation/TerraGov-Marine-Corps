@@ -277,35 +277,35 @@
 	return
 
 /mob/living/carbon/monkey/get_blood_id()
-	return "blood"
+	return /datum/reagent/blood
 
 /mob/living/carbon/xenomorph/get_blood_id()
-	return "xenoblood"
+	return /datum/reagent/blood/xeno_blood
 
 /mob/living/carbon/human/get_blood_id()
 	if((NO_BLOOD in species.species_flags))
 		return
 	if(issynth(src))
-		return "whiteblood"
-	return "blood"
+		return /datum/reagent/blood/synth_blood
+	return /datum/reagent/blood
 
 /mob/living/simple_animal/mouse/get_blood_id()
-	return "blood"
+	return /datum/reagent/blood
 
 /mob/living/simple_animal/cat/get_blood_id()
-	return "blood"
+	return /datum/reagent/blood
 
 /mob/living/simple_animal/cow/get_blood_id()
-	return "blood"
+	return /datum/reagent/blood
 
 /mob/living/simple_animal/parrot/get_blood_id()
-	return "blood"
+	return /datum/reagent/blood
 
 /mob/living/simple_animal/corgi/get_blood_id()
-	return "blood"
+	return /datum/reagent/blood
 
 /mob/living/simple_animal/hostile/retaliate/goat/get_blood_id()
-	return "blood"
+	return /datum/reagent/blood
 
 
 
