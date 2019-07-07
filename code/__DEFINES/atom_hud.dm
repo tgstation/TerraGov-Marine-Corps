@@ -5,7 +5,6 @@
 #define HEALTH_HUD					"health_hud" // a simple line rounding the mob's number health
 #define STATUS_HUD_SIMPLE			"status_hud_simple" // basic statuses: dead, asleep, knocked out, sluggish, etc.
 #define STATUS_HUD					"status_hud" // medical hud, shows simple status plus defib stages.
-#define ID_HUD						"id_hud" // the job asigned to your ID
 #define WANTED_HUD					"wanted_hud" // wanted, released, parroled, security status
 #define IMPLOYAL_HUD				"loyalty_implant_hud" // loyality implant
 #define IMPCHEM_HUD					"chemical_implant_hud" // chemical implant

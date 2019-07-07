@@ -191,7 +191,6 @@
 		update_inv_belt()
 	else if (I == wear_id)
 		wear_id = null
-		sec_hud_set_ID()
 		hud_set_squad()
 		update_inv_wear_id()
 		name = get_visible_name()
@@ -257,7 +256,6 @@
 		if(SLOT_WEAR_MASK)
 			wear_mask = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			wear_mask_update(W, TRUE)
 		if(SLOT_HANDCUFFED)
 			update_handcuffed(W)
@@ -279,7 +277,6 @@
 		if(SLOT_WEAR_ID)
 			wear_id = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			hud_set_squad()
 			update_inv_wear_id()
 			name = get_visible_name()
@@ -332,7 +329,6 @@
 		if(SLOT_W_UNIFORM)
 			w_uniform = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			update_inv_w_uniform()
 		if(SLOT_L_STORE)
 			l_store = W
