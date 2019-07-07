@@ -35,7 +35,6 @@
 	else if (I == wear_mask)
 		wear_mask = null
 		wear_mask_update(I)
-		sec_hud_set_ID()
 	else if(I == handcuffed)
 		update_handcuffed(null)
 	else if(I == legcuffed)

@@ -204,7 +204,6 @@ GLOBAL_PROTECT(exp_specialmap)
 		C.rank = J.title
 		C.paygrade = J.paygrade
 		C.update_label()
-		H.sec_hud_set_ID()
 
 		if(H.mind?.initial_account)
 			C.associated_account_number = H.mind.initial_account.account_number

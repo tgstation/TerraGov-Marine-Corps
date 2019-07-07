@@ -365,23 +365,7 @@
 
 
 /datum/atom_hud/security
-	hud_icons = list(ID_HUD)
-
-
-/mob/living/carbon/proc/sec_hud_set_ID()
-	return
-
-
-/mob/living/carbon/human/sec_hud_set_ID()
-	var/image/holder = hud_list[ID_HUD]
-	holder.icon_state = "hudunknown"
-	var/obj/item/card/id/I = get_idcard()
-	if(istype(I))
-		holder.icon_state = "hud[ckey(mind && (mind.assigned_role in GLOB.jobs_regular_all) ? mind.assigned_role : "Unknown")]"
-
-
-/datum/atom_hud/security/advanced
-	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
+	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
 
 
 /mob/proc/sec_hud_set_implants()
