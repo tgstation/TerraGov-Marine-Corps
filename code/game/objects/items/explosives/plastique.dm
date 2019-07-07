@@ -117,7 +117,7 @@
 			plant_target = null
 			
 			user.visible_message("<span class='warning'>[user] disarmed [src] that was on [plant_target]!</span>",
-			"<span class='warning'>You disarmed [name] that was on [plant_target]!</span>")
+			"<span class='warning'>You disarmed [src] that was on [plant_target]!</span>")
 
 			if(ismob(plant_target))
 				log_combat(user, plant_target, "removed [src] from")
