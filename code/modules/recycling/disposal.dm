@@ -559,7 +559,7 @@
 	if(U.stat || U.cooldowns[COOLDOWN_DISPOSAL])
 		return
 
-	U.cooldowns[COOLDOWN_DISPOSAL] = addtimer(VARSET_CALLBACK(U, cooldowns[COOLDOWN_DISPOSAL], null), 10 SECONDS)
+	U.cooldowns[COOLDOWN_DISPOSAL] = addtimer(VARSET_LIST_CALLBACK(U.cooldowns, COOLDOWN_DISPOSAL, null), 10 SECONDS)
 
 	playsound(src.loc, 'sound/effects/clang.ogg', 25, 0)
 

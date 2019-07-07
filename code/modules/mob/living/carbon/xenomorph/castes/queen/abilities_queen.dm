@@ -25,7 +25,7 @@
 	else
 		hive.hive_orders = ""
 
-	cooldowns[COOLDOWN_ORDER] = addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_ORDER], null), 15 SECONDS)
+	cooldowns[COOLDOWN_ORDER] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ORDER, null), 15 SECONDS)
 
 // ***************************************
 // *********** Hive message
@@ -201,8 +201,8 @@
 
 	succeed_activate()
 
-	X.cooldowns[COOLDOWN_GUT] = addtimer(VARSET_CALLBACK(X, cooldowns[COOLDOWN_GUT], null), 5 SECONDS)
-	
+	X.cooldowns[COOLDOWN_GUT] = addtimer(VARSET_LIST_CALLBACK(X.cooldowns, COOLDOWN_GUT, null), 5 SECONDS)
+
 	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
 	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))

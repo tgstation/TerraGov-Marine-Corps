@@ -223,7 +223,7 @@
 		return FALSE
 	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
-	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_RESIST], null), CLICK_CD_RESIST)
+	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
 	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
 
@@ -233,7 +233,7 @@
 		return FALSE
 	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
-	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_RESIST], null), CLICK_CD_RESIST)
+	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
 	visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
 
@@ -711,10 +711,10 @@ below 100 is not dizzy
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_POINT], null), 5 SECONDS)
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_POINT], null), 1 SECONDS)
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE

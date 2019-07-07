@@ -53,7 +53,7 @@
 		"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
 		"<span class='notice'>You hear squelching.</span>")
 		playsound(loc, "alien_resin_move", 50)
-		user.cooldowns[COOLDOWN_NEST] = addtimer(VARSET_CALLBACK(user, cooldowns[COOLDOWN_NEST], null), NEST_UNBUCKLED_COOLDOWN)
+		user.cooldowns[COOLDOWN_NEST] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_NEST, null), NEST_UNBUCKLED_COOLDOWN)
 		unbuckle()
 		return
 

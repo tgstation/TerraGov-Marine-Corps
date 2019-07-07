@@ -36,7 +36,7 @@
 	if(O.take_damage_limb(1, 0, TRUE, TRUE))
 		H.UpdateDamageIcon()
 
-	cooldowns[COOLDOWN_CHEW] = addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_CHEW], null), 7.5 SECONDS)
+	cooldowns[COOLDOWN_CHEW] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_CHEW, null), 7.5 SECONDS)
 
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)

@@ -241,10 +241,10 @@
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
 	if(queen_chosen_lead || isxenoqueen(src))
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_POINT], null), 1 SECONDS)
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	else
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_POINT], null), 5 SECONDS)
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return 1

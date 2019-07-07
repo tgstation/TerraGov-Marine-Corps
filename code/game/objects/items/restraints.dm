@@ -8,7 +8,7 @@
 
 	perp.changeNext_move(CLICK_CD_RESIST)
 
-	perp.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_CALLBACK(perp, cooldowns[COOLDOWN_RESIST], null), CLICK_CD_BREAKOUT)
+	perp.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(perp.cooldowns, COOLDOWN_RESIST, null), CLICK_CD_BREAKOUT)
 
 	perp.resist_restraints(src)
 
