@@ -139,4 +139,3 @@
 	else
 		plant_target.ex_act(1)
 	qdel(src)
-	return
