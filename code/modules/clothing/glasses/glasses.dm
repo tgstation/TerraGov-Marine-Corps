@@ -289,4 +289,14 @@
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
 
+/obj/item/clothing/glasses/sunglasses/aviator
+	name = "aviator sunglasses"
+	desc = "A pair of aviator sunglasses."
+	icon_state = "aviator"
+	item_state = "aviator"
 
+/obj/item/clothing/glasses/sunglasses/aviator/yellow
+	name = "aviator sunglasses"
+	desc = "A pair of aviator sunglasses. Comes with yellow lens."
+	icon_state = "aviator_yellow"
+	item_state = "aviator_yellow"
