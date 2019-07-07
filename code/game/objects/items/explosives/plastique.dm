@@ -121,7 +121,7 @@
 
 			if(ismob(plant_target))
 				log_combat(user, plant_target, "removed [src] from")
-				log_game("[key_name(usr)] disarmed [src.name] on [key_name(plant_target)].")
+				log_game("[key_name(usr)] disarmed [src] on [key_name(plant_target)].")
 			else
 				log_game("[key_name(user)] disarmed [src] on [plant_target] at [AREACOORD(get_turf(plant_target))].")
 	return
