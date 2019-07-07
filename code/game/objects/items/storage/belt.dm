@@ -303,9 +303,9 @@
 	icon_state = "shotgunbelt"
 	item_state = "shotgunbelt"
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 10
+	storage_slots = 14
 	max_w_class = 2
-	max_storage_space = 20
+	max_storage_space = 28
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
 
@@ -365,9 +365,9 @@
 	icon_state="grenadebelt" // temp
 	item_state="grenadebelt"
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 8
+	storage_slots = 9
 	max_w_class = 3
-	max_storage_space = 24
+	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
 
@@ -430,8 +430,8 @@
 	item_state = "m4a3_holster"
 	use_sound = null
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 5
-	max_storage_space = 11
+	storage_slots = 7
+	max_storage_space = 15
 	max_w_class = 3
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
@@ -516,16 +516,20 @@
 /obj/item/storage/belt/gun/m4a3/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/captain/Initialize()
+/obj/item/storage/belt/gun/m4a3/officer/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3/custom(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -579,10 +583,12 @@
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
+	new /obj/item/ammo_magazine/revolver/heavy(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
-	new /obj/item/ammo_magazine/revolver/marksman(src)
-	new /obj/item/ammo_magazine/revolver/marksman(src)
-	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/storage/belt/gun/mateba
@@ -602,15 +608,19 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/mateba/cmateba
+/obj/item/storage/belt/gun/mateba/captain
 	icon_state = "c_mateba_holster"
 	item_state = "c_mateba_holster"
 
-/obj/item/storage/belt/gun/mateba/cmateba/full/Initialize()
+/obj/item/storage/belt/gun/mateba/captain/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/cmateba(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/captain(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -622,6 +632,8 @@
 	icon_state = "a_mateba_holster"
 	item_state = "a_mateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -646,6 +658,8 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/storage/belt/gun/korovin/tranq/Initialize()
@@ -653,6 +667,8 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp/tranq(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)

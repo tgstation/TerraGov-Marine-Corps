@@ -159,7 +159,7 @@
 
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
-	desc = "It can contain a pistol. Useful for emergencies."
+	desc = "It can contain a pistol or revolver. Useful for emergencies."
 	icon_state = "pistol"
 	max_w_class = 3
 	can_hold = list(
@@ -278,11 +278,11 @@
 
 /obj/item/storage/pouch/explosive/full
 	fill_type = /obj/item/explosive/grenade/frag
-	fill_number = 3
+	fill_number = 4
 
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/plastique
-	fill_number = 3
+	fill_number = 4
 
 /obj/item/storage/pouch/medical
 	name = "medical pouch"
@@ -356,7 +356,7 @@
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares. Refillable with a M94 flare pack."
 	max_w_class = 2
-	storage_slots = 5
+	storage_slots = 7
 	draw_mode = 1
 	icon_state = "flare"
 	can_hold = list(
@@ -394,7 +394,7 @@
 
 /obj/item/storage/pouch/flare/full
 	fill_type = /obj/item/explosive/grenade/flare
-	fill_number = 5
+	fill_number = 7
 
 /obj/item/storage/pouch/radio
 	name = "radio pouch"
@@ -409,7 +409,7 @@
 	name = "field utility pouch"
 	storage_slots = 5
 	max_w_class = 3
-	icon_state = "radio"
+	icon_state = "utility"
 	draw_mode = 1
 	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
 	can_hold = list(
@@ -436,7 +436,7 @@
 	name = "electronics pouch"
 	desc = "It is designed to hold most electronics, power cells and circuitboards."
 	icon_state = "electronics"
-	storage_slots = 5
+	storage_slots = 6
 	can_hold = list(
 		/obj/item/circuitboard,
 		/obj/item/cell)
@@ -496,7 +496,7 @@
 /obj/item/storage/pouch/shotgun //New shotgun shell pouch that is actually worth a shit and will be replacing light general in vendors
 	name = "shotgun shell pouch"
 	desc = "A pouch specialized for holding shotgun ammo."
-	icon_state = "small_drop"
+	icon_state = "shotshells"
 	storage_slots = 4
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)

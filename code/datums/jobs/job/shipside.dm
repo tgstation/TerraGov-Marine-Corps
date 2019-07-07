@@ -37,7 +37,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobtype = /datum/job/command/captain
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/gun/mateba/cmateba/full
+	belt = /obj/item/storage/belt/gun/mateba/captain/full
 	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
@@ -118,7 +118,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/command/intelligenceofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/captain
+	belt = /obj/item/storage/belt/gun/m4a3/officer
 	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine

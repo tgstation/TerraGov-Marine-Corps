@@ -107,7 +107,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/flares
-	name = "flare packs crate (x20)"
+	name = "flare packs crate (x28)"
 	contains = list(
 					/obj/item/storage/box/m94,
 					/obj/item/storage/box/m94,
@@ -478,7 +478,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_mines
-	name = "claymore mines crate (x8)"
+	name = "claymore mines crate (x10)"
 	contains = list(
 					/obj/item/storage/box/explosive_mines,
 					/obj/item/storage/box/explosive_mines
@@ -555,7 +555,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hidp
-	name = "M40 HIDP incendiary explosive grenade box crate (x15)"
+	name = "M40 HIDP incendiary explosive grenade box crate (x25)"
 	contains = list(
 					/obj/item/storage/box/nade_box/HIDP
 					)
@@ -565,7 +565,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_m15
-	name = "M15 fragmentation grenade box crate (x25)"
+	name = "M15 fragmentation grenade box crate (x15)"
 	contains = list(
 					/obj/item/storage/box/nade_box/M15
 					)
@@ -2174,7 +2174,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_weapons
-	name = "weapons pouches crate (1x bayonet, pistol, explosive)"
+	name = "weapons pouches crate (1x bayonet, sidearm, explosive)"
 	contains = list(
 					/obj/item/storage/pouch/bayonet,
 					/obj/item/storage/pouch/pistol,
@@ -2315,7 +2315,7 @@ MEDICAL
 	group = "Medical"
 
 /datum/supply_packs/surgery
-	name = "surgery crate (x1 surgical tray)"
+	name = "surgery crate (x1 surgical tray, 1x surgical vest)"
 	contains = list(
 					/obj/item/storage/surgical_tray,
 					/obj/item/clothing/tie/storage/white_vest
@@ -2358,7 +2358,7 @@ MEDICAL
 	group = "Medical"
 
 /datum/supply_packs/hypospray
-	name = "hypospray crate (x5 hyposprays)"
+	name = "advanced hypospray crate (x5 advanced hyposprays)"
 	contains = list(
 					/obj/item/reagent_container/hypospray/advanced,
 					/obj/item/reagent_container/hypospray/advanced,
@@ -2368,7 +2368,7 @@ MEDICAL
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/secure/surgery
-	containername = "\improper hypospray crate"
+	containername = "\improper advanced hypospray crate"
 	access = ACCESS_MARINE_MEDBAY
 	group = "Medical"
 
