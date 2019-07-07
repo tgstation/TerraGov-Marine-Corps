@@ -21,7 +21,7 @@
 	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 20
+		var/fumbling_time = 2 SECONDS
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
@@ -84,7 +84,6 @@
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), timer*10, TIMER_STOPPABLE)
-	return
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
@@ -98,43 +97,46 @@
 /obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
 	if(ismultitool(I) && armed)
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm the [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to disarm the [src].</span>")
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to disarm [src].</span>")
 			var/fumbling_time = 3 SECONDS
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		if(do_after(user, 5 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
-			if(ismovableatom(plant_target) && plant_target.loc)
-				var/atom/movable/T = plant_target
-				T.vis_contents -= src
-				loc = plant_target.loc
-			else
-				loc = plant_target
+		if(!do_after(user, 5 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
+			return
 
-			deltimer(detonation_pending)
-			armed = FALSE
-			plant_target = null
-			
-			user.visible_message("<span class='warning'>[user] disarmed [src] that was on [plant_target]!</span>",
-			"<span class='warning'>You disarmed [src] that was on [plant_target]!</span>")
+		if(ismovableatom(plant_target))
+			var/atom/movable/T = plant_target
+			T.vis_contents -= src
+			forceMove(plant_target.loc)
+		else
+			forceMove(plant_target)
 
-			if(ismob(plant_target))
-				log_combat(user, plant_target, "removed [src] from")
-				log_game("[key_name(usr)] disarmed [src] on [key_name(plant_target)].")
-			else
-				log_game("[key_name(user)] disarmed [src] on [plant_target] at [AREACOORD(get_turf(plant_target))].")
-	return
+		deltimer(detonation_pending)
+		
+		user.visible_message("<span class='warning'>[user] disarmed [src] on [plant_target]!</span>",
+		"<span class='warning'>You disarmed [src] on [plant_target]!</span>")
+
+		if(ismob(plant_target))
+			log_combat(user, plant_target, "removed [src] from")
+			log_game("[key_name(usr)] disarmed [src] on [key_name(plant_target)].")
+		else
+			log_game("[key_name(user)] disarmed [src] on [plant_target] at [AREACOORD(plant_target.loc)].")
+
+		armed = FALSE
+		plant_target = null
 
 /obj/item/explosive/plastique/proc/detonate()
-	if(plant_target && !plant_target.gc_destroyed)
-		explosion(plant_target, -1, -1, 3)
-		if(istype(plant_target,/turf/closed/wall))
-			var/turf/closed/wall/W = plant_target
-			W.ChangeTurf(/turf/open/floor/plating)
-		else if(istype(plant_target,/obj/machinery/door))
-			qdel(plant_target)
-		else
-			plant_target.ex_act(1)
-		qdel(src)
+	if(QDELETED(plant_target))
+		return
+	explosion(plant_target, -1, -1, 3)
+	if(istype(plant_target,/turf/closed/wall))
+		var/turf/closed/wall/W = plant_target
+		W.ChangeTurf(/turf/open/floor/plating)
+	else if(istype(plant_target,/obj/machinery/door))
+		qdel(plant_target)
+	else
+		plant_target.ex_act(1)
+	qdel(src)
 	return
