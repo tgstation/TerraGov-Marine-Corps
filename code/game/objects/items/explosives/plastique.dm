@@ -53,7 +53,7 @@
 	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 50
+		var/fumbling_time = 5 SECONDS
 		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
