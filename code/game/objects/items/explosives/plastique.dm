@@ -89,7 +89,7 @@
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
 
-/obj/item/explosive/plastique/attack_hand(mob/user as mob)
+/obj/item/explosive/plastique/attack_hand(mob/living/user)
 	if(armed)
 		to_chat(user, "<font color='warning'>Disarm [src] first to remove it!</font>")
 		return
