@@ -577,7 +577,7 @@ and you're good to go.
 	return in_chamber //Returns the projectile if it's actually successful.
 
 
-/obj/item/weapon/gun/proc/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/proc/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE) //Attachables don't chamber rounds, so we want to delete it right away.
 		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
@@ -585,11 +585,11 @@ and you're good to go.
 		return TRUE
 
 
-/obj/item/weapon/gun/proc/clear_jam(obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
+/obj/item/weapon/gun/proc/clear_jam(obj/item/projectile/projectile_to_fire, mob/user) //Guns jamming, great.
 	flags_gun_features &= ~GUN_BURST_FIRING // Also want to turn off bursting, in case that was on. It probably was.
-	delete_bullet(projectile_to_fire, 1) //We're going to clear up anything inside if we need to.
+	delete_bullet(projectile_to_fire, TRUE) //We're going to clear up anything inside if we need to.
 	//If it's a regular bullet, we're just going to keep it chambered.
-	extra_delay = 2 + (burst_delay + extra_delay)*2 // Some extra delay before firing again.
+	extra_delay = 0.2 SECONDS + ((burst_delay + extra_delay) * 2) // Some extra delay before firing again.
 	to_chat(user, "<span class='warning'>[src] jammed! You'll need a second to get it fixed!</span>")
 
 //----------------------------------------------------------
@@ -605,6 +605,9 @@ and you're good to go.
 		return
 
 	if(!able_to_fire(user))
+		return
+
+	if(gun_on_cooldown(user))
 		return
 
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
@@ -734,6 +737,9 @@ and you're good to go.
 	if(!able_to_fire(user))
 		return ..()
 
+	if(gun_on_cooldown(user))
+		return ..()
+
 	if(M != user && user.a_intent == INTENT_HARM)
 		if(!active_attachable && CHECK_BITFIELD(flags_gun_features, GUN_BURST_ON) && burst_amount > 1)
 			..()
@@ -855,51 +861,45 @@ and you're good to go.
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
-
 	if(!CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
 		to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 		return FALSE
-
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		to_chat(user, "<span class='warning'>The safety is on!</span>")
 		return FALSE
-
 	if((flags_gun_features & GUN_WIELDED_FIRING_ONLY) && !(flags_item & WIELDED)) //If we're not holding the weapon with both hands when we should.
 		to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 		return FALSE
-
 	if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 		return FALSE
+	return TRUE
 
-	//Has to be on the bottom of the stack to prevent delay when failing to fire the weapon for the first time.
-	//Can also set last_fired through New(), but honestly there's not much point to it.
 
+/obj/item/weapon/gun/proc/gun_on_cooldown(mob/user)
 	var/added_delay = fire_delay
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		if(active_attachable.attachment_firing_delay)
-			added_delay = active_attachable.attachment_firing_delay
-	else
-		if(user?.mind?.cm_skills)
-			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-				added_delay += CONFIG_GET(number/combat_define/low_fire_delay) //untrained humans fire more slowly.
-			else
-				switch(gun_skill_category)
-					if(GUN_SKILL_HEAVY_WEAPONS)
-						if(fire_delay > 10) //long delay to fire
-							added_delay = max(fire_delay - 3*user.mind.cm_skills.heavy_weapons, 6)
-					if(GUN_SKILL_SMARTGUN)
-						if(user.mind.cm_skills.smartgun < 0)
-							added_delay -= 2*user.mind.cm_skills.smartgun
-					if(GUN_SKILL_SPEC)
-						if(user.mind.cm_skills.spec_weapons < 0)
-							added_delay -= 2*user.mind.cm_skills.spec_weapons
+	if(active_attachable?.attachment_firing_delay && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
+		added_delay = active_attachable.attachment_firing_delay
+	else if(user?.mind?.cm_skills)
+		if(!user.mind.cm_skills.firearms) //no training in any firearms
+			added_delay += CONFIG_GET(number/combat_define/low_fire_delay) //untrained humans fire more slowly.
+		else
+			switch(gun_skill_category)
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					if(fire_delay > 10) //long delay to fire
+						added_delay = max(fire_delay - 3*user.mind.cm_skills.heavy_weapons, 6)
+				if(GUN_SKILL_SMARTGUN)
+					if(user.mind.cm_skills.smartgun < 0)
+						added_delay -= 2*user.mind.cm_skills.smartgun
+				if(GUN_SKILL_SPEC)
+					if(user.mind.cm_skills.spec_weapons < 0)
+						added_delay -= 2*user.mind.cm_skills.spec_weapons
 
-	if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
-		extra_delay = 0
-	else
-		if(world.time % 3)
-			to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
+	if(world.time < last_fired + added_delay + extra_delay) //check the last time it was fired.
+		extra_delay = 0 //Since we are ready to fire again, zero it up.
 		return FALSE
+	
+	if(world.time % 3)
+		to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 	return TRUE
 
 
@@ -1149,6 +1149,8 @@ and you're good to go.
 		return NONE //By default, let people CTRL+grab others if they are one-handing the weapon.
 	. = COMSIG_ITEM_CLICKCTRLON_INTERCEPTED
 	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
 		return
 	if(active_attachable.current_rounds <= 0)
 		click_empty(user) //If it's empty, let them know.

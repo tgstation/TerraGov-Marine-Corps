@@ -67,6 +67,9 @@
 	if(!able_to_fire(user))
 		return
 
+	if(gun_on_cooldown(user))
+		return
+
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
 	if(!targloc || !curloc)
