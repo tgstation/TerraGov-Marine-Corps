@@ -53,7 +53,7 @@
 	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 50
+		var/fumbling_time = 5 SECONDS
 		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
@@ -89,7 +89,7 @@
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
 
-/obj/item/explosive/plastique/attack_hand(mob/user as mob)
+/obj/item/explosive/plastique/attack_hand(mob/living/user)
 	if(armed)
 		to_chat(user, "<font color='warning'>Disarm [src] first to remove it!</font>")
 		return
@@ -100,7 +100,7 @@
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to disarm the [src].</span>")
-			var/fumbling_time = 30
+			var/fumbling_time = 3 SECONDS
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -116,14 +116,14 @@
 			armed = FALSE
 			plant_target = null
 			
-			user.visible_message("<span class='warning'>[user] disarmed [name] that was on [plant_target]!</span>",
-			"<span class='warning'>You disarmed [name] that was on [plant_target]!</span>")
+			user.visible_message("<span class='warning'>[user] disarmed [src] that was on [plant_target]!</span>",
+			"<span class='warning'>You disarmed [src] that was on [plant_target]!</span>")
 
 			if(ismob(plant_target))
 				log_combat(user, plant_target, "removed [src] from")
-				log_game("[key_name(usr)] disarmed [src.name] on [key_name(plant_target)].")
+				log_game("[key_name(usr)] disarmed [src] on [key_name(plant_target)].")
 			else
-				log_game("[key_name(user)] disarmed [src.name] on [plant_target.name] at [AREACOORD(plant_target.loc)].")
+				log_game("[key_name(user)] disarmed [src] on [plant_target] at [AREACOORD(get_turf(plant_target))].")
 	return
 
 /obj/item/explosive/plastique/proc/detonate()
