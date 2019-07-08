@@ -61,7 +61,7 @@
 	healthcheck()
 
 /obj/machinery/bot/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	obj_integrity -= rand(15, 30)
 	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \

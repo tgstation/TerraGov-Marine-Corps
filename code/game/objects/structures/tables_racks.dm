@@ -250,7 +250,7 @@
 /obj/structure/table/attack_alien(mob/living/carbon/xenomorph/M)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	if(sheet_type == /obj/item/stack/sheet/wood)
 		playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 	else
@@ -571,7 +571,7 @@
 		step(I, get_dir(I, src))
 
 /obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 	"<span class='danger'>You slice [src] apart!</span>", null, 5)

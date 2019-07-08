@@ -192,7 +192,7 @@
 /obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno)
 	if(opened)
 		return FALSE // stop xeno closing things
-	xeno.animation_attack_on(src)
+	xeno.do_attack_animation(src)
 	open()
 	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)

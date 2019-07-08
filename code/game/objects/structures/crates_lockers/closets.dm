@@ -186,7 +186,7 @@
 
 /obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		if(!opened && prob(70))
 			break_open()
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] open!</span>", \

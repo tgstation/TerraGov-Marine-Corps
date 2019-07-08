@@ -110,7 +110,7 @@
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 		if(W.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1
-		user.animation_attack_on(src)
+		user.do_attack_animation(src)
 		hardness -= W.force * multiplier * 0.01
 		if(!P)
 			to_chat(user, "You hit the [name] with your [W.name]!")

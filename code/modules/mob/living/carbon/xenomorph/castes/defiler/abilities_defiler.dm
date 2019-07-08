@@ -77,7 +77,7 @@
 		return fail_activate()
 	add_cooldown()
 	X.face_atom(C)
-	X.animation_attack_on(C)
+	X.do_attack_animation(C)
 	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	var/obj/item/alien_embryo/embryo = new(C)
 	embryo.hivenumber = X.hivenumber

@@ -114,7 +114,7 @@
 		playsound(loc, "alien_resin_break", 25)
 
 	var/mob/living/L = user
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 
 	var/multiplier = 1
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).

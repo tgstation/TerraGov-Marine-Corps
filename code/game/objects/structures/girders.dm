@@ -34,7 +34,7 @@
 		to_chat(M, "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>")
 		return FALSE
 	else
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		obj_integrity -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
 		if(obj_integrity <= 0)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \

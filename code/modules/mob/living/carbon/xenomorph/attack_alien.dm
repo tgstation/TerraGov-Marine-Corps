@@ -41,7 +41,7 @@
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
 		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
@@ -165,7 +165,7 @@
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
 
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 
 	var/attack_flick =  "slash"
 	var/attack_sound = "alien_claw_flesh"
@@ -196,7 +196,7 @@
 	//Somehow we will deal no damage on this attack
 	if(!damage)
 		playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		X.animation_attack_on(src)
+		X.do_attack_animation(src)
 		X.visible_message("<span class='danger'>\The [X] lunges at [src]!</span>", \
 		"<span class='danger'>We lunge at [src]!</span>", null, 5)
 		return FALSE

@@ -6,7 +6,7 @@
 		if (istype(wear_mask, /obj/item/clothing/mask/muzzle))
 			return
 
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		M.flick_attack_overlay(src, "punch")
 		visible_message("<span class='danger'>[M] has bit [src]!</span>", null, null, 5)
 		var/damage = rand(1, 3)

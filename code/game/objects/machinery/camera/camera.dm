@@ -159,7 +159,7 @@
 		to_chat(X, "<span class='warning'>The camera is already disabled.</span>")
 		return
 
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
 	"<span class='danger'>You slash \the [src]!</span>")
 	playsound(loc, "alien_claw_metal", 25, 1)
