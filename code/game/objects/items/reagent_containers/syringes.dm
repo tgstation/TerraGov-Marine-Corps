@@ -137,8 +137,6 @@
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>The syringe is empty.</span>")
 				return
-			if(istype(target, /obj/item/implantcase/chem))
-				return
 
 			if(!target.is_injectable() && !ismob(target))
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
@@ -320,8 +318,7 @@
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>[src] is empty.</span>")
 				return
-			if(istype(target, /obj/item/implantcase/chem))
-				return
+
 			if(!target.is_injectable() && !ismob(target))
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return

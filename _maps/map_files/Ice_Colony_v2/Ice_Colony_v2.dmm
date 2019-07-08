@@ -31721,7 +31721,6 @@
 /area/ice_colony/underground/storage/highsec)
 "bFj" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/trackimp,
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
 	},
@@ -33838,7 +33837,6 @@
 /area/ice_colony/underground/security/backroom)
 "bKi" = (
 /obj/structure/table,
-/obj/item/storage/box/trackimp,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -36953,11 +36951,6 @@
 	dir = 1
 	},
 /obj/structure/rack,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/east)
-"bSP" = (
-/obj/structure/rack,
-/obj/item/implantpad,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bSQ" = (
@@ -65464,7 +65457,7 @@ bRN
 bFD
 bFD
 bFD
-bSP
+bTJ
 bSZ
 bCJ
 bCJ

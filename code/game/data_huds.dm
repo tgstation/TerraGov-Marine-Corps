@@ -368,29 +368,6 @@
 	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
 
 
-/mob/proc/sec_hud_set_implants()
-	return
-
-
-/mob/living/carbon/human/sec_hud_set_implants()
-	var/image/holder1 = hud_list[IMPTRACK_HUD]
-	var/image/holder2 = hud_list[IMPLOYAL_HUD]
-	var/image/holder3 = hud_list[IMPCHEM_HUD]
-
-	holder1.icon_state = "hudblank"
-	holder2.icon_state = "hudblank"
-	holder3.icon_state = "hudblank"
-
-	for(var/obj/item/implant/I in src)
-		if(I.implanted)
-			if(istype(I, /obj/item/implant/tracking))
-				holder1.icon_state = "hud_imp_tracking"
-			if(istype(I, /obj/item/implant/loyalty))
-				holder2.icon_state = "hud_imp_loyal"
-			if(istype(I, /obj/item/implant/chem))
-				holder3.icon_state = "hud_imp_chem"
-
-
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
 	var/image/holder = hud_list[WANTED_HUD]
 	holder.icon_state = "hudblank"

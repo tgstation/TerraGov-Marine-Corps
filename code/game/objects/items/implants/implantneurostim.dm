@@ -109,13 +109,3 @@
 /obj/item/implant/neurostim/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
-
-
-/obj/item/implanter/neurostim
-	name = "implanter"
-
-	New()
-		src.imp = new /obj/item/implant/neurostim(src)
-		..()
-		update()
-		return

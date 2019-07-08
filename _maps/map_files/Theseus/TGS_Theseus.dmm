@@ -3468,7 +3468,6 @@
 /turf/open/floor/carpet,
 /area/almayer/command/corporateliaison)
 "aiO" = (
-/obj/item/storage/lockbox/loyalty,
 /obj/item/weapon/gun/pistol/vp70,
 /obj/item/ammo_magazine/pistol/vp70,
 /obj/structure/closet/cabinet,
