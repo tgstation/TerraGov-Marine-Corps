@@ -204,6 +204,9 @@
 		s_store = null
 		update_inv_s_store()
 
+	if(I.flags_armor_protection)
+		remove_limb_armor(I)
+
 
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
@@ -394,9 +397,11 @@
 			S.handle_item_insertion(W, FALSE, src)
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
+
+	if(W.flags_armor_protection)
+		add_limb_armor(W)
+
 	return TRUE
-
-
 
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)
