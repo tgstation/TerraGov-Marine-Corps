@@ -894,7 +894,7 @@ and you're good to go.
 					if(user.mind.cm_skills.spec_weapons < 0)
 						added_delay -= 2*user.mind.cm_skills.spec_weapons
 
-	if(world.time < last_fired + added_delay + extra_delay) //check the last time it was fired.
+	if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
 		extra_delay = 0 //Since we are ready to fire again, zero it up.
 		return FALSE
 	
