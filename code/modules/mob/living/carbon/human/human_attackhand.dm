@@ -102,13 +102,8 @@
 		if(INTENT_DISARM)
 			log_combat(user, src, "disarmed")
 
-<<<<<<< master
-			M.do_attack_animation(src)
-			M.flick_attack_overlay(src, "disarm")
-=======
-			H.animation_attack_on(src)
+			H.do_attack_animation(src)
 			H.flick_attack_overlay(src, "disarm")
->>>>>>> Second part of the mob cleanup - attack hand is now living+
 
 			msg_admin_attack("[key_name(H)] disarmed [src.name] ([src.ckey])")
 
