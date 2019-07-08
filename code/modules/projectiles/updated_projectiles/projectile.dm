@@ -496,8 +496,7 @@ sniper rifle or something similar. I suppose that's to be expected though.
 Normal range for a defender's bullet resist should be something around 30-50. ~N
 */
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P)
-	if(!istype(P))
-		CRASH("[src] triggered bullet_act() with a wrong-type or inexistent projectile: ([P]).")
+	if(!P) return
 
 	flash_weak_pain()
 
@@ -596,8 +595,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 //Deal with xeno bullets.
 /mob/living/carbon/xenomorph/bullet_act(obj/item/projectile/P)
-	if(!istype(P))
-		CRASH("[src] triggered bullet_act() with a wrong-type or inexistent projectile: ([P]).")
+	if(!P || !istype(P))
+		return
 
 	if(issamexenohive(P.firer)) //Aliens won't be harming allied aliens.
 		bullet_ping(P)
