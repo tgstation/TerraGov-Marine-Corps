@@ -507,7 +507,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammo_magazine/acp
 	name = "Box of .45 ACP"
-	icon_state = "9mm" //placeholder
+	icon_state = "box45" //placeholder
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45"
 	current_rounds = 50
