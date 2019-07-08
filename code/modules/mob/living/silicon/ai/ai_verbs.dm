@@ -142,7 +142,11 @@
 	set category = "Silicon"
 	set name = "Make Announcement"
 
-	if(incapacitated() || last_announcement > world.time + 60 SECONDS)
+	if(incapacitated())
+		return
+
+	if(last_announcement + 60 SECONDS > world.time)
+		to_chat(src, "<span class='warning'>You must wait before announcing again.</span>")
 		return
 
 	var/input = stripped_input(usr, "Please write a message to announce to the station crew.", "Announcement")
