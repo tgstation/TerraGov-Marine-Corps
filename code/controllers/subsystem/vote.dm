@@ -43,6 +43,7 @@ SUBSYSTEM_DEF(vote)
 	choices.Cut()
 	voted.Cut()
 	voting.Cut()
+	remove_action_buttons()
 
 
 /datum/controller/subsystem/vote/proc/get_result()
@@ -103,6 +104,7 @@ SUBSYSTEM_DEF(vote)
 	else
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
+	remove_action_buttons()
 	to_chat(world, "<br><font color='purple'>[text]</font>")
 	return .
 
