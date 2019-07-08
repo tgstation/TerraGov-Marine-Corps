@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 
 //Special case for entering the vehicle without using the verb
-/obj/vehicle/multitile/root/cm_armored/attack_hand(mob/user)
+/obj/vehicle/multitile/root/cm_armored/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -58,7 +58,7 @@
 	obj_integrity = max(0, obj_integrity - tforce)
 	healthcheck()
 
-/obj/structure/fence/attack_hand(mob/user as mob)
+/obj/structure/fence/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

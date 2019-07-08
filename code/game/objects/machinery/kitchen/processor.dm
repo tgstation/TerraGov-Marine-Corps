@@ -113,7 +113,7 @@
 	user.drop_held_item()
 	O.forceMove(src)
 
-/obj/machinery/processor/attack_hand(mob/user as mob)
+/obj/machinery/processor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -34,7 +34,7 @@
 /obj/structure/mineral_door/attack_paw(mob/user as mob)
 	return TryToSwitchState(user)
 
-/obj/structure/mineral_door/attack_hand(mob/user as mob)
+/obj/structure/mineral_door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

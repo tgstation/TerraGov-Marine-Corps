@@ -287,7 +287,7 @@
 	return FALSE
 /obj/machinery/door/airlock/evacuation/attackby()
 	return FALSE
-/obj/machinery/door/airlock/evacuation/attack_hand()
+/obj/machinery/door/airlock/evacuation/attack_hand(mob/living/user)
 	return TRUE
 /obj/machinery/door/airlock/evacuation/attack_alien()
 	return FALSE //Probably a better idea that these cannot be forced open.

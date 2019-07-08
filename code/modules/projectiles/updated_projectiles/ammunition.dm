@@ -50,7 +50,7 @@ They're all essentially identical when it comes to getting the job done.
 		to_chat(user, "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>.")
 
 
-/obj/item/ammo_magazine/attack_hand(mob/user)
+/obj/item/ammo_magazine/attack_hand(mob/living/user)
 	if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
 		if(src == user.get_inactive_held_item()) //Have to be holding it in the hand.
 			if (current_rounds > 0)
@@ -417,7 +417,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	magazine_amount++
 	update_icon()
 
-/obj/item/ammobox/attack_hand(mob/user)
+/obj/item/ammobox/attack_hand(mob/living/user)
 	if(!deployed)
 		user.put_in_hands(src)
 		return
@@ -483,7 +483,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	. = ..()
 	to_chat(user, "It contains [current_rounds] out of [max_rounds] shotgun shells.")
 
-/obj/item/ammo_magazine/shotgunbox/attack_hand(mob/user)
+/obj/item/ammo_magazine/shotgunbox/attack_hand(mob/living/user)
 	if(!deployed)
 		user.put_in_hands(src)
 		return

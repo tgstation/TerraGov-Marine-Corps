@@ -22,7 +22,7 @@
 	var/firing = 0 //Used for deconstruction and aiming sanity
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
 
-/obj/structure/mortar/attack_hand(mob/user as mob)
+/obj/structure/mortar/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

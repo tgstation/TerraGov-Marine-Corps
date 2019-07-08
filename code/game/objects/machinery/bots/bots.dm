@@ -140,16 +140,18 @@
 /obj/machinery/bot/attack_ai(mob/user as mob)
 	attack_hand(user)
 
-/obj/machinery/bot/attack_hand(mob/living/carbon/human/user)
+/obj/machinery/bot/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(!istype(user))
+	if(!ishuman(user))
 		return
 
-	if(user.species.can_shred(user))
+	var/mob/living/carbon/human/H = user
+
+	if(H.species.can_shred(H))
 		src.obj_integrity -= rand(15,30)*brute_dam_coeff
-		src.visible_message("<span class ='danger'>[user] has slashed [src]!</span>")
+		src.visible_message("<span class ='danger'>[H] has slashed [src]!</span>")
 		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)

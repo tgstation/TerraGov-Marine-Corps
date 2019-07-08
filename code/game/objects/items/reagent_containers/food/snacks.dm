@@ -2255,7 +2255,7 @@
 	icon_state = "pizzabox[boxes.len+1]"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/pizzabox/attack_hand( mob/user as mob )
+/obj/item/pizzabox/attack_hand(mob/living/user)
 	if( open && pizza )
 		user.put_in_hands( pizza )
 

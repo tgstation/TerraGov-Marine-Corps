@@ -22,7 +22,7 @@
 	else
 		icon_state = "drone_fab_idle"
 
-/obj/machinery/dropship_part_fabricator/attack_hand(mob/user)
+/obj/machinery/dropship_part_fabricator/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

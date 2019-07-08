@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	eyeobj.icon_state = "generic_camera"
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/user)
+/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)  //Checks for power outages
 		return
@@ -400,7 +400,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	updateUsrDialog()
 
-/obj/machinery/computer/camera_advanced/overwatch/main/attack_hand(mob/user)
+/obj/machinery/computer/camera_advanced/overwatch/main/attack_hand(mob/living/user)
 	. = ..()
 	if(.)  //Checks for power outages
 		return
@@ -910,9 +910,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		return
 	activate(H)
 
-/obj/item/squad_beacon/bomb/attack_hand(mob/living/carbon/human/H)
-	if(!istype(H))
+/obj/item/squad_beacon/bomb/attack_hand(mob/living/user)
+	if(!ishuman(user))
 		return ..()
+	var/mob/living/carbon/human/H = user
 	if(!H.mind)
 		to_chat(H, "<span class='warning'>It doesn't seem to do anything for you.</span>")
 		return ..()

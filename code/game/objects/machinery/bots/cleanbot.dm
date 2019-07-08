@@ -62,7 +62,7 @@
 	src.path = new()
 	src.updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/attack_hand(mob/user as mob)
+/obj/machinery/bot/cleanbot/attack_hand(mob/living/user)
 	. = ..()
 	if (.)
 		return

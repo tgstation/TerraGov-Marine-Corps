@@ -49,7 +49,7 @@
 /obj/machinery/computer/med_data/attack_paw(user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/med_data/attack_hand(mob/user as mob)
+/obj/machinery/computer/med_data/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

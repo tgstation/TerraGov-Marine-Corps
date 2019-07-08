@@ -268,7 +268,7 @@
 		update_plasmacutter()
 
 
-/obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/user)
+/obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

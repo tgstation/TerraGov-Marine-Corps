@@ -60,7 +60,7 @@
 
 
 
-/obj/machinery/marine_selector/attack_hand(mob/user)
+/obj/machinery/marine_selector/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

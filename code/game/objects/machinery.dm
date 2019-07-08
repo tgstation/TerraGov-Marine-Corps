@@ -184,7 +184,7 @@
 	to_chat(X, "<span class='warning'>You stare at \the [src] cluelessly.</span>")
 
 
-/obj/machinery/attack_hand(mob/user)
+/obj/machinery/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

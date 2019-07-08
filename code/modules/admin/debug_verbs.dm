@@ -69,7 +69,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			target = null
 			targetselected = FALSE
 
-	var/procname = input("Proc path, eg: /proc/attack_hand", "Path:", null) as text|null
+	var/procname = input("Proc path, eg: /proc/attack_hand(mob/living/user)")
 	if(!procname)
 		return
 

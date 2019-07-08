@@ -96,7 +96,7 @@ Defined in conflicts.dm of the #defines folder.
 		return TRUE
 
 
-/obj/item/attachable/attack_hand(mob/user as mob)
+/obj/item/attachable/attack_hand(mob/living/user)
 	if(src.attach_applied == TRUE)
 		return
 	else
@@ -771,7 +771,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 	pockets = new pockets(src)
 
-/obj/item/attachable/stock/vp70/attack_hand(mob/user)
+/obj/item/attachable/stock/vp70/attack_hand(mob/living/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
 		return I.attack_hand(user)

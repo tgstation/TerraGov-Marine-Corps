@@ -294,7 +294,7 @@
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/stack/attack_hand(mob/user)
+/obj/item/stack/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() == src)
 		return change_stack(user, 1)
 	return ..()

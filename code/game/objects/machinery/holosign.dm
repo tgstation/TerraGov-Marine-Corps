@@ -59,7 +59,7 @@
 	else
 		return attack_hand(user)
 
-/obj/machinery/holosign_switch/attack_hand(mob/user as mob)
+/obj/machinery/holosign_switch/attack_hand(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 

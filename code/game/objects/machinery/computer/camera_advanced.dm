@@ -91,7 +91,7 @@
 	return TRUE
 
 
-/obj/machinery/computer/camera_advanced/attack_hand(mob/user)
+/obj/machinery/computer/camera_advanced/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

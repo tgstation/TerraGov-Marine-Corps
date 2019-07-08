@@ -41,7 +41,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/faxmachine/attack_hand(mob/user as mob)
+/obj/machinery/faxmachine/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

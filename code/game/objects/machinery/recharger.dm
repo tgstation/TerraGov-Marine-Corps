@@ -58,7 +58,7 @@ obj/machinery/recharger
 	update_icon()
 
 
-obj/machinery/recharger/attack_hand(mob/user as mob)
+obj/machinery/recharger/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

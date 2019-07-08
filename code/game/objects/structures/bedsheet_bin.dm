@@ -130,7 +130,7 @@ LINEN BINS
 	return attack_hand(user)
 
 
-/obj/structure/bedsheetbin/attack_hand(mob/user as mob)
+/obj/structure/bedsheetbin/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -87,7 +87,7 @@
 			reloading = FALSE
 	return TRUE
 
-/obj/item/smartgun_powerpack/attack_hand(mob/user)
+/obj/item/smartgun_powerpack/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(QDELETED(pcell))

@@ -13,7 +13,7 @@
 
 
 
-/obj/machinery/computer/dropship_weapons/attack_hand(mob/user)
+/obj/machinery/computer/dropship_weapons/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

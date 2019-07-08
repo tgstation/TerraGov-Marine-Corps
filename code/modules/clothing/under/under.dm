@@ -69,7 +69,7 @@
 	else
 		return ..()
 
-/obj/item/clothing/under/attack_hand(mob/user as mob)
+/obj/item/clothing/under/attack_hand(mob/living/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(hastie && src.loc == user)
 		hastie.attack_hand(user)

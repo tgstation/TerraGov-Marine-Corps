@@ -139,7 +139,7 @@
 		T.take_blood(beaker, amount)
 		update_icon()
 
-/obj/machinery/iv_drip/attack_hand(mob/user as mob)
+/obj/machinery/iv_drip/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

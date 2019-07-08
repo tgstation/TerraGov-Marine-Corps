@@ -115,7 +115,7 @@
 		user.transferItemToLoc(I, loc)
 
 // attack with hand, move pulled object onto conveyor
-/obj/machinery/conveyor/attack_hand(mob/user as mob)
+/obj/machinery/conveyor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -231,7 +231,7 @@
 		C.setmove()
 
 // attack with hand, switch position
-/obj/machinery/conveyor_switch/attack_hand(mob/user)
+/obj/machinery/conveyor_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -264,7 +264,7 @@
 	desc = "A conveyor control switch. It appears to only go in one direction."
 
 // attack with hand, switch position
-/obj/machinery/conveyor_switch/oneway/attack_hand(mob/user)
+/obj/machinery/conveyor_switch/oneway/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

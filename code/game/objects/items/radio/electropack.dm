@@ -25,7 +25,7 @@
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/electropack/attack_hand(mob/user)
+/obj/item/electropack/attack_hand(mob/living/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(C.back == src)

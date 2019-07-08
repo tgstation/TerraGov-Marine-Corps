@@ -151,7 +151,7 @@
 	user.set_interaction(src)
 	interact(user, 1)
 
-/obj/machinery/bot/mulebot/attack_hand(mob/user)
+/obj/machinery/bot/mulebot/attack_hand(mob/living/user)
 	. = ..()
 	if (.)
 		return

@@ -82,7 +82,7 @@
 /obj/machinery/teleport/station/attack_ai()
 	src.attack_hand()
 
-/obj/machinery/computer/teleporter/attack_hand()
+/obj/machinery/computer/teleporter/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

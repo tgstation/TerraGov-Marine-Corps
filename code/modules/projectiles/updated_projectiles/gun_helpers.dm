@@ -126,7 +126,7 @@ DEFINES in setup.dm, referenced here.
 	return ..()
 
 
-/obj/item/weapon/gun/attack_hand(mob/user)
+/obj/item/weapon/gun/attack_hand(mob/living/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.

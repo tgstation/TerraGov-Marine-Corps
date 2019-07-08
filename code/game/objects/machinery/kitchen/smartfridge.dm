@@ -132,7 +132,7 @@
 /obj/machinery/smartfridge/attack_ai(mob/user)
 	return 0
 
-/obj/machinery/smartfridge/attack_hand(mob/user)
+/obj/machinery/smartfridge/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

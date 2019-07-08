@@ -1,93 +1,98 @@
-/mob/living/carbon/human/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/human/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 
-	if((M != src) && check_shields(0, M.name))
-		visible_message("<span class='danger'>[M] attempted to touch [src]!</span>", null, null, 5)
+	if((user != src) && check_shields(0, user.name))
+		visible_message("<span class='danger'>[user] attempted to touch [src]!</span>", null, null, 5)
 		return 0
 
-	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
-	switch(M.a_intent)
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+
+	H.changeNext_move(7)
+	switch(H.a_intent)
 		if(INTENT_HELP)
 
-			if(on_fire && M != src)
+			if(on_fire && H != src)
 				fire_stacks = max(fire_stacks - 1, 0)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				M.visible_message("<span class='danger'>[M] tries to put out the fire on [src]!</span>", \
+				H.visible_message("<span class='danger'>[H] tries to put out the fire on [src]!</span>", \
 					"<span class='warning'>You try to put out the fire on [src]!</span>", null, 5)
 				if(fire_stacks <= 0)
-					M.visible_message("<span class='danger'>[M] has successfully extinguished the fire on [src]!</span>", \
+					H.visible_message("<span class='danger'>[H] has successfully extinguished the fire on [src]!</span>", \
 						"<span class='notice'>You extinguished the fire on [src].</span>", null, 5)
 					ExtinguishMob()
 				return 1
 
 			if(health >= get_crit_threshold())
-				help_shake_act(M)
+				help_shake_act(H)
 				return 1
-//			if(M.health < -75)	return 0
+//			if(H.health < -75)	return 0
 
-			if((M.head && (M.head.flags_inventory & COVERMOUTH)) || (M.wear_mask && (M.wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "<span class='boldnotice'>Remove your mask!</span>")
+			if((H.head && (H.head.flags_inventory & COVERMOUTH)) || (H.wear_mask && (H.wear_mask.flags_inventory & COVERMOUTH)))
+				to_chat(H, "<span class='boldnotice'>Remove your mask!</span>")
 				return 0
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "<span class='boldnotice'>Remove his mask!</span>")
+				to_chat(H, "<span class='boldnotice'>Remove his mask!</span>")
 				return 0
 
 			//CPR
-			if(M.action_busy)
+			if(H.action_busy)
 				return 1
-			M.visible_message("<span class='danger'>[M] is trying perform CPR on [src]!</span>", null, null, 4)
+			H.visible_message("<span class='danger'>[H] is trying perform CPR on [src]!</span>", null, null, 4)
 
-			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			if(do_mob(H, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				if(health > get_death_threshold() && health < get_crit_threshold())
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
-					visible_message("<span class='warning'> [M] performs CPR on [src]!</span>", null, null, 3)
+					visible_message("<span class='warning'> [H] performs CPR on [src]!</span>", null, null, 3)
 					to_chat(src, "<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>")
-					to_chat(M, "<span class='warning'>Repeat at least every 7 seconds.</span>")
+					to_chat(H, "<span class='warning'>Repeat at least every 7 seconds.</span>")
 
 
 			return 1
 
 		if(INTENT_GRAB)
-			if(M == src || anchored)
+			if(H == src || anchored)
 				return 0
 
-			M.start_pulling(src)
+			H.start_pulling(src)
 
 			return 1
 
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
-			var/datum/unarmed_attack/attack = M.species.unarmed
-			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
-			if(!attack.is_usable(M)) return
+			var/datum/unarmed_attack/attack = H.species.unarmed
+			if(!attack.is_usable(H)) attack = H.species.secondary_unarmed
+			if(!attack.is_usable(H)) return
 
-			log_combat(M, src, "[pick(attack.attack_verb)]ed")
-			msg_admin_attack("[key_name(M)] [pick(attack.attack_verb)]ed [key_name(src)]")
+			log_combat(H, src, "[pick(attack.attack_verb)]ed")
+			msg_admin_attack("[key_name(H)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
-			M.do_attack_animation(src)
-			M.flick_attack_overlay(src, "punch")
+			H.do_attack_animation(src)
+			H.flick_attack_overlay(src, "punch")
 
 			var/max_dmg = 5
-			if(M.mind && M.mind.cm_skills)
-				max_dmg += M.mind.cm_skills.cqc
+			if(H.mind && H.mind.cm_skills)
+				max_dmg += user.mind.cm_skills.cqc
 			var/damage = rand(0, max_dmg)
 			if(!damage)
 				playsound(loc, attack.miss_sound, 25, 1)
-				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
+				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
 				return
 
-			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
+			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 			var/armor_block = run_armor_check(affecting, "melee")
 
 			playsound(loc, attack.attack_sound, 25, 1)
 
-			visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
+			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 			if(damage >= 5 && prob(50))
-				visible_message("<span class='danger'>[M] has weakened [src]!</span>", null, null, 5)
+				visible_message("<span class='danger'>[H] has weakened [src]!</span>", null, null, 5)
 				apply_effect(3, WEAKEN, armor_block)
 
 			damage += attack.damage
@@ -95,17 +100,17 @@
 
 
 		if(INTENT_DISARM)
-			log_combat(M, src, "disarmed")
+			log_combat(user, src, "disarmed")
 
-			M.do_attack_animation(src)
-			M.flick_attack_overlay(src, "disarm")
+			H.do_attack_animation(src)
+			H.flick_attack_overlay(src, "disarm")
 
-			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
+			msg_admin_attack("[key_name(H)] disarmed [src.name] ([src.ckey])")
 
-			var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
+			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 
 			//Accidental gun discharge
-			if(!M.mind?.cm_skills || M.mind.cm_skills.cqc < SKILL_CQC_MP)
+			if(!H.mind?.cm_skills || H.mind.cm_skills.cqc < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -119,7 +124,7 @@
 						chance = !hand ? 40 : 20
 
 					if(prob(chance))
-						log_combat(M, src, "disarmed, making their [W] go off")
+						log_combat(H, src, "disarmed, making their [W] go off")
 						visible_message("<span class='danger'>[src]'s [W] goes off during struggle!", null, null, 5)
 						var/list/turfs = list()
 						for(var/turf/T in view())
@@ -128,8 +133,8 @@
 						return W.afterattack(target,src)
 
 			var/randn = rand(1, 100)
-			if(M.mind && M.mind.cm_skills)
-				randn -= 5 * M.mind.cm_skills.cqc //attacker's martial arts training
+			if(H.mind && H.mind.cm_skills)
+				randn -= 5 * H.mind.cm_skills.cqc //attacker's martial arts training
 
 			if(mind && mind.cm_skills)
 				randn += 5 * mind.cm_skills.cqc //defender's martial arts training
@@ -138,23 +143,23 @@
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				visible_message("<span class='danger'>[M] has pushed [src]!</span>", null, null, 5)
+				visible_message("<span class='danger'>[H] has pushed [src]!</span>", null, null, 5)
 				return
 
 			if(randn <= 60)
 				//BubbleWrap: Disarming breaks a pull
 				if(pulling)
-					visible_message("<span class='danger'>[M] has broken [src]'s grip on [pulling]!</span>", null, null, 5)
+					visible_message("<span class='danger'>[H] has broken [src]'s grip on [pulling]!</span>", null, null, 5)
 					stop_pulling()
 				else
 					drop_held_item()
-					visible_message("<span class='danger'>[M] has disarmed [src]!</span>", null, null, 5)
+					visible_message("<span class='danger'>[H] has disarmed [src]!</span>", null, null, 5)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				return
 
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
-			visible_message("<span class='danger'>[M] attempted to disarm [src]!</span>", null, null, 5)
+			visible_message("<span class='danger'>[H] attempted to disarm [src]!</span>", null, null, 5)
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)

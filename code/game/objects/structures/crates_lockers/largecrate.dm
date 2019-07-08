@@ -18,7 +18,7 @@
 	"<span class='danger'>You hear splitting wood!</span>", 5)
 	qdel(src)
 
-/obj/structure/largecrate/attack_hand(mob/user as mob)
+/obj/structure/largecrate/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
 	return TRUE
 
@@ -153,7 +153,7 @@
 	else
 		return attack_hand(user)
 
-/obj/structure/largecrate/random/barrel/attack_hand(mob/user)
+/obj/structure/largecrate/random/barrel/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
 	return TRUE
 
@@ -226,7 +226,7 @@
 	icon_state = "secure_crate"
 	strapped = FALSE
 
-/obj/structure/largecrate/random/barrel/attack_hand(mob/user)
+/obj/structure/largecrate/random/barrel/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
 	return TRUE
 

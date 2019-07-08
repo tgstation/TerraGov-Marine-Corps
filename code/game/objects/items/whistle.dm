@@ -22,7 +22,7 @@
 		whistle_playsound(user)
 
 
-/obj/item/whistle/attack_hand(mob/user)
+/obj/item/whistle/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

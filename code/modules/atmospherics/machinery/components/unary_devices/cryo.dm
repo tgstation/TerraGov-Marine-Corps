@@ -395,7 +395,7 @@
 			popup.open(FALSE)
 		break
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/user)
+/obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

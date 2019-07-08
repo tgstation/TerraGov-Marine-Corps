@@ -55,7 +55,7 @@
 	return ..()
 
 
-/obj/machinery/computer/security/attack_hand(mob/living/carbon/human/user)
+/obj/machinery/computer/security/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

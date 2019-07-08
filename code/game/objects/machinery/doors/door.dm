@@ -110,7 +110,7 @@
 	return src.attack_hand(user)
 
 
-/obj/machinery/door/attack_hand(mob/user)
+/obj/machinery/door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

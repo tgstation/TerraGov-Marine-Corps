@@ -25,7 +25,7 @@
 	var/list/listed_products = list()
 
 
-/obj/item/portable_vendor/attack_hand(mob/user)
+/obj/item/portable_vendor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -35,7 +35,7 @@
 			if(.)
 				pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25))
 
-/obj/vehicle/powerloader/attack_hand(mob/user)
+/obj/vehicle/powerloader/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

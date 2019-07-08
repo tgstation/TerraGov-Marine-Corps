@@ -92,7 +92,7 @@
 		update_icon()
 
 
-/obj/item/radio/detpack/attack_hand(mob/user as mob)
+/obj/item/radio/detpack/attack_hand(mob/living/user)
 	if(armed)
 		to_chat(user, "<font color='warning'>Active anchor bolts are holding it in place! Disarm [src] first to remove it!</font>")
 		return

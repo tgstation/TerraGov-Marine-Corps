@@ -59,7 +59,7 @@
 		manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/attack_hand(mob/user as mob)
+/obj/effect/plantsegment/attack_hand(mob/living/user)
 	.  = ..()
 	if(.)
 		return

@@ -614,7 +614,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	icon_state = "med_beacon1"
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 
-/obj/item/medevac_beacon/attack_hand(mob/user)
+/obj/item/medevac_beacon/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

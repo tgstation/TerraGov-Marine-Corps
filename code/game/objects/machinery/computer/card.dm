@@ -84,7 +84,7 @@
 /obj/machinery/computer/card/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/card/attack_hand(mob/user as mob)
+/obj/machinery/computer/card/attack_hand(mob/living/user)
 	. = ..()
 	if(.) 
 		return

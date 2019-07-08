@@ -454,7 +454,7 @@
 	. = ..()
 
 
-/obj/item/storage/belt/gun/attack_hand(mob/user)
+/obj/item/storage/belt/gun/attack_hand(mob/living/user)
 	if(current_gun && ishuman(user) && loc == user)
 		current_gun.attack_hand(user)
 	else

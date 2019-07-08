@@ -115,7 +115,7 @@
 	. = ..()
 	return attack_hand(user)
 
-/obj/machinery/flasher_button/attack_hand(mob/user as mob)
+/obj/machinery/flasher_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

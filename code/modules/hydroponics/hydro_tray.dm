@@ -624,7 +624,7 @@
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
 
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

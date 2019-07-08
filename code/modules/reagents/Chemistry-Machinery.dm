@@ -180,7 +180,7 @@
 /obj/machinery/chem_dispenser/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/chem_dispenser/attack_hand(mob/user as mob)
+/obj/machinery/chem_dispenser/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -766,7 +766,7 @@
 /obj/machinery/reagentgrinder/attack_ai(mob/user as mob)
 	return FALSE
 
-/obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
+/obj/machinery/reagentgrinder/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

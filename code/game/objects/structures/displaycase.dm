@@ -63,7 +63,7 @@
 /obj/structure/displaycase/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/structure/displaycase/attack_hand(mob/user as mob)
+/obj/structure/displaycase/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

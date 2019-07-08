@@ -119,7 +119,7 @@
 	loc = T
 
 
-/obj/item/attack_hand(mob/user)
+/obj/item/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

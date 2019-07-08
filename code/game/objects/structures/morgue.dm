@@ -49,7 +49,7 @@
 /obj/structure/morgue/attack_paw(mob/user)
 	toggle_morgue(user)
 
-/obj/structure/morgue/attack_hand(mob/user)
+/obj/structure/morgue/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -137,7 +137,7 @@
 /obj/structure/morgue_tray/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/structure/morgue_tray/attack_hand(mob/user)
+/obj/structure/morgue_tray/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -246,7 +246,7 @@
 * Crematorium switch
 */
 
-/obj/machinery/crema_switch/attack_hand(mob/user)
+/obj/machinery/crema_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -303,7 +303,7 @@
 /obj/machinery/alarm/attack_ai(mob/user)
 	return interact(user)
 
-/obj/machinery/alarm/attack_hand(mob/user)
+/obj/machinery/alarm/attack_hand(mob/living/user)
 	. = ..()
 	if (.)
 		return
