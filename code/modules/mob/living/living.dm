@@ -502,7 +502,7 @@
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
 	if(!isxeno(src)||!isanimal(src))
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(src)
@@ -517,7 +517,7 @@
 	alpha = initial(alpha)
 
 	if(!isxeno(src)|| !isanimal(src))
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.add_to_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.add_to_hud(src)

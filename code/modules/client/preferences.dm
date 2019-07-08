@@ -367,7 +367,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/job/overflow = SSjob.GetJob(SSjob.overflow_role)
 
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-			if(!(job.title in JOBS_REGULAR_ALL))
+			if(!(job.title in GLOB.jobs_regular_all))
 				continue
 
 			index += 1
@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/available_in_days = job.available_in_days(user.client)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[IN [(available_in_days)] DAYS\]</font></td></tr>"
 				continue
-			if((rank in JOBS_COMMAND) || rank == "AI")//Bold head jobs
+			if((rank in GLOB.jobs_command) || rank == "AI")//Bold head jobs
 				HTML += "<b><span class='dark'>[rank]</span></b>"
 			else
 				HTML += "<span class='dark'>[rank]</span>"
@@ -580,6 +580,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
+			ShowChoices(user)			
+			return TRUE
 
 		if("synth_name")
 			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name") as text|null

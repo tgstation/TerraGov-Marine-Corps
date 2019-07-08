@@ -68,7 +68,7 @@
 			log_combat(M, src, "[pick(attack.attack_verb)]ed")
 			msg_admin_attack("[key_name(M)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
-			M.animation_attack_on(src)
+			M.do_attack_animation(src)
 			M.flick_attack_overlay(src, "punch")
 
 			var/max_dmg = 5
@@ -97,7 +97,7 @@
 		if(INTENT_DISARM)
 			log_combat(M, src, "disarmed")
 
-			M.animation_attack_on(src)
+			M.do_attack_animation(src)
 			M.flick_attack_overlay(src, "disarm")
 
 			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")

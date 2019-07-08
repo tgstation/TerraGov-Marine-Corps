@@ -140,7 +140,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
 	if(!target_zone)

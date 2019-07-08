@@ -618,61 +618,62 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
-		var/armor = xeno_caste.armor_deflection + armor_bonus + armor_pheromone_bonus
+		var/initial_armor = armor.getRating(P.ammo.armor_type)
+		var/affecting_armor = initial_armor + armor_bonus + armor_pheromone_bonus
 		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
+		world << "<span class='debuginfo'>Initial armor is: <b>[affecting_armor]</b></span>"
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/xenomorph/charger = src
-			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
+			affecting_armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
 			#if DEBUG_CREST_DEFENSE
 			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
 			#endif
 			if(P.dir == charger.dir)
 				if(isxenoqueen(src))
-					armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_low))) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
+					affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_low))) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
-					armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_lmed))) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
+					affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_lmed))) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
 			else if(P.dir == reverse_direction(charger.dir))
-				armor += round(xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_low)) //We are facing the bullet.
+				affecting_armor += round(initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_low)) //We are facing the bullet.
 			else if(isxenocrusher(src))
-				armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_vlow))) //side armour eats a bit of shit if we're a Crusher
+				affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_vlow))) //side armour eats a bit of shit if we're a Crusher
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
+			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[affecting_armor]</b></span>")
 			#endif
 
-		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+		var/penetration = P.ammo.penetration > 0 || affecting_armor > 0 ? P.ammo.penetration : 0
 		if(P.shot_from && src == P.shot_from.sniper_target(src))
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
 			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
-		armor -= penetration
+		affecting_armor -= penetration
 
 		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
+		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[affecting_armor]</b></span>"
 		#endif
-		if(armor > 0) //Armor check. We should have some to continue.
+		if(affecting_armor > 0) //Armor check. We should have some to continue.
 			/*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
 			soaked. Small caliber firearms aren't really effective against combat armor.*/
-			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
+			var/armor_soak	 = round( ( affecting_armor / damage ) * 10 )//Setting up for next action.
 			var/critical_hit = rand(CONFIG_GET(number/combat_define/critical_chance_low),CONFIG_GET(number/combat_define/critical_chance_high))
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
-			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
+			affecting_armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
 													//This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_XENO_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
+			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[affecting_armor]</b></span>")
 			#endif
 			var/i = 0
 			if(damage)
-				while(armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
-					if(prob(armor))
+				while(affecting_armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
+					if(prob(affecting_armor))
 						armor_soak 	 = round(damage * 0.5)
-						armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
+						affecting_armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
 						damage 		-= armor_soak
 						#if DEBUG_XENO_DEFENSE
-						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
+						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[affecting_armor]</b></span>")
 						#endif
 					else break //If we failed to block the damage, it's time to get out of the loop.
 					i++

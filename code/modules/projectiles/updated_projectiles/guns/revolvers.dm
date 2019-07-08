@@ -3,7 +3,7 @@
 
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
 	fire_sound = 'sound/weapons/gun_44mag.ogg'
@@ -433,7 +433,7 @@
 	icon_state = "a_mateba"
 	item_state = "a_mateba"
 
-/obj/item/weapon/gun/revolver/mateba/cmateba
+/obj/item/weapon/gun/revolver/mateba/captain
 	name = "\improper Mateba autorevolver special"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts."
 	icon_state = "c_mateba"

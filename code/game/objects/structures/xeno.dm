@@ -457,15 +457,6 @@
 * Egg
 */
 
-#define EGG_BURST 0
-#define EGG_BURSTING 1
-#define EGG_GROWING 2
-#define EGG_GROWN 3
-#define EGG_DESTROYED 4
-
-#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
-#define EGG_MAX_GROWTH_TIME 15 SECONDS
-
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
 	name = "egg"
@@ -519,7 +510,7 @@
 		return attack_hand(M)
 
 	if(!issamexenohive(M))
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
 		Burst(TRUE)
 		return
@@ -623,7 +614,7 @@
 		return
 
 	var/mob/living/L = user
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 	visible_message("<span class='danger'>\The [src] has been [length(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with \the [I] by [user].</span>")
 	var/damage = I.force
 	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate

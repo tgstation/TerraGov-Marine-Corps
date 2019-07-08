@@ -443,7 +443,7 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>You claw \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
@@ -454,7 +454,7 @@
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
 	playsound(src, "alien_resin_break", 25)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	take_damage(40)
 
 
@@ -474,7 +474,7 @@
 	var/mob/living/L = user
 
 	user.changeNext_move(I.attack_speed)
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 	var/damage = I.force
 	var/multiplier = 1
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).

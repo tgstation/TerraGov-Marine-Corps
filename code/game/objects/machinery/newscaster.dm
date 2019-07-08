@@ -742,7 +742,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "newspaper"
-	w_class = 1	//Let's make it fit in trashbags!
+	w_class = WEIGHT_CLASS_TINY	//Let's make it fit in trashbags!
 	attack_verb = list("bapped")
 	var/screen = 0
 	var/pages = 0

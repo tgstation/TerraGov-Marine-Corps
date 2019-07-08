@@ -560,12 +560,6 @@
 /mob/living/carbon/xenomorph/proc/stealth_router(code = 0)
 	return FALSE
 
-/mob/living/carbon/xenomorph/proc/neuroclaw_router()
-	return
-
-/mob/living/carbon/xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
-	return FALSE
-
 /mob/living/carbon/xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
 		use_plasma(min(rand(1,2), plasma_stored))
@@ -722,7 +716,7 @@
 		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
-		animation_attack_on(C)
+		do_attack_animation(C)
 		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
 		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 		C.reagents.add_reagent(toxin, transfer_amount)
@@ -754,6 +748,3 @@
 
 /mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
-
-/mob/living/carbon/xenomorph/proc/hit_and_run_bonus(damage)
-	return damage

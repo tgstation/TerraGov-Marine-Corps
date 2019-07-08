@@ -365,57 +365,16 @@
 
 
 /datum/atom_hud/security
-	hud_icons = list(ID_HUD)
-
-
-/mob/living/carbon/proc/sec_hud_set_ID()
-	return
-
-
-/mob/living/carbon/human/sec_hud_set_ID()
-	var/image/holder = hud_list[ID_HUD]
-	holder.icon_state = "hudunknown"
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			holder.icon_state = "hud[ckey(I.GetJobName())]"
-
-
-/datum/atom_hud/security/advanced
-	hud_icons = list(ID_HUD, IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
-
-
-/mob/proc/sec_hud_set_implants()
-	return
-
-
-/mob/living/carbon/human/sec_hud_set_implants()
-	var/image/holder1 = hud_list[IMPTRACK_HUD]
-	var/image/holder2 = hud_list[IMPLOYAL_HUD]
-	var/image/holder3 = hud_list[IMPCHEM_HUD]
-
-	holder1.icon_state = "hudblank"
-	holder2.icon_state = "hudblank"
-	holder3.icon_state = "hudblank"
-
-	for(var/obj/item/implant/I in src)
-		if(I.implanted)
-			if(istype(I, /obj/item/implant/tracking))
-				holder1.icon_state = "hud_imp_tracking"
-			if(istype(I, /obj/item/implant/loyalty))
-				holder2.icon_state = "hud_imp_loyal"
-			if(istype(I, /obj/item/implant/chem))
-				holder3.icon_state = "hud_imp_chem"
+	hud_icons = list(IMPTRACK_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, WANTED_HUD)
 
 
 /mob/living/carbon/human/proc/sec_hud_set_security_status()
 	var/image/holder = hud_list[WANTED_HUD]
 	holder.icon_state = "hudblank"
 	var/perpname = name
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			perpname = I.registered_name
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		perpname = I.registered_name
 
 	for(var/datum/data/record/E in GLOB.datacore.general)
 		if(E.fields["name"] == perpname)
@@ -439,8 +398,8 @@
 	return
 
 
-#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS "Squad Leader", "Squad Engineer", "Squad Specialist", "Squad Corpsman", "Squad Smartgunner", "Squad Marine"
-#define SQUAD_HUD_SUPPORTED_OTHER_JOBS "Captain", "Executive Officer", "Field Commander", "Intelligence Officer", "Pilot Officer", "Chief Ship Engineer", "Corporate Liaison", "Chief Medical Officer", "Requisitions Officer", "Command Master at Arms", "Tank Crewman", "Medical Officer", "Ship Engineer", "Synthetic", "Master at Arms", "Cargo Technician", "Medical Researcher"
+#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS SQUAD_LEADER, SQUAD_ENGINEER, SQUAD_SPECIALIST, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_MARINE
+#define SQUAD_HUD_SUPPORTED_OTHER_JOBS CAPTAIN, EXECUTIVE_OFFICER, FIELD_COMMANDER, INTELLIGENCE_OFFICER, PILOT_OFFICER, CHIEF_SHIP_ENGINEER, CORPORATE_LIAISON, CHIEF_MEDICAL_OFFICER, REQUISITIONS_OFFICER, COMMAND_MASTER_AT_ARMS, TANK_CREWMAN, MEDICAL_OFFICER, SHIP_ENGINEER, SYNTHETIC, MASTER_AT_ARMS, CARGO_TECHNICIAN, MEDICAL_RESEARCHER
 
 /mob/living/carbon/human/hud_set_squad()
 	var/image/holder = hud_list[SQUAD_HUD]
@@ -451,7 +410,7 @@
 		var/squad_color = assigned_squad.color
 		var/rank = job
 		if(assigned_squad.squad_leader == src)
-			rank = "Squad Leader"
+			rank = SQUAD_LEADER
 		switch(rank)
 			if(SQUAD_HUD_SUPPORTED_SQUAD_JOBS)
 				var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")

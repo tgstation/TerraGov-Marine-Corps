@@ -36,7 +36,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 40
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -73,7 +73,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 50
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 
@@ -104,7 +104,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 50
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -136,7 +136,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 55
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_0, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0

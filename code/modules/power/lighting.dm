@@ -413,7 +413,7 @@
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
 	"<span class='danger'>You smash [src]!</span>", null, 5)
 	broken() //Smashola!
@@ -556,7 +556,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
@@ -578,7 +578,7 @@
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	name = "large light tube"
 	brightness = 15
 

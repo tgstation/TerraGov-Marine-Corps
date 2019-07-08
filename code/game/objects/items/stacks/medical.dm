@@ -3,7 +3,7 @@
 	singular_name = "medical pack"
 	amount = 10
 	max_amount = 10
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 20
 	var/heal_brute = 0

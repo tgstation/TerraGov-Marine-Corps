@@ -16,7 +16,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	flags_item = NOBLUDGEON
 	sharp = IS_SHARP_ITEM_SIMPLE
 	var/mode = SYRINGE_DRAW
@@ -136,8 +136,6 @@
 		if(SYRINGE_INJECT)
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>The syringe is empty.</span>")
-				return
-			if(istype(target, /obj/item/implantcase/chem))
 				return
 
 			if(!target.is_injectable() && !ismob(target))
@@ -320,8 +318,7 @@
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>[src] is empty.</span>")
 				return
-			if(istype(target, /obj/item/implantcase/chem))
-				return
+
 			if(!target.is_injectable() && !ismob(target))
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return

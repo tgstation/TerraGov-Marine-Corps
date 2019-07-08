@@ -110,6 +110,9 @@
 
 			if(dist > 0)
 				T.ex_act(dist)
+				for(var/i in T)
+					var/atom/movable/AM = i
+					AM?.ex_act(dist)
 
 
 			//------- TURF FIRES -------

@@ -71,7 +71,7 @@
 	return attack_hand(user)
 
 /obj/structure/fence/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
 	"<span class='danger'>You mangle [src]!</span>", \
@@ -83,7 +83,7 @@
 //Used by attack_animal
 /obj/structure/fence/proc/attack_generic(mob/living/user, damage = 0)
 	obj_integrity -= damage
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, user)
 

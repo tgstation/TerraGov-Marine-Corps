@@ -7,28 +7,48 @@
 	mechanics_text = "Toggle on to add neurotoxin to your melee slashes."
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_NEUROCLAWS
+	var/active = FALSE
 
 /datum/action/xeno_action/neuroclaws/action_activate()
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	add_cooldown()
-	X.neuro_claws = !X.neuro_claws
-	to_chat(X, "<span class='notice'>You [X.neuro_claws ? "extend" : "retract"] your claws' neuro spines.</span>")
+	active = !active
+	to_chat(X, "<span class='notice'>You [active ? "extend" : "retract"] your claws' neuro spines.</span>")
 
-	if(X.neuro_claws)
+	if(active)
 		playsound(X, 'sound/weapons/slash.ogg', 15, 1)
+		RegisterSignal(src, list(
+			COMSIG_XENOMORPH_DISARM_HUMAN,
+			COMSIG_XENOMORPH_ATTACK_HUMAN),
+			.proc/slash)
 	else
 		playsound(X, 'sound/weapons/slashmiss.ogg', 15, 1)
+		UnregisterSignal(src, list(
+			COMSIG_XENOMORPH_DISARM_HUMAN,
+			COMSIG_XENOMORPH_ATTACK_HUMAN))
+
 	update_button_icon()
 
 /datum/action/xeno_action/neuroclaws/update_button_icon()
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	button.overlays.Cut()
-	if(X.neuro_claws)
+	if(active)
 		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
 	else
 		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
 	return ..()
+
+/datum/action/xeno_action/neuroclaws/proc/slash(datum/source, mob/living/carbon/human/H, damage, list/damage_mod)
+	if(!active)
+		CRASH("neuroclaws slash callback invoked without neuroclaws active")
+	if(!H)
+		CRASH("neuroclaws slash callback invoked with a null human reference")
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
+	if(!X.check_plasma(50))
+		return
+	X.use_plasma(50)
+	H.reagents.add_reagent("xeno_toxin", X.xeno_caste.neuro_claws_amount)
+	to_chat(X, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
 
 // ***************************************
 // *********** Sting
@@ -57,7 +77,7 @@
 		return fail_activate()
 	add_cooldown()
 	X.face_atom(C)
-	X.animation_attack_on(C)
+	X.do_attack_animation(C)
 	playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	var/obj/item/alien_embryo/embryo = new(C)
 	embryo.hivenumber = X.hivenumber

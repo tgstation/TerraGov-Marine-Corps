@@ -108,28 +108,16 @@
 	data["authenticated"] = is_authenticated()
 	data["has_modify"] = !!modify
 	data["account_number"] = modify ? modify.associated_account_number : null
-	data["centcom_access"] = is_centcom()
 	data["all_centcom_access"] = null
 	data["regions"] = null
 
-	data["command_jobs"] = format_jobs(JOBS_COMMAND)
-	data["engineering_jobs"] = format_jobs(JOBS_ENGINEERING)
-	data["medical_jobs"] = format_jobs(JOBS_MEDICAL)
-	data["marine_jobs"] = format_jobs(JOBS_UNASSIGNED)
+	data["command_jobs"] = format_jobs(GLOB.jobs_command)
+	data["engineering_jobs"] = format_jobs(GLOB.jobs_engineering)
+	data["medical_jobs"] = format_jobs(GLOB.jobs_medical)
+	data["marine_jobs"] = format_jobs(GLOB.jobs_unassigned)
 	data["civilian_jobs"] = format_jobs(list("Colonist","Passenger"))
-//	data["squad_jobs"] = format_jobs(all_squad_positions)
-	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 
-	if (modify && is_centcom())
-		var/list/all_centcom_access = list()
-		for(var/access in get_all_centcom_access())
-			all_centcom_access.Add(list(list(
-				"desc" = oldreplacetext(get_centcom_access_desc(access), " ", "&nbsp"),
-				"ref" = access,
-				"allowed" = (access in modify.access) ? 1 : 0)))
-
-		data["all_centcom_access"] = all_centcom_access
-	else if (modify)
+	if(modify)
 		var/list/regions = list()
 		for(var/i = 1; i <= 7; i++)
 			var/list/accesses = list()
@@ -199,7 +187,7 @@
 				if(is_authenticated())
 					var/access_type = text2num(href_list["access_target"])
 					var/access_allowed = text2num(href_list["allowed"])
-					if(access_type in (is_centcom() ? get_all_centcom_access() : get_all_accesses()))
+					if(access_type in ALL_ACCESS)
 						modify.access -= access_type
 						if(!access_allowed)
 							modify.access += access_type
@@ -217,24 +205,20 @@
 
 				else
 					var/list/access = list()
-					if(is_centcom())
-						access = get_centcom_access(t1)
-					else
-						var/datum/job/jobdatum
-						for(var/jobtype in typesof(/datum/job))
-							var/datum/job/J = new jobtype
-							if(ckey(J.title) == ckey(t1))
-								jobdatum = J
-								break
-						if(!jobdatum)
-							to_chat(usr, "<span class='warning'>No log exists for this job: [t1]</span>")
-							return
+					var/datum/job/jobdatum
+					for(var/jobtype in typesof(/datum/job))
+						var/datum/job/J = new jobtype
+						if(ckey(J.title) == ckey(t1))
+							jobdatum = J
+							break
+					if(!jobdatum)
+						to_chat(usr, "<span class='warning'>No log exists for this job: [t1]</span>")
+						return
 
-						access = jobdatum.get_access()
+					access = jobdatum.get_access()
 
 					modify.access = access
 					modify.assignment = t1
-					modify.rank = t1
 					log_game("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 					message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 

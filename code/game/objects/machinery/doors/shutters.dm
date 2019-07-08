@@ -22,7 +22,7 @@
 		operating = TRUE
 	do_animate("opening")
 	icon_state = "shutter0"
-	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
+	playsound(loc, 'sound/machines/shutter.ogg', 25)
 	addtimer(CALLBACK(src, .proc/do_open), 1 SECONDS)
 	return TRUE
 
@@ -46,7 +46,7 @@
 	density = TRUE
 	if(visible)
 		set_opacity(TRUE)
-	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
+	playsound(loc, 'sound/machines/shutter.ogg', 25)
 	addtimer(CALLBACK(src, .proc/do_close), 1 SECONDS)
 	return TRUE
 

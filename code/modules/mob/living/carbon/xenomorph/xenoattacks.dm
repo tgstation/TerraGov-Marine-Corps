@@ -10,7 +10,7 @@
 		if(!S.melee_damage_upper)
 			S.emote("[S.friendly] [src]")
 		else
-			M.animation_attack_on(src)
+			M.do_attack_animation(src)
 			M.flick_attack_overlay(src, "punch")
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>", null, null, 5)
 			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
@@ -32,7 +32,7 @@
 			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 				return 0
 			if(health > 0)
-				M.animation_attack_on(src)
+				M.do_attack_animation(src)
 				M.flick_attack_overlay(src, "punch")
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				visible_message("<span class='danger'>\The [M] bites \the [src].</span>", \
@@ -68,7 +68,7 @@
 			if(!attack.is_usable(M))
 				return 0
 
-			M.animation_attack_on(src)
+			M.do_attack_animation(src)
 			M.flick_attack_overlay(src, "punch")
 
 			var/damage = rand(1, 3)
@@ -123,7 +123,7 @@
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
 			if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
-				M.animation_attack_on(src)
+				M.do_attack_animation(src)
 				if(issamexenohive(M))
 					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
 					"<span class='warning'>We nibble \the [src].</span>", null, 5)
@@ -149,7 +149,7 @@
 					apply_damage(damage, BRUTE)
 
 			if(INTENT_DISARM)
-				M.animation_attack_on(src)
+				M.do_attack_animation(src)
 				M.flick_attack_overlay(src, "disarm")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \

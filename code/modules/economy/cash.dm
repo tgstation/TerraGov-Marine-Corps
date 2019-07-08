@@ -11,7 +11,7 @@
 	throwforce = 1.0
 	throw_speed = 1
 	throw_range = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/access = list()
 	access = ACCESS_MARINE_CAPTAIN
 	var/worth = 0

@@ -15,7 +15,7 @@ REAGENT SCANNER
 	var/on = 0
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	item_state = "electronic"
 
 	matter = list("metal" = 150)
@@ -65,7 +65,7 @@ REAGENT SCANNER
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
 	matter = list("metal" = 200)
@@ -218,7 +218,7 @@ REAGENT SCANNER
 	var/fracture_detected = FALSE
 	var/unknown_body = 0
 	//var/infected = FALSE
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/known_implants = list(/obj/item/implant/neurostim)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/core_fracture = FALSE
@@ -510,7 +510,7 @@ REAGENT SCANNER
 	name = "analyzer"
 	icon_state = "atmos"
 	item_state = "analyzer"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
@@ -550,7 +550,7 @@ REAGENT SCANNER
 	name = "mass-spectrometer"
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
@@ -620,7 +620,7 @@ REAGENT SCANNER
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5

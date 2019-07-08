@@ -2682,7 +2682,7 @@
 	desc = "Packed full of nutrients you can't pronounce."
 	icon_state = "eat_bar"
 	bitesize = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	trash = /obj/item/trash/eat
 	//no taste, default to "something indescribable"
 	list_reagents = list("nutriment" = 3)

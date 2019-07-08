@@ -5,7 +5,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
@@ -59,8 +59,6 @@
 	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
-	sec_hud_set_ID()
-	sec_hud_set_implants()
 	sec_hud_set_security_status()
 	hud_set_squad()
 	hud_set_order()
@@ -306,44 +304,39 @@
 		return "Unknown"
 	return real_name
 
-//gets name from ID or PDA itself, ID inside PDA doesn't matter
-//Useful when player is being seen by other mobs
+
 /mob/living/carbon/human/proc/get_id_name(if_no_id = "Unknown")
 	. = if_no_id
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			return I.registered_name
-	return
+	if(!wear_id)
+		return
+
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		return I.registered_name
 
 //Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
-	//Check hands
-	var/obj/item/card/id/id_card
-	var/obj/item/held_item
-	held_item = get_active_held_item()
-	if(held_item) //Check active hand
-		id_card = held_item.GetID()
+	var/obj/item/card/id/id_card = get_active_held_item()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_held_item()
-		if(held_item)
-			id_card = held_item.GetID()
+		id_card = get_inactive_held_item()
 
-	if(id_card)
-		if(hand_first)
-			return id_card
-		else
-			. = id_card
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
 
-	//Check inventory slots
+	if(istype(id_card) && hand_first)
+		return id_card
+
 	if(wear_id)
-		id_card = wear_id.GetID()
-		if(id_card)
-			return id_card
+		id_card = wear_id
 	else if(belt)
-		id_card = belt.GetID()
-		if(id_card)
-			return id_card
+		id_card = belt
+
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
+			
+	return istype(id_card) ? id_card : null
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
@@ -533,12 +526,12 @@
 			var/mob/living/carbon/human/H = usr
 			if(mind)
 				var/obj/item/card/id/ID = get_idcard()
-				if(ID && (ID.rank in JOBS_MARINES))//still a marine, with an ID.
+				if(ID && (ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
-						if(ID && ID.rank in JOBS_MARINES)//still a marine with an ID
+						if(ID && ID.rank in GLOB.jobs_marines)//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
 									if("None") ID.assigned_fireteam = 0
@@ -555,8 +548,8 @@
 			var/modified = 0
 			var/perpname = "wot"
 			if(wear_id)
-				var/obj/item/card/id/I = wear_id.GetID()
-				if(I)
+				var/obj/item/card/id/I = get_idcard()
+				if(istype(I))
 					perpname = I.registered_name
 				else
 					perpname = name
@@ -1323,14 +1316,12 @@
 	. = ..()
 
 	var/datum/job/J = SSjob.GetJob(job)
-	J.equip(src)
-
-	if(assigned_squad)
-		change_squad(assigned_squad.name)
+	J?.assign(src)
+	change_squad(assigned_squad?.name)
 
 
 /mob/living/carbon/human/proc/change_squad(squad)
-	if(!squad || !(job in JOBS_MARINES))
+	if(!squad || !(job in GLOB.jobs_marines))
 		return FALSE
 
 	var/datum/squad/S = SSjob.squads[squad]

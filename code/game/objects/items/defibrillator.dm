@@ -8,7 +8,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 5
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 	var/ready = 0
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
@@ -66,14 +66,18 @@
 	playsound(get_turf(src), "sparks", 25, 1, 4)
 	update_icon()
 
+
 /mob/living/carbon/human/proc/get_ghost()
-	if(mind && !client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
-		for(var/mob/dead/observer/G in GLOB.player_list)
-			if(G.mind == mind)
-				var/mob/dead/observer/ghost = G
-				if(ghost && ghost.client && ghost.can_reenter_corpse)
-					return ghost
-	return 0
+	if(client) //Let's call up the correct ghost!
+		return FALSE
+	for(var/g in GLOB.observer_list)
+		var/mob/dead/observer/ghost = g
+		if(ghost.mind.current != src)
+			continue
+		if(ghost.client && ghost.can_reenter_corpse)
+			return ghost
+	return FALSE
+
 
 /mob/living/carbon/human/proc/is_revivable()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]

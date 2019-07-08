@@ -101,7 +101,7 @@
 		user.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",\
 						"<span class='danger'>You attack [M] with [src].</span>", null, 5)
 
-		user.animation_attack_on(M)
+		user.do_attack_animation(M)
 		user.flick_attack_overlay(M, "punch")
 
 		if(hitsound)

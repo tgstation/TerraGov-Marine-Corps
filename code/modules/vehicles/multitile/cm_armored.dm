@@ -568,12 +568,12 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus + FRENZY_DAMAGE_BONUS(M)
 
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
 		"<span class='danger'>You lunge at [src]!</span>")
 		return FALSE

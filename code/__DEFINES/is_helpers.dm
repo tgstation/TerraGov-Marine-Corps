@@ -50,7 +50,7 @@
 
 //Job/role helpers
 #define issurvivor(H) (H?.mind?.assigned_role == "Survivor")
-#define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role in JOBS_MARINES))
+#define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role in GLOB.jobs_marines))
 #define ispmc(H) (H?.faction == "PMC")
 
 //more carbon mobs

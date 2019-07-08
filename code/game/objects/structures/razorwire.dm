@@ -198,7 +198,7 @@
 
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	if(obj_integrity <= 0)

@@ -155,9 +155,7 @@
 /obj/effect/landmark/start{
 	name = "Squad Leader"
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "warnwhite";
 	dir = 1
@@ -184,9 +182,7 @@
 /obj/effect/landmark/start{
 	name = "Squad Specialist"
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "warnwhite";
 	dir = 1
@@ -1406,9 +1402,7 @@
 "adB" = (
 /obj/structure/table,
 /obj/item/tool/surgery/surgicaldrill,
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
-	},
+/obj/machinery/vending/nanomed,
 /obj/item/tool/surgery/FixOVein,
 /turf/open/floor{
 	icon_state = "white"
@@ -3043,8 +3037,8 @@
 /area/sulaco/showers)
 "agK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -3523,8 +3517,8 @@
 /obj/structure/bed/chair/wheelchair{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -3974,8 +3968,8 @@
 /obj/structure/bed/chair/wheelchair{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -4976,8 +4970,8 @@
 /obj/structure/table,
 /obj/item/tool/surgery/bonesetter,
 /obj/item/tool/surgery/bonegel,
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -7132,9 +7126,7 @@
 	},
 /area/sulaco/cafeteria)
 "aoJ" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -7377,8 +7369,8 @@
 	},
 /area/sulaco/engineering/engine)
 "apn" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -30
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /obj/structure/table,
 /turf/open/floor{
@@ -10732,8 +10724,8 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /turf/open/floor{
 	icon_state = "red";
@@ -14712,9 +14704,7 @@
 	},
 /area/sulaco/engineering)
 "aCd" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "yellowfull"
 	},
@@ -16293,9 +16283,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor,
 /area/sulaco/marine)
 "aFi" = (
@@ -17384,9 +17372,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 30
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "floor4"
 	},
@@ -17556,8 +17542,8 @@
 /turf/open/floor,
 /area/sulaco/marine/delta)
 "aHT" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/structure/table/reinforced{
 	icon_state = "table"
@@ -18142,9 +18128,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/bed/chair,
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
 "aJe" = (
@@ -18195,9 +18179,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/bed/chair,
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -20312,9 +20294,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -20332,9 +20312,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -20352,9 +20330,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -21625,9 +21601,7 @@
 	},
 /area/shuttle/drop2/sulaco)
 "aQD" = (
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin14"
@@ -22058,9 +22032,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -22392,9 +22364,7 @@
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -24316,9 +24286,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 1
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -24404,9 +24372,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_y = 32
-	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor{
 	icon_state = "vault"
 	},
@@ -24894,9 +24860,8 @@
 	},
 /area/shuttle/drop1/sulaco)
 "aXM" = (
-/obj/machinery/vending/wallmed1{
-	name = "Emergency NanoMed";
-	pixel_x = 30
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -26307,8 +26272,8 @@
 	},
 /area/shuttle/drop1/sulaco)
 "baX" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = -32
+/obj/machinery/vending/nanomed{
+	dir = 8
 	},
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
@@ -26319,8 +26284,8 @@
 	},
 /area/shuttle/drop1/sulaco)
 "baY" = (
-/obj/machinery/vending/wallmed1{
-	pixel_x = 32
+/obj/machinery/vending/nanomed{
+	dir = 4
 	},
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
@@ -27716,9 +27681,6 @@
 /area/sulaco/liaison/quarters)
 "beI" = (
 /obj/structure/rack,
-/obj/item/storage/lockbox/loyalty{
-	req_access = list(200)
-	},
 /obj/item/radio,
 /obj/item/storage/briefcase,
 /turf/open/floor/wood,

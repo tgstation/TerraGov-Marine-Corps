@@ -65,7 +65,7 @@
 	icon_state = "basketball"
 	item_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
-	w_class = 4 //Stops people from hiding it in their bags/pockets
+	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 
 	//Can be picked up by aliens if the fun_allowed config is enabled.
 /obj/item/toy/beach_ball/holoball/attack_paw(user as mob)

@@ -9,7 +9,7 @@
 	var/spawn_amount
 
 /obj/structure/largecrate/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 	new /obj/item/stack/sheet/wood(src)
 	spawn_stuff()
@@ -159,7 +159,7 @@
 
 
 /obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/xenomorph/X)
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	new /obj/item/stack/sheet/metal/small_stack(src)
 	var/turf/T = get_turf(src)
