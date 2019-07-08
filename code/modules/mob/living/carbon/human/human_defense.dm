@@ -71,14 +71,16 @@ Contains most of the procs that are called when a mob is attacked by something
 
 
 /mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
-	for(var/datum/limb/limb_to_check in limbs)
+	for(var/i in limbs)
+		var/datum/limb/limb_to_check = i
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
 		limb_to_check.armor = limb_to_check.armor.attachArmor(armor_item.armor)
 
 
 /mob/living/carbon/human/proc/remove_limb_armor(obj/item/armor_item)
-	for(var/datum/limb/limb_to_check in limbs)
+	for(var/i in limbs)
+		var/datum/limb/limb_to_check = i
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
 		limb_to_check.armor = limb_to_check.armor.detachArmor(armor_item.armor)
