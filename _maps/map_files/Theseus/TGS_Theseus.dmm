@@ -1031,6 +1031,7 @@
 /obj/effect/landmark/map_item,
 /obj/item/whistle,
 /obj/item/megaphone,
+/obj/item/ammo_magazine/acp,
 /turf/open/floor/almayer/mono,
 /area/almayer/living/numbertwobunks)
 "acL" = (

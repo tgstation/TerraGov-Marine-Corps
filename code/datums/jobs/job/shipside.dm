@@ -69,7 +69,7 @@ Godspeed, captain! And remember, you are not above the law."})
 /datum/job/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
-Your dutiesare to ensure marines hold when ordered, and push when they are cowering behind barricades.
+Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
 Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"})
 
