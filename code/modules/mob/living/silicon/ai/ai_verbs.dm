@@ -270,7 +270,7 @@
 
 	var/delay = 1 SECONDS
 	for(var/i in laws)
-		addtimer(CALLBACK(src, /mob/living/.say, "[radiomod] [i]"), delay)
+		addtimer(CALLBACK(src, /atom/movable.proc/say, "[radiomod] [i]"), delay)
 		delay += 1 SECONDS
 
 
