@@ -129,6 +129,7 @@
 
 /obj/item/explosive/plastique/proc/detonate()
 	if(QDELETED(plant_target))
+		qdel(src)
 		return
 	explosion(plant_target, -1, -1, 3)
 	if(istype(plant_target,/turf/closed/wall))
