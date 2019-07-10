@@ -8,18 +8,20 @@
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "syndicate=2"
+	var/armed = FALSE
 	var/timer = 10
-	var/atom/plant_target = null //which atom the plstique explosive is planted on
+	var/detonation_pending
+	var/atom/plant_target = null //which atom the plastique explosive is planted on
 
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
 	. = ..()
 
 /obj/item/explosive/plastique/attack_self(mob/user)
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 20
+		var/fumbling_time = 2 SECONDS
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
@@ -33,12 +35,6 @@
 /obj/item/explosive/plastique/afterattack(atom/target, mob/user, flag)
 	if(!flag)
 		return FALSE
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 50
-		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
-			return
 	if(istype(target, /obj/item) || isopenturf(target))
 		return FALSE
 	if(isobj(target))
@@ -54,17 +50,21 @@
 		if(!W.damageable)
 			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
 			return FALSE
-
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		var/fumbling_time = 5 SECONDS
+		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
+			return
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
 
 	if(do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		user.drop_held_item()
-		plant_target = target
-		loc = null
 		var/location
-		if (isturf(target)) location = target
-		if (isobj(target)) location = target.loc
+		location = target
+		forceMove(location)
+		armed = TRUE
 
 		if(ismob(target))
 			log_combat(user, target, "attached [src] to")
@@ -76,22 +76,67 @@
 
 		log_explosion("[key_name(user)] planted [src] at [AREACOORD(user.loc)] with [timer] second fuse.")
 
-		target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
 		"<span class='warning'>You plant [name] on [target]! Timer counting down from [timer].</span>")
-		spawn(timer*10)
-			if(plant_target && !plant_target.gc_destroyed)
-				explosion(location, -1, -1, 3)
-				if(istype(plant_target,/turf/closed/wall))
-					var/turf/closed/wall/W = plant_target
-					W.ChangeTurf(/turf/open/floor/plating)
-				else if(istype(plant_target,/obj/machinery/door))
-					qdel(plant_target)
-				else
-					plant_target.ex_act(1)
-				if(plant_target && !plant_target.gc_destroyed)
-					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
-			qdel(src)
+
+		plant_target = target
+		if(ismovableatom(plant_target))
+			var/atom/movable/T = plant_target
+			T.vis_contents += src
+		detonation_pending = addtimer(CALLBACK(src, .proc/detonate), timer*10, TIMER_STOPPABLE)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
+
+/obj/item/explosive/plastique/attack_hand(mob/living/user)
+	if(armed)
+		to_chat(user, "<font color='warning'>Disarm [src] first to remove it!</font>")
+		return
+	return ..()
+
+/obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
+	if(ismultitool(I) && armed)
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to disarm [src].</span>")
+			var/fumbling_time = 3 SECONDS
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
+		if(!do_after(user, 5 SECONDS, TRUE, plant_target, BUSY_ICON_HOSTILE))
+			return
+
+		if(ismovableatom(plant_target))
+			var/atom/movable/T = plant_target
+			T.vis_contents -= src
+			forceMove(plant_target.loc)
+		else
+			forceMove(plant_target)
+
+		deltimer(detonation_pending)
+		
+		user.visible_message("<span class='warning'>[user] disarmed [src] on [plant_target]!</span>",
+		"<span class='warning'>You disarmed [src] on [plant_target]!</span>")
+
+		if(ismob(plant_target))
+			log_combat(user, plant_target, "removed [src] from")
+			log_game("[key_name(usr)] disarmed [src] on [key_name(plant_target)].")
+		else
+			log_game("[key_name(user)] disarmed [src] on [plant_target] at [AREACOORD(plant_target.loc)].")
+
+		armed = FALSE
+		plant_target = null
+
+/obj/item/explosive/plastique/proc/detonate()
+	if(QDELETED(plant_target))
+		qdel(src)
+		return
+	explosion(plant_target, -1, -1, 3)
+	if(istype(plant_target,/turf/closed/wall))
+		var/turf/closed/wall/W = plant_target
+		W.ChangeTurf(/turf/open/floor/plating)
+	else if(istype(plant_target,/obj/machinery/door))
+		qdel(plant_target)
+	else
+		plant_target.ex_act(1)
+	qdel(src)
