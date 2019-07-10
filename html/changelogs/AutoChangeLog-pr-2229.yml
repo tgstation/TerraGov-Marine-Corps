@@ -1,0 +1,5 @@
+author: "Eskjjlj"
+delete-after: True
+changes: 
+  - rscadd: "Plastique (C4) can be disarmed using a multitool."
+  - bugfix: "Plastique (C4) blows up at the correct location now if you move it while armed."
