@@ -43,6 +43,7 @@ SUBSYSTEM_DEF(vote)
 	choices.Cut()
 	voted.Cut()
 	voting.Cut()
+	remove_action_buttons()
 
 
 /datum/controller/subsystem/vote/proc/get_result()
@@ -103,6 +104,7 @@ SUBSYSTEM_DEF(vote)
 	else
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
+	remove_action_buttons()
 	to_chat(world, "<br><font color='purple'>[text]</font>")
 	return .
 
@@ -220,6 +222,14 @@ SUBSYSTEM_DEF(vote)
 		SEND_SOUND(world, 'sound/ambience/alarm4.ogg')
 		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
 		time_remaining = round(vp/10)
+		for(var/c in GLOB.clients)
+			var/client/C = c
+			var/datum/action/innate/vote/V = new
+			if(question)
+				V.name = "Vote: [question]"
+			C.player_details.player_actions += V
+			V.give_action(C.mob)
+			generated_actions += V
 		return TRUE
 	return FALSE
 
@@ -326,3 +336,32 @@ SUBSYSTEM_DEF(vote)
 	popup.set_window_options("can_close=0")
 	popup.set_content(SSvote.interface(client))
 	popup.open(FALSE)
+
+
+/datum/controller/subsystem/vote/proc/remove_action_buttons()
+	for(var/v in generated_actions)
+		var/datum/action/innate/vote/V = v
+		if(!QDELETED(V))
+			V.remove_from_client()
+			V.remove_action(V.owner)
+	generated_actions = list()
+
+
+/datum/action/innate/vote
+	name = "Vote!"
+	icon_icon_state = "vote"
+
+
+/datum/action/innate/vote/action_activate()
+	owner.vote()
+	remove_from_client()
+	remove_action(owner)
+
+
+/datum/action/innate/vote/proc/remove_from_client()
+	if(owner.client)
+		owner.client.player_details.player_actions -= src
+	else if(owner.ckey)
+		var/datum/player_details/P = GLOB.player_details[owner.ckey]
+		if(P)
+			P.player_actions -= src
