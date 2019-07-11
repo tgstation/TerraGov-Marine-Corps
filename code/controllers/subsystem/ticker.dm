@@ -33,6 +33,7 @@ SUBSYSTEM_DEF(ticker)
 	var/list/round_end_events
 
 	var/tipped = FALSE
+	var/selected_tip
 
 	var/queue_delay = 0
 	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
@@ -304,7 +305,9 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/tip
 
-	if(prob(95) && length(ALLTIPS))
+	if(selected_tip)
+		tip = selected_tip
+	else if(prob(95) && length(ALLTIPS))
 		tip = pick(ALLTIPS)
 	else if(length(SSstrings.get_list_from_file("tips/meme")))
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
