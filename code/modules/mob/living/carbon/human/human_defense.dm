@@ -88,8 +88,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //this proc returns the armour value for a particular external organ.
 /mob/living/carbon/human/proc/getarmor_organ(datum/limb/affected_limb, type)
-	if(!type)
-		CRASH("[src] called getarmor_organ() for [affected_limb] with no type.")
 	return affected_limb.armor.getRating(type)
 
 
