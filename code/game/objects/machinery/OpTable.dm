@@ -62,11 +62,11 @@
 		to_chat(user, "<span class='information'>It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa.</span>")
 
 /obj/machinery/optable/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
 	if(buckled_mob)
 		unbuckle(user)
+		return
+	. = ..()
+	if(.)
 		return
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
