@@ -117,6 +117,16 @@
 	to_chat(src, "<span class='notice'>You will [(prefs.toggles_chat & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel.</span>")
 
 
+/client/verb/toggle_fooc_self()
+	set category = "Preferences"
+	set name = "Toggle  FOOC"
+
+	prefs.toggles_chat ^= CHAT_FOOC
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will [(prefs.toggles_chat & CHAT_FOOC) ? "now" : "no longer"] see messages on the FOOC channel.</span>")
+
+
 /client/verb/toggle_ambience()
 	set category = "Preferences"
 	set name = "Toggle Ambience"

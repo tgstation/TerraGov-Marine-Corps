@@ -18,6 +18,8 @@
 			mute_string = "OOC"
 		if(MUTE_LOOC)
 			mute_string = "LOOC"
+		if(MUTE_FOOC)
+			mute_string = "FOOC"
 		if(MUTE_PRAY)
 			mute_string = "pray"
 		if(MUTE_ADMINHELP)
@@ -295,7 +297,7 @@
 				break_counter++
 			output += "</div></div>"
 		//departments/groups that don't have command staff would throw a javascript error since there's no corresponding reference for toggle_head()
-		var/list/headless_job_lists = list("Abstract" = list("Appearance", "Emote", "OOC", "LOOC"))
+		var/list/headless_job_lists = list("Abstract" = list("Appearance", "Emote", "OOC", "LOOC", "FOOC"))
 		for(var/department in headless_job_lists)
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
 			break_counter = 0

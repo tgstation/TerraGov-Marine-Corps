@@ -314,6 +314,8 @@ directive is properly returned.
 			log_admin(log_text)
 		if(LOG_LOOC)
 			log_looc(log_text)
+		if(LOG_FOOC)
+			log_fooc(log_text)
 		if(LOG_ADMIN_PRIVATE)
 			log_admin_private(log_text)
 		if(LOG_ASAY)

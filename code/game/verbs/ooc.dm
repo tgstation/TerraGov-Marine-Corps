@@ -159,6 +159,83 @@
 			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
+/client/verb/fooc(msg as text)
+	set name = "FOOC"
+	set category = "OOC"
+
+	var/admin = check_rights(R_ADMIN, FALSE)
+
+	if(!isliving(mob))
+		return
+
+	var/mob/living/L = mob
+
+	if(L.stat == DEAD && !admin)
+		to_chat(src, "<span class='warning'>You must be alive to use FOOC.</span>")
+		return
+
+	if(IsGuestKey(key))
+		to_chat(src, "Guests may not use FOOC.")
+		return
+
+	if(!admin)
+		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
+	else
+		msg = noscript(msg)
+
+	if(!msg)
+		return
+
+	if(!(prefs.toggles_chat & CHAT_FOOC))
+		to_chat(src, "<span class='warning'>You have FOOC muted.</span>")
+		return
+
+	if(!admin)
+		if(!CONFIG_GET(flag/fooc_enabled))
+			to_chat(src, "<span class='warning'>FOOC is globally muted</span>")
+			return
+		if(prefs.muted & MUTE_FOOC)
+			to_chat(src, "<span class='warning'>You cannot use FOOC (muted).</span>")
+			return
+		if(handle_spam_prevention(msg, MUTE_FOOC))
+			return
+		if(findtext(msg, "byond://"))
+			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			log_admin_private("[key_name(usr)] has attempted to advertise in FOOC: [msg]")
+			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in FOOC: [msg]")
+			return
+
+	if(is_banned_from(ckey, "FOOC"))
+		to_chat(src, "<span class='warning'>You have been banned from FOOC.</span>")
+		return
+
+	L.log_talk(msg, LOG_FOOC)
+
+	var/message
+
+	if(admin && isobserver(L))
+		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>FOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
+		for(var/i in GLOB.mob_living_list)
+			var/mob/living/LV = i
+			if(L.faction != LV.faction)
+				continue
+			to_chat(LV, message)
+	else
+		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>FOOC:</span> [L]: <span class='message'>[msg]</span></span></font>"
+		for(var/i in GLOB.mob_living_list)
+			var/mob/living/LV = i
+			if(L.faction != LV.faction)
+				continue
+			to_chat(LV, message)
+
+	for(var/client/C in GLOB.admins)
+		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == L)
+			continue
+		if(C.prefs.toggles_chat & CHAT_FOOC)
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>FOOC: [ADMIN_TPMONTY(L)]</span>: <span class='message'>[msg]</span></span></font>")
+
+
+
 /client/verb/motd()
 	set name = "MOTD"
 	set category = "OOC"

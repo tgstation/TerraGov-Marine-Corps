@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	31
+#define SAVEFILE_VERSION_MAX	32
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,11 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 32)
+		READ_FILE(S["toggles_chat"], toggles_chat)
+		ENABLE_BITFIELD(toggles_chat, CHAT_FOOC)
+		WRITE_FILE(S["toggles_chat"], toggles_chat)
 
 	if(savefile_version < 31)
 		WRITE_FILE(S["key_bindings"], null)

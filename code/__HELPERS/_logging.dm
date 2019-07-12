@@ -103,6 +103,11 @@
 		WRITE_LOG(GLOB.world_game_log, "LOOC: [text]")
 
 
+/proc/log_fooc(text)
+	if(CONFIG_GET(flag/log_fooc))
+		WRITE_LOG(GLOB.world_game_log, "FOOC: [text]")
+
+
 /proc/log_hivemind(text)
 	if(CONFIG_GET(flag/log_hivemind))
 		WRITE_LOG(GLOB.world_game_log, "HIVEMIND: [text]")

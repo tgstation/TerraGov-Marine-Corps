@@ -170,6 +170,26 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
 
 
+/datum/admins/proc/toggle_fooc()
+	set category = "Server"
+	set name = "Toggle FOOC"
+	set desc = "Toggles FOOC for non-admins."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(CONFIG_GET(flag/fooc_enabled))
+		CONFIG_SET(flag/fooc_enabled, FALSE)
+		to_chat(world, "<span class='boldnotice'>FOOC channel has been enabled!</span>")
+	else
+		CONFIG_SET(flag/fooc_enabled, TRUE)
+		to_chat(world, "<span class='boldnotice'>FOOC channel has been disabled!</span>")
+
+
+	log_admin("[key_name(usr)] has [CONFIG_GET(flag/fooc_enabled) ? "enabled" : "disabled"] FOOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/fooc_enabled) ? "enabled" : "disabled"] FOOC.")
+
+
 /datum/admins/proc/toggle_deadchat()
 	set category = "Server"
 	set name = "Toggle Deadchat"

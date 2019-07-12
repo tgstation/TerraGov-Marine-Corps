@@ -393,6 +393,7 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/shutdown_server,
 	/datum/admins/proc/toggle_ooc,
 	/datum/admins/proc/toggle_looc,
+	/datum/admins/proc/toggle_fooc,
 	/datum/admins/proc/toggle_deadchat,
 	/datum/admins/proc/toggle_deadooc,
 	/datum/admins/proc/start,

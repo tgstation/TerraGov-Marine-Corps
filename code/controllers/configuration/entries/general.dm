@@ -82,6 +82,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_looc
 
+/datum/config_entry/flag/log_fooc
+
 /datum/config_entry/flag/log_access
 
 /datum/config_entry/flag/log_say
@@ -140,6 +142,8 @@ Administrative related.
 /datum/config_entry/flag/autooocmute
 
 /datum/config_entry/flag/looc_enabled
+
+/datum/config_entry/flag/fooc_enabled
 
 /datum/config_entry/number/lobby_countdown
 	config_entry_value = 180
