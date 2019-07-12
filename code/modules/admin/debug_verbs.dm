@@ -222,13 +222,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/dat
 
-	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
+	var/choice = input("Which list?") as null|anything in list("Players", "Observers", "New Players", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	if(!choice)
 		return
 
 	switch(choice)
 		if("Players")
 			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Observers")
+			for(var/i in GLOB.observer_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("New Players")
+			for(var/i in GLOB.new_player_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Admins")
@@ -244,6 +252,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Living Mobs")
+			for(var/i in GLOB.mob_living_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Alive Mobs")
 			for(var/i in GLOB.alive_mob_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
@@ -369,34 +381,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/choice = input("Check contents of", "Check Contents") as null|anything in list("Key", "Cliented Mob", "Mob")
-	if(!choice)
-		return
-
-	var/mob/living/L
-	switch(choice)
-		if("Key")
-			var/client/C = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			L = C.mob
-		if("Cliented Mob")
-			var/mob/CM = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortNames(GLOB.player_list)
-			if(!CM)
-				return
-			L = CM
-		if("Mob")
-			var/mob/M = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!M)
-				return
-			L = M
-
+	var/mob/living/L = usr.client.holder.apicker("Check contents of:", "Check Contents", list(APICKER_CLIENT, APICKER_LIVING))
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
-	var/dat
-
+	var/dat = "<br>"
 	for(var/i in L.get_contents())
 		var/atom/A = i
 		dat += "[A] [ADMIN_VV(A)]<br>"
