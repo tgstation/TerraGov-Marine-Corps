@@ -117,7 +117,6 @@
 #define ABOVE_ALL_MOB_LAYER 4.5
 
 //#define FLY_LAYER 5
-#define FLY_PLANE 5
 
 #define RIPPLE_LAYER 5.1
 

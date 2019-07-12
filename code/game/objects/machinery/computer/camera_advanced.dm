@@ -160,9 +160,6 @@
 
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
-	plane = FLY_PLANE
-	layer = FLY_LAYER
-
 	ai_detector_visible = FALSE
 	var/sprint = 10
 	var/cooldown = 0
