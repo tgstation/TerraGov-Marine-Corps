@@ -108,6 +108,13 @@
 /obj/effect/forcefield/fog/attack_animal(M)
 	return attack_hand(M)
 
+
+/obj/effect/forcefield/fog/xeno/CanPass(atom/movable/mover, turf/target)
+	if(isxeno(mover))
+		return TRUE
+	return FALSE
+
+
 //used to control opacity of multitiles doors
 /obj/effect/opacifier
 	density = FALSE
