@@ -910,7 +910,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
-/datum/admins/proc/release()
+/datum/admins/proc/release(obj/O in world)
 	set category = null
 	set name = "Release Obj"
 
@@ -922,7 +922,7 @@
 	if(!M.control_object)
 		return
 
-	var/obj/O = M.control_object
+	var/obj/CO = M.control_object
 
 	var/datum/player_details/P = GLOB.player_details[M.ckey]
 
@@ -937,8 +937,8 @@
 	M.reset_perspective()
 	M.control_object = null
 
-	log_admin("[key_name(usr)] has released [O] ([O.type]).")
-	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
+	log_admin("[key_name(usr)] has released [CO] ([CO.type]).")
+	message_admins("[ADMIN_TPMONTY(usr)] has released [CO] ([CO.type]).")
 
 
 /datum/admins/proc/possess(obj/O in world)
