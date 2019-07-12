@@ -226,16 +226,24 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has cancelled the early round start.")
 		return
 
-	if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "No")
+	var/msg = "has started the round early."
+
+	if(SSticker.setup_failed)
+		if(alert("Previous setup failed. Would you like to try again, bypassing the checks? Win condition checking will also be paused.", "Start Round", "Yes", "No") != "Yes")
+			return
+		msg += " Bypassing roundstart checks."
+		SSticker.bypass_checks = TRUE
+		SSticker.roundend_check_paused = TRUE
+
+	else if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "No")
 		return
 
-	var/startup_msg = ""
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		startup_msg = " The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again."
+		msg += " The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again."
 
 	SSticker.start_immediately = TRUE
-	log_admin("[key_name(usr)] has started the round early.[startup_msg]")
-	message_admins("[ADMIN_TPMONTY(usr)] has started the round early.[startup_msg]")
+	log_admin("[key_name(usr)] [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] [msg]")
 
 
 /datum/admins/proc/toggle_join()
@@ -541,5 +549,5 @@
 
 	SSticker.roundend_check_paused = !SSticker.roundend_check_paused
 
-	log_admin("[key_name(usr)] has [SSticker.roundend_check_paused ? "enabled" : "disabled"] gamemode end condition checking.")
-	message_admins("[ADMIN_TPMONTY(usr)] has [SSticker.roundend_check_paused ? "enabled" : "disabled"] gamemode end condition checking.")
+	log_admin("[key_name(usr)] has [SSticker.roundend_check_paused ? "disabled" : "enabled"] gamemode end condition checking.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [SSticker.roundend_check_paused ? "disabled" : "enabled"] gamemode end condition checking.")
