@@ -37,7 +37,7 @@
 	if(!istype(user) || !isturf(user.loc) || user.incapacitated())
 		return FALSE
 
-	if(!CONFIG_GET(flag/unlimited_rotate_speed))
+	if(!CONFIG_GET(flag/fun_allowed))
 		if(world.time <= user.next_move)
 			return FALSE
 		user.next_move = world.time + 3

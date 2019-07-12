@@ -49,8 +49,6 @@ Basics, the most important.
 
 /datum/config_entry/flag/guest_ban
 
-/datum/config_entry/flag/continous_rounds
-
 /*
 Administrative related.
 */
@@ -109,12 +107,6 @@ Administrative related.
 /datum/config_entry/flag/log_manifest
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
-
-/datum/config_entry/flag/admin_irc
-
-/datum/config_entry/flag/guest_jobban
-
-/datum/config_entry/flag/usewhitelist
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
@@ -212,13 +204,6 @@ Voting
 	config_entry_value = 600
 	integer = FALSE
 	min_val = 0
-
-/datum/config_entry/flag/vote_no_default
-
-/datum/config_entry/flag/vote_no_dead
-
-/datum/config_entry/number/vote_autogamemode_timeleft
-	config_entry_value = 999999999
 
 /*
 Master controller and performance related.
