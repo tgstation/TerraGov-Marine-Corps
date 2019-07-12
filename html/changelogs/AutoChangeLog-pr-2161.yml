@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - rscadd: "The AI is now playable, also fixed the last interaction issues with certain machines."
