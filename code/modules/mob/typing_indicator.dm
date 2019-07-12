@@ -2,14 +2,11 @@
 	if(stat != CONSCIOUS)
 		return
 
-	var/image/I
-
 	if(emoting)
-		I = image('icons/mob/talk.dmi', src, "emoting")
+		typing_indicator = image('icons/mob/talk.dmi', src, "emoting")
 	else
-		I = image('icons/mob/talk.dmi', src, "typing")
+		typing_indicator = image('icons/mob/talk.dmi', src, "typing")
 
-	typing_indicator = I
 	add_emote_overlay(typing_indicator, remove_delay = NONE)
 
 
