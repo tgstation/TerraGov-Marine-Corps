@@ -36,14 +36,14 @@
 
 	var/failed
 	if(prob(75))
-		T.KnockDown(rand(0.5,3))
+		T.knock_down(rand(0.5,3))
 	else
-		src.KnockDown(rand(2,4))
+		src.knock_down(rand(2,4))
 		failed = 1
 
 	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1)
 	if(failed)
-		src.KnockDown(rand(2,4))
+		src.knock_down(rand(2,4))
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( is_blind(O) )))
@@ -95,7 +95,7 @@
 		to_chat(src, "<span class='warning'>You miss!</span>")
 		return
 
-	T.KnockDown(5)
+	T.knock_down(5)
 
 	if(T == src || T.anchored)
 		return 0

@@ -426,7 +426,7 @@
 	if(!sterile && !issynth(user) && !isIPC(user))
 		if(user.disable_lights(sparks = TRUE, silent = TRUE)) //Knock out the lights so the victim can't be cam tracked/spotted as easily
 			user.visible_message("<span class='danger'>[user]'s lights flicker and short out in a struggle!</span>", "<span class='danger'>Your equipment's lights flicker and short out in a struggle!</span>")
-		user.KnockOut(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
+		user.knock_out(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
 	flags_item |= NODROP
 	attached = TRUE
 	GoIdle(FALSE, TRUE)

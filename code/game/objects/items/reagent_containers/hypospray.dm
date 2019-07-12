@@ -122,7 +122,7 @@
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
 		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && ((M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP)))
-			user.KnockDown(3)
+			user.knock_down(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \

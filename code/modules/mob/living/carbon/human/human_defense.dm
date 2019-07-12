@@ -393,7 +393,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
 	stunned += stun_duration
-	KnockDown(stun_duration)
+	knock_down(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
 	if(!ear_deaf)
 		ear_deaf += stun_duration * 20  //Deafens them temporarily

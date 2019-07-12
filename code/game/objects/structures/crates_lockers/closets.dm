@@ -478,7 +478,7 @@
 
 
 /mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
-	Stun(origin.closet_stun_delay)//Action delay when going out of a closet
+	stun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying && stunned)
 		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!",
 		"<span class='warning'>You get out of [origin] and get your bearings!")

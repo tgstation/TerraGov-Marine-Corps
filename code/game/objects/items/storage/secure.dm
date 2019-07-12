@@ -161,7 +161,7 @@
 		if ((CLUMSY in user.mutations) && prob(50))
 			to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
 			user.take_limb_damage(10)
-			user.KnockOut(2)
+			user.knock_out(2)
 			return
 
 		log_combat(user, M, "attack", src, "(INTENT: [uppertext(user.a_intent)])")
@@ -177,9 +177,9 @@
 						return
 					var/time = rand(2, 6)
 					if (prob(75))
-						H.KnockOut(time)
+						H.knock_out(time)
 					else
-						H.Stun(time)
+						H.stun(time)
 					if(H.stat != 2)	H.stat = 1
 					for(var/mob/O in viewers(H, null))
 						O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", H), 1, "<span class='warning'> You hear someone fall.</span>", 2)

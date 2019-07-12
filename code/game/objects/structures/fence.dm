@@ -155,12 +155,12 @@
 			if(GRAB_AGGRESSIVE)
 				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 				if(prob(50))
-					M.KnockDown(1)
+					M.knock_down(1)
 				M.apply_damage(10)
 				obj_integrity -= 25
 			if(GRAB_NECK)
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
-				M.KnockDown(5)
+				M.knock_down(5)
 				M.apply_damage(20)
 				obj_integrity -= 50
 

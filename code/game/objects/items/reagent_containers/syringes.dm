@@ -69,7 +69,7 @@
 		var/mob/M = target
 		var/mob/living/L = user
 		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
-			L.KnockDown(3)
+			L.knock_down(3)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \

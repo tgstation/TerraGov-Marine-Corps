@@ -133,7 +133,7 @@
 
 		else if(user.grab_level >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.KnockDown(5)
+			M.knock_down(5)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return
@@ -276,7 +276,7 @@
 			var/def_zone = ran_zone()
 			armor_block = C.run_armor_check(def_zone, "melee")
 			C.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_HIGH, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_HIGH), BRUTE, def_zone, armor_block, null, 1) //pouncing into razor wire is especially ouchy
-			C.KnockDown(1)
+			C.knock_down(1)
 			razorwire_tangle(C)
 	return ..()
 

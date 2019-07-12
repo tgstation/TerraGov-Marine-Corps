@@ -186,7 +186,7 @@
 		else*/
 		msg += "[t_He] [t_is] wearing [icon2html(wear_id, user)] \a [wear_id].\n"
 
-	//Jitters
+	//jitters
 	if(stat != DEAD)
 		if(jitteriness >= 300)
 			msg += "<span class='warning'><B>[t_He] [t_is] convulsing violently!</B></span>\n"

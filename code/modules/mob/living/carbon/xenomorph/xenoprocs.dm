@@ -311,13 +311,13 @@
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
 						var/mob/living/carbon/human/H = M
 						if(H.check_shields(15, "the pounce")) //Human shield block.
-							KnockDown(3)
+							knock_down(3)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
-					M.KnockDown(1)
+					M.knock_down(1)
 					step_to(src, M)
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
@@ -605,7 +605,7 @@
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
 	take_overall_damage(null, damage, null, null, null, armor_block)
 	emote("scream")
-	KnockDown(1)
+	knock_down(1)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	return

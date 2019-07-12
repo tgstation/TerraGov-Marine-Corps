@@ -53,7 +53,7 @@
 		C.visible_message("<span class='danger'>[C] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
 		C.flash_eyes(1, TRUE)
 		C.stunned += 10
-		C.KnockDown(10)
+		C.knock_down(10)
 		C.apply_damage(100, HALLOSS, part)
 		C.apply_damage(5, BURN, part, 0, 0, 0, src)
 

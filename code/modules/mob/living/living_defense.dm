@@ -23,8 +23,8 @@
 	flash_pain()
 
 	if (stun_amount)
-		Stun(stun_amount)
-		KnockDown(stun_amount)
+		stun(stun_amount)
+		knock_down(stun_amount)
 		apply_effect(STUTTER, stun_amount)
 		apply_effect(EYE_BLUR, stun_amount)
 
@@ -192,7 +192,7 @@
 
 /mob/living/proc/resist_fire(datum/source)
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	KnockDown(4, TRUE)
+	knock_down(4, TRUE)
 	visible_message("<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>", \
 	"<span class='notice'>You stop, drop, and roll!</span>", null, 5)
 	if(fire_stacks <= 0)
