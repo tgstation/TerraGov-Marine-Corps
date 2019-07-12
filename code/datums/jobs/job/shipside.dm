@@ -690,3 +690,47 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel
+
+
+/datum/job/ai
+	title = "AI"
+	faction = "Marine"
+	total_positions = 1
+	selection_color = "#92c255"
+	supervisors = "your laws"
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
+	exp_type_department = EXP_TYPE_SILICON
+	display_order = JOB_DISPLAY_ORDER_AI
+
+
+/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
+	if(!length(GLOB.ai_spawn))
+		CRASH("attempted to spawn an AI with no landmark set")
+
+	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
+	H.mind.transfer_to(AI, TRUE)
+	qdel(H)
+
+
+/datum/job/ai/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
+	. = ..()
+
+	if(!isAI(L) || !latejoin)
+		return
+
+	var/mob/living/silicon/ai/AI = L
+	announce(AI)
+
+
+/datum/job/ai/override_latejoin_spawn()
+	return TRUE
+
+
+/datum/job/ai/announce(mob/living/silicon/ai/AI)
+	. = ..()
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(AI)]."))
+
+
+/datum/job/ai/config_check()
+	return CONFIG_GET(flag/allow_ai)

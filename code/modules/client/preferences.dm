@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	onclose(user, "preferences_window", src)
 
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 16, list/splitJobs, widthPerColumn = 305, height = 620)
+/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs, widthPerColumn = 305, height = 620)
 	if(!SSjob)
 		return
 
