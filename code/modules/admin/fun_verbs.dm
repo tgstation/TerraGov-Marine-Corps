@@ -910,7 +910,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
-/datum/admins/proc/release()
+/datum/admins/proc/release(obj/OB in world)
 	set category = null
 	set name = "Release Obj"
 
