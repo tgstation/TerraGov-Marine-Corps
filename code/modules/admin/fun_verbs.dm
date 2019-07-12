@@ -984,11 +984,10 @@
 		IF.ghostize()
 		return
 
-	if(is_mentor(C) && !isobserver(C.mob))
-		to_chat(C, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
-		return
-
 	if(!isobserver(C.mob))
+		if(is_mentor(C))
+			to_chat(C, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
+			return
 		C.holder.admin_ghost()
 
 	var/mob/living/L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
