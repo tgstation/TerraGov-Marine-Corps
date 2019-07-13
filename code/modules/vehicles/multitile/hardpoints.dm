@@ -278,10 +278,7 @@ Currently only has the tank hardpoints
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	if(!CONFIG_GET(flag/tank_mouth_noise))
-		playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
-	else
-		playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1_joke.ogg', 'sound/weapons/tank_cannon_fire2_joke.ogg'), 60, 1)
+	playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/primary/minigun
@@ -323,16 +320,15 @@ Currently only has the tank hardpoints
 	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
-	var/joke = CONFIG_GET(flag/tank_mouth_noise) ? TRUE : FALSE
-	var/S = joke ? 'sound/weapons/tank_minigun_start_joke.ogg' : 'sound/weapons/tank_minigun_start.ogg'
+	var/S = 'sound/weapons/tank_minigun_start.ogg'
 	if(world.time - next_use <= 5)
 		chained++ //minigun spins up, minigun spins down
-		S = joke ? 'sound/weapons/tank_minigun_loop_joke.ogg' : 'sound/weapons/tank_minigun_loop.ogg'
+		S = 'sound/weapons/tank_minigun_loop.ogg'
 	else if(world.time - next_use >= 15) //Too long of a delay, they restart the chain
 		chained = 1
 	else //In between 5 and 15 it slows down but doesn't stop
 		chained--
-		S = joke ? 'sound/weapons/tank_minigun_stop_joke.ogg' : 'sound/weapons/tank_minigun_stop.ogg'
+		S = 'sound/weapons/tank_minigun_stop.ogg'
 	if(chained <= 0)
 		chained = 1
 
@@ -385,10 +381,7 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	if(!CONFIG_GET(flag/tank_mouth_noise))
-		playsound(get_turf(src), 'sound/weapons/tank_flamethrower.ogg', 60, 1)
-	else
-		playsound(get_turf(src), 'sound/weapons/tank_flamethrower_joke.ogg', 60, 1)
+	playsound(get_turf(src), 'sound/weapons/tank_flamethrower.ogg', 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/secondary/towlauncher
@@ -486,10 +479,7 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	if(!CONFIG_GET(flag/tank_mouth_noise))
-		playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')), 60, 1)
-	else
-		playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1_joke.ogg', 'sound/weapons/gun_smartgun2_joke.ogg', 'sound/weapons/gun_smartgun3_joke.ogg')), 60, 1)
+	playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')), 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/secondary/grenade_launcher
@@ -526,10 +516,7 @@ Currently only has the tank hardpoints
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	if(!CONFIG_GET(flag/tank_mouth_noise))
-		playsound(get_turf(src), 'sound/weapons/gun_m92_attachable.ogg', 60, 1)
-	else
-		playsound(get_turf(src), 'sound/weapons/gun_m92_attachable_joke.ogg', 60, 1)
+	playsound(get_turf(src), 'sound/weapons/gun_m92_attachable.ogg', 60, 1)
 	ammo.current_rounds--
 /////////////////////
 // SECONDARY SLOTS // END
@@ -575,10 +562,7 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	if(!CONFIG_GET(flag/tank_mouth_noise))
-		playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire.ogg', 60, 1)
-	else
-		playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire_joke.ogg', 60, 1)
+	playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire.ogg', 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/support/smoke_launcher/get_icon_image(x_offset, y_offset, new_dir)
