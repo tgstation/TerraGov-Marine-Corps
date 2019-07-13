@@ -113,9 +113,9 @@
 /obj/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
-		return
+		return FALSE
 	if(can_buckle) 
-		manual_unbuckle(user)
+		return manual_unbuckle(user)
 
 
 /obj/proc/handle_rotation()
@@ -135,17 +135,32 @@
 	handle_rotation()
 	return buckled_mob
 
-/obj/proc/unbuckle()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
-			buckled_mob.buckled = null
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_canmove()
 
-			var/M = buckled_mob
-			buckled_mob = null
-			UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
-			afterbuckle(M)
+/obj/proc/unbuckle(mob/user, silent = TRUE)
+	if(!buckled_mob || buckled_mob.buckled != src)
+		CRASH("[src] called unbuckle() with [user ? user : "no"] user and [buckled_mob ? (buckled_mob.buckled ? " with [buckled_mob.buckled] as buckled_mob.buckled" : "no buckled_mob.buckled") : "no buckled_mob"].")
+	buckled_mob.buckled = null
+	buckled_mob.anchored = initial(buckled_mob.anchored)
+	buckled_mob.update_canmove()
+
+	if(!silent)
+		if(buckled_mob == user)
+			buckled_mob.visible_message(
+			"<span class='notice'>[buckled_mob.name] was unbuckled by [user]!</span>",
+			"<span class='notice'>You were unbuckled from [src] by [user].</span>",
+			"<span class='notice'>You hear metal clanking.</span>"
+			)
+		else
+			buckled_mob.visible_message(
+			"<span class='notice'>[buckled_mob.name] was unbuckled by [user]!</span>",
+			"<span class='notice'>You were unbuckled from [src] by [user].</span>",
+			"<span class='notice'>You hear metal clanking.</span>"
+			)
+
+	var/buckled_mob_backup = buckled_mob
+	buckled_mob = null
+	UnregisterSignal(buckled_mob_backup, COMSIG_LIVING_DO_RESIST)
+	afterbuckle(buckled_mob_backup)
 
 
 /obj/proc/resisted_against(datum/source, mob/user) //COMSIG_LIVING_DO_RESIST
@@ -154,23 +169,11 @@
 	manual_unbuckle(user)
 
 
-/obj/proc/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			if(buckled_mob != user)
-				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] was unbuckled by [user.name]!</span>",\
-					"<span class='notice'>You were unbuckled from [src] by [user.name].</span>",\
-					"<span class='notice'>You hear metal clanking.</span>")
-			else
-				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] unbuckled [buckled_mob.p_them()]self!</span>",\
-					"<span class='notice'>You unbuckle yourself from [src].</span>",\
-					"<span class='notice'>You hear metal clanking</span>")
-			unbuckle()
-			return 1
-
-	return 0
+/obj/proc/manual_unbuckle(mob/user)
+	if(!buckled_mob || buckled_mob.buckled != src)
+		return FALSE
+	unbuckle(user, FALSE)
+	return TRUE
 
 
 //trying to buckle a mob
