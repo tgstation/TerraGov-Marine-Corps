@@ -178,7 +178,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[map_name]</a></b>"
 				else
 					s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
-			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
+			s += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
 			s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
