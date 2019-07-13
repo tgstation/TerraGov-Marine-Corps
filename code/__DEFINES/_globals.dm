@@ -65,5 +65,5 @@ GLOBAL_LIST_EMPTY(string_files)
 #define GLOBAL_LIST_FILE_STRING(X, Filename) GLOBAL_LIST(X); \
 /datum/controller/global_vars/InitGlobal##X(){\
 	..();\
-	GLOB.string_files[#X] = #Filename;\
+	GLOB.string_files[#X] = Filename;\
 }
