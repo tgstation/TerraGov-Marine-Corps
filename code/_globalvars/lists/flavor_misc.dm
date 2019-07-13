@@ -151,15 +151,11 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 	"Testing Range", "Toxins", "Dormitories", "Virology",
 	"Xenobiology", "Law Office","Detective's Office"))
 
-GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
+GLOBAL_LIST_FILE_STRING(greek_letters, "strings/greek_letters.txt")
 
-GLOBAL_LIST_INIT(station_suffixes, world.file2list("strings/station_suffixes.txt"))
+GLOBAL_LIST_FILE_STRING(phonetic_alphabet, "strings/phonetic_alphabet.txt")
 
-GLOBAL_LIST_INIT(greek_letters, world.file2list("strings/greek_letters.txt"))
-
-GLOBAL_LIST_INIT(phonetic_alphabet, world.file2list("strings/phonetic_alphabet.txt"))
-
-GLOBAL_LIST_INIT(numbers_as_words, world.file2list("strings/numbers_as_words.txt"))
+GLOBAL_LIST_FILE_STRING(numbers_as_words, "strings/numbers_as_words.txt")
 
 /proc/generate_number_strings()
 	var/list/L[198]
@@ -167,9 +163,5 @@ GLOBAL_LIST_INIT(numbers_as_words, world.file2list("strings/numbers_as_words.txt
 		L += "[i]"
 		L += "\Roman[i]"
 	return L
-
-GLOBAL_LIST_INIT(station_numerals, greek_letters + phonetic_alphabet + numbers_as_words + generate_number_strings())
-
-GLOBAL_LIST_INIT(admiral_messages, list("Do you know how expensive these stations are?","Stop wasting my time.","I was sleeping, thanks a lot.","Stand and fight you cowards!","You knew the risks coming in.","Stop being paranoid.","Whatever's broken just build a new one.","No.", "<i>null</i>","<i>Error: No comment given.</i>", "It's a good day to die!"))
 
 GLOBAL_LIST_INIT(genders, list(MALE, FEMALE, NEUTER))
