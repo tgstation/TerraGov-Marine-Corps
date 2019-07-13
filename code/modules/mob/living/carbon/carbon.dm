@@ -154,7 +154,7 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(VARSET_CALLBACK(src, cooldowns[COOLDOWN_PUKE], FALSE), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
