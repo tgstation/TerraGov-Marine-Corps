@@ -14,6 +14,8 @@
 	var/last_dam = -1
 	var/supported = FALSE
 
+	var/datum/armor/armor
+
 	var/display_name
 	var/list/wounds = list()
 	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
@@ -62,9 +64,8 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
+	armor = getArmor()
 	return ..()
-
-
 
 /*
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
