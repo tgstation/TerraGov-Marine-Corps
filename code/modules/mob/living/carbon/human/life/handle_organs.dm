@@ -10,7 +10,7 @@
 		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
 			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
 
-	if(species.species_flags & IS_SYNTHETIC)
+	if(issynth(src))
 		nutrition = 350 //synthetics are never hungry
 
 	else
