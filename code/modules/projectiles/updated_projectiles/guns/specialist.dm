@@ -378,7 +378,6 @@
 			return FALSE
 
 /obj/item/weapon/gun/smartgun/load_into_chamber(mob/user)
-//	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
 /obj/item/weapon/gun/smartgun/reload_into_chamber(mob/living/carbon/user)
@@ -809,7 +808,6 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/load_into_chamber(mob/user)
-//	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
 

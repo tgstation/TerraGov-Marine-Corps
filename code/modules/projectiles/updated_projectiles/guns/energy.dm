@@ -238,7 +238,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
@@ -260,7 +260,7 @@
 	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
 	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
 	*/
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
 
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
