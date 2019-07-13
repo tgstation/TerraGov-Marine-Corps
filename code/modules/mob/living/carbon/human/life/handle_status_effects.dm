@@ -9,8 +9,7 @@
 
 	//Periodically double-check embedded_flag
 	if(embedded_flag && !(life_tick % 10))
-		var/list/L = get_visible_implants(0)
-		if(!length(L))
+		if(!get_visible_implants(0))
 			embedded_flag = FALSE
 
 	//If you're dirty, your gloves will become dirty, too.
