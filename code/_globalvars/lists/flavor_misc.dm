@@ -153,10 +153,6 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 
 GLOBAL_LIST_FILE_STRING(greek_letters, "strings/greek_letters.txt")
 
-GLOBAL_LIST_FILE_STRING(phonetic_alphabet, "strings/phonetic_alphabet.txt")
-
-GLOBAL_LIST_FILE_STRING(numbers_as_words, "strings/numbers_as_words.txt")
-
 /proc/generate_number_strings()
 	var/list/L[198]
 	for(var/i in 1 to 99)
