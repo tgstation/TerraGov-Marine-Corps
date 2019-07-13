@@ -6,5 +6,6 @@ SUBSYSTEM_DEF(strings)
 /datum/controller/subsystem/strings/Initialize(timeofday)
 	for(var/i in GLOB.string_files)
 		GLOB.vars[i] = file2list(GLOB.string_files[i])
+		CHECK_TICK
 
 	return ..()
