@@ -58,3 +58,12 @@
 
 //Create an typed null global
 #define GLOBAL_DATUM(X, Typepath) GLOBAL_RAW(Typepath/##X); GLOBAL_UNMANAGED(X)
+
+GLOBAL_LIST_EMPTY(string_files)
+
+//Create a global to be populated with a file during init
+#define GLOBAL_LIST_FILE_STRING(X, Filename) GLOBAL_LIST(X); \
+/datum/controller/global_vars/InitGlobal##X(){\
+	..();\
+	GLOB.string_files[#X] = #Filename;\
+}

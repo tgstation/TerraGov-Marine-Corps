@@ -1,7 +1,7 @@
-GLOBAL_LIST_EMPTY(metatips)
-GLOBAL_LIST_EMPTY(marinetips)
-GLOBAL_LIST_EMPTY(xenotips)
-GLOBAL_LIST_EMPTY(joketips)
+GLOBAL_LIST_FILE_STRING(metatips, "strings/tips/meta.txt")
+GLOBAL_LIST_FILE_STRING(marinetips, "strings/tips/marine.txt")
+GLOBAL_LIST_FILE_STRING(xenotips, "strings/tips/xeno.txt")
+GLOBAL_LIST_FILE_STRING(joketips, "strings/tips/meme.txt")
 #define ALLTIPS (GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
