@@ -359,6 +359,8 @@ SUBSYSTEM_DEF(vote)
 
 
 /datum/action/innate/vote/proc/remove_from_client()
+	if(!owner)
+		return
 	if(owner.client)
 		owner.client.player_details.player_actions -= src
 	else if(owner.ckey)
