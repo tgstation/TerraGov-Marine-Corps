@@ -13,10 +13,6 @@
 	return INITIALIZE_HINT_QDEL
 
 
-/obj/effect/landmark/lv624/fog_blocker/xeno
-	name = "xeno fog blocker"
-
-
 /obj/effect/landmark/xeno_tunnel
 	name = "xeno tunnel"
 	icon_state = "tunnel_spawn"

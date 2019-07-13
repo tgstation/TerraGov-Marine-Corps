@@ -291,7 +291,7 @@
 		while(GLOB.fog_blocker_locations.len)
 			T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
 			GLOB.fog_blocker_locations.len--
-			new /obj/effect/forcefield/fog/xeno(T)
+			new /obj/effect/forcefield/fog(T)
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 50 MINUTES)

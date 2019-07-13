@@ -109,7 +109,7 @@
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/xeno/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
 	if(isxeno(mover))
 		return TRUE
 	return FALSE
