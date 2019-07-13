@@ -67,17 +67,10 @@
 //=================================================
 
 //disabilities
-#define NEARSIGHTED		(1<<0)
-#define EPILEPSY		(1<<1)
-#define COUGHING		(1<<2)
-#define TOURETTES		(1<<3)
-#define NERVOUS			(1<<4)
-//=================================================
-
-//sdisabilities
 #define BLIND			(1<<0)
 #define MUTE			(1<<1)
 #define DEAF			(1<<2)
+#define NEARSIGHTED		(1<<3)
 //=================================================
 
 //mob/var/stat things

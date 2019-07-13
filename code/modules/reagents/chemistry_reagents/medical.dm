@@ -60,7 +60,6 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.disabilities = 0
-	L.sdisabilities = 0
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
@@ -321,7 +320,6 @@
 	L.adjustToxLoss(-5)
 	L.hallucination = 0
 	L.setBrainLoss(0)
-	L.sdisabilities = 0
 	L.set_blurriness(0, TRUE)
 	L.set_blindness(0, TRUE)
 	L.set_knocked_down(0)

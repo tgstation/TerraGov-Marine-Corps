@@ -35,7 +35,6 @@
 	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
 	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.
 
-	var/disabilities = 0
 	var/losebreath = 0
 	var/nutrition = 400
 

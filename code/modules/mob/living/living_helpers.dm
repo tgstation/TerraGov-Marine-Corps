@@ -11,7 +11,7 @@
 	return 1
 
 /mob/living/proc/has_vision()
-	if(sdisabilities & BLIND)
+	if(disabilities & BLIND)
 		return FALSE
 	if(get_total_tint() >= TINT_BLIND)
 		return FALSE

@@ -355,16 +355,10 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"OXYLOSS" = OXYLOSS
 		),
 	"disabilities" = list(
-		"NEARSIGHTED" = NEARSIGHTED,
-		"EPILEPSY" = EPILEPSY,
-		"COUGHING" = COUGHING,
-		"TOURETTES" = TOURETTES,
-		"NERVOUS" = NERVOUS
-		),
-	"sdisabilities" = list(
 		"BLIND" = BLIND,
 		"MUTE" = MUTE,
-		"DEAF" = DEAF
+		"DEAF" = DEAF,
+		"NEARSIGHTED" = NEARSIGHTED,
 		),
 	"protection" = list(
 		"CONFIG_ENTRY_LOCKED" = CONFIG_ENTRY_LOCKED,

@@ -149,14 +149,14 @@
 
 /mob/living/proc/adjust_ear_damage(damage = 0, deaf = 0)
 	ear_damage = max(0, ear_damage + damage)
-	ear_deaf = max((sdisabilities & DEAF|| ear_damage >= 100) ? 1 : 0, ear_deaf + deaf)
+	ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, ear_deaf + deaf)
 
 
 /mob/living/proc/setEarDamage(damage, deaf)
 	if(!isnull(damage))
 		ear_damage = damage
 	if(!isnull(deaf))
-		ear_deaf = max((sdisabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
+		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
 
 
 /mob/living/adjust_drugginess(amount)

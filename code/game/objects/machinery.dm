@@ -274,7 +274,7 @@
 		"bicaridine_amount" = H.reagents.get_reagent_amount("bicaridine"),
 		"dermaline_amount" = H.reagents.get_reagent_amount("dermaline"),
 		"blood_amount" = H.blood_volume,
-		"disabilities" = H.sdisabilities,
+		"disabilities" = H.disabilities,
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.limbs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
@@ -445,9 +445,9 @@
 		if(!locate(species_organs[organ_name]) in occ["internal_organs"])
 			dat += text("<font color=#b54646>No [organ_name] detected.</font><BR>")
 
-	if(occ["sdisabilities"] & BLIND)
+	if(occ["disabilities"] & BLIND)
 		dat += text("<font color=#b54646>Cataracts detected.</font><BR>")
-	if(occ["sdisabilities"] & NEARSIGHTED)
+	if(occ["disabilities"] & NEARSIGHTED)
 		dat += text("<font color=#b54646>Retinal misalignment detected.</font><BR>")
 	return dat
 
