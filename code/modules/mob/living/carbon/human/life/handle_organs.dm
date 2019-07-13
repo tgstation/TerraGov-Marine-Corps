@@ -20,7 +20,7 @@
 			nutrition = max (0, nutrition - HUNGER_FACTOR)
 
 		if(nutrition > 450)
-			if(overeatduration < 600)	//Capped so people don't take forever to unfat
+			if(overeatduration < 600) //Capped so people don't take forever to unfat
 				overeatduration++
 		else
 			if(overeatduration > 1)
