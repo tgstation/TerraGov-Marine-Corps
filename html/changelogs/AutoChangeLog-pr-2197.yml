@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "UGLs and miniflamers are now shot via ctrl+click when the attachment is active."
