@@ -52,7 +52,7 @@
 			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
 			"<span class='danger'>The barbed wire slices into you!</span>")
 			C.apply_damage(10)
-			C.KnockDown(2) //Leaping into barbed wire is VERY bad
+			C.knock_down(2) //Leaping into barbed wire is VERY bad
 	..()
 
 

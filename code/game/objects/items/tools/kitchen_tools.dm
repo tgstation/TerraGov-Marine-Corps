@@ -199,9 +199,9 @@
 					return
 				var/time = rand(2, 6)
 				if (prob(75))
-					H.KnockOut(time)
+					H.knock_out(time)
 				else
-					H.Stun(time)
+					H.stun(time)
 				if(H.stat != 2)	H.stat = 1
 				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
 				return
@@ -274,7 +274,7 @@
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
 
 		if(prob(15))
-			M.KnockDown(3)
+			M.knock_down(3)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -315,7 +315,7 @@
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 		if(prob(10))
-			M.Stun(rand(1,3))
+			M.stun(rand(1,3))
 			M.take_limb_damage(3)
 			return
 		else
@@ -339,13 +339,13 @@
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
 		if(prob(30))
-			M.Stun(rand(2,4))
+			M.stun(rand(2,4))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.KnockDown(2)
+				M.knock_down(2)
 				return
 			return
 

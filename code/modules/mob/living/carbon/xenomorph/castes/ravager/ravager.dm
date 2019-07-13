@@ -58,7 +58,7 @@
 	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
 	target_turf =  get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
-	H.KnockDown(1)
+	H.knock_down(1)
 	rage = 0
 	return
 
@@ -66,8 +66,8 @@
 	if(rage) //Rage increases speed, attack speed, armor and fire resistance, and stun/knockdown recovery; speed is handled under movement_delay() in XenoProcs.dm
 		if(world.time > last_rage + 30) //Decrement Rage if it's been more than 3 seconds since we last raged.
 			rage = CLAMP(rage - 5,0,50) //Rage declines over time.
-		AdjustStunned( round(-rage * 0.1,0.01) ) //Recover 0.1 more stun stacks per unit of rage; min 0.1, max 5
-		AdjustKnockeddown( round(-rage * 0.1, 0.01 ) ) //Recover 0.1 more knockdown stacks per unit of rage; min 0.1, max 5
+		adjust_stunned( round(-rage * 0.1,0.01) ) //Recover 0.1 more stun stacks per unit of rage; min 0.1, max 5
+		adjust_knocked_down( round(-rage * 0.1, 0.01 ) ) //Recover 0.1 more knockdown stacks per unit of rage; min 0.1, max 5
 		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		adjust_stagger( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //+1.4% damage resist per point of rage, max 70%

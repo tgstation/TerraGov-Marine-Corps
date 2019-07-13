@@ -120,7 +120,7 @@
 		user.visible_message("<span class='warning'>[user] tips over [src].</span>",
 			"<span class='notice'>You tip over [src].</span>")
 		to_chat(src, "<span class='userdanger'>You are tipped over by [user]!</span>")
-		KnockDown(10)
+		knock_down(10)
 		icon_state = icon_dead
 		spawn(rand(20, 50))
 			if(!stat && user)

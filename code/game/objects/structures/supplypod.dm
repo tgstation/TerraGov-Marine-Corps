@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		L.forceMove(src)
 	if(pod.effectStun)
 		for(var/mob/living/M in get_turf(src))
-			M.Stun(pod.landingDelay + 10)
+			M.stun(pod.landingDelay + 10)
 	if(pod.effectStealth)
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)

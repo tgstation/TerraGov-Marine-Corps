@@ -196,10 +196,10 @@
 			if(H.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
-					KnockDown(5)
+					knock_down(5)
 					if (stuttering < 5)
 						stuttering = 5
-					Stun(5)
+					stun(5)
 
 					visible_message("<span class='danger'>[src] has been touched with the stun gloves by [H]!</span>", "<span class='warning'> You hear someone fall</span>")
 					return
@@ -220,7 +220,7 @@
 				if (prob(40))
 					damage = rand(10, 15)
 					if (knocked_out < 5)
-						KnockOut(rand(10, 15))
+						knock_out(rand(10, 15))
 						visible_message("<span class='danger'>[H] has knocked out [src]!</span>")
 
 				adjustBruteLoss(damage)
@@ -242,7 +242,7 @@
 			else
 				if (!( knocked_out ))
 					if (prob(25))
-						KnockOut(2)
+						knock_out(2)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						visible_message("<span class='danger'>[H] has pushed down [src]!</span>")
 					else
@@ -310,7 +310,7 @@
 				adjustBruteLoss(30)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 			if (prob(50))
-				KnockOut(10)
+				knock_out(10)
 		else
 	return
 

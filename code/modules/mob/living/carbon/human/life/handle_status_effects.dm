@@ -48,27 +48,27 @@
 	//Natural recovery; enhanced by hold/protection aura.
 	if(protection_aura)
 		aura_recovery_multiplier = 1 + max(0,0.5 + 0.5 * protection_aura) //Protection aura adds +50% recovery rate per point of leadership; +100% for an SL +200% for a CO/XO
-		Dizzy(- 3 * aura_recovery_multiplier + 3)
-		Jitter(- 3 * aura_recovery_multiplier + 3)
+		dizzy(- 3 * aura_recovery_multiplier + 3)
+		jitter(- 3 * aura_recovery_multiplier + 3)
 	hud_set_order()
 
 	return 1
 
 /mob/living/carbon/human/handle_knocked_down()
 	if(knocked_down) //&& client
-		AdjustKnockeddown(-species.knock_down_reduction)
+		adjust_knocked_down(-species.knock_down_reduction)
 		if(!knocked_down && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return knocked_down
 
 /mob/living/carbon/human/handle_knocked_out()
 	if(knocked_out)
-		AdjustKnockedout(-species.knock_out_reduction)
+		adjust_knockedout(-species.knock_out_reduction)
 	return knocked_out
 
 /mob/living/carbon/human/handle_stunned()
 	if(stunned)
-		AdjustStunned(-species.stun_reduction)
+		adjust_stunned(-species.stun_reduction)
 		if(!stunned && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return stunned

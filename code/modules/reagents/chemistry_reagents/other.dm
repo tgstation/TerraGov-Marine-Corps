@@ -109,14 +109,14 @@
 /datum/reagent/space_drugs/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.5, TOX)
 	if(prob(5) && !L.stat)
-		L.KnockOut(5)
+		L.knock_out(5)
 	L.hallucination += 2
 
 /datum/reagent/space_drugs/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(10) && !L.stat)
-		L.KnockOut(5)
-		L.Dizzy(8)
+		L.knock_out(5)
+		L.dizzy(8)
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
@@ -142,7 +142,7 @@
 /datum/reagent/serotrotium/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.7, TOX)
 	if(prob(10) && !L.stat)
-		L.Sleeping(30)
+		L.sleeping(30)
 	L.drowsyness = max(L.drowsyness, 30)
 
 /datum/reagent/oxygen
@@ -544,7 +544,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/cryptobiolin/on_mob_life(mob/living/L, metabolism)
-	L.Dizzy(2)
+	L.dizzy(2)
 	L.confused = max(L.confused, 20)
 	return ..()
 
@@ -565,7 +565,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/impedrezene/on_mob_life(mob/living/L, metabolism)
-	L.Jitter(-5)
+	L.jitter(-5)
 	if(prob(80))
 		L.adjustBrainLoss(2*REM, TRUE)
 	if(prob(50))

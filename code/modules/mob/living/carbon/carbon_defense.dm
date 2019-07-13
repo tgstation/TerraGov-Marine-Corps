@@ -22,7 +22,7 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_SLEEP))
 		drowsyness += 6
 		if(drowsyness >= 18)
-			Sleeping(5)
+			sleeping(5)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		adjustFireLoss(2)
 		blur_eyes(2)

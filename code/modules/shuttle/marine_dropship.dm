@@ -28,7 +28,7 @@
 		else
 			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(M, 10, 1)
-			M.KnockDown(3)
+			M.knock_down(3)
 		CHECK_TICK
 
 	GLOB.enter_allowed = FALSE //No joining after dropship crash

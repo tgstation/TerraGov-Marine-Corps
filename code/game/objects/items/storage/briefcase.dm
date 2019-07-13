@@ -26,9 +26,9 @@
 				return
 		var/time = rand(2, 6)
 		if (prob(75))
-			M.KnockOut(time)
+			M.knock_out(time)
 		else
-			M.Stun(time)
+			M.stun(time)
 		if(M.stat != 2)	M.stat = 1
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", M), 1, "<span class='warning'> You hear someone fall.</span>", 2)

@@ -96,10 +96,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 45
 
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
-	L.Dizzy(-4)
+	L.dizzy(-4)
 	L.drowsyness = max(L.drowsyness-2, 0)
-	L.AdjustSleeping(-3)
-	L.Jitter(5)
+	L.adjust_sleeping(-3)
+	L.jitter(5)
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskey
@@ -140,8 +140,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
 	L.drowsyness = max(0,L.drowsyness-7)
-	L.AdjustSleeping(-40)
-	L.Jitter(5)
+	L.adjust_sleeping(-40)
+	L.jitter(5)
 	return ..()
 
 /datum/reagent/consumable/ethanol/vodka
@@ -262,23 +262,23 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/pwine/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 19)
-			L.Jitter(2)
+			L.jitter(2)
 			L.hallucination = max(L.hallucination, 3)
 			if(prob(1))
 				L.emote(pick("twitch","giggle"))
 		if(20 to 59)
 			L.stuttering = max(L.stuttering, 2)
 			L.hallucination = max(L.hallucination, 10)
-			L.Jitter(3)
-			L.Dizzy(2)
+			L.jitter(3)
+			L.dizzy(2)
 			L.set_drugginess(10)
 			if(prob(5))
 				L.emote(pick("twitch","giggle"))
 		if(60 to 119)
 			L.stuttering = max(L.stuttering, 2)
 			L.hallucination = max(L.hallucination, 60)
-			L.Jitter(4)
-			L.Dizzy(4)
+			L.jitter(4)
+			L.dizzy(4)
 			L.set_drugginess(30)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
@@ -287,8 +287,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		if(120 to 199)
 			L.stuttering = max(L.stuttering, 2)
 			L.hallucination = max(L.hallucination, 60)
-			L.Jitter(4)
-			L.Dizzy(4)
+			L.jitter(4)
+			L.dizzy(4)
 			L.druggy = max(L.druggy, 60)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
@@ -304,8 +304,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			L.stuttering += 1
 			L.adjustToxLoss(1)
 			L.hallucination = max(L.hallucination, 60)
-			L.Jitter(4)
-			L.Dizzy(4)
+			L.jitter(4)
+			L.dizzy(4)
 			L.druggy = max(L.druggy, 60)
 			if(ishuman(L) && prob(10))
 				var/mob/living/carbon/human/H = L
@@ -313,7 +313,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
 						to_chat(H, "<span class='danger'>You clutch for a moment as you feel a scorching pain covering your abdomen!</span>")
-						H.Stun(3)
+						H.stun(3)
 					E.take_damage(20)
 	return ..()
 
@@ -326,7 +326,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "salty sea water"
 
 /datum/reagent/consumable/ethanol/deadrum/on_mob_life(mob/living/L, metabolism)
-	L.Dizzy(5)
+	L.dizzy(5)
 	return ..()
 
 /datum/reagent/consumable/ethanol/davenport
@@ -470,7 +470,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 90 //THE FIST OF THE LAW IS STRONG AND HARD
 
 /datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/L, metabolism)
-	L.Stun(2)
+	L.stun(2)
 	return ..()
 
 /datum/reagent/consumable/ethanol/irish_cream
@@ -808,15 +808,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 50)
-			L.Dizzy(5)
+			L.dizzy(5)
 			L.stuttering += 2
 		if(51 to 100)
-			L.Dizzy(5)
+			L.dizzy(5)
 			L.stuttering += 5
 			if(prob(20))
 				L.confused += 3
 		if(101 to INFINITY)
-			L.Dizzy(6)
+			L.dizzy(6)
 			L.stuttering += 5
 			if(prob(20))
 				L.confused += 5

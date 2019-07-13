@@ -169,7 +169,7 @@
 	playsound(victim,'sound/effects/magic.ogg', 75, 1)
 
 	victim.drop_all_held_items()
-	victim.Stun(2)
+	victim.stun(2)
 
 	psychic_hold = new(assailant, victim, src) //Grab starts "inside" the shrike. It will auto-equip to her hands, set her as its master and her victim as its target, and then start processing the grab.
 
@@ -248,11 +248,11 @@
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
-		patient.SetKnockedout(0)
-		patient.SetStunned(0)
-		patient.SetKnockeddown(0)
-		patient.SetStagger(0)
-		patient.SetSlowdown(0)
+		patient.set_knocked_out(0)
+		patient.set_stunned(0)
+		patient.set_knocked_down(0)
+		patient.set_stagger(0)
+		patient.set_slowdown(0)
 	patient.updatehealth()
 
 	owner.changeNext_move(CLICK_CD_RANGE)

@@ -78,10 +78,10 @@
 	switch(severity)
 		if(1)
 			take_limb_damage(20)
-			Stun(rand(5, 10))
+			stun(rand(5, 10))
 		if(2)
 			take_limb_damage(10)
-			Stun(rand(1, ))
+			stun(rand(1, ))
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")

@@ -79,9 +79,9 @@
 		if(GAS_TYPE_N2O)
 			var/SA_pp = air_info[3]
 			if(SA_pp > 30)
-				Sleeping(10)
+				sleeping(10)
 			else if(SA_pp > 20) // Enough to make us paralysed for a bit
-				KnockOut(3) // 3 gives them one second to wake up and run away a bit!
+				knock_out(3) // 3 gives them one second to wake up and run away a bit!
 			else if(SA_pp > 1)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 				if(prob(20))
 					emote(pick("giggle", "laugh"))

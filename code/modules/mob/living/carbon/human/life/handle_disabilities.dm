@@ -7,8 +7,8 @@
 			if((prob(1) && knocked_out < 1))
 				visible_message("<span class='danger'>\The [src] starts having a seizure!</span>", \
 				"<span class='danger'>You start having a seizure!</span>", null, 5)
-				KnockOut(10)
-				Jitter(400)
+				knock_out(10)
+				jitter(400)
 				return
 
 		if(disabilities & COUGHING)
@@ -21,7 +21,7 @@
 		if(disabilities & TOURETTES)
 			speech_problem_flag = 1
 			if((prob(10) && knocked_out <= 1))
-				Stun(10)
+				stun(10)
 				spawn()
 					switch(rand(1, 3))
 						if(1)
@@ -85,5 +85,5 @@
 
 	if(!(sdisabilities & DEAF))
 		if(istype(wear_ear, /obj/item/clothing/ears/earmuffs))	//Resting your ears with earmuffs heals ear damage faster
-			adjustEarDamage(-0.15, -1)
+			adjust_ear_damage(-0.15, -1)
 			ear_deaf = max(ear_deaf, 1)

@@ -32,14 +32,14 @@
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
-		AdjustStunned(-1)
+		adjust_stunned(-1)
 		if(!stunned && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return stunned
 
 /mob/living/proc/handle_knocked_down()
 	if(knocked_down && client)
-		AdjustKnockeddown(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+		adjust_knocked_down(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 		if(!knocked_down && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return knocked_down
@@ -66,7 +66,7 @@
 
 /mob/living/proc/handle_knocked_out()
 	if(knocked_out)
-		AdjustKnockedout(-1)
+		adjust_knockedout(-1)
 	return knocked_out
 
 /mob/living/proc/add_slowdown(amount)
@@ -553,7 +553,7 @@ value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
 
-/mob/living/carbon/Dizzy(amount)
+/mob/living/carbon/dizzy(amount)
 	dizziness = CLAMP(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)

@@ -114,7 +114,7 @@
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(4*REM)
 	if(current_cycle > 10)
-		L.Sleeping(2)
+		L.sleeping(2)
 	return ..()
 
 /datum/reagent/toxin/minttoxin
@@ -148,7 +148,7 @@
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
-	L.KnockDown(10)
+	L.knock_down(10)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
@@ -171,16 +171,16 @@
 
 /datum/reagent/toxin/mindbreaker/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
-	L.Jitter(5)
+	L.jitter(5)
 	if(prob(10) && !L.stat)
-		L.KnockOut(5)
+		L.knock_out(5)
 
 /datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
 	L.adjustBrainLoss(1, TRUE)
-	L.Jitter(5)
+	L.jitter(5)
 	if(prob(10) && !L.stat)
-		L.KnockOut(5)
+		L.knock_out(5)
 	L.drowsyness = max(L.drowsyness, 30)
 
 //Reagents used for plant fertilizers.
@@ -261,10 +261,10 @@
 			L.blur_eyes(10)
 		if(16 to 40)
 			if(prob(10))
-				L.Sleeping(10)
+				L.sleeping(10)
 			L.drowsyness  = max(L.drowsyness, 20)
 		if(41 to INFINITY)
-			L.Sleeping(20) //previously knockdown, no good for a soporific.
+			L.sleeping(20) //previously knockdown, no good for a soporific.
 			L.drowsyness  = max(L.drowsyness, 30)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
@@ -292,9 +292,9 @@
 			L.confused += 2
 			L.drowsyness += 2
 		if(21 to 60)
-			L.Sleeping(5)
+			L.sleeping(5)
 		if(61 to INFINITY)
-			L.Sleeping(5)
+			L.sleeping(5)
 			L.adjustToxLoss((current_cycle/2 - 50)*REM)
 	return ..()
 
@@ -322,9 +322,9 @@
 	L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.KnockDown(5)
+			L.knock_down(5)
 		if(16 to INFINITY)
-			L.KnockOut(5)
+			L.knock_out(5)
 	return ..()
 
 /datum/reagent/toxin/potassium_chlorophoride
@@ -343,9 +343,9 @@
 		L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.KnockDown(5)
+			L.knock_down(5)
 		if(16 to INFINITY)
-			L.KnockOut(5)
+			L.knock_out(5)
 	return ..()
 
 /datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
@@ -359,9 +359,9 @@
 /datum/reagent/toxin/beer2/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 50)
-			L.Sleeping(5)
+			L.sleeping(5)
 		if(51 to INFINITY)
-			L.Sleeping(5)
+			L.sleeping(5)
 			L.adjustToxLoss((current_cycle - 50)*REM)
 	return ..()
 
@@ -493,16 +493,16 @@
 	if(volume > 15) //3rd level neurotoxin effects: eye blur
 		L.blur_eyes(5)
 	if(volume > 20) //4th level neurotoxin effects: blindness, deafness
-		L.adjustEarDamage(0, 1)
+		L.adjust_ear_damage(0, 1)
 		L.blind_eyes(5)
 	if(volume > 25) //5th level neurotoxin effects: paralysis
-		L.KnockDown(1)
+		L.knock_down(1)
 	return ..()
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
 	L.adjustOxyLoss(5) //Overdose starts applying more oxy damage
-	L.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
+	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
@@ -532,7 +532,7 @@
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
 	L.adjustOxyLoss(2)
-	L.Jitter(4)
+	L.jitter(4)
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
