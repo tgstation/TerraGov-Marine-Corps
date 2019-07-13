@@ -575,14 +575,14 @@
 		qdel(src)
 		return
 
-	T.flamer_fire_act()
+	T.flamer_fire_act(burnlevel, firelevel)
 
 	var/j = 0
 	for(var/i in T)
 		if(++j >= 11)
 			break
 		var/atom/A = i
-		A.flamer_fire_act()
+		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return
