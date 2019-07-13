@@ -138,7 +138,7 @@
 
 /obj/proc/unbuckle(mob/user, silent = TRUE)
 	if(!buckled_mob || buckled_mob.buckled != src)
-		CRASH("[src] called unbuckle() with [user ? user : "no"] user and [buckled_mob ? (buckled_mob.buckled ? " with [buckled_mob.buckled] as buckled_mob.buckled" : "no buckled_mob.buckled") : "no buckled_mob"].")
+		CRASH("[src] called unbuckle() with [user ? user : "no"] user and [buckled_mob ? (buckled_mob.buckled ? "with [buckled_mob.buckled] as buckled_mob.buckled" : "no buckled_mob.buckled") : "no buckled_mob"].")
 	buckled_mob.buckled = null
 	buckled_mob.anchored = initial(buckled_mob.anchored)
 	buckled_mob.update_canmove()
@@ -146,13 +146,13 @@
 	if(!silent)
 		if(buckled_mob == user)
 			buckled_mob.visible_message(
-			"<span class='notice'>[buckled_mob.name] was unbuckled by [user]!</span>",
-			"<span class='notice'>You were unbuckled from [src] by [user].</span>",
-			"<span class='notice'>You hear metal clanking.</span>"
+			"<span class='notice'>[buckled_mob] unbuckled [buckled_mob.p_them()]self!</span>",
+			"<span class='notice'>You unbuckle yourself from [src].</span>",
+			"<span class='notice'>You hear metal clanking</span>"
 			)
 		else
 			buckled_mob.visible_message(
-			"<span class='notice'>[buckled_mob.name] was unbuckled by [user]!</span>",
+			"<span class='notice'>[buckled_mob] was unbuckled by [user]!</span>",
 			"<span class='notice'>You were unbuckled from [src] by [user].</span>",
 			"<span class='notice'>You hear metal clanking.</span>"
 			)
