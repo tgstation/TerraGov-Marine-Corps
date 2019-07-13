@@ -3,8 +3,7 @@
 /mob/living/carbon/human/handle_disabilities()
 	. = ..()
 
-	var/roll = rand(0, 200)
-	switch(roll)
+	switch(rand(0, 200))
 		if(0 to 3)
 			if(getBrainLoss() >= 5)
 				custom_pain("Your head feels numb and painful.")
