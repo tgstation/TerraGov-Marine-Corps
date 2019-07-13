@@ -77,7 +77,7 @@
 		else
 			clear_fullscreen("brute")
 
-	if(hud_used.healths)
+	if(hud_used?.healths)
 		if(analgesic)
 			hud_used.healths.icon_state = "health_numb"
 		else
