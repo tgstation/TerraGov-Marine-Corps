@@ -115,12 +115,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// We don't have a savefile or we failed to load them
 	random_character()
-	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 5 SECONDS)
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+	addtimer(CALLBACK(src, .proc/keybindings_setup, C), 5 SECONDS)
 	
 
-/datum/preferences/proc/load_default_keybindings(client/C)
+/datum/preferences/proc/keybindings_setup(client/C)
 	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
-	hotkeys = (choice == "Hotkey")
+	hotkeys = (!choice || choice == "Hotkey")
 	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 	save_preferences()
 
