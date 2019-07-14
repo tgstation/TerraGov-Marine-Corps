@@ -1,3 +1,6 @@
+GLOBAL_LIST_EMPTY(string_files)
+GLOBAL_PROTECT(string_files)
+
 SUBSYSTEM_DEF(strings)
 	name = "Strings"
 	init_order = INIT_ORDER_STRINGS
