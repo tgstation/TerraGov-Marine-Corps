@@ -92,6 +92,7 @@
 	. = ..()
 	if(blood_overlay)
 		overlays.Remove(blood_overlay)
+		blood_overlay = null
 
 
 /obj/item/clothing/gloves/clean_blood()
