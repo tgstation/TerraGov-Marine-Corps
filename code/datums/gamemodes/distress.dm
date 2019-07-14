@@ -57,7 +57,7 @@
 
 /datum/game_mode/distress/post_setup()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
+	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 
 /datum/game_mode/distress/proc/map_announce()
