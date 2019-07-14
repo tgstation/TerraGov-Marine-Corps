@@ -93,7 +93,7 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(ISDIAGONALDIR(dir))
+	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
 
