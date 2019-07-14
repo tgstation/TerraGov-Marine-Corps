@@ -840,10 +840,6 @@
 		SSnano.close_user_uis(usr, src)
 		return FALSE
 
-	else if(href_list["overload"])
-		if(issilicon(usr) && !aidisabled)
-			overload_lighting()
-
 	if(usingUI)
 		updateDialog()
 

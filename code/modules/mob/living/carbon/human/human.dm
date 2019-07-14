@@ -124,7 +124,7 @@
 
 			adjust_stagger(12 * armor)
 			add_slowdown(round(12 * armor,0.1))
-			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			knock_out(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
 			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
@@ -136,7 +136,7 @@
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
-			KnockDown(4 * armor)
+			knock_down(4 * armor)
 
 		if(3)
 			b_loss += (rand(40, 50) * armor)
@@ -148,7 +148,7 @@
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
-			KnockDown(2 * armor)
+			knock_down(2 * armor)
 
 	var/update = 0
 	#ifdef DEBUG_HUMAN_ARMOR

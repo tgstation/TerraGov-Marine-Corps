@@ -78,11 +78,11 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
-			KnockDown(1)
+			stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
+			knock_down(1)
 		else
-			Stun(10)//This should work for now, more is really silly and makes you lay there forever
-			KnockDown(10)
+			stun(10)//This should work for now, more is really silly and makes you lay there forever
+			knock_down(10)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -142,7 +142,7 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	Stun(5)
+	stun(5)
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
@@ -165,14 +165,14 @@
 				t_him = "her"
 			if(lying || sleeping)
 				if(client)
-					AdjustSleeping(-5)
+					adjust_sleeping(-5)
 				if(sleeping == 0)
 					set_resting(FALSE)
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
-				AdjustKnockedout(-3)
-				AdjustStunned(-3)
-				AdjustKnockeddown(-3)
+				adjust_knockedout(-3)
+				adjust_stunned(-3)
+				adjust_knocked_down(-3)
 
 				if(halloss > 0)
 					var/halloss_mod = 1
@@ -334,8 +334,8 @@
 	stop_pulling()
 	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
-	Stun(stun_level)
-	KnockDown(weaken_level)
+	stun(stun_level)
+	knock_down(weaken_level)
 	. = TRUE
 	if(slide_steps && lying)//lying check to make sure we downed the mob
 		var/slide_dir = dir

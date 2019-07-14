@@ -55,7 +55,7 @@
 	. = ..()
 	if(!.)
 		return
-	user.KnockOut(2)
+	user.knock_out(2)
 
 
 /datum/emote/living/carbon/human/cough

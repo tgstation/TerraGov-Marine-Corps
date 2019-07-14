@@ -910,7 +910,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
-/datum/admins/proc/release()
+/datum/admins/proc/release(obj/OB in world)
 	set category = null
 	set name = "Release Obj"
 
@@ -977,40 +977,25 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
-	if(istype(usr, /mob/camera/imaginary_friend))
-		var/mob/camera/imaginary_friend/IF = usr
-		IF.deactivate()
+	var/client/C = usr.client
+
+	if(istype(C.mob, /mob/camera/imaginary_friend))
+		var/mob/camera/imaginary_friend/IF = C.mob
+		IF.ghostize()
 		return
 
-	if(is_mentor(usr.client) && !isobserver(usr))
-		to_chat(usr, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
-		return
+	if(!isobserver(C.mob))
+		if(is_mentor(C))
+			to_chat(C, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
+			return
+		C.holder.admin_ghost()
 
-	if(!isobserver(usr))
-		usr.client.holder.admin_ghost()
-
-	var/mob/living/L
-	switch(input("Select by:", "Imaginary Friend") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Imaginary Friend") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			L = C.mob
-		if("Mob")
-			var/mob/M = input("Please, select a mob.", "Imaginary Friend") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!M)
-				return
-			L = M
-
-	if(!isobserver(usr))
-		return
-
-	if(!istype(L))
-		to_chat("<span class='warning'>Selected mob is not alive.</span>")
+	var/mob/living/L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!istype(L) || !isobserver(C.mob))
 		return
 
 	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
-	usr.mind.transfer_to(IF)
+	C.mob.mind.transfer_to(IF)
 
 	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
@@ -1032,17 +1017,12 @@
 	if(!istype(D))
 		return
 
-	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Active Shuttle", "Yes", "No") != "Yes")
+	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
 		return
 
-	var/instant = FALSE
-
-	if(alert("Move Shuttle instantly??", "Instant Move", "Yes", "No") == "Yes")
-		instant = TRUE
-
 	var/list/possible_destinations = list("lz1", "lz2", "alamo", "normandy")
+	
 	var/list/validdocks = list()
-
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!possible_destinations.Find(S.id))
 			continue
@@ -1054,7 +1034,7 @@
 		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
 		return
 
-	var/dock = input("Choose the destination.", "Choose Destination") as null|anything in validdocks
+	var/dock = input("Choose the destination.", "Force Dropship") as null|anything in validdocks
 
 	var/obj/docking_port/stationary/target
 
@@ -1066,10 +1046,14 @@
 	if(!target)
 		return
 
+	var/instant = FALSE
+	if(alert("Do you want to move the dropship instantly?", "Force Dropship", "Yes", "No") == "Yes")
+		instant = TRUE
+
 	SSshuttle.moveShuttleToDock(D.id, target, !instant)
 
-	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
-	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
+	log_admin("[key_name(usr)] has moved dropship [D]([D.id]) to [target]([target.id])[instant ? " instantly" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D]([D.id]) to [target]([target.id])[instant ? " instantly" : ""].")
 
 
 

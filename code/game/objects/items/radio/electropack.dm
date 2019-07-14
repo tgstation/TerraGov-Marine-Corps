@@ -76,7 +76,7 @@
 		s.set_up(3, 1, L)
 		s.start()
 
-		L.KnockDown(10)
+		L.knock_down(10)
 
 	if(master)
 		master.receive_signal()

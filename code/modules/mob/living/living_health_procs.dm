@@ -159,16 +159,16 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	setOxyLoss(0)
 	setCloneLoss(0)
 	setBrainLoss(0)
-	SetKnockedout(0)
-	SetStunned(0)
-	SetKnockeddown(0)
+	set_knocked_out(0)
+	set_stunned(0)
+	set_knocked_down(0)
 	ExtinguishMob()
 	fire_stacks = 0
 
 	// shut down ongoing problems
 	radiation = 0
 	bodytemperature = get_standard_bodytemperature()
-	sdisabilities = 0
+	disabilities = 0
 
 	// fix blindness and deafness
 	set_blindness(0, TRUE)

@@ -85,7 +85,7 @@
 		T = temp
 
 	H.throw_at(T, headbutt_distance, 1, src)
-	H.KnockDown(1, 1)
+	H.knock_down(1, 1)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 // ***************************************
@@ -138,7 +138,7 @@
 			var/armor_block = H.run_armor_check(affecting, "melee")
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
-			H.KnockDown(1, 1)
+			H.knock_down(1, 1)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		shake_camera(H, 2, 1)
 

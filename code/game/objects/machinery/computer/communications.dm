@@ -38,14 +38,16 @@
 	var/stat_msg2
 
 
-/obj/machinery/computer/communications/New()
+/obj/machinery/computer/communications/Initialize(mapload)
 	. = ..()
 	start_processing()
 
 /obj/machinery/computer/communications/process()
-	if(..())
-		if(state != STATE_STATUSDISPLAY)
-			updateDialog()
+	. = ..()
+	if(!.)
+		return
+	if(state != STATE_STATUSDISPLAY)
+		updateUsrDialog()
 
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
@@ -61,6 +63,7 @@
 		if("login")
 			if(isAI(usr))
 				authenticated = 2
+				updateUsrDialog()
 				return
 			var/mob/living/carbon/human/C = usr
 			var/obj/item/card/id/I = C.get_active_held_item()
@@ -274,11 +277,9 @@
 
 		if("setmsg1")
 			stat_msg1 = reject_bad_text(trim(copytext(sanitize(input("Line 1", "Enter Message Text", stat_msg1) as text|null), 1, 40)), 40)
-			updateDialog()
 
 		if("setmsg2")
 			stat_msg2 = reject_bad_text(trim(copytext(sanitize(input("Line 2", "Enter Message Text", stat_msg2) as text|null), 1, 40)), 40)
-			updateDialog()
 
 		if("messageTGMC")
 			if(authenticated == 2)
@@ -305,7 +306,8 @@
 		if("changeseclevel")
 			state = STATE_ALERT_LEVEL
 
-		else return FALSE
+		else 
+			return FALSE
 
 	updateUsrDialog()
 

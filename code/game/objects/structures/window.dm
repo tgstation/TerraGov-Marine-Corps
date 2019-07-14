@@ -213,7 +213,7 @@
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] bashed [key_name(M)]'s face' against \the [src].")
 				if(prob(50))
-					M.KnockDown(1)
+					M.knock_down(1)
 				M.apply_damage(10)
 				if(damageable) //Possible to destroy
 					obj_integrity -= 25
@@ -221,7 +221,7 @@
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 				log_combat(user, M, "crushed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
-				M.KnockDown(5)
+				M.knock_down(5)
 				M.apply_damage(20)
 				if(damageable) //Possible to destroy
 					obj_integrity -= 50

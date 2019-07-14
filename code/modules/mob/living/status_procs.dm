@@ -1,66 +1,66 @@
-/mob/living/proc/Stun(amount)
+/mob/living/proc/stun(amount)
 	if(status_flags & CANSTUN)
 		stunned = max(max(stunned, amount), 0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
 		update_canmove()
 
 
-/mob/living/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
+/mob/living/proc/set_stunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
 	if(status_flags & CANSTUN)
 		stunned = max(amount, 0)
 		update_canmove()
 
 
-/mob/living/proc/AdjustStunned(amount)
+/mob/living/proc/adjust_stunned(amount)
 	if(status_flags & CANSTUN)
 		stunned = max(stunned + amount,0)
 		update_canmove()
 
 
-/mob/living/proc/KnockDown(amount, force)
+/mob/living/proc/knock_down(amount, force)
 	if((status_flags & CANKNOCKDOWN) || force)
 		knocked_down = max(max(knocked_down,amount),0)
 		update_canmove()	//updates lying, canmove and icons
 
 
-/mob/living/proc/SetKnockeddown(amount)
+/mob/living/proc/set_knocked_down(amount)
 	if(status_flags & CANKNOCKDOWN)
 		knocked_down = max(amount,0)
 		update_canmove()	//updates lying, canmove and icons
 
 
-/mob/living/proc/AdjustKnockeddown(amount)
+/mob/living/proc/adjust_knocked_down(amount)
 	if(status_flags & CANKNOCKDOWN)
 		knocked_down = max(knocked_down + amount,0)
 		update_canmove()	//updates lying, canmove and icons
 
 
-/mob/living/proc/KnockOut(amount)
+/mob/living/proc/knock_out(amount)
 	if(status_flags & CANKNOCKOUT)
 		knocked_out = max(max(knocked_out,amount),0)
 		update_canmove()
 	return
 
-/mob/living/proc/SetKnockedout(amount)
+/mob/living/proc/set_knocked_out(amount)
 	if(status_flags & CANKNOCKOUT)
 		knocked_out = max(amount,0)
 		update_canmove()
 	return
 
-/mob/living/proc/AdjustKnockedout(amount)
+/mob/living/proc/adjust_knockedout(amount)
 	if(status_flags & CANKNOCKOUT)
 		knocked_out = max(knocked_out + amount,0)
 		update_canmove()
 	return
 
-/mob/living/proc/Sleeping(amount)
+/mob/living/proc/sleeping(amount)
 	sleeping = max(max(sleeping,amount),0)
 	return
 
-/mob/living/proc/SetSleeping(amount)
+/mob/living/proc/set_sleeping(amount)
 	sleeping = max(amount,0)
 	return
 
-/mob/living/proc/AdjustSleeping(amount)
+/mob/living/proc/adjust_sleeping(amount)
 	sleeping = max(sleeping + amount,0)
 	return
 
@@ -74,10 +74,10 @@
 /mob/living/proc/set_drugginess(amount)
 	return
 
-/mob/living/proc/Jitter(amount)
+/mob/living/proc/jitter(amount)
 	jitteriness = CLAMP(jitteriness + amount,0, 1000)
 
-/mob/living/proc/Dizzy(amount)
+/mob/living/proc/dizzy(amount)
 	return // For the time being, only carbons get dizzy.
 
 /mob/living/proc/update_tint()
@@ -147,16 +147,16 @@
 	GW.backdrop(src)
 	OT.backdrop(src)
 
-/mob/living/proc/adjustEarDamage(damage = 0, deaf = 0)
+/mob/living/proc/adjust_ear_damage(damage = 0, deaf = 0)
 	ear_damage = max(0, ear_damage + damage)
-	ear_deaf = max((sdisabilities & DEAF|| ear_damage >= 100) ? 1 : 0, ear_deaf + deaf)
+	ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, ear_deaf + deaf)
 
 
 /mob/living/proc/setEarDamage(damage, deaf)
 	if(!isnull(damage))
 		ear_damage = damage
 	if(!isnull(deaf))
-		ear_deaf = max((sdisabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
+		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
 
 
 /mob/living/adjust_drugginess(amount)

@@ -26,28 +26,6 @@
 		if(prob(1))
 			emote(pick("scratch","jump","roll","tail"))
 
-/mob/living/carbon/monkey/handle_disabilities()
-	. = ..()
-
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && knocked_out < 10))
-			to_chat(src, "<span class='warning'>You have a seizure!</span>")
-			KnockOut(10)
-	if (disabilities & COUGHING)
-		if ((prob(5) && knocked_out <= 1))
-			drop_held_item()
-			spawn( 0 )
-				emote("cough")
-				return
-	if (disabilities & TOURETTES)
-		if ((prob(10) && knocked_out <= 1))
-			Stun(10)
-			spawn( 0 )
-				emote("twitch")
-				return
-	if (disabilities & NERVOUS)
-		if (prob(10))
-			stuttering = max(10, stuttering)
 
 /mob/living/carbon/monkey/proc/handle_mutations_and_radiation()
 
@@ -63,7 +41,7 @@
 
 		if (radiation > 100)
 			radiation = 100
-			KnockDown(10)
+			knock_down(10)
 			if(!lying)
 				to_chat(src, "<span class='warning'>You feel weak.</span>")
 				emote("collapse")
@@ -79,7 +57,7 @@
 				adjustToxLoss(1)
 				if(prob(5))
 					radiation -= 5
-					KnockDown(3)
+					knock_down(3)
 					if(!lying)
 						to_chat(src, "<span class='warning'>You feel weak.</span>")
 						emote("collapse")
@@ -140,9 +118,9 @@
 		if(GAS_TYPE_N2O) //Anesthetic
 			var/SA_pp = air_info[3]
 			if(SA_pp > 30)
-				Sleeping(10)
+				sleeping(10)
 			else if(SA_pp > 20) // Enough to make us paralysed for a bit
-				KnockOut(3) // 3 gives them one second to wake up and run away a bit!
+				knock_out(3) // 3 gives them one second to wake up and run away a bit!
 				//Enough to make us sleep as well
 			else if(SA_pp > 1)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 				if(prob(10))

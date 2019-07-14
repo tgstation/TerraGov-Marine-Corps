@@ -63,7 +63,7 @@
 		occupant.bodytemperature = 100 //Temp fix for broken atmos
 		occupant.stat = 1
 		if(occupant.bodytemperature < T0C)
-			occupant.KnockDown(10)
+			occupant.knock_down(10)
 			if(occupant.getOxyLoss())
 				occupant.adjustOxyLoss(-1)
 

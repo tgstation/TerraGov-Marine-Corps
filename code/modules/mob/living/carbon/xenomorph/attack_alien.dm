@@ -35,7 +35,7 @@
 
 /mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	. = ..()
-	KnockDown(8)
+	knock_down(8)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
@@ -49,7 +49,7 @@
 	X.flick_attack_overlay(src, "disarm")
 
 	if(!knocked_down && !no_stun && (traumatic_shock > 100))
-		KnockDown(1)
+		knock_down(1)
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
@@ -80,7 +80,7 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks)
+			knock_out(knockout_stacks)
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
@@ -235,7 +235,7 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks) //...And we knock 
+			knock_out(knockout_stacks) //...And we knock 
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 

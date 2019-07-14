@@ -319,8 +319,8 @@
 	//slip in the murky water if we try to run through it
 	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
 		to_chat(L, pick("<span class='notice'> You slip on something slimy.</span>", "<span class='notice'>You fall over into the murk.</span>"))
-		L.Stun(2)
-		L.KnockDown(1)
+		L.stun(2)
+		L.knock_down(1)
 
 	//piranhas
 	if(prob(25))

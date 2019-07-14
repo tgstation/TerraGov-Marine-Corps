@@ -25,6 +25,7 @@ GLOBAL_LIST_EMPTY(huntergames_secondary_spawns)
 GLOBAL_LIST_EMPTY(jobspawn_overrides)					//These will take precedence over normal spawnpoints if created.
 
 GLOBAL_LIST_EMPTY(newplayer_start)
+GLOBAL_LIST_EMPTY(ai_spawn)
 GLOBAL_LIST_EMPTY(xeno_spawn)//Aliens spawn at these.
 GLOBAL_LIST_EMPTY(surv_spawn)
 GLOBAL_LIST_EMPTY(tdome1)

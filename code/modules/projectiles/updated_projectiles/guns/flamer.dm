@@ -69,6 +69,9 @@
 	if(!able_to_fire(user))
 		return
 
+	if(gun_on_cooldown(user))
+		return
+
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
 	if(!targloc || !curloc)
@@ -574,14 +577,14 @@
 		qdel(src)
 		return
 
-	T.flamer_fire_act()
+	T.flamer_fire_act(burnlevel, firelevel)
 
 	var/j = 0
 	for(var/i in T)
 		if(++j >= 11)
 			break
 		var/atom/A = i
-		A.flamer_fire_act()
+		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return

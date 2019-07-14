@@ -451,9 +451,9 @@
 		var/mob/living/L = user
 
 		flick("baton_active", src)
-		L.Stun(10)
+		L.stun(10)
 		L.stuttering = 10
-		L.KnockDown(10)
+		L.knock_down(10)
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
 	var/turf/location = user.loc

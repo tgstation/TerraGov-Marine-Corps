@@ -49,6 +49,8 @@
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
 		return
+	if(gun_on_cooldown(user))
+		return
 	if(targetmarker_primed)
 		if(!iscarbon(target))
 			return
@@ -227,14 +229,14 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/max_recoil_value)
 
-/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user, atom/target)
+/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
 	. = ..()
 	if(.)
 		var/mob/living/carbon/human/PMC_sniper = user
 		if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
 			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 			step(PMC_sniper,turn(PMC_sniper.dir,180))
-			PMC_sniper.KnockDown(5)
+			PMC_sniper.knock_down(5)
 
 //SVD //Based on the Dragunov sniper rifle.
 
@@ -527,19 +529,23 @@
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 8, TRUE, src))
-			return
-	if(able_to_fire(user))
-		if(get_dist(target,user) <= 2)
-			to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
-			return
-		if(grenades.len)
-			fire_grenade(target,user)
-			var/obj/screen/ammo/A = user.hud_used.ammo
-			A.update_hud(user)
-		else
-			to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+	if(user.action_busy)
+		return
+	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
+		return
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+		return
+	if(get_dist(target,user) <= 2)
+		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
+		return
+	if(!length(grenades))
+		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+		return
+	fire_grenade(target,user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 
 
 //Doesn't use most of any of these. Listed for reference.
@@ -664,15 +670,19 @@
 
 
 /obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)
-	if(able_to_fire(user))
-		if(get_dist(target,user) <= 2)
-			to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
-			return
-		if(grenade)
-			fire_grenade(target,user)
-			playsound(user.loc, cocked_sound, 25, 1)
-		else
-			to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
+		return
+	if(get_dist(target,user) <= 2)
+		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
+		return
+	if(!grenade)
+		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+		return
+	fire_grenade(target,user)
+	playsound(user.loc, cocked_sound, 25, 1)
+
 
 //Doesn't use most of any of these. Listed for reference.
 /obj/item/weapon/gun/launcher/m81/load_into_chamber()
@@ -768,6 +778,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user) || user.action_busy)
+		return
+
+	if(gun_on_cooldown(user))
 		return
 
 	var/delay = 3
@@ -870,7 +883,7 @@
 	for(var/mob/living/carbon/C in backblast_loc)
 		if(!C.lying) //Have to be standing up to get the fun stuff
 			C.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
-			C.Stun(4) //For good measure
+			C.stun(4) //For good measure
 			C.emote("pain")
 
 		. = ..()

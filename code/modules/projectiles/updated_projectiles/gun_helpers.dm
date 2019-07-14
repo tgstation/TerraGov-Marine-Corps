@@ -54,6 +54,8 @@ DEFINES in setup.dm, referenced here.
 	able_to_fire() //Unless the gun has some special check to see whether or not it may fire, you don't need this.
 	You can see examples of how this is modified in smartgun/sadar code, along with others. Return ..() on a success.
 
+	gun_on_cooldown() //For custom cooldown checks. By default it takes into account the user's skills.
+
 	load_into_chamber() //This can get complicated, but if the gun doesn't take attachments that fire bullets from
 	the Fire() process, just set them to null and leave the if(current_mag && current_mag.current_rounds > 0) check.
 	The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.

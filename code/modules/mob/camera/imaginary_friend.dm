@@ -152,11 +152,15 @@
 
 
 /mob/camera/imaginary_friend/proc/deactivate()
-	icon = human_image
 	log_admin("[key_name(src)] stopped being imaginary friend of [key_name(owner)].")
 	message_admins("[ADMIN_TPMONTY(src)] stopped being imaginary friend of [ADMIN_TPMONTY(owner)].")
 	ghostize()
 	qdel(src)
+
+
+/mob/camera/imaginary_friend/ghostize()
+	icon = human_image
+	return ..()
 
 
 /mob/camera/imaginary_friend/toggle_typing_indicator(emoting)

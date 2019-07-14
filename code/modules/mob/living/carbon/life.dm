@@ -21,27 +21,24 @@
 	if(.)
 		return FALSE
 
-	if (hud_used)
-		if(hud_used.healths)
-			if (stat != DEAD)
-				switch(round(health * 100 / maxHealth))
-					if(100 to INFINITY)
-						hud_used.healths.icon_state = "health0"
-					if(75 to 99)
-						hud_used.healths.icon_state = "health1"
-					if(50 to 74)
-						hud_used.healths.icon_state = "health2"
-					if(25 to 49)
-						hud_used.healths.icon_state = "health3"
-					if(10 to 24)
-						hud_used.healths.icon_state = "health4"
-					if(0 to 9)
-						hud_used.healths.icon_state = "health5"
-					else
-						hud_used.healths.icon_state = "health6"
+	if(hud_used?.healths)
+		switch(round(health * 100 / maxHealth))
+			if(100 to INFINITY)
+				hud_used.healths.icon_state = "health0"
+			if(75 to 99)
+				hud_used.healths.icon_state = "health1"
+			if(50 to 74)
+				hud_used.healths.icon_state = "health2"
+			if(25 to 49)
+				hud_used.healths.icon_state = "health3"
+			if(10 to 24)
+				hud_used.healths.icon_state = "health4"
+			if(0 to 9)
+				hud_used.healths.icon_state = "health5"
 			else
-				hud_used.healths.icon_state = "health7"
-		return TRUE
+				hud_used.healths.icon_state = "health6"
+	return TRUE
+
 
 /mob/living/carbon/update_stat()
 	.=..()
@@ -71,18 +68,18 @@
 
 	//Dizziness
 	if(dizziness)
-		Dizzy(-restingpwr)
+		dizzy(-restingpwr)
 
 	if(drowsyness)
 		drowsyness = max(drowsyness - restingpwr, 0)
 		blur_eyes(2)
 		if(prob(5))
-			Sleeping(1)
-			KnockOut(5)
+			sleeping(1)
+			knock_out(5)
 
 	if(jitteriness)
 		do_jitter_animation(jitteriness)
-		Jitter(-restingpwr)
+		jitter(-restingpwr)
 
 	halloss_recovery()
 
@@ -106,7 +103,7 @@
 			"<span class='warning'>You slump to the ground, you're in too much pain to keep going.</span>")
 			if(prob(25) && ishuman(src)) //only humans can scream, shame.
 				emote("scream")
-		KnockDown(5)
+		knock_down(5)
 		setHalLoss(maxHealth*2)
 
 
@@ -117,18 +114,17 @@
 		handle_dreams()
 		if(mind)
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
-				AdjustSleeping(-1)
+				adjust_sleeping(-1)
 		if(!isxeno(src))
 			if(prob(2) && health && !hal_crit)
-				spawn()
-					emote("snore")
+				emote("snore")
 
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.03), 0)
 		if(drunkenness >= 6)
 			if(prob(25))
 				slurring += 2
-			Jitter(-3)
+			jitter(-3)
 
 		if(drunkenness >= 11 && slurring < 5)
 			slurring += 1.2
@@ -137,14 +133,14 @@
 			if(prob(25))
 				confused += 2
 			if(dizziness < 450) // To avoid giving the player overly dizzy too
-				Dizzy(8)
+				dizzy(8)
 
 		if(drunkenness >= 51)
 			if(prob(5))
 				confused += 5
 				vomit()
 			if(dizziness < 600)
-				Dizzy(12)
+				dizzy(12)
 
 		if(drunkenness >= 61)
 			if(prob(25))
@@ -163,7 +159,7 @@
 			adjustBrainLoss(0.2, TRUE)
 			if(prob(15 && !stat))
 				to_chat(src, "<span class='warning'>Just a quick nap...</span>")
-				Sleeping(40)
+				sleeping(40)
 
 		if(drunkenness >=101) //Let's be honest, you should be dead by now
 			adjustToxLoss(4)
@@ -278,7 +274,7 @@
 /mob/living/carbon/proc/handle_impaired_hearing()
 	//Ears
 	if(ear_damage < 100)
-		adjustEarDamage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
+		adjust_ear_damage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
 
 
 /mob/living/carbon/proc/handle_disabilities()

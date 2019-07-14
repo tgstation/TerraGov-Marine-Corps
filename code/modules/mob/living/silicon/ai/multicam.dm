@@ -99,8 +99,10 @@
 
 
 /area/ai_multicam_room
-	name = "ai_multicam_room"
+	name = "AI Multicam Room"
 	icon_state = "ai_camera_room"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	ambience = list()
 
 
 GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)

@@ -186,8 +186,8 @@
 	return
 
 
-/obj/machinery/door/window/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/door/window/attack_ai(mob/living/silicon/ai/AI)
+	return try_to_activate_door(AI)
 
 //Slashing windoors
 /obj/machinery/door/window/attack_alien(mob/living/carbon/xenomorph/M)

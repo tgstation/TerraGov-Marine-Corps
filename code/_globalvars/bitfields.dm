@@ -60,6 +60,11 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"NODECONSTRUCT" = NODECONSTRUCT,
 		"OVERLAY_QUEUED" = OVERLAY_QUEUED
 		),
+	"obj_flags" = list(
+		"EMAGGED" = EMAGGED,
+		"IN_USE" = IN_USE,
+		"CAN_BE_HIT" = CAN_BE_HIT
+		),
 	"appearance_flags" = list(
 		"LONG_GLIDE" = LONG_GLIDE,
 		"RESET_COLOR" = RESET_COLOR,
@@ -350,16 +355,10 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"OXYLOSS" = OXYLOSS
 		),
 	"disabilities" = list(
-		"NEARSIGHTED" = NEARSIGHTED,
-		"EPILEPSY" = EPILEPSY,
-		"COUGHING" = COUGHING,
-		"TOURETTES" = TOURETTES,
-		"NERVOUS" = NERVOUS
-		),
-	"sdisabilities" = list(
 		"BLIND" = BLIND,
 		"MUTE" = MUTE,
-		"DEAF" = DEAF
+		"DEAF" = DEAF,
+		"NEARSIGHTED" = NEARSIGHTED,
 		),
 	"protection" = list(
 		"CONFIG_ENTRY_LOCKED" = CONFIG_ENTRY_LOCKED,
