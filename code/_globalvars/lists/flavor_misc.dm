@@ -151,8 +151,6 @@ GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
 	"Testing Range", "Toxins", "Dormitories", "Virology",
 	"Xenobiology", "Law Office","Detective's Office"))
 
-GLOBAL_LIST_FILE_STRING(greek_letters, "strings/greek_letters.txt")
-
 /proc/generate_number_strings()
 	var/list/L[198]
 	for(var/i in 1 to 99)

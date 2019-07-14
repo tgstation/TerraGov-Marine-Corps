@@ -18,7 +18,7 @@
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	H.name = pick(GLOB.greek_letters)
+	H.name = pick(SSstrings.get_list_from_file("greek_letters"))
 	H.real_name = H.name
 
 	M.transfer_to(H, TRUE)

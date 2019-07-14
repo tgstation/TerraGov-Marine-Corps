@@ -1,8 +1,4 @@
-GLOBAL_LIST_FILE_STRING(metatips, "strings/tips/meta.txt")
-GLOBAL_LIST_FILE_STRING(marinetips, "strings/tips/marine.txt")
-GLOBAL_LIST_FILE_STRING(xenotips, "strings/tips/xeno.txt")
-GLOBAL_LIST_FILE_STRING(joketips, "strings/tips/meme.txt")
-#define ALLTIPS (GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
+#define ALLTIPS (SSstrings.get_list_from_file("tips/marine") + SSstrings.get_list_from_file("tips/xeno") + SSstrings.get_list_from_file("tips/meme") + SSstrings.get_list_from_file("tips/meta"))
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 

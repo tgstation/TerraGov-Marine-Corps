@@ -16,4 +16,4 @@
 
 
 /datum/language/machine/get_random_name()
-	return pick(GLOB.ai_names)
+	return pick(SSstrings.get_list_from_file("names/ai"))

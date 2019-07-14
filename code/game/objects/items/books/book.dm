@@ -114,10 +114,10 @@
 	var/letter
 	dat = "<table><tr><th>Call</th><th>Response<th></tr>"
 	for(var/i in 1 to 10)
-		letter = pick(GLOB.greek_letters)
+		letter = pick(SSstrings.get_list_from_file("greek_letters"))
 		number = rand(100, 999)
 		dat += "<tr><td>[letter]-[number]</td>"
-		letter = pick(GLOB.greek_letters)
+		letter = pick(SSstrings.get_list_from_file("greek_letters"))
 		number = rand(100, 999)
 		dat += "<td>[letter]-[number]</td></tr>"
 

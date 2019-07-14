@@ -1,14 +1,11 @@
-GLOBAL_LIST_EMPTY(string_files)
-GLOBAL_PROTECT(string_files)
-
 SUBSYSTEM_DEF(strings)
 	name = "Strings"
 	init_order = INIT_ORDER_STRINGS
-	flags = SS_NO_FIRE
+	flags = SS_NO_FIRE|SS_NO_INIT
 
-/datum/controller/subsystem/strings/Initialize(timeofday)
-	for(var/i in GLOB.string_files)
-		GLOB.vars[i] = file2list(GLOB.string_files[i])
-		CHECK_TICK
+	var/list/list/externally_loaded_lists = list()
 
-	return ..()
+/datum/controller/subsystem/strings/proc/get_list_from_file(file)
+	if(!isnull(externally_loaded_lists[file]))
+		return externally_loaded_lists[file]
+	return externally_loaded_lists[file] = file2list("strings/[file].txt")

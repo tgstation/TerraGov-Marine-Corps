@@ -1,4 +1,4 @@
-GLOBAL_LIST_FILE_STRING(first_names_male, "strings/names/first_male.txt")
+/*GLOBAL_LIST_FILE_STRING(first_names_male, "strings/names/first_male.txt")
 GLOBAL_LIST_FILE_STRING(first_names_female, "strings/names/first_female.txt")
 GLOBAL_LIST_FILE_STRING(first_names_male_russian, "strings/names/first_male_russian.txt")
 GLOBAL_LIST_FILE_STRING(first_names_female_russian, "strings/names/first_female_russian.txt")
@@ -15,4 +15,4 @@ GLOBAL_LIST_FILE_STRING(moth_last, "strings/names/moth_last.txt")
 GLOBAL_LIST_FILE_STRING(food_adjectives, "strings/names/food_adjectives.txt")
 GLOBAL_LIST_FILE_STRING(ai_names, "strings/names/ai.txt")
 GLOBAL_LIST_FILE_STRING(megacarp_first_names, "strings/names/megacarp_first.txt")
-GLOBAL_LIST_FILE_STRING(megacarp_last_names, "strings/names/megacarp_last.txt")
+GLOBAL_LIST_FILE_STRING(megacarp_last_names, "strings/names/megacarp_last.txt")*/

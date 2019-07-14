@@ -307,8 +307,8 @@ SUBSYSTEM_DEF(ticker)
 
 	if(prob(95) && length(ALLTIPS))
 		tip = pick(ALLTIPS)
-	else if(length(GLOB.joketips))
-		tip = pick(GLOB.joketips)
+	else if(length(SSstrings.get_list_from_file("tips/meme")))
+		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
 		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")
