@@ -670,7 +670,7 @@
 			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		playsound(loc, 'sound/weapons/unload.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] swaps a new [I] into [src].</span>",
 		"<span class='notice'>You swap a new [I] into [src].</span>")
 		user.drop_held_item()
