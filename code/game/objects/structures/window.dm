@@ -101,9 +101,7 @@
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(is_full_window())
-		return FALSE //Full tile window, you can't move into it!
-	if(get_dir(loc, target) == dir)
+	if(is_full_window() || get_dir(loc, target) == dir)
 		return !density
 	else
 		return TRUE
