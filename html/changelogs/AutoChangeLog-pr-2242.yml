@@ -1,0 +1,5 @@
+author: "Spyroshark"
+delete-after: True
+changes: 
+  - tweak: "Xenomorph corpses now sell for more in requisitions."
+  - bugfix: "You can sell Defiler, Shrike, and Larva corpses now."
