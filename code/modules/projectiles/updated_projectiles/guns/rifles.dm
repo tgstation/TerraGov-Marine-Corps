@@ -52,6 +52,8 @@
 	item_state = "m41a1"
 	fire_sound = "gun_pulse"
 	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	unload_sound = 'sound/weapons/gun_m41a_unload.ogg'
+	reload_sound = 'sound/weapons/gun_m41a_reload.ogg'
 	caliber = "10x24mm caseless" //codex
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
@@ -133,6 +135,8 @@
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
 	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	unload_sound = 'sound/weapons/gun_m41a_unload.ogg'
+	reload_sound = 'sound/weapons/gun_m41a_reload.ogg'
 	max_shells = 95 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
@@ -170,6 +174,9 @@
 	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/gun_mar40.ogg'
+	unload_sound = 'sound/weapons/gun_mar40_unload.ogg'
+	reload_sound = 'sound/weapons/gun_mar40_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_mar40_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/mar40
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -209,7 +216,6 @@
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
-	fire_sound = 'sound/weapons/gun_mar40.ogg'
 
 /obj/item/weapon/gun/rifle/mar40/carbine/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -235,6 +241,9 @@
 	max_shells = 20 //codex
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_m16.ogg'
+	unload_sound = 'sound/weapons/gun_m16_unload.ogg'
+	reload_sound = 'sound/weapons/gun_m16_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_m16_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -282,6 +291,8 @@
 	origin_tech = "combat=5;materials=4"
 	fire_sound =  'sound/weapons/gun_rifle.ogg'
 	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	unload_sound = 'sound/weapons/gun_m41a_unload.ogg'
+	reload_sound = 'sound/weapons/gun_m41a_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
@@ -329,8 +340,11 @@
 	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/gun_type71.ogg'
+	unload_sound = 'sound/weapons/gun_type71_unload.ogg'
+	reload_sound = 'sound/weapons/gun_type71_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_type71_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
-	wield_delay = 4
+	wield_delay = WIELD_DELAY_FAST
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
@@ -360,11 +374,11 @@
 	name = "\improper Type 71 pulse carbine"
 	icon_state = "type71c"
 	item_state = "type71c"
-	wield_delay = 2 //Carbine is more lightweight
+	wield_delay = WIELD_DELAY_VERY_FAST //Carbine is more lightweight
 
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando
-	name = "\improper Type 71 'Commando' pulse carbine"
+	name = "\improper Type 73 'Commando' pulse carbine"
 	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen issued outside of commando units and officer cadres."
 	icon_state = "type73"
 	item_state = "type73"

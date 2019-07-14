@@ -20,6 +20,9 @@
 	caliber = "10x28mm Caseless" //codex
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
+	dry_fire_sound = 'sound/weapons/gun_sniper_empty.ogg'
+	unload_sound = 'sound/weapons/gun_sniper_unload.ogg'
+	reload_sound = 'sound/weapons/gun_sniper_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
@@ -203,7 +206,11 @@
 	max_shells = 6 //codex
 	caliber = "10x99mm Caseless" //codex
 	origin_tech = "combat=7;materials=5"
-	fire_sound = 'sound/weapons/sniper_heavy.ogg'
+	fire_sound = 'sound/weapons/gun_sniper_heavy.ogg'
+	dry_fire_sound = 'sound/weapons/gun_sniper_empty.ogg'
+	unload_sound = 'sound/weapons/gun_sniper_heavy_unload.ogg'
+	reload_sound = 'sound/weapons/gun_sniper_heavy_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_sniper_heavy_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
 	zoomdevicename = "scope"
@@ -240,6 +247,10 @@
 	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
 	fire_sound = 'sound/weapons/gun_svd.ogg'
+	dry_fire_sound = 'sound/weapons/gun_sniper_empty.ogg'
+	unload_sound = 'sound/weapons/gun_svd_unload.ogg'
+	reload_sound = 'sound/weapons/gun_svd_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_svd_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -275,7 +286,10 @@
 	max_shells = 15 //codex
 	caliber = "10x24mm caseless" //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = list('sound/weapons/gun_m4ra.ogg')
+	fire_sound = 'sound/weapons/gun_m4ra.ogg'
+	unload_sound = 'sound/weapons/gun_m4ra_unload.ogg'
+	reload_sound = 'sound/weapons/gun_m4ra_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_m4ra_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
@@ -959,6 +973,8 @@
 	load_method = MAGAZINE //codex
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/gun_minigun.ogg'
+	unload_sound = 'sound/weapons/gun_minigun_unload.ogg'
+	reload_sound = 'sound/weapons/gun_minigun_reload.ogg'
 	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/minigun
 	type_of_casings = "cartridge"

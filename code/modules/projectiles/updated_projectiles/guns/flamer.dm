@@ -11,6 +11,8 @@
 	force = 15
 	fire_sound = "gun_flamethrower"
 	dry_fire_sound = 'sound/weapons/gun_flamethrower_empty.ogg'
+	unload_sound = 'sound/weapons/gun_flamethrower_unload.ogg'
+	reload_sound = 'sound/weapons/gun_flamethrower_reload.ogg'
 	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6

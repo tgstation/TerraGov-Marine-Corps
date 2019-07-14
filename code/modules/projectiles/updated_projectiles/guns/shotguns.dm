@@ -261,6 +261,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	origin_tech = "combat=4;materials=2"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
 	fire_sound = 'sound/weapons/gun_shotgun_heavy.ogg'
+	reload_sound = 'sound/weapons/gun_shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -502,6 +503,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "pal12"
 	item_state = "pal12"
 	fire_sound = 'sound/weapons/gun_shotgun_cmb.ogg'
+	reload_sound = 'sound/weapons/gun_shotgun_cmb_insert.ogg'
+	pump_sound = 'sound/weapons/gun_shotgun_cmb_pump.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -531,6 +534,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "ksg"
 	item_state = "ksg"
 	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
+	reload_sound = 'sound/weapons/gun_shotgun_ksg_insert.ogg'
+	pump_sound = 'sound/weapons/gun_shotgun_ksg_pump.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -566,6 +571,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	item_state = "mosin" //thank you Alterist
 	fire_sound = 'sound/weapons/gun_mosin.ogg'
 	dry_fire_sound = 'sound/weapons/gun_empty.ogg'
+	reload_sound = 'sound/weapons/gun_mosin_reload.ogg'
 	caliber = "7.62x54mm Rimmed" //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex

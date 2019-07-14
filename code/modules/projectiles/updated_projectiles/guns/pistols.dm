@@ -3,7 +3,9 @@
 
 /obj/item/weapon/gun/pistol
 	icon_state = "" //Defaults to revolver pistol when there's no sprite.
-	reload_sound = 'sound/weapons/flipblade.ogg'
+	fire_sound = 'sound/weapons/gun_pistol.ogg'
+	unload_sound = 'sound/weapons/gun_pistol_unload.ogg'
+	reload_sound = 'sound/weapons/gun_pistol_reload.ogg'
 	cocked_sound = 'sound/weapons/gun_pistol_cocked.ogg'
 	load_method = MAGAZINE //codex
 	origin_tech = "combat=3;materials=2"
@@ -13,7 +15,6 @@
 	force = 6
 	movement_acc_penalty_mult = 2
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
-	fire_sound = 'sound/weapons/gun_pistol.ogg'
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list(
@@ -92,6 +93,9 @@
 	max_shells = 10 //codex
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_colt.ogg'
+	unload_sound = 'sound/weapons/gun_colt_unload.ogg'
+	reload_sound = 'sound/weapons/gun_colt_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_colt_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -137,6 +141,10 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 15 //codex
 	fire_sound = 'sound/weapons/gun_beretta.ogg'
+	dry_fire_sound = 'sound/weapons/gun_beretta_empty.ogg'
+	unload_sound = 'sound/weapons/gun_beretta_unload.ogg'
+	reload_sound = 'sound/weapons/gun_beretta_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_beretta_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/b92fs
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -209,6 +217,10 @@
 	caliber = ".50 AE" //codex
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/gun_deagle.ogg'
+	dry_fire_sound = 'sound/weapons/gun_deagle_empty.ogg'
+	unload_sound = 'sound/weapons/gun_deagle_unload.ogg'
+	reload_sound = 'sound/weapons/gun_deagle_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_deagle_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/heavy
 	force = 13
 	attachable_allowed = list(
@@ -248,6 +260,9 @@
 	max_shells = 12 //codex
 	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/gun_c99.ogg'
+	unload_sound = 'sound/weapons/gun_c99_unload.ogg'
+	reload_sound = 'sound/weapons/gun_c99_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_c99_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/c99
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -293,6 +308,9 @@
 	caliber = ".44 magnum" //codex
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
+	unload_sound = 'sound/weapons/gun_kt42_unload.ogg'
+	reload_sound = 'sound/weapons/gun_kt42_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_kt42_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/automatic
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -353,6 +371,9 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 13 //codex
 	fire_sound = 'sound/weapons/gun_hp.ogg'
+	unload_sound = 'sound/weapons/gun_hp_unload.ogg'
+	reload_sound = 'sound/weapons/gun_hp_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_hp_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -379,7 +400,11 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 18 //codex
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/vp70.ogg'
+	fire_sound = 'sound/weapons/gun_vp70.ogg'
+	dry_fire_sound = 'sound/weapons/gun_vp70_empty.ogg'
+	unload_sound = 'sound/weapons/gun_vp70_unload.ogg'
+	reload_sound = 'sound/weapons/gun_vp70_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_vp70_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/vp70
 	force = 8
 	attachable_allowed = list(
@@ -418,6 +443,10 @@
 	max_shells = 18 //codex
 	origin_tech = "combat=4;materials=4"
 	fire_sound = 'sound/weapons/gun_pistol_large.ogg'
+	dry_fire_sound = 'sound/weapons/gun_vp70_empty.ogg'
+	unload_sound = 'sound/weapons/gun_vp70_unload.ogg'
+	reload_sound = 'sound/weapons/gun_vp70_reload.ogg'
+	cocked_sound = 'sound/weapons/gun_vp70_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/vp78
 	force = 8
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
