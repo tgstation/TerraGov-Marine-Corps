@@ -8,7 +8,7 @@
 	desc = "A gun that fires flares. Replace with flares. Simple!"
 	icon_state = "flaregun" //REPLACE THIS
 	item_state = "gun" //YUCK
-	fire_sound = 'sound/weapons/gun_flare.ogg'
+	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	origin_tech = "combat=1;materials=2"
 	ammo = /datum/ammo/flare
 	var/num_flares = 1

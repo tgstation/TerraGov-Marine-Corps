@@ -355,7 +355,7 @@
 				user.put_in_hands(cell)
 			cell = W
 			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
-			playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
+			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 			update_icon()
 	return ..()
 

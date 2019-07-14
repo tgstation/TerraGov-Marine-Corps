@@ -79,7 +79,7 @@
 	icon_state = "taser"
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
-	fire_sound = 'sound/weapons/taser.ogg'
+	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
@@ -118,8 +118,8 @@
 	name = "\improper Lasgun"
 	desc = "A laser based firearm. Uses power cells."
 	origin_tech = "combat=5;materials=4"
-	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/laser.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	matter = list("metal" = 2000)
 	load_method = CELL //codex
 
@@ -215,7 +215,7 @@
 		charge_cost = M43_OVERCHARGE_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = M43_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
-		fire_sound = 'sound/weapons/Laser3.ogg'
+		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
 	else
@@ -223,7 +223,7 @@
 		charge_cost = M43_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-		fire_sound = 'sound/weapons/laser.ogg'
+		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 

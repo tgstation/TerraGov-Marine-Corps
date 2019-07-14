@@ -879,7 +879,7 @@ Defined in conflicts.dm of the #defines folder.
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	var/list/loaded_grenades //list of grenade types loaded in the UGL
 
@@ -917,7 +917,7 @@ Defined in conflicts.dm of the #defines folder.
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else
-			playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+			playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 			current_rounds++
 			loaded_grenades += G.type
 			to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
@@ -960,7 +960,7 @@ Defined in conflicts.dm of the #defines folder.
 	max_rounds = 20
 	max_range = 4
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/flamer/unremovable
@@ -1042,7 +1042,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/list/turf/turfs = getline(user,target)
 	var/distance = 0
 	var/turf/prev_T
-	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
+	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
@@ -1107,7 +1107,7 @@ Defined in conflicts.dm of the #defines folder.
 	current_rounds = 3
 	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
 
@@ -1132,7 +1132,7 @@ Defined in conflicts.dm of the #defines folder.
 				mag.current_rounds--
 				mag.update_icon()
 				to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
-				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+				playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temporarilyRemoveItemFromInventory(mag)
 					qdel(mag)

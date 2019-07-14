@@ -991,7 +991,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	set_smoke()
 	smoke.set_up(1, T)
 	smoke.start()
-	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 50, 1, 4)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 25, 25, 25, 15)
 
 /datum/ammo/rocket/wp/quad
