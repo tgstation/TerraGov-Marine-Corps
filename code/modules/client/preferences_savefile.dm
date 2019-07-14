@@ -142,9 +142,6 @@
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
 
-	if(!length(key_bindings))
-		addtimer(CALLBACK(src, .proc/load_default_keybindings, parent), 5 SECONDS)
-
 	return TRUE
 
 
