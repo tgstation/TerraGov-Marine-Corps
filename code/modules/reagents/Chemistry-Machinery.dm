@@ -187,7 +187,7 @@
 	if(machine_stat & BROKEN)
 		return
 	var/mob/living/carbon/human/H = user
-	if(!check_access(H.wear_id))
+	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	ui_interact(user)
