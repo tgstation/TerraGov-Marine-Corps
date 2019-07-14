@@ -446,7 +446,7 @@
 			rounds--
 			if(!rounds)
 				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
-				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
+				playsound(src.loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
 	return
 
