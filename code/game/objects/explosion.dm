@@ -9,7 +9,6 @@
 
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = FALSE, flame_range = 0)
 	spawn(0)
-		var/start = world.timeofday
 		epicenter = get_turf(epicenter)
 		if(!epicenter) return
 
@@ -84,7 +83,6 @@
 
 		var/x0 = epicenter.x
 		var/y0 = epicenter.y
-		var/z0 = epicenter.z
 
 		for(var/turf/T in trange(max_range, epicenter))
 			var/dist = cheap_pythag(T.x - x0,T.y - y0)
@@ -122,18 +120,6 @@
 					var/obj/effect/particle_effect/fire/F = new /obj/effect/particle_effect/fire(T)
 					if(istype(F))
 						F.life = rand(6,10)
-
-
-		var/took = (world.timeofday-start)/10
-		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
-		if(GLOB.Debug2)
-			log_world("## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds.")
-
-		//Machines which report explosions.
-//		for(var/i,i<=doppler_arrays.len,i++)
-//			var/obj/machinery/doppler_array/Array = doppler_arrays[i]
-//			if(Array)
-//				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,took)
 
 		sleep(8)
 

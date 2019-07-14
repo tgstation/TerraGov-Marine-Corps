@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(ticker)
 
 	var/current_state = GAME_STATE_STARTUP	//State of current round used by process()
 	var/force_ending = FALSE					//Round was ended by admin intervention
+	var/bypass_checks = FALSE 				//Bypass mode init checks
+	var/setup_failed = FALSE 				//If the setup has failed at any point
 
 	var/start_immediately = FALSE //If true, there is no lobby phase, the game starts immediately.
 	var/setup_done = FALSE //All game setup done including mode post setup and
@@ -85,7 +87,8 @@ SUBSYSTEM_DEF(ticker)
 					fire()
 
 		if(GAME_STATE_SETTING_UP)
-			if(!setup())
+			setup_failed = !setup()
+			if(setup_failed)
 				current_state = GAME_STATE_STARTUP
 				time_left = null
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
@@ -114,25 +117,21 @@ SUBSYSTEM_DEF(ticker)
 	mode = config.pick_mode(GLOB.master_mode)
 
 	CHECK_TICK
-	if(!mode.can_start())
+	if(!mode.can_start() && !bypass_checks)
 		to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		QDEL_NULL(mode)
 		SSjob.ResetOccupations()
 		return FALSE
 
 	CHECK_TICK
-	var/success = mode.pre_setup()
-	if (!success)
-		if(GLOB.Debug2)
-			message_admins("<span class='notice'>DEBUG: Bypassing failing prestart checks...</span>")
-		else
-			QDEL_NULL(mode)
-			to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
-			SSjob.ResetOccupations()
-			return FALSE
+	if(!mode.pre_setup() && !bypass_checks)
+		QDEL_NULL(mode)
+		to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
+		SSjob.ResetOccupations()
+		return FALSE
 
 	CHECK_TICK
-	if (!mode.setup())
+	if(!mode.setup() && !bypass_checks)
 		QDEL_NULL(mode)
 		to_chat(world, "<b>Error in setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
 		SSjob.ResetOccupations()
