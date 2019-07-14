@@ -54,6 +54,7 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 
 	var/fire_delay = 0							//For regular shots, how long to wait before firing again.
+	var/autofire_delay = 0.4 SECONDS			//Delay between automatic fire shots.
 	var/last_fired = 0							//When it was last fired, related to world.time.
 
 	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
@@ -891,6 +892,8 @@ and you're good to go.
 		playsound(user, dry_fire_sound, 25, 1, 5) //5 tile range
 	else
 		playsound(src, dry_fire_sound, 25, 1, 5)
+	SEND_SIGNAL(src, COMSIG_GUN_CLICKEMPTY)
+
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, reflex = 0, dual_wield = 0)

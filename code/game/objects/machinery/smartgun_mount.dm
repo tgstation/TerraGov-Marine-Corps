@@ -427,11 +427,6 @@
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
 
-/*
-/obj/machinery/m56d_hmg/do_auto_fire(datum/source, atom/autofire_target, mob/living/user)
-	InterceptClickOn(user, null, autofire_target)
-*/
-
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
 	if(!ishuman(usr))
 		return
