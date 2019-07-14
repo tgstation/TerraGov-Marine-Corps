@@ -93,8 +93,10 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_atom & ON_BORDER))
+	if(ISDIAGONALDIR(dir))
 		return TRUE
+	return FALSE
+
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
