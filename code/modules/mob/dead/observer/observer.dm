@@ -96,10 +96,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	grant_all_languages()
 
-	for(var/path in subtypesof(/datum/action/observer_action))
-		var/datum/action/observer_action/A = new path()
-		A.give_action(src)
-
 	return ..()
 
 
@@ -889,3 +885,29 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
+
+
+/mob/dead/observer/verb/toggle_actions()
+	set category = "Ghost"
+	set name = "Toggle Static Action Buttons"
+
+	prefs.observer_actions = !prefs.observer_actions
+	prefs.save_preferences()
+
+
+	to_chat(src, "<span class='notice'>You will [prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons.</span>")
+
+	if(!isobserver(mob))
+		return
+
+	if(!prefs.observer_actions)
+		for(var/datum/action/observer_action/A in mob.actions)
+			A.remove_action(mob)
+
+	else if(/datum/action/observer_action in mob.actions)
+		return
+
+	else
+		for(var/path in subtypesof(/datum/action/observer_action))
+			var/datum/action/observer_action/A = new path()
+			A.give_action(mob)
