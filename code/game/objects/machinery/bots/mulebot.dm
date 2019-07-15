@@ -125,11 +125,9 @@
 	unload(0)
 	switch(severity)
 		if(2)
-			wires &= ~(1 << rand(0,9))
-			wires &= ~(1 << rand(0,9))
-			wires &= ~(1 << rand(0,9))
+			wires.cut_all()
 		if(3)
-			wires &= ~(1 << rand(0,9))
+			wires.cut_random()
 	..()
 	return
 
@@ -138,11 +136,7 @@
 		unload(0)
 	if(prob(25))
 		src.visible_message("<span class='warning'> Something shorts out inside [src]!</span>")
-		var/index = 1<< (rand(0,9))
-		if(wires & index)
-			wires &= ~index
-		else
-			wires |= index
+		wires.cut_random()
 	..()
 	return 1
 
