@@ -18,7 +18,6 @@
 	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 	var/in_throw_mode = FALSE
 	var/notransform = FALSE
-	var/typing = FALSE
 	var/list/observers //The list of people observing this mob.
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
@@ -71,6 +70,7 @@
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+	var/image/typing_indicator
 
 
 	//Interaction

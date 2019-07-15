@@ -163,7 +163,11 @@
 	return ..()
 
 
-/mob/camera/imaginary_friend/toggle_typing_indicator(emoting)
+/mob/camera/imaginary_friend/add_typing_indicator(emoting)
+	return
+
+
+/mob/camera/imaginary_friend/remove_typing_indicator(emoting)
 	return
 
 
