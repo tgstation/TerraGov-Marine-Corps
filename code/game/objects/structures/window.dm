@@ -93,24 +93,26 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_atom & ON_BORDER))
+	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
+	return FALSE
+
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
+	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(is_full_window())
-		return FALSE //Full tile window, you can't move into it!
-	if(get_dir(loc, target) == dir)
+	if(is_full_window() || get_dir(target, mover) == dir)
 		return !density
 	else
 		return TRUE
 
-/obj/structure/window/CheckExit(atom/movable/O, turf/target)
-	if(istype(O) && CHECK_BITFIELD(O.flags_pass, PASSGLASS))
+/obj/structure/window/CheckExit(atom/movable/mover, turf/target)
+	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(O.loc, target) == dir && !is_full_window())
-		return FALSE
+	if(is_full_window()) //Can always leave from a full window.
+		return TRUE
+	if(get_dir(mover, target) == dir)
+		return !density
 	return TRUE
 
 /obj/structure/window/hitby(AM as mob|obj)
