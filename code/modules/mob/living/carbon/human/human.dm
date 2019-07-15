@@ -412,10 +412,10 @@
 				if(placing)
 					if(place_item && place_item == usr.get_active_held_item())
 						if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE))
-							dropItemToGround(place_item)
+							usr.dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
 						if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
-							dropItemToGround(place_item)
+							usr.dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
 
 				else
