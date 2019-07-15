@@ -81,7 +81,7 @@
 		if(open && !swirlie)
 			user.visible_message("<span class='danger'>[user] starts to give [C] a swirlie!</span>", "<span class='notice'>You start to give [C] a swirlie!</span>")
 			swirlie = C
-			if(!do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
+			if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
 				return
 
 			user.visible_message("<span class='danger'>[user] gives [C] a swirlie!</span>", "<span class='notice'>You give [C] a swirlie!</span>", "You hear a toilet flushing.")
