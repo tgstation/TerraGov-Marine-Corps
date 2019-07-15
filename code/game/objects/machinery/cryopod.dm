@@ -53,8 +53,8 @@
 /obj/machinery/computer/cryopod/attack_paw()
 	attack_hand()
 
-/obj/machinery/computer/cryopod/attack_ai()
-	attack_hand()
+/obj/machinery/computer/cryopod/attack_ai(mob/living/silicon/ai/AI)
+	attack_hand(AI)
 
 /obj/machinery/computer/cryopod/attack_hand(mob/living/user)
 	. = ..()
