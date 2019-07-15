@@ -186,7 +186,6 @@
 		return
 	if(machine_stat & BROKEN)
 		return
-	var/mob/living/carbon/human/H = user
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
