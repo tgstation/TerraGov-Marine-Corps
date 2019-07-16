@@ -136,20 +136,21 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		if(GLOB.round_id)
 			msg += "Round ID [GLOB.round_id] finished"
 
-		var/datum/map_config/next_map
+		var/datum/map_config/next_gound_map
+		var/datum/map_config/next_ship_map
 
-		if(length(SSmapping.next_map_configs))
-			next_map = SSmapping.next_map_configs[GROUND_MAP]
-		else
-			next_map = SSmapping.configs[GROUND_MAP]
-		if(next_map)
+		if(length(SSmapping.next_map_configs)) //To avoid a bad index, let's check if there's actually a list.
+			next_gound_map = SSmapping.next_map_configs[GROUND_MAP]
+			next_ship_map = SSmapping.next_map_configs[SHIP_MAP]
+
+		if(!next_gound_map) //The list could hold a single item, so better check each because there's no guarantee both exist.
+			next_gound_map = SSmapping.configs[GROUND_MAP]
+		if(!next_ship_map)
+			next_ship_map = SSmapping.configs[SHIP_MAP]
+
+		if(next_gound_map)
 			msg += "Next Ground Map: [next_map.map_name]"
-
-		if(length(SSmapping.next_map_configs))
-			next_map = SSmapping.next_map_configs[SHIP_MAP]
-		else
-			next_map = SSmapping.configs[SHIP_MAP]
-		if(next_map)
+		if(next_ship_map)
 			msg += "Next Ship Map: [next_map.map_name]"
 
 		if(SSticker.mode)
