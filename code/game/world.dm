@@ -149,9 +149,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 			next_ship_map = SSmapping.configs[SHIP_MAP]
 
 		if(next_gound_map)
-			msg += "Next Ground Map: [next_map.map_name]"
+			msg += "Next Ground Map: [next_gound_map.map_name]"
 		if(next_ship_map)
-			msg += "Next Ship Map: [next_map.map_name]"
+			msg += "Next Ship Map: [next_ship_map.map_name]"
 
 		if(SSticker.mode)
 			msg += "Round End State: [SSticker.mode.round_finished]"
