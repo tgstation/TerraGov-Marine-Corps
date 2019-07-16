@@ -84,6 +84,7 @@
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 	succeed_activate()
+	add_cooldown()
 	victim.apply_effects(1, 2) 	// Stun
 	shake_camera(victim, 2, 1)
 
@@ -98,8 +99,6 @@
 			break
 		T = temp
 	victim.throw_at(T, fling_distance, 1, owner, TRUE)
-
-	add_cooldown()
 
 
 // ***************************************
