@@ -46,7 +46,9 @@ SUBSYSTEM_DEF(timer)
 
 	if(lit && lit < last_check && head_offset < last_check && last_invoke_warning < last_check)
 		last_invoke_warning = world.time
-		message_admins("No regular timers processed in the last [BUCKET_LEN * 1.5] ticks[bucket_auto_reset ? ", resetting buckets" : ""].")
+		var/msg = "No regular timers processed in the last [BUCKET_LEN * 1.5] ticks[bucket_auto_reset ? ", resetting buckets" : ""]."
+		message_admins(msg)
+		WARNING(msg)
 		if(bucket_auto_reset)
 			bucket_resolution = 0
 
@@ -426,6 +428,10 @@ SUBSYSTEM_DEF(timer)
 
 	//get the list of buckets
 	var/list/bucket_list = SStimer.bucket_list
+
+	if(length(bucket_list) != BUCKET_LEN)
+		SStimer.reset_buckets()
+		bucket_list = SStimer.bucket_list
 
 	//calculate our place in the bucket list
 	var/bucket_pos = BUCKET_POS(src)
