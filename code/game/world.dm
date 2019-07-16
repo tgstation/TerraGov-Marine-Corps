@@ -138,14 +138,14 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 		var/datum/map_config/next_map
 
-		if(length(SSmapping.next_map_configs) >= GROUND_MAP)
+		if(length(SSmapping.next_map_configs))
 			next_map = SSmapping.next_map_configs[GROUND_MAP]
 		else
 			next_map = SSmapping.configs[GROUND_MAP]
 		if(next_map)
 			msg += "Next Ground Map: [next_map.map_name]"
 
-		if(length(SSmapping.next_map_configs) >= SHIP_MAP)
+		if(length(SSmapping.next_map_configs))
 			next_map = SSmapping.next_map_configs[SHIP_MAP]
 		else
 			next_map = SSmapping.configs[SHIP_MAP]
