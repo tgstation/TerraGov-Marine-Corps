@@ -140,8 +140,8 @@
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
 
 // /obj/item/weapon/gun/ signals
-#define COMSIG_GUN_FULLAUTOMODE_TOGGLEON "gun_fullautomode_toggleon"	//from /obj/item/weapon/gun/verb/toggle_burst()
-#define COMSIG_GUN_FULLAUTOMODE_TOGGLEOFF "gun_fullautomode_toggleoff"	//from /obj/item/weapon/gun/verb/toggle_burst()
+#define COMSIG_GUN_FIREMODE_TOGGLE_ON "gun_firemode_toggle_on"		//from /obj/item/weapon/gun/verb/toggle_firemode()
+#define COMSIG_GUN_FIREMODE_TOGGLE_OFF "gun_firemode_toggle_off"	//from /obj/item/weapon/gun/verb/toggle_firemode()
 
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
@@ -214,7 +214,9 @@
 
 
 // /obj/item/weapon/gun/ signals
-#define COMSIG_FULL_AUTO_FIRE "full_auto_fire"
+#define COMSIG_SHOT_AUTOFIRE "shot_autofire"
+	#define COMSIG_SHOT_AUTOFIRE_FAILED (1<<0)
+
 
 //keybindings
 

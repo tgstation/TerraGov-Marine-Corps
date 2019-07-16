@@ -54,7 +54,7 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 
 	var/fire_delay = 0							//For regular shots, how long to wait before firing again.
-	var/autofire_delay = 0.4 SECONDS			//Delay between automatic fire shots.
+	var/autofire_delay = 0.2 SECONDS			//Delay between automatic fire shots.
 	var/last_fired = 0							//When it was last fired, related to world.time.
 
 	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
@@ -64,7 +64,7 @@
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
-	var/burst_delay 	= 1						//The delay in between shots. Lower = less delay = faster.
+	var/burst_delay 	= 0.1 SECONDS			//The delay in between shots. Lower = less delay = faster.
 	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 
 	//Energy Weapons
@@ -94,6 +94,7 @@
 	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
 
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
+	var/fire_mode = GUN_FIREMODE_SINGLEFIRE
 
 	var/gun_firemode = GUN_FIREMODE_SEMIAUTO
 	var/list/gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -635,6 +636,8 @@ and you're good to go.
 
 	var/i
 	for(i = 1 to bullets_fired)
+		to_chat(world, "Fire || [src] || [target] || [user] || [i]")
+		stack_trace("Fire || [src] || [target] || [user] || [i]")
 		if(loc != user)
 			break //If you drop it while bursting, for example.
 
@@ -885,6 +888,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
+	SEND_SIGNAL(src, COMSIG_GUN_CLICKEMPTY)
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
@@ -892,7 +896,6 @@ and you're good to go.
 		playsound(user, dry_fire_sound, 25, 1, 5) //5 tile range
 	else
 		playsound(src, dry_fire_sound, 25, 1, 5)
-	SEND_SIGNAL(src, COMSIG_GUN_CLICKEMPTY)
 
 
 //This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.

@@ -355,6 +355,7 @@
 						/obj/item/attachable/bipod)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOFIRE)
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
@@ -366,6 +367,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	autofire_delay = 0.5
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
@@ -452,6 +454,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	autofire_delay = 0.5
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
@@ -1006,6 +1009,7 @@
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/minigun_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	autofire_delay = 0.5 SECONDS
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)

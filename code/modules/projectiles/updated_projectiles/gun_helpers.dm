@@ -597,6 +597,10 @@ should be alright.
 		playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
+	
+	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE_OFF)
+	
+	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE_ON, user.client, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
