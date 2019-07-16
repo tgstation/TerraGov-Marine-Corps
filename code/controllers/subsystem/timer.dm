@@ -429,10 +429,6 @@ SUBSYSTEM_DEF(timer)
 	//get the list of buckets
 	var/list/bucket_list = SStimer.bucket_list
 
-	if(length(bucket_list) != BUCKET_LEN)
-		SStimer.reset_buckets()
-		bucket_list = SStimer.bucket_list
-
 	//calculate our place in the bucket list
 	var/bucket_pos = BUCKET_POS(src)
 
