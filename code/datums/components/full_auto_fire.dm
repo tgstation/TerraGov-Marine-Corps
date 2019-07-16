@@ -7,7 +7,10 @@ datum/component/automatic_fire
 	var/atom/target
 	var/mouse_parameters
 	var/shots_fired = 0
+	var/autofire_delay = 1 SECONDS //Time between individual shots.
 	var/auto_delay_timer
+	var/bursts_fired = 0
+	var/burstfire_delay = 5 SECONDS //Time between burst shots.
 	var/burst_delay_timer
 	var/shots_to_fire = 0
 	var/fire_mode
@@ -126,13 +129,13 @@ datum/component/automatic_fire
 		stack_trace("start_autofiring() called with an existent burst_delay_timer")
 	switch(fire_mode)
 		if(GUN_FIREMODE_AUTOFIRE)
-			auto_delay_timer = addtimer(CALLBACK(src, .proc/process_shot), shoota.autofire_delay, TIMER_STOPPABLE|TIMER_LOOP)
-			RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDRAG, .proc/on_mouse_drag)
+			auto_delay_timer = addtimer(CALLBACK(src, .proc/process_shot), autofire_delay, TIMER_STOPPABLE|TIMER_LOOP)
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_to_fire = shoota.burst_amount
-			burst_delay_timer = addtimer(CALLBACK(src, .proc/process_burst), shoota.burst_delay, TIMER_STOPPABLE|TIMER_LOOP)
+			burst_delay_timer = addtimer(CALLBACK(src, .proc/process_burst), burstfire_delay, TIMER_STOPPABLE|TIMER_LOOP)
 		else
 			CRASH("start_autofiring() called with no fire_mode")
+	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDRAG, .proc/on_mouse_drag)
 
 
 /datum/component/automatic_fire/proc/stop_autofiring(datum/source, atom/object, turf/location, control, params)
@@ -169,9 +172,6 @@ datum/component/automatic_fire
 
 
 /datum/component/automatic_fire/proc/process_shot()
-	if(QDELETED(clicker)) //Wish I could skip this check, but clients are moody and a bad combination with processing things.
-		stop_autofiring()
-		return FALSE
 	switch(get_dist(clicker.mob, target))
 		if(-1 to 0)
 			target = get_step(clicker.mob, clicker.mob.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
@@ -179,19 +179,23 @@ datum/component/automatic_fire
 			stop_autofiring() //Elvis has left the building.
 			return FALSE
 	clicker.mob.face_atom(target)
-	if(SEND_SIGNAL(parent, COMSIG_SHOT_AUTOFIRE, target, clicker.mob, mouse_parameters, ++shots_fired) & COMSIG_SHOT_AUTOFIRE_FAILED)
-		stop_autofiring()
-		return FALSE
-	return TRUE
+	if(SEND_SIGNAL(parent, COMSIG_SHOT_AUTOFIRE, target, clicker.mob, mouse_parameters, ++shots_fired) & COMSIG_SHOT_AUTOFIRE_SUCCESS)
+		return TRUE
+	stop_autofiring()
+	return FALSE
 
 
 /datum/component/automatic_fire/proc/process_burst()
-	if(!process_shot())
-		return
-	to_chat(world, "process_burst || [shots_fired] || [shots_to_fire]")
-	if(shots_fired >= shots_to_fire)
-		stop_autofiring()
-
+	set waitfor = FALSE
+	var/current_burst = ++bursts_fired
+	for(var/i in 1 to shots_to_fire)
+		if(current_burst != bursts_fired)
+			return
+		if(!process_shot())
+			return
+		to_chat(world, "process_burst || [shots_fired] / [shots_to_fire] || [bursts_fired]")
+		stoplag(autofire_delay)
+	
 
 // obj/item/gun
 /datum/component/automatic_fire/proc/itemgun_equipped(datum/source, mob/shooter, slot)
@@ -258,7 +262,7 @@ datum/component/automatic_fire
 	var/obj/item/projectile/projectile_to_fire = load_into_chamber(shooter)
 	if(!projectile_to_fire)
 		click_empty(shooter) //Will stop_autofiring() through COMSIG_GUN_CLICKEMPTY
-		return COMSIG_SHOT_AUTOFIRE_FAILED //This will as well. Oh well.
+		return NONE
 	apply_bullet_effects(projectile_to_fire, shooter, shots_fired)
 	target = simulate_scatter(projectile_to_fire, target, get_turf(target), shooter)
 	var/list/mouse_control = params2list(params)
@@ -272,11 +276,11 @@ datum/component/automatic_fire
 	muzzle_flash(Get_Angle(shooter, target), shooter)
 	if(!reload_into_chamber(shooter))
 		click_empty(shooter) //Will stop_autofiring() through COMSIG_GUN_CLICKEMPTY
-		return COMSIG_SHOT_AUTOFIRE_FAILED //This will as well. Oh well.
+		return NONE
 	//COMSIG_HUMAN_GUN_FIRED would go here.
 	var/obj/screen/ammo/A = shooter.hud_used.ammo
 	A.update_hud(shooter) //Ammo HUD.
-	return NONE //No flags, so all is well, we can continue shooting.
+	return COMSIG_SHOT_AUTOFIRE_SUCCESS //All is well, we can continue shooting.
 
 
 /obj/item/weapon/gun/minigun/autofire_fail_check(datum/source, client/clicker, atom/target, turf/location, control, params)

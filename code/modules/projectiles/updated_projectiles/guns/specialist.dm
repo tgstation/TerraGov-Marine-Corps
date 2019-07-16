@@ -1015,8 +1015,7 @@
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
-	//recoil = CONFIG_GET(number/combat_define/med_recoil_value)
+	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 
