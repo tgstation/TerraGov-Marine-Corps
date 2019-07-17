@@ -65,8 +65,8 @@
 
 // /client signals
 #define COMSIG_CLIENT_MOUSEDOWN "client_mousedown"			//from base of client/MouseDown(): (/client, object, location, control, params)
-	#define COMSIG_CLIENT_MOUSEDOWN_INTERCEPT (1<<0)
 #define COMSIG_CLIENT_MOUSEUP "client_mouseup"				//from base of client/MouseUp(): (/client, object, location, control, params)
+	#define COMSIG_CLIENT_MOUSEUP_INTERCEPT (1<<0)
 #define COMSIG_CLIENT_MOUSEDRAG "client_mousedrag"			//from base of client/MouseUp(): (/client, object, location, control, params)
 #define COMSIG_CLIENT_DISCONNECTED "client_disconnecred"	//from base of /client/Del(): (/client)
 
@@ -319,4 +319,4 @@
 
 //Full automatic fire component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
-	#define COMSIG_AUTOFIRE_ONMOUSEDOWN_FAIL (1<<0)
+	#define COMSIG_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)

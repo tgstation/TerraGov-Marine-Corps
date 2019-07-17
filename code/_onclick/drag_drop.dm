@@ -23,20 +23,18 @@
 /client/MouseDown(atom/object, turf/location, control, params)
 	if(!control)
 		return
+	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDOWN, object, location, control, params)
 	if(mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
-	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDOWN, object, location, control, params) & COMSIG_CLIENT_MOUSEDOWN_INTERCEPT)
-		return
-	return ..()
 
 
 /client/MouseUp(atom/object, turf/location, control, params)
 	if(!control)
 		return
+	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP, object, location, control, params) & COMSIG_CLIENT_MOUSEUP_INTERCEPT)
+		click_intercepted = world.time
 	if(mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
-	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP, object, location, control, params)
-	return ..()
 
 
 /client/MouseDrag(atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params) //The order seems to be wrong in the reference.

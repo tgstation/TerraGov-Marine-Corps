@@ -636,8 +636,6 @@ and you're good to go.
 
 	var/i
 	for(i = 1 to bullets_fired)
-		to_chat(world, "Fire || [src] || [target] || [user] || [i]")
-		stack_trace("Fire || [src] || [target] || [user] || [i]")
 		if(loc != user)
 			break //If you drop it while bursting, for example.
 

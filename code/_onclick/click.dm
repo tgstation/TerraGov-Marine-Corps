@@ -35,6 +35,11 @@
 /client/Click(atom/object, atom/location, control, params)
 	if(!control)
 		return
+	if(click_intercepted)
+		if(click_intercepted >= world.time)
+			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercepted = 0 //Just reset. Let's not keep re-checking forever.
 	var/ab = FALSE
 	var/list/L = params2list(params)
 
