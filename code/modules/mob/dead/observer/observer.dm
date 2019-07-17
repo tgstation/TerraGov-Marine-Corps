@@ -891,23 +891,20 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Toggle Static Action Buttons"
 
-	prefs.observer_actions = !prefs.observer_actions
-	prefs.save_preferences()
+	client.prefs.observer_actions = !client.prefs.observer_actions
+	client.prefs.save_preferences()
 
 
-	to_chat(src, "<span class='notice'>You will [prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons.</span>")
+	to_chat(src, "<span class='notice'>You will [client.prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons.</span>")
 
-	if(!isobserver(mob))
-		return
+	if(!client.prefs.observer_actions)
+		for(var/datum/action/observer_action/A in actions)
+			A.remove_action(src)
 
-	if(!prefs.observer_actions)
-		for(var/datum/action/observer_action/A in mob.actions)
-			A.remove_action(mob)
-
-	else if(/datum/action/observer_action in mob.actions)
+	else if(/datum/action/observer_action in actions)
 		return
 
 	else
 		for(var/path in subtypesof(/datum/action/observer_action))
 			var/datum/action/observer_action/A = new path()
-			A.give_action(mob)
+			A.give_action(src)
