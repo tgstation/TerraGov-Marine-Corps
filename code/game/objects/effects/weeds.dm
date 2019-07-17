@@ -140,10 +140,7 @@
 	return
 
 /obj/effect/alien/weeds/fire_act()
-	if(!gc_destroyed)
-		spawn(rand(100,175))
-			qdel(src)
-
+	qdel(src)
 
 /obj/effect/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
