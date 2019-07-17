@@ -146,17 +146,20 @@ datum/component/automatic_fire
 
 
 /datum/component/automatic_fire/proc/stop_autofiring(datum/source, atom/object, turf/location, control, params)
-	to_chat(world, "stop_autofiring || [src] || [object] || [clicker] || [shots_fired] || [fire_mode]")
-	SEND_SIGNAL(src, COMSIG_AUTOFIRE_STOPPED, clicker, object, location, control, params, shots_fired)
+	do_stop_autofiring()
+
+
+/datum/component/automatic_fire/proc/do_stop_autofiring()
+	to_chat(world, "do_stop_autofiring || [src] || [auto_delay_timer] || [parent] || [shots_fired] || [clicker] || [target] || [fire_mode]")
 	if(auto_delay_timer) //Keep this at the top of the proc. If anything else runtimes or fails it would cause a potentially-infinite loop.
 		if(!deltimer(auto_delay_timer))
 			to_chat(world, "stop_autofiring || failed to delete [auto_delay_timer] timer")
 			CRASH("stop_autofiring || failed to delete [auto_delay_timer] timer")
 		auto_delay_timer = null
-	var/obj/item/weapon/gun/shoota = parent
-	shoota.on_autofire_stop(src, clicker, object, location, control, params, shots_fired)
 	if(!(autofire_flags & AUTOFIRING))
 		return
+	var/obj/item/weapon/gun/shoota = parent
+	shoota.on_autofire_stop(shots_fired)
 	autofire_flags &= ~AUTOFIRING
 	shots_fired = 0
 	if(clicker)
@@ -182,12 +185,12 @@ datum/component/automatic_fire
 		if(-1 to 0)
 			target = get_step(clicker.mob, clicker.mob.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
 		if(8 to INFINITY) //Can technically only go as far as 127 right now.
-			stop_autofiring() //Elvis has left the building.
+			do_stop_autofiring() //Elvis has left the building.
 			return FALSE
 	clicker.mob.face_atom(target)
 	if(SEND_SIGNAL(parent, COMSIG_GUN_SHOT_AUTOFIRE, target, clicker.mob, mouse_parameters, ++shots_fired) & COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS)
 		return TRUE
-	stop_autofiring()
+	do_stop_autofiring()
 	return FALSE
 
 
@@ -250,7 +253,7 @@ datum/component/automatic_fire
 
 //Procs to be put elsewhere later on.
 
-/obj/item/weapon/gun/proc/on_autofire_stop(datum/component/automatic_fire/auto_fire, client/clicker, atom/object, turf/location, control, params, shots_fired)
+/obj/item/weapon/gun/proc/on_autofire_stop(shots_fired)
 	if(shots_fired > 1) //If it was a burst, apply the burst cooldown.
 		extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3)
 
@@ -266,7 +269,7 @@ datum/component/automatic_fire
 	//COMSIG_GUN_FIRE would go here.
 	var/obj/item/projectile/projectile_to_fire = load_into_chamber(shooter)
 	if(!projectile_to_fire)
-		click_empty(shooter) //Will stop_autofiring() through COMSIG_GUN_CLICKEMPTY
+		click_empty(shooter)
 		return NONE
 	apply_bullet_effects(projectile_to_fire, shooter, shots_fired)
 	target = simulate_scatter(projectile_to_fire, target, get_turf(target), shooter)
@@ -280,7 +283,7 @@ datum/component/automatic_fire
 	last_fired = world.time
 	muzzle_flash(Get_Angle(shooter, target), shooter)
 	if(!reload_into_chamber(shooter))
-		click_empty(shooter) //Will stop_autofiring() through COMSIG_GUN_CLICKEMPTY
+		click_empty(shooter)
 		return NONE
 	//COMSIG_HUMAN_GUN_FIRED would go here.
 	var/obj/screen/ammo/A = shooter.hud_used.ammo

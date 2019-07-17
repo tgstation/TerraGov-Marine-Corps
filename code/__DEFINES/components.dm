@@ -320,4 +320,3 @@
 //Full automatic fire component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
 	#define COMSIG_AUTOFIRE_ONMOUSEDOWN_FAIL (1<<0)
-#define COMSIG_AUTOFIRE_STOPPED "autofire_stopped"
