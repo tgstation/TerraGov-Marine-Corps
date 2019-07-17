@@ -37,7 +37,7 @@
 	icon_state = "nymph"
 	organ_tag = "special" // Turns into a nymph instantly, no transplanting possible.
 
-/obj/item/organ/diona/removed(var/mob/living/target,var/mob/living/user)
+/obj/item/organ/diona/removed(mob/living/target,mob/living/user)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(target))

@@ -7,7 +7,7 @@
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	frequency = 1457
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "syndicate=2"
 	on = FALSE
 	layer = MOB_LAYER - 0.1
@@ -92,7 +92,7 @@
 		update_icon()
 
 
-/obj/item/radio/detpack/attack_hand(mob/user as mob)
+/obj/item/radio/detpack/attack_hand(mob/living/user)
 	if(armed)
 		to_chat(user, "<font color='warning'>Active anchor bolts are holding it in place! Disarm [src] first to remove it!</font>")
 		return
@@ -131,7 +131,7 @@
 		armed = TRUE
 		//bombtick()
 		log_explosion("[key_name(usr)] triggered [src] explosion at [AREACOORD(loc)].")
-		detonation_pending = addtimer(CALLBACK(src, .proc/do_detonate), timer SECONDS)
+		detonation_pending = addtimer(CALLBACK(src, .proc/do_detonate), timer SECONDS, TIMER_STOPPABLE)
 		if(timer > 10)
 			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_normal), 1 SECONDS, TIMER_LOOP)
 			addtimer(CALLBACK(src, .proc/change_to_loud_sound), timer-10)
@@ -273,7 +273,7 @@
 		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
 		message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
 	
-		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = target, action = NOTIFY_ORBIT)
+		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
 		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
@@ -291,7 +291,7 @@
 /obj/item/radio/detpack/proc/change_to_loud_sound()
 	if(sound_timer)
 		deltimer(sound_timer)
-		sound_timer = addtimer(CALLBACK(src, .do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
+		sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
 
 /obj/item/radio/detpack/proc/do_play_sound_normal()
 	timer--

@@ -14,15 +14,6 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	HDPT_ARMOR = 0.5,
 	HDPT_TREADS = 0.15))
 
-//Currently unused, I thought I was gonna need to fuck with stuff but we good
-/*
-var/list/TANK_HARDPOINT_OFFSETS = list(
-	HDPT_MAINGUN = "0,0",
-	HDPT_SECDGUN = "0,0",
-	HDPT_SUPPORT = "0,0",
-	HDPT_ARMOR = "0,0",
-	HDPT_TREADS = "0,0")*/
-
 //The main object, should be an abstract class
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"
@@ -79,13 +70,20 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
 
+
+/obj/vehicle/multitile/root/cm_armored/Initialize()
+	. = ..()
+	GLOB.tank_list += src
+	set_light(15)
+
+
 /obj/vehicle/multitile/root/cm_armored/Destroy()
 	for(var/i in linked_objs)
 		var/obj/O = linked_objs[i]
 		if(O == src)
 			continue
 		qdel(O, TRUE) //Delete all of the hitboxes etc
-
+	GLOB.tank_list -= src
 	return ..()
 
 //What to do if all ofthe installed modules have been broken
@@ -184,7 +182,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!can_use_hp(usr))
 		return
 
-	HP.ammo.Move(entrance.loc)
+	HP.ammo.forceMove(get_turf(entrance))
 	HP.ammo.update_icon()
 	HP.ammo = A
 	HP.backup_clips.Remove(A)
@@ -311,7 +309,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
-	luminosity = 7
 	throwpass = 1 //You can lob nades over tanks, and there's some dumb check somewhere that requires this
 	var/lastsound = 0
 
@@ -346,7 +343,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		return
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
-			KnockDown(1)
+			knock_down(1)
 		var/target_dir = turn(C.dir, 180)
 		temp = get_step(C.loc, target_dir)
 		T = temp
@@ -365,7 +362,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		else
 			throw_at(T, 3, 2, C, 1)
 		if(!knocked_down)
-			KnockDown(1)
+			knock_down(1)
 		apply_damage(rand(10, 15), BRUTE)
 		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -395,7 +392,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /mob/living/carbon/xenomorph/larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
-			KnockDown(1)
+			knock_down(1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -571,12 +568,12 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus + FRENZY_DAMAGE_BONUS(M)
 
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
 		"<span class='danger'>You lunge at [src]!</span>")
 		return FALSE
@@ -592,13 +589,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 
 //Special case for entering the vehicle without using the verb
-/obj/vehicle/multitile/root/cm_armored/attack_hand(mob/user)
-
+/obj/vehicle/multitile/root/cm_armored/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(user.loc == entrance.loc)
 		handle_player_entrance(user)
 		return
 
-	. = ..()
 
 /obj/vehicle/multitile/root/cm_armored/Entered(atom/movable/A)
 	if(istype(A, /obj) && !istype(A, /obj/item/ammo_magazine/tank) && !istype(A, /obj/item/hardpoint))
@@ -890,3 +888,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	hardpoints[old.slot] = null
 	update_damage_distribs()
 	update_icon()
+
+
+
+/obj/vehicle/multitile/root/cm_armored/contents_explosion(severity, target)
+	return

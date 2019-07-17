@@ -3,8 +3,8 @@
 /obj/structure/desertdam/decals
 	name = "desert foliage"
 	icon = 'icons/turf/desertdam_map.dmi'
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 //loose sand overlay

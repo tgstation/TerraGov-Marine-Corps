@@ -17,6 +17,7 @@
 #define INITIALIZED				(1<<5)  	//Whether /atom/Initialize() has already run for the object
 #define NODECONSTRUCT			(1<<6)
 #define OVERLAY_QUEUED			(1<<7)
+#define PREVENT_CLICK_UNDER		(1<<8)		//Prevent clicking things below it on the same turf
 
 //==========================================================================================
 
@@ -35,6 +36,7 @@
 #define TWOHANDED				(1<<4)	// The item is twohanded.
 #define WIELDED					(1<<5)	// The item is wielded with both hands.
 #define	ITEM_ABSTRACT			(1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
+#define BEING_REMOVED			(1<<7)	//Cuffs and legcuffs
 
 //==========================================================================================
 

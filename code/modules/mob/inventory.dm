@@ -224,7 +224,7 @@
 				equipped = 1
 		if(SLOT_HANDCUFFED)
 			if(!src.handcuffed)
-				src.handcuffed = W
+				update_handcuffed(W)
 				equipped = 1
 		if(SLOT_L_HAND)
 			if(!src.l_hand)
@@ -290,6 +290,8 @@
 					equipped = 1
 
 	if(equipped)
+		if(W.flags_armor_protection)
+			add_limb_armor(W)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
 		if(src.back && W.loc != src.back)

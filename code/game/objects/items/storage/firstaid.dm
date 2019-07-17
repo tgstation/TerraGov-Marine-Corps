@@ -1,17 +1,17 @@
 /* First aid storage
- * Contains:
- *		First Aid Kits
- * 		Pill Bottles
- */
+* Contains:
+*		First Aid Kits
+* 		Pill Bottles
+*/
 
 /*
- * First Aid Kits
- */
+* First Aid Kits
+*/
 /obj/item/storage/firstaid
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
 	icon_state = "firstaid"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 8
 	cant_hold = list(
@@ -140,8 +140,8 @@
 
 
 	/*
- * Syringe Case
- */
+* Syringe Case
+*/
 
 
 /obj/item/storage/syringe_case
@@ -151,7 +151,7 @@
 	throw_speed = 2
 	throw_range = 8
 	storage_slots = 3
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/reagent_container/pill,
 		/obj/item/reagent_container/glass/bottle,
@@ -192,8 +192,8 @@
 	new /obj/item/reagent_container/glass/bottle/dexalin(src)
 
 /*
- * Pill Bottles
- */
+* Pill Bottles
+*/
 
 
 /obj/item/storage/pill_bottle
@@ -202,7 +202,7 @@
 	icon_state = "pill_canister1"
 	icon = 'icons/obj/items/chemistry.dmi'
 	item_state = "contsolid"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/reagent_container/pill,
 		/obj/item/toy/dice,
@@ -210,7 +210,7 @@
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	storage_slots = null
-	use_sound = null
+	use_sound = 'sound/items/pillbottle.ogg'
 	max_storage_space = 16
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
 
@@ -230,6 +230,7 @@
 			return
 		if(user.put_in_inactive_hand(I))
 			to_chat(user, "<span class='notice'>You take a pill out of \the [src].</span>")
+			playsound(user, 'sound/items/pills.ogg', 15, 1)
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.swap_hand()
@@ -377,5 +378,5 @@
 	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
 
 	req_access = list(ACCESS_NT_CORPORATE)
-	req_id_role = "Corporate Liaison"
+	req_id_role = CORPORATE_LIAISON
 	scan_name = TRUE

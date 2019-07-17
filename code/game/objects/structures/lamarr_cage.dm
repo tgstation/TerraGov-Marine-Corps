@@ -4,7 +4,7 @@
 	icon_state = "labcage1"
 	desc = "A glass lab container for storing interesting creatures."
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	max_integrity = 30
 	var/occupied = 1
@@ -32,7 +32,7 @@
 				src.healthcheck()
 
 
-/obj/structure/lamarr/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/lamarr/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage
 	..()
 	src.healthcheck()
@@ -41,7 +41,7 @@
 /obj/structure/lamarr/proc/healthcheck()
 	if (src.obj_integrity <= 0)
 		if (!( src.destroyed ))
-			src.density = 0
+			src.density = FALSE
 			src.destroyed = 1
 			new /obj/item/shard( src.loc )
 			playsound(src, "shatter", 25, 1)
@@ -68,7 +68,10 @@
 /obj/structure/lamarr/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/structure/lamarr/attack_hand(mob/user as mob)
+/obj/structure/lamarr/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if (src.destroyed)
 		return
 	else

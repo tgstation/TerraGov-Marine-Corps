@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogen-stand"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 40
 	var/processing = 0
@@ -127,7 +127,10 @@
 	onclose(user, "biogenerator")
 	return
 
-/obj/machinery/biogenerator/attack_hand(mob/user as mob)
+/obj/machinery/biogenerator/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	interact(user)
 
 /obj/machinery/biogenerator/proc/activate()
@@ -158,7 +161,7 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item,var/cost)
+/obj/machinery/biogenerator/proc/create_product(item,cost)
 	if(cost > points)
 		menustat = "nopoints"
 		return 0
@@ -214,6 +217,9 @@
 	return 1
 
 /obj/machinery/biogenerator/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & BROKEN) return
 	if(usr.stat || usr.restrained()) return
 	if(!in_range(src, usr)) return

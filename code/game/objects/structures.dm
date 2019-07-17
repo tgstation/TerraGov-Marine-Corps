@@ -4,15 +4,8 @@
 	var/climb_delay = 50
 	var/parts
 	var/flags_barrier = 0
+	var/broken = FALSE //similar to machinery's stat BROKEN
 	anchored = TRUE
-
-/obj/structure/New()
-	..()
-	GLOB.structure_list += src
-
-/obj/structure/Destroy()
-	. = ..()
-	GLOB.structure_list -= src
 
 /obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)
@@ -92,7 +85,7 @@
 
 	do_climb(target)
 
-/obj/structure/proc/can_climb(var/mob/living/user)
+/obj/structure/proc/can_climb(mob/living/user)
 	if(!climbable || !can_touch(user))
 		return FALSE
 
@@ -147,7 +140,7 @@
 						return
 	return TRUE
 
-/obj/structure/proc/do_climb(var/mob/living/user)
+/obj/structure/proc/do_climb(mob/living/user)
 	if(!can_climb(user))
 		return
 
@@ -192,7 +185,7 @@
 		if(M.lying)
 			return //No spamming this on people.
 
-		M.KnockDown(5)
+		M.knock_down(5)
 		to_chat(M, "<span class='warning'>You topple as \the [src] moves under you!</span>")
 
 		if(prob(25))

@@ -193,7 +193,7 @@
 
 	//Clear out any existing typing indicator.
 	if(!prefs.show_typing && istype(mob))
-		mob.toggle_typing_indicator()
+		mob.remove_typing_indicator()
 
 	to_chat(src, "<span class='notice'>You will [prefs.show_typing ? "now" : "no longer"] display a typing indicator.</span>")
 
@@ -205,7 +205,7 @@
 	prefs.ShowChoices(usr)
 
 
-GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1" = "ghostian1", "Ghost Ian 2" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\
+GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1" = "ghostian", "Ghost Ian 2" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\
 							"Black" = "ghost_black", "Blue" = "ghost_blue", "Yellow" = "ghost_yellow", "Green" = "ghost_green", "Pink" = "ghost_pink", \
 							"Cyan" = "ghost_cyan", "Dark Blue" = "ghost_dblue", "Dark Red" = "ghost_dred", "Dark Green" = "ghost_dgreen", \
 							"Dark Cyan" = "ghost_dcyan", "Grey" = "ghost_grey", "Dark Yellow" = "ghost_dyellow", "Dark Pink" = "ghost_dpink",\

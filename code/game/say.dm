@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(!message)
 		return
 
-	spans |= get_spans()
+	spans |= speech_span
 
 	if(!language)
 		language = get_default_language()
@@ -41,11 +41,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	for(var/_AM in get_hearers_in_view(range, source))
 		var/atom/movable/AM = _AM
 		AM.Hear(rendered, src, message_language, message, , spans, message_mode)
-
-
-//To get robot span classes, stuff like that.
-/atom/movable/proc/get_spans()
-	return list()
 
 
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode, face_name = FALSE)
@@ -119,7 +114,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		return verb_say
 
 
-/atom/movable/proc/say_quote(input, list/spans = list(), message_mode, datum/language/language)
+/atom/movable/proc/say_quote(input, list/spans = list(speech_span), message_mode, datum/language/language)
 	if(!input)
 		input = "..."
 
@@ -257,6 +252,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
 		if(!istype(J))
 			job = ""
+		else if(H.mind)
+			job = H.mind.comm_title
 		else
 			job = J.comm_title
 	else if(isAI(M))  // AI

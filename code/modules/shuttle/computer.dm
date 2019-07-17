@@ -2,16 +2,16 @@
 	name = "shuttle console"
 	desc = "A shuttle control computer."
 	icon_state = "syndishuttle"
-//	icon_screen = "shuttle"
-//	icon_keyboard = "tech_key"
-//	light_color = LIGHT_COLOR_CYAN
 	req_access = list( )
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled
 	var/no_destination_swap = 0
 
-/obj/machinery/computer/shuttle/attack_hand(mob/user)
+/obj/machinery/computer/shuttle/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(!user || user.incapacitated())
 		return
 	ui_interact(user)
@@ -43,14 +43,21 @@
 	popup.open()
 
 /obj/machinery/computer/shuttle/Topic(href, href_list)
-	if(..())
-		return TRUE
-//	usr.set_machine(src)
+	. = ..()
+	if(.)
+		return
+
+	if(isxeno(usr))
+		return
+
 	if(!allowed(usr))
 		to_chat(usr, "<span class='danger'>Access denied.</span>")
 		return TRUE
 
 	if(href_list["move"])
+		if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+			to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
+			return TRUE
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 		if(M.mode == SHUTTLE_RECHARGING)
 			to_chat(usr, "<span class='warning'>The engines are not ready to use yet!</span>")

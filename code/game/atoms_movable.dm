@@ -23,21 +23,24 @@
 	var/verb_exclaim = "exclaims"
 	var/verb_whisper = "whispers"
 	var/verb_yell = "yells"
+	var/speech_span
 
 	var/datum/component/orbiter/orbiting
 
 //===========================================================================
 /atom/movable/Destroy()
+	QDEL_NULL(proximity_monitor)
+	QDEL_NULL(language_holder)
+
 	if(throw_source)
 		throw_source = null
 
-	loc?.on_stored_atom_del(src) //things that container need to do when a movable atom inside it is deleted
-
-	QDEL_NULL(language_holder)
-
 	. = ..()
 
-	for(var/atom/movable/AM in contents)
+	loc?.handle_atom_del(src)
+
+	for(var/i in contents)
+		var/atom/movable/AM = i
 		qdel(AM)
 
 	moveToNullspace()
@@ -225,12 +228,6 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
-	if(isturf(loc))
-		if(opacity)
-			oldloc.UpdateAffectingLights()
-		else if(light)
-			light.changed()
-
 	return TRUE
 
 
@@ -265,12 +262,12 @@
 					old_area.Exited(src, destination)
 			for(var/atom/movable/AM in oldloc)
 				AM.Uncrossed(src)
-			//var/turf/oldturf = get_turf(oldloc)
-			//var/turf/destturf = get_turf(destination)
-			//var/old_z = (oldturf ? oldturf.z : null)
-			//var/dest_z = (destturf ? destturf.z : null)
-			//if (old_z != dest_z)
-			//	onTransitZ(old_z, dest_z)
+			var/turf/oldturf = get_turf(oldloc)
+			var/turf/destturf = get_turf(destination)
+			var/old_z = (oldturf ? oldturf.z : null)
+			var/dest_z = (destturf ? destturf.z : null)
+			if(old_z != dest_z)
+				onTransitZ(old_z, dest_z)
 			destination.Entered(src, oldloc)
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
@@ -469,6 +466,79 @@
 	return
 
 
+/atom/movable/proc/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+	if(!no_effect && (visual_effect_icon || used_item))
+		do_item_attack_animation(A, visual_effect_icon, used_item)
+
+	if(A == src)
+		return //don't do an animation if attacking self
+	var/pixel_x_diff = 0
+	var/pixel_y_diff = 0
+
+	var/direction = get_dir(src, A)
+	switch(direction)
+		if(NORTH)
+			pixel_y_diff = 8
+		if(SOUTH)
+			pixel_y_diff = -8
+		if(EAST)
+			pixel_x_diff = 8
+		if(WEST)
+			pixel_x_diff = -8
+		if(NORTHEAST)
+			pixel_x_diff = 8
+			pixel_y_diff = 8
+		if(NORTHWEST)
+			pixel_x_diff = -8
+			pixel_y_diff = 8
+		if(SOUTHEAST)
+			pixel_x_diff = 8
+			pixel_y_diff = -8
+		if(SOUTHWEST)
+			pixel_x_diff = -8
+			pixel_y_diff = -8
+
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 0.2 SECONDS)
+	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, time = 0.2 SECONDS)
+
+
+/atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item)
+	var/image/I
+	if(visual_effect_icon)
+		I = image('icons/effects/effects.dmi', A, visual_effect_icon, A.layer + 0.1)
+	else if(used_item)
+		I = image(icon = used_item, loc = A, layer = A.layer + 0.1)
+		I.plane = GAME_PLANE
+
+		// Scale the icon.
+		I.transform *= 0.75
+		// The icon should not rotate.
+		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+		// Set the direction of the icon animation.
+		var/direction = get_dir(src, A)
+		if(direction & NORTH)
+			I.pixel_y = -16
+		else if(direction & SOUTH)
+			I.pixel_y = 16
+
+		if(direction & EAST)
+			I.pixel_x = -16
+		else if(direction & WEST)
+			I.pixel_x = 16
+
+		if(!direction) // Attacked self?!
+			I.pixel_z = 16
+
+	if(!I)
+		return
+
+	flick_overlay(I, GLOB.clients, 0.5 SECONDS)
+
+	// And animate the attack!
+	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+
+
 /atom/movable/vv_get_dropdown()
 	. = ..()
 	. += "---"
@@ -583,7 +653,7 @@
 	return throw_at(target, range, speed, thrower, spin)
 
 
-/atom/movable/proc/start_pulling(atom/movable/AM, supress_message = FALSE)
+/atom/movable/proc/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	if(QDELETED(AM))
 		return FALSE
 
@@ -605,7 +675,7 @@
 	if(ismob(AM))
 		var/mob/M = AM
 		log_combat(src, M, "grabbed", addition = "passive grab")
-		if(!supress_message)
+		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 	return TRUE
 

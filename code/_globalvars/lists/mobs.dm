@@ -11,7 +11,6 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
-GLOBAL_LIST_EMPTY(mob_directory)			//mob_id -> mob
 GLOBAL_LIST_EMPTY(new_player_list)			//all /mob/new_player
 GLOBAL_LIST_EMPTY(observer_list)			//all /mob/dead/observer
 GLOBAL_LIST_EMPTY(xeno_mob_list)			//all /mob/living/carbon/xenomorph
@@ -21,9 +20,7 @@ GLOBAL_LIST_EMPTY(human_mob_list)			//all /mob/living/carbon/human including syn
 GLOBAL_LIST_EMPTY(alive_human_list)			//as above except stat != DEAD
 GLOBAL_LIST_EMPTY(dead_human_list)
 GLOBAL_LIST_EMPTY(alive_mob_list)			//all alive mobs, including clientless. Excludes /mob/dead/new_player
-GLOBAL_LIST_EMPTY(suicided_mob_list)		//contains a list of all mobs that suicided, including their associated ghosts.
 GLOBAL_LIST_EMPTY(cryoed_mob_list)			//Used for logging people entering cryosleep
-GLOBAL_LIST_EMPTY(drones_list)
 GLOBAL_LIST_EMPTY(dead_mob_list)			//all dead mobs, including clientless. Excludes /mob/dead/new_player
 GLOBAL_LIST_EMPTY(joined_player_list)		//all clients that have joined the game at round-start or as a latejoin.
 GLOBAL_LIST_EMPTY(silicon_mobs)				//all silicon mobs
@@ -31,10 +28,7 @@ GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtype
 GLOBAL_LIST_EMPTY(carbon_list)				//all instances of /mob/living/carbon and subtypes, notably does not contain brains or simple animals
 GLOBAL_LIST_EMPTY(offered_mob_list)				//all /mobs offered by admins
 GLOBAL_LIST_EMPTY(ai_list)
-GLOBAL_LIST_EMPTY(available_ai_shells)
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for each AI_* status define
-GLOBAL_LIST_EMPTY(spidermobs)				//all sentient spider mobs
-GLOBAL_LIST_EMPTY(bots_list)
 GLOBAL_LIST_EMPTY(living_cameras)
 GLOBAL_LIST_EMPTY(aiEyes)
 
@@ -43,11 +37,7 @@ GLOBAL_LIST_EMPTY(all_languages)
 
 GLOBAL_LIST_EMPTY(all_species)
 
-GLOBAL_LIST_EMPTY(xeno_caste_datums)
-
-GLOBAL_LIST_EMPTY(sentient_disease_instances)
-
-GLOBAL_LIST_EMPTY(latejoin_ai_cores)
+GLOBAL_LIST_EMPTY_TYPED(xeno_caste_datums, /list/datum/xeno_caste)
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 

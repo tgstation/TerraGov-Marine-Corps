@@ -8,7 +8,7 @@
 	item_state = "utility"
 	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	allow_drawing_method = TRUE
 
 
@@ -114,8 +114,8 @@
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/reagent_container/hypospray,
-	    /obj/item/bodybag,
-	    /obj/item/defibrillator,
+		/obj/item/bodybag,
+		/obj/item/defibrillator,
 		/obj/item/roller)
 
 /obj/item/storage/belt/medical/Initialize()
@@ -203,7 +203,7 @@
 		/obj/item/explosive/grenade/flashbang,
 		/obj/item/explosive/grenade/chem_grenade/teargas,
 		/obj/item/reagent_container/spray/pepper,
-		/obj/item/handcuffs,
+		/obj/item/restraints/handcuffs,
 		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_magazine/pistol,
@@ -245,7 +245,7 @@
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/flash(src)
 	new /obj/item/weapon/baton(src)
-	new /obj/item/handcuffs(src)
+	new /obj/item/restraints/handcuffs(src)
 
 
 
@@ -253,7 +253,8 @@
 	name = "\improper M276 pattern ammo load rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is the standard variant designed for bulk ammunition-carrying operations."
 	icon_state = "marinebelt"
-	w_class = 4
+	item_state = "marinebelt"
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 5
 	max_w_class = 3
 	max_storage_space = 15
@@ -300,10 +301,11 @@
 	name = "\improper shotgun shell load rig"
 	desc = "An ammunition belt designed to hold shotgun shells or individual bullets."
 	icon_state = "shotgunbelt"
-	w_class = 4
-	storage_slots = 10
+	item_state = "shotgunbelt"
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 14
 	max_w_class = 2
-	max_storage_space = 20
+	max_storage_space = 28
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
 
@@ -340,8 +342,8 @@
 	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
-	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
-	w_class = 3
+	item_state="knifebelt"
+	w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 6
 	max_w_class = 1
 	max_storage_space = 6
@@ -350,7 +352,6 @@
 
 /obj/item/storage/belt/knifepouch/Initialize()
 	. = ..()
-	item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
@@ -362,11 +363,11 @@
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
 	icon_state="grenadebelt" // temp
-	item_state="s_marine"
-	w_class = 4
-	storage_slots = 8
+	item_state="grenadebelt"
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 9
 	max_w_class = 3
-	max_storage_space = 24
+	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
 
@@ -382,7 +383,8 @@
 	new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/storage/belt/grenade/b18
-	w_class = 4
+	name = "\improper M276 pattern M40 HEDP rig Mk II"
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 16
 	max_w_class = 3
 	max_storage_space = 48
@@ -411,7 +413,7 @@
 	name= "\improper G8 general utility pouch"
 	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage."
 	storage_slots = 3
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
@@ -427,9 +429,9 @@
 	icon_state = "m4a3_holster"
 	item_state = "m4a3_holster"
 	use_sound = null
-	w_class = 4
-	storage_slots = 5
-	max_storage_space = 11
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 7
+	max_storage_space = 15
 	max_w_class = 3
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
@@ -452,11 +454,11 @@
 	. = ..()
 
 
-/obj/item/storage/belt/gun/attack_hand(mob/user)
+/obj/item/storage/belt/gun/attack_hand(mob/living/user)
 	if(current_gun && ishuman(user) && loc == user)
 		current_gun.attack_hand(user)
 	else
-		..()
+		return ..()
 
 
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
@@ -514,16 +516,20 @@
 /obj/item/storage/belt/gun/m4a3/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new /obj/item/ammo_magazine/pistol/extended(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/captain/Initialize()
+/obj/item/storage/belt/gun/m4a3/officer/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m4a3/custom(src)
 	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -577,10 +583,12 @@
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
+	new /obj/item/ammo_magazine/revolver/heavy(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
-	new /obj/item/ammo_magazine/revolver/marksman(src)
-	new /obj/item/ammo_magazine/revolver/marksman(src)
-	new /obj/item/ammo_magazine/revolver/marksman(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/storage/belt/gun/mateba
@@ -600,15 +608,19 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/mateba/cmateba
+/obj/item/storage/belt/gun/mateba/captain
 	icon_state = "c_mateba_holster"
 	item_state = "c_mateba_holster"
 
-/obj/item/storage/belt/gun/mateba/cmateba/full/Initialize()
+/obj/item/storage/belt/gun/mateba/captain/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/cmateba(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/captain(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -620,6 +632,8 @@
 	icon_state = "a_mateba_holster"
 	item_state = "a_mateba_holster"
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
+	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -644,6 +658,8 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/storage/belt/gun/korovin/tranq/Initialize()
@@ -651,6 +667,8 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/c99/upp/tranq(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
 	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99t(src)
+	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)

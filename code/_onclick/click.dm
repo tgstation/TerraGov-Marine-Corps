@@ -35,6 +35,15 @@
 /client/Click(atom/object, atom/location, control, params)
 	if(!control)
 		return
+	var/ab = FALSE
+	var/list/L = params2list(params)
+
+	var/dragged = L["drag"]
+	if(dragged && !L[dragged])
+		return
+
+	if(object && object == middragatom && L["left"])
+		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
 		
 	var/mcl = CONFIG_GET(number/minute_click_limit)
 	if(mcl && !check_rights(R_ADMIN, FALSE))
@@ -49,8 +58,11 @@
 			var/msg = "Your previous click was ignored because you've done too many in a minute."
 			if(minute != clicklimiter[5]) //only one admin message per-minute
 				clicklimiter[5] = minute
-				log_game("[key_name(src)] has hit the per-minute click limit of [mcl].")
+				log_admin_private("[key_name(src)] has hit the per-minute click limit of [mcl].")
 				message_admins("[ADMIN_TPMONTY(mob)] has hit the per-minute click limit of [mcl].")
+				if(ab)
+					log_admin_private("[key_name(src)] is likely using the middle click aimbot exploit.")
+					message_admins("[ADMIN_TPMONTY(mob)] is likely using the middle click aimbot exploit.")
 			to_chat(src, "<span class='danger'>[msg]</span>")
 			return
 
@@ -126,6 +138,9 @@
 	face_atom(A)
 
 	if(next_move > world.time)
+		return
+
+	if(!modifiers["catcher"] && A.IsObscured())
 		return
 
 	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
@@ -225,6 +240,25 @@
 	return ..() + GetAllContents()
 
 
+/atom/proc/IsObscured()
+	if(!isturf(loc)) //This only makes sense for things directly on turfs for now
+		return FALSE
+	var/turf/T = get_turf_pixel(src)
+	if(!T)
+		return FALSE
+	for(var/atom/movable/AM in T)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
+			return TRUE
+	return FALSE
+
+
+/turf/IsObscured()
+	for(var/atom/movable/AM in src)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density)
+			return TRUE
+	return FALSE
+
+
 /atom/proc/AllowClick()
 	return FALSE
 
@@ -254,11 +288,6 @@
 					qdel(dummy)
 					return
 			qdel(dummy)
-
-
-// Default behavior: ignore double clicks (the second click that makes the doubleclick call already calls for a normal click)
-/mob/proc/DblClickOn(atom/A, params)
-	return
 
 
 /*
@@ -329,8 +358,10 @@
 	For most objects, pull
 */
 /mob/proc/CtrlClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMSIG_ITEM_CLICKCTRLON_INTERCEPTED)
+		return
 	A.CtrlClick(src)
-	return
 
 
 /atom/proc/CtrlClick(mob/user)

@@ -1,12 +1,12 @@
- // This file contains all Nano procs/definitions for external classes/objects
+// This file contains all Nano procs/definitions for external classes/objects
 
- /**
-  * Called when a Nano UI window is closed
-  * This is how Nano handles closed windows
-  * It must be a verb so that it can be called using winset
-  *
-  * @return nothing
-  */
+/**
+* Called when a Nano UI window is closed
+* This is how Nano handles closed windows
+* It must be a verb so that it can be called using winset
+*
+* @return nothing
+*/
 /client/verb/nanoclose(uiref as text)
 	set hidden = TRUE	// hide this verb from the user's panel
 	set name = "nanoclose"
@@ -24,19 +24,19 @@
 			// so just reset the user mob's machine var
 			mob?.unset_interaction()
 
- /**
-  * The ui_interact proc is used to open and update Nano UIs
-  * If ui_interact is not used then the UI will not update correctly
-  * ui_interact is currently defined for /atom/movable
-  *
-  * @param user /mob The mob who is interacting with this ui
-  * @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
-  * @param ui /datum/nanoui This parameter is passed by the nanoui process() proc when updating an open ui
-  * @param force_open boolean Force the UI to (re)open, even if it's already open
-  *
-  * @return nothing
-  */
-/datum/proc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE, datum/nano_ui/master_ui = null, datum/topic_state/state = GLOB.default_state)
+/**
+* The ui_interact proc is used to open and update Nano UIs
+* If ui_interact is not used then the UI will not update correctly
+* ui_interact is currently defined for /atom/movable
+*
+* @param user /mob The mob who is interacting with this ui
+* @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
+* @param ui /datum/nanoui This parameter is passed by the nanoui process() proc when updating an open ui
+* @param force_open boolean Force the UI to (re)open, even if it's already open
+*
+* @return nothing
+*/
+/datum/proc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE, datum/nanoui/master_ui = null, datum/topic_state/state = GLOB.default_state)
 	return
 
 // Used by SSnano (/datum/controller/subsystem/processing/nano) to track UIs opened by this mob

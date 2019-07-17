@@ -4,14 +4,11 @@
 //Just about ALL the procs are tied to the parent, not to the children
 //This is so they can be easily transferred between them without copypasta
 
-/mob/living/carbon/xenomorph/Initialize()
+/mob/living/carbon/xenomorph/Initialize(mapload, can_spawn_in_centcomm)
 	verbs += /mob/living/proc/lay_down
 	. = ..()
 
 	set_datum()
-	//WO GAMEMODE
-	if(SSmapping.config.map_name == MAP_WHISKEY_OUTPOST)
-		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_inherent_verbs()
 	add_abilities()
@@ -26,8 +23,11 @@
 
 	GLOB.alive_xeno_list += src
 	GLOB.xeno_mob_list += src
-	round_statistics.total_xenos_created++
+	GLOB.round_statistics.total_xenos_created++
 
+	if(!can_spawn_in_centcomm && is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
+		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
+	
 	set_initial_hivenumber()
 
 	generate_nicknumber()
@@ -45,6 +45,9 @@
 
 	update_action_button_icons()
 
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
+
+
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
@@ -61,6 +64,7 @@
 	maxHealth = xeno_caste.max_health
 	health = maxHealth
 	speed = xeno_caste.speed
+	armor = getArmor(arglist(xeno_caste.armor))
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us
@@ -180,10 +184,10 @@
 
 /mob/living/carbon/xenomorph/handle_knocked_out()
 	if(knocked_out)
-		AdjustKnockedout(-2)
+		adjust_knockedout(-2)
 	return knocked_out
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, no_msg)
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM
@@ -202,14 +206,14 @@
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.KnockDown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
+		H.knock_down(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
 		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		H.stop_pulling()
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/xenomorph/resist_grab(moving_resist)
+/mob/living/carbon/xenomorph/resist_grab()
 	if(pulledby.grab_level)
 		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 	pulledby.stop_pulling()
@@ -225,8 +229,12 @@
 	hud_set_pheromone()
 	//and display them
 	add_to_all_mob_huds()
-	var/datum/atom_hud/MH = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	MH.add_hud_to(src)
+	
+	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_XENO_INFECTION]
+	hud_to_add.add_hud_to(src)
+	
+	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
+	hud_to_add.add_hud_to(src)
 
 
 

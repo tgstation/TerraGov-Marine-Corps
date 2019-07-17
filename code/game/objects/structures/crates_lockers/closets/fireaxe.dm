@@ -6,12 +6,12 @@
 	icon_state = "fireaxe1000"
 	icon_closed = "fireaxe1000"
 	icon_opened = "fireaxe1100"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	var/localopened = 0 //Setting this to keep it from behaviouring like a normal closet and obstructing movement in the map. -Agouri
 	opened = 1
 	var/hitstaken = 0
-	var/locked = 1
+	locked = TRUE
 	var/smashed = 0
 
 	attackby(obj/item/O, var/mob/user)  //Marker -Agouri

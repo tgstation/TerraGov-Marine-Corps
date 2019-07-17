@@ -1,22 +1,22 @@
 /* Tables and Racks
- * Contains:
- *		Tables
- *		Wooden tables
- *		Reinforced tables
- *		Racks
- */
+* Contains:
+*		Tables
+*		Wooden tables
+*		Reinforced tables
+*		Racks
+*/
 
 
 /*
- * Tables
- */
+* Tables
+*/
 /obj/structure/table
 	name = "table"
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "table"
 	density = TRUE
-	anchored = 1.0
+	anchored = TRUE
 	layer = TABLE_LAYER
 	throwpass = TRUE	//You can throw objects over this, despite it's density.")
 	climbable = TRUE
@@ -250,7 +250,7 @@
 /obj/structure/table/attack_alien(mob/living/carbon/xenomorph/M)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	if(sheet_type == /obj/item/stack/sheet/wood)
 		playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 	else
@@ -283,18 +283,17 @@
 				return
 
 			if(prob(15))	
-				M.KnockDown(5)
+				M.knock_down(5)
 			M.apply_damage(8, def_zone = "head")
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 			"<span class='danger'>You slam [M]'s face against [src]!</span>")
-			log_admin("[key_name(user)] slams [key_name(M)]'s face' against \the [src].")
 			log_combat(user, M, "slammed", "", "against \the [src]")
 			msg_admin_attack("[key_name(user)] slammed [key_name(M)]'s face' against \the [src].")
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
 
 		else if(user.grab_level >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.KnockDown(5)
+			M.knock_down(5)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 
@@ -317,7 +316,7 @@
 		user.transferItemToLoc(I, loc)
 
 
-/obj/structure/table/proc/straight_table_check(var/direction)
+/obj/structure/table/proc/straight_table_check(direction)
 	var/obj/structure/table/T
 	for(var/angle in list(-90, 90))
 		T = locate() in get_step(loc, turn(direction, angle))
@@ -353,7 +352,7 @@
 
 	flip_cooldown = world.time + 50
 
-/obj/structure/table/proc/unflipping_check(var/direction)
+/obj/structure/table/proc/unflipping_check(direction)
 
 	if(world.time < flip_cooldown)
 		return FALSE
@@ -394,7 +393,7 @@
 
 	flip_cooldown = world.time + 50
 
-/obj/structure/table/proc/flip(var/direction)
+/obj/structure/table/proc/flip(direction)
 
 	if(world.time < flip_cooldown)
 		return FALSE
@@ -447,8 +446,8 @@
 	flipped = TRUE
 
 /*
- * Wooden tables
- */
+* Wooden tables
+*/
 /obj/structure/table/woodentable
 	name = "wooden table"
 	desc = "A square wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -458,8 +457,8 @@
 	table_prefix = "wood"
 	max_integrity = 50
 /*
- * Gambling tables
- */
+* Gambling tables
+*/
 /obj/structure/table/gamblingtable
 	name = "gambling table"
 	desc = "A curved wood and carpet surface resting on four legs. Used for gambling games. Can be flipped in emergencies to act as cover."
@@ -469,8 +468,8 @@
 	table_prefix = "gamble"
 	max_integrity = 50
 /*
- * Reinforced tables
- */
+* Reinforced tables
+*/
 /obj/structure/table/reinforced
 	name = "reinforced table"
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
@@ -484,7 +483,7 @@
 /obj/structure/table/reinforced/flipped
 	flipped = TRUE
 
-/obj/structure/table/reinforced/flip(var/direction)
+/obj/structure/table/reinforced/flip(direction)
 	return FALSE //No, just no. It's a full desk, you can't flip that
 
 
@@ -539,8 +538,8 @@
 
 
 /*
- * Racks
- */
+* Racks
+*/
 /obj/structure/rack
 	name = "rack"
 	desc = "A bunch of metal shelves stacked on top of eachother. Excellent for storage purposes, less so as cover."
@@ -548,7 +547,7 @@
 	icon_state = "rack"
 	density = TRUE
 	layer = TABLE_LAYER
-	anchored = 1.0
+	anchored = TRUE
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
 	climbable = TRUE
 	parts = /obj/item/frame/rack
@@ -572,7 +571,7 @@
 		step(I, get_dir(I, src))
 
 /obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 	"<span class='danger'>You slice [src] apart!</span>", null, 5)
@@ -607,5 +606,5 @@
 			new parts(loc)
 	else
 		new /obj/item/stack/sheet/metal(loc)
-	density = 0
+	density = FALSE
 	qdel(src)

@@ -10,8 +10,8 @@
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 	..()
 
-/obj/item/storage/internal/attack_hand()
-	return		//make sure this is never picked up
+/obj/item/storage/internal/attack_hand(mob/living/user)
+	return TRUE
 
 /obj/item/storage/internal/mob_can_equip()
 	return 0	//make sure this is never picked up
@@ -105,7 +105,7 @@
 			src.close(M)
 	return 1
 
-/obj/item/storage/internal/Adjacent(var/atom/neighbor)
+/obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)
 
 

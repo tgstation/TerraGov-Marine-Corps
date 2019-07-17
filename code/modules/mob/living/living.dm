@@ -32,14 +32,14 @@
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
-		AdjustStunned(-1)
+		adjust_stunned(-1)
 		if(!stunned && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return stunned
 
 /mob/living/proc/handle_knocked_down()
 	if(knocked_down && client)
-		AdjustKnockeddown(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+		adjust_knocked_down(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 		if(!knocked_down && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return knocked_down
@@ -66,7 +66,7 @@
 
 /mob/living/proc/handle_knocked_out()
 	if(knocked_out)
-		AdjustKnockedout(-1)
+		adjust_knockedout(-1)
 	return knocked_out
 
 /mob/living/proc/add_slowdown(amount)
@@ -104,36 +104,15 @@
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
-/mob/living/proc/calculate_affecting_pressure(var/pressure)
+/mob/living/proc/calculate_affecting_pressure(pressure)
 	return
-
-/mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
-	var/temperature = actual
-	var/difference = abs(actual-desired)	//get difference
-	var/increments = difference/10 //find how many increments apart they are
-	var/change = increments*incrementboost	// Get the amount to change by (x per increment)
-
-	// Too cold
-	if(actual < desired)
-		temperature += change
-		if(actual > desired)
-			temperature = desired
-	// Too hot
-	if(actual > desired)
-		temperature -= change
-		if(actual < desired)
-			temperature = desired
-//	if(ishuman(src))
-//		to_chat(world, "[src] ~ [src.bodytemperature] ~ [temperature]")
-	return temperature
-
 
 
 /mob/proc/get_contents()
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/storage/Storage = null)
+/mob/living/get_contents(obj/item/storage/Storage = null)
 	var/list/L = list()
 
 	if(Storage) //If it called itself
@@ -216,6 +195,8 @@
 	//Only bother updating the camera if we actually managed to move
 	if(.)
 		update_camera_location(destination)
+		if(client)
+			reset_perspective()
 
 
 /mob/living/proc/do_camera_update(oldLoc)
@@ -233,25 +214,43 @@
 	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"
 
 
-/mob/proc/resist_grab(moving_resist)
+/mob/proc/resist_grab()
 	return //returning 1 means we successfully broke free
 
-/mob/living/resist_grab(moving_resist)
+
+/mob/living/proc/do_resist_grab()
+	if(restrained(RESTRAINED_NECKGRAB))
+		return FALSE
+	if(last_special >= world.time)
+		return FALSE
+	last_special = world.time + CLICK_CD_RESIST
+	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
+	return resist_grab()
+
+
+/mob/living/proc/do_move_resist_grab()
+	if(restrained(RESTRAINED_NECKGRAB))
+		return FALSE
+	if(last_special >= world.time)
+		return FALSE
+	last_special = world.time + CLICK_CD_RESIST
+	visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
+	return resist_grab()
+
+
+/mob/living/resist_grab()
 	if(pulledby.grab_level)
-		grab_resist_level += 1
-		if(grab_resist_level > pulledby.grab_level)
+		if(++grab_resist_level >= pulledby.grab_level)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 			pulledby.stop_pulling()
 			grab_resist_level = 0 //zero it out.
 			return TRUE
-		if(moving_resist && client) //we resisted by trying to move
-			visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
-			client.move_delay = world.time + (10*pulledby.grab_level) + client.move_delay
 	else
 		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
 		return TRUE
+
 
 /mob/living/stop_pulling()
 	if(ismob(pulling))
@@ -266,6 +265,7 @@
 	if(isliving(pulling))
 		var/mob/living/L = pulling
 		L.grab_resist_level = 0 //zero it out
+		DISABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
 
 	. = ..()
 
@@ -337,12 +337,12 @@
 			now_pushing = 0
 			return
 
- 		if(L.pulling)
- 			if(ismob(L.pulling))
- 				var/mob/P = L.pulling
- 				if(P.restrained())
- 					if(!(world.time % 5))
- 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
+		if(L.pulling)
+			if(ismob(L.pulling))
+				var/mob/P = L.pulling
+				if(P.restrained())
+					if(!(world.time % 5))
+						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
 					now_pushing = 0
 					return
 
@@ -463,7 +463,7 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_eyes()
+/mob/proc/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	return
 
 /mob/living/carbon/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
@@ -502,7 +502,7 @@
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
 	if(!isxeno(src)||!isanimal(src))
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(src)
@@ -517,7 +517,7 @@
 	alpha = initial(alpha)
 
 	if(!isxeno(src)|| !isanimal(src))
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.add_to_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.add_to_hud(src)
@@ -538,16 +538,11 @@
 	var/amplitude = min(4, (jitteriness/100) + 1)
 	var/pixel_x_diff = rand(-amplitude, amplitude)
 	var/pixel_y_diff = rand(-amplitude/3, amplitude/3)
-	var/final_pixel_x = get_standard_pixel_x_offset(lying)
-	var/final_pixel_y = get_standard_pixel_y_offset(lying)
+	var/final_pixel_x = initial(pixel_x)
+	var/final_pixel_y = initial(pixel_y)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
 	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 
-/mob/living/proc/get_standard_pixel_x_offset(lying = 0)
-	return initial(pixel_x)
-
-/mob/living/proc/get_standard_pixel_y_offset(lying = 0)
-	return initial(pixel_y)
 
 /*
 adds a dizziness amount to a mob
@@ -558,7 +553,7 @@ value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
 
-/mob/living/carbon/Dizzy(var/amount)
+/mob/living/carbon/dizzy(amount)
 	dizziness = CLAMP(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)
@@ -601,7 +596,7 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		if(job && (is_banned_from(M.ckey, job) || jobban_isbanned(M, job)))
+		if(job && is_banned_from(M.ckey, job))
 			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
 			return FALSE
 
@@ -610,8 +605,8 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		log_admin("[key_name(M)] has taken [key_name_admin(src)].")
-		message_admins("[key_name_admin(M)] has taken [ADMIN_TPMONTY(src)].")
+		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
+		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
@@ -665,7 +660,7 @@ below 100 is not dizzy
 
 // called when the client disconnects and is away.
 /mob/living/proc/begin_away()
-	away_time = set_away_time(world.time)
+	set_away_time(world.time)
 
 
 /mob/living/reset_perspective(atom/A)
@@ -688,8 +683,6 @@ below 100 is not dizzy
 	if(!T)
 		return FALSE
 	if(is_centcom_level(T.z)) //dont detect mobs on centcom
-		return FALSE
-	if(is_away_level(T.z))
 		return FALSE
 	if(user != null && src == user)
 		return FALSE
@@ -730,3 +723,17 @@ below 100 is not dizzy
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
+
+
+/mob/living/get_photo_description(obj/item/camera/camera)
+	var/holding
+	if(l_hand || r_hand)
+		if(l_hand) 
+			holding = "They are holding \a [l_hand]"
+		if(r_hand)
+			if(holding)
+				holding += " and \a [r_hand]"
+			else
+				holding = "They are holding \a [r_hand]"
+		holding += "."
+	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt" : ""][holding ? ". [holding]" : "."]"

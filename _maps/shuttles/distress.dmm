@@ -51,6 +51,9 @@
 	},
 /area/shuttle/ert)
 "k" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin6"
 	},
@@ -61,6 +64,9 @@
 	},
 /area/shuttle/ert)
 "m" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin7"
 	},
@@ -168,6 +174,22 @@
 	icon_state = "rasputin15"
 	},
 /area/shuttle/ert)
+"D" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert)
+"E" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin15"
+	},
+/area/shuttle/ert)
 "H" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan1"
@@ -236,7 +258,7 @@ q
 q
 v
 g
-g
+D
 g
 I
 "}
@@ -266,7 +288,7 @@ q
 q
 w
 g
-g
+E
 g
 I
 "}

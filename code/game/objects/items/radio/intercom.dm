@@ -1,9 +1,12 @@
 /obj/item/radio/intercom
 	name = "station intercom"
 	desc = "Talk through this. To speak directly into an intercom next to you, use :i."
+	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "intercom"
-	anchored = 1
-	w_class = 4.0
+	pixel_x = -16
+	pixel_y = -16
+	anchored = TRUE
+	w_class = WEIGHT_CLASS_BULKY
 	canhear_range = 2
 	flags_atom = CONDUCT|NOBLOODY
 	var/number = 0
@@ -15,9 +18,13 @@
 	. = ..()
 	switch(dir)
 		if(NORTH)
-			pixel_y = 30
+			pixel_y -= 32
+		if(SOUTH)
+			pixel_y += 32
 		if(EAST)
-			pixel_x = 30
+			pixel_x -= 32
+		if(WEST)
+			pixel_x += 32
 	START_PROCESSING(SSobj, src)
 
 
@@ -34,7 +41,10 @@
 	return src.attack_hand(user)
 
 
-/obj/item/radio/intercom/attack_hand(mob/user as mob)
+/obj/item/radio/intercom/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	spawn (0)
 		attack_self(user)
 
@@ -83,4 +93,14 @@
 
 
 /obj/item/radio/intercom/general/colony
+	freqlock = TRUE
 	frequency = FREQ_CIV_GENERAL
+
+/obj/item/radio/intercom/dropship
+	name = "\improper Alamo dropship intercom"
+	canhear_range = 7
+	frequency = FREQ_DROPSHIP_1
+
+/obj/item/radio/intercom/dropship/normandy
+	name = "\improper Normandy dropship intercom"
+	frequency = FREQ_DROPSHIP_2

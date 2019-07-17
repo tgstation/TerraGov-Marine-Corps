@@ -99,6 +99,8 @@
 
 /obj/item/assembly/timer/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(!usr.canUseTopic(src, TRUE))
 		usr << browse(null, "window=timer")
 		onclose(usr, "timer")

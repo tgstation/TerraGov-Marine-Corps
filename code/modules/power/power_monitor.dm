@@ -8,7 +8,7 @@
 
 	//computer stuff
 	density = TRUE
-	anchored = 1.0
+	anchored = TRUE
 	circuit = /obj/item/circuitboard/computer/powermonitor
 	use_power = 1
 	idle_power_usage = 300
@@ -28,7 +28,10 @@
 		return
 	interact(user)
 
-/obj/machinery/power/monitor/attack_hand(mob/user)
+/obj/machinery/power/monitor/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	interact(user)
@@ -85,7 +88,9 @@
 
 
 /obj/machinery/power/monitor/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if( href_list["close"] )
 		usr << browse(null, "window=powcomp")
 		usr.unset_interaction()
@@ -95,14 +100,12 @@
 		return
 
 
-/obj/machinery/power/monitor/power_change()
-	..()
+/obj/machinery/power/monitor/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "broken"
 	else
 		if(machine_stat & NOPOWER)
-			spawn(rand(0, 15))
-				src.icon_state = "power0"
+			icon_state = "power0"
 		else
 			icon_state = initial(icon_state)
 

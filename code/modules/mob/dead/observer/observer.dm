@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	invisibility = INVISIBILITY_OBSERVER
 	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	hud_type = /datum/hud/ghost
-	var/lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
@@ -96,6 +96,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	grant_all_languages()
 
+	for(var/path in subtypesof(/datum/action/observer_action))
+		var/datum/action/observer_action/A = new path()
+		A.give_action(src)
+
 	return ..()
 
 
@@ -123,18 +127,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			ghostimage_default.icon_state = new_form
 
 
-/mob/dead/observer/sync_lighting_plane_alpha()
-	if(!hud_used)
-		return
-
-	var/obj/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-	if(!L)
-		return
-
-	L.alpha = lighting_alpha
-
-
 /mob/dead/observer/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["reentercorpse"])
 		if(!isobserver(usr))
 			return
@@ -185,6 +181,16 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		A.JoinResponseTeam()
 		return
 
+	else if(href_list["join_larva"])
+		if(!isobserver(usr))
+			return
+		var/mob/dead/observer/ghost = usr
+
+		switch(alert(ghost, "What would you like to do?", "Burrowed larva source available", "Join as Larva", "Cancel"))
+			if("Join as Larva")
+				SSticker.mode.attempt_to_join_as_larva(ghost)
+		return
+
 	else if(href_list["preference"])
 		if(!client?.prefs)
 			return
@@ -195,8 +201,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return TRUE
 
 
-/mob/proc/ghostize(var/can_reenter_corpse = TRUE)
-	if(!key)
+/mob/proc/ghostize(can_reenter_corpse = TRUE)
+	if(!key || isaghost(src))
 		return FALSE
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
@@ -211,49 +217,34 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.icon_state = icon_state
 		ghost.overlays = overlays
 
-	ghost.gender = gender
-
 	if(mind?.name)
 		ghost.real_name = mind.name
-
 	else if(real_name)
 		ghost.real_name = real_name
-
 	else if(gender == MALE)
 		ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
-
 	else
 		ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 	ghost.name = ghost.real_name
-
-	if(mind)
-		ghost.mind = mind
-
-	if(!T)
-		T = pick(GLOB.latejoin)
-
-	ghost.loc = T
-
-	if(!name)
-		ghost.name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+	ghost.gender = gender
+	ghost.alpha = 127
+	ghost.can_reenter_corpse = can_reenter_corpse
+	ghost.timeofdeath = timeofdeath
+	ghost.mind = mind
+	mind = null
+	ghost.key = key
 
 	if(!can_reenter_corpse)
 		set_away_time()
 		ghost.mind?.current = ghost
-		// if you ghost while alive your current mob is now your ghost
-		// aghosting is invoked with can_reenter_corpse = TRUE so this won't mess with aghosting
 
-	if(ghost.client)
-		ghost.client.change_view(world.view)
-		ghost.client.pixel_x = 0
-		ghost.client.pixel_y = 0
+	if(!T)
+		T = safepick(GLOB.latejoin)
+	if(!T)
+		stack_trace("no latejoin landmark detected")
 
-	ghost.alpha = 127
-
-	ghost.can_reenter_corpse = can_reenter_corpse
-	ghost.timeofdeath = timeofdeath
-	ghost.key = key
+	ghost.forceMove(T)
 
 	return ghost
 
@@ -325,17 +316,20 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client)
 		return FALSE
 
-	if(!mind?.current || mind.current.gc_destroyed || !can_reenter_corpse)
+	if(!mind || QDELETED(mind.current))
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return FALSE
 
-	if(mind.current.key && copytext(mind.current.key, 1, 2) != "@")
-		to_chat(usr, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
+
+	if(!can_reenter_corpse)
+		to_chat(src, "<span class='warning'>You cannot re-enter your body.</span>")
 		return FALSE
 
-	mind.current.key = key
-	if(mind.current.client)
-		mind.current.client.change_view(world.view)
+	if(mind.current.key && !isaghost(mind.current))
+		to_chat(src, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
+		return FALSE
+
+	mind.transfer_to(mind.current, TRUE)
 	return TRUE
 
 
@@ -804,7 +798,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
-	if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+	if(is_banned_from(ckey, ROLE_XENOMORPH))
 		to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 		return
 
@@ -815,29 +809,32 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(new_xeno)
 				SSticker.mode.transfer_xeno(src, new_xeno)
 		if("Larva")
-			if(!SSticker.mode.attempt_to_join_as_larva(src))
-				return
-			SSticker.mode.spawn_larva(src)
+			SSticker.mode.attempt_to_join_as_larva(src)
 
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
 	set category = "Ghost"
 
-	if(client.eye != client.mob)
-		client.perspective = MOB_PERSPECTIVE
-		client.eye = client.mob
-		observetarget = null
-		return
+	reset_perspective(null)
 
 	var/mob/target = input("Please select a mob:", "Observe", null, null) as null|anything in GLOB.mob_list
 	if(!target)
 		return
 
-	if(client && target)
-		client.perspective = EYE_PERSPECTIVE
-		client.eye = target
-		observetarget = target
+	if(!client)
+		return
+
+	client.eye = target
+
+	if(!target.hud_used)
+		return
+
+	client.screen = list()
+	LAZYINITLIST(target.observers)
+	target.observers |= src
+	target.hud_used.show_hud(target.hud_used.hud_version, src)
+	observetarget = target
 
 
 /mob/dead/observer/verb/dnr()
@@ -887,3 +884,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
 	return IsAdminGhost(usr)
+
+
+/mob/dead/observer/get_photo_description(obj/item/camera/camera)
+	if(!invisibility || camera.see_ghosts)
+		return "You can also see a g-g-g-g-ghooooost!"

@@ -60,13 +60,13 @@
 	if(species) 
 		species.handle_death(src, gibbed)
 
-	toggle_typing_indicator()
+	remove_typing_indicator()
 
 	if(!gibbed && species.death_sound)
 		playsound(loc, species.death_sound, 50, 1)
 
 	if(SSticker && SSticker.current_state == 3) //game has started, to ignore the map placed corpses.
-		round_statistics.total_human_deaths++
+		GLOB.round_statistics.total_human_deaths++
 
 	GLOB.dead_human_list += src
 	GLOB.alive_human_list -= src

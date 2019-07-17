@@ -69,7 +69,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			target = null
 			targetselected = FALSE
 
-	var/procname = input("Proc path, eg: /proc/attack_hand", "Path:", null) as text|null
+	var/procname = input("Proc path, eg: /proc/attack_hand(mob/living/user)")
 	if(!procname)
 		return
 
@@ -212,8 +212,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	SSmachines.makepowernets()
 
-	log_admin("[key_name(usr)] has remade the powernet. makepowernets() called.")
-	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets. makepowernets() called.")
+	log_admin("[key_name(usr)] has remade powernets.")
+	message_admins("[ADMIN_TPMONTY(usr)] has remade powernets.")
 
 
 /datum/admins/proc/debug_mob_lists()
@@ -222,13 +222,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/dat
 
-	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
+	var/choice = input("Which list?") as null|anything in list("Players", "Observers", "New Players", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	if(!choice)
 		return
 
 	switch(choice)
 		if("Players")
 			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Observers")
+			for(var/i in GLOB.observer_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("New Players")
+			for(var/i in GLOB.new_player_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Admins")
@@ -244,6 +252,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Living Mobs")
+			for(var/i in GLOB.mob_living_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Alive Mobs")
 			for(var/i in GLOB.alive_mob_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
@@ -302,7 +314,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(findtext("[path]", object))
 			matches += path
 
-	if(length(matches) == 0)
+	if(!length(matches))
 		return
 
 	var/chosen
@@ -323,22 +335,25 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] spawned [chosen] at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
-/datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
+/datum/admins/proc/delete_atom(atom/A as obj|mob|turf in world)
 	set category = null
 	set name = "Delete"
 
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(alert(src, "Are you sure you want to delete: [O]?", "Delete", "Yes", "No") != "Yes")
+	if(alert(src, "Are you sure you want to delete: [A]?", "Delete", "Yes", "No") != "Yes")
 		return
 
-	var/turf/T = get_turf(O)
+	if(QDELETED(A))
+		return
 
-	log_admin("[key_name(usr)] deleted [O] at [AREACOORD(T)].")
-	message_admins("[ADMIN_TPMONTY(usr)] deleted [O] at [ADMIN_VERBOSEJMP(T)].")
+	var/turf/T = get_turf(A)
 
-	qdel(O)
+	log_admin("[key_name(usr)] deleted [A]([A.type]) at [AREACOORD(T)].")
+	message_admins("[ADMIN_TPMONTY(usr)] deleted [A]([A.type]) at [ADMIN_VERBOSEJMP(T)].")
+
+	qdel(A)
 
 
 /datum/admins/proc/restart_controller(controller in list("Master", "Failsafe"))
@@ -366,34 +381,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/choice = input("Check contents of", "Check Contents") as null|anything in list("Key", "Cliented Mob", "Mob")
-	if(!choice)
-		return
-
-	var/mob/living/L
-	switch(choice)
-		if("Key")
-			var/client/C = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			L = C.mob
-		if("Cliented Mob")
-			var/mob/CM = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortNames(GLOB.player_list)
-			if(!CM)
-				return
-			L = CM
-		if("Mob")
-			var/mob/M = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!M)
-				return
-			L = M
-
+	var/mob/living/L = usr.client.holder.apicker("Check contents of:", "Check Contents", list(APICKER_CLIENT, APICKER_LIVING))
 	if(!istype(L))
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 
-	var/dat
-
+	var/dat = "<br>"
 	for(var/i in L.get_contents())
 		var/atom/A = i
 		dat += "[A] [ADMIN_VV(A)]<br>"

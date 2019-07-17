@@ -4,9 +4,9 @@
 	var/affect_ghosts = 0
 	var/stopper = 1 // stops throwers
 	invisibility = INVISIBILITY_MAXIMUM // nope cant see this shit
-	anchored = 1
+	anchored = TRUE
 
-/obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
+/obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
 
 /obj/effect/step_trigger/Crossed(H as mob|obj)

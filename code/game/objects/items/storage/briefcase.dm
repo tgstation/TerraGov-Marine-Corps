@@ -7,7 +7,7 @@
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
 	max_storage_space = 16
 
@@ -26,9 +26,9 @@
 				return
 		var/time = rand(2, 6)
 		if (prob(75))
-			M.KnockOut(time)
+			M.knock_out(time)
 		else
-			M.Stun(time)
+			M.stun(time)
 		if(M.stat != 2)	M.stat = 1
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", M), 1, "<span class='warning'> You hear someone fall.</span>", 2)

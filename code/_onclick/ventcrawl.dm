@@ -39,10 +39,6 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	return TRUE
 
 
-/mob/living/simple_animal/spiderbot/can_ventcrawl()
-	return TRUE
-
-
 //VENTCRAWLING
 /mob/proc/handle_ventcrawl(atom/A)
 	if(!can_ventcrawl() || !Adjacent(A))
@@ -96,7 +92,6 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 				pick(playsound(src, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(src, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 
 			forceMove(vent_found)
-			update_pipe_vision(vent_found)
 	else
 		to_chat(src, "<span class='warning'>This ventilation duct is not connected to anything!</span>")
 
@@ -114,6 +109,8 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 	if(client)
 		for(var/X in totalMembers)
 			var/obj/machinery/atmospherics/A = X //all elements in totalMembers are necessarily of this type.
+			if(!in_view_range(client.mob, A))
+				continue
 			if(!A.pipe_vision_img)
 				A.pipe_vision_img = image(A, A.loc, layer = ABOVE_HUD_LAYER, dir = A.dir)
 				A.pipe_vision_img.plane = ABOVE_HUD_PLANE
@@ -121,17 +118,20 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			client.images += A.pipe_vision_img
 			pipes_shown += A.pipe_vision_img
 	is_ventcrawling = TRUE
+	return TRUE
+
 
 /mob/living/carbon/xenomorph/hunter/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
 	. = ..()
-	cancel_stealth()
+	if(.)
+		cancel_stealth()
+
 
 /mob/living/proc/remove_ventcrawl()
 	is_ventcrawling = FALSE
 	if(client)
 		for(var/image/current_image in pipes_shown)
 			client.images -= current_image
-		client.eye = src
 
 	pipes_shown.len = 0
 

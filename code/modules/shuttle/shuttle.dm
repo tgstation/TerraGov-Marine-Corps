@@ -177,6 +177,8 @@
 		id = "[SSshuttle.stationary.len]"
 	if(name == "dock")
 		name = "dock[SSshuttle.stationary.len]"
+	var/area/A = get_area(src)
+	area_type = A.type
 
 //	if(mapload)
 //		for(var/turf/T in return_turfs())
@@ -193,7 +195,7 @@
 
 /obj/docking_port/stationary/proc/load_roundstart()
 	if(json_key)
-		var/sid = SSmapping.config.shuttles[json_key]
+		var/sid = SSmapping.configs[GROUND_MAP].shuttles[json_key]
 		roundstart_template = SSmapping.shuttle_templates[sid]
 		if(!roundstart_template)
 			CRASH("json_key:[json_key] value \[[sid]\] resulted in a null shuttle template for [src]")
@@ -429,6 +431,9 @@
 	playsound(return_center_turf(), landing_sound, 60, 0)
 	return
 
+/obj/docking_port/mobile/proc/on_crash()
+	return
+
 //recall the shuttle to where it was previously
 /obj/docking_port/mobile/proc/cancel()
 	if(mode != SHUTTLE_CALL)
@@ -572,6 +577,7 @@
 		if(SHUTTLE_CALL, SHUTTLE_PREARRIVAL)
 			if(prearrivalTime && mode != SHUTTLE_PREARRIVAL)
 				mode = SHUTTLE_PREARRIVAL
+				on_prearrival()
 				setTimer(prearrivalTime)
 				return
 			var/error = initiate_docking(destination, preferred_direction)

@@ -1,6 +1,8 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
+	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
+	var/living_flags = NONE
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
 
 	//Health and life related vars
@@ -21,7 +23,6 @@
 	var/is_dizzy = FALSE
 	var/druggy = 0
 	var/sleeping = 0
-	var/sdisabilities = NONE
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
@@ -38,8 +39,11 @@
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
+	var/disabilities = NONE
 
-	var/last_special = 0 //Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
+	var/restrained_flags = NONE
+
+	var/last_special = 0
 
 	var/now_pushing
 
@@ -77,9 +81,6 @@
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
 
 	var/image/attack_icon //the image used as overlay on the things we attack.
-
-	var/list/datum/action/actions = list()
-	var/list/actions_by_path = list()
 
 	var/zoom_cooldown = 0 //Cooldown on using zooming items, to limit spam
 	var/do_bump_delay = FALSE	// Flag to tell us to delay movement because of being bumped

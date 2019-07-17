@@ -9,15 +9,16 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	origin_tech = "combat=4;materials=3"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 14.0
 	caliber = "12 gauge shotgun shells" //codex
 	max_shells = 9 //codex
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/gun_shotgun_empty.ogg'
 	reload_sound = 'sound/weapons/gun_shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/gun_shotgun_reload.ogg'
-	var/opened_sound = 'sound/weapons/gun_shotgun_open2.ogg'
+	var/opened_sound = 'sound/weapons/gun_shotgun_open.ogg'
 	type_of_casings = "shell"
 	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
@@ -148,7 +149,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ready_shotgun_tube()
 
 /obj/item/weapon/gun/shotgun/reload_into_chamber(mob/user)
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		make_casing(active_attachable.type_of_casings)
 	else
 		make_casing(type_of_casings)
@@ -324,7 +325,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	current_mag.chamber_closed = !current_mag.chamber_closed
 	update_icon()
-	playsound(user, reload_sound, 25, 1)
+	playsound(user, opened_sound, 25, 1)
 	return TRUE
 
 
@@ -475,7 +476,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		make_casing(active_attachable.type_of_casings)
 	else
 		pump_lock = FALSE //fired successfully; unlock the pump
@@ -500,7 +501,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A nine-round pump action shotgun. A sporterized version of a classic shotgun used for hunting, home defence and police work, modified and used by Colonial Marshals"
 	icon_state = "pal12"
 	item_state = "pal12"
-	fire_sound = 'sound/weapons/gun_shotgun_small.ogg'
+	fire_sound = 'sound/weapons/gun_shotgun_cmb.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -563,7 +564,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already."
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist
-	fire_sound = 'sound/weapons/gun_sniper.ogg'
+	fire_sound = 'sound/weapons/gun_mosin.ogg'
+	dry_fire_sound = 'sound/weapons/gun_empty.ogg'
 	caliber = "7.62x54mm Rimmed" //codex
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex
@@ -628,7 +630,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		make_casing(active_attachable.type_of_casings)
 	else
 		pump_lock = FALSE //fired successfully; unlock the pump

@@ -34,7 +34,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 15
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -72,7 +72,7 @@
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -105,7 +105,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 23
+	armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_0, "bio" = 23, "rad" = 23, "fire" = 23, "acid" = 23)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -114,7 +114,7 @@
 /datum/xeno_caste/sentinel/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Neurotoxin Factory, don't let it get you."
-	ancient_message = "You are the stun master. Your stunning is legendary and causes massive quantities of salt."
+	ancient_message = "We are the stun master. Our stunning is legendary and causes massive quantities of salt."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
@@ -138,7 +138,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 25
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 25)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS

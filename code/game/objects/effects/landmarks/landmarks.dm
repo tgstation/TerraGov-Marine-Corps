@@ -60,6 +60,17 @@
 	GLOB.newplayer_start += loc
 	return
 
+
+/obj/effect/landmark/start/ai_spawn
+	icon_state = "AI"
+
+
+/obj/effect/landmark/start/ai_spawn/Initialize(mapload)
+	. = ..()
+	GLOB.ai_spawn += loc
+	return INITIALIZE_HINT_QDEL
+
+
 /obj/effect/landmark/start/latejoin/Initialize()
 	. = ..()
 	GLOB.latejoin += loc
@@ -134,11 +145,3 @@
 /obj/effect/landmark/distress
 
 /obj/effect/landmark/distress_item
-
-/obj/effect/landmark/prisonwarp
-	icon_state = "prisonwarp"
-
-/obj/effect/landmark/prisonwarp/Initialize()
-	. = ..()
-	GLOB.prisonwarp += loc
-	return INITIALIZE_HINT_QDEL

@@ -6,7 +6,7 @@
 	type_of_casings = "bullet"
 	load_method = MAGAZINE //codex
 	force = 8
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	movement_acc_penalty_mult = 3
 	wield_delay = WIELD_DELAY_FAST
 	attachable_allowed = list(
@@ -43,6 +43,7 @@
 	item_state = "m39"
 	caliber = "10x20mm caseless" //codex
 	max_shells = 40 //codex
+	flags_equip_slot = ITEM_SLOT_BACK
 	current_mag = /obj/item/ammo_magazine/smg/m39
 	type_of_casings = null
 	attachable_allowed = list(
@@ -114,7 +115,7 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/smg_light.ogg'
+	fire_sound = 'sound/weapons/gun_mp5.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp5
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -151,7 +152,7 @@
 	caliber = "4.6x30mm" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/smg_light.ogg'
+	fire_sound = 'sound/weapons/gun_mp7.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -219,7 +220,7 @@
 	caliber = "7.62x25mm" //codex
 	max_shells = 35 //codex
 	origin_tech = "combat=3;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/smg_heavy.ogg'
+	fire_sound = 'sound/weapons/gun_ppsh.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	attachable_allowed = list(
 						/obj/item/attachable/compensator,
@@ -261,17 +262,18 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/uzi/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
 
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
 	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
+	movement_acc_penalty_mult = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 //-------------------------------------------------------
 //FP9000 //Based on the FN P90

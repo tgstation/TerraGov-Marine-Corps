@@ -15,13 +15,13 @@
 // All power generation handled in add_avail()
 // Machines should use add_load(), surplus(), avail()
 // Non-machines should use add_delayedload(), delayed_surplus(), newavail()
-/obj/machinery/power/proc/add_avail(var/amount)
+/obj/machinery/power/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
 		return TRUE
 	return FALSE
 
-/obj/machinery/power/proc/add_load(var/amount)
+/obj/machinery/power/proc/add_load(amount)
 	if(powernet)
 		powernet.load += amount
 
@@ -57,7 +57,7 @@
 
 // returns true if the area has power on given channel (or doesn't require power).
 // defaults to power_channel
-/obj/machinery/proc/powered(var/chan = -1)
+/obj/machinery/proc/powered(chan = -1)
 	if(!loc)
 		return FALSE
 	if(use_power == NO_POWER_USE)
@@ -304,8 +304,7 @@
 	else if (!power_source)
 		return 0
 	else
-		log_admin("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
-		return 0
+		CRASH("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
 	if (!C && !PN)
 		return 0
 	var/PN_damage = 0
@@ -352,7 +351,7 @@
 
 /area/proc/get_apc()
 	for(var/obj/machinery/power/apc/APC in GLOB.apcs_list)
-		if(APC.area == src.master)
+		if(APC.area == src)
 			return APC
 
 

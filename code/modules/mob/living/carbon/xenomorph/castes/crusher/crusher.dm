@@ -11,7 +11,6 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	drag_delay = 6 //pulling a big dead xeno is hard
-	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	mob_size = MOB_SIZE_BIG
 
 	is_charging = 1 //Crushers start with charging enabled
@@ -53,7 +52,7 @@
 		var/obj/structure/barricade/B = target
 		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 			visible_message("<span class='danger'>[src] rams into [B] and skids to a halt!</span>",
-			"<span class='xenowarning'>You ram into [B] and skid to a halt!</span>")
+			"<span class='xenowarning'>We ram into [B] and skid to a halt!</span>")
 			flags_pass = 0
 			update_icons()
 			B.Bumped(src)
@@ -72,7 +71,7 @@
 			return TRUE
 		else if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 			visible_message("<span class='danger'>[src] rams into [B] and skids to a halt!</span>",
-			"<span class='xenowarning'>You ram into [B] and skid to a halt!</span>")
+			"<span class='xenowarning'>We ram into [B] and skid to a halt!</span>")
 			flags_pass &= ~PASSTABLE
 			update_icons()
 			return TRUE
@@ -84,7 +83,7 @@
 		var/obj/vehicle/multitile/hitbox/H = target
 		if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 			visible_message("<span class='danger'>[src] rams into [H.root] and skids to a halt!</span>",
-			"<span class='xenowarning'>You ram into [H.root] and skid to a halt!</span>")
+			"<span class='xenowarning'>We ram into [H.root] and skid to a halt!</span>")
 			flags_pass = 0
 			update_icons()
 			H.root.Bumped(src)
@@ -111,7 +110,7 @@
 				return FALSE
 			else
 				X.visible_message("<span class='danger'>[X] crushes [src]!</span>",
-				"<span class='xenodanger'>You crush [src]!</span>")
+				"<span class='xenodanger'>We crush [src]!</span>")
 				if(contents.len) //Hopefully won't auto-delete things inside crushed stuff.
 					var/turf/T = get_turf(src)
 					for(var/atom/movable/S in contents) S.loc = T
@@ -122,7 +121,7 @@
 				if(buckled_mob)
 					unbuckle()
 				X.visible_message("<span class='warning'>[X] knocks [src] aside.</span>!",
-				"<span class='xenowarning'>You knock [src] aside.</span>") //Canisters, crates etc. go flying.
+				"<span class='xenowarning'>We knock [src] aside.</span>") //Canisters, crates etc. go flying.
 				playsound(loc, "punch", 25, 1)
 				X.diagonal_step(src, X.dir) //Occasionally fling it diagonally.
 				step_away(src, X, min(round(X.charge_speed) + 1, 3))
@@ -176,7 +175,7 @@
 			X.stop_momentum(X.charge_dir, TRUE)
 			return FALSE
 		X.visible_message("<span class='danger'>[X] smashes straight into [src]!</span>",
-		"<span class='xenodanger'>You smash straight into [src]!</span>")
+		"<span class='xenodanger'>We smash straight into [src]!</span>")
 		playsound(loc, "punch", 25, 1)
 		tip_over()
 		X.diagonal_step(src, X.dir, 50) //Occasionally fling it diagonally.
@@ -196,7 +195,7 @@
 		X.stop_momentum(X.charge_dir)
 		return FALSE
 	X.visible_message("<span class='danger'>[X] rams [src]!</span>",
-	"<span class='xenodanger'>You ram [src]!</span>")
+	"<span class='xenodanger'>We ram [src]!</span>")
 	playsound(loc, "punch", 25, 1)
 	machine_stat = 1
 	DISABLE_BITFIELD(turret_flags, TURRET_ON)
@@ -231,12 +230,12 @@
 					count++
 			if(count)
 				X.charge_speed -= CHARGE_SPEED_BUILDUP / (count * 2) // half normal slowdown regardless of number of corpses.
-		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest)) // neither
+		else if(!(status_flags & XENO_HOST) && !CHECK_BITFIELD(restrained_flags, RESTRAINED_XENO_NEST)) // neither
 			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 40, BRUTE)
 			X.visible_message("<span class='danger'>[X] rams [src]!</span>",
-			"<span class='xenodanger'>You ram [src]!</span>")
-		KnockDown(X.charge_speed * 4)
+			"<span class='xenodanger'>We ram [src]!</span>")
+		knock_down(X.charge_speed * 4)
 		animation_flash_color(src)
 		X.diagonal_step(src, X.dir) //Occasionally fling it diagonally.
 		step_away(src, X, round(X.charge_speed))

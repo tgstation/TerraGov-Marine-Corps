@@ -40,7 +40,7 @@
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
-	armor_deflection = 5
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -83,7 +83,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 10
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2
@@ -120,7 +120,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 10
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2.3
@@ -134,7 +134,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "It's literally crawling with 11 huggers."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "You are the master of huggers. Throw them like baseballs at the marines!"
+	ancient_message = "We are the master of huggers. We shall throw them like baseballs at the marines!"
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -157,7 +157,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 15
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5

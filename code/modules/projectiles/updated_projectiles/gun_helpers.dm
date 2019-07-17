@@ -54,6 +54,8 @@ DEFINES in setup.dm, referenced here.
 	able_to_fire() //Unless the gun has some special check to see whether or not it may fire, you don't need this.
 	You can see examples of how this is modified in smartgun/sadar code, along with others. Return ..() on a success.
 
+	gun_on_cooldown() //For custom cooldown checks. By default it takes into account the user's skills.
+
 	load_into_chamber() //This can get complicated, but if the gun doesn't take attachments that fire bullets from
 	the Fire() process, just set them to null and leave the if(current_mag && current_mag.current_rounds > 0) check.
 	The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.
@@ -126,7 +128,7 @@ DEFINES in setup.dm, referenced here.
 	return ..()
 
 
-/obj/item/weapon/gun/attack_hand(mob/user)
+/obj/item/weapon/gun/attack_hand(mob/living/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.
@@ -147,32 +149,12 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/dropped(mob/user)
 	. = ..()
 
-	stop_aim()
-	if(user?.client)
-		user.update_gun_icons()
-
-	turn_off_light(user)
-
 	unwield(user)
 	harness_check(user)
 
 
-/obj/item/weapon/gun/proc/turn_off_light(mob/bearer)
-	if(!bearer && ismob(loc))
-		bearer = loc
-	if(flags_gun_features & GUN_FLASHLIGHT_ON && bearer)
-		bearer.SetLuminosity( rail.light_mod * -1 )
-		SetLuminosity(rail.light_mod)
-		return TRUE
-	return FALSE
-
-
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
-
-	if(flags_gun_features & GUN_FLASHLIGHT_ON)
-		user.SetLuminosity(rail.light_mod)
-		SetLuminosity(0)
 
 	unwield(user)
 
@@ -257,7 +239,7 @@ should be alright.
 		attach_to_gun(user, I)
 		return
 
- 	//the active attachment is reloadable
+	//the active attachment is reloadable
 	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
 		active_attachable.reload_attachment(I, user)
 		return

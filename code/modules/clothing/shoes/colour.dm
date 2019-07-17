@@ -56,9 +56,9 @@
 /obj/item/clothing/shoes/orange
 	name = "orange shoes"
 	icon_state = "orange"
-	var/obj/item/handcuffs/chained = null
+	var/obj/item/restraints/handcuffs/chained = null
 
-/obj/item/clothing/shoes/orange/proc/attach_cuffs(var/obj/item/handcuffs/cuffs, mob/user as mob)
+/obj/item/clothing/shoes/orange/proc/attach_cuffs(obj/item/restraints/handcuffs/cuffs, mob/user as mob)
 	if (src.chained) return
 
 	user.drop_held_item()
@@ -83,5 +83,5 @@
 /obj/item/clothing/shoes/orange/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/handcuffs))
+	if(istype(I, /obj/item/restraints/handcuffs))
 		attach_cuffs(I, user)

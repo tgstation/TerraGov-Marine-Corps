@@ -1,14 +1,15 @@
 /mob/living/simple_animal/hostile/retaliate
 	var/list/enemies = list()
 
-/mob/living/simple_animal/hostile/retaliate/Found(var/atom/A)
+
+/mob/living/simple_animal/hostile/retaliate/Found(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(!L.stat)
-			stance = HOSTILE_STANCE_ATTACK
 			return L
 		else
 			enemies -= L
+
 
 /mob/living/simple_animal/hostile/retaliate/ListTargets()
 	if(!enemies.len)
@@ -17,23 +18,24 @@
 	see &= enemies // Remove all entries that aren't in enemies
 	return see
 
+
 /mob/living/simple_animal/hostile/retaliate/proc/Retaliate()
-	..()
-	var/list/around = view(src, 7)
+	var/list/around = view(src, world.view)
 
 	for(var/atom/movable/A in around)
 		if(A == src)
 			continue
 		if(isliving(A))
-			var/mob/living/M = A
-			if(!attack_same && M.faction != faction)
-				enemies |= M
+			var/mob/living/L = A
+			if((L.faction == faction && attack_same) || L.faction != faction)
+				enemies |= L
 
 	for(var/mob/living/simple_animal/hostile/retaliate/H in around)
-		if(!attack_same && !H.attack_same && H.faction == faction)
+		if((H.faction == faction && attack_same) || H.faction != faction)
 			H.enemies |= enemies
-	return 0
+	return FALSE
 
-/mob/living/simple_animal/hostile/retaliate/adjustBruteLoss(var/damage)
-	..(damage)
+
+/mob/living/simple_animal/hostile/retaliate/adjustBruteLoss(damage)
+	. = ..()
 	Retaliate()

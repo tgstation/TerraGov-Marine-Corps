@@ -36,6 +36,7 @@
 
 
 /mob/proc/death(gibbed, deathmessage = "seizes up and falls limp...")
+	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbed)
 	log_combat(src, src, "[deathmessage]")
 	if(stat == DEAD)
 		return FALSE
@@ -67,6 +68,7 @@
 	GLOB.dead_mob_list |= src
 	GLOB.offered_mob_list -= src
 
+	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
 

@@ -23,8 +23,10 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_container/glass/bottle/attack_hand()
-	..()
+/obj/item/reagent_container/glass/bottle/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	update_icon()
 
 /obj/item/reagent_container/glass/bottle/New()

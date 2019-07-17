@@ -16,8 +16,8 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/toggle_crest_defense,
-		/datum/action/xeno_action/activable/fortify,
+		/datum/action/xeno_action/toggle_crest_defense,
+		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
 		/datum/action/xeno_action/activable/tail_sweep
 		)
@@ -64,5 +64,5 @@
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), 4, 70, H)
-	H.KnockDown(2)
+	H.knock_down(2)
 	return

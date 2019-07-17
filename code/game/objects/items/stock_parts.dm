@@ -1,18 +1,15 @@
-
-///////////////////////////////////////Stock Parts /////////////////////////////////
-
-//stock parts for constructable machines
-
 /obj/item/stock_parts
 	name = "stock part"
 	desc = "What?"
 	gender = PLURAL
 	icon = 'icons/obj/items/stock_parts.dmi'
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/rating = 1
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+
+
+/obj/item/stock_parts/Initialize(mapload, ...)
+	pixel_x = rand(-5, 5)
+	pixel_y = rand(-5, 5)
 
 //Rank 1
 
@@ -197,7 +194,7 @@
 	name = "Superconducting Magnetic Coil"
 	desc = "Heavy duty superconducting magnetic coil, mainly used in construction of SMES units."
 	icon_state = "smes_coil"			// Just few icons patched together. If someone wants to make better icon, feel free to do so!
-	w_class = 4.0 						// It's LARGE (backpack size)
+	w_class = WEIGHT_CLASS_BULKY 						// It's LARGE (backpack size)
 	var/ChargeCapacity = 5000000
 	var/IOCapacity = 250000
 

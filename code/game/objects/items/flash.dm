@@ -4,7 +4,7 @@
 	icon_state = "flash"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	throwforce = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 10
 	flags_atom = CONDUCT
@@ -65,10 +65,10 @@
 	if(iscarbon(M))
 		flashfail = !M.flash_eyes()
 		if(!flashfail)
-			M.KnockDown(10)
+			M.knock_down(10)
 
 	else if(issilicon(M))
-		M.KnockDown(rand(5,10))
+		M.knock_down(rand(5,10))
 	else
 		flashfail = 1
 
@@ -143,7 +143,7 @@
 			if(iscarbon(loc))
 				var/mob/living/carbon/M = loc
 				if(M.flash_eyes())
-					M.KnockDown(10)
+					M.knock_down(10)
 					M.visible_message("<span class='disarm'>[M] is blinded by the flash!</span>")
 	..()
 

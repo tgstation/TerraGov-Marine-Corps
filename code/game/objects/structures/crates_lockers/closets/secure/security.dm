@@ -295,7 +295,7 @@
 /obj/structure/closet/secure_closet/brig
 	name = "Brig Locker"
 	req_access = list(ACCESS_MARINE_BRIG)
-	anchored = 1
+	anchored = TRUE
 	var/id = null
 
 
@@ -304,7 +304,11 @@
 	new /obj/item/clothing/under/color/orange(src)
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/radio/headset(src)
+	GLOB.brig_closets += src
 
+/obj/structure/closet/secure_closet/brig/Destroy()
+	GLOB.brig_closets -= src
+	return ..()
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "Courtroom Locker"

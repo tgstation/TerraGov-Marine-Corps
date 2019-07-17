@@ -3,7 +3,7 @@
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/inflatable/attack_self(mob/user)
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
@@ -33,8 +33,8 @@
 	name = "inflatable wall"
 	desc = "An inflated membrane. Do not puncture."
 	density = TRUE
-	anchored = 1
-	opacity = 0
+	anchored = TRUE
+	opacity = FALSE
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
@@ -47,7 +47,7 @@
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	return 0
 
-/obj/structure/inflatable/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/inflatable/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage
 	..()
 	if(obj_integrity <= 0 && !deflated)
@@ -70,13 +70,10 @@
 /obj/structure/inflatable/attack_paw(mob/user as mob)
 	return attack_generic(user, 15)
 
-/obj/structure/inflatable/attack_hand(mob/user as mob)
-	return
-
 
 /obj/structure/inflatable/proc/attack_generic(mob/living/user, damage = 0)	//used by attack_animal
 	obj_integrity -= damage
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	if(obj_integrity <= 0)
 		user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
 		deflate(1)
@@ -90,7 +87,7 @@
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/inflatable/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	deflate(1)
 
 /obj/structure/inflatable/attackby(obj/item/I, mob/user, params)
@@ -104,7 +101,7 @@
 		hit(I.force)
 
 
-/obj/structure/inflatable/proc/hit(var/damage, var/sound_effect = 1)
+/obj/structure/inflatable/proc/hit(damage, sound_effect = 1)
 	obj_integrity = max(0, obj_integrity - damage)
 	if(sound_effect)
 		playsound(loc, 'sound/effects/Glasshit_old.ogg', 25, 1)
@@ -112,7 +109,7 @@
 		deflate(1)
 
 
-/obj/structure/inflatable/proc/deflate(var/violent=0)
+/obj/structure/inflatable/proc/deflate(violent=0)
 	set waitfor = 0
 	if(deflated)
 		return
@@ -155,8 +152,8 @@
 /obj/structure/inflatable/popped
 	name = "popped inflatable wall"
 	desc = "It used to be an inflatable wall, now it's just a mess of plastic."
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	deflated = TRUE
 
 	icon = 'icons/obj/inflatable.dmi'
@@ -180,8 +177,8 @@
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
 	density = TRUE
-	anchored = 1
-	opacity = 0
+	anchored = TRUE
+	opacity = FALSE
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "door_closed"
@@ -193,7 +190,10 @@
 /obj/structure/inflatable/door/attack_paw(mob/user as mob)
 	return TryToSwitchState(user)
 
-/obj/structure/inflatable/door/attack_hand(mob/user as mob)
+/obj/structure/inflatable/door/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	return TryToSwitchState(user)
 
 /obj/structure/inflatable/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
@@ -228,8 +228,8 @@
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_opening",src)
 	sleep(10)
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -240,7 +240,7 @@
 	flick("door_closing",src)
 	sleep(10)
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
@@ -251,7 +251,7 @@
 	else
 		icon_state = "door_closed"
 
-/obj/structure/inflatable/door/deflate(var/violent=0)
+/obj/structure/inflatable/door/deflate(violent=0)
 	set waitfor = 0
 	playsound(loc, 'sound/machines/hiss.ogg', 25, 1)
 	if(violent)

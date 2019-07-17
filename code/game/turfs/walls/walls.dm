@@ -5,7 +5,9 @@
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "metal"
-	opacity = 1
+	baseturfs = /turf/open/floor/plating
+	
+	opacity = TRUE
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
 	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
@@ -244,10 +246,7 @@
 	else
 		make_girder(FALSE)
 
-	if(oldTurf != "")
-		ChangeTurf(text2path(oldTurf), TRUE)
-	else
-		ChangeTurf(/turf/open/floor/plating, TRUE)
+	ScrapeAway()
 
 
 /turf/closed/wall/ex_act(severity)
@@ -272,7 +271,7 @@
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "2"
-	O.anchored = 1
+	O.anchored = TRUE
 	O.density = TRUE
 	O.layer = FLY_LAYER
 
@@ -306,10 +305,6 @@
 				"<span class='warning'>You smash against the wall.</span>")
 				take_damage(rand(25, 75))
 				return
-
-/turf/closed/wall/attack_hand(mob/user as mob)
-	return
-
 
 
 /turf/closed/wall/attackby(obj/item/I, mob/user, params)
@@ -381,7 +376,7 @@
 		user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 		"<span class='notice'>You start repairing the damage to [src].</span>")
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
+		if(!do_after(user, max(5, round(damage / 5)), TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
 			return
 
 		user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",

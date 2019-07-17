@@ -31,9 +31,9 @@
 	var/image/LT = null
 	var/obj/item/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
-                        /obj/item/attachable/bipod,
-                        /obj/item/attachable/lasersight,
-                        )
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/lasersight,
+						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
@@ -45,6 +45,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
 		return
 	if(targetmarker_primed)
 		if(!iscarbon(target))
@@ -220,14 +222,14 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/max_recoil_value)
 
-/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user, atom/target)
+/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
 	. = ..()
 	if(.)
 		var/mob/living/carbon/human/PMC_sniper = user
 		if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
 			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 			step(PMC_sniper,turn(PMC_sniper.dir,180))
-			PMC_sniper.KnockDown(5)
+			PMC_sniper.knock_down(5)
 
 //SVD //Based on the Dragunov sniper rifle.
 
@@ -239,7 +241,7 @@
 	max_shells = 10 //codex
 	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
-	fire_sound = 'sound/weapons/gun_kt42.ogg'
+	fire_sound = 'sound/weapons/gun_svd.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -322,7 +324,7 @@
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
 	flags_equip_slot = NONE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 16
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
@@ -376,7 +378,6 @@
 			return FALSE
 
 /obj/item/weapon/gun/smartgun/load_into_chamber(mob/user)
-//	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
 /obj/item/weapon/gun/smartgun/reload_into_chamber(mob/living/carbon/user)
@@ -455,7 +456,7 @@
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 6000)
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
@@ -513,19 +514,23 @@
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 8, TRUE, src))
-			return
-	if(able_to_fire(user))
-		if(get_dist(target,user) <= 2)
-			to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
-			return
-		if(grenades.len)
-			fire_grenade(target,user)
-			var/obj/screen/ammo/A = user.hud_used.ammo
-			A.update_hud(user)
-		else
-			to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+	if(user.action_busy)
+		return
+	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
+		return
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+		return
+	if(get_dist(target,user) <= 2)
+		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
+		return
+	if(!length(grenades))
+		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+		return
+	fire_grenade(target,user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 
 
 //Doesn't use most of any of these. Listed for reference.
@@ -575,7 +580,8 @@
 	if(length(grenades) == 0)
 		return list("empty", "empty")
 	else
-		return list(grenades[1].hud_state, grenades[1].hud_state_empty)
+		var/obj/item/explosive/grenade/F = grenades[1]
+		return list(F.hud_state, F.hud_state_empty)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_count()
 	return length(grenades)
@@ -591,7 +597,7 @@
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=5"
 	matter = list("metal" = 7000)
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
@@ -649,15 +655,19 @@
 
 
 /obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)
-	if(able_to_fire(user))
-		if(get_dist(target,user) <= 2)
-			to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
-			return
-		if(grenade)
-			fire_grenade(target,user)
-			playsound(user.loc, cocked_sound, 25, 1)
-		else
-			to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
+		return
+	if(get_dist(target,user) <= 2)
+		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
+		return
+	if(!grenade)
+		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+		return
+	fire_grenade(target,user)
+	playsound(user.loc, cocked_sound, 25, 1)
+
 
 //Doesn't use most of any of these. Listed for reference.
 /obj/item/weapon/gun/launcher/m81/load_into_chamber()
@@ -686,15 +696,15 @@
 	set waitfor = 0
 	last_fired = world.time
 	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
-						 "<span class='warning'>You fire the grenade launcher!</span>")
+						"<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.loc = user.loc
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")
-		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
+		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
+		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1
 		F.updateicon()
@@ -727,7 +737,7 @@
 	matter = list("metal" = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
 	flags_equip_slot = NONE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	force = 15
 	wield_delay = 12
 	wield_penalty = WIELD_DELAY_VERY_SLOW
@@ -738,8 +748,9 @@
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
-	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
-	unload_sound = 'sound/weapons/gun_mortar_reload.ogg'
+	dry_fire_sound = 'sound/weapons/gun_launcher_empty.ogg'
+	reload_sound = 'sound/weapons/gun_launcher_reload.ogg'
+	unload_sound = 'sound/weapons/gun_launcher_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
@@ -754,6 +765,9 @@
 	if(!able_to_fire(user) || user.action_busy)
 		return
 
+	if(gun_on_cooldown(user))
+		return
+
 	var/delay = 3
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 3
@@ -764,13 +778,13 @@
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
-	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
+	playsound(loc,'sound/weapons/gun_launcher.ogg', 50, 1)
 	. = ..()
 
 
 	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
 
-	if(!current_mag.current_rounds)
+	if(current_mag && !current_mag.current_rounds)
 		current_mag.loc = get_turf(src)
 		current_mag.update_icon()
 		current_mag = null
@@ -794,7 +808,6 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/load_into_chamber(mob/user)
-//	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
 
@@ -854,7 +867,7 @@
 	for(var/mob/living/carbon/C in backblast_loc)
 		if(!C.lying) //Have to be standing up to get the fun stuff
 			C.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
-			C.Stun(4) //For good measure
+			C.stun(4) //For good measure
 			C.emote("pain")
 
 		. = ..()
@@ -910,7 +923,7 @@
 	caliber = "12 gauge shotgun shells" //codex
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
+	fire_sound = 'sound/weapons/gun_shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
@@ -960,7 +973,7 @@
 	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/minigun
 	type_of_casings = "cartridge"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC

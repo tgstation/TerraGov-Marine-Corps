@@ -57,7 +57,7 @@
 	// Light Overload - X% chance to overload each lighting circuit in connected powernet. APC based.
 	// APC Failure - X% chance to destroy APC causing very weak explosion too. Won't cause hull breach or serious harm.
 	// SMES Explosion - X% chance to destroy the SMES, in moderate explosion. May cause small hull breach.
-/obj/machinery/power/smes/buildable/proc/total_system_failure(var/intensity = 0, var/mob/user as mob)
+/obj/machinery/power/smes/buildable/proc/total_system_failure(intensity = 0, mob/user as mob)
 	if (!intensity)
 		return
 
@@ -91,7 +91,7 @@
 			else
 				to_chat(h_user, "Small electrical arc sparks and burns your hand as you touch the [src]!")
 				h_user.adjustFireLoss(rand(5,10))
-				h_user.KnockOut(2)
+				h_user.knock_out(2)
 			charge = 0
 
 		if (16 to 35)
@@ -104,7 +104,7 @@
 			else
 				to_chat(h_user, "Medium electrical sparks as you touch the [src], severely burning your hand!")
 				h_user.adjustFireLoss(rand(10,25))
-				h_user.KnockOut(5)
+				h_user.knock_out(5)
 			spawn(0)
 				empulse(src.loc, 2, 4)
 			charge = 0
@@ -117,11 +117,11 @@
 			if (user_protected)
 				to_chat(h_user, "Strong electrical arc sparks between you and [src], ignoring your gloves and burning your hand!")
 				h_user.adjustFireLoss(rand(25,60))
-				h_user.KnockOut(8)
+				h_user.knock_out(8)
 			else
 				to_chat(h_user, "Strong electrical arc sparks between you and [src], knocking you out for a while!")
 				h_user.adjustFireLoss(rand(35,75))
-				h_user.KnockOut(12)
+				h_user.knock_out(12)
 			spawn(0)
 				empulse(src.loc, 8, 16)
 			charge = 0
@@ -136,7 +136,7 @@
 			to_chat(h_user, "Massive electrical arc sparks between you and [src]. Last thing you can think about is \"Oh shit...\"")
 			// Remember, we have few gigajoules of electricity here.. Turn them into crispy toast.
 			h_user.adjustFireLoss(rand(150,195))
-			h_user.KnockOut(25)
+			h_user.knock_out(25)
 			spawn(0)
 				empulse(src.loc, 32, 64)
 			charge = 0
@@ -163,7 +163,7 @@
 
 
 	// Gets powernet APCs and overloads lights or breaks the APC completely, depending on percentages.
-/obj/machinery/power/smes/buildable/proc/apcs_overload(var/failure_chance, var/overload_chance)
+/obj/machinery/power/smes/buildable/proc/apcs_overload(failure_chance, overload_chance)
 	if (!src.powernet)
 		return
 

@@ -9,11 +9,11 @@
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
 	movement_acc_penalty_mult = 2
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
-	fire_sound = 'sound/weapons/gun_servicepistol.ogg'
+	fire_sound = 'sound/weapons/gun_pistol.ogg'
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list(
@@ -53,7 +53,8 @@
 	icon_state = "m4a3"
 	item_state = "m4a3"
 	caliber = "9x19mm Parabellum" //codex
-	max_shells = 12 //codex
+	max_shells = 14 //codex
+	fire_sound = 'sound/weapons/gun_pistol_service.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -80,17 +81,17 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
 
 //-------------------------------------------------------
-//M4A3 45 //Inspired by the 1911
+//M1911
 
 /obj/item/weapon/gun/pistol/m1911
-	name = "\improper M4A3 service pistol (.45)"
-	desc = "A standard M4A3 chambered in .45. Has a smaller magazine capacity, but packs a better punch."
-	icon_state = "m4a345"
+	name = "\improper M1911 service pistol"
+	desc = "A standard M1911 chambered in .45. Has a smaller magazine capacity, but packs a better punch."
+	icon_state = "m1911"
 	item_state = "m1911"
 	caliber = ".45 ACP" //codex
-	max_shells = 7 //codex
+	max_shells = 10 //codex
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_glock.ogg'
+	fire_sound = 'sound/weapons/gun_colt.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -104,9 +105,9 @@
 	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 /obj/item/weapon/gun/pistol/m1911/custom
-	name = "\improper M1911A1 Custom pistol"
-	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature"
-	icon_state = "m1911"
+	name = "\improper M1911A1 custom pistol"
+	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature."
+	icon_state = "m1911c"
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
@@ -135,6 +136,7 @@
 	item_state = "b92fs"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 15 //codex
+	fire_sound = 'sound/weapons/gun_beretta.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/b92fs
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
@@ -176,7 +178,7 @@
 
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
-	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally"
+	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally."
 	icon_state = "m9"
 	item_state = "m9"
 	caliber = "9x19mm tranquilizer" //codex
@@ -206,7 +208,7 @@
 	item_state = "deagle"
 	caliber = ".50 AE" //codex
 	max_shells = 7 //codex
-	fire_sound = 'sound/weapons/gun_44mag.ogg'
+	fire_sound = 'sound/weapons/gun_deagle.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/heavy
 	force = 13
 	attachable_allowed = list(
@@ -319,7 +321,7 @@
 	origin_tech = "combat=2;materials=1"
 	fire_sound = 'sound/weapons/gun_pistol_holdout.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/holdout
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	force = 2
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -350,7 +352,7 @@
 	item_state = "highpower"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 13 //codex
-	fire_sound = 'sound/weapons/gun_kt42.ogg'
+	fire_sound = 'sound/weapons/gun_hp.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/highpower
 	force = 10
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -446,7 +448,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 50 //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_pistol_large.ogg'
+	fire_sound = 'sound/weapons/gun_auto9.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
 	attachable_allowed = list()
@@ -476,7 +478,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	current_mag = /obj/item/ammo_magazine/pistol/chimp
 	fire_sound = 'sound/weapons/gun_chimp70.ogg'
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 8
 	type_of_casings = null
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -503,11 +505,11 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 25
 	movement_acc_penalty_mult = 10
-	wield_delay = WIELD_DELAY_VERY_FAST 
-	fire_sound = 'sound/weapons/gun_servicepistol.ogg'
+	wield_delay = WIELD_DELAY_VERY_FAST
+	fire_sound = 'sound/weapons/gun_pistol_service.ogg'
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 14,"rail_x" = 9, "rail_y" = 17, "under_x" = 23, "under_y" = 11, "stock_x" = 23, "stock_y" = 10)

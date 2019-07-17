@@ -98,6 +98,7 @@
 	new /obj/item/clothing/gloves/latex(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/head/surgery/green(src)
+	new /obj/item/clothing/head/cmo(src)
 	new /obj/item/clothing/suit/storage/labcoat(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/breath(src)
@@ -121,9 +122,9 @@
 /obj/structure/closet/secure_closet/animal/Initialize()
 	. = ..()
 	new /obj/item/assembly/signaler(src)
-	new /obj/item/radio/electropack(src)
-	new /obj/item/radio/electropack(src)
-	new /obj/item/radio/electropack(src)
+	new /obj/item/electropack(src)
+	new /obj/item/electropack(src)
+	new /obj/item/electropack(src)
 
 
 

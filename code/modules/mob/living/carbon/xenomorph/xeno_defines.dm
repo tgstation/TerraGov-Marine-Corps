@@ -60,7 +60,7 @@
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
 	// *** Defense *** //
-	var/armor_deflection = 0 //Chance of deflecting projectiles.
+	var/list/armor
 
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
@@ -152,12 +152,11 @@
 
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
+	var/datum/armor/armor
 	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
 	var/armor_pheromone_bonus = 0 //
 
 	var/fire_resist_modifier = 0
-
-	var/xeno_explosion_resistance = 0 //0 to 3. how explosions affects the xeno, can it stun it, etc...
 
 	var/obj/structure/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
@@ -166,7 +165,7 @@
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"claw", "armor", "regen", "speed"
+	var/current_aura = null //"frenzy", "warding", "recovery"
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0
@@ -240,7 +239,7 @@
 
 	//Hunter vars
 	var/sneak_bonus = 0.00
-	
+
 	//Larva Growth
 	var/last_larva_growth_used = 0
 

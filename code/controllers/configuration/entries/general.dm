@@ -29,8 +29,6 @@ Basics, the most important.
 
 /datum/config_entry/string/banappeals
 
-/datum/config_entry/string/donationurl
-
 /datum/config_entry/string/dburl
 
 /datum/config_entry/string/shipurl
@@ -51,15 +49,10 @@ Basics, the most important.
 
 /datum/config_entry/flag/guest_ban
 
-/datum/config_entry/flag/continous_rounds
-
 /*
 Administrative related.
 */
 /datum/config_entry/flag/localhost_rank
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/ban_legacy_system
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
@@ -114,12 +107,6 @@ Administrative related.
 /datum/config_entry/flag/log_manifest
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
-
-/datum/config_entry/flag/admin_irc
-
-/datum/config_entry/flag/guest_jobban
-
-/datum/config_entry/flag/usewhitelist
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
@@ -218,13 +205,6 @@ Voting
 	integer = FALSE
 	min_val = 0
 
-/datum/config_entry/flag/vote_no_default
-
-/datum/config_entry/flag/vote_no_dead
-
-/datum/config_entry/number/vote_autogamemode_timeleft
-	config_entry_value = 999999999
-
 /*
 Master controller and performance related.
 */
@@ -299,8 +279,6 @@ Master controller and performance related.
 
 /datum/config_entry/flag/tickcomp
 
-/datum/config_entry/flag/use_recursive_explosions
-
 /*
 System command that invokes youtube-dl, used by Play Internet Sound.
 You can install youtube-dl with
@@ -331,3 +309,48 @@ The default value assumes youtube-dl is in your system PATH
 /datum/config_entry/number/error_msg_delay	// How long to wait between messaging admins about occurrences of a unique error
 	config_entry_value = 50
 	integer = FALSE
+
+
+/datum/config_entry/number/soft_popcap
+	min_val = 0
+
+
+/datum/config_entry/number/hard_popcap
+	min_val = 0
+
+
+/datum/config_entry/number/extreme_popcap
+	min_val = 0
+
+
+/datum/config_entry/string/soft_popcap_message
+	config_entry_value = "The server is currently serving a high number of users, joining the round may get disabled soon."
+
+
+/datum/config_entry/string/hard_popcap_message
+	config_entry_value = "The server is currently serving a high number of users, You cannot currently join, but you can observe or wait for the number of living crew to decline."
+
+
+/datum/config_entry/string/extreme_popcap_message
+	config_entry_value = "The server is currently serving a high number of users, joining the server has been disabled."
+
+
+/datum/config_entry/flag/panic_bunker
+
+
+/datum/config_entry/string/panic_server_name
+
+
+/datum/config_entry/string/panic_server_name/ValidateAndSet(str_val)
+	return str_val != "\[Put the name here\]" && ..()
+
+
+/datum/config_entry/string/panic_server_address	//Reconnect a player this linked server if this server isn't accepting new players
+
+
+/datum/config_entry/string/panic_server_address/ValidateAndSet(str_val)
+	return str_val != "byond://address:port" && ..()
+
+
+/datum/config_entry/string/panic_bunker_message
+	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."

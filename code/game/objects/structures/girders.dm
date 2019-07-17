@@ -1,6 +1,6 @@
 /obj/structure/girder
 	icon_state = "girder"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
 	layer = OBJ_LAYER
 	var/state = 0
@@ -13,7 +13,7 @@
 
 
 
-/obj/structure/girder/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/girder/bullet_act(obj/item/projectile/Proj)
 	//Tasers and the like should not damage girders.
 	if(Proj.ammo.damage_type == HALLOSS || Proj.ammo.damage_type == TOX || Proj.ammo.damage_type == CLONE || Proj.damage == 0)
 		return 0
@@ -34,7 +34,7 @@
 		to_chat(M, "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>")
 		return FALSE
 	else
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		obj_integrity -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
 		if(obj_integrity <= 0)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
@@ -153,7 +153,7 @@
 				
 			to_chat(user, "<span class='notice'>Now adding plating...</span>")
 				
-			if(!do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 				return
 
 			if(buildctr != old_buildctr) 
@@ -284,7 +284,7 @@
 	if (obj_integrity <= 0)
 		icon_state = "[icon_state]_damaged"
 		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
-		density = 0
+		density = FALSE
 	else
 		var/underscore_position =  findtext(icon_state,"_")
 		var/new_state = copytext(icon_state, 1, underscore_position)
@@ -320,7 +320,7 @@
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	max_integrity = 50
 
 /obj/structure/girder/reinforced

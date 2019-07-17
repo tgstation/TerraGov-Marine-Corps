@@ -5,7 +5,7 @@
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	var/obj/machinery/mineral/stacking_machine/machine = null
 	var/machinedir = SOUTHEAST
 
@@ -14,4 +14,4 @@
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "stacker"
 	density = TRUE
-	anchored = 1.0
+	anchored = TRUE

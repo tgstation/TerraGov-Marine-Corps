@@ -64,7 +64,7 @@
 	attack_hand(user)
 
 /obj/structure/grille/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
@@ -80,7 +80,7 @@
 	obj_integrity -= damage_dealt
 	healthcheck()
 
-/obj/structure/grille/attack_hand(mob/user as mob)
+/obj/structure/grille/attack_hand(mob/living/user)
 
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
@@ -90,13 +90,13 @@
 		if(H.species.can_shred(H))
 			damage_dealt = 5
 			user.visible_message("<span class='warning'>[user] mangles [src].</span>", \
-					 "<span class='warning'>You mangle [src].</span>", \
-					 "You hear twisting metal.")
+					"<span class='warning'>You mangle [src].</span>", \
+					"You hear twisting metal.")
 
 	if(!damage_dealt)
 		user.visible_message("<span class='warning'>[user] kicks [src].</span>", \
-						 "<span class='warning'>You kick [src].</span>", \
-						 "You hear twisting metal.")
+						"<span class='warning'>You kick [src].</span>", \
+						"You hear twisting metal.")
 
 	if(shock(user, 70))
 		return
@@ -107,14 +107,14 @@
 	healthcheck()
 
 
-/obj/structure/grille/attack_animal(var/mob/living/simple_animal/M as mob)
+/obj/structure/grille/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.melee_damage_upper == 0)
 		return
 
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	M.visible_message("<span class='warning'>[M] smashes against [src].</span>", \
-					  "<span class='warning'>You smash against [src].</span>", \
-					  "You hear twisting metal.")
+					"<span class='warning'>You smash against [src].</span>", \
+					"You hear twisting metal.")
 
 	obj_integrity -= M.melee_damage_upper
 	healthcheck()
@@ -130,7 +130,7 @@
 		else
 			return !density
 
-/obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/grille/bullet_act(obj/item/projectile/Proj)
 
 	//Tasers and the like should not damage grilles.
 	if(Proj.ammo.damage_type == HALLOSS)
@@ -158,7 +158,7 @@
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		anchored = !anchored
 		user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
-							 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
+							"<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
 
 
 	else if(istype(I, /obj/item/stack/sheet/glass))
@@ -226,7 +226,7 @@
 	if(obj_integrity <= 0)
 		if(!destroyed)
 			icon_state = "brokengrille"
-			density = 0
+			density = FALSE
 			destroyed = 1
 			new /obj/item/stack/rods(loc)
 

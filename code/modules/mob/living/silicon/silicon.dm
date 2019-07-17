@@ -4,6 +4,7 @@
 	verb_ask = "queries"
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
+	speech_span = SPAN_ROBOT
 
 	initial_language_holder = /datum/language_holder/synthetic
 
@@ -69,14 +70,18 @@
 	return
 
 
+/mob/living/silicon/contents_explosion(severity, target)
+	return
+
+
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)
 			take_limb_damage(20)
-			Stun(rand(5, 10))
+			stun(rand(5, 10))
 		if(2)
 			take_limb_damage(10)
-			Stun(rand(1, ))
+			stun(rand(1, ))
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
@@ -210,7 +215,11 @@
 	return ..()
 
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /mob/living/silicon/attack_hand(mob/living/user)
+	. = FALSE
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
+		. = TRUE
 	switch(user.a_intent)
 		if(INTENT_HELP)
 			user.visible_message("[user] pets [src].", "<span class='notice'>You pet [src].</span>")
@@ -219,7 +228,7 @@
 			user.start_pulling(src)
 
 		else
-			user.animation_attack_on(src)
+			user.do_attack_animation(src)
 			playsound(loc, 'sound/effects/bang.ogg', 10, 1)
 			visible_message("<span class='danger'>[user] punches [src], but doesn't leave a dent.</span>", \
 				"<span class='warning'>[user] punches [src], but doesn't leave a dent.</span>")

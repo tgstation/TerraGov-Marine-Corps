@@ -13,7 +13,7 @@
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 
 
 
@@ -211,9 +211,9 @@
 	pockets = new pockets(src)
 
 
-/obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
-	if (pockets.handle_attack_hand(user))
-		..()
+/obj/item/clothing/head/helmet/marine/attack_hand(mob/living/user)
+	if(pockets.handle_attack_hand(user))
+		return ..()
 
 /obj/item/clothing/head/helmet/marine/MouseDrop(over_object, src_location, over_location)
 	if(pockets.handle_mousedrop(usr, over_object))

@@ -28,7 +28,7 @@
 		return
 	A.use_power(EQUIP, 5000)
 	var/light = A.power_light
-	A.updateicon()
+	A.update_icon()
 
 	flick("echair1", src)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -39,9 +39,9 @@
 		to_chat(buckled_mob, "<span class='danger'>You feel a deep shock course through your body!</span>")
 		sleep(1)
 		buckled_mob.adjustFireLoss(85)
-		buckled_mob.Stun(600)
+		buckled_mob.stun(600)
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='danger'>You hear a deep sharp shock!</span>")
 
 	A.power_light = light
-	A.updateicon()
+	A.update_icon()
 	return

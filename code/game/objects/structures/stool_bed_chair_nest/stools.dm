@@ -2,7 +2,7 @@
 	name = "stool"
 	desc = "Apply butt."
 	icon_state = "stool"
-	anchored = 1
+	anchored = TRUE
 	can_buckle = FALSE
 	foldabletype = /obj/item/stool
 
@@ -15,10 +15,10 @@
 	icon_state = "stool"
 	force = 15
 	throwforce = 12
-	w_class = 5.0
+	w_class = WEIGHT_CLASS_HUGE
 	var/obj/structure/bed/stool/origin = null
 
-/obj/item/stool/proc/deploy(var/mob/user)
+/obj/item/stool/proc/deploy(mob/user)
 
 	if(!origin)
 		user.temporarilyRemoveItemFromInventory(src)
@@ -43,7 +43,7 @@
 		m.loc = get_turf(src)
 		var/mob/living/T = M
 		if(istype(T) && !isxeno(T))
-			T.KnockDown(10)
+			T.knock_down(10)
 		T.apply_damage(20)
 		qdel(src)
 		return

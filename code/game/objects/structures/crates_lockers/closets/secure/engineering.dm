@@ -16,7 +16,7 @@
 	new /obj/item/clothing/head/hardhat/white(src)
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/gloves/yellow(src)
-	if(is_mainship_or_low_orbit_level(z))
+	if(is_mainship_level(z))
 		new /obj/item/radio/headset/almayer/mcom(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/clothing/suit/storage/hazardvest(src)
@@ -119,11 +119,10 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	switch(SSmapping.config.map_name)
-		if(MAP_ICE_COLONY)
-			new /obj/item/clothing/suit/storage/snow_suit(src)
-			new /obj/item/clothing/mask/rebreather/scarf(src)
-			new /obj/item/clothing/mask/rebreather(src)	
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+		new /obj/item/clothing/suit/storage/snow_suit(src)
+		new /obj/item/clothing/mask/rebreather/scarf(src)
+		new /obj/item/clothing/mask/rebreather(src)	
 
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "technician's locker"
@@ -146,7 +145,7 @@
 	new /obj/item/storage/backpack/industrial(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/tool/extinguisher(src)
-	if(is_mainship_or_low_orbit_level(z))
+	if(is_mainship_level(z))
 		new /obj/item/radio/headset/almayer/mt(src)
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)

@@ -6,5 +6,5 @@
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "unloader"
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 

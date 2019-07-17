@@ -1,15 +1,13 @@
 /* Stack type objects!
- * Contains:
- * 		Stacks
- * 		Recipe datum
- * 		Recipe list datum
- */
-
-#define STACK_WEIGHT_STEPS 3 //Currently weight updates in 3 intervals
+* Contains:
+* 		Stacks
+* 		Recipe datum
+* 		Recipe list datum
+*/
 
 /*
- * Stacks
- */
+* Stacks
+*/
 /obj/item/stack
 	icon = 'icons/obj/stack_objects.dmi'
 	gender = PLURAL
@@ -142,6 +140,8 @@
 
 /obj/item/stack/Topic(href, href_list)
 	. = ..()
+	if(.)
+		return
 	if(usr.incapacitated() || usr.get_active_held_item() != src)
 		return
 	if(href_list["sublist"] && !href_list["make"])
@@ -157,7 +157,7 @@
 		var/multiplier = text2num(href_list["multiplier"])
 		var/max_multiplier = round(max_amount / R.req_amount)
 		if(multiplier <= 0 || multiplier > max_multiplier) //href protection
-			log_game("[key_name(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier] at [AREACOORD(usr.loc)].")
+			log_admin_private("[key_name(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier] at [AREACOORD(usr.loc)].")
 			message_admins("[ADMIN_TPMONTY(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier]. Possible HREF exploit.")
 			return
 		if(!building_checks(R, multiplier))
@@ -215,9 +215,19 @@
 		return FALSE
 	var/turf/T = get_turf(usr)
 
-	if(R.one_per_turf && (locate(R.result_type) in T))
-		to_chat(usr, "<span class='warning'>There is another [R.title] here!</span>")
-		return FALSE
+	switch(R.max_per_turf)
+		if(STACK_RECIPE_ONE_PER_TILE)
+			if(locate(R.result_type) in T)
+				to_chat(usr, "<span class='warning'>There is another [R.title] here!</span>")
+				return FALSE
+		if(STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE)
+			for(var/obj/thing in T)
+				if(!istype(thing, R.result_type))
+					continue
+				if(thing.dir != usr.dir)
+					continue
+				to_chat(usr, "<span class='warning'>You can't build \the [R.title] on top of another!</span>")
+				return FALSE
 	if(R.on_floor)
 		if(!isfloorturf(T))
 			to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on the floor!</span>")
@@ -227,13 +237,17 @@
 				continue
 			if(istype(AM,/obj/structure/table))
 				continue
-			if(istype(AM,/obj/structure/window))
-				var/obj/structure/window/W = AM
-				if(!W.is_full_window() && W.dir != usr.dir)
+			if(!AM.density)
+				continue
+			if(AM.flags_atom & ON_BORDER && AM.dir != usr.dir)
+				if(istype(AM, /obj/structure/window))
+					var/obj/structure/window/W = AM
+					if(!W.is_full_window())
+						continue
+				else
 					continue
-			if(AM.density)
-				to_chat(usr, "<span class='warning'>Theres a [AM.name] here. You cant make a [R.title] here!</span>")
-				return FALSE
+			to_chat(usr, "<span class='warning'>There is a [AM.name] right where you want to place \the [R.title], blocking the construction.</span>")
+			return FALSE
 	return TRUE
 
 
@@ -294,7 +308,7 @@
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/stack/attack_hand(mob/user)
+/obj/item/stack/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() == src)
 		return change_stack(user, 1)
 	return ..()
@@ -329,8 +343,8 @@
 	return ..()
 
 /*
- * Recipe datum
- */
+* Recipe datum
+*/
 /datum/stack_recipe
 	var/title = "ERROR"
 	var/result_type
@@ -338,25 +352,25 @@
 	var/res_amount = 1
 	var/max_res_amount = 1
 	var/time = 0
-	var/one_per_turf = FALSE
+	var/max_per_turf = STACK_RECIPE_INFINITE_PER_TILE
 	var/on_floor = FALSE
 	var/skill_req = FALSE //whether only people with sufficient construction skill can build this.
 
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = FALSE, on_floor = FALSE, skill_req = FALSE)
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, max_per_turf = STACK_RECIPE_INFINITE_PER_TILE, on_floor = FALSE, skill_req = FALSE)
 	src.title = title
 	src.result_type = result_type
 	src.req_amount = req_amount
 	src.res_amount = res_amount
 	src.max_res_amount = max_res_amount
 	src.time = time
-	src.one_per_turf = one_per_turf
+	src.max_per_turf = max_per_turf
 	src.on_floor = on_floor
 	src.skill_req = skill_req
 
 /*
- * Recipe list datum
- */
+* Recipe list datum
+*/
 /datum/stack_recipe_list
 	var/title = "ERROR"
 	var/list/recipes

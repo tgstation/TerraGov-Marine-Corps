@@ -5,7 +5,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD,STATUS_HUD, STATUS_HUD_OOC, STATUS_HUD_XENO_INFECTION,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, STATUS_HUD_OBSERVER_INFECTION, ORDER_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
@@ -25,7 +25,7 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
-	round_statistics.total_humans_created++
+	GLOB.round_statistics.total_humans_created++
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -49,7 +49,6 @@
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
 	.["Drop Everything"] = "?_src_=vars;[HrefToken()];dropeverything=[REF(src)]"
 	.["Copy Outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
 
@@ -57,22 +56,22 @@
 /mob/living/carbon/human/prepare_huds()
 	..()
 	//updating all the mob's hud images
+	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
-	sec_hud_set_ID()
-	sec_hud_set_implants()
 	sec_hud_set_security_status()
 	hud_set_squad()
 	hud_set_order()
 	//and display them
 	add_to_all_mob_huds()
+	
+	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_BASIC]
+	hud_to_add.add_hud_to(src)
 
 
 
 /mob/living/carbon/human/Destroy()
-	if(assigned_squad)
-		SSdirection.stop_tracking(assigned_squad.tracking_id, src) // failsafe to ensure they're definite not in the list
-	assigned_squad?.clean_marine_from_squad(src,FALSE)
+	assigned_squad?.clean_marine_from_squad(src, FALSE)
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
@@ -125,7 +124,7 @@
 
 			adjust_stagger(12 * armor)
 			add_slowdown(round(12 * armor,0.1))
-			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			knock_out(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
 			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
@@ -137,7 +136,7 @@
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
-			KnockDown(4 * armor)
+			knock_down(4 * armor)
 
 		if(3)
 			b_loss += (rand(40, 50) * armor)
@@ -149,7 +148,7 @@
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
-			KnockDown(2 * armor)
+			knock_down(2 * armor)
 
 	var/update = 0
 	#ifdef DEBUG_HUMAN_ARMOR
@@ -205,25 +204,6 @@
 		if(armor >= 1) //Complete negation
 			return
 
-
-/mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
-	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
-	L.imp_in = M
-	L.implanted = 1
-	var/datum/limb/affected = M.get_limb("head")
-	affected.implants += L
-	L.part = affected
-
-/mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
-	for(var/L in M.contents)
-		if(istype(L, /obj/item/implant/loyalty))
-			for(var/datum/limb/O in M.limbs)
-				if(L in O.implants)
-					return 1
-	return 0
-
-
-
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
 	if(istype(w_uniform, /obj/item/clothing/under))
@@ -263,7 +243,7 @@
 
 // called when something steps onto a human
 // this handles mulebots and vehicles
-/mob/living/carbon/human/Crossed(var/atom/movable/AM)
+/mob/living/carbon/human/Crossed(atom/movable/AM)
 	if(istype(AM, /obj/machinery/bot/mulebot))
 		var/obj/machinery/bot/mulebot/MB = AM
 		MB.RunOver(src)
@@ -275,7 +255,7 @@
 
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
-/mob/living/carbon/human/proc/get_assignment(var/if_no_id = "No id", var/if_no_job = "No job")
+/mob/living/carbon/human/proc/get_assignment(if_no_id = "No id", if_no_job = "No job")
 	var/obj/item/card/id/id = wear_id
 	if (istype(id))
 		. = id.assignment
@@ -287,7 +267,7 @@
 
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
-/mob/living/carbon/human/proc/get_authentification_name(var/if_no_id = "Unknown")
+/mob/living/carbon/human/proc/get_authentification_name(if_no_id = "Unknown")
 	var/obj/item/card/id/id = wear_id
 	if (istype(id))
 		. = id.registered_name
@@ -324,48 +304,43 @@
 		return "Unknown"
 	return real_name
 
-//gets name from ID or PDA itself, ID inside PDA doesn't matter
-//Useful when player is being seen by other mobs
-/mob/living/carbon/human/proc/get_id_name(var/if_no_id = "Unknown")
+
+/mob/living/carbon/human/proc/get_id_name(if_no_id = "Unknown")
 	. = if_no_id
-	if(wear_id)
-		var/obj/item/card/id/I = wear_id.GetID()
-		if(I)
-			return I.registered_name
-	return
+	if(!wear_id)
+		return
+
+	var/obj/item/card/id/I = get_idcard()
+	if(istype(I))
+		return I.registered_name
 
 //Gets ID card from a human. If hand_first is false the one in the id slot is prioritized, otherwise inventory slots go first.
 /mob/living/carbon/human/get_idcard(hand_first = TRUE)
-	//Check hands
-	var/obj/item/card/id/id_card
-	var/obj/item/held_item
-	held_item = get_active_held_item()
-	if(held_item) //Check active hand
-		id_card = held_item.GetID()
+	var/obj/item/card/id/id_card = get_active_held_item()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_held_item()
-		if(held_item)
-			id_card = held_item.GetID()
+		id_card = get_inactive_held_item()
 
-	if(id_card)
-		if(hand_first)
-			return id_card
-		else
-			. = id_card
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
 
-	//Check inventory slots
+	if(istype(id_card) && hand_first)
+		return id_card
+
 	if(wear_id)
-		id_card = wear_id.GetID()
-		if(id_card)
-			return id_card
+		id_card = wear_id
 	else if(belt)
-		id_card = belt.GetID()
-		if(id_card)
-			return id_card
+		id_card = belt
+
+	if(istype(id_card, /obj/item/storage/wallet))
+		var/obj/item/storage/wallet/W = id_card
+		id_card = W.front_id
+			
+	return istype(id_card) ? id_card : null
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
-/mob/living/carbon/human/electrocute_act(var/shock_damage, var/obj/source, var/base_siemens_coeff = 1.0, var/def_zone = null)
+/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, base_siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
 
 	if (!def_zone)
@@ -378,6 +353,9 @@
 
 
 /mob/living/carbon/human/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)
@@ -434,10 +412,10 @@
 				if(placing)
 					if(place_item && place_item == usr.get_active_held_item())
 						if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE))
-							dropItemToGround(place_item)
+							usr.dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
 						if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
-							dropItemToGround(place_item)
+							usr.dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
 
 				else
@@ -548,12 +526,12 @@
 			var/mob/living/carbon/human/H = usr
 			if(mind)
 				var/obj/item/card/id/ID = get_idcard()
-				if(ID && (ID.rank in JOBS_MARINES))//still a marine, with an ID.
+				if(ID && (ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
 					if(assigned_squad == H.assigned_squad) //still same squad
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
-						if(ID && ID.rank in JOBS_MARINES)//still a marine with an ID
+						if(ID && ID.rank in GLOB.jobs_marines)//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
 									if("None") ID.assigned_fireteam = 0
@@ -570,8 +548,8 @@
 			var/modified = 0
 			var/perpname = "wot"
 			if(wear_id)
-				var/obj/item/card/id/I = wear_id.GetID()
-				if(I)
+				var/obj/item/card/id/I = get_idcard()
+				if(istype(I))
 					perpname = I.registered_name
 				else
 					perpname = name
@@ -853,7 +831,7 @@
 	return number
 
 
-/mob/living/carbon/human/abiotic(var/full_body = 0)
+/mob/living/carbon/human/abiotic(full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT)) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT)) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.wear_ear || src.gloves)))
 		return 1
 
@@ -874,18 +852,6 @@
 	visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
 	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 	playsound(loc, song, 25, 1)
-
-
-/mob/living/carbon/human/proc/get_visible_gender()
-	if(wear_suit && wear_suit.flags_inv_hide & HIDEJUMPSUIT && ((head && head.flags_inv_hide & HIDEMASK) || wear_mask))
-		return NEUTER
-	return gender
-
-/mob/living/carbon/human/proc/increase_germ_level(n)
-	if(gloves)
-		gloves.germ_level += n
-	else
-		germ_level += n
 
 
 /mob/living/carbon/human/revive()
@@ -909,7 +875,7 @@
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in GLOB.item_list)
+		for (var/obj/item/limb/head/H in GLOB.head_list)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -936,7 +902,7 @@
 
 
 
-/mob/living/carbon/human/get_visible_implants(var/class = 0)
+/mob/living/carbon/human/get_visible_implants(class = 0)
 
 	var/list/visible_implants = list()
 	for(var/datum/limb/organ in limbs)
@@ -1019,7 +985,7 @@
 	. = ..()
 	set_species(race)
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
+/mob/living/carbon/human/proc/set_species(new_species, default_colour)
 
 	if(!new_species)
 		new_species = "Human"
@@ -1081,59 +1047,6 @@
 	else
 		return 0
 
-/mob/living/carbon/human/proc/bloody_doodle()
-	set category = "IC"
-	set name = "Write in blood"
-	set desc = "Use blood on your hands to write a short message on the floor or a wall, murder mystery style."
-
-	if (src.stat)
-		return
-
-	if (usr != src)
-		return 0 //something is terribly wrong
-
-	if (!bloody_hands)
-		verbs -= /mob/living/carbon/human/proc/bloody_doodle
-
-	if (src.gloves)
-		to_chat(src, "<span class='warning'>Your [src.gloves] are getting in the way.</span>")
-		return
-
-	var/turf/T = src.loc
-	if (!istype(T)) //to prevent doodling out of mechs and lockers
-		to_chat(src, "<span class='warning'>You cannot reach the floor.</span>")
-		return
-
-	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
-	if (direction != "Here")
-		T = get_step(T,text2dir(direction))
-	if (!istype(T))
-		to_chat(src, "<span class='warning'>You cannot doodle there.</span>")
-		return
-
-	var/num_doodles = 0
-	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
-		num_doodles++
-	if (num_doodles > 4)
-		to_chat(src, "<span class='warning'>There is no space to write on!</span>")
-		return
-
-	var/max_length = bloody_hands * 30 //tweeter style
-
-	var/message = stripped_input(src,"Write a message. It cannot be longer than [max_length] characters.","Blood writing", "")
-
-	if (message)
-		var/used_blood_amount = round(length(message) / 30, 1)
-		bloody_hands = max(0, bloody_hands - used_blood_amount) //use up some blood
-
-		if (length(message) > max_length)
-			message += "-"
-			to_chat(src, "<span class='warning'>You ran out of blood to write with!</span>")
-
-		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
-		W.basecolor = (blood_color) ? blood_color : "#A10808"
-		W.update_icon()
-		W.message = message
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
@@ -1150,9 +1063,6 @@
 	return ..()
 
 /mob/living/carbon/human/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
-	if(luminosity <= 0)
-		return FALSE
-
 	if(sparks)
 		var/datum/effect_system/spark_spread/spark_system = new
 		spark_system.set_up(5, 0, src)
@@ -1164,12 +1074,12 @@
 	if(armor)
 		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			if(S.turn_off_light(src))
-				light_off++
+			S.set_light(0)
+			light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/G in contents)
-			if(G.turn_off_light(src))
-				light_off++
+			G.set_light(0)
+			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
 			if(F.on)
@@ -1181,8 +1091,8 @@
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			if(H.turn_off_light(src))
-				light_off++
+			H.set_light(0)
+			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
 				continue
@@ -1213,44 +1123,9 @@
 			if(light_off > 1)
 				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
 			else
-				to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
 		return TRUE
 
-/mob/living/carbon/get_standard_pixel_y_offset()
-	if(lying)
-		return -6
-	else
-		return initial(pixel_y)
-
-
-/mob/living/carbon/human/update_sight()
-	if(!client)
-		return
-	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		return
-
-	sight = initial(sight)
-	see_in_dark = species.darksight
-	see_invisible = SEE_INVISIBLE_LIVING
-
-	if(glasses)
-		var/obj/item/clothing/glasses/G = glasses
-		//prescription applies regardless of it the glasses are active
-		if(G.active)
-			see_in_dark = max(G.darkness_view, see_in_dark)
-			sight |= G.vision_flags
-			if(G.fullscreen_vision)
-				overlay_fullscreen("glasses_vision", G.fullscreen_vision)
-			else
-				clear_fullscreen("glasses_vision", 0)
-			if(G.see_invisible)
-				see_invisible = min(G.see_invisible, see_invisible)
-		else
-			clear_fullscreen("glasses_vision", 0)
-	else
-		clear_fullscreen("glasses_vision", 0)
 
 /mob/living/carbon/human/get_total_tint()
 	. = ..()
@@ -1406,28 +1281,7 @@
 	if(!J)
 		return FALSE
 
-	var/datum/outfit/job/O = new J.outfit
-	var/id = O.id ? O.id : /obj/item/card/id
-	var/obj/item/card/id/I = new id
-	var/datum/skills/L = new J.skills_type
-	mind.cm_skills = L
-	mind.comm_title = J.comm_title
-
-	if(wear_id)
-		qdel(wear_id)
-
-	job = rank
-	faction = J.faction
-
-	equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-	SSjob.AssignRole(src, rank)
-	O.handle_id(src)
-
-	GLOB.datacore.manifest_update(real_name, real_name, job)
-
-	if(assigned_squad)
-		change_squad(assigned_squad.name)
+	J.assign(src)
 
 	return TRUE
 
@@ -1458,26 +1312,16 @@
 	return TRUE
 
 
-/mob/living/carbon/human/canUseTopic(atom/movable/AM)
-	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(!in_range(AM, src))
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	return TRUE
-
 /mob/living/carbon/human/take_over(mob/M)
 	. = ..()
 
-	set_rank(job)
-
-	if(assigned_squad)
-		change_squad(assigned_squad.name)
+	var/datum/job/J = SSjob.GetJob(job)
+	J?.assign(src)
+	change_squad(assigned_squad?.name)
 
 
 /mob/living/carbon/human/proc/change_squad(squad)
-	if(!squad || !(job in JOBS_MARINES))
+	if(!squad || !(job in GLOB.jobs_marines))
 		return FALSE
 
 	var/datum/squad/S = SSjob.squads[squad]
@@ -1547,6 +1391,9 @@
 
 /mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
 	. = ..()
+	if(incapacitated())
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
 	if(!Adjacent(AM) && (AM.loc != src))
 		if(!proximity)
 			return TRUE

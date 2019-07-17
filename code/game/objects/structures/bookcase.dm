@@ -3,9 +3,9 @@
 	name = "bookcase"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "book-0"
-	anchored = 1
+	anchored = TRUE
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/bookcase/Initialize()
 	. = ..()
@@ -29,7 +29,10 @@
 
 		name = ("bookcase ([sanitize(newname)])")
 
-/obj/structure/bookcase/attack_hand(var/mob/user as mob)
+/obj/structure/bookcase/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(contents.len)
 		var/obj/item/book/choice = input("Which book would you like to remove from the shelf?") as null|obj in contents
 		if(choice)

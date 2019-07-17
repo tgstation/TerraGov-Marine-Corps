@@ -6,7 +6,8 @@
 #define CLICK_CD_MELEE 8
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_GRABBING 10
-#define CLICK_CD_RESIST 20
+#define CLICK_CD_RESIST 10
+#define CLICK_CD_RESIST_PSYCHIC_GRAB 30
 #define CLICK_CD_BREAKOUT 100
 
 //Grab levels
@@ -14,6 +15,10 @@
 #define GRAB_AGGRESSIVE	1
 #define GRAB_NECK		2
 #define GRAB_KILL		3
+
+//TK Grab levels
+#define TKGRAB_NONLETHAL	3	//Values should be different as they are identifiers.
+#define TKGRAB_LETHAL		4	//Also serves as a measure of how many attempts to resist it.
 
 //intent defines
 #define INTENT_HELP   "help"
@@ -91,6 +96,7 @@
 
 #define SLOWDOWN_ADS_SHOTGUN			0.35
 #define SLOWDOWN_ADS_RIFLE				0.35
+#define SLOWDOWN_ADS_LASGUN				0.75
 #define SLOWDOWN_ADS_SPECIALIST_LIGHT	0.75
 #define SLOWDOWN_ADS_SCOPE				1
 #define SLOWDOWN_ADS_SPECIALIST_MED		1
@@ -139,3 +145,46 @@
 #define SMOKE_XENO_ACID		(1<<10)
 #define SMOKE_XENO_NEURO	(1<<11)
 #define SMOKE_CHEM			(1<<12)
+
+//Restraints
+#define RESTRAINED_XENO_NEST (1<<0)
+#define RESTRAINED_NECKGRAB (1<<1)
+#define RESTRAINED_STRAIGHTJACKET (1<<2)
+#define RESTRAINED_RAZORWIRE (1<<3)
+#define RESTRAINED_PSYCHICGRAB (1<<4)
+
+
+//Explosion resistance
+#define XENO_BOMB_RESIST_4 100
+#define XENO_BOMB_RESIST_3 80
+#define XENO_BOMB_RESIST_2 60
+#define XENO_BOMB_RESIST_1 40
+#define XENO_BOMB_RESIST_0 0
+
+#define SINGLE_CASING	(1 << 0)
+#define SPEEDLOADER		(1 << 1)
+#define MAGAZINE		(1 << 2)
+#define CELL			(1 << 3)
+#define POWERPACK		(1 << 4)
+
+#define EGG_BURST 0
+#define EGG_BURSTING 1
+#define EGG_GROWING 2
+#define EGG_GROWN 3
+#define EGG_DESTROYED 4
+
+#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
+#define EGG_MAX_GROWTH_TIME 15 SECONDS
+
+//Xeno Overlays Indexes//////////
+#define X_LASER_LAYER			9
+#define X_WOUND_LAYER			8
+#define X_HEAD_LAYER			7
+#define X_SUIT_LAYER			6
+#define X_L_HAND_LAYER			5
+#define X_R_HAND_LAYER			4
+#define X_TARGETED_LAYER		3
+#define X_LEGCUFF_LAYER			2
+#define X_FIRE_LAYER			1
+#define X_TOTAL_LAYERS			9
+/////////////////////////////////

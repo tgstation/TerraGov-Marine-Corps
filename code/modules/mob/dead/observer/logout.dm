@@ -11,6 +11,7 @@
 
 	. = ..()
 
-	spawn(0)
-		if(src && (!key || isaghost(src)))	//we've transferred to another mob. This ghost should be deleted.
-			qdel(src)
+	if(QDELETED(src) || (key && !isaghost(src)))
+		return
+
+	QDEL_IN(src, 2)

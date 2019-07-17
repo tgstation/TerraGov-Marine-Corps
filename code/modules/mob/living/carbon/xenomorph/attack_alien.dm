@@ -1,16 +1,13 @@
 /*
- * Important note about attack_alien : In our code, attack_ procs are received by src, not dealt by src
- * For example, attack_alien defined for humans means what will happen to THEM when attacked by an alien
- * In that case, the first argument is always the attacker. For attack_alien, it should always be Xenomorph sub-types
- */
+* Important note about attack_alien : In our code, attack_ procs are received by src, not dealt by src
+* For example, attack_alien defined for humans means what will happen to THEM when attacked by an alien
+* In that case, the first argument is always the attacker. For attack_alien, it should always be Xenomorph sub-types
+*/
 
 //#define DEBUG_ATTACK_ALIEN
 
 /mob/living/carbon/xenomorph/proc/reset_critical_hit()
 	critical_proc = FALSE
-
-/mob/living/carbon/xenomorph/proc/process_rage_attack()
-	return FALSE
 
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(X == src || anchored || buckled)
@@ -25,7 +22,7 @@
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
 		X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>", \
-		"<span class='danger'>Your grab was blocked by [src]'s shield!</span>", null, 5)
+		"<span class='danger'>Our grab was blocked by [src]'s shield!</span>", null, 5)
 		playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, 1) //Feedback
 		return FALSE
 	return ..()
@@ -38,23 +35,23 @@
 
 /mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	. = ..()
-	KnockDown(8)
+	knock_down(8)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
-		to_chat(X, "<span class='xenodanger'>You reconsider your mean-spirited bullying of the pregnant, secured host.</span>")
+		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
-		"<span class='danger'>Your tackle is blocked by [src]'s shield!</span>", null, 5)
+		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
 		return FALSE
 	X.flick_attack_overlay(src, "disarm")
 
 	if(!knocked_down && !no_stun && (traumatic_shock > 100))
-		KnockDown(1)
+		knock_down(1)
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
-		"<span class='danger'>You slam [src] to the ground!</span>", null, 5)
+		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
 	var/armor_block = run_armor_check("chest", "melee")
 
@@ -75,34 +72,36 @@
 			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 				tackle_pain *= 1.75 //Half the multiplier if running.
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>You strike [src] with vicious precision!</span>")
+				"<span class='danger'>We strike [src] with vicious precision!</span>")
 			else
 				armor_block *= HUNTER_SNEAK_TACKLE_ARMOR_PEN //Tackle armor penetration heightened.
 				tackle_pain *= 3.5 //Massive damage on the sneak attack... hope you have armour.
 				staggerslow_stacks *= 2
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>You strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks)
+				"<span class='danger'>We strike [src] with deadly precision!</span>")
+			knock_out(knockout_stacks)
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src)
+	var/list/pain_mod = list()
 
-	X.neuroclaw_router(src) //if we have neuroclaws...
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src, tackle_pain, pain_mod)
+
+	for(var/i in pain_mod)
+		tackle_pain += i
+
 	if(dam_bonus)
 		tackle_pain += dam_bonus
-
-	tackle_pain = X.hit_and_run_bonus(tackle_pain) //Apply Runner hit and run bonus damage if applicable
 
 	apply_damage(tackle_pain, HALLOSS, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
 	updatehealth()
 	updateshock()
 	var/throttle_message = "<span class='danger'>\The [X] throttles [src]!</span>"
-	var/throttle_message2 = "<span class='danger'>You throttle [src]!</span>"
+	var/throttle_message2 = "<span class='danger'>We throttle [src]!</span>"
 	if(tackle_pain > 40)
 		throttle_message = "<span class='danger'>\The [X] badly throttles [src]!</span>"
-		throttle_message2 = "<span class='danger'>You badly throttle [src]!</span>"
+		throttle_message2 = "<span class='danger'>We badly throttle [src]!</span>"
 	X.visible_message("[throttle_message]", \
 	"[throttle_message2]", null, 5)
 	return TRUE
@@ -116,18 +115,18 @@
 			for(var/obj/item/alien_embryo/embryo in src)
 				if(!embryo.issamexenohive(X))
 					continue
-				to_chat(X, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>")
+				to_chat(X, "<span class='warning'>We try to slash [src], but find we <B>cannot</B>. There is a host inside!</span>")
 				return FALSE
 
 		if(X.health > round(2 * X.maxHealth / 3)) //Note : Under 66 % health
-			to_chat(X, "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>")
+			to_chat(X, "<span class='warning'>We try to slash [src], but find we <B>cannot</B>. We are not yet injured enough to overcome the Queen's orders.</span>")
 			return FALSE
 
 	else if(isnestedhost(src))
 		for(var/obj/item/alien_embryo/embryo in src)
 			if(!embryo.issamexenohive(X))
 				continue
-			to_chat(X, "<span class='warning'>You should not harm this host! It has a sister inside.</span>")
+			to_chat(X, "<span class='warning'>We should not harm this host! It has a sister inside.</span>")
 			return FALSE
 	return TRUE
 
@@ -136,7 +135,7 @@
 	if(!.)
 		return FALSE
 	if(!X.hive.slashing_allowed && !(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-		to_chat(X, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
+		to_chat(X, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. We refuse to slash [src].</span>")
 		return FALSE
 
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
@@ -166,19 +165,19 @@
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
 
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 
 	var/attack_flick =  "slash"
 	var/attack_sound = "alien_claw_flesh"
 	var/attack_message1 = "<span class='danger'>\The [X] slashes [src]!</span>"
-	var/attack_message2 = "<span class='danger'>You slash [src]!</span>"
+	var/attack_message2 = "<span class='danger'>We slash [src]!</span>"
 	var/log = "slashed"
 	//Check for a special bite attack
 	if(prob(X.xeno_caste.bite_chance) && !X.critical_proc && !no_crit && !X.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 		damage *= 1.5
 		attack_sound = "alien_bite"
 		attack_message1 = "<span class='danger'>\The [src] is viciously shredded by \the [X]'s sharp teeth!</span>"
-		attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
+		attack_message2 = "<span class='danger'>We viciously rend \the [src] with our teeth!</span>"
 		log = "bit"
 		X.critical_proc = TRUE
 		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
@@ -189,7 +188,7 @@
 		attack_flick = "tail"
 		attack_sound = 'sound/weapons/alien_tail_attack.ogg'
 		attack_message1 = "<span class='danger'>\The [src] is suddenly impaled by \the [X]'s sharp tail!</span>"
-		attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
+		attack_message2 = "<span class='danger'>We violently impale \the [src] with our tail!</span>"
 		log = "tail-stabbed"
 		X.critical_proc = TRUE
 		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
@@ -197,9 +196,9 @@
 	//Somehow we will deal no damage on this attack
 	if(!damage)
 		playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		X.animation_attack_on(src)
+		X.do_attack_animation(src)
 		X.visible_message("<span class='danger'>\The [X] lunges at [src]!</span>", \
-		"<span class='danger'>You lunge at [src]!</span>", null, 5)
+		"<span class='danger'>We lunge at [src]!</span>", null, 5)
 		return FALSE
 
 	X.flick_attack_overlay(src, attack_flick)
@@ -229,23 +228,25 @@
 			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 			//...And we knock them out
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>You strike [src] with vicious precision!</span>")
+				"<span class='danger'>We strike [src] with vicious precision!</span>")
 			else
 				armor_block *= HUNTER_SNEAK_SLASH_ARMOR_PEN //20% armor penetration
 				staggerslow_stacks *= 2
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>You strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks) //...And we knock 
+				"<span class='danger'>We strike [src] with deadly precision!</span>")
+			knock_out(knockout_stacks) //...And we knock 
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
-	if(dam_bonus)
-		damage += dam_bonus
-	else //We avoid stacking, like hit-and-run and savage.
-		damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
+	var/list/damage_mod = list()
 
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src)
+	// if we don't get any non-stacking bonuses dont apply dam_bonus
+	if(!( SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod) & COMSIG_XENOMORPH_BONUS_APPLIED ))
+		damage_mod += dam_bonus
+
+	for(var/i in damage_mod)
+		damage += i
 
 	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
 	updatehealth()
@@ -263,32 +264,31 @@
 /mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(issamexenohive(X))
 		X.visible_message("<span class='warning'>\The [X] nibbles [src].</span>", \
-		"<span class='warning'>You nibble [src].</span>", null, 5)
+		"<span class='warning'>We nibble [src].</span>", null, 5)
 		return TRUE
 	return ..()
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD)
-		if(luminosity > 0)
+		if(length(light_sources))
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.flick_attack_overlay(src, "slash")
 			disable_lights(sparks = TRUE)
-			to_chat(X, "<span class='warning'>You disable whatever annoying lights the dead creature possesses.</span>")
+			to_chat(X, "<span class='warning'>We disable whatever annoying lights the dead creature possesses.</span>")
 		else
-			to_chat(X, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
+			to_chat(X, "<span class='warning'>[src] is dead, why would we want to touch it?</span>")
 		return FALSE
 
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
 		X.visible_message("<span class='danger'>\The [X]'s slash is blocked by [src]'s shield!</span>", \
-		"<span class='danger'>Your slash is blocked by [src]'s shield!</span>", null, 5)
+		"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, 5)
 		return FALSE
 
 	. = ..()
 	if(!.)
 		return FALSE
 	
-	X.neuroclaw_router(src) //if we have neuroclaws...
-	X.process_rage_attack() //Process Ravager rage gains on attack
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -300,7 +300,7 @@
 	switch(intent)
 		if(INTENT_HELP)
 			X.visible_message("<span class='notice'>\The [X] caresses [src] with its scythe-like arm.</span>", \
-			"<span class='notice'>You caress [src] with your scythe-like arm.</span>", null, 5)
+			"<span class='notice'>We caress [src] with our scythe-like arm.</span>", null, 5)
 			return FALSE
 
 		if(INTENT_GRAB)
@@ -315,7 +315,7 @@
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
-	"<span class='danger'>You nudge your head against [src].</span>", null, 5)
+	"<span class='danger'>We nudge our head against [src].</span>", null, 5)
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return //larva can't do anything by default

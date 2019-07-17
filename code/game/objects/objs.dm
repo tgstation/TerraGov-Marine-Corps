@@ -10,6 +10,7 @@
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
 	animate_movement = 2
+	speech_span = SPAN_ROBOT
 	var/throwforce = 1
 
 	var/mob/living/buckled_mob
@@ -23,6 +24,13 @@
 
 	var/item_fire_stacks = 0	//How many fire stacks it applies
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+	
+	var/list/req_access = null
+	var/list/req_one_access = null
+
+	//Don't directly use these two, please. No: magic numbers, Yes: defines.
+	var/req_one_access_txt = "0"
+	var/req_access_txt = "0"
 
 /obj/Initialize()
 	. = ..()
@@ -36,13 +44,14 @@
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
 
-	GLOB.object_list += src
-
 /obj/Destroy()
 	if(buckled_mob)
 		unbuckle()
-	. = ..()
-	GLOB.object_list -= src
+	return ..()
+
+/obj/proc/setAnchored(anchorvalue)
+	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
+	anchored = anchorvalue
 
 /obj/ex_act()
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
@@ -93,15 +102,6 @@
 	return
 
 
-/obj/item/proc/updateSelfDialog()
-	var/mob/M = src.loc
-	if(istype(M) && M.client && M.interactee == src)
-		src.attack_self(M)
-
-
-/obj/proc/alter_health()
-	return 1
-
 /obj/proc/hide(h)
 	return
 
@@ -110,9 +110,12 @@
 	if(can_buckle) return src.attack_hand(user)
 	else . = ..()
 
-/obj/attack_hand(mob/user)
-	if(can_buckle) manual_unbuckle(user)
-	else . = ..()
+/obj/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(can_buckle) 
+		manual_unbuckle(user)
 
 
 /obj/proc/handle_rotation()
@@ -141,8 +144,14 @@
 
 			var/M = buckled_mob
 			buckled_mob = null
-
+			UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 			afterbuckle(M)
+
+
+/obj/proc/resisted_against(datum/source, mob/user) //COMSIG_LIVING_DO_RESIST
+	if(user.restrained(RESTRAINED_XENO_NEST))
+		return FALSE
+	manual_unbuckle(user)
 
 
 /obj/proc/manual_unbuckle(mob/user as mob)
@@ -177,7 +186,7 @@
 		return
 
 	if(density)
-		density = 0
+		density = FALSE
 		if(!step(M, get_dir(M, src)) && loc != M.loc)
 			density = TRUE
 			return
@@ -188,13 +197,15 @@
 	do_buckle(M, user)
 
 //the actual buckling proc
-/obj/proc/do_buckle(mob/M, mob/user)
-	send_buckling_message(M, user)
+/obj/proc/do_buckle(mob/M, mob/user, silent = FALSE)
+	if(!silent)
+		send_buckling_message(M, user)
 	M.buckled = src
 	M.loc = src.loc
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 
 /obj/proc/send_buckling_message(mob/M, mob/user)
@@ -236,71 +247,6 @@
 		if(!(T?.intact_tile) || level != 1) //not hidden under the floor
 			S.reagents?.reaction(src, VAPOR, S.fraction)
 
-/obj/proc/check_skill_level(skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
-	if(!skill_threshold) //autopass
-		return TRUE
-
-	if(!skill_type) //No skills to check?
-		return TRUE
-
-	var/skill = get_skill(skill_type, M)
-	if(skill < skill_threshold) //If we're less than the threshold return the maximum delay.
-		return FALSE
-
-	return TRUE
-
-/obj/proc/skill_delay(difficulty = SKILL_TASK_AVERAGE, skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
-	if(!difficulty) //autopass, no delay
-		return 0
-
-	if(!M.mind?.cm_skills) //No skills to thrill?
-		return difficulty
-
-	var/skill = get_skill(skill_type, M)
-	if(skill < skill_threshold) //If we're less than the threshold return the maximum delay.
-		return difficulty
-
-	difficulty = max(difficulty - (skill * 10), 0)
-	return difficulty
-
-/obj/proc/get_skill(skill_type = null, mob/living/M)
-	switch(skill_type)
-		if(OBJ_SKILL_CQC)
-			return M.mind.cm_skills.cqc
-		if(OBJ_SKILL_MELEE_WEAPONS)
-			return M.mind.cm_skills.melee_weapons
-		if(OBJ_SKILL_FIREARMS)
-			return M.mind.cm_skills.firearms
-		if(OBJ_SKILL_PISTOLS)
-			return M.mind.cm_skills.pistols
-		if(OBJ_SKILL_RIFLES)
-			return M.mind.cm_skills.rifles
-		if(OBJ_SKILL_SMG)
-			return M.mind.cm_skills.smgs
-		if(OBJ_SKILL_SHOTGUNS)
-			return M.mind.cm_skills.shotguns
-		if(OBJ_SKILL_HEAVYWEAPONS)
-			return M.mind.cm_skills.heavy_weapons
-		if(OBJ_SKILL_SMARTGUN)
-			return M.mind.cm_skills.smartgun
-		if(OBJ_SKILL_SPEC_WEAPONS)
-			return M.mind.cm_skills.spec_weapons
-		if(OBJ_SKILL_LEADERSHIP)
-			return M.mind.cm_skills.leadership
-		if(OBJ_SKILL_MEDICAL)
-			return M.mind.cm_skills.medical
-		if(OBJ_SKILL_SURGERY)
-			return M.mind.cm_skills.surgery
-		if(OBJ_SKILL_PILOT)
-			return M.mind.cm_skills.pilot
-		if(OBJ_SKILL_ENGINEER)
-			return M.mind.cm_skills.engineer
-		if(OBJ_SKILL_CONSTRUCTION)
-			return M.mind.cm_skills.construction
-		if(OBJ_SKILL_POLICE)
-			return M.mind.cm_skills.police
-		if(OBJ_SKILL_POWERLOADER)
-			return M.mind.cm_skills.powerloader
 
 /obj/on_set_interaction(mob/user)
 	. = ..()

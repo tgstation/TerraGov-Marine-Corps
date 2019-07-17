@@ -17,6 +17,9 @@
 				next_move = world.time + 3
 				return
 	else
+		if(s_active && s_active.can_be_inserted(I))
+			s_active.handle_item_insertion(I, FALSE, src)
+			return
 		if(client?.prefs?.preferred_slot)
 			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
 				return
@@ -171,11 +174,12 @@
 	else if (I == glasses)
 		glasses = null
 		var/obj/item/clothing/glasses/G = I
-		if(G.vision_flags || G.darkness_view || G.see_invisible)
-			update_sight()
 		if(G.tint)
 			update_tint()
-		update_inv_glasses()
+		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+			update_sight()
+		if(!QDELETED(src))
+			update_inv_glasses()
 	else if (I == wear_ear)
 		wear_ear = null
 		update_inv_ears()
@@ -187,7 +191,6 @@
 		update_inv_belt()
 	else if (I == wear_id)
 		wear_id = null
-		sec_hud_set_ID()
 		hud_set_squad()
 		update_inv_wear_id()
 		name = get_visible_name()
@@ -200,6 +203,9 @@
 	else if (I == s_store)
 		s_store = null
 		update_inv_s_store()
+
+	if(I.flags_armor_protection)
+		remove_limb_armor(I)
 
 
 
@@ -214,9 +220,9 @@
 	return ..()
 
 
-//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
+//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
-/mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot)
 	if(!slot)
 		return
 	if(!istype(W))
@@ -253,15 +259,12 @@
 		if(SLOT_WEAR_MASK)
 			wear_mask = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			wear_mask_update(W, TRUE)
 		if(SLOT_HANDCUFFED)
-			handcuffed = W
-			handcuff_update()
+			update_handcuffed(W)
 		if(SLOT_LEGCUFFED)
-			legcuffed = W
+			update_legcuffed(W)
 			W.equipped(src, slot)
-			legcuff_update()
 		if(SLOT_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)
@@ -277,7 +280,6 @@
 		if(SLOT_WEAR_ID)
 			wear_id = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			hud_set_squad()
 			update_inv_wear_id()
 			name = get_visible_name()
@@ -289,10 +291,10 @@
 			glasses = W
 			W.equipped(src, slot)
 			var/obj/item/clothing/glasses/G = W
-			if(G.vision_flags || G.darkness_view || G.see_invisible)
-				update_sight()
 			if(G.tint)
 				update_tint()
+			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
+				update_sight()
 			update_inv_glasses()
 		if(SLOT_GLOVES)
 			gloves = W
@@ -330,7 +332,6 @@
 		if(SLOT_W_UNIFORM)
 			w_uniform = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			update_inv_w_uniform()
 		if(SLOT_L_STORE)
 			l_store = W
@@ -395,11 +396,12 @@
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
 		else
-			to_chat(src, "<span class='warning'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</span>")
-			return
+			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
+
+	if(W.flags_armor_protection)
+		add_limb_armor(W)
+
 	return TRUE
-
-
 
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)
@@ -468,7 +470,7 @@
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			if(isidcard(I))
-				log_admin("[key_name(src)] took the [I] of [key_name(M)].")
+				log_game("[key_name(src)] took the [I] of [key_name(M)].")
 				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
 	if(M)
@@ -484,7 +486,7 @@
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
 			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M]!</span>")
 			return
-		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null, 5)
+		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null , null, 5)
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC))
 			if(!M.get_item_by_slot(slot_to_process))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob

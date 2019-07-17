@@ -14,7 +14,7 @@ LINEN BINS
 	throwforce = 1
 	throw_speed = 1
 	throw_range = 2
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 
 /obj/item/bedsheet/attack_self(mob/user as mob)
@@ -81,7 +81,7 @@ LINEN BINS
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "linenbin-full"
-	anchored = 1
+	anchored = TRUE
 	var/amount = 20
 	var/list/sheets = list()
 	var/obj/item/hidden = null
@@ -130,7 +130,10 @@ LINEN BINS
 	return attack_hand(user)
 
 
-/obj/structure/bedsheetbin/attack_hand(mob/user as mob)
+/obj/structure/bedsheetbin/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(amount >= 1)
 		amount--
 

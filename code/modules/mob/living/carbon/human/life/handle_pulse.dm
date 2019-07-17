@@ -20,16 +20,17 @@
 		temp = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
 	//Handles different chems' influence on pulse
-	for(var/datum/reagent/R in reagents.reagent_list)
-		if(R.id in bradycardics)
+	for(var/i in reagents.reagent_list)
+		var/datum/reagent/R = i
+		if(R.trait_flags & BRADYCARDICS)
 			if(temp <= PULSE_THREADY && temp >= PULSE_NORM)
 				temp--
-		if(R.id in tachycardics)
+		if(R.trait_flags & TACHYCARDIC)
 			if(temp <= PULSE_FAST && temp >= PULSE_NONE)
 				temp++
-		if(R.id in heartstopper) //To avoid using fakedeath
+		if(R.trait_flags & HEARTSTOPPER) //To avoid using fakedeath
 			temp = PULSE_NONE
-		if(R.id in cheartstopper) //Conditional heart-stoppage
+		if(R.trait_flags & CHEARTSTOPPER) //Conditional heart-stoppage
 			if(R.volume >= R.overdose_threshold)
 				temp = PULSE_NONE
 

@@ -57,7 +57,7 @@
 	START_PROCESSING(SSobj, src)
 	return
 
-/obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/flora/tree/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.damage * 0.5
 	. = ..()
 	START_PROCESSING(SSobj, src)
@@ -92,7 +92,7 @@
 /obj/structure/flora/tree/flamer_fire_act()
 	if(on_fire == FALSE)
 		on_fire = TRUE
-		SetLuminosity(5)
+		set_light(5)
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
@@ -104,7 +104,7 @@
 
 /obj/structure/flora/tree/process()
 	if(obj_integrity <= 0)
-		density = 0
+		density = FALSE
 		var/obj/structure/flora/stump/S = new(loc)
 		S.name = "[name] stump"
 		STOP_PROCESSING(SSobj, src)
@@ -143,7 +143,7 @@
 /obj/structure/flora/tree/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/m_gift
+	var/gift_type = /obj/item/gift/marine
 	var/list/ckeys_that_took = list()
 
 /obj/structure/flora/tree/xmas/presents/attack_hand(mob/living/user)
@@ -202,7 +202,7 @@
 /obj/structure/flora/grass
 	name = "grass"
 	icon = 'icons/obj/flora/snowflora.dmi'
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/grass/brown
 	icon_state = "snowgrass1bb"
@@ -230,7 +230,7 @@
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/bush/New()
 	icon_state = "snowbush[rand(1, 6)]"
@@ -250,7 +250,7 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/flora/ausbushes/New()
 	icon_state = "firstbush_[rand(1, 4)]"
@@ -367,7 +367,7 @@
 // Generic undergrowth //
 //*********************//
 /obj/structure/flora/desert
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/obj/flora/dam.dmi'
 	var/icon_tag = null
 	var/variations = null
@@ -419,8 +419,8 @@
 /obj/structure/jungle
 	name = "jungle foliage"
 	icon = 'icons/turf/ground_map.dmi'
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
 
@@ -436,7 +436,6 @@
 
 /obj/structure/jungle/plantbot1/alien
 	icon_state = "alienplant1"
-	luminosity = 2
 
 /obj/structure/jungle/planttop1
 	name = "strange tree"
@@ -457,7 +456,7 @@
 	var/mob/living/L = user
 
 	to_chat(L, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)
 
@@ -467,7 +466,7 @@
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/jungle/vines/heavy/Initialize()
 	. = ..()

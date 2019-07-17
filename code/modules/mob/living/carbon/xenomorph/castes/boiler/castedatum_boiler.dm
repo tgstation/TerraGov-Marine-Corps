@@ -18,14 +18,14 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.7
+	speed = 0.6
 
 	// *** Plasma *** //
 	plasma_max = 800
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 220
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -36,7 +36,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 30
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
@@ -64,20 +64,20 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.6
+	speed = 0.5
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 35
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
@@ -100,20 +100,20 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0.5
+	speed = 0.4
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 35
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
@@ -127,7 +127,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "A devestating piece of alien artillery."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "You are the master of ranged artillery. Bring death from above."
+	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
@@ -137,17 +137,17 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = 0.3
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 245
+	max_health = 255
 
 	// *** Defense *** //
-	armor_deflection = 35
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS

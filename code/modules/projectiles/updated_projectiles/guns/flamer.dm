@@ -7,9 +7,10 @@
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 15
-	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
+	fire_sound = "gun_flamethrower"
+	dry_fire_sound = 'sound/weapons/gun_flamethrower_empty.ogg'
 	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
@@ -45,7 +46,7 @@
 
 
 /obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user,'sound/weapons/flipblade.ogg', 25, 1)
+	playsound(user, lit ? 'sound/weapons/gun_flamethrower_off.ogg' : 'sound/weapons/gun_flamethrower_on.ogg', 25, 1)
 	lit = !lit
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
@@ -64,6 +65,9 @@
 	set waitfor = 0
 
 	if(!able_to_fire(user))
+		return
+
+	if(gun_on_cooldown(user))
 		return
 
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
@@ -280,7 +284,7 @@
 
 		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
-/obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
+/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel)
 	set waitfor = 0
 
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
@@ -463,7 +467,7 @@
 /obj/flamer_fire
 	name = "fire"
 	desc = "Ouch!"
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
@@ -495,7 +499,6 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/flamer_fire/Destroy()
-	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -550,13 +553,13 @@
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
-			SetLuminosity(2)
+			set_light(2)
 		if(10 to 25)
 			icon_state = "[flame_color]_2"
-			SetLuminosity(4)
+			set_light(4)
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
-			SetLuminosity(6)
+			set_light(6)
 
 
 /obj/flamer_fire/process()
@@ -572,14 +575,14 @@
 		qdel(src)
 		return
 
-	T.flamer_fire_act()
+	T.flamer_fire_act(burnlevel, firelevel)
 
 	var/j = 0
 	for(var/i in T)
 		if(++j >= 11)
 			break
 		var/atom/A = i
-		A.flamer_fire_act()
+		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return

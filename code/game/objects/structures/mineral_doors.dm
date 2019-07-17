@@ -34,7 +34,10 @@
 /obj/structure/mineral_door/attack_paw(mob/user as mob)
 	return TryToSwitchState(user)
 
-/obj/structure/mineral_door/attack_hand(mob/user as mob)
+/obj/structure/mineral_door/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target)
@@ -107,7 +110,7 @@
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 		if(W.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1
-		user.animation_attack_on(src)
+		user.do_attack_animation(src)
 		hardness -= W.force * multiplier * 0.01
 		if(!P)
 			to_chat(user, "You hit the [name] with your [W.name]!")
@@ -170,11 +173,6 @@
 /obj/structure/mineral_door/uranium
 	mineralType = "uranium"
 	hardness = 3
-	luminosity = 2
-
-/obj/structure/mineral_door/uranium/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/structure/mineral_door/sandstone
 	mineralType = "sandstone"

@@ -4,7 +4,7 @@
 	icon_state = "glassbox1"
 	desc = "A display case for prized possessions. It taunts you to kick it."
 	density = TRUE
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	max_integrity = 30
 	var/occupied = 1
@@ -27,7 +27,7 @@
 				src.healthcheck()
 
 
-/obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/displaycase/bullet_act(obj/item/projectile/Proj)
 	obj_integrity -= Proj.ammo.damage
 	..()
 	src.healthcheck()
@@ -36,7 +36,7 @@
 /obj/structure/displaycase/proc/healthcheck()
 	if (src.obj_integrity <= 0)
 		if (!( src.destroyed ))
-			src.density = 0
+			src.density = FALSE
 			src.destroyed = 1
 			new /obj/item/shard( src.loc )
 			playsound(src, "shatter", 25, 1)
@@ -63,7 +63,10 @@
 /obj/structure/displaycase/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/structure/displaycase/attack_hand(mob/user as mob)
+/obj/structure/displaycase/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if (src.destroyed && src.occupied)
 		to_chat(user, "\b You deactivate the hover field built into the case.")
 		src.occupied = 0

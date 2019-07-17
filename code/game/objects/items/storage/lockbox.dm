@@ -5,7 +5,7 @@
 	desc = "A locked box."
 	icon_state = "lockbox+l"
 	item_state = "syringe_kit"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 4
@@ -55,18 +55,6 @@
 		else
 			..()
 		return
-
-
-/obj/item/storage/lockbox/loyalty
-	name = "\improper lockbox of loyalty implants"
-	req_access = list(ACCESS_MARINE_BRIG)
-
-	New()
-		..()
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implanter/loyalty(src)
 
 
 /obj/item/storage/lockbox/clusterbang

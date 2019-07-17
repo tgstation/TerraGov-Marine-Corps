@@ -15,7 +15,7 @@ REAGENT SCANNER
 	var/on = 0
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	item_state = "electronic"
 
 	matter = list("metal" = 150)
@@ -65,7 +65,7 @@ REAGENT SCANNER
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
 	matter = list("metal" = 200)
@@ -85,9 +85,9 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if(!check_skill_level(skill_threshold, OBJ_SKILL_MEDICAL, user) )
+	if(user.mind?.cm_skills && user.mind.cm_skills.medical < skill_threshold)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_PRACTICED, OBJ_SKILL_MEDICAL, user)
+		var/fduration = max(SKILL_TASK_AVERAGE - (user.mind.cm_skills.medical * 10), 0)
 		if(!do_after(user, fduration, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
@@ -97,7 +97,7 @@ REAGENT SCANNER
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 
 	// Doesn't work on non-humans and synthetics
-	if(!iscarbon(M) || (ishuman(M) && (M:species.species_flags & IS_SYNTHETIC)))
+	if(!iscarbon(M) || issynth(M))
 		user.show_message("\n<span class='notice'> Health Analyzer results for ERROR:\n\t Overall Status: ERROR</span>")
 		user.show_message("\tType: <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
 		user.show_message("\tDamage: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
@@ -218,7 +218,7 @@ REAGENT SCANNER
 	var/fracture_detected = FALSE
 	var/unknown_body = 0
 	//var/infected = FALSE
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/known_implants = list(/obj/item/implant/neurostim)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/core_fracture = FALSE
@@ -503,14 +503,14 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/integrated
 	name = "\improper HF2 integrated health analyzer"
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
-	skill_threshold = 0
+	skill_threshold = SKILL_MEDICAL_UNTRAINED
 
 /obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
 	icon_state = "atmos"
 	item_state = "analyzer"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
@@ -550,7 +550,7 @@ REAGENT SCANNER
 	name = "mass-spectrometer"
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
@@ -620,7 +620,7 @@ REAGENT SCANNER
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5

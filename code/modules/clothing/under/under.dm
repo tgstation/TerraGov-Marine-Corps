@@ -8,7 +8,7 @@
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
 		/*
@@ -69,7 +69,7 @@
 	else
 		return ..()
 
-/obj/item/clothing/under/attack_hand(mob/user as mob)
+/obj/item/clothing/under/attack_hand(mob/living/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(hastie && src.loc == user)
 		hastie.attack_hand(user)
@@ -78,7 +78,7 @@
 	if ((ishuman(usr) || ismonkey(usr)) && src.loc == user)	//make it harder to accidentally undress yourself
 		return
 
-	..()
+	return ..()
 
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
 	if (ishuman(usr) || ismonkey(usr))

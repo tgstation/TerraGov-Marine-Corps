@@ -1,5 +1,3 @@
-/datum/config_entry/number_list/repeated_mode_adjust
-
 /datum/config_entry/keyed_list/probability
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_NUM
@@ -20,23 +18,6 @@
 
 /datum/config_entry/keyed_list/min_pop/ValidateListEntry(key_name, key_value)
 	return key_name in config.modes
-
-/datum/config_entry/flag/protect_roles_from_antagonist	//If security and such can be traitor/cult/other
-
-/datum/config_entry/string/alert_green
-	config_entry_value = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-
-/datum/config_entry/string/alert_blue_upto
-	config_entry_value = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
-
-/datum/config_entry/string/alert_blue_downto
-	config_entry_value = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
-
-/datum/config_entry/string/alert_red_upto
-	config_entry_value = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-
-/datum/config_entry/string/alert_red_downto
-	config_entry_value = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
 
 /datum/config_entry/string/alert_delta
 	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
@@ -103,11 +84,6 @@
 	config_entry_value = 0
 	movedelay_type = /mob/living/simple_animal
 
-/datum/config_entry/number/gateway_delay	//How long the gateway takes before it activates. Default is half an hour. Only matters if roundstart_away is enabled.
-	config_entry_value = 18000
-	integer = FALSE
-	min_val = 0
-
 /datum/config_entry/number/organ_health_multiplier
 	config_entry_value = 1
 
@@ -123,9 +99,6 @@
 /datum/config_entry/number/human_health_threshold_crit
 	config_entry_value = -50
 
-/datum/config_entry/number/maintdrone_health_threshold_dead
-	config_entry_value = 0
-
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period
@@ -133,10 +106,6 @@
 	min_val = 0
 
 /datum/config_entry/flag/bones_can_break
-
-/datum/config_entry/flag/unlimited_rotate_speed
-
-/datum/config_entry/flag/allow_random_events
 
 /datum/config_entry/flag/allow_synthetic_gun_use
 
@@ -154,9 +123,7 @@
 
 /datum/config_entry/flag/allow_ai_multicam	// allow ai multicamera mode
 
-/datum/config_entry/flag/fun_allowed //at the moment, when set equal to 1, allows players to *dab (and get limbs automatically blown off).
-
-/datum/config_entry/flag/tank_mouth_noise //Causes the tank to sound like a 5 year old child is driving it.
+/datum/config_entry/flag/fun_allowed //a lot of LRP features
 
 /datum/config_entry/number/xeno_number
 	integer = FALSE

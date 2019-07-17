@@ -64,7 +64,7 @@
 		if(make_hit_sound)
 			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
-/obj/structure/window/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/window/bullet_act(obj/item/projectile/Proj)
 	//Tasers and the like should not damage windows.
 	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
 		return FALSE
@@ -93,24 +93,26 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_atom & ON_BORDER))
+	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
+	return FALSE
+
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
+	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(is_full_window())
-		return FALSE //Full tile window, you can't move into it!
-	if(get_dir(loc, target) == dir)
+	if(is_full_window() || get_dir(target, mover) == dir)
 		return !density
 	else
 		return TRUE
 
-/obj/structure/window/CheckExit(atom/movable/O, turf/target)
-	if(istype(O) && CHECK_BITFIELD(O.flags_pass, PASSGLASS))
+/obj/structure/window/CheckExit(atom/movable/mover, turf/target)
+	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(O.loc, target) == dir && !is_full_window())
-		return FALSE
+	if(is_full_window()) //Can always leave from a full window.
+		return TRUE
+	if(get_dir(mover, target) == dir)
+		return !density
 	return TRUE
 
 /obj/structure/window/hitby(AM as mob|obj)
@@ -140,7 +142,10 @@
 	else
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
-/obj/structure/window/attack_hand(mob/user as mob)
+/obj/structure/window/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(user.a_intent == INTENT_HARM)
 
 		if(istype(user,/mob/living/carbon/human))
@@ -172,7 +177,7 @@
 /obj/structure/window/proc/attack_generic(mob/living/user, damage = 0)
 	if(damageable) //Possible to destroy
 		obj_integrity -= damage
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, 1, user)
 
@@ -200,7 +205,6 @@
 		switch(state)
 			if(GRAB_PASSIVE)
 				M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
-				log_admin("[key_name(usr)] slams [key_name(M)] against \the [src].")
 				log_combat(user, M, "slammed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
 				M.apply_damage(7)
@@ -208,20 +212,18 @@
 					obj_integrity -= 10
 			if(GRAB_AGGRESSIVE)
 				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
-				log_admin("[key_name(usr)] bashes [key_name(M)] against \the [src].")
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] bashed [key_name(M)]'s face' against \the [src].")
 				if(prob(50))
-					M.KnockDown(1)
+					M.knock_down(1)
 				M.apply_damage(10)
 				if(damageable) //Possible to destroy
 					obj_integrity -= 25
 			if(GRAB_NECK)
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
-				log_admin("[key_name(usr)] crushes [key_name(M)] against \the [src].")
 				log_combat(user, M, "crushed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
-				M.KnockDown(5)
+				M.knock_down(5)
 				M.apply_damage(20)
 				if(damageable) //Possible to destroy
 					obj_integrity -= 50
@@ -606,7 +608,7 @@
 	spawn_shutters()
 	.=..()
 
-/obj/structure/window/framed/prison/reinforced/hull/proc/spawn_shutters(var/from_dir = 0)
+/obj/structure/window/framed/prison/reinforced/hull/proc/spawn_shutters(from_dir = 0)
 	if(triggered)
 		return
 	else
@@ -619,6 +621,7 @@
 		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(src,direction) )
 			W.spawn_shutters(turn(direction,180))
 	var/obj/machinery/door/poddoor/shutters/almayer/pressure/P = new(get_turf(src))
+	P.density = TRUE
 	switch(junction)
 		if(4,5,8,9,12)
 			P.setDir(SOUTH)

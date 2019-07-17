@@ -61,7 +61,7 @@
 	A.attack_hand(src)
 
 
-/atom/proc/attack_hand(mob/user)
+/atom/proc/attack_hand(mob/living/user)
 	. = FALSE
 	add_fingerprint(user, "attack_hand")
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)

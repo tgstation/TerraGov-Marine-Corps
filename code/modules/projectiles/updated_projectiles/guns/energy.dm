@@ -49,7 +49,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/energy/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/energy/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund)
 		cell.charge = min(cell.charge + charge_cost, cell.maxcharge) //Safeguard against 'overcharging' the cell.
@@ -125,11 +125,11 @@
 
 	ammo = /datum/ammo/energy/lasgun
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
-	aim_slowdown = SLOWDOWN_ADS_RIFLE
+	aim_slowdown = SLOWDOWN_ADS_LASGUN
 	wield_delay = WIELD_DELAY_SLOW
 	gun_skill_category = GUN_SKILL_RIFLES
 
@@ -192,6 +192,11 @@
 	return toggle_chargemode(user)
 
 
+/obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
+	. = ..()
+	update_icon()
+
+
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
 	//if(in_chamber)
@@ -233,7 +238,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
@@ -255,7 +260,7 @@
 	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
 	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
 	*/
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
 
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.

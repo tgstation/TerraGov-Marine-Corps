@@ -172,7 +172,7 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle16"
 	possible_transfer_amounts = null
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/fertilizer //Reagent contained, if any.
 

@@ -42,7 +42,7 @@
 	force = 5
 	flags_atom = NONE
 	throwforce = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 3
 	origin_tech = "materials=1"
@@ -71,7 +71,7 @@
 	force = 0
 	flags_atom = NONE
 	throwforce = 1
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 1
 	throw_range = 3
 
@@ -89,7 +89,7 @@
 	force = 15
 	flags_atom = NONE
 	throwforce = 1
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
 	throw_range = 3
 	origin_tech = "combat=1"
@@ -116,7 +116,7 @@
 		return 1
 	return 0
 
-/obj/item/grown/nettle/proc/lose_leaves(var/mob/user)
+/obj/item/grown/nettle/proc/lose_leaves(mob/user)
 	if(force > 0)
 		playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 		force -= rand(1,(force/3)+1) // When you whack someone with it, leaves fall off
@@ -140,7 +140,7 @@
 /obj/item/grown/nettle/death/pickup(mob/living/carbon/human/user as mob)
 
 	if(..() && prob(50))
-		user.KnockOut(5)
+		user.knock_out(5)
 		to_chat(user, "<span class='warning'>You are stunned by the deathnettle when you try picking it up!</span>")
 
 /obj/item/grown/nettle/attack(mob/living/carbon/M as mob, mob/user as mob)
@@ -161,8 +161,8 @@
 
 		M.adjust_blurriness(force/7)
 		if(prob(20))
-			M.KnockOut(force/6)
-			M.KnockDown(force/15)
+			M.knock_out(force/6)
+			M.knock_down(force/15)
 		M.drop_held_item()
 
 /obj/item/corncob
@@ -171,7 +171,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "corncob"
 	item_state = "corncob"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20

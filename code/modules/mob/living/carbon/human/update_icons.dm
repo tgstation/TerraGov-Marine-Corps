@@ -4,7 +4,7 @@
 	TODO: Proper documentation
 	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][ethnicity]
 */
-var/global/list/human_icon_cache = list()
+GLOBAL_LIST_EMPTY(human_icon_cache)
 
 	///////////////////////
 	//UPDATE_ICONS SYSTEM//
@@ -86,9 +86,9 @@ There are several things that need to be remembered:
 		underlays -= underlays_standing[cache_index]
 		underlays_standing[cache_index] = null
 
-var/global/list/damage_icon_parts = list()
+GLOBAL_LIST_EMPTY(damage_icon_parts)
 /mob/living/carbon/human/proc/get_damage_icon_part(damage_state, body_part)
-	if(damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] == null)
+	if(GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] == null)
 		var/brutestate = copytext(damage_state, 1, 2)
 		var/burnstate = copytext(damage_state, 2)
 		var/icon/DI
@@ -99,10 +99,10 @@ var/global/list/damage_icon_parts = list()
 			DI = new /icon('icons/mob/dam_human.dmi', "human_[brutestate]")
 		DI.Blend(new /icon('icons/mob/dam_human.dmi', "burn_[burnstate]"), ICON_OVERLAY)//adding burns
 		DI.Blend(new /icon('icons/mob/dam_mask.dmi', body_part), ICON_MULTIPLY)		// mask with this organ's pixels
-		damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
+		GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] = DI
 		return DI
 	else
-		return damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
+		return GLOB.damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"]
 
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
@@ -142,7 +142,7 @@ var/global/list/damage_icon_parts = list()
 	apply_overlay(DAMAGE_LAYER)
 
 //BASE MOB SPRITE
-/mob/living/carbon/human/proc/update_body(var/update_icons = 1, var/force_cache_update = 0)
+/mob/living/carbon/human/proc/update_body(update_icons = 1, force_cache_update = 0)
 	var/necrosis_color_mod = rgb(10,50,0)
 
 	var/g = get_gender_name(gender)
@@ -176,11 +176,11 @@ var/global/list/damage_icon_parts = list()
 	icon_key = "[icon_key][0][0][0][0][ethnicity]"
 
 	var/icon/base_icon
-	if(!force_cache_update && human_icon_cache[icon_key])
+	if(!force_cache_update && GLOB.human_icon_cache[icon_key])
 		//Icon is cached, use existing icon.
-		base_icon = human_icon_cache[icon_key]
+		base_icon = GLOB.human_icon_cache[icon_key]
 
-		//log_debug("Retrieved cached mob icon ([icon_key] \icon[human_icon_cache[icon_key]]) for [src].")
+		//log_debug("Retrieved cached mob icon ([icon_key] \icon[GLOB.human_icon_cache[icon_key]]) for [src].")
 
 	else
 
@@ -247,9 +247,9 @@ var/global/list/damage_icon_parts = list()
 
 				base_icon.Blend(temp, ICON_OVERLAY)
 
-		human_icon_cache[icon_key] = base_icon
+		GLOB.human_icon_cache[icon_key] = base_icon
 
-		//log_debug("Generated new cached mob icon ([icon_key] \icon[human_icon_cache[icon_key]]) for [src]. [human_icon_cache.len] cached mob icons.")
+		//log_debug("Generated new cached mob icon ([icon_key] \icon[GLOB.human_icon_cache[icon_key]]) for [src]. [GLOB.human_icon_cache.len] cached mob icons.")
 
 	//END CACHED ICON GENERATION.
 
@@ -278,7 +278,7 @@ var/global/list/damage_icon_parts = list()
 		if(underwear >0 && underwear < 3)
 			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
 
-		if(job in JOBS_MARINES) //undoing override
+		if(job in GLOB.jobs_marines) //undoing override
 			if(undershirt>0 && undershirt < 5)
 				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 		else if(undershirt > 0 && undershirt < 7)
@@ -334,11 +334,6 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_targeted()
 	remove_overlay(TARGETED_LAYER)
 	var/image/I
-	if (targeted_by && target_locked)
-		I = image("icon" = target_locked, "layer" =-TARGETED_LAYER)
-	else if (!targeted_by && target_locked)
-		qdel(target_locked)
-		target_locked = null
 	if(holo_card_color)
 		if(I)
 			I.overlays += image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "holo_card_[holo_card_color]")
@@ -647,7 +642,6 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[SUIT_LAYER]	= standing
 
 	update_tail_showing()
-	update_collar()
 
 	species?.update_inv_wear_suit(src)
 
@@ -769,22 +763,6 @@ var/global/list/damage_icon_parts = list()
 			overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
 
 			apply_overlay(TAIL_LAYER)
-
-//Adds a collar overlay above the helmet layer if the suit has one
-//	Suit needs an identically named sprite in icons/mob/collar.dmi
-/mob/living/carbon/human/proc/update_collar()
-	remove_overlay(COLLAR_LAYER)
-	var/icon/C = new('icons/mob/collar.dmi')
-	var/image/standing = null
-
-	if(wear_suit)
-		if(wear_suit.icon_state in C.IconStates())
-			standing = image("icon" = C, "icon_state" = "[wear_suit.icon_state]", "layer" =-COLLAR_LAYER)
-
-	overlays_standing[COLLAR_LAYER]	= standing
-
-	apply_overlay(COLLAR_LAYER)
-
 
 
 // Used mostly for creating head items

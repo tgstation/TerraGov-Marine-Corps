@@ -30,7 +30,7 @@
 			for(var/mob/living/M in viewers(1, location))
 				if (prob (50 * amount))
 					to_chat(M, "<span class='warning'>The explosion knocks you down.</span>")
-					M.KnockDown(rand(1,5))
+					M.knock_down(rand(1,5))
 			return
 		else
 			var/light = -1
@@ -70,8 +70,8 @@
 	name = "explosive particles"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "explosion_particle"
-	opacity = 1
-	anchored = 1
+	opacity = TRUE
+	anchored = TRUE
 	mouse_opacity = 0
 
 /obj/effect/particle_effect/expl_particles/New()
@@ -105,8 +105,8 @@
 	name = "explosive particles"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
-	opacity = 1
-	anchored = 1
+	opacity = TRUE
+	anchored = TRUE
 	mouse_opacity = 0
 	pixel_x = -32
 	pixel_y = -32

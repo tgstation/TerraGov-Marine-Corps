@@ -114,11 +114,11 @@
 
 	setDir(get_dir(loc, target_turf))
 
-	round_statistics.total_projectiles_fired++
+	GLOB.round_statistics.total_projectiles_fired++
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullets_fired++
+		GLOB.round_statistics.total_bullets_fired++
 		if(ammo.bonus_projectiles_amount)
-			round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
+			GLOB.round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && ammo.bonus_projectiles_type) ammo.fire_bonus_projectiles(src)
@@ -273,10 +273,10 @@
 			#endif
 			if(hit_roll < 25) //Sniper targets more likely to hit
 				if(shot_from && !shot_from.sniper_target(A) || !shot_from) //Avoid sentry run times
-					def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+					def_zone = pick(GLOB.base_miss_chance)	// Still hit but now we might hit the wrong body part
 
 			if(shot_from && !shot_from.sniper_target(A)) //Avoid sentry run times
-				hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+				hit_chance -= GLOB.base_miss_chance[def_zone] // Reduce accuracy based on spot.
 				#if DEBUG_HIT_CHANCE
 				to_chat(world, "Hit Chance 2: [hit_chance]")
 				#endif
@@ -288,7 +288,7 @@
 						break //Hit
 					if( hit_chance < (hit_roll - 20) )
 						break //Outright miss.
-					def_zone 	  = pick(base_miss_chance) //We're going to pick a new target and let this run one more time.
+					def_zone 	  = pick(GLOB.base_miss_chance) //We're going to pick a new target and let this run one more time.
 					hit_chance   -= 10 //If you missed once, the next go around will be harder to hit.
 				if(2)
 					if(prob(critical_miss) )
@@ -307,10 +307,10 @@
 			L.visible_message("<span class='avoidharm'>[src] misses [L]!</span>","<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 //----------------------------------------------------------
-		    	//				    	\\
-			    //  HITTING THE TARGET  \\
-			    //						\\
-			    //						\\
+			//				    	\\
+			//  HITTING THE TARGET  \\
+			//						\\
+			//						\\
 //----------------------------------------------------------
 
 
@@ -501,7 +501,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	flash_weak_pain()
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullet_hits_on_humans++
+		GLOB.round_statistics.total_bullet_hits_on_humans++
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	#if DEBUG_HUMAN_DEFENSE
@@ -538,13 +538,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 
 		if(armor > 0) //Armor check. We should have some to continue.
-			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
-			 soaked. Small caliber firearms aren't really effective against combat armor.*/
+			/*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
+			soaked. Small caliber firearms aren't really effective against combat armor.*/
 			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
 			var/critical_hit = rand(CONFIG_GET(number/combat_define/critical_chance_low),CONFIG_GET(number/combat_define/critical_chance_high))
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
 			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
-											  		   //This gives smaller calibers a chance to actually deal damage.
+													//This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_HUMAN_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 			#endif
@@ -602,7 +602,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		round_statistics.total_bullet_hits_on_xenos++
+		GLOB.round_statistics.total_bullet_hits_on_xenos++
 
 	flash_weak_pain()
 
@@ -618,61 +618,62 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
-		var/armor = xeno_caste.armor_deflection + armor_bonus + armor_pheromone_bonus
+		var/initial_armor = armor.getRating(P.ammo.armor_type)
+		var/affecting_armor = initial_armor + armor_bonus + armor_pheromone_bonus
 		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
+		world << "<span class='debuginfo'>Initial armor is: <b>[affecting_armor]</b></span>"
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/xenomorph/charger = src
-			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
+			affecting_armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
 			#if DEBUG_CREST_DEFENSE
 			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
 			#endif
 			if(P.dir == charger.dir)
 				if(isxenoqueen(src))
-					armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_low))) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
+					affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_low))) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
-					armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_lmed))) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
+					affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_lmed))) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
 			else if(P.dir == reverse_direction(charger.dir))
-				armor += round(xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_low)) //We are facing the bullet.
+				affecting_armor += round(initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_low)) //We are facing the bullet.
 			else if(isxenocrusher(src))
-				armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_vlow))) //side armour eats a bit of shit if we're a Crusher
+				affecting_armor = max(0, affecting_armor - (initial_armor * CONFIG_GET(number/combat_define/xeno_armor_resist_vlow))) //side armour eats a bit of shit if we're a Crusher
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
+			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[affecting_armor]</b></span>")
 			#endif
 
-		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+		var/penetration = P.ammo.penetration > 0 || affecting_armor > 0 ? P.ammo.penetration : 0
 		if(P.shot_from && src == P.shot_from.sniper_target(src))
 			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
 			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 
-		armor -= penetration
+		affecting_armor -= penetration
 
 		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
+		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[affecting_armor]</b></span>"
 		#endif
-		if(armor > 0) //Armor check. We should have some to continue.
-			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
-			 soaked. Small caliber firearms aren't really effective against combat armor.*/
-			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
+		if(affecting_armor > 0) //Armor check. We should have some to continue.
+			/*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
+			soaked. Small caliber firearms aren't really effective against combat armor.*/
+			var/armor_soak	 = round( ( affecting_armor / damage ) * 10 )//Setting up for next action.
 			var/critical_hit = rand(CONFIG_GET(number/combat_define/critical_chance_low),CONFIG_GET(number/combat_define/critical_chance_high))
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
-			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
-											  		   //This gives smaller calibers a chance to actually deal damage.
+			affecting_armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
+													//This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_XENO_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
+			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[affecting_armor]</b></span>")
 			#endif
 			var/i = 0
 			if(damage)
-				while(armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
-					if(prob(armor))
+				while(affecting_armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
+					if(prob(affecting_armor))
 						armor_soak 	 = round(damage * 0.5)
-						armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
+						affecting_armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
 						damage 		-= armor_soak
 						#if DEBUG_XENO_DEFENSE
-						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
+						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[affecting_armor]</b></span>")
 						#endif
 					else break //If we failed to block the damage, it's time to get out of the loop.
 					i++
@@ -802,7 +803,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			log_combat(firingMob, src, "shot", P)
 			log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
 			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
-			round_statistics.total_bullet_hits_on_marines++
+			GLOB.round_statistics.total_bullet_hits_on_marines++
 		else
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")

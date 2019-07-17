@@ -4,7 +4,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
 	density = TRUE
-	anchored = 1.0
+	anchored = TRUE
 	var/oxygentanks = 10
 	var/phorontanks = 10
 	var/list/oxytanks = list()	//sorry for the similar var names
@@ -37,7 +37,10 @@
 		return attack_hand(user)
 	..()
 
-/obj/structure/dispenser/attack_hand(mob/user as mob)
+/obj/structure/dispenser/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	user.set_interaction(src)
 	var/dat = "[src]<br><br>"
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
@@ -80,6 +83,9 @@
 
 
 /obj/structure/dispenser/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(usr.stat || usr.restrained())
 		return
 	if(Adjacent(usr))

@@ -29,7 +29,7 @@
 	var/corpseback = null
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
-	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
+	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
 	var/xenovictim = FALSE //whether this person was infected and killed by xenos
 
@@ -42,7 +42,7 @@
 
 /obj/effect/landmark/corpsespawner/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
-	round_statistics.total_humans_created-- //corpses don't count
+	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	M.real_name = name
 	M.death(1) //Kills the new mob
 	if(corpseuniform)
@@ -100,13 +100,8 @@
 		M.chestburst = 2
 		M.update_burst()
 		//buckle to nest
-		var/obj/structure/bed/nest/N = locate() in get_turf(src)
-		if(N)
-			M.buckled = N
-			M.setDir(N.dir)
-			M.update_canmove()
-			N.buckled_mob = M
-			N.afterbuckle(M)
+		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
+		victim_nest?.do_buckle(M, silent = TRUE)
 	qdel(src)
 
 
@@ -291,6 +286,19 @@
 	corpseidjob = "Prison Guard"
 
 
+/obj/effect/landmark/corpsespawner/pmc
+	name = "Unknown PMC"
+	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsesuit = /obj/item/clothing/suit/armor/vest/security
+	corpseback = /obj/item/storage/backpack/satchel
+	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70
+	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
+	corpsemask = /obj/item/clothing/mask/gas/PMC
+	corpseradio = /obj/item/radio/headset/survivor
+	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
+	xenovictim = TRUE
 
 
 /////////////////Officers//////////////////////
@@ -303,7 +311,7 @@
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Staff Officer"
-	corpseidaccess = "Captain"
+	corpseidaccess = CAPTAIN
 
 /obj/effect/landmark/corpsespawner/commander
 	name = "Commander"
@@ -317,7 +325,7 @@
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	corpseidaccess = CAPTAIN
 
 /obj/effect/landmark/corpsespawner/PMC
 	name = "Private Security Officer"

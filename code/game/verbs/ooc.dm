@@ -1,5 +1,3 @@
-var/global/normal_ooc_colour = "#002eb8"
-
 /client/verb/ooc(msg as text)
 	set name = "OOC"
 	set category = "OOC"
@@ -36,7 +34,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<span class='danger'>Advertising other servers is not allowed.</span>")
-			log_admin("[key_name(usr)] has attempted to advertise in OOC: [msg]")
+			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
 			return
 
@@ -46,7 +44,7 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	mob.log_talk(msg, LOG_OOC)
 
-	var/display_colour = normal_ooc_colour
+	var/display_colour = "#002eb8"
 	if(holder?.rank && !holder.fakekey)
 		switch(holder.rank.name)
 			if("Host")
@@ -133,7 +131,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
-			log_admin("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
+			log_admin_private("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
 			return
 

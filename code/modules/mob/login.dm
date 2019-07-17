@@ -21,12 +21,17 @@
 
 	reload_fullscreens()
 
-	reset_view(loc)
+	reset_perspective(loc)
 
 	add_click_catcher()
 
-	if(client?.player_details)
-		for(var/foo in client.player_details.post_login_callbacks)
-			var/datum/callback/CB = foo
-			CB.Invoke()
-		log_played_names(client.ckey, name, real_name)
+	if(client)
+		client.change_view(world.view)
+		client.pixel_x = 0
+		client.pixel_y = 0
+
+		if(client.player_details)
+			for(var/foo in client.player_details.post_login_callbacks)
+				var/datum/callback/CB = foo
+				CB.Invoke()
+			log_played_names(client.ckey, name, real_name)

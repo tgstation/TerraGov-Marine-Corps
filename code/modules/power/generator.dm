@@ -4,7 +4,7 @@
 	desc = "It's a high efficiency thermoelectric generator."
 	icon_state = "teg"
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 
 	use_power = 1
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
@@ -47,7 +47,7 @@
 				circ1 = null
 				circ2 = null
 
-/obj/machinery/power/generator/proc/updateicon()
+/obj/machinery/power/generator/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		overlays.Cut()
 	else
@@ -73,7 +73,7 @@
 		genlev = 1
 	if(genlev != lastgenlev)
 		lastgenlev = genlev
-		updateicon()
+		update_icon()
 	add_avail(lastgen)
 
 /obj/machinery/power/generator/attack_ai(mob/user)
@@ -89,7 +89,10 @@
 		use_power = anchored
 		reconnect()
 
-/obj/machinery/power/generator/attack_hand(mob/user)
+/obj/machinery/power/generator/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
 	interact(user)
 
@@ -133,7 +136,9 @@
 
 
 /obj/machinery/power/generator/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if( href_list["close"] )
 		usr << browse(null, "window=teg")
 		usr.unset_interaction()
@@ -141,11 +146,6 @@
 
 	updateDialog()
 	return 1
-
-
-/obj/machinery/power/generator/power_change()
-	..()
-	updateicon()
 
 
 /obj/machinery/power/generator/verb/rotate_clock()

@@ -488,15 +488,6 @@
 /obj/screen/component_button/Click(params)
 	parent?.component_click(src, params)
 
-/obj/screen/cinematic
-	layer = CINEMATIC_LAYER
-	mouse_opacity = 0
-	screen_loc = "1,0"
-
-/obj/screen/cinematic/explosion
-	icon = 'icons/effects/station_explosion.dmi'
-	icon_state = "intro_ship"
-
 /obj/screen/action_button
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "template"
@@ -508,7 +499,7 @@
 	if(usr.next_move >= world.time)
 		return TRUE
 
-	if(source_action.can_use_action(FALSE, null, TRUE))
+	if(source_action.can_use_action(FALSE, NONE, TRUE))
 		source_action.action_activate()
 	else
 		source_action.fail_activate()
@@ -596,7 +587,7 @@
 	icon_state = "gun_burst"
 	screen_loc = ui_gun_burst
 
-/obj/screen/firearms/bustfire/Click()
+/obj/screen/firearms/burstfire/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
 	G?.toggle_burst()

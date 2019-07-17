@@ -1,6 +1,6 @@
 /mob/living/silicon/ai
-	name = "AI"
-	real_name = "AI"
+	name = "ARES v3.2"
+	real_name = "ARES v3.2"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
 	anchored = TRUE
@@ -17,7 +17,7 @@
 	var/mob/camera/aiEye/eyeobj
 	var/sprint = 10
 	var/cooldown = 0
-	var/acceleration = 1
+	var/acceleration = FALSE
 
 	var/multicam_on = FALSE
 	var/obj/screen/movable/pic_in_pic/ai/master_multicam
@@ -33,6 +33,8 @@
 	var/list/datum/AI_Module/current_modules = list()
 
 	var/control_disabled = FALSE
+	var/radiomod = ";"
+	var/list/laws
 
 	var/camera_light_on = FALSE
 	var/list/obj/machinery/camera/lit_cameras = list()
@@ -49,6 +51,12 @@
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
 
+	laws = list()
+	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
+	laws += "Serve: Serve the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
+	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
+	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
+
 	create_eye()
 
 	GLOB.ai_list += src
@@ -61,7 +69,7 @@
 	return ..()
 
 
-/mob/living/silicon/ai/restrained(ignore_grab)
+/mob/living/silicon/ai/restrained(ignore_checks)
 	return FALSE
 
 
@@ -83,10 +91,12 @@
 
 
 /mob/living/silicon/ai/Topic(href, href_list)
-	if(usr != src || incapacitated())
+	. = ..()
+	if(.)
 		return
 
-	. = ..()
+	if(usr != src || incapacitated())
+		return
 
 	if(href_list["switchcamera"])
 		switchCamera(locate(href_list["switchcamera"]) in GLOB.cameranet.cameras)
@@ -128,7 +138,7 @@
 /mob/living/silicon/ai/proc/toggle_camera_light()
 	if(camera_light_on)
 		for(var/obj/machinery/camera/C in lit_cameras)
-			C.SetLuminosity(0)
+			C.set_light(0)
 			lit_cameras = list()
 		to_chat(src, "<span class='notice'>Camera lights deactivated.</span>")
 	else
@@ -216,7 +226,7 @@
 /mob/living/silicon/ai/Stat()
 	. = ..()
 
-	if(statpanel("Status"))
+	if(statpanel("Stats"))
 	
 		if(stat != CONSCIOUS)
 			stat(null, text("Systems nonfunctional"))

@@ -9,38 +9,41 @@
 	var/spawn_amount
 
 /obj/structure/largecrate/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 	new /obj/item/stack/sheet/wood(src)
-	var/turf/T = get_turf(src)
-	for(var/obj/O in contents)
-		O.loc = T
+	spawn_stuff()
 	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
 	"<span class='danger'>You smash \the [src] apart!</span>", \
 	"<span class='danger'>You hear splitting wood!</span>", 5)
 	qdel(src)
 
-/obj/structure/largecrate/attack_hand(mob/user as mob)
+/obj/structure/largecrate/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
-	return FALSE
+	return TRUE
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(iscrowbar(I))
 		new /obj/item/stack/sheet/wood(src)
-		var/turf/T = get_turf(src)
-		if(spawn_type && spawn_amount)
-			for(var/i in 1 to spawn_amount)
-				new spawn_type(T)
-		for(var/obj/O in contents)
-			O.forceMove(loc)
+		spawn_stuff()
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							 "<span class='notice'>You pry open \the [src].</span>", \
-							 "<span class='notice'>You hear splitting wood.</span>")
+							"<span class='notice'>You pry open \the [src].</span>", \
+							"<span class='notice'>You hear splitting wood.</span>")
 		qdel(src)
 	else
 		return attack_hand(user)
+
+
+/obj/structure/largecrate/proc/spawn_stuff()
+	var/turf/T = get_turf(src)
+	if(spawn_type && spawn_amount)
+		for(var/i in 1 to spawn_amount)
+			new spawn_type(T)
+	for(var/obj/O in contents)
+		O.forceMove(loc)
+
 
 /obj/structure/largecrate/mule
 	icon_state = "mulecrate"
@@ -48,18 +51,21 @@
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
 	spawn_type = /mob/living/simple_animal/corgi/Lisa
+	spawn_amount = 1
 
 
 /obj/structure/largecrate/cow
 	name = "cow crate"
 	icon_state = "lisacrate"
 	spawn_type = /mob/living/simple_animal/cow
+	spawn_amount = 1
 
 
 /obj/structure/largecrate/goat
 	name = "goat crate"
 	icon_state = "lisacrate"
 	spawn_type = /mob/living/simple_animal/hostile/retaliate/goat
+	spawn_amount = 1
 
 
 /obj/structure/largecrate/chick
@@ -139,21 +145,21 @@
 		for(var/obj/O in contents)
 			O.forceMove(T)
 		user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
-							 "<span class='notice'>You weld open \the [src].</span>", \
-							 "<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
+							"<span class='notice'>You weld open \the [src].</span>", \
+							"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		qdel(src)
 
 	else
 		return attack_hand(user)
 
-/obj/structure/largecrate/random/barrel/attack_hand(mob/user)
+/obj/structure/largecrate/random/barrel/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
-	return FALSE
+	return TRUE
 
 
 /obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/xenomorph/X)
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	new /obj/item/stack/sheet/metal/small_stack(src)
 	var/turf/T = get_turf(src)
@@ -220,9 +226,9 @@
 	icon_state = "secure_crate"
 	strapped = FALSE
 
-/obj/structure/largecrate/random/barrel/attack_hand(mob/user)
+/obj/structure/largecrate/random/barrel/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
-	return FALSE
+	return TRUE
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"

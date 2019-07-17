@@ -80,7 +80,7 @@
 	item_state = "grenade_stick"
 	hud_state = "greande_frag"
 	force = 10
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
@@ -268,7 +268,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	throwforce = 1
 	dangerous = FALSE
 	underslug_launchable = TRUE
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	hud_state = "grenade_frag"
 	var/fuel = 0
 
@@ -305,11 +305,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
-	if(ismob(loc))
-		update_brightness(loc)
-	else
-		update_brightness(null)
-	//message_admins("TOGGLE FLARE LIGHT DEBUG 1: fuel: [fuel] loc: [loc]")
+	update_brightness()
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_on()
@@ -354,35 +350,13 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	damtype = "fire"
 	START_PROCESSING(SSobj, src)
 
-/obj/item/explosive/grenade/flare/proc/update_brightness(mob/user)
-	if(!user && ismob(loc))
-		user = loc
+/obj/item/explosive/grenade/flare/proc/update_brightness()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
-		if(loc && loc == user)
-			user.SetLuminosity(FLARE_BRIGHTNESS)
-			//message_admins("FLARE UPDATE BRIGHTNESS DEBUG: user: [user] light_sources length: [length(user.light_sources)]")
-			SetLuminosity(0)
-		else if(isturf(loc))
-			SetLuminosity(FLARE_BRIGHTNESS)
+		set_light(5)
 	else
 		icon_state = initial(icon_state)
-		if(loc && loc == user)
-			user.SetLuminosity(-FLARE_BRIGHTNESS)
-		else if(isturf(loc))
-			SetLuminosity(0)
-
-/obj/item/explosive/grenade/flare/pickup(mob/user)
-	if(active && loc != user)
-		user.SetLuminosity(FLARE_BRIGHTNESS)
-		SetLuminosity(0)
-	return ..()
-
-/obj/item/explosive/grenade/flare/dropped(mob/user)
-	if(active && loc != user)
-		user.SetLuminosity(-FLARE_BRIGHTNESS)
-		SetLuminosity(FLARE_BRIGHTNESS)
-	return ..()
+		set_light(0)
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()

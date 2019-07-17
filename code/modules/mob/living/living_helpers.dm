@@ -11,7 +11,7 @@
 	return 1
 
 /mob/living/proc/has_vision()
-	if(sdisabilities & BLIND)
+	if(disabilities & BLIND)
 		return FALSE
 	if(get_total_tint() >= TINT_BLIND)
 		return FALSE
@@ -28,3 +28,11 @@
 	. = ..()
 	if(!.)
 		return (stunned || knocked_down || knocked_out)
+
+
+/mob/living/restrained(ignore_checks)
+	. = ..()
+	var/flags_to_check = RESTRAINED_NECKGRAB | RESTRAINED_XENO_NEST | RESTRAINED_STRAIGHTJACKET | RESTRAINED_RAZORWIRE | RESTRAINED_PSYCHICGRAB
+	if(ignore_checks)
+		DISABLE_BITFIELD(flags_to_check, ignore_checks)
+	return (. || CHECK_BITFIELD(restrained_flags, flags_to_check))

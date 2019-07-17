@@ -3,7 +3,7 @@
 	singular_name = "floor tile"
 	desc = "Those could work as a pretty decent throwing weapon"
 	icon_state = "tile"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 6.0
 	matter = list("metal" = 937.5)
 	throwforce = 8.0
@@ -12,7 +12,7 @@
 	flags_atom = CONDUCT
 	max_amount = 60
 
-/obj/item/stack/tile/plasteel/New(var/loc, var/amount=null)
+/obj/item/stack/tile/plasteel/New(loc, amount=null)
 	..()
 	src.pixel_x = rand(1, 14)
 	src.pixel_y = rand(1, 14)

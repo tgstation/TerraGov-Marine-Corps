@@ -1,4 +1,4 @@
-/datum/preferences/proc/randomize_appearance_for(var/mob/living/carbon/human/H)
+/datum/preferences/proc/randomize_appearance_for(mob/living/carbon/human/H)
 	if(H)
 		if(H.gender == MALE)
 			gender = MALE
@@ -125,6 +125,12 @@
 		if(job_preferences[job] > highest_pref)
 			previewJob = SSjob.GetJob(job)
 			highest_pref = job_preferences[job]
+
+	if(previewJob)
+		// Silicons only need a very basic preview since there is no customization for them.
+		if(istype(previewJob, /datum/job/ai))
+			parent.show_character_previews(image('icons/mob/ai.dmi', icon_state = "ai", dir = SOUTH))
+			return
 
 	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)

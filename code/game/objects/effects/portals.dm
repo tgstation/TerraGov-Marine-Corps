@@ -7,7 +7,7 @@
 	var/failchance = 5
 	var/obj/item/target = null
 	var/creator = null
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
 	spawn(0)
@@ -21,7 +21,10 @@
 		return
 	return
 
-/obj/effect/portal/attack_hand(mob/user as mob)
+/obj/effect/portal/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	spawn(0)
 		src.teleport(user)
 		return
