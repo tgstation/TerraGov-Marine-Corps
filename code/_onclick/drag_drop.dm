@@ -47,4 +47,3 @@
 			middragtime = 0
 			middragatom = null
 	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDRAG, src_object, over_object, src_location, over_location, src_control, over_control, params)
-	return ..()

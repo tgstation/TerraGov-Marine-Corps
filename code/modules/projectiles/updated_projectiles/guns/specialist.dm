@@ -364,7 +364,6 @@
 	ammo_secondary = GLOB.ammo_list[ammo_secondary]
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
-	set_autofire_delay(0.4 SECONDS)
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
@@ -451,7 +450,6 @@
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/smartgun/dirty/set_gun_config_values()
-	set_autofire_delay(0.4 SECONDS)
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
@@ -1012,7 +1010,6 @@
 
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
-	set_autofire_delay(0.4 SECONDS)
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/minigun_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)

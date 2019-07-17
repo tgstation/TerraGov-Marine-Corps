@@ -54,7 +54,6 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 
 	var/fire_delay = 0							//For regular shots, how long to wait before firing again.
-	var/autofire_delay = 0.4 SECONDS			//Delay between automatic fire shots.
 	var/last_fired = 0							//When it was last fired, related to world.time.
 
 	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you

@@ -825,11 +825,6 @@ should be alright.
 	return FALSE
 
 
-/obj/item/weapon/gun/proc/set_autofire_delay(new_value)
-	SEND_SIGNAL(src, COMSIG_GUN_SET_AUTOFIREDELAY, new_value)
-	autofire_delay = new_value
-
-
 //----------------------------------------------------------
 				//				   	   \\
 				// UNUSED EXAMPLE CODE \\

@@ -35,7 +35,7 @@ datum/component/automatic_fire
 	return ..()
 
 
-// There is a gun. Let's configure it so that it turns on whenver the user wields it.
+// There is a gun. Let's configure it so that it turns on whenever the user wields it.
 /datum/component/automatic_fire/proc/autofire_turning_on(datum/source, client/usercli, fire_mode)
 	if(!usercli) //This can happen if a mob without a client gets an active automatic gun put in their hands, for example.
 		var/obj/item/weapon/gun/shoota = parent //We'll assume this is a gun for now.
