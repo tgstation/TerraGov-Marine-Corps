@@ -286,26 +286,17 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/flare/process()
 	fuel = max(fuel - 1, 0)
-
-	// Flares have a 25% chance to remove weeds under them.
-	var/obj/effect/alien/weeds/A = locate() in loc
-	if(A && prob(25))
-		A.fire_act()
-		fuel = max(fuel - 5, 0)
-
 	if(!fuel || !active)
 		turn_off()
-		if(!fuel)
-			icon_state = "[initial(icon_state)]-empty"
-		STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_off()
+	active = FALSE
 	fuel = 0
-	icon_state = "[initial(icon_state)]-empty"
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	update_brightness()
+	icon_state = "[initial(icon_state)]-empty" // override icon state set by update_brightness
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_on()
@@ -360,7 +351,10 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(isliving(hit_atom) && active)
+	if(!active)
+		return
+
+	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 
 		var/target_zone = check_zone(L.zone_selected)
@@ -369,3 +363,9 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE))
 			var/armor_block = L.run_armor_check(target_zone, "fire")
 			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block) //Do more damage if launched from a proper launcher and active
+
+	// Flares instantly burn out nodes when thrown at them.
+	var/obj/effect/alien/weeds/node/N = locate() in loc
+	if(N && istype(N))
+		N.fire_act()
+		turn_off()
