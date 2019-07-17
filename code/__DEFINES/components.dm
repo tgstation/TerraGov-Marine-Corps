@@ -214,8 +214,9 @@
 
 
 // /obj/item/weapon/gun/ signals
-#define COMSIG_SHOT_AUTOFIRE "shot_autofire"
-	#define COMSIG_SHOT_AUTOFIRE_SUCCESS (1<<0)
+#define COMSIG_GUN_SHOT_AUTOFIRE "gun_shot_autofire"
+	#define COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS (1<<0)
+#define COMSIG_GUN_SET_AUTOFIREDELAY "gun_set_autofiredelay"
 
 
 //keybindings
