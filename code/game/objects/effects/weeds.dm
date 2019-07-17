@@ -187,9 +187,7 @@
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
-
-	SSweeds.decay_weeds(node_turfs)
-
+	SSweeds_decay.decay_weeds(node_turfs)
 
 
 /obj/effect/alien/weeds/node/update_icon()

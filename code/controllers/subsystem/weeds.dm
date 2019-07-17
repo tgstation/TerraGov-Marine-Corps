@@ -7,10 +7,7 @@ SUBSYSTEM_DEF(weeds)
 	// This is a list of nodes on the map.
 	var/list/creating = list()
 	var/list/pending = list()
-	var/list/decaying = list()
 	var/list/currentrun
-
-	var/decay_tick = 1
 
 /datum/controller/subsystem/weeds/stat_entry()
 	return ..("Nodes: [length(pending)]")
@@ -19,37 +16,6 @@ SUBSYSTEM_DEF(weeds)
 	if(!resumed)
 		currentrun = pending.Copy()
 		creating = list()
-
-	// Decay weeds first, but only ever 3rd tick (x3 slower than growing weeds)
-	if ((decay_tick % 4) == 0)
-		decay_tick = 1
-		for(var/A in decaying)
-			if(MC_TICK_CHECK)
-				return
-
-			var/turf/T = A
-			if(QDELETED(T))
-				decaying -= T
-				continue
-
-			var/obj/effect/alien/weeds/W = locate() in T
-			if(QDELETED(W) || W.parent_node)
-				decaying -= T
-				continue
-
-			var/decay_chance = 100
-			for(var/direction in GLOB.cardinals) 
-				var/turf/adj = get_step(T, direction)
-				if(locate(/obj/effect/alien/weeds) in adj)
-					decay_chance -= rand(25, 40)
-
-			if(decay_chance > 0 && prob(decay_chance))
-				W.parent_node = null // So it wont try to regrow
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, W), rand(0, 7 SECONDS))
-				decaying -= T
-	else
-		decay_tick++
-
 
 	for(var/A in currentrun)
 		if(MC_TICK_CHECK)
@@ -118,19 +84,6 @@ SUBSYSTEM_DEF(weeds)
 
 	var/turf/T = get_turf(W)
 	pending[T] = W.parent_node
-
-
-/datum/controller/subsystem/weeds/proc/decay_weeds(list/obj/effect/alien/weeds/node_turfs)
-	for(var/X in node_turfs)
-		var/turf/T = X
-
-		// Skip if there is not a weed there
-		var/obj/effect/alien/weeds/W = locate() in T
-		if(!W)
-			continue
-
-		W.parent_node = null // otherwise the weed regrows
-		decaying += T
 
 
 /datum/controller/subsystem/weeds/proc/create_weed(turf/T, obj/effect/alien/weeds/node/N)
