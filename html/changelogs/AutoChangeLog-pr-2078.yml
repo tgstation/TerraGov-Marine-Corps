@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - balance: "Weed nodes are backing to creating squares of weeds, which should be much more similar to the original weeds before the last refactor"
