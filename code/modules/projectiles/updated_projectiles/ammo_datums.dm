@@ -1299,9 +1299,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		T = get_turf(P)
 	drop_nade(T)
 
-	if(istype(M,/mob/living/carbon))
-		var/mob/living/carbon/C = M
-		C.acid_process_cooldown = world.time
+	M.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_ACID, null), 1 SECONDS)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
 	var/turf/T = get_turf(O)

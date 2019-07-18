@@ -63,12 +63,8 @@
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/last_dam = -1	//Used for determining if we need to process all limbs or just some or even none.
-	//var/list/bad_limbs = list()// limbs we check until they are good.
 
 	var/mob/remoteview_target
-
-	var/list/flavor_texts = list()
-	var/last_unbuckled = 0 //Unbuckled cooldown.
 
 	var/flavor_text = ""
 	var/med_record = ""
@@ -109,7 +105,6 @@
 
 	var/image/SL_directional = null
 
-	var/last_chew = 0
 	var/damageoverlaytemp = 0
 
 	var/specset //Simple way to track which set has the player taken

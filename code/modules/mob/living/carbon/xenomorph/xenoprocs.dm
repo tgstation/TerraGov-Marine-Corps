@@ -593,7 +593,7 @@
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 
-	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
+	cooldowns[COOLDOWN_ACID] = TRUE
 	var/armor_block = run_armor_check("chest", "acid")
 	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)

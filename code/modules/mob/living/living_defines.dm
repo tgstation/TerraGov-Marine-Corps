@@ -43,8 +43,6 @@
 
 	var/restrained_flags = NONE
 
-	var/last_special = 0
-
 	var/now_pushing
 
 	var/bubble_icon = "default" //what icon the mob uses for speechbubbles
@@ -82,7 +80,6 @@
 
 	var/image/attack_icon //the image used as overlay on the things we attack.
 
-	var/zoom_cooldown = 0 //Cooldown on using zooming items, to limit spam
 	var/do_bump_delay = FALSE	// Flag to tell us to delay movement because of being bumped
 
 	var/reagent_move_delay_modifier = 0 //negative values increase movement speed
@@ -96,12 +93,9 @@
 
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
-	var/entangle_delay
 	var/entangled_by
 
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
-
-	var/ventcrawl_message_busy
 
 	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 
@@ -109,5 +103,3 @@
 	var/faction = "Neutral"
 
 	var/away_time = 0 //When the player has disconnected.
-
-	var/recently_pointed_to = 0 //used as cooldown for the pointing verb.

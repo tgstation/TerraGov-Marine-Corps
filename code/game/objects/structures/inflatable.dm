@@ -207,7 +207,8 @@
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
-		if(world.time - M.last_bumped <= 60) return //NOTE do we really need that?
+		if(M.cooldowns[COOLDOWN_BUMP]) 
+			return
 		if(M.client)
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
@@ -215,6 +216,7 @@
 					SwitchState()
 			else
 				SwitchState()
+			M.cooldowns[COOLDOWN_BUMP] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_BUMP, null), 6 SECONDS)
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)

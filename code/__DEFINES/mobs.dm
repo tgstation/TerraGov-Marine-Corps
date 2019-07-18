@@ -1,9 +1,6 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 
-#define BORGMESON 1
-#define BORGTHERM 2
-#define BORGXRAY  4
 
 //Pain or shock reduction for different reagents
 #define PAIN_REDUCTION_VERY_LIGHT	-10 //alkysine
@@ -352,20 +349,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUMAN_MAX_PALENESS	30 //this is added to human skin tone to get value of pale_max variable
 
 
-//diseases
-
-#define SPECIAL -1
-#define NON_CONTAGIOUS 0
-#define BLOOD 1
-#define CONTACT_FEET 2
-#define CONTACT_HANDS 3
-#define CONTACT_GENERAL 4
-#define AIRBORNE 5
-
-#define SCANNER 1
-#define PANDEMIC 2
-
-
 // halloss defines
 
 #define BASE_HALLOSS_RECOVERY_RATE -4
@@ -580,3 +563,22 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define AI_IDLE		2
 #define AI_OFF		3
 #define AI_Z_OFF	4
+
+
+
+//Cooldowns
+#define COOLDOWN_CHEW 		"chew"
+#define COOLDOWN_PUKE 		"puke"
+#define COOLDOWN_POINT 		"point"
+#define COOLDOWN_EMOTE		"emote"
+#define COOLDOWN_VENTCRAWL	"ventcrawl"
+#define COOLDOWN_BUCKLE		"buckle"
+#define COOLDOWN_RESIST		"resist"
+#define COOLDOWN_ORDER		"order"
+#define COOLDOWN_DISPOSAL	"disposal"
+#define COOLDOWN_ACID		"acid"
+#define COOLDOWN_GUT		"gut"
+#define COOLDOWN_ZOOM		"zoom"
+#define COOLDOWN_BUMP		"bump"
+#define COOLDOWN_ENTANGLE	"entangle"
+#define COOLDOWN_NEST		"nest"
