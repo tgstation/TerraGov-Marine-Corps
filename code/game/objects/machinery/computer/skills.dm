@@ -391,7 +391,7 @@ What a mess.*/
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = GLOB.namepool[/datum/namepool].get_random_name(pick(list(MALE, FEMALE)))
+					R.fields["name"] = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)
