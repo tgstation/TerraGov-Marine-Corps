@@ -16,7 +16,7 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER|GUN_HAS_FULL_AUTO
 	gun_skill_category = GUN_SKILL_SMGS
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
@@ -63,7 +63,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/gyro)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_HAS_FULL_AUTO
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/m39/set_gun_config_values()

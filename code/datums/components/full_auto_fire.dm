@@ -62,7 +62,6 @@ datum/component/automatic_fire
 
 
 /datum/component/automatic_fire/proc/autofire_turning_off(datum/source, client/usercli)
-	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
 	autofire_off()
 
 
@@ -90,7 +89,7 @@ datum/component/automatic_fire
 	clicker = null
 	parent.UnregisterSignal(parent, COMSIG_GUN_SHOT_AUTOFIRE)
 	parent.UnregisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN)
-	UnregisterSignal(parent, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETED))
+	UnregisterSignal(parent, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETED, COMSIG_ITEM_EQUIPPED))
 
 
 /datum/component/automatic_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
