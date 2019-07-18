@@ -104,6 +104,8 @@
 	var/lighting_alpha
 	var/see_in_dark
 
+	var/datum/namepool/namepool = /datum/namepool
+
 /datum/species/New()
 	if(hud_type)
 		hud = new hud_type()
@@ -159,7 +161,7 @@
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
 /datum/species/proc/random_name(gender)
-	return GLOB.namepool[/datum/namepool].get_random_name(gender)
+	return GLOB.namepool[namepool].get_random_name(gender)
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -390,14 +392,13 @@
 
 	reagent_tag = IS_MOTH
 
+	namepool = /datum/namepool/moth
+
 /datum/species/moth/handle_fire(mob/living/carbon/human/H)
 	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
 		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
 		H.moth_wings = "Burnt Off"
 		H.update_body()
-
-/datum/species/moth/random_name()
-	return GLOB.namepool[/datum/namepool/moth].get_random_name(MALE)
 
 /datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
 	H.remove_overlay(MOTH_WINGS_LAYER)
