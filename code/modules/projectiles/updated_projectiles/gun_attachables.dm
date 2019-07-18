@@ -104,7 +104,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-/obj/item/attachable/proc/Attach(obj/item/weapon/gun/G)
+/obj/item/attachable/proc/Attach(obj/item/weapon/gun/G, mob/user)
 	if(!istype(G))
 		return //Guns only
 	attach_applied = TRUE
@@ -131,9 +131,9 @@ Defined in conflicts.dm of the #defines folder.
 			if(G.stock) G.stock.Detach(G)
 			G.stock = src
 
-	if(ishuman(loc))
-		var/mob/living/carbon/human/M = src.loc
-		M.drop_held_item(src)
+	if(ishuman(user))
+		var/mob/living/carbon/human/wielder = user
+		wielder.drop_held_item(src)
 	forceMove(G)
 
 	G.accuracy_mult		+= accuracy_mod
@@ -156,8 +156,14 @@ Defined in conflicts.dm of the #defines folder.
 	G.shell_speed_mod	+= attach_shell_speed_mod
 	G.scope_zoom 		+= scope_zoom_mod
 
-	if(G.burst_amount <= 1)
-		G.flags_gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
+	if(burst_mod)
+		if(G.burst_amount < 2)
+			if(GUN_FIREMODE_BURSTFIRE in G.gun_firemode_list)
+				G.remove_firemode(GUN_FIREMODE_BURSTFIRE, user)
+		else
+			if(!(GUN_FIREMODE_BURSTFIRE in G.gun_firemode_list))
+				G.add_firemode(GUN_FIREMODE_BURSTFIRE, user)
+
 	G.update_force_list() //This updates the gun to use proper force verbs.
 
 	if(silence_mod)
@@ -231,7 +237,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-/obj/item/attachable/ui_action_click(mob/living/user, obj/item/weapon/gun/G)
+/obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item())
 		if(activate_attachment(G, user)) //success
 			playsound(user, activation_sound, 15, 1)

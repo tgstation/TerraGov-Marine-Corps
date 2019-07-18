@@ -21,7 +21,7 @@
 /datum/action/item_action/action_activate()
 	if(target)
 		var/obj/item/I = target
-		I.ui_action_click(owner, holder_item)
+		I.ui_action_click(owner, src, holder_item)
 
 /datum/action/item_action/can_use_action()
 	if(QDELETED(owner) || owner.incapacitated() || owner.lying)
@@ -46,4 +46,15 @@
 	button.name = name
 
 
+/datum/action/item_action/firemode
+	var/action_firemode
 
+
+/datum/action/item_action/firemode/semiauto_firemode
+	name = "Semi-Automatic Firemode"
+	action_firemode = GUN_FIREMODE_SEMIAUTO
+
+
+/datum/action/item_action/firemode/burst_firemode
+	name = "Burst Firemode"
+	action_firemode = GUN_FIREMODE_BURSTFIRE
