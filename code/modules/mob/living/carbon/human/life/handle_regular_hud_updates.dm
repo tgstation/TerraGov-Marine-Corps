@@ -77,7 +77,12 @@
 		else
 			clear_fullscreen("brute")
 
-	if(hud_used?.healths)
+	interactee?.check_eye(src)
+
+	if(!hud_used)
+		return
+
+	if(hud_used.healths)
 		if(analgesic)
 			hud_used.healths.icon_state = "health_numb"
 		else
@@ -187,6 +192,3 @@
 					hud_used.bodytemp_icon.icon_state = "temp-1"
 				else
 					hud_used.bodytemp_icon.icon_state = "temp0"
-
-
-	interactee?.check_eye(src)
