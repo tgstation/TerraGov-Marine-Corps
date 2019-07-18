@@ -148,9 +148,9 @@
 /proc/random_unique_name(gender, attempts_to_find_unique_name = 10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		if(gender == FEMALE)
-			. = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+			. = capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 		else
-			. = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+			. = capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 
 		if(!findname(.))
 			break

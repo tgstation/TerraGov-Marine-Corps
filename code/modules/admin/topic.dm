@@ -432,7 +432,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		else if(isxeno(M))
 			if(alert("Are you sure you want to tell the Xeno a Xeno tip?", "Confirmation", "Yes", "No") != "Yes")
 				return
-			to_chat(M, "<span class='tip'>[pick(GLOB.xenotips)]</span>")
+			to_chat(M, "<span class='tip'>[pick(SSstrings.get_list_from_file("tips/xeno"))]</span>")
 
 		if(isxeno(M))
 			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! Hope the advice helped.</span>")

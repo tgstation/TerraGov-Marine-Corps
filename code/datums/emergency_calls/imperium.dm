@@ -18,9 +18,9 @@
 	
 	// custom wh40k names when?
 	if(H.gender == MALE)
-		H.name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
+		H.name = pick(SSstrings.get_list_from_file("names/first_male")) + " " + pick(SSstrings.get_list_from_file("names/last_name"))
 	else
-		H.name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
+		H.name = pick(SSstrings.get_list_from_file("names/first_female")) + " " + pick(SSstrings.get_list_from_file("names/last_name"))
 	H.real_name = H.name
 	
 	M.transfer_to(H, TRUE)

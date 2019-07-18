@@ -41,9 +41,9 @@
 /datum/language/proc/get_random_name(gender, name_count = 2, syllable_count = 4, syllable_divisor = 2)
 	if(!length(syllables))
 		if(gender == FEMALE)
-			return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+			return capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 		else
-			return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+			return capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 
 	var/full_name = ""
 	var/new_name = ""
