@@ -82,8 +82,6 @@ LOG_MANIFEST
 
 ## Gameplay options
 
-GUEST_JOBBAN
-
 ALLOW_AI
 ALLOW_AI_MULTICAM
 
