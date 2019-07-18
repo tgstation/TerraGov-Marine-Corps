@@ -1,4 +1,4 @@
-#define NODERANGE 3
+#define NODERANGE 2
 
 /obj/effect/alien/weeds
 	name = "weeds"
@@ -202,7 +202,6 @@
 	generate_weed_graph()
 	SSweeds.add_node(src)
 
-
 /obj/effect/alien/weeds/node/proc/generate_weed_graph()
 	var/list/turfs_to_check = list()
 	turfs_to_check += get_turf(src)
@@ -211,7 +210,7 @@
 		node_size--
 		for(var/X in turfs_to_check)
 			var/turf/T = X
-			for(var/direction in GLOB.cardinals)
+			for(var/direction in GLOB.alldirs)
 				var/turf/AdjT = get_step(T, direction)
 				if (AdjT == src) // Ignore the node
 					continue
