@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(weeds_decay)
 			if(locate(/obj/effect/alien/weeds) in adj)
 				decay_chance -= rand(25, 40)
 
-		if(decay_chance > 0 && prob(decay_chance))
+		if(prob(decay_chance))
 			W.parent_node = null // So it wont try to regrow
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, W), rand(0, 7 SECONDS))
 			decaying -= T
