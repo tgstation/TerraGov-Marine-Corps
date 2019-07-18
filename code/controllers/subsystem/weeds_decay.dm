@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(weeds_decay)
 		for(var/direction in GLOB.cardinals) 
 			var/turf/adj = get_step(T, direction)
 			if(locate(/obj/effect/alien/weeds) in adj)
-				decay_chance -= rand(25, 40)
+				decay_chance -= 25
 
 		if(prob(decay_chance))
 			W.parent_node = null // So it wont try to regrow
