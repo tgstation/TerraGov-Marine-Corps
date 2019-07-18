@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	32
+#define SAVEFILE_VERSION_MAX	33
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,9 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 33)
+		WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.hotkey_keybinding_list_by_key))
 
 	if(savefile_version < 32)
 		WRITE_FILE(S["observer_actions"], TRUE)
