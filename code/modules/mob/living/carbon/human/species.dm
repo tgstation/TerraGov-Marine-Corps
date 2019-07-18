@@ -159,10 +159,7 @@
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
 /datum/species/proc/random_name(gender)
-	if(gender == FEMALE)
-		return capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
-	else
-		return capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
+	return GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -400,7 +397,7 @@
 		H.update_body()
 
 /datum/species/moth/random_name()
-	return "[pick(SSstrings.get_list_from_file("names/moth_first"))] [pick(SSstrings.get_list_from_file("names/moth_last"))]"
+	return GLOB.namepool[/datum/namepool/moth].get_random_name(MALE)
 
 /datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
 	H.remove_overlay(MOTH_WINGS_LAYER)

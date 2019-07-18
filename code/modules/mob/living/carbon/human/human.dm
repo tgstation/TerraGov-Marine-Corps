@@ -1142,15 +1142,9 @@
 
 
 /mob/living/carbon/human/proc/randomize_appearance()
-	if(prob(50))
-		gender = FEMALE
-		name = pick(SSstrings.get_list_from_file("names/first_female")) + " " + pick(SSstrings.get_list_from_file("names/last_name"))
-		real_name = name
-	else
-		gender = MALE
-		name = pick(SSstrings.get_list_from_file("names/first_male")) + " " + pick(SSstrings.get_list_from_file("names/last_name"))
-		real_name = name
-
+	gender = pick(MALE, FEMALE)
+	name = GLOB.namepool[/datum/namepool].get_random_name(gender)
+	real_name = name
 
 	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
 		if("black")

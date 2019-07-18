@@ -333,10 +333,7 @@
 	if(!xeno_name)
 		xeno_name = "Undefined"
 	if(!real_name)
-		if(gender == FEMALE)
-			real_name = capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
-		else
-			real_name = capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
+		real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 	return TRUE
 

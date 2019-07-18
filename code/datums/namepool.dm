@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
+
 /datum/namepool
 	var/firstname_male_pool = "names/first_male"
 	var/firstname_female_pool = "names/first_female"
@@ -28,3 +30,8 @@
 	firstname_male_pool = "names/first_male_russian"
 	firstname_female_pool = "names/first_female_russian"
 	lastname_pool = "names/last_name_russian"
+
+/datum/namepool/moth
+	firstname_male_pool = "names/moth_first"
+	firstname_female_pool = "names/moth_first"
+	lastname_pool = "names/moth_last"
