@@ -366,6 +366,6 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 	// Flares instantly burn out nodes when thrown at them.
 	var/obj/effect/alien/weeds/node/N = locate() in loc
-	if(N && istype(N))
+	if(N)
 		N.fire_act()
 		turn_off()
