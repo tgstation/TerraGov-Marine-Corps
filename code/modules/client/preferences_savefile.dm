@@ -65,7 +65,7 @@
 		WRITE_FILE(S["menuoptions"], list())
 
 	if(savefile_version < 23)
-		WRITE_FILE(S["hotkeys"], TRUE)
+		WRITE_FILE(S["focus_chat"], TRUE)
 
 	if(savefile_version < 22)
 		WRITE_FILE(S["windowflashing"], TRUE)
@@ -123,7 +123,7 @@
 	READ_FILE(S["ghost_form"], ghost_form)
 	READ_FILE(S["ghost_others"], ghost_others)
 	READ_FILE(S["observer_actions"], observer_actions)
-	READ_FILE(S["hotkeys"], hotkeys)
+	READ_FILE(S["focus_chat"], focus_chat)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
 
@@ -146,7 +146,7 @@
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
-	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
+	focus_chat			= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
@@ -183,7 +183,7 @@
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
-	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
+	focus_chat			= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	WRITE_FILE(S["default_slot"], default_slot)
@@ -206,7 +206,7 @@
 	WRITE_FILE(S["ghost_form"], ghost_form)
 	WRITE_FILE(S["ghost_others"], ghost_others)
 	WRITE_FILE(S["observer_actions"], observer_actions)
-	WRITE_FILE(S["hotkeys"], hotkeys)
+	WRITE_FILE(S["focus_chat"], focus_chat)
 	WRITE_FILE(S["tooltips"], tooltips)
 
 	return TRUE
