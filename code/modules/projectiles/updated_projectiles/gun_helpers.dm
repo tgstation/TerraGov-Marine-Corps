@@ -354,7 +354,6 @@ should be alright.
 		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
 		user.temporarilyRemoveItemFromInventory(attachment)
 		attachment.Attach(src, user)
-		update_attachable(attachment.slot)
 		playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
 
 
@@ -540,7 +539,7 @@ should be alright.
 
 	usr.visible_message("<span class='notice'>[usr] strips [A] from [src].</span>",
 	"<span class='notice'>You strip [A] from [src].</span>", null, 4)
-	A.Detach(src)
+	A.Detach(src, usr)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
 	update_attachables()
@@ -557,6 +556,7 @@ should be alright.
 	gun_firemode = firemode_action.action_firemode
 	playsound(user, 'sound/machines/click.ogg', 15, 1)
 	to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
+	user.update_action_buttons()
 
 
 /obj/item/weapon/gun/verb/toggle_firemode()
@@ -593,8 +593,10 @@ should be alright.
 		else
 			gun_firemode = gun_firemode_list[1]
 
-	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-	to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[new_firemode]</b>.</span>")
+	if(user)
+		playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
+		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
+		user.update_action_buttons()
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -618,6 +620,12 @@ should be alright.
 				actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
 			if(GUN_FIREMODE_BURSTFIRE)
 				actions_types += list(/datum/action/item_action/firemode/burst_firemode)
+		var/action_type = actions_types[length(actions_types)]
+		var/datum/action/new_action = new action_type(src)
+		if(user)
+			var/mob/living/living_user = user
+			if(src == living_user.l_hand || src == living_user.r_hand)
+				new_action.give_action(living_user)
 
 
 /obj/item/weapon/gun/proc/remove_firemode(removed_firemode, mob/user)
@@ -630,14 +638,23 @@ should be alright.
 		else
 			affected_firemodes = list(removed_firemode)
 
-	gun_firemode_list -= removed_firemode
-
 	for(var/i in affected_firemodes)
+		var/action_type
 		switch(i)
 			if(GUN_FIREMODE_SEMIAUTO)
-				actions_types -= list(/datum/action/item_action/firemode/semiauto_firemode)
+				action_type = /datum/action/item_action/firemode/semiauto_firemode
 			if(GUN_FIREMODE_BURSTFIRE)
-				actions_types -= list(/datum/action/item_action/firemode/burst_firemode)
+				action_type = /datum/action/item_action/firemode/burst_firemode
+		actions_types -= action_type
+
+		var/datum/action/old_action = locate(action_type) in actions
+		if(user)
+			var/mob/living/living_user = user
+			if(src == living_user.l_hand || src == living_user.r_hand)
+				old_action.remove_action(living_user)
+		qdel(old_action)
+
+	gun_firemode_list -= removed_firemode
 
 	if(gun_firemode == removed_firemode)
 		gun_firemode = gun_firemode_list[1]
@@ -660,6 +677,12 @@ should be alright.
 						actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
 					if(GUN_FIREMODE_BURSTFIRE)
 						actions_types += list(/datum/action/item_action/firemode/burst_firemode)
+				var/action_type = actions_types[length(actions_types)]
+				var/datum/action/new_action = new action_type(src)
+				if(isliving(loc))
+					var/mob/living/living_user = loc
+					if(src == living_user.l_hand || src == living_user.r_hand)
+						new_action.give_action(living_user)
 
 
 

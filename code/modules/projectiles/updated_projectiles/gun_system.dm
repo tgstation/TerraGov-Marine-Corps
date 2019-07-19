@@ -157,7 +157,6 @@
 		for(var/path in starting_attachment_types)
 			var/obj/item/attachable/A = new path(src)
 			A.Attach(src)
-			update_attachable(A.slot)
 
 
 /obj/item/weapon/gun/Destroy()

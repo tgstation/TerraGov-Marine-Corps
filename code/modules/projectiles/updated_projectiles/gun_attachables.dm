@@ -119,16 +119,16 @@ Defined in conflicts.dm of the #defines folder.
 	*/
 	switch(slot)
 		if("rail")
-			if(G.rail) G.rail.Detach(G)
+			G.rail?.Detach(G, user)
 			G.rail = src
 		if("muzzle")
-			if(G.muzzle) G.muzzle.Detach(G)
+			G.muzzle?.Detach(G, user)
 			G.muzzle = src
 		if("under")
-			if(G.under) G.under.Detach(G)
+			G.under?.Detach(G, user)
 			G.under = src
 		if("stock")
-			if(G.stock) G.stock.Detach(G)
+			G.stock?.Detach(G, user)
 			G.stock = src
 
 	if(ishuman(user))
@@ -156,20 +156,17 @@ Defined in conflicts.dm of the #defines folder.
 	G.shell_speed_mod	+= attach_shell_speed_mod
 	G.scope_zoom 		+= scope_zoom_mod
 
-	if(burst_mod)
-		if(G.burst_amount < 2)
-			if(GUN_FIREMODE_BURSTFIRE in G.gun_firemode_list)
-				G.remove_firemode(GUN_FIREMODE_BURSTFIRE, user)
-		else
-			if(!(GUN_FIREMODE_BURSTFIRE in G.gun_firemode_list))
-				G.add_firemode(GUN_FIREMODE_BURSTFIRE, user)
-
 	G.update_force_list() //This updates the gun to use proper force verbs.
 
 	if(silence_mod)
 		G.flags_gun_features |= GUN_SILENCED
 		G.muzzle_flash = null
 		G.fire_sound = "gun_silenced"
+
+	G.update_attachable(slot)
+
+	if(burst_mod)
+		on_burst_amount_change(G, user)
 
 	if(attachment_action_type)
 		var/datum/action/A = new attachment_action_type(src, G)
@@ -180,11 +177,10 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-/obj/item/attachable/proc/Detach(obj/item/weapon/gun/G)
+/obj/item/attachable/proc/Detach(obj/item/weapon/gun/G, mob/user)
 	if(!istype(G))
 		return //Guns only
 	attach_applied = FALSE
-
 
 	if(flags_attach_features & ATTACH_ACTIVATION)
 		activate_attachment(G, null, TRUE)
@@ -194,8 +190,6 @@ Defined in conflicts.dm of the #defines folder.
 		if("muzzle") 	G.muzzle = null
 		if("under")		G.under = null
 		if("stock")		G.stock = null
-
-
 
 	G.accuracy_mult		-= accuracy_mod
 	G.accuracy_mult_unwielded -= accuracy_unwielded_mod
@@ -218,6 +212,9 @@ Defined in conflicts.dm of the #defines folder.
 	G.scope_zoom 		-= scope_zoom_mod
 	G.update_force_list()
 
+	if(burst_mod)
+		on_burst_amount_change(G, user)
+
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
 		G.flags_gun_features &= ~GUN_SILENCED
 		G.muzzle_flash = initial(G.muzzle_flash)
@@ -235,6 +232,13 @@ Defined in conflicts.dm of the #defines folder.
 	loc = get_turf(G)
 
 
+/obj/item/attachable/proc/on_burst_amount_change(obj/item/weapon/gun/shoota, mob/user)
+	if(shoota.burst_amount < 2)
+		if(GUN_FIREMODE_BURSTFIRE in shoota.gun_firemode_list)
+			shoota.remove_firemode(GUN_FIREMODE_BURSTFIRE, user)
+	else
+		if(!(GUN_FIREMODE_BURSTFIRE in shoota.gun_firemode_list))
+			shoota.add_firemode(GUN_FIREMODE_BURSTFIRE, user)
 
 
 /obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)

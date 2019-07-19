@@ -48,6 +48,26 @@
 
 /datum/action/item_action/firemode
 	var/action_firemode
+	var/obj/item/weapon/gun/holder_gun
+
+
+/datum/action/item_action/firemode/New()
+	. = ..()
+	holder_gun = holder_item
+	name = initial(name) //Revert this foolishness.
+	button.name = name
+
+
+/datum/action/item_action/firemode/can_use_action()
+	. = ..()
+	if(!.)
+		return
+	if(holder_gun.gun_firemode == action_firemode)
+		return FALSE
+
+
+/datum/action/item_action/firemode/should_show()
+	return can_use_action()
 
 
 /datum/action/item_action/firemode/semiauto_firemode
