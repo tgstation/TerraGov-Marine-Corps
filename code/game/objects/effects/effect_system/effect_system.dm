@@ -77,8 +77,7 @@ steam.start() -- spawns the effect
 				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(steam,direction)
-				spawn(20)
-					qdel(steam)
+				QDEL_IN(steam, 20)
 
 
 /////////////////////////////////////////////
@@ -95,14 +94,13 @@ steam.start() -- spawns the effect
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/effect/particle_effect/sparks/New()
-	..()
+/obj/effect/particle_effect/sparks/Initialize()
+	. = ..()
 	playsound(src.loc, "sparks", 25, 1)
 //	var/turf/T = src.loc
 //	if (istype(T, /turf))
 //		T.hotspot_expose(1000,100)
-	spawn (100)
-		qdel(src)
+	QDEL_IN(src, 10 SECONDS)
 
 
 /datum/effect_system/spark_spread
@@ -179,8 +177,7 @@ steam.start() -- spawns the effect
 						I.setDir(holder.dir)
 						flick("ion_fade", I)
 						I.icon_state = "blank"
-						spawn(20)
-							qdel(I)
+						QDEL_IN(I, 20)
 					spawn(2)
 						if(src.on)
 							src.processing = 1

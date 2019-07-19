@@ -23,7 +23,7 @@
 	if(!isturf(loc))
 		return INITIALIZE_HINT_QDEL
 
-	extinguish()
+	QDEL_IN(src, life * 10)
 
 	setDir(pick(GLOB.cardinals))
 	set_light(3)
@@ -36,10 +36,6 @@
 		E.fire_act()
 	for(var/obj/structure/bed/nest/N in loc)//Nests
 		N.fire_act()
-
-/obj/effect/particle_effect/fire/proc/extinguish()
-	spawn(life * 10)
-		qdel(src)
 
 /obj/effect/particle_effect/fire/Crossed(mob/living/L)
 	..()

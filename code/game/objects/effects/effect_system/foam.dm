@@ -39,8 +39,7 @@
 			M.updateicon()
 
 		flick("[icon_state]-disolve", src)
-		sleep(5)
-		qdel(src)
+		QDEL_IN(src, 5)
 
 
 // transfer any reagents to the floor

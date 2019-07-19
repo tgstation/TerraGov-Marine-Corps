@@ -80,10 +80,7 @@
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
 		src.icon_state = "burst"
-		spawn(5)
-			if(src)
-				qdel(src)
-	return
+		QDEL_IN(src, 5)
 
 /obj/item/toy/balloon/update_icon()
 	if(src.reagents.total_volume >= 1)
