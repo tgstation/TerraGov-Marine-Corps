@@ -139,9 +139,6 @@
 /obj/effect/alien/weeds/update_icon()
 	return
 
-/obj/effect/alien/weeds/fire_act()
-	qdel(src)
-
 /obj/effect/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
 	icon_state = "weedwall"

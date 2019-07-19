@@ -26,9 +26,6 @@
 /obj/effect/alien/flamer_fire_act()
 	take_damage(50)
 
-/obj/effect/alien/fire_act()
-	take_damage(50)
-
 /obj/effect/alien/bullet_act(obj/item/projectile/Proj)
 	if(Proj.damtype == "fire")
 		take_damage(Proj.damage*2)
@@ -291,13 +288,13 @@
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
-/obj/structure/mineral_door/resin/New()
-	spawn(0)
-		relativewall()
-		relativewall_neighbours()
-		if(!locate(/obj/effect/alien/weeds) in loc)
-			new /obj/effect/alien/weeds(loc)
-	..()
+/obj/structure/mineral_door/resin/Initialize()
+	. = ..()
+	
+	relativewall()
+	relativewall_neighbours()
+	if(!locate(/obj/effect/alien/weeds) in loc)
+		new /obj/effect/alien/weeds(loc)
 
 /obj/structure/mineral_door/resin/proc/thicken()
 	var/oldloc = loc

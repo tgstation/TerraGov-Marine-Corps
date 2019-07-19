@@ -355,7 +355,7 @@
 		else if(href_list["play"])
 			if(song)
 				playing = 1
-				spawn() playsong()
+				INVOKE_ASYNC(src, .proc/playsong)
 
 		else if(href_list["newline"])
 			var/newline = html_encode(input("Enter your line: ", "Piano") as text|null)

@@ -110,10 +110,7 @@
 		for(var/mob/O in viewers(2, user))
 			O.show_message("<span class='warning'>[user] puts something in \the [target].", 1)
 
-		spawn(5)
-			qdel(src)
-
-	return
+		QDEL_IN(src, 5)
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills. END
