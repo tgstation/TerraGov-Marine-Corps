@@ -515,7 +515,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
 	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
-	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
+	penetration = CONFIG_GET(number/combat_define/med_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
@@ -525,11 +525,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/rifle/m4ra/incendiary/New()
 	..()
-	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
-	accuracy = CONFIG_GET(number/combat_define/hmed_hit_accuracy)
-	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
-	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
+	damage = CONFIG_GET(number/combat_define/lmmed_hit_damage)
+	accuracy = CONFIG_GET(number/combat_define/low_hit_accuracy)
+	penetration = CONFIG_GET(number/combat_define/low_armor_penetration)
 
 /datum/ammo/bullet/rifle/m4ra/impact
 	name = "A19 high velocity impact bullet"
@@ -540,9 +538,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
-	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
-	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
+	penetration = CONFIG_GET(number/combat_define/low_armor_penetration)
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, CONFIG_GET(number/combat_define/max_shell_range), 0, 1, 1)
