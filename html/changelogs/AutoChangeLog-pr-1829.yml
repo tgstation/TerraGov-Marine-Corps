@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - balance: "Flares now instantly burn out weed nodes under them, but will consume all of the fuel in the flare."
