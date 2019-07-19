@@ -136,7 +136,7 @@
 
 /obj/item/weapon/gun/syringe/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 	if(syringes.len)
-		spawn(0) fire_syringe(target,user)
+		INVOKE_ASYNC(src, .proc/fire_syringe, target, user)
 	else
 		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
 
