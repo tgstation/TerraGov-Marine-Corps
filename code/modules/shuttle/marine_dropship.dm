@@ -424,7 +424,7 @@
 	if(M.hijack_state == HIJACK_STATE_CRASHING)
 		return
 
-	if(ishuman(usr))
+	if(ishuman(usr) || isAI(usr))
 		if(!allowed(usr))
 			return
 		if(M.hijack_state == HIJACK_STATE_CALLED_DOWN)
