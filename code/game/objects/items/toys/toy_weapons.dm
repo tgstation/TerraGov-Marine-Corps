@@ -53,9 +53,9 @@
 			return
 		if (src.bullets < 1)
 			user.show_message("<span class='warning'> *click* *click*</span>", 2)
-			playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
+			playsound(user, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 			return
-		playsound(user, 'sound/weapons/gunshot.ogg', 15, 1)
+		playsound(user, 'sound/weapons/guns/fire/gunshot.ogg', 15, 1)
 		src.bullets--
 		for(var/mob/O in viewers(user, null))
 			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "<span class='warning'> You hear a gunshot</span>", 2)

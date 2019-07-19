@@ -19,10 +19,10 @@
 	var/muzzle_flash 	= "muzzle_flash"
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
-	var/fire_sound 		= 'sound/weapons/gunshot.ogg'
-	var/dry_fire_sound	= 'sound/weapons/gun_empty.ogg'
+	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
+	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
-	var/empty_sound 	= 'sound/weapons/smg_empty_alarm.ogg'
+	var/empty_sound 	= 'sound/weapons/guns/misc/smg_empty_alarm.ogg'
 	var/reload_sound 	= null					//We don't want these for guns that don't have them.
 	var/cocked_sound 	= null
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
@@ -481,7 +481,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/proc/make_casing(casing_type) //Handle casings is set to discard them.
 	if(casing_type)
 		var/num_of_casings = (current_mag && current_mag.used_casings) ? current_mag.used_casings : 1
-		var/sound_to_play = casing_type == "shell" ? 'sound/weapons/bulletcasing_shotgun_fall.ogg' : pick('sound/weapons/bulletcasing_fall2.ogg','sound/weapons/bulletcasing_fall.ogg')
+		var/sound_to_play = casing_type == "shell" ? 'sound/bullets/bulletcasing_shotgun_fall1.ogg' : pick('sound/bullets/bulletcasing_fall2.ogg','sound/bullets/bulletcasing_fall1.ogg')
 		var/turf/current_turf = get_turf(src)
 		var/new_casing = text2path("/obj/item/ammo_casing/[casing_type]")
 		var/obj/item/ammo_casing/casing = locate(new_casing) in current_turf

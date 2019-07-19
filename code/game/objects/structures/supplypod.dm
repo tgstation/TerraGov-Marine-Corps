@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	var/reversing = FALSE
 	var/fallDuration = 4
 	var/fallingSoundLength = 11
-	var/fallingSound = 'sound/weapons/mortar_long_whistle.ogg'
+	var/fallingSound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
 	var/landingSound
 	var/openingSound
 	var/leavingSound
@@ -292,8 +292,8 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	if(pod.effectStealth)
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)
-		pod.fallingSoundLength = 3 
-		pod.fallingSound =  'sound/weapons/mortar_whistle.ogg'
+		pod.fallingSoundLength = 3
+		pod.fallingSound =  'sound/weapons/guns/misc/mortar_whistle.ogg'
 	var/soundStartTime = pod.landingDelay - pod.fallingSoundLength + pod.fallDuration
 	if(soundStartTime < 0)
 		soundStartTime = 1

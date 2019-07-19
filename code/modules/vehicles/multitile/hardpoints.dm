@@ -150,7 +150,7 @@ Currently only has the tank hardpoints
 	user.visible_message("<span class='notice'>[user] loads [A] in [src]</span>",
 				"<span class='notice'>You finish loading [A] in \the [src].</span>", null, 3)
 	backup_clips += A
-	playsound(user.loc, 'sound/weapons/gun_minigun_cocked.ogg', 25)
+	playsound(user.loc, 'sound/weapons/guns/interact/minigun_cocked.ogg', 25)
 	return TRUE
 
 //Returns the image object to overlay onto the root object
@@ -278,7 +278,7 @@ Currently only has the tank hardpoints
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
+	playsound(get_turf(src), pick('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg'), 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/primary/minigun
@@ -320,15 +320,15 @@ Currently only has the tank hardpoints
 	if(!(ammo?.current_rounds > 0))
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
-	var/S = 'sound/weapons/tank_minigun_start.ogg'
+	var/S = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	if(world.time - next_use <= 5)
 		chained++ //minigun spins up, minigun spins down
-		S = 'sound/weapons/tank_minigun_loop.ogg'
+		S = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
 	else if(world.time - next_use >= 15) //Too long of a delay, they restart the chain
 		chained = 1
 	else //In between 5 and 15 it slows down but doesn't stop
 		chained--
-		S = 'sound/weapons/tank_minigun_stop.ogg'
+		S = 'sound/weapons/guns/fire/tank_minigun_stop.ogg'
 	if(chained <= 0)
 		chained = 1
 
@@ -381,7 +381,7 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), 'sound/weapons/tank_flamethrower.ogg', 60, 1)
+	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_flamethrower.ogg', 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/secondary/towlauncher
@@ -479,7 +479,7 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')), 60, 1)
+	playsound(get_turf(src), pick(list('sound/weapons/guns/fire/smartgun1.ogg', 'sound/weapons/guns/fire/smartgun2.ogg', 'sound/weapons/guns/fire/smartgun3.ogg')), 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/secondary/grenade_launcher
@@ -516,7 +516,7 @@ Currently only has the tank hardpoints
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), 'sound/weapons/gun_m92_attachable.ogg', 60, 1)
+	playsound(get_turf(src), 'sound/weapons/guns/fire/m92_attachable.ogg', 60, 1)
 	ammo.current_rounds--
 /////////////////////
 // SECONDARY SLOTS // END
@@ -562,7 +562,7 @@ Currently only has the tank hardpoints
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire.ogg', 60, 1)
+	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 60, 1)
 	ammo.current_rounds--
 
 /obj/item/hardpoint/support/smoke_launcher/get_icon_image(x_offset, y_offset, new_dir)

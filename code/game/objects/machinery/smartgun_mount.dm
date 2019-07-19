@@ -322,7 +322,7 @@
 				return
 
 		user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
-		playsound(loc, 'sound/weapons/gun_minigun_cocked.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/guns/interact/minigun_cocked.ogg', 25, 1)
 		if(rounds)
 			var/obj/item/ammo_magazine/m56d/D = new(user.loc)
 			D.current_rounds = rounds
@@ -437,7 +437,7 @@
 			in_chamber.original = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
-			playsound(src.loc, 'sound/weapons/gun_hmg.ogg', 75, 1)
+			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
@@ -446,7 +446,7 @@
 			rounds--
 			if(!rounds)
 				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
-				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
+				playsound(src.loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
 	return
 
@@ -530,7 +530,7 @@
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
 		if(!rounds)
 			to_chat(user, "<span class='warning'><b>*click*</b></span>")
-			playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
+			playsound(src, 'sound/weapons/guns/fire/empty.ogg', 25, 1, 5)
 		else
 			process_shot()
 		return TRUE
