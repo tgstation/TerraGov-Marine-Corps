@@ -46,10 +46,10 @@
 	var/slow_amt = 8
 	var/duration = 100
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 100) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	QDEL_IN(src, duration + rand(0, 20))
+	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSobj, src)
