@@ -103,6 +103,9 @@ datum/component/automatic_fire
 	if(modifiers["alt"])
 		return
 
+	if(source.mob.in_throw_mode)
+		return
+
 	if(isnull(location)) //Clicking on a screen object.
 		if(target.plane != CLICKCATCHER_PLANE) //The clickcatcher is a special case. We want the click to trigger then, under it.
 			return //If we click and drag on our worn backpack, for example, we want it to open instead.
