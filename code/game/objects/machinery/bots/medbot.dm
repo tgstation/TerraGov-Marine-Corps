@@ -470,16 +470,6 @@
 		src.frustration = 0
 	return
 
-/* terrible
-/obj/machinery/bot/medbot/Bumped(atom/movable/M as mob|obj)
-	spawn(0)
-		if (M)
-			var/turf/T = get_turf(src)
-			M:loc = T
-*/
-
-
-
 /*
 *	Medbot Assembly -- Can be made out of all three medkits.
 */

@@ -33,8 +33,7 @@
 	visible_message("<b>[src]</b> points at [target].")
 	if(istype(target, /atom))
 		var/D = new /obj/effect/decal/point(get_turf(target))
-		spawn(25)
-			qdel(D)
+		QDEL_IN(D, 25)
 
 /obj/machinery/bot/chefbot/proc/drama()
 	for(var/mob/M in hearers(7, src))

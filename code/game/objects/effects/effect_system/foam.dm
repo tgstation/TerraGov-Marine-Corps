@@ -83,8 +83,7 @@
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
 
-		spawn(5)
-			qdel(src)
+		QDEL_IN(src, 5)
 
 
 /obj/effect/particle_effect/foam/Crossed(atom/movable/AM)

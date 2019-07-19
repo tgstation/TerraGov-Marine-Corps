@@ -58,8 +58,7 @@
 
 						for(var/mob/O in viewers(world.view, user))
 							O.show_message(text("<span class='danger'>[] tries to squirt something into []'s eyes, but fails!</span>", user, target), 1)
-						spawn(5)
-							src.reagents.reaction(safe_thing, TOUCH)
+						addtimer(CALLBACK(reagents, /datum/reagents.proc/reaction, safe_thing, TOUCH), 5)
 
 						to_chat(user, "<span class='notice'>You transfer [trans] units of the solution.</span>")
 						if (src.reagents.total_volume<=0)
