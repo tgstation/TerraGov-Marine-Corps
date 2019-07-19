@@ -341,9 +341,10 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
 	for(var/v in generated_actions)
 		var/datum/action/innate/vote/V = v
-		if(!QDELETED(V?.owner))
+		if(!QDELETED(V))
 			V.remove_from_client()
-			V.remove_action(V.owner)
+			if(!QDELETED(V.owner))
+				V.remove_action(V.owner)
 	generated_actions = list()
 
 
