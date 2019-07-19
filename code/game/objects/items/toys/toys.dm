@@ -60,7 +60,7 @@
 			to_chat(user, "The [I] is empty.")
 			return
 
-		if(I.reagents.has_reagent("pacid", 1))
+		if(I.reagents.has_reagent(/datum/reagent/toxin/acid/polyacid, 1))
 			to_chat(user, "The acid chews through the balloon!")
 			I.reagents.reaction(user, TOUCH)
 			qdel(src)

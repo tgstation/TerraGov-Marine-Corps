@@ -45,7 +45,7 @@
 			if(!heart)
 				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
 
-			if(!(reagents.get_reagent_amount("peridaxon") >= 0.05) && heart.damage > 1)
+			if(!(reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05) && heart.damage > 1)
 				if(heart.damage < heart.min_bruised_damage)
 					heart_multi = 0.9
 					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
@@ -123,7 +123,7 @@
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/proc/drip(amt)
 
-	if(reagents.get_reagent_amount("quickclot")) //Quickclot stops bleeding, magic!
+	if(reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)) //Quickclot stops bleeding, magic!
 		return
 
 	if(blood_volume)
@@ -179,7 +179,7 @@
 		if(blood_id == C.get_blood_id())//both mobs have the same blood substance
 			if(blood_id == "blood") //normal blood
 				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.b_type)))
-					C.reagents.add_reagent("toxin", amount * 0.5)
+					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return 1
 
 			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
@@ -193,9 +193,9 @@
 //Transfers blood from container to mob
 /mob/living/carbon/proc/inject_blood(obj/item/reagent_container/container, amount)
 	for(var/datum/reagent/R in container.reagents.reagent_list)
-		reagents.add_reagent(R.id, amount, R.data)
+		reagents.add_reagent(R.type, amount, R.data)
 		reagents.update_total()
-		container.reagents.remove_reagent(R.id, amount)
+		container.reagents.remove_reagent(R.type, amount)
 
 
 //Transfers blood from container to human, respecting blood types compatability.
@@ -203,15 +203,15 @@
 	var/b_id = get_blood_id()
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		// If its blood, lets check its compatible or not and cause some toxins.
-		if(istype(R, /datum/reagent/blood) && b_id && R.id == b_id)
+		if(istype(R, /datum/reagent/blood) && b_id && R.type == b_id)
 			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(blood_type)))
-				reagents.add_reagent("toxin", amount * 0.5)
+				reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 			else
 				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
 		else
-			reagents.add_reagent(R.id, amount, R.data)
+			reagents.add_reagent(R.type, amount, R.data)
 			reagents.update_total()
-		container.reagents.remove_reagent(R.id, amount)
+		container.reagents.remove_reagent(R.type, amount)
 
 
 //Gets blood from mob to the container, preserving all data in it.
@@ -230,8 +230,8 @@
 
 	var/list/temp_chem = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
-		temp_chem += R.id
-		temp_chem[R.id] = R.volume
+		temp_chem += R.type
+		temp_chem[R.type] = R.volume
 	data["trace_chem"] = list2params(temp_chem)
 
 	O.reagents.add_reagent(b_id, amount, data)

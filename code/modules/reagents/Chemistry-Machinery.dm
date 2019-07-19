@@ -17,9 +17,9 @@
 	var/recharged = 0
 	var/hackedcheck = 0
 	var/list/dispensable_reagents = list(
-	"aluminum","carbon","chlorine","copper","ethanol","fluorine","hydrogen",
-	"iron","lithium","mercury","nitrogen","oxygen","phosphorus","potassium",
-	"radium","sacid","silicon","sodium","sugar","sulfur","tungsten","water")
+	/datum/reagent/aluminum,/datum/reagent/carbon,/datum/reagent/chlorine,/datum/reagent/copper,/datum/reagent/consumable/ethanol,/datum/reagent/fluorine,/datum/reagent/hydrogen,
+	/datum/reagent/iron,/datum/reagent/lithium,/datum/reagent/mercury,/datum/reagent/nitrogen,/datum/reagent/oxygen,/datum/reagent/phosphorus,/datum/reagent/potassium,
+	/datum/reagent/radium,/datum/reagent/toxin/acid,/datum/reagent/silicon,/datum/reagent/sodium,/datum/reagent/consumable/sugar,/datum/reagent/sulfur,/datum/reagent/water)
 
 /obj/machinery/chem_dispenser/proc/recharge()
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -106,7 +106,7 @@
 	for (var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
-			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
+			chemicals.Add(list(list("title" = temp.name, "id" = temp.type, "commands" = list("dispense" = temp.type)))) // list in a list because Byond merges the first list...
 	data["chemicals"] = chemicals
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -589,22 +589,22 @@
 			for(var/datum/reagent/G in beaker.reagents.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name];reag_type=[G.type]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];add=[G.id];amount=[G.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];addcustom=[G.id]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];add=[G.type];amount=[G.volume]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];addcustom=[G.type]'>(Custom)</A><BR>"
 
 		dat += "<HR>Transfer to <A href='?src=\ref[src];toggle=1'>[(!mode ? "disposal" : "beaker")]:</A><BR>"
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
 				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name];reag_type=[N.type]'>(Analyze)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=1'>(1)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=5'>(5)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=10'>(10)</A> "
-				dat += "<A href='?src=\ref[src];remove=[N.id];amount=[N.volume]'>(All)</A> "
-				dat += "<A href='?src=\ref[src];removecustom=[N.id]'>(Custom)</A><BR>"
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=1'>(1)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=5'>(5)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=10'>(10)</A> "
+				dat += "<A href='?src=\ref[src];remove=[N.type];amount=[N.volume]'>(All)</A> "
+				dat += "<A href='?src=\ref[src];removecustom=[N.type]'>(Custom)</A><BR>"
 		else
 			dat += "Empty<BR>"
 		if(!condi)
@@ -667,21 +667,21 @@
 	var/list/blend_items = list (
 
 		//Sheets
-		/obj/item/stack/sheet/mineral/phoron = list("phoron" = 20),
-		/obj/item/stack/sheet/mineral/uranium = list("uranium" = 20),
-		/obj/item/stack/sheet/mineral/silver = list("silver" = 20),
-		/obj/item/stack/sheet/mineral/gold = list("gold" = 20),
-		/obj/item/grown/nettle/death = list("pacid" = 0),
-		/obj/item/grown/nettle = list("sacid" = 0),
+		/obj/item/stack/sheet/mineral/phoron = list(/datum/reagent/toxin/phoron = 20),
+		/obj/item/stack/sheet/mineral/uranium = list(/datum/reagent/uranium = 20),
+		/obj/item/stack/sheet/mineral/silver = list(/datum/reagent/silver = 20),
+		/obj/item/stack/sheet/mineral/gold = list(/datum/reagent/gold = 20),
+		/obj/item/grown/nettle/death = list(/datum/reagent/toxin/acid/polyacid = 0),
+		/obj/item/grown/nettle = list(/datum/reagent/toxin/acid = 0),
 
 		//Blender Stuff
-		/obj/item/reagent_container/food/snacks/grown/soybeans = list("soymilk" = 0),
-		/obj/item/reagent_container/food/snacks/grown/tomato = list("ketchup" = 0),
-		/obj/item/reagent_container/food/snacks/grown/corn = list("cornoil" = 0),
+		/obj/item/reagent_container/food/snacks/grown/soybeans = list(/datum/reagent/consumable/drink/milk/soymilk = 0),
+		/obj/item/reagent_container/food/snacks/grown/tomato = list(/datum/reagent/consumable/ketchup = 0),
+		/obj/item/reagent_container/food/snacks/grown/corn = list(/datum/reagent/consumable/cornoil = 0),
 		///obj/item/reagent_container/food/snacks/grown/wheat = list("flour" = -5),
-		/obj/item/reagent_container/food/snacks/grown/ricestalk = list("rice" = -5),
-		/obj/item/reagent_container/food/snacks/grown/cherries = list("cherryjelly" = 0),
-		/obj/item/reagent_container/food/snacks/grown/plastellium = list("plasticide" = 5),
+		/obj/item/reagent_container/food/snacks/grown/ricestalk = list(/datum/reagent/consumable/rice = -5),
+		/obj/item/reagent_container/food/snacks/grown/cherries = list(/datum/reagent/consumable/cherryjelly = 0),
+		/obj/item/reagent_container/food/snacks/grown/plastellium = list(/datum/reagent/toxin/plasticide = 5),
 
 
 		//All types that you can put into the grinder to transfer the reagents to the beaker. !Put all recipes above this.!
@@ -692,17 +692,17 @@
 	var/list/juice_items = list (
 
 		//Juicer Stuff
-		/obj/item/reagent_container/food/snacks/grown/tomato = list("tomatojuice" = 0),
-		/obj/item/reagent_container/food/snacks/grown/carrot = list("carrotjuice" = 0),
-		/obj/item/reagent_container/food/snacks/grown/berries = list("berryjuice" = 0),
-		/obj/item/reagent_container/food/snacks/grown/banana = list("banana" = 0),
-		/obj/item/reagent_container/food/snacks/grown/potato = list("potato" = 0),
-		/obj/item/reagent_container/food/snacks/grown/lemon = list("lemonjuice" = 0),
-		/obj/item/reagent_container/food/snacks/grown/orange = list("orangejuice" = 0),
-		/obj/item/reagent_container/food/snacks/grown/lime = list("limejuice" = 0),
-		/obj/item/reagent_container/food/snacks/watermelonslice = list("watermelonjuice" = 0),
-		/obj/item/reagent_container/food/snacks/grown/grapes = list("grapejuice" = 0),
-		/obj/item/reagent_container/food/snacks/grown/poisonberries = list("poisonberryjuice" = 0),
+		/obj/item/reagent_container/food/snacks/grown/tomato = list(/datum/reagent/consumable/drink/tomatojuice = 0),
+		/obj/item/reagent_container/food/snacks/grown/carrot = list(/datum/reagent/consumable/drink/carrotjuice = 0),
+		/obj/item/reagent_container/food/snacks/grown/berries = list(/datum/reagent/consumable/drink/berryjuice = 0),
+		/obj/item/reagent_container/food/snacks/grown/banana = list(/datum/reagent/consumable/drink/banana = 0),
+		/obj/item/reagent_container/food/snacks/grown/potato = list(/datum/reagent/consumable/nutriment = 0),
+		/obj/item/reagent_container/food/snacks/grown/lemon = list(/datum/reagent/consumable/drink/lemonjuice = 0),
+		/obj/item/reagent_container/food/snacks/grown/orange = list(/datum/reagent/consumable/drink/orangejuice = 0),
+		/obj/item/reagent_container/food/snacks/grown/lime = list(/datum/reagent/consumable/drink/limejuice = 0),
+		/obj/item/reagent_container/food/snacks/watermelonslice = list(/datum/reagent/consumable/drink/watermelonjuice = 0),
+		/obj/item/reagent_container/food/snacks/grown/grapes = list(/datum/reagent/consumable/drink/grapejuice = 0),
+		/obj/item/reagent_container/food/snacks/grown/poisonberries = list(/datum/reagent/consumable/drink/poisonberryjuice = 0),
 	)
 
 
@@ -959,13 +959,13 @@
 			var/amount = allowed[r_id]
 			if(amount <= 0)
 				if(amount == 0)
-					if (O.reagents != null && O.reagents.has_reagent("nutriment"))
-						beaker.reagents.add_reagent(r_id, min(O.reagents.get_reagent_amount("nutriment"), space))
-						O.reagents.remove_reagent("nutriment", min(O.reagents.get_reagent_amount("nutriment"), space))
+					if (O.reagents != null && O.reagents.has_reagent(/datum/reagent/consumable/nutriment))
+						beaker.reagents.add_reagent(r_id, min(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment), space))
+						O.reagents.remove_reagent(/datum/reagent/consumable/nutriment, min(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment), space))
 				else
-					if (O.reagents != null && O.reagents.has_reagent("nutriment"))
-						beaker.reagents.add_reagent(r_id, min(round(O.reagents.get_reagent_amount("nutriment")*abs(amount)), space))
-						O.reagents.remove_reagent("nutriment", min(O.reagents.get_reagent_amount("nutriment"), space))
+					if (O.reagents != null && O.reagents.has_reagent(/datum/reagent/consumable/nutriment))
+						beaker.reagents.add_reagent(r_id, min(round(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)*abs(amount)), space))
+						O.reagents.remove_reagent(/datum/reagent/consumable/nutriment, min(O.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment), space))
 
 			else
 				O.reagents.trans_id_to(beaker, r_id, min(amount, space))

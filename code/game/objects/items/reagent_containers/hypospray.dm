@@ -309,11 +309,11 @@
 		usr << browse(null, "window=radio")
 
 /obj/item/reagent_container/hypospray/advanced/tricordrazine
-	list_reagents = list("tricordrazine" = 60)
+	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
 
 /obj/item/reagent_container/hypospray/advanced/oxycodone
-	list_reagents = list("oxycodone" = 60)
+	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
 
 
 /obj/item/reagent_container/hypospray/advanced/update_icon()

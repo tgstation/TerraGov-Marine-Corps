@@ -461,7 +461,6 @@
 #include "code\game\objects\items\reagent_containers\food\snacks.dm"
 #include "code\game\objects\items\reagent_containers\food\drinks\bottle.dm"
 #include "code\game\objects\items\reagent_containers\food\drinks\drinkingglass.dm"
-#include "code\game\objects\items\reagent_containers\food\drinks\jar.dm"
 #include "code\game\objects\items\reagent_containers\food\snacks\grown.dm"
 #include "code\game\objects\items\reagent_containers\glass\bottle.dm"
 #include "code\game\objects\items\robot\robot_parts.dm"

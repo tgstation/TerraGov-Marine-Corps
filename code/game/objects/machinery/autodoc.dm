@@ -92,7 +92,7 @@
 			if(filtering)
 				var/filtered = 0
 				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					occupant.reagents.remove_reagent(x.id, 10) // same as sleeper, may need reducing
+					occupant.reagents.remove_reagent(x.type, 10) // same as sleeper, may need reducing
 					filtered += 10
 				if(!filtered)
 					filtering = 0
@@ -102,8 +102,8 @@
 					to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
 			if(blood_transfer)
 				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
-					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
-						blood_pack.reagents.add_reagent("blood", 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
+					if(blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
+						blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
 						visible_message("\ [src] speaks: Blood reserves depleted, switching to fresh bag.")
 					occupant.inject_blood(blood_pack, 8) // double iv stand rate
 					if(prob(10))
@@ -227,7 +227,7 @@
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_TOXIN)
 	var/overdoses = 0
 	for(var/datum/reagent/x in M.reagents.reagent_list)
-		if(istype(x,/datum/reagent/toxin)||M.reagents.get_reagent_amount(x.id) > x.overdose_threshold)
+		if(istype(x,/datum/reagent/toxin)||M.reagents.get_reagent_amount(x.type) > x.overdose_threshold)
 			overdoses++
 	if(overdoses)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_DIALYSIS)
@@ -299,16 +299,16 @@
 					if(ADSURGERY_GERMS) // Just dose them with the maximum amount of antibiotics and hope for the best
 						if(prob(30)) visible_message("\ [src] speaks, Beginning organ disinfection.");
 						var/datum/reagent/R = GLOB.chemical_reagents_list["spaceacillin"]
-						var/amount = R.overdose_threshold - H.reagents.get_reagent_amount("spaceacillin")
+						var/amount = R.overdose_threshold - H.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 						var/inject_per_second = 3
 						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
 						while(amount > 0)
 							if(!surgery) break
 							if(amount < inject_per_second)
-								H.reagents.add_reagent("spaceacillin",amount)
+								H.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,amount)
 								break
 							else
-								H.reagents.add_reagent("spaceacillin",inject_per_second)
+								H.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,inject_per_second)
 								amount -= inject_per_second
 								sleep(10*surgery_mod)
 
@@ -514,16 +514,16 @@
 						if(prob(30)) visible_message("\ [src] speaks, Beginning limb disinfection.");
 
 						var/datum/reagent/R = GLOB.chemical_reagents_list["spaceacillin"]
-						var/amount = (R.overdose_threshold/2) - H.reagents.get_reagent_amount("spaceacillin")
+						var/amount = (R.overdose_threshold/2) - H.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 						var/inject_per_second = 3
 						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
 						while(amount > 0)
 							if(!surgery) break
 							if(amount < inject_per_second)
-								H.reagents.add_reagent("spaceacillin",amount)
+								H.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,amount)
 								break
 							else
-								H.reagents.add_reagent("spaceacillin",inject_per_second)
+								H.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,inject_per_second)
 								amount -= inject_per_second
 								sleep(10)
 
