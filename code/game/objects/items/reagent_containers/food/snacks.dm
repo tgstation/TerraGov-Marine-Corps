@@ -176,7 +176,7 @@
 /obj/item/reagent_container/food/snacks/sliceable/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(I.w_class <= 2)
+	if(user.a_intent == INTENT_HELP && I.w_class <= 2)
 		if(!iscarbon(user))
 			return TRUE
 
