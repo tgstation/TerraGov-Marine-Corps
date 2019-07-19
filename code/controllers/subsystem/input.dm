@@ -11,7 +11,9 @@ SUBSYSTEM_DEF(input)
 
 
 /datum/controller/subsystem/input/Initialize()
-	macro_set = list("Any" = "\"KeyDown \[\[*\]\]\"", "Any+UP" = "\"KeyUp \[\[*\]\]\"")
+	macro_set = list("Any" = "\"KeyDown \[\[*\]\]\"", "Any+UP" = "\"KeyUp \[\[*\]\]\"", "Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
+		"Tab" = "\".winset \\\"input.focus=true?map.focus=true input.background-color=[COLOR_INPUT_DISABLED]:input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"")
+
 	movement_keys = list("W" = NORTH, "A" = WEST, "S" = SOUTH, "D" = EAST,// WASD
 		"North" = NORTH, "West" = WEST, "South" = SOUTH, "East" = EAST)	// Arrow keys & Numpad
 

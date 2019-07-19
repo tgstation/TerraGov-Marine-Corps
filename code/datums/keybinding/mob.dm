@@ -97,6 +97,28 @@
 	user.swap_hand()
 	return TRUE
 
+/datum/keybinding/mob/say
+	key = "T"
+	name = "say"
+	full_name = "Say"
+	description = ""
+
+/datum/keybinding/mob/say/down(client/user)
+	var/mob/M = user.mob
+	M.say_wrapper()
+	return TRUE
+
+/datum/keybinding/mob/me
+	key = "M"
+	name = "me"
+	full_name = "Me"
+	description = ""
+
+/datum/keybinding/mob/me/down(client/user)
+	var/mob/M = user.mob
+	M.me_verb()
+	return TRUE
+
 /datum/keybinding/mob/activate_inhand
 	key = "Z"
 	classic_key = "PAGEDOWN"
