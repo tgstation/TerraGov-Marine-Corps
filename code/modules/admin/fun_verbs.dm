@@ -1009,23 +1009,28 @@
 		return
 
 	if(!length(SSshuttle.dropships) && !SSshuttle.canterbury)
+		message_admins("no ships")
 		return
+
+	var/list/possible_destinations
+	var/list/available_shuttles = SSshuttle.dropships + list(SSshuttle.canterbury)
+	message_admins("availalbe shuttles [length(available_shuttles)]")
+	var/selection = input(usr, "Which shuttle do you want to move?", "Force Dropship") as null|anything in available_shuttles
+	if(!selection)
+		message_admins("no ship select")
+		return
+
+	var/obj/docking_port/mobile/D = selection
 
 	var/shuttle_selection
-	var/obj/docking_port/mobile/marine_dropship/D
-	var/list/possible_destinations
-	if(SSshuttle.canterbury && length(SSshuttle.dropships))
-		shuttle_selection = alert("Which shuttle do you want to move", "Force Dropship", "Dropship", "Centerbury")
-		if(shuttle_selection == "Dropship")
-			D = SSshuttle.dropships[1]
-			possible_destinations = list("lz1", "lz2", "alamo", "normandy")
-		else
-			D = SSshuttle.canterbury
-			possible_destinations = list("crashmodedock")
-
-	if(!istype(D))
-		to_chat(usr, "<span class='warning'>Invalid shuttle selection</span>")
-		return
+	if(D == SSshuttle.canterbury)
+		shuttle_selection = "Canterbury"
+		D = SSshuttle.canterbury
+		possible_destinations = list("crashmodedock")
+	else
+		shuttle_selection = "Dropship"
+		D = SSshuttle.dropships[1]
+		possible_destinations = list("lz1", "lz2", "alamo", "normandy")
 
 	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
 		return
