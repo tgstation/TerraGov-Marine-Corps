@@ -10,8 +10,6 @@
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
 /obj/structure/bed/chair/Initialize()
-	if(anchored)
-		src.verbs -= /atom/movable/verb/pull
 	. = ..()
 	handle_rotation()
 

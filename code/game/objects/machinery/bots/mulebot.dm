@@ -74,8 +74,6 @@
 		suffix = "#[count]"
 	name = "Mulebot ([suffix])"
 
-	verbs -= /atom/movable/verb/pull
-
 
 /obj/machinery/bot/mulebot/Destroy()
 	QDEL_NULL(wires)
