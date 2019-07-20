@@ -13,8 +13,8 @@
 	var/obj/structure/shuttle/engine/fuel_dock/attached
 
 /obj/structure/fuel_tank/Destroy()
-	. = ..()
 	STOP_PROCESSING(SSobj, src)
+	. = ..()
 
 /obj/structure/fuel_tank/update_icon()
 	icon_state = "jet_tank_[anchored ? "1" : "0"]"
@@ -31,7 +31,7 @@
 		if(100)
 			add_overlay("jet_tank_o_100")
 			
-	. = ..()
+	return ..()
 
 
 /obj/structure/fuel_tank/examine(mob/user, distance, infix, suffix)

@@ -36,7 +36,7 @@
 			has_auth = TRUE
 
 
-/obj/machinery/nuclearbomb/crash/attack_hand(mob/user as mob)
+/obj/machinery/nuclearbomb/crash/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -97,18 +97,11 @@
 			flick("nuclearbombc", src)
 			icon_state = "nuclearbomb1"
 		extended = TRUE
-	return
-
 
 
 /obj/machinery/nuclearbomb/crash/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-	if (!usr.canmove || usr.stat || usr.restrained())
-		return
-	if (!(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
-		usr << browse(null, "window=nuclearbomb")
 		return
 
 	usr.set_interaction(src)
@@ -185,9 +178,7 @@
 			else
 				visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
 
-	for(var/mob/M in viewers(1, src))
-		if ((M.client && M.interactee == src))
-			attack_hand(M)
+	updateUsrDialog()
 
 
 /obj/item/disk/nuclear/crash
@@ -203,8 +194,8 @@
 
 
 /obj/item/disk/nuclear/crash/Destroy()
-	. = ..()
 	GLOB.gamemode_key_items -= src
+	. = ..()
 
 /obj/item/disk/nuclear/crash/red
 	name = "red nuclear authentication disk"

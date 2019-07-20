@@ -24,12 +24,12 @@
 
 
 /obj/machinery/computer/engine_computer/attack_hand(mob/user)
-	if(machine_stat & (BROKEN|NOPOWER))
+	. = ..()
+	if(.)
 		return
 
 	last_announce = world.time // reset every time someone uses the machine
 	interact(user)
-	return
 
 
 /obj/machinery/computer/engine_computer/interact(mob/user)

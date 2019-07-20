@@ -34,9 +34,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		if (timeleft <= 0)
 			explode()
 			return
-		for(var/mob/M in viewers(1, src))
-			if ((M.client && M.interactee == src))
-				attack_hand(M)
+		updateUsrDialog()
 	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
@@ -216,7 +214,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			return
 		if(removal_stage < 5)
 			anchored = TRUE
-			visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
 			visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 		if(!lighthack)
@@ -263,11 +261,6 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	. = ..()
 	if(.)
 		return
-	if (!usr.canmove || usr.stat || usr.restrained())
-		return
-	if (!(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
-		usr << browse(null, "window=nuclearbomb")
-		return
 
 	usr.set_interaction(src)
 
@@ -295,7 +288,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					yes_code = FALSE
 					code = null
 				else
-					code += text("[]", href_list["type"])
+					code += "[href_list["type"]]"
 					if (length(code) > 5)
 						code = "ERROR"
 		if (yes_code)
@@ -336,9 +329,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 				else
 					visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
 
-	for(var/mob/M in viewers(1, src))
-		if ((M.client && M.interactee == src))
-			attack_hand(M)
+	updateUsrDialog()
 		
 
 /obj/machinery/nuclearbomb/ex_act(severity)
