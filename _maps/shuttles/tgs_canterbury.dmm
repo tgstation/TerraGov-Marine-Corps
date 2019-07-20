@@ -207,8 +207,9 @@
 	dir = 4
 	},
 /obj/structure/closet/firecloset,
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/door_control{
+	dir = 4;
+	id = "port_umbilical_inner"
 	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
@@ -257,13 +258,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/almayer/mono,
-/area/shuttle/canterbury/general)
-"aE" = (
 /obj/machinery/door_control{
-	id = "port_umbilical_inner"
+	dir = 8;
+	id = "starboard_umbilical_inner"
 	},
-/turf/closed/wall/almayer,
+/turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "aF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -432,6 +431,10 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
+/obj/machinery/door_control{
+	dir = 4;
+	id = "port_umbilical_outer"
+	},
 /turf/open/floor/almayer{
 	icon_state = "test_floor4"
 	},
@@ -1672,12 +1675,6 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
-"dr" = (
-/obj/machinery/door_control{
-	id = "starboard_umbilical_inner"
-	},
-/turf/closed/wall/almayer,
-/area/shuttle/canterbury/general)
 "ds" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "starboard_umbilical_inner";
@@ -1718,18 +1715,6 @@
 /turf/open/floor/almayer{
 	icon_state = "cargo"
 	},
-/area/shuttle/canterbury/general)
-"dw" = (
-/obj/machinery/door_control{
-	id = "starboard_umbilical_outer"
-	},
-/turf/closed/wall/almayer/outer,
-/area/shuttle/canterbury/general)
-"dx" = (
-/obj/machinery/door_control{
-	id = "port_umbilical_outer"
-	},
-/turf/closed/wall/almayer/outer,
 /area/shuttle/canterbury/general)
 "dy" = (
 /obj/structure/window/reinforced{
@@ -1794,6 +1779,22 @@
 "Wo" = (
 /turf/closed/wall/almayer,
 /area/shuttle/canterbury/medical)
+"Xq" = (
+/obj/machinery/marine_turret{
+	icon_state = "sentry_base";
+	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/machinery/door_control{
+	id = "starboard_umbilical_outer"
+	},
+/obj/machinery/door_control{
+	id = "starboard_umbilical_outer"
+	},
+/turf/open/floor/almayer{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
 
 (1,1,1) = {"
 aa
@@ -1831,7 +1832,7 @@ as
 av
 aG
 aG
-dx
+as
 av
 aZ
 bi
@@ -1882,7 +1883,7 @@ aa
 aa
 aa
 as
-aE
+av
 aO
 dq
 av
@@ -2098,7 +2099,7 @@ aa
 aa
 aa
 as
-dr
+av
 ds
 du
 av
@@ -2128,7 +2129,7 @@ as
 aw
 aM
 aU
-aV
+Xq
 as
 bg
 bs
@@ -2155,7 +2156,7 @@ as
 as
 bS
 bS
-dw
+as
 as
 bh
 bt
