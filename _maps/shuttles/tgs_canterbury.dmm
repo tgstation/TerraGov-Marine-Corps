@@ -1781,7 +1781,6 @@
 	id = "starboard_umbilical_outer";
 	pixel_y = -32
 	},
-,
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "Jr" = (
