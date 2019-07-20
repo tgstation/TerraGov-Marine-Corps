@@ -135,16 +135,17 @@
 			amount = 240
 
 	if(href_list["dispense"])
-		if(!dispensable_reagents.Find(href_list["dispense"]))
-			log_admin_private("[key_name(usr)] attempted to dispense [href_list["dispense"]] through [src], a reagent not contained by dispensable_reagents, at [AREACOORD(usr.loc)].")
-			message_admins("[ADMIN_TPMONTY(usr)] attempted to dispense [href_list["dispense"]] through [src], a reagent not contained by dispensable_reagents. Possible HREF exploit.")
+		var/dispensed = text2path(href_list["dispense"])
+		if(!dispensable_reagents.Find(dispensed))
+			log_admin_private("[key_name(usr)] attempted to dispense [dispensed] through [src], a reagent not contained by dispensable_reagents, at [AREACOORD(usr.loc)].")
+			message_admins("[ADMIN_TPMONTY(usr)] attempted to dispense [dispensed] through [src], a reagent not contained by dispensable_reagents. Possible HREF exploit.")
 			return
 		if(beaker?.is_open_container())
 			var/obj/item/reagent_container/B = src.beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
 
-			R.add_reagent(href_list["dispense"], min(amount, energy * 10, space))
+			R.add_reagent(dispensed, min(amount, energy * 10, space))
 			energy = max(energy - min(amount, energy * 10, space) / 10, 0)
 
 	if(href_list["ejectBeaker"])
@@ -364,7 +365,7 @@
 		else if (href_list["add"])
 
 			if(href_list["amount"])
-				var/id = href_list["add"]
+				var/id = text2path(href_list["add"])
 				var/amount = text2num(href_list["amount"])
 				if(amount < 0) //href protection
 					log_admin_private("[key_name(usr)] attempted to add a negative amount of [id] ([amount]) to the buffer of [src] at [AREACOORD(usr.loc)].")
@@ -374,14 +375,14 @@
 
 		else if (href_list["addcustom"])
 
-			var/id = href_list["addcustom"]
+			var/id = text2path(href_list["addcustom"])
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
 			transfer_chemicals(src, beaker, useramount, id)
 
 		else if (href_list["remove"])
 
 			if(href_list["amount"])
-				var/id = href_list["remove"]
+				var/id = text2path(href_list["remove"])
 				var/amount = text2num(href_list["amount"])
 				if(amount < 0) //href protection
 					log_admin_private("[key_name(usr)] attempted to transfer a negative amount of [id] ([amount]) to [mode ? beaker : "disposal"] in [src] at [AREACOORD(usr.loc)].")
@@ -395,7 +396,7 @@
 
 		else if (href_list["removecustom"])
 
-			var/id = href_list["removecustom"]
+			var/id = text2path(href_list["removecustom"])
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
 			if(mode)
 				transfer_chemicals(beaker, src, useramount, id)
