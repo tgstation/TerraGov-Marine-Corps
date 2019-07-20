@@ -61,11 +61,8 @@ GLOBAL_LIST_INIT(gamemode_crash_music, list(
 	GLOB.latejoin_cryo = shuttle.spawnpoints
 	GLOB.latejoin_gateway = shuttle.spawnpoints
 
-
 	var/list/validdocks = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		// if(S.id != crash_target)
-		// 	continue
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
 		validdocks += S.name
@@ -82,7 +79,8 @@ GLOBAL_LIST_INIT(gamemode_crash_music, list(
 		message_admins("<span class='warning'>Unable to get a valid shuttle target!</span>")
 		return
 
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS)
+	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS) // TODO: REMOVE ADMIN TIMING
+	// addtimer(CALLBACK(src, .proc/crash_shuttle, target), rand(4 MINUTES, 7 MINUTES) // TODO: FIX timing here
 
 /datum/game_mode/crash/setup()
 	SSjob.DivideOccupations() 

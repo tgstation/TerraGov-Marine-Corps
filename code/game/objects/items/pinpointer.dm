@@ -1,6 +1,7 @@
 #define PINPOINTER_MODE_DISK "disk"
 #define PINPOINTER_MODE_TARGET "target"
 #define PINPOINTER_MODE_UNKNOWN "unknown"
+
 /obj/item/pinpointer
     name = "pinpointer"
     icon_state = "pinoff"
