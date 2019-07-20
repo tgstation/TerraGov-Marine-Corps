@@ -1,10 +1,10 @@
-#define GAMEMODE_CRASH_MUSIC list(\
-	MODE_CRASH_X_MAJOR = list('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg'),\
-	MODE_CRASH_X_MINOR = list('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg'),\
-	MODE_CRASH_M_MAJOR = list('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg'),\
-	MODE_CRASH_M_MINOR = list('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg'),\
-	MODE_CRASH_DRAW_DEATH = list('sound/theme/sad_loss1.ogg'),\
-)
+GLOBAL_LIST_INIT(gamemode_crash_music, list(
+	MODE_CRASH_X_MAJOR = list('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg'),
+	MODE_CRASH_X_MINOR = list('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg'),
+	MODE_CRASH_M_MAJOR = list('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg'),
+	MODE_CRASH_M_MINOR = list('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg'),
+	MODE_CRASH_DRAW_DEATH = list('sound/theme/sad_loss1.ogg')
+))
 
 /datum/game_mode/crash
 	name = "Crash"
@@ -184,7 +184,7 @@
 	to_chat(world, "<span class='round_header'>|[round_finished]|</span>")
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
 	
-	SEND_SOUND(world, GAMEMODE_CRASH_MUSIC[round_finished])
+	SEND_SOUND(world, GLOB.gamemode_crash_music[round_finished])
 	
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
