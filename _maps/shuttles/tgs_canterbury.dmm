@@ -207,10 +207,6 @@
 	dir = 4
 	},
 /obj/structure/closet/firecloset,
-/obj/machinery/door_control{
-	dir = 4;
-	id = "port_umbilical_inner"
-	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "ay" = (
@@ -257,10 +253,6 @@
 /obj/structure/closet/emcloset,
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/machinery/door_control{
-	dir = 8;
-	id = "starboard_umbilical_inner"
 	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
@@ -361,6 +353,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door_control{
+	id = "port_umbilical_inner";
+	pixel_y = 32
+	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "aP" = (
@@ -431,10 +427,6 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
-/obj/machinery/door_control{
-	dir = 4;
-	id = "port_umbilical_outer"
-	},
 /turf/open/floor/almayer{
 	icon_state = "test_floor4"
 	},
@@ -1683,6 +1675,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door_control{
+	id = "starboard_umbilical_inner";
+	pixel_y = 32
+	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "dt" = (
@@ -1776,19 +1772,28 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"sl" = (
-/obj/machinery/marine_turret{
-	icon_state = "sentry_base";
-	dir = 1
+"xH" = (
+/obj/machinery/door/poddoor/almayer{
+	id = "starboard_umbilical_outer";
+	name = "\improper Umbillical Airlock"
 	},
-/obj/machinery/light/small,
 /obj/machinery/door_control{
-	dir = 8;
-	id = "starboard_umbilical_outer"
+	id = "starboard_umbilical_outer";
+	pixel_y = -32
 	},
-/turf/open/floor/almayer{
-	icon_state = "test_floor4"
+,
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
+"Jr" = (
+/obj/machinery/door/poddoor/almayer{
+	id = "port_umbilical_outer";
+	name = "\improper Umbillical Airlock"
 	},
+/obj/machinery/door_control{
+	id = "port_umbilical_outer";
+	pixel_y = -32
+	},
+/turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "Wo" = (
 /turf/closed/wall/almayer,
@@ -1829,7 +1834,7 @@ aa
 as
 av
 aG
-aG
+Jr
 as
 av
 aZ
@@ -2127,7 +2132,7 @@ as
 aw
 aM
 aU
-sl
+aV
 as
 bg
 bs
@@ -2153,7 +2158,7 @@ aa
 as
 as
 bS
-bS
+xH
 as
 as
 bh
