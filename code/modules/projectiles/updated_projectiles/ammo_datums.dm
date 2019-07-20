@@ -991,7 +991,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	set_smoke()
 	smoke.set_up(1, T)
 	smoke.start()
-	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 50, 1, 4)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 25, 25, 25, 15)
 
 /datum/ammo/rocket/wp/quad
@@ -1077,7 +1077,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 
 /datum/ammo/energy/lasgun/M43
-	name = "M43 laser bolt"
+	name = "laser bolt"
 	hud_state = "laser"
 
 /datum/ammo/energy/lasgun/M43/New()
@@ -1085,7 +1085,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = CONFIG_GET(number/combat_define/med_armor_penetration)
 
 /datum/ammo/energy/lasgun/M43/overcharge
-	name = "M43 overcharged laser bolt"
+	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_overcharge"
 
@@ -1299,9 +1299,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		T = get_turf(P)
 	drop_nade(T)
 
-	if(istype(M,/mob/living/carbon))
-		var/mob/living/carbon/C = M
-		C.acid_process_cooldown = world.time
+	M.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_ACID, null), 1 SECONDS)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
 	var/turf/T = get_turf(O)

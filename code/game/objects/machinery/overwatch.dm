@@ -75,7 +75,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	eyeobj.icon_state = "generic_camera"
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/user)
+/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)  //Checks for power outages
 		return
@@ -119,9 +119,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
 					dat += "<b>Secondary Objective:</b> "
 					if(current_squad.secondary_objective)
-						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]<br></a>"
+						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
 					else
-						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]<br></a>"
+						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
 					dat += "<br>"
 					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
 					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
@@ -400,7 +400,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	updateUsrDialog()
 
-/obj/machinery/computer/camera_advanced/overwatch/main/attack_hand(mob/user)
+/obj/machinery/computer/camera_advanced/overwatch/main/attack_hand(mob/living/user)
 	. = ..()
 	if(.)  //Checks for power outages
 		return
@@ -575,11 +575,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
 		var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
-		if(!R.keyslot)
-			R.keyslot = new /obj/item/encryptionkey/squadlead (src)
-		else if(!R.keyslot2)
-			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
-		R.recalculateChannels()
+		R.channels[RADIO_CHANNEL_COMMAND] = TRUE
+		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 		R.use_command = TRUE
 	if(istype(H.wear_id, /obj/item/card/id))
 		var/obj/item/card/id/ID = H.wear_id
@@ -913,9 +910,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		return
 	activate(H)
 
-/obj/item/squad_beacon/bomb/attack_hand(mob/living/carbon/human/H)
-	if(!istype(H))
+/obj/item/squad_beacon/bomb/attack_hand(mob/living/user)
+	if(!ishuman(user))
 		return ..()
+	var/mob/living/carbon/human/H = user
 	if(!H.mind)
 		to_chat(H, "<span class='warning'>It doesn't seem to do anything for you.</span>")
 		return ..()

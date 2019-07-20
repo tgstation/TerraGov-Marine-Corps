@@ -269,7 +269,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 /obj/machinery/computer/supplycomp/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_hand(mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -400,7 +400,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/supplycomp/attack_hand(mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

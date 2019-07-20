@@ -69,7 +69,7 @@
 
 /obj/structure/ship_ammo/attack_alien(mob/living/carbon/xenomorph/X)
 	if(X.a_intent == INTENT_HARM)
-		X.animation_attack_on(src)
+		X.do_attack_animation(src)
 		X.flick_attack_overlay(src, "slash")
 		playsound(loc, "alien_claw_metal", 25, 1)
 		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
@@ -393,4 +393,4 @@
 	var/turf/T = get_turf(src)
 	fuel = rand(700, 900) // About the same burn time as a flare, considering it requires it's own CAS run.
 	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from the flare as it lights off in the sky!</span>")
-	playsound(T, 'sound/weapons/gun_flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
+	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry

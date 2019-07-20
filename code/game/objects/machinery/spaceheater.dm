@@ -79,7 +79,7 @@
 			user << browse(null, "window=spaceheater")
 			user.unset_interaction()
 
-/obj/machinery/space_heater/attack_hand(mob/user as mob)
+/obj/machinery/space_heater/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

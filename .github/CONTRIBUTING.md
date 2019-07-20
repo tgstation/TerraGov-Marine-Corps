@@ -216,6 +216,27 @@ Instead of this you should;
 	do something different
 ````
 
+### Proc arguments
+Keep typed arguments consistent across redefinitions, based on what minimal type the proc is called with rather than the actual type of the passed argument.
+````DM
+/atom/proc/do_a_thing(mob/user)
+	do something
+
+/atom/movable/do_a_thing(mob/living/carbon/human/user)
+	do something
+````
+Instead of this you should do it like this:
+````DM
+/atom/proc/do_a_thing(mob/user)
+	do something
+
+/atom/movable/do_a_thing(mob/user)
+	if !(istype(user, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/H = user
+	do something
+````
+
 ### No magic numbers or strings
 This means stuff like having a "mode" variable for an object set to "1" or "2" with no clear indicator of what that means. Make these #defines with a name that more clearly states what it's for. For instance:
 ````DM

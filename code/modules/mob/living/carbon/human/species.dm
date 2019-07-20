@@ -160,9 +160,9 @@
 
 /datum/species/proc/random_name(gender)
 	if(gender == FEMALE)
-		return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+		return capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 	else
-		return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+		return capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -400,7 +400,7 @@
 		H.update_body()
 
 /datum/species/moth/random_name()
-	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
+	return "[pick(SSstrings.get_list_from_file("names/moth_first"))] [pick(SSstrings.get_list_from_file("names/moth_last"))]"
 
 /datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
 	H.remove_overlay(MOTH_WINGS_LAYER)
@@ -464,10 +464,6 @@
 
 	reagent_tag = IS_VOX
 
-	inherent_verbs = list(
-		/mob/living/carbon/human/proc/leap
-		)
-
 	has_organ = list(
 		"heart" =    /datum/internal_organ/heart,
 		"lungs" =    /datum/internal_organ/lungs,
@@ -513,11 +509,6 @@
 
 	reagent_tag = IS_VOX
 
-	inherent_verbs = list(
-		/mob/living/carbon/human/proc/leap,
-		/mob/living/carbon/human/proc/gut,
-		/mob/living/carbon/human/proc/commune
-		)
 
 /datum/species/machine
 	name = "Machine"

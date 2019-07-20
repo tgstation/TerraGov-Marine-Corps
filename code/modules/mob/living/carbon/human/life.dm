@@ -1,23 +1,15 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 /mob/living/carbon/human/Life()
-
-	if(!loc) //Fixing a null error that occurs when the mob isn't found in the world -- TLE
-		return
-
-	..()
+	. = ..()
 
 	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 
 
-	//TODO: seperate this out
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
 	if(!in_stasis)
 		if(stat != DEAD)
 
-			// Moved this from /mob/living/carbon/Life()
 			// Increase germ_level regularly
 			if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 				germ_level++

@@ -37,10 +37,9 @@
 	if(!istype(user) || !isturf(user.loc) || user.incapacitated())
 		return FALSE
 
-	if(!CONFIG_GET(flag/unlimited_rotate_speed))
-		if(world.time <= user.next_move)
-			return FALSE
-		user.next_move = world.time + 3
+	if(world.time <= user.next_move)
+		return FALSE
+	user.next_move = world.time + 3
 
 	setDir(turn(dir, 90))
 
@@ -284,7 +283,7 @@
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message("<span class='warning'>[user] begins repairing \the [src].</span>",
 		"<span class='warning'>You begin repairing \the [src].</span>")
-		if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message("<span class='warning'>[user] repairs \the [src].</span>",

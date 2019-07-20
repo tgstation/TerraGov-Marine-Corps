@@ -93,24 +93,26 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_atom & ON_BORDER))
+	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
+	return FALSE
+
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
+	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(is_full_window())
-		return FALSE //Full tile window, you can't move into it!
-	if(get_dir(loc, target) == dir)
+	if(is_full_window() || get_dir(target, mover) == dir)
 		return !density
 	else
 		return TRUE
 
-/obj/structure/window/CheckExit(atom/movable/O, turf/target)
-	if(istype(O) && CHECK_BITFIELD(O.flags_pass, PASSGLASS))
+/obj/structure/window/CheckExit(atom/movable/mover, turf/target)
+	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(O.loc, target) == dir && !is_full_window())
-		return FALSE
+	if(is_full_window()) //Can always leave from a full window.
+		return TRUE
+	if(get_dir(mover, target) == dir)
+		return !density
 	return TRUE
 
 /obj/structure/window/hitby(AM as mob|obj)
@@ -140,7 +142,7 @@
 	else
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
-/obj/structure/window/attack_hand(mob/user as mob)
+/obj/structure/window/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -175,7 +177,7 @@
 /obj/structure/window/proc/attack_generic(mob/living/user, damage = 0)
 	if(damageable) //Possible to destroy
 		obj_integrity -= damage
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, 1, user)
 
@@ -213,7 +215,7 @@
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] bashed [key_name(M)]'s face' against \the [src].")
 				if(prob(50))
-					M.KnockDown(1)
+					M.knock_down(1)
 				M.apply_damage(10)
 				if(damageable) //Possible to destroy
 					obj_integrity -= 25
@@ -221,7 +223,7 @@
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 				log_combat(user, M, "crushed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
-				M.KnockDown(5)
+				M.knock_down(5)
 				M.apply_damage(20)
 				if(damageable) //Possible to destroy
 					obj_integrity -= 50

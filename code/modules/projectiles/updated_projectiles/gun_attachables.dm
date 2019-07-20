@@ -96,7 +96,7 @@ Defined in conflicts.dm of the #defines folder.
 		return TRUE
 
 
-/obj/item/attachable/attack_hand(mob/user as mob)
+/obj/item/attachable/attack_hand(mob/living/user)
 	if(src.attach_applied == TRUE)
 		return
 	else
@@ -584,7 +584,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/scope/m4ra
-	name = "m4ra rail scope"
+	name = "M4RA rail scope"
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	zoom_offset = 5
@@ -625,7 +625,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/shotgun
 	name = "\improper M37 wooden stock"
-	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
+	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_FAST
 	matter = null
@@ -665,7 +665,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
-	desc = "A non-standard heavy wooden stock for Slavic firearms."
+	desc = "A standard heavy wooden stock for Slavic firearms."
 	icon_state = "slavicstock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	pixel_shift_x = 32
@@ -682,8 +682,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/mosin
-	name = "wooden stock"
-	desc = "A standard heavy wooden stock for Slavic firearms."
+	name = "mosin wooden stock"
+	desc = "A non-standard long wooden stock for Slavic firearms."
 	icon_state = "mosinstock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	pixel_shift_x = 32
@@ -698,8 +698,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/rifle
-	name = "\improper M41A skeleton stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	name = "\improper M41A1 skeleton stock"
+	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A1, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_NORMAL
 	melee_mod = 5
@@ -717,15 +717,15 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/rifle/marksman
-	name = "\improper M41A marksman stock"
+	name = "\improper M4RA marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
 	flags_attach_features = NONE
 
 
 /obj/item/attachable/stock/smg
-	name = "submachinegun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	name = "M39 submachinegun stock"
+	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	wield_delay_mod = WIELD_DELAY_FAST
 	melee_mod = 5
@@ -743,8 +743,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/vp70
-	name = "VP70 stock and holster"
-	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the MOD88, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl"
+	name = "88 Mod 4 stock and holster"
+	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the 88 Mod 4, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
@@ -771,7 +771,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 	pockets = new pockets(src)
 
-/obj/item/attachable/stock/vp70/attack_hand(mob/user)
+/obj/item/attachable/stock/vp70/attack_hand(mob/living/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
 		return I.attack_hand(user)
@@ -853,12 +853,12 @@ Defined in conflicts.dm of the #defines folder.
 	if(G.active_attachable == src)
 		if(user)
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-		G.active_attachable = null
+		G.on_gun_attachment_detach(src)
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
-		G.active_attachable = src
+		G.on_gun_attachment_attach(src)
 		icon_state += "-on"
 
 	for(var/X in G.actions)
@@ -879,7 +879,7 @@ Defined in conflicts.dm of the #defines folder.
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	var/list/loaded_grenades //list of grenade types loaded in the UGL
 
@@ -917,7 +917,7 @@ Defined in conflicts.dm of the #defines folder.
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else
-			playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+			playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 			current_rounds++
 			loaded_grenades += G.type
 			to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
@@ -960,7 +960,7 @@ Defined in conflicts.dm of the #defines folder.
 	max_rounds = 20
 	max_range = 4
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/flamer/unremovable
@@ -1042,7 +1042,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/list/turf/turfs = getline(user,target)
 	var/distance = 0
 	var/turf/prev_T
-	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
+	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
@@ -1107,7 +1107,7 @@ Defined in conflicts.dm of the #defines folder.
 	current_rounds = 3
 	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
 
@@ -1132,7 +1132,7 @@ Defined in conflicts.dm of the #defines folder.
 				mag.current_rounds--
 				mag.update_icon()
 				to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
-				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+				playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temporarilyRemoveItemFromInventory(mag)
 					qdel(mag)

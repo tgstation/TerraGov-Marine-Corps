@@ -21,10 +21,10 @@
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
 	if(H.gender == MALE)
-		H.name = pick(GLOB.first_names_male_russian) + " " + pick(GLOB.last_names_russian)
+		H.name = pick(SSstrings.get_list_from_file("names/first_male_russian")) + " " + pick(SSstrings.get_list_from_file("names/last_name_russian"))
 		H.real_name = H.name
 	else
-		H.name = pick(GLOB.first_names_female_russian) + " " + pick(GLOB.last_names_russian)
+		H.name = pick(SSstrings.get_list_from_file("names/first_female_russian")) + " " + pick(SSstrings.get_list_from_file("names/last_name_russian"))
 		H.real_name = H.name
 
 	M.transfer_to(H, TRUE)

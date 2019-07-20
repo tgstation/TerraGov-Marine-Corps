@@ -168,7 +168,7 @@
 	if(!ishuman(M))
 		return list()
 	var/surgery_list = list()
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/known_implants = list(/obj/item/implant/neurostim)
 	for(var/datum/limb/L in M.limbs)
 		if(L)
 			for(var/datum/wound/W in L.wounds)
@@ -217,7 +217,7 @@
 			if(L.surgery_open_stage)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
 	var/datum/internal_organ/I = M.internal_organs_by_name["eyes"]
-	if(I && (M.disabilities & NEARSIGHTED || M.sdisabilities & BLIND || I.damage > 0))
+	if(I && (M.disabilities & NEARSIGHTED || M.disabilities & BLIND || I.damage > 0))
 		surgery_list += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,I)
 	if(M.getBruteLoss() > 0)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BRUTE)
@@ -265,7 +265,7 @@
 	surgery = 1
 	update_icon()
 
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/known_implants = list(/obj/item/implant/neurostim)
 
 	for(var/datum/autodoc_surgery/A in surgery_todo_list)
 		if(A.type_of_surgery == EXTERNAL_SURGERY)
@@ -371,7 +371,7 @@
 								sleep(EYE_CAUTERISE_MAX_DURATION)
 								if(!surgery) break
 								H.disabilities &= ~NEARSIGHTED
-								H.sdisabilities &= ~BLIND
+								H.disabilities &= ~BLIND
 								E.damage = 0
 								E.eye_surgery_stage = 0
 
@@ -688,7 +688,7 @@
 		usr.forceMove(src)
 		occupant = usr
 		icon_state = "autodoc_closed"
-		var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
 		var/doc_dat
 		med_scan(H, doc_dat, implants, TRUE)
@@ -812,7 +812,7 @@
 	M.forceMove(src)
 	occupant = M
 	icon_state = "autodoc_closed"
-	var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
 	start_processing()
@@ -1132,7 +1132,7 @@
 				updateUsrDialog()
 
 			if(href_list["shrapnel"])
-				var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+				var/known_implants = list(/obj/item/implant/neurostim)
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						var/skip_embryo_check = FALSE

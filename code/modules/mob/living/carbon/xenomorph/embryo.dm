@@ -108,8 +108,8 @@
 				if(affected_mob.knocked_out < 1)
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
 												"<span class='danger'>You start shaking uncontrollably!</span>")
-					affected_mob.KnockOut(10)
-					affected_mob.Jitter(105)
+					affected_mob.knock_out(10)
+					affected_mob.jitter(105)
 					affected_mob.take_limb_damage(1)
 			if(prob(2))
 				to_chat(affected_mob, "<span class='warning'>[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")].</span>")
@@ -164,10 +164,10 @@
 	victim.chestburst = 1
 	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
-	victim.KnockOut(20)
+	victim.knock_out(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								"<span class='danger'>You feel something ripping up your insides!</span>")
-	victim.Jitter(300)
+	victim.jitter(300)
 
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
 

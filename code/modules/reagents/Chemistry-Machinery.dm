@@ -135,7 +135,11 @@
 			amount = 240
 
 	if(href_list["dispense"])
-		if (dispensable_reagents.Find(href_list["dispense"]) && beaker != null && beaker.is_open_container())
+		if(!dispensable_reagents.Find(href_list["dispense"]))
+			log_admin_private("[key_name(usr)] attempted to dispense [href_list["dispense"]] through [src], a reagent not contained by dispensable_reagents, at [AREACOORD(usr.loc)].")
+			message_admins("[ADMIN_TPMONTY(usr)] attempted to dispense [href_list["dispense"]] through [src], a reagent not contained by dispensable_reagents. Possible HREF exploit.")
+			return
+		if(beaker?.is_open_container())
 			var/obj/item/reagent_container/B = src.beaker
 			var/datum/reagents/R = B.reagents
 			var/space = R.maximum_volume - R.total_volume
@@ -176,14 +180,13 @@
 /obj/machinery/chem_dispenser/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/chem_dispenser/attack_hand(mob/user as mob)
+/obj/machinery/chem_dispenser/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(machine_stat & BROKEN)
 		return
-	var/mob/living/carbon/human/H = user
-	if(!check_access(H.wear_id))
+	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	ui_interact(user)
@@ -363,6 +366,10 @@
 			if(href_list["amount"])
 				var/id = href_list["add"]
 				var/amount = text2num(href_list["amount"])
+				if(amount < 0) //href protection
+					log_admin_private("[key_name(usr)] attempted to add a negative amount of [id] ([amount]) to the buffer of [src] at [AREACOORD(usr.loc)].")
+					message_admins("[ADMIN_TPMONTY(usr)] attempted to add a negative amount of [id] ([amount]) to the buffer of [src]. Possible HREF exploit.")
+					return
 				transfer_chemicals(src, beaker, amount, id)
 
 		else if (href_list["addcustom"])
@@ -376,6 +383,10 @@
 			if(href_list["amount"])
 				var/id = href_list["remove"]
 				var/amount = text2num(href_list["amount"])
+				if(amount < 0) //href protection
+					log_admin_private("[key_name(usr)] attempted to transfer a negative amount of [id] ([amount]) to [mode ? beaker : "disposal"] in [src] at [AREACOORD(usr.loc)].")
+					message_admins("[ADMIN_TPMONTY(usr)] attempted to transfer a negative amount of [id] ([amount]) to [mode ? beaker : "disposal"] in [src]. Possible HREF exploit.")
+					return
 				if(mode)
 					transfer_chemicals(beaker, src, amount, id)
 				else
@@ -754,7 +765,7 @@
 /obj/machinery/reagentgrinder/attack_ai(mob/user as mob)
 	return FALSE
 
-/obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
+/obj/machinery/reagentgrinder/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

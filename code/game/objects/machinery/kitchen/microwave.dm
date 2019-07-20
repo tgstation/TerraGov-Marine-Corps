@@ -140,7 +140,7 @@
 /obj/machinery/microwave/attack_ai(mob/user as mob)
 	return 0
 
-/obj/machinery/microwave/attack_hand(mob/user as mob)
+/obj/machinery/microwave/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

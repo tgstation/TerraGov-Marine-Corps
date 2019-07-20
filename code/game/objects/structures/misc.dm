@@ -65,7 +65,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/shipmast/attack_hand(mob/user)
+/obj/structure/shipmast/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

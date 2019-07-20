@@ -4255,7 +4255,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
 "alQ" = (
-/obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "alR" = (
@@ -18647,7 +18647,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aWq" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aWr" = (
@@ -23035,15 +23035,6 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
-"bit" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/requesition)
 "biu" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -31730,7 +31721,6 @@
 /area/ice_colony/underground/storage/highsec)
 "bFj" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/trackimp,
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
 	},
@@ -33847,7 +33837,6 @@
 /area/ice_colony/underground/security/backroom)
 "bKi" = (
 /obj/structure/table,
-/obj/item/storage/box/trackimp,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -36962,11 +36951,6 @@
 	dir = 1
 	},
 /obj/structure/rack,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/east)
-"bSP" = (
-/obj/structure/rack,
-/obj/item/implantpad,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bSQ" = (
@@ -49480,7 +49464,7 @@ bdR
 beA
 bdM
 bdL
-bit
+bgZ
 bdL
 bgh
 bgD
@@ -65473,7 +65457,7 @@ bRN
 bFD
 bFD
 bFD
-bSP
+bTJ
 bSZ
 bCJ
 bCJ

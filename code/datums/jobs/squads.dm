@@ -246,12 +246,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(!old_lead.mind || old_lead.mind.assigned_role != SQUAD_LEADER || !leader_killed)
 		if(istype(old_lead.wear_ear, /obj/item/radio/headset/almayer/marine))
 			var/obj/item/radio/headset/almayer/marine/R = old_lead.wear_ear
-			if(istype(R.keyslot, /obj/item/encryptionkey/squadlead))
-				qdel(R.keyslot)
-				R.keyslot = null
-			else if(istype(R.keyslot2, /obj/item/encryptionkey/squadlead))
-				qdel(R.keyslot2)
-				R.keyslot2 = null
 			R.recalculateChannels()
 			R.use_command = FALSE
 		if(istype(old_lead.wear_id, /obj/item/card/id))

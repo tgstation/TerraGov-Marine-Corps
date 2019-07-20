@@ -41,7 +41,7 @@
 	return src.attack_hand(user)
 
 
-/obj/item/radio/intercom/attack_hand(mob/user as mob)
+/obj/item/radio/intercom/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

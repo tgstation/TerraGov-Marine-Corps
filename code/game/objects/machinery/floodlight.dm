@@ -34,7 +34,7 @@
 			return
 */
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/machinery/floodlight/attack_hand(mob/user as mob)
+/obj/machinery/floodlight/attack_hand(mob/living/user)
 	. = ..()
 	if(open && cell)
 		if(ishuman(user))
@@ -129,7 +129,7 @@
 	set_light(5)
 
 
-/obj/machinery/floodlight/landing/attack_hand()
+/obj/machinery/floodlight/landing/attack_hand(mob/living/user)
 	return
 
 

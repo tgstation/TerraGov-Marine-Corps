@@ -35,7 +35,7 @@
 			if(.)
 				pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25))
 
-/obj/vehicle/powerloader/attack_hand(mob/user)
+/obj/vehicle/powerloader/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -268,7 +268,7 @@
 
 /obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)
 	if(X.a_intent == INTENT_HARM)
-		X.animation_attack_on(src)
+		X.do_attack_animation(src)
 		X.flick_attack_overlay(src, "slash")
 		playsound(loc, "alien_claw_metal", 25, 1)
 		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")

@@ -37,7 +37,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobtype = /datum/job/command/captain
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/gun/mateba/cmateba/full
+	belt = /obj/item/storage/belt/gun/mateba/captain/full
 	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
@@ -69,7 +69,7 @@ Godspeed, captain! And remember, you are not above the law."})
 /datum/job/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
-Your dutiesare to ensure marines hold when ordered, and push when they are cowering behind barricades.
+Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
 Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"})
 
@@ -118,7 +118,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	jobtype = /datum/job/command/intelligenceofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/captain
+	belt = /obj/item/storage/belt/gun/m4a3/officer
 	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine
@@ -159,7 +159,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
 	r_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/marine/satchel
@@ -690,3 +690,47 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel
+
+
+/datum/job/ai
+	title = "AI"
+	faction = "Marine"
+	total_positions = 1
+	selection_color = "#92c255"
+	supervisors = "your laws"
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
+	exp_type_department = EXP_TYPE_SILICON
+	display_order = JOB_DISPLAY_ORDER_AI
+
+
+/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
+	if(!length(GLOB.ai_spawn))
+		CRASH("attempted to spawn an AI with no landmark set")
+
+	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
+	H.mind.transfer_to(AI, TRUE)
+	qdel(H)
+
+
+/datum/job/ai/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
+	. = ..()
+
+	if(!isAI(L) || !latejoin)
+		return
+
+	var/mob/living/silicon/ai/AI = L
+	announce(AI)
+
+
+/datum/job/ai/override_latejoin_spawn()
+	return TRUE
+
+
+/datum/job/ai/announce(mob/living/silicon/ai/AI)
+	. = ..()
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(AI)]."))
+
+
+/datum/job/ai/config_check()
+	return CONFIG_GET(flag/allow_ai)

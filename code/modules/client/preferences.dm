@@ -30,6 +30,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	var/ghost_form = GHOST_DEFAULT_FORM
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
+	var/observer_actions = TRUE
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
@@ -115,12 +116,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// We don't have a savefile or we failed to load them
 	random_character()
-	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 5 SECONDS)
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+	addtimer(CALLBACK(src, .proc/keybindings_setup, C), 5 SECONDS)
 	
 
-/datum/preferences/proc/load_default_keybindings(client/C)
+/datum/preferences/proc/keybindings_setup(client/C)
 	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
-	hotkeys = (choice == "Hotkey")
+	hotkeys = (!choice || choice == "Hotkey")
 	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 	save_preferences()
 
@@ -337,7 +339,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	onclose(user, "preferences_window", src)
 
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 16, list/splitJobs, widthPerColumn = 305, height = 620)
+/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs, widthPerColumn = 305, height = 620)
 	if(!SSjob)
 		return
 
@@ -580,6 +582,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
+			ShowChoices(user)			
+			return TRUE
 
 		if("synth_name")
 			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name") as text|null

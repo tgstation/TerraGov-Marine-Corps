@@ -27681,9 +27681,6 @@
 /area/sulaco/liaison/quarters)
 "beI" = (
 /obj/structure/rack,
-/obj/item/storage/lockbox/loyalty{
-	req_access = list(200)
-	},
 /obj/item/radio,
 /obj/item/storage/briefcase,
 /turf/open/floor/wood,

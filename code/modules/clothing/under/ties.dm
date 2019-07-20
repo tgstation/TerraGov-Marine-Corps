@@ -297,7 +297,7 @@
 		holstered = null
 		return TRUE
 
-/obj/item/clothing/tie/holster/attack_hand(mob/user as mob)
+/obj/item/clothing/tie/holster/attack_hand(mob/living/user)
 	if (has_suit)	//if we are part of a suit
 		if (holstered)
 			unholster(user)
@@ -455,7 +455,7 @@
 			to_chat(usr, "Clicking [H] with an empty hand now opens the pouch storage menu.")
 
 
-/obj/item/clothing/tie/storage/attack_hand(mob/user)
+/obj/item/clothing/tie/storage/attack_hand(mob/living/user)
 	if(has_suit)
 		if(has_suit.loc == user && hold.draw_mode && hold.contents.len)
 			var/obj/item/I = hold.contents[hold.contents.len]

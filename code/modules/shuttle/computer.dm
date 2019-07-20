@@ -8,7 +8,7 @@
 	var/admin_controlled
 	var/no_destination_swap = 0
 
-/obj/machinery/computer/shuttle/attack_hand(mob/user)
+/obj/machinery/computer/shuttle/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -55,7 +55,7 @@
 		return TRUE
 
 	if(href_list["move"])
-		if(world.time < SSticker.round_start_time + SHUTTLE_LAUNCH_LOCK)
+		if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 			to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
 			return TRUE
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)

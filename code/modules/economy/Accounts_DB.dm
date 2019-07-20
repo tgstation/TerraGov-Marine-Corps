@@ -57,7 +57,7 @@
 
 	attack_hand(user)
 
-/obj/machinery/account_database/attack_hand(mob/user as mob)
+/obj/machinery/account_database/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

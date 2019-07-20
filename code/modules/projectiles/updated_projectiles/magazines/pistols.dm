@@ -7,7 +7,7 @@
 	desc = "A pistol magazine."
 	caliber = "9mm"
 	icon_state = "m4a3"
-	max_rounds = 12
+	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/m4a3
@@ -29,20 +29,20 @@
 
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
-	max_rounds = 22
+	max_rounds = 24
 	icon_state = "m4a3_ext"
 	bonus_overlay = "m4a3_ex"
 
 
 //-------------------------------------------------------
-//M4A3 45 //Inspired by the 1911
+//M1911
 
 /obj/item/ammo_magazine/pistol/m1911
-	name = "\improper M4A3 magazine (.45)"
+	name = "\improper M1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45"
 	icon_state = ".45"
-	max_rounds = 7
+	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
 
@@ -152,7 +152,7 @@
 	name = "\improper 88M4 AP magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = "9mm"
-	icon_state = ".45"
+	icon_state = "88m4"
 	max_rounds = 18
 	gun_type = /obj/item/weapon/gun/pistol/vp70
 

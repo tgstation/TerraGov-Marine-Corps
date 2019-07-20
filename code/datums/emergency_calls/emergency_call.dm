@@ -1,13 +1,6 @@
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
 
-//Persistent gamemode variables.
-/datum/game_mode
-	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
-	var/datum/emergency_call/picked_call = null //Which distress call is currently active
-	var/on_distress_cooldown = FALSE
-	var/waiting_for_candidates = FALSE
-
 
 //The distress call parent.
 /datum/emergency_call

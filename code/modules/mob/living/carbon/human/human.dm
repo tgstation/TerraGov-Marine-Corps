@@ -5,7 +5,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
@@ -59,8 +59,6 @@
 	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
-	sec_hud_set_ID()
-	sec_hud_set_implants()
 	sec_hud_set_security_status()
 	hud_set_squad()
 	hud_set_order()
@@ -126,7 +124,7 @@
 
 			adjust_stagger(12 * armor)
 			add_slowdown(round(12 * armor,0.1))
-			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			knock_out(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
 			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
@@ -138,7 +136,7 @@
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
-			KnockDown(4 * armor)
+			knock_down(4 * armor)
 
 		if(3)
 			b_loss += (rand(40, 50) * armor)
@@ -150,7 +148,7 @@
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
-			KnockDown(2 * armor)
+			knock_down(2 * armor)
 
 	var/update = 0
 	#ifdef DEBUG_HUMAN_ARMOR
@@ -414,10 +412,10 @@
 				if(placing)
 					if(place_item && place_item == usr.get_active_held_item())
 						if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE))
-							dropItemToGround(place_item)
+							usr.dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
 						if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
-							dropItemToGround(place_item)
+							usr.dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
 
 				else
@@ -1146,11 +1144,11 @@
 /mob/living/carbon/human/proc/randomize_appearance()
 	if(prob(50))
 		gender = FEMALE
-		name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
+		name = pick(SSstrings.get_list_from_file("names/first_female")) + " " + pick(SSstrings.get_list_from_file("names/last_name"))
 		real_name = name
 	else
 		gender = MALE
-		name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
+		name = pick(SSstrings.get_list_from_file("names/first_male")) + " " + pick(SSstrings.get_list_from_file("names/last_name"))
 		real_name = name
 
 

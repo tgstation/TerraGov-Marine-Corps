@@ -186,7 +186,7 @@
 			user.start_pulling(src)
 
 		if(INTENT_HARM, INTENT_DISARM)
-			user.animation_attack_on(src)
+			user.do_attack_animation(src)
 			visible_message("<span class='danger'>[user] [response_harm] [src]!</span>",\
 			"<span class='userdanger'>[user] [response_harm] [src]!</span>")
 			playsound(loc, attacked_sound, 25, 1, -1)

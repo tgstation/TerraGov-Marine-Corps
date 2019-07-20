@@ -10,7 +10,7 @@
 	hud_possible = list(AI_DETECT_HUD = HUD_LIST_LIST)
 	var/list/visibleCameraChunks = list()
 	var/mob/living/silicon/ai/ai = null
-	var/relay_speech = FALSE
+	var/relay_speech = TRUE
 	var/use_static = USE_STATIC_OPAQUE
 	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE

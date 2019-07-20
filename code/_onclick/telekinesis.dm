@@ -253,7 +253,7 @@ Redefine as needed.
 	if(focus)
 		var/mob/living/carbon/human/victim = focus
 		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
-		victim.SetStunned(0)
+		victim.set_stunned(0)
 		victim.grab_resist_level = 0
 		victim.update_canmove()
 		focus = null
@@ -273,9 +273,9 @@ Redefine as needed.
 /obj/item/tk_grab/shrike/resisted_against(datum/source, mob/living/carbon/human/victim)
 	if(victim.restrained(RESTRAINED_PSYCHICGRAB))
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	if(victim.last_special >= world.time)
+	if(victim.cooldowns[COOLDOWN_RESIST])
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	victim.last_special = world.time + CLICK_CD_RESIST_PSYCHIC_GRAB
+	victim.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(victim.cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST_PSYCHIC_GRAB)
 
 	var/mob/living/carbon/xenomorph/shrike/master = tk_user
 
@@ -322,9 +322,9 @@ Redefine as needed.
 
 	switch(grab_level)
 		if(TKGRAB_NONLETHAL)
-			victim.SetStagger(4)
+			victim.set_stagger(4)
 		if(TKGRAB_LETHAL)
-			victim.SetStagger(2)
+			victim.set_stagger(2)
 			victim.Losebreath(3)
 
 	apply_focus_overlay()
@@ -346,7 +346,7 @@ Redefine as needed.
 			if(!do_mob(assailant, victim, 2 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 				return FALSE
 			grab_level = TKGRAB_LETHAL
-			victim.SetKnockeddown(2)
+			victim.set_knocked_down(2)
 			log_combat(assailant, victim, "psychically strangled", addition="(kill intent)")
 			msg_admin_attack("[key_name(assailant)] psychically strangled (kill intent) [key_name(victim)]")
 			to_chat(assailant, "<span class='danger'>We tighten our psychic grip on [victim]'s neck!</span>")

@@ -13,6 +13,14 @@
 
 	var/distress_cancelled = FALSE
 
+	var/deploy_time_lock = 15 MINUTES
+
+//Distress call variables.
+	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
+	var/datum/emergency_call/picked_call = null //Which distress call is currently active
+	var/on_distress_cooldown = FALSE
+	var/waiting_for_candidates = FALSE
+
 /datum/game_mode/New()
 	initialize_emergency_calls()
 
@@ -308,13 +316,6 @@
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
 			continue
 
-		var/mob/living/L
-		if(!isliving(M))
-			L = new /mob/living/carbon/human
-			M.mind.transfer_to(L, TRUE)
-		else
-			L = M
-
 		var/turf/picked
 		if(length(spawns))
 			picked = pick(spawns)
@@ -329,13 +330,19 @@
 			picked = pick(spawns)
 			spawns -= picked
 
-
 		if(!picked)
-			to_chat(L, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
+			to_chat(M, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
 			continue
 
+		var/mob/living/L
+		if(!isliving(M))
+			L = new /mob/living/carbon/human(picked)
+			M.mind.transfer_to(L, TRUE)
+		else
+			L = M
+			INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
+
 		L.mind.bypass_ff = TRUE
-		INVOKE_ASYNC(L, /atom/movable/.proc/forceMove, picked)
 		L.revive()
 
 		if(isxeno(L))

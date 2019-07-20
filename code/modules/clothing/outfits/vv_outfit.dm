@@ -131,7 +131,6 @@
 			if(J)
 				card.paygrade = J.paygrade
 			card.update_label()
-			H.sec_hud_set_ID()
 
 	H.name = H.get_visible_name()
 	H.hud_set_squad()

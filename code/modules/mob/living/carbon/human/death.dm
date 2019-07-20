@@ -60,7 +60,7 @@
 	if(species) 
 		species.handle_death(src, gibbed)
 
-	toggle_typing_indicator()
+	remove_typing_indicator()
 
 	if(!gibbed && species.death_sound)
 		playsound(loc, species.death_sound, 50, 1)

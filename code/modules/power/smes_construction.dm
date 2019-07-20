@@ -91,7 +91,7 @@
 			else
 				to_chat(h_user, "Small electrical arc sparks and burns your hand as you touch the [src]!")
 				h_user.adjustFireLoss(rand(5,10))
-				h_user.KnockOut(2)
+				h_user.knock_out(2)
 			charge = 0
 
 		if (16 to 35)
@@ -104,7 +104,7 @@
 			else
 				to_chat(h_user, "Medium electrical sparks as you touch the [src], severely burning your hand!")
 				h_user.adjustFireLoss(rand(10,25))
-				h_user.KnockOut(5)
+				h_user.knock_out(5)
 			spawn(0)
 				empulse(src.loc, 2, 4)
 			charge = 0
@@ -117,11 +117,11 @@
 			if (user_protected)
 				to_chat(h_user, "Strong electrical arc sparks between you and [src], ignoring your gloves and burning your hand!")
 				h_user.adjustFireLoss(rand(25,60))
-				h_user.KnockOut(8)
+				h_user.knock_out(8)
 			else
 				to_chat(h_user, "Strong electrical arc sparks between you and [src], knocking you out for a while!")
 				h_user.adjustFireLoss(rand(35,75))
-				h_user.KnockOut(12)
+				h_user.knock_out(12)
 			spawn(0)
 				empulse(src.loc, 8, 16)
 			charge = 0
@@ -136,7 +136,7 @@
 			to_chat(h_user, "Massive electrical arc sparks between you and [src]. Last thing you can think about is \"Oh shit...\"")
 			// Remember, we have few gigajoules of electricity here.. Turn them into crispy toast.
 			h_user.adjustFireLoss(rand(150,195))
-			h_user.KnockOut(25)
+			h_user.knock_out(25)
 			spawn(0)
 				empulse(src.loc, 32, 64)
 			charge = 0

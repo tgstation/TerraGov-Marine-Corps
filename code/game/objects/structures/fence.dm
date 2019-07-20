@@ -58,7 +58,7 @@
 	obj_integrity = max(0, obj_integrity - tforce)
 	healthcheck()
 
-/obj/structure/fence/attack_hand(mob/user as mob)
+/obj/structure/fence/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -71,7 +71,7 @@
 	return attack_hand(user)
 
 /obj/structure/fence/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
 	"<span class='danger'>You mangle [src]!</span>", \
@@ -83,7 +83,7 @@
 //Used by attack_animal
 /obj/structure/fence/proc/attack_generic(mob/living/user, damage = 0)
 	obj_integrity -= damage
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 	healthcheck(1, 1, user)
 
@@ -155,12 +155,12 @@
 			if(GRAB_AGGRESSIVE)
 				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 				if(prob(50))
-					M.KnockDown(1)
+					M.knock_down(1)
 				M.apply_damage(10)
 				obj_integrity -= 25
 			if(GRAB_NECK)
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
-				M.KnockDown(5)
+				M.knock_down(5)
 				M.apply_damage(20)
 				obj_integrity -= 50
 

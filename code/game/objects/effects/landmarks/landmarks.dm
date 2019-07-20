@@ -60,6 +60,17 @@
 	GLOB.newplayer_start += loc
 	return
 
+
+/obj/effect/landmark/start/ai_spawn
+	icon_state = "AI"
+
+
+/obj/effect/landmark/start/ai_spawn/Initialize(mapload)
+	. = ..()
+	GLOB.ai_spawn += loc
+	return INITIALIZE_HINT_QDEL
+
+
 /obj/effect/landmark/start/latejoin/Initialize()
 	. = ..()
 	GLOB.latejoin += loc

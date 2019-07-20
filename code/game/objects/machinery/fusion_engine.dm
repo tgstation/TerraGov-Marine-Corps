@@ -88,7 +88,7 @@
 		fusion_cell.take(fuel_rate) //Consumes fuel
 		update_icon()
 
-/obj/machinery/power/fusion_engine/attack_hand(mob/user)
+/obj/machinery/power/fusion_engine/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

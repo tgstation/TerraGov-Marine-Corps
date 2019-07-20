@@ -56,7 +56,7 @@
 	return attack_hand(user)
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
-/obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
+/obj/machinery/computer/secure_data/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -587,7 +587,7 @@ What a mess.*/
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
+					R.fields["name"] = "[pick(pick(SSstrings.get_list_from_file("names/first_male")), pick(SSstrings.get_list_from_file("names/first_female")))] [pick(SSstrings.get_list_from_file("names/last_name"))]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)

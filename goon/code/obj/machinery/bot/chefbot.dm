@@ -176,7 +176,7 @@
 	if(health <= 0)
 		explode()
 
-/obj/machinery/bot/chefbot/attack_hand(mob/living/carbon/human/M)
+/obj/machinery/bot/chefbot/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

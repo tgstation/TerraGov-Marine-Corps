@@ -89,7 +89,7 @@
 		use_power = anchored
 		reconnect()
 
-/obj/machinery/power/generator/attack_hand(mob/user)
+/obj/machinery/power/generator/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

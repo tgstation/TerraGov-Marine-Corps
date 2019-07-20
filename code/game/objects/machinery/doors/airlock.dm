@@ -313,7 +313,7 @@
 	"<span class='warning'>You squeeze and scuttle underneath \the [src].</span>", null, 5)
 	M.forceMove(loc)
 
-/obj/machinery/door/airlock/attack_hand(mob/user)
+/obj/machinery/door/airlock/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -708,8 +708,8 @@
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
 			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-			M.SetStunned(5)
-			M.SetKnockeddown(5)
+			M.set_stunned(5)
+			M.set_knocked_down(5)
 			if (iscarbon(M))
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species

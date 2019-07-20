@@ -18,11 +18,11 @@
 
 /datum/reagent/consumable/drink/on_mob_life(mob/living/L, metabolism)
 	if(adj_dizzy != 0)
-		L.Dizzy(adj_dizzy)
+		L.dizzy(adj_dizzy)
 	if(adj_drowsy != 0)
 		L.drowsyness = max(0,L.drowsyness + adj_drowsy)
 	if(adj_sleepy != 0)
-		L.AdjustSleeping(adj_sleepy)
+		L.adjust_sleeping(adj_sleepy)
 	return ..()
 
 /datum/reagent/consumable/drink/orangejuice
@@ -233,13 +233,13 @@
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
-	L.Jitter(2)
+	L.jitter(2)
 	if(adj_temp > 0 && holder.has_reagent("frostoil"))
 		holder.remove_reagent("frostoil", 5)
 	return ..()
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
-	L.Jitter(5)
+	L.jitter(5)
 	if(prob(5) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
@@ -249,10 +249,10 @@
 
 /datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.2, TOX)
-	L.Jitter(5)
+	L.jitter(5)
 	if(prob(5) && L.stat != UNCONSCIOUS)
 		to_chat(L, "<span class='warning'>You spasm and pass out!</span>")
-		L.KnockOut(5)
+		L.knock_out(5)
 	if(prob(5) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
@@ -374,7 +374,7 @@
 	adj_dizzy = 5
 
 /datum/reagent/consumable/drink/cold/nuka_cola/on_mob_life(mob/living/L, metabolism)
-	L.Jitter(10)
+	L.jitter(10)
 	L.set_drugginess(30)
 	return ..()
 
@@ -459,7 +459,7 @@
 	taste_description = "a bad night out"
 
 /datum/reagent/consumable/drink/cold/rewriter/on_mob_life(mob/living/L, metabolism)
-	L.Jitter(5)
+	L.jitter(5)
 	return ..()
 
 /datum/reagent/consumable/drink/doctor_delight
@@ -495,9 +495,9 @@
 		if(40 to 49)
 			L.drowsyness += 2
 		if(51 to 200)
-			L.Sleeping(3)
+			L.sleeping(3)
 		if(201 to INFINITY)
-			L.Sleeping(3)
+			L.sleeping(3)
 			L.adjustToxLoss(2)
 	return ..()
 
@@ -513,27 +513,27 @@
 	switch(current_cycle)
 		if(15 to 45)
 			L.slurring += 2
-			L.Jitter(2)
+			L.jitter(2)
 		if(46 to 65)
 			L.confused += 2
 			L.slurring += 2
-			L.Jitter(3)
+			L.jitter(3)
 		if(66 to 199)
 			L.set_drugginess(50)
 			if(prob(10))
 				L.vomit()
-			L.Jitter(4)
+			L.jitter(4)
 			if(prob(5))
-				L.Sleeping(8)
+				L.sleeping(8)
 		if(200 to INFINITY)
 			L.set_drugginess(50)
 			L.confused += 2
 			L.slurring += 2
 			L.adjustToxLoss(2)
-			L.Jitter(5)
+			L.jitter(5)
 			if(prob(10))
 				L.vomit()
-			L.Sleeping(3)
+			L.sleeping(3)
 	return ..()
 
 /datum/reagent/consumable/drink/neurotoxin
@@ -546,7 +546,7 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/L, metabolism)
-	L.KnockDown(3)
+	L.knock_down(3)
 	switch(current_cycle)
 		if(15 to 35)
 			L.stuttering += 2
@@ -573,26 +573,26 @@
 	L.slurring = max(L.slurring, 2)
 	switch(current_cycle)
 		if(1 to 5)
-			L.Dizzy(10)
+			L.dizzy(10)
 			L.set_drugginess(30)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 		if(6 to 10)
-			L.Dizzy(20)
-			L.Jitter(20)
+			L.dizzy(20)
+			L.jitter(20)
 			L.set_drugginess(45)
 			if(prob(20))
 				L.emote(pick("twitch","giggle"))
 		if(11 to 200)
-			L.Dizzy(40)
-			L.Jitter(40)
+			L.dizzy(40)
+			L.jitter(40)
 			L.set_drugginess(60)
 			if(prob(30))
 				L.emote(pick("twitch","giggle"))
 		if(201 to INFINITY)
 			L.stuttering = 1
-			L.Jitter(60)
-			L.Dizzy(60)
+			L.jitter(60)
+			L.dizzy(60)
 			L.set_drugginess(75)
 			if(prob(40))
 				L.emote(pick("twitch","giggle"))

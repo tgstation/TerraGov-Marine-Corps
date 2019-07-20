@@ -19,7 +19,10 @@
 	max_shells = 15 //codex
 	caliber = "10x28mm Caseless" //codex
 	origin_tech = "combat=6;materials=5"
-	fire_sound = 'sound/weapons/gun_sniper.ogg'
+	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
@@ -45,6 +48,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
 		return
 	if(targetmarker_primed)
 		if(!iscarbon(target))
@@ -203,7 +208,11 @@
 	max_shells = 6 //codex
 	caliber = "10x99mm Caseless" //codex
 	origin_tech = "combat=7;materials=5"
-	fire_sound = 'sound/weapons/sniper_heavy.ogg'
+	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_heavy_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/sniper_heavy_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
 	zoomdevicename = "scope"
@@ -220,14 +229,14 @@
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/max_recoil_value)
 
-/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user, atom/target)
+/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
 	. = ..()
 	if(.)
 		var/mob/living/carbon/human/PMC_sniper = user
 		if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
 			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 			step(PMC_sniper,turn(PMC_sniper.dir,180))
-			PMC_sniper.KnockDown(5)
+			PMC_sniper.knock_down(5)
 
 //SVD //Based on the Dragunov sniper rifle.
 
@@ -239,7 +248,11 @@
 	max_shells = 10 //codex
 	caliber = "7.62x54mm Rimmed" //codex
 	origin_tech = "combat=5;materials=3;syndicate=5"
-	fire_sound = 'sound/weapons/gun_svd.ogg'
+	fire_sound = 'sound/weapons/guns/fire/svd.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/svd_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -275,7 +288,10 @@
 	max_shells = 15 //codex
 	caliber = "10x24mm caseless" //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = list('sound/weapons/gun_m4ra.ogg')
+	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
@@ -376,7 +392,6 @@
 			return FALSE
 
 /obj/item/weapon/gun/smartgun/load_into_chamber(mob/user)
-//	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
 /obj/item/weapon/gun/smartgun/reload_into_chamber(mob/living/carbon/user)
@@ -460,8 +475,8 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 8
-	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
-	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
@@ -504,7 +519,7 @@
 			return
 
 		grenades += I
-		playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+		playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 		to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
 
@@ -513,19 +528,23 @@
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 8, TRUE, src))
-			return
-	if(able_to_fire(user))
-		if(get_dist(target,user) <= 2)
-			to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
-			return
-		if(grenades.len)
-			fire_grenade(target,user)
-			var/obj/screen/ammo/A = user.hud_used.ammo
-			A.update_hud(user)
-		else
-			to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+	if(user.action_busy)
+		return
+	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
+		return
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+		return
+	if(get_dist(target,user) <= 2)
+		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
+		return
+	if(!length(grenades))
+		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+		return
+	fire_grenade(target,user)
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.update_hud(user)
 
 
 //Doesn't use most of any of these. Listed for reference.
@@ -598,7 +617,7 @@
 	force = 5.0
 	wield_delay = WIELD_DELAY_VERY_FAST
 	fire_sound = 'sound/weapons/armbomb.ogg'
-	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	gun_skill_category = GUN_SKILL_SPEC
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
@@ -650,15 +669,19 @@
 
 
 /obj/item/weapon/gun/launcher/m81/afterattack(atom/target, mob/user, flag)
-	if(able_to_fire(user))
-		if(get_dist(target,user) <= 2)
-			to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
-			return
-		if(grenade)
-			fire_grenade(target,user)
-			playsound(user.loc, cocked_sound, 25, 1)
-		else
-			to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+	if(!able_to_fire(user))
+		return
+	if(gun_on_cooldown(user))
+		return
+	if(get_dist(target,user) <= 2)
+		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
+		return
+	if(!grenade)
+		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
+		return
+	fire_grenade(target,user)
+	playsound(user.loc, cocked_sound, 25, 1)
+
 
 //Doesn't use most of any of these. Listed for reference.
 /obj/item/weapon/gun/launcher/m81/load_into_chamber()
@@ -739,9 +762,9 @@
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
-	dry_fire_sound = 'sound/weapons/gun_launcher_empty.ogg'
-	reload_sound = 'sound/weapons/gun_launcher_reload.ogg'
-	unload_sound = 'sound/weapons/gun_launcher_reload.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
@@ -756,6 +779,9 @@
 	if(!able_to_fire(user) || user.action_busy)
 		return
 
+	if(gun_on_cooldown(user))
+		return
+
 	var/delay = 3
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 3
@@ -766,7 +792,7 @@
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
-	playsound(loc,'sound/weapons/gun_launcher.ogg', 50, 1)
+	playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, 1)
 	. = ..()
 
 
@@ -796,7 +822,6 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/load_into_chamber(mob/user)
-//	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
 
@@ -856,7 +881,7 @@
 	for(var/mob/living/carbon/C in backblast_loc)
 		if(!C.lying) //Have to be standing up to get the fun stuff
 			C.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
-			C.Stun(4) //For good measure
+			C.stun(4) //For good measure
 			C.emote("pain")
 
 		. = ..()
@@ -912,7 +937,7 @@
 	caliber = "12 gauge shotgun shells" //codex
 	load_method = SINGLE_CASING //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_shotgun_light.ogg'
+	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
@@ -958,8 +983,10 @@
 	caliber = "7.62x51mm" //codex
 	load_method = MAGAZINE //codex
 	origin_tech = "combat=7;materials=5"
-	fire_sound = 'sound/weapons/gun_minigun.ogg'
-	cocked_sound = 'sound/weapons/gun_minigun_cocked.ogg'
+	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
+	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/minigun
 	type_of_casings = "cartridge"
 	w_class = WEIGHT_CLASS_HUGE
@@ -976,7 +1003,7 @@
 /obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(user.action_busy)
 		return
-	playsound(get_turf(src), 'sound/weapons/tank_minigun_start.ogg', 30)
+	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
 	if(do_after(user, 5, TRUE, src, BUSY_ICON_DANGER)) //Half second wind up
 		return ..()
 

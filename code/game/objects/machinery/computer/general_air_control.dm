@@ -7,7 +7,7 @@
 	var/datum/radio_frequency/radio_connection
 	circuit = /obj/item/circuitboard/computer/air_management
 
-/obj/machinery/computer/general_air_control/attack_hand(mob/user)
+/obj/machinery/computer/general_air_control/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

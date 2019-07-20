@@ -51,9 +51,9 @@
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src) || obj_integrity <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		return
-	M.entangle_delay = world.time + duration
+	M.cooldowns[COOLDOWN_ENTANGLE] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_ENTANGLE, null), duration)
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
-	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [(M.entangle_delay - world.time) * 0.1] seconds!</span>", null, 5)
+	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
 	M.set_frozen(TRUE)
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
@@ -62,9 +62,9 @@
 
 
 /obj/structure/razorwire/resisted_against(datum/source, mob/living/entangled)
-	if(world.time < entangled.entangle_delay)
+	if(entangled.cooldowns[COOLDOWN_ENTANGLE])
 		entangled.visible_message("<span class='danger'>[entangled] attempts to disentangle itself from [src] but is unsuccessful!</span>",
-		"<span class='warning'>You will be able to disentangle yourself after [(entangled.entangle_delay - world.time) * 0.1] more seconds!</span>")
+		"<span class='warning'>You fail to disentangle yourself!</span>")
 		return FALSE
 	return razorwire_untangle(entangled)
 
@@ -77,7 +77,7 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	entangled_list -= M
 	M.entangled_by = null
-	M.entangle_delay = null
+	M.cooldowns[COOLDOWN_ENTANGLE] = FALSE
 	M.set_frozen(FALSE)
 	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1) //Apply damage as we tear free
@@ -101,7 +101,7 @@
 		L.update_canmove()
 		if(L.entangled_by == src)
 			L.entangled_by = null
-			L.entangle_delay = null
+			L.cooldowns[COOLDOWN_ENTANGLE] = FALSE
 	entangled_list.Cut()
 	return ..()
 
@@ -133,7 +133,7 @@
 
 		else if(user.grab_level >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.KnockDown(5)
+			M.knock_down(5)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return
@@ -198,7 +198,7 @@
 
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	if(obj_integrity <= 0)
@@ -276,7 +276,7 @@
 			var/def_zone = ran_zone()
 			armor_block = C.run_armor_check(def_zone, "melee")
 			C.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_HIGH, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_HIGH), BRUTE, def_zone, armor_block, null, 1) //pouncing into razor wire is especially ouchy
-			C.KnockDown(1)
+			C.knock_down(1)
 			razorwire_tangle(C)
 	return ..()
 

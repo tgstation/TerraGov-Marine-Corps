@@ -35,7 +35,7 @@
 	else
 		icon_state = "drone_fab_idle"
 
-/obj/machinery/tank_part_fabricator/attack_hand(mob/user)
+/obj/machinery/tank_part_fabricator/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

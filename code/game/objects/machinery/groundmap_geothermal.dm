@@ -92,7 +92,7 @@
 		return TRUE
 	return FALSE //Nope, all fine
 
-/obj/machinery/power/geothermal/attack_hand(mob/user as mob)
+/obj/machinery/power/geothermal/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -263,7 +263,7 @@
 /obj/machinery/colony_floodlight_switch/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/colony_floodlight_switch/attack_hand(mob/user as mob)
+/obj/machinery/colony_floodlight_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -334,7 +334,7 @@
 	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		breakdown()
 	else
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
 		obj_integrity  = max(obj_integrity - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
 		if(!obj_integrity)
@@ -409,7 +409,7 @@
 		"<span class='notice'>You mend [src]'s damaged cables.</span>")
 		return TRUE
 
-/obj/machinery/colony_floodlight/attack_hand(mob/user)
+/obj/machinery/colony_floodlight/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

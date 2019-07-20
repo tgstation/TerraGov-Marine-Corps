@@ -62,7 +62,7 @@
 		to_chat(user, "<span class='notice'>The status display reads: Current projection range: <b>[holo_range]</b> units.<span>")
 
 
-/obj/machinery/holopad/attack_hand(mob/living/carbon/human/user) //Carn: Hologram requests.
+/obj/machinery/holopad/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

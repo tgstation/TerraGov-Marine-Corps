@@ -71,7 +71,7 @@
 /obj/structure/ladder/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return attack_hand(M)
 
-/obj/structure/ladder/attack_hand(mob/user)
+/obj/structure/ladder/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

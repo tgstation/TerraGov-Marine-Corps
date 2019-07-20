@@ -18,19 +18,17 @@
 	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 	var/in_throw_mode = FALSE
 	var/notransform = FALSE
-	var/typing = FALSE
 	var/list/observers //The list of people observing this mob.
-	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/list/speak_emote = list("says") // Verbs used when speaking instead of the default ones.
 	var/zone_selected = BODY_ZONE_CHEST
 	var/bodytemperature = 310.055	//98.7 F
-	var/audio_emote_time = 1
 	var/hand
 	var/bloody_hands = 0
 	var/track_blood = 0
 	var/feet_blood_color
 	var/list/embedded = list()
+	var/list/cooldowns = list()
 
 
 	//Movement
@@ -40,7 +38,6 @@
 	var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
 	var/next_move_modifier = 1 //Value to multiply action/click delays by
 	var/last_move_intent
-	var/last_bumped = 0
 	var/area/lastarea
 	var/old_x = 0
 	var/old_y = 0
@@ -67,13 +64,14 @@
 	var/list/progbar_towers //for stacking the total pixel height of the aboves.
 	var/list/fullscreens = list()
 	var/list/alerts = list() // contains /obj/screen/alert only, used by alerts.dm
-	var/luminosity_total = 0 //For max luminosity stuff.
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+	var/image/typing_indicator
 
 
 	//Interaction
+	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
 	var/datum/click_intercept
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/obj/control_object //Used by admins to possess objects.

@@ -456,7 +456,7 @@
 	var/mob/living/L = user
 
 	to_chat(L, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)
 

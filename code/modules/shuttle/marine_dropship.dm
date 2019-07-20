@@ -28,7 +28,7 @@
 		else
 			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(M, 10, 1)
-			M.KnockDown(3)
+			M.knock_down(3)
 		CHECK_TICK
 
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
@@ -196,9 +196,18 @@
 
 /obj/docking_port/mobile/marine_dropship/afterShuttleMove(turf/oldT, rotation)
 	. = ..()
-	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
+	if(hijack_state != HIJACK_STATE_CALLED_DOWN)
+		return
+	unlock_all()
+
+/obj/docking_port/mobile/marine_dropship/onTransitZ(old_z, new_z)
+	. = ..()
+	if(hijack_state != HIJACK_STATE_CALLED_DOWN)
+		return
+	if(is_ground_level(new_z))
 		addtimer(CALLBACK(src, .proc/reset_hijack), LOCKDOWN_TIME)
-		unlock_all()
+	else if(is_mainship_level(new_z))
+		addtimer(CALLBACK(src, .proc/reset_hijack), 30 SECONDS)
 
 /obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN)

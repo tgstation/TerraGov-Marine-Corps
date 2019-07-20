@@ -125,11 +125,9 @@
 	unload(0)
 	switch(severity)
 		if(2)
-			wires &= ~(1 << rand(0,9))
-			wires &= ~(1 << rand(0,9))
-			wires &= ~(1 << rand(0,9))
+			wires.cut_all()
 		if(3)
-			wires &= ~(1 << rand(0,9))
+			wires.cut_random()
 	..()
 	return
 
@@ -138,11 +136,7 @@
 		unload(0)
 	if(prob(25))
 		src.visible_message("<span class='warning'> Something shorts out inside [src]!</span>")
-		var/index = 1<< (rand(0,9))
-		if(wires & index)
-			wires &= ~index
-		else
-			wires |= index
+		wires.cut_random()
 	..()
 	return 1
 
@@ -151,7 +145,7 @@
 	user.set_interaction(src)
 	interact(user, 1)
 
-/obj/machinery/bot/mulebot/attack_hand(mob/user)
+/obj/machinery/bot/mulebot/attack_hand(mob/living/user)
 	. = ..()
 	if (.)
 		return
@@ -692,8 +686,8 @@
 	var/mob/living/L = A
 	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
 	L.stop_pulling()
-	L.Stun(8)
-	L.KnockDown(5)
+	L.stun(8)
+	L.knock_down(5)
 	L.lying = TRUE
 
 

@@ -193,7 +193,7 @@
 
 	//Clear out any existing typing indicator.
 	if(!prefs.show_typing && istype(mob))
-		mob.toggle_typing_indicator()
+		mob.remove_typing_indicator()
 
 	to_chat(src, "<span class='notice'>You will [prefs.show_typing ? "now" : "no longer"] display a typing indicator.</span>")
 

@@ -131,7 +131,7 @@
 	//Then, we place the mob where it ought to be
 
 	stomach_contents.Add(prey)
-	prey.KnockDown(360)
+	prey.knock_down(360)
 	prey.blind_eyes(1)
 	prey.forceMove(src)
 
@@ -166,6 +166,6 @@
 
 
 /mob/living/carbon/proc/on_release_from_stomach(mob/living/carbon/prey, mob/living/predator)
-	prey.SetKnockeddown(1)
+	prey.set_knocked_down(1)
 	prey.adjust_blindness(-1)
 	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)

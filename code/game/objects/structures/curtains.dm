@@ -17,7 +17,7 @@
 		qdel(src)
 	return 0
 
-/obj/structure/curtain/attack_hand(mob/user)
+/obj/structure/curtain/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -37,6 +37,10 @@ SUBSYSTEM_DEF(job)
 		var/datum/job/job = new J()
 		if(!job)
 			continue
+		if(!job.config_check())
+			continue
+		if(!job.map_check())
+			continue
 		occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job
@@ -223,8 +227,7 @@ SUBSYSTEM_DEF(job)
 			S = pick(GLOB.jobspawn_overrides[rank])
 		if(S)
 			SendToAtom(L, S, buckle = FALSE)
-		if(!S) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
-			log_world("Couldn't find a round start spawn point for [rank]")
+		if(!S)
 			SendToLateJoin(L)
 
 	if(job && L.mind)

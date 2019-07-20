@@ -17,7 +17,7 @@
 	open = round(rand(0, 1))
 	update_icon()
 
-/obj/structure/toilet/attack_hand(mob/living/user as mob)
+/obj/structure/toilet/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -81,7 +81,7 @@
 		if(open && !swirlie)
 			user.visible_message("<span class='danger'>[user] starts to give [C] a swirlie!</span>", "<span class='notice'>You start to give [C] a swirlie!</span>")
 			swirlie = C
-			if(!do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
+			if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
 				return
 
 			user.visible_message("<span class='danger'>[user] gives [C] a swirlie!</span>", "<span class='notice'>You give [C] a swirlie!</span>", "You hear a toilet flushing.")
@@ -174,7 +174,7 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/machinery/shower/attack_hand(mob/M as mob)
+/obj/machinery/shower/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -182,9 +182,9 @@
 	update_icon()
 	if(on)
 		start_processing()
-		if (M.loc == loc)
-			wash(M)
-			check_heat(M)
+		if (user.loc == loc)
+			wash(user)
+			check_heat(user)
 		for (var/atom/movable/G in src.loc)
 			G.clean_blood()
 	else
@@ -395,7 +395,7 @@
 		if(EAST)
 			pixel_x = 12
 
-/obj/structure/sink/attack_hand(mob/user)
+/obj/structure/sink/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -451,9 +451,9 @@
 		var/mob/living/L = user
 
 		flick("baton_active", src)
-		L.Stun(10)
+		L.stun(10)
 		L.stuttering = 10
-		L.KnockDown(10)
+		L.knock_down(10)
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
 	var/turf/location = user.loc
@@ -484,7 +484,7 @@
 	icon_state = "puddle"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/structure/sink/puddle/attack_hand(mob/M as mob)
+/obj/structure/sink/puddle/attack_hand(mob/living/user)
 	icon_state = "puddle-splash"
 	. = ..()
 	icon_state = "puddle"

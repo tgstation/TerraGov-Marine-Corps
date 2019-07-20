@@ -161,11 +161,11 @@
 		switch(get_dist(M, location))
 			if(0 to 3)
 				if(M.flash_eyes())
-					M.KnockDown(15)
+					M.knock_down(15)
 
 			if(4 to 5)
 				if(M.flash_eyes())
-					M.Stun(5)
+					M.stun(5)
 
 
 /datum/chemical_reaction/napalm

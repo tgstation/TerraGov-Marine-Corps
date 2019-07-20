@@ -516,13 +516,13 @@ to_chat will check for valid clients itself already so no need to double check f
 		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to receive new larvas.</span>")
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/chosen_mother = input("Available Mothers") as null|anything in possible_mothers
+	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
-		chosen_mother = input("Available Mothers") as null|anything in (possible_mothers + "Cancel")
+		chosen_mother = input("Available Mothers") as null|anything in possible_mothers
 	else
 		chosen_mother = possible_mothers[1]
 
-	if(chosen_mother == "Cancel" || QDELETED(chosen_mother) || !xeno_candidate?.client)
+	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
 	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))

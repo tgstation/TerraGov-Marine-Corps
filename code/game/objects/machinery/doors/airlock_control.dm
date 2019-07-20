@@ -158,7 +158,7 @@ obj/machinery/airlock_sensor/update_icon()
 	else
 		icon_state = "airlock_sensor_off"
 
-obj/machinery/airlock_sensor/attack_hand(mob/user)
+obj/machinery/airlock_sensor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -238,7 +238,7 @@ obj/machinery/access_button/update_icon()
 	if(istype(I, /obj/item/card/id))
 		attack_hand(user)
 
-obj/machinery/access_button/attack_hand(mob/user)
+obj/machinery/access_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

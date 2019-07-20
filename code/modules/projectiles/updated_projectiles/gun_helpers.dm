@@ -54,6 +54,8 @@ DEFINES in setup.dm, referenced here.
 	able_to_fire() //Unless the gun has some special check to see whether or not it may fire, you don't need this.
 	You can see examples of how this is modified in smartgun/sadar code, along with others. Return ..() on a success.
 
+	gun_on_cooldown() //For custom cooldown checks. By default it takes into account the user's skills.
+
 	load_into_chamber() //This can get complicated, but if the gun doesn't take attachments that fire bullets from
 	the Fire() process, just set them to null and leave the if(current_mag && current_mag.current_rounds > 0) check.
 	The idea here is that if the gun can find a valid bullet to fire, subtract the ammo.
@@ -126,7 +128,7 @@ DEFINES in setup.dm, referenced here.
 	return ..()
 
 
-/obj/item/weapon/gun/attack_hand(mob/user)
+/obj/item/weapon/gun/attack_hand(mob/living/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.
@@ -590,7 +592,7 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
-	playsound(usr, 'sound/machines/click.ogg', 15, 1)
+	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	if(flags_gun_features & GUN_HAS_FULL_AUTO)
 		if(flags_gun_features & GUN_BURST_ON)
 			if(flags_gun_features & GUN_FULL_AUTO_ON)
@@ -648,7 +650,7 @@ should be alright.
 	src = G
 
 	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
-	playsound(usr, 'sound/machines/click.ogg', 15, 1)
+	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
 
 

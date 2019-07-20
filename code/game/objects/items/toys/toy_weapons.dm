@@ -53,9 +53,9 @@
 			return
 		if (src.bullets < 1)
 			user.show_message("<span class='warning'> *click* *click*</span>", 2)
-			playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
+			playsound(user, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 			return
-		playsound(user, 'sound/weapons/gunshot.ogg', 15, 1)
+		playsound(user, 'sound/weapons/guns/fire/gunshot.ogg', 15, 1)
 		src.bullets--
 		for(var/mob/O in viewers(user, null))
 			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "<span class='warning'> You hear a gunshot</span>", 2)
@@ -150,7 +150,7 @@
 			return
 		else if(!bullets && isliving(user))
 			var/mob/living/L = user
-			L.KnockDown(5)
+			L.knock_down(5)
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("<span class='warning'> [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
 
@@ -172,7 +172,7 @@
 		else if(M.lying && !bullets && isliving(M))
 			var/mob/living/L = M
 			L.visible_message("<span class='danger'>[user] casually lines up a shot with [L]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>")
-			L.KnockDown(5)
+			L.knock_down(5)
 		return
 
 /obj/item/toy/crossbow_ammo

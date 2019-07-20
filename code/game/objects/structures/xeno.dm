@@ -98,7 +98,7 @@
 		playsound(loc, "alien_resin_break", 25)
 	take_damage(40)
 
-/obj/effect/alien/resin/attack_hand()
+/obj/effect/alien/resin/attack_hand(mob/living/user)
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
@@ -219,7 +219,7 @@
 		playsound(loc, 'sound/effects/alien_resin_break1.ogg', 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.KnockDown(2)
+		C.knock_down(2)
 		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
 			var/area/A = get_area(src)
 			if(A)
@@ -510,7 +510,7 @@
 		return attack_hand(M)
 
 	if(!issamexenohive(M))
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
 		Burst(TRUE)
 		return
@@ -614,7 +614,7 @@
 		return
 
 	var/mob/living/L = user
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 	visible_message("<span class='danger'>\The [src] has been [length(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with \the [I] by [user].</span>")
 	var/damage = I.force
 	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate

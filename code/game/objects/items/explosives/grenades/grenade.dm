@@ -101,7 +101,7 @@
 				det_time = 1
 				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
 
-/obj/item/explosive/grenade/attack_hand()
+/obj/item/explosive/grenade/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
