@@ -1389,7 +1389,7 @@
 	return TRUE
 
 
-/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
 	. = ..()
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
