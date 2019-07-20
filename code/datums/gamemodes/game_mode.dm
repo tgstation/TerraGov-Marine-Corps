@@ -429,13 +429,12 @@
 	X.update_icons()
 
 
-/datum/game_mode/proc/transform_queen(datum/mind/M, list/xeno_spawn = GLOB.xeno_spawn)
+/datum/game_mode/proc/transform_ruler(datum/mind/M, queen = FALSE, list/xeno_spawn = GLOB.xeno_spawn)
 	var/mob/living/carbon/xenomorph/X
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(number_of_xenos < HN.xenos_per_queen)
-		X = new /mob/living/carbon/xenomorph/shrike(pick(GLOB.xeno_spawn))
-	else
+	if(queen)
 		X = new /mob/living/carbon/xenomorph/queen(pick(GLOB.xeno_spawn))
+	else
+		X = new /mob/living/carbon/xenomorph/shrike(pick(GLOB.xeno_spawn))
 
 	if(isnewplayer(M.current))
 		var/mob/new_player/N = M.current

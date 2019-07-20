@@ -125,10 +125,12 @@ GLOBAL_LIST_INIT(gamemode_crash_music, list(
 	GLOB.latejoin_gateway = shuttle.spawnpoints
 
 	// Create xenos
+	var/number_of_xenos = length(xenomorphs)
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	for(var/i in xenomorphs)
 		var/datum/mind/M = i
 		if(M.assigned_role == ROLE_XENO_QUEEN)
-			transform_queen(M)
+			transform_ruler(M, number_of_xenos > HN.xenos_per_queen)
 		else
 			transform_xeno(M)
 
