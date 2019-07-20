@@ -64,9 +64,9 @@
 
 /mob/living/carbon/xenomorph/ravager/handle_status_effects()
 	if(rage) //Rage increases speed, attack speed, armor and fire resistance, and stun/knockdown recovery; speed is handled under movement_delay() in XenoProcs.dm
-		if(world.time > cooldowns[COOLDOWN_RAV_LAST_RAGE] + 3 SECONDS) //Decrement Rage if it's been more than 3 seconds since we last raged.
+		if(!cooldowns[COOLDOWN_RAV_LAST_RAGE]) //Decrement Rage if it's been more than 3 seconds since we last raged.
 			rage = CLAMP(rage - 5,0,50) //Rage declines over time.
-			cooldowns[COOLDOWN_RAV_LAST_RAGE] = world.time
+			cooldowns[COOLDOWN_RAV_LAST_RAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_LAST_RAGE, null), 3 SECONDS) // We incremented rage, so bookmark this.
 		adjust_stunned( round(-rage * 0.1,0.01) ) //Recover 0.1 more stun stacks per unit of rage; min 0.1, max 5
 		adjust_knocked_down( round(-rage * 0.1, 0.01 ) ) //Recover 0.1 more knockdown stacks per unit of rage; min 0.1, max 5
 		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
@@ -89,12 +89,12 @@
 // *********** Rage
 // ***************************************
 /mob/living/carbon/xenomorph/ravager/proc/process_rage_damage(datum/source, damage, list/damage_mod)
-	if(damage < 1 || world.time < cooldowns[COOLDOWN_RAV_NEXT_DAMAGE])
+	if(damage < 1 || cooldowns[COOLDOWN_RAV_NEXT_DAMAGE])
 		return
 	rage += round(damage * RAV_DAMAGE_RAGE_MULITPLIER)
 	
-	cooldowns[COOLDOWN_RAV_LAST_RAGE] = world.time // We incremented rage, so bookmark this.
-	cooldowns[COOLDOWN_RAV_NEXT_DAMAGE] = world.time + 2 // Limit how often this proc can trigger; once per 0.2 seconds
+	cooldowns[COOLDOWN_RAV_LAST_RAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_LAST_RAGE, null), 3 SECONDS) // We incremented rage, so bookmark this.
+	cooldowns[COOLDOWN_RAV_NEXT_DAMAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_NEXT_DAMAGE, null), 0.2 SECONDS)  // Limit how often this proc can trigger; once per 0.2 seconds
 	
 	damage_mod += damage * (1 - rage_resist) //reduce damage by rage resist %
 
@@ -102,6 +102,6 @@
 
 /mob/living/carbon/xenomorph/ravager/proc/process_rage_attack()
 	rage += RAV_RAGE_ON_HIT
-	cooldowns[COOLDOWN_RAV_LAST_RAGE] = world.time //We incremented rage, so bookmark this.
+	cooldowns[COOLDOWN_RAV_LAST_RAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_LAST_RAGE, null), 3 SECONDS) // We incremented rage, so bookmark this.
 
 
