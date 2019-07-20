@@ -62,6 +62,8 @@
 
 
 /datum/component/squeak/proc/play_squeak_crossed(atom/movable/AM)
+	if(!isliving(AM))
+		return
 	if(isitem(AM))
 		var/obj/item/I = AM
 		if(I.flags_item & ITEM_ABSTRACT)
