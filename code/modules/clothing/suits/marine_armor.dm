@@ -319,10 +319,10 @@
 
 	var/list/details = list()
 	var/dose_administered = null
-	var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 
 	if(wearer.getFireLoss() > B18_automed_damage && !B18_burn_cooldown)
 		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/kelotane) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(kelotane)
 			wearer.reagents.add_reagent(/datum/reagent/medicine/kelotane,kelotane)
 		if(tricordrazine)
@@ -336,6 +336,7 @@
 	if(wearer.getBruteLoss() > B18_automed_damage && !B18_brute_cooldown)
 		var/bicaridine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		var/quickclot = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot) + 0.5),0,REAGENTS_OVERDOSE * 0.5 * B18_CHEM_MOD)
+		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(quickclot)
 			wearer.reagents.add_reagent(/datum/reagent/medicine/quickclot,quickclot)
 		if(bicaridine)
@@ -352,6 +353,7 @@
 	if(wearer.getOxyLoss() > B18_automed_damage && !B18_oxy_cooldown)
 		var/dexalinplus = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/dexalinplus) + 0.5),0,REAGENTS_OVERDOSE * 0.5 * B18_CHEM_MOD)
 		var/inaprovaline = CLAMP(REAGENTS_OVERDOSE * 2 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline) + 0.5),0,REAGENTS_OVERDOSE * 2 * B18_CHEM_MOD)
+		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(dexalinplus)
 			wearer.reagents.add_reagent(/datum/reagent/medicine/dexalinplus,dexalinplus)
 		if(inaprovaline)
@@ -367,6 +369,7 @@
 	if(wearer.getToxLoss() > B18_automed_damage && !B18_tox_cooldown)
 		var/dylovene = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/dylovene) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		var/spaceacillin = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(dylovene)
 			wearer.reagents.add_reagent(/datum/reagent/medicine/dylovene,dylovene)
 		if(spaceacillin)
