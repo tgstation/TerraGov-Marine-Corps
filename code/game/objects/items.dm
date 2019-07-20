@@ -560,7 +560,7 @@
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click(mob/user)
+/obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
 	attack_self(user)
 
 

@@ -345,8 +345,9 @@
 	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
 	wield_delay = WIELD_DELAY_FAST
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/rifle/type71/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -358,10 +359,6 @@
 	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
-
-
-/obj/item/weapon/gun/rifle/type71/toggle_burst()
-	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
 
 
 /obj/item/weapon/gun/rifle/type71/flamer

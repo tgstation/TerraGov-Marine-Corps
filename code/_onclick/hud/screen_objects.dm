@@ -582,15 +582,15 @@
 	var/obj/item/weapon/gun/G = .
 	G?.empty_mag()
 
-/obj/screen/firearms/burstfire
-	name = "Toggle burst fire"
+/obj/screen/firearms/firemode
+	name = "Toggle fire mode"
 	icon_state = "gun_burst"
 	screen_loc = ui_gun_burst
 
-/obj/screen/firearms/burstfire/Click()
+/obj/screen/firearms/firemode/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
-	G?.toggle_burst()
+	G?.toggle_firemode()
 
 /obj/screen/firearms/unique
 	name = "Use unique action"

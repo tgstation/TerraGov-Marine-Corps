@@ -94,6 +94,9 @@
 
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
+	var/gun_firemode = GUN_FIREMODE_SEMIAUTO
+	var/list/gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+
 	var/gun_skill_category //used to know which job knowledge this gun is linked to
 
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
@@ -128,6 +131,8 @@
 
 	handle_starting_attachment()
 
+	setup_firemodes()
+
 
 //Called by the gun's New(), set the gun variables' values.
 //Each gun gets its own version of the proc instead of adding/substracting
@@ -152,7 +157,6 @@
 		for(var/path in starting_attachment_types)
 			var/obj/item/attachable/A = new path(src)
 			A.Attach(src)
-			update_attachable(A.slot)
 
 
 /obj/item/weapon/gun/Destroy()
@@ -507,8 +511,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!istype(A))
 		return
 	if(flags_gun_features & GUN_BURST_FIRING)
-		if(flags_gun_features & GUN_FULL_AUTO_ON)
-			flags_gun_features &= ~GUN_BURST_FIRING
 		return
 
 	if(!istype(A, /obj/screen))
@@ -626,10 +628,8 @@ and you're good to go.
 
 	//Number of bullets based on burst. If an active attachable is shooting, bursting is always zero.
 	var/bullets_fired = 1
-	if(flags_gun_features & GUN_BURST_ON && burst_amount > 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 		bullets_fired = burst_amount
-		if(flags_gun_features & GUN_FULL_AUTO_ON)
-			bullets_fired = 50
 		flags_gun_features |= GUN_BURST_FIRING
 
 	var/i
@@ -741,7 +741,7 @@ and you're good to go.
 		return ..()
 
 	if(M != user && user.a_intent == INTENT_HARM)
-		if(!active_attachable && CHECK_BITFIELD(flags_gun_features, GUN_BURST_ON) && burst_amount > 1)
+		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 			..()
 			Fire(M, user)
 			return TRUE
@@ -928,7 +928,7 @@ and you're good to go.
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
 		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))
 
-	if(flags_gun_features & GUN_BURST_ON && burst_amount > 1)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
@@ -1010,7 +1010,7 @@ and you're good to go.
 	//Not if the gun doesn't scatter at all, or negative scatter.
 	if(total_scatter_chance > 0)
 		var/targdist = get_dist(target, user)
-		if(flags_gun_features & GUN_BURST_ON && burst_amount > 1)//Much higher chance on a burst.
+		if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)//Much higher chance on a burst.
 			total_scatter_chance += (flags_item & WIELDED && wielded_stable()) ? burst_amount * (burst_scatter_mult + burst_scatter_bonus) : burst_amount * (5+burst_scatter_bonus)
 
 			//long range burst shots have more chance to scatter
