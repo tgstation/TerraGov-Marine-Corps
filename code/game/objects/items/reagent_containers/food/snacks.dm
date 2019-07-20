@@ -1055,7 +1055,7 @@
 	filling_color = "#9C7A68"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
 	bitesize = 2
-	tastes = list(/datum/reagent/consumable/nutriment = 1)
+	tastes = list("nutriment" = 1)
 
 /obj/item/reagent_container/food/snacks/fries
 	name = "Space Fries"
@@ -1413,7 +1413,7 @@
 	filling_color = "#5C3C11"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/drink/banana = 5, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/consumable/sodiumchloride = 1)
 	bitesize = 6
-	tastes = list("the jungle" = 1, /datum/reagent/consumable/drink/banana = 1)
+	tastes = list("the jungle" = 1, "banana" = 1)
 
 /obj/item/reagent_container/food/snacks/baguette
 	name = "Baguette"
@@ -1553,7 +1553,7 @@
 	filling_color = "#FFFBDB"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	bitesize = 2
-	tastes = list(/datum/reagent/consumable/rice = 1)
+	tastes = list("rice" = 1)
 
 /obj/item/reagent_container/food/snacks/ricepudding
 	name = "Rice Pudding"
@@ -1563,7 +1563,7 @@
 	filling_color = "#FFFBDB"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	bitesize = 2
-	tastes = list(/datum/reagent/consumable/rice = 1, "sweetness" = 1)
+	tastes = list("rice" = 1, "sweetness" = 1)
 
 /obj/item/reagent_container/food/snacks/pastatomato
 	name = "Spaghetti"
@@ -1749,7 +1749,7 @@
 	filling_color = "#76B87F"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	bitesize = 3
-	tastes = list("leaves" = 1, /datum/reagent/consumable/nutriment = 1, "meat" = 1, "valids" = 1)
+	tastes = list("leaves" = 1, "nutriment" = 1, "meat" = 1, "valids" = 1)
 
 /obj/item/reagent_container/food/snacks/appletart
 	name = "golden apple streusel tart"
