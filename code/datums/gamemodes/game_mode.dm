@@ -6,6 +6,7 @@
 	var/required_players = 0
 
 	var/round_finished
+	var/list/round_end_states = list()
 
 	var/round_time_fog
 	var/flags_round_type = NONE

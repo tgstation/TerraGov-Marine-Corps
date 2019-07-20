@@ -5,6 +5,8 @@
 	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
+	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
+
 	// Round start conditions
 	var/xeno_required_num = 1
 	var/xeno_starting_num = 0
