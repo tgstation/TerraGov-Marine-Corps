@@ -101,10 +101,10 @@
         if("Location")
             mode = PINPOINTER_MODE_TARGET
             var/locationx = input(usr, "Please input the x coordinate to search for.", "Location?" , "") as num
-            if(!locationx || !(usr in view(1,src)))
+            if(!locationx || !in_range(usr, src))
                 return
             var/locationy = input(usr, "Please input the y coordinate to search for.", "Location?" , "") as num
-            if(!locationy || !(usr in view(1,src)))
+            if(!locationy || !in_range(usr, src))
                 return
 
             var/turf/Z = get_turf(src)
