@@ -18,8 +18,7 @@
 /obj/item/pinpointer/proc/set_target()
 	if (iscrashgamemode(SSticker.mode))
 		target = input("Select the item you wish to track.", "Pinpointer") as null|anything in GLOB.gamemode_key_items
-		if(!target)
-			return
+		return
 	
 	var/obj/item/disk/nuclear/the_disk = locate()
 	if(the_disk)
@@ -29,6 +28,8 @@
 	if(!active)
 		active = TRUE
 		set_target()
+		if(!target)
+			return
 		START_PROCESSING(SSobj, src)
 		to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
 	else

@@ -1544,6 +1544,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door_control{
+	id = "starboard_engine_podlock";
+	pixel_x = 32
+	},
 /turf/open/floor/almayer,
 /area/shuttle/canterbury/general)
 "dc" = (
@@ -1726,12 +1730,6 @@
 	icon_state = "cargo_arrow"
 	},
 /area/shuttle/canterbury/general)
-"dz" = (
-/obj/machinery/door_control{
-	id = "starboard_engine_podlock"
-	},
-/turf/closed/wall/almayer,
-/area/shuttle/canterbury/general)
 "dA" = (
 /obj/machinery/door/poddoor/almayer{
 	dir = 8;
@@ -1772,7 +1770,7 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"xH" = (
+"eA" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "starboard_umbilical_outer";
 	name = "\improper Umbillical Airlock"
@@ -1783,7 +1781,7 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
-"Jr" = (
+"VH" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "port_umbilical_outer";
 	name = "\improper Umbillical Airlock"
@@ -1833,7 +1831,7 @@ aa
 as
 av
 aG
-Jr
+VH
 as
 av
 aZ
@@ -2089,7 +2087,7 @@ bM
 cz
 cL
 cW
-dz
+av
 df
 dD
 dc
@@ -2157,7 +2155,7 @@ aa
 as
 as
 bS
-xH
+eA
 as
 as
 bh
