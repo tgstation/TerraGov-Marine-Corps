@@ -134,7 +134,7 @@
 
 	GLOB.round_statistics.ravager_second_winds++
 
-	last_rage = world.time
+	last_rage = current_rage
 	add_cooldown()
 
 	X.rage = 0
