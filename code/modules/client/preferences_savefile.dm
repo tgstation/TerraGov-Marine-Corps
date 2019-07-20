@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	33
+#define SAVEFILE_VERSION_MAX	34
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,16 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 34)
+		READ_FILE(S["key_bindings"], key_bindings)
+		if(key_bindings)
+			key_bindings = sanitize_islist(key_bindings, list())
+			key_bindings["T"] = list(1 = "say")
+			key_bindings["M"] = list(1 = "me")
+			key_bindings["O"] = list(1 = "ooc")
+			key_bindings["L"] = list(1 = "looc")
+			WRITE_FILE(S["key_bindings"], key_bindings)
 
 	if(savefile_version < 33)
 		if(!length(S["key_bindings"]))

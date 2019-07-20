@@ -32,7 +32,7 @@
 	description = ""
 
 /datum/keybinding/client/ooc/down(client/user)
-	user.ooc()
+	user.ooc_wrapper()
 	return TRUE
 
 
@@ -43,5 +43,5 @@
 	description = ""
 
 /datum/keybinding/client/looc/down(client/user)
-	user.looc()
+	user.looc_wrapper()
 	return TRUE

@@ -116,7 +116,7 @@
 
 /datum/keybinding/mob/me/down(client/user)
 	var/mob/M = user.mob
-	M.me_verb()
+	M.me_wrapper()
 	return TRUE
 
 /datum/keybinding/mob/activate_inhand
