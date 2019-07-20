@@ -203,7 +203,7 @@
 	var/b_id = get_blood_id()
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		// If its blood, lets check its compatible or not and cause some toxins.
-		if(istype(R, /datum/reagent/blood) && b_id && R.type == b_id)
+		if(istype(R, /datum/reagent/blood) && b_id)
 			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(blood_type)))
 				reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 			else
@@ -234,7 +234,7 @@
 		temp_chem[R.type] = R.volume
 	data["trace_chem"] = list2params(temp_chem)
 
-	O.reagents.add_reagent(b_id, amount, data)
+	O.reagents.add_reagent(/datum/reagent/blood, amount, data)
 
 	blood_volume = max(0, blood_volume - amount) // Removes blood if human
 	return 1
