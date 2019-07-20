@@ -212,6 +212,7 @@
 "ay" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/firealarm,
+/obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/almayer,
 /area/shuttle/canterbury/general)
 "az" = (
@@ -219,6 +220,7 @@
 /obj/machinery/camera/autoname/almayer{
 	dir = 2
 	},
+/obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/almayer,
 /area/shuttle/canterbury/general)
 "aA" = (
@@ -239,11 +241,13 @@
 /area/shuttle/canterbury/general)
 "aB" = (
 /obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/almayer,
 /area/shuttle/canterbury/general)
 "aC" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/alarm,
+/obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/almayer,
 /area/shuttle/canterbury/general)
 "aD" = (
@@ -439,6 +443,7 @@
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
+/obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/almayer,
 /area/shuttle/canterbury/general)
 "aX" = (
@@ -446,6 +451,7 @@
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
+/obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/almayer,
 /area/shuttle/canterbury/general)
 "aY" = (
@@ -456,6 +462,7 @@
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
+/obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/almayer,
 /area/shuttle/canterbury/general)
 "aZ" = (
