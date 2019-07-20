@@ -652,29 +652,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 
-/mob/dead/observer/verb/analyze_air()
-	set category = "Ghost"
-	set name = "Analyze Air"
-
-	if(!istype(loc, /turf))
-		return
-
-	var/turf/T = loc
-
-	var/pressure = T.return_pressure()
-	var/env_temperature = T.return_temperature()
-	var/env_gas = T.return_gas()
-
-	to_chat(src, "<span class='boldnotice'>Results:</span>")
-	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(src, "<span class='notice'>Pressure: [round(pressure, 0.1)] kPa</span>")
-	else
-		to_chat(src, "<span class='warning'>Pressure: [round(pressure, 0.1)] kPa</span>")
-
-	to_chat(src, "<span class='notice'>Gas type: [env_gas]</span>")
-	to_chat(src, "<span class='notice'>Temperature: [round(env_temperature - T0C, 0.1)]&deg;C</span>")
-
-
 /mob/dead/observer/verb/toggle_zoom()
 	set category = "Ghost"
 	set name = "Toggle Zoom"
