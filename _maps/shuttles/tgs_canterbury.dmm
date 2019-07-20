@@ -1776,25 +1776,23 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"Wo" = (
-/turf/closed/wall/almayer,
-/area/shuttle/canterbury/medical)
-"Xq" = (
+"sl" = (
 /obj/machinery/marine_turret{
 	icon_state = "sentry_base";
 	dir = 1
 	},
 /obj/machinery/light/small,
 /obj/machinery/door_control{
-	id = "starboard_umbilical_outer"
-	},
-/obj/machinery/door_control{
+	dir = 8;
 	id = "starboard_umbilical_outer"
 	},
 /turf/open/floor/almayer{
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
+"Wo" = (
+/turf/closed/wall/almayer,
+/area/shuttle/canterbury/medical)
 
 (1,1,1) = {"
 aa
@@ -2129,7 +2127,7 @@ as
 aw
 aM
 aU
-Xq
+sl
 as
 bg
 bs
