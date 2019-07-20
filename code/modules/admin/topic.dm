@@ -686,8 +686,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
-		if(!subject)
-			return
 
 		var/fax_message
 		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
@@ -706,15 +704,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 						addressed_to = "[sender.real_name]"
 					if("Custom")
 						addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
-						if(!addressed_to)
-							return
 
 				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
-				if(!message_body)
-					return
-
 				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
-				if(!sent_by)
+
+				if(!addressed_to && !message_body && !sent_by)
 					return
 
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
@@ -725,8 +719,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				fax_message = "[input]"
 
-		if(!fax_message)
-			return
+			if(!fax_message)
+				return
 
 		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
@@ -796,8 +790,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
-		if(!subject)
-			return
 
 		var/fax_message
 		var/addressed_to
@@ -808,27 +800,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		switch(type)
 			if("Template")
 				addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
-				if(!addressed_to)
-					return
-
 				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
-				if(!message_body)
-					return
-
 				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
-				if(!sent_by)
+
+				if(!addressed_to && !message_body && !sent_by)
 					return
 
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
 
 			if("Custom")
 				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
-				if(!input)
-					return
 				fax_message = "[input]"
 
-		if(!fax_message)
-			return
+			if(!fax_message)
+				return
 
 		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
