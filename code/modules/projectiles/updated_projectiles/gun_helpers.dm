@@ -600,7 +600,7 @@ should be alright.
 	
 	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE_OFF)
 	
-	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE_ON, user.client, gun_firemode)
+	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE_ON, fire_mode, user.client)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
