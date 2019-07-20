@@ -375,7 +375,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/outfit_manager,
 	/datum/admins/proc/offer,
-	/datum/admins/proc/force_canterbury,
 	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/change_hivenumber,
 	/datum/admins/proc/view_faxes,
