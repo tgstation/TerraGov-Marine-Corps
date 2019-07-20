@@ -1051,7 +1051,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/crash/maintenancetech,
+/obj/effect/landmark/start/marine/crash/pilotofficer,
 /turf/open/floor/almayer{
 	icon_state = "orangefull"
 	},
