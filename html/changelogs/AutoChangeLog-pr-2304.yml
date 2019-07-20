@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Firemode actions added, if the gun allows for a different one."
