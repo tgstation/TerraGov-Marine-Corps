@@ -719,8 +719,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				fax_message = "[input]"
 
-			if(!fax_message)
-				return
+				if(!fax_message)
+					return
 
 		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
@@ -812,8 +812,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
 				fax_message = "[input]"
 
-			if(!fax_message)
-				return
+				if(!fax_message)
+					return
 
 		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
