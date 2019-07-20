@@ -101,7 +101,7 @@
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(is_full_window() || get_dir(target, mover) == dir)
+	if(is_full_window() || get_dir(loc, target) == dir)
 		return !density
 	else
 		return TRUE
@@ -111,7 +111,7 @@
 		return TRUE
 	if(is_full_window()) //Can always leave from a full window.
 		return TRUE
-	if(get_dir(mover, target) == dir)
+	if(get_dir(loc, target) == dir)
 		return !density
 	return TRUE
 
