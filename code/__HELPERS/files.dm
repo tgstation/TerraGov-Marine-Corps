@@ -4,6 +4,9 @@
 	if(!fexists(filename))
 		CRASH("File not found ([filename])")
 
+	if(findtext(filename, ".."))
+		CRASH("file loading attempted with parent directory pathing")
+
 	var/text = file2text(filename)
 	if(!text)
 		CRASH("File empty ([filename])")

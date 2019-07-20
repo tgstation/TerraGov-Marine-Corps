@@ -135,16 +135,16 @@ mob/living/carbon/proc/handle_hallucinations()
 						SEND_SOUND(src, 'sound/machines/windowdoor.ogg')
 					if(9)
 						//To make it more realistic, I added two gunshots (enough to kill)
-						SEND_SOUND(src, 'sound/weapons/gunshot.ogg')
+						SEND_SOUND(src, 'sound/weapons/guns/fire/gunshot.ogg')
 						spawn(rand(10,30))
-							SEND_SOUND(src, 'sound/weapons/gunshot.ogg')
+							SEND_SOUND(src, 'sound/weapons/guns/fire/gunshot.ogg')
 					if(10)
 						SEND_SOUND(src, 'sound/weapons/smash.ogg')
 					if(11)
 						//Same as above, but with tasers.
-						src << 'sound/weapons/taser.ogg'
+						SEND_SOUND(src, 'sound/weapons/guns/fire/taser.ogg')
 						spawn(rand(10,30))
-							SEND_SOUND(src, 'sound/weapons/taser.ogg')
+							SEND_SOUND(src, 'sound/weapons/guns/fire/taser.ogg')
 				//Rare audio
 					if(12)
 //These sounds are (mostly) taken from Hidden: Source

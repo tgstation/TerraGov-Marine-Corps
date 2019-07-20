@@ -592,7 +592,7 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
-	playsound(usr, 'sound/machines/click.ogg', 15, 1)
+	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	if(flags_gun_features & GUN_HAS_FULL_AUTO)
 		if(flags_gun_features & GUN_BURST_ON)
 			if(flags_gun_features & GUN_FULL_AUTO_ON)
@@ -650,7 +650,7 @@ should be alright.
 	src = G
 
 	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
-	playsound(usr, 'sound/machines/click.ogg', 15, 1)
+	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
 
 

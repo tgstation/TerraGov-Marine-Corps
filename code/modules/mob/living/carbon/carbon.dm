@@ -135,10 +135,12 @@
 	if(stat == DEAD) //Corpses don't puke
 		return
 
-	if(!lastpuke)
-		lastpuke = TRUE
-		to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-		addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
+	if(cooldowns[COOLDOWN_PUKE])
+		return
+
+	cooldowns[COOLDOWN_PUKE] = TRUE
+	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
+	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
 
 
 /mob/living/carbon/proc/do_vomit()
@@ -152,7 +154,7 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(VARSET_CALLBACK(src, lastpuke, FALSE), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)

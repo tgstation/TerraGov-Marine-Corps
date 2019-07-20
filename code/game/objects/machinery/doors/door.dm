@@ -65,8 +65,9 @@
 
 	if(ismob(AM))
 		var/mob/M = AM
-		if(world.time - M.last_bumped <= openspeed) return	//Can bump-open one airlock per second. This is to prevent shock spam.
-		M.last_bumped = world.time
+		if(M.cooldowns[COOLDOWN_BUMP]) 
+			return	//This is to prevent shock spam.
+		M.cooldowns[COOLDOWN_BUMP] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_BUMP, null), openspeed)
 		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)
 			bumpopen(M)
 		return

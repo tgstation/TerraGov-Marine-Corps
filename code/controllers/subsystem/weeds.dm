@@ -26,11 +26,11 @@ SUBSYSTEM_DEF(weeds)
 			pending -= T
 			continue
 
-		if (!T.is_weedable() || istype(T.loc, /area/arrival))
+		if ((locate(/obj/effect/alien/weeds) in T) || (locate(/obj/effect/alien/weeds/node) in T))
 			pending -= T
 			continue
 
-		if ((locate(/obj/effect/alien/weeds) in T) || (locate(/obj/effect/alien/weeds/node) in T))
+		if (!T.is_weedable() || istype(T.loc, /area/arrival))
 			pending -= T
 			continue
 
@@ -50,8 +50,9 @@ SUBSYSTEM_DEF(weeds)
 	// We create weeds outside of the loop to not influence new weeds within the loop
 	for(var/A in creating)
 		var/turf/T = A
-		var/obj/effect/alien/weeds/node/N = creating[T]
 		creating -= T
+
+		var/obj/effect/alien/weeds/node/N = creating[T]
 		// Adds a bit of jitter to the spawning weeds.
 		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(0,10))
 		pending -= T

@@ -1072,3 +1072,24 @@
 
 	log_admin("[key_name(usr)] played the [choice] cinematic.")
 	message_admins("[ADMIN_TPMONTY(usr)] played the [choice] cinematic.")
+
+
+/datum/admins/proc/set_tip()
+	set category = "Fun"
+	set name = "Set Tip"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/tip = input(usr, "Please specify your tip that you want to send to the players.", "Tip") as message|null
+	if(!tip)
+		return
+
+	SSticker.selected_tip = tip
+
+	//If we've already tipped, then send it straight away.
+	if(SSticker.tipped)
+		SSticker.send_tip_of_the_round()
+
+	log_admin("[key_name(usr)] set a tip of the round: [tip]")
+	message_admins("[ADMIN_TPMONTY(usr)] set a tip of the round.")

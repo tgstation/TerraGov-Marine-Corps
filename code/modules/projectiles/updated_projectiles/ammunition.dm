@@ -331,8 +331,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 				return
-				
-			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+
+			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)
 			AM.current_rounds += S
 			bullet_amount -= S
@@ -349,7 +349,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(bullet_amount == max_bullet_amount)
 				to_chat(user, "<span class='warning'>[src] is full!</span>")
 				return
-			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 			var/S = min(AM.current_rounds, max_bullet_amount - bullet_amount)
 			AM.current_rounds -= S
 			bullet_amount += S

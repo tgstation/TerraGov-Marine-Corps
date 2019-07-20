@@ -33,6 +33,7 @@ SUBSYSTEM_DEF(ticker)
 	var/list/round_end_events
 
 	var/tipped = FALSE
+	var/selected_tip
 
 	var/queue_delay = 0
 	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
@@ -303,16 +304,13 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/tip
-	GLOB.marinetips = world.file2list("strings/tips/marine.txt")
-	GLOB.xenotips = world.file2list("strings/tips/xeno.txt")
-	GLOB.metatips = world.file2list("strings/tips/meta.txt")
-	GLOB.joketips = world.file2list("strings/tips/meme.txt")
 
-
-	if(prob(95) && length(ALLTIPS))
+	if(selected_tip)
+		tip = selected_tip
+	else if(prob(95) && length(ALLTIPS))
 		tip = pick(ALLTIPS)
-	else if(length(GLOB.joketips))
-		tip = pick(GLOB.joketips)
+	else if(length(SSstrings.get_list_from_file("tips/meme")))
+		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
 		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")

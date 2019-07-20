@@ -11,7 +11,7 @@
 	max_storage_space = 4
 	draw_mode = 1
 	var/base_icon = "m37_holster"
-	var/drawSound = 'sound/weapons/gun_rifle_draw.ogg'
+	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 
 
 /obj/item/storage/large_holster/update_icon()

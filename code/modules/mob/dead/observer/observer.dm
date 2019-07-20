@@ -96,10 +96,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	grant_all_languages()
 
-	for(var/path in subtypesof(/datum/action/observer_action))
-		var/datum/action/observer_action/A = new path()
-		A.give_action(src)
-
 	return ..()
 
 
@@ -222,9 +218,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else if(real_name)
 		ghost.real_name = real_name
 	else if(gender == MALE)
-		ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+		ghost.real_name = capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 	else
-		ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+		ghost.real_name = capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 
 	ghost.name = ghost.real_name
 	ghost.gender = gender
@@ -889,3 +885,26 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
+
+
+/mob/dead/observer/verb/toggle_actions()
+	set category = "Ghost"
+	set name = "Toggle Static Action Buttons"
+
+	client.prefs.observer_actions = !client.prefs.observer_actions
+	client.prefs.save_preferences()
+
+
+	to_chat(src, "<span class='notice'>You will [client.prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons.</span>")
+
+	if(!client.prefs.observer_actions)
+		for(var/datum/action/observer_action/A in actions)
+			A.remove_action(src)
+
+	else if(/datum/action/observer_action in actions)
+		return
+
+	else
+		for(var/path in subtypesof(/datum/action/observer_action))
+			var/datum/action/observer_action/A = new path()
+			A.give_action(src)

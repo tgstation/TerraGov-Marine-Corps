@@ -73,7 +73,7 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 15, 1)
+	playsound(src.loc, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 
 	if(blood_overlay) //updates blood overlay, if any
 		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh

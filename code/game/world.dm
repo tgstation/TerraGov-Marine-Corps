@@ -131,12 +131,44 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 /world/Reboot(ping)
 	if(ping)
 		send2update(CONFIG_GET(string/restart_message))
-		send2update("Round ID [GLOB.round_id] finished | Next Ground Map: [SSmapping.next_map_configs[GROUND_MAP] ? SSmapping.next_map_configs[GROUND_MAP].map_name : SSmapping.configs[GROUND_MAP].map_name] | Next Ship Map: [SSmapping.next_map_configs[SHIP_MAP] ? SSmapping.next_map_configs[SHIP_MAP].map_name : SSmapping.configs[SHIP_MAP].map_name] | Round End State: [SSticker.mode?.round_finished] | Players: [length(GLOB.clients)]")
+		var/list/msg = list()
+
+		if(GLOB.round_id)
+			msg += "Round ID [GLOB.round_id] finished"
+
+		var/datum/map_config/next_gound_map
+		var/datum/map_config/next_ship_map
+
+		if(length(SSmapping.next_map_configs)) //To avoid a bad index, let's check if there's actually a list.
+			next_gound_map = SSmapping.next_map_configs[GROUND_MAP]
+			next_ship_map = SSmapping.next_map_configs[SHIP_MAP]
+
+		if(!next_gound_map) //The list could hold a single item, so better check each because there's no guarantee both exist.
+			next_gound_map = SSmapping.configs[GROUND_MAP]
+		if(!next_ship_map)
+			next_ship_map = SSmapping.configs[SHIP_MAP]
+
+		if(next_gound_map)
+			msg += "Next Ground Map: [next_gound_map.map_name]"
+		if(next_ship_map)
+			msg += "Next Ship Map: [next_ship_map.map_name]"
+
+		if(SSticker.mode)
+			msg += "Round End State: [SSticker.mode.round_finished]"
+
+		if(length(GLOB.clients))
+			msg += "Players: [length(GLOB.clients)]"
+
+		if(length(msg))
+			send2update(msg.Join(" | "))
+
 	TgsReboot()
-	for(var/i in GLOB.clients)
-		var/client/C = i
-		if(CONFIG_GET(string/server))
-			C << link("byond://[CONFIG_GET(string/server)]")
+
+	var/linkylink = CONFIG_GET(string/server)
+	if(linkylink)
+		for(var/cli in GLOB.clients)
+			cli << link("byond://[linkylink]")
+
 	return ..()
 
 

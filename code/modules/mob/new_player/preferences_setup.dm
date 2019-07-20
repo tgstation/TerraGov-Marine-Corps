@@ -159,7 +159,7 @@
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace || firstspace == name_length)
-			real_name += " " + pick(GLOB.last_names)
+			real_name += " " + pick(SSstrings.get_list_from_file("names/last_name"))
 
 	character.real_name = real_name
 	character.name = character.real_name

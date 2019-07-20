@@ -6,11 +6,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
-	fire_sound = 'sound/weapons/gun_44mag.ogg'
-	reload_sound = 'sound/weapons/gun_revolver_cocked.ogg'
-	cocked_sound = 'sound/weapons/gun_revolver_spun.ogg'
-	unload_sound = 'sound/weapons/gun_revolver_unload.ogg'
-	var/hand_reload_sound = 'sound/weapons/gun_revolver_load3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
+	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
+	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
+	var/hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	var/spin_sound = 'sound/effects/spin.ogg'
 	var/thud_sound = 'sound/effects/thud.ogg'
 	var/trick_delay = 6
@@ -333,7 +333,7 @@
 	caliber = "7.62x38mm Rimmed" //codex
 	max_shells = 7 //codex
 	origin_tech = "combat=3;materials=1;syndicate=3"
-	fire_sound = 'sound/weapons/gun_ny.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
 	attachable_allowed = list(
@@ -364,7 +364,7 @@
 	item_state = "sw357"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/gun_revolver.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	attachable_allowed = list(
@@ -401,7 +401,7 @@
 	caliber = ".454 Casull" //codex
 	max_shells = 6 //codex
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_mateba.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
 	force = 15
 	attachable_allowed = list(
@@ -448,7 +448,7 @@
 	item_state = "cmb"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/gun_revolver_small.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver_small.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
 	attachable_allowed = list(
