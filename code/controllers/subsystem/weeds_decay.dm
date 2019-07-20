@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(weeds_decay)
 			continue
 
 		var/obj/effect/alien/weeds/W = locate() in T
-		if(QDELETED(W) || W.parent_node)
+		if(QDELETED(W) || W.parent_node || istype(W, /obj/effect/alien/weeds/node))
 			decaying -= T
 			continue
 
