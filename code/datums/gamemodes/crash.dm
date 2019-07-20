@@ -19,15 +19,11 @@
 	var/shuttle_id = "tgs_canterbury"
 	var/obj/docking_port/mobile/crashmode/shuttle
 
+
 /datum/game_mode/crash/New()
 	. = ..()
 
 	xenomorphs = list()
-
-/datum/game_mode/crash/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
-	priority_announce("WAKE THE FUCK UP, WE ARE CRASHING INTO THE FUCKING PLANET AHHHHHHH", type = ANNOUNCEMENT_PRIORITY) // TODO: Better text.
-	playsound(shuttle, 'sound/machines/alarm.ogg', 75, 0, 30)
 
 
 /datum/game_mode/crash/can_start()
@@ -41,9 +37,47 @@
 	return TRUE
 
 
-/datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
-	shuttle.crashing = TRUE
-	SSshuttle.moveShuttleToDock(shuttle.id, target, FALSE) // FALSE = instant arrival
+/datum/game_mode/crash/pre_setup()
+	. = ..()
+	// Spawn the ship
+	if(!SSmapping.shuttle_templates[shuttle_id])
+		message_admins("Gamemode: Shuttle [shuttle_id] wasn't found and can't be loaded")
+		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
+		return FALSE
+
+	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
+	var/obj/docking_port/stationary/L = SSshuttle.getDock("crashmodeloading")
+	shuttle = SSshuttle.action_load(S, L)
+
+	// Reset all spawnpoints after spawning the ship
+	GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
+	GLOB.jobspawn_overrides = list()
+	GLOB.latejoin = shuttle.spawnpoints
+	GLOB.latejoin_cryo = shuttle.spawnpoints
+	GLOB.latejoin_gateway = shuttle.spawnpoints
+
+	// Create xenos
+	var/number_of_xenos = length(xenomorphs)
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	for(var/i in xenomorphs)
+		var/datum/mind/M = i
+		if(M.assigned_role == ROLE_XENO_QUEEN)
+			transform_ruler(M, number_of_xenos > HN.xenos_per_queen)
+		else
+			transform_xeno(M)
+
+
+/datum/game_mode/crash/setup()
+	SSjob.DivideOccupations() 
+	create_characters() //Create player characters
+	collect_minds()
+	reset_squads()
+
+	equip_characters()
+
+	transfer_characters()	//transfer keys to the new mobs
+	return TRUE
+
 
 /datum/game_mode/crash/post_setup()
 	. = ..()
@@ -76,55 +110,16 @@
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS) // TODO: REMOVE ADMIN TIMING
 	// addtimer(CALLBACK(src, .proc/crash_shuttle, target), rand(4 MINUTES, 7 MINUTES) // TODO: FIX timing here
 
-/datum/game_mode/crash/setup()
-	SSjob.DivideOccupations() 
-	create_characters() //Create player characters
-	collect_minds()
-	reset_squads()
 
-	// Reassign everyone to the same squad
-	for(var/i in GLOB.new_player_list)
-		var/mob/new_player/N = i
-		var/mob/living/carbon/human/player = N.new_character
-		if(!istype(player) || !player?.mind.assigned_role)
-			continue
+/datum/game_mode/crash/announce()
+	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
+	priority_announce("WAKE THE FUCK UP, WE ARE CRASHING INTO THE FUCKING PLANET AHHHHHHH", type = ANNOUNCEMENT_PRIORITY) // TODO: Better text.
+	playsound(shuttle, 'sound/machines/alarm.ogg', 75, 0, 30)
+	
 
-		player.change_squad("Alpha") // TODO: There could be a better way to do this, but we need to rework squads / jobs / etc.
-
-	equip_characters()
-
-	transfer_characters()	//transfer keys to the new mobs
-
-	return TRUE
-
-/datum/game_mode/crash/pre_setup()
-	. = ..()
-	// Spawn the ship
-	if(!SSmapping.shuttle_templates[shuttle_id])
-		message_admins("Gamemode: Shuttle [shuttle_id] wasn't found and can't be loaded")
-		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
-		return FALSE
-
-	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
-	var/obj/docking_port/stationary/L = SSshuttle.getDock("crashmodeloading")
-	shuttle = SSshuttle.action_load(S, L)
-
-	// Reset all spawnpoints after spawning the ship
-	GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
-	GLOB.jobspawn_overrides = list()
-	GLOB.latejoin = shuttle.spawnpoints
-	GLOB.latejoin_cryo = shuttle.spawnpoints
-	GLOB.latejoin_gateway = shuttle.spawnpoints
-
-	// Create xenos
-	var/number_of_xenos = length(xenomorphs)
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	for(var/i in xenomorphs)
-		var/datum/mind/M = i
-		if(M.assigned_role == ROLE_XENO_QUEEN)
-			transform_ruler(M, number_of_xenos > HN.xenos_per_queen)
-		else
-			transform_xeno(M)
+/datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
+	shuttle.crashing = TRUE
+	SSshuttle.moveShuttleToDock(shuttle.id, target, FALSE) // FALSE = instant arrival
 
 
 #define CRASH_DRAW (1 << 0)
@@ -172,6 +167,7 @@
 			round_finished = MODE_CRASH_M_MAJOR 
 
 	return FALSE
+
 
 /datum/game_mode/crash/declare_completion()
 	. = ..()
@@ -273,4 +269,21 @@
 		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HN.stored_larva += xeno_starting_num - length(xenomorphs)
 
+	return TRUE
+
+
+// Overrides
+
+/datum/game_mode/crash/job_after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	if(!istype(H))
+		return FALSE
+
+	H.change_squad("Alpha")
+	H.hud_set_squad()
+	H.nutrition = rand(250,300)
+	if(!H.mind?.assigned_squad)
+		return TRUE
+	var/datum/squad/S = H.mind.assigned_squad
+	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[S.color]>[lowertext(S.name)] squad</font></b>."})
+	
 	return TRUE
