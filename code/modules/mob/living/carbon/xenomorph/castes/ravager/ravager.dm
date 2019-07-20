@@ -64,8 +64,9 @@
 
 /mob/living/carbon/xenomorph/ravager/handle_status_effects()
 	if(rage) //Rage increases speed, attack speed, armor and fire resistance, and stun/knockdown recovery; speed is handled under movement_delay() in XenoProcs.dm
-		if(world.time > last_rage + 30) //Decrement Rage if it's been more than 3 seconds since we last raged.
+		if(world.time > last_rage + 3 SECONDS) //Decrement Rage if it's been more than 3 seconds since we last raged.
 			rage = CLAMP(rage - 5,0,50) //Rage declines over time.
+			last_rage = world.time
 		adjust_stunned( round(-rage * 0.1,0.01) ) //Recover 0.1 more stun stacks per unit of rage; min 0.1, max 5
 		adjust_knocked_down( round(-rage * 0.1, 0.01 ) ) //Recover 0.1 more knockdown stacks per unit of rage; min 0.1, max 5
 		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
