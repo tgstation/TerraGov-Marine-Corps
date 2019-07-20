@@ -66,10 +66,10 @@
 		to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
 
 
-/datum/game_mode/proc/activate_distress()
-	picked_call = get_random_call()
+/datum/game_mode/proc/activate_distress(datum/emergency_call/chosen_call = null)
+	picked_call = chosen_call || get_random_call()
 
-	if(!picked_call) //Something went horribly wrong
+	if(!istype(picked_call)) //Something went horribly wrong
 		return FALSE
 
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated

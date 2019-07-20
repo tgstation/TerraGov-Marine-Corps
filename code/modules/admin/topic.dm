@@ -452,7 +452,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!input)
 			return
 
-		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:[input]</span>")
+		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:<br/>[input]</span>")
 
 		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
@@ -479,10 +479,22 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!SSticker?.mode || SSticker.mode.waiting_for_candidates)
 			return
 
-		SSticker.mode.activate_distress()
+		var/list/valid_calls = list("Random")
+		for(var/datum/emergency_call/E in SSticker.mode.all_calls) //Loop through all potential candidates
+			if(E.probability < 1) //Those that are meant to be admin-only
+				continue
 
-		log_admin("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
-		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
+			valid_calls.Add(E)
+
+		var/chosen_call = input(usr, "Select a distress to send", "Emergency Response") as null|anything in valid_calls
+
+		if(chosen_call == "Random")
+			SSticker.mode.activate_distress()
+		else
+			SSticker.mode.activate_distress(chosen_call)
+
+		log_admin("[key_name(usr)] has sent a [chosen_call] distress beacon early, requested by [key_name(M)]")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent a [chosen_call] distress beacon early, requested by [ADMIN_TPMONTY(M)]")
 
 
 	else if(href_list["thunderdome"])
