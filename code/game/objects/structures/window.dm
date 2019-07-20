@@ -249,7 +249,7 @@
 			update_nearby_icons()
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>"))
-		else if(static_frame && state == 0)
+		else if(!reinf || (static_frame && state == 0))
 			disassemble_window()
 
 	else if(iscrowbar(I) && reinf && state <= 1 && deconstructable)
