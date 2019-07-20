@@ -206,7 +206,7 @@
 	icon_state = "m42c"
 	item_state = "m42c"
 	max_shells = 6 //codex
-	caliber = "10x99mm Caseless" //codex
+	caliber = "10x99mm" //codex
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
