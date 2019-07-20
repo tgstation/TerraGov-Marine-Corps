@@ -31,8 +31,8 @@ GLOBAL_LIST_INIT(gamemode_crash_music, list(
 	xenomorphs = list()
 
 /datum/game_mode/crash/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.config.map_name]!</span>")
-	priority_announce("WAKE THE FUCK UP, WE ARE CRASHING INTO THE FUCKING PLANET AHHHHHHH", type = ANNOUNCEMENT_PRIORITY)
+	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
+	priority_announce("WAKE THE FUCK UP, WE ARE CRASHING INTO THE FUCKING PLANET AHHHHHHH", type = ANNOUNCEMENT_PRIORITY) // TODO: Better text.
 	playsound(shuttle, 'sound/machines/alarm.ogg', 75, 0, 30)
 
 
@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(gamemode_crash_music, list(
 /datum/game_mode/crash/declare_completion()
 	. = ..()
 	to_chat(world, "<span class='round_header'>|[round_finished]|</span>")
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.config.map_name].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
 	
 	SEND_SOUND(world, GLOB.gamemode_crash_music[round_finished])
 	
