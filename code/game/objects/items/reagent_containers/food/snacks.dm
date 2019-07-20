@@ -748,7 +748,7 @@
 /obj/item/reagent_container/food/snacks/roburger/Initialize()
 	. = ..()
 	if(prob(5))
-		reagents.add_reagent("nanites", 2)
+		reagents.add_reagent(/datum/reagent/nanites, 2)
 
 /obj/item/reagent_container/food/snacks/roburgerbig
 	name = "roburger"
