@@ -40245,6 +40245,10 @@
 "cLf" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/storage/testroom)
+"cVK" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/ice_colony/exterior/surface/landing_pad2)
 "dfU" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -40281,6 +40285,10 @@
 /obj/structure/sign/electricshock,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"lPy" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/exterior/surface/landing_pad)
 "rcI" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
@@ -45238,7 +45246,7 @@ afd
 afd
 afd
 afd
-afd
+cVK
 afd
 afd
 afd
@@ -87234,7 +87242,7 @@ aYC
 aYC
 aYC
 aYC
-aYC
+lPy
 aYC
 aYC
 aYC

@@ -20432,6 +20432,10 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
+"jzx" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "jCY" = (
 /obj/structure/sign/redcross{
 	dir = 8
@@ -29214,7 +29218,7 @@ aOW
 aOW
 aOW
 aOW
-aOW
+jzx
 aOW
 aOW
 aOW

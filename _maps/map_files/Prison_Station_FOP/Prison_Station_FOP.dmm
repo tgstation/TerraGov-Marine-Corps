@@ -53635,6 +53635,10 @@
 	dir = 1
 	},
 /area/prison/cellblock/lowsec/se)
+"ilt" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "ilF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -53866,6 +53870,10 @@
 	},
 /turf/open/floor/prison,
 /area/prison/cellblock/vip)
+"wGh" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/prison/hangar/civilian)
 "xHS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -57872,7 +57880,7 @@ aok
 aok
 aok
 aok
-aok
+wGh
 aoj
 aok
 aok
@@ -114927,7 +114935,7 @@ aYM
 aYM
 aYM
 bcF
-aYM
+ilt
 aYM
 aYM
 aYM

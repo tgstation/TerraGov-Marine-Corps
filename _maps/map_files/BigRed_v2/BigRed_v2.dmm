@@ -26272,6 +26272,10 @@
 	dir = 5
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"jFj" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "jKb" = (
 /obj/structure/sign/safety/blast_door,
 /turf/open/floor/tile/dark/purple2/corner{
@@ -26962,6 +26966,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"ush" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "uHK" = (
 /obj/item/tool/wet_sign,
 /obj/effect/decal/cleanable/dirt,
@@ -33069,7 +33077,7 @@ aao
 aao
 aao
 aau
-aao
+jFj
 aao
 aao
 aao
@@ -34254,7 +34262,7 @@ bie
 bie
 bie
 bmM
-bie
+ush
 bie
 bie
 bie
