@@ -22,7 +22,6 @@
 
 /datum/game_mode/crash/New()
 	. = ..()
-
 	xenomorphs = list()
 
 

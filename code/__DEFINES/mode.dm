@@ -57,12 +57,19 @@
 #define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
 #define MODE_BATTLEFIELD_DRAW_DEATH		"DRAW: My Friends Are Dead"
 
+// Crash gamemode
 #define MODE_CRASH_X_MAJOR		"Xenomorph Major Victory"
 #define MODE_CRASH_M_MAJOR		"Marine Major Victory"
 #define MODE_CRASH_X_MINOR		"Xenomorph Minor Victory"
 #define MODE_CRASH_M_MINOR		"Marine Minor Victory"
 #define MODE_CRASH_DRAW_DEATH	"DRAW: Mutual Annihilation"
 #define MODE_GENERIC_DRAW_NUKE			"DRAW: Nuclear Explosion"
+
+#define CRASH_DRAW (1 << 0)
+#define CRASH_XENO_MAJOR (1 << 1)
+#define CRASH_XENO_MINOR (1 << 2)
+#define CRASH_MARINE_MINOR (1 << 3)
+#define CRASH_MARINE_MAJOR (1 << 4)
 
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\

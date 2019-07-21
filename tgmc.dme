@@ -33,7 +33,6 @@
 #include "code\__DEFINES\construction.dm"
 #include "code\__DEFINES\equipment.dm"
 #include "code\__DEFINES\flags.dm"
-#include "code\__DEFINES\game_mode.dm"
 #include "code\__DEFINES\is_helpers.dm"
 #include "code\__DEFINES\jobs.dm"
 #include "code\__DEFINES\language.dm"
