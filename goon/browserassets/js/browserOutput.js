@@ -157,8 +157,8 @@ function linkify_fallback(text) {
 
 function emojify(node) {
 	var rex = /:[\w\d\-_]+:/g;
-	node.innerHTML = node.innerHTML.replace(rex, function ($0) {
-		return '<i class="em em-'+$0.substring(1, $0.length-1)+'">'+$0+'</i>';
+	node.innerHTML = node.innerHTML.replace(rex, function (match) {
+		return '<i class="em em-'+match.substring(1, match.length-1)+'">'+match+'</i>';
 	});
 }
 
