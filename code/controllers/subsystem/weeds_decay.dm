@@ -30,9 +30,9 @@ SUBSYSTEM_DEF(weeds_decay)
 		for(var/direction in GLOB.cardinals) 
 			var/turf/adj = get_step(T, direction)
 			if(locate(/obj/effect/alien/weeds) in adj)
-				decay_chance -= rand(25, 40)
+				decay_chance -= rand(20, 24)
 
-		if(decay_chance > 0 && prob(decay_chance))
+		if(prob(decay_chance))
 			W.parent_node = null // So it wont try to regrow
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, W), rand(0, 7 SECONDS))
 			decaying -= T
