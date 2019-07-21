@@ -60,7 +60,8 @@
 
 /obj/item/pinpointer/examine(mob/user)
 	. = ..()
-	for(var/obj/machinery/nuclearbomb/bomb in GLOB.machines)
+	for(var/i in GLOB.nuke_list)
+		var/obj/machinery/nuclearbomb/bomb = i
 		if(bomb.timing)
 			to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
 

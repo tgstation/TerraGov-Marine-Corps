@@ -26,6 +26,12 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
+	GLOB.nuke_list += src
+
+	
+/obj/machinery/nuclearbomb/Destroy()
+	GLOB.nuke_list -= src
+	return ..()
 
 /obj/machinery/nuclearbomb/process()
 	if (timing)
