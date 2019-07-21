@@ -224,9 +224,8 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			flick("nuclearbombc", src)
 			icon_state = "nuclearbomb1"
 		extended = TRUE
-	return
 
-obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
+/obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	var/dat = {"
 	<b>Nuclear Fission Explosive</b><br>
 	Nuclear Device Wires:<hr>
