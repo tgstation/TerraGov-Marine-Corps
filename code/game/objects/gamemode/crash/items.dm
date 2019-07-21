@@ -12,7 +12,7 @@
 
 /obj/machinery/nuclearbomb/crash/explode()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/set_victory_condition), 45 SECONDS) // TODO: Refine the time here.
+	addtimer(CALLBACK(src, .proc/set_victory_condition), 45 SECONDS) // TODO: Refine the time here, for however long the cinematic is
 	
 
 /obj/machinery/nuclearbomb/crash/make_deployable()
