@@ -67,18 +67,6 @@
 			transform_xeno(M)
 
 
-/datum/game_mode/crash/setup()
-	SSjob.DivideOccupations() 
-	create_characters() //Create player characters
-	collect_minds()
-	reset_squads()
-
-	equip_characters()
-
-	transfer_characters()	//transfer keys to the new mobs
-	return TRUE
-
-
 /datum/game_mode/crash/post_setup()
 	. = ..()
 

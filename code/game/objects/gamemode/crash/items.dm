@@ -42,12 +42,8 @@
 		return
 	if (extended)
 		if (!ishuman(user))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return 1
-
-		if (!ishuman(user))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return 1
+			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+			return TRUE
 		user.set_interaction(src)
 
 
@@ -90,9 +86,9 @@
 			return
 		if(removal_stage < 5)
 			anchored = TRUE
-			visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
-			visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+			visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 		if(!lighthack)
 			flick("nuclearbombc", src)
 			icon_state = "nuclearbomb1"
@@ -169,14 +165,14 @@
 		if (href_list["anchor"])
 			if(removal_stage == 5)
 				anchored = FALSE
-				visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+				visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 				return
 
 			anchored = !anchored
 			if(anchored)
-				visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
+				visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
 			else
-				visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
+				visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
 
 	updateUsrDialog()
 

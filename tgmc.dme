@@ -365,7 +365,6 @@
 #include "code\game\objects\effects\temporary_visuals\temporary_visual.dm"
 #include "code\game\objects\gamemode\crash\items.dm"
 #include "code\game\objects\gamemode\crash\machines.dm"
-#include "code\game\objects\gamemode\crash\structures.dm"
 #include "code\game\objects\items\ashtray.dm"
 #include "code\game\objects\items\autopsy_scanner.dm"
 #include "code\game\objects\items\binoculars.dm"

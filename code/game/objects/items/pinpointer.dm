@@ -15,7 +15,7 @@
 	var/active = FALSE
 	var/target = null
 
-/obj/item/pinpointer/proc/set_target()
+/obj/item/pinpointer/proc/set_target(mob/user)
 	if (iscrashgamemode(SSticker.mode))
 		target = input("Select the item you wish to track.", "Pinpointer") as null|anything in GLOB.gamemode_key_items
 		return
@@ -24,19 +24,19 @@
 	if(the_disk)
 		target = the_disk
 
-/obj/item/pinpointer/attack_self()
+/obj/item/pinpointer/attack_self(mob/user)
 	if(!active)
 		active = TRUE
-		set_target()
+		set_target(user)
 		if(!target)
 			return
 		START_PROCESSING(SSobj, src)
-		to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
+		to_chat(user, "<span class='notice'>You activate the pinpointer</span>")
 	else
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
 		icon_state = "pinoff"
-		to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
+		to_chat(user, "<span class='notice'>You deactivate the pinpointer</span>")
 
 /obj/item/pinpointer/process()
 	if(!active)
@@ -71,19 +71,19 @@
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
 	var/mode = PINPOINTER_MODE_DISK  // Mode 0 locates disk, mode 1 locates coordinates, 2 to find an item
 
-/obj/item/pinpointer/advpinpointer/set_target()
+/obj/item/pinpointer/advpinpointer/set_target(mob/user)
 	if(mode == PINPOINTER_MODE_DISK)
 		var/obj/item/disk/nuclear/the_disk = locate()
 		if(the_disk)
 			target = the_disk
 	if(mode == PINPOINTER_MODE_TARGET)
 		if (!target)
-			to_chat(usr, "<span class='notice'>\The [src] beeps, and turns off</span>")
+			to_chat(user, "<span class='notice'>\The [src] beeps, and turns off</span>")
 			active = FALSE
 			return
 	if(mode == PINPOINTER_MODE_UNKNOWN)
 		// This never worked,
-		to_chat(usr, "<span class='notice'>\The [src] beeps twice, and turns off</span>")
+		to_chat(user, "<span class='notice'>\The [src] beeps twice, and turns off</span>")
 		active = FALSE
 		return
 
@@ -99,7 +99,7 @@
 	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
 		if("Disk Recovery")
 			mode = PINPOINTER_MODE_DISK
-			return attack_self()
+			return attack_self(usr)
 		if("Location")
 			mode = PINPOINTER_MODE_TARGET
 			var/locationx = input(usr, "Please input the x coordinate to search for.", "Location?" , "") as num
