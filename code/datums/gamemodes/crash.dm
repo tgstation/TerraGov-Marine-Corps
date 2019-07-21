@@ -8,6 +8,7 @@
 	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
 
 	// Round end conditions
+	var/shuttle_landed = FALSE
 	var/marines_evac = FALSE
 	var/planet_nuked = FALSE
 
@@ -101,13 +102,14 @@
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, target, FALSE) // FALSE = instant arrival
+	shuttle_landed = TRUE
 
 
 /datum/game_mode/crash/check_finished()
 	if(round_finished)
 		return TRUE
 
-	if(world.time < (SSticker.round_start_time + 1 MINUTES))
+	if(!shuttle_landed)
 		return FALSE
 
 	var/list/living_player_list = count_humans_and_xenos()
