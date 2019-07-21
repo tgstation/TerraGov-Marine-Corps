@@ -49,11 +49,11 @@
 
 		var/safe_text = (safety) ? "Safe" : "Engaged"
 		var/status
-		if (auth)
-			if (has_auth)
-				status = "[timing ? "Func/Set" : "Functional"]-[safe_text]"
+		if (has_auth)
+			if (timing)
+				status = "Func/Set-[safe_text]"
 			else
-				status = "Auth. S2-[safe_text]"
+				status = "Functional-[safe_text]"
 		else
 			if (timing)
 				status = "Set-[safe_text]"
