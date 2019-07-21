@@ -117,6 +117,13 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	dir = 4;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
 /turf/open/floor/almayer{
 	icon_state = "redfull"
 	},
@@ -137,12 +144,6 @@
 /area/shuttle/canterbury/cic)
 "aq" = (
 /obj/structure/table/almayer,
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 7
-	},
 /obj/machinery/power/apc/almayer{
 	dir = 1
 	},
@@ -261,21 +262,14 @@
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "aE" = (
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/door/poddoor/almayer{
+	id = "port_umbilical_inner";
+	name = "\improper Umbillical Airlock"
 	},
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
 	},
-/obj/effect/landmark/start/latejoin,
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "aF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -465,15 +459,14 @@
 /turf/open/floor/plating/almayer,
 /area/shuttle/canterbury/general)
 "aY" = (
-/obj/machinery/light{
+/obj/machinery/door/poddoor/almayer{
+	id = "starboard_umbilical_inner";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/plating/almayer,
+/turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "aZ" = (
 /obj/machinery/power/fusion_engine/random,
@@ -1329,16 +1322,24 @@
 	},
 /area/shuttle/canterbury/general)
 "cD" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/almayer{
-	icon_state = "dark_sterile"
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
 	},
-/area/shuttle/canterbury/medical)
+/obj/effect/landmark/start/latejoin,
+/obj/item/radio/intercom,
+/obj/item/radio/intercom{
+	anyai = 1;
+	dir = 4;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
 "cE" = (
 /obj/effect/landmark/start/marine/crash/medicalofficer,
 /turf/open/floor/almayer{
@@ -1569,6 +1570,56 @@
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury/general)
+"da" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/obj/effect/landmark/start/latejoin,
+/obj/item/radio/intercom{
+	anyai = 1;
+	dir = 8;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
+"db" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	dir = 4;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/almayer{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
+"dc" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
 "dd" = (
 /turf/open/floor/almayer,
 /area/shuttle/canterbury/general)
@@ -1621,24 +1672,20 @@
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "dk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/machinery/camera/autoname/almayer{
+	dir = 4;
+	icon_state = "camera"
 	},
 /obj/item/radio/intercom{
 	anyai = 1;
+	dir = 4;
 	freerange = 1;
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
+/turf/open/floor/almayer{
+	icon_state = "cargo"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "dm" = (
 /obj/machinery/door_control{
@@ -1662,22 +1709,6 @@
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
-"dq" = (
-/obj/machinery/door/poddoor/almayer{
-	id = "port_umbilical_inner";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
-/turf/open/floor/almayer/mono,
-/area/shuttle/canterbury/general)
 "ds" = (
 /obj/machinery/door/poddoor/almayer{
 	id = "starboard_umbilical_inner";
@@ -1698,31 +1729,6 @@
 	},
 /turf/closed/wall/almayer,
 /area/shuttle/canterbury/medical)
-"du" = (
-/obj/machinery/door/poddoor/almayer{
-	id = "starboard_umbilical_inner";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
-/turf/open/floor/almayer/mono,
-/area/shuttle/canterbury/general)
-"dv" = (
-/obj/machinery/camera/autoname/almayer{
-	dir = 4;
-	icon_state = "camera"
-	},
-/turf/open/floor/almayer{
-	icon_state = "cargo"
-	},
-/area/shuttle/canterbury/general)
 "dy" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1852,7 +1858,7 @@ bQ
 ca
 ci
 cr
-cD
+db
 cP
 ch
 aa
@@ -1893,7 +1899,7 @@ aa
 as
 av
 aO
-dq
+aE
 av
 av
 bb
@@ -1920,7 +1926,7 @@ ab
 ax
 aH
 aP
-aE
+cD
 aX
 bc
 bl
@@ -1986,7 +1992,7 @@ cO
 cT
 Wo
 dh
-dv
+dk
 dE
 "}
 (8,1,1) = {"
@@ -2063,7 +2069,7 @@ cy
 cK
 cV
 cm
-dk
+dc
 as
 as
 "}
@@ -2076,7 +2082,7 @@ ab
 aD
 aL
 aT
-aY
+da
 aX
 be
 bq
@@ -2101,7 +2107,7 @@ aa
 as
 av
 ds
-du
+aY
 av
 av
 bf
