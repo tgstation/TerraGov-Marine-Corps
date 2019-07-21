@@ -41,7 +41,6 @@
 	. = ..()
 	// Spawn the ship
 	if(!SSmapping.shuttle_templates[shuttle_id])
-		message_admins("Gamemode: Shuttle [shuttle_id] wasn't found and can't be loaded")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
 		return FALSE
 
@@ -92,7 +91,7 @@
 		target = S
 
 	if(!target)
-		message_admins("<span class='warning'>Unable to get a valid shuttle target!</span>")
+		CRASH("Unable to get a valid shuttle target!")
 		return
 
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS) // TODO: REMOVE ADMIN TIMING
