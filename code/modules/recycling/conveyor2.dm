@@ -90,7 +90,7 @@
 	use_power(100)
 
 	affecting = loc.contents - src		// moved items will be all in loc
-	addtimer(CALLBACK(src, .proc/propogate), 1)	// slight delay to prevent infinite propagation due to map order
+	INVOKE_NEXT_TICK(src, .proc/propogate)	// slight delay to prevent infinite propagation due to map order
 
 /obj/machinery/conveyor/proc/propogate()
 	var/items_moved = 0

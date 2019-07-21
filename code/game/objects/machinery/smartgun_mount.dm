@@ -393,8 +393,8 @@
 				is_bursting = 1
 				fire_shot()
 				sleep(2)
-			last_fired = 1
-			addtimer(VARSET_CALLBACK(src, last_fired, 0), fire_delay)
+			last_fired = TRUE
+			addtimer(VARSET_CALLBACK(src, last_fired, FALSE), fire_delay)
 		else burst_fire = 0
 		is_bursting = 0
 
@@ -412,8 +412,8 @@
 		return //still shooting.
 
 	if(!is_bursting)
-		last_fired = 1
-		addtimer(VARSET_CALLBACK(src, last_fired, 0), fire_delay)
+		last_fired = TRUE
+		addtimer(VARSET_CALLBACK(src, last_fired, FALSE), fire_delay)
 
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(target)

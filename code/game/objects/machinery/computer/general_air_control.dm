@@ -147,13 +147,12 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 		var/change = text2num(href_list["adj_pressure"])
 		pressure_setting = between(0, pressure_setting + change, 50*ONE_ATMOSPHERE)
 		INVOKE_NEXT_TICK(src, .proc/updateUsrDialog)
-		addtimer(CALLBACK(src, .proc/updateUsrDialog), 1)
 		return
 
 	if(href_list["adj_input_flow_rate"])
 		var/change = text2num(href_list["adj_input_flow_rate"])
 		input_flow_setting = between(0, input_flow_setting + change, ATMOS_DEFAULT_VOLUME_PUMP + 500) //default flow rate limit for air injectors
-		addtimer(CALLBACK(src, .proc/updateUsrDialog), 1)
+		INVOKE_NEXT_TICK(src, .proc/updateUsrDialog)
 		return
 
 	if(!radio_connection)
@@ -260,13 +259,13 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 	if(href_list["adj_pressure"])
 		var/change = text2num(href_list["adj_pressure"])
 		pressure_setting = between(0, pressure_setting + change, 10*ONE_ATMOSPHERE)
-		addtimer(CALLBACK(src, .proc/updateUsrDialog), 1)
+		INVOKE_NEXT_TICK(src, .proc/updateUsrDialog)
 		return
 
 	if(href_list["adj_input_flow_rate"])
 		var/change = text2num(href_list["adj_input_flow_rate"])
 		input_flow_setting = between(0, input_flow_setting + change, ATMOS_DEFAULT_VOLUME_PUMP + 500) //default flow rate limit for air injectors
-		addtimer(CALLBACK(src, .proc/updateUsrDialog), 1)
+		INVOKE_NEXT_TICK(src, .proc/updateUsrDialog)
 		return
 
 	if(!radio_connection)

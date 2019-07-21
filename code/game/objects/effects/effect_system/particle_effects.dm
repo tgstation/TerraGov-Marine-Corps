@@ -23,7 +23,7 @@
 	if(!isturf(loc))
 		return INITIALIZE_HINT_QDEL
 
-	QDEL_IN(src, life * 10)
+	QDEL_IN(src, life SECONDS)
 
 	setDir(pick(GLOB.cardinals))
 	set_light(3)

@@ -76,7 +76,7 @@
 
 /obj/effect/particle_effect/expl_particles/Initialize()
 	. = ..()
-	QDEL_IN(src, 15)
+	QDEL_IN(src, 1.5 SECONDS)
 
 /datum/effect_system/expl_particles
 	number = 10
@@ -112,7 +112,7 @@
 
 /obj/effect/particle_effect/explosion/Initialize()
 	. = ..()
-	QDEL_IN(src, 10)
+	QDEL_IN(src, 1 SECONDS)
 
 
 

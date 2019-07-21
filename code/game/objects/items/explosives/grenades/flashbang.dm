@@ -132,14 +132,14 @@
 
 /obj/item/explosive/grenade/flashbang/clusterbang/segment/Initialize() //Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
 	. = ..()
-	playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
+	playsound(loc, 'sound/weapons/armbomb.ogg', 25, TRUE, 6)
 	icon_state = "clusterbang_segment_active"
-	active = 1
-	banglet = 1
+	active = TRUE
+	banglet = TRUE
 	var/stepdist = rand(1,4)//How far to step
-	var/temploc = src.loc//Saves the current location to know where to step away from
+	var/temploc = loc//Saves the current location to know where to step away from
 	walk_away(src,temploc,stepdist)//I must go, my people need me
-	addtimer(CALLBACK(src, .proc/prime), rand(15,60))
+	addtimer(CALLBACK(src, .proc/prime), rand(1.5,6) SECONDS)
 
 /obj/item/explosive/grenade/flashbang/clusterbang/segment/prime()
 	var/clusters = rand(4,8)
@@ -155,11 +155,11 @@
 
 /obj/item/explosive/grenade/flashbang/cluster/Initialize()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
 	. = ..()
-	playsound(loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
+	playsound(loc, 'sound/weapons/armbomb.ogg', 25, TRUE, 6)
 	icon_state = "flashbang_active"
-	active = 1
-	banglet = 1
+	active = TRUE
+	banglet = TRUE
 	var/stepdist = rand(1,3)
-	var/temploc = src.loc
+	var/temploc = loc
 	walk_away(src,temploc,stepdist)
-	addtimer(CALLBACK(src, .proc/prime), rand(15,60))
+	addtimer(CALLBACK(src, .proc/prime), rand(1.5,6) SECONDS)

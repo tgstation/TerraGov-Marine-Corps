@@ -31,7 +31,7 @@
 
 /obj/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
 	. = ..()
-	QDEL_IN(src, 40)
+	QDEL_IN(src, 4 SECONDS)
 
 /obj/effect/xenomorph/spray
 	name = "splatter"
@@ -44,7 +44,7 @@
 	mouse_opacity = 0
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 8
-	var/duration = 100
+	var/duration = 10 SECONDS
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
 	. = ..()

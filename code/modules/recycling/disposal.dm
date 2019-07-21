@@ -485,7 +485,7 @@
 	loc = D.trunk
 	active = 1
 	setDir(DOWN)
-	addtimer(CALLBACK(src, .proc/move), 1) //Spawn off the movement process
+	INVOKE_NEXT_TICK(src, .proc/move) //Spawn off the movement process
 
 //Movement process, persists while holder is moving through pipes
 /obj/structure/disposalholder/proc/move()

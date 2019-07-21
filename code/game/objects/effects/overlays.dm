@@ -10,7 +10,7 @@
 
 /obj/effect/overlay/beam/Initialize()
 	. = ..()
-	QDEL_IN(src, 10)
+	QDEL_IN(src, 1 SECONDS)
 
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"

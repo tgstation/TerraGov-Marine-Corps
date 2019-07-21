@@ -301,7 +301,7 @@
 			lastbang = TRUE
 			for(var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
-			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 30)
+			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
 /obj/structure/closet/attack_paw(mob/user as mob)

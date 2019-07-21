@@ -77,7 +77,7 @@ steam.start() -- spawns the effect
 				for(i=0, i<pick(1,2,3), i++)
 					sleep(5)
 					step(steam,direction)
-				QDEL_IN(steam, 20)
+				QDEL_IN(steam, 2 SECONDS)
 
 
 /////////////////////////////////////////////
@@ -177,7 +177,7 @@ steam.start() -- spawns the effect
 						I.setDir(holder.dir)
 						flick("ion_fade", I)
 						I.icon_state = "blank"
-						QDEL_IN(I, 20)
+						QDEL_IN(I, 2 SECONDS)
 					spawn(2)
 						if(src.on)
 							src.processing = 1
