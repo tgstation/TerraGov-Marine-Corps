@@ -269,20 +269,16 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
 	if(user.get_inactive_held_item() != src)
-		return
+		return ..()
 	if(!cell)
-		return
+		return ..()
 	cell.updateicon()
 	user.put_in_active_hand(cell)
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 25, 1, 5)
 	to_chat(user, "<span class='notice'>You remove the cell from [src].</span>")
 	update_plasmacutter()
-	return
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)

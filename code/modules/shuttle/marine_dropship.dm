@@ -424,7 +424,7 @@
 	if(M.hijack_state == HIJACK_STATE_CRASHING)
 		return
 
-	if(ishuman(usr))
+	if(ishuman(usr) || isAI(usr))
 		if(!allowed(usr))
 			return
 		if(M.hijack_state == HIJACK_STATE_CALLED_DOWN)
@@ -466,7 +466,7 @@
 		M.unlock_all()
 		priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 		to_chat(X, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
-		X.hive.xeno_message("The Queen has commanded the metal bird to depart for the metal hive in the sky! Rejoice!")
+		X.hive.xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Rejoice!")
 		playsound(src, 'sound/misc/queen_alarm.ogg')
 		SSevacuation.flags_scuttle &= ~FLAGS_SDEVAC_TIMELOCK
 		switch(SSshuttle.moveShuttleToDock(shuttleId, CT, 1))

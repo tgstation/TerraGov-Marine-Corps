@@ -481,6 +481,8 @@
 
 
 /obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/user)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
 	attack_hand(user)
 
 

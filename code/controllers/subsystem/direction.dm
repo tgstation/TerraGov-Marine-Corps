@@ -80,14 +80,15 @@ SUBSYSTEM_DEF(direction)
 	mobs_in_processing[C] = squad_id
 	processing_mobs[squad_id].Add(C)
 
-/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/C)
+/datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/C, force = FALSE)
 	if(!mobs_in_processing[C])
 		return TRUE // already removed
 	var/tracking_id = mobs_in_processing[C]
 	mobs_in_processing[C] = FALSE
 
 	if(tracking_id != squad_id)
-		stack_trace("mismatch in tracking mobs by reference")
+		if(!force)
+			stack_trace("mismatch in tracking mobs by reference")
 		processing_mobs[squad_id].Remove(C)
 
 	processing_mobs[tracking_id].Remove(C)

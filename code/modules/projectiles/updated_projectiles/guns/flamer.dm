@@ -432,7 +432,6 @@
 	var/obj/item/attachable/hydro_cannon/G = new(src)
 	G.icon_state = ""
 	G.Attach(src)
-	update_attachable(G.slot)
 	G.icon_state = initial(G.icon_state)
 
 /obj/item/weapon/gun/flamer/M240T/Fire(atom/target, mob/living/user, params, reflex)

@@ -13216,11 +13216,11 @@
 	dir = 4
 	},
 /obj/structure/safe,
-/obj/item/spacecash/c1000{
+/obj/item/spacecash/c500{
 	pixel_x = -2;
 	pixel_y = -1
 	},
-/obj/item/spacecash/c1000,
+/obj/item/spacecash/c500,
 /obj/item/spacecash/c500,
 /obj/effect/landmark/random_item/good,
 /obj/effect/landmark/random_item/good,
@@ -31376,7 +31376,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/spacecash/c1000,
+/obj/item/spacecash/c500,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
