@@ -260,6 +260,23 @@
 	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
+"aE" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/obj/effect/landmark/start/latejoin,
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/plating/almayer,
+/area/shuttle/canterbury/general)
 "aF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -436,15 +453,8 @@
 	},
 /area/shuttle/canterbury/general)
 "aW" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/plating/almayer,
+/obj/machinery/light,
+/turf/open/floor/almayer,
 /area/shuttle/canterbury/general)
 "aX" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -1071,14 +1081,15 @@
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "ce" = (
-/obj/machinery/light,
+/obj/machinery/vending/cigarette,
 /obj/item/radio/intercom{
 	anyai = 1;
+	dir = 4;
 	freerange = 1;
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
-/turf/open/floor/almayer,
+/turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "cf" = (
 /obj/machinery/marine_selector/gear/smartgun,
@@ -1149,8 +1160,18 @@
 	},
 /area/shuttle/canterbury/medical)
 "cm" = (
-/obj/machinery/vending/cigarette,
-/turf/open/floor/almayer/mono,
+/obj/machinery/door/airlock/almayer/maint{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/almayer,
 /area/shuttle/canterbury/general)
 "cn" = (
 /obj/structure/closet/crate/trashcart,
@@ -1539,27 +1560,14 @@
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury/general)
-"db" = (
-/obj/machinery/door/airlock/almayer/maint{
-	icon_state = "door_closed";
-	dir = 1
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+"cZ" = (
 /obj/machinery/door_control{
 	id = "starboard_engine_podlock";
-	pixel_x = 32
+	pixel_y = 32
 	},
-/turf/open/floor/almayer,
-/area/shuttle/canterbury/general)
-"dc" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/space,
+/turf/open/floor/almayer{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury/general)
 "dd" = (
 /turf/open/floor/almayer,
@@ -1590,11 +1598,11 @@
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "di" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
@@ -1632,20 +1640,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
-"dl" = (
-/obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/space,
-/area/shuttle/canterbury/general)
 "dm" = (
 /obj/machinery/door_control{
 	id = "aft_engine_podlock"
 	},
 /turf/closed/wall/almayer,
 /area/shuttle/canterbury/medical)
-"dn" = (
-/obj/structure/shuttle/engine/propulsion/burst,
-/turf/open/space,
-/area/shuttle/canterbury/general)
 "do" = (
 /obj/machinery/door_control{
 	id = "port_engine_podlock"
@@ -1802,6 +1802,10 @@
 "Wo" = (
 /turf/closed/wall/almayer,
 /area/shuttle/canterbury/medical)
+"Yi" = (
+/obj/structure/window/framed/almayer/toughened,
+/turf/template_noop,
+/area/shuttle/canterbury/cic)
 
 (1,1,1) = {"
 aa
@@ -1828,7 +1832,6 @@ ch
 aa
 aa
 aa
-aa
 "}
 (2,1,1) = {"
 aa
@@ -1852,7 +1855,6 @@ cr
 cD
 cP
 ch
-dc
 aa
 aa
 aa
@@ -1882,7 +1884,6 @@ ch
 dA
 as
 aa
-aa
 "}
 (4,1,1) = {"
 aa
@@ -1908,11 +1909,10 @@ ct
 Wo
 de
 dC
-dn
 aa
 "}
 (5,1,1) = {"
-ab
+Yi
 ac
 ac
 ab
@@ -1920,7 +1920,7 @@ ab
 ax
 aH
 aP
-aW
+aE
 aX
 bc
 bl
@@ -1935,11 +1935,10 @@ cR
 do
 df
 dC
-dl
 aa
 "}
 (6,1,1) = {"
-ac
+Yi
 ad
 ai
 an
@@ -1963,10 +1962,9 @@ Wo
 dg
 as
 as
-aa
 "}
 (7,1,1) = {"
-ac
+Yi
 ae
 aj
 ao
@@ -1990,10 +1988,9 @@ Wo
 dh
 dv
 dE
-dn
 "}
 (8,1,1) = {"
-ac
+Yi
 af
 ak
 ap
@@ -2008,7 +2005,7 @@ bo
 dy
 bJ
 bV
-ce
+aW
 Wo
 Wo
 dt
@@ -2017,10 +2014,9 @@ dm
 di
 df
 dE
-dn
 "}
 (9,1,1) = {"
-ac
+Yi
 ag
 al
 aq
@@ -2036,7 +2032,7 @@ bA
 bK
 bW
 cd
-cm
+ce
 cI
 cJ
 cU
@@ -2044,10 +2040,9 @@ av
 dj
 df
 dE
-dn
 "}
 (10,1,1) = {"
-ac
+Yi
 ah
 am
 ar
@@ -2067,14 +2062,13 @@ cn
 cy
 cK
 cV
-db
+cm
 dk
 as
 as
-aa
 "}
 (11,1,1) = {"
-ab
+Yi
 ac
 ac
 ab
@@ -2095,9 +2089,8 @@ cz
 cL
 cW
 av
-df
+cZ
 dD
-dc
 aa
 "}
 (12,1,1) = {"
@@ -2124,7 +2117,6 @@ cW
 av
 de
 dD
-dl
 aa
 "}
 (13,1,1) = {"
@@ -2152,7 +2144,6 @@ as
 dB
 as
 aa
-aa
 "}
 (14,1,1) = {"
 aa
@@ -2176,7 +2167,6 @@ cC
 dd
 cY
 as
-dl
 aa
 aa
 aa
@@ -2203,7 +2193,6 @@ dp
 dp
 dp
 as
-aa
 aa
 aa
 aa
