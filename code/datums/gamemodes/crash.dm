@@ -75,14 +75,13 @@
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
-		validdocks += S.id
+		validdocks += S.name
 
-	message_admins("valid_docks [length(validdocks)]")
 	var/dock = pick(validdocks)
 
 	var/obj/docking_port/stationary/target
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.id == dock)
+		if(S.name == dock)
 			target = S
 			break
 
@@ -90,8 +89,8 @@
 		CRASH("Unable to get a valid shuttle target!")
 		return
 
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS) // TODO: REMOVE ADMIN TIMING
-	// addtimer(CALLBACK(src, .proc/crash_shuttle, target), rand(4 MINUTES, 7 MINUTES) // TODO: FIX timing here
+	// addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS) // TODO: REMOVE ADMIN TIMING
+	addtimer(CALLBACK(src, .proc/crash_shuttle, target), rand(9 MINUTES, 11 MINUTES) // TODO: FIX timing here
 
 
 /datum/game_mode/crash/announce()
