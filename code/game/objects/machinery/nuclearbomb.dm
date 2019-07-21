@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 					GLOB.nukes_set_list |= src
 					start_processing()
 			if (href_list["anchor"])
-				if(removal_stage == NUKE_STAGE_FIVE)
+				if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
 					anchored = FALSE
 					visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 					return
