@@ -8,6 +8,7 @@
 
 datum/component/automatic_fire
 	var/client/clicker
+	var/mob/living/shooter
 	var/atom/target
 	var/autofire_stat = AUTOFIRE_STAT_SLEEPING
 	var/mouse_parameters
@@ -86,8 +87,9 @@ datum/component/automatic_fire
 			return
 	autofire_stat = AUTOFIRE_STAT_ALERT
 	clicker = usercli
+	shooter = clicker.mob
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDOWN, .proc/on_mouse_down)
-	RegisterSignal(clicker.mob, COMSIG_MOB_LOGOUT, .proc/autofire_off)
+	RegisterSignal(shooter, COMSIG_MOB_LOGOUT, .proc/autofire_off)
 	parent.RegisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, /obj/item/weapon/gun/.proc/autofire_bypass_check)
 	parent.RegisterSignal(parent, COMSIG_GUN_SHOT_AUTOFIRE, /obj/item/weapon/gun/.proc/do_autofire)
 
@@ -101,9 +103,10 @@ datum/component/automatic_fire
 	autofire_stat = AUTOFIRE_STAT_IDLE
 	if(!QDELETED(clicker))
 		UnregisterSignal(clicker, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG))
-		if(!QDELETED(clicker.mob))
-			UnregisterSignal(clicker.mob, COMSIG_MOB_LOGOUT)
 	clicker = null
+	if(!QDELETED(shooter))
+		UnregisterSignal(shooter, COMSIG_MOB_LOGOUT)
+	shooter = null
 	parent.UnregisterSignal(parent, COMSIG_GUN_SHOT_AUTOFIRE)
 	parent.UnregisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN)
 
@@ -153,7 +156,7 @@ datum/component/automatic_fire
 	autofire_stat = AUTOFIRE_STAT_FIRING
 	clicker.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/on_mouse_up)
-	if(!shoota.on_autofire_start(clicker))
+	if(!shoota.on_autofire_start(shooter))
 		stop_autofiring()
 		return
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
@@ -231,14 +234,14 @@ datum/component/automatic_fire
 /datum/component/automatic_fire/proc/process_shot()
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
 		return
-	switch(get_dist(clicker.mob, target))
+	switch(get_dist(shooter, target))
 		if(-1 to 0)
-			target = get_step(clicker.mob, clicker.mob.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
+			target = get_step(shooter, shooter.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
 		if(8 to INFINITY) //Can technically only go as far as 127 right now.
 			stop_autofiring() //Elvis has left the building.
 			return FALSE
-	clicker.mob.face_atom(target)
-	if(SEND_SIGNAL(parent, COMSIG_GUN_SHOT_AUTOFIRE, target, clicker.mob, mouse_parameters, ++shots_fired) & COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS)
+	shooter.face_atom(target)
+	if(SEND_SIGNAL(parent, COMSIG_GUN_SHOT_AUTOFIRE, target, shooter, mouse_parameters, ++shots_fired) & COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS)
 		return TRUE
 	stop_autofiring()
 	return FALSE
@@ -304,8 +307,8 @@ datum/component/automatic_fire
 
 
 //Procs to be put elsewhere later on.
-/obj/item/weapon/gun/proc/on_autofire_start(client/clicker)
-	if(!able_to_fire(clicker.mob) || gun_on_cooldown(clicker.mob))
+/obj/item/weapon/gun/proc/on_autofire_start(mob/living/shooter)
+	if(!able_to_fire(shooter) || gun_on_cooldown(shooter))
 		return FALSE
 	return TRUE
 
@@ -321,7 +324,7 @@ datum/component/automatic_fire
 	return NONE //No flags means success.
 
 
-/obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/shooter, params, shots_fired)
+/obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/living/shooter, params, shots_fired)
 	//COMSIG_GUN_FIRE would go here.
 	var/obj/item/projectile/projectile_to_fire = load_into_chamber(shooter)
 	if(!projectile_to_fire)
@@ -347,12 +350,12 @@ datum/component/automatic_fire
 	return COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS //All is well, we can continue shooting.
 
 
-/obj/item/weapon/gun/minigun/on_autofire_start(client/clicker)
+/obj/item/weapon/gun/minigun/on_autofire_start(mob/living/shooter)
 	. = ..()
 	if(!.)
 		return
-	if(clicker.mob.action_busy)
+	if(shooter.action_busy)
 		return FALSE
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-	if(!do_after(clicker.mob, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+	if(!do_after(shooter, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
 		return FALSE
