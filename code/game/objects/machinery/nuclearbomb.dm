@@ -41,7 +41,6 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			explode()
 			return
 		updateUsrDialog()
-	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()

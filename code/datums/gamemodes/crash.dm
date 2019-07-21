@@ -8,8 +8,8 @@
 	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
 
 	// Round start conditions
-	var/xeno_required_num = 1
-	var/xeno_starting_num
+	var/xeno_required_num = 1 // Number of xenos required to start 
+	var/xeno_starting_num = 0 // Number of xenos given at start
 	var/list/xenomorphs
 	
 	// Round end conditions
