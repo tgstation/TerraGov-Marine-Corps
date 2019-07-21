@@ -1,3 +1,128 @@
+// -- Print disc computer
+/obj/item/circuitboard/computer/nuke_disc_generator
+	name = "Circuit board (Nuke Disc Generator)"
+	build_path = /obj/machinery/computer/engine_computer
+
+
+/obj/machinery/computer/nuke_disc_generator
+	name = "Nuke Disc Generator"
+	desc = "Used to generate the correct auth discs for the nuke."
+	icon_state = "atmos" // TODO: Better icon state
+	circuit = "/obj/item/circuitboard/computer/nuke_disc_generator"
+
+	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+
+	var/disc_time = 10 SECONDS
+	var/last_disc_timeleft = 0
+	var/generate_timer
+
+	var/obj/item/disk/nuclear/crash/red/red_disc
+	var/obj/item/disk/nuclear/crash/green/green_disc
+	var/obj/item/disk/nuclear/crash/blue/blue_disc
+
+	var/last_error = ""
+
+/obj/machinery/computer/nuke_disc_generator/process()
+	. = ..()
+	if(. || !generate_timer)
+		return
+
+	last_disc_timeleft = timeleft(generate_timer)
+	deltimer(generate_timer)
+
+
+/obj/machinery/computer/nuke_disc_generator/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	interact(user)
+
+/obj/machinery/computer/nuke_disc_generator/interact(mob/user)
+	usr.set_interaction(src)
+	var/dat = ""
+	dat += "<a href='?src=[REF(src)];mach_close=computer'>Close</a><br><br>"
+	dat += "<div align='center'><a href='?src=[REF(src)];generate=1'>Generate Disc</a></div>"
+	dat += "<br/>"
+	dat += "<hr/>"
+	dat += "<div align='center'><h2>Status</h2></div>"
+	dat += "<span><b>Time left</b>: [generate_timer ? timeleft(generate_timer) * 0.1 : 0]</span>"
+	if(last_error != "")
+		dat += "<br/>"
+		dat += "<span><b>Error</b>: <span class='warning notice'>[last_error]</span></span>"
+
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Nuke Disc Generator</div>")
+	popup.set_content(dat)
+	popup.open()
+
+/obj/machinery/computer/nuke_disc_generator/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+
+	last_error = ""
+	if(href_list["generate"])
+		if(generate_timer)
+			last_error = "Already generating a disc, please wait..."
+			to_chat(usr, "<span class='notice'>Already generating a disc, please wait.</span>")
+			return
+
+		var/timer = (last_disc_timeleft > 0) ? last_disc_timeleft : disc_time // If we had a previous timer, use it again
+
+		if(!red_disc)	
+			generate_timer = addtimer(CALLBACK(src, .proc/print_disc, TRUE, FALSE, FALSE), timer, TIMER_STOPPABLE)
+			visible_message("<span class='notice'>Generating red disc...</span>")
+			return
+
+		if(!green_disc)	
+			generate_timer = addtimer(CALLBACK(src, .proc/print_disc, FALSE, TRUE, FALSE), timer, TIMER_STOPPABLE)
+			visible_message("<span class='notice'>Generating green disc...</span>")
+			return
+
+		if(!blue_disc)	
+			generate_timer = addtimer(CALLBACK(src, .proc/print_disc, FALSE, FALSE, TRUE), timer, TIMER_STOPPABLE)
+			visible_message("<span class='notice'>Generating blue disc...</span>")
+			return
+		last_error = "Unable to generate any more discs, lack of required entropy."
+
+	updateUsrDialog()
+
+
+/obj/machinery/computer/nuke_disc_generator/proc/print_disc(red = FALSE, green = FALSE, blue = FALSE)
+	last_error = ""
+	generate_timer = null
+	if(red)
+		if(red_disc != null)
+			last_error = "Failed to generate red disc"
+			visible_message("<span class='warning'>Failed to generate red disc</span>")
+			return
+		red_disc = new(loc)
+		visible_message("<span class='notice bold'>Disc printed</span>")
+		return
+
+	if(green)
+		if(green_disc != null)
+			last_error = "Failed to generate green disc"
+			visible_message("<span class='warning'>Failed to generate green disc</span>")
+			return
+		green_disc = new(loc)
+		visible_message("<span class='notice bold'>Disc printed</span>")
+		return
+
+	if(blue)
+		if(blue_disc != null)
+			last_error = "Failed to generate blue disc"
+			visible_message("<span class='warning'>Failed to generate blue disc</span>")
+			return
+		blue_disc = new(loc)
+		visible_message("<span class='notice bold'>Disc printed</span>")
+		return
+		
+
+
+
+
+// -- Engine computer
 /obj/item/circuitboard/computer/enginecomputer
 	name = "Circuit board (Cockpit Computer)"
 	build_path = /obj/machinery/computer/engine_computer
