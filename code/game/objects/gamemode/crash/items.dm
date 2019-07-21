@@ -84,7 +84,7 @@
 	else if (deployable)
 		if (!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return
-		if(removal_stage < 5)
+		if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
 			anchored = TRUE
 			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
@@ -163,7 +163,7 @@
 				GLOB.nukes_set_list |= src
 				start_processing()
 		if (href_list["anchor"])
-			if(removal_stage == 5)
+			if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
 				anchored = FALSE
 				visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 				return

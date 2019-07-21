@@ -1,5 +1,12 @@
 GLOBAL_LIST_EMPTY(nukes_set_list)
 
+#define NUKE_STAGE_NONE 0
+#define NUKE_STAGE_COVER_REMOVED 1
+#define NUKE_STAGE_COVER_OPENED 2
+#define NUKE_STAGE_SEALANT_OPEN 3
+#define NUKE_STAGE_UNWRENCHED 4
+#define NUKE_STAGE_BOLTS_REMOVED 5
+
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
 	desc = "Uh oh. RUN!!!!"
@@ -17,7 +24,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	var/yes_code = FALSE
 	var/safety = TRUE
 	var/obj/item/disk/nuclear/auth = null
-	var/removal_stage = 0 // 0 is no removal, 1 is covers removed, 2 is covers open,
+	var/removal_stage = NUKE_STAGE_NONE // 0 is no removal, 1 is covers removed, 2 is covers open,
 							// 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = 0
 
@@ -79,7 +86,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		return
 
 	switch(removal_stage)
-		if(0)
+		if(NUKE_STAGE_NONE)
 			if(!iswelder(I))
 				return
 
@@ -98,9 +105,9 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 			user.visible_message("<span class='notice'>[user] cuts through the bolt covers on [src].</span>",
 			"<span class='notice'>You cut through the bolt cover.</span>")
-			removal_stage = 1
+			removal_stage = NUKE_STAGE_COVER_REMOVED
 
-		if(1)
+		if(NUKE_STAGE_COVER_REMOVED)
 			if(!iscrowbar(I))
 				return
 
@@ -112,9 +119,9 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 			user.visible_message("<span class='notice'>[user] forces open the bolt covers on [src].</span>",
 			"<span class='notice'>You force open the bolt covers.</span>")
-			removal_stage = 2
+			removal_stage = NUKE_STAGE_COVER_OPENED
 
-		if(2)
+		if(NUKE_STAGE_COVER_OPENED)
 			if(!iswelder(I))
 				return
 
@@ -128,9 +135,9 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 			user.visible_message("<span class='notice'>[user] cuts apart the anchoring system sealant on [src].</span>",
 			"<span class='notice'>You cut apart the anchoring system's sealant.</span>")
-			removal_stage = 3
+			removal_stage = NUKE_STAGE_SEALANT_OPEN
 
-		if(3)
+		if(NUKE_STAGE_SEALANT_OPEN)
 			if(!iswrench(I))
 				return
 			user.visible_message("<span class='notice'>[user] begins unwrenching the anchoring bolts on [src].</span>",
@@ -141,9 +148,9 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 			user.visible_message("<span class='notice'>[user] unwrenches the anchoring bolts on [src].</span>",
 			"<span class='notice'>You unwrench the anchoring bolts.</span>")
-			removal_stage = 4
+			removal_stage = NUKE_STAGE_UNWRENCHED
 
-		if(4)
+		if(NUKE_STAGE_UNWRENCHED)
 			if(!iscrowbar(I))
 				return
 
@@ -156,7 +163,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			user.visible_message("<span class='notice'>[user] crowbars [src] off of the anchors. It can now be moved.",
 			"<span class='notice'>You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
 			anchored = FALSE
-			removal_stage = 5
+			removal_stage = NUKE_STAGE_BOLTS_REMOVED
 
 
 /obj/machinery/nuclearbomb/attack_paw(mob/user as mob)
@@ -214,7 +221,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	else if (deployable)
 		if (!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return
-		if(removal_stage < 5)
+		if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
 			anchored = TRUE
 			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
@@ -319,7 +326,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 					GLOB.nukes_set_list |= src
 					start_processing()
 			if (href_list["anchor"])
-				if(removal_stage == 5)
+				if(removal_stage == NUKE_STAGE_FIVE)
 					anchored = FALSE
 					visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 					return

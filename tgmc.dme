@@ -47,6 +47,7 @@
 #include "code\__DEFINES\misc.dm"
 #include "code\__DEFINES\mobs.dm"
 #include "code\__DEFINES\mode.dm"
+#include "code\__DEFINES\nukes.dm"
 #include "code\__DEFINES\obj_flags.dm"
 #include "code\__DEFINES\objects.dm"
 #include "code\__DEFINES\pipe_construction.dm"
