@@ -112,7 +112,7 @@
 			addtimer(VARSET_CALLBACK(src, printing, FALSE), printing_time) // TODO Change to larger time
 
 			usr.visible_message("[usr] started a program to regenerate a nuclear disc code.", "You started a program to generate a nuclear disc code.")
-			if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, .process)))
+			if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
 				return
 
 			print_disc()
@@ -122,7 +122,7 @@
 		addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time) // TODO Change to larger time
 
 		usr.visible_message("[usr] started a program to generate a nuclear disc code.", "You started a program to generate a nuclear disc code.")
-		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, .process)))
+		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
 			current_timer = null
 			return
 
