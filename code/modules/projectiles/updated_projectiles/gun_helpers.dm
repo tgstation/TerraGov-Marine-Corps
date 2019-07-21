@@ -553,9 +553,7 @@ should be alright.
 		return ..()
 	if(firemode_action.action_firemode == gun_firemode)
 		return
-	gun_firemode = firemode_action.action_firemode
-	playsound(user, 'sound/machines/click.ogg', 15, 1)
-	to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
+	do_toggle_firemode(user, firemode_action.action_firemode)
 	user.update_action_buttons()
 
 
