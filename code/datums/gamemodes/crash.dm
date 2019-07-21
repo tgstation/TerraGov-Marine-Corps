@@ -107,7 +107,7 @@
 	if(round_finished)
 		return TRUE
 
-	if(world.time < (SSticker.round_start_time + 15 SECONDS))
+	if(world.time < (SSticker.round_start_time + 1 MINUTES))
 		return FALSE
 
 	var/list/living_player_list = count_humans_and_xenos()
