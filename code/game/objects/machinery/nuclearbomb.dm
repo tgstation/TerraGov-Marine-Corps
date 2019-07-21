@@ -297,7 +297,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 				timeleft += time
 				timeleft = min(max(round(timeleft), 60), 600)
 			if (href_list["timer"])
-				if (timing == -1.0)
+				if (timing == -1)
 					return
 				if (safety)
 					to_chat(usr, "<span class='warning'>The safety is still on.</span>")
