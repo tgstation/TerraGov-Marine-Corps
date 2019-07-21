@@ -19,6 +19,7 @@
 
 /datum/objective/Destroy()
 	GLOB.all_objectives -= src
+	STOP_PROCESSING(SSobjectives, src)
 
 	for(var/i in required_objectives)
 		var/datum/objective/R = i
@@ -115,6 +116,7 @@
 	if(can_be_activated())
 		active = TRUE
 		if(!(objective_flags & OBJ_PROCESS_ON_DEMAND))
+			START_PROCESSING(SSobjectives, src)
 			GLOB.active_objectives += src
 			GLOB.inactive_objectives -= src
 
@@ -122,6 +124,7 @@
 	if(can_be_deactivated())
 		active = FALSE
 		if(!(objective_flags & OBJ_PROCESS_ON_DEMAND))
+			STOP_PROCESSING(SSobjectives, src)
 			GLOB.active_objectives -= src
 			GLOB.inactive_objectives += src
 
