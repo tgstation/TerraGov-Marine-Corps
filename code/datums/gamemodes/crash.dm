@@ -9,7 +9,7 @@
 
 	// Round start conditions
 	var/xeno_required_num = 1
-	var/xeno_starting_num = 0
+	var/xeno_starting_num
 	var/list/xenomorphs
 	
 	// Round end conditions
