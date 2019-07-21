@@ -195,7 +195,6 @@
 
 	announce_medal_awards()
 	announce_round_stats()
-	end_of_round_deathmatch()
 
 // Overrides
 

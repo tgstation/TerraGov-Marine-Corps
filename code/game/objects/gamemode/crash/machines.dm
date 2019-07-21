@@ -123,7 +123,6 @@
 
 		usr.visible_message("[usr] started a program to generate a nuclear disc code.", "You started a program to generate a nuclear disc code.")
 		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
-			current_timer = null
 			return
 
 		current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
@@ -136,7 +135,7 @@
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
 
-	if (completed_segments == total_segments)
+	if(completed_segments == total_segments)
 		reprintable = TRUE
 		visible_message("<span class='notice'>[src] beeps as it ready to print.</span>")
 		return
