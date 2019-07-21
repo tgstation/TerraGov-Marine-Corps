@@ -22,6 +22,12 @@
 	var/on_distress_cooldown = FALSE
 	var/waiting_for_candidates = FALSE
 
+	// Xeno round start conditions
+	var/xeno_required_num = 1 // Number of xenos required to start 
+	var/xeno_starting_num = 0 // Number of xenos given at start
+	var/list/xenomorphs
+
+
 /datum/game_mode/New()
 	initialize_emergency_calls()
 

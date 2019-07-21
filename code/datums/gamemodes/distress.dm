@@ -10,15 +10,12 @@
 
 	var/list/survivors = list()
 
-	var/xeno_required_num 	  = 1
-	var/xeno_starting_num 	  = 0
 	var/surv_starting_num 	  = 0
 	var/marine_starting_num   = 0
 
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 
-	var/list/xenomorphs = list()
 	var/latejoin_tally		= 0
 	var/latejoin_larva_drop = 0
 	var/queen_death_countdown = 0
@@ -31,7 +28,7 @@
 /datum/game_mode/distress/can_start()
 	. = ..()
 	initialize_scales()
-	var/found_queen = initialize_queen()
+	var/found_queen = initialize_xeno_leader()
 	var/found_xenos = initialize_xenomorphs()
 	if(!found_queen && !found_xenos)
 		return FALSE

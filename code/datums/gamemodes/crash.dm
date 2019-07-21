@@ -7,11 +7,6 @@
 
 	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
 
-	// Round start conditions
-	var/xeno_required_num = 1 // Number of xenos required to start 
-	var/xeno_starting_num = 0 // Number of xenos given at start
-	var/list/xenomorphs
-	
 	// Round end conditions
 	var/marines_evac = FALSE
 	var/planet_nuked = FALSE
@@ -28,9 +23,9 @@
 /datum/game_mode/crash/can_start()
 	. = ..()
 	// Check if enough players have signed up for xeno & queen roles.
-	initialize_xeno_leader()
-	initialize_xenomorphs()
-	if(!length(xenomorphs)) // we need at least 1
+	var/ruler = initialize_xeno_leader()
+	var/xenos = initialize_xenomorphs()
+	if(!ruler && !xenos) // we need at least 1
 		return FALSE
 
 	return TRUE
