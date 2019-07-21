@@ -115,7 +115,7 @@
 					r_auth = I
 	if(href_list["g_auth"])
 		if (g_auth)
-			g_auth.loc = loc
+			g_auth.forceMove(loc)
 			has_auth = FALSE
 			g_auth = null
 		else
@@ -126,7 +126,7 @@
 					g_auth = I
 	if(href_list["b_auth"])
 		if (b_auth)
-			b_auth.loc = loc
+			b_auth.forceMove(loc)
 			has_auth = FALSE
 			b_auth = null
 		else
@@ -142,7 +142,7 @@
 			timeleft += time
 			timeleft = min(max(round(timeleft), 60), 600)
 		if (href_list["timer"])
-			if (timing == -1.0)
+			if (timing == -1)
 				return
 			if (safety)
 				to_chat(usr, "<span class='warning'>The safety is still on.</span>")
@@ -191,7 +191,7 @@
 
 /obj/item/disk/nuclear/crash/Destroy()
 	GLOB.gamemode_key_items -= src
-	. = ..()
+	return ..()
 
 /obj/item/disk/nuclear/crash/red
 	name = "red nuclear authentication disk"
