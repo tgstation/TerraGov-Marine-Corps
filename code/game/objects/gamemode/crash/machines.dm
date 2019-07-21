@@ -12,24 +12,29 @@
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
-	var/disc_time = 10 SECONDS
-	var/last_disc_timeleft = 0
-	var/generate_timer
+	var/generate_time = 5 SECONDS // time for the machine to generate the disc
+	var/segment_time = 1 SECONDS // time to start the hack
+	var/total_segments = 5 // total number of times the hack is required
+	var/completed_segments = 0 // what segment we are on, (once this hits total, disc is printed)
+	var/current_timer
 
-	var/obj/item/disk/nuclear/crash/red/red_disc
-	var/obj/item/disk/nuclear/crash/green/green_disc
-	var/obj/item/disk/nuclear/crash/blue/blue_disc
+	var/disc_type = null
+	var/obj/item/disk/nuclear/crash/disc
 
-	var/last_error = ""
+/obj/machinery/computer/nuke_disc_generator/Initialize()
+	. = ..()
+
+	if(!disc_type)
+		stack_trace("disc_type is required to be set before init")
+		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/computer/nuke_disc_generator/process()
 	. = ..()
-	if(. || !generate_timer)
+	if(. || !current_timer)
 		return
 
-	last_disc_timeleft = timeleft(generate_timer)
-	deltimer(generate_timer)
-
+	deltimer(current_timer)
+	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
 
 /obj/machinery/computer/nuke_disc_generator/attack_hand(mob/user)
 	. = ..()
@@ -42,14 +47,28 @@
 	usr.set_interaction(src)
 	var/dat = ""
 	dat += "<a href='?src=[REF(src)];mach_close=computer'>Close</a><br><br>"
-	dat += "<div align='center'><a href='?src=[REF(src)];generate=1'>Generate Disc</a></div>"
+	dat += "<div align='center'><a href='?src=[REF(src)];generate=1'>Run Program</a></div>"
 	dat += "<br/>"
 	dat += "<hr/>"
 	dat += "<div align='center'><h2>Status</h2></div>"
-	dat += "<span><b>Time left</b>: [generate_timer ? timeleft(generate_timer) * 0.1 : 0]</span>"
-	if(last_error != "")
-		dat += "<br/>"
-		dat += "<span><b>Error</b>: <span class='warning notice'>[last_error]</span></span>"
+
+	var/message = "Error"
+	if(completed_segments >= total_segments)
+		message = "Disc generated"
+	else if(current_timer)
+		message = "Program running"
+	else if(completed_segments == 0)
+		message = "Idle"
+	else if(completed_segments < total_segments)
+		message = "Restart required. Please rerun the program"
+	else
+		message = "Unknown"
+
+	var/progress = round((completed_segments / total_segments) * 100)
+
+	dat += "<br/><span><b>Progress</b>: [progress]%</span>"
+	dat += "<br/><span><b>Time left</b>: [current_timer ? round(timeleft(current_timer) * 0.1, 2) : 0.0]</span>"
+	dat += "<br/><span><b>Message</b>: [message]</span>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Nuke Disc Generator</div>")
 	popup.set_content(dat)
@@ -60,66 +79,44 @@
 	if(.)
 		return
 
-	last_error = ""
 	if(href_list["generate"])
-		if(generate_timer)
-			last_error = "Already generating a disc, please wait..."
-			to_chat(usr, "<span class='notice'>Already generating a disc, please wait.</span>")
+		if(current_timer)
+			to_chat(usr, "<span class='warning'>A program is already running.</span>")
 			return
 
-		var/timer = (last_disc_timeleft > 0) ? last_disc_timeleft : disc_time // If we had a previous timer, use it again
-
-		if(!red_disc)	
-			generate_timer = addtimer(CALLBACK(src, .proc/print_disc, TRUE, FALSE, FALSE), timer, TIMER_STOPPABLE)
-			visible_message("<span class='notice'>Generating red disc...</span>")
+		usr.visible_message("[usr] started a program to generate \the [disc]", "You started a program to generate \a [disc_type]")
+		var/extra_check = CALLBACK(src, .process)
+		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, extra_check))
 			return
-
-		if(!green_disc)	
-			generate_timer = addtimer(CALLBACK(src, .proc/print_disc, FALSE, TRUE, FALSE), timer, TIMER_STOPPABLE)
-			visible_message("<span class='notice'>Generating green disc...</span>")
-			return
-
-		if(!blue_disc)	
-			generate_timer = addtimer(CALLBACK(src, .proc/print_disc, FALSE, FALSE, TRUE), timer, TIMER_STOPPABLE)
-			visible_message("<span class='notice'>Generating blue disc...</span>")
-			return
-		last_error = "Unable to generate any more discs, lack of required entropy."
+		current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
 
 	updateUsrDialog()
 
 
-/obj/machinery/computer/nuke_disc_generator/proc/print_disc(red = FALSE, green = FALSE, blue = FALSE)
-	last_error = ""
-	generate_timer = null
-	if(red)
-		if(red_disc != null)
-			last_error = "Failed to generate red disc"
-			visible_message("<span class='warning'>Failed to generate red disc</span>")
-			return
-		red_disc = new(loc)
-		visible_message("<span class='notice bold'>Disc printed</span>")
-		return
+/obj/machinery/computer/nuke_disc_generator/proc/complete_segment()
+	current_timer = null
+	completed_segments = min(completed_segments + 1, total_segments)
 
-	if(green)
-		if(green_disc != null)
-			last_error = "Failed to generate green disc"
-			visible_message("<span class='warning'>Failed to generate green disc</span>")
-			return
-		green_disc = new(loc)
-		visible_message("<span class='notice bold'>Disc printed</span>")
-		return
+	if (completed_segments == total_segments)
+		print_disc()
 
-	if(blue)
-		if(blue_disc != null)
-			last_error = "Failed to generate blue disc"
-			visible_message("<span class='warning'>Failed to generate blue disc</span>")
-			return
-		blue_disc = new(loc)
-		visible_message("<span class='notice bold'>Disc printed</span>")
+
+/obj/machinery/computer/nuke_disc_generator/proc/print_disc()
+	if(disc != null)
+		visible_message("<span class='warning'>Failed to generate red disc</span>")
 		return
+	disc = new disc_type(loc)
+	visible_message("<span class='notice'>[src] beeps 'Disc printed'</span>")
+	return
 		
+/obj/machinery/computer/nuke_disc_generator/red
+	disc_type = /obj/item/disk/nuclear/crash/red
 
+/obj/machinery/computer/nuke_disc_generator/green
+	disc_type = /obj/item/disk/nuclear/crash/green
 
+/obj/machinery/computer/nuke_disc_generator/blue
+	disc_type = /obj/item/disk/nuclear/crash/blue
 
 
 // -- Engine computer
