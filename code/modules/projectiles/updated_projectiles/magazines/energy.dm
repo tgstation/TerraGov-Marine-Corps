@@ -38,6 +38,6 @@
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	icon_state = "[base_ammo_icon]_[remaining]"
 
-/obj/item/cell/lasgun/updateicon()
+/obj/item/cell/lasgun/update_icon()
 	return FALSE
 

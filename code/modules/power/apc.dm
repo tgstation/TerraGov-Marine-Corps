@@ -143,6 +143,7 @@
 		if(cell_type)
 			cell = new cell_type(src)
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
+			cell.update_icon()
 
 		var/area/A = get_area(src)
 

@@ -260,7 +260,7 @@
 		if(!cell)
 			replace_install = "You install a cell in [src]"
 		else
-			cell.updateicon()
+			cell.update_icon()
 			user.put_in_hands(cell)
 		cell = I
 		to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
@@ -273,7 +273,7 @@
 		return ..()
 	if(!cell)
 		return ..()
-	cell.updateicon()
+	cell.update_icon()
 	user.put_in_active_hand(cell)
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 25, 1, 5)
