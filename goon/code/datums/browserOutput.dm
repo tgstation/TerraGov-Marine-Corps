@@ -4,6 +4,7 @@ For the main html chat area
 
 //Precaching a bunch of shit
 GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
+GLOBAL_VAR_INIT(emojiJson, file2text("goon/browserassets/js/emojiList.json"))
 
 //On client, created on login
 /datum/chatOutput
@@ -106,6 +107,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	messageQueue = null
 	sendClientData()
 	loadClientCSS()
+	sendEmojiList()
 
 	//do not convert to to_chat()
 	SEND_TEXT(owner, "<span class=\"userdanger\">Failed to load fancy chat, reverting to old chat. Certain features won't work.</span>")
@@ -135,6 +137,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 /datum/chatOutput/proc/setMusicVolume(volume = "")
 	if(volume)
 		adminMusicVolume = CLAMP(text2num(volume), 0, 100)
+
+/datum/chatOutput/proc/sendEmojiList()
+	ehjax_send(data = GLOB.emojiJson)
 
 //Sends client connection details to the chat to handle and save
 /datum/chatOutput/proc/sendClientData()

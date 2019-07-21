@@ -42,7 +42,8 @@ var opts = {
 	'highlightLimit': 5,
 	'highlightColor': '#FFFF00', //The color of the highlighted message
 	'pingDisabled': false, //Has the user disabled the ping counter
-
+	'emojiList': [],
+	
 	//Ping display
 	'lastPang': 0, //Timestamp of the last response from the server.
 	'pangLimit': 35000,
@@ -151,6 +152,13 @@ function linkify_fallback(text) {
 		else {
 			return $1 ? $0: '<a href="http://'+$0+'">'+$0+'</a>';
 		}
+	});
+}
+
+function emojify(node) {
+	var rex = /:[\w\d\-_]+:/g;
+	node.innerHTML = node.innerHTML.replace(rex, function ($0) {
+		return '<i class="em em-'+$0.substring(1, $0.length-1)+'">'+$0+'</i>';
 	});
 }
 
@@ -403,7 +411,13 @@ function output(message, flag) {
 				linkify_node(to_linkify[i]);
 			}
 		}
+		
+		var to_emojify = $(entry).find(".emojify");
 
+		for(var i = 0; i < to_emojify.length; ++i) {
+			emojify(to_emojify[i]);
+		}
+		
 		//Actually do the snap
 		//Stuff we can do after the message shows can go here, in the interests of responsiveness
 		if (opts.highlightTerms && opts.highlightTerms.length > 0) {
@@ -548,6 +562,8 @@ function ehjaxCallback(data) {
 				return;
 			}
 			$clientCSS.text(css);
+		}else if (data.emoji){
+			emojiList = data.emoji;
 		} else if (data.adminMusic) {
 			if (typeof data.adminMusic === 'string') {
 				var adminMusic = byondDecode(data.adminMusic);
@@ -580,6 +596,15 @@ function ehjaxCallback(data) {
 		}
 	}
 }
+
+function copyToClipboard(text) {
+	var $temp = $('<input>');
+	$('body').append($temp);
+	$temp.val(text).select();
+	document.execCommand('copy');
+	$temp.remove();
+}
+
 
 function createPopup(contents, width) {
 	opts.popups++;
@@ -1078,7 +1103,35 @@ $(function() {
 		setCookie('highlightterms', JSON.stringify(opts.highlightTerms), 365);
 		setCookie('highlightcolor', opts.highlightColor, 365);
 	});
+	
+	$('#emojiPicker').click(function () {
+		var header = '<div class="head">Emoji Picker</div>' +
+			'<div class="emojiPicker">' +
+				'<div id="picker-notify"><span><b>COPIED</b></span></div>' +
+				'<p>Emoji will be copied to the clipboard.</p>';
 
+		var main = '<div class="emojiList">';
+
+		emojiList.forEach(function (emoji) {
+			main += '<a href="#" data-emoji="' + emoji + '" title="' + emoji + '"><i class="em em-' + emoji + '"></i></a>';
+		});
+
+		var footer = '</div></div>';
+
+		createPopup(header + main + footer, 400);
+
+		$('.emojiPicker a').click(function () {
+			copyToClipboard(':' + $(this).data('emoji') + ':');
+
+			var $pickerNotify = $('#picker-notify');
+			$pickerNotify.slideDown('fast', function() {
+				setTimeout(function() {
+					$pickerNotify.slideUp('fast');
+				}, 500);
+			});
+		});
+	});
+	
 	$('#clearMessages').click(function() {
 		$messages.empty();
 		opts.messageCount = 0;

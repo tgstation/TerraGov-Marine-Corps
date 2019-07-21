@@ -450,6 +450,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"fontawesome-webfont.ttf"  = 'goon/browserassets/css/fonts/fontawesome-webfont.ttf',
 		"fontawesome-webfont.woff" = 'goon/browserassets/css/fonts/fontawesome-webfont.woff',
 		"font-awesome.css"	       = 'goon/browserassets/css/font-awesome.css',
+		"emojib64.css" 			   = 'goon/browserassets/css/emojib64.css',
 		"browserOutput.css"	       = 'goon/browserassets/css/browserOutput.css'
 	)
 

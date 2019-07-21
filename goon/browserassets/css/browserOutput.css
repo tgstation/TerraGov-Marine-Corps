@@ -101,7 +101,7 @@ a.popt {text-decoration: none;}
 #ping {
 	position: fixed;
 	top: 0;
-	right: 80px;
+	right: 120px;
 	width: 45px;
 	background: #ddd;
 	height: 30px;
@@ -137,7 +137,7 @@ a.popt {text-decoration: none;}
     float: right;
     text-align: center;
 }
-#userBar .sub {clear: both; display: none; width: 160px;}
+#userBar .sub {clear: both; display: none; width: 180px;}
 #userBar .sub.scroll {overflow-y: scroll;}
 #userBar .sub.subCell {padding: 3px 0 3px 8px; line-height: 30px; font-size: 0.9em; clear: both;}
 #userBar .sub span {
@@ -210,6 +210,13 @@ a.popt {text-decoration: none;}
 
 .icon-stack {height: 1em; line-height: 1em; width: 1em; vertical-align: middle; margin-top: -2px;}
 
+.emojiPicker1 {padding: 10px; text-align: center;}
+.emojiPicker1 .emojiList {max-height: 185px; overflow-y: auto;}
+.emojiPicker1 i {margin: 4px;}
+.emojiPicker1 a {font-size: 20px;}
+.emojiPicker1 a:hover {background: #ccc;}
+.emojiPicker1 #picker-notify {display: none; position: absolute; width: 100%; text-align: center;}
+.emojiPicker1 #picker-notify span {background-color: #67ba5d; padding-left: 5px; padding-right: 5px;}
 
 /*****************************************
 *

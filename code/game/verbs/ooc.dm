@@ -156,11 +156,11 @@
 	var/message
 
 	if(admin && isobserver(mob))
-		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
+		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message emojify'>[msg]</span></span></font>"
 		for(var/mob/M in range(mob))
 			to_chat(M, message)
 	else
-		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span></font>"
+		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message emojify'>[msg]</span></span></font>"
 		for(var/mob/M in range(mob))
 			to_chat(M, message)
 
@@ -168,7 +168,7 @@
 		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
 			continue
 		if(C.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message emojify'>[msg]</span></span></font>")
 
 
 /client/verb/motd()
