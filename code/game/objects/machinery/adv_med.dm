@@ -30,21 +30,24 @@
 	src.go_out()
 	return
 
-/obj/machinery/bodyscanner/verb/move_inside()
+/obj/machinery/bodyscanner/MouseDrop_T(mob/M, mob/user)
+	move_inside(M)
+
+/obj/machinery/bodyscanner/verb/move_inside(mob/M)
 	set src in oview(1)
 	set category = "Object"
 	set name = "Enter Body Scanner"
 
-	if (usr.stat || !(ishuman(usr) || ismonkey(usr)))
+	if (M.stat || !(ishuman(M) || ismonkey(M)))
 		return
 	if (src.occupant)
-		to_chat(usr, "<span class='boldnotice'>The scanner is already occupied!</span>")
+		to_chat(M, "<span class='boldnotice'>The scanner is already occupied!</span>")
 		return
-	if (usr.abiotic())
-		to_chat(usr, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
+	if (M.abiotic())
+		to_chat(M, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
 		return
-	usr.forceMove(src)
-	src.occupant = usr
+	M.forceMove(src)
+	src.occupant = M
 	src.icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		//O = null

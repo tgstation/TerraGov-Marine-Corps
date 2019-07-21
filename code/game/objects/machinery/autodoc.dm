@@ -655,38 +655,41 @@
 				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
 		go_out()
 
-/obj/machinery/autodoc/verb/move_inside()
+/obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
+	move_inside(M)
+
+/obj/machinery/autodoc/verb/move_inside(mob/M)
 	set name = "Enter Med-Pod"
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.incapacitated() || !ishuman(usr))
+	if(M.incapacitated() || !ishuman(M))
 		return
 
 	if(occupant)
-		to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
+		to_chat(M, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(usr, "<span class='notice'>\ [src] is non-functional!</span>")
+		to_chat(M, "<span class='notice'>\ [src] is non-functional!</span>")
 		return
 
-	if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to get into \the [src].</span>",
+	if(M.mind && M.mind.cm_skills && M.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
+	M.visible_message("<span class='notice'>[M] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
-	if(do_after(usr, 10, FALSE, src, BUSY_ICON_GENERIC))
+	if(do_after(M, 10, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
-			to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
+			to_chat(M, "<span class='notice'>\ [src] is already occupied!</span>")
 			return
-		usr.stop_pulling()
-		usr.forceMove(src)
-		occupant = usr
+		M.stop_pulling()
+		M.forceMove(src)
+		occupant = M
 		icon_state = "autodoc_closed"
 		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant

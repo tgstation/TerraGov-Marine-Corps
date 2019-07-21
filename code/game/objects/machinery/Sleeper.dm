@@ -445,16 +445,18 @@
 		beaker.loc = usr.loc
 		beaker = null
 
+/obj/machinery/sleeper/MouseDrop_T(mob/M, mob/user)
+	move_inside(M)
 
-/obj/machinery/sleeper/verb/move_inside()
+/obj/machinery/sleeper/verb/move_inside(mob/M)
 	set name = "Enter Sleeper"
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat || !ishuman(usr))
+	if(M.stat || !ishuman(M))
 		return
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/carbon/human/user = M
 
 	if(occupant)
 		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
@@ -467,7 +469,7 @@
 	if(!user.forceMove(src))
 		return
 	visible_message("[user] climbs into the sleeper.", 3)
-	occupant = usr
+	occupant = M
 	start_processing()
 	connected.start_processing()
 	icon_state = "sleeper_1"

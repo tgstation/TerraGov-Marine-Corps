@@ -429,7 +429,10 @@
 	go_out()
 	return
 
-/obj/machinery/cryopod/verb/move_inside()
+/obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
+	move_inside(M)
+
+/obj/machinery/cryopod/verb/move_inside(mob/M)
 	set name = "Enter Pod"
 	set category = "Object"
 	set src in oview(1)
