@@ -7,19 +7,36 @@
 /obj/machinery/computer/nuke_disc_generator
 	name = "Nuke Disc Generator"
 	desc = "Used to generate the correct auth discs for the nuke."
-	icon_state = "atmos" // TODO: Better icon state
+	icon_state = "request" // TODO: Better icon state
 	circuit = "/obj/item/circuitboard/computer/nuke_disc_generator"
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
-	var/generate_time = 5 SECONDS // time for the machine to generate the disc
-	var/segment_time = 1 SECONDS // time to start the hack
+	// var/generate_time = 3 MINUTES // time for the machine to generate the disc
+	// var/segment_time = 15 SECONDS // time to start the hack 
+	// var/printing_time = 15 SECONDS // time to print a disc 
+	
+	var/generate_time = 3 SECONDS // time for the machine to generate the disc
+	var/segment_time = 1 SECONDS // time to start the hack 
+	var/printing_time = 5 SECONDS // time to print a disc 
+
 	var/total_segments = 5 // total number of times the hack is required
 	var/completed_segments = 0 // what segment we are on, (once this hits total, disc is printed)
 	var/current_timer
 
+	var/reprintable = FALSE // once the disc is printed, reprinting is enabled
+	var/printing = FALSE // check if someone is printing already
+
 	var/disc_type = null
 	var/obj/item/disk/nuclear/crash/disc
+
+	var/list/technobabble = list(
+		"Booting up terminal-  -Terminal running",
+		"Establishing link to offsite mainframe- Link established",
+		"WARNING, DIRECTORY CORRUPTED, running search algorithms- nuke_fission_timing.exe found",
+		"Invalid credentials, upgrading permissions through TGMC military override- Permissions upgraded, nuke_fission_timing.exe available",
+		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, have a nice day"
+	)
 
 /obj/machinery/computer/nuke_disc_generator/Initialize()
 	. = ..()
@@ -54,7 +71,7 @@
 
 	var/message = "Error"
 	if(completed_segments >= total_segments)
-		message = "Disc generated"
+		message = "Disc generated. Run program to print."
 	else if(current_timer)
 		message = "Program running"
 	else if(completed_segments == 0)
@@ -70,6 +87,13 @@
 	dat += "<br/><span><b>Time left</b>: [current_timer ? round(timeleft(current_timer) * 0.1, 2) : 0.0]</span>"
 	dat += "<br/><span><b>Message</b>: [message]</span>"
 
+	var/flair = ""
+	if(completed_segments > 0)
+		for(var/i in 1 to completed_segments)
+			flair += "[technobabble[i]]<br />"
+
+		dat += "<br /><br /><span style='font-family: monospace, monospace;'>[flair]</span>"
+
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Nuke Disc Generator</div>")
 	popup.set_content(dat)
 	popup.open()
@@ -80,34 +104,50 @@
 		return
 
 	if(href_list["generate"])
-		if(current_timer)
+		if(printing || current_timer)
 			to_chat(usr, "<span class='warning'>A program is already running.</span>")
 			return
+		if(reprintable)
+			printing = TRUE
+			addtimer(VARSET_CALLBACK(src, printing, FALSE), printing_time) // TODO Change to larger time
 
-		usr.visible_message("[usr] started a program to generate \the [disc]", "You started a program to generate \a [disc_type]")
-		var/extra_check = CALLBACK(src, .process)
-		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, extra_check))
+			usr.visible_message("[usr] started a program to regenerate a nuclear disc code.", "You started a program to generate a nuclear disc code.")
+			if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, .process)))
+				return
+
+			print_disc()
 			return
+
+		printing = TRUE
+		addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time) // TODO Change to larger time
+
+		usr.visible_message("[usr] started a program to generate a nuclear disc code.", "You started a program to generate a nuclear disc code.")
+		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, .process)))
+			current_timer = null
+			return
+
 		current_timer = addtimer(CALLBACK(src, .proc/complete_segment), generate_time, TIMER_STOPPABLE)
 
 	updateUsrDialog()
 
 
 /obj/machinery/computer/nuke_disc_generator/proc/complete_segment()
+	playsound(src, 'sound/machines/ping.ogg', 25, 1)	
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
 
 	if (completed_segments == total_segments)
-		print_disc()
+		reprintable = TRUE
+		visible_message("<span class='notice'>[src] beeps as it ready to print.</span>")
+		return
+
+	visible_message("<span class='notice'>[src] beeps as it program requires attention.</span>")
 
 
 /obj/machinery/computer/nuke_disc_generator/proc/print_disc()
-	if(disc != null)
-		visible_message("<span class='warning'>Failed to generate red disc</span>")
-		return
 	disc = new disc_type(loc)
-	visible_message("<span class='notice'>[src] beeps 'Disc printed'</span>")
-	return
+	visible_message("<span class='notice'>[src] beeps as it finishes printing the disc.</span>")
+	reprintable = TRUE
 		
 /obj/machinery/computer/nuke_disc_generator/red
 	disc_type = /obj/item/disk/nuclear/crash/red
