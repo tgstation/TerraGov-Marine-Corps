@@ -41,6 +41,10 @@ SUBSYSTEM_DEF(server_maint)
 					log_world("Found a null in alive_mob_list!")
 				cleanup_ticker++
 			if(15)
+				if(listclearnulls(GLOB.human_mob_list))
+					log_world("Found a null in human_mob_list!")
+				cleanup_ticker++
+			if(20)
 				cleanup_ticker = 0
 			else
 				cleanup_ticker++
