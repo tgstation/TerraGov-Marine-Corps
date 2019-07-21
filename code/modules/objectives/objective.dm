@@ -27,7 +27,16 @@
 	for(var/i in enables_objectives)
 		var/datum/objective/E = i
 		E.required_objectives -= src
+
+	SEND_SIGNAL(src, COMSIG_OBJECTIVE_GCED)
+
 	return ..()
+
+/datum/objective/proc/add_prerequisite(datum/objective/O)
+	required_objectives |= O
+	O.enables_objectives |= src
+	RegisterSignal(O, COMSIG_OBJECTIVE_GCED, .proc/process)
+	O.RegisterSignal(src, COMSIG_OBJECTIVE_GCED, .proc/process)
 
 /datum/objective/proc/initialize() // initial setup after the map has loaded
 

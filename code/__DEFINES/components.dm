@@ -56,7 +56,8 @@
 #define COMSIG_DBLCLICK_ALT "dblclick_alt"
 #define COMSIG_DBLCLICK_CTRL "dblclick_ctrl"
 
-
+// /datum/objective signals
+#define COMSIG_OBJECTIVE_GCED "objective_gced"
 
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)
