@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(faxes)
 			dat += "Sender: [key_name_admin(F.sender)] [check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""][ADMIN_SM(F.sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxmark=[REF(F)]'>MARK</a>)"
 		dat += "<hr>"
 
-	dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxcreate=[REF(usr)]'>CREATE NEW FAX</a>"
+	dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxcreate=[REF(usr)]'>Create new fax</a>"
 
 	var/datum/browser/browser = new(usr, "faxview", "<div align='center'>Faxes</div>")
 	browser.set_content(dat)

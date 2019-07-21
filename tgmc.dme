@@ -85,6 +85,7 @@
 #include "code\__HELPERS\mobs.dm"
 #include "code\__HELPERS\movable.dm"
 #include "code\__HELPERS\patterns.dm"
+#include "code\__HELPERS\pencode.dm"
 #include "code\__HELPERS\pronouns.dm"
 #include "code\__HELPERS\qdel.dm"
 #include "code\__HELPERS\sanitize_values.dm"

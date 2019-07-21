@@ -825,7 +825,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
 				if(!input)
 					return
-				fax_message = "[input]"
+				fax_message = parse_pencode(input)
 
 		if(!fax_message)
 			return
