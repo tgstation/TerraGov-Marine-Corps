@@ -764,7 +764,7 @@ should be alright.
 		if(!A || A.loc != src)
 			return
 	if(A)
-		A.ui_action_click(usr, src)
+		A.ui_action_click(usr, null, src)
 
 
 /obj/item/weapon/gun/verb/toggle_rail_attachment()
