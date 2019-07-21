@@ -2,7 +2,7 @@
 #define PAPER_SIGN_FONT "Times New Roman"
 #define PAPER_CRAYON_FONT "Comic Sans MS"
 
-/proc/parse_pencode(t, obj/item/tool/pen/P, mob/user as mob, is_crayon = FALSE)
+/proc/parse_pencode(t, obj/item/tool/pen/P, mob/user, is_crayon = FALSE)
 	var/font = is_crayon ? PAPER_DEFAULT_FONT : PAPER_CRAYON_FONT
 
 	// First if crayon, removed things not allowed
