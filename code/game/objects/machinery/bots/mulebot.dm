@@ -479,7 +479,8 @@
 				process_bot()
 		if(2)
 			process_bot()
-			addtimer(CALLBACK(src, .proc/process_bot), 4)
+			spawn(4)
+				process_bot()
 		if(3)
 			process_bot()
 
@@ -538,7 +539,7 @@
 
 
 						if(mode==4)
-							addtimer(CALLBACK(src, .proc/send_status), 1)
+							INVOKE_NEXT_TICK(src, .proc/send_status)
 
 						if(destination == home_destination)
 							mode = 3
