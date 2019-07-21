@@ -69,12 +69,8 @@
 /datum/game_mode/proc/activate_distress(datum/emergency_call/chosen_call)
 	picked_call = chosen_call || get_random_call()
 
-	if(!istype(picked_call)) //Something went horribly wrong
-		return FALSE
-
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
-
 
 	picked_call.mob_max = rand(5, 15)
 
