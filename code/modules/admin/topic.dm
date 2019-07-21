@@ -835,6 +835,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
 		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
+			usr << browse(null, "window=faxpreview")
 			return
 
 		send_fax(sender, null, dep, subject, fax_message, TRUE)
