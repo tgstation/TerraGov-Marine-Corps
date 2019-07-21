@@ -58,6 +58,9 @@
 
 // /datum/objective signals
 #define COMSIG_OBJECTIVE_GCED "objective_gced"
+#define COMSIG_OBJECTIVE_COMPLETED "objective_completed"
+#define COMSIG_OBJECTIVE_FAILED "objective_failed"
+#define COMSIG_OBJECTIVE_UNCOMPLETED "objective_uncompleted"
 
 // /atom signals
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"			        //from base of atom/attackby(): (/obj/item, /mob/living)

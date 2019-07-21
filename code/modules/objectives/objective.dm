@@ -17,6 +17,9 @@
 /datum/objective/New()
 	GLOB.all_objectives += src
 
+	if(SSatoms.initialized != INITIALIZATION_INSSATOMS)
+		Initialize()
+
 /datum/objective/Destroy()
 	GLOB.all_objectives -= src
 	STOP_PROCESSING(SSobjectives, src)
@@ -38,7 +41,8 @@
 	RegisterSignal(O, COMSIG_OBJECTIVE_GCED, .proc/process)
 	O.RegisterSignal(src, COMSIG_OBJECTIVE_GCED, .proc/process)
 
-/datum/objective/proc/initialize() // initial setup after the map has loaded
+/datum/objective/proc/Initialize() // initial setup after the map has loaded
+
 
 /datum/objective/proc/pre_round_start() // called by game mode just before the round starts
 
@@ -78,6 +82,7 @@
 	if(is_complete())
 		return FALSE
 	complete = TRUE
+	SEND_SIGNAL(src, COMSIG_OBJECTIVE_COMPLETED)
 	if(can_be_deactivated() && !(objective_flags & OBJ_PROCESS_ON_DEMAND))
 		deactivate()
 	return TRUE
@@ -86,6 +91,8 @@
 	if(!(objective_flags & OBJ_CAN_BE_UNCOMPLETED) || !complete)
 		return
 	complete = FALSE
+	if(!failed)
+		SEND_SIGNAL(src, COMSIG_OBJECTIVE_UNCOMPLETED)
 	if(can_be_activated())
 		activate()
 
@@ -105,6 +112,7 @@
 	if(complete && !(objective_flags & OBJ_CAN_BE_UNCOMPLETED))
 		return
 	failed = TRUE
+	SEND_SIGNAL(src, COMSIG_OBJECTIVE_FAILED)
 	uncomplete()
 	deactivate()
 	for(var/i in enables_objectives)
