@@ -487,23 +487,6 @@
 /obj/structure/window/framed/almayer,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"bc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring"
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/almayer{
-	icon_state = "orangefull"
-	},
-/area/shuttle/canterbury/general)
 "bd" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -611,22 +594,14 @@
 /area/shuttle/canterbury/general)
 "bl" = (
 /obj/effect/decal/warning_stripes/thin{
-	dir = 5
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/turf/open/floor/almayer{
+	icon_state = "orangefull"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "bm" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -1330,7 +1305,6 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/latejoin,
-/obj/item/radio/intercom,
 /obj/item/radio/intercom{
 	anyai = 1;
 	dir = 4;
@@ -1687,6 +1661,20 @@
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury/general)
+"dl" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/almayer/mono,
+/area/shuttle/canterbury/general)
 "dm" = (
 /obj/machinery/door_control{
 	id = "aft_engine_podlock"
@@ -1808,10 +1796,6 @@
 "Wo" = (
 /turf/closed/wall/almayer,
 /area/shuttle/canterbury/medical)
-"Yi" = (
-/obj/structure/window/framed/almayer/toughened,
-/turf/template_noop,
-/area/shuttle/canterbury/cic)
 
 (1,1,1) = {"
 aa
@@ -1918,7 +1902,7 @@ dC
 aa
 "}
 (5,1,1) = {"
-Yi
+ab
 ac
 ac
 ab
@@ -1928,8 +1912,8 @@ aH
 aP
 cD
 aX
-bc
 bl
+dl
 bx
 bG
 bT
@@ -1944,7 +1928,7 @@ dC
 aa
 "}
 (6,1,1) = {"
-Yi
+ac
 ad
 ai
 an
@@ -1970,7 +1954,7 @@ as
 as
 "}
 (7,1,1) = {"
-Yi
+ac
 ae
 aj
 ao
@@ -1996,7 +1980,7 @@ dk
 dE
 "}
 (8,1,1) = {"
-Yi
+ac
 af
 ak
 ap
@@ -2022,7 +2006,7 @@ df
 dE
 "}
 (9,1,1) = {"
-Yi
+ac
 ag
 al
 aq
@@ -2048,7 +2032,7 @@ df
 dE
 "}
 (10,1,1) = {"
-Yi
+ac
 ah
 am
 ar
@@ -2074,7 +2058,7 @@ as
 as
 "}
 (11,1,1) = {"
-Yi
+ab
 ac
 ac
 ab
