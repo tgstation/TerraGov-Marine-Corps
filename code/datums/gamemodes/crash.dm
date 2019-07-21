@@ -200,57 +200,6 @@
 	announce_round_stats()
 	end_of_round_deathmatch()
 
-
-/datum/game_mode/crash/proc/initialize_xeno_leader()
-	var/list/possible_queens = get_players_for_role(BE_QUEEN)
-	if(!length(possible_queens))
-		return FALSE
-
-	var/found = FALSE
-	for(var/i in possible_queens)
-		var/datum/mind/new_queen = i
-		if(new_queen.assigned_role || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
-			continue
-		if(queen_age_check(new_queen.current?.client))
-			continue
-		new_queen.assigned_role = ROLE_XENO_QUEEN
-		xenomorphs += new_queen
-		found = TRUE
-		break
-
-	return found
-
-/datum/game_mode/crash/proc/initialize_xenomorphs()
-	var/list/possible_xenomorphs = get_players_for_role(BE_ALIEN)
-	if(length(possible_xenomorphs) < xeno_required_num)
-		return FALSE
-
-	for(var/i in possible_xenomorphs)
-		var/datum/mind/new_xeno = i
-		if(new_xeno.assigned_role || is_banned_from(new_xeno.current?.ckey, ROLE_XENOMORPH))
-			continue
-		new_xeno.assigned_role = ROLE_XENOMORPH
-		xenomorphs += new_xeno
-		possible_xenomorphs -= new_xeno
-		if(length(xenomorphs) >= xeno_starting_num)
-			break
-
-	if(!length(xenomorphs))
-		return FALSE
-
-	xeno_required_num = CONFIG_GET(number/min_xenos)
-
-	if(length(xenomorphs) < xeno_required_num)
-		for(var/i = 1 to xeno_starting_num - length(xenomorphs))
-			new /mob/living/carbon/xenomorph/larva(pick(GLOB.xeno_spawn))
-
-	else if(length(xenomorphs) < xeno_starting_num)
-		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		HN.stored_larva += xeno_starting_num - length(xenomorphs)
-
-	return TRUE
-
-
 // Overrides
 
 /datum/game_mode/crash/job_after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
