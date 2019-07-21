@@ -732,3 +732,15 @@ below 100 is not dizzy
 				holding = "They are holding \a [r_hand]"
 		holding += "."
 	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt" : ""][holding ? ". [holding]" : "."]"
+
+
+//mob verbs are a lot faster than object verbs
+//for more info on why this is not atom/pull, see examinate() in mob.dm
+/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+	set name = "Pull"
+	set category = "Object"
+
+	if(istype(AM) && Adjacent(AM))
+		start_pulling(AM)
+	else
+		stop_pulling()
