@@ -88,11 +88,10 @@
 	dat += "<br/><span><b>Message</b>: [message]</span>"
 
 	var/flair = ""
-	if(completed_segments > 0)
-		for(var/i in 1 to completed_segments)
-			flair += "[technobabble[i]]<br />"
+	for(var/i in 1 to completed_segments)
+		flair += "[technobabble[i]]<br />"
 
-		dat += "<br /><br /><span style='font-family: monospace, monospace;'>[flair]</span>"
+	dat += "<br /><br /><span style='font-family: monospace, monospace;'>[flair]</span>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Nuke Disc Generator</div>")
 	popup.set_content(dat)
