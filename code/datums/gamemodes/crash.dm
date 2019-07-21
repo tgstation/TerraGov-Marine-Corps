@@ -40,7 +40,7 @@
 		return FALSE
 
 	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
-	var/obj/docking_port/stationary/L = SSshuttle.getDock("crashmodeloading")
+	var/obj/docking_port/stationary/L = SSshuttle.getDock("canterbury_loadingdock")
 	shuttle = SSshuttle.action_load(S, L)
 
 	// Reset all spawnpoints after spawning the ship
@@ -75,15 +75,16 @@
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
-		validdocks += S.name
+		validdocks += S.id
 
+	message_admins("valid_docks [length(validdocks)]")
 	var/dock = pick(validdocks)
 
 	var/obj/docking_port/stationary/target
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.name != dock)
-			continue
-		target = S
+		if(S.id == dock)
+			target = S
+			break
 
 	if(!target)
 		CRASH("Unable to get a valid shuttle target!")

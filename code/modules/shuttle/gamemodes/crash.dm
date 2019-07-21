@@ -1,16 +1,17 @@
 /obj/docking_port/stationary/crashmode
+	id = "canterbury_dock"
 	dir = SOUTH
 	width = 15
 	height = 24
 	dwidth = 7
 	dheight = 12
-	id = "crashmodedock"
 
 /obj/docking_port/stationary/crashmode/loading
-	id = "crashmodeloading"
+	id = "canterbury_loadingdock"
 
 	
 /obj/docking_port/mobile/crashmode
+	name = "tgs canterbury"
 	dir = SOUTH
 	width = 15
 	height = 24
