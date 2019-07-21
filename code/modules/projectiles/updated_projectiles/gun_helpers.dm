@@ -598,9 +598,7 @@ should be alright.
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
 	
-	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE_OFF)
-	
-	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE_ON, fire_mode, user.client)
+	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
@@ -624,8 +622,10 @@ should be alright.
 				actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
 			if(GUN_FIREMODE_BURSTFIRE)
 				actions_types += list(/datum/action/item_action/firemode/burst_firemode)
-			if(GUN_FIREMODE_AUTOFIRE)
+			if(GUN_FIREMODE_AUTOMATIC)
 				actions_types += list(/datum/action/item_action/firemode/automatic_firemode)
+			if(GUN_FIREMODE_AUTOBURST)
+				actions_types += list(/datum/action/item_action/firemode/autoburst_firemode)
 		var/action_type = actions_types[length(actions_types)]
 		var/datum/action/new_action = new action_type(src)
 		if(user)
@@ -651,8 +651,10 @@ should be alright.
 				action_type = /datum/action/item_action/firemode/semiauto_firemode
 			if(GUN_FIREMODE_BURSTFIRE)
 				action_type = /datum/action/item_action/firemode/burst_firemode
-			if(GUN_FIREMODE_AUTOFIRE)
+			if(GUN_FIREMODE_AUTOMATIC)
 				action_type = /datum/action/item_action/firemode/automatic_firemode
+			if(GUN_FIREMODE_AUTOBURST)
+				actions_types = /datum/action/item_action/firemode/autoburst_firemode
 		actions_types -= action_type
 
 		var/datum/action/old_action = locate(action_type) in actions
@@ -685,9 +687,10 @@ should be alright.
 						actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
 					if(GUN_FIREMODE_BURSTFIRE)
 						actions_types += list(/datum/action/item_action/firemode/burst_firemode)
-					if(GUN_FIREMODE_AUTOFIRE)
+					if(GUN_FIREMODE_AUTOMATIC)
 						actions_types += list(/datum/action/item_action/firemode/automatic_firemode)
-						AddComponent(/datum/component/automatic_fire)
+					if(GUN_FIREMODE_AUTOBURST)
+						actions_types += list(/datum/action/item_action/firemode/autoburst_firemode)
 				var/action_type = actions_types[length(actions_types)]
 				var/datum/action/new_action = new action_type(src)
 				if(isliving(loc))

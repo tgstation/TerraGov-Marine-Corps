@@ -235,9 +235,13 @@ Defined in conflicts.dm of the #defines folder.
 	if(master_gun.burst_amount < 2)
 		if(GUN_FIREMODE_BURSTFIRE in master_gun.gun_firemode_list)
 			master_gun.remove_firemode(GUN_FIREMODE_BURSTFIRE, user)
+		if(GUN_FIREMODE_AUTOBURST in master_gun.gun_firemode_list)
+			master_gun.remove_firemode(GUN_FIREMODE_AUTOBURST, user)
 	else
 		if(!(GUN_FIREMODE_BURSTFIRE in master_gun.gun_firemode_list))
 			master_gun.add_firemode(GUN_FIREMODE_BURSTFIRE, user)
+		if((GUN_FIREMODE_AUTOMATIC in master_gun.gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in master_gun.gun_firemode_list))
+			master_gun.add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 
 /obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)

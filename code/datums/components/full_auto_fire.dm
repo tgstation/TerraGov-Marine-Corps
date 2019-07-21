@@ -17,23 +17,22 @@ datum/component/automatic_fire
 	var/bursts_fired = 0
 	var/burstfire_shot_delay = 0.2 SECONDS
 	var/shots_to_fire = 0
-	var/fire_mode
+	var/component_fire_mode
 
 
 /datum/component/automatic_fire/Initialize()
 	. = ..()
 	if(!isgun(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, COMSIG_GUN_FIREMODE_TOGGLE_ON, .proc/wake_up)
-	RegisterSignal(parent, COMSIG_GUN_FIREMODE_TOGGLE_OFF, .proc/sleep_up)
+	RegisterSignal(parent, COMSIG_GUN_FIREMODE_TOGGLE, .proc/wake_up)
 	var/obj/item/weapon/gun/shoota = parent
-	switch(shoota.fire_mode)
-		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOFIRE)
+	switch(shoota.gun_firemode)
+		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 			var/usercli
 			if(ismob(shoota.loc))
 				var/mob/user = shoota.loc
 				usercli = user.client
-			wake_up(src, fire_mode, usercli)
+			wake_up(src, component_fire_mode, usercli)
 
 
 /datum/component/automatic_fire/Destroy()
@@ -43,13 +42,13 @@ datum/component/automatic_fire
 
 /datum/component/automatic_fire/proc/wake_up(datum/source, fire_mode, client/usercli)
 	switch(fire_mode)
-		if(GUN_FIREMODE_SINGLEFIRE)
+		if(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE)
 			switch(autofire_stat)
 				if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
 					sleep_up()
 			return //No need for autofire on this mode.
 	
-	src.fire_mode = fire_mode
+	component_fire_mode = fire_mode
 	
 	switch(autofire_stat)
 		if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
@@ -165,18 +164,18 @@ datum/component/automatic_fire
 			addtimer(CALLBACK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer), 0.1 SECONDS) //Next tick hopefully.
 		auto_delay_timer = null
 	autofire_shot_delay = shoota.fire_delay //For testing. In the long run this will be set via signals.
-	switch(fire_mode)
-		if(GUN_FIREMODE_AUTOFIRE)
+	switch(component_fire_mode)
+		if(GUN_FIREMODE_AUTOMATIC)
 			process_shot()
 			auto_delay_timer = addtimer(CALLBACK(src, .proc/process_shot), autofire_shot_delay, TIMER_STOPPABLE|TIMER_LOOP)
-		if(GUN_FIREMODE_BURSTFIRE)
+		if(GUN_FIREMODE_AUTOBURST)
 			shots_to_fire = shoota.burst_amount //For testing. In the long run this will be set via signals.
 			burstfire_shot_delay = shoota.burst_delay //For testing. In the long run this will be set via signals.
 			process_burst()
 			var/burstfire_burst_delay = (burstfire_shot_delay * shots_to_fire) + (autofire_shot_delay * 3) //For testing. In the long run this will be set via signals.
 			auto_delay_timer = addtimer(CALLBACK(src, .proc/process_burst), burstfire_burst_delay, TIMER_STOPPABLE|TIMER_LOOP)
 		else
-			CRASH("start_autofiring() called with no fire_mode")
+			CRASH("start_autofiring() called with no valid component_fire_mode")
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDRAG, .proc/on_mouse_drag)
 
 

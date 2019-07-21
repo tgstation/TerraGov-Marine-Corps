@@ -355,7 +355,7 @@
 						/obj/item/attachable/bipod)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOFIRE)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
@@ -996,18 +996,20 @@
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOFIRE)
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-
+/*
 /obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	to_chat(usr, "<span class='warning'>The safety clicks. This weapon cannot be fired in single fire mode!</span>")
-	playsound(src, dry_fire_sound, 25, 1, 5)
-	return
-
+	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
+		to_chat(usr, "<span class='warning'>The safety clicks. This weapon cannot be fired in single fire mode!</span>")
+		playsound(src, dry_fire_sound, 25, 1, 5)
+		return
+	return ..()
+*/
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)

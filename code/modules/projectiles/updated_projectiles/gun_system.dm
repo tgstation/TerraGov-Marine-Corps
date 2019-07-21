@@ -93,7 +93,6 @@
 	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
 
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-	var/fire_mode = GUN_FIREMODE_SINGLEFIRE
 
 	var/gun_firemode = GUN_FIREMODE_SEMIAUTO
 	var/list/gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -133,6 +132,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
+	AddComponent(/datum/component/automatic_fire)
 
 
 //Called by the gun's New(), set the gun variables' values.

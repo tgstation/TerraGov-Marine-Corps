@@ -74,12 +74,14 @@
 	name = "Semi-Automatic Firemode"
 	action_firemode = GUN_FIREMODE_SEMIAUTO
 
-
 /datum/action/item_action/firemode/burst_firemode
 	name = "Burst Firemode"
 	action_firemode = GUN_FIREMODE_BURSTFIRE
 
-
 /datum/action/item_action/firemode/automatic_firemode
 	name = "Automatic Firemode"
-	action_firemode = GUN_FIREMODE_BURSTFIRE
+	action_firemode = GUN_FIREMODE_AUTOMATIC
+
+/datum/action/item_action/firemode/autoburst_firemode
+	name = "Automatic Burst Firemode"
+	action_firemode = GUN_FIREMODE_AUTOBURST
