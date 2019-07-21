@@ -695,7 +695,7 @@ below 100 is not dizzy
 	return name
 
 
-/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE
