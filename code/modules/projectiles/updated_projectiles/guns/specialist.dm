@@ -1002,14 +1002,6 @@
 						/obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-/*
-/obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
-		to_chat(usr, "<span class='warning'>The safety clicks. This weapon cannot be fired in single fire mode!</span>")
-		playsound(src, dry_fire_sound, 25, 1, 5)
-		return
-	return ..()
-*/
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
