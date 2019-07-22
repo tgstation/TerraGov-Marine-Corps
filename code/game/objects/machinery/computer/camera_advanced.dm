@@ -207,7 +207,7 @@
 				var/atom/A = i
 				if(!top)
 					top = loc
-				if(A.type in GLOB.ignored_atoms)
+				if(is_type_in_typecache(A.type, GLOB.ignored_atoms)) 
 					continue
 				if(A.layer > top.layer)
 					top = A
