@@ -27,7 +27,8 @@
 
 
 /obj/effect/alien/weeds/Destroy()
-	SSweeds.add_weed(src)
+	if(parent_node)
+		SSweeds.add_weed(src)
 
 	var/oldloc = loc
 	. = ..()
@@ -177,6 +178,10 @@
 	max_integrity = 15
 
 	var/node_turfs = list() // list of all potential turfs that we can expand to
+
+/obj/effect/alien/weeds/node/Destroy()
+	. = ..()
+	SSweeds_decay.decay_weeds(node_turfs)
 
 
 /obj/effect/alien/weeds/node/update_icon()
