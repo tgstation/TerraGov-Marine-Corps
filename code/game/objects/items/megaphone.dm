@@ -32,15 +32,12 @@
 	if ((src.loc == user && usr.stat == 0))
 		if(CHECK_BITFIELD(obj_flags, EMAGGED))
 			if(insults)
-				for(var/mob/O in (viewers(user)))
-					O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
+				audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>")
 				insults--
 			else
 				to_chat(user, "<span class='warning'>*BZZZZzzzzzt*</span>")
 		else
-
-			for(var/mob/living/carbon/human/O in (viewers(user)))
-				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
+			audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>")
 
 		spamcheck = TRUE
 		addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)

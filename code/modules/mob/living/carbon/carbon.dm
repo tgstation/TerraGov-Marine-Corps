@@ -28,9 +28,7 @@
 		if(user.client)
 			user.client.move_delay = world.time + 20
 		if(prob(30))
-			for(var/mob/M in hearers(4, src))
-				if(M.client)
-					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
+			audible_message("<span class='warning'>You hear something rumbling inside [src]'s stomach...</span>", null, 4)
 	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
