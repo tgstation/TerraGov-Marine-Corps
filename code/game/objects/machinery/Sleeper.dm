@@ -380,6 +380,7 @@
 	connected.stop_processing()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
+	icon_state = "sleeper_0"
 	return
 
 
@@ -426,11 +427,10 @@
 	set name = "Eject Sleeper"
 	set category = "Object"
 	set src in oview(1)
-	if(usr.stat != 0)
+
+	if(usr.stat != CONSCIOUS)
 		return
-	if(orient == "RIGHT")
-		icon_state = "sleeper_0-r"
-	icon_state = "sleeper_0"
+	
 	go_out()
 
 
@@ -445,36 +445,46 @@
 		beaker.loc = usr.loc
 		beaker = null
 
-/obj/machinery/sleeper/MouseDrop_T(mob/M, mob/user)
-	move_inside(M)
+/obj/machinery/sleeper/relaymove(mob/user)
+	if(user.incapacitated(TRUE)) 
+		return
+	go_out()
 
-/obj/machinery/sleeper/verb/move_inside(mob/M)
-	set name = "Enter Sleeper"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/machinery/sleeper/proc/move_inside_wrapper(mob/M, mob/user)
 	if(M.stat || !ishuman(M))
 		return
-
-	var/mob/living/carbon/human/user = M
 
 	if(occupant)
 		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
 		return
 
-	if(ismob(user.pulledby))
-		var/mob/grabmob = user.pulledby
+	if(ismob(M.pulledby))
+		var/mob/grabmob = M.pulledby
 		grabmob.stop_pulling()
-	user.stop_pulling()
-	if(!user.forceMove(src))
+	M.stop_pulling()
+
+	if(!M.forceMove(src))
 		return
-	visible_message("[user] climbs into the sleeper.", 3)
+
+	visible_message("[M] climbs into the sleeper.", 3)
 	occupant = M
+	
 	start_processing()
 	connected.start_processing()
+	
 	icon_state = "sleeper_1"
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"
 
 	for(var/obj/O in src)
 		qdel(O)
+
+/obj/machinery/sleeper/MouseDrop_T(mob/M, mob/user)
+	move_inside_wrapper(M, user)
+
+/obj/machinery/sleeper/verb/move_inside()
+	set name = "Enter Sleeper"
+	set category = "Object"
+	set src in oview(1)
+
+	move_inside_wrapper(usr, usr)

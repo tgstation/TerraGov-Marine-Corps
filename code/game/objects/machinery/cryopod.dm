@@ -418,7 +418,6 @@
 	climb_in(M, user)
 
 /obj/machinery/cryopod/verb/eject()
-
 	set name = "Eject Pod"
 	set category = "Object"
 	set src in view(0)
@@ -427,45 +426,47 @@
 		return
 
 	go_out()
-	return
+
+/obj/machinery/cryopod/relaymove(mob/user)
+	if(user.incapacitated(TRUE)) 
+		return
+	go_out()
+
+/obj/machinery/cryopod/proc/move_inside_wrapper(mob/M, mob/user)
+	if(user.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+		return
+
+	if(!QDELETED(occupant))
+		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
+		return
+
+	climb_in(M, user)
 
 /obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
-	move_inside(M)
+	move_inside_wrapper(M, user)
 
-/obj/machinery/cryopod/verb/move_inside(mob/M)
+/obj/machinery/cryopod/verb/move_inside()
 	set name = "Enter Pod"
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != CONSCIOUS || !(ishuman(usr) || ismonkey(usr)))
-		return
-
-	if(!QDELETED(occupant))
-		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
-		return
-
-	climb_in(usr)
+	move_inside_wrapper(usr, usr)
 
 /obj/machinery/cryopod/proc/climb_in(mob/user, mob/helper)
-	if(helper)
+	if(helper && user != helper)
 		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
 		"<span class='notice'>You start putting [user] into [src].</span>")
 	else
 		user.visible_message("<span class='notice'>[user] starts climbing into [src].</span>",
 		"<span class='notice'>You start climbing into [src].</span>")
+		
 
-	var/mob/doafterman = helper ? helper : user
-	if(!do_after(doafterman, 20, TRUE, user, BUSY_ICON_GENERIC))
-		return
-	if(helper)
-		var/obj/item/grab/G = helper.get_active_held_item()
-		if(!istype(G) || G.grabbed_thing != user)
-			return
-	else if(!user.client)
+	var/mob/initiator = helper ? helper : user
+	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
 		return
 
 	if(!QDELETED(occupant))
-		to_chat(doafterman, "<span class='warning'>[src] is occupied.</span>")
+		to_chat(initiator, "<span class='warning'>[src] is occupied.</span>")
 		return
 
 	user.forceMove(src)
@@ -480,7 +481,6 @@
 	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
 
 /obj/machinery/cryopod/proc/go_out()
-
 	if(QDELETED(occupant))
 		return
 

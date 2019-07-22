@@ -636,9 +636,9 @@
 		if(usr == occupant)
 			if(surgery)
 				to_chat(usr, "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>")
+				return
 			else
 				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
-			return
 		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
@@ -655,14 +655,7 @@
 				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
 		go_out()
 
-/obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
-	move_inside(M)
-
-/obj/machinery/autodoc/verb/move_inside(mob/M)
-	set name = "Enter Med-Pod"
-	set category = "Object"
-	set src in oview(1)
-
+/obj/machinery/autodoc/proc/move_inside_wrapper(mob/M, mob/user)
 	if(M.incapacitated() || !ishuman(M))
 		return
 
@@ -699,6 +692,16 @@
 		connected.start_processing()
 		for(var/obj/O in src)
 			qdel(O)
+
+/obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
+	move_inside_wrapper(M, user)
+
+/obj/machinery/autodoc/verb/move_inside()
+	set name = "Enter Med-Pod"
+	set category = "Object"
+	set src in oview(1)
+
+	move_inside_wrapper(usr, usr)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
 	for(var/i in contents)
