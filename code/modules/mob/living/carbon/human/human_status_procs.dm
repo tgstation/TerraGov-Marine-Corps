@@ -1,34 +1,46 @@
 /mob/living/carbon/human/blind_eyes(amount, forced = FALSE)
+	if(species.species_flags & IS_SYNTHETIC)
+		return
 	if(!forced)
 		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
 			set_blindness(0, TRUE)
 	return ..()
 
 /mob/living/carbon/human/adjust_blindness(amount, forced = FALSE)
+	if(species.species_flags & IS_SYNTHETIC)
+		return
 	if(!forced)
 		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
 			set_blindness(0, TRUE)
 	return ..()
 
 /mob/living/carbon/human/set_blindness(amount, forced = FALSE)
+	if(species.species_flags & IS_SYNTHETIC)
+		return
 	if(!forced)
 		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
 			return
 	return ..()
 
 /mob/living/carbon/human/blur_eyes(amount, forced = FALSE)
+	if(species.species_flags & IS_SYNTHETIC)
+		return
 	if(!forced)
 		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
 			set_blurriness(0, TRUE)
 	return ..()
 
 /mob/living/carbon/human/adjust_blurriness(amount, forced = FALSE)
+	if(species.species_flags & IS_SYNTHETIC)
+		return
 	if(!forced)
 		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
 			set_blurriness(0, TRUE)
 	return ..()
 
 /mob/living/carbon/human/set_blurriness(amount, forced = FALSE)
+	if(species.species_flags & IS_SYNTHETIC)
+		return
 	if(!forced)
 		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
 			return
@@ -49,4 +61,16 @@
 /mob/living/carbon/human/vomit()
 	if(species.species_flags & IS_SYNTHETIC)
 		return //Machines don't throw up.
+	return ..()
+
+
+/mob/living/carbon/human/adjust_ear_damage(damage = 0, deaf = 0)
+	if(species.species_flags & IS_SYNTHETIC)
+		return
+	return ..()
+
+
+/mob/living/carbon/human/setEarDamage(damage, deaf)
+	if(species.species_flags & IS_SYNTHETIC)
+		return
 	return ..()
