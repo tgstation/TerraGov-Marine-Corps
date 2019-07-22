@@ -149,7 +149,7 @@
 	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)
-				visible_message("<span class='warning'>[user] disables [loc]'s remote sensing equipment.</span>")
+				visible_message("<span class='warning'>[user] disables [loc]'s remote sensing equipment.</span>", null, null, 1)
 			if(1)
 				visible_message("[user] turns [loc]'s remote sensors to binary.")
 			if(2)
