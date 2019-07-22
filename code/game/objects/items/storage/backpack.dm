@@ -351,7 +351,7 @@
 			if(!cell)
 				replace_install = "You install a cell in [src]'s defibrillator recharge unit."
 			else
-				cell.updateicon()
+				cell.update_icon()
 				user.put_in_hands(cell)
 			cell = W
 			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")

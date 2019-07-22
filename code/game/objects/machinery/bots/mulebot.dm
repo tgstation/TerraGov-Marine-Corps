@@ -253,7 +253,7 @@
 
 			if("cellremove")
 				if(open && cell && !usr.get_active_held_item())
-					cell.updateicon()
+					cell.update_icon()
 					usr.put_in_active_hand(cell)
 					cell = null
 
