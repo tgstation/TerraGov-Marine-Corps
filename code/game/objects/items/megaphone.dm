@@ -42,10 +42,8 @@
 			for(var/mob/living/carbon/human/O in (viewers(user)))
 				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
 
-		spamcheck = 1
-		spawn(20)
-			spamcheck = 0
-		return
+		spamcheck = TRUE
+		addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)
 
 /obj/item/megaphone/attackby(obj/item/I, mob/user, params)
 	. = ..()

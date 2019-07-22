@@ -206,9 +206,7 @@
 	..()
 	if(open && !locked)
 		if(user) to_chat(user, "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>")
-		spawn(0)
-			for(var/mob/O in hearers(src, null))
-				O.show_message("<span class='danger'>[src] buzzes oddly!</span>", 1)
+		visible_message("<span class='danger'>[src] buzzes oddly!</span>")
 		flick("medibot_spark", src)
 		src.patient = null
 		if(user) src.oldpatient = user
@@ -471,16 +469,6 @@
 		src.loc = M:loc
 		src.frustration = 0
 	return
-
-/* terrible
-/obj/machinery/bot/medbot/Bumped(atom/movable/M as mob|obj)
-	spawn(0)
-		if (M)
-			var/turf/T = get_turf(src)
-			M:loc = T
-*/
-
-
 
 /*
 *	Medbot Assembly -- Can be made out of all three medkits.

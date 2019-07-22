@@ -132,9 +132,8 @@
 	if (user.a_intent == INTENT_HELP && allowed(user))
 		user.visible_message("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()
-		lifted = 1
-		spawn(200)
-			lifted = 0
+		lifted = TRUE
+		addtimer(VARSET_CALLBACK(src, lifted, FALSE), 20 SECONDS)
 	else
 		breaktape(null, user)
 

@@ -99,8 +99,7 @@
 				qdel(src)
 		if(3)
 			if(prob(25))
-				spawn(0)
-					malfunction()
+				INVOKE_ASYNC(src, .proc/malfunction)
 
 /obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
 	return

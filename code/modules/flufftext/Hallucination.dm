@@ -32,8 +32,8 @@ mob/living/carbon/proc/handle_hallucinations()
 				//Screwy HUD
 				//to_chat(src, "Screwy HUD")
 				hal_screwyhud = pick(1,2,3,3,4,4)
-				spawn(rand(100,250))
-					hal_screwyhud = 0
+				addtimer(VARSET_CALLBACK(src, hal_screwyhud, 0), rand(10,25) SECONDS)
+
 			if(16 to 25)
 				//Strange items
 				//to_chat(src, "Traitor Items")
@@ -355,9 +355,7 @@ proc/check_panel(mob/M)
 	O.name = "blood"
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
 	to_chat(target, I)
-	spawn(300)
-		qdel(O)
-	return
+	QDEL_IN(O, 30 SECONDS)
 
 GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/disk/nuclear,\
 	/obj/item/clothing/suit/space/uscm, /obj/item/tank))

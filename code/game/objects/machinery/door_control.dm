@@ -42,13 +42,9 @@
 		if(D.id_tag == src.id)
 			if(specialfunctions & OPEN)
 				if (D.density)
-					spawn(0)
-						D.open()
-						return
+					INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
 				else
-					spawn(0)
-						D.close()
-						return
+					INVOKE_ASYNC(D, /obj/machinery/door.proc/close)
 			if(desiredstate == 1)
 				if(specialfunctions & IDSCAN)
 					D.aiDisabledIdScanner = 1
@@ -152,17 +148,13 @@
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == src.id)
-			spawn(0)
-				M.open()
-				return
+			INVOKE_ASYNC(M, /obj/machinery/door.proc/open)
 
 	sleep(50)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == src.id)
-			spawn(0)
-				M.close()
-				return
+			INVOKE_ASYNC(M, /obj/machinery/door.proc/close)
 
 	icon_state = "launcherbtt"
 	active = 0

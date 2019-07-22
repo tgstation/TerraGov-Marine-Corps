@@ -537,8 +537,7 @@
 
 
 						if(mode==4)
-							spawn(1)
-								send_status()
+							INVOKE_NEXT_TICK(src, .proc/send_status)
 
 						if(destination == home_destination)
 							mode = 3

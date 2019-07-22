@@ -286,9 +286,7 @@
 
 /mob/living/carbon/monkey/proc/handle_random_events()
 	if (prob(1) && prob(2))
-		spawn(0)
-			emote("scratch")
-			return
+		INVOKE_ASYNC(src, .proc/emote, "scratch")
 
 ///FIRE CODE
 /mob/living/carbon/monkey/handle_fire()

@@ -141,8 +141,7 @@
 
 	for(var/obj/machinery/sparker/M in GLOB.machines)
 		if (M.id == src.id)
-			spawn( 0 )
-				M.ignite()
+			INVOKE_ASYNC(M, /obj/machinery/sparker.proc/ignite)
 
 	for(var/obj/machinery/igniter/M in GLOB.machines)
 		if(M.id == src.id)

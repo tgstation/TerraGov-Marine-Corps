@@ -188,7 +188,7 @@
 		s.set_up(5, 1, src)
 		s.start()
 		accurate = 1
-		spawn(3000)	accurate = 0 //Accurate teleporting for 5 minutes
+		addtimer(VARSET_CALLBACK(src, accurate, FALSE), 5 MINUTES) //Accurate teleporting for 5 minutes
 		for(var/mob/B in hearers(src, null))
 			B.show_message("<span class='notice'> Test fire completed.</span>")
 	return
