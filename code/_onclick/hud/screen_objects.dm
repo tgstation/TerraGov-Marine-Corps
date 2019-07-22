@@ -689,7 +689,7 @@
 
 	overlays.Cut()
 
-	var/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
+	var/image/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
 
 	if(rounds == 0)
 		if(warned)
@@ -700,10 +700,7 @@
 			F.icon_state = "frame"
 			user.client.screen += F
 			flick("[hud_state_empty]_flash", F)
-			spawn(20)
-				user.client.screen -= F
-				qdel(F)
-				overlays += empty
+			addtimer(CALLBACK(src, .proc/after_flick_empty, user, F, empty), 2 SECONDS)
 	else
 		warned = FALSE
 		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
@@ -725,3 +722,8 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
+
+/obj/screen/ammo/proc/after_flick_empty(mob/living/user, obj/screen/ammo/F, image/empty)
+	user?.client?.screen -= F
+	qdel(F)
+	overlays += empty

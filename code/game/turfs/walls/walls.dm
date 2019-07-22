@@ -276,13 +276,9 @@
 	O.layer = FLY_LAYER
 
 	to_chat(user, "<span class='warning'>The thermite starts melting through [src].</span>")
-	spawn(50)
-		dismantle_wall()
+	addtimer(CALLBACK(src, .proc/dismantle_wall), 5 SECONDS)
 
-	spawn(50)
-		if(O) qdel(O)
-	return
-
+	QDEL_IN(O, 5 SECONDS)
 
 //Interactions
 /turf/closed/wall/attack_paw(mob/user as mob)

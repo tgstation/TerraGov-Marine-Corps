@@ -188,3 +188,9 @@
 		D.vv_edit_var(var_name, var_value)
 	else
 		D.vars[var_name] = var_value
+
+/proc/___callbackflagset(datum/D, var_name, flag, set_or_unset)
+	if(set_or_unset)
+		D.vars[var_name] |= flag
+		return
+	D.vars[var_name] &= ~flag

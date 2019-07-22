@@ -17,19 +17,19 @@
 			qdel(LAT)
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"
-	updateOverlays()
+	INVOKE_NEXT_TICK(src, .proc/updateOverlays)
 	for (var/dir in GLOB.cardinals)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
-			L.updateOverlays()
+			INVOKE_NEXT_TICK(L, /obj/structure/lattice.proc/updateOverlays)
 
 /obj/structure/lattice/Destroy()
 	for (var/dir in GLOB.cardinals)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
-			L.updateOverlays(src.loc)
+			INVOKE_NEXT_TICK(L, /obj/structure/lattice.proc/updateOverlays)
 	. = ..()
 
 /obj/structure/lattice/ex_act(severity)
@@ -61,22 +61,18 @@
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
-	//if(!isspaceturf(loc))
-	//	qdel(src)
-	spawn(1)
-		overlays = list()
+	overlays = list()
 
-		var/dir_sum = 0
+	var/dir_sum = 0
 
-		for (var/direction in GLOB.cardinals)
-			if(locate(/obj/structure/lattice, get_step(src, direction)))
+	for (var/direction in GLOB.cardinals)
+		if(locate(/obj/structure/lattice, get_step(src, direction)))
+			dir_sum += direction
+		else
+			if(!isspaceturf(get_step(src, direction)))
 				dir_sum += direction
-			else
-				if(!isspaceturf(get_step(src, direction)))
-					dir_sum += direction
 
-		icon_state = "lattice[dir_sum]"
-		return
+	icon_state = "lattice[dir_sum]"
 
 /obj/structure/catwalk
 	icon = 'icons/turf/catwalks.dmi'

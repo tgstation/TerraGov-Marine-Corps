@@ -172,9 +172,8 @@
 	if(obj_integrity <= 0)
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = loc
-		spawn(1)
-			playsound(loc, 'sound/effects/meteorimpact.ogg', 25, 1)
-			qdel(src)
+		INVOKE_NEXT_TICK(GLOBAL_PROC, .proc/playsound, loc, 'sound/effects/meteorimpact.ogg', 25, TRUE)
+		QDEL_IN(src, 1)
 
 	return TRUE
 

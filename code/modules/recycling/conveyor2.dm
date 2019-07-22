@@ -198,15 +198,19 @@
 
 
 
-/obj/machinery/conveyor_switch/New()
-	..()
+/obj/machinery/conveyor_switch/Initialize()
+	. = ..()
 	update()
 
-	spawn(5)		// allow map load
-		conveyors = list()
-		for(var/obj/machinery/conveyor/C in GLOB.machines)
-			if(C.id == id)
-				conveyors += C
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/conveyor_switch/LateInitialize(mapload)
+	. = ..()
+
+	conveyors = list()
+	for(var/obj/machinery/conveyor/C in GLOB.machines)
+		if(C.id == id)
+			conveyors += C
 	start_processing()
 
 // update the icon depending on the position

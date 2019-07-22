@@ -345,12 +345,11 @@
 /obj/machinery/shower/proc/wash_floor()
 	if(!ismist && is_washing)
 		return
-	is_washing = 1
+	is_washing = TRUE
 	var/turf/T = get_turf(src)
 //	reagents.add_reagent("water", 2)
 	T.clean(src)
-	spawn(100)
-		is_washing = 0
+	addtimer(VARSET_CALLBACK(src, is_washing, FALSE), 10 SECONDS)
 
 /obj/machinery/shower/proc/check_heat(mob/M as mob)
 	if(!on || watertemp == "normal") return

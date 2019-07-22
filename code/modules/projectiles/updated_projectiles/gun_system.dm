@@ -1100,8 +1100,7 @@ and you're good to go.
 	var/prev_light = light_range
 	if(light_range <= muzzle_flash_lum)
 		set_light(muzzle_flash_lum)
-		spawn(10)
-			set_light(prev_light)
+		addtimer(CALLBACK(src, .proc/set_light, prev_light), 1 SECONDS)
 
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1

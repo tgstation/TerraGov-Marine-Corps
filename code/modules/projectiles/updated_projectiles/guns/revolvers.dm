@@ -271,8 +271,7 @@
 				revolver_basic_spin(arglist(arguments))
 			if(8)
 				if(istype(double))
-					spawn(0)
-						double.revolver_throw_catch(user)
+					INVOKE_ASYNC(double, /obj/item/weapon/gun/revolver.proc/revolver_throw_catch, user)
 					revolver_throw_catch(user)
 				else
 					revolver_throw_catch(user)

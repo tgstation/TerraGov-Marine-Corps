@@ -8,30 +8,27 @@
 	var/plantname
 	var/potency = 1
 
-/obj/item/grown/New()
-
-	..()
-
+/obj/item/grown/Initialize()
+	. = ..()
+	
 	var/datum/reagents/R = new/datum/reagents(50)
 	reagents = R
 	R.my_atom = src
 
-	//Handle some post-spawn var stuff.
-	spawn(1)
-		// Fill the object up with the appropriate reagents.
-		if(!isnull(plantname))
-			var/datum/seed/S = GLOB.seed_types[plantname]
-			if(!S || !S.chems)
-				return
+	// Fill the object up with the appropriate reagents.
+	if(!isnull(plantname))
+		var/datum/seed/S = GLOB.seed_types[plantname]
+		if(!S || !S.chems)
+			return
 
-			potency = S.potency
+		potency = S.potency
 
-			for(var/rid in S.chems)
-				var/list/reagent_data = S.chems[rid]
-				var/rtotal = reagent_data[1]
-				if(reagent_data.len > 1 && potency > 0)
-					rtotal += round(potency/reagent_data[2])
-				reagents.add_reagent(rid,max(1,rtotal))
+		for(var/rid in S.chems)
+			var/list/reagent_data = S.chems[rid]
+			var/rtotal = reagent_data[1]
+			if(reagent_data.len > 1 && potency > 0)
+				rtotal += round(potency/reagent_data[2])
+			reagents.add_reagent(rid,max(1,rtotal))
 
 /obj/item/grown/log
 	name = "towercap"
@@ -98,10 +95,9 @@
 
 	var/potency_divisior = 5
 
-/obj/item/grown/nettle/New()
-	..()
-	spawn(5)
-		force = round((5+potency/potency_divisior), 1)
+/obj/item/grown/nettle/Initialize()
+	. = ..()
+	force = round((5+potency/potency_divisior), 1)
 
 /obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
 	if(istype(user) && !user.gloves)

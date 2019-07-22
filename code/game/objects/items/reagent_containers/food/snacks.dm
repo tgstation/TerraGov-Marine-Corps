@@ -664,12 +664,9 @@
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 
 /obj/item/reagent_container/food/snacks/donkpocket/proc/cooltime()
-	if(warm)
-		spawn( 4200 )
-			if(!gc_destroyed) //not cdel'd
-				warm = 0
-				reagents.del_reagent("tricordrazine")
-				name = "donk-pocket"
+	warm = FALSE
+	reagents.del_reagent("tricordrazine")
+	name = "donk-pocket"
 
 /obj/item/reagent_container/food/snacks/brainburger
 	name = "brainburger"

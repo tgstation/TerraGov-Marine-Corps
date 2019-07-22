@@ -21,8 +21,7 @@
 			M.blind_eyes(3)
 			M.blur_eyes(5)
 			M.disabilities |= NEARSIGHTED
-			spawn(100)
-				M.disabilities &= ~NEARSIGHTED
+			addtimer(FLAGSET_CALLBACK(M, disabilities, NEARSIGHTED, FALSE), 10 SECONDS)
 	..()
 
 

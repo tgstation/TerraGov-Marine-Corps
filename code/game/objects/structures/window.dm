@@ -627,8 +627,7 @@
 			P.setDir(SOUTH)
 		else
 			P.setDir(EAST)
-	spawn(16)
-		P.close()
+	addtimer(CALLBACK(P, /obj/machinery/door.proc/close), 1.6 SECONDS)
 
 /obj/structure/window/framed/prison/cell
 	name = "cell window"

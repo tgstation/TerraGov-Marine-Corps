@@ -409,8 +409,7 @@
 			target = get_offset_target_turf(loc, rand(5) - rand(5), rand(5) - rand(5))
 			AM.loc = loc
 			AM.pipe_eject(0)
-			spawn(1)
-				AM?.throw_at(target, 5, 1)
+			INVOKE_NEXT_TICK(AM, /atom/movable.proc/throw_at, target, 5, 1)
 	
 		qdel(H)
 
@@ -674,9 +673,8 @@
 			for(var/atom/movable/AM in H)
 				AM.loc = T
 				AM.pipe_eject(direction)
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 100, 1)
+				INVOKE_NEXT_TICK(AM, /atom/movable.proc/throw_at, target, 100, 1)
+
 			qdel(H)
 
 	else //No specified direction, so throw in random direction
@@ -688,9 +686,7 @@
 
 				AM.loc = T
 				AM.pipe_eject(0)
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 5, 1)
+				INVOKE_NEXT_TICK(AM, /atom/movable.proc/throw_at, target, 5, 1)
 
 			qdel(H)
 
@@ -1318,8 +1314,7 @@
 		for(var/atom/movable/AM in H)
 			AM.loc = src.loc
 			AM.pipe_eject(dir)
-			spawn(5)
-				AM.throw_at(target, 3, 1)
+			addtimer(CALLBACK(AM, /atom/movable.proc/throw_at, target, 3, 1), 0.5 SECONDS)
 		qdel(H)
 
 /obj/structure/disposaloutlet/attackby(obj/item/I, mob/user, params)
