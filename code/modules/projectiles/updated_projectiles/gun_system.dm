@@ -132,7 +132,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatic_fire)
+	AddComponent(/datum/component/automatic_fire) //This should go after set_gun_config_values(), handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 
 //Called by the gun's New(), set the gun variables' values.

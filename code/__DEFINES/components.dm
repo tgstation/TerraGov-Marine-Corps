@@ -140,8 +140,12 @@
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
 
 // /obj/item/weapon/gun/ signals
+#define COMSIG_GUN_SHOT_AUTOFIRE "gun_shot_autofire"
+	#define COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS (1<<0)
 #define COMSIG_GUN_FIREMODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
-#define COMSIG_GUN_AUTOMATIC_FIREMODE_TOGGLE "gun_automatic_firemode_toggle"	//from /obj/item/weapon/gun/verb/toggle_automatic_firemode()
+#define COMSIG_GUN_FIREDELAY_MODIFIED "gun_firedelay_modified"
+#define COMSIG_GUN_BURSTDELAY_MODIFIED "gun_burstdelay_modified"
+#define COMSIG_GUN_BURSTAMOUNT_MODIFIED "gun_burstamount_modified"
 
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
@@ -211,13 +215,6 @@
 
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
-
-
-// /obj/item/weapon/gun/ signals
-#define COMSIG_GUN_SHOT_AUTOFIRE "gun_shot_autofire"
-	#define COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS (1<<0)
-#define COMSIG_GUN_SET_AUTOFIREDELAY "gun_set_autofiredelay"
-
 
 //keybindings
 

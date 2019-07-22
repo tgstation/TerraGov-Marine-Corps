@@ -26,7 +26,14 @@ datum/component/automatic_fire
 	if(!isgun(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_GUN_FIREMODE_TOGGLE, .proc/wake_up)
+	RegisterSignal(parent, COMSIG_GUN_FIREDELAY_MODIFIED, .proc/modify_firedelay)
+	RegisterSignal(parent, COMSIG_GUN_BURSTDELAY_MODIFIED, .proc/modify_burst_delay)
+	RegisterSignal(parent, COMSIG_GUN_BURSTAMOUNT_MODIFIED, .proc/modify_burst_amount)
+
 	var/obj/item/weapon/gun/shoota = parent
+	autofire_shot_delay = shoota.fire_delay
+	burstfire_shot_delay = shoota.burst_delay
+	shots_to_fire = shoota.burst_amount
 	switch(shoota.gun_firemode)
 		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 			var/usercli
@@ -152,11 +159,11 @@ datum/component/automatic_fire
 /datum/component/automatic_fire/proc/start_autofiring()
 	if(autofire_stat == AUTOFIRE_STAT_FIRING)
 		return
-	var/obj/item/weapon/gun/shoota = parent //We'll assume this is a gun for now.
 	autofire_stat = AUTOFIRE_STAT_FIRING
 	clicker.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/on_mouse_up)
-	if(!shoota.on_autofire_start(shooter))
+	var/obj/item/weapon/gun/shoota = parent
+	if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
 		stop_autofiring()
 		return
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
@@ -166,14 +173,11 @@ datum/component/automatic_fire
 		if(!deltimer(auto_delay_timer))
 			addtimer(CALLBACK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer), 0.1 SECONDS) //Next tick hopefully.
 		auto_delay_timer = null
-	autofire_shot_delay = shoota.fire_delay //For testing. In the long run this will be set via signals.
 	switch(component_fire_mode)
 		if(GUN_FIREMODE_AUTOMATIC)
 			process_shot()
 			auto_delay_timer = addtimer(CALLBACK(src, .proc/process_shot), autofire_shot_delay, TIMER_STOPPABLE|TIMER_LOOP)
 		if(GUN_FIREMODE_AUTOBURST)
-			shots_to_fire = shoota.burst_amount //For testing. In the long run this will be set via signals.
-			burstfire_shot_delay = shoota.burst_delay //For testing. In the long run this will be set via signals.
 			process_burst()
 			var/burstfire_burst_delay = (burstfire_shot_delay * shots_to_fire) + (autofire_shot_delay * 3) //For testing. In the long run this will be set via signals.
 			auto_delay_timer = addtimer(CALLBACK(src, .proc/process_burst), burstfire_burst_delay, TIMER_STOPPABLE|TIMER_LOOP)
@@ -203,7 +207,7 @@ datum/component/automatic_fire
 		UnregisterSignal(clicker, COMSIG_CLIENT_MOUSEDRAG)
 	UnregisterSignal(parent, COMSIG_GUN_CLICKEMPTY)
 	var/obj/item/weapon/gun/shoota = parent
-	shoota.on_autofire_stop(shots_fired)
+	shoota.on_autofire_stop(shots_fired) //This could be easily turned into a signal once there's need for expanding the component into non-guns.
 	shots_fired = 0
 	target = null
 	mouse_parameters = null
@@ -260,7 +264,6 @@ datum/component/automatic_fire
 		stoplag(burstfire_shot_delay)
 	
 
-// obj/item/gun
 /datum/component/automatic_fire/proc/itemgun_equipped(datum/source, mob/shooter, slot)
 	switch(slot)
 		if(SLOT_L_HAND, SLOT_R_HAND)
@@ -270,43 +273,18 @@ datum/component/automatic_fire
 				if(AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
 					autofire_off()
 
-/*
-//Full auto action.
-/datum/action/toggle_full_auto
-	name = "Toggle Full Auto"
-	var/image/selected_frame
-	var/active = FALSE
 
+/datum/component/automatic_fire/proc/modify_firedelay(datum/source, new_delay)
+	autofire_shot_delay = new_delay
 
-/datum/action/toggle_full_auto/New(target)
-	. = ..()
-	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
-	selected_frame.appearance_flags = RESET_COLOR
+/datum/component/automatic_fire/proc/modify_burst_delay(datum/source, new_delay)
+	burstfire_shot_delay = new_delay
 
+/datum/component/automatic_fire/proc/modify_burst_amount(datum/source, new_amount)
+	shots_to_fire = new_amount
 
-/datum/action/toggle_full_auto/action_activate()
-	if(!owner.client)
-		return
-	if(active)
-		var/datum/component/automatic_fire/fullauto = owner.client.LoadComponent(/datum/component/automatic_fire)
-		fullauto.autofire_off()
-		button.overlays -= selected_frame
-		active = FALSE
-		return
-	var/datum/component/automatic_fire/fullauto = owner.client.LoadComponent(/datum/component/automatic_fire)
-	fullauto.autofire_on(target)
-	button.overlays += selected_frame
-	active = TRUE
+// Gun procs.
 
-
-/datum/action/toggle_full_auto/remove_action()
-	if(active)
-		action_activate()
-	return ..()
-*/
-
-
-//Procs to be put elsewhere later on.
 /obj/item/weapon/gun/proc/on_autofire_start(mob/living/shooter)
 	if(!able_to_fire(shooter) || gun_on_cooldown(shooter))
 		return FALSE
