@@ -142,9 +142,12 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.w_class						+= size_mod
 	master_gun.scatter						+= scatter_mod
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
-	master_gun.modify_fire_delay(delay_mod)
-	master_gun.modify_burst_delay(burst_delay_mod)
-	master_gun.modify_burst_amount(burst_mod, user)
+	if(delay_mod)
+		master_gun.modify_fire_delay(delay_mod)
+	if(burst_delay_mod)
+		master_gun.modify_burst_delay(burst_delay_mod)
+	if(burst_mod)
+		master_gun.modify_burst_amount(burst_mod, user)
 	master_gun.recoil						+= recoil_mod
 	master_gun.recoil_unwielded				+= recoil_unwielded_mod
 	master_gun.force						+= melee_mod
@@ -193,9 +196,12 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.w_class						-= size_mod
 	master_gun.scatter						-= scatter_mod
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
-	master_gun.modify_fire_delay(-delay_mod)
-	master_gun.modify_burst_delay(-burst_delay_mod)
-	master_gun.modify_burst_amount(-burst_mod, user)
+	if(delay_mod)
+		master_gun.modify_fire_delay(-delay_mod)
+	if(burst_delay_mod)
+		master_gun.modify_burst_delay(-burst_delay_mod)
+	if(burst_mod)
+		master_gun.modify_burst_amount(-burst_mod, user)
 	master_gun.recoil						-= recoil_mod
 	master_gun.recoil_unwielded				-= recoil_unwielded_mod
 	master_gun.force						-= melee_mod
