@@ -135,7 +135,7 @@
 	if(M.a_intent == INTENT_HELP)
 		return
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
-	"<span class='danger'>You slash [src]!</span>")
+	"<span class='danger'>We slash [src]!</span>")
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 
 	//We move the tripwire randomly in either of the four cardinal directions

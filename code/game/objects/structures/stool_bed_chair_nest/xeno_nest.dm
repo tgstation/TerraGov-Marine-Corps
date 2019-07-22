@@ -177,7 +177,7 @@
 		return
 	if(M.a_intent == INTENT_HARM)
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
-		"<span class='danger'>You claw at \the [src].</span>")
+		"<span class='danger'>We claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
 		obj_integrity -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()

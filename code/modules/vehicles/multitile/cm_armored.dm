@@ -575,7 +575,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 		M.do_attack_animation(src)
 		M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
-		"<span class='danger'>You lunge at [src]!</span>")
+		"<span class='danger'>We lunge at [src]!</span>")
 		return FALSE
 
 	else
@@ -584,7 +584,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TANK)
 
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
-	"<span class='danger'>You slash [src]!</span>")
+	"<span class='danger'>We slash [src]!</span>")
 
 	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 

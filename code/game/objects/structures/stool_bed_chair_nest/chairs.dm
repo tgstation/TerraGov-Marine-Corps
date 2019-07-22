@@ -237,7 +237,7 @@
 /obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/user)
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
 		user.visible_message("<span class='warning'>[user] smashes \the [src], shearing the bolts!</span>",
-		"<span class='warning'>You smash \the [src], shearing the bolts!</span>")
+		"<span class='warning'>We smash \the [src], shearing the bolts!</span>")
 		fold_down(1)
 
 /obj/structure/bed/chair/dropship/passenger/attackby(obj/item/I, mob/user, params)

@@ -415,7 +415,7 @@
 		return FALSE
 	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
-	"<span class='danger'>You smash [src]!</span>", null, 5)
+	"<span class='danger'>We smash [src]!</span>", null, 5)
 	broken() //Smashola!
 
 // attack with hand - remove tube/bulb

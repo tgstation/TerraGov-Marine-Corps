@@ -293,7 +293,7 @@
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
 	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-	"<span class='danger'>You slash \the [src]!</span>", null, 5)
+	"<span class='danger'>We slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	var/allcut = wires.is_all_cut()
 

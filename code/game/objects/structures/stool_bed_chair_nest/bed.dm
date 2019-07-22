@@ -155,7 +155,7 @@ obj/structure/bed/Destroy()
 		M.do_attack_animation(src)
 		playsound(src, hit_bed_sound, 25, 1)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 		unbuckle()
 		destroy_structure()
 		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)

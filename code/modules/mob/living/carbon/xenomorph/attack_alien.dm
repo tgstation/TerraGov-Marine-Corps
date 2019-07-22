@@ -30,7 +30,7 @@
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>", \
-	"<span class='warning'>You shove [src]!</span>", null, 5)
+	"<span class='warning'>We shove [src]!</span>", null, 5)
 	return TRUE
 
 /mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
