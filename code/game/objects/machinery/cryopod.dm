@@ -455,7 +455,6 @@
 /obj/machinery/cryopod/proc/climb_in(mob/user, mob/helper)
 	if(helper && user != helper)
 		if(!user.client)
-			to_chat(helper, "<span class='warning'>[user] is just asleep. Better put them in a bed, instead of a [src].</span>")
 			return
 
 		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
