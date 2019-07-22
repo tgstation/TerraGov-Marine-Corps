@@ -162,6 +162,7 @@ datum/component/automatic_fire
 	autofire_stat = AUTOFIRE_STAT_FIRING
 	clicker.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/on_mouse_up)
+	RegisterSignal(shooter, COMSIG_CARBON_SWAPPED_HANDS, .proc/stop_autofiring)
 	var/obj/item/weapon/gun/shoota = parent
 	if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
 		stop_autofiring()
@@ -205,6 +206,8 @@ datum/component/automatic_fire
 	if(clicker)
 		clicker.mouse_pointer_icon = initial(clicker.mouse_pointer_icon)
 		UnregisterSignal(clicker, COMSIG_CLIENT_MOUSEDRAG)
+	if(!QDELETED(shooter))
+		UnregisterSignal(shooter, COMSIG_CARBON_SWAPPED_HANDS)
 	UnregisterSignal(parent, COMSIG_GUN_CLICKEMPTY)
 	var/obj/item/weapon/gun/shoota = parent
 	shoota.on_autofire_stop(shots_fired) //This could be easily turned into a signal once there's need for expanding the component into non-guns.
@@ -303,12 +306,18 @@ datum/component/automatic_fire
 
 
 /obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/living/shooter, params, shots_fired)
-	//COMSIG_GUN_FIRE would go here.
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIRE, target, shooter)
 	var/obj/item/projectile/projectile_to_fire = load_into_chamber(shooter)
 	if(!projectile_to_fire)
 		click_empty(shooter)
 		return NONE
-	apply_bullet_effects(projectile_to_fire, shooter, shots_fired)
+	var/dual_wield = FALSE
+	var/obj/item/weapon/gun/akimbo_gun = shooter.get_inactive_held_item()
+	if(istype(akimbo_gun))
+		dual_wield = TRUE
+		akimbo_gun.Fire(target, shooter, params, FALSE, dual_wield)
+	apply_bullet_effects(projectile_to_fire, shooter, shots_fired, FALSE, dual_wield)
+	//No bipod support yet. Would go here otherwise.
 	target = simulate_scatter(projectile_to_fire, target, get_turf(target), shooter)
 	var/list/mouse_control = params2list(params)
 	if(mouse_control["icon-x"])
@@ -322,7 +331,7 @@ datum/component/automatic_fire
 	if(!reload_into_chamber(shooter))
 		click_empty(shooter)
 		return NONE
-	//COMSIG_HUMAN_GUN_FIRED would go here.
+	SEND_SIGNAL(shooter, COMSIG_HUMAN_GUN_AUTOFIRED, target, src, shooter)
 	var/obj/screen/ammo/A = shooter.hud_used.ammo
 	A.update_hud(shooter) //Ammo HUD.
 	return COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS //All is well, we can continue shooting.

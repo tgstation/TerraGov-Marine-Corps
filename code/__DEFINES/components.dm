@@ -130,7 +130,14 @@
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 	#define COMPONENT_GUN_FIRED 1
+#define COMSIG_GUN_AUTOFIRE "gun_autofire"
 #define COMSIG_GUN_CLICKEMPTY "gun_clickempty"
+#define COMSIG_GUN_SHOT_AUTOFIRE "gun_shot_autofire"
+	#define COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS (1<<0)
+#define COMSIG_GUN_FIREMODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
+#define COMSIG_GUN_FIREDELAY_MODIFIED "gun_firedelay_modified"
+#define COMSIG_GUN_BURSTDELAY_MODIFIED "gun_burstdelay_modified"
+#define COMSIG_GUN_BURSTAMOUNT_MODIFIED "gun_burstamount_modified"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -138,14 +145,6 @@
 // /obj/item/grab signals
 #define COMSIG_GRAB_SELF_ATTACK "grab_self_attack"				//from base of obj/item/grab/attack() if attacked is the same as attacker: (mob/living/user)
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
-
-// /obj/item/weapon/gun/ signals
-#define COMSIG_GUN_SHOT_AUTOFIRE "gun_shot_autofire"
-	#define COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS (1<<0)
-#define COMSIG_GUN_FIREMODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
-#define COMSIG_GUN_FIREDELAY_MODIFIED "gun_firedelay_modified"
-#define COMSIG_GUN_BURSTDELAY_MODIFIED "gun_burstdelay_modified"
-#define COMSIG_GUN_BURSTAMOUNT_MODIFIED "gun_burstamount_modified"
 
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
@@ -165,6 +164,7 @@
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
+#define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
 
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
@@ -310,6 +310,7 @@
 #define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"			//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
 
 #define COMSIG_HUMAN_GUN_FIRED "human_gun_fired"				//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
+#define COMSIG_HUMAN_GUN_AUTOFIRED "human_gun_autofired"
 #define COMSIG_HUMAN_ATTACHMENT_FIRED "human_attachment_fired"
 #define COMSIG_HUMAN_ITEM_ATTACK "human_item_attack"			//from base of obj/item/attack(): (/mob/living/target, obj/item/I, /mob/living/carbon/human/user)
 #define COMSIG_HUMAN_ITEM_THROW "human_item_throw"
