@@ -32,8 +32,12 @@
 							"<span class='notice'>You pry open \the [src].</span>", \
 							"<span class='notice'>You hear splitting wood.</span>")
 		qdel(src)
-	else
-		return attack_hand(user)
+		return
+	
+	if(istype(I, /obj/item/powerloader_clamp))
+		return
+	
+	return attack_hand(user)
 
 
 /obj/structure/largecrate/proc/spawn_stuff()

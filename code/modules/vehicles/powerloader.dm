@@ -161,60 +161,58 @@
 	else qdel(src)
 
 
-/obj/item/powerloader_clamp/attack(mob/living/M, mob/living/user, def_zone)
-	if(M == linked_powerloader.buckled_mob)
+/obj/item/powerloader_clamp/attack(mob/living/victim, mob/living/user, def_zone)
+	if(victim == linked_powerloader.buckled_mob)
 		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
-		return 1
-	else if(isxeno(M) && user.a_intent == INTENT_HELP)
-		var/mob/living/carbon/xenomorph/X = M
-		if(X.stat == DEAD)
-			if(!X.anchored)
-				if(linked_powerloader)
-					X.forceMove(linked_powerloader)
-					loaded = X
-					playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-					update_icon()
-					user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
-					"<span class='notice'>You grab [loaded] with [src].</span>")
-	else
-		return ..()
+		return TRUE
+	if(isxeno(victim) && victim.stat == DEAD && !victim.anchored && user.a_intent == INTENT_HELP)
+		victim.forceMove(linked_powerloader)
+		loaded = victim
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+			"<span class='notice'>You grab [loaded] with [src].</span>")
+	return ..()
+
 
 /obj/item/powerloader_clamp/afterattack(atom/target, mob/user, proximity)
-
-	if(!proximity) return
+	if(!proximity)
+		return
 
 	if(loaded)
-		if(isturf(target))
-			var/turf/T = target
-			if(!T.density)
-				for(var/atom/movable/AM in T.contents)
-					if(AM.density)
-						to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-						return
-				if(loaded.bound_height > 32)
-					var/turf/next_turf = get_step(T, NORTH)
-					if(next_turf.density)
-						to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
-						return
-					for(var/atom/movable/AM in next_turf.contents)
-						if(AM.density)
-							to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-							return
-				if(loaded.bound_width > 32)
-					var/turf/next_turf = get_step(T, EAST)
-					if(next_turf.density)
-						to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
-						return
-					for(var/atom/movable/AM in next_turf.contents)
-						if(AM.density)
-							to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-							return
-				user.visible_message("<span class='notice'>[user] drops [loaded] on [T] with [src].</span>",
-				"<span class='notice'>You drop [loaded] on [T] with [src].</span>")
-				loaded.forceMove(T)
-				loaded = null
-				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-				update_icon()
+		if(!isturf(target))
+			return
+		var/turf/T = target
+		if(T.density)
+			return
+		for(var/atom/movable/AM in T.contents)
+			if(AM.density)
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
+				return
+		if(loaded.bound_height > 32)
+			var/turf/next_turf = get_step(T, NORTH)
+			if(next_turf.density)
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
+				return
+			for(var/atom/movable/AM in next_turf.contents)
+				if(AM.density)
+					to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
+					return
+		if(loaded.bound_width > 32)
+			var/turf/next_turf = get_step(T, EAST)
+			if(next_turf.density)
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
+				return
+			for(var/atom/movable/AM in next_turf.contents)
+				if(AM.density)
+					to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
+					return
+		user.visible_message("<span class='notice'>[user] drops [loaded] on [T] with [src].</span>",
+		"<span class='notice'>You drop [loaded] on [T] with [src].</span>")
+		loaded.forceMove(T)
+		loaded = null
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+		update_icon()
 
 	else if(istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/C = target
@@ -235,16 +233,16 @@
 
 	else if(istype(target, /obj/structure/largecrate))
 		var/obj/structure/largecrate/LC = target
-		if(!LC.anchored)
-			if(linked_powerloader)
-				LC.forceMove(linked_powerloader)
-				loaded = LC
-				playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				update_icon()
-				user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
-				"<span class='notice'>You grab [loaded] with [src].</span>")
-		else
+		if(LC.anchored)
 			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
+			return
+		LC.forceMove(linked_powerloader)
+		loaded = LC
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
+
 
 /obj/item/powerloader_clamp/update_icon()
 	if(loaded)
