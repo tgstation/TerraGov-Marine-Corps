@@ -1,6 +1,3 @@
-#define AUTOFIRE_ON (1<<0)
-#define AUTOFIRING (1<<1)
-
 #define AUTOFIRE_STAT_SLEEPING 0 //Component is in the gun, but the gun is in a different firemode. Sleep until a compatible firemode is activated.
 // ^^ sleep_up() ^^
 // VV wake_up() VV
