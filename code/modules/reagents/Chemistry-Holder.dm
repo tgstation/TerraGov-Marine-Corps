@@ -496,7 +496,7 @@
 
 	var/datum/reagent/D = GLOB.chemical_reagents_list[reagent]
 	if(!D)
-		warning("[my_atom] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
+		stack_trace("[my_atom] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
 		return FALSE
 
 	update_total()
