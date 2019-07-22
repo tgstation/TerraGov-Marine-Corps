@@ -268,7 +268,6 @@
 			use_power(360)
 	else
 		log_game("[key_name(usr)] has forced open an emergency shutter at [AREACOORD(usr.loc)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has forced open an emergency shutter.")
 	latetoggle()
 	return ..()
 
