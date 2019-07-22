@@ -36,7 +36,7 @@
 					if(localopened)
 						localopened = 0
 						icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
-						addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+						addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 					return
 				else
 					playsound(user, 'sound/effects/Glasshit.ogg', 25, 1) //We don't want this playing every time
@@ -68,10 +68,10 @@
 					localopened = !localopened
 					if(localopened)
 						icon_state = text("fireaxe[][][][]opening",hasaxe,src.localopened,src.hitstaken,src.smashed)
-						addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+						addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 					else
 						icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-						addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+						addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 		else
 			if(src.smashed)
 				return
@@ -79,7 +79,7 @@
 				if(localopened)
 					localopened = 0
 					icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-					addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+					addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 					return
 				else
 					to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
@@ -95,10 +95,10 @@
 				localopened = !localopened
 				if(localopened)
 					icon_state = text("fireaxe[][][][]opening",hasaxe,src.localopened,src.hitstaken,src.smashed)
-					addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+					addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 				else
 					icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-					addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+					addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 
 
 
@@ -125,19 +125,19 @@
 					localopened = !localopened
 					if(localopened)
 						src.icon_state = text("fireaxe[][][][]opening",hasaxe,src.localopened,src.hitstaken,src.smashed)
-						addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+						addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 					else
 						src.icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-						addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+						addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 
 		else
 			localopened = !localopened //I'm pretty sure we don't need an if(src.smashed) in here. In case I'm wrong and it fucks up teh cabinet, **MARKER**. -Agouri
 			if(localopened)
 				src.icon_state = text("fireaxe[][][][]opening",hasaxe,src.localopened,src.hitstaken,src.smashed)
-				addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+				addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 			else
 				src.icon_state = text("fireaxe[][][][]closing",hasaxe,src.localopened,src.hitstaken,src.smashed)
-				addtimer(CALLBACK(src, .proc/update_icon), 1 SECONDS)
+				addtimer(CALLBACK(src, /atom/movable.proc/update_icon), 1 SECONDS)
 
 	verb/toggle_openness() //nice name, huh? HUH?! -Erro //YEAH -Agouri
 		set name = "Open/Close"
