@@ -185,28 +185,34 @@
 		var/turf/T = target
 		if(T.density)
 			return
-		for(var/atom/movable/AM in T.contents)
-			if(AM.density)
-				to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-				return
+		for(var/i in T.contents)
+			var/atom/movable/blocky_stuff = i
+			if(!blocky_stuff.density)
+				continue
+			to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
+			return
 		if(loaded.bound_height > 32)
 			var/turf/next_turf = get_step(T, NORTH)
 			if(next_turf.density)
 				to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
 				return
-			for(var/atom/movable/AM in next_turf.contents)
-				if(AM.density)
-					to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-					return
+			for(var/i in next_turf.contents)
+				var/atom/movable/blocky_stuff = i
+				if(!blocky_stuff.density)
+					continue
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
+				return
 		if(loaded.bound_width > 32)
 			var/turf/next_turf = get_step(T, EAST)
 			if(next_turf.density)
 				to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
 				return
-			for(var/atom/movable/AM in next_turf.contents)
-				if(AM.density)
-					to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-					return
+			for(var/i in next_turf.contents)
+				var/atom/movable/blocky_stuff = i
+				if(!blocky_stuff.density)
+					continue
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
+				return
 		user.visible_message("<span class='notice'>[user] drops [loaded] on [T] with [src].</span>",
 		"<span class='notice'>You drop [loaded] on [T] with [src].</span>")
 		loaded.forceMove(T)
