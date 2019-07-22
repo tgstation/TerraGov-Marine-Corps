@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "Weeds will now decay over time if their node is destroyed, at a rate of about 3 times slower than the growth speed."
