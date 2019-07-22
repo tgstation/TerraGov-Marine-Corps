@@ -247,21 +247,18 @@
 			return
 
 		if (target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</span>"), 1)
+			visible_message("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!</span>")
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 			return
 
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>"), 1)
+		visible_message("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src]!</span>")
 
 		if(affecting.take_damage_limb(3))
 			target:UpdateDamageIcon()
 
 	else
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] with [src.name]!</span>"), 1)
+		visible_message("<span class='danger'>[user] stabs [target] with [src]!</span>")
 		target.take_limb_damage(3)// 7 is the same as crowbar punch
 
 	reagents.reaction(target, INJECT)

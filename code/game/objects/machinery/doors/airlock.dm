@@ -735,8 +735,7 @@
 	if (operating || src.locked) return
 
 	src.locked = 1
-	for(var/mob/M in range(1,src))
-		M.show_message("You hear a click from the bottom of the door.", 2)
+	audible_message("You hear a click from the bottom of the door.", null, 1)
 	update_icon()
 
 /obj/machinery/door/airlock/proc/unlock(forced=0)
@@ -744,8 +743,7 @@
 
 	if(forced || hasPower()) //only can raise bolts if power's on
 		src.locked = 0
-		for(var/mob/M in range(1,src))
-			M.show_message("You hear a click from the bottom of the door.", 2)
+		audible_message("You hear a click from the bottom of the door.", null, 1)
 		update_icon()
 		return 1
 	return 0

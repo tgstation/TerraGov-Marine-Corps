@@ -31,8 +31,7 @@
 				to_chat(user, "<span class='warning'>You aren't sure where this brain came from, but you're pretty sure it's a useless brain.</span>")
 				return
 
-			for(var/mob/V in viewers(src, null))
-				V.show_message(text("<span class='notice'> [user] sticks \a [O] into \the [src].</span>"))
+			visible_message("<span class='notice'>[user] sticks \a [O] into \the [src].</span>")
 
 			brainmob = O:brainmob
 			O:brainmob = null

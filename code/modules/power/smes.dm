@@ -341,8 +341,7 @@
 /obj/machinery/power/smes/proc/ion_act()
 	if(is_ground_level(z))
 		if(prob(1)) //explosion
-			for(var/mob/M in viewers(src))
-				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)
+			visible_message("<span class='warning'>\The [src] is making strange noises!</span>", null, "<span class='warning'> You hear sizzling electronics.</span>")
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)

@@ -154,8 +154,7 @@
 		return
 	O.forceMove(loc)
 	if (user != O)
-		for(var/mob/B in viewers(user, 3))
-			B.show_message("<span class='warning'> [user] stuffs [O] into [src]!</span>", 1)
+		visible_message("<span class='warning'>[user] stuffs [O] into [src]!</span>", null, null, 3)
 
 
 

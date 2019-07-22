@@ -573,8 +573,7 @@
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
-	for(var/mob/O in viewers(world.view, user))
-		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
+	visible_message("<span class='danger'>[user] fired a grenade!</span>")
 	to_chat(user, "<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenades[1]
 	grenades -= F

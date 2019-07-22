@@ -57,8 +57,7 @@
 			return
 		playsound(user, 'sound/weapons/guns/fire/gunshot.ogg', 15, 1)
 		src.bullets--
-		for(var/mob/O in viewers(user, null))
-			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "<span class='warning'> You hear a gunshot</span>", 2)
+		visible_message("<span class='danger'>[user] fires a cap gun at [target]!</span>", null, "<span class='warning'> You hear a gunshot</span>")
 
 /obj/item/toy/gun_ammo
 	name = "ammo-caps"
@@ -128,8 +127,7 @@
 					for(var/mob/living/M in D.loc)
 						if(!istype(M,/mob/living)) continue
 						if(M == user) continue
-						for(var/mob/O in viewers(world.view, D))
-							O.show_message(text("<span class='warning'> [] was hit by the foam dart!</span>", M), 1)
+						visible_message("<span class='warning'>[M] was hit by the foam dart!</span>")
 						new /obj/item/toy/crossbow_ammo(M.loc)
 						qdel(D)
 						return
@@ -151,8 +149,7 @@
 		else if(!bullets && isliving(user))
 			var/mob/living/L = user
 			L.knock_down(5)
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<span class='warning'> [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
+			visible_message("<span class='warning'>[user] realized they were out of ammo and starting scrounging for some!</span>")
 
 
 	attack(mob/M as mob, mob/user as mob)
@@ -160,11 +157,8 @@
 // ******* Check
 
 		if (src.bullets > 0 && M.lying)
-
-			for(var/mob/O in viewers(M, null))
-				if(O.client)
-					O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, "<span class='warning'> You hear the sound of foam against skull</span>", 2)
-					O.show_message(text("<span class='warning'> [] was hit in the head by the foam dart!</span>", M), 1)
+			visible_message("<span class='danger'>[user] casually lines up a shot with [M]'s head and pulls the trigger!</span>", null, "<span class='warning'>You hear the sound of foam against skull</span>")
+			visible_message("<span class='warning'>[M] was hit in the head by the foam dart!</span>")
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/crossbow_ammo(M.loc)

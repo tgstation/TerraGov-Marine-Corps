@@ -78,8 +78,7 @@ REAGENT SCANNER
 	var/dat = ""
 	if((user.getBrainLoss() >= 60) && prob(50))
 		to_chat(user, "<span class='warning'>You try to analyze the floor's vitals!</span>")
-		for(var/mob/O in viewers(M, null))
-			O.show_message("<span class='warning'>[user] has analyzed the floor's vitals!</span>", 1)
+		visible_message("<span class='warning'>[user] has analyzed the floor's vitals!</span>")
 		user.show_message("<span class='notice'>Health Analyzer results for The floor:\n\t Overall Status: Healthy</span>", 1)
 		user.show_message("<span class='notice'>\t Damage Specifics: [0]-[0]-[0]-[0]</span>", 1)
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)

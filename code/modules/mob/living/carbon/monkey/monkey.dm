@@ -170,14 +170,12 @@
 		if ((M.a_intent == INTENT_HARM && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
-				for(var/mob/O in viewers(src, null))
-					O.show_message("<span class='danger'>[M.name] has bit [name]!</span>", 1)
+				visible_message("<span class='danger'>[M] has bit [src]!</span>")
 				var/damage = rand(1, 5)
 				adjustBruteLoss(damage)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 			else
-				for(var/mob/O in viewers(src, null))
-					O.show_message("<span class='danger'>[M.name] has attempted to bite [name]!</span>", 1)
+				visible_message("<span class='danger'>[M] has attempted to bite [src]!</span>")
 	return
 
 /mob/living/carbon/monkey/attack_hand(mob/living/user)

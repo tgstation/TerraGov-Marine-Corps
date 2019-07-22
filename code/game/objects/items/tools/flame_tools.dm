@@ -59,8 +59,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		heat = 1000
 		if(!flavor_text)
 			flavor_text = "<span class ='notice'>[usr] lights [src].</span>"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message(flavor_text, 1)
+		visible_message(flavor_text)
 		set_light(CANDLE_LUM)
 		update_icon()
 		START_PROCESSING(SSobj, src)

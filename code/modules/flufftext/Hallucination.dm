@@ -251,8 +251,7 @@ proc/check_panel(mob/M)
 
 	attackby(var/obj/item/P as obj, mob/user as mob)
 		step_away(src,my_target,2)
-		for(var/mob/M in oviewers(world.view,my_target))
-			to_chat(M, "<span class='danger'>[my_target] flails around wildly.</span>")
+		visible_message("<span class='danger'>[my_target] flails around wildly.</span>")
 		my_target.show_message("<span class='danger'>[src] has been attacked by [my_target] </span>", 1) //Lazy.
 
 		src.health -= P.force
