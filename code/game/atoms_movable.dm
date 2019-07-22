@@ -308,7 +308,8 @@
 		throwing = FALSE
 		var/turf/T = hit_atom
 		if(T.density)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/step, src, turn(dir, 180)), 0.2 SECONDS)
+			spawn(2)
+				step(src, turn(dir, 180))
 			if(isliving(src))
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
