@@ -151,11 +151,11 @@
 			if(0)
 				visible_message("<span class='warning'>[user] disables [loc]'s remote sensing equipment.</span>", null, null, 1)
 			if(1)
-				visible_message("[user] turns [loc]'s remote sensors to binary.")
+				visible_message("[user] turns [loc]'s remote sensors to binary.", null, null, 1)
 			if(2)
-				visible_message("[user] sets [loc]'s sensors to track vitals.")
+				visible_message("[user] sets [loc]'s sensors to track vitals.", null, null, 1)
 			if(3)
-				visible_message("[user] sets [loc]'s sensors to maximum.")
+				visible_message("[user] sets [loc]'s sensors to maximum.", null, null, 1)
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Toggle Suit Sensors"
