@@ -21,12 +21,8 @@
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	if(H.gender == MALE)
-		H.name = pick(SSstrings.get_list_from_file("names/first_male_russian")) + " " + pick(SSstrings.get_list_from_file("names/last_name_russian"))
-		H.real_name = H.name
-	else
-		H.name = pick(SSstrings.get_list_from_file("names/first_female_russian")) + " " + pick(SSstrings.get_list_from_file("names/last_name_russian"))
-		H.real_name = H.name
+	H.name = GLOB.namepool[/datum/namepool/russian].random_name(H)
+	H.real_name = H.name
 
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)
