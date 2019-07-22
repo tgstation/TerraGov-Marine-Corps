@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars, list("tag", "datum_components", "area
 	"group", "atmos_adjacent_turfs", "comp_lookup", "boxes", "click_border_start","storage_start", "storage_continue",\
 	"storage_end", "closer", "stored_start", "stored_continue", "stored_end", "click_border_end", "opened"))
 
-GLOBAL_LIST_INIT(ignored_atoms, list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector, /atom/movable/lighting_object))
+GLOBAL_LIST_INIT(ignored_atoms, typecacheof(list(/mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector, /atom/movable/lighting_object))) 
 
 GLOBAL_VAR_INIT(current_date_string, "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [GAME_YEAR]")
 
