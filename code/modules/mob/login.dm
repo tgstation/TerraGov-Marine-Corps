@@ -1,7 +1,7 @@
 /mob/Login()
-	GLOB.player_list |= src
 	ip_address	= client.address
 	computer_id	= client.computer_id
+	GLOB.player_list |= src
 	log_message("[src] has logged in.", LOG_OOC)
 	world.update_status()
 	client.images = list()
