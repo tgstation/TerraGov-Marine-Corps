@@ -703,7 +703,7 @@
 
 
 /obj/item/storage/AltClick(mob/user)
-	if(!ishuman(user) || !length(contents))
-		return
+	if(!ishuman(user) || !length(contents) || isturf(loc))
+		return ..()
 	var/obj/item/drawn_item = contents[length(contents)]
 	drawn_item.attack_hand(user)
