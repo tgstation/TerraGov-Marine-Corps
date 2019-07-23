@@ -115,6 +115,32 @@ steam.start() -- spawns the effect
 		step(sparks,direction)
 	QDEL_IN(sparks, 2 SECONDS)
 
+// trails
+/datum/effect_system/trail
+	var/turf/oldposition
+	var/processing = TRUE
+	var/on = TRUE
+
+/datum/effect_system/trail/set_up(atom/atom)
+	attach(atom)
+	oldposition = get_turf(atom)
+
+/datum/effect_system/trail/start(set_processing)
+	if(set_processing)
+		if(!on)
+			return
+		processing = TRUE
+	if(!on)
+		on = TRUE
+		processing = TRUE
+	if(processing)
+		processing = FALSE
+		INVOKE_ASYNC(src, .proc/spawn_particle)
+
+/datum/effect_system/trail/proc/stop()
+	processing = FALSE
+	on = FALSE
+
 /////////////////////////////////////////////
 //////// Attach an Ion trail to any object, that spawns when it moves (like for the jetpack)
 /// just pass in the object to attach it to in set_up
@@ -127,88 +153,34 @@ steam.start() -- spawns the effect
 	icon_state = "ion_trails"
 	anchored = TRUE
 
-/datum/effect_system/ion_trail_follow
-	var/turf/oldposition
-	var/processing = 1
-	var/on = 1
+/datum/effect_system/trail/ion_trail_follow/spawn_particle()
+	var/turf/T = get_turf(holder)
+	if(T != oldposition)
+		if(isspaceturf(T))
+			var/obj/effect/particle_effect/ion_trails/I = new /obj/effect/particle_effect/ion_trails(oldposition)
+			oldposition = T
+			I.setDir(holder.dir)
+			flick("ion_fade", I)
+			I.icon_state = "blank"
+			QDEL_IN(I, 2 SECONDS)
 
-	set_up(atom/atom)
-		attach(atom)
-		oldposition = get_turf(atom)
-
-	start()
-		if(!src.on)
-			src.on = 1
-			src.processing = 1
-		if(src.processing)
-			src.processing = 0
-			spawn(0)
-				var/turf/T = get_turf(src.holder)
-				if(T != src.oldposition)
-					if(isspaceturf(T))
-						var/obj/effect/particle_effect/ion_trails/I = new /obj/effect/particle_effect/ion_trails(src.oldposition)
-						src.oldposition = T
-						I.setDir(holder.dir)
-						flick("ion_fade", I)
-						I.icon_state = "blank"
-						QDEL_IN(I, 2 SECONDS)
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-				else
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-
-	proc/stop()
-		src.processing = 0
-		src.on = 0
-
-
-
+	addtimer(CALLBACK(src, .proc/start, TRUE), 0.2 SECONDS)
 
 /////////////////////////////////////////////
 //////// Attach a steam trail to an object (eg. a reacting beaker) that will follow it
 // even if it's carried of thrown.
 /////////////////////////////////////////////
 
-/datum/effect_system/steam_trail_follow
-	var/turf/oldposition
-	var/processing = 1
-	var/on = 1
+/datum/effect_system/trail/steam_trail_follow/spawn_particle()
+	if(number < 3)
+		var/obj/effect/particle_effect/steam/I = new /obj/effect/particle_effect/steam(oldposition)
+		number++
+		oldposition = get_turf(holder)
+		I.setDir(holder.dir)
+		addtimer(CALLBACK(src, .proc/decay, I), 1 SECONDS)
 
-	set_up(atom/atom)
-		attach(atom)
-		oldposition = get_turf(atom)
+	addtimer(CALLBACK(src, .proc/start, TRUE), 0.2 SECONDS)
 
-	start()
-		if(!src.on)
-			src.on = 1
-			src.processing = 1
-		if(src.processing)
-			src.processing = 0
-			spawn(0)
-				if(src.number < 3)
-					var/obj/effect/particle_effect/steam/I = new /obj/effect/particle_effect/steam(src.oldposition)
-					src.number++
-					src.oldposition = get_turf(holder)
-					I.setDir(holder.dir)
-					spawn(10)
-						qdel(I)
-						number--
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-				else
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-
-	proc/stop()
-		src.processing = 0
-		src.on = 0
-
+/datum/effect_system/trail/steam_trail_follow/proc/decay(obj/effect/particle_effect/steam/I)
+	qdel(I)
+	number--
