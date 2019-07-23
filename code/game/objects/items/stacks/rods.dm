@@ -36,8 +36,7 @@
 		if(WT.remove_fuel(0,user))
 			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
-			for (var/mob/M in viewers(src))
-				M.show_message("<span class='warning'> [src] is shaped into metal by [user.name] with the weldingtool.</span>", 3, "<span class='warning'> You hear welding.</span>", 2)
+			visible_message("<span class='warning'>[src] is shaped into metal by [user] with the weldingtool.</span>", null, "<span class='warning'> You hear welding.</span>")
 			var/obj/item/stack/rods/R = src
 			src = null
 			var/replace = (user.get_inactive_held_item()==R)

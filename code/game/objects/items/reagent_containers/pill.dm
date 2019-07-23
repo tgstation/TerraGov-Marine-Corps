@@ -57,8 +57,7 @@
 			return
 
 		user.dropItemToGround(src) //icon update
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message("<span class='warning'>[user] forces [M] to swallow [src].", 1)
+		visible_message("<span class='warning'>[user] forces [M] to swallow [src].")
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -107,8 +106,7 @@
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] spiked \a [target] with a pill. Reagents: [rgt_list_text].")
 
 		reagents.trans_to(target, reagents.total_volume)
-		for(var/mob/O in viewers(2, user))
-			O.show_message("<span class='warning'>[user] puts something in \the [target].", 1)
+		visible_message("<span class='warning'>[user] puts something in \the [target].", null, null, 2)
 
 		QDEL_IN(src, 5)
 

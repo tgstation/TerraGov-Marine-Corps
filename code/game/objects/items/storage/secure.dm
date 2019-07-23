@@ -181,8 +181,7 @@
 					else
 						H.stun(time)
 					if(H.stat != 2)	H.stat = 1
-					for(var/mob/O in viewers(H, null))
-						O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", H), 1, "<span class='warning'> You hear someone fall.</span>", 2)
+					visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", null, "<span class='warning'>You hear someone fall.</span>")
 				else
 					to_chat(H, text("<span class='warning'> [] tried to knock you unconcious!</span>",user))
 					H.adjust_blurriness(3)

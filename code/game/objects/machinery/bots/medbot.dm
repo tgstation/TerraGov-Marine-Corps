@@ -206,7 +206,7 @@
 	..()
 	if(open && !locked)
 		if(user) to_chat(user, "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>")
-		visible_message("<span class='danger'>[src] buzzes oddly!</span>")
+		audible_message("<span class='danger'>[src] buzzes oddly!</span>")
 		flick("medibot_spark", src)
 		src.patient = null
 		if(user) src.oldpatient = user

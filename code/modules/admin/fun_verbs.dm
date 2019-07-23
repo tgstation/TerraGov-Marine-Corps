@@ -537,8 +537,7 @@
 	if(!method)
 		return
 
-	for(var/mob/V in hearers(O))
-		V.show_message("<b>[O.name]</b> [method], \"[message]\"", 2)
+	O.audible_message("<b>[O]</b> [method], \"[message]\"")
 	if(usr.control_object)
 		usr.show_message("<b>[O.name]</b> [method], \"[message]\"", 2)
 
