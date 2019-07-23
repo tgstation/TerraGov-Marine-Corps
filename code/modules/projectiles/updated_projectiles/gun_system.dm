@@ -1041,8 +1041,8 @@ and you're good to go.
 				scatter_x += total_scatter * 0.5
 				scatter_y += total_scatter * 0.5
 		
-		scatter_x = rand(0, round(scatter_x / 32) + 1) //Value is turned into tiles.
-		scatter_y = rand(0, round(scatter_y / 32) + 1)
+		scatter_x = min(rand(0, round(scatter_x / 32) + 1), targdist - 1) //Value is turned into tiles.
+		scatter_y = min(rand(0, round(scatter_y / 32) + 1), targdist - 1)
 
 		if(scatter_x || scatter_y) //Scattered!
 			var/turf/new_target = locate(targloc.x + (rand(0, 1) ? scatter_x : -scatter_x), targloc.y + (rand(0, 1) ? scatter_y : -scatter_y), targloc.z) //Locate an adjacent turf.
