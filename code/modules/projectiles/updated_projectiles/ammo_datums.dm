@@ -1118,7 +1118,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 7)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
@@ -1159,18 +1159,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 8.05)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.05)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 8.75)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.75)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 9.1)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.1)
 
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 8.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.5)
 	added_spit_delay = 10
 	spit_cost = 75
 
@@ -1179,17 +1179,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 9.78)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.78)
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 10.63)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10.63)
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 11.05)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 11.05)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 10)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10)
 	added_spit_delay = 15
 	spit_cost = 100
 
@@ -1198,13 +1198,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 11.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 11.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 12.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 12.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin 13)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 13)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
