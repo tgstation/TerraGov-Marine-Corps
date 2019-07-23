@@ -8,7 +8,6 @@
 
 /obj/docking_port/stationary/crashmode/loading
 	id = "canterbury_loadingdock"
-	roundstart_template = /datum/map_template/shuttle/tgs_canterbury
 	
 /obj/docking_port/mobile/crashmode
 	name = "tgs canterbury"
