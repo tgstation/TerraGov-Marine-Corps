@@ -89,8 +89,8 @@
 		CRASH("Unable to get a valid shuttle target!")
 		return
 
-	// addtimer(CALLBACK(src, .proc/crash_shuttle, target), 30 SECONDS) // TODO: REMOVE ADMIN TIMING
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), rand(9 MINUTES, 11 MINUTES)) // TODO: FIX timing here
+	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 9 MINUTES) // TODO: REMOVE ADMIN TIMING
+	// addtimer(CALLBACK(src, .proc/crash_shuttle, target), rand(9 MINUTES, 11 MINUTES)) // TODO: FIX timing here
 
 
 /datum/game_mode/crash/announce()
