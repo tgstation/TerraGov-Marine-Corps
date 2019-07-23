@@ -246,7 +246,7 @@
 			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
 			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
 			playsound(user, active_attachable.activation_sound, 15, 1)
-			active_attachable.activate_attachment(src, null, TRUE)
+			active_attachable.activate_attachment(null, TRUE)
 
 	if(!cell?.use(charge_cost))
 		return
