@@ -14,7 +14,7 @@
 	new /obj/item/stack/sheet/wood(src)
 	spawn_stuff()
 	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
-	"<span class='danger'>You smash \the [src] apart!</span>", \
+	"<span class='danger'>We smash \the [src] apart!</span>", \
 	"<span class='danger'>You hear splitting wood!</span>", 5)
 	qdel(src)
 
@@ -29,7 +29,7 @@
 		new /obj/item/stack/sheet/wood(src)
 		spawn_stuff()
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							"<span class='notice'>You pry open \the [src].</span>", \
+							"<span class='notice'>We pry open \the [src].</span>", \
 							"<span class='notice'>You hear splitting wood.</span>")
 		qdel(src)
 		return
@@ -170,7 +170,7 @@
 	for(var/obj/O in contents)
 		O.forceMove(T)
 	X.visible_message("<span class='danger'>\The [X] smashes \the [src] apart!</span>", \
-	"<span class='danger'>You smash \the [src] apart!</span>", \
+	"<span class='danger'>We smash \the [src] apart!</span>", \
 	"<span class='danger'>You hear metal being smashed!</span>", 5)
 	qdel(src)
 

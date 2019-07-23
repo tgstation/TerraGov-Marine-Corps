@@ -445,7 +445,7 @@
 		return 0
 	M.do_attack_animation(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
-	"<span class='xenonotice'>You claw \the [src].</span>")
+	"<span class='xenonotice'>We claw \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
 	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
 

@@ -187,12 +187,12 @@
 	M.do_attack_animation(src)
 	if(prob(33))
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 		qdel(src)
 		return TRUE
 	else
 		M.visible_message("<span class='danger'>\The [M] tears some shreds off [src]!</span>", \
-		"<span class='danger'>You tear some shreds off [src]!</span>", null, 5)
+		"<span class='danger'>We tear some shreds off [src]!</span>", null, 5)
 
 /obj/structure/foamedmetal/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")

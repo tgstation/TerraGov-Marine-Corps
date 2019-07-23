@@ -137,7 +137,7 @@
 	if(M.a_intent == INTENT_HELP)
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 25, 1)
 		M.visible_message("<span class='warning'>\The [M] creepily taps on [src] with its huge claw.</span>", \
-		"<span class='warning'>You creepily tap on [src].</span>", \
+		"<span class='warning'>We creepily tap on [src].</span>", \
 		"<span class='warning'>You hear a glass tapping sound.</span>", 5)
 	else
 		attack_generic(M, M.xeno_caste.melee_damage_lower)
