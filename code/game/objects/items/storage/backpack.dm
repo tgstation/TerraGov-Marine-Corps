@@ -27,6 +27,19 @@
 			return TRUE
 	return ..()
 
+
+/obj/item/storage/backpack/AltClick(mob/user)
+	if(!ishuman(user) || !length(contents) || isturf(loc))
+		return ..() //Return to fail and go back to base.
+	if(worn_accessible)
+		return ..() //Return to succeed and draw the item.
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.back == src)
+		to_chat(human_user, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
+		return
+	return ..()
+
+
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	
