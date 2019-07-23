@@ -39,7 +39,6 @@
 //	var/surgery_t = 0 //Surgery timer in seconds.
 	var/surgery = 0 //Are we operating or no? 0 for no, 1 for yes
 	var/surgery_mod = 1 //What multiple to increase the surgery timer? This is used for any non-WO maps or events that are done.
-	var/obj/item/reagent_container/blood/OMinus/blood_pack
 	var/filtering = 0
 	var/blood_transfer = 0
 	var/heal_brute = 0
@@ -57,11 +56,6 @@
 
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
-
-
-/obj/machinery/autodoc/Initialize()
-	. = ..()
-	blood_pack = new(src)
 
 
 /obj/machinery/autodoc/power_change(area/master_area = null)
@@ -107,10 +101,10 @@
 					to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
 			if(blood_transfer)
 				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
-					if(blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
-						blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
+					if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
+						connected.blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
 						visible_message("\ [src] speaks: Blood reserves depleted, switching to fresh bag.")
-					occupant.inject_blood(blood_pack, 8) // double iv stand rate
+					occupant.inject_blood(connected.blood_pack, 8) // double iv stand rate
 					if(prob(10))
 						visible_message("\ [src] whirrs and gurgles as it tranfuses blood.")
 						to_chat(occupant, "<span class='info'>You feel slightly less faint.</span>")
@@ -840,6 +834,7 @@
 	use_power = 1
 	idle_power_usage = 40
 	var/obj/item/radio/radio
+	var/obj/item/reagent_container/blood/OMinus/blood_pack
 
 
 /obj/machinery/autodoc_console/Initialize()
@@ -847,6 +842,7 @@
 	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 	connected.connected = src
 	radio = new(src)
+	blood_pack = new(src)
 
 
 /obj/machinery/autodoc_console/Destroy()
