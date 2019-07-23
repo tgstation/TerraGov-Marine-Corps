@@ -39,7 +39,7 @@
 //	var/surgery_t = 0 //Surgery timer in seconds.
 	var/surgery = 0 //Are we operating or no? 0 for no, 1 for yes
 	var/surgery_mod = 1 //What multiple to increase the surgery timer? This is used for any non-WO maps or events that are done.
-	var/obj/item/reagent_container/blood/OMinus/blood_pack = new()
+	var/obj/item/reagent_container/blood/OMinus/blood_pack
 	var/filtering = 0
 	var/blood_transfer = 0
 	var/heal_brute = 0
@@ -57,6 +57,11 @@
 
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
+
+
+/obj/machinery/autodoc/Initialize()
+	. = ..()
+	blood_pack = new(src)
 
 
 /obj/machinery/autodoc/power_change(area/master_area = null)
