@@ -211,7 +211,7 @@
 /datum/game_mode/crash/job_after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	if(!istype(H))
 		return FALSE
-	H.change_squad("Delta")
+	H.change_squad("Alpha")
 	H.hud_set_squad()
 	H.nutrition = rand(250,300)
 	if(!H.mind?.assigned_squad)
