@@ -121,10 +121,12 @@
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()
-	if(stat != CONSCIOUS)
-		to_chat(user, "<span class='warning'>[src] is not moving.</span>")
-	else
-		to_chat(user, "<span class='danger'>[src] seems to be active.</span>")
+	if(stat == CONSCIOUS)
+		to_chat(user, "<span class='warning'>[src] seems to be active.</span>")
+	else if(stat == UNCONSCIOUS)
+		to_chat(user, "<span class='warning'>[src] seems to be asleep.</span>")
+	else if(stat == DEAD)
+		to_chat(user, "<span class='danger'>[src] is not moving.</span>")
 	if(initial(sterile))
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
