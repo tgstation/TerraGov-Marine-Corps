@@ -365,6 +365,7 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod = CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
 	attach_shell_speed_mod = CONFIG_GET(number/combat_define/slow_shell_speed)
 	delay_mod = CONFIG_GET(number/combat_define/low_fire_delay)
+	scatter_mod = CONFIG_GET(number/combat_define/min_scatter_value)
 	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
 
 
