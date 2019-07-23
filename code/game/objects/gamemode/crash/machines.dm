@@ -42,7 +42,7 @@
 	. = ..()
 
 	if(!disc_type)
-		stack_trace("disc_type is required to be set before init")
+		WARNING("disc_type is required to be set before init")
 		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/computer/nuke_disc_generator/process()
