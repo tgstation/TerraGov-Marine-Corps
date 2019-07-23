@@ -41,6 +41,8 @@ SUBSYSTEM_DEF(job)
 			continue
 		if(!job.map_check())
 			continue
+		if(!job.gamemode_check())
+			continue
 		occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job

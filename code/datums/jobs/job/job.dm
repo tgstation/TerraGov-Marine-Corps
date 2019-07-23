@@ -178,6 +178,10 @@ GLOBAL_PROTECT(exp_specialmap)
 	return TRUE
 
 
+/datum/job/proc/gamemode_check()
+	return TRUE
+
+
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, {"
 <span class='role_body'>|______________________|</span>
