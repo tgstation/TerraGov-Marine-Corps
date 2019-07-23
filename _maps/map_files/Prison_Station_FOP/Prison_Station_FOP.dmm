@@ -1231,10 +1231,6 @@
 "afS" = (
 /turf/open/floor/plating,
 /area/prison/research/secret/bioengineering)
-"afT" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/plating,
-/area/prison/cellblock/maxsec/north)
 "afU" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1483,10 +1479,6 @@
 /obj/structure/toilet,
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/north)
-"agD" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/plating,
-/area/prison/security/monitoring/maxsec/panopticon)
 "agE" = (
 /turf/open/floor/prison,
 /area/prison/security/monitoring/maxsec/panopticon)
@@ -1588,10 +1580,6 @@
 	dir = 4
 	},
 /area/prison/research/secret/bioengineering)
-"agT" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/research/secret/bioengineering)
 "agU" = (
 /turf/closed/wall/r_wall/prison,
 /area/prison/security/monitoring/maxsec/panopticon)
@@ -1662,7 +1650,6 @@
 /area/prison/research/secret/bioengineering)
 "ahe" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/bioengineering)
 "ahf" = (
@@ -1952,10 +1939,6 @@
 	},
 /area/prison/research/secret/containment)
 "ahR" = (
-/turf/open/floor/prison/darkpurple,
-/area/prison/research/secret/containment)
-"ahS" = (
-/obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/prison/darkpurple,
 /area/prison/research/secret/containment)
 "ahT" = (
@@ -2404,17 +2387,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/maxsec/panopticon)
-"aiS" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison,
-/area/prison/research/secret/containment)
 "aiT" = (
 /obj/machinery/vending/robotics,
 /turf/open/floor/prison/darkpurple{
@@ -2650,7 +2622,6 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/drained,
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/prison/darkpurple{
 	dir = 1
 	},
@@ -2959,12 +2930,6 @@
 	dir = 4
 	},
 /turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/north)
-"ako" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
 "akp" = (
 /obj/effect/landmark/corpsespawner/scientist,
@@ -3986,10 +3951,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/plating,
 /area/prison/research/secret/dissection)
-"amI" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison,
-/area/prison/research/secret)
 "amJ" = (
 /turf/open/floor/prison/purple/whitepurple{
 	dir = 8
@@ -4794,10 +4755,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
-"aoG" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/plating,
-/area/prison/cellblock/maxsec/south)
 "aoH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -5250,10 +5207,6 @@
 /turf/open/floor/prison/darkpurple{
 	dir = 8
 	},
-/area/prison/research/secret)
-"apz" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison,
 /area/prison/research/secret)
 "apA" = (
 /obj/structure/cable{
@@ -6080,23 +6033,6 @@
 	dir = 1
 	},
 /area/prison/research)
-"arK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison/purple/whitepurple{
-	dir = 1
-	},
-/area/prison/research)
 "arL" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -6247,12 +6183,6 @@
 	dir = 1
 	},
 /area/prison/cellblock/highsec/north/north)
-"asb" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/prison/cellblock/highsec/north/north)
 "asc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/prison/red{
@@ -6387,10 +6317,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/south)
-"asp" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/whitegreen/full,
-/area/prison/medbay)
 "asq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -6527,7 +6453,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/prison,
 /area/prison/research/RD)
 "asI" = (
@@ -7125,12 +7050,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research)
-"atN" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison/purple/whitepurple{
-	dir = 4
-	},
-/area/prison/research)
 "atO" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -7377,11 +7296,6 @@
 /area/prison/hangar_storage/research)
 "aur" = (
 /obj/structure/rack,
-/turf/open/floor/prison,
-/area/prison/hangar_storage/research)
-"aus" = (
-/obj/structure/rack,
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison,
 /area/prison/hangar_storage/research)
 "aut" = (
@@ -7864,10 +7778,6 @@
 /turf/open/floor/prison/purple/whitepurple{
 	dir = 10
 	},
-/area/prison/research)
-"avD" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison/darkpurple/full,
 /area/prison/research)
 "avE" = (
 /turf/open/floor/prison/darkpurple/full,
@@ -9081,7 +8991,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -9525,11 +9434,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/research)
-"azL" = (
-/obj/structure/table/reinforced,
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research)
 "azM" = (
@@ -10119,10 +10023,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/cellblock/highsec/north/north)
-"aBd" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison,
-/area/prison/cellblock/highsec/north/north)
 "aBe" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -10585,7 +10485,6 @@
 "aCc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/huntergames_primary_spawn,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -11364,12 +11263,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
-"aDO" = (
-/obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor/prison/red{
-	dir = 8
-	},
-/area/prison/cellblock/highsec/north/south)
 "aDP" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -11526,12 +11419,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison/darkred/full,
-/area/prison/security/checkpoint/maxsec)
-"aEl" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/trim/red{
-	dir = 4
-	},
 /area/prison/security/checkpoint/maxsec)
 "aEm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -12102,13 +11989,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/prison/quarters/research)
-"aFT" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/wood,
-/area/prison/quarters/research)
 "aFU" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -12547,7 +12427,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -12625,7 +12504,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research)
 "aGT" = (
@@ -12947,18 +12825,6 @@
 	icon_state = "chapel"
 	},
 /area/prison/chapel)
-"aHG" = (
-/obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
-	},
-/obj/effect/landmark/random_item/good,
-/turf/open/floor{
-	dir = 5;
-	icon_regular_floor = "chapel";
-	icon_state = "chapel"
-	},
-/area/prison/chapel)
 "aHH" = (
 /obj/structure/bed/chair/wood/normal{
 	icon_state = "wooden_chair";
@@ -13195,11 +13061,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/staff_research)
-"aIm" = (
-/obj/structure/rack,
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison/darkyellow/full,
-/area/prison/hangar_storage/main)
 "aIn" = (
 /turf/open/floor/prison/darkyellow{
 	dir = 8
@@ -15158,11 +15019,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/quarters/research)
-"aMr" = (
-/obj/structure/table,
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/wood,
-/area/prison/quarters/research)
 "aMs" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/light/small{
@@ -15439,12 +15295,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/highsec/north/south)
-"aNg" = (
-/obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/prison/cellblock/highsec/north/south)
 "aNh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -15633,10 +15483,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/cellblock/highsec/north/south)
-"aNJ" = (
-/obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/north/south)
 "aNK" = (
@@ -16569,7 +16415,6 @@
 	},
 /area/prison/security/monitoring/lowsec/ne)
 "aPI" = (
-/obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/prison/trim/red{
 	dir = 5
 	},
@@ -17188,7 +17033,6 @@
 	},
 /area/prison/security/monitoring/lowsec/ne)
 "aRc" = (
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison/darkred/corners{
 	dir = 8
 	},
@@ -17576,12 +17420,6 @@
 /obj/structure/table/gamblingtable,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/nw)
-"aSe" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/green/corner{
-	dir = 1
-	},
-/area/prison/cellblock/lowsec/nw)
 "aSf" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -17689,11 +17527,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison,
 /area/prison/cleaning)
-"aSu" = (
-/obj/structure/table/reinforced,
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison/green/full,
-/area/prison/quarters/staff)
 "aSv" = (
 /obj/structure/closet,
 /obj/structure/window/reinforced{
@@ -17846,10 +17679,6 @@
 	},
 /area/prison/residential/north)
 "aSR" = (
-/turf/open/floor/plating,
-/area/prison/maintenance/residential/ne)
-"aSS" = (
-/obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
 "aST" = (
@@ -20887,13 +20716,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/residential/central)
-"bap" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
-	},
-/area/prison/canteen)
 "baq" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/blood,
@@ -21211,10 +21033,6 @@
 /turf/open/floor/prison/cellstripe{
 	dir = 1
 	},
-/area/prison/cellblock/highsec/north/south)
-"bbf" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/kitchen,
 /area/prison/cellblock/highsec/north/south)
 "bbg" = (
 /obj/structure/filingcabinet,
@@ -23507,10 +23325,6 @@
 /obj/structure/bed,
 /turf/open/floor/prison,
 /area/prison/cellblock/vip)
-"bgF" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison,
-/area/prison/cellblock/vip)
 "bgG" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
@@ -23765,12 +23579,6 @@
 	icon_state = "kitchen"
 	},
 /area/prison/kitchen)
-"bhk" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison{
-	icon_state = "kitchen"
-	},
-/area/prison/kitchen)
 "bhl" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -23879,10 +23687,6 @@
 /area/prison/hangar/main)
 "bhw" = (
 /obj/structure/window/framed/prison/reinforced,
-/turf/open/floor/plating,
-/area/prison/hangar/main)
-"bhx" = (
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bhz" = (
@@ -24189,13 +23993,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
-"bie" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	icon_state = "bright_clean2";
 	dir = 10
 	},
 /area/prison/yard)
@@ -24674,10 +24471,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/maxsec/panopticon)
-"biM" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "biN" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -24698,7 +24491,6 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/effect/landmark/huntergames_secondary_spawn,
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
 	dir = 10
@@ -24833,14 +24625,6 @@
 	},
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
-"bjh" = (
-/obj/item/ammo_casing,
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison{
-	icon_state = "bright_clean2";
 	dir = 10
 	},
 /area/prison/yard)
@@ -25386,10 +25170,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security/monitoring/highsec)
-"bks" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "bkt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -25441,13 +25221,6 @@
 	},
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/ne)
-"bkz" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
-	},
-/area/prison/hallway/central)
 "bkA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -25816,23 +25589,6 @@
 	dir = 10
 	},
 /area/prison/yard)
-"blm" = (
-/obj/structure/table/reinforced,
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
-"bln" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
 "blo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -25871,13 +25627,6 @@
 	dir = 1
 	},
 /area/prison/hallway/central)
-"bls" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/canteen)
 "blt" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -26379,11 +26128,6 @@
 "bmH" = (
 /turf/closed/wall/prison,
 /area/prison/toilet/canteen)
-"bmI" = (
-/obj/structure/toilet,
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/toilet/canteen)
 "bmJ" = (
 /obj/machinery/shower{
 	dir = 4
@@ -26690,13 +26434,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
-"bnx" = (
-/obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
 "bny" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/prison{
@@ -26708,15 +26445,6 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
-"bnA" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -26724,7 +26452,6 @@
 /area/prison/yard)
 "bnB" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/random_item/good,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
@@ -26801,14 +26528,6 @@
 	dir = 1
 	},
 /area/prison/cellblock/mediumsec/south)
-"bnK" = (
-/obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/hallway/entrance)
-"bnL" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison,
-/area/prison/hallway/entrance)
 "bnM" = (
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -27419,20 +27138,6 @@
 	},
 /turf/open/floor/prison/cleanmarked,
 /area/prison/yard)
-"boE" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/huntergames_primary_spawn,
-/obj/structure/mineral_door/resin,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
 "boF" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -27539,13 +27244,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
-"boP" = (
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -27861,13 +27559,6 @@
 	dir = 4
 	},
 /area/prison/yard)
-"bpK" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
 "bpL" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -28019,7 +27710,6 @@
 	icon_state = "2-8"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/entrance)
 "bpY" = (
@@ -28031,10 +27721,6 @@
 /turf/open/floor/prison/darkyellow{
 	dir = 6
 	},
-/area/prison/hangar/main)
-"bqa" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating,
 /area/prison/hangar/main)
 "bqb" = (
 /turf/closed/wall/prison,
@@ -28210,14 +27896,6 @@
 	dir = 10
 	},
 /area/prison/canteen)
-"bqx" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/canteen)
 "bqy" = (
 /obj/machinery/door/airlock/multi_tile/almayer/generic{
 	dir = 2;
@@ -28241,10 +27919,6 @@
 "bqB" = (
 /turf/open/floor/prison/yellow/full,
 /area/prison/security/checkpoint/medsec)
-"bqC" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/plate,
-/area/prison/toilet/canteen)
 "bqD" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -28722,13 +28396,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/cellblock/vip)
-"brH" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 1
-	},
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison,
-/area/prison/cellblock/vip)
 "brI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -29031,10 +28698,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
-"bsu" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison,
-/area/prison/security/monitoring/highsec)
 "bsv" = (
 /turf/open/floor/prison/darkred/corners,
 /area/prison/security/monitoring/highsec)
@@ -29111,16 +28774,6 @@
 "bsI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/yard)
-"bsJ" = (
-/obj/effect/landmark/random_item/crap,
 /obj/structure/table/reinforced/flipped{
 	dir = 2
 	},
@@ -29415,10 +29068,6 @@
 /turf/open/floor/prison/trim/red{
 	dir = 5
 	},
-/area/prison/hangar/main)
-"btw" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/plating,
 /area/prison/hangar/main)
 "btx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -30054,13 +29703,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/lowsec/se)
-"buW" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
-	},
-/area/prison/hallway/central)
 "buX" = (
 /obj/structure/bed,
 /obj/effect/landmark/corpsespawner/prisoner,
@@ -30181,21 +29823,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/visitation)
-"bvn" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/disposalpipe/segment,
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
-	},
-/area/prison/hallway/central)
 "bvo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -30360,13 +29987,6 @@
 	},
 /turf/open/floor/prison/kitchen,
 /area/prison/cellblock/highsec/south/north)
-"bvK" = (
-/obj/machinery/shower{
-	pixel_y = 15
-	},
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison/kitchen,
-/area/prison/cellblock/highsec/south/north)
 "bvL" = (
 /obj/machinery/shower{
 	pixel_y = 15
@@ -30480,13 +30100,6 @@
 "bvW" = (
 /obj/structure/rack,
 /obj/item/reagent_container/food/snacks/packaged_burrito,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/store)
-"bvX" = (
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -30634,10 +30247,6 @@
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/prison/red,
 /area/prison/hallway/entrance)
-"bwn" = (
-/obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor/plating,
-/area/prison/hangar/main)
 "bwo" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -30804,20 +30413,8 @@
 	},
 /turf/open/floor/prison/cleanmarked,
 /area/prison/yard)
-"bwP" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/cleanmarked,
-/area/prison/yard)
 "bwQ" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
-	},
-/area/prison/holding/holding1)
-"bwR" = (
-/obj/structure/table/reinforced,
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
 	dir = 10
@@ -30876,10 +30473,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/plating,
 /area/prison/visitation)
-"bxa" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison,
-/area/prison/hallway/entrance)
 "bxb" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -33622,10 +33215,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
-"bDH" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/cellblock/highsec/south/north)
 "bDJ" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp{
@@ -34105,7 +33694,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/landmark/random_item/crap,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
@@ -34577,24 +34165,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
-"bFG" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/hallway/east)
 "bFH" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -34807,7 +34377,6 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/obj/effect/landmark/random_item/crap,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
@@ -35931,24 +35500,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
-"bID" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/cellblock/highsec/south/north)
 "bIE" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -36090,7 +35641,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/landmark/random_item/crap,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -37089,7 +36639,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/effect/landmark/random_item/crap,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -37428,11 +36977,6 @@
 	dir = 10
 	},
 /area/prison/holding/holding2)
-"bMf" = (
-/obj/structure/table/reinforced,
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/wood,
-/area/prison/parole/main)
 "bMg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -37787,13 +37331,6 @@
 	dir = 10
 	},
 /area/prison/holding/holding2)
-"bMX" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/holding/holding2)
 "bMY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -37966,12 +37503,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/south/north)
-"bNx" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison/red{
-	dir = 8
-	},
-/area/prison/cellblock/highsec/south/north)
 "bNy" = (
 /obj/machinery/light,
 /turf/open/floor/prison,
@@ -38016,13 +37547,6 @@
 	dir = 10
 	},
 /area/prison/hallway/central)
-"bNE" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/holding/holding2)
 "bNF" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
@@ -38911,7 +38435,6 @@
 	},
 /area/prison/security/checkpoint/medsec)
 "bPC" = (
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/prison/trim/red{
 	dir = 5
 	},
@@ -39134,7 +38657,6 @@
 /turf/closed/wall/r_wall/prison,
 /area/prison/engineering/atmos)
 "bQk" = (
-/obj/effect/landmark/random_item/crap,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/darkbrown{
 	dir = 4
@@ -39756,7 +39278,6 @@
 /area/prison/engineering/atmos)
 "bRR" = (
 /obj/structure/bed/stool,
-/obj/effect/landmark/random_item/crap,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison,
 /area/prison/intake)
@@ -39803,10 +39324,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
 	},
-/turf/open/floor/prison,
-/area/prison/security)
-"bRZ" = (
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison,
 /area/prison/security)
 "bSa" = (
@@ -39860,13 +39377,6 @@
 	dir = 10
 	},
 /area/prison/toilet/security)
-"bSf" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
-	},
-/area/prison/residential/south)
 "bSg" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/plating,
@@ -41189,7 +40699,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
-/obj/effect/landmark/random_item/crap,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
@@ -41433,24 +40942,10 @@
 	},
 /turf/open/floor/prison,
 /area/prison/recreation/highsec/s)
-"bVD" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/prison/plate,
-/area/prison/recreation/highsec/s)
 "bVE" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
-	},
-/area/prison/laundry)
-"bVF" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 1
-	},
-/obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -41677,10 +41172,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 10
 	},
-/turf/open/floor/plating,
-/area/prison/engineering/atmos)
-"bWj" = (
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating,
 /area/prison/engineering/atmos)
 "bWk" = (
@@ -42747,10 +42238,6 @@
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/wood,
 /area/prison/library)
-"bYO" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/wood,
-/area/prison/library)
 "bYP" = (
 /obj/effect/spawner/random/toolbox,
 /obj/structure/table/reinforced,
@@ -43124,10 +42611,6 @@
 /obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
 /area/prison/parole/protective_custody)
-"bZL" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison,
-/area/prison/cellblock/highsec/south/south)
 "bZN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -43778,24 +43261,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security)
-"cbv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/security)
 "cbw" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -43891,7 +43356,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/effect/landmark/random_item/good,
 /turf/open/floor/wood,
 /area/prison/library)
 "cbH" = (
@@ -45417,10 +44881,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/south/south)
-"ceM" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/highsec/south/south)
 "ceN" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -45909,10 +45369,6 @@
 	dir = 4
 	},
 /area/prison/hallway/engineering)
-"cfY" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/plating,
-/area/prison/cellblock/highsec/south/south)
 "cfZ" = (
 /obj/item/ammo_magazine/rifle/mar40,
 /turf/open/floor/plating,
@@ -45983,10 +45439,6 @@
 	icon_state = "floor7"
 	},
 /area/prison/pirate)
-"cgq" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/plate,
-/area/prison/recreation/medsec)
 "cgr" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/plate,
@@ -46084,10 +45536,6 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/hallway/engineering)
 "cgF" = (
-/turf/open/floor/prison/darkyellow/full,
-/area/prison/hallway/engineering)
-"cgG" = (
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/hallway/engineering)
 "cgH" = (
@@ -46375,10 +45823,6 @@
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
-"chq" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison/plate,
-/area/prison/recreation/medsec)
 "chr" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1
@@ -48397,10 +47841,6 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
-"cmf" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/plating/platebot,
-/area/prison/pirate)
 "cmg" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -49505,10 +48945,6 @@
 "coY" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/security/armory/lethal)
-"coZ" = (
-/obj/effect/landmark/random_item/good,
-/turf/open/floor/plating,
-/area/prison/pirate)
 "cpa" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
@@ -49966,13 +49402,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/disposal)
-"cql" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/prison,
-/area/prison/disposal)
 "cqm" = (
 /turf/open/floor/prison,
 /area/prison/disposal)
@@ -50175,10 +49604,6 @@
 	dir = 8
 	},
 /turf/open/floor/prison,
-/area/prison/disposal)
-"cqV" = (
-/obj/effect/landmark/random_item/crap,
-/turf/open/floor/plating,
 /area/prison/disposal)
 "cqW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -50393,7 +49818,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/huntergames_secondary_spawn,
 /turf/open/floor/prison/yellow/corner{
 	dir = 8
 	},
@@ -50443,13 +49867,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/disposal)
-"crE" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/disposal)
 "crF" = (
@@ -50632,7 +50049,6 @@
 /area/prison/disposal)
 "csj" = (
 /obj/structure/table/reinforced,
-/obj/effect/landmark/random_item/crap,
 /turf/open/floor/prison,
 /area/prison/disposal)
 "csk" = (
@@ -51326,10 +50742,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison/yellow/corner,
 /area/prison/cellblock/mediumsec/west)
-"ctR" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/yellow,
-/area/prison/cellblock/mediumsec/west)
 "ctS" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/yellow,
@@ -51366,10 +50778,6 @@
 /turf/open/floor/prison/yellow/corner{
 	dir = 8
 	},
-/area/prison/cellblock/mediumsec/south)
-"ctZ" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "cua" = (
 /turf/open/floor/prison/yellow,
@@ -52836,12 +52244,6 @@
 	dir = 1
 	},
 /area/prison/cellblock/mediumsec/south)
-"cxP" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/yellow/corner{
-	dir = 4
-	},
-/area/prison/cellblock/mediumsec/south)
 "cxQ" = (
 /turf/open/floor/prison/yellow/corner{
 	dir = 1
@@ -52860,12 +52262,6 @@
 "cxT" = (
 /turf/open/floor/prison/yellow{
 	dir = 10
-	},
-/area/prison/cellblock/mediumsec/east)
-"cxU" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/yellow{
-	dir = 6
 	},
 /area/prison/cellblock/mediumsec/east)
 "cxV" = (
@@ -53081,10 +52477,6 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/cellblock/mediumsec/south)
-"cyM" = (
-/obj/effect/landmark/huntergames_secondary_spawn,
-/turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
 "cyN" = (
 /obj/effect/landmark/monkey_spawn,
@@ -53570,12 +52962,6 @@
 	dir = 6
 	},
 /area/prison/security/monitoring/medsec/south)
-"cVJ" = (
-/obj/effect/landmark/huntergames_primary_spawn,
-/turf/open/floor/prison/green{
-	dir = 1
-	},
-/area/prison/cellblock/lowsec/ne)
 "exP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -57358,7 +56744,7 @@ aok
 aok
 aok
 aok
-bks
+aok
 aok
 aok
 aok
@@ -58641,7 +58027,7 @@ aok
 aok
 aok
 aok
-biM
+aok
 aok
 aok
 aok
@@ -61246,7 +60632,7 @@ bGU
 bCb
 bNK
 bCb
-bSf
+bCb
 bCb
 bCb
 bCb
@@ -65565,7 +64951,7 @@ avm
 avm
 avm
 aRV
-aSS
+aSR
 aUl
 aRV
 aWn
@@ -73517,7 +72903,7 @@ apn
 aut
 arS
 aCg
-aDO
+aCg
 aCg
 aCg
 aCg
@@ -74101,7 +73487,7 @@ byC
 bKs
 bKs
 bYz
-bZL
+bYz
 cba
 bYC
 bZO
@@ -74327,7 +73713,7 @@ bpj
 bqh
 bqQ
 brD
-bsu
+aYY
 bbV
 beY
 bdI
@@ -74619,7 +74005,7 @@ bYz
 cbb
 bYC
 bZQ
-ceM
+bZQ
 bZQ
 ccI
 cil
@@ -75043,7 +74429,7 @@ aor
 aos
 apl
 aor
-asb
+arZ
 asi
 aor
 apl
@@ -75057,7 +74443,7 @@ axK
 aor
 azr
 aAe
-aBd
+aAe
 aCi
 aCi
 aET
@@ -75915,7 +75301,7 @@ ckk
 cjw
 cjw
 cjw
-coZ
+cjw
 cjw
 cqz
 cio
@@ -76162,7 +75548,7 @@ cbc
 ccF
 cho
 cbc
-cfY
+cbc
 chi
 cip
 cju
@@ -77142,7 +76528,7 @@ aCl
 aCl
 bdN
 bfd
-bgF
+bgD
 bgD
 biX
 bkc
@@ -77196,7 +76582,7 @@ cir
 cjw
 ckl
 cjw
-cmf
+ckn
 ckn
 ckk
 ckn
@@ -78411,7 +77797,7 @@ aCg
 aCg
 aCg
 aNf
-aNJ
+aDS
 aPc
 aES
 aCl
@@ -78981,7 +78367,7 @@ bPi
 bQQ
 bPI
 bQQ
-bVD
+bQQ
 bWU
 bOm
 bYC
@@ -79466,7 +78852,7 @@ vhE
 bpv
 bsM
 bqU
-brH
+brG
 bsx
 bfc
 bfc
@@ -80003,7 +79389,7 @@ bxm
 bwz
 bwz
 bwz
-bNx
+bwz
 bOn
 bPo
 bQQ
@@ -80254,7 +79640,7 @@ bwA
 bvC
 bvA
 bHn
-bID
+bIw
 bJF
 bKu
 bAY
@@ -80723,7 +80109,7 @@ aKB
 aKB
 aLR
 aJR
-aNg
+aLO
 aDS
 aPg
 aES
@@ -80992,7 +80378,7 @@ aSZ
 aXU
 aSZ
 aSZ
-bbf
+aSZ
 aSZ
 bdd
 bdO
@@ -81021,7 +80407,7 @@ bwJ
 bzI
 bwJ
 bwJ
-bDH
+bwJ
 bwJ
 bGo
 byC
@@ -81477,7 +80863,7 @@ aab
 alH
 akF
 atD
-aoG
+akV
 axM
 ayz
 ayD
@@ -81784,7 +81170,7 @@ bhX
 bgL
 btH
 bdO
-bvK
+bvJ
 bwJ
 bwJ
 bwJ
@@ -81953,7 +81339,7 @@ atp
 acO
 acO
 acO
-afT
+acO
 acO
 acO
 acO
@@ -82347,7 +81733,7 @@ cbB
 crW
 csA
 cmN
-ctR
+ctN
 cqK
 cuK
 crs
@@ -82836,7 +82222,7 @@ bPt
 bQW
 bSC
 bUe
-bVF
+bVH
 bQV
 bOq
 bZW
@@ -83358,7 +82744,7 @@ cbk
 ccN
 cbk
 cbk
-cgq
+cbk
 cbk
 ciA
 caa
@@ -83543,7 +82929,7 @@ aCD
 aCC
 ayH
 azB
-aHG
+ayH
 azB
 axM
 aKK
@@ -83616,7 +83002,7 @@ cbk
 cdR
 cdR
 cbk
-chq
+cbk
 ciA
 caa
 ckq
@@ -84838,7 +84224,7 @@ aKN
 aKN
 aKN
 aKN
-bkz
+aKN
 aKN
 aKN
 aOj
@@ -85296,7 +84682,7 @@ ags
 ags
 ahN
 agE
-agD
+agF
 ahv
 agE
 anI
@@ -85398,7 +84784,7 @@ bIQ
 bFk
 bFk
 aKN
-buW
+aKN
 aPt
 aKN
 bOq
@@ -85574,7 +84960,7 @@ amh
 akV
 azh
 vcw
-aoG
+akV
 akV
 akV
 akV
@@ -86375,7 +85761,7 @@ aAm
 anT
 aKN
 aFE
-buW
+aKN
 aKN
 aNp
 aKC
@@ -86984,7 +86370,7 @@ cuP
 cuP
 cuP
 cuP
-cxP
+cyQ
 crw
 cvR
 cuP
@@ -87409,7 +86795,7 @@ aNp
 aNp
 aNp
 aQT
-aSe
+aQS
 aTh
 aUr
 aVE
@@ -88971,7 +88357,7 @@ aWR
 bli
 aIv
 aIv
-boE
+boG
 aIv
 bli
 aWR
@@ -89162,7 +88548,7 @@ ads
 ads
 ajn
 ajS
-ako
+ads
 ads
 ael
 aff
@@ -90251,7 +89637,7 @@ aWR
 bfu
 bgm
 bib
-bjh
+brS
 bjL
 bgQ
 bmA
@@ -90279,7 +89665,7 @@ bql
 aKQ
 aKN
 aKN
-bkz
+aKN
 aKN
 aKN
 aPt
@@ -90479,7 +89865,7 @@ aab
 aab
 ayM
 aCZ
-aEl
+axR
 axR
 aGE
 aHU
@@ -90512,7 +89898,7 @@ bji
 bkt
 bll
 aWR
-bnx
+aWR
 aWR
 bll
 aWR
@@ -91281,10 +90667,10 @@ aWR
 aWR
 aHp
 aWR
-blm
+bmB
 bjj
 bny
-boP
+aWR
 bpG
 aWR
 bri
@@ -91294,7 +90680,7 @@ aWR
 bfx
 bdE
 aHt
-bwP
+bck
 aIv
 bxX
 aWR
@@ -91546,7 +90932,7 @@ aWR
 bjj
 bku
 bmC
-bsJ
+bsH
 aWR
 bfx
 buS
@@ -91725,7 +91111,7 @@ agM
 agY
 ahj
 ahy
-ahS
+ahR
 ahj
 agY
 aiA
@@ -91795,7 +91181,7 @@ aXY
 bib
 bjk
 aWR
-bln
+bqq
 aWR
 bnz
 aWR
@@ -92370,7 +91756,7 @@ cap
 cbA
 ccV
 cnB
-ctZ
+ctT
 cun
 cuM
 cvA
@@ -92500,7 +91886,7 @@ ahU
 ail
 ail
 aiC
-aiS
+ail
 ajt
 ail
 akN
@@ -92543,7 +91929,7 @@ aGK
 aJT
 aKN
 aPt
-buW
+aKN
 aKN
 aKN
 aKN
@@ -92568,7 +91954,7 @@ bjm
 bju
 bgQ
 bgQ
-bnA
+bjj
 bll
 bgQ
 bgQ
@@ -92594,7 +91980,7 @@ aKN
 aKN
 aKN
 aKN
-buW
+aKN
 aPt
 aKN
 bPL
@@ -92776,7 +92162,7 @@ apM
 apI
 avY
 avY
-asp
+avY
 apI
 apI
 apI
@@ -93334,7 +92720,7 @@ bbp
 bbp
 bfz
 bgQ
-bie
+bgQ
 bgQ
 bju
 bfw
@@ -93415,7 +92801,7 @@ cpU
 cyx
 cyx
 cyx
-cyM
+cyx
 cyx
 cyx
 cyx
@@ -94883,7 +94269,7 @@ aNq
 aWR
 aWR
 boL
-bpK
+aWR
 bqs
 brk
 blQ
@@ -95120,7 +94506,7 @@ aOe
 aPF
 aRa
 aTS
-cVJ
+aTv
 aUO
 aVL
 aNq
@@ -96373,7 +95759,7 @@ alg
 alg
 alf
 arh
-arK
+arJ
 asy
 aAF
 atf
@@ -96677,7 +96063,7 @@ aZs
 aNq
 aKN
 aVR
-bkz
+aKN
 aKN
 aKP
 bnE
@@ -97007,7 +96393,7 @@ cqR
 cqR
 cqR
 cqR
-cxU
+cyi
 cqh
 aab
 aab
@@ -97136,11 +96522,11 @@ ajG
 ajD
 ajG
 ajG
-amI
+ajG
 akC
 aoa
 ajG
-apz
+ajG
 aqb
 aqE
 ark
@@ -97157,7 +96543,7 @@ awS
 arQ
 ayc
 ayY
-azL
+ayY
 aAy
 arQ
 aDt
@@ -97230,7 +96616,7 @@ bTg
 bRv
 bRv
 bRv
-bYO
+bRv
 bTg
 bRv
 bRv
@@ -97375,7 +96761,7 @@ afs
 afQ
 agq
 agq
-agT
+agq
 agq
 agq
 agq
@@ -97404,7 +96790,7 @@ arl
 arR
 asC
 asN
-atN
+arR
 arR
 arR
 auH
@@ -97943,7 +97329,7 @@ aPt
 aKN
 aKN
 aNt
-buW
+aKN
 aKN
 aKN
 aOj
@@ -98179,7 +97565,7 @@ atP
 arm
 avE
 ava
-avD
+avE
 awf
 awS
 arQ
@@ -98247,7 +97633,7 @@ aTD
 aLu
 aLu
 btK
-bvn
+aLu
 aLu
 bCM
 aKN
@@ -98488,7 +97874,7 @@ bcq
 aKN
 aXc
 aKN
-buW
+aKN
 aKN
 bcq
 aKN
@@ -99535,7 +98921,7 @@ bIZ
 bLl
 bLl
 bIZ
-bNE
+bIZ
 bOH
 bQi
 cvj
@@ -99752,7 +99138,7 @@ aVa
 aVa
 aYt
 aVa
-bap
+aVa
 aVa
 aVa
 bdi
@@ -99775,7 +99161,7 @@ aTF
 bub
 bua
 bua
-bwR
+bwQ
 bwQ
 bua
 bua
@@ -100048,7 +99434,7 @@ bIZ
 bIZ
 bLm
 bMa
-bMX
+bIZ
 bNF
 bOH
 bQi
@@ -100075,8 +99461,8 @@ ciU
 chH
 cps
 cqk
-cqV
-cqV
+cjR
+cjR
 cjR
 csO
 aab
@@ -100588,7 +99974,7 @@ cjL
 ciU
 chH
 ceB
-cql
+cqk
 cqW
 crB
 csf
@@ -101047,7 +100433,7 @@ aXf
 bim
 aXf
 aXf
-bls
+aXf
 baq
 aXd
 aYu
@@ -101091,7 +100477,7 @@ cbP
 cdh
 cem
 cfx
-cgG
+cgF
 chH
 ciU
 cjM
@@ -101287,7 +100673,7 @@ aDA
 aOu
 aPW
 aRn
-aSu
+aSw
 aOt
 aVa
 aWa
@@ -101361,7 +100747,7 @@ chH
 cpv
 cqk
 cmD
-crE
+crD
 csh
 cpq
 aab
@@ -101538,7 +100924,7 @@ aJs
 aKh
 aED
 aLG
-aMr
+aEF
 aEC
 aDA
 aOv
@@ -102111,7 +101497,7 @@ bQj
 bRL
 bTr
 bUQ
-bWj
+bWk
 bXE
 bZe
 bRM
@@ -102315,7 +101701,7 @@ aDA
 aOv
 aPW
 aRn
-aSu
+aSw
 aOt
 aVd
 aVX
@@ -102337,14 +101723,14 @@ aXf
 aXf
 aXf
 bpM
-bqx
+brp
 brp
 brp
 bsQ
 aTF
 bui
 bvb
-bvX
+bvb
 bvb
 bvb
 bvb
@@ -102829,7 +102215,7 @@ aDA
 aOv
 aPW
 aRn
-aSu
+aSw
 aOt
 aVa
 aVT
@@ -103073,7 +102459,7 @@ atl
 aBL
 aDA
 aEA
-aFT
+aFQ
 aHb
 aED
 aJs
@@ -103124,14 +102510,14 @@ btt
 btt
 bCN
 bCN
-bFG
+bEs
 bAA
 bHM
 bJg
 bJg
 bKF
 bLq
-bMf
+bLq
 bLn
 bLo
 bJg
@@ -104609,7 +103995,7 @@ auI
 avj
 avk
 auI
-aus
+aur
 auq
 aAJ
 aBP
@@ -105372,7 +104758,7 @@ aab
 aab
 aab
 atU
-aus
+aur
 auI
 auI
 auI
@@ -105421,7 +104807,7 @@ bmH
 bmH
 bmH
 bpL
-bqC
+bpU
 bmH
 bmH
 bmH
@@ -105669,7 +105055,7 @@ bct
 bdl
 bek
 beE
-bhk
+bem
 biB
 bjy
 bhm
@@ -105902,9 +105288,9 @@ aab
 aab
 aFV
 aHi
-aIm
 aHi
-aIm
+aHi
+aHi
 aHi
 aHi
 aMv
@@ -106188,7 +105574,7 @@ biz
 bjz
 bkE
 bdl
-bmI
+bmG
 bnG
 bxl
 bpL
@@ -107255,7 +106641,7 @@ bNR
 bTx
 bMq
 bLz
-cbv
+cbu
 bWx
 cev
 bQp
@@ -108256,7 +107642,7 @@ bcz
 bit
 bcz
 bwg
-bxa
+bcz
 bcz
 bcz
 bcz
@@ -108731,8 +108117,8 @@ aFV
 aHi
 aHi
 aHi
-aIm
-aIm
+aHi
+aHi
 aHi
 aMA
 aHh
@@ -108759,7 +108145,7 @@ bjF
 bcA
 blx
 bkA
-bnK
+bcA
 bcA
 bcA
 bcA
@@ -109273,7 +108659,7 @@ bbC
 bmM
 blz
 bkA
-bnL
+bcz
 bcz
 bcz
 bcz
@@ -111360,7 +110746,7 @@ bNk
 bMu
 bMu
 bNY
-bRZ
+bMu
 bQp
 bVh
 bWz
@@ -112878,10 +112264,10 @@ aYM
 aYM
 aYM
 aYM
-btw
 aYM
 aYM
-bwn
+aYM
+aYM
 bnQ
 bxJ
 byk
@@ -113893,7 +113279,6 @@ aYM
 aYM
 aYM
 aYM
-bhx
 aYM
 aYM
 aYM
@@ -113901,7 +113286,8 @@ aYM
 aYM
 aYM
 aYM
-bqa
+aYM
+aYM
 aYM
 aYM
 aYM
@@ -115191,7 +114577,7 @@ aYM
 aYM
 aYM
 aYM
-bqa
+aYM
 aYM
 aYM
 bwr
@@ -116206,7 +115592,7 @@ aYM
 aYM
 aYM
 aYM
-bqa
+aYM
 aYM
 aYM
 aYM
