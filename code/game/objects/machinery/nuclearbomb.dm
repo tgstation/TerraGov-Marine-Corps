@@ -224,7 +224,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			icon_state = "nuclearbomb1"
 		extended = TRUE
 
-/obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
+/obj/machinery/nuclearbomb/proc/nukehack_win(mob/user)
 	var/dat = {"
 	<b>Nuclear Fission Explosive</b><br>
 	Nuclear Device Wires:<hr>
