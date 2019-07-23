@@ -1,12 +1,5 @@
 GLOBAL_LIST_EMPTY(nukes_set_list)
 
-#define NUKE_STAGE_NONE 0
-#define NUKE_STAGE_COVER_REMOVED 1
-#define NUKE_STAGE_COVER_OPENED 2
-#define NUKE_STAGE_SEALANT_OPEN 3
-#define NUKE_STAGE_UNWRENCHED 4
-#define NUKE_STAGE_BOLTS_REMOVED 5
-
 /obj/machinery/nuclearbomb
 	name = "\improper Nuclear Fission Explosive"
 	desc = "Uh oh. RUN!!!!"
