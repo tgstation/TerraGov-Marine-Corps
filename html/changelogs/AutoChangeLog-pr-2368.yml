@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscadd: "Alt+clicking storage containers will remove the last placed item in them. This works for pill bottles to make the medic life easier, ammo belts, and several other things."
