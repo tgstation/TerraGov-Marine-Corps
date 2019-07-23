@@ -1,4 +1,5 @@
 /obj/machinery/nuclearbomb/crash
+	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 	deployable = TRUE
 	var/has_auth
 	var/obj/item/disk/nuclear/crash/red/r_auth
