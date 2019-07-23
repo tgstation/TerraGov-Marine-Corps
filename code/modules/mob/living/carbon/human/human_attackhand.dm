@@ -190,6 +190,8 @@
 
 				if(halloss > 0)
 					status = "tingling"
+					if(brutedamage > 0 && burndamage > 0)
+						status += " and "
 
 				if(brutedamage > 0)
 					status = "bruised"
