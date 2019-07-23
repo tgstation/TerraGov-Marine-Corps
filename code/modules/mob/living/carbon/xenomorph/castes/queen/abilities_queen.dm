@@ -357,7 +357,7 @@
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/grow_ovipositor,
 		/datum/action/xeno_action/activable/screech,
-		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,

@@ -63,7 +63,7 @@
 	switch(M.a_intent)
 		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
-			"<span class='notice'>You caress [src] with your scythe-like arm.</span>")
+			"<span class='notice'>We caress [src] with our scythe-like arm.</span>")
 			return 0
 
 		if(INTENT_GRAB)
@@ -76,7 +76,7 @@
 		if(INTENT_HARM)
 			var/damage = (rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + 3)
 			M.visible_message("<span class='danger'>\The [M] bites [src]!</span>", \
-			"<span class='danger'>You bite [src]!</span>")
+			"<span class='danger'>We bite [src]!</span>")
 			health -= damage
 			return 1
 

@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 				return
 
 			var/obj/item/tool/weldingtool/WT = I
-			if(!WT.isOn()) 
+			if(!WT.isOn())
 				return
 
 			if(WT.get_fuel() < 5) // uses up 5 fuel.
@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 			user.visible_message("<span class='notice'>[user] starts forcing open the bolt covers on [src].</span>",
 			"<span class='notice'>You start forcing open the anchoring bolt covers with [I].</span>")
-			
+
 			if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 				return
 
@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 			user.visible_message("<span class='notice'>[user] begins lifting [src] off of the anchors.",
 			"<span class='notice'>You begin lifting the device off the anchors...")
-			
+
 			if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 				return
 
@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 				status = "Set-[safe_text]"
 			else
 				status = "Auth. S1-[safe_text]"
-		
+
 		var/html = {"
 		<b>Nuclear Fission Explosive</b><br />
 		Auth. Disk: <a href='?src=[REF(src)];auth=1'>[auth ? "++++++++++" : "----------"]</a>
@@ -338,7 +338,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 					visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
 
 	updateUsrDialog()
-		
+
 
 /obj/machinery/nuclearbomb/ex_act(severity)
 	return
@@ -352,7 +352,8 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	timing = -1.0
 	yes_code = FALSE
 	safety = TRUE
-	if(!lighthack) 
+	if(!lighthack)
 		icon_state = "nuclearbomb3"
 
 	SSevacuation.initiate_self_destruct(TRUE) //The round ends as soon as this happens, or it should.
+	return TRUE

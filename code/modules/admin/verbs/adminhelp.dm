@@ -819,7 +819,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(!message)
 		return
 
-	switch(input("Who do you want to contanct?", "Request Help") as null|anything in list("Mentors", "Admins"))
+	switch(input("Who do you want to contact?", "Request Help") as null|anything in list("Mentors", "Admins"))
 		if("Mentors")
 			mentorhelp(message)
 		if("Admins")

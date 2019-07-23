@@ -57,8 +57,7 @@
 
 			if(C.data == "Clown Land")
 				//whoops
-				for(var/mob/O in hearers(src, null))
-					O.show_message("<span class='warning'> Incoming bluespace portal detected, unable to lock in.</span>", 2)
+				audible_message("<span class='warning'>Incoming bluespace portal detected, unable to lock in.</span>")
 
 				for(var/obj/machinery/teleport/hub/H in range(1))
 					var/amount = rand(2,5)
@@ -66,8 +65,7 @@
 						new /mob/living/simple_animal/hostile/carp(get_turf(H))
 				//
 			else
-				for(var/mob/O in hearers(src, null))
-					O.show_message("<span class='notice'> Locked In</span>", 2)
+				audible_message("<span class='notice'>Locked In</span>")
 				src.locked = L
 				one_time_use = 1
 
@@ -112,8 +110,7 @@
 		return
 
 	src.locked = L[desc]
-	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='notice'> Locked In</span>", 2)
+	audible_message("<span class='notice'>Locked In</span>")
 	return
 
 /obj/machinery/computer/teleporter/verb/set_id(t as text)
@@ -171,8 +168,7 @@
 	if (!com)
 		return
 	if (!com.locked)
-		for(var/mob/O in hearers(src, null))
-			O.show_message("<span class='warning'> Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.</span>")
+		audible_message("<span class='warning'>Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.</span>")
 		return
 	if (ismovableatom(M))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
@@ -188,9 +184,8 @@
 		s.set_up(5, 1, src)
 		s.start()
 		accurate = 1
-		spawn(3000)	accurate = 0 //Accurate teleporting for 5 minutes
-		for(var/mob/B in hearers(src, null))
-			B.show_message("<span class='notice'> Test fire completed.</span>")
+		addtimer(VARSET_CALLBACK(src, accurate, FALSE), 5 MINUTES) //Accurate teleporting for 5 minutes
+		audible_message("<span class='notice'>Test fire completed.</span>")
 	return
 
 
@@ -237,8 +232,7 @@
 	if (com)
 		com.icon_state = "tele1"
 		use_power(5000)
-		for(var/mob/O in hearers(src, null))
-			O.show_message("<span class='notice'> Teleporter engaged!</span>", 2)
+		audible_message("<span class='notice'>Teleporter engaged!</span>")
 	src.engaged = 1
 	return
 
@@ -249,8 +243,7 @@
 	if (com)
 		com.icon_state = "tele0"
 		com.accurate = 0
-		for(var/mob/O in hearers(src, null))
-			O.show_message("<span class='notice'> Teleporter disengaged!</span>", 2)
+		audible_message("<span class='notice'>Teleporter disengaged!</span>")
 	src.engaged = 0
 	return
 
@@ -264,8 +257,7 @@
 
 	if (com && !active)
 		active = 1
-		for(var/mob/O in hearers(src, null))
-			O.show_message("<span class='notice'> Test firing!</span>", 2)
+		audible_message("<span class='notice'>Test firing!</span>")
 		com.teleport()
 		use_power(5000)
 

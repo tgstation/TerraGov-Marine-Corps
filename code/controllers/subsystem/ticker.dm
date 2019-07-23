@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in && !length(GLOB.clients))
 				return
-			start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+			start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
 			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
@@ -272,12 +272,20 @@ SUBSYSTEM_DEF(ticker)
 	if(usr && !check_rights(R_SERVER))
 		return
 
-	if(GLOB.tgs)
-		var/datum/tgs_api/TGS = GLOB.tgs
-		if(TGS.reboot_mode == 1)
-			to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
-			world.Reboot(FALSE)
-			return
+	var/graceful
+	if(istype(GLOB.tgs, /datum/tgs_api/v3210))
+		var/datum/tgs_api/v3210/API = GLOB.tgs
+		if(API.reboot_mode == 2)
+			graceful = TRUE
+	else if(istype(GLOB.tgs, /datum/tgs_api/v4))
+		var/datum/tgs_api/v4/API = GLOB.tgs
+		if(API.reboot_mode == 1)
+			graceful = TRUE
+
+	if(graceful)
+		to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
+		world.Reboot(FALSE)
+		return
 
 	if(!delay)
 		delay = CONFIG_GET(number/round_end_countdown) * 10

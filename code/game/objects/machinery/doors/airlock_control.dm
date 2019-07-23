@@ -25,8 +25,7 @@ obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
 
 	cur_command = signal.data["command"]
-	spawn()
-		execute_current_command()
+	INVOKE_ASYNC(src, .proc/execute_current_command)
 
 obj/machinery/door/airlock/proc/execute_current_command()
 	if(operating)

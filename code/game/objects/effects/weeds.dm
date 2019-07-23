@@ -27,7 +27,8 @@
 
 
 /obj/effect/alien/weeds/Destroy()
-	SSweeds.add_weed(src)
+	if(parent_node)
+		SSweeds.add_weed(src)
 
 	var/oldloc = loc
 	. = ..()
@@ -139,9 +140,6 @@
 /obj/effect/alien/weeds/update_icon()
 	return
 
-/obj/effect/alien/weeds/fire_act()
-	qdel(src)
-
 /obj/effect/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
 	icon_state = "weedwall"
@@ -180,6 +178,10 @@
 	max_integrity = 15
 
 	var/node_turfs = list() // list of all potential turfs that we can expand to
+
+/obj/effect/alien/weeds/node/Destroy()
+	. = ..()
+	SSweeds_decay.decay_weeds(node_turfs)
 
 
 /obj/effect/alien/weeds/node/update_icon()

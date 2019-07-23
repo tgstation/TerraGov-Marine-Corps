@@ -161,7 +161,7 @@
 
 	X.do_attack_animation(src)
 	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
-	"<span class='danger'>You slash \the [src]!</span>")
+	"<span class='danger'>We slash \the [src]!</span>")
 	playsound(loc, "alien_claw_metal", 25, 1)
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))

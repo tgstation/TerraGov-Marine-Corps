@@ -280,6 +280,9 @@
 	set name = "body-l-arm"
 	set hidden = TRUE
 
+	if(!check_has_body_select())
+		return
+
 	var/next_in_line
 	switch(mob.zone_selected)
 		if(BODY_ZONE_L_ARM)

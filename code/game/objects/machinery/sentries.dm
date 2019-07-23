@@ -819,7 +819,7 @@
 /obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>You slash [src]!</span>")
+	"<span class='danger'>We slash [src]!</span>")
 	M.do_attack_animation(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)

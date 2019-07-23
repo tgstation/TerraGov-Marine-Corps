@@ -217,10 +217,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.real_name = mind.name
 	else if(real_name)
 		ghost.real_name = real_name
-	else if(gender == MALE)
-		ghost.real_name = capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 	else
-		ghost.real_name = capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
+		ghost.real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 	ghost.name = ghost.real_name
 	ghost.gender = gender

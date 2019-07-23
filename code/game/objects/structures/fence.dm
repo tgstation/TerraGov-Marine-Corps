@@ -74,7 +74,7 @@
 	M.do_attack_animation(src)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
-	"<span class='danger'>You mangle [src]!</span>", \
+	"<span class='danger'>We mangle [src]!</span>", \
 	"<span class='danger'>You hear twisting metal!</span>", 5)
 
 	obj_integrity -= damage_dealt

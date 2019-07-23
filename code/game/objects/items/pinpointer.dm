@@ -19,7 +19,7 @@
 	if (iscrashgamemode(SSticker.mode))
 		target = input("Select the item you wish to track.", "Pinpointer") as null|anything in GLOB.gamemode_key_items
 		return
-	
+
 	var/obj/item/disk/nuclear/the_disk = locate()
 	if(the_disk)
 		target = the_disk

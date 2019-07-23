@@ -74,8 +74,6 @@
 		suffix = "#[count]"
 	name = "Mulebot ([suffix])"
 
-	verbs -= /atom/movable/verb/pull
-
 
 /obj/machinery/bot/mulebot/Destroy()
 	QDEL_NULL(wires)
@@ -255,7 +253,7 @@
 
 			if("cellremove")
 				if(open && cell && !usr.get_active_held_item())
-					cell.updateicon()
+					cell.update_icon()
 					usr.put_in_active_hand(cell)
 					cell = null
 
@@ -539,8 +537,7 @@
 
 
 						if(mode==4)
-							spawn(1)
-								send_status()
+							INVOKE_NEXT_TICK(src, .proc/send_status)
 
 						if(destination == home_destination)
 							mode = 3

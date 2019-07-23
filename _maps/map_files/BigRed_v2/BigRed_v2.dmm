@@ -282,15 +282,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
-"aaY" = (
-/obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/space_port)
 "aaZ" = (
 /obj/effect/landmark/huntergames_primary_spawn,
 /turf/open/floor/asteroidfloor,
@@ -864,12 +855,6 @@
 	},
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
-"acL" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/marshal_office)
 "acM" = (
 /obj/structure/table,
 /turf/open/floor/tile/white,
@@ -1188,12 +1173,6 @@
 "adO" = (
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
-"adP" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/freezer,
-/area/bigredv2/outside/marshal_office)
 "adQ" = (
 /obj/structure/closet/walllocker/hydrant/full{
 	icon_state = "hydrant";
@@ -1323,12 +1302,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/space_port)
-"ael" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor,
-/area/bigredv2/outside/marshal_office)
 "aem" = (
 /obj/machinery/door/airlock/almayer/medical/glass{
 	dir = 1;
@@ -1644,13 +1617,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
-"afj" = (
-/obj/structure/table,
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/marshal_office)
 "afk" = (
 /obj/structure/toilet{
 	dir = 4
@@ -1702,13 +1668,6 @@
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
-/area/bigredv2/outside/marshal_office)
-"afr" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/structure/closet/bombclosetsecurity,
-/turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "afs" = (
 /obj/structure/bed/chair{
@@ -2660,15 +2619,6 @@
 	dir = 2
 	},
 /area/bigredv2/outside/marshal_office)
-"aid" = (
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
-/area/bigredv2/outside/marshal_office)
 "aie" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/random_item/good,
@@ -2857,9 +2807,6 @@
 /area/bigredv2/outside/marshal_office)
 "aiH" = (
 /obj/structure/table,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/dark,
@@ -2903,12 +2850,6 @@
 /area/bigredv2/outside/marshal_office)
 "aiO" = (
 /obj/structure/bed/chair,
-/turf/open/floor,
-/area/bigredv2/outside/marshal_office)
-"aiP" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aiQ" = (
@@ -3155,12 +3096,6 @@
 	dir = 5
 	},
 /area/bigredv2/outside/nw)
-"ajB" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/animated/bcircuit,
-/area/bigredv2/outside/marshal_office)
 "ajC" = (
 /obj/structure/table,
 /obj/item/radio/survivor,
@@ -3626,12 +3561,6 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
-"akO" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/tile/darkish,
-/area/bigredv2/outside/marshal_office)
 "akP" = (
 /obj/machinery/door_control{
 	id = "Marshal Offices";
@@ -4068,22 +3997,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
-"amf" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 4
-	},
-/area/bigredv2/outside/marshal_office)
 "amg" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -4239,12 +4152,6 @@
 	req_access_txt = "0"
 	},
 /turf/open/floor,
-/area/bigredv2/outside/marshal_office)
-"amu" = (
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "amv" = (
 /obj/structure/cable{
@@ -4508,9 +4415,6 @@
 /area/bigredv2/outside/marshal_office)
 "anh" = (
 /obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/obj/machinery/camera/autoname{
 	dir = 8
 	},
 /turf/open/floor/engine/cult{
@@ -5029,13 +4933,6 @@
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
-"aox" = (
-/obj/machinery/suit_storage_unit/carbon_unit,
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/general_offices)
 "aoy" = (
 /obj/machinery/suit_storage_unit/carbon_unit,
 /obj/effect/decal/cleanable/cobweb2,
@@ -5217,10 +5114,6 @@
 /area/bigredv2/outside/marshal_office)
 "aoY" = (
 /obj/machinery/light,
-/turf/open/floor/wood,
-/area/bigredv2/outside/marshal_office)
-"aoZ" = (
-/obj/machinery/camera/autoname,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "apa" = (
@@ -6725,10 +6618,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
-"atv" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/medical)
 "atw" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/almayer{
@@ -6952,11 +6841,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"auc" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname,
-/turf/open/floor,
-/area/bigredv2/outside/general_offices)
 "aue" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
@@ -6964,13 +6848,6 @@
 "auf" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/gold,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/general_offices)
-"aug" = (
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/obj/item/stack/sheet/plasteel,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "auh" = (
@@ -7482,9 +7359,6 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "avB" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
 	},
@@ -7500,12 +7374,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
-"avE" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "avG" = (
@@ -8163,18 +8031,6 @@
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
-"axG" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
 "axH" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -8661,12 +8517,6 @@
 	dir = 10
 	},
 /area/bigredv2/outside/medical)
-"azq" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
-/area/bigredv2/outside/medical)
 "azr" = (
 /obj/structure/bed/roller,
 /turf/open/floor/tile/green/whitegreen{
@@ -8985,7 +8835,6 @@
 	name = "Storm Shutters";
 	pixel_y = -32
 	},
-/obj/machinery/camera/autoname,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -9152,9 +9001,6 @@
 /area/bigredv2/outside/medical)
 "aAz" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /obj/machinery/alarm{
 	dir = 8
 	},
@@ -9747,9 +9593,6 @@
 "aCl" = (
 /obj/structure/table,
 /obj/item/tool/shovel/spade,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aCm" = (
@@ -10262,15 +10105,6 @@
 /obj/item/reagent_container/spray/cleaner,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
-"aDH" = (
-/obj/structure/closet/secure_closet/medical1,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
-/area/bigredv2/outside/medical)
 "aDI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/extinguisher,
@@ -10411,9 +10245,6 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aEa" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -10541,15 +10372,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
-"aEA" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 4
-	},
-/area/bigredv2/outside/medical)
 "aEB" = (
 /obj/structure/closet/secure_closet/medical1,
 /obj/machinery/light{
@@ -10640,13 +10462,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
-"aEL" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "aEM" = (
@@ -11023,7 +10838,6 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "aFU" = (
-/obj/machinery/camera/autoname,
 /obj/machinery/door_control{
 	id = "Dormitories";
 	name = "Storm Shutters";
@@ -11341,12 +11155,6 @@
 "aGO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/carpet,
-/area/bigredv2/outside/library)
-"aGP" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aGQ" = (
 /obj/machinery/light{
@@ -13500,9 +13308,6 @@
 	name = "Storm Shutters";
 	pixel_x = 32
 	},
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMK" = (
@@ -13638,12 +13443,6 @@
 "aNm" = (
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
-"aNn" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/tile/blue/whitebluefull,
-/area/bigredv2/outside/general_store)
 "aNo" = (
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
@@ -13724,7 +13523,6 @@
 /area/bigredv2/outside/admin_building)
 "aNC" = (
 /obj/machinery/computer/station_alert,
-/obj/machinery/camera/autoname,
 /obj/structure/table,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
@@ -13916,12 +13714,6 @@
 /turf/open/floor/tile/white/warningstripe{
 	dir = 8
 	},
-/area/bigredv2/outside/virology)
-"aOu" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aOv" = (
 /obj/structure/barricade/wooden/lv_snowflake{
@@ -14239,13 +14031,6 @@
 /obj/item/storage/briefcase,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
-"aPE" = (
-/obj/structure/table,
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/turf/open/floor/tile/blue/whitebluefull,
-/area/bigredv2/outside/general_store)
 "aPF" = (
 /obj/structure/table,
 /obj/item/storage/box/snappops,
@@ -14259,12 +14044,6 @@
 "aPH" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
-/area/bigredv2/outside/general_store)
-"aPI" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aPJ" = (
 /obj/machinery/light{
@@ -14434,12 +14213,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
-"aQr" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/bigredv2/outside/library)
 "aQs" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -14505,12 +14278,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
-"aQE" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/virology)
 "aQF" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/w)
@@ -14543,13 +14310,6 @@
 /obj/structure/table,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
-"aQL" = (
-/obj/structure/table,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/tile/blue/whitebluefull,
-/area/bigredv2/outside/general_store)
 "aQM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -14561,9 +14321,6 @@
 /area/bigredv2/outside/general_store)
 "aQO" = (
 /obj/structure/table,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/blood,
 /obj/item/alien_embryo,
 /turf/open/floor/tile/yellow/full,
@@ -15120,13 +14877,6 @@
 "aSB" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/w)
-"aSC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/tile/blue/whitebluefull,
-/area/bigredv2/outside/general_store)
 "aSD" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/snacks/cheesewedge,
@@ -15903,9 +15653,6 @@
 /obj/item/reagent_container/food/snacks/bun,
 /obj/item/reagent_container/food/snacks/bun,
 /obj/item/reagent_container/food/snacks/cheesewedge,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUU" = (
@@ -16100,12 +15847,6 @@
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
-"aVC" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/virology)
 "aVD" = (
 /obj/structure/bed/stool,
 /turf/open/floor/tile/white,
@@ -16150,13 +15891,6 @@
 /obj/item/paper/crumpled/bloody,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
-"aVM" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/turf/open/floor,
-/area/bigredv2/outside/general_store)
 "aVN" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/yellow/full,
@@ -16164,12 +15898,6 @@
 "aVO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/yellow/full,
-/area/bigredv2/outside/general_store)
-"aVP" = (
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aVQ" = (
@@ -16180,9 +15908,6 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
 "aVS" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /obj/structure/sign/safety/computer,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
@@ -16375,13 +16100,6 @@
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
-"aWw" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/turf/open/floor/tile/blue/whitebluefull,
-/area/bigredv2/outside/general_store)
 "aWx" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -16497,9 +16215,6 @@
 /area/bigredv2/outside/virology)
 "aWS" = (
 /obj/structure/table,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/item/reagent_container/glass/bottle/toxin,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
@@ -16733,9 +16448,6 @@
 /obj/structure/table,
 /obj/item/toy/prize/ripley,
 /obj/item/toy/prize/mauler,
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aXF" = (
@@ -17072,9 +16784,6 @@
 /area/bigredv2/outside/virology)
 "aYC" = (
 /obj/structure/table,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aYE" = (
@@ -17500,12 +17209,6 @@
 /area/bigredv2/outside/office_complex)
 "bad" = (
 /obj/item/analyzer,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/office_complex)
-"bae" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "baf" = (
@@ -17948,12 +17651,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/cargo)
-"bbM" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "bbO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -17984,12 +17681,6 @@
 /obj/structure/table,
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bca" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor,
 /area/bigredv2/outside/admin_building)
 "bcb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -18273,13 +17964,6 @@
 "bcY" = (
 /obj/structure/bed/chair{
 	dir = 4
-	},
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
-"bda" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
@@ -18748,9 +18432,6 @@
 /area/bigredv2/outside/office_complex)
 "beK" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -18853,9 +18534,6 @@
 "bfd" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/drinks/flask,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfe" = (
@@ -19072,13 +18750,6 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
-"bfH" = (
-/obj/structure/table,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bfI" = (
@@ -19332,12 +19003,6 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/office_complex)
-"bgN" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/wood,
 /area/bigredv2/outside/office_complex)
 "bgO" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19729,9 +19394,6 @@
 /area/bigredv2/outside/office_complex)
 "bib" = (
 /obj/structure/closet/jcloset,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bid" = (
@@ -20627,10 +20289,6 @@
 /obj/machinery/computer/ordercomp,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"blh" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "bli" = (
 /obj/structure/barricade/wooden/lv_snowflake,
 /turf/open/floor,
@@ -20691,13 +20349,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/s)
-"bls" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/c)
 "blu" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
@@ -20739,19 +20390,9 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"blA" = (
-/obj/structure/dispenser/oxygen,
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "blB" = (
 /obj/effect/landmark/start/surv_spawn,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/machinery/alarm{
 	dir = 4
 	},
@@ -20772,12 +20413,6 @@
 	dir = 4;
 	name = "\improper Atmospherics Condenser Air Filtration";
 	req_one_access_txt = "0"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
-"blG" = (
-/obj/machinery/camera/autoname{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -21329,10 +20964,6 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"bnK" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "bnN" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -21655,14 +21286,6 @@
 /obj/item/tool/lighter/random,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"boR" = (
-/obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/machinery/camera/autoname{
-	dir = 2
-	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "boS" = (
 /obj/structure/table,
 /obj/effect/spawner/random/tool,
@@ -21804,9 +21427,6 @@
 "bpn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -21976,9 +21596,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -22494,12 +22111,6 @@
 	dir = 8
 	},
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"bro" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brp" = (
@@ -23348,9 +22959,6 @@
 "bvh" = (
 /obj/machinery/light{
 	dir = 8
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
@@ -27032,13 +26640,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
-"wme" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "wmv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -31190,7 +30791,7 @@ aRE
 aSu
 aSz
 aUL
-aVC
+aNc
 aWd
 ahp
 aXu
@@ -32921,7 +32522,7 @@ aMz
 aNg
 aNc
 aNc
-aQE
+aNc
 aRJ
 aSy
 aNc
@@ -34221,7 +33822,7 @@ aFv
 aFv
 aMz
 aNj
-aOu
+aNi
 aPu
 aNi
 aNi
@@ -36178,7 +35779,7 @@ aOv
 aPv
 aOv
 aOv
-aSC
+aPv
 aPv
 aNm
 aOv
@@ -36640,7 +36241,7 @@ aZt
 aZt
 bih
 blb
-bbM
+blb
 blb
 bjP
 bdN
@@ -37909,7 +37510,7 @@ aeI
 aeI
 ajy
 aMB
-aNn
+aNm
 aOy
 aPA
 aMB
@@ -37927,7 +37528,7 @@ aZm
 aZL
 bay
 blb
-bbM
+blb
 bcu
 bdg
 bdg
@@ -37942,7 +37543,7 @@ blb
 blb
 bil
 blb
-bbM
+blb
 beT
 aXK
 aZw
@@ -38060,7 +37661,7 @@ aac
 aae
 aaC
 aaQ
-aaY
+aaQ
 abh
 abp
 abz
@@ -38996,14 +38597,14 @@ ajy
 apv
 aNk
 aOy
-aPE
+aQK
 aMB
 aMB
 aMB
 aMB
 aPD
 aNo
-aWw
+aPv
 aMB
 aXH
 aYb
@@ -39032,7 +38633,7 @@ blb
 aXK
 bkm
 blb
-blh
+blb
 aXK
 bme
 bme
@@ -39214,7 +38815,7 @@ apv
 aNk
 aOy
 aPF
-aQL
+aQK
 aPF
 aPF
 aTS
@@ -39846,7 +39447,7 @@ arR
 aqw
 arT
 aqw
-azq
+awO
 apC
 aBb
 aBb
@@ -40127,7 +39728,7 @@ bmk
 boI
 bor
 bmk
-wme
+bmg
 bmg
 bom
 brK
@@ -40521,7 +40122,7 @@ aOy
 aSL
 aNo
 aVe
-aVM
+aOB
 aMB
 ahy
 aXI
@@ -41166,7 +40767,7 @@ aMc
 apv
 aNq
 aOB
-aPI
+aQS
 aQS
 aRR
 aQS
@@ -41333,7 +40934,7 @@ acp
 adk
 adk
 adk
-ael
+adS
 aeJ
 afi
 afO
@@ -41371,7 +40972,7 @@ aqz
 aBJ
 aCB
 aod
-aEA
+axB
 axB
 aGy
 aHt
@@ -41804,7 +41405,7 @@ apC
 apC
 aBK
 aCD
-aDH
+aBL
 aEB
 aFD
 aGz
@@ -41986,7 +41587,7 @@ adm
 adm
 acr
 aeK
-afj
+acM
 acp
 agz
 adk
@@ -42040,7 +41641,7 @@ aRR
 aPH
 aTT
 aVh
-aVP
+aQS
 aMB
 aXe
 aXH
@@ -42196,7 +41797,7 @@ acp
 acp
 acp
 acp
-acL
+acC
 acT
 acD
 acC
@@ -42210,7 +41811,7 @@ adk
 aib
 acp
 aiX
-ajB
+aiY
 aiX
 aiY
 acr
@@ -42274,7 +41875,7 @@ aZx
 aZx
 aXK
 beX
-bfH
+ble
 aZt
 ble
 aXK
@@ -42854,7 +42455,7 @@ acD
 acD
 acr
 aeK
-afj
+acM
 acp
 agB
 ahk
@@ -43075,7 +42676,7 @@ adN
 afQ
 agC
 ahl
-aid
+ahj
 acp
 acr
 acr
@@ -43162,7 +42763,7 @@ boE
 bnt
 bmg
 bmi
-boR
+bmr
 bmk
 bpg
 brN
@@ -43384,7 +42985,7 @@ bmY
 bpH
 kOq
 blJ
-bro
+bmi
 brP
 boE
 bmg
@@ -43516,7 +43117,7 @@ ajD
 akg
 akN
 acr
-amf
+ame
 ahj
 anx
 afS
@@ -43722,7 +43323,7 @@ acC
 acC
 acr
 aeK
-afj
+acM
 acp
 agz
 ahn
@@ -43948,7 +43549,7 @@ acp
 adh
 adh
 adh
-akO
+adh
 acr
 amg
 aic
@@ -44394,7 +43995,7 @@ aqE
 aqE
 aqE
 aqE
-atv
+aqD
 apC
 auL
 arR
@@ -44587,7 +44188,7 @@ acp
 acp
 acp
 adF
-adP
+adO
 aeo
 aeM
 afk
@@ -45108,7 +44709,7 @@ aTh
 aIn
 aKl
 aIn
-bls
+biz
 blJ
 bmk
 bmY
@@ -45461,7 +45062,7 @@ acp
 afn
 afS
 agD
-amu
+afS
 acp
 aiG
 afS
@@ -46977,7 +46578,7 @@ acp
 abd
 abe
 abd
-afr
+afU
 afU
 adS
 adS
@@ -46989,7 +46590,7 @@ adS
 acr
 agz
 ahn
-aid
+ahj
 acp
 acp
 acp
@@ -48126,7 +47727,7 @@ aNF
 aPS
 baI
 aYO
-bca
+aYO
 bcQ
 bdr
 bdO
@@ -48523,7 +48124,7 @@ atA
 atA
 atA
 atA
-axG
+atA
 atA
 atA
 azO
@@ -48532,7 +48133,7 @@ asJ
 aua
 asJ
 aDQ
-aEL
+aua
 aws
 asK
 aHD
@@ -49014,7 +48615,7 @@ aIn
 bkf
 bkt
 bkH
-blA
+bkH
 bkE
 bkE
 bnd
@@ -49586,7 +49187,7 @@ acP
 acr
 ahu
 adS
-aiP
+adS
 adS
 ajL
 ajj
@@ -49605,7 +49206,7 @@ asK
 atz
 atz
 asH
-avE
+asJ
 awo
 axa
 axJ
@@ -50681,7 +50282,7 @@ dSQ
 alB
 alB
 alB
-aoZ
+adW
 acr
 aqN
 acP
@@ -52209,7 +51810,7 @@ asK
 atz
 atz
 asH
-avE
+asJ
 awr
 axg
 txt
@@ -52490,7 +52091,7 @@ gnO
 blY
 bkQ
 bnm
-bnK
+bkE
 asV
 bjw
 bjw
@@ -53331,7 +52932,7 @@ aBR
 aXp
 aXp
 aXp
-bae
+aYY
 bac
 bbx
 bcg
@@ -53995,7 +53596,7 @@ bfm
 aXp
 bgf
 bgg
-bgN
+bgg
 bgg
 bhX
 aXp
@@ -54222,7 +53823,7 @@ bes
 bes
 bkt
 bkU
-blG
+bkU
 bkU
 bkU
 bkU
@@ -55462,7 +55063,7 @@ aou
 anI
 asS
 atE
-auc
+atE
 anI
 atE
 aop
@@ -55722,7 +55323,7 @@ baj
 baP
 bbC
 aXp
-bda
+aXU
 aXr
 lHZ
 aXp
@@ -56973,7 +56574,7 @@ akX
 akX
 aac
 anI
-aox
+aov
 apk
 apU
 aoB
@@ -58283,7 +57884,7 @@ arB
 aoB
 aoB
 aoB
-aug
+arB
 anK
 atE
 apc
@@ -59611,7 +59212,7 @@ aDc
 aEi
 aDc
 aEi
-aQr
+aEi
 aBy
 aQu
 aTr
@@ -60903,7 +60504,7 @@ aDf
 aBy
 aBy
 aBy
-aGP
+aEi
 aHO
 aFe
 aFe

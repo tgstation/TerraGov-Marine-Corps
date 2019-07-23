@@ -343,7 +343,8 @@ SUBSYSTEM_DEF(vote)
 		var/datum/action/innate/vote/V = v
 		if(!QDELETED(V))
 			V.remove_from_client()
-			V.remove_action(V.owner)
+			if(!QDELETED(V.owner))
+				V.remove_action(V.owner)
 	generated_actions = list()
 
 

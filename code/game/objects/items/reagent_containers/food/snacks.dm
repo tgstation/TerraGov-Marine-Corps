@@ -89,12 +89,10 @@
 
 
 			if (fullness <= (550 * (1 + C.overeatduration / 1000)))
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
+				visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>")
 			else
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message("<span class='warning'>[user] cannot force anymore of [src] down [M]'s throat.</span>", 1)
-					return FALSE
+				visible_message("<span class='warning'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
+				return FALSE
 
 			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
 				return
@@ -104,8 +102,7 @@
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 			msg_admin_attack("[key_name(user)] fed [key_name(C)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(C.a_intent)])")
 
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)
+			visible_message("<span class='warning'>[user] feeds [M] [src].</span>")
 
 
 		if(reagents)								//Handle ingestion of the reagent.

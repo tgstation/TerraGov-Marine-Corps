@@ -181,7 +181,7 @@
 //Xenomorphs can't use machinery, not even the "intelligent" ones
 //Exception is Queen and shuttles, because plot power
 /obj/machinery/attack_alien(mob/living/carbon/xenomorph/X)
-	to_chat(X, "<span class='warning'>You stare at \the [src] cluelessly.</span>")
+	to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
 
 
 /obj/machinery/attack_hand(mob/living/user)

@@ -69,9 +69,7 @@
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		updateicon()
-	spawn(det_time)
-		prime()
-		return
+	addtimer(CALLBACK(src, .proc/prime), det_time)
 
 /obj/item/explosive/grenade/proc/updateicon()
 	if(dangerous)

@@ -99,8 +99,7 @@
 				qdel(src)
 		if(3)
 			if(prob(25))
-				spawn(0)
-					malfunction()
+				INVOKE_ASYNC(src, .proc/malfunction)
 
 /obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
 	return
@@ -157,12 +156,12 @@
 		if(prob(M.xeno_caste.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
-			"<span class='danger'>You enter a frenzy and smash \the [src] apart!</span>", null, 5)
+			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
 			malfunction()
 			return TRUE
 		else
 			M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-			"<span class='danger'>You slash \the [src]!</span>", null, 5)
+			"<span class='danger'>We slash \the [src]!</span>", null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
 
