@@ -111,7 +111,7 @@
 
 	announce_bioscans(TRUE, 0, FALSE, TRUE) // Announce exact information to the xenos.
 
-	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
+	addtimer(CALLBACK(src, .proc/add_larva), 5 MINUTES, TIMER_LOOP)
 	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 5 MINUTES, TIMER_LOOP)
 
 
@@ -211,8 +211,7 @@
 /datum/game_mode/crash/job_after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	if(!istype(H))
 		return FALSE
-
-	H.change_squad("Alpha")
+	H.change_squad("Delta")
 	H.hud_set_squad()
 	H.nutrition = rand(250,300)
 	if(!H.mind?.assigned_squad)
