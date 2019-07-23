@@ -67,7 +67,7 @@ datum/component/automatic_fire
 	
 	autofire_stat = AUTOFIRE_STAT_IDLE
 
-	RegisterSignal(parent, list(COMSIG_PARENT_QDELETED, COMSIG_ITEM_DROPPED), .proc/autofire_off)
+	RegisterSignal(parent, list(COMSIG_PARENT_QDELETED), .proc/sleep_up)
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/itemgun_equipped)
 
 	if(usercli)
@@ -85,7 +85,7 @@ datum/component/automatic_fire
 		if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
 			autofire_off()
 
-	UnregisterSignal(parent, list(COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETED, COMSIG_ITEM_EQUIPPED))
+	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETED, COMSIG_ITEM_EQUIPPED))
 	
 	autofire_stat = AUTOFIRE_STAT_SLEEPING
 
@@ -99,6 +99,7 @@ datum/component/automatic_fire
 	clicker = usercli
 	shooter = clicker.mob
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDOWN, .proc/on_mouse_down)
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/autofire_off)
 	RegisterSignal(shooter, COMSIG_MOB_LOGOUT, .proc/autofire_off)
 	parent.RegisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, /obj/item/weapon/gun/.proc/autofire_bypass_check)
 	parent.RegisterSignal(parent, COMSIG_GUN_SHOT_AUTOFIRE, /obj/item/weapon/gun/.proc/do_autofire)
@@ -116,6 +117,7 @@ datum/component/automatic_fire
 	clicker = null
 	if(!QDELETED(shooter))
 		UnregisterSignal(shooter, COMSIG_MOB_LOGOUT)
+	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	shooter = null
 	parent.UnregisterSignal(parent, COMSIG_GUN_SHOT_AUTOFIRE)
 	parent.UnregisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN)
@@ -163,6 +165,10 @@ datum/component/automatic_fire
 	if(autofire_stat == AUTOFIRE_STAT_FIRING)
 		return
 	autofire_stat = AUTOFIRE_STAT_FIRING
+	if(auto_delay_timer)
+		if(!deltimer(auto_delay_timer))
+			addtimer(CALLBACK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer), 0.1 SECONDS) //Next tick hopefully.
+		auto_delay_timer = null
 	clicker.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/on_mouse_up)
 	RegisterSignal(shooter, COMSIG_CARBON_SWAPPED_HANDS, .proc/stop_autofiring)
@@ -173,10 +179,6 @@ datum/component/automatic_fire
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
 		return //Might have been interrupted while on_autofire_start() was being processed.
 	RegisterSignal(parent, COMSIG_GUN_CLICKEMPTY, .proc/stop_autofiring)
-	if(auto_delay_timer)
-		if(!deltimer(auto_delay_timer))
-			addtimer(CALLBACK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer), 0.1 SECONDS) //Next tick hopefully.
-		auto_delay_timer = null
 	switch(component_fire_mode)
 		if(GUN_FIREMODE_AUTOMATIC)
 			process_shot()

@@ -557,6 +557,64 @@ should be alright.
 	user.update_action_buttons()
 
 
+/obj/item/weapon/gun/verb/toggle_autofire()
+	set category = "Weapons"
+	set name = "Toggle Auto Fire"
+	set desc = "Toggle automatic firemode, if the gun has it."
+	set src = usr.contents
+
+	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
+	if(!automatic_gun)
+		return
+	automatic_gun.do_toggle_automatic(usr)
+
+
+/obj/item/weapon/gun/proc/do_toggle_automatic(mob/user)
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		return
+	do_toggle_firemode(user, new_firemode)
+
+
+/obj/item/weapon/gun/verb/toggle_burstfire()
+	set category = "Weapons"
+	set name = "Toggle Burst Fire"
+	set desc = "Toggle burst firemode, if the gun has it."
+	set src = usr.contents
+
+	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
+	if(!automatic_gun)
+		return
+	automatic_gun.do_toggle_burst(usr)
+
+
+/obj/item/weapon/gun/proc/do_toggle_burst(mob/user)
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		return
+	do_toggle_firemode(user, new_firemode)
+
+
 /obj/item/weapon/gun/verb/toggle_firemode()
 	set category = "Weapons"
 	set name = "Toggle Fire Mode"

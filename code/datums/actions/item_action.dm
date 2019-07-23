@@ -49,13 +49,33 @@
 /datum/action/item_action/firemode
 	var/action_firemode
 	var/obj/item/weapon/gun/holder_gun
+	var/action_icon
+	var/image/selected_frame
+	var/frame_on = FALSE
 
 
 /datum/action/item_action/firemode/New()
 	. = ..()
+	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
+	selected_frame.appearance_flags = RESET_COLOR
 	holder_gun = holder_item
 	name = initial(name) //Revert this foolishness.
+	if(action_icon)
+		button.overlays.Cut()
+		button.overlays += image('icons/mob/actions.dmi', button, action_icon)
 	button.name = name
+	update_button_icon()
+
+
+/datum/action/item_action/firemode/update_button_icon()
+	if(holder_gun.gun_firemode == action_firemode)
+		if(!frame_on)
+			button.overlays += selected_frame
+			frame_on = TRUE
+	else
+		if(frame_on)
+			button.overlays -= selected_frame
+			frame_on = FALSE
 
 
 /datum/action/item_action/firemode/can_use_action()
@@ -66,22 +86,22 @@
 		return FALSE
 
 
-/datum/action/item_action/firemode/should_show()
-	return can_use_action()
-
-
 /datum/action/item_action/firemode/semiauto_firemode
 	name = "Semi-Automatic Firemode"
 	action_firemode = GUN_FIREMODE_SEMIAUTO
+	action_icon = "fmode_single"
 
 /datum/action/item_action/firemode/burst_firemode
 	name = "Burst Firemode"
 	action_firemode = GUN_FIREMODE_BURSTFIRE
+	action_icon = "fmode_burst"
 
 /datum/action/item_action/firemode/automatic_firemode
 	name = "Automatic Firemode"
 	action_firemode = GUN_FIREMODE_AUTOMATIC
+	action_icon = "fmode_single_auto"
 
 /datum/action/item_action/firemode/autoburst_firemode
 	name = "Automatic Burst Firemode"
 	action_firemode = GUN_FIREMODE_AUTOBURST
+	action_icon = "fmode_burst_auto"
