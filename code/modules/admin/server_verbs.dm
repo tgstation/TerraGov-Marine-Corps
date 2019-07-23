@@ -378,7 +378,7 @@
 		if(!reason)
 			return
 		if(SSticker.admin_delay_notice)
-			to_chat(usr, "<span class='warning'>Someone already delayed the round meadnwhile.</span>")
+			to_chat(usr, "<span class='warning'>Someone already delayed the round end meanwhile.</span>")
 			return
 		SSticker.admin_delay_notice = reason
 
