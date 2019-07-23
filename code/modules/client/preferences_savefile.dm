@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	34
+#define SAVEFILE_VERSION_MAX	35
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,9 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 35)
+		WRITE_FILE(S["focus_chat"], FALSE)
 
 	if(savefile_version < 34)
 		READ_FILE(S["key_bindings"], key_bindings)

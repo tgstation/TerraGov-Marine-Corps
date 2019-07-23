@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/focus_chat = TRUE
+	var/focus_chat = FALSE
 
 	// Custom Keybindings
 	var/list/key_bindings = null
@@ -122,8 +122,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/keybindings_setup(client/C)
 	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
-	focus_chat = (!choice || choice == "Hotkey")
-	key_bindings = (focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+	focus_chat = (choice == "Classic")
+	key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 	save_preferences()
 
 
@@ -998,8 +998,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (choice == "Cancel")
 				ShowKeybindings(user)
 				return
-			focus_chat = (choice == "Hotkey")
-			key_bindings = (focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+			focus_chat = (choice == "Classic")
+			key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 			save_preferences()
 			ShowKeybindings(user)
 			return
