@@ -1030,7 +1030,6 @@ and you're good to go.
 				total_scatter -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
 
 	if(prob(total_scatter)) //Scattered?
-		to_chat(user, "Projectile scattered? [total_scatter]")
 		var/scatter_x = abs(16 - projectile_to_fire.p_x) //The value starts in pixels, depending on where the user clicked.
 		var/scatter_y = abs(16 - projectile_to_fire.p_y) //Distance to the center of the tile.
 		switch(get_dir(get_turf(src), target)) //Projectile direction.
@@ -1049,7 +1048,6 @@ and you're good to go.
 			var/turf/new_target = locate(targloc.x + (rand(0, 1) ? scatter_x : -scatter_x), targloc.y + (rand(0, 1) ? scatter_y : -scatter_y), targloc.z) //Locate an adjacent turf.
 			if(new_target)
 				target = new_target//Looks like we found a turf.
-				to_chat(user, "Projectile scattered: [scatter_x] || [scatter_y]")
 
 	projectile_to_fire.original = target
 	return target
