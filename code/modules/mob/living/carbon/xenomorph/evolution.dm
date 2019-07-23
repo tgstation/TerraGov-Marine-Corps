@@ -22,17 +22,20 @@
 	set desc = "Regress into a lower form."
 	set category = "Alien"
 	
-	var/tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
+	var/tiers_to_pick_from
 	switch(tier)
 		if(XENO_TIER_ZERO, XENO_TIER_FOUR)
 			to_chat(src, "<span class='warning'>Your tier does not allow you to regress.</span>")
 			return
 		if(XENO_TIER_ONE)
-			//Nothing here.
+			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
 		if(XENO_TIER_TWO)
-			tiers_to_pick_from += GLOB.xeno_types_tier_one
+			tiers_to_pick_from = GLOB.xeno_types_tier_one
 		if(XENO_TIER_THREE)
-			tiers_to_pick_from += GLOB.xeno_types_tier_one + GLOB.xeno_types_tier_two
+			if(isxenoshrike(src))
+				tiers_to_pick_from = GLOB.xeno_types_tier_one
+			else
+				tiers_to_pick_from = GLOB.xeno_types_tier_two
 		else
 			CRASH("side_evolve() called without a valid tier")
 
