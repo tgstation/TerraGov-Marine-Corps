@@ -920,9 +920,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("focus_chat")
 			focus_chat = !focus_chat
 			if(focus_chat)
-				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED]")
-			else
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
+			else
+				winset(user, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
 
 		if("tooltips")
 			tooltips = !tooltips
