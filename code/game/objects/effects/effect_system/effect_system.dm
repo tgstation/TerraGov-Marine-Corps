@@ -12,10 +12,16 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/atom/holder
 	var/setup = 0
 
-/datum/effect_system/New(atom/atom)
+/datum/effect_system/New(atom/atom, turf/location, n = 3, c = 0, setup_and_start = FALSE)
 	. = ..()
 	if(atom)
 		attach(atom)
+	if(setup_and_start)
+		src.location = get_turf(location)
+		number = min(n, 10)
+		cardinals = c
+		setup = TRUE
+		INVOKE_ASYNC(src, .proc/start)
 
 /datum/effect_system/proc/set_up(n = 3, c = 0, turf/loca)
 	if(n > 10)
@@ -29,8 +35,11 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	holder = atom
 
 /datum/effect_system/proc/start()
-	return
+	for(var/i in 1 to number)
+		INVOKE_ASYNC(src, .proc/spawn_particle)
 
+/datum/effect_system/proc/spawn_particle()
+	return
 
 /////////////////////////////////////////////
 // GENERIC STEAM SPREAD SYSTEM
@@ -55,30 +64,19 @@ steam.start() -- spawns the effect
 
 /datum/effect_system/steam_spread
 
-	set_up(n = 3, c = 0, turf/loc)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		location = loc
-
-	start()
-		var/i = 0
-		for(i=0, i<src.number, i++)
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(src.location)
-				var/direction
-				if(src.cardinals)
-					direction = pick(GLOB.cardinals)
-				else
-					direction = pick(GLOB.alldirs)
-				for(i=0, i<pick(1,2,3), i++)
-					sleep(5)
-					step(steam,direction)
-				QDEL_IN(steam, 2 SECONDS)
-
+/datum/effect_system/steam_spread/spawn_particle()
+	if(holder)
+		location = get_turf(holder)
+	var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(location)
+	var/direction
+	if(cardinals)
+		direction = pick(GLOB.cardinals)
+	else
+		direction = pick(GLOB.alldirs)
+	for(var/i in 1 to pick(1,2,3))
+		sleep(5) // sleep is fine here, invoked async
+		step(steam,direction)
+	QDEL_IN(steam, 2 SECONDS)
 
 /////////////////////////////////////////////
 //SPARK SYSTEM (like steam system)
@@ -97,49 +95,25 @@ steam.start() -- spawns the effect
 /obj/effect/particle_effect/sparks/Initialize()
 	. = ..()
 	playsound(src.loc, "sparks", 25, 1)
-//	var/turf/T = src.loc
-//	if (istype(T, /turf))
-//		T.hotspot_expose(1000,100)
+
 	QDEL_IN(src, 10 SECONDS)
 
 
 /datum/effect_system/spark_spread
-	var/total_sparks = 0 // To stop it being spammed and lagging!
 
-	set_up(n = 3, c = 0, loca)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		if(istype(loca, /turf/))
-			location = loca
-		else
-			location = get_turf(loca)
-
-	start()
-		var/i = 0
-		for(i=0, i<src.number, i++)
-			if(src.total_sparks > 20)
-				return
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(src.location)
-				src.total_sparks++
-				var/direction
-				if(src.cardinals)
-					direction = pick(GLOB.cardinals)
-				else
-					direction = pick(GLOB.alldirs)
-				for(i=0, i<pick(1,2,3), i++)
-					sleep(5)
-					step(sparks,direction)
-				spawn(20)
-					if(sparks)
-						qdel(sparks)
-					total_sparks--
-
-
+/datum/effect_system/spark_spread/spawn_particle()
+	if(holder)
+		location = get_turf(holder)
+	var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(location)
+	var/direction
+	if(src.cardinals)
+		direction = pick(GLOB.cardinals)
+	else
+		direction = pick(GLOB.alldirs)
+	for(var/i in pick(1,2,3))
+		sleep(5)
+		step(sparks,direction)
+	QDEL_IN(sparks, 2 SECONDS)
 
 /////////////////////////////////////////////
 //////// Attach an Ion trail to any object, that spawns when it moves (like for the jetpack)
