@@ -2353,8 +2353,7 @@
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "agc" = (
-/obj/structure/closet/secure_closet/engineering_personal,
-/obj/item/tool/extinguisher/mini,
+/obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "agd" = (
@@ -46352,6 +46351,8 @@
 /obj/item/storage/pouch/medkit/full,
 /obj/item/storage/pouch/medical/full,
 /obj/item/tool/taperoll/engineering,
+/obj/item/tool/extinguisher/mini,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/almayer/mono,
 /area/almayer/command/cic)
 "lNO" = (
