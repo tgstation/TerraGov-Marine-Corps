@@ -99,10 +99,20 @@
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 	
 
+/datum/game_mode/crash/proc/add_larva()
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	HS.stored_larva += 1
+
+
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, target, FALSE) // FALSE = instant arrival
 	shuttle_landed = TRUE
+
+	announce_bioscans(TRUE, 0, FALSE, TRUE) // Announce exact information to the xenos.
+
+	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
+	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 5 MINUTES, TIMER_LOOP)
 
 
 /datum/game_mode/crash/check_finished()
@@ -211,3 +221,14 @@
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[S.color]>[lowertext(S.name)] squad</font></b>."})
 	
 	return TRUE
+
+
+
+/datum/game_mode/crash/attempt_to_join_as_larva(mob/xeno_candidate)
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	return HS.attempt_to_spawn_larva(xeno_candidate)
+
+
+/datum/game_mode/crash/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	return HS.spawn_larva(xeno_candidate, mother)
