@@ -759,7 +759,7 @@ TUNNEL
 		return
 
 	if(M.a_intent == INTENT_HARM && M == creator)
-		to_chat(M, "<span class='xenowarning'>We begin filling in your tunnel...</span>")
+		to_chat(M, "<span class='xenowarning'>We begin filling in our tunnel...</span>")
 		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			obj_integrity = 0
 			healthcheck()

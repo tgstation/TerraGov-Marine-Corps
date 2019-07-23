@@ -92,7 +92,7 @@
 
 	if(M.a_intent == INTENT_HELP)
 		M.visible_message("<span class='warning'>\The [M] oogles its own reflection in [src].</span>", \
-		"<span class='warning'>We oogle your own reflection in [src].</span>", null, 5)
+		"<span class='warning'>We oogle our own reflection in [src].</span>", null, 5)
 	else
 		M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
 		"<span class='danger'>We smash [src]!</span>", null, 5)

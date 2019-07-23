@@ -63,7 +63,7 @@
 	switch(M.a_intent)
 		if(INTENT_HELP)
 			M.visible_message("<span class='notice'>\The [M] caresses [src] with its scythe-like arm.</span>", \
-			"<span class='notice'>We caress [src] with your scythe-like arm.</span>")
+			"<span class='notice'>We caress [src] with our scythe-like arm.</span>")
 			return 0
 
 		if(INTENT_GRAB)
