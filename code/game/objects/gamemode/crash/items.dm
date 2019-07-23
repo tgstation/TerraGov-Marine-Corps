@@ -105,7 +105,7 @@
 	
 	if(href_list["r_auth"])
 		if (r_auth)
-			r_auth.loc = loc
+			r_auth.forceMove(loc)
 			has_auth = FALSE
 			r_auth = null
 		else
@@ -141,7 +141,7 @@
 		if (href_list["time"])
 			var/time = text2num(href_list["time"])
 			timeleft += time
-			timeleft = min(max(round(timeleft), 60), 600)
+			timeleft = CLAMP(timeleft, 60, 600)
 		if (href_list["timer"])
 			if (timing == -1)
 				return

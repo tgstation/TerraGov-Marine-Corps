@@ -1014,7 +1014,6 @@
 	for(var/i in SSshuttle.mobile)
 		var/obj/docking_port/mobile/M = i
 		available_shuttles.Add(M.id)
-	message_admins("Available shuttles [length(available_shuttles)]")
 
 	var/shuttle_id = input(usr, "Which shuttle do you want to move?", "Force Dropship") as null|anything in available_shuttles
 	if(!shuttle_id)
