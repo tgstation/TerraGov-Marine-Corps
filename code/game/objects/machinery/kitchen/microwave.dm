@@ -125,6 +125,8 @@
 				to_chat(user, "<span class='warning'>Your [I] contains components unsuitable for cookery.</span>")
 				return TRUE
 
+		return FALSE
+
 	else if(istype(I, /obj/item/grab))
 		return TRUE
 
