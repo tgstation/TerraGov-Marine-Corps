@@ -1346,13 +1346,13 @@
 		ID.assigned_fireteam = 0
 
 	//Headset frequency.
-	if(istype(wear_ear, /obj/item/radio/headset/almayer/marine))
-		var/obj/item/radio/headset/almayer/marine/E = wear_ear
+	if(istype(wear_ear, /obj/item/radio/headset/mainship/marine))
+		var/obj/item/radio/headset/mainship/marine/E = wear_ear
 		E.set_frequency(S.radio_freq)
 	else
 		if(wear_ear)
 			dropItemToGround(wear_ear)
-		var/obj/item/radio/headset/almayer/marine/E = new
+		var/obj/item/radio/headset/mainship/marine/E = new
 		equip_to_slot_or_del(E, SLOT_EARS)
 		E.set_frequency(S.radio_freq)
 		update_icons()
@@ -1396,7 +1396,7 @@
 	return TRUE
 
 
-/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/almayer/H)
+/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/mainship/H)
 	if(QDELETED(H?.camera) || oldloc == get_turf(src))
 		return
 
@@ -1406,10 +1406,10 @@
 /mob/living/carbon/human/update_camera_location(oldloc)
 	oldloc = get_turf(oldloc)
 
-	if(!wear_ear || !istype(wear_ear, /obj/item/radio/headset/almayer) || oldloc == get_turf(src))
+	if(!wear_ear || !istype(wear_ear, /obj/item/radio/headset/mainship) || oldloc == get_turf(src))
 		return
 
-	var/obj/item/radio/headset/almayer/H = wear_ear
+	var/obj/item/radio/headset/mainship/H = wear_ear
 
 	if(QDELETED(H.camera))
 		return

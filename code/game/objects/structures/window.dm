@@ -483,22 +483,22 @@
 		new_window_frame.setDir(dir)
 	qdel(src)
 
-/obj/structure/window/framed/almayer
+/obj/structure/window/framed/mainship
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	icon_state = "alm_rwindow0"
-	basestate = "alm_rwindow"
+	icon_state = "ship_rwindow0"
+	basestate = "ship_rwindow"
 	max_integrity = 100 //Was 600
 	reinf = TRUE
 	dir = 5
-	window_frame = /obj/structure/window_frame/almayer
+	window_frame = /obj/structure/window_frame/mainship
 
-/obj/structure/window/framed/almayer/toughened
+/obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
 	max_integrity = 300
 
-/obj/structure/window/framed/almayer/hull
+/obj/structure/window/framed/mainship/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
@@ -507,16 +507,16 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
-/obj/structure/window/framed/almayer/requisitions
+/obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
 	max_integrity = 1000
 	deconstructable = FALSE
 
-/obj/structure/window/framed/almayer/white
+/obj/structure/window/framed/mainship/white
 	icon_state = "white_rwindow0"
 	basestate = "white_rwindow"
-	window_frame = /obj/structure/window_frame/almayer/white
+	window_frame = /obj/structure/window_frame/mainship/white
 
 
 
@@ -620,7 +620,7 @@
 			continue //doesn't check backwards
 		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(src,direction) )
 			W.spawn_shutters(turn(direction,180))
-	var/obj/machinery/door/poddoor/shutters/almayer/pressure/P = new(get_turf(src))
+	var/obj/machinery/door/poddoor/shutters/mainship/pressure/P = new(get_turf(src))
 	P.density = TRUE
 	switch(junction)
 		if(4,5,8,9,12)

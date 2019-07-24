@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(faxes)
 
 		if(admin)
 			var/image/stampoverlay = image('icons/obj/items/paper.dmi')
-			stampoverlay.icon_state = "paper_stamp-uscm"
+			stampoverlay.icon_state = "paper_stamp-tgmc"
 			if(!P.stamped)
 				P.stamped = new
 			P.stamped += /obj/item/tool/stamp

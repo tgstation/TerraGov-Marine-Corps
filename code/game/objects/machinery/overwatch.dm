@@ -573,8 +573,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		H.mind.cm_skills.leadership = max(SKILL_LEAD_TRAINED, H.mind.cm_skills.leadership)
 		H.update_action_buttons()
 
-	if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
-		var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
+	if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
+		var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
 		R.channels[RADIO_CHANNEL_COMMAND] = TRUE
 		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 		R.use_command = TRUE
@@ -688,8 +688,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	ID.assigned_fireteam = 0 //reset fireteam assignment
 
 	//Changes headset frequency to match new squad
-	var/obj/item/radio/headset/almayer/marine/H = transfer_marine.wear_ear
-	if(istype(H, /obj/item/radio/headset/almayer/marine))
+	var/obj/item/radio/headset/mainship/marine/H = transfer_marine.wear_ear
+	if(istype(H, /obj/item/radio/headset/mainship/marine))
 		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_squad()
@@ -1222,7 +1222,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				marine_count++
 			else
 				misc_text += marine_infos
-	if(!dead_hidden && !z_hidden) //gibbed marines are neither on the colony nor on the almayer
+	if(!dead_hidden && !z_hidden) //gibbed marines are neither on the colony nor on the mainship
 		for(var/X in current_squad.gibbed_marines_list) //listed marine was deleted or gibbed, all we have is their name
 			var/role = current_squad.gibbed_marines_list[X]
 			var/mob_state = "<font color='red'>FUBAR</font>"

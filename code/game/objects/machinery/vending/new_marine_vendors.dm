@@ -233,7 +233,7 @@
 			new type_p(loc)
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM)
-				new /obj/item/radio/headset/almayer/marine(loc, H.assigned_squad.name, vendor_role)
+				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
 				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
 				//if(istype(SSticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
 				if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)

@@ -315,7 +315,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/item/medevac_beacon/linked_beacon = null
 	var/stretcher_activated
 	var/obj/structure/dropship_equipment/medevac_system/linked_medevac
-	var/obj/item/radio/headset/almayer/doc/radio
+	var/obj/item/radio/headset/mainship/doc/radio
 
 /obj/structure/bed/medevac_stretcher/Initialize(mapload)
 	. = ..()
@@ -567,7 +567,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/item/roller/medevac/linked_bed = null
 	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
-	var/obj/item/radio/headset/almayer/doc/radio
+	var/obj/item/radio/headset/mainship/doc/radio
 
 /obj/item/medevac_beacon/Initialize(mapload)
 	. = ..()

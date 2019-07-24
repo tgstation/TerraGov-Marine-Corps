@@ -403,7 +403,7 @@
 	new /obj/item/weapon/combat_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
 	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/storage/box/uscm_mre(src)
+	new /obj/item/storage/box/tgmc_mre(src)
 	new /obj/item/storage/box/donkpockets(src)
 	new /obj/item/storage/box/MRE(src)
 	new /obj/item/storage/box/MRE(src)

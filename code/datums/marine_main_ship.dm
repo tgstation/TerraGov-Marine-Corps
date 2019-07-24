@@ -77,7 +77,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 				if(announce)
 					priority_announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), "Priority Alert")
 				security_level = SEC_LEVEL_DELTA
-				for(var/obj/machinery/door/poddoor/shutters/almayer/D in GLOB.machines)
+				for(var/obj/machinery/door/poddoor/shutters/mainship/D in GLOB.machines)
 					if(D.id == "sd_lockdown")
 						INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
