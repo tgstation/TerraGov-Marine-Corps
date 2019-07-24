@@ -783,6 +783,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!addressed_to && !message_body && !sent_by)
 					return
 
+				addressed_to = sanitize(addressed_to)
+				sent_by = sanitize(sent_by)
+
 				if(check_rights(R_ADMIN, FALSE))
 					message_body = noscript(message_body)
 				else
