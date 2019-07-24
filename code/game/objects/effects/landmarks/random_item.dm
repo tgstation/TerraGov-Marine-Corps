@@ -14,7 +14,7 @@
 								100; /obj/item/binoculars, \
 								100; /obj/item/explosive/grenade/frag, \
 								100; /obj/item/explosive/grenade/incendiary, \
-								75; /obj/item/storage/box/wy_mre, \
+								75; /obj/item/storage/box/nt_mre, \
 								50; /obj/item/flash, \
 								50; /obj/item/explosive/plastique, \
 								50; /obj/item/weapon/shield/riot, \
