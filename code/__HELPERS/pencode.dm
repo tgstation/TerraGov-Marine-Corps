@@ -26,9 +26,9 @@ GLOBAL_LIST_INIT(pencode_blocked_tags, list("*", "hr", "small", "/small", "list"
 	t = replacetext(t, "\[u\]", "<u>")
 	t = replacetext(t, "\[/u\]", "</u>")
 
-	t = replacetext(t, "\[large\]", "<font size=\"4\">")
+	t = replacetext(t, "\[large\]", "<font size='4'>")
 	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[small\]", "<font size = \"1\">")
+	t = replacetext(t, "\[small\]", "<font size='1'>")
 	t = replacetext(t, "\[/small\]", "</font>")
 	t = replacetext(t, "\[h1\]", "<h1>")
 	t = replacetext(t, "\[/h1\]", "</h1>")
@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(pencode_blocked_tags, list("*", "hr", "small", "/small", "list"
 	t = replacetext(t, "\[list\]", "<ul>")
 	t = replacetext(t, "\[/list\]", "</ul>")
 	t = replacetext(t, "\[*\]", "<li>")
-	t = replacetext(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
+	t = replacetext(t, "\[table\]", "<table border='1' cellspacing='0' cellpadding='3 style='border: 1px solid black;'>")
 	t = replacetext(t, "\[/table\]", "</td></tr></table>")
 	t = replacetext(t, "\[grid\]", "<table>")
 	t = replacetext(t, "\[/grid\]", "</td></tr></table>")
@@ -57,6 +57,6 @@ GLOBAL_LIST_INIT(pencode_blocked_tags, list("*", "hr", "small", "/small", "list"
 	t = replacetext(t, "\[date\]", "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")]")
 	t = replacetext(t, "\[time\]", "[worldtime2text()]")
 
-	t = "<font face=\"[font]\" color=[P ? P.colour : "black"]>[t]</font>"
+	t = "<font face='[font]' color='[P ? P.colour : "black"]'>[t]</font>"
 
 	return t
