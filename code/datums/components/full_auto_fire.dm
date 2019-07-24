@@ -62,8 +62,11 @@ datum/component/automatic_fire
 	component_fire_mode = fire_mode
 	
 	switch(autofire_stat)
-		if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
+		if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT)
 			return //We've updated the firemode. No need for more.
+		if(AUTOFIRE_STAT_FIRING)
+			stop_autofiring() //Let's stop shooting to avoid issues.
+			return
 	
 	autofire_stat = AUTOFIRE_STAT_IDLE
 
