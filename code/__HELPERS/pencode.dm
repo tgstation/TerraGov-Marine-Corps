@@ -5,7 +5,7 @@
 GLOBAL_LIST_INIT(pencode_blocked_tags, list("*", "hr", "small", "/small", "list", "/list", "table", "/table", "row", "cell", "logo"))
 
 /proc/parse_pencode(t, obj/item/tool/pen/P, mob/user, is_crayon = FALSE)
-	var/font = is_crayon ? PAPER_DEFAULT_FONT : PAPER_CRAYON_FONT
+	var/font = is_crayon ? PAPER_CRAYON_FONT : PAPER_DEFAULT_FONT 
 
 	// First if crayon
 	if(is_crayon)
@@ -15,20 +15,21 @@ GLOBAL_LIST_INIT(pencode_blocked_tags, list("*", "hr", "small", "/small", "list"
 
 	t = replacetext(t, "\n", "<br />") // Lets just always do this one
 
+	t = replacetext(t, "\[br\]", "<br />")
+	t = replacetext(t, "\[hr\]", "<hr />")
 	t = replacetext(t, "\[center\]", "<center>")
 	t = replacetext(t, "\[/center\]", "</center>")
-	t = replacetext(t, "\[br\]", "<br />")
 	t = replacetext(t, "\[b\]", "<b>")
 	t = replacetext(t, "\[/b\]", "</b>")
 	t = replacetext(t, "\[i\]", "<i>")
 	t = replacetext(t, "\[/i\]", "</i>")
 	t = replacetext(t, "\[u\]", "<u>")
 	t = replacetext(t, "\[/u\]", "</u>")
+
 	t = replacetext(t, "\[large\]", "<font size=\"4\">")
 	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[sign\]", "<font face=\"[PAPER_SIGN_FONT]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
-	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
-
+	t = replacetext(t, "\[small\]", "<font size = \"1\">")
+	t = replacetext(t, "\[/small\]", "</font>")
 	t = replacetext(t, "\[h1\]", "<h1>")
 	t = replacetext(t, "\[/h1\]", "</h1>")
 	t = replacetext(t, "\[h2\]", "<h2>")
@@ -36,21 +37,26 @@ GLOBAL_LIST_INIT(pencode_blocked_tags, list("*", "hr", "small", "/small", "list"
 	t = replacetext(t, "\[h3\]", "<h3>")
 	t = replacetext(t, "\[/h3\]", "</h3>")
 
-	t = replacetext(t, "\[*\]", "<li>")
-	t = replacetext(t, "\[hr\]", "<HR>")
-	t = replacetext(t, "\[small\]", "<font size = \"1\">")
-	t = replacetext(t, "\[/small\]", "</font>")
 	t = replacetext(t, "\[list\]", "<ul>")
 	t = replacetext(t, "\[/list\]", "</ul>")
+	t = replacetext(t, "\[*\]", "<li>")
 	t = replacetext(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
 	t = replacetext(t, "\[/table\]", "</td></tr></table>")
 	t = replacetext(t, "\[grid\]", "<table>")
 	t = replacetext(t, "\[/grid\]", "</td></tr></table>")
 	t = replacetext(t, "\[row\]", "</td><tr>")
 	t = replacetext(t, "\[cell\]", "<td>")
-	t = replacetext(t, "\[logo\]", "<img src='ntlogo.png' />")
-	t = replacetext(t, "\[date\]", "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")]")
 
-	t = "<font face=\"[font]\" color=[P ? P.colour : "black"]><b>[t]</b></font>"
+	t = replacetext(t, "\[sign\]", "<font face=\"[PAPER_SIGN_FONT]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
+	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
+	t = replacetext(t, "\[logo\]", "<img src='tgmclogo.png' />")
+	t = replacetext(t, "\[ntlogo\]", "<img src='ntlogo.png' />")
+
+	t = replacetext(t, "\[mapname\]", "[SSmapping.configs[GROUND_MAP].map_name]")
+	t = replacetext(t, "\[shipname\]", "[CONFIG_GET(string/ship_name)]")
+	t = replacetext(t, "\[date\]", "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")]")
+	t = replacetext(t, "\[time\]", "[worldtime2text()]")
+
+	t = "<font face=\"[font]\" color=[P ? P.colour : "black"]>[t]</font>"
 
 	return t

@@ -802,25 +802,29 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
-
-		var/fax_message
-		var/addressed_to
-		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
+		var/type = input("Do you want to use the template, pencode or type a raw message?", "Fax Message") as null|anything in list("Template", "Pencode", "Raw")
 		if(!type)
 			return
 
+		var/fax_message
 		switch(type)
 			if("Template")
-				addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
+				var/addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
 				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
 				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
 
 				if(!addressed_to && !message_body && !sent_by)
 					return
 
+				if(check_rights(R_ADMIN, FALSE))
+					input = noscript(input)
+				else
+					input = sanitize(input)
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
+				if(!fax_message)
+					return
 
-			if("Custom")
+			if("Pencode")
 				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
 				if(!input)
 					return
@@ -829,9 +833,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					input = noscript(input)
 				else
 					input = sanitize(input)
+				fax_message = parse_pencode(input)
 
-				if(alert("Parse the message with pencode?", "Confirmation", "Yes", "No") == "Yes" || !check_rights(R_ADMIN))
-					fax_message = parse_pencode(input)
+				if(!fax_message)
+					return
+
+			if("Raw")
+				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
+				if(!input)
+					return
+
+				if(check_rights(R_ADMIN, FALSE))
+					fax_message = noscript(input)
+				else
+					fax_message = sanitize(input)
 
 				if(!fax_message)
 					return
