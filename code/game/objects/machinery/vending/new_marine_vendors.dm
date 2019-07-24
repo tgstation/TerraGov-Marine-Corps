@@ -1198,5 +1198,3 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 #undef MARINE_TOTAL_BUY_POINTS
 #undef SQUAD_LOCK
 #undef JOB_LOCK
-
-#undef SQUAD_LOCK
