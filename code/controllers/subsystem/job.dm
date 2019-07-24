@@ -82,8 +82,8 @@ SUBSYSTEM_DEF(job)
 			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 			return FALSE
 		if(rank in GLOB.jobs_marines)
-			if(handle_squad(player, rank, latejoin))
-				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key] Rank: [rank]")
+			if(handle_initial_squad(player, rank, latejoin))
+				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Rank: [rank], Squad: [player.mind.assigned_squad]")
 			else
 				JobDebug("Failed to assign marine role to a squad. Player: [player.key] Rank: [rank]")
 				return FALSE
@@ -241,7 +241,7 @@ SUBSYSTEM_DEF(job)
 		if(rank in GLOB.jobs_marines)
 			if(L.mind.assigned_squad)
 				var/datum/squad/S = L.mind.assigned_squad
-				S.put_marine_in_squad(L)
+				S.insert_into_squad(L)
 			else
 				JobDebug("Failed to put marine role in squad. Player: [L.key] Rank: [rank]")
 	if(ishuman(L))
