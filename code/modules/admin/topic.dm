@@ -825,7 +825,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!input)
 					return
 
-				if(alert("Parse the message with pencode?", "Confirmation", "Yes", "No") == "Yes")
+				if(check_rights(R_ADMIN, FALSE))
+					input = noscript(input)
+				else
+					input = sanitize(input)
+
+				if(alert("Parse the message with pencode?", "Confirmation", "Yes", "No") == "Yes" || !check_rights(R_ADMIN))
 					fax_message = parse_pencode(input)
 
 				if(!fax_message)
