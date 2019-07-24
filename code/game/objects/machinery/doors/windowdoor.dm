@@ -194,7 +194,7 @@
 	M.do_attack_animation(src)
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
-	"<span class='danger'>You smash against [src]!</span>", null, 5)
+	"<span class='danger'>We smash against [src]!</span>", null, 5)
 	var/damage = 25
 	if(M.mob_size == MOB_SIZE_BIG)
 		damage = 40

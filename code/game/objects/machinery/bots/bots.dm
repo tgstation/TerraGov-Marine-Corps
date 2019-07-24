@@ -65,10 +65,10 @@
 	obj_integrity -= rand(15, 30)
 	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
+		"<span class='danger'>We slash [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)

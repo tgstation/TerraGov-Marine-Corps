@@ -35,7 +35,7 @@
 					continue
 				req_one_access += n
 
-	if(!length(req_one_access) && !length(req_one_access)) 
+	if(!length(req_access) && !length(req_one_access)) 
 		return TRUE
 
 	if(!istype(ID)) 

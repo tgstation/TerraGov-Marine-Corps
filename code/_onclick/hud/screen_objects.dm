@@ -569,7 +569,7 @@
 	if(!G)
 		return
 	var/obj/item/attachable/flashlight/F = G.rail
-	if(F?.activate_attachment(G, usr))
+	if(F?.activate_attachment(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 
 /obj/screen/firearms/magazine

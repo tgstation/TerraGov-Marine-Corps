@@ -937,9 +937,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
 			spark_system.start()
-			spawn(10)
-				qdel(spark_system)
-				spark_system = null
+			QDEL_NULL_IN(src, spark_system, 1 SECONDS)
 
 /datum/limb/proc/embed(obj/item/W, silent = 0)
 	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))

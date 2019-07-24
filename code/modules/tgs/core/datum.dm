@@ -2,7 +2,6 @@ TGS_DEFINE_AND_SET_GLOBAL(tgs, null)
 
 /datum/tgs_api
 	var/datum/tgs_version/version
-	var/reboot_mode
 
 /datum/tgs_api/New(datum/tgs_version/version)
 	. = ..()

@@ -17,11 +17,9 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatter/New() //Self-deletes after creation & animation
-	..()
-	spawn(8)
-		qdel(src)
-
+/obj/effect/xenomorph/splatter/Initialize() //Self-deletes after creation & animation
+	. = ..()
+	QDEL_IN(src, 8)
 
 /obj/effect/xenomorph/splatterblob
 	name = "splatter"
@@ -31,11 +29,9 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatterblob/New() //Self-deletes after creation & animation
-	..()
-	spawn(40)
-		qdel(src)
-
+/obj/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
+	. = ..()
+	QDEL_IN(src, 4 SECONDS)
 
 /obj/effect/xenomorph/spray
 	name = "splatter"
@@ -48,15 +44,16 @@
 	mouse_opacity = 0
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 8
-	var/duration = 100
+	var/duration = 10 SECONDS
 
-/obj/effect/xenomorph/spray/New(loc, duration = 100) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	spawn(duration + rand(0, 20))
-		STOP_PROCESSING(SSobj, src)
-		qdel(src)
-		return
+	QDEL_IN(src, duration + rand(0, 2 SECONDS))
+
+/obj/effect/xenomorph/spray/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
 	..()

@@ -203,12 +203,12 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
+		"<span class='danger'>We slash [src]!</span>", null, 5)
 	M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
-	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
+	"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
 	update_health(TRUE)
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)

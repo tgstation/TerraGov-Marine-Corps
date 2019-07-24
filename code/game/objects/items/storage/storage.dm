@@ -700,3 +700,12 @@
 	for(var/i in contents)
 		var/atom/A = i
 		A.ex_act(severity, target)
+
+
+/obj/item/storage/AltClick(mob/user)
+	if(!ishuman(user) || !length(contents) || isturf(loc))
+		return ..()
+	if(user.get_active_held_item())
+		return ..() //User is already holding something.
+	var/obj/item/drawn_item = contents[length(contents)]
+	drawn_item.attack_hand(user)

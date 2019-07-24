@@ -190,10 +190,10 @@
 		if(!opened && prob(70))
 			break_open()
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] open!</span>", \
-			"<span class='danger'>You smash \the [src] open!</span>", null, 5)
+			"<span class='danger'>We smash \the [src] open!</span>", null, 5)
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
-			"<span class='danger'>You smash \the [src]!</span>", null, 5)
+			"<span class='danger'>We smash \the [src]!</span>", null, 5)
 		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
 		return attack_paw(M)
@@ -301,8 +301,7 @@
 			lastbang = TRUE
 			for(var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
-			spawn(30)
-				lastbang = FALSE
+			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
 /obj/structure/closet/attack_paw(mob/user as mob)

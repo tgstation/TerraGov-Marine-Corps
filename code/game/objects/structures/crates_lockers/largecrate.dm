@@ -14,13 +14,13 @@
 	new /obj/item/stack/sheet/wood(src)
 	spawn_stuff()
 	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
-	"<span class='danger'>You smash \the [src] apart!</span>", \
+	"<span class='danger'>We smash \the [src] apart!</span>", \
 	"<span class='danger'>You hear splitting wood!</span>", 5)
 	qdel(src)
 
-/obj/structure/largecrate/attack_hand(mob/living/user)
+/obj/structure/largecrate/examine(mob/user)
+	. = ..()
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
-	return TRUE
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -29,11 +29,15 @@
 		new /obj/item/stack/sheet/wood(src)
 		spawn_stuff()
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							"<span class='notice'>You pry open \the [src].</span>", \
+							"<span class='notice'>We pry open \the [src].</span>", \
 							"<span class='notice'>You hear splitting wood.</span>")
 		qdel(src)
-	else
-		return attack_hand(user)
+		return
+	
+	if(istype(I, /obj/item/powerloader_clamp))
+		return
+	
+	return attack_hand(user)
 
 
 /obj/structure/largecrate/proc/spawn_stuff()
@@ -166,7 +170,7 @@
 	for(var/obj/O in contents)
 		O.forceMove(T)
 	X.visible_message("<span class='danger'>\The [X] smashes \the [src] apart!</span>", \
-	"<span class='danger'>You smash \the [src] apart!</span>", \
+	"<span class='danger'>We smash \the [src] apart!</span>", \
 	"<span class='danger'>You hear metal being smashed!</span>", 5)
 	qdel(src)
 

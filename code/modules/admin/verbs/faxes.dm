@@ -100,7 +100,6 @@ GLOBAL_LIST_EMPTY(faxes)
 
 
 /proc/generate_templated_fax(to_department, subject, addressed_to, message_body, sent_by, sent_department)
-
 	var/fax_html = {"
 		<font face="Verdana" color="black" size="1">
 			<center>

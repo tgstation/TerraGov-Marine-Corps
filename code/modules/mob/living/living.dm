@@ -552,8 +552,7 @@ below 100 is not dizzy
 	dizziness = CLAMP(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)
-		spawn(0)
-			dizzy_process()
+		INVOKE_ASYNC(src, .proc/dizzy_process)
 
 /mob/living/proc/dizzy_process()
 	is_dizzy = TRUE
@@ -695,7 +694,7 @@ below 100 is not dizzy
 	return name
 
 
-/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE

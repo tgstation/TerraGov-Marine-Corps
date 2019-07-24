@@ -7,9 +7,10 @@
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 	var/tmp/atom/BeamSource
-	New()
-		..()
-		spawn(10) qdel(src)
+
+/obj/effect/overlay/beam/Initialize()
+	. = ..()
+	QDEL_IN(src, 1 SECONDS)
 
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
@@ -50,15 +51,10 @@
 	mouse_opacity = 0 //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
-	New()
-		..()
-		flick(icon_state, src)
-		start_countdown()
-
-/obj/effect/overlay/temp/proc/start_countdown()
-	set waitfor = 0
-	sleep(effect_duration)
-	qdel(src)
+/obj/effect/overlay/temp/Initialize()
+	. = ..()
+	flick(icon_state, src)
+	QDEL_IN(src, effect_duration)
 
 /obj/effect/overlay/temp/point
 	name = "arrow"

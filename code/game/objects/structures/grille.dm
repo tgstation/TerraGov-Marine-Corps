@@ -68,12 +68,12 @@
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
-	"<span class='danger'>You mangle [src]!</span>", \
+	"<span class='danger'>We mangle [src]!</span>", \
 	"<span class='danger'>You hear twisting metal!</span>", 5)
 
 	if(shock(M, 70))
 		M.visible_message("<span class='danger'>ZAP! \The [M] spazzes wildly amongst a smell of burnt ozone.</span>", \
-		"<span class='danger'>ZAP! You twitch and dance like a monkey on hyperzine!</span>", \
+		"<span class='danger'>ZAP! We twitch and dance like a monkey on hyperzine!</span>", \
 		"<span class='danger'>You hear a sharp ZAP and a smell of ozone.</span>")
 		return FALSE //Intended apparently ?
 

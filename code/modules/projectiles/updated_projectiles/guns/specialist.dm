@@ -317,7 +317,7 @@
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	burst_accuracy_mult = CONFIG_GET(number/combat_define/min_burst_accuracy_penalty)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
@@ -573,8 +573,7 @@
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
-	for(var/mob/O in viewers(world.view, user))
-		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
+	visible_message("<span class='danger'>[user] fired a grenade!</span>")
 	to_chat(user, "<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenades[1]
 	grenades -= F

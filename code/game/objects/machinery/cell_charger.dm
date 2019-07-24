@@ -76,7 +76,7 @@
 		return
 	if(charging)
 		usr.put_in_hands(charging)
-		charging.updateicon()
+		charging.update_icon()
 
 		src.charging = null
 		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")

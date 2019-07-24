@@ -74,10 +74,9 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/effect/particle_effect/expl_particles/New()
-	..()
-	spawn(15)
-		qdel(src)
+/obj/effect/particle_effect/expl_particles/Initialize()
+	. = ..()
+	QDEL_IN(src, 1.5 SECONDS)
 
 /datum/effect_system/expl_particles
 	number = 10
@@ -111,10 +110,9 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/particle_effect/explosion/New()
-	..()
-	spawn(10)
-		qdel(src)
+/obj/effect/particle_effect/explosion/Initialize()
+	. = ..()
+	QDEL_IN(src, 1 SECONDS)
 
 
 

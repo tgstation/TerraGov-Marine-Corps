@@ -135,8 +135,7 @@
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == id)
-			spawn()
-				M.flash()
+			INVOKE_ASYNC(M, /obj/machinery/flasher.proc/flash)
 
 	sleep(50)
 
