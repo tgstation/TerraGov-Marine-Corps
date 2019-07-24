@@ -12,7 +12,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/atom/holder
 	var/setup = 0
 
-/datum/effect_system/New(atom/atom, turf/location, n = 3, c = 0, setup_and_start = FALSE)
+/datum/effect_system/New(atom/atom, turf/location, n = 3, c = 0, setup_and_start = FALSE, self_delete)
 	. = ..()
 	if(atom)
 		attach(atom)
@@ -22,6 +22,9 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		cardinals = c
 		setup = TRUE
 		INVOKE_ASYNC(src, .proc/start)
+		
+		if(self_delete)
+			QDEL_IN(src, self_delete)
 
 /datum/effect_system/proc/set_up(n = 3, c = 0, turf/loca)
 	if(n > 10)
