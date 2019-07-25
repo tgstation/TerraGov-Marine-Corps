@@ -39,14 +39,6 @@
 	. = ..()
 	if(.)
 		return
-	if(buckled_mob && user != buckled_mob)
-		buckled_mob.visible_message("<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",\
-		"<span class='danger'>[user] tries to move you out of [src]!</span>")
-		var/olddir = dir
-		var/old_buckled_mob = buckled_mob
-		if(do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE) && dir == olddir && buckled_mob == old_buckled_mob)
-			manual_unbuckle(user)
-			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 	if(panel_open)
 		if(cell)
 			usr.put_in_hands(cell)
@@ -93,6 +85,26 @@
 		to_chat(user, "There is a [cell] in the [src] containing [cell.charge] charge.")
 	else
 		to_chat(user, "There is no power cell in the [src].")
+
+
+/obj/vehicle/powerloader/manual_unbuckle(mob/user)
+	if(!buckled_mob || buckled_mob.buckled != src)
+		return FALSE
+	if(user == buckled_mob)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		return ..()
+	buckled_mob.visible_message(
+		"<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",
+		"<span class='danger'>[user] tries to move you out of [src]!</span>"
+		)
+	var/olddir = dir
+	var/old_buckled_mob = buckled_mob
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_HOSTILE) || dir != olddir || buckled_mob != old_buckled_mob)
+		return TRUE //True to intercept the click. No need for further actions after this.
+	. = ..()
+	if(.)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+
 
 /obj/vehicle/powerloader/afterbuckle(mob/M)
 	. = ..()

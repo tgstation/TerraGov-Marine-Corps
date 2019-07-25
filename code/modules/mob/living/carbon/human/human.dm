@@ -71,7 +71,7 @@
 
 
 /mob/living/carbon/human/Destroy()
-	assigned_squad?.clean_marine_from_squad(src, FALSE)
+	assigned_squad?.remove_from_squad(src)
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
@@ -1074,7 +1074,7 @@
 	if(armor)
 		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
 			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			S.set_light(0)
+			S.turn_off_light(src)
 			light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/G in contents)
@@ -1091,7 +1091,7 @@
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			H.set_light(0)
+			H.turn_off()
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
@@ -1324,41 +1324,9 @@
 		assigned_squad = S
 		return FALSE
 
-	else if(assigned_squad)
-		assigned_squad.clean_marine_from_squad(src)
-		assigned_squad = null
-
-	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
-	var/datum/outfit/job/O = new J.outfit
-	O.handle_id(src)
-
-	S.put_marine_in_squad(src)
-
-	//Crew manifest
-	for(var/i in GLOB.datacore.general)
-		var/datum/data/record/R = i
-		if(R.fields["name"] == real_name)
-			R.fields["squad"] = S.name
-			break
-
-	if(istype(wear_id, /obj/item/card/id))
-		var/obj/item/card/id/ID = wear_id
-		ID.assigned_fireteam = 0
-
-	//Headset frequency.
-	if(istype(wear_ear, /obj/item/radio/headset/mainship/marine))
-		var/obj/item/radio/headset/mainship/marine/E = wear_ear
-		E.set_frequency(S.radio_freq)
-	else
-		if(wear_ear)
-			dropItemToGround(wear_ear)
-		var/obj/item/radio/headset/mainship/marine/E = new
-		equip_to_slot_or_del(E, SLOT_EARS)
-		E.set_frequency(S.radio_freq)
-		update_icons()
-
-	hud_set_squad()
-
+	if(assigned_squad)
+		assigned_squad.remove_from_squad(src)
+	S.insert_into_squad(src)
 	return TRUE
 
 

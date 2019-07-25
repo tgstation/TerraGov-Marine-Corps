@@ -8489,7 +8489,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -11427,7 +11427,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -26879,7 +26879,7 @@
 "bcq" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_container/food/drinks/tea,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /obj/item/ashtray/bronze,
 /turf/open/floor/wood,
 /area/sulaco/liaison)

@@ -207,7 +207,8 @@
 		is_animating = 1
 		flick("shuttle_chair_new_folding", src)
 		is_animating = 0
-		unbuckle()
+		if(buckled_mob)
+			unbuckle()
 		if(break_it)
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else

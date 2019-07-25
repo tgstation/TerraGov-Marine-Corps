@@ -104,7 +104,7 @@
 					emp_damage = 30//Let's not overdo it
 				if(21 to 30)//High level of EMP damage, unable to see, hear, or speak
 					set_blindness(2)
-					ear_deaf = 1
+					set_ear_damage(deaf = 1)
 					if(!alert)//Sounds an alarm, but only once per 'level'
 						emote("alarm")
 						to_chat(src, "<span class='warning'>Major electrical distruption detected: System rebooting.</span>")
@@ -114,7 +114,7 @@
 				if(20)
 					alert = 0
 					adjust_blindness(-1)
-					ear_deaf = 0
+					set_ear_damage(deaf = 0)
 					emp_damage -= 1
 				if(11 to 19)//Moderate level of EMP damage, resulting in nearsightedness and ear damage
 					blur_eyes(1)

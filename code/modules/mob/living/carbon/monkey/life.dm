@@ -235,10 +235,15 @@
 
 /mob/living/carbon/monkey/handle_regular_hud_updates()
 	. = ..()
-	if(!(.))
+	if(!.)
 		return FALSE
 
 	update_sight()
+
+	interactee?.check_eye(src)
+
+	if(!hud_used)
+		return
 
 	if(hud_used.pressure_icon)
 		hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
@@ -273,14 +278,6 @@
 				hud_used.bodytemp_icon.icon_state = "temp-3"
 			else
 				hud_used.bodytemp_icon.icon_state = "temp-4"
-
-
-
-
-
-	if(stat != DEAD) //the dead get zero fullscreens
-
-		interactee?.check_eye(src)
 
 	return 1
 

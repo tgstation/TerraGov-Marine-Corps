@@ -2174,9 +2174,9 @@
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/storage/box/wy_mre,
-/obj/item/storage/box/wy_mre,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
+/obj/item/storage/box/nt_mre,
+/obj/item/storage/box/nt_mre,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
 /obj/item/tool/pen,

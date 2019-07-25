@@ -281,16 +281,16 @@
 	icon_state = "pamphlet"
 	info = "In loving memory of Cub Johnson."
 
-/obj/item/storage/box/wy_mre
+/obj/item/storage/box/nt_mre
 	name = "\improper Nanotrasen brand MRE"
 	desc = "A prepackaged, long-lasting food box from Nanotrasen Industries.\nOn the box is the Nanotrasen logo, with a slogan surrounding it: \n<b>NANOTRASEN. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
 	can_hold = list(/obj/item/reagent_container/food/snacks)
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/storage/box/wy_mre/Initialize(mapload, ...)
+/obj/item/storage/box/nt_mre/Initialize(mapload, ...)
 	. = ..()
-	
+
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
 	new /obj/item/reagent_container/food/snacks/donkpocket(src)
