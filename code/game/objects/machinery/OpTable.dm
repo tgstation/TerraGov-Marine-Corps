@@ -65,9 +65,6 @@
 	. = ..()
 	if(.)
 		return
-	if(buckled_mob)
-		unbuckle(user)
-		return
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
 		to_chat(user, "<span class='notice'>You remove \the [anes_tank] from \the [src].</span>")

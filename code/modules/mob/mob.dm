@@ -682,8 +682,7 @@ mob/proc/yank_out_object()
 	if(!.)
 		return
 	stop_pulling()
-	if(buckled)
-		buckled.unbuckle()
+	buckled?.unbuckle()
 
 
 /mob/proc/trainteleport(atom/destination)

@@ -32,7 +32,7 @@
 			icon_state = "[base_bed_icon]_down"
 
 obj/structure/bed/Destroy()
-	if(buckled_bodybag)
+	if(buckled_mob || buckled_bodybag)
 		unbuckle()
 	. = ..()
 
@@ -156,7 +156,8 @@ obj/structure/bed/Destroy()
 		playsound(src, hit_bed_sound, 25, 1)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 		"<span class='danger'>We slice [src] apart!</span>", null, 5)
-		unbuckle()
+		if(buckled_mob || buckled_bodybag)
+			unbuckle()
 		destroy_structure()
 		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
 	else attack_hand(M)
@@ -322,7 +323,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	radio = new(src)
 
 /obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/M)
-	unbuckle()
+	if(buckled_mob || buckled_bodybag)
+		unbuckle()
 
 /obj/structure/bed/medevac_stretcher/Destroy()
 	QDEL_NULL(radio)
