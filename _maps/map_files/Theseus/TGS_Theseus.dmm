@@ -46864,6 +46864,14 @@
 	icon_state = "floor11"
 	},
 /area/almayer/command/self_destruct)
+"pQE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/almayer{
+	icon_state = "ai_floors"
+	},
+/area/almayer/command/airoom)
 "pVE" = (
 /obj/machinery/gear{
 	id = "hangarelevatorgear"
@@ -86605,7 +86613,7 @@ apS
 aoH
 apS
 awK
-pvn
+pQE
 aPc
 pvn
 awK
