@@ -174,9 +174,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define HYPOSPRAY_INJECT_MODE_DRAW		0
 #define HYPOSPRAY_INJECT_MODE_INJECT	1
 
-// Random item spawns for huntergames
-#define HG_RANDOM_ITEM_CRAP 1
-#define HG_RANDOM_ITEM_GOOD 2
 
 //Lighter
 

@@ -297,6 +297,9 @@
 		if(!do_after(user, 60 SECONDS, FALSE, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 			to_chat(user, "<span class='warning'>We cease overriding the shuttle lockdown.</span>")
 			return FALSE
+		if(!is_ground_level(D.z))
+			to_chat(user, "<span class='warning'>The bird has left meanwhile, try again.</span>")
+			return FALSE
 		D.hijack_state = HIJACK_STATE_CALLED_DOWN
 		D.unlock_all()
 		to_chat(user, "<span class='warning'>We have overriden the shuttle lockdown!</span>")

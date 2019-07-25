@@ -404,6 +404,6 @@ Contains most of the procs that are called when a mob is attacked by something
 	knock_down(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
 	if(!ear_deaf)
-		ear_deaf += stun_duration * 20  //Deafens them temporarily
+		adjust_ear_damage(deaf = stun_duration * 20)  //Deafens them temporarily
 	//Perception distorting effects of the psychic scream
 	addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, src, stun_duration * 1 SECONDS, 0.75), 31)
