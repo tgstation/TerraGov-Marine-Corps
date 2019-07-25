@@ -156,7 +156,7 @@
 	desc = "Pretty good when you get past the fact that it tastes like piss. Canned by Nanotrasen."
 	icon_state = "6_pack_1"
 	center_of_mass = list("x"=16, "y"=10)
-	list_reagents = list(/datum/reagent/consumable/ethanol/wy_beer = 50)
+	list_reagents = list(/datum/reagent/consumable/ethanol/nt_beer = 50)
 
 /obj/item/reagent_container/food/drinks/cans/souto/lime
 	name = "\improper Lime Souto"
