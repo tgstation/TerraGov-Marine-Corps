@@ -291,6 +291,7 @@
 #include "code\game\shuttle_engines.dm"
 #include "code\game\smoothwall.dm"
 #include "code\game\sound.dm"
+#include "code\game\visual_objects.dm"
 #include "code\game\world.dm"
 #include "code\game\area\area.dm"
 #include "code\game\area\bigred.dm"

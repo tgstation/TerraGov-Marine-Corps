@@ -49,55 +49,54 @@
 /datum/action/item_action/firemode
 	var/action_firemode
 	var/obj/item/weapon/gun/holder_gun
-	var/frame_on = FALSE
+	var/static/atom/movable/vis_obj/action/fmode_single/semiauto = new
+	var/static/atom/movable/vis_obj/action/fmode_burst/burstfire = new
+	var/static/atom/movable/vis_obj/action/fmode_single_auto/fullauto = new
+	var/static/atom/movable/vis_obj/action/fmode_burst_auto/autoburst = new
+	var/atom/movable/vis_obj/action/current_action_vis_obj
 
 
 /datum/action/item_action/firemode/New()
 	. = ..()
 	holder_gun = holder_item
-	name = initial(name) //Revert this foolishness.
-	if(action_icon)
-		button.overlays.Cut()
-		button.overlays += image('icons/mob/actions.dmi', button, action_icon)
-	button.name = name
+	button.overlays.Cut()
 	update_button_icon()
+
+
+/datum/action/item_action/firemode/give_action(mob/M)
+	. = ..()
+	RegisterSignal(owner, COMSIG_CARBON_SWAPPED_HANDS, .proc/update_owner_button_icons)
+
+
+/datum/action/item_action/firemode/remove_action(mob/M)
+	UnregisterSignal(owner, COMSIG_CARBON_SWAPPED_HANDS)
+	return ..()
+
+
+/datum/action/item_action/firemode/should_show()
+	return (holder_gun == owner.get_active_held_item())
 
 
 /datum/action/item_action/firemode/update_button_icon()
 	if(holder_gun.gun_firemode == action_firemode)
-		if(!frame_on)
-			button.vis_contents += selected_frame
-			frame_on = TRUE
-	else
-		if(frame_on)
-			button.vis_contents -= selected_frame
-			frame_on = FALSE
-
-
-/datum/action/item_action/firemode/can_use_action()
-	. = ..()
-	if(!.)
 		return
-	if(holder_gun.gun_firemode == action_firemode)
-		return FALSE
+	button.vis_contents -= current_action_vis_obj
+	switch(holder_gun.gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			button.name = "Semi-Automatic Firemode"
+			current_action_vis_obj = semiauto
+		if(GUN_FIREMODE_BURSTFIRE)
+			button.name = "Burst Firemode"
+			current_action_vis_obj = burstfire
+		if(GUN_FIREMODE_AUTOMATIC)
+			button.name = "Automatic Firemode"
+			current_action_vis_obj = fullauto
+		if(GUN_FIREMODE_AUTOBURST)
+			button.name = "Automatic Burst Firemode"
+			current_action_vis_obj = autoburst
+	button.vis_contents += current_action_vis_obj	
+	action_firemode = holder_gun.gun_firemode
 
 
-/datum/action/item_action/firemode/semiauto_firemode
-	name = "Semi-Automatic Firemode"
-	action_firemode = GUN_FIREMODE_SEMIAUTO
-	action_icon = "fmode_single"
-
-/datum/action/item_action/firemode/burst_firemode
-	name = "Burst Firemode"
-	action_firemode = GUN_FIREMODE_BURSTFIRE
-	action_icon = "fmode_burst"
-
-/datum/action/item_action/firemode/automatic_firemode
-	name = "Automatic Firemode"
-	action_firemode = GUN_FIREMODE_AUTOMATIC
-	action_icon = "fmode_single_auto"
-
-/datum/action/item_action/firemode/autoburst_firemode
-	name = "Automatic Burst Firemode"
-	action_firemode = GUN_FIREMODE_AUTOBURST
-	action_icon = "fmode_burst_auto"
+/datum/action/item_action/firemode/proc/update_owner_button_icons()
+	owner.update_action_buttons()

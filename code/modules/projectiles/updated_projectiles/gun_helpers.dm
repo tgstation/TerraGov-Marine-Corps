@@ -551,9 +551,7 @@ should be alright.
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
 		return ..()
-	if(firemode_action.action_firemode == gun_firemode)
-		return
-	do_toggle_firemode(user, firemode_action.action_firemode)
+	do_toggle_firemode(user)
 	user.update_action_buttons()
 
 
@@ -621,7 +619,7 @@ should be alright.
 	set desc = "Toggle between fire modes, if the gun has more than has one."
 	set src = usr.contents
 
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	var/obj/item/weapon/gun/G = usr.get_active_held_item()
 	if(!G)
 		return
 	G.do_toggle_firemode(usr)
@@ -658,67 +656,36 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
-	var/list/affected_firemodes
-	
 	gun_firemode_list += added_firemode
 	
 	switch(length(gun_firemode_list))
 		if(0)
 			CRASH("add_firemode called with a resulting gun_firemode_list length of [length(gun_firemode_list)].")
-		if(1)
+		if(1) //No need to toggle anything if there's a single firemode.
 			return
 		if(2)
-			affected_firemodes = gun_firemode_list
-		else
-			affected_firemodes = list(added_firemode)
-
-	for(var/i in affected_firemodes)
-		switch(i)
-			if(GUN_FIREMODE_SEMIAUTO)
-				actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
-			if(GUN_FIREMODE_BURSTFIRE)
-				actions_types += list(/datum/action/item_action/firemode/burst_firemode)
-			if(GUN_FIREMODE_AUTOMATIC)
-				actions_types += list(/datum/action/item_action/firemode/automatic_firemode)
-			if(GUN_FIREMODE_AUTOBURST)
-				actions_types += list(/datum/action/item_action/firemode/autoburst_firemode)
-		var/action_type = actions_types[length(actions_types)]
-		var/datum/action/new_action = new action_type(src)
-		if(user)
-			var/mob/living/living_user = user
-			if(src == living_user.l_hand || src == living_user.r_hand)
-				new_action.give_action(living_user)
+			actions_types += /datum/action/item_action/firemode
+			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
+			if(user)
+				var/mob/living/living_user = user
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					new_action.give_action(living_user)
+		else //The action should already be there by now.
+			return
 
 
 /obj/item/weapon/gun/proc/remove_firemode(removed_firemode, mob/user)
-	var/list/affected_firemodes
 	switch(length(gun_firemode_list))
 		if(0, 1)
 			CRASH("remove_firemode called with gun_firemode_list length [length(gun_firemode_list)].")
 		if(2)
-			affected_firemodes = gun_firemode_list
-		else
-			affected_firemodes = list(removed_firemode)
-
-	for(var/i in affected_firemodes)
-		var/action_type
-		switch(i)
-			if(GUN_FIREMODE_SEMIAUTO)
-				action_type = /datum/action/item_action/firemode/semiauto_firemode
-			if(GUN_FIREMODE_BURSTFIRE)
-				action_type = /datum/action/item_action/firemode/burst_firemode
-			if(GUN_FIREMODE_AUTOMATIC)
-				action_type = /datum/action/item_action/firemode/automatic_firemode
-			if(GUN_FIREMODE_AUTOBURST)
-				actions_types = /datum/action/item_action/firemode/autoburst_firemode
-		actions_types -= action_type
-
-		var/datum/action/old_action = locate(action_type) in actions
-		if(user)
-			var/mob/living/living_user = user
-			if(src == living_user.l_hand || src == living_user.r_hand)
-				old_action.remove_action(living_user)
-		qdel(old_action)
+			actions_types -= /datum/action/item_action/firemode
+			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
+			if(user)
+				var/mob/living/living_user = user
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					old_action.remove_action(living_user)
+			qdel(old_action)
 
 	gun_firemode_list -= removed_firemode
 
@@ -737,23 +704,11 @@ should be alright.
 			gun_firemode = gun_firemode_list[1]
 		else
 			gun_firemode = gun_firemode_list[1]
-			for(var/i in gun_firemode_list)
-				switch(i)
-					if(GUN_FIREMODE_SEMIAUTO)
-						actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
-					if(GUN_FIREMODE_BURSTFIRE)
-						actions_types += list(/datum/action/item_action/firemode/burst_firemode)
-					if(GUN_FIREMODE_AUTOMATIC)
-						actions_types += list(/datum/action/item_action/firemode/automatic_firemode)
-					if(GUN_FIREMODE_AUTOBURST)
-						actions_types += list(/datum/action/item_action/firemode/autoburst_firemode)
-				var/action_type = actions_types[length(actions_types)]
-				var/datum/action/new_action = new action_type(src)
-				if(isliving(loc))
-					var/mob/living/living_user = loc
-					if(src == living_user.l_hand || src == living_user.r_hand)
-						new_action.give_action(living_user)
-
+			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
+			if(isliving(loc))
+				var/mob/living/living_user = loc
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					new_action.give_action(living_user)
 
 
 /obj/item/weapon/gun/verb/empty_mag()
