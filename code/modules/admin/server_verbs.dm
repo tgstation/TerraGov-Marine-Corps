@@ -377,6 +377,9 @@
 		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
 		if(!reason)
 			return
+		if(SSticker.admin_delay_notice)
+			to_chat(usr, "<span class='warning'>Someone already delayed the round end meanwhile.</span>")
+			return
 		SSticker.admin_delay_notice = reason
 
 	SSticker.delay_end = !SSticker.delay_end
