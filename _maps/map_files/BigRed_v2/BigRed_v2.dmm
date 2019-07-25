@@ -15960,7 +15960,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aWb" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 2
 	},
@@ -24189,7 +24189,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAu" = (
 /obj/structure/table,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAv" = (

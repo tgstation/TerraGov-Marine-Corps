@@ -366,7 +366,7 @@
 /area/whiskey_outpost)
 "ba" = (
 /obj/structure/table,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "bb" = (
