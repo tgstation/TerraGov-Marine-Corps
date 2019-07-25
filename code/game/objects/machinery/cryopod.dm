@@ -316,9 +316,9 @@
 			if(istype(J, /datum/job/marine/leader))
 				assigned_squad.num_leaders--
 		assigned_squad.count--
-		assigned_squad.clean_marine_from_squad(src, TRUE) //Remove from squad records, if any.
+		assigned_squad.remove_from_squad(src)
 
-	. = ..()
+	return ..()
 
 /obj/item/proc/store_in_cryo(list/items)
 
