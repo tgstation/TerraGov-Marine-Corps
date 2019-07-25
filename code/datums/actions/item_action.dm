@@ -69,7 +69,7 @@
 
 
 /datum/action/item_action/firemode/remove_action(mob/M)
-	UnregisterSignal(owner, COMSIG_CARBON_SWAPPED_HANDS)
+	UnregisterSignal(owner || M, COMSIG_CARBON_SWAPPED_HANDS)
 	return ..()
 
 
