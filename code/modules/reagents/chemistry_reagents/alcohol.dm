@@ -79,7 +79,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 25
 	taste_description = "piss water"
 
-/datum/reagent/consumable/ethanol/wy_beer
+/datum/reagent/consumable/ethanol/nt_beer
 	name = "Aspen Beer"
 	id = "aspen"
 	description = "Pretty good when you get past the fact that it tastes like piss. Canned by the Nanotrasen Corporation."

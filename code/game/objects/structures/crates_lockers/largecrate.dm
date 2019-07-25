@@ -18,9 +18,9 @@
 	"<span class='danger'>You hear splitting wood!</span>", 5)
 	qdel(src)
 
-/obj/structure/largecrate/attack_hand(mob/living/user)
+/obj/structure/largecrate/examine(mob/user)
+	. = ..()
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
-	return TRUE
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
 	. = ..()

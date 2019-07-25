@@ -540,7 +540,10 @@ Movement accuracy penalty.
 Scatter penalty while bursting.
 */
 /datum/config_entry/number/combat_define/low_burst_scatter_penalty
-	config_entry_value = 0.25
+	config_entry_value = 1
+
+/datum/config_entry/number/combat_define/high_burst_scatter_penalty
+	config_entry_value = 3
 
 /*
 Accuracy penalty while bursting.

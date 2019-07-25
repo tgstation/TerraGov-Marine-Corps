@@ -8451,10 +8451,10 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/lobby)
 "awl" = (
-/obj/item/storage/box/wy_mre,
-/obj/item/storage/box/wy_mre,
-/obj/item/storage/box/wy_mre,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
+/obj/item/storage/box/nt_mre,
+/obj/item/storage/box/nt_mre,
+/obj/item/storage/box/nt_mre,
 /obj/structure/closet/crate/freezer,
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
