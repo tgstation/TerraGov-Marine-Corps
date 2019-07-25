@@ -356,7 +356,6 @@
 #include "code\game\objects\effects\landmarks\landmarks.dm"
 #include "code\game\objects\effects\landmarks\marine_spawns.dm"
 #include "code\game\objects\effects\landmarks\mode.dm"
-#include "code\game\objects\effects\landmarks\random_item.dm"
 #include "code\game\objects\effects\landmarks\gamemode\crash_spawns.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
