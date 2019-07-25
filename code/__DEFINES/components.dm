@@ -40,6 +40,12 @@
 #define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
 #define COMSIG_TOPIC "handle_topic"                             //generic topic handler (usr, href_list)
 
+// /datum/component signals
+#define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
+	#define COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)
+#define COMSIG_AUTOFIRE_SHOT "autofire_shot"
+	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
+
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
 #define COMSIG_AREA_EXITED "area_exited" 							//from base of area/Exited(): (atom/movable/M)
@@ -66,7 +72,7 @@
 // /client signals
 #define COMSIG_CLIENT_MOUSEDOWN "client_mousedown"			//from base of client/MouseDown(): (/client, object, location, control, params)
 #define COMSIG_CLIENT_MOUSEUP "client_mouseup"				//from base of client/MouseUp(): (/client, object, location, control, params)
-	#define COMSIG_CLIENT_MOUSEUP_INTERCEPT (1<<0)
+	#define COMPONENT_CLIENT_MOUSEUP_INTERCEPT (1<<0)
 #define COMSIG_CLIENT_MOUSEDRAG "client_mousedrag"			//from base of client/MouseUp(): (/client, object, location, control, params)
 #define COMSIG_CLIENT_DISCONNECTED "client_disconnecred"	//from base of /client/Del(): (/client)
 
@@ -125,15 +131,13 @@
 	#define COMPONENT_NO_ATTACK_OBJ 1
 
 #define COMSIG_ITEM_CLICKCTRLON "item_ctrlclickon"					//from base of mob/CtrlClickOn(): (/atom, /mob)
-	#define COMSIG_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
+	#define COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 	#define COMPONENT_GUN_FIRED 1
 #define COMSIG_GUN_AUTOFIRE "gun_autofire"
 #define COMSIG_GUN_CLICKEMPTY "gun_clickempty"
-#define COMSIG_GUN_SHOT_AUTOFIRE "gun_shot_autofire"
-	#define COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS (1<<0)
 #define COMSIG_GUN_FIREMODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
 #define COMSIG_GUN_FIREDELAY_MODIFIED "gun_firedelay_modified"
 #define COMSIG_GUN_BURSTDELAY_MODIFIED "gun_burstdelay_modified"
@@ -314,7 +318,3 @@
 #define COMSIG_HUMAN_ATTACHMENT_FIRED "human_attachment_fired"
 #define COMSIG_HUMAN_ITEM_ATTACK "human_item_attack"			//from base of obj/item/attack(): (/mob/living/target, obj/item/I, /mob/living/carbon/human/user)
 #define COMSIG_HUMAN_ITEM_THROW "human_item_throw"
-
-//Full automatic fire component signals
-#define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
-	#define COMSIG_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)

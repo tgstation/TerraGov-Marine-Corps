@@ -156,12 +156,9 @@
 
 
 /datum/action/xeno_action/activable
-	var/image/selected_frame
 
 /datum/action/xeno_action/activable/New()
 	. = ..()
-	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
-	selected_frame.appearance_flags = RESET_COLOR
 
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
@@ -175,13 +172,13 @@
 
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays -= selected_frame
+	button.vis_contents -= selected_frame
 	X.selected_ability = null
 	on_deactivation()
 
 /datum/action/xeno_action/activable/proc/select()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays += selected_frame
+	button.vis_contents += selected_frame
 	X.selected_ability = src
 	on_activation()
 

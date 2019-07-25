@@ -1,15 +1,4 @@
-#define AUTOFIRE_STAT_SLEEPING 0 //Component is in the gun, but the gun is in a different firemode. Sleep until a compatible firemode is activated.
-// ^^ sleep_up() ^^
-// VV wake_up() VV
-#define AUTOFIRE_STAT_IDLE 1 //Compatible firemode is in the gun. Wait until it's held in the user hands.
-// ^^ autofire_off() ^^
-// VV autofire_on() VV
-#define AUTOFIRE_STAT_ALERT	2 //Gun is active and in the user hands. Wait until user does a valid click.
-// ^^ stop_autofiring() ^^
-// VV start_autofiring() VV
-#define AUTOFIRE_STAT_FIRING 3 //Dakka-dakka-dakka.
-
-datum/component/automatic_fire
+/datum/component/automatic_fire
 	var/client/clicker
 	var/mob/living/shooter
 	var/atom/target
@@ -24,7 +13,7 @@ datum/component/automatic_fire
 	var/component_fire_mode
 
 
-/datum/component/automatic_fire/Initialize()
+/datum/component/automatic_fire/Initialize(autofire_shot_delay, burstfire_shot_delay, shots_to_fire, firemode, parent_loc)
 	. = ..()
 	if(!isgun(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -33,17 +22,17 @@ datum/component/automatic_fire
 	RegisterSignal(parent, COMSIG_GUN_BURSTDELAY_MODIFIED, .proc/modify_burst_delay)
 	RegisterSignal(parent, COMSIG_GUN_BURSTAMOUNT_MODIFIED, .proc/modify_burst_amount)
 
-	var/obj/item/weapon/gun/shoota = parent
-	autofire_shot_delay = shoota.fire_delay
-	burstfire_shot_delay = shoota.burst_delay
-	shots_to_fire = shoota.burst_amount
-	switch(shoota.gun_firemode)
+	src.autofire_shot_delay = autofire_shot_delay
+	src.burstfire_shot_delay = burstfire_shot_delay
+	src.shots_to_fire = shots_to_fire
+
+	switch(firemode)
 		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 			var/usercli
-			if(ismob(shoota.loc))
-				var/mob/user = shoota.loc
+			if(ismob(parent_loc))
+				var/mob/user = parent_loc
 				usercli = user.client
-			wake_up(src, component_fire_mode, usercli)
+			wake_up(src, firemode, usercli)
 
 
 /datum/component/automatic_fire/Destroy()
@@ -105,7 +94,7 @@ datum/component/automatic_fire
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/autofire_off)
 	RegisterSignal(shooter, COMSIG_MOB_LOGOUT, .proc/autofire_off)
 	parent.RegisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, /obj/item/weapon/gun/.proc/autofire_bypass_check)
-	parent.RegisterSignal(parent, COMSIG_GUN_SHOT_AUTOFIRE, /obj/item/weapon/gun/.proc/do_autofire)
+	parent.RegisterSignal(parent, COMSIG_AUTOFIRE_SHOT, /obj/item/weapon/gun/.proc/do_autofire)
 
 
 /datum/component/automatic_fire/proc/autofire_off(datum/source)
@@ -122,7 +111,7 @@ datum/component/automatic_fire
 		UnregisterSignal(shooter, COMSIG_MOB_LOGOUT)
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	shooter = null
-	parent.UnregisterSignal(parent, COMSIG_GUN_SHOT_AUTOFIRE)
+	parent.UnregisterSignal(parent, COMSIG_AUTOFIRE_SHOT)
 	parent.UnregisterSignal(src, COMSIG_AUTOFIRE_ONMOUSEDOWN)
 
 
@@ -150,7 +139,7 @@ datum/component/automatic_fire
 		if(!target)
 			CRASH("Failed to get the turf under clickcatcher")
 	
-	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMSIG_AUTOFIRE_ONMOUSEDOWN_BYPASS)
+	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS)
 		return
 
 	source.click_intercepted = world.time //From this point onwards Click() will no longer be triggered.
@@ -170,15 +159,16 @@ datum/component/automatic_fire
 	autofire_stat = AUTOFIRE_STAT_FIRING
 	if(auto_delay_timer)
 		if(!deltimer(auto_delay_timer))
-			addtimer(CALLBACK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer), 0.1 SECONDS) //Next tick hopefully.
+			INVOKE_NEXT_TICK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer)
 		auto_delay_timer = null
 	clicker.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/on_mouse_up)
 	RegisterSignal(shooter, COMSIG_CARBON_SWAPPED_HANDS, .proc/stop_autofiring)
-	var/obj/item/weapon/gun/shoota = parent
-	if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
-		stop_autofiring()
-		return
+	if(isgun(parent))
+		var/obj/item/weapon/gun/shoota = parent
+		if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
+			stop_autofiring()
+			return
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
 		return //Might have been interrupted while on_autofire_start() was being processed.
 	switch(component_fire_mode)
@@ -201,7 +191,7 @@ datum/component/automatic_fire
 	if(clicker)
 		UnregisterSignal(clicker, COMSIG_CLIENT_MOUSEUP)
 	stop_autofiring()
-	return COMSIG_CLIENT_MOUSEUP_INTERCEPT
+	return COMPONENT_CLIENT_MOUSEUP_INTERCEPT
 
 
 /datum/component/automatic_fire/proc/stop_autofiring(datum/source, atom/object, turf/location, control, params)
@@ -219,7 +209,7 @@ datum/component/automatic_fire
 	if(!QDELETED(shooter))
 		UnregisterSignal(shooter, COMSIG_CARBON_SWAPPED_HANDS)
 	var/obj/item/weapon/gun/shoota = parent
-	shoota.on_autofire_stop(shots_fired) //This could be easily turned into a signal once there's need for expanding the component into non-guns.
+	shoota.on_autofire_stop(shots_fired)
 	shots_fired = 0
 	target = null
 	mouse_parameters = null
@@ -257,7 +247,7 @@ datum/component/automatic_fire
 			stop_autofiring() //Elvis has left the building.
 			return FALSE
 	shooter.face_atom(target)
-	if(SEND_SIGNAL(parent, COMSIG_GUN_SHOT_AUTOFIRE, target, shooter, mouse_parameters, ++shots_fired) & COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS)
+	if(SEND_SIGNAL(parent, COMSIG_AUTOFIRE_SHOT, target, shooter, mouse_parameters, ++shots_fired) & COMPONENT_AUTOFIRE_SHOT_SUCCESS)
 		return TRUE
 	stop_autofiring()
 	return FALSE
@@ -310,8 +300,7 @@ datum/component/automatic_fire
 
 /obj/item/weapon/gun/proc/autofire_bypass_check(datum/source, client/clicker, atom/target, turf/location, control, params)
 	if(clicker.mob.get_active_held_item() != src)
-		return COMSIG_AUTOFIRE_ONMOUSEDOWN_BYPASS
-	return NONE //No flags means success.
+		return COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS
 
 
 /obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/living/shooter, params, shots_fired)
@@ -325,8 +314,8 @@ datum/component/automatic_fire
 	if(istype(akimbo_gun))
 		dual_wield = TRUE
 		akimbo_gun.Fire(target, shooter, params, FALSE, dual_wield)
-	apply_bullet_effects(projectile_to_fire, shooter, shots_fired, FALSE, dual_wield)
-	//No bipod support yet. Would go here otherwise.
+	apply_gun_modifiers(projectile_to_fire, target)
+	setup_bullet_accuracy(projectile_to_fire, shooter, shots_fired, dual_wield)
 	target = simulate_scatter(projectile_to_fire, target, get_turf(target), shooter)
 	var/list/mouse_control = params2list(params)
 	if(mouse_control["icon-x"])
@@ -334,6 +323,7 @@ datum/component/automatic_fire
 	if(mouse_control["icon-y"])
 		projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
 	simulate_recoil(0 , shooter)
+	play_fire_sound(shooter)
 	projectile_to_fire.fire_at(target, shooter, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed)
 	last_fired = world.time
 	muzzle_flash(Get_Angle(shooter, target), shooter)
@@ -343,7 +333,7 @@ datum/component/automatic_fire
 	SEND_SIGNAL(shooter, COMSIG_HUMAN_GUN_AUTOFIRED, target, src, shooter)
 	var/obj/screen/ammo/A = shooter.hud_used.ammo
 	A.update_hud(shooter) //Ammo HUD.
-	return COMSIG_GUN_SHOT_AUTOFIRE_SUCCESS //All is well, we can continue shooting.
+	return COMPONENT_AUTOFIRE_SHOT_SUCCESS //All is well, we can continue shooting.
 
 
 /obj/item/weapon/gun/minigun/on_autofire_start(mob/living/shooter)

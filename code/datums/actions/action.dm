@@ -8,6 +8,7 @@
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
+	var/static/atom/movable/selected_frame/selected_frame = new
 
 /datum/action/New(Target)
 	target = Target
@@ -129,3 +130,11 @@
 	if(reload_screen)
 		client.screen += hud_used.hide_actions_toggle
 
+
+/atom/movable/selected_frame
+	icon = 'icons/mob/actions.dmi'
+	icon_state = "selected_frame"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

@@ -31,7 +31,7 @@
 /client/MouseUp(atom/object, turf/location, control, params)
 	if(!control)
 		return
-	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP, object, location, control, params) & COMSIG_CLIENT_MOUSEUP_INTERCEPT)
+	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP, object, location, control, params) & COMPONENT_CLIENT_MOUSEUP_INTERCEPT)
 		click_intercepted = world.time
 	if(mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon

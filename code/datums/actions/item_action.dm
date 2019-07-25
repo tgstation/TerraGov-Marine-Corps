@@ -49,15 +49,11 @@
 /datum/action/item_action/firemode
 	var/action_firemode
 	var/obj/item/weapon/gun/holder_gun
-	var/action_icon
-	var/image/selected_frame
 	var/frame_on = FALSE
 
 
 /datum/action/item_action/firemode/New()
 	. = ..()
-	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
-	selected_frame.appearance_flags = RESET_COLOR
 	holder_gun = holder_item
 	name = initial(name) //Revert this foolishness.
 	if(action_icon)
@@ -70,11 +66,11 @@
 /datum/action/item_action/firemode/update_button_icon()
 	if(holder_gun.gun_firemode == action_firemode)
 		if(!frame_on)
-			button.overlays += selected_frame
+			button.vis_contents += selected_frame
 			frame_on = TRUE
 	else
 		if(frame_on)
-			button.overlays -= selected_frame
+			button.vis_contents -= selected_frame
 			frame_on = FALSE
 
 

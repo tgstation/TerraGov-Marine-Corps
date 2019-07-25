@@ -874,18 +874,21 @@
 
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
-/obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
-
-	var/turf/backblast_loc = get_turf(get_step(user, turn(user.dir, 180)))
+/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/item/projectile/projectile_to_fire, atom/target)
+	. = ..()
+	var/turf/blast_source = get_turf(src)
+	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))
+	var/turf/backblast_loc = get_step(blast_source, thrown_dir)
 	smoke.set_up(0, backblast_loc)
 	smoke.start()
-	for(var/mob/living/carbon/C in backblast_loc)
-		if(!C.lying) //Have to be standing up to get the fun stuff
-			C.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
-			C.stun(4) //For good measure
-			C.emote("pain")
+	for(var/mob/living/carbon/victim in backblast_loc)
+		if(victim.lying || victim.stat == DEAD) //Have to be standing up to get the fun stuff
+			continue
+		victim.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
+		victim.knock_down(3) //For good measure
+		victim.emote("pain")
+		victim.throw_at(get_step(backblast_loc, thrown_dir), 1, 2)
 
-		. = ..()
 
 /obj/item/weapon/gun/launcher/rocket/get_ammo_type()
 	if(!ammo)
