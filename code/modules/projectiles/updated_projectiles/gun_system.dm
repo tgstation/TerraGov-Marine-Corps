@@ -919,7 +919,6 @@ and you're good to go.
 	projectile_to_fire.projectile_speed += shell_speed_mod
 
 
-//This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
 	var/gun_scatter = scatter_unwielded
