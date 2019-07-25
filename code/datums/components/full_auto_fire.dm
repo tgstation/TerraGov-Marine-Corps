@@ -201,7 +201,7 @@
 	autofire_stat = AUTOFIRE_STAT_ALERT
 	if(auto_delay_timer) //Keep this at the top of the proc. If anything else runtimes or fails it would cause a potentially-infinite loop.
 		if(!deltimer(auto_delay_timer))
-			addtimer(CALLBACK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer), 0.1 SECONDS) //Next tick hopefully.
+			INVOKE_NEXT_TICK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer)
 		auto_delay_timer = null
 	if(clicker)
 		clicker.mouse_pointer_icon = initial(clicker.mouse_pointer_icon)
