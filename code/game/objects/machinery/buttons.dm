@@ -98,6 +98,7 @@
 /obj/machinery/button/door/open_only/landing_zone
 	name = "lockdown override"
 	id = "landing_zone"
+	use_power = NO_POWER_USE
 
 
 /obj/machinery/button/door/open_only/landing_zone/lz2

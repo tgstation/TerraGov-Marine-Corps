@@ -40271,7 +40271,7 @@
 	dir = 4
 	},
 /obj/machinery/button/door/open_only/landing_zone/lz2{
-	dir = 1
+	dir = 2
 	},
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)

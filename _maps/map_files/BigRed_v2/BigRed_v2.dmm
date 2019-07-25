@@ -25261,6 +25261,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"ggp" = (
+/obj/machinery/button/door/open_only/landing_zone,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "ggV" = (
 /obj/machinery/door/airlock/almayer/engineering{
 	dir = 4;
@@ -25416,17 +25424,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves)
-"hGl" = (
-/obj/machinery/button/door/open_only/landing_zone,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/space_port)
 "hHN" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -25734,6 +25731,26 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"mKt" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/sw)
 "mSx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
@@ -26192,21 +26209,6 @@
 "shZ" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
-/area/bigredv2/outside/sw)
-"skR" = (
-/obj/machinery/button/door/open_only/landing_zone/lz2{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -35687,11 +35689,11 @@ bdZ
 bpv
 bsa
 ehV
-skR
+brc
 brc
 brc
 boC
-bpw
+mKt
 bpw
 bpw
 bqF
@@ -37313,7 +37315,7 @@ aad
 aad
 hzx
 plF
-hGl
+aaO
 aaO
 aaO
 abg
@@ -37756,7 +37758,7 @@ sGO
 sGO
 sGO
 aae
-aah
+ggp
 acj
 aah
 aah
