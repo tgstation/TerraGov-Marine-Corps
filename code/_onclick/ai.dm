@@ -63,6 +63,9 @@
 	if(world.time <= next_move)
 		return
 
+	if(level_locked && A.z != z)
+		return
+
 	A.attack_ai(src)
 
 
