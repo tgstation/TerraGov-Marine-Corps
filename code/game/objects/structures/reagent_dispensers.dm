@@ -6,7 +6,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	density = TRUE
-	anchored = 0
+	anchored = FALSE
 	var/tank_volume = 1000
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
@@ -88,7 +88,7 @@
 	if(rig)
 		to_chat(user, "<span class='notice'>There is some kind of device rigged to the tank.</span>")
 
-/obj/structure/reagent_dispensers/fueltank/attack_hand()
+/obj/structure/reagent_dispensers/fueltank/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -130,7 +130,7 @@
 		return attack_hand(user)
 
 
-/obj/machinery/computer/attack_hand()
+/obj/machinery/computer/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

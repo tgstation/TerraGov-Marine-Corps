@@ -74,8 +74,6 @@
 		suffix = "#[count]"
 	name = "Mulebot ([suffix])"
 
-	verbs -= /atom/movable/verb/pull
-
 
 /obj/machinery/bot/mulebot/Destroy()
 	QDEL_NULL(wires)
@@ -125,11 +123,9 @@
 	unload(0)
 	switch(severity)
 		if(2)
-			wires &= ~(1 << rand(0,9))
-			wires &= ~(1 << rand(0,9))
-			wires &= ~(1 << rand(0,9))
+			wires.cut_all()
 		if(3)
-			wires &= ~(1 << rand(0,9))
+			wires.cut_random()
 	..()
 	return
 
@@ -138,11 +134,7 @@
 		unload(0)
 	if(prob(25))
 		src.visible_message("<span class='warning'> Something shorts out inside [src]!</span>")
-		var/index = 1<< (rand(0,9))
-		if(wires & index)
-			wires &= ~index
-		else
-			wires |= index
+		wires.cut_random()
 	..()
 	return 1
 
@@ -151,7 +143,7 @@
 	user.set_interaction(src)
 	interact(user, 1)
 
-/obj/machinery/bot/mulebot/attack_hand(mob/user)
+/obj/machinery/bot/mulebot/attack_hand(mob/living/user)
 	. = ..()
 	if (.)
 		return
@@ -261,7 +253,7 @@
 
 			if("cellremove")
 				if(open && cell && !usr.get_active_held_item())
-					cell.updateicon()
+					cell.update_icon()
 					usr.put_in_active_hand(cell)
 					cell = null
 
@@ -545,8 +537,7 @@
 
 
 						if(mode==4)
-							spawn(1)
-								send_status()
+							INVOKE_NEXT_TICK(src, .proc/send_status)
 
 						if(destination == home_destination)
 							mode = 3
@@ -692,8 +683,8 @@
 	var/mob/living/L = A
 	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
 	L.stop_pulling()
-	L.Stun(8)
-	L.KnockDown(5)
+	L.stun(8)
+	L.knock_down(5)
 	L.lying = TRUE
 
 

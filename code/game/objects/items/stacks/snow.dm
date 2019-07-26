@@ -6,7 +6,7 @@
 	desc = "Some snow pile."
 	singular_name = "layer"
 	icon_state = "snow_stack"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	force = 2
 	throwforce = 0
 	throw_speed = 5

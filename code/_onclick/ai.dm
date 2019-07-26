@@ -63,6 +63,9 @@
 	if(world.time <= next_move)
 		return
 
+	if(level_locked && A.z != z)
+		return
+
 	A.attack_ai(src)
 
 
@@ -127,7 +130,7 @@
 
 	if(locked)
 		bolt_raise(usr)
-	else
+	else if(hasPower())
 		bolt_drop(usr)
 
 
@@ -158,3 +161,21 @@
 //
 /mob/living/silicon/ai/TurfAdjacent(turf/T)
 	return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(T))
+
+
+/obj/structure/ladder/attack_ai(mob/living/silicon/ai/AI)
+	var/turf/TU = get_turf(up)
+	var/turf/TD = get_turf(down)
+	if(up && down)
+		switch(alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel"))
+			if("Up")
+				TU.move_camera_by_click()
+			if("Down")
+				TD.move_camera_by_click()
+			if("Cancel")
+				return
+	else if(up)
+		TU.move_camera_by_click()
+
+	else if(down)
+		TD.move_camera_by_click()

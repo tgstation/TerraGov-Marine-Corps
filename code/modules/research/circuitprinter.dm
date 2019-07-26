@@ -139,5 +139,5 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 
 //This is to stop these machines being hackable via clicking.
-/obj/machinery/r_n_d/circuit_imprinter/attack_hand(mob/user as mob)
+/obj/machinery/r_n_d/circuit_imprinter/attack_hand(mob/living/user)
 	return TRUE

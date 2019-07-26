@@ -35,14 +35,14 @@
 	if(upright && istype(I, type))
 		return attack_hand(user)
 
-/obj/item/stack/flag/attack_hand(user as mob)
+/obj/item/stack/flag/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(upright)
 		upright = 0
 		icon_state = base_state
-		anchored = 0
+		anchored = FALSE
 		src.visible_message("<b>[user]</b> knocks down [src].")
 
 /obj/item/stack/flag/attack_self(mob/user as mob)

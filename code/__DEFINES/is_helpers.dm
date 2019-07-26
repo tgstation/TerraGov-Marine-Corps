@@ -45,12 +45,13 @@
 #define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
 #define isIPC(H) (is_species(H, /datum/species/machine))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
+#define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
 //Job/role helpers
 #define issurvivor(H) (H?.mind?.assigned_role == "Survivor")
-#define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role in JOBS_MARINES))
+#define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role in GLOB.jobs_marines))
 #define ispmc(H) (H?.faction == "PMC")
 
 //more carbon mobs

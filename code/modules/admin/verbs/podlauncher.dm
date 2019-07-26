@@ -260,10 +260,10 @@
 			temp_pod.setStyle(temp_pod.style)
 			. = TRUE
 			return
-		var/nameInput= input("Custom name", "Enter a custom name", POD_STYLES[temp_pod.style][POD_NAME]) as null|text
+		var/nameInput= input("Custom name", "Enter a custom name", GLOB.pod_styles[temp_pod.style][POD_NAME]) as null|text
 		if(isnull(nameInput))
 			return
-		var/descInput = input("Custom description", "Enter a custom desc", POD_STYLES[temp_pod.style][POD_DESC]) as null|text
+		var/descInput = input("Custom description", "Enter a custom desc", GLOB.pod_styles[temp_pod.style][POD_DESC]) as null|text
 		if(isnull(descInput))
 			return
 		temp_pod.name = nameInput

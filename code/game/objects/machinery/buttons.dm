@@ -37,7 +37,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/button/attack_hand(mob/user)
+/obj/machinery/button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -166,7 +166,7 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
+/obj/machinery/medical_help_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -13,7 +13,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
-	w_class = 1 //Note: can be picked up by aliens unlike most other items of w_class below 4
+	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
 	flags_armor_protection = FACE|EYES
 	flags_atom = NONE
@@ -76,7 +76,7 @@
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
 	if(!issamexenohive(user) && stat != DEAD)
-		user.animation_attack_on(src)
+		user.do_attack_animation(src)
 		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
 			"<span class='xenowarning'>We crush \the [src]")
 		Die()
@@ -85,7 +85,7 @@
 		attack_hand(user)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/clothing/mask/facehugger/attack_hand(mob/user)
+/obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
@@ -121,10 +121,13 @@
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()
-	if(stat != CONSCIOUS)
-		to_chat(user, "<span class='warning'>[src] is not moving.</span>")
-	else
-		to_chat(user, "<span class='danger'>[src] seems to be active.</span>")
+	switch(stat)
+		if(CONSCIOUS)
+			to_chat(user, "<span class='warning'>[src] seems to be active.</span>")
+		if(UNCONSCIOUS)
+			to_chat(user, "<span class='warning'>[src] seems to be asleep.</span>")
+		if(DEAD)
+			to_chat(user, "<span class='danger'>[src] is not moving.</span>")
 	if(initial(sterile))
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
@@ -426,7 +429,7 @@
 	if(!sterile && !issynth(user) && !isIPC(user))
 		if(user.disable_lights(sparks = TRUE, silent = TRUE)) //Knock out the lights so the victim can't be cam tracked/spotted as easily
 			user.visible_message("<span class='danger'>[user]'s lights flicker and short out in a struggle!</span>", "<span class='danger'>Your equipment's lights flicker and short out in a struggle!</span>")
-		user.KnockOut(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
+		user.knock_out(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
 	flags_item |= NODROP
 	attached = TRUE
 	GoIdle(FALSE, TRUE)

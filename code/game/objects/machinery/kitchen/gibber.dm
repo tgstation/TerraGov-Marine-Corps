@@ -40,7 +40,7 @@
 	go_out()
 
 
-/obj/machinery/gibber/attack_hand(mob/user as mob)
+/obj/machinery/gibber/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

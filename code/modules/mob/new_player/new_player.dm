@@ -339,7 +339,7 @@
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	dat += "<table><tr><td valign='top'>"
 	var/column_counter = 0
-	for(var/list/category in (list(JOBS_OFFICERS) + list(JOBS_REQUISITIONS) + list(JOBS_POLICE) + list(JOBS_MEDICAL) + list(JOBS_ENGINEERING) + list(JOBS_MARINES)))
+	for(var/list/category in (list(GLOB.jobs_officers) + list(GLOB.jobs_requisitions) + list(GLOB.jobs_police) + list(GLOB.jobs_medical) + list(GLOB.jobs_engineering) + list(GLOB.jobs_marines)))
 		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
 		dat += "<fieldset class='latejoin' style='border-color: [cat_color]'>"
 		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
@@ -348,7 +348,7 @@
 			var/datum/job/job_datum = SSjob.name_occupations[job]
 			if(job_datum && IsJobAvailable(job_datum.title, TRUE))
 				var/command_bold = ""
-				if(job in JOBS_COMMAND)
+				if(job in GLOB.jobs_command)
 					command_bold = " command"
 				dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
 		if(!length(dept_dat))

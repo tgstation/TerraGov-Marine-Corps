@@ -12,7 +12,7 @@
 	force = 15.0
 	throwforce = 4.0
 	item_state = "pickaxe"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	matter = list("metal" = 3750)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	origin_tech = "materials=1;engineering=1"
@@ -91,7 +91,7 @@
 	name = "plasma cutter"
 	icon_state = "plasma_cutter_off"
 	item_state = "plasmacutter"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 40.0
 	damtype = "fire"
@@ -260,29 +260,25 @@
 		if(!cell)
 			replace_install = "You install a cell in [src]"
 		else
-			cell.updateicon()
+			cell.update_icon()
 			user.put_in_hands(cell)
 		cell = I
 		to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
-		playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
+		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 		update_plasmacutter()
 
 
-/obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
+/obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
-		return
+		return ..()
 	if(!cell)
-		return
-	cell.updateicon()
+		return ..()
+	cell.update_icon()
 	user.put_in_active_hand(cell)
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 25, 1, 5)
 	to_chat(user, "<span class='notice'>You remove the cell from [src].</span>")
 	update_plasmacutter()
-	return
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)

@@ -191,8 +191,8 @@
 
 	last_orbital_firing = world.time
 
-	playsound(loc, 'sound/weapons/tank_smokelauncher_fire.ogg', 70, 1)
-	playsound(loc, 'sound/weapons/pred_plasma_shot.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 
 	var/inaccurate_fuel = 0
 
@@ -347,7 +347,7 @@
 
 		if(PC.loaded)
 			return TRUE
-			
+
 		forceMove(PC.linked_powerloader)
 		PC.loaded = src
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
@@ -439,7 +439,7 @@
 	return
 
 
-/obj/machinery/computer/orbital_cannon_console/attack_hand(mob/user)
+/obj/machinery/computer/orbital_cannon_console/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -551,8 +551,8 @@
 	flick("Railgun_firing",src)
 	cannon_busy = TRUE
 	last_firing = world.time
-	playsound(loc, 'sound/weapons/tank_smokelauncher_fire.ogg', 70, 1)
-	playsound(loc, 'sound/weapons/pred_plasma_shot.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
 	sleep(15)
 	rail_gun_ammo.detonate_on(target)

@@ -3,13 +3,13 @@
 	name = "curtain"
 	icon_state = "closed"
 	layer = ABOVE_MOB_LAYER
-	opacity = 1
-	density = 0
+	opacity = TRUE
+	density = FALSE
 
 /obj/structure/curtain/open
 	icon_state = "open"
 	layer = OBJ_LAYER
-	opacity = 0
+	opacity = FALSE
 
 /obj/structure/curtain/bullet_act(obj/item/projectile/P, def_zone)
 	if(P.damage)
@@ -17,7 +17,7 @@
 		qdel(src)
 	return 0
 
-/obj/structure/curtain/attack_hand(mob/user)
+/obj/structure/curtain/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

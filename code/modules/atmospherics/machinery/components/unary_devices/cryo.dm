@@ -63,7 +63,7 @@
 		occupant.bodytemperature = 100 //Temp fix for broken atmos
 		occupant.stat = 1
 		if(occupant.bodytemperature < T0C)
-			occupant.KnockDown(10)
+			occupant.knock_down(10)
 			if(occupant.getOxyLoss())
 				occupant.adjustOxyLoss(-1)
 
@@ -325,10 +325,10 @@
 
 	else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.stasis_mob)
+		if(!C.bodybag_occupant)
 			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 			return
-		M = C.stasis_mob
+		M = C.bodybag_occupant
 		C.open()
 		user.start_pulling(M)
 
@@ -395,7 +395,7 @@
 			popup.open(FALSE)
 		break
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/user)
+/obj/machinery/atmospherics/components/unary/cryo_cell/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

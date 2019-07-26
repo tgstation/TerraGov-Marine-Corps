@@ -16,7 +16,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	flags_item = NOBLUDGEON
 	sharp = IS_SHARP_ITEM_SIMPLE
 	var/mode = SYRINGE_DRAW
@@ -43,7 +43,7 @@
 			return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_hand()
+/obj/item/reagent_container/syringe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -69,7 +69,7 @@
 		var/mob/M = target
 		var/mob/living/L = user
 		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
-			L.KnockDown(3)
+			L.knock_down(3)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \
@@ -136,8 +136,6 @@
 		if(SYRINGE_INJECT)
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>The syringe is empty.</span>")
-				return
-			if(istype(target, /obj/item/implantcase/chem))
 				return
 
 			if(!target.is_injectable() && !ismob(target))
@@ -249,21 +247,18 @@
 			return
 
 		if (target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</span>"), 1)
+			visible_message("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!</span>")
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 			return
 
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>"), 1)
+		visible_message("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src]!</span>")
 
 		if(affecting.take_damage_limb(3))
 			target:UpdateDamageIcon()
 
 	else
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] with [src.name]!</span>"), 1)
+		visible_message("<span class='danger'>[user] stabs [target] with [src]!</span>")
 		target.take_limb_damage(3)// 7 is the same as crowbar punch
 
 	reagents.reaction(target, INJECT)
@@ -320,8 +315,7 @@
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>[src] is empty.</span>")
 				return
-			if(istype(target, /obj/item/implantcase/chem))
-				return
+
 			if(!target.is_injectable() && !ismob(target))
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return

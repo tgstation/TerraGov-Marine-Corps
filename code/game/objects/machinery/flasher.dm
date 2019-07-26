@@ -18,7 +18,7 @@
 	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
 	icon_state = "pflash1"
 	strength = 8
-	anchored = 0
+	anchored = FALSE
 	base_state = "pflash"
 	density = TRUE
 
@@ -73,7 +73,7 @@
 			L.flash_eyes()
 
 
-		L.KnockDown(strength)			
+		L.knock_down(strength)			
 
 
 /obj/machinery/flasher/emp_act(severity)
@@ -115,7 +115,7 @@
 	. = ..()
 	return attack_hand(user)
 
-/obj/machinery/flasher_button/attack_hand(mob/user as mob)
+/obj/machinery/flasher_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -135,8 +135,7 @@
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == id)
-			spawn()
-				M.flash()
+			INVOKE_ASYNC(M, /obj/machinery/flasher.proc/flash)
 
 	sleep(50)
 

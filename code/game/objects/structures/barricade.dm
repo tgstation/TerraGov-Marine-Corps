@@ -52,7 +52,7 @@
 			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
 			"<span class='danger'>The barbed wire slices into you!</span>")
 			C.apply_damage(10)
-			C.KnockDown(2) //Leaping into barbed wire is VERY bad
+			C.knock_down(2) //Leaping into barbed wire is VERY bad
 	..()
 
 
@@ -118,19 +118,19 @@
 	return attack_alien(user)
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
 	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
+		"<span class='danger'>We slash [src]!</span>", null, 5)
 	if(is_wired)
 		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
-		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
+		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
 		M.apply_damage(10)
 	update_health(TRUE)
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
@@ -859,7 +859,7 @@
 				destroy_structure(TRUE) //Note : Handles deconstruction too !
 
 
-/obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
+/obj/structure/barricade/plasteel/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

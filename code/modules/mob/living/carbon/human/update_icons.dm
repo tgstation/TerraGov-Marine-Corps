@@ -278,7 +278,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(underwear >0 && underwear < 3)
 			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
 
-		if(job in JOBS_MARINES) //undoing override
+		if(job in GLOB.jobs_marines) //undoing override
 			if(undershirt>0 && undershirt < 5)
 				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 		else if(undershirt > 0 && undershirt < 7)

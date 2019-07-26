@@ -104,7 +104,7 @@
 
 /obj/structure/flora/tree/process()
 	if(obj_integrity <= 0)
-		density = 0
+		density = FALSE
 		var/obj/structure/flora/stump/S = new(loc)
 		S.name = "[name] stump"
 		STOP_PROCESSING(SSobj, src)
@@ -419,7 +419,7 @@
 /obj/structure/jungle
 	name = "jungle foliage"
 	icon = 'icons/turf/ground_map.dmi'
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
@@ -456,7 +456,7 @@
 	var/mob/living/L = user
 
 	to_chat(L, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)
 
@@ -466,7 +466,7 @@
 
 /obj/structure/jungle/vines/heavy
 	desc = "A thick, coiled mass of twisted vines."
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/jungle/vines/heavy/Initialize()
 	. = ..()

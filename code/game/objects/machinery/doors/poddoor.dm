@@ -47,6 +47,8 @@
 			flick("pdoorc0", src)
 		if("closing")
 			flick("pdoorc1", src)
+	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
+	return
 
 /obj/machinery/door/poddoor/two_tile_hor
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'

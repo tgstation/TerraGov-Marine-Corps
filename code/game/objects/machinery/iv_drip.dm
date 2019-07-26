@@ -1,8 +1,8 @@
 /obj/machinery/iv_drip
 	name = "\improper IV drip"
 	icon = 'icons/obj/iv_drip.dmi'
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	drag_delay = 1
 
 	var/mob/living/carbon/human/attached = null
@@ -139,7 +139,7 @@
 		T.take_blood(beaker, amount)
 		update_icon()
 
-/obj/machinery/iv_drip/attack_hand(mob/user as mob)
+/obj/machinery/iv_drip/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

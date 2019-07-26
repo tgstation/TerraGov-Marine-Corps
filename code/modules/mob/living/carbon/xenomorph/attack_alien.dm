@@ -9,9 +9,6 @@
 /mob/living/carbon/xenomorph/proc/reset_critical_hit()
 	critical_proc = FALSE
 
-/mob/living/carbon/xenomorph/proc/process_rage_attack()
-	return FALSE
-
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(X == src || anchored || buckled)
 		return FALSE
@@ -33,18 +30,18 @@
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>", \
-	"<span class='warning'>You shove [src]!</span>", null, 5)
+	"<span class='warning'>We shove [src]!</span>", null, 5)
 	return TRUE
 
 /mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	. = ..()
-	KnockDown(8)
+	knock_down(8)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
 		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
@@ -52,7 +49,7 @@
 	X.flick_attack_overlay(src, "disarm")
 
 	if(!knocked_down && !no_stun && (traumatic_shock > 100))
-		KnockDown(1)
+		knock_down(1)
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
@@ -83,17 +80,19 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks)
+			knock_out(knockout_stacks)
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src)
+	var/list/pain_mod = list()
 
-	X.neuroclaw_router(src) //if we have neuroclaws...
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src, tackle_pain, pain_mod)
+
+	for(var/i in pain_mod)
+		tackle_pain += i
+
 	if(dam_bonus)
 		tackle_pain += dam_bonus
-
-	tackle_pain = X.hit_and_run_bonus(tackle_pain) //Apply Runner hit and run bonus damage if applicable
 
 	apply_damage(tackle_pain, HALLOSS, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
 	updatehealth()
@@ -166,7 +165,7 @@
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
 
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 
 	var/attack_flick =  "slash"
 	var/attack_sound = "alien_claw_flesh"
@@ -197,7 +196,7 @@
 	//Somehow we will deal no damage on this attack
 	if(!damage)
 		playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		X.animation_attack_on(src)
+		X.do_attack_animation(src)
 		X.visible_message("<span class='danger'>\The [X] lunges at [src]!</span>", \
 		"<span class='danger'>We lunge at [src]!</span>", null, 5)
 		return FALSE
@@ -236,16 +235,18 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks) //...And we knock 
+			knock_out(knockout_stacks) //...And we knock 
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
-	if(dam_bonus)
-		damage += dam_bonus
-	else //We avoid stacking, like hit-and-run and savage.
-		damage = X.hit_and_run_bonus(damage) //Apply Runner hit and run bonus damage if applicable
+	var/list/damage_mod = list()
 
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src)
+	// if we don't get any non-stacking bonuses dont apply dam_bonus
+	if(!( SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod) & COMSIG_XENOMORPH_BONUS_APPLIED ))
+		damage_mod += dam_bonus
+
+	for(var/i in damage_mod)
+		damage += i
 
 	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
 	updatehealth()
@@ -287,8 +288,7 @@
 	if(!.)
 		return FALSE
 	
-	X.neuroclaw_router(src) //if we have neuroclaws...
-	X.process_rage_attack() //Process Ravager rage gains on attack
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

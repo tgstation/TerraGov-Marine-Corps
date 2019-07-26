@@ -69,7 +69,7 @@
 // Allows humans to use door_display
 // Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
-/obj/machinery/door_display/attack_hand(mob/user as mob)
+/obj/machinery/door_display/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

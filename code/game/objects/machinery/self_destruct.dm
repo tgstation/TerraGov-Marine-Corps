@@ -39,7 +39,7 @@
 	return ..()
 
 
-/obj/machinery/self_destruct/console/attack_hand(mob/user)
+/obj/machinery/self_destruct/console/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return FALSE
@@ -69,7 +69,7 @@
 				SSnano.close_user_uis(usr, src, "main")
 
 		if("dest_cancel")
-			if(!usr.mind?.assigned_role || !(usr.mind.assigned_role in JOBS_COMMAND))
+			if(!usr.mind?.assigned_role || !(usr.mind.assigned_role in GLOB.jobs_command))
 				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
 				return
 			if(SSevacuation.cancel_self_destruct())
@@ -113,7 +113,7 @@
 		layer = ABOVE_OBJ_LAYER
 
 
-/obj/machinery/self_destruct/rod/attack_hand(mob/user)
+/obj/machinery/self_destruct/rod/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

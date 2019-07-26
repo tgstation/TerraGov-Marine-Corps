@@ -27,7 +27,7 @@
 	name = "systems computer"
 	desc = "A small computer hooked up into the ship's systems."
 
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 20
@@ -180,7 +180,7 @@
 	desc = "The name of the ship stenciled on the hull."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "TGMC1"
-	density = 0
+	density = FALSE
 	resistance_flags = UNACIDABLE
 
 /obj/structure/prop/almayer/name_stencil/Initialize()
@@ -193,7 +193,7 @@
 	desc = "A large number stenciled on the hangar floor used to designate which dropship it is."
 	icon = 'icons/Marine/almayer_props96.dmi'
 	icon_state = "dropship1"
-	density = 0
+	density = FALSE
 	layer = ABOVE_TURF_LAYER
 
 
@@ -202,7 +202,7 @@
 	desc = "Some large cables."
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "cannon_cables"
-	density = 0
+	density = FALSE
 	mouse_opacity = 0
 	layer = LADDER_LAYER
 

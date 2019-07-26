@@ -30,7 +30,7 @@
 	ranged = 1
 	retreat_distance = 5
 	minimum_distance = 5
-	projectilesound = 'sound/weapons/gunshot.ogg'
+	projectilesound = 'sound/weapons/guns/fire/gunshot.ogg'
 
 
 /mob/living/simple_animal/hostile/russian/ranged/trooper

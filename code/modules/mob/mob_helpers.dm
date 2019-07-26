@@ -438,13 +438,16 @@ mob/proc/get_standard_bodytemperature()
 	A.target = source
 	if(!alert_overlay)
 		alert_overlay = new(source)
-		var/icon/i = icon(source.icon)
-		var/higher_power = (i.Height() > i.Width()) ? i.Height() : i.Width()
-		if (higher_power > 32)
+		var/icon/I = icon(source.icon)
+		var/iheight = I.Height()
+		var/iwidth = I.Width()
+		var/higher_power = (iheight > iwidth) ? iheight : iwidth
+		if(higher_power > 32)
 			var/diff = 32 / higher_power
 			alert_overlay.transform = alert_overlay.transform.Scale(diff, diff)
-			alert_overlay.pixel_y = -32 * diff
-			alert_overlay.pixel_x = -32 * diff
+			if(higher_power > 48)
+				alert_overlay.pixel_y = -(iheight / 2) * diff
+				alert_overlay.pixel_x = -(iwidth / 2) * diff
 
 
 	alert_overlay.layer = FLOAT_LAYER

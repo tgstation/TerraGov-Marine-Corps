@@ -1,4 +1,4 @@
-#define NODERANGE 3
+#define NODERANGE 2
 
 /obj/effect/alien/weeds
 	name = "weeds"
@@ -7,7 +7,7 @@
 	icon_state = "base"
 
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	layer = TURF_LAYER
 	var/parent_node
 	max_integrity = 4
@@ -27,7 +27,8 @@
 
 
 /obj/effect/alien/weeds/Destroy()
-	SSweeds.add_weed(src)
+	if(parent_node)
+		SSweeds.add_weed(src)
 
 	var/oldloc = loc
 	. = ..()
@@ -114,7 +115,7 @@
 		playsound(loc, "alien_resin_break", 25)
 
 	var/mob/living/L = user
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 
 	var/multiplier = 1
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
@@ -138,12 +139,6 @@
 
 /obj/effect/alien/weeds/update_icon()
 	return
-
-/obj/effect/alien/weeds/fire_act()
-	if(!gc_destroyed)
-		spawn(rand(100,175))
-			qdel(src)
-
 
 /obj/effect/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
@@ -184,6 +179,10 @@
 
 	var/node_turfs = list() // list of all potential turfs that we can expand to
 
+/obj/effect/alien/weeds/node/Destroy()
+	. = ..()
+	SSweeds_decay.decay_weeds(node_turfs)
+
 
 /obj/effect/alien/weeds/node/update_icon()
 	overlays.Cut()
@@ -202,7 +201,6 @@
 	generate_weed_graph()
 	SSweeds.add_node(src)
 
-
 /obj/effect/alien/weeds/node/proc/generate_weed_graph()
 	var/list/turfs_to_check = list()
 	turfs_to_check += get_turf(src)
@@ -211,7 +209,7 @@
 		node_size--
 		for(var/X in turfs_to_check)
 			var/turf/T = X
-			for(var/direction in GLOB.cardinals)
+			for(var/direction in GLOB.alldirs)
 				var/turf/AdjT = get_step(T, direction)
 				if (AdjT == src) // Ignore the node
 					continue

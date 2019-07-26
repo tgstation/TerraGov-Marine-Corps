@@ -55,7 +55,7 @@
 	return ..()
 
 
-/obj/machinery/computer/security/attack_hand(mob/living/carbon/human/user)
+/obj/machinery/computer/security/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -164,7 +164,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "telescreen"
 	network = list("thunder")
-	density = 0
+	density = FALSE
 	circuit = null
 
 

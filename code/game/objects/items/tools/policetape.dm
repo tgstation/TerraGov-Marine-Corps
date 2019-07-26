@@ -4,7 +4,7 @@
 	icon = 'icons/obj/policetape.dmi'
 	icon_state = "rollstart"
 	flags_item = NOBLUDGEON
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/item/tape
@@ -125,16 +125,15 @@
 	. = ..()
 	breaktape(I, user)
 
-/obj/item/tape/attack_hand(mob/user as mob)
+/obj/item/tape/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if (user.a_intent == INTENT_HELP && allowed(user))
 		user.visible_message("<span class='notice'>[user] lifts [src], allowing passage.</span>")
 		crumple()
-		lifted = 1
-		spawn(200)
-			lifted = 0
+		lifted = TRUE
+		addtimer(VARSET_CALLBACK(src, lifted, FALSE), 20 SECONDS)
 	else
 		breaktape(null, user)
 

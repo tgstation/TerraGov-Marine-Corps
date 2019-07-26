@@ -5,7 +5,7 @@
 	desc = "A locked box."
 	icon_state = "lockbox+l"
 	item_state = "syringe_kit"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 4
@@ -39,8 +39,7 @@
 			locked = 0
 			desc = "It appears to be broken."
 			icon_state = src.icon_broken
-			for(var/mob/O in viewers(user, 3))
-				O.show_message("<span class='notice'> The locker has been broken by [user] with an electromagnetic card!</span>", 1, "You hear a faint electrical spark.", 2)
+			visible_message("<span class='notice'>The locker has been broken by [user] with an electromagnetic card!</span>", null, "You hear a faint electrical spark.", 3)
 
 		if(!locked)
 			..()
@@ -55,18 +54,6 @@
 		else
 			..()
 		return
-
-
-/obj/item/storage/lockbox/loyalty
-	name = "\improper lockbox of loyalty implants"
-	req_access = list(ACCESS_MARINE_BRIG)
-
-	New()
-		..()
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implanter/loyalty(src)
 
 
 /obj/item/storage/lockbox/clusterbang

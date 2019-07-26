@@ -49,7 +49,7 @@
 /obj/machinery/computer/arcade/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/arcade/attack_hand(mob/user as mob)
+/obj/machinery/computer/arcade/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

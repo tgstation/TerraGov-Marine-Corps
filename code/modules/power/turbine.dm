@@ -27,5 +27,5 @@
 	desc = "Electrogenerator. Converts rotation into power."
 	icon = 'icons/obj/pipeturbine.dmi'
 	icon_state = "motor"
-	anchored = 0
+	anchored = FALSE
 	density = TRUE

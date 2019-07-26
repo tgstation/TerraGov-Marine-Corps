@@ -41,7 +41,7 @@
 /obj/structure/lamarr/proc/healthcheck()
 	if (src.obj_integrity <= 0)
 		if (!( src.destroyed ))
-			src.density = 0
+			src.density = FALSE
 			src.destroyed = 1
 			new /obj/item/shard( src.loc )
 			playsound(src, "shatter", 25, 1)
@@ -68,7 +68,7 @@
 /obj/structure/lamarr/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/structure/lamarr/attack_hand(mob/user as mob)
+/obj/structure/lamarr/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

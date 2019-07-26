@@ -127,7 +127,7 @@
 
 	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
-	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
+	"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
 
 	if(do_after(M, 30, FALSE, src, BUSY_ICON_BUILD))
 		if(blocked)
@@ -137,9 +137,9 @@
 			spawn(0)
 				open(1)
 				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+				"<span class='danger'>We pry \the [src] open.</span>", null, 5)
 
-/obj/machinery/door/firedoor/attack_hand(mob/user as mob)
+/obj/machinery/door/firedoor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -180,11 +180,9 @@
 			// Accountability!
 			users_to_open |= user.name
 			needs_to_close = TRUE
-		spawn()
-			open()
+		INVOKE_ASYNC(src, .proc/open)
 	else
-		spawn()
-			close()
+		INVOKE_ASYNC(src, .proc/close)
 
 	if(needs_to_close)
 		spawn(50)
@@ -268,7 +266,6 @@
 			use_power(360)
 	else
 		log_game("[key_name(usr)] has forced open an emergency shutter at [AREACOORD(usr.loc)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has forced open an emergency shutter.")
 	latetoggle()
 	return ..()
 

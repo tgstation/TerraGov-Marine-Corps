@@ -163,7 +163,7 @@
 	if(!isliving(occupant))
 		return
 	var/mob/living/L = occupant
-	L.KnockDown(4)
+	L.knock_down(4)
 
 //Two seats, gunner and driver
 //Must have the skills to do so
@@ -287,10 +287,7 @@
 				ST.update_icon(1, 0)
 
 	if(next_sound_play < world.time)
-		if(!CONFIG_GET(flag/tank_mouth_noise))
-			playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
-		else
-			playsound(src, 'sound/ambience/tank_driving_joke.ogg', vol = 20, sound_range = 30)
+		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
 		next_sound_play = world.time + 21
 
 //No one but the driver can turn

@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/structure/computerframe
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	name = "Computer-frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "0"

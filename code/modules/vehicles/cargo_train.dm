@@ -17,13 +17,13 @@
 	desc = "A keyring with a small steel key, and a yellow fob reading \"Choo Choo!\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "train_keys"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/vehicle/train/cargo/trolley
 	name = "cargo train trolley"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_trailer"
-	anchored = 0
+	anchored = FALSE
 	locked = 0
 	can_buckle = FALSE
 
@@ -33,7 +33,6 @@
 /obj/vehicle/train/cargo/engine/New()
 	..()
 	cell = new /obj/item/cell/apc
-	verbs -= /atom/movable/verb/pull
 	key = new()
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
 	overlays += I
@@ -213,11 +212,6 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
-		if(verbs.Find(/atom/movable/verb/pull))
-			return
-		else
-			verbs += /atom/movable/verb/pull
+		anchored = FALSE
 	else
 		anchored = TRUE
-		verbs -= /atom/movable/verb/pull

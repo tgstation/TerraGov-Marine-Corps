@@ -32,7 +32,7 @@
 			icon_state = "[base_bed_icon]_down"
 
 obj/structure/bed/Destroy()
-	if(buckled_bodybag)
+	if(buckled_mob || buckled_bodybag)
 		unbuckle()
 	. = ..()
 
@@ -152,11 +152,12 @@ obj/structure/bed/Destroy()
 
 /obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM)
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		playsound(src, hit_bed_sound, 25, 1)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
-		unbuckle()
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
+		if(buckled_mob || buckled_bodybag)
+			unbuckle()
 		destroy_structure()
 		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
 	else attack_hand(M)
@@ -229,7 +230,7 @@ obj/structure/bed/Destroy()
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
-	w_class = 2 //Fits in a backpack
+	w_class = WEIGHT_CLASS_SMALL //Fits in a backpack
 	drag_delay = 1 //Pulling something on wheels is easy
 	var/rollertype = /obj/structure/bed/roller
 
@@ -322,7 +323,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	radio = new(src)
 
 /obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/M)
-	unbuckle()
+	if(buckled_mob || buckled_bodybag)
+		unbuckle()
 
 /obj/structure/bed/medevac_stretcher/Destroy()
 	QDEL_NULL(radio)
@@ -614,7 +616,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	icon_state = "med_beacon1"
 	playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 
-/obj/item/medevac_beacon/attack_hand(mob/user)
+/obj/item/medevac_beacon/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

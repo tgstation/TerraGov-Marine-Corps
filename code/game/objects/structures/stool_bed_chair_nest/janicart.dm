@@ -5,7 +5,7 @@
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
-	anchored = 0
+	anchored = FALSE
 	density = TRUE
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	//copypaste sorry
@@ -46,7 +46,7 @@
 		I.forceMove(src)
 		mybag = I
 
-/obj/structure/bed/chair/janicart/attack_hand(mob/user)
+/obj/structure/bed/chair/janicart/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -112,4 +112,4 @@
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "keys"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY

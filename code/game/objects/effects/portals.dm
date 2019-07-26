@@ -10,31 +10,20 @@
 	anchored = TRUE
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
-	spawn(0)
-		src.teleport(M)
-		return
-	return
+	INVOKE_ASYNC(src, .proc/teleport, M)
 
 /obj/effect/portal/Crossed(AM as mob|obj)
-	spawn(0)
-		src.teleport(AM)
-		return
-	return
+	INVOKE_ASYNC(src, .proc/teleport, AM)
 
-/obj/effect/portal/attack_hand(mob/user as mob)
+/obj/effect/portal/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	spawn(0)
-		src.teleport(user)
-		return
-	return
+	INVOKE_ASYNC(src, .proc/teleport, user)
 
-/obj/effect/portal/New()
-	spawn(300)
-		qdel(src)
-		return
-	return
+/obj/effect/portal/Initialize()
+	. = ..()
+	QDEL_IN(src, 30 SECONDS)
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if(istype(M, /obj/effect)) //sparks don't teleport

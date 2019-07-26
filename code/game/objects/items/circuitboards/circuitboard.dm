@@ -1,5 +1,5 @@
 /obj/item/circuitboard
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	name = "Circuit board"
 	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "id_mod"
@@ -85,7 +85,7 @@
 /obj/item/circuitboard/airlock
 	name = "airlock electronics"
 	icon_state = "door_electronics"
-	w_class = 2 //It should be tiny! -Agouri
+	w_class = WEIGHT_CLASS_SMALL //It should be tiny! -Agouri
 	matter = list("metal" = 50,"glass" = 50)
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	var/list/conf_access = null
@@ -120,7 +120,7 @@
 
 		t1 += "<br>"
 
-		var/list/accesses = get_all_accesses()
+		var/list/accesses = ALL_ACCESS
 		for (var/acc in accesses)
 			var/aname = get_access_desc(acc)
 

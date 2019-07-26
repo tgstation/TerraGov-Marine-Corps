@@ -14,6 +14,8 @@
 	var/last_dam = -1
 	var/supported = FALSE
 
+	var/datum/armor/armor
+
 	var/display_name
 	var/list/wounds = list()
 	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
@@ -62,9 +64,8 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
+	armor = getArmor()
 	return ..()
-
-
 
 /*
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
@@ -936,9 +937,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
 			spark_system.start()
-			spawn(10)
-				qdel(spark_system)
-				spark_system = null
+			QDEL_NULL_IN(src, spark_system, 1 SECONDS)
 
 /datum/limb/proc/embed(obj/item/W, silent = 0)
 	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))

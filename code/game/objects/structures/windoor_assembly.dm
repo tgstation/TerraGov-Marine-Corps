@@ -14,8 +14,8 @@ obj/structure/windoor_assembly
 
 	name = "Windoor Assembly"
 	icon_state = "l_windoor_assembly01"
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	dir = NORTH
 
 	var/obj/item/circuitboard/airlock/electronics = null
@@ -29,7 +29,7 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	..()
 	if(constructed)
 		state = "01"
-		anchored = 0
+		anchored = FALSE
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
 			setDir(start_dir)
@@ -38,7 +38,7 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 
 
 obj/structure/windoor_assembly/Destroy()
-	density = 0
+	density = FALSE
 	. = ..()
 
 /obj/structure/windoor_assembly/setDir(newdir)
@@ -79,7 +79,7 @@ obj/structure/windoor_assembly/Destroy()
 				user.visible_message("[user] dissassembles the windoor assembly.", "You start to dissassemble the windoor assembly.")
 				playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-				if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					return
 
 				if(!src || !WT.isOn()) 
@@ -129,7 +129,7 @@ obj/structure/windoor_assembly/Destroy()
 					return
 
 				to_chat(user, "<span class='notice'>You start to reinforce the windoor with rods.</span>")
-				if(!do_after(user,40, TRUE, 5, BUSY_ICON_BUILD) || secure)
+				if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD) || secure)
 					return
 
 				if(!R.use(4))

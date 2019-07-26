@@ -159,7 +159,7 @@
 		if (!temp)
 			break
 		T = temp
-	X.animation_attack_on(H)
+	X.do_attack_animation(H)
 	X.flick_attack_overlay(H, "disarm")
 	H.throw_at(T, fling_distance, 1, X, 1)
 
@@ -210,7 +210,7 @@
 	playsound(M, S, 50, 1)
 
 	M.punch_act(X, damage, target_zone)
-	X.animation_attack_on(M)
+	X.do_attack_animation(M)
 	X.flick_attack_overlay(M, "punch")
 	shake_camera(M, 2, 1)
 	step_away(M, X, 2)

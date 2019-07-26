@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	31
+#define SAVEFILE_VERSION_MAX	35
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,26 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 35)
+		WRITE_FILE(S["focus_chat"], FALSE)
+
+	if(savefile_version < 34)
+		READ_FILE(S["key_bindings"], key_bindings)
+		if(key_bindings)
+			key_bindings = sanitize_islist(key_bindings, list())
+			key_bindings["T"] = list(1 = "say")
+			key_bindings["M"] = list(1 = "me")
+			key_bindings["O"] = list(1 = "ooc")
+			key_bindings["L"] = list(1 = "looc")
+			WRITE_FILE(S["key_bindings"], key_bindings)
+
+	if(savefile_version < 33)
+		if(!length(S["key_bindings"]))
+			WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.hotkey_keybinding_list_by_key))
+
+	if(savefile_version < 32)
+		WRITE_FILE(S["observer_actions"], TRUE)
 
 	if(savefile_version < 31)
 		WRITE_FILE(S["key_bindings"], null)
@@ -58,7 +78,7 @@
 		WRITE_FILE(S["menuoptions"], list())
 
 	if(savefile_version < 23)
-		WRITE_FILE(S["hotkeys"], TRUE)
+		WRITE_FILE(S["focus_chat"], TRUE)
 
 	if(savefile_version < 22)
 		WRITE_FILE(S["windowflashing"], TRUE)
@@ -115,7 +135,8 @@
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
 	READ_FILE(S["ghost_form"], ghost_form)
 	READ_FILE(S["ghost_others"], ghost_others)
-	READ_FILE(S["hotkeys"], hotkeys)
+	READ_FILE(S["observer_actions"], observer_actions)
+	READ_FILE(S["focus_chat"], focus_chat)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
 
@@ -137,13 +158,11 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
-	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
+	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
+	focus_chat			= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
-
-	if(!length(key_bindings))
-		addtimer(CALLBACK(src, .proc/load_default_keybindings, parent), 5 SECONDS)
 
 	return TRUE
 
@@ -176,7 +195,8 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
-	hotkeys			= sanitize_integer(hotkeys, FALSE, TRUE, initial(hotkeys))
+	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
+	focus_chat			= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	WRITE_FILE(S["default_slot"], default_slot)
@@ -198,7 +218,8 @@
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
 	WRITE_FILE(S["ghost_form"], ghost_form)
 	WRITE_FILE(S["ghost_others"], ghost_others)
-	WRITE_FILE(S["hotkeys"], hotkeys)
+	WRITE_FILE(S["observer_actions"], observer_actions)
+	WRITE_FILE(S["focus_chat"], focus_chat)
 	WRITE_FILE(S["tooltips"], tooltips)
 
 	return TRUE
@@ -329,10 +350,7 @@
 	if(!xeno_name)
 		xeno_name = "Undefined"
 	if(!real_name)
-		if(gender == FEMALE)
-			real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
-		else
-			real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+		real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 	return TRUE
 

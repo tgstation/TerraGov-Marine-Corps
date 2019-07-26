@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 /obj/machinery/newscaster/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
+/obj/machinery/newscaster/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -493,7 +493,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 				newMsg.author = src.scanned_user
 				newMsg.body = src.msg
 				if(photo)
-					newMsg.img = photo.img
+					newMsg.img = photo.picture.picture_icon
 				for(var/datum/feed_channel/FC in GLOB.news_network.network_channels)
 					if(FC.channel_name == src.channel_name)
 						FC.messages += newMsg                  //Adding message to the network's appropriate feed_channel
@@ -567,7 +567,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 						WANTED.body = src.msg
 						WANTED.backup_author = src.scanned_user //I know, a bit wacky
 						if(photo)
-							WANTED.img = photo.img
+							WANTED.img = photo.picture.picture_icon
 						GLOB.news_network.wanted_issue = WANTED
 						for(var/obj/machinery/newscaster/NEWSCASTER in GLOB.all_casters)
 							NEWSCASTER.newsAlert()
@@ -581,7 +581,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 						GLOB.news_network.wanted_issue.body = src.msg
 						GLOB.news_network.wanted_issue.backup_author = src.scanned_user
 						if(photo)
-							GLOB.news_network.wanted_issue.img = photo.img
+							GLOB.news_network.wanted_issue.img = photo.picture.picture_icon
 						src.screen = 19
 
 			src.updateUsrDialog()
@@ -742,7 +742,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "newspaper"
-	w_class = 1	//Let's make it fit in trashbags!
+	w_class = WEIGHT_CLASS_TINY	//Let's make it fit in trashbags!
 	attack_verb = list("bapped")
 	var/screen = 0
 	var/pages = 0
@@ -752,7 +752,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	var/scribble=""
 	var/scribble_page = null
 
-/*obj/item/newspaper/attack_hand(mob/user as mob)
+/*obj/item/newspaper/attack_hand(mob/living/user)
 	..()
 	to_chat(world, "derp")*/
 
@@ -925,10 +925,8 @@ obj/item/newspaper/Topic(href, href_list)
 //	return                                  //bode well with a newscaster network of 10+ machines. Let's just return it, as it's added in the machines list.
 
 /obj/machinery/newscaster/proc/newsAlert(channel)   //This isn't Agouri's work, for it is ugly and vile.
-	var/turf/T = get_turf(src)                      //Who the fuck uses spawn(600) anyway, jesus christ
 	if(channel)
-		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Breaking news from [channel]!\"</span>",2)
+		audible_message("<span class='newscaster'><b>[src]</b> beeps, \"Breaking news from [channel]!\"</span>")
 		src.alert = 1
 		src.update_icon()
 		spawn(300)
@@ -936,7 +934,6 @@ obj/item/newspaper/Topic(href, href_list)
 			src.update_icon()
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 1)
 	else
-		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>",2)
+		audible_message("<span class='newscaster'><b>[src]</b> beeps, \"Attention! Wanted issue distributed!\"</span>")
 		playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 25, 1)
 	return

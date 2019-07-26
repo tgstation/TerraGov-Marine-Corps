@@ -22,7 +22,7 @@
 	var/l_setshort = 0
 	var/l_hacking = 0
 	var/open = 0
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	max_w_class = 2
 	max_storage_space = 14
 
@@ -137,7 +137,7 @@
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 	New()
 		..()
@@ -161,7 +161,7 @@
 		if ((CLUMSY in user.mutations) && prob(50))
 			to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
 			user.take_limb_damage(10)
-			user.KnockOut(2)
+			user.knock_out(2)
 			return
 
 		log_combat(user, M, "attack", src, "(INTENT: [uppertext(user.a_intent)])")
@@ -177,12 +177,11 @@
 						return
 					var/time = rand(2, 6)
 					if (prob(75))
-						H.KnockOut(time)
+						H.knock_out(time)
 					else
-						H.Stun(time)
+						H.stun(time)
 					if(H.stat != 2)	H.stat = 1
-					for(var/mob/O in viewers(H, null))
-						O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", H), 1, "<span class='warning'> You hear someone fall.</span>", 2)
+					visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", null, "<span class='warning'>You hear someone fall.</span>")
 				else
 					to_chat(H, text("<span class='warning'> [] tried to knock you unconcious!</span>",user))
 					H.adjust_blurriness(3)
@@ -205,7 +204,7 @@
 	w_class = 8.0
 	max_w_class = 8
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)
 
 /obj/item/storage/secure/safe/Initialize(mapload, ...)
@@ -213,7 +212,7 @@
 	new /obj/item/paper(src)
 	new /obj/item/tool/pen(src)
 
-/obj/item/storage/secure/safe/attack_hand(mob/user as mob)
+/obj/item/storage/secure/safe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

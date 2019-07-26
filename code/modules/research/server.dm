@@ -124,7 +124,7 @@
 		qdel(src)
 		return TRUE
 
-/obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
+/obj/machinery/r_n_d/server/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -249,7 +249,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/rdservercontrol/attack_hand(mob/user as mob)
+/obj/machinery/computer/rdservercontrol/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -286,12 +286,12 @@
 
 /mob/living/carbon/xenomorph/handle_stunned()
 	if(stunned)
-		AdjustStunned(-2)
+		adjust_stunned(-2)
 	return stunned
 
 /mob/living/carbon/xenomorph/handle_knocked_down()
 	if(knocked_down && client)
-		AdjustKnockeddown(-5)
+		adjust_knocked_down(-5)
 	return knocked_down
 
 /mob/living/carbon/xenomorph/handle_slowdown()

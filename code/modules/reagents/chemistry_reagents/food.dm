@@ -195,9 +195,9 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
 		victim.blur_eyes(15)
 		victim.blind_eyes(5)
-		victim.Stun(5)
-		victim.KnockDown(5)
-		//victim.KnockOut(10)
+		victim.stun(5)
+		victim.knock_down(5)
+		//victim.knock_out(10)
 		//victim.drop_held_item()
 		return
 	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
@@ -205,7 +205,7 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
 		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 			if(prob(10))
-				victim.Stun(1)
+				victim.stun(1)
 		victim.blur_eyes(5)
 		return
 	else // Oh dear :D
@@ -216,9 +216,9 @@
 			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
 		victim.blur_eyes(25)
 		victim.blind_eyes(10)
-		victim.Stun(5)
-		victim.KnockDown(5)
-		//victim.KnockOut(10)
+		victim.stun(5)
+		victim.knock_down(5)
+		//victim.knock_out(10)
 		//victim.drop_held_item()
 
 
@@ -254,9 +254,9 @@
 		L.emote(pick("sigh","grumble","frown"))
 
 /datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
-	L.Jitter(5) //Turn super salty
+	L.jitter(5) //Turn super salty
 	if(prob(10))
-		L.KnockDown(10)
+		L.knock_down(10)
 	if(prob(10))
 		L.emote(pick("cry","moan","pain"))
 
@@ -299,20 +299,20 @@
 	switch(current_cycle)
 		if(1 to 5)
 			L.stuttering += 1
-			L.Dizzy(5)
+			L.dizzy(5)
 			if(prob(10))
 				L.emote(pick("twitch","giggle"))
 		if(5 to 10)
 			L.stuttering += 1
-			L.Jitter(10)
-			L.Dizzy(10)
+			L.jitter(10)
+			L.dizzy(10)
 			L.set_drugginess(35)
 			if(prob(20))
 				L.emote(pick("twitch","giggle"))
 		if(10 to INFINITY)
 			L.stuttering += 1
-			L.Jitter(20)
-			L.Dizzy(20)
+			L.jitter(20)
+			L.dizzy(20)
 			L.set_drugginess(40)
 			if(prob(30))
 				L.emote(pick("twitch","giggle"))
@@ -321,12 +321,12 @@
 /datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(15))
-		L.KnockOut(5)
+		L.knock_out(5)
 
 /datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX)
 	if(prob(60))
-		L.KnockOut(3)
+		L.knock_out(3)
 	L.drowsyness = max(L.drowsyness, 30)
 
 /datum/reagent/consumable/sprinkles

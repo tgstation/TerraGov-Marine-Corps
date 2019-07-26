@@ -9,7 +9,7 @@
 	icon_closed = "closed_basic"
 	climbable = 1
 	climb_delay = 20 //Doesn't need as long to climb over a crate
-	anchored = 0
+	anchored = FALSE
 	mob_storage_capacity = 0
 	var/rigged = 0
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
@@ -84,6 +84,9 @@
 	return 1
 
 /obj/structure/closet/crate/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/powerloader_clamp))
+		return FALSE
+
 	. = ..()
 
 	if(iscablecoil(I))

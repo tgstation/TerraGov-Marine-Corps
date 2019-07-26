@@ -53,9 +53,7 @@
 		"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
 		"<span class='notice'>You hear squelching.</span>")
 		playsound(loc, "alien_resin_move", 50)
-		if(ishuman(buckled_mob))
-			var/mob/living/carbon/human/H = buckled_mob
-			H.last_unbuckled = world.time
+		user.cooldowns[COOLDOWN_NEST] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_NEST, null), NEST_UNBUCKLED_COOLDOWN)
 		unbuckle()
 		return
 
@@ -101,7 +99,7 @@
 		return
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.last_unbuckled + NEST_UNBUCKLED_COOLDOWN > world.time)
+		if(H.cooldowns[COOLDOWN_NEST])
 			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
 			return
 		if(!H.lying)
@@ -163,7 +161,7 @@
 
 /obj/structure/bed/nest/proc/healthcheck()
 	if(obj_integrity <= 0)
-		density = 0
+		density = FALSE
 		qdel(src)
 
 /obj/structure/bed/nest/flamer_fire_act()
@@ -179,7 +177,7 @@
 		return
 	if(M.a_intent == INTENT_HARM)
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
-		"<span class='danger'>You claw at \the [src].</span>")
+		"<span class='danger'>We claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
 		obj_integrity -= (M.melee_damage_upper + 25) //Beef up the damage a bit
 		healthcheck()

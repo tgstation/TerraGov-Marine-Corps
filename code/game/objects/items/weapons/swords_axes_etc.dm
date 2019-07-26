@@ -42,7 +42,7 @@
 	icon_state = "telebaton_0"
 	item_state = "telebaton_0"
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	force = 3
 	var/on = 0
 
@@ -55,7 +55,7 @@
 		"You hear an ominous click.")
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
-		w_class = 3
+		w_class = WEIGHT_CLASS_NORMAL
 		force = 10
 		attack_verb = list("smacked", "struck", "slapped")
 	else
@@ -64,7 +64,7 @@
 		"You hear a click.")
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"
-		w_class = 2
+		w_class = WEIGHT_CLASS_SMALL
 		force = 3//not so robust now
 		attack_verb = list("hit", "punched")
 
@@ -73,7 +73,7 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	playsound(src.loc, 'sound/weapons/gun_empty.ogg', 15, 1)
+	playsound(src.loc, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 
 	if(blood_overlay) //updates blood overlay, if any
 		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
@@ -111,14 +111,14 @@
 	if (active)
 		force = 10
 		icon_state = "eshield[active]"
-		w_class = 4
+		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 
 	else
 		force = 3
 		icon_state = "eshield[active]"
-		w_class = 1
+		w_class = WEIGHT_CLASS_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 

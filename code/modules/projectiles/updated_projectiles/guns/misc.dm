@@ -8,7 +8,7 @@
 	desc = "A gun that fires flares. Replace with flares. Simple!"
 	icon_state = "flaregun" //REPLACE THIS
 	item_state = "gun" //YUCK
-	fire_sound = 'sound/weapons/gun_flare.ogg'
+	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	origin_tech = "combat=1;materials=2"
 	ammo = /datum/ammo/flare
 	var/num_flares = 1
@@ -93,7 +93,7 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = "syringegun"
 	item_state = "syringegun"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 10
 	force = 4.0
@@ -136,7 +136,7 @@
 
 /obj/item/weapon/gun/syringe/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 	if(syringes.len)
-		spawn(0) fire_syringe(target,user)
+		INVOKE_ASYNC(src, .proc/fire_syringe, target, user)
 	else
 		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
 
@@ -214,7 +214,7 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "null"
 	anchored = TRUE
-	density = 0
+	density = FALSE
 
 /obj/effect/syringe_gun_dummy/Initialize()
 	create_reagents(15)

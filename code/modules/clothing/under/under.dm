@@ -8,7 +8,7 @@
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
 		/*
@@ -69,7 +69,7 @@
 	else
 		return ..()
 
-/obj/item/clothing/under/attack_hand(mob/user as mob)
+/obj/item/clothing/under/attack_hand(mob/living/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(hastie && src.loc == user)
 		hastie.attack_hand(user)
@@ -149,17 +149,13 @@
 	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("<span class='warning'> [user] disables [src.loc]'s remote sensing equipment.</span>", 1)
+				visible_message("<span class='warning'>[user] disables [loc]'s remote sensing equipment.</span>", null, null, 1)
 			if(1)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] turns [src.loc]'s remote sensors to binary.", 1)
+				visible_message("[user] turns [loc]'s remote sensors to binary.", null, null, 1)
 			if(2)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] sets [src.loc]'s sensors to track vitals.", 1)
+				visible_message("[user] sets [loc]'s sensors to track vitals.", null, null, 1)
 			if(3)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] sets [src.loc]'s sensors to maximum.", 1)
+				visible_message("[user] sets [loc]'s sensors to maximum.", null, null, 1)
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Toggle Suit Sensors"

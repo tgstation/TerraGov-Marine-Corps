@@ -3,7 +3,7 @@
 	name = "universal recorder"
 	icon_state = "taperecorderidle"
 	item_state = "analyzer"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 	matter = list("metal" = 60,"glass" = 30)
 
@@ -243,9 +243,7 @@
 			return
 		else if(playing == 1)
 			playing = 0
-			var/turf/T = get_turf(src)
-			for(var/mob/O in hearers(world.view-1, T))
-				O.show_message("<font color=Maroon><B>[src]</B>: Playback stopped.</font>",2)
+			audible_message("<font color=Maroon><B>[src]</B>: Playback stopped.</font>")
 			icon_state = "taperecorderidle"
 			return
 		else

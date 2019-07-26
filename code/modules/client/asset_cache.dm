@@ -400,35 +400,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-/datum/asset/spritesheet/simple/pda
-	name = "pda"
-	assets = list(
-		"atmos"			= 'icons/pda_icons/pda_atmos.png',
-		"back"			= 'icons/pda_icons/pda_back.png',
-		"bell"			= 'icons/pda_icons/pda_bell.png',
-		"blank"			= 'icons/pda_icons/pda_blank.png',
-		"boom"			= 'icons/pda_icons/pda_boom.png',
-		"bucket"		= 'icons/pda_icons/pda_bucket.png',
-		"crate"			= 'icons/pda_icons/pda_crate.png',
-		"cuffs"			= 'icons/pda_icons/pda_cuffs.png',
-		"eject"			= 'icons/pda_icons/pda_eject.png',
-		"flashlight"	= 'icons/pda_icons/pda_flashlight.png',
-		"honk"			= 'icons/pda_icons/pda_honk.png',
-		"mail"			= 'icons/pda_icons/pda_mail.png',
-		"medical"		= 'icons/pda_icons/pda_medical.png',
-		"menu"			= 'icons/pda_icons/pda_menu.png',
-		"mule"			= 'icons/pda_icons/pda_mule.png',
-		"notes"			= 'icons/pda_icons/pda_notes.png',
-		"power"			= 'icons/pda_icons/pda_power.png',
-		"rdoor"			= 'icons/pda_icons/pda_rdoor.png',
-		"reagent"		= 'icons/pda_icons/pda_reagent.png',
-		"refresh"		= 'icons/pda_icons/pda_refresh.png',
-		"scanner"		= 'icons/pda_icons/pda_scanner.png',
-		"signaler"		= 'icons/pda_icons/pda_signaler.png',
-		"status"		= 'icons/pda_icons/pda_status.png'
-	)
-
-
 /datum/asset/group/IRV
 	children = list(
 		/datum/asset/simple/jquery
@@ -512,7 +483,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 
 /datum/asset/spritesheet/pipes/register()
-	for (var/each in list('icons/obj/pipes/regular.dmi', 'icons/obj/pipes/disposal.dmi', 'icons/obj/pipes/transit_tube.dmi'))
+	for (var/each in list('icons/obj/pipes/disposal.dmi'))
 		InsertAll("", each, GLOB.alldirs)
 	return ..()
 

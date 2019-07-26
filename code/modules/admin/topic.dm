@@ -432,7 +432,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		else if(isxeno(M))
 			if(alert("Are you sure you want to tell the Xeno a Xeno tip?", "Confirmation", "Yes", "No") != "Yes")
 				return
-			to_chat(M, "<span class='tip'>[pick(GLOB.xenotips)]</span>")
+			to_chat(M, "<span class='tip'>[pick(SSstrings.get_list_from_file("tips/xeno"))]</span>")
 
 		if(isxeno(M))
 			to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! Hope the advice helped.</span>")
@@ -452,7 +452,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!input)
 			return
 
-		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:[input]</span>")
+		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:<br/>[input]</span>")
 
 		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
@@ -479,10 +479,22 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!SSticker?.mode || SSticker.mode.waiting_for_candidates)
 			return
 
-		SSticker.mode.activate_distress()
+		var/list/valid_calls = list("Random")
+		for(var/datum/emergency_call/E in SSticker.mode.all_calls) //Loop through all potential candidates
+			if(E.probability < 1) //Those that are meant to be admin-only
+				continue
 
-		log_admin("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
-		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
+			valid_calls.Add(E)
+
+		var/chosen_call = input(usr, "Select a distress to send", "Emergency Response") as null|anything in valid_calls
+
+		if(chosen_call == "Random")
+			SSticker.mode.activate_distress()
+		else
+			SSticker.mode.activate_distress(chosen_call)
+
+		log_admin("[key_name(usr)] has sent a [chosen_call] distress beacon early, requested by [key_name(M)]")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent a [chosen_call] distress beacon early, requested by [ADMIN_TPMONTY(M)]")
 
 
 	else if(href_list["thunderdome"])
@@ -677,7 +689,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/sender = F.sender
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Combat Information Center", "Command Master at Arms", "Brig", "Research", "Warden")
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
 		if(!dep)
 			return
 
@@ -686,8 +698,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
-		if(!subject)
-			return
 
 		var/fax_message
 		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
@@ -706,15 +716,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 						addressed_to = "[sender.real_name]"
 					if("Custom")
 						addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
-						if(!addressed_to)
-							return
 
 				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
-				if(!message_body)
-					return
-
 				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
-				if(!sent_by)
+
+				if(!addressed_to && !message_body && !sent_by)
 					return
 
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
@@ -725,8 +731,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 				fax_message = "[input]"
 
-		if(!fax_message)
-			return
+				if(!fax_message)
+					return
 
 		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
@@ -787,7 +793,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/sender = locate(href_list["faxcreate"])
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list("Corporate Liaison", "Combat Information Center", "Command Master at Arms", "Brig", "Research", "Warden")
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
 		if(!dep)
 			return
 
@@ -796,8 +802,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
-		if(!subject)
-			return
 
 		var/fax_message
 		var/addressed_to
@@ -808,27 +812,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		switch(type)
 			if("Template")
 				addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
-				if(!addressed_to)
-					return
-
 				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
-				if(!message_body)
-					return
-
 				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
-				if(!sent_by)
+
+				if(!addressed_to && !message_body && !sent_by)
 					return
 
 				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
 
 			if("Custom")
 				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
-				if(!input)
-					return
 				fax_message = "[input]"
 
-		if(!fax_message)
-			return
+				if(!fax_message)
+					return
 
 		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
@@ -1848,6 +1845,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/change
 		var/previous
+		var/addition
 
 		switch(href_list["rank"])
 			if("createmind")
@@ -1856,11 +1854,18 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				H.mind_initialize()
 			if("rank")
 				change = input("Select a rank.", "Edit Rank") as null|anything in sortList(SSjob.name_occupations)
-				if(!change || !istype(H) || !H.mind)
+				if(!change || !istype(H))
 					return
-				previous = H.mind.assigned_role
-				var/datum/job/J = SSjob.GetJob(change)
-				J.assign(H)
+				if(H.mind)
+					previous = H.mind.assigned_role
+					var/datum/job/J = SSjob.GetJob(change)
+					J.assign(H)
+					if(href_list["doequip"])
+						H.set_equipment(J.title)
+						addition = ", equipping them"
+				else
+					previous = H.job
+					H.job = change
 			if("skills")
 				var/list/skilltypes = subtypesof(/datum/skills)
 				var/list/skills = list()
@@ -1892,7 +1897,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("idtitle")
 				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input an ID title - Jane Doe (Title)", "Edit Rank") as null|text
-				if(isnull(change) || !istype(H) || !H.mind)
+				if(isnull(change) || !istype(H) || !istype(C))
 					return
 				previous = C.assignment
 				C.assignment = change
@@ -1900,11 +1905,19 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("idname")
 				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
 				change = input("Input an ID name - Jane Doe (Title)", "Edit Rank") as null|text
-				if(isnull(change) || !istype(H) || !H.mind)
+				if(isnull(change) || !istype(H) || !istype(C))
 					return
 				previous = C.registered_name
 				C.registered_name = change
 				C.update_label()
+			if("access")
+				var/obj/item/card/id/C = locate(href_list["id"]) in GLOB.id_card_list
+				change = input("Choose the new access.", "Edit Rank") as null|anything in sortList(SSjob.name_occupations)
+				if(!change || !istype(H) || !istype(C))
+					return
+				var/datum/job/J = SSjob.name_occupations[change]
+				previous = get_access_job_name(C)
+				C.access = J.access
 			if("createid")
 				if(!istype(H) || H.wear_id)
 					return
@@ -1912,7 +1925,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("squad")
 				previous = H.assigned_squad
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
-				if(!change || !istype(H) || !(H.job in JOBS_MARINES))
+				if(!change || !istype(H))
+					return
+				if(H.mind && !(H.mind.assigned_role in GLOB.jobs_marines))
+					return
+				else if(!(H.job in GLOB.jobs_marines))
 					return
 
 				H.change_squad(change)
@@ -1953,11 +1970,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		usr.client.holder.rank_and_equipment(H)
 
 		if(change)
-			log_admin("[key_name(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change] of [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change] of [ADMIN_TPMONTY(H)].")
+			log_admin("[key_name(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change][addition] of [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] updated the [href_list["rank"]][previous ? " from [previous]" : ""] to [change][addition] of [ADMIN_TPMONTY(H)].")
 		else
 			log_admin("[key_name(usr)] updated the rank: [href_list["rank"]] of [key_name(H)].")
 			message_admins("[ADMIN_TPMONTY(usr)] updated the rank: [href_list["rank"]] of [ADMIN_TPMONTY(H)].")
 
-		if(href_list["doequip"])
+		if(href_list["doset"])
 			Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "rank" = "equipment", "mob" = REF(H)))

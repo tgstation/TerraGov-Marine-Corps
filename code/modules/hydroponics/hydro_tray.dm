@@ -624,7 +624,7 @@
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
 
 
-/obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/user as mob)
+/obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -667,7 +667,7 @@
 	name = "soil"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "soil"
-	density = 0
+	density = FALSE
 	use_power = 0
 	draw_warnings = 0
 

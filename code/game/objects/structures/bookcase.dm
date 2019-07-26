@@ -5,7 +5,7 @@
 	icon_state = "book-0"
 	anchored = TRUE
 	density = TRUE
-	opacity = 1
+	opacity = TRUE
 
 /obj/structure/bookcase/Initialize()
 	. = ..()
@@ -29,7 +29,7 @@
 
 		name = ("bookcase ([sanitize(newname)])")
 
-/obj/structure/bookcase/attack_hand(mob/user as mob)
+/obj/structure/bookcase/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

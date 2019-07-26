@@ -57,20 +57,19 @@
 #define GUN_TRIGGER_SAFETY		(1<<1)
 #define GUN_UNUSUAL_DESIGN		(1<<2)
 #define GUN_SILENCED			(1<<3)
-#define GUN_AUTOMATIC			(1<<4)
+#define GUN_SHOTGUN_CHAMBER		(1<<4)
 #define GUN_INTERNAL_MAG		(1<<5)
 #define GUN_AUTO_EJECTOR		(1<<6)
 #define GUN_AMMO_COUNTER		(1<<7)
-#define GUN_BURST_ON			(1<<8)
-#define GUN_BURST_FIRING		(1<<9)
+#define GUN_LOAD_INTO_CHAMBER	(1<<8)
+#define GUN_ENERGY				(1<<9)
 #define GUN_FLASHLIGHT_ON		(1<<10)
 #define GUN_WIELDED_FIRING_ONLY	(1<<11)
-#define GUN_HAS_FULL_AUTO		(1<<12)
-#define GUN_FULL_AUTO_ON		(1<<13)
-#define GUN_POLICE				(1<<14)
-#define GUN_ENERGY				(1<<15)
-#define GUN_LOAD_INTO_CHAMBER	(1<<16)
-#define GUN_SHOTGUN_CHAMBER		(1<<17)
+#define GUN_POLICE				(1<<12)
+#define GUN_BURST_FIRING		(1<<13)
+
+#define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
+#define GUN_FIREMODE_BURSTFIRE "burst fire mode"
 
 //Gun attachable related flags.
 //flags_attach_features
@@ -96,6 +95,7 @@
 
 #define SLOWDOWN_ADS_SHOTGUN			0.35
 #define SLOWDOWN_ADS_RIFLE				0.35
+#define SLOWDOWN_ADS_LASGUN				0.75
 #define SLOWDOWN_ADS_SPECIALIST_LIGHT	0.75
 #define SLOWDOWN_ADS_SCOPE				1
 #define SLOWDOWN_ADS_SPECIALIST_MED		1
@@ -151,3 +151,39 @@
 #define RESTRAINED_STRAIGHTJACKET (1<<2)
 #define RESTRAINED_RAZORWIRE (1<<3)
 #define RESTRAINED_PSYCHICGRAB (1<<4)
+
+
+//Explosion resistance
+#define XENO_BOMB_RESIST_4 100
+#define XENO_BOMB_RESIST_3 80
+#define XENO_BOMB_RESIST_2 60
+#define XENO_BOMB_RESIST_1 40
+#define XENO_BOMB_RESIST_0 0
+
+#define SINGLE_CASING	(1 << 0)
+#define SPEEDLOADER		(1 << 1)
+#define MAGAZINE		(1 << 2)
+#define CELL			(1 << 3)
+#define POWERPACK		(1 << 4)
+
+#define EGG_BURST 0
+#define EGG_BURSTING 1
+#define EGG_GROWING 2
+#define EGG_GROWN 3
+#define EGG_DESTROYED 4
+
+#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
+#define EGG_MAX_GROWTH_TIME 15 SECONDS
+
+//Xeno Overlays Indexes//////////
+#define X_LASER_LAYER			9
+#define X_WOUND_LAYER			8
+#define X_HEAD_LAYER			7
+#define X_SUIT_LAYER			6
+#define X_L_HAND_LAYER			5
+#define X_R_HAND_LAYER			4
+#define X_TARGETED_LAYER		3
+#define X_LEGCUFF_LAYER			2
+#define X_FIRE_LAYER			1
+#define X_TOTAL_LAYERS			9
+/////////////////////////////////

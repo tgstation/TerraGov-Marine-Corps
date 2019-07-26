@@ -56,7 +56,7 @@
 	return attack_hand(user)
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
-/obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
+/obj/machinery/computer/secure_data/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -493,7 +493,7 @@ What a mess.*/
 							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
 							temp += "</ul>"
 					if("rank")
-						var/list/L = list( "Head of Personnel", "Captain", "AI" )
+						var/list/L = list( "Head of Personnel", CAPTAIN, "AI" )
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"
@@ -571,9 +571,12 @@ What a mess.*/
 	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!issilicon(user)))
 
 /obj/machinery/computer/secure_data/proc/get_photo(mob/user)
-	if(istype(user.get_active_held_item(), /obj/item/photo))
-		var/obj/item/photo/photo = user.get_active_held_item()
-		return photo.img
+	var/atom/A = user.get_active_held_item()
+	if(!istype(A, /obj/item/photo))
+		return
+
+	var/obj/item/photo/P = A
+	return P.picture.picture_icon
 
 /obj/machinery/computer/secure_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -584,7 +587,7 @@ What a mess.*/
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
+					R.fields["name"] = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)

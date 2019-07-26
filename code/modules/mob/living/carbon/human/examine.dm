@@ -186,7 +186,7 @@
 		else*/
 		msg += "[t_He] [t_is] wearing [icon2html(wear_id, user)] \a [wear_id].\n"
 
-	//Jitters
+	//jitters
 	if(stat != DEAD)
 		if(jitteriness >= 300)
 			msg += "<span class='warning'><B>[t_He] [t_is] convulsing violently!</B></span>\n"
@@ -458,12 +458,9 @@
 		var/perpname = "wot"
 		var/criminal = "None"
 
-		if(wear_id)
-			var/obj/item/card/id/I = wear_id.GetID()
-			if(I)
-				perpname = I.registered_name
-			else
-				perpname = name
+		var/obj/item/card/id/I = get_idcard()
+		if(istype(I))
+			perpname = I.registered_name
 		else
 			perpname = name
 

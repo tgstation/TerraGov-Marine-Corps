@@ -404,8 +404,7 @@
 		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
 		return
 	else if (status == LIGHT_OK||status == LIGHT_BURNED)
-		for(var/mob/O in viewers(src))
-			O.show_message("<span class='warning'> [M.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
+		visible_message("<span class='warning'>[M] smashed the light!</span>", null, "You hear a tinkle of breaking glass")
 		broken()
 	return
 
@@ -413,15 +412,15 @@
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
-	"<span class='danger'>You smash [src]!</span>", null, 5)
+	"<span class='danger'>We smash [src]!</span>", null, 5)
 	broken() //Smashola!
 
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
 
-/obj/machinery/light/attack_hand(mob/user)
+/obj/machinery/light/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -432,8 +431,7 @@
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			for(var/mob/M in viewers(src))
-				M.show_message("<span class='warning'> [user.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
+			visible_message("<span class='warning'>[user] smashed the light!</span>", null, "You hear a tinkle of breaking glass")
 			broken()
 			return
 
@@ -556,7 +554,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
@@ -578,7 +576,7 @@
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	name = "large light tube"
 	brightness = 15
 

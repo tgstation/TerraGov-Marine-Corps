@@ -5,7 +5,7 @@
 	. = ..()
 	pockets = new pockets(src)
 
-/obj/item/clothing/suit/storage/attack_hand(mob/user)
+/obj/item/clothing/suit/storage/attack_hand(mob/living/user)
 	if(pockets.handle_attack_hand(user))
 		return ..()
 

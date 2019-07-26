@@ -113,12 +113,6 @@
 	if(connection != "seeker" && connection != "web")	//Invalid connection type.
 		return null
 
-
-	if(!GLOB.guests_allowed && IsGuestKey(key))
-		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.", "Guest", "OK")
-		qdel(src)
-		return
-
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 

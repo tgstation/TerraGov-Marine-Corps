@@ -55,6 +55,11 @@
 	addtimer(CALLBACK(SSticker.mode, .proc/map_announce), 5 SECONDS)
 
 
+/datum/game_mode/distress/post_setup()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
+
+
 /datum/game_mode/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
 		return
@@ -110,20 +115,44 @@
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
-	var/musical_track
+	var/xeno_track
+	var/human_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
-			musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
+			xeno_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
+			human_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
 		if(MODE_INFESTATION_M_MAJOR)
-			musical_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
+			xeno_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
+			human_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
 		if(MODE_INFESTATION_X_MINOR)
-			musical_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
+			xeno_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
+			human_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
 		if(MODE_INFESTATION_M_MINOR)
-			musical_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
+			xeno_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
+			human_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
 		if(MODE_INFESTATION_DRAW_DEATH)
-			musical_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') //This one is unlikely to play.
+			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') 
+			human_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 
-	SEND_SOUND(world, musical_track)
+	for(var/i in GLOB.xeno_mob_list)
+		var/mob/M = i
+		SEND_SOUND(M, xeno_track)
+
+	for(var/i in GLOB.human_mob_list)
+		var/mob/M = i
+		SEND_SOUND(M, human_track)
+
+	for(var/i in GLOB.observer_list)
+		var/mob/M = i
+		if(ishuman(M.mind.current))
+			SEND_SOUND(M, human_track)
+			continue
+
+		if(isxeno(M.mind.current))
+			SEND_SOUND(M, xeno_track)
+			continue
+
+		SEND_SOUND(M, pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'))
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
@@ -382,17 +411,17 @@
 		CA.product_records = list()
 
 		CA.products = list(
-						/obj/item/storage/large_holster/machete/full = round(scale * 10),
-						/obj/item/ammo_magazine/pistol = round(scale * 20),
 						/obj/item/ammobox/m4a3 = round(scale * 3),
+						/obj/item/ammo_magazine/pistol = round(scale * 20),
+						/obj/item/ammobox/m4a3ap = round(scale * 1),
 						/obj/item/ammo_magazine/pistol/ap = round(scale * 5),
-						/obj/item/ammobox/m4a3ap = round(scale * 3),
-						/obj/item/ammo_magazine/pistol/incendiary = round(scale * 2),
+						/obj/item/ammobox/m4a3ext = round(scale * 1),
 						/obj/item/ammo_magazine/pistol/extended = round(scale * 10),
-						/obj/item/ammobox/m4a3ext = round(scale * 3),
+						/obj/item/ammo_magazine/pistol/incendiary = round(scale * 5),
 						/obj/item/ammo_magazine/pistol/m1911 = round(scale * 10),
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
 						/obj/item/ammo_magazine/revolver/marksman = round(scale * 5),
+						/obj/item/ammo_magazine/revolver/heavy = round(scale * 5),
 						/obj/item/ammobox/m39 = round(scale * 3),
 						/obj/item/ammo_magazine/smg/m39 = round(scale * 15),
 						/obj/item/ammobox/m39ap = round(scale * 1),
@@ -401,43 +430,27 @@
 						/obj/item/ammo_magazine/smg/m39/extended = round(scale * 5),
 						/obj/item/ammobox = round(scale * 3),
 						/obj/item/ammo_magazine/rifle = round(scale * 15),
-						/obj/item/ammobox/ext = round(scale * 1),
-						/obj/item/ammo_magazine/rifle/extended = round(scale * 5),
 						/obj/item/ammobox/ap = round (scale * 1),
 						/obj/item/ammo_magazine/rifle/ap = round(scale * 5),
+						/obj/item/ammobox/ext = round(scale * 1),
+						/obj/item/ammo_magazine/rifle/extended = round(scale * 5),
+						/obj/item/cell/lasgun/M43 = round(scale * 30),
+						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/ammo_magazine/shotgunbox = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgunbox/buckshot = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
-						/obj/item/cell/lasgun/M43 = round(scale * 30),
-						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
 		CA.contraband = list(
+						/obj/item/ammo_magazine/flamer_tank = round(scale * 5),
+						/obj/item/ammo_magazine/pistol/vp70 = round(scale * 10),
 						/obj/item/ammo_magazine/smg/ppsh/ = round(scale * 20),
-						/obj/item/ammo_magazine/smg/ppsh/extended = round(scale * 4),
+						/obj/item/ammo_magazine/smg/ppsh/extended = round(scale * 5),
 						/obj/item/ammo_magazine/rifle/bolt = round(scale * 10),
-						/obj/item/ammo_magazine/sniper = 0,
-						/obj/item/ammo_magazine/sniper/incendiary = 0,
-						/obj/item/ammo_magazine/sniper/flak = 0,
-						/obj/item/ammo_magazine/rifle/m4ra = 0,
-						/obj/item/ammo_magazine/rifle/incendiary = 0,
-						/obj/item/ammo_magazine/rifle/m41aMK1 = 0,
-						/obj/item/ammo_magazine/rifle/lmg = 0,
-						/obj/item/ammo_magazine/pistol/hp = 0,
-						/obj/item/ammo_magazine/pistol/heavy = 0,
-						/obj/item/ammo_magazine/pistol/holdout = 0,
-						/obj/item/ammo_magazine/pistol/highpower = 0,
-						/obj/item/ammo_magazine/pistol/vp70 = 0,
-						/obj/item/ammo_magazine/revolver/small = 0,
-						/obj/item/ammo_magazine/revolver/cmb = 0,
-						/obj/item/ammo_magazine/smg/mp7 = 0,
-						/obj/item/ammo_magazine/smg/skorpion = 0,
-						/obj/item/ammo_magazine/smg/uzi = 0,
-						/obj/item/ammo_magazine/smg/p90 = 0
 						)
 
 		CA.build_inventory(CA.products)
@@ -451,49 +464,61 @@
 
 		CG.products = list(
 						/obj/item/storage/backpack/marine/standard = round(scale * 15),
+						/obj/item/storage/backpack/marine/satchel = round(scale * 15),
+						/obj/item/storage/large_holster/machete/full = round(scale * 10),
+						/obj/item/storage/large_holster/m37 = round(scale * 10),
 						/obj/item/storage/belt/marine = round(scale * 15),
 						/obj/item/storage/belt/shotgun = round(scale * 10),
-						/obj/item/clothing/tie/storage/webbing = round(scale * 3),
-						/obj/item/clothing/tie/storage/brown_vest = round(scale * 1),
-						/obj/item/clothing/tie/holster = round(scale * 1),
+						/obj/item/storage/belt/grenade = round(scale * 5),
 						/obj/item/storage/belt/gun/m4a3 = round(scale * 10),
 						/obj/item/storage/belt/gun/m44 = round(scale * 5),
 						/obj/item/storage/large_holster/m39 = round(scale * 5),
-						/obj/item/storage/pouch/general/medium = round(scale * 2),
-						/obj/item/storage/pouch/construction = round(scale * 2),
-						/obj/item/storage/pouch/tools = round(scale * 2),
-						/obj/item/storage/pouch/explosive = round(scale * 2),
-						/obj/item/storage/pouch/syringe = round(scale * 2),
-						/obj/item/storage/pouch/medical = round(scale * 2),
-						/obj/item/storage/pouch/medkit = round(scale * 2),
+						/obj/item/clothing/tie/storage/webbing = round(scale * 5),
+						/obj/item/clothing/tie/storage/brown_vest = round(scale * 5),
+						/obj/item/clothing/tie/storage/white_vest/medic = round(scale * 5),
+						/obj/item/clothing/tie/holster = round(scale * 5),
+						/obj/item/storage/pouch/general/medium = round(scale * 5),
+						/obj/item/storage/pouch/general/large = round(scale * 2),
+						/obj/item/storage/pouch/construction = round(scale * 5),
+						/obj/item/storage/pouch/tools = round(scale * 5),
+						/obj/item/storage/pouch/explosive = round(scale * 5),
+						/obj/item/storage/pouch/syringe = round(scale * 5),
+						/obj/item/storage/pouch/medical = round(scale * 5),
+						/obj/item/storage/pouch/medkit = round(scale * 5),
 						/obj/item/storage/pouch/magazine = round(scale * 5),
+						/obj/item/storage/pouch/magazine/large = round(scale * 2),
 						/obj/item/storage/pouch/flare/full = round(scale * 5),
 						/obj/item/storage/pouch/firstaid/full = round(scale * 5),
 						/obj/item/storage/pouch/pistol = round(scale * 10),
+						/obj/item/storage/pouch/magazine/pistol = round(scale * 10),
 						/obj/item/storage/pouch/magazine/pistol/large = round(scale * 5),
 						/obj/item/storage/pouch/shotgun = round(scale * 10),
 						/obj/item/weapon/gun/pistol/m4a3 = round(scale * 20),
-						/obj/item/weapon/gun/pistol/m1911 = round(scale * 2),
+						/obj/item/weapon/gun/pistol/m1911 = round(scale * 5),
 						/obj/item/weapon/gun/revolver/m44 = round(scale * 10),
 						/obj/item/weapon/gun/smg/m39 = round(scale * 15),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
 						/obj/item/explosive/mine = round(scale * 2),
-						/obj/item/storage/box/nade_box = round(scale * 2),
-						/obj/item/storage/box/nade_box/impact = round(scale * 2),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
 						/obj/item/explosive/grenade/incendiary = round(scale * 4),
 						/obj/item/explosive/grenade/smokebomb = round(scale * 5),
-						/obj/item/explosive/grenade/cloakbomb = round(scale * 3),
+						/obj/item/explosive/grenade/cloakbomb = round(scale * 4),
+						/obj/item/storage/box/nade_box = round(scale * 2),
 						/obj/item/storage/box/m94 = round(scale * 30),
 						/obj/item/flashlight/combat = round(scale * 5),
 						/obj/item/clothing/mask/gas = round(scale * 10)
 						)
 
 		CG.contraband = list(
-						/obj/item/weapon/gun/smg/ppsh = round(scale * 4),
+						/obj/item/storage/box/nade_box/HIDP = round(scale * 1),
+						/obj/item/storage/box/nade_box/M15 = round(scale * 1),
+						/obj/item/weapon/gun/flamer = round(scale * 2),
+						/obj/item/weapon/gun/pistol/vp70 = round(scale * 2),
+						/obj/item/weapon/gun/smg/ppsh = round(scale * 2),
 						/obj/item/weapon/gun/shotgun/double = round(scale * 2),
+						/obj/item/weapon/gun/shotgun/pump/ksg = round(scale * 2),
 						/obj/item/weapon/gun/shotgun/pump/bolt = round(scale * 2)
 						)
 
@@ -617,7 +642,7 @@
 	return TRUE
 
 
-/datum/game_mode/distress/proc/announce_bioscans(delta = 2)
+/datum/game_mode/distress/proc/announce_bioscans(show_locations = TRUE, delta = 2)
 	var/list/xenoLocationsP = list()
 	var/list/xenoLocationsS = list()
 	var/list/hostLocationsP = list()
@@ -671,7 +696,7 @@
 		var/mob/M = i
 		SEND_SOUND(M, sound(get_sfx("queen"), wait = 0, volume = 50))
 		to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
-		to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[numHostsShipr > 0 && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[hostLocationP ? ", including one in [hostLocationP]":""].</span>")
+		to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[show_locations && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[show_locations && hostLocationP ? ", including one in [hostLocationP]":""].</span>")
 
 	var/xenoLocationP
 	var/xenoLocationS
@@ -685,7 +710,7 @@
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
 	var/input = {"Bioscan complete.
 
-Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[numXenosPlanetr > 0 && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
+Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[show_locations && xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[show_locations && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
 	
 	priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
 
@@ -699,7 +724,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 [numHostsPlanet] human\s on the planet.
 [numHostsShip] human\s on the ship.</span>"})
 
-	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[numHostsShipr && hostLocationS ? " Location: [hostLocationS].":""]")
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]")
 	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]")
 
 

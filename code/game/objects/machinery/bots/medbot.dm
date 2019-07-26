@@ -8,8 +8,8 @@
 	desc = "A little medical robot. He looks somewhat underwhelmed."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "medibot0"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	max_integrity = 20
 	req_access =list(ACCESS_MARINE_MEDBAY)
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
@@ -78,7 +78,7 @@
 /obj/machinery/bot/medbot/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/bot/medbot/attack_hand(mob/user as mob)
+/obj/machinery/bot/medbot/attack_hand(mob/living/user)
 	. = ..()
 	if (.)
 		return
@@ -206,15 +206,13 @@
 	..()
 	if(open && !locked)
 		if(user) to_chat(user, "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>")
-		spawn(0)
-			for(var/mob/O in hearers(src, null))
-				O.show_message("<span class='danger'>[src] buzzes oddly!</span>", 1)
+		audible_message("<span class='danger'>[src] buzzes oddly!</span>")
 		flick("medibot_spark", src)
 		src.patient = null
 		if(user) src.oldpatient = user
 		src.currently_healing = 0
 		src.last_found = world.time
-		src.anchored = 0
+		src.anchored = FALSE
 		ENABLE_BITFIELD(obj_flags, EMAGGED)
 		src.safety_checks = 0
 		src.on = 1
@@ -471,16 +469,6 @@
 		src.loc = M:loc
 		src.frustration = 0
 	return
-
-/* terrible
-/obj/machinery/bot/medbot/Bumped(atom/movable/M as mob|obj)
-	spawn(0)
-		if (M)
-			var/turf/T = get_turf(src)
-			M:loc = T
-*/
-
-
 
 /*
 *	Medbot Assembly -- Can be made out of all three medkits.

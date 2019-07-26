@@ -35,6 +35,7 @@
 	name = "\improper HealthMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "healthhud"
+	deactive_state = "degoggles_med"
 	flags_armor_protection = 0
 	toggleable = 1
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
@@ -44,6 +45,7 @@
 	name = "\improper PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
+	deactive_state = "degoggles_sec"
 	toggleable = 1
 	flags_armor_protection = 0
 	hud_type = DATA_HUD_SECURITY_ADVANCED
@@ -63,6 +65,7 @@
 	name = "XenoMate HUD"
 	desc = "A heads-up display that scans any nearby xenomorph's data."
 	icon_state = "securityhud"
+	deactive_state = "degoggles_sec"
 	flags_armor_protection = 0
 	toggleable = TRUE
 	hud_type = DATA_HUD_XENO_STATUS
@@ -72,6 +75,7 @@
 	name = "Pain HUD"
 	desc = "A heads-up display that scans human pain and perceived health."
 	icon_state = "securityhud"
+	deactive_state = "degoggles_sec"
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_PAIN
 	actions_types = list(/datum/action/item_action/toggle)

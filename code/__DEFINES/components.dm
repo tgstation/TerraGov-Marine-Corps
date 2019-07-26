@@ -25,6 +25,8 @@
 // start global signals with "!", this used to be necessary but now it's just a formatting choice
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 
+#define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
@@ -70,7 +72,7 @@
 #define COMSIG_ATOM_CANREACH "atom_can_reach"					//from internal loop in atom/movable/proc/CanReach(): (list/next)
 	#define COMPONENT_BLOCK_REACH 1
 #define COMSIG_ATOM_SCREWDRIVER_ACT "atom_screwdriver_act"		//from base of atom/screwdriver_act(): (mob/living/user, obj/item/I)
-#define COMSIG_ATOM_ATTACK_HAND "atom_attack_hand"				//from base of atom/attack_hand(): (mob/user)
+#define COMSIG_ATOM_ATTACK_HAND "atom_attack_hand"				//from base of atom/attack_hand(mob/living/user)
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 	#define COMPONENT_NO_ATTACK_HAND 1							//works on all attack_hands.
 #define COMSIG_PARENT_EXAMINE "atom_examine"                    //from base of atom/examine(): (/mob)
@@ -107,6 +109,13 @@
 #define COMSIG_ITEM_DROPPED "item_drop"							//from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"				//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 
+#define COMSIG_ITEM_CLICKCTRLON "item_ctrlclickon"					//from base of mob/CtrlClickOn(): (/atom, /mob)
+	#define COMSIG_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
+
+// /obj/item/weapon/gun signals
+#define COMSIG_GUN_FIRE "gun_fire"
+	#define COMPONENT_GUN_FIRED 1
+
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
 
@@ -115,6 +124,7 @@
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
 
 // /mob signals
+#define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
 	#define COMSIG_MOB_CANCEL_CLICKON 1
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
@@ -162,13 +172,18 @@
 #define COMSIG_XENOMORPH_ATTACK_M56 "xenomorph_attack_m56"
 #define COMSIG_XENOMORPH_ATTACK_TANK "xenomorph_attack_tank"
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
+	#define COMSIG_XENOMORPH_BONUS_APPLIED 1
 
+#define COMSIG_XENOMORPH_ATTACK_HUMAN "xenomorph_attack_human"
 #define COMSIG_XENOMORPH_DISARM_HUMAN "xenomorph_disarm_human"
 
 #define COMSIG_XENOMORPH_THROW_HIT "xenomorph_throw_hit"
 
 #define COMSIG_XENOMORPH_FIRE_BURNING "xenomorph_fire_burning"
 #define COMSIG_XENOMORPH_TAKING_DAMAGE "xenomorph_taking_damage" // (target, damagetaken)
+
+#define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage"
+#define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage"
 
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"

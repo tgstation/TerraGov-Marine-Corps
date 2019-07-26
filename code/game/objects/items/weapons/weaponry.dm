@@ -7,7 +7,7 @@
 	icon_state = "toyhammer"
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 7
 	throw_range = 15
 	attack_verb = list("banned")
@@ -26,7 +26,7 @@
 	throw_speed = 1
 	throw_range = 4
 	throwforce = 10
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/weapon/nullrod/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is impaling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
@@ -41,7 +41,7 @@
 	item_state = "harpoon"
 	force = 20
 	throwforce = 15
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("jabbed","stabbed","ripped")
 
 /obj/item/weapon/baseballbat
@@ -51,7 +51,7 @@
 	item_state = "woodbat"
 	sharp = 0
 	edge = 0
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 20
 	throw_speed = 3
 	throw_range = 7
@@ -66,7 +66,7 @@
 	icon_state = "metalbat"
 	item_state = "metalbat"
 	force = 25
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/weapon/butterfly
 	name = "butterfly knife"
@@ -75,7 +75,7 @@
 	item_state = null
 	hitsound = null
 	var/active = 0
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	force = 8
 	sharp = 0
 	edge = 0
@@ -97,7 +97,7 @@
 		sharp = IS_SHARP_ITEM_ACCURATE
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
-		w_class = 3
+		w_class = WEIGHT_CLASS_NORMAL
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		to_chat(user, "<span class='notice'>The butterfly knife can now be concealed.</span>")
@@ -133,7 +133,7 @@
 	flags_atom = CONDUCT
 	force = 8
 	throwforce = 10
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
 
 

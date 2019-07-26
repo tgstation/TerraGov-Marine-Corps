@@ -6,7 +6,7 @@
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	layer = FLY_LAYER
 	flags_pass = PASSTABLE|PASSGRILLE
 
@@ -59,7 +59,7 @@
 		manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/attack_hand(mob/user as mob)
+/obj/effect/plantsegment/attack_hand(mob/living/user)
 	.  = ..()
 	if(.)
 		return
@@ -112,7 +112,7 @@
 			energy = 2
 			return
 
-		src.opacity = 1
+		src.opacity = TRUE
 		layer = FLY_LAYER
 	else if(!limited_growth)
 		src.icon_state = pick("Hvy1", "Hvy2", "Hvy3")
@@ -283,12 +283,13 @@
 	slowdown_limit = 3
 	limited_growth = 1
 
-/obj/effect/plant_controller/New()
-	if(!istype(src.loc,/turf/open/floor))
-		qdel(src)
+/obj/effect/plant_controller/Initialize()
+	. = ..()
+	
+	if(!istype(loc,/turf/open/floor))
+		return INITIALIZE_HINT_QDEL
 
-	spawn(0)
-		spawn_piece(src.loc)
+	spawn_piece(loc)
 
 	START_PROCESSING(SSobj, src)
 

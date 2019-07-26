@@ -185,7 +185,7 @@
 		if(M.lying)
 			return //No spamming this on people.
 
-		M.KnockDown(5)
+		M.knock_down(5)
 		to_chat(M, "<span class='warning'>You topple as \the [src] moves under you!</span>")
 
 		if(prob(25))

@@ -28,7 +28,7 @@
 		return
 	interact(user)
 
-/obj/machinery/power/monitor/attack_hand(mob/user)
+/obj/machinery/power/monitor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

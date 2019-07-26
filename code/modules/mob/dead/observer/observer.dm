@@ -96,10 +96,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	grant_all_languages()
 
-	for(var/path in subtypesof(/datum/action/observer_action))
-		var/datum/action/observer_action/A = new path()
-		A.give_action(src)
-
 	return ..()
 
 
@@ -184,9 +180,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else if(href_list["join_larva"])
 		if(!isobserver(usr))
 			return
-		var/mob/dead/observer/A = usr
+		var/mob/dead/observer/ghost = usr
 
-		SSticker.mode.attempt_to_join_as_larva(A)
+		switch(alert(ghost, "What would you like to do?", "Burrowed larva source available", "Join as Larva", "Cancel"))
+			if("Join as Larva")
+				SSticker.mode.attempt_to_join_as_larva(ghost)
 		return
 
 	else if(href_list["preference"])
@@ -215,44 +213,32 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.icon_state = icon_state
 		ghost.overlays = overlays
 
-	ghost.gender = gender
-
 	if(mind?.name)
 		ghost.real_name = mind.name
-
 	else if(real_name)
 		ghost.real_name = real_name
-
-	else if(gender == MALE)
-		ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
-
 	else
-		ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+		ghost.real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 	ghost.name = ghost.real_name
-
-	if(mind)
-		ghost.mind = mind
-
-	if(!T)
-		T = pick(GLOB.latejoin)
-
-	ghost.loc = T
-
-	if(!name)
-		ghost.name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+	ghost.gender = gender
+	ghost.alpha = 127
+	ghost.can_reenter_corpse = can_reenter_corpse
+	ghost.timeofdeath = timeofdeath
+	ghost.mind = mind
+	mind = null
+	ghost.key = key
 
 	if(!can_reenter_corpse)
 		set_away_time()
 		ghost.mind?.current = ghost
-		// if you ghost while alive your current mob is now your ghost
-		// aghosting is invoked with can_reenter_corpse = TRUE so this won't mess with aghosting
 
-	ghost.alpha = 127
+	if(!T)
+		T = safepick(GLOB.latejoin)
+	if(!T)
+		stack_trace("no latejoin landmark detected")
 
-	ghost.can_reenter_corpse = can_reenter_corpse
-	ghost.timeofdeath = timeofdeath
-	ghost.key = key
+	ghost.forceMove(T)
 
 	return ghost
 
@@ -664,29 +650,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
 
-/mob/dead/observer/verb/analyze_air()
-	set category = "Ghost"
-	set name = "Analyze Air"
-
-	if(!istype(loc, /turf))
-		return
-
-	var/turf/T = loc
-
-	var/pressure = T.return_pressure()
-	var/env_temperature = T.return_temperature()
-	var/env_gas = T.return_gas()
-
-	to_chat(src, "<span class='boldnotice'>Results:</span>")
-	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(src, "<span class='notice'>Pressure: [round(pressure, 0.1)] kPa</span>")
-	else
-		to_chat(src, "<span class='warning'>Pressure: [round(pressure, 0.1)] kPa</span>")
-
-	to_chat(src, "<span class='notice'>Gas type: [env_gas]</span>")
-	to_chat(src, "<span class='notice'>Temperature: [round(env_temperature - T0C, 0.1)]&deg;C</span>")
-
-
 /mob/dead/observer/verb/toggle_zoom()
 	set category = "Ghost"
 	set name = "Toggle Zoom"
@@ -892,3 +855,31 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
 	return IsAdminGhost(usr)
+
+
+/mob/dead/observer/get_photo_description(obj/item/camera/camera)
+	if(!invisibility || camera.see_ghosts)
+		return "You can also see a g-g-g-g-ghooooost!"
+
+
+/mob/dead/observer/verb/toggle_actions()
+	set category = "Ghost"
+	set name = "Toggle Static Action Buttons"
+
+	client.prefs.observer_actions = !client.prefs.observer_actions
+	client.prefs.save_preferences()
+
+
+	to_chat(src, "<span class='notice'>You will [client.prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons.</span>")
+
+	if(!client.prefs.observer_actions)
+		for(var/datum/action/observer_action/A in actions)
+			A.remove_action(src)
+
+	else if(/datum/action/observer_action in actions)
+		return
+
+	else
+		for(var/path in subtypesof(/datum/action/observer_action))
+			var/datum/action/observer_action/A = new path()
+			A.give_action(src)

@@ -10,8 +10,6 @@
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
 /obj/structure/bed/chair/Initialize()
-	if(anchored)
-		src.verbs -= /atom/movable/verb/pull
 	. = ..()
 	handle_rotation()
 
@@ -37,10 +35,9 @@
 	if(!istype(user) || !isturf(user.loc) || user.incapacitated())
 		return FALSE
 
-	if(!CONFIG_GET(flag/unlimited_rotate_speed))
-		if(world.time <= user.next_move)
-			return FALSE
-		user.next_move = world.time + 3
+	if(world.time <= user.next_move)
+		return FALSE
+	user.next_move = world.time + 3
 
 	setDir(turn(dir, 90))
 
@@ -123,7 +120,7 @@
 	color = rgb(255,251,0)
 
 /obj/structure/bed/chair/office
-	anchored = 0
+	anchored = FALSE
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
@@ -154,11 +151,11 @@
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/chair/dropship/pilot
 	icon_state = "pilot_chair"
@@ -182,9 +179,8 @@
 /obj/structure/bed/chair/dropship/passenger/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
-		spawn(0)
-			fold_down(1)
-		return 0
+		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
+		return FALSE
 	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/New()
@@ -206,12 +202,13 @@
 		return
 	..()
 
-/obj/structure/bed/chair/dropship/passenger/proc/fold_down(break_it = 0)
+/obj/structure/bed/chair/dropship/passenger/proc/fold_down(break_it = FALSE)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
 		is_animating = 1
 		flick("shuttle_chair_new_folding", src)
 		is_animating = 0
-		unbuckle()
+		if(buckled_mob)
+			unbuckle()
 		if(break_it)
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
@@ -240,7 +237,7 @@
 /obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/user)
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
 		user.visible_message("<span class='warning'>[user] smashes \the [src], shearing the bolts!</span>",
-		"<span class='warning'>You smash \the [src], shearing the bolts!</span>")
+		"<span class='warning'>We smash \the [src], shearing the bolts!</span>")
 		fold_down(1)
 
 /obj/structure/bed/chair/dropship/passenger/attackby(obj/item/I, mob/user, params)
@@ -284,7 +281,7 @@
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message("<span class='warning'>[user] begins repairing \the [src].</span>",
 		"<span class='warning'>You begin repairing \the [src].</span>")
-		if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message("<span class='warning'>[user] repairs \the [src].</span>",

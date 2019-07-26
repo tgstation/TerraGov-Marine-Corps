@@ -7,7 +7,7 @@
 	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
 	icon = 'icons/obj/structures/jungle.dmi'
 	icon_state = "bush1"
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = BUSH_LAYER
 	var/indestructable = 0
@@ -17,7 +17,7 @@
 /obj/structure/bush/New()
 	obj_integrity = rand(50,75)
 	if(prob(75))
-		opacity = 1
+		opacity = TRUE
 
 	//Randomise a bit
 	var/matrix/M = matrix()
@@ -86,7 +86,7 @@
 
 /obj/structure/bush/proc/healthcheck()
 	if(obj_integrity < 35 && opacity)
-		opacity = 0
+		opacity = FALSE
 	if(obj_integrity < 0)
 		if(prob(10))
 			icon_state = "stump[rand(1,2)]"
@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(reagent_effects, list("toxin","dylovene","sleeptoxin","space_dr
 	overlays += fruit_overlay
 	plant_strength = rand(20,200)
 
-/obj/structure/jungle_plant/attack_hand(mob/user as mob)
+/obj/structure/jungle_plant/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

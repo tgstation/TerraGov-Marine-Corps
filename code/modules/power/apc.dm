@@ -143,6 +143,7 @@
 		if(cell_type)
 			cell = new cell_type(src)
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
+			cell.update_icon()
 
 		var/area/A = get_area(src)
 
@@ -291,9 +292,9 @@
 	updating_icon = TRUE
 
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-	"<span class='danger'>You slash \the [src]!</span>", null, 5)
+	"<span class='danger'>We slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	var/allcut = wires.is_all_cut()
 
@@ -670,7 +671,7 @@
 
 
 //Attack with hand - remove cell (if cover open) or interact with the APC
-/obj/machinery/power/apc/attack_hand(mob/user)
+/obj/machinery/power/apc/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -839,10 +840,6 @@
 	else if(href_list["close"])
 		SSnano.close_user_uis(usr, src)
 		return FALSE
-
-	else if(href_list["overload"])
-		if(issilicon(usr) && !aidisabled)
-			overload_lighting()
 
 	if(usingUI)
 		updateDialog()

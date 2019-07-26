@@ -10,7 +10,7 @@
 /obj/machinery/pipedispenser/attack_paw(user as mob)
 	return attack_hand(user)
 
-/obj/machinery/pipedispenser/attack_hand(mob/user)
+/obj/machinery/pipedispenser/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -141,7 +141,7 @@
 
 	qdel(pipe)
 
-/obj/machinery/pipedispenser/disposal/attack_hand(mob/user)
+/obj/machinery/pipedispenser/disposal/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -102,7 +102,7 @@ FLOOR SAFES
 		icon_state = initial(icon_state)
 
 
-/obj/structure/safe/attack_hand(mob/user as mob)
+/obj/structure/safe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -197,7 +197,7 @@ FLOOR SAFES
 /obj/structure/safe/floor
 	name = "floor safe"
 	icon_state = "floorsafe"
-	density = 0
+	density = FALSE
 	level = 1	//underfloor
 	layer = UNDERFLOOR_OBJ_LAYER
 

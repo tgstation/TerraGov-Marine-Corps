@@ -7,7 +7,7 @@
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 5
 	matter = list("metal" = 500)
@@ -61,7 +61,7 @@
 /obj/item/restraints/handcuffs/zip
 	name = "zip cuffs"
 	desc = "Single-use plastic zip tie handcuffs."
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	icon_state = "cuff_zip"
 	breakouttime = 1 MINUTES
 	cuff_sound = 'sound/weapons/cablecuff.ogg'

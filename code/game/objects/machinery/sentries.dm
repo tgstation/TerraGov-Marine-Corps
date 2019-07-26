@@ -4,7 +4,7 @@
 /obj/item/ammo_magazine/sentry
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -19,7 +19,7 @@
 	desc = "A large case containing all you need to set up an automated sentry, minus the tools."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	max_w_class = 5
 	storage_slots = 4
 	max_storage_space = 16
@@ -42,7 +42,7 @@
 	name = "\improper UA 571-C turret"
 	desc = "The turret part of an automated sentry turret."
 	resistance_flags = UNACIDABLE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
 
@@ -51,7 +51,7 @@
 	name = "\improper UA 571-C turret tripod"
 	desc = "The tripod part of an automated sentry turret. You should deploy it first."
 	resistance_flags = UNACIDABLE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod_folded"
 
@@ -309,7 +309,7 @@
 	stop_processing()
 	. = ..()
 
-/obj/machinery/marine_turret/attack_hand(mob/user as mob)
+/obj/machinery/marine_turret/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -670,7 +670,7 @@
 			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		playsound(loc, 'sound/weapons/unload.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] swaps a new [I] into [src].</span>",
 		"<span class='notice'>You swap a new [I] into [src].</span>")
 		user.drop_held_item()
@@ -780,7 +780,7 @@
 		cell.charge = 0
 		sentry_alert(SENTRY_ALERT_BATTERY)
 		visible_message("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
-		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
+		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, 1)
 		set_light(0)
 		update_icon()
 		return FALSE
@@ -819,8 +819,8 @@
 /obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>You slash [src]!</span>")
-	M.animation_attack_on(src)
+	"<span class='danger'>We slash [src]!</span>")
+	M.do_attack_animation(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
 	if(prob(10))
@@ -962,7 +962,7 @@
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 
 			//Shoot at the thing
-			playsound(loc, 'sound/weapons/gun_rifle.ogg', 75, 1)
+			playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, 1)
 			in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
@@ -971,7 +971,7 @@
 			rounds--
 			if(rounds == 0)
 				visible_message("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
-				playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 50, FALSE)
+				playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, FALSE)
 				if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
 					sentry_alert(SENTRY_ALERT_AMMO)
 
@@ -1085,7 +1085,7 @@
 	rounds = 500
 
 
-/obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
+/obj/machinery/marine_turret/premade/dumb/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -1115,7 +1115,7 @@
 /obj/item/ammo_magazine/sentry/premade/dumb
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -1143,7 +1143,7 @@
 /obj/item/ammo_magazine/sentry/premade/dropship
 	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
 	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -1265,7 +1265,7 @@
 	icon = 'icons/Marine/miniturret.dmi'
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_integrity = 155 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
@@ -1293,7 +1293,7 @@
 /obj/item/ammo_magazine/minisentry
 	name = "M30 box magazine (10x20mm Caseless)"
 	desc = "A box of 500 10x20mm caseless rounds for the UA-580 Point Defense Sentry. Just feed it into the sentry gun's ammo port when its ammo is depleted."
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	icon_state = "ua580"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x20mm"
@@ -1306,7 +1306,7 @@
 	desc = "A large case containing all you need to set up an UA-580 point defense sentry."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 4
 	can_hold = list(
 		/obj/item/marine_turret/mini, //gun itself

@@ -7,7 +7,7 @@
 	icon_state = "handcuff"
 	flags_atom = CONDUCT
 	throwforce = 0
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "materials=1"
 	breakouttime = 30 SECONDS
 

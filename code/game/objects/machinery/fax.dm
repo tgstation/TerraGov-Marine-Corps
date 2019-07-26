@@ -15,7 +15,7 @@
 	var/obj/item/paper/message = null
 	var/sendcooldown = FALSE
 
-	var/department = "Corporate Liaison"
+	var/department = CORPORATE_LIAISON
 	var/selected = "Nanotrasen"
 
 
@@ -41,7 +41,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/faxmachine/attack_hand(mob/user as mob)
+/obj/machinery/faxmachine/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -173,7 +173,7 @@
 	department = "Combat Information Center"
 
 /obj/machinery/faxmachine/cmp
-	department = "Command Master at Arms"
+	department = COMMAND_MASTER_AT_ARMS
 
 /obj/machinery/faxmachine/brig
 	department = "Brig"

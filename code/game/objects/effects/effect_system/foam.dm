@@ -39,8 +39,7 @@
 			M.updateicon()
 
 		flick("[icon_state]-disolve", src)
-		sleep(5)
-		qdel(src)
+		QDEL_IN(src, 5)
 
 
 // transfer any reagents to the floor
@@ -84,8 +83,7 @@
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
 
-		spawn(5)
-			qdel(src)
+		QDEL_IN(src, 5)
 
 
 /obj/effect/particle_effect/foam/Crossed(atom/movable/AM)
@@ -186,17 +184,17 @@
 	return
 
 /obj/structure/foamedmetal/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	if(prob(33))
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 		qdel(src)
 		return TRUE
 	else
 		M.visible_message("<span class='danger'>\The [M] tears some shreds off [src]!</span>", \
-		"<span class='danger'>You tear some shreds off [src]!</span>", null, 5)
+		"<span class='danger'>We tear some shreds off [src]!</span>", null, 5)
 
-/obj/structure/foamedmetal/attack_hand(mob/user)
+/obj/structure/foamedmetal/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
 	return TRUE
 

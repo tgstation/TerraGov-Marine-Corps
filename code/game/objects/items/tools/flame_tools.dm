@@ -26,7 +26,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candle1"
 	item_state = "candle1"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	var/wax = 800
 
@@ -59,8 +59,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		heat = 1000
 		if(!flavor_text)
 			flavor_text = "<span class ='notice'>[usr] lights [src].</span>"
-		for(var/mob/O in viewers(usr, null))
-			O.show_message(flavor_text, 1)
+		visible_message(flavor_text)
 		set_light(CANDLE_LUM)
 		update_icon()
 		START_PROCESSING(SSobj, src)
@@ -96,7 +95,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "match_unlit"
 	var/burnt = 0
 	var/smoketime = 5
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	origin_tech = "materials=1"
 	attack_verb = list("burnt", "singed")
 
@@ -149,7 +148,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cigoff"
 	throw_speed = 0.5
 	item_state = "cigoff"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	flags_armor_protection = 0
 	var/lit = FALSE
 	var/icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
@@ -460,7 +459,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/icon_on = "lighter-g-on"
 	var/icon_off = "lighter-g"
 	var/clr = "g"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 4
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT

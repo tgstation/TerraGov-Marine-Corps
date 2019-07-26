@@ -8,8 +8,8 @@
 	desc = "Remains of some unfortunate mecha. There is nothing left to Salvage."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
-	anchored = 0
-	opacity = 0
+	anchored = FALSE
+	opacity = FALSE
 
 
 /obj/effect/decal/mecha_wreckage/ex_act(severity)
@@ -27,7 +27,7 @@
 		return
 		
 	playsound(src, 'sound/effects/metal_crash.ogg', 50, 1)
-	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>You slice [src] apart!</span>")
+	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>We slice [src] apart!</span>")
 	robogibs(src)
 	qdel(src)
 

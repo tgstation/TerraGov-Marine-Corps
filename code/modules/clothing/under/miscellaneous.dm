@@ -83,7 +83,7 @@
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
 	icon_state = "black"
 	item_state = "bl_suit"
-	w_class = 4//bulky item
+	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS

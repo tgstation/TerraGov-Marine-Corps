@@ -15,7 +15,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	caliber = "12g" //All shotgun rounds are 12g right now.
 	gun_type = /obj/item/weapon/gun/shotgun
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
-	w_class = 3 // Can't throw it in your pocket, friend.
+	w_class = WEIGHT_CLASS_BULKY // Can't throw it in your pocket, friend.
 
 /obj/item/ammo_magazine/shotgun/incendiary
 	name = "box of incendiary slugs"
@@ -49,7 +49,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	caliber = "7.62x54mmR" //Cyka Blyat
 	gun_type = /obj/item/weapon/gun/shotgun/pump/bolt
 	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
-	w_class = 2 // CAN throw it in your pocket, friend.
+	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
 
 //-------------------------------------------------------
 

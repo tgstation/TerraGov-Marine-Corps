@@ -311,13 +311,13 @@
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
 						var/mob/living/carbon/human/H = M
 						if(H.check_shields(15, "the pounce")) //Human shield block.
-							KnockDown(3)
+							knock_down(3)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
-					M.KnockDown(1)
+					M.knock_down(1)
 					step_to(src, M)
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
@@ -560,12 +560,6 @@
 /mob/living/carbon/xenomorph/proc/stealth_router(code = 0)
 	return FALSE
 
-/mob/living/carbon/xenomorph/proc/neuroclaw_router()
-	return
-
-/mob/living/carbon/xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
-	return FALSE
-
 /mob/living/carbon/xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
 		use_plasma(min(rand(1,2), plasma_stored))
@@ -599,7 +593,7 @@
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 
-	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
+	cooldowns[COOLDOWN_ACID] = TRUE
 	var/armor_block = run_armor_check("chest", "acid")
 	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)
@@ -611,7 +605,7 @@
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
 	take_overall_damage(null, damage, null, null, null, armor_block)
 	emote("scream")
-	KnockDown(1)
+	knock_down(1)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	return
@@ -722,7 +716,7 @@
 		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
-		animation_attack_on(C)
+		do_attack_animation(C)
 		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
 		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 		C.reagents.add_reagent(toxin, transfer_amount)
@@ -754,6 +748,3 @@
 
 /mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
-
-/mob/living/carbon/xenomorph/proc/hit_and_run_bonus(damage)
-	return damage

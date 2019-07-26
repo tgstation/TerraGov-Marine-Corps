@@ -257,8 +257,7 @@
 	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
 		hive.living_xeno_queen.set_queen_overwatch(new_xeno)
 	qdel(src)
-	spawn(0)
-		new_xeno.do_jitter_animation(1000)
+	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 
 #undef TO_XENO_TIER_2_FORMULA
 #undef TO_XENO_TIER_3_FORMULA

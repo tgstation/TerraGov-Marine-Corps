@@ -206,8 +206,7 @@
 		if(E.operating)
 			E.nextstate = OPEN
 		else if(!E.density)
-			spawn(0)
-				E.close()
+			INVOKE_ASYNC(E, /obj/machinery/door.proc/close)
 
 
 /area/proc/air_doors_open()
@@ -218,8 +217,7 @@
 		if(E.operating)
 			E.nextstate = OPEN
 		else if(E.density)
-			spawn(0)
-				E.open()
+			INVOKE_ASYNC(E, /obj/machinery/door.proc/open)
 
 
 /area/proc/firealert()
@@ -234,8 +232,7 @@
 				if(D.operating)
 					D.nextstate = FIREDOOR_CLOSED
 				else if(!D.density)
-					spawn()
-						D.close()
+					INVOKE_ASYNC(D, /obj/machinery/door.proc/close)
 		var/list/cameras = list()
 		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.triggerAlarm("Fire", src, cameras, src)
@@ -252,8 +249,7 @@
 				if(D.operating)
 					D.nextstate = OPEN
 				else if(D.density)
-					spawn(0)
-					D.open()
+					INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
 
 		for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.cancelAlarm("Fire", src, src)

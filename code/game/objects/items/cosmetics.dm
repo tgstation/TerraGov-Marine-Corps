@@ -5,7 +5,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "camo"
 	var/colour = "green"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	var/uses = 10
 
 /obj/item/facepaint/green

@@ -382,6 +382,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/release,
 	/datum/admins/proc/launch_pod,
 	/datum/admins/proc/play_cinematic,
+	/datum/admins/proc/set_tip,
 	/client/proc/toggle_buildmode
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())

@@ -2,7 +2,7 @@
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon_state = "rwall"
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
 
 	damage_cap = 3000

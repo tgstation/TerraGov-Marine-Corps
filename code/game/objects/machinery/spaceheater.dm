@@ -1,6 +1,6 @@
 /obj/machinery/space_heater
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	icon = 'icons/obj/machines/atmos.dmi'
 	icon_state = "sheater0"
 	name = "space heater"
@@ -79,7 +79,7 @@
 			user << browse(null, "window=spaceheater")
 			user.unset_interaction()
 
-/obj/machinery/space_heater/attack_hand(mob/user as mob)
+/obj/machinery/space_heater/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -139,7 +139,7 @@
 			if("cellremove")
 				if(open && cell && !usr.get_active_held_item())
 					usr.visible_message("<span class='notice'> [usr] removes \the [cell] from \the [src].</span>", "<span class='notice'> You remove \the [cell] from \the [src].</span>")
-					cell.updateicon()
+					cell.update_icon()
 					usr.put_in_hands(cell)
 					cell = null
 

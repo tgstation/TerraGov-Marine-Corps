@@ -6,15 +6,15 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	storage_slots = null
-	max_storage_space = 30
+	max_storage_space = 24
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
 	var/list/uniform_restricted //Need to wear this uniform to equip this
 
-/obj/item/storage/backpack/attack_hand(mob/user)
+/obj/item/storage/backpack/attack_hand(mob/living/user)
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
@@ -26,6 +26,19 @@
 			to_chat(H, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
 			return TRUE
 	return ..()
+
+
+/obj/item/storage/backpack/AltClick(mob/user)
+	if(!ishuman(user) || !length(contents) || isturf(loc))
+		return ..() //Return to fail and go back to base.
+	if(worn_accessible)
+		return ..() //Return to succeed and draw the item.
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.back == src)
+		to_chat(human_user, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
+		return
+	return ..()
+
 
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -113,7 +126,7 @@
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state = "giftbag"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = null
 	max_w_class = 3
 	max_storage_space = 400 // can store a ton of shit!
@@ -351,11 +364,11 @@
 			if(!cell)
 				replace_install = "You install a cell in [src]'s defibrillator recharge unit."
 			else
-				cell.updateicon()
+				cell.update_icon()
 				user.put_in_hands(cell)
 			cell = W
 			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
-			playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
+			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 			update_icon()
 	return ..()
 
@@ -459,11 +472,9 @@
 
 	camo_active = TRUE
 	camo_last_stealth = world.time
-	to_chat(M, "<span class='notice'>You activate your cloak's camouflage.</span>")
 	wearer = M
 
-	for (var/mob/O in oviewers(M))
-		O.show_message("[M] fades into thin air!", 1)
+	M.visible_message("[M] fades into thin air!", "<span class='notice'>You activate your cloak's camouflage.</span>")
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
 	stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
@@ -475,7 +486,7 @@
 	if (M.smokecloaked)
 		M.smokecloaked = FALSE
 	else
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(M)
 		var/datum/atom_hud/simple/basic = GLOB.huds[DATA_HUD_BASIC]
 		basic.remove_from_hud(M)
@@ -519,7 +530,7 @@
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
-	var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	SA.add_to_hud(user)
 	var/datum/atom_hud/simple/basic = GLOB.huds[DATA_HUD_BASIC]
 	basic.add_to_hud(user)

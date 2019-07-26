@@ -30,10 +30,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	var/ghost_form = GHOST_DEFAULT_FORM
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
+	var/observer_actions = TRUE
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/hotkeys = TRUE
+	var/focus_chat = FALSE
 
 	// Custom Keybindings
 	var/list/key_bindings = null
@@ -115,13 +116,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// We don't have a savefile or we failed to load them
 	random_character()
-	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 5 SECONDS)
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+	addtimer(CALLBACK(src, .proc/keybindings_setup, C), 5 SECONDS)
 	
 
-/datum/preferences/proc/load_default_keybindings(client/C)
+/datum/preferences/proc/keybindings_setup(client/C)
 	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
-	hotkeys = (choice == "Hotkey")
-	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+	focus_chat = (choice == "Classic")
+	key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 	save_preferences()
 
 
@@ -315,7 +317,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<h2>Game Settings:</h2>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
-	dat += "<b>Hotkey mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Focus chat:</b> <a href='?_src_=prefs;preference=focus_chat'>[(focus_chat) ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 
 
@@ -337,7 +339,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	onclose(user, "preferences_window", src)
 
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 16, list/splitJobs, widthPerColumn = 305, height = 620)
+/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs, widthPerColumn = 305, height = 620)
 	if(!SSjob)
 		return
 
@@ -367,7 +369,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/job/overflow = SSjob.GetJob(SSjob.overflow_role)
 
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-			if(!(job.title in JOBS_REGULAR_ALL))
+			if(!(job.title in GLOB.jobs_regular_all))
 				continue
 
 			index += 1
@@ -395,7 +397,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/available_in_days = job.available_in_days(user.client)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[IN [(available_in_days)] DAYS\]</font></td></tr>"
 				continue
-			if((rank in JOBS_COMMAND) || rank == "AI")//Bold head jobs
+			if((rank in GLOB.jobs_command) || rank == "AI")//Bold head jobs
 				HTML += "<b><span class='dark'>[rank]</span></b>"
 			else
 				HTML += "<span class='dark'>[rank]</span>"
@@ -522,7 +524,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/bound_key = user_binds[kb.name]
 			bound_key = (bound_key) ? bound_key : "Unbound"
 
-			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [hotkeys ? kb.hotkey_key : kb.classic_key] )</a>"
+			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [focus_chat ? kb.hotkey_key : kb.classic_key] )</a>"
 			HTML += "<br>"
 
 	HTML += "<br><br>"
@@ -580,6 +582,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
+			ShowChoices(user)			
+			return TRUE
 
 		if("synth_name")
 			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name") as text|null
@@ -913,12 +917,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("windowflashing")
 			windowflashing = !windowflashing
 
-		if("hotkeys")
-			hotkeys = !hotkeys
-			if(hotkeys)
-				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default")
+		if("focus_chat")
+			focus_chat = !focus_chat
+			if(focus_chat)
+				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 			else
-				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+				winset(user, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
 
 		if("tooltips")
 			tooltips = !tooltips
@@ -994,8 +998,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (choice == "Cancel")
 				ShowKeybindings(user)
 				return
-			hotkeys = (choice == "Hotkey")
-			key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+			focus_chat = (choice == "Classic")
+			key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 			save_preferences()
 			ShowKeybindings(user)
 			return

@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 /obj/machinery/nuclearbomb/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -303,7 +303,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 				if (href_list["anchor"])
 
 					if(removal_stage == 5)
-						src.anchored = 0
+						src.anchored = FALSE
 						visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 						return
 

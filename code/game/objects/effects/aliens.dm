@@ -13,59 +13,56 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "splatter"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatter/New() //Self-deletes after creation & animation
-	..()
-	spawn(8)
-		qdel(src)
-
+/obj/effect/xenomorph/splatter/Initialize() //Self-deletes after creation & animation
+	. = ..()
+	QDEL_IN(src, 8)
 
 /obj/effect/xenomorph/splatterblob
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acidblob"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatterblob/New() //Self-deletes after creation & animation
-	..()
-	spawn(40)
-		qdel(src)
-
+/obj/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
+	. = ..()
+	QDEL_IN(src, 4 SECONDS)
 
 /obj/effect/xenomorph/spray
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acid2"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 8
-	var/duration = 100
+	var/duration = 10 SECONDS
 
-/obj/effect/xenomorph/spray/New(loc, duration = 100) //Self-deletes
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	spawn(duration + rand(0, 20))
-		STOP_PROCESSING(SSobj, src)
-		qdel(src)
-		return
+	QDEL_IN(src, duration + rand(0, 2 SECONDS))
+
+/obj/effect/xenomorph/spray/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
 	..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		var/armor_block
-		if(H.acid_process_cooldown > world.time - 10) //one second reprieve
+		if(H.cooldowns[COOLDOWN_ACID])
 			return
-		H.acid_process_cooldown = world.time
+		H.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(H.cooldowns, COOLDOWN_ACID, null), 1 SECONDS)
 		if(!H.lying)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			H.emote("pain")
@@ -101,8 +98,8 @@
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
 	icon_state = "acid_normal"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0

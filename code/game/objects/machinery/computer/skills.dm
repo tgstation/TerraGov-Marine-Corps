@@ -39,7 +39,7 @@
 	return attack_hand(user)
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
-/obj/machinery/computer/skills/attack_hand(mob/user as mob)
+/obj/machinery/computer/skills/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -340,7 +340,7 @@ What a mess.*/
 								return
 							active1.fields["age"] = t1
 					if("rank")
-						var/list/L = list( "Head of Personnel", "Captain", "AI" )
+						var/list/L = list( "Head of Personnel", CAPTAIN, "AI" )
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"
@@ -391,7 +391,7 @@ What a mess.*/
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(GLOB.first_names_male), pick(GLOB.first_names_female))] [pick(GLOB.last_names)]"
+					R.fields["name"] = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)

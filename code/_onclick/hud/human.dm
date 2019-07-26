@@ -201,8 +201,8 @@
 	eject_mag = new /obj/screen/firearms/magazine()
 	static_inventory += eject_mag
 
-	toggle_burst = new /obj/screen/firearms/burstfire()
-	static_inventory += toggle_burst
+	toggle_firemode = new /obj/screen/firearms/firemode()
+	static_inventory += toggle_firemode
 
 	unique_action = new /obj/screen/firearms/unique()
 	static_inventory += unique_action

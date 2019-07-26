@@ -99,9 +99,6 @@
 #define POLLTYPE_IRV		"IRV"
 
 
-#define PR_ANNOUNCEMENTS_PER_ROUND 5 //The number of unique PR announcements allowed per round
-
-
 #define APICKER_CLIENT	"Key"
 #define APICKER_MOB		"Mob"
 #define APICKER_LIVING	"Living Mob"

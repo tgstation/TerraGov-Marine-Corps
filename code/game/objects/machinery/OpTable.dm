@@ -42,7 +42,7 @@
 				return
 		if(3.0)
 			if (prob(25))
-				src.density = 0
+				src.density = FALSE
 		else
 	return
 
@@ -64,9 +64,6 @@
 /obj/machinery/optable/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
-		return
-	if(buckled_mob)
-		unbuckle(user)
 		return
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
@@ -159,7 +156,7 @@
 	if (C == user)
 		user.visible_message("<span class='notice'>[user] climbs on the operating table.","You climb on the operating table.</span>", null, null, 4)
 	else
-		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, 4)
+		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, null, 4)
 	C.set_resting(TRUE)
 	C.forceMove(loc)
 
@@ -206,9 +203,9 @@
 			return
 	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.stasis_mob)
+		if(!C.bodybag_occupant)
 			return
-		M = C.stasis_mob
+		M = C.bodybag_occupant
 		C.open()
 		user.stop_pulling()
 		user.start_pulling(M)

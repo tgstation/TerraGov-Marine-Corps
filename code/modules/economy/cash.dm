@@ -4,14 +4,14 @@
 	gender = PLURAL
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "spacecash1"
-	opacity = 0
-	density = 0
-	anchored = 0.0
+	opacity = FALSE
+	density = FALSE
+	anchored = FALSE
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1
 	throw_range = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/access = list()
 	access = ACCESS_MARINE_CAPTAIN
 	var/worth = 0
@@ -133,11 +133,6 @@
 	desc = "Five US Government minted hundred dollar bills. All of them have pictures of Ben Franklin on them. They all eagarly glare at you, making you feel as if you owe them something. "
 	worth = 500
 
-/obj/item/spacecash/c1000
-	name = "1000 dollars"
-	icon_state = "spacecash1000"
-	desc = "Ten US Government minted hundred dollar bills. Every single damn one of them has Ben Fucking Franklin on them. The court of Bens sit inpatiently, as if each one thought they alone belonged to you. This coven of angry Bens have all since learned about your relations with the other Bens, and they want answers."
-	worth = 1000
 
 proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	if(sum in list(1000,500,200,100,50,20,10,1))

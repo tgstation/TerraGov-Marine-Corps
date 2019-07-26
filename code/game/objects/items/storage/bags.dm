@@ -32,7 +32,7 @@
 	icon_state = "trashbag0"
 	item_state = "trashbag"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
@@ -59,7 +59,7 @@
 	icon_state = "plasticbag"
 	item_state = "plasticbag"
 
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
@@ -75,7 +75,7 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = 50
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
 	max_w_class = 3
@@ -93,7 +93,7 @@
 	storage_slots = 50; //the number of plant pieces it can carry.
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = 3
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/reagent_container/food/snacks/grown,
 		/obj/item/seeds,
@@ -113,7 +113,7 @@
 	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
 
 	var/capacity = 300; //the number of sheets it can carry.
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 	allow_quick_empty = 1 // this function is superceded
 
@@ -215,7 +215,7 @@
 	var/obj/item/stack/sheet/S = W
 	if(!istype(S)) return 0
 
-	//I would prefer to drop a new stack, but the item/attack_hand code
+	//I would prefer to drop a new stack, but the item/attack_hand(mob/living/user)
 	// that calls this can't recieve a different object than you clicked on.
 	//Therefore, make a new stack internally that has the remainder.
 	// -Sayu
@@ -248,7 +248,7 @@
 	storage_slots = 50; //the number of cash pieces it can carry.
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = 3
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/coin,
 		/obj/item/spacecash)

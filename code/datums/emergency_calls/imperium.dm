@@ -15,12 +15,8 @@
 		return
 	
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
-	
-	// custom wh40k names when?
-	if(H.gender == MALE)
-		H.name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
-	else
-		H.name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
+
+	H.name = GLOB.namepool[/datum/namepool].random_name(H)
 	H.real_name = H.name
 	
 	M.transfer_to(H, TRUE)

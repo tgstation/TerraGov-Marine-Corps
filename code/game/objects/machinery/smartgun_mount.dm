@@ -11,7 +11,7 @@
 /obj/item/ammo_magazine/m56d
 	name = "M56D drum magazine (10x28mm Caseless)"
 	desc = "A box of 700, 10x28mm caseless tungsten rounds for the M56D mounted smartgun system. Just click the M56D with this to reload it."
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	icon_state = "ammo_drum"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x28mm"
@@ -26,7 +26,7 @@
 	desc = "A large metal case with Japanese writing on the top. However it also comes with English text to the side. This is a M56D smartgun, it clearly has various labeled warnings. The most major one is that this does not have IFF features due to specialized ammo."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	bypass_w_limit = list(
 		/obj/item/m56d_gun,
@@ -47,7 +47,7 @@
 	name = "\improper M56D Mounted Smartgun"
 	desc = "The top half of a M56D Machinegun post. However it ain't much use without the tripod."
 	resistance_flags = UNACIDABLE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_gun_e"
 	var/rounds = 0 // How many rounds are in the weapon. This is useful if we break down our guns.
@@ -93,7 +93,7 @@
 	name = "\improper M56D folded mount"
 	desc = "The folded, foldable tripod mount for the M56D.  (Place on ground and drag to you to unfold)."
 	resistance_flags = UNACIDABLE
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "folded_mount"
 
@@ -139,8 +139,8 @@
 	if(isxenolarva(M))
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>You slash [src]!</span>")
-	M.animation_attack_on(src)
+	"<span class='danger'>We slash [src]!</span>")
+	M.do_attack_animation(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
@@ -322,7 +322,7 @@
 				return
 
 		user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
-		playsound(loc, 'sound/weapons/gun_minigun_cocked.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/guns/interact/minigun_cocked.ogg', 25, 1)
 		if(rounds)
 			var/obj/item/ammo_magazine/m56d/D = new(user.loc)
 			D.current_rounds = rounds
@@ -359,8 +359,8 @@
 	if(isxenolarva(M))
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>You slash [src]!</span>")
-	M.animation_attack_on(src)
+	"<span class='danger'>We slash [src]!</span>")
+	M.do_attack_animation(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
@@ -393,10 +393,8 @@
 				is_bursting = 1
 				fire_shot()
 				sleep(2)
-			spawn(0)
-				last_fired = 1
-			spawn(fire_delay)
-				last_fired = 0
+			last_fired = TRUE
+			addtimer(VARSET_CALLBACK(src, last_fired, FALSE), fire_delay)
 		else burst_fire = 0
 		is_bursting = 0
 
@@ -414,9 +412,8 @@
 		return //still shooting.
 
 	if(!is_bursting)
-		last_fired = 1
-		spawn(fire_delay)
-			last_fired = 0
+		last_fired = TRUE
+		addtimer(VARSET_CALLBACK(src, last_fired, FALSE), fire_delay)
 
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(target)
@@ -437,7 +434,7 @@
 			in_chamber.original = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
-			playsound(src.loc, 'sound/weapons/gun_hmg.ogg', 75, 1)
+			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)
 			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
@@ -446,7 +443,7 @@
 			rounds--
 			if(!rounds)
 				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
-				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
+				playsound(src.loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
 	return
 
@@ -530,7 +527,7 @@
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
 		if(!rounds)
 			to_chat(user, "<span class='warning'><b>*click*</b></span>")
-			playsound(src, 'sound/weapons/gun_empty.ogg', 25, 1, 5)
+			playsound(src, 'sound/weapons/guns/fire/empty.ogg', 25, 1, 5)
 		else
 			process_shot()
 		return TRUE

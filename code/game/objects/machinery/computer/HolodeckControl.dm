@@ -14,7 +14,7 @@
 /obj/structure/table/holotable/attack_animal(mob/living/user as mob) //Removed code for larva since it doesn't work. Previous code is now a larva ability. /N
 	return attack_hand(user)
 
-/obj/structure/table/holotable/attack_hand(mob/user as mob)
+/obj/structure/table/holotable/attack_hand(mob/living/user)
 	return TRUE
 
 
@@ -33,7 +33,7 @@
 			return
 
 		L.forceMove(loc)
-		L.KnockDown(5)
+		L.knock_down(5)
 		user.visible_message("<span class='danger'>[user] puts [L] on the table.</span>")
 
 	else
@@ -65,7 +65,7 @@
 	icon_state = "basketball"
 	item_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
-	w_class = 4 //Stops people from hiding it in their bags/pockets
+	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 
 	//Can be picked up by aliens if the fun_allowed config is enabled.
 /obj/item/toy/beach_ball/holoball/attack_paw(user as mob)
@@ -102,7 +102,7 @@
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		L.forceMove(loc)
-		L.KnockDown(5)
+		L.knock_down(5)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob

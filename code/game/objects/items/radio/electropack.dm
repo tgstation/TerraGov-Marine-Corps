@@ -25,7 +25,7 @@
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/electropack/attack_hand(mob/user)
+/obj/item/electropack/attack_hand(mob/living/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(C.back == src)
@@ -76,7 +76,7 @@
 		s.set_up(3, 1, L)
 		s.start()
 
-		L.KnockDown(10)
+		L.knock_down(10)
 
 	if(master)
 		master.receive_signal()

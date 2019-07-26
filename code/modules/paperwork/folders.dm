@@ -3,7 +3,7 @@
 	desc = "A folder."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "folder"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/updateicon = 0//If they spawn with premade papers, update icon
 
 /obj/item/folder/blue

@@ -3,7 +3,7 @@
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/inflatable/attack_self(mob/user)
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
@@ -34,7 +34,7 @@
 	desc = "An inflated membrane. Do not puncture."
 	density = TRUE
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "wall"
@@ -73,7 +73,7 @@
 
 /obj/structure/inflatable/proc/attack_generic(mob/living/user, damage = 0)	//used by attack_animal
 	obj_integrity -= damage
-	user.animation_attack_on(src)
+	user.do_attack_animation(src)
 	if(obj_integrity <= 0)
 		user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
 		deflate(1)
@@ -87,7 +87,7 @@
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/inflatable/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	deflate(1)
 
 /obj/structure/inflatable/attackby(obj/item/I, mob/user, params)
@@ -152,7 +152,7 @@
 /obj/structure/inflatable/popped
 	name = "popped inflatable wall"
 	desc = "It used to be an inflatable wall, now it's just a mess of plastic."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	deflated = TRUE
 
@@ -178,7 +178,7 @@
 	name = "inflatable door"
 	density = TRUE
 	anchored = TRUE
-	opacity = 0
+	opacity = FALSE
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "door_closed"
@@ -190,7 +190,7 @@
 /obj/structure/inflatable/door/attack_paw(mob/user as mob)
 	return TryToSwitchState(user)
 
-/obj/structure/inflatable/door/attack_hand(mob/user as mob)
+/obj/structure/inflatable/door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -207,7 +207,8 @@
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
-		if(world.time - M.last_bumped <= 60) return //NOTE do we really need that?
+		if(M.cooldowns[COOLDOWN_BUMP]) 
+			return
 		if(M.client)
 			if(iscarbon(M))
 				var/mob/living/carbon/C = M
@@ -215,6 +216,7 @@
 					SwitchState()
 			else
 				SwitchState()
+			M.cooldowns[COOLDOWN_BUMP] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_BUMP, null), 6 SECONDS)
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)
@@ -228,8 +230,8 @@
 	//playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("door_opening",src)
 	sleep(10)
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 	state = 1
 	update_icon()
 	isSwitchingStates = 0
@@ -240,7 +242,7 @@
 	flick("door_closing",src)
 	sleep(10)
 	density = TRUE
-	opacity = 0
+	opacity = FALSE
 	state = 0
 	update_icon()
 	isSwitchingStates = 0

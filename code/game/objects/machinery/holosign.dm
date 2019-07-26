@@ -59,7 +59,7 @@
 	else
 		return attack_hand(user)
 
-/obj/machinery/holosign_switch/attack_hand(mob/user as mob)
+/obj/machinery/holosign_switch/attack_hand(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
@@ -73,8 +73,4 @@
 
 	for(var/obj/machinery/holosign/M in GLOB.machines)
 		if (M.id == src.id)
-			spawn(0)
-				M.toggle()
-				return
-
-	return
+			INVOKE_ASYNC(M, /obj/machinery/holosign.proc/toggle)

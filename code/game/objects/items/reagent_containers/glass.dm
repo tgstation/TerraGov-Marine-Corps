@@ -94,7 +94,7 @@
 
 			visible_message("<span class='warning'>[target] has been splashed with something by [user]!</span>")
 			reagents.reaction(target, TOUCH)
-			spawn(5) reagents.clear_reagents()
+			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 			return
 
 
@@ -102,7 +102,7 @@
 			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 			reagents.reaction(target, TOUCH)
-			spawn(5) src.reagents.clear_reagents()
+			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 			return
 
 /obj/item/reagent_container/glass/attackby(obj/item/I, mob/user, params)
@@ -146,7 +146,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_container/glass/beaker/attack_hand()
+/obj/item/reagent_container/glass/beaker/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -246,7 +246,7 @@
 	icon_state = "bucket"
 	item_state = "bucket"
 	matter = list("metal" = 200)
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120

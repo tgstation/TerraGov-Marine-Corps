@@ -2,7 +2,7 @@
 	name = "clutter"
 	desc = "Someone should clean that up."
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/obj/objects.dmi'
@@ -16,23 +16,20 @@
 	icon_state = "ash"
 	anchored = TRUE
 
-/obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
+/obj/effect/decal/cleanable/ash/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>[src] sifts through your fingers.</span>")
 	qdel(src)
 	return TRUE
 
-/obj/effect/decal/cleanable/greenglow
-
-	New()
-		..()
-		spawn(1200)// 2 minutes
-			qdel(src)
+/obj/effect/decal/cleanable/greenglow/Initialize()
+	. = ..()
+	QDEL_IN(src, 2 MINUTES)
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"
 	desc = "Someone should clean that up."
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
@@ -43,7 +40,7 @@
 	name = "flour"
 	desc = "It's still good. Four second rule!"
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
@@ -53,7 +50,7 @@
 	name = "glowing goo"
 	desc = "Jeez. I hope that's not for lunch."
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
@@ -62,7 +59,7 @@
 /obj/effect/decal/cleanable/cobweb
 	name = "cobweb"
 	desc = "Somebody should remove that."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = FLY_LAYER
 	icon = 'icons/effects/effects.dmi'
@@ -71,7 +68,7 @@
 /obj/effect/decal/cleanable/molten_item
 	name = "gooey grey mass"
 	desc = "It looks like a melted... something."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = OBJ_LAYER
 	icon = 'icons/obj/items/chemistry.dmi'
@@ -80,7 +77,7 @@
 /obj/effect/decal/cleanable/cobweb2
 	name = "cobweb"
 	desc = "Somebody should remove that."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = OBJ_LAYER
 	icon = 'icons/effects/effects.dmi'
@@ -91,7 +88,7 @@
 	name = "vomit"
 	desc = "Gosh, how unpleasant."
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/blood.dmi'
@@ -102,7 +99,7 @@
 /obj/effect/decal/cleanable/tomato_smudge
 	name = "tomato smudge"
 	desc = "It's red."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
@@ -111,7 +108,7 @@
 /obj/effect/decal/cleanable/egg_smudge
 	name = "smashed egg"
 	desc = "Seems like this one won't hatch."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
@@ -120,7 +117,7 @@
 /obj/effect/decal/cleanable/pie_smudge //honk
 	name = "smashed pie"
 	desc = "It's pie cream from a cream pie."
-	density = 0
+	density = FALSE
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'

@@ -24,7 +24,7 @@
 			return // get rid of that pinned target first!
 
 		if(istype(W, /obj/item/target))
-			density = 0
+			density = FALSE
 			W.density = TRUE
 			user.drop_held_item()
 			W.loc = loc
@@ -37,7 +37,7 @@
 		// taking pinned targets off!
 		if(pinned_target)
 			density = TRUE
-			pinned_target.density = 0
+			pinned_target.density = FALSE
 			pinned_target.layer = OBJ_LAYER
 
 			pinned_target.loc = user.loc

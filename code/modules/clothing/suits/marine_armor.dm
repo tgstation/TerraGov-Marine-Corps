@@ -32,7 +32,7 @@
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
 	pockets = /obj/item/storage/internal/suit/marine
@@ -134,15 +134,12 @@
 	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and carrying capacity."
 	icon_state = "4"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	var/obj/item/weapon/gun/current_gun
-	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
-	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
 /obj/item/storage/internal/suit/marine/M3IS
 	bypass_w_limit = list()
 	storage_slots = null
-	max_storage_space = 14
+	max_storage_space = 15 // Same as satchel
 	max_w_class = 3 //Can fit larger items
 
 /obj/item/clothing/suit/storage/marine/M3E
@@ -200,7 +197,7 @@
 	icon_state = "admiral"
 	name = "\improper M3 pattern admiral armor"
 	desc = "A well-crafted suit of M3 Pattern Armor with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	armor = list("melee" = 50, "bullet" = 80, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 25, "acid" = 25)
 
 /obj/item/clothing/suit/storage/marine/MP/RO

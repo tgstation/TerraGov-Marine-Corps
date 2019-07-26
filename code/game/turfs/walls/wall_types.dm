@@ -12,7 +12,7 @@
 
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
 
 /turf/closed/wall/almayer/handle_icon_junction(junction)
@@ -163,7 +163,7 @@
 	name = "wall"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "riveted"
-	opacity = 1
+	opacity = TRUE
 	hull = 1
 
 /turf/closed/wall/indestructible/ex_act(severity)
@@ -190,7 +190,7 @@
 /turf/closed/wall/indestructible/fakeglass
 	name = "window"
 	icon_state = "fakewindows"
-	opacity = 0
+	opacity = FALSE
 
 /turf/closed/wall/indestructible/splashscreen
 	name = "Space Station 13"
@@ -274,7 +274,7 @@
 			return
 	return
 
-/turf/closed/wall/mineral/uranium/attack_hand(mob/user as mob)
+/turf/closed/wall/mineral/uranium/attack_hand(mob/living/user)
 	radiate()
 	return ..()
 
@@ -395,7 +395,7 @@
 	icon_state = "membrane0"
 	walltype = "membrane"
 	damage_cap = 120
-	opacity = 0
+	opacity = FALSE
 	alpha = 180
 
 /turf/closed/wall/resin/membrane/thicken()
@@ -443,9 +443,9 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
-	"<span class='xenonotice'>You claw \the [src].</span>")
+	"<span class='xenonotice'>We claw \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
 	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
 
@@ -454,11 +454,11 @@
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
 	playsound(src, "alien_resin_break", 25)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	take_damage(40)
 
 
-/turf/closed/wall/resin/attack_hand(mob/user)
+/turf/closed/wall/resin/attack_hand(mob/living/user)
 	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
@@ -474,7 +474,7 @@
 	var/mob/living/L = user
 
 	user.changeNext_move(I.attack_speed)
-	L.animation_attack_on(src)
+	L.do_attack_animation(src)
 	var/damage = I.force
 	var/multiplier = 1
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).

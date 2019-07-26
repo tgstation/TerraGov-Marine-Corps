@@ -7,7 +7,7 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
 	desc = "Could probably be used as ... a throwing weapon?"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	force = 5
 	throwforce = 8
 	item_state = "shard-glass"
@@ -74,7 +74,7 @@
 		var/mob/living/M = AM
 		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
 		if(!M.buckled)
-			to_chat(M, "<span class='danger'>You step on \the [src]!</span>")
+			to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src]!</span>")
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 
@@ -85,7 +85,7 @@
 					var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
 					if(affecting.limb_status & LIMB_ROBOT)
 						return
-					H.KnockDown(3)
+					H.knock_down(3)
 					if(affecting.take_damage_limb(5))
 						H.UpdateDamageIcon()
 					H.updatehealth()

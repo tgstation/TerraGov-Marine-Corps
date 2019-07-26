@@ -3,7 +3,7 @@
 	icon_state = "scoreboard"
 	name = "basketball scoreboard"
 	anchored = TRUE
-	density = 0
+	density = FALSE
 	use_power = 1
 	idle_power_usage = 10
 	var/id = ""
@@ -57,7 +57,7 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/scoreboard_button/attack_hand(mob/user as mob)
+/obj/machinery/scoreboard_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

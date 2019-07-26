@@ -255,10 +255,10 @@
 
 /obj/structure/dropship_equipment/attack_alien(mob/living/carbon/xenomorph/X)
 	if(X.a_intent == INTENT_HARM)
-		X.animation_attack_on(src)
+		X.do_attack_animation(src)
 		X.flick_attack_overlay(src, "slash")
 		playsound(loc, "alien_claw_metal", 25, 1)
-		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
+		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>We slash [src].</span>")
 		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
 	else
 		attack_hand(X)
@@ -709,7 +709,7 @@
 	name = "rocket pod"
 	icon_state = "rocket_pod"
 	desc = "A rocket pod weapon system capable of launching a single laser-guided rocket. Moving this will require some sort of lifter."
-	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
+	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
 	firing_delay = 5
 	point_cost = 600
 
@@ -732,7 +732,7 @@
 	icon_state = "minirocket_pod"
 	desc = "A mini rocket pod capable of launching six laser-guided mini rockets. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/almayer_props64.dmi'
-	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
+	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
 	firing_delay = 10 //1 seconds
 	point_cost = 600
 
@@ -776,7 +776,7 @@
 	icon_state = "launch_bay"
 	desc = "A launch bay to drop special ordnance. Fits inside the dropship's crew weapon emplacement. Moving this will require some sort of lifter."
 	icon = 'icons/Marine/almayer_props.dmi'
-	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
+	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
 	firing_delay = 10 //1 seconds
 	equip_category = DROPSHIP_CREW_WEAPON //fits inside the central spot of the dropship
 	point_cost = 0
@@ -935,7 +935,7 @@
 		linked_stretcher = null
 
 
-/obj/structure/dropship_equipment/medevac_system/attack_hand(mob/user)
+/obj/structure/dropship_equipment/medevac_system/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -8,7 +8,7 @@
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
@@ -368,7 +368,7 @@
 			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
 		return FALSE
 
-	if(W.w_class >= w_class && (istype(W, /obj/item/storage)))
+	if(W.w_class >= w_class && istype(W, /obj/item/storage) && !is_type_in_typecache(W.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
@@ -456,7 +456,7 @@
 	return handle_item_insertion(I, FALSE, user)
 
 
-/obj/item/storage/attack_hand(mob/user)
+/obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
 		if(draw_mode && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]
@@ -700,3 +700,12 @@
 	for(var/i in contents)
 		var/atom/A = i
 		A.ex_act(severity, target)
+
+
+/obj/item/storage/AltClick(mob/user)
+	if(!ishuman(user) || !length(contents) || isturf(loc))
+		return ..()
+	if(user.get_active_held_item())
+		return ..() //User is already holding something.
+	var/obj/item/drawn_item = contents[length(contents)]
+	drawn_item.attack_hand(user)

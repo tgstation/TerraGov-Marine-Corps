@@ -32,14 +32,14 @@
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
-		AdjustStunned(-1)
+		adjust_stunned(-1)
 		if(!stunned && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return stunned
 
 /mob/living/proc/handle_knocked_down()
 	if(knocked_down && client)
-		AdjustKnockeddown(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+		adjust_knocked_down(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 		if(!knocked_down && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return knocked_down
@@ -66,7 +66,7 @@
 
 /mob/living/proc/handle_knocked_out()
 	if(knocked_out)
-		AdjustKnockedout(-1)
+		adjust_knockedout(-1)
 	return knocked_out
 
 /mob/living/proc/add_slowdown(amount)
@@ -221,9 +221,9 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(last_special >= world.time)
+	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
-	last_special = world.time + CLICK_CD_RESIST
+	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
 	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
 
@@ -231,9 +231,9 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(last_special >= world.time)
+	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
-	last_special = world.time + CLICK_CD_RESIST
+	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
 	visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
 
@@ -410,11 +410,6 @@
 		now_pushing = 0
 
 
-/mob/living/Bumped(atom/movable/AM)
-	. = ..()
-	last_bumped = world.time
-
-
 /mob/living/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	
 		return 0
@@ -502,7 +497,7 @@
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
 	if(!isxeno(src)||!isanimal(src))
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(src)
@@ -517,7 +512,7 @@
 	alpha = initial(alpha)
 
 	if(!isxeno(src)|| !isanimal(src))
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.add_to_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.add_to_hud(src)
@@ -553,12 +548,11 @@ value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
 
-/mob/living/carbon/Dizzy(amount)
+/mob/living/carbon/dizzy(amount)
 	dizziness = CLAMP(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)
-		spawn(0)
-			dizzy_process()
+		INVOKE_ASYNC(src, .proc/dizzy_process)
 
 /mob/living/proc/dizzy_process()
 	is_dizzy = TRUE
@@ -700,7 +694,7 @@ below 100 is not dizzy
 	return name
 
 
-/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE
@@ -716,10 +710,36 @@ below 100 is not dizzy
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
-		recently_pointed_to = world.time + 50
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
-		recently_pointed_to = world.time + 10
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
+
+
+/mob/living/get_photo_description(obj/item/camera/camera)
+	var/holding
+	if(l_hand || r_hand)
+		if(l_hand) 
+			holding = "They are holding \a [l_hand]"
+		if(r_hand)
+			if(holding)
+				holding += " and \a [r_hand]"
+			else
+				holding = "They are holding \a [r_hand]"
+		holding += "."
+	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt" : ""][holding ? ". [holding]" : "."]"
+
+
+//mob verbs are a lot faster than object verbs
+//for more info on why this is not atom/pull, see examinate() in mob.dm
+/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+	set name = "Pull"
+	set category = "Object"
+
+	if(istype(AM) && Adjacent(AM))
+		start_pulling(AM)
+	else
+		stop_pulling()

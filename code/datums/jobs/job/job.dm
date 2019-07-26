@@ -1,11 +1,11 @@
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_REGULAR_ALL = list("titles" = JOBS_REGULAR_ALL),
-	EXP_TYPE_COMMAND = list("titles" = JOBS_COMMAND),
-	EXP_TYPE_ENGINEERING = list("titles" = JOBS_ENGINEERING),
-	EXP_TYPE_MEDICAL = list("titles" = JOBS_MEDICAL),
-	EXP_TYPE_MARINES = list("titles" = JOBS_MARINES),
-	EXP_TYPE_REQUISITIONS = list("titles" = JOBS_REQUISITIONS),
-	EXP_TYPE_POLICE = list("titles" = JOBS_POLICE)
+	EXP_TYPE_REGULAR_ALL = list("titles" = GLOB.jobs_regular_all),
+	EXP_TYPE_COMMAND = list("titles" = GLOB.jobs_command),
+	EXP_TYPE_ENGINEERING = list("titles" = GLOB.jobs_engineering),
+	EXP_TYPE_MEDICAL = list("titles" = GLOB.jobs_medical),
+	EXP_TYPE_MARINES = list("titles" = GLOB.jobs_marines),
+	EXP_TYPE_REQUISITIONS = list("titles" = GLOB.jobs_requisitions),
+	EXP_TYPE_POLICE = list("titles" = GLOB.jobs_police)
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
@@ -97,23 +97,29 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!H?.mind)
 		return FALSE
 
-	var/datum/outfit/job/O = new outfit
-	var/id = O.id ? O.id : /obj/item/card/id
-	var/obj/item/card/id/I = new id
-	var/datum/skills/L = new skills_type
-	H.mind.assigned_role = title
-	H.mind.cm_skills = L
-	H.mind.comm_title = comm_title
 
-	if(H.wear_id)
-		QDEL_NULL(H.wear_id)
+	var/datum/outfit/job/O
+	if(outfit)
+		O = new outfit
+		var/id = O.id ? O.id : /obj/item/card/id
+		var/obj/item/card/id/I = new id
+		if(H.wear_id)
+			QDEL_NULL(H.wear_id)
+
+		H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
+
+
+	if(skills_type)
+		var/datum/skills/L = new skills_type
+		H.mind.cm_skills = L
+
+	H.mind.assigned_role = title
+	H.mind.comm_title = comm_title
 
 	H.job = title
 	H.faction = faction
 
-	H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-	O.handle_id(H)
+	O?.handle_id(H)
 
 	GLOB.datacore.manifest_update(H.real_name, H.real_name, H.job)
 
@@ -204,15 +210,13 @@ GLOBAL_PROTECT(exp_specialmap)
 		C.rank = J.title
 		C.paygrade = J.paygrade
 		C.update_label()
-		H.sec_hud_set_ID()
 
 		if(H.mind?.initial_account)
 			C.associated_account_number = H.mind.initial_account.account_number
 
-	H.name = H.get_visible_name()
 	H.hud_set_squad()
 	H.update_action_buttons()
 
 
 /proc/guest_jobbans(job)
-	return (job in JOBS_COMMAND)
+	return (job in GLOB.jobs_command)

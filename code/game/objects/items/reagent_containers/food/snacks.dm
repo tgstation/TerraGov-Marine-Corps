@@ -89,12 +89,10 @@
 
 
 			if (fullness <= (550 * (1 + C.overeatduration / 1000)))
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
+				visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>")
 			else
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message("<span class='warning'>[user] cannot force anymore of [src] down [M]'s throat.</span>", 1)
-					return FALSE
+				visible_message("<span class='warning'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
+				return FALSE
 
 			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
 				return
@@ -104,8 +102,7 @@
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 			msg_admin_attack("[key_name(user)] fed [key_name(C)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(C.a_intent)])")
 
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)
+			visible_message("<span class='warning'>[user] feeds [M] [src].</span>")
 
 
 		if(reagents)								//Handle ingestion of the reagent.
@@ -176,7 +173,7 @@
 /obj/item/reagent_container/food/snacks/sliceable/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(I.w_class <= 2)
+	if(user.a_intent == INTENT_HELP && I.w_class <= 2)
 		if(!iscarbon(user))
 			return TRUE
 
@@ -2255,7 +2252,7 @@
 	icon_state = "pizzabox[boxes.len+1]"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/pizzabox/attack_hand( mob/user as mob )
+/obj/item/pizzabox/attack_hand(mob/living/user)
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
@@ -2682,7 +2679,7 @@
 	desc = "Packed full of nutrients you can't pronounce."
 	icon_state = "eat_bar"
 	bitesize = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	trash = /obj/item/trash/eat
 	//no taste, default to "something indescribable"
 	list_reagents = list("nutriment" = 3)
@@ -2752,7 +2749,7 @@
 
 
 /obj/item/reagent_container/food/snacks/packaged_meal/Initialize(mapload, newflavor)
-	tastes = list("[pick(GLOB.food_adjectives)]" = 1) //idea, list, gimmick
+	tastes = list("[pick(SSstrings.get_list_from_file("names/food_adjectives"))]" = 1) //idea, list, gimmick
 	determinetype(newflavor)
 	desc = "A packaged [icon_state] from a Meal Ready-to-Eat, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back.</i>"
 	return ..()

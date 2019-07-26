@@ -25,7 +25,7 @@
 	flags_armor_protection = HEAD|FACE|EYES
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 2
 	eye_protection = 2
 	tint = TINT_HEAVY
@@ -123,7 +123,7 @@
 	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	flags_armor_protection = HEAD|EYES
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 1
 
 

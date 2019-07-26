@@ -9,7 +9,7 @@
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	item_state = "nothing"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	var/atom/movable/grabbed_thing
 	var/last_upgrade = 0 //used for cooldown between grab upgrades.
 
@@ -131,7 +131,7 @@
 	//Then, we place the mob where it ought to be
 
 	stomach_contents.Add(prey)
-	prey.KnockDown(360)
+	prey.knock_down(360)
 	prey.blind_eyes(1)
 	prey.forceMove(src)
 
@@ -166,6 +166,6 @@
 
 
 /mob/living/carbon/proc/on_release_from_stomach(mob/living/carbon/prey, mob/living/predator)
-	prey.SetKnockeddown(1)
+	prey.set_knocked_down(1)
 	prey.adjust_blindness(-1)
 	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)

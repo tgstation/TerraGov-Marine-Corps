@@ -8,7 +8,7 @@
 
 //Captain
 /datum/job/command/captain
-	title = "Captain"
+	title = CAPTAIN
 	paygrade = "O6"
 	comm_title = "CPT"
 	supervisors = "TGMC high command"
@@ -33,11 +33,11 @@ Godspeed, captain! And remember, you are not above the law."})
 
 
 /datum/outfit/job/command/captain
-	name = "Captain"
+	name = CAPTAIN
 	jobtype = /datum/job/command/captain
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/gun/mateba/cmateba/full
+	belt = /obj/item/storage/belt/gun/mateba/captain/full
 	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
@@ -50,7 +50,7 @@ Godspeed, captain! And remember, you are not above the law."})
 
 //Field Commander
 /datum/job/command/fieldcommander
-	title = "Field Commander"
+	title = FIELD_COMMANDER
 	paygrade = "MO4"
 	comm_title = "FCDR"
 	skills_type = /datum/skills/FO
@@ -69,13 +69,13 @@ Godspeed, captain! And remember, you are not above the law."})
 /datum/job/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
-Your dutiesare to ensure marines hold when ordered, and push when they are cowering behind barricades.
+Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
 Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"})
 
 
 /datum/outfit/job/command/fieldcommander
-	name = "Field Commander"
+	name = FIELD_COMMANDER
 	jobtype = /datum/job/command/fieldcommander
 
 	id = /obj/item/card/id/dogtag
@@ -94,7 +94,7 @@ Make the TGMC proud!"})
 
 //Intelligence Officer
 /datum/job/command/intelligenceofficer
-	title = "Intelligence Officer"
+	title = INTELLIGENCE_OFFICER
 	paygrade = "O3"
 	comm_title = "IO"
 	total_positions = 4
@@ -114,11 +114,11 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 
 /datum/outfit/job/command/intelligenceofficer
-	name = "Intelligence Officer"
+	name = INTELLIGENCE_OFFICER
 	jobtype = /datum/job/command/intelligenceofficer
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/captain
+	belt = /obj/item/storage/belt/gun/m4a3/officer
 	ears = /obj/item/radio/headset/almayer/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine
@@ -130,7 +130,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 //Pilot Officer
 /datum/job/command/pilot
-	title = "Pilot Officer"
+	title = PILOT_OFFICER
 	paygrade = "WO"
 	comm_title = "PO"
 	total_positions = 2
@@ -149,7 +149,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 
 /datum/outfit/job/command/pilot
-	name = "Pilot Officer"
+	name = PILOT_OFFICER
 	jobtype = /datum/job/command/pilot
 
 	id = /obj/item/card/id/silver
@@ -159,7 +159,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
 	r_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/marine/satchel
@@ -167,10 +167,10 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 //Tank Crewmen
 /datum/job/command/tank_crew
-	title = "Tank Crewman"
+	title = TANK_CREWMAN
 	paygrade = "E7"
 	comm_title = "TC"
-	total_positions = 2
+	total_positions = 0
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/tank_crew
@@ -189,7 +189,7 @@ You could use MTs help to repair and replace hardpoints."})
 
 
 /datum/outfit/job/command/tank_crew
-	name = "Tank Crewman"
+	name = TANK_CREWMAN
 	jobtype = /datum/job/command/tank_crew
 
 	id = /obj/item/card/id/silver
@@ -214,7 +214,7 @@ You could use MTs help to repair and replace hardpoints."})
 
 //Military Police
 /datum/job/police/officer
-	title = "Master at Arms"
+	title = MASTER_AT_ARMS
 	paygrade = "PO"
 	comm_title = "MA"
 	total_positions = 5
@@ -236,7 +236,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 /datum/outfit/job/police/officer
-	name = "Master at Arms"
+	name = MASTER_AT_ARMS
 	jobtype = /datum/job/police/officer
 
 	id = /obj/item/card/id
@@ -254,7 +254,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 //Command Master at Arms
 /datum/job/police/chief
-	title = "Command Master at Arms"
+	title = COMMAND_MASTER_AT_ARMS
 	paygrade = "O3"
 	comm_title = "CMA"
 	selection_color = "#ffaaaa"
@@ -277,7 +277,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 /datum/outfit/job/police/chief
-	name = "Command Master at Arms"
+	name = COMMAND_MASTER_AT_ARMS
 	jobtype = /datum/job/police/chief
 
 	id = /obj/item/card/id/silver
@@ -303,7 +303,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 //Chief Ship Engineer
 /datum/job/engineering/chief
-	title = "Chief Ship Engineer"
+	title = CHIEF_SHIP_ENGINEER
 	paygrade = "O3"
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
@@ -324,7 +324,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 
 /datum/outfit/job/engineering/chief
-	name = "Chief Ship Engineer"
+	name = CHIEF_SHIP_ENGINEER
 	jobtype = /datum/job/engineering/chief
 
 	id = /obj/item/card/id/silver
@@ -343,7 +343,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 //Ship Engineer
 /datum/job/engineering/tech
-	title = "Ship Engineer"
+	title = SHIP_ENGINEER
 	comm_title = "SE"
 	paygrade = "PO"
 	total_positions = 4
@@ -363,7 +363,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 
 
 /datum/outfit/job/engineering/tech
-	name = "Ship Engineer"
+	name = SHIP_ENGINEER
 	jobtype = /datum/job/engineering/tech
 
 	id = /obj/item/card/id/silver
@@ -389,7 +389,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 
 //Requisitions Officer
 /datum/job/requisitions/officer
-	title = "Requisitions Officer"
+	title = REQUISITIONS_OFFICER
 	paygrade = "CPO"
 	comm_title = "RO"
 	selection_color = "#9990B2"
@@ -411,7 +411,7 @@ A happy ship is a well-functioning ship."})
 
 
 /datum/outfit/job/requisitions/officer
-	name = "Requisitions Officer"
+	name = REQUISITIONS_OFFICER
 	jobtype = /datum/job/requisitions/officer
 
 	id = /obj/item/card/id/silver
@@ -428,7 +428,7 @@ A happy ship is a well-functioning ship."})
 
 //Cargo Tech
 /datum/job/requisitions/tech
-	title = "Cargo Technician"
+	title = CARGO_TECHNICIAN
 	paygrade = "PO"
 	comm_title = "CT"
 	total_positions = 2
@@ -449,7 +449,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 
 /datum/outfit/job/requisitions/tech
-	name = "Cargo Technician"
+	name = CARGO_TECHNICIAN
 	jobtype = /datum/job/requisitions/tech
 
 	id = /obj/item/card/id/silver
@@ -471,7 +471,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 
 /datum/job/medical/professor
-	title = "Chief Medical Officer"
+	title = CHIEF_MEDICAL_OFFICER
 	comm_title = "CMO"
 	paygrade = "O3"
 	total_positions = 1
@@ -494,7 +494,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 
 /datum/outfit/job/medical/professor
-	name = "Chief Medical Officer"
+	name = CHIEF_MEDICAL_OFFICER
 	jobtype = /datum/job/medical/professor
 
 	id = /obj/item/card/id
@@ -515,7 +515,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 //Medical Officer
 /datum/job/medical/medicalofficer
-	title = "Medical Officer"
+	title = MEDICAL_OFFICER
 	comm_title = "MO"
 	paygrade = "O1"
 	total_positions = 6
@@ -536,7 +536,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 
 /datum/outfit/job/medical/medicalofficer
-	name = "Medical Officer"
+	name = MEDICAL_OFFICER
 	jobtype = /datum/job/medical/medicalofficer
 
 	id = /obj/item/card/id
@@ -555,7 +555,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 //Researcher
 /datum/job/medical/researcher
-	title = "Medical Researcher"
+	title = MEDICAL_RESEARCHER
 	comm_title = "Rsr"
 	paygrade = "CD"
 	total_positions = 2
@@ -577,7 +577,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 
 /datum/outfit/job/medical/researcher
-	name = "Medical Researcher"
+	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/medical/researcher
 
 	id = /obj/item/card/id
@@ -602,7 +602,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 //Liaison
 /datum/job/civilian/liaison
-	title = "Corporate Liaison"
+	title = CORPORATE_LIAISON
 	paygrade = "NT"
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
@@ -623,7 +623,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 
 /datum/outfit/job/civilian/liaison
-	name = "Corporate Liaison"
+	name = CORPORATE_LIAISON
 	jobtype = /datum/job/civilian/liaison
 
 	id = /obj/item/card/id/silver
@@ -635,7 +635,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 //Synthetic
 /datum/job/civilian/synthetic
-	title = "Synthetic"
+	title = SYNTHETIC
 	comm_title = "Syn"
 	supervisors = "the acting captain"
 	selection_color = "#aaee55"
@@ -678,7 +678,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 
 /datum/outfit/job/civilian/synthetic
-	name = "Synthetic"
+	name = SYNTHETIC
 	jobtype = /datum/job/civilian/synthetic
 
 	id = /obj/item/card/id/gold
@@ -690,3 +690,47 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel
+
+
+/datum/job/ai
+	title = "AI"
+	faction = "Marine"
+	total_positions = 1
+	selection_color = "#92c255"
+	supervisors = "your laws"
+	exp_requirements = XP_REQ_EXPERIENCED
+	exp_type = EXP_TYPE_REGULAR_ALL
+	exp_type_department = EXP_TYPE_SILICON
+	display_order = JOB_DISPLAY_ORDER_AI
+
+
+/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
+	if(!length(GLOB.ai_spawn))
+		CRASH("attempted to spawn an AI with no landmark set")
+
+	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
+	H.mind.transfer_to(AI, TRUE)
+	qdel(H)
+
+
+/datum/job/ai/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
+	. = ..()
+
+	if(!isAI(L) || !latejoin)
+		return
+
+	var/mob/living/silicon/ai/AI = L
+	announce(AI)
+
+
+/datum/job/ai/override_latejoin_spawn()
+	return TRUE
+
+
+/datum/job/ai/announce(mob/living/silicon/ai/AI)
+	. = ..()
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(AI)]."))
+
+
+/datum/job/ai/config_check()
+	return CONFIG_GET(flag/allow_ai)

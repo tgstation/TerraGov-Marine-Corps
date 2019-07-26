@@ -186,14 +186,14 @@
 
 /obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		if(!opened && prob(70))
 			break_open()
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] open!</span>", \
-			"<span class='danger'>You smash \the [src] open!</span>", null, 5)
+			"<span class='danger'>We smash \the [src] open!</span>", null, 5)
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
-			"<span class='danger'>You smash \the [src]!</span>", null, 5)
+			"<span class='danger'>We smash \the [src]!</span>", null, 5)
 		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
 		return attack_paw(M)
@@ -213,7 +213,8 @@
 		user.transferItemToLoc(I, drop_location())
 		return ..()
 
-	if(I.GetID())
+	var/obj/item/card/id/ID = user.get_idcard()
+	if(istype(ID))
 		if(!togglelock(user, TRUE))
 			toggle(user)
 
@@ -300,8 +301,7 @@
 			lastbang = TRUE
 			for(var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
-			spawn(30)
-				lastbang = FALSE
+			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
 /obj/structure/closet/attack_paw(mob/user as mob)
@@ -352,7 +352,7 @@
 		return FALSE
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_RESIST, null), CLICK_CD_BREAKOUT)
 	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='italics'>You hear banging from [src].</span>")
@@ -477,7 +477,7 @@
 
 
 /mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
-	Stun(origin.closet_stun_delay)//Action delay when going out of a closet
+	stun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying && stunned)
 		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!",
 		"<span class='warning'>You get out of [origin] and get your bearings!")

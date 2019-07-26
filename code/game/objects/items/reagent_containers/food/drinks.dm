@@ -44,12 +44,10 @@
 			to_chat(H, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
 			return
 
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
+		visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>")
 		if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
 			return
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)
+		visible_message("<span class='warning'>[user] feeds [M] [src].</span>")
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -109,7 +107,7 @@
 	name = "golden cup"
 	icon_state = "golden_cup"
 	item_state = "" //nope :(
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 14
 	throwforce = 10
 	amount_per_transfer_from_this = 20

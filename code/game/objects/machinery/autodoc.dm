@@ -57,16 +57,7 @@
 
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
-	var/obj/item/radio/radio
 
-
-/obj/machinery/autodoc/Initialize(mapload)
-	. = ..()
-	radio = new(src)
-
-/obj/machinery/autodoc/Destroy()
-	QDEL_NULL(radio)
-	return ..()
 
 /obj/machinery/autodoc/power_change(area/master_area = null)
 	..()
@@ -177,7 +168,7 @@
 	if(!ishuman(M))
 		return list()
 	var/surgery_list = list()
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/known_implants = list(/obj/item/implant/neurostim)
 	for(var/datum/limb/L in M.limbs)
 		if(L)
 			for(var/datum/wound/W in L.wounds)
@@ -226,7 +217,7 @@
 			if(L.surgery_open_stage)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
 	var/datum/internal_organ/I = M.internal_organs_by_name["eyes"]
-	if(I && (M.disabilities & NEARSIGHTED || M.sdisabilities & BLIND || I.damage > 0))
+	if(I && (M.disabilities & NEARSIGHTED || M.disabilities & BLIND || I.damage > 0))
 		surgery_list += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,I)
 	if(M.getBruteLoss() > 0)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,ADSURGERY_BRUTE)
@@ -274,7 +265,7 @@
 	surgery = 1
 	update_icon()
 
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/known_implants = list(/obj/item/implant/neurostim)
 
 	for(var/datum/autodoc_surgery/A in surgery_todo_list)
 		if(A.type_of_surgery == EXTERNAL_SURGERY)
@@ -380,7 +371,7 @@
 								sleep(EYE_CAUTERISE_MAX_DURATION)
 								if(!surgery) break
 								H.disabilities &= ~NEARSIGHTED
-								H.sdisabilities &= ~BLIND
+								H.disabilities &= ~BLIND
 								E.damage = 0
 								E.eye_surgery_stage = 0
 
@@ -697,7 +688,7 @@
 		usr.forceMove(src)
 		occupant = usr
 		icon_state = "autodoc_closed"
-		var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
 		var/doc_dat
 		med_scan(H, doc_dat, implants, TRUE)
@@ -707,11 +698,9 @@
 			qdel(O)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
-	for(var/A in contents)
-		var/atom/movable/B = A
-		if(B == radio)
-			continue
-		B.forceMove(loc)
+	for(var/i in contents)
+		var/atom/movable/AM = i
+		AM.forceMove(loc)
 	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
@@ -732,7 +721,7 @@
 			if(AUTODOC_NOTICE_IDIOT_EJECT)
 				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 				reason = "Reason for discharge: Unauthorized manual release during surgery. Alerting security advised."
-		radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
+		connected.radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	surgery_todo_list = list()
 	update_icon()
@@ -782,10 +771,10 @@
 		M = G.grabbed_thing
 	else if(istype(G.grabbed_thing, /obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.stasis_mob)
+		if(!C.bodybag_occupant)
 			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
 			return
-		M = C.stasis_mob
+		M = C.bodybag_occupant
 		C.open()
 		user.start_pulling(M)
 
@@ -823,7 +812,7 @@
 	M.forceMove(src)
 	occupant = M
 	icon_state = "autodoc_closed"
-	var/implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/implants = list(/obj/item/implant/neurostim)
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
 	start_processing()
@@ -841,15 +830,23 @@
 	var/locked = FALSE //Medics, Doctors and so on can lock this.
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Valid access while locked
 	anchored = TRUE //About time someone fixed this.
-	density = 0
+	density = FALSE
 
 	use_power = 1
 	idle_power_usage = 40
+	var/obj/item/radio/radio
+
 
 /obj/machinery/autodoc_console/Initialize()
 	. = ..()
 	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
 	connected.connected = src
+	radio = new(src)
+
+
+/obj/machinery/autodoc_console/Destroy()
+	QDEL_NULL(radio)
+	return ..()
 
 /obj/machinery/autodoc_console/update_icon()
 	if(machine_stat & NOPOWER)
@@ -1135,7 +1132,7 @@
 				updateUsrDialog()
 
 			if(href_list["shrapnel"])
-				var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+				var/known_implants = list(/obj/item/implant/neurostim)
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						var/skip_embryo_check = FALSE
