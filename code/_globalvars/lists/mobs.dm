@@ -39,30 +39,4 @@ GLOBAL_LIST_EMPTY(all_species)
 
 GLOBAL_LIST_EMPTY_TYPED(xeno_caste_datums, /list/datum/xeno_caste)
 
-GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
-
 GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
-
-/proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
-	return
-/*
-	var/list/mob_types = list()
-	var/list/entry_value = CONFIG_GET(keyed_list/multiplicative_movespeed)
-	for(var/path in entry_value)
-		var/value = entry_value[path]
-		if(!value)
-			continue
-		for(var/subpath in typesof(path))
-			mob_types[subpath] = value
-	GLOB.mob_config_movespeed_type_lookup = mob_types
-	if(update_mobs)
-		update_mob_config_movespeeds()
-*/
-
-/proc/update_mob_config_movespeeds()
-	return
-/*
-	for(var/i in GLOB.mob_list)
-		var/mob/M = i
-		M.update_config_movespeed()
-*/
