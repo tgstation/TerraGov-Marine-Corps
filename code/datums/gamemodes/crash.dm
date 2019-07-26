@@ -290,13 +290,14 @@
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return
-
-	if(rank in GLOB.jobs_marines)
-		NP.mind.assigned_squad = SSjob.squads[starting_squad]
-
 	if(!SSjob.AssignRole(NP, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return
+
+	// reset their squad to the correct squad for the gamemode.
+	if(rank in GLOB.jobs_marines)
+		NP.mind.assigned_squad = SSjob.squads[starting_squad]
+
 
 	NP.close_spawn_windows()
 	NP.spawning = TRUE
