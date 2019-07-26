@@ -17,6 +17,8 @@
 	var/shuttle_id = "tgs_canterbury"
 	var/obj/docking_port/mobile/crashmode/shuttle
 
+	var/starting_squad = "Alpha"
+
 
 /datum/game_mode/crash/New()
 	. = ..()
@@ -272,6 +274,49 @@
 /datum/game_mode/crash/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
+
+
+
+/datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
+	if(!isnewplayer(M))
+		return
+	var/mob/new_player/NP = M
+	if(!NP.IsJobAvailable(rank))
+		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
+		return
+	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
+		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
+		return
+	if(!GLOB.enter_allowed)
+		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
+		return
+
+	if(rank in GLOB.jobs_marines)
+		NP.mind.assigned_squad = SSjob.squads[starting_squad]
+
+	if(!SSjob.AssignRole(NP, rank, TRUE))
+		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
+		return
+
+	NP.close_spawn_windows()
+	NP.spawning = TRUE
+
+	var/mob/living/character = NP.create_character(TRUE)	//creates the human and transfers vars and mind
+	var/equip = SSjob.EquipRank(character, rank, TRUE)
+	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
+		character = equip
+
+	var/datum/job/job = SSjob.GetJob(rank)
+
+	if(job && !job.override_latejoin_spawn(character))
+		SSjob.SendToLateJoin(character)
+
+	GLOB.datacore.manifest_inject(character)
+	SSticker.minds += character.mind
+
+	handle_late_spawn(character)
+
+	qdel(NP)
 
 
 #undef CRASH_MINIMUM_TIME
