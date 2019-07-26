@@ -53,6 +53,9 @@
 	var/use_points = FALSE
 	var/lock_flags = SQUAD_LOCK|JOB_LOCK
 
+	var/icon_vend
+	var/icon_deny
+
 	var/list/listed_products
 
 /obj/machinery/marine_selector/update_icon()
@@ -161,6 +164,8 @@
 
 			if(!allowed(usr))
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			var/idx=text2num(href_list["vend"])
@@ -172,28 +177,40 @@
 			var/obj/item/card/id/I = H.wear_id
 			if(!istype(I)) //not wearing an ID
 				to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			if(I.registered_name != H.real_name)
 				to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			if(vendor_role && I.rank != vendor_role)
 				to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			if(use_points && I.marine_points < cost)
 				to_chat(H, "<span class='warning'>Not enough points.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			if(lock_flags & SQUAD_LOCK && (!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag)))
 				to_chat(H, "<span class='warning'>This machine isn't for your squad.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 
 			var/turf/T = loc
 			if(T.contents.len > 25)
 				to_chat(H, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			var/bitf = L[4]
@@ -234,6 +251,9 @@
 			var/type_p = L[3]
 
 			new type_p(loc)
+
+			if(icon_vend)
+				flick(icon_vend, src)
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				new /obj/item/radio/headset/almayer/marine(loc, H.assigned_squad.name, vendor_role)
@@ -669,7 +689,9 @@
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
 	desc = "An automated synthetic equipment vendor hooked up to a modest storage unit."
-	icon_state = "marineuniform"
+	icon_state = "synth"
+	icon_vend = "synth-vend"
+	icon_deny = "synth-deny"
 	vendor_role = "Synthetic"
 	lock_flags = JOB_LOCK
 
