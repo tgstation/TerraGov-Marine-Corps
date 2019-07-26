@@ -15,10 +15,6 @@
 
 	var/obj/machinery/portable_atmospherics/connected_device
 
-///obj/machinery/atmospherics/components/unary/portables_connector/New()
-//	..()
-//	var/datum/gas_mixture/air_contents = airs[1]
-//	air_contents.volume = 0
 
 /obj/machinery/atmospherics/components/unary/portables_connector/Destroy()
 	if(connected_device)
@@ -30,12 +26,7 @@
 	if(showpipe)
 		var/image/cap = getpipeimage(icon, "connector_cap", initialize_directions, piping_layer = piping_layer)
 		add_overlay(cap)
-/*
-/obj/machinery/atmospherics/components/unary/portables_connector/process_atmos()
-	if(!connected_device)
-		return
-	update_parents()
-*/
+
 /obj/machinery/atmospherics/components/unary/portables_connector/can_unwrench(mob/user)
 	. = ..()
 	if(. && connected_device)

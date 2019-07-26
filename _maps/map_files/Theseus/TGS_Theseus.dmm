@@ -2266,7 +2266,6 @@
 /area/almayer/engineering/starboard_atmos)
 "afR" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
 	input_tag = "waste_upper";
 	name = "Waste Tank Control";
 	output_tag = "waste_upper_out";
@@ -2688,7 +2687,6 @@
 "agV" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 8;
-	frequency = 1443;
 	id = "space";
 	name = "Harmful Gas Ejector";
 	on = 1
@@ -3264,7 +3262,6 @@
 "aim" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 8;
-	frequency = 1443;
 	id = "waste_upper";
 	name = "Waste Air Injector";
 	on = 1
@@ -13051,7 +13048,6 @@
 "aCV" = (
 /obj/machinery/alarm,
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
 	name = "Lower Oxygen Supply Console";
 	output_tag = "oxygen_lower_out";
 	sensors = list("oxy_sensor" = "Tank")
@@ -19547,7 +19543,6 @@
 /area/almayer/engineering/port_atmos)
 "aQu" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1444;
 	name = "Oxygen Supply Console";
 	output_tag = "oxygen_upper_out";
 	sensors = list("oxy_sensor" = "Tank")
@@ -19573,7 +19568,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1444;
 	name = "Nitrogen Control Console";
 	output_tag = "nit_upper_out";
 	sensors = list("nit_sensor" = "Tank")
@@ -19644,7 +19638,6 @@
 "aQF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
-	frequency = 1444;
 	id_tag = "mixed_upper_out";
 	name = "Waste Air Vent";
 	on = 0
@@ -19822,7 +19815,6 @@
 /area/almayer/engineering/port_atmos)
 "aRh" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1444;
 	input_tag = "mix_upper_in";
 	name = "Mixed Air Control";
 	output_tag = "mix_upper_out";
@@ -20018,7 +20010,6 @@
 "aRG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	frequency = 1444;
 	id_tag = "oxygen_upper_out"
 	},
 /turf/open/floor/engine,
@@ -20029,7 +20020,6 @@
 "aRI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	frequency = 1444;
 	id_tag = "nit_upper_out"
 	},
 /turf/open/floor/engine/nitrogen,
@@ -20061,7 +20051,6 @@
 "aRM" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 8;
-	frequency = 1444;
 	id = "mixed_upper_in";
 	name = "Mixed Air Injector";
 	on = 1
@@ -25585,7 +25574,6 @@
 /area/almayer/engineering/lower_engineering)
 "bhS" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
-	frequency = 1443;
 	id = "waste_lower_in";
 	on = 1
 	},
@@ -25603,7 +25591,6 @@
 /area/almayer/engineering/lower_engineering)
 "bhV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	frequency = 1443;
 	id_tag = "waste_lower_out"
 	},
 /turf/open/floor/engine,
@@ -26859,7 +26846,6 @@
 /area/almayer/engineering/lower_engineering)
 "bkt" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
 	input_tag = "waste_lower_in";
 	name = "Lower Deck Waste Tank Control";
 	output_tag = "waste_lower_out";
@@ -26894,7 +26880,6 @@
 "bky" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 8;
-	frequency = 1443;
 	id = "space";
 	name = "Harmful Gas Ejector";
 	on = 1
@@ -38089,7 +38074,6 @@
 	dir = 1
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
 	name = "Lower Nitrogen Control Console";
 	output_tag = "nit_lower_out";
 	sensors = list("nit_sensor" = "Tank")
@@ -38108,7 +38092,6 @@
 /area/almayer/engineering/lower_engineering)
 "bQS" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
 	input_tag = "mix_lower_in";
 	name = "Lower Mixed Air Control";
 	output_tag = "mix_lower_out";
@@ -38910,7 +38893,6 @@
 "bTf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	frequency = 1443;
 	id_tag = "oxygen_lower_out"
 	},
 /turf/open/floor/engine,
@@ -38923,7 +38905,6 @@
 "bTh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	frequency = 1443;
 	id_tag = "nit_lower_out"
 	},
 /turf/open/floor/engine/nitrogen,
@@ -38931,7 +38912,6 @@
 "bTi" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 1;
-	frequency = 1443;
 	id = "mix_lower_in";
 	on = 1
 	},
@@ -38945,7 +38925,6 @@
 "bTk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 1;
-	frequency = 1443;
 	id_tag = "mixed_lower_out"
 	},
 /turf/open/floor/engine,
