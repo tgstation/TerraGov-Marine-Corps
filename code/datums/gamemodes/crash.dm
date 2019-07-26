@@ -32,10 +32,10 @@
 /datum/game_mode/crash/can_start()
 	. = ..()
 	// Check if enough players have signed up for xeno & queen roles.
+	init_scales()
 	var/ruler = initialize_xeno_leader()
 	var/xenos = initialize_xenomorphs()
 	
-	init_scales()
 
 	if(!ruler && !xenos) // we need at least 1
 		return FALSE
@@ -86,10 +86,12 @@
 
 	// Reset all spawnpoints after spawning the ship
 	GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
+	var/marine_spawns = shuttle.marine_spawns_by_job[/datum/job/marine/standard]
+
 	GLOB.jobspawn_overrides = list()
-	GLOB.latejoin = shuttle.spawnpoints
-	GLOB.latejoin_cryo = shuttle.spawnpoints
-	GLOB.latejoin_gateway = shuttle.spawnpoints
+	GLOB.latejoin = marine_spawns
+	GLOB.latejoin_cryo = marine_spawns
+	GLOB.latejoin_gateway = marine_spawns
 
 	// Create xenos
 	var/number_of_xenos = length(xenomorphs)
