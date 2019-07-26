@@ -110,7 +110,7 @@
 		CRASH("Unable to get a valid shuttle target!")
 		return
 
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 SECONDS) 
+	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES) 
 
 
 /datum/game_mode/crash/announce()
