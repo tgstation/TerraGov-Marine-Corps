@@ -1,3 +1,5 @@
+#define CRASH_MINIMUM_TIME 1 HOURS
+
 /datum/game_mode/crash
 	name = "Crash"
 	config_tag = "Crash"
@@ -100,8 +102,41 @@
 	
 
 /datum/game_mode/crash/proc/add_larva()
+	var/list/living_player_list = count_humans_and_xenos()
+	var/num_xenos = living_player_list[2]
+	var/num_humans = living_player_list[1]
+	if(!num_xenos)
+		if(world.time < CRASH_MINIMUM_TIME + SSticker.round_start_time) //Xenos keep respawning for like an hour or so.
+			return respawn_xenos(num_humans)
+		else
+			return check_finished() //No more xenos.
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	HS.stored_larva += 1
+	var/marines_per_xeno = num_humans / num_xenos
+	switch(marines_per_xeno)
+		if(0)
+			return check_finished() //No more marines.
+		if(0 to 1) //Same number of marines and xenos, or more xenos.
+			return
+		if(1 to 4)
+			HS.stored_larva++
+		else
+			HS.stored_larva += CLAMP(round(marines_per_xeno * 0.2), 1, num_humans - num_xenos)
+
+
+/datum/game_mode/crash/proc/respawn_xenos(num_humans)
+	if(!length(GLOB.xeno_resin_silos))
+		return FALSE //RIP benos.
+	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(xeno_hive.stored_larva)
+		return TRUE //No need for respawns nor to end the game. They can use their burrowed larvas.
+	var/new_xeno_batch = CLAMP(num_humans * 0.2, 1, 3)
+	for(var/i in new_xeno_batch)
+		var/obj/structure/resin/silo/spawn_point = pick(GLOB.xeno_resin_silos)
+		var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point.loc)
+		new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+		"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
+	return TRUE
+
 
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
@@ -111,7 +146,7 @@
 
 	announce_bioscans(TRUE, 0, FALSE, TRUE) // Announce exact information to the xenos.
 
-	addtimer(CALLBACK(src, .proc/add_larva), 5 MINUTES, TIMER_LOOP)
+	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 5 MINUTES, TIMER_LOOP)
 
 
@@ -125,7 +160,10 @@
 	var/list/living_player_list = count_humans_and_xenos()
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
-	
+
+	if(!num_xenos && num_humans && world.time < CRASH_MINIMUM_TIME + SSticker.round_start_time && respawn_xenos(num_humans))
+		return FALSE //Xenos keep respawning for like an hour or so.
+
 	var/list/grounded_living_player_list = count_humans_and_xenos(SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)))
 	var/num_grounded_humans = grounded_living_player_list[1]
 	
@@ -231,3 +269,6 @@
 /datum/game_mode/crash/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
+
+
+#undef CRASH_MINIMUM_TIME
