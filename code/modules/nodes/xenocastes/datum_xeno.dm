@@ -3,6 +3,7 @@
 #define FINISHED_MOVE "finished moving to node"
 #define ENEMY_CONTACT "enemy contact"
 #define NO_ENEMIES_FOUND "no enemies found"
+#define DISENGAGE "retreating"
 
 //Basic datum AI for a xeno; ability to use acid on obstacles if valid as well as attack obstacles
 /datum/ai_behavior/xeno
@@ -69,11 +70,17 @@
 						action_state = new/datum/action_state/random_move/scout(src)
 					else
 						action_state = new/datum/action_state/hunt_and_destroy(src)
+
 		if(ENEMY_CONTACT)
 			action_state = new/datum/action_state/hunt_and_destroy(src)
+
 		if(NO_ENEMIES_FOUND)
 			current_node.remove_from_notable_nodes(ENEMY_PRESENCE)
 			action_state = new/datum/action_state/random_move/scout(src)
+
+		if(DISENGAGE) //We were on hunt and destroy but now low health, let's get moving and avoid enemies
+			action_state = new/datum/action_state/random_move/scout(src)
+
 	action_state.Process()
 
 //If it's a human we slap it, otherwise continue the random node traveling

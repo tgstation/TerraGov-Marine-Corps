@@ -17,6 +17,10 @@
 /datum/ai_behavior/xeno/runner/HandleAbility()
 	..()
 	if(istype(action_state, /datum/action_state/hunt_and_destroy))
-		if(pounce.can_use_ability())
-			var/datum/action_state/hunt_and_destroy/action_state2 = action_state
+		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
+		if(istype(action_state2.atomtowalkto, /mob/living/carbon))
+			var/mob/living/carbon/target = action_state2.atomtowalkto
+			if(!target.canmove) //If it's a carbon target (xeno/human) and it can move, we'll pounce to be able to chainstun effectively
+				return
+		if(pounce.can_use_ability(action_state2, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			pounce.use_ability(action_state2.atomtowalkto)

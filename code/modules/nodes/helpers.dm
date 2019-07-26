@@ -47,13 +47,13 @@ GLOBAL_LIST_EMPTY(allnodes)
 /obj/effect/AINode/proc/GetBestAdjNode(list/weight_modifiers)
 	if(weight_modifiers)
 		var/obj/effect/AINode/node_to_return = datumnode.adjacent_nodes[1]
-		var/current_best_node
+		var/current_best_node = 0
 		var/current_score = 0
 		for(var/obj/effect/AINode/node in shuffle(datumnode.adjacent_nodes)) //We keep a score for the nodes and see which one is best
 			for(var/i = 1; i != weight_modifiers.len; i++)
 				current_score += (node.datumnode.get_weight(i) * weight_modifiers[i])
 
-			if(current_score > current_best_node || !current_best_node)
+			if(current_score >= current_best_node)
 				current_best_node = current_score
 				node_to_return = node
 			current_score = 0
