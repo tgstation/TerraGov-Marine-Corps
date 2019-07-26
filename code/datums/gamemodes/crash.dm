@@ -43,7 +43,7 @@
 
 /datum/game_mode/crash/proc/init_scales()
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
-	xeno_starting_num = max(round(99 / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * 99)), xeno_required_num)
+	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 
 
 /datum/game_mode/crash/pre_setup()
