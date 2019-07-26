@@ -277,7 +277,7 @@
 
 
 
-/datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
+/datum/game_mode/crash/AttemptLateSpawn(mob/M, rank)
 	if(!isnewplayer(M))
 		return
 	var/mob/new_player/NP = M
