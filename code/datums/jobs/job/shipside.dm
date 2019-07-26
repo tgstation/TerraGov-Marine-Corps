@@ -95,7 +95,7 @@ Make the TGMC proud!"})
 //Intelligence Officer
 /datum/job/command/intelligenceofficer
 	title = INTELLIGENCE_OFFICER
-	paygrade = "O3"
+	paygrade = "O4.5"
 	comm_title = "IO"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -304,7 +304,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 //Chief Ship Engineer
 /datum/job/engineering/chief
 	title = CHIEF_SHIP_ENGINEER
-	paygrade = "O3"
+	paygrade = "O4"
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
@@ -429,7 +429,7 @@ A happy ship is a well-functioning ship."})
 //Cargo Tech
 /datum/job/requisitions/tech
 	title = CARGO_TECHNICIAN
-	paygrade = "PO"
+	paygrade = "CMN"
 	comm_title = "CT"
 	total_positions = 2
 	supervisors = "the requisitions officer"
@@ -473,7 +473,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 /datum/job/medical/professor
 	title = CHIEF_MEDICAL_OFFICER
 	comm_title = "CMO"
-	paygrade = "O3"
+	paygrade = "O4"
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
