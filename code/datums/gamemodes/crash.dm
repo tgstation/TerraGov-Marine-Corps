@@ -126,10 +126,10 @@
 /datum/game_mode/crash/proc/respawn_xenos(num_humans)
 	if(!length(GLOB.xeno_resin_silos))
 		return FALSE //RIP benos.
-	var/datum/hive_status/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(xeno_hive.stored_larva)
 		return TRUE //No need for respawns nor to end the game. They can use their burrowed larvas.
-	new_xeno_batch = CLAMP(num_humans * 0.2, 1, 3)
+	var/new_xeno_batch = CLAMP(num_humans * 0.2, 1, 3)
 	for(var/i in new_xeno_batch)
 		var/obj/structure/resin/silo/spawn_point = pick(GLOB.xeno_resin_silos)
 		var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point.loc)
