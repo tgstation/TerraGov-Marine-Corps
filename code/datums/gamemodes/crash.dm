@@ -14,10 +14,14 @@
 	var/marines_evac = FALSE
 	var/planet_nuked = FALSE
 
+	// Shuttle details
 	var/shuttle_id = "tgs_canterbury"
 	var/obj/docking_port/mobile/crashmode/shuttle
 
+	// Round start info
 	var/starting_squad = "Alpha"
+	var/latejoin_tally		= 0
+	var/latejoin_larva_drop = 0
 
 
 /datum/game_mode/crash/New()
@@ -30,14 +34,24 @@
 	// Check if enough players have signed up for xeno & queen roles.
 	var/ruler = initialize_xeno_leader()
 	var/xenos = initialize_xenomorphs()
+	
+	init_scales()
+
 	if(!ruler && !xenos) // we need at least 1
 		return FALSE
-
 	return TRUE
+
+/datum/game_mode/crash/proc/init_scales()
+	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
+	xeno_starting_num = max(round(99 / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * 99)), xeno_required_num)
 
 
 /datum/game_mode/crash/pre_setup()
 	. = ..()
+
+	// Setup signals
+	// RegisterSignal(src, COMSIG_MOB_DEATH, .proc/on_mob_death)
+
 	// Spawn the ship
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
@@ -73,7 +87,7 @@
 	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/player = i
 		if(player.ready && player.mind?.assigned_squad)
-			player.mind.assigned_squad = SSjob.squads["Alpha"]
+			player.mind.assigned_squad = SSjob.squads[starting_squad]
 			
 	create_characters() //Create player characters
 	collect_minds()
@@ -113,7 +127,7 @@
 		return
 
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES) 
-
+	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 
 /datum/game_mode/crash/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
@@ -128,8 +142,6 @@
 	if(!num_xenos)
 		if(world.time < CRASH_MINIMUM_TIME + SSticker.round_start_time) //Xenos keep respawning for like an hour or so.
 			return respawn_xenos(num_humans)
-		else
-			return check_finished() //No more xenos.
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/marines_per_xeno = num_humans / num_xenos
 	switch(marines_per_xeno)
@@ -158,15 +170,12 @@
 	return TRUE
 
 
-
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, target, FALSE) // FALSE = instant arrival
 	shuttle_landed = TRUE
 
 	announce_bioscans(TRUE, 0, FALSE, TRUE) // Announce exact information to the xenos.
-
-	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 5 MINUTES, TIMER_LOOP)
 
 
@@ -317,6 +326,65 @@
 	handle_late_spawn(character)
 
 	qdel(NP)
+
+
+/datum/game_mode/crash/handle_late_spawn()
+	var/datum/game_mode/crash/GM = SSticker.mode
+	GM.latejoin_tally++
+
+	if(GM.latejoin_larva_drop && GM.latejoin_tally >= GM.latejoin_larva_drop)
+		GM.latejoin_tally -= GM.latejoin_larva_drop
+		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		HS.stored_larva++
+
+
+/datum/game_mode/crash/mode_new_player_panel(mob/new_player/NP)
+
+	var/output = "<div align='center'>"
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=show_preferences'>Setup Character</A></p>"
+
+	if(SSticker.current_state <= GAME_STATE_PREGAME)
+		output += "<p>\[ [NP.ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [NP.ready? "<a href='byond://?src=[REF(NP)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
+	else
+		output += "<a href='byond://?src=[REF(NP)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join'>Join the TGMC!</A></p>"
+		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
+
+	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
+
+	if(!IsGuestKey(NP.key))
+		if(SSdbcore.Connect())
+			var/isadmin = FALSE
+			if(check_rights(R_ADMIN, FALSE))
+				isadmin = TRUE
+			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
+			if(query_get_new_polls.Execute())
+				var/newpoll = FALSE
+				if(query_get_new_polls.NextRow())
+					newpoll = TRUE
+
+				if(newpoll)
+					output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				else
+					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
+			qdel(query_get_new_polls)
+			if(QDELETED(src))
+				return FALSE
+
+	output += "</div>"
+
+	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	popup.set_window_options("can_close=0")
+	popup.set_content(output)
+	popup.open(FALSE)
+
+	return TRUE
+
+// Signals
+// /datum/game_mode/crash/proc/on_mob_death(mob/M, gibbed)
+// 	var/list/living_player_list = count_humans_and_xenos()
+// 	var/num_humans = living_player_list[1]
+// 	var/num_xenos = living_player_list[2]
 
 
 #undef CRASH_MINIMUM_TIME
