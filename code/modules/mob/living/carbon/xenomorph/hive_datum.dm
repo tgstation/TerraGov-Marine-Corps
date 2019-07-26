@@ -575,7 +575,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!(mother in possible_mothers))
 		to_chat(xeno_candidate, "<span class='warning'>This mother is not in a state to receive us.</span>")
 		return FALSE
-	return do_spawn_larva(mother.loc)
+	return do_spawn_larva(xeno_candidate, mother.loc)
 
 
 /datum/hive_status/normal/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point)
