@@ -151,7 +151,7 @@
 	var/victory_options = (num_humans == 0 && num_xenos == 0 || (planet_nuked && !marines_evac)) 						<< 0 // Draw, for all other reasons
 	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) 												<< 1 // XENO Major (All marines killed)
 	victory_options |= (marines_evac && !planet_nuked) 																	<< 2 // XENO Minor (Marines evac'd )
-	victory_options |= (marines_evac && planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) 					<< 3 // Marine minor (Planet nuked, some human left on planet)
+	victory_options |= (planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) 									<< 3 // Marine minor (Planet nuked, some human left on planet)
 	victory_options |= ((marines_evac && planet_nuked && num_grounded_humans == 0) || num_xenos == 0 && num_humans > 0) << 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
 	
 	switch(victory_options)
