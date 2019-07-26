@@ -175,9 +175,10 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		else
 			var/obj/item/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/disk/nuclear/crash/red))
-				if(usr.drop_held_item())
-					I.forceMove(src)
-					r_auth = I
+				if(!usr.drop_held_item())
+					return
+				I.forceMove(src)
+				r_auth = I
 	if(href_list["g_auth"])
 		if (g_auth)
 			g_auth.forceMove(loc)
@@ -186,9 +187,10 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		else
 			var/obj/item/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/disk/nuclear/crash/green))
-				if(usr.drop_held_item())
-					I.forceMove(src)
-					g_auth = I
+				if(!usr.drop_held_item())
+					return
+				I.forceMove(src)
+				g_auth = I
 	if(href_list["b_auth"])
 		if (b_auth)
 			b_auth.forceMove(loc)
@@ -197,10 +199,10 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		else
 			var/obj/item/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/disk/nuclear/crash/blue))
-				if(usr.drop_held_item())
-					I.forceMove(src)
-					b_auth = I
-
+				if(!usr.drop_held_item())
+					return
+				I.forceMove(src)
+				b_auth = I
 	if (has_auth)
 		if (href_list["time"])
 			var/time = text2num(href_list["time"])
