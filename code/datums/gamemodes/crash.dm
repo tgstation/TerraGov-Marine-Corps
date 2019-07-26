@@ -69,7 +69,7 @@
 	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/player = i
 		if(player.ready && player.mind?.assigned_squad)
-			player.mind.assigned_squad = "Alpha"
+			player.mind.assigned_squad = SSjob.squads["Delta"]
 			
 	create_characters() //Create player characters
 	collect_minds()
