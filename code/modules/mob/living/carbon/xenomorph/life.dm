@@ -290,7 +290,7 @@
 	return stunned
 
 /mob/living/carbon/xenomorph/handle_knocked_down()
-	if(knocked_down && client)
+	if(knocked_down) // && client) //The client is commented out for human's Life(), also makes AI xeno actually able to recover from stuns
 		adjust_knocked_down(-5)
 	return knocked_down
 

@@ -32,7 +32,7 @@
 /datum/action_state/random_move/New(parent_to_hook_to)
 	..()
 	if(SSai.is_pacifist || (SSai.is_suicidal && (parent_ai.parentmob.health < (parent_ai.parentmob.maxHealth * SSai.retreat_health_threshold))))
-		weights = list(ENEMY_PRESENCE = -100, DANGER_SCALE = -1)
+		weights = list(ENEMY_PRESENCE = -200, DANGER_SCALE = -1)
 	if(weights && weights.len)
 		next_node = parent_ai.current_node.GetBestAdjNode(weights)
 	else
@@ -136,7 +136,7 @@
 			if(get_dir(parent_ai.parentmob, atomtowalkto)) //If we're on top of a human IE pounced, get_dir returns null
 				return(pick(shuffle(LeftAndRightOfDir(get_dir(parent_ai.parentmob, atomtowalkto)))))
 			else //We'll step in a random direction instead
-
+				return(pick(shuffle(CARDINAL_ALL_DIRS)))
 
 /datum/action_state/hunt_and_destroy/Process()
 	if(!SSai.is_suicidal && (parent_ai.parentmob.health < (parent_ai.parentmob.maxHealth * SSai.retreat_health_threshold))) //Abort attack let's run!

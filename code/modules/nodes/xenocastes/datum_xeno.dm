@@ -28,7 +28,13 @@
 /datum/ai_behavior/xeno/Process()
 	..()
 
-	if(parentmob.resting && parentmob.canmove)
+	parentmob.away_time = 200 //No grabbing it now, haven't handled ckey transfer yet for ai behavior
+
+	//If we aren't on a stack of fire and not already resting, we'll go and try to put out the fire, very effective fire!
+	if(parentmob.fire_stacks >= 3 && parentmob.canmove && !locate(/obj/effect/particle_effect/fire) in get_turf(parentmob))
+		parentmob.resist_fire()
+
+	if(parentmob.resting)
 		parentmob.set_resting(FALSE) //ARISE MY CHILDREN
 
 	if(parentmob.health < last_health)
@@ -38,16 +44,18 @@
 		else
 			current_node.datumnode.increment_weight(DANGER_SCALE, last_health - parentmob.health)
 			current_node.color = "#ff0000" //Red, we got hurt
+		qdel(action_state)
+		action_completed(ENEMY_CONTACT) //Look for enemies, we got hurt
 
 	last_health = parentmob.health
-	ability_tick_threshold++
 	HandleAbility()
 
 /datum/ai_behavior/xeno/proc/attack_target(atom/target) //Attempts a attack on a target with cooldown restrictions
-	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
-	if(parentmob2.next_move < world.time) //If we can attack again or not
-		if(target.attack_alien(parentmob2))
-			parentmob2.next_move = parentmob2.xeno_caste.attack_delay + world.time + 10
+	if(parentmob.canmove && prob(SSai.prob_melee_slash))
+		if(parentmob.next_move < world.time) //If we can attack again or not
+			var/mob/living/carbon/xenomorph/parentmob2 = parentmob
+			target.attack_alien(parentmob2)
+			parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
 			return
 
 /datum/ai_behavior/xeno/action_completed(reason) //Action state was completed, let's replace it with something else
@@ -83,45 +91,11 @@
 
 	action_state.Process()
 
-//If it's a human we slap it, otherwise continue the random node traveling
-/*
-/datum/ai_behavior/xeno/TargetReached()
-	if(istype(atomtowalkto, /obj/effect/AINode))
-		current_node = atomtowalkto
-		var/list/humans_nearby = cheap_get_humans_near(parentmob, 10) //10 or less distance required to find a human	//While we're here let's update the amount of enemies here
-		current_node.datumnode.set_weight(ENEMY_PRESENCE, humans_nearby.len)
-		if(humans_nearby.len && !SSai.is_pacifist)
-			current_node.add_to_notable_nodes(ENEMY_PRESENCE)
-			current_node.color = "#FFA500"
-			AttemptGetTarget()
-		else
-			current_node.remove_from_notable_nodes(ENEMY_PRESENCE) //No enemies here, reset it
-			if(current_node.color != "#ff0000") //If not dangerous, make it just be a normal node with no significance
-				current_node.color = initial(current_node.color)
-			current_node.color = initial(current_node.color)
-			if(SSai.prioritize_nodes_with_enemies && GLOB.nodes_with_enemies.len) //There's no enemies at this node but if they're somewhere else we moving to that
-				destination_node = pick(GLOB.nodes_with_enemies.len)
-			else //No nodes with enemies or not prioritizing, keep on moving randomly
-				for(var/obj/effect/AINode/node in shuffle(current_node.datumnode.adjacent_nodes))
-					if(SSai.is_pacifist && node.datumnode.get_weight(DANGER_SCALE) > 0)
-						return
-					else
-						atomtowalkto = node
-						break
-
-	if(istype(atomtowalkto, /mob/living/carbon/human) && parentmob.canmove && (get_dist(parentmob, atomtowalkto) < 2))
-		var/mob/living/carbon/human/dammhuman = atomtowalkto
-		if(dammhuman.stat != DEAD)
-			var/mob/living/carbon/xenomorph/parentmob2 = parentmob
-			if(parentmob2.next_move < world.time)
-				atomtowalkto.attack_alien(parentmob2)
-				parentmob2.next_move = parentmob2.xeno_caste.attack_delay + world.time
-		else
-			if(!AttemptGetTarget())
-				..() //We go to a random node now if we don't have a nearby enemy target
-*/
-
 /datum/ai_behavior/xeno/proc/HandleAbility()
+	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
+	if(!parentmob2.stat) //Crit or dead
+		return
+	ability_tick_threshold++
 
 /datum/ai_behavior/xeno/HandleObstruction()
 

@@ -11,11 +11,15 @@ SUBSYSTEM_DEF(ai)
 
 	var/prob_sidestep_melee = 25 //Probability of a xeno side stepping while in melee every time its suppose to move
 
+	var/prob_melee_slash = 50 //Want to give marines less of a chance to die? decrease this bad boi
+
 	var/prioritize_nodes_with_enemies = FALSE //If xenos will beeline to nodes with seen enemies
 
 	var/is_suicidal = FALSE //If the AI will retreat or not when low on health
 
 	var/retreat_health_threshold = 0.50 //What percentage of health the xeno must be to do a retreat
+
+	var/stop_retreat_health_threshold = 0.75 //What health percentage we should be at to stop retreating
 
 /datum/controller/subsystem/ai/fire(resume = FALSE)
 	if(!resume)

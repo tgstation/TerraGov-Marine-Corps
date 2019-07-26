@@ -7,14 +7,6 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 #define DANGER_SCALE 2
 #define FINISHED_MOVE "finished moving to node"
 
-/mob/living/carbon/xenomorph/drone/test
-	var/datum/ai_behavior/ai_datum = new
-
-/mob/living/carbon/xenomorph/drone/test/Initialize()
-	..()
-	ai_datum.parentmob = src
-	ai_datum.Init()
-
 //The most basic of AI; can pathfind to a turf and path around objects in it's path if needed to
 /datum/ai_behavior
 
@@ -44,12 +36,11 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 		qdel(src)
 		return
 	action_state = new/datum/action_state/random_move(src)
-/*
-/datum/ai_behavior/proc/replace_action_state(newstate)
-	qdel(action_state)
-	action_state = new/newstate(src)
-*/
+
 /datum/ai_behavior/proc/Process() //Processes and updates things
+	if(!parentmob)
+		qdel(src)
+		return
 	lastturf = parentmob.loc
 	if(action_state)
 		action_state.Process()

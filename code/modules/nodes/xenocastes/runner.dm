@@ -18,9 +18,9 @@
 	..()
 	if(istype(action_state, /datum/action_state/hunt_and_destroy))
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
-		if(istype(action_state2.atomtowalkto, /mob/living/carbon))
+		if((get_dist(parentmob, action_state2.atomtowalkto) > 1) && istype(action_state2.atomtowalkto, /mob/living/carbon))
 			var/mob/living/carbon/target = action_state2.atomtowalkto
 			if(!target.canmove) //If it's a carbon target (xeno/human) and it can move, we'll pounce to be able to chainstun effectively
 				return
-		if(pounce.can_use_ability(action_state2, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+		if(pounce.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			pounce.use_ability(action_state2.atomtowalkto)
