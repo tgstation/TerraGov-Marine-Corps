@@ -49,9 +49,9 @@ GLOBAL_LIST_EMPTY(allnodes)
 		var/obj/effect/AINode/node_to_return = datumnode.adjacent_nodes[1]
 		var/current_best_node
 		var/current_score = 0
-		for(var/obj/effect/AINode/node in datumnode.adjacent_nodes) //We keep a score for the nodes and see which one is best
-			for(var/weight_mod in weight_modifiers)
-				current_score += datumnode.get_weight(weight_mod) * weight_modifiers[weight_mod]
+		for(var/obj/effect/AINode/node in shuffle(datumnode.adjacent_nodes)) //We keep a score for the nodes and see which one is best
+			for(var/i = 1; i != weight_modifiers.len; i++)
+				current_score += (node.datumnode.get_weight(i) * weight_modifiers[i])
 
 			if(current_score > current_best_node || !current_best_node)
 				current_best_node = current_score
@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(allnodes)
 			return node_to_return
 
 	else //No weight modifier, return a adjacent random node
-		return pick(shuffle(datumnode))
+		return pick(shuffle(datumnode.adjacent_nodes))
 
 //The equivalent of get_step_towards but now for nodes; will NOT intelligently pathfind based on node weights or anything else
 //Returns nothing if a suitable node in a direction isn't found, otherwise returns a node

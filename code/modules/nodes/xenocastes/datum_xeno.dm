@@ -12,7 +12,7 @@
 /datum/ai_behavior/xeno/Init()
 	..()
 	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
-	parentmob2.xeno_caste.caste_flags += CASTE_INNATE_HEALING
+	parentmob2.xeno_caste.caste_flags += CASTE_INNATE_HEALING //Sneeki breeki healing
 	parentmob.a_intent = INTENT_HARM
 	last_health = parentmob.health
 	action_state = new/datum/action_state/random_move/scout(src)
@@ -37,10 +37,6 @@
 		else
 			current_node.datumnode.increment_weight(DANGER_SCALE, last_health - parentmob.health)
 			current_node.color = "#ff0000" //Red, we got hurt
-/*
-	if(!SSai.is_suicidal && parentmob.health <= (SSai.retreat_health_threshold * parentmob.maxHealth))
-		replace_action_state(/datum/action_state/retreat)
-*/
 
 	last_health = parentmob.health
 	ability_tick_threshold++
@@ -48,8 +44,8 @@
 
 /datum/ai_behavior/xeno/proc/attack_target(atom/target) //Attempts a attack on a target with cooldown restrictions
 	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
-	if(parentmob.next_move < world.time) //If we can attack again or not
-		if(target.attack_alien(parentmob))
+	if(parentmob2.next_move < world.time) //If we can attack again or not
+		if(target.attack_alien(parentmob2))
 			parentmob2.next_move = parentmob2.xeno_caste.attack_delay + world.time + 10
 			return
 
@@ -61,11 +57,14 @@
 				var/datum/action_state/move_to_node/the_state = action_state
 				the_state.destination_node = pick(shuffle(GLOB.nodes_with_enemies))
 			else
-				if(!cheap_get_humans_near(parentmob, 10).len)
+				var/list/humans_nearby = cheap_get_humans_near(parentmob, 10)
+				if(!humans_nearby.len)
 					current_node.remove_from_notable_nodes(ENEMY_PRESENCE)
 					action_state = new/datum/action_state/random_move/scout(src)
+
 				else //Enemies found kill em if not pacifist
 					current_node.add_to_notable_nodes(ENEMY_PRESENCE)
+					current_node.datumnode.set_weight(ENEMY_PRESENCE, humans_nearby.len)
 					if(SSai.is_pacifist)
 						action_state = new/datum/action_state/random_move/scout(src)
 					else
@@ -116,13 +115,8 @@
 */
 
 /datum/ai_behavior/xeno/proc/HandleAbility()
-	//var/list/somehumans = cheap_get_humans_near(parentmob, 14) //14 or less distance required to find a human
-	//for(var/human in somehumans)
-	//	atomtowalkto = human
-	//	break
 
 /datum/ai_behavior/xeno/HandleObstruction()
-	//var/mob/living/carbon/xenomorph/parentmob2 = parentmob
 
 	for(var/obj/machinery/door/airlock/door in range(1, parentmob))
 		if(door.density && !door.welded)
@@ -148,7 +142,7 @@
 //Like the old one but now will do left and right movements upon being in melee range
 /datum/ai_behavior/xeno/ProcessMove()
 	if(!parentmob.canmove)
-		return 2
+		return 4
 	var/totalmovedelay = 0
 	switch(parentmob.m_intent)
 		if(MOVE_INTENT_RUN)

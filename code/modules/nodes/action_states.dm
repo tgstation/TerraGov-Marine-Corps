@@ -26,23 +26,14 @@
 
 /datum/action_state/random_move //We randomly move to a randomly picked node using simplistic node pathfinding VIA get_dir(start, end)
 	var/obj/effect/AINode/next_node //The node we're going to for going to the destination, this is what we walk to
+	var/list/weights //Want to make the random moving account for weights? here ya go then
 
 /datum/action_state/random_move/New(parent_to_hook_to)
 	..()
-	if(SSai.is_pacifist) //If we're pacifist, pick the best adjacent node
-		next_node = parent_ai.current_node.GetBestAdjNode(list(ENEMY_PRESENCE = -100, DANGER_SCALE = -1))
-		if(!next_node)
-			next_node = pick(shuffle(parent_ai.current_node.datumnode.adjacent_nodes))
-		/*
-		var/obj/effect/AINode/node_to_travel
-		for(var/obj/effect/AINode/node in shuffle(parent_ai.current_node.datumnode.adjacent_nodes))
-			if(!node_to_travel)
-				node_to_travel = node
-				continue
-			if(node_to_travel.datumnode.get_weight(DANGER_SCALE) > node.datumnode.get_weight(DANGER_SCALE))
-				node_to_travel = node
-		next_node = node_to_travel
-		*/
+	if(SSai.is_pacifist)
+		weights = list(ENEMY_PRESENCE = -100, DANGER_SCALE = -1)
+	if(weights && weights.len)
+		next_node = parent_ai.current_node.GetBestAdjNode(weights)
 	else
 		next_node = pick(shuffle(parent_ai.current_node.datumnode.adjacent_nodes)) //Pick some random nodes
 
@@ -77,8 +68,10 @@
 	if(potential_enemies.len)
 		if(get_dist(parent_ai.parentmob, parent_ai.current_node) < get_dist(parent_ai.parentmob, next_node))
 			parent_ai.current_node.add_to_notable_nodes(ENEMY_PRESENCE)
+			parent_ai.current_node.datumnode.set_weight(ENEMY_PRESENCE, potential_enemies.len)
 		else
 			next_node.add_to_notable_nodes(ENEMY_PRESENCE)
+			next_node.datumnode.set_weight(ENEMY_PRESENCE, potential_enemies.len)
 		..()
 		parent_ai.action_completed(ENEMY_CONTACT) //Enemy contact, lets get hunt and destroy up
 		qdel(src)

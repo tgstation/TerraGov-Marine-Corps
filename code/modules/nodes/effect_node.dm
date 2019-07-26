@@ -40,13 +40,13 @@ GLOBAL_LIST_EMPTY(nodes_with_enemies)
 				return
 			GLOB.nodes_with_enemies += src
 			color = "#FFA500" //Orange: got some enemies here
-	for(var/stuff in GLOB.nodes_with_enemies)
-		to_chat(world, "[stuff]")
 
 /obj/effect/AINode/proc/remove_from_notable_nodes(weight)
 	switch(weight)
 		if(ENEMY_PRESENCE)
 			GLOB.nodes_with_enemies -= src
+			datumnode.set_weight(ENEMY_PRESENCE, 0)
+			color = initial(color) //Nothing; just a regular node
 
 /obj/effect/AINode/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 
