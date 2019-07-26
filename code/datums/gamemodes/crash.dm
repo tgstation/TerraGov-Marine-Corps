@@ -110,8 +110,7 @@
 		CRASH("Unable to get a valid shuttle target!")
 		return
 
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 9 MINUTES) // TODO: REMOVE ADMIN TIMING
-	// addtimer(CALLBACK(src, .proc/crash_shuttle, target), rand(9 MINUTES, 11 MINUTES)) // TODO: FIX timing here
+	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 SECONDS) 
 
 
 /datum/game_mode/crash/announce()
@@ -191,7 +190,7 @@
 	victory_options |= (marines_evac && !planet_nuked) 																	<< 2 // XENO Minor (Marines evac'd )
 	victory_options |= (planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) 									<< 3 // Marine minor (Planet nuked, some human left on planet)
 	victory_options |= ((marines_evac && planet_nuked && num_grounded_humans == 0) || num_xenos == 0 && num_humans > 0) << 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
-	
+
 	switch(victory_options)
 		if(CRASH_DRAW)
 			message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
