@@ -5,6 +5,10 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "desert"
 
+/turf/open/ground/AfterChange()
+	. = ..()
+	baseturfs = type
+
 /turf/open/ground/ex_act(severity) //Should make it indestructable
 	return
 
