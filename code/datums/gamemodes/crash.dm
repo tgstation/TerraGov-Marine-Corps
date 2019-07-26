@@ -137,8 +137,8 @@
 
 /datum/game_mode/crash/proc/add_larva()
 	var/list/living_player_list = count_humans_and_xenos()
-	var/num_xenos = living_player_list[2]
 	var/num_humans = living_player_list[1]
+	var/num_xenos = living_player_list[2]
 	if(!num_xenos)
 		if(world.time < CRASH_MINIMUM_TIME + SSticker.round_start_time) //Xenos keep respawning for like an hour or so.
 			return respawn_xenos(num_humans)
@@ -283,7 +283,6 @@
 /datum/game_mode/crash/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
-
 
 
 /datum/game_mode/crash/AttemptLateSpawn(mob/M, rank)

@@ -51,6 +51,7 @@
 		return
 
 	deltimer(current_timer)
+	current_timer = null
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
 
 /obj/machinery/computer/nuke_disc_generator/attack_hand(mob/user)
