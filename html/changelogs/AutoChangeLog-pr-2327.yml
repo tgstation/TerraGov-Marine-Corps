@@ -1,6 +1,0 @@
-author: "grinkgo"
-delete-after: True
-changes: 
-  - rscadd: "Added the M57 Synthetic Equipment Vendor, which provides a synth with essential equipment and various uniforms to choose from!"
-  - rscdel: "Removed the engineering locker in the synth's closet"
-  - refactor: "Marine vendors can now check for either job or squad assignment."
