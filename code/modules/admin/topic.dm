@@ -387,7 +387,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		edit_rights_topic(href_list)
+		var/close = text2num(href_list["close"])
+		edit_rights_topic(href_list, close)
 
 
 	else if(href_list["spawncookie"])
