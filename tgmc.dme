@@ -1366,6 +1366,7 @@
 #include "code\modules\vehicles\multitile\multitile.dm"
 #include "code\modules\vehicles\multitile\tank.dm"
 #include "code\modules\vehicles\multitile\tankvendor.dm"
+#include "code\modules\xenomorph\xeno_structures.dm"
 #include "goon\code\datums\browserOutput.dm"
 #include "interface\interface.dm"
 #include "interface\menu.dm"
