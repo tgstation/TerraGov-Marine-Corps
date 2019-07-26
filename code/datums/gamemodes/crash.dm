@@ -298,7 +298,6 @@
 	if(rank in GLOB.jobs_marines)
 		NP.mind.assigned_squad = SSjob.squads[starting_squad]
 
-
 	NP.close_spawn_windows()
 	NP.spawning = TRUE
 

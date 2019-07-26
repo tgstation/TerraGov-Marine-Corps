@@ -12,18 +12,6 @@
 		if(3)
 			take_damage(70)
 
-/obj/structure/resin/attack_animal(mob/living/user)
-	return
-
-/obj/structure/resin/attack_paw(mob/user)
-	return
-
-/obj/structure/resin/attack_larva(mob/living/carbon/xenomorph/larva/larva_attacker)
-	return
-
-/obj/structure/resin/attack_alien(mob/living/carbon/xenomorph/xeno_attacker)
-	return
-
 /obj/structure/resin/attack_hand(mob/living/user)
 	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
@@ -80,8 +68,8 @@
 
 
 /obj/structure/resin/silo/Destroy()
-	. = ..()
 	GLOB.xeno_resin_silos -= src
+	return ..()
 
 
 /obj/structure/resin/silo/structure_destruction()
