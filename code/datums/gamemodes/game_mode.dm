@@ -93,10 +93,6 @@
 	return FALSE
 
 
-/datum/game_mode/proc/job_after_spawn(mob/living/L, mob/M, latejoin = FALSE)
-	return FALSE
-
-
 /datum/game_mode/process()
 	return TRUE
 

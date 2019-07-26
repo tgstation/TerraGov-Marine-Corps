@@ -61,6 +61,25 @@
 			transform_xeno(M)
 
 
+
+/datum/game_mode/crash/setup()
+	SSjob.DivideOccupations() 
+
+	// For each player that has an assigned squad set it to alpha
+	for(var/i in GLOB.new_player_list)
+		var/mob/new_player/player = i
+		if(player.ready && player.mind?.assigned_squad)
+			player.mind.assigned_squad = "Alpha"
+			
+	create_characters() //Create player characters
+	collect_minds()
+	reset_squads()
+	equip_characters()
+	transfer_characters()	//transfer keys to the new mobs
+
+	return TRUE
+
+
 /datum/game_mode/crash/post_setup()
 	. = ..()
 
@@ -205,21 +224,6 @@
 
 	announce_medal_awards()
 	announce_round_stats()
-
-// Overrides
-
-/datum/game_mode/crash/job_after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	if(!istype(H))
-		return FALSE
-	H.change_squad("Alpha")
-	H.hud_set_squad()
-	H.nutrition = rand(250,300)
-	if(!H.mind?.assigned_squad)
-		return TRUE
-	var/datum/squad/S = H.mind.assigned_squad
-	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[S.color]>[lowertext(S.name)] squad</font></b>."})
-	
-	return TRUE
 
 
 

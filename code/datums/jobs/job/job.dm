@@ -54,9 +54,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(!ishuman(L))
 		return TRUE
 
-	if(SSticker.mode.job_after_spawn(L, M, latejoin))
-		return TRUE
-		
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/C = H.wear_id
 	if(istype(C) && H.mind?.initial_account)
