@@ -17,7 +17,7 @@
 	icon_state = "m42a"
 	item_state = "m42a"
 	max_shells = 15 //codex
-	caliber = "10x28mm" //codex
+	caliber = "10x28mm"
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
@@ -206,7 +206,7 @@
 	icon_state = "m42c"
 	item_state = "m42c"
 	max_shells = 6 //codex
-	caliber = "10x99mm" //codex
+	caliber = "10x99mm"
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
