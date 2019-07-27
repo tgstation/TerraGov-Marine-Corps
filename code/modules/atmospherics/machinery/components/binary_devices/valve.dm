@@ -10,11 +10,8 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
-
-	//interaction_flags_machine = INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_OPEN //Intentionally no allow_silicon flag
 	pipe_flags = PIPING_CARDINAL_AUTONORMALIZE
 
-	var/frequency = 0
 	var/id = null
 
 	var/valve_type = "m" //lets us have a nice, clean, OOP update_icon_nopipes()
@@ -34,14 +31,10 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	if(on)
 		on = FALSE
 		update_icon_nopipes()
-		//investigate_log("was closed by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
 	else
 		on = TRUE
 		update_icon_nopipes()
 		update_parents()
-		//var/datum/pipeline/parent1 = parents[1]
-		//parent1.reconcile_air()
-		//investigate_log("was opened by [usr ? key_name(usr) : "a remote signal"]", INVESTIGATE_ATMOS)
 
 /obj/machinery/atmospherics/components/binary/valve/interact(mob/user)
 	if(switching)
@@ -63,7 +56,6 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	valve_type = "d"
 	pipe_state = "dvalve"
 
-	//interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OFFLINE | INTERACT_MACHINE_OPEN | INTERACT_MACHINE_OPEN_SILICON
 
 /obj/machinery/atmospherics/components/binary/valve/digital/update_icon_nopipes(animation)
 	if(!is_operational())
