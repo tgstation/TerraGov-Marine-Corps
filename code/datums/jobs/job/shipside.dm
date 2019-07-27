@@ -430,7 +430,7 @@ A happy ship is a well-functioning ship."})
 /datum/job/requisitions/tech
 	title = CARGO_TECHNICIAN
 	paygrade = "CMN"
-	comm_title = "Ord"	
+	comm_title = "Ord"
 	total_positions = 4
 	supervisors = "the requisitions officer"
 	selection_color = "#BAAFD9"
