@@ -13,8 +13,8 @@
 /datum/ai_behavior/xeno/warrior/Init()
 	..()
 	var/mob/living/carbon/xenomorph/warrior/parentmob2 = parentmob
-	fling.owner = parentmob
-	punch.owner = parentmob
+	fling.owner = parentmob2
+	punch.owner = parentmob2
 
 /datum/ai_behavior/xeno/warrior/HandleAbility()
 	. = ..()
@@ -25,8 +25,8 @@
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
 
 		if(get_dist(parentmob, action_state2.atomtowalkto) <= 1)
-			if(fling.can_use_ability(action_state2.atomtowalkto), FALSE, XACT_IGNORE_SELECTED_ABILITY)
+			if(fling.can_use_ability(action_state2.atomtowalkto))
 				fling.use_ability(action_state2.atomtowalkto)
 
-			if(punch.can_use_ability(action_state2.atomtowalkto), FALSE, XACT_IGNORE_SELECTED_ABILITY)
+			if(punch.can_use_ability(action_state2.atomtowalkto))
 				punch.use_ability(action_state2.atomtowalkto)

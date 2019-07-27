@@ -1,6 +1,5 @@
 /mob/living/carbon/xenomorph/spitter/ai
 	var/datum/ai_behavior/xeno/spitter/ai_datum = new
-	distance_to_maintain = 5 //Far enough to be 'fair'
 
 /mob/living/carbon/xenomorph/spitter/ai/Initialize()
 	..()
@@ -8,7 +7,8 @@
 	ai_datum.Init()
 
 /datum/ai_behavior/xeno/spitter
-	var//datum/action/xeno_action/activable/xeno_spit/spit = new
+	distance_to_maintain = 5 //Far enough to be 'fair'
+	var/datum/action/xeno_action/activable/xeno_spit/spit = new
 
 /datum/ai_behavior/xeno/spitter/Init()
 	..()

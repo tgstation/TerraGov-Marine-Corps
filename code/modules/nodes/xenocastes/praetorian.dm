@@ -7,7 +7,7 @@
 	ai_datum.Init()
 
 /datum/ai_behavior/xeno/praetorian
-	var//datum/action/xeno_action/activable/xeno_spit/spit = new
+	var/datum/action/xeno_action/activable/xeno_spit/spit = new
 
 /datum/ai_behavior/xeno/praetorian/Init()
 	..()
@@ -23,6 +23,6 @@
 		return FALSE
 
 	if(istype(action_state, /datum/action_state/hunt_and_destroy))
-
+		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
 		if(spit.can_use_ability(action_state2.atomtowalkto))
 			spit.use_ability(action_state2.atomtowalkto)

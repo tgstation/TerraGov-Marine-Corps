@@ -122,8 +122,8 @@
 
 /datum/action_state/hunt_and_destroy/New(parent_to_hook_to)
 	..()
+	distance_to_maintain = parent_ai.distance_to_maintain
 	Process()
-	distance_to_maintain = parent_to_hook_to.distance_to_maintain
 
 /datum/action_state/hunt_and_destroy/GetTargetDir(smart_pathfind)
 	//Move to that target

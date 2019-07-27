@@ -9,7 +9,7 @@
 /datum/ai_behavior/xeno/queen
 	var/datum/action/xeno_action/activable/screech/screech = new
 	var/datum/action/xeno_action/plant_weeds/plantweeds = new
-	var//datum/action/xeno_action/activable/xeno_spit/spit = new
+	var/datum/action/xeno_action/activable/xeno_spit/spit = new
 
 /datum/ai_behavior/xeno/queen/Init()
 	..()
@@ -34,7 +34,7 @@
 
 	if(istype(action_state, /datum/action_state/hunt_and_destroy))
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
-		if(get_dist(parentmob, action_state2.atomtowalkto) < 4) && screech.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+		if(get_dist(parentmob, action_state2.atomtowalkto) < 4 && screech.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			screech.use_ability()
 
 		if(spit.can_use_ability(action_state2.atomtowalkto))
