@@ -33,3 +33,17 @@
     icon_state =  "Fun Drone Walking"
     pixel_y = -14
     old_y = -14
+
+/mob/living/carbon/xenomorph/done/fun/update_icons()
+    if(stat == DEAD)
+        icon_state = "Fun Drone Dead"
+    else if(lying)
+        if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
+            icon_state = "Fun Drone Sleeping"
+        else
+            icon_state = "Fun Drone Knocked Down"
+    else if(!handle_special_state())
+        if(m_intent == MOVE_INTENT_RUN)
+            icon_state = "Fun Drone Running"
+        else
+            icon_state = "Fun Drone Walking"

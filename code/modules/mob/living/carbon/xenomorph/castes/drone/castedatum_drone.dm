@@ -147,7 +147,3 @@
 	upgrade_name = ""
 	caste_desc = "A builder of hives. Only drones may evolve into Shrikes."
 	caste_type_path = /mob/living/carbon/xenomorph/drone/fun
-
-/datum/xeno_caste/drone/fun/young
-	upgrade_name = "Young"
-	upgrade = XENO_UPGRADE_ZERO
