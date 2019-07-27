@@ -409,10 +409,6 @@
 	barricade_type = "wooden"
 	can_wire = FALSE
 
-/obj/structure/barricade/wooden/lv_snowflake
-	desc = "A reinforced wooden barricade. Pretty good at keeping neighbours away from your lawn."
-	max_integrity = 400
-
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
 

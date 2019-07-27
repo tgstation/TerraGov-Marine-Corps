@@ -3995,7 +3995,7 @@
 /turf/open/floor/wood/broken,
 /area/lv624/ground/jungle8)
 "aoo" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -10457,7 +10457,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aNB" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/tile/white,
@@ -11339,7 +11339,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "aQL" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2{
@@ -11438,7 +11438,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/sleep_male)
 "aQV" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/structure/barricade/wooden{
@@ -11630,7 +11630,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle4)
 "aRs" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delayone{
@@ -11801,7 +11801,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "aRW" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaytwo{
@@ -12060,7 +12060,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/shuttle/drop2/lz2)
 "aSL" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/machinery/landinglight/ds2/delaythree{
@@ -13902,7 +13902,7 @@
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -14127,7 +14127,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
