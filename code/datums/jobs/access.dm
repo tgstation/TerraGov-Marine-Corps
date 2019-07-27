@@ -219,7 +219,7 @@
 			. = size ? "Dr. " : "Doctor"
 		if("CCMO")
 			. = size ? "Prof. " : "Professor"
-		if ("CMN")
+		if("CMN")
 			. = size ? "CMN" : "Crewman"
 		if("PMC1")
 			. = size ? "PMC " : "PM Contractor"

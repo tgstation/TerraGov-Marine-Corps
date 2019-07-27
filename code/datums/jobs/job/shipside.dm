@@ -430,12 +430,12 @@ A happy ship is a well-functioning ship."})
 /datum/job/requisitions/tech
 	title = CARGO_TECHNICIAN
 	paygrade = "CMN"
-	comm_title = "Ord"
+	comm_title = "Ord"	
 	total_positions = 4
 	supervisors = "the requisitions officer"
 	selection_color = "#BAAFD9"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_ALPHA)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_ENGINEERING)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/CT
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECH
 	outfit = /datum/outfit/job/requisitions/tech
