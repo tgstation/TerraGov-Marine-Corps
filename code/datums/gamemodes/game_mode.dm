@@ -124,8 +124,6 @@
 		if(!istype(player) || !player?.mind.assigned_role)
 			continue
 		var/datum/job/J = SSjob.GetJob(player.mind.assigned_role)
-		if(!N.IsJobAvailable(J.title, FALSE))
-			continue
 		if(istype(J, /datum/job/command/captain))
 			captainless = FALSE
 		if(player.mind.assigned_role)
