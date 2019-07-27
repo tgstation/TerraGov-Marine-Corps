@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/sentinel/ai
-	var/datum/ai_behavior/xeno/sentinel/ai_datum = new
+	ai_datum = new/datum/ai_behavior/xeno/sentinel()
 
 /mob/living/carbon/xenomorph/sentinel/ai/Initialize()
 	..()
@@ -24,5 +24,5 @@
 	if(istype(action_state, /datum/action_state/hunt_and_destroy))
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
 
-		if(spit.can_use_ability(action_state2.atomtowalkto))
+		if(spit.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			spit.use_ability(action_state2.atomtowalkto)

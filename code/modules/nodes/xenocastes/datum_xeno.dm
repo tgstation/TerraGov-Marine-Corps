@@ -17,6 +17,8 @@
 	parentmob.a_intent = INTENT_HARM
 	last_health = parentmob.health
 	action_state = new/datum/action_state/random_move/scout(src)
+	if(SSai.randomized_xeno_tiers) //Equal chances of being young, mature, elder or ancient
+		parentmob.upgrade_xeno(pick(SSai.random_tier_probs))
 
 /datum/ai_behavior/xeno/proc/AttemptGetTarget()
 	for(var/mob/living/carbon/human/human in cheap_get_humans_near(parentmob, 10))
@@ -44,8 +46,10 @@
 		else
 			current_node.datumnode.increment_weight(DANGER_SCALE, last_health - parentmob.health)
 			current_node.color = "#ff0000" //Red, we got hurt
-		qdel(action_state)
-		action_completed(ENEMY_CONTACT) //Look for enemies, we got hurt
+		//If we're retreating in the first place we ain't gonna try and kill the enemy unless we're suicidal
+		if(!SSai.is_pacifist && !SSai.is_suicidal && (parentmob.health < (parentmob.maxHealth * SSai.retreat_health_threshold)))
+			qdel(action_state)
+			action_completed(ENEMY_CONTACT) //Look for enemies, we got hurt
 
 	last_health = parentmob.health
 	HandleAbility()
@@ -65,7 +69,7 @@
 				target2.attack_alien(parentmob2)
 				parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
 			else //The less the target moves, the easier to hit. Every second of not moving increases chance to hit by 75%, 30% chance to hit base
-				if(prob(((world.time - target2.last_move_intent) * 75) + 30) * SSai.prob_melee_slash)
+				if(prob(((world.time - target2.last_move_intent) * 75) + 40) * SSai.prob_melee_slash)
 					target.attack_alien(parentmob2)
 					parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
 					return

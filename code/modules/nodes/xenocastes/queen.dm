@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/queen/ai
-	var/datum/ai_behavior/xeno/queen/ai_datum = new
+	ai_datum = new/datum/ai_behavior/xeno/queen
 
 /mob/living/carbon/xenomorph/queen/ai/Initialize()
 	..()
@@ -34,9 +34,9 @@
 
 	if(istype(action_state, /datum/action_state/hunt_and_destroy))
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
-		if(get_dist(parentmob, action_state2.atomtowalkto) < 4 && screech.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
+		if(get_dist(parentmob, action_state2.atomtowalkto) < 3 && screech.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			screech.use_ability()
 
-		if(spit.can_use_ability(action_state2.atomtowalkto))
+		if(spit.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			spit.use_ability(action_state2.atomtowalkto)
 

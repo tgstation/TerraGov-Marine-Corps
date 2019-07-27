@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/hivelord/ai
-	var/datum/ai_behavior/xeno/hivelord/ai_datum = new
+	ai_datum = new/datum/ai_behavior/xeno/hivelord
 
 /mob/living/carbon/xenomorph/hivelord/ai/Initialize()
 	..()
@@ -29,14 +29,13 @@
 
 	if(ability_tick_threshold % 4 == 0)
 
-		if(!locate(/turf/closed/wall/resin) in range(1, parentmob))
-			parentmob2.selected_resin = /turf/closed/wall/resin/thick
-			secrete.action_activate()
-			return //We plopped a thicc wall, can't build anything else here
-
+		if(!(locate(/obj/effect/alien/weeds/node) in range(1, parentmob)))
+			plantweeds.action_activate()
 		else
-			if(!(locate(/obj/effect/alien/weeds/node) in range(1, parentmob)))
-				plantweeds.action_activate()
+			if(!locate(/turf/closed/wall/resin) in range(1, parentmob))
+				parentmob2.selected_resin = /turf/closed/wall/resin/thick
+				secrete.action_activate()
+				return //We plopped a thicc wall, can't build anything else here
 
 	if(ability_tick_threshold % 2 == 0)
 		if(!locate(/obj/effect/alien/resin/sticky in get_turf(parentmob)))

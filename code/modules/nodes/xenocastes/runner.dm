@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/runner/ai
-	var/datum/ai_behavior/xeno/runner/ai_datum = new
+	ai_datum = new/datum/ai_behavior/xeno/runner
 
 /mob/living/carbon/xenomorph/runner/ai/Initialize()
 	..()

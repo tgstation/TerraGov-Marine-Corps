@@ -42,3 +42,5 @@
 	var/blood_type
 
 	var/overeatduration = 0		// How long this guy is overeating
+
+	var/datum/ai_behavior/ai_datum //Ai datums for xenos at the moment

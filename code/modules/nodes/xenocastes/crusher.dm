@@ -1,6 +1,6 @@
 
 /mob/living/carbon/xenomorph/crusher/ai
-	var/datum/ai_behavior/xeno/crusher/ai_datum = new
+	ai_datum = new/datum/ai_behavior/xeno/crusher
 
 /mob/living/carbon/xenomorph/crusher/ai/Initialize()
 	..()

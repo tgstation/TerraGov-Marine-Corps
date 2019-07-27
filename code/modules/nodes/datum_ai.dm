@@ -27,13 +27,14 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 
 /datum/ai_behavior/proc/Init() //Bandaid solution for initializing things
 
-	for(var/obj/effect/AINode/node in range(4))
+	for(var/obj/effect/AINode/node in range(7))
 		if(node)
 			current_node = node
 			parentmob.forceMove(current_node.loc)
 			//atomtowalkto = pick(current_node.datumnode.adjacent_nodes)
 		break
 	if(!current_node)
+		qdel(parentmob)
 		qdel(src)
 		return
 	action_state = new/datum/action_state/random_move(src)

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/warrior/ai
-	var/datum/ai_behavior/xeno/warrior/ai_datum = new
+	ai_datum = new/datum/ai_behavior/xeno/warrior
 
 /mob/living/carbon/xenomorph/warrior/ai/Initialize()
 	..()
@@ -25,8 +25,8 @@
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
 
 		if(get_dist(parentmob, action_state2.atomtowalkto) <= 1)
-			if(fling.can_use_ability(action_state2.atomtowalkto))
+			if(fling.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 				fling.use_ability(action_state2.atomtowalkto)
 
-			if(punch.can_use_ability(action_state2.atomtowalkto))
+			if(punch.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 				punch.use_ability(action_state2.atomtowalkto)

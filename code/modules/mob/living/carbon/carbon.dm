@@ -4,6 +4,8 @@
 
 
 /mob/living/carbon/Destroy()
+	if(ai_datum)
+		qdel(ai_datum)
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 		C.stomach_contents -= src

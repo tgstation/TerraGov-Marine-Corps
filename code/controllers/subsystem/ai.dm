@@ -23,11 +23,18 @@ SUBSYSTEM_DEF(ai)
 
 	var/init_pheromones = FALSE //If pheromone emitting xenos will emit a random pheromone
 
+	var/randomized_xeno_tiers = FALSE //If we want random xeno tiers, here we go, otherwise start off all young
+
+	//If above is true, chances of being the upgrades: YOUNG, MATURE, ELDER, ANCIENT. First number is the weight so 25% for all upgrades by default
+	var/list/random_tier_probs = list(1 = 0, 1 = XENO_UPGRADE_ONE, 1 = XENO_UPGRADE_TWO, 1 = XENO_UPGRADE_THREE)
+
 /datum/controller/subsystem/ai/fire(resume = FALSE)
 	if(!resume)
 		current_run = aidatums.Copy()
 	while(current_run.len)
 		var/datum/ai_behavior/aidatum = current_run[current_run.len]
+		if(!aidatum)
+			continue
 		aidatum.Process()
 		current_run.len--
 		if(TICK_CHECK)

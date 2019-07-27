@@ -1,6 +1,6 @@
 
 /mob/living/carbon/xenomorph/ravager/ai
-	var/datum/ai_behavior/xeno/ravager/ai_datum = new
+	ai_datum = new/datum/ai_behavior/xeno/ravager
 
 /mob/living/carbon/xenomorph/ravager/ai/Initialize()
 	..()
@@ -28,9 +28,9 @@
 	if(parentmob2.rage < 15 && istype(action_state, /datum/action_state/hunt_and_destroy))
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
 
-		if(charge.can_use_ability(action_state2.atomtowalkto))
+		if(charge.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			charge.use_ability(action_state2.atomtowalkto)
 
 		if(get_dist(parentmob, action_state2.atomtowalkto) <= 1)
-			if(ravage.can_use_ability(action_state2.atomtowalkto))
+			if(ravage.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 				ravage.use_ability(action_state2.atomtowalkto)

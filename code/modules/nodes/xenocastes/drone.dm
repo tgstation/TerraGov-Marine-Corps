@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/drone/ai
-	var/datum/ai_behavior/xeno/drone/ai_datum = new
+	ai_datum = new/datum/ai_behavior/xeno/drone
 
 /mob/living/carbon/xenomorph/drone/ai/Initialize()
 	..()

@@ -31,7 +31,7 @@
 
 /datum/action_state/random_move/New(parent_to_hook_to)
 	..()
-	if(SSai.is_pacifist || (SSai.is_suicidal && (parent_ai.parentmob.health < (parent_ai.parentmob.maxHealth * SSai.retreat_health_threshold))))
+	if(SSai.is_pacifist || (!SSai.is_suicidal && (parent_ai.parentmob.health < (parent_ai.parentmob.maxHealth * SSai.retreat_health_threshold))))
 		weights = list(ENEMY_PRESENCE = -200, DANGER_SCALE = -1)
 	if(weights && weights.len)
 		next_node = parent_ai.current_node.GetBestAdjNode(weights)
@@ -127,17 +127,22 @@
 
 /datum/action_state/hunt_and_destroy/GetTargetDir(smart_pathfind)
 	//Move to that target
-	if(get_dist(parent_ai.parentmob, atomtowalkto) > distance_to_maintain)
+	if(get_dist(parent_ai.parentmob, atomtowalkto) > distance_to_maintain) //Too far away, close in
 		if(smart_pathfind)
-			return get_dir(parent_ai.parentmob, get_step_to(parent_ai.parentmob, atomtowalkto))
+			return get_dir(parent_ai.parentmob, get_step_to(parent_ai.parentmob, atomtowalkto, distance_to_maintain))
 		return get_dir(parent_ai.parentmob, atomtowalkto)
-	else
-		//We're at the edge of our range, let's go left or right if it's enabled
-		if(prob(SSai.prob_sidestep_melee))
-			if(get_dir(parent_ai.parentmob, atomtowalkto)) //If we're on top of a human IE pounced, get_dir returns null
-				return(pick(shuffle(LeftAndRightOfDir(get_dir(parent_ai.parentmob, atomtowalkto)))))
-			else //We'll step in a random direction instead
-				return(pick(shuffle(CARDINAL_ALL_DIRS)))
+
+	if(get_dist(parent_ai.parentmob, atomtowalkto) < distance_to_maintain) //Too close, get out
+		if(smart_pathfind)
+			return get_dir(parent_ai.parentmob, get_step_away(parent_ai.parentmob, atomtowalkto, distance_to_maintain))
+		return get_dir(atomtowalkto, parent_ai.parentmob)
+
+	//We're at the edge of our range, let's go left or right if it's enabled
+	if(prob(SSai.prob_sidestep_melee))
+		if(get_dir(parent_ai.parentmob, atomtowalkto)) //If we're on top of a human IE pounced, get_dir returns null
+			return(pick(shuffle(LeftAndRightOfDir(get_dir(parent_ai.parentmob, atomtowalkto)))))
+		else //We'll step in a random direction instead
+			return(pick(shuffle(CARDINAL_ALL_DIRS)))
 
 /datum/action_state/hunt_and_destroy/Process()
 	var/datum/ai_behavior/xeno/parent_ai2 = parent_ai
