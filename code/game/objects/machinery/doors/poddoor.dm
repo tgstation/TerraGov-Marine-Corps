@@ -117,3 +117,19 @@
 /obj/machinery/door/poddoor/timed_late/Initialize()
 	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/open)
 	return ..()
+
+
+/obj/machinery/door/poddoor/timed_late/containment
+	name = "Containment shutters"
+	desc = "Safety shutters triggered by some kind of lockdown event."
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
+	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
+
+
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone
+	id = "landing_zone"
+
+
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2
+	id = "landing_zone_2"

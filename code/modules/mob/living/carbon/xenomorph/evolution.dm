@@ -14,6 +14,51 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
+	do_evolve()
+
+
+/mob/living/carbon/xenomorph/verb/regress()
+	set name = "Regress"
+	set desc = "Regress into a lower form."
+	set category = "Alien"
+	
+	var/tiers_to_pick_from
+	switch(tier)
+		if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+			to_chat(src, "<span class='warning'>Your tier does not allow you to regress.</span>")
+			return
+		if(XENO_TIER_ONE)
+			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
+		if(XENO_TIER_TWO)
+			tiers_to_pick_from = GLOB.xeno_types_tier_one
+		if(XENO_TIER_THREE)
+			if(isxenoshrike(src))
+				tiers_to_pick_from = GLOB.xeno_types_tier_one
+			else
+				tiers_to_pick_from = GLOB.xeno_types_tier_two
+		else
+			CRASH("side_evolve() called without a valid tier")
+
+	var/list/castes_to_pick = list()
+	for(var/type in tiers_to_pick_from)
+		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+		castes_to_pick += available_caste.caste_name
+	var/castepick = input("We are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
+	if(!castepick) //Changed my mind
+		return
+
+	var/castetype
+	for(var/type in tiers_to_pick_from)
+		var/datum/xeno_caste/available_caste = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+		if(castepick != available_caste.caste_name)
+			continue
+		castetype = type
+		break
+
+	do_evolve(castetype, castepick)
+
+
+/mob/living/carbon/xenomorph/proc/do_evolve(forced_caste_type, forced_caste_name)
 	if(is_ventcrawling)
 		to_chat(src, "<span class='warning'>This place is too constraining to evolve.</span>")
 		return
@@ -61,20 +106,25 @@
 		to_chat(src, "<span class='warning'>We cannot evolve while in this stance.</span>")
 		return
 
-	var/list/castes_to_pick = list()
-	for(var/type in xeno_caste.evolves_to)
-		var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
-		castes_to_pick += Z.caste_name
-	var/castepick = input("We are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
-	if(!castepick) //Changed my mind
-		return
-
 	var/new_caste_type
-	for(var/type in xeno_caste.evolves_to)
-		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
-		if(castepick == XC.caste_name)
-			new_caste_type = type
-			break
+	var/castepick
+	if(forced_caste_type)
+		new_caste_type = forced_caste_type
+		castepick = forced_caste_name
+	else
+		var/list/castes_to_pick = list()
+		for(var/type in xeno_caste.evolves_to)
+			var/datum/xeno_caste/Z = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+			castes_to_pick += Z.caste_name
+		castepick = input("We are growing into a beautiful alien! It is time to choose a caste.") as null|anything in castes_to_pick
+		if(!castepick) //Changed my mind
+			return
+
+		for(var/type in xeno_caste.evolves_to)
+			var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[type][XENO_UPGRADE_BASETYPE]
+			if(castepick == XC.caste_name)
+				new_caste_type = type
+				break
 
 	if(!new_caste_type)
 		CRASH("[src] tried to evolve but failed to find a new_caste_type")
@@ -149,7 +199,9 @@
 		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
 		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
 
-		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
+		if(forced_caste_type)
+			//Nothing, go on as normal.
+		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
@@ -190,7 +242,7 @@
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
 			to_chat(src, "<span class='warning'>There already is a Shrike.</span>")
 			return
-	else // these shouldnt be checked if trying to become a queen.
+	else if(!forced_caste_type) // these shouldnt be checked if trying to become a queen.
 		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
 			return
