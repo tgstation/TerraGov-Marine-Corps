@@ -47,7 +47,6 @@ SUBSYSTEM_DEF(ticker)
 		'sound/music/ManOfWar.ogg',
 		'sound/music/PraiseTheLord.ogg',
 		'sound/music/BloodUponTheRisers.ogg',
-		'sound/music/DawsonChristian.ogg',
 	)
 
 	return ..()
