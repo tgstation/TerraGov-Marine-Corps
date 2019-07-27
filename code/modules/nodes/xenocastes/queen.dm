@@ -1,4 +1,3 @@
-
 /mob/living/carbon/xenomorph/queen/ai
 	var/datum/ai_behavior/xeno/queen/ai_datum = new
 
