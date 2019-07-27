@@ -7301,6 +7301,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/computer/nuke_disc_generator/blue,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -15347,7 +15348,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aUM" = (
-/obj/machinery/computer/operating,
+/obj/machinery/computer/nuke_disc_generator/red,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aUN" = (
@@ -23775,8 +23776,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAF" = (
-/obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/obj/machinery/computer/nuke_disc_generator/green,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -26016,10 +26016,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"ush" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "uHK" = (
 /obj/item/tool/wet_sign,
 /obj/effect/decal/cleanable/dirt,
@@ -26072,6 +26068,11 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
+"wbc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/nuclearbomb,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
 "wfD" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/darkish,
@@ -38048,7 +38049,7 @@ beU
 bfF
 bfX
 baF
-bgE
+wbc
 baF
 aXK
 bil

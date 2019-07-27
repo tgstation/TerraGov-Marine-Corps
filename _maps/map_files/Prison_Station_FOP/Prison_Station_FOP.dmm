@@ -41877,7 +41877,7 @@
 /turf/open/floor/prison,
 /area/prison/security/head)
 "bYf" = (
-/obj/machinery/computer/prisoner,
+/obj/machinery/computer/nuke_disc_generator/green,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "bYg" = (
@@ -53035,6 +53035,10 @@
 	},
 /turf/open/floor/prison/red/corner,
 /area/prison/cellblock/highsec/south/north)
+"iBh" = (
+/obj/machinery/computer/nuke_disc_generator/blue,
+/turf/open/floor/prison/sterilewhite,
+/area/prison/research/secret/testing)
 "iOM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -53200,6 +53204,10 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/west)
+"tWw" = (
+/obj/machinery/computer/nuke_disc_generator/red,
+/turf/open/floor/prison/darkred/full,
+/area/prison/security/checkpoint/maxsec)
 "udZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -53214,6 +53222,10 @@
 	dir = 10
 	},
 /area/prison/hallway/central)
+"uwH" = (
+/obj/machinery/nuclearbomb,
+/turf/open/floor/plating/platebot,
+/area/prison/pirate)
 "uUB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -75823,7 +75835,7 @@ ckn
 ckn
 cnH
 ckn
-ckn
+uwH
 cjw
 cqA
 crl
@@ -90131,7 +90143,7 @@ aab
 aBr
 apt
 apt
-aFt
+tWw
 aGF
 axj
 aIY
@@ -91880,7 +91892,7 @@ ado
 adx
 adG
 aeg
-aeg
+iBh
 adG
 adG
 afF
