@@ -39,7 +39,7 @@
 #define SYNTHETIC "Synthetic"
 #define MASTER_AT_ARMS "Master at Arms"
 #define SHIP_ENGINEER "Ship Engineer"
-#define CARGO_TECHNICIAN "Cargo Technician"
+#define CARGO_TECHNICIAN "Serviceman"
 #define MEDICAL_OFFICER "Medical Officer"
 #define MEDICAL_RESEARCHER "Medical Researcher"
 #define SQUAD_LEADER "Squad Leader"

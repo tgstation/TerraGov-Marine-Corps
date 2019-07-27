@@ -239,8 +239,6 @@
 			. = size ? "PVT " : "Private"
 		if("E2")
 			. = size ? "PFC " : "Private First Class"
-		if("E2.5")
-			. = size ? "SPR" : "Sapper"
 		if("E3")
 			. = size ? "LCPL " : "Lance Corporal"
 		if("E4")
@@ -267,8 +265,6 @@
 			. = size ? "LT " : "Lieutenant"
 		if("O4")
 			. = size ? "LCDR " : "Lieutenant Commander"
-		if("O4.5")
-			. = size ? "LCSG" : "Lieutenant Commander Senior Grade"
 		if("O5")
 			. = size ? "CDR " : "Commander"
 		if("O6")

@@ -493,7 +493,7 @@
 	new /obj/item/clothing/head/white_dress(src)
 
 /obj/structure/closet/secure_closet/cargotech
-	name = "Cargo Technician's Locker"
+	name = "Serviceman's Locker"
 	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "secure_locked_cargo"
 	icon_closed = "secure_unlocked_cargo"
@@ -508,6 +508,8 @@
 	new /obj/item/radio/headset/mainship/ct(src)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/head/beanie(src)
+	new /obj/item/clothing/suit/storage/marine/MP(src)
+	new /obj/item/clothing/head/beanie(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
 	new /obj/item/clothing/tie/storage/webbing(src)
@@ -515,3 +517,11 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
+
+/obj/structure/closet/secure_closet/kitchencrew/PopulateContents()
+	name = "Chef's locker"
+	req_access = list(ACCESS_MARINE_CARGO)
+	new /obj/item/clothing/suit/chef(src)
+	new /obj/item/clothing/head/chefhat(src)
+	new /obj/item/book/manual/chef_recipes(src)
+	new /obj/item/clothing/suit/apron(src)

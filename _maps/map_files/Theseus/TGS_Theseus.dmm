@@ -41618,7 +41618,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "caB" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/kitchencrew,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "caC" = (
@@ -47061,6 +47061,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"rYn" = (
+/obj/structure/closet/secure_closet/kitchencrew,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/captain_mess)
 "sby" = (
 /turf/open/floor/mainship{
 	dir = 2;
@@ -69142,7 +69146,7 @@ aMd
 azR
 ann
 aDk
-aLs
+rYn
 aGi
 aHF
 aDk

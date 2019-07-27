@@ -95,7 +95,7 @@ Make the TGMC proud!"})
 //Intelligence Officer
 /datum/job/command/intelligenceofficer
 	title = INTELLIGENCE_OFFICER
-	paygrade = "O4.5"
+	paygrade = "O3"
 	comm_title = "IO"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -304,7 +304,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 //Chief Ship Engineer
 /datum/job/engineering/chief
 	title = CHIEF_SHIP_ENGINEER
-	paygrade = "O4"
+	paygrade = "O3"
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
@@ -430,12 +430,12 @@ A happy ship is a well-functioning ship."})
 /datum/job/requisitions/tech
 	title = CARGO_TECHNICIAN
 	paygrade = "CMN"
-	comm_title = "CT"
-	total_positions = 2
+	comm_title = "Ord"
+	total_positions = 4
 	supervisors = "the requisitions officer"
 	selection_color = "#BAAFD9"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_ALPHA)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/CT
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECH
 	outfit = /datum/outfit/job/requisitions/tech
@@ -443,9 +443,8 @@ A happy ship is a well-functioning ship."})
 
 /datum/job/requisitions/tech/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
-Stay in your department when possible to ensure the marines have full access to the supplies they may require.
-Listen to the radio in case someone requests a supply drop via the overwatch system."})
+	to_chat(M, {"You are part of the service crew abord the Theseus, your main tasks will be supplying the marines
+in the field using the requisitions office. Your other tasks may consist of cleaning the station or serving food and drinks."})
 
 
 /datum/outfit/job/requisitions/tech
@@ -456,10 +455,8 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	belt = /obj/item/clothing/tie/holster/m4a3
 	ears = /obj/item/radio/headset/mainship/ct
 	w_uniform = /obj/item/clothing/under/rank/cargotech
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
-	head = /obj/item/clothing/head/beanie
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/magazine/pistol/large/full
 	back = /obj/item/storage/backpack/marine/satchel
@@ -473,7 +470,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 /datum/job/medical/professor
 	title = CHIEF_MEDICAL_OFFICER
 	comm_title = "CMO"
-	paygrade = "O4"
+	paygrade = "O3"
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
