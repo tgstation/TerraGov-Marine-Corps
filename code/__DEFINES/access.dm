@@ -54,8 +54,8 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_IFF_PMC 				999
 //=================================================
 
-#define PAYGRADES_MARINE list("C","CMN","E1","E2","E2.5","E3","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O4.5","O5","O6","WO","CWO","PO","CPO","MAJ")
-#define PAYGRADES_OFFICER list("O1","O2","O3","O4","O4.5","O5","O6","WO","CWO","CPO","MAJ")
+#define PAYGRADES_MARINE list("C","CMN","E1","E2","E2.5","E3","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O5","O6","WO","CWO","PO","CPO","MAJ")
+#define PAYGRADES_OFFICER list("O1","O2","O3","O4","O5","O6","WO","CWO","CPO","MAJ")
 #define PAYGRADES_ENLISTED list("C","CMN","E1","E2","E2.5","E3","E4","E5","E6","E7","E8","E9","PO")
 
 //Just marines

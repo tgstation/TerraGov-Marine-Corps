@@ -267,8 +267,6 @@
 			. = size ? "LT " : "Lieutenant"
 		if("O4")
 			. = size ? "LCDR " : "Lieutenant Commander"
-		if("O4.5")
-			. = size ? "LCSG" : "Lieutenant Commander Senior Grade"
 		if("O5")
 			. = size ? "CDR " : "Commander"
 		if("O6")
