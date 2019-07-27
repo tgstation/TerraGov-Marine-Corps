@@ -6396,10 +6396,13 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "asG" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 9
-	},
 /obj/effect/decal/cleanable/blood,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
 /turf/open/floor/prison,
 /area/prison/research/RD)
 "asH" = (
@@ -7028,14 +7031,15 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/RD)
 "atR" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 10
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/prison,
 /area/prison/research/RD)
 "atS" = (
@@ -9731,7 +9735,7 @@
 "aAF" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/prison/whitepurple/full,
-/area/prison/medbay/morgue)
+/area/prison/research)
 "aAG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -29882,7 +29886,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk/prison,
-/area/prison/hallway/east)
+/area/prison/hallway/entrance)
 "bvQ" = (
 /turf/open/floor/prison/yellow{
 	dir = 9
@@ -31751,14 +31755,14 @@
 	icon_state = "bright_clean";
 	dir = 10
 	},
-/area/prison/hallway/east)
+/area/prison/hallway/entrance)
 "bAy" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
 	},
-/area/prison/hallway/east)
+/area/prison/hallway/entrance)
 "bAz" = (
 /obj/machinery/disposal,
 /obj/structure/window/reinforced{
@@ -31771,7 +31775,7 @@
 	icon_state = "bright_clean";
 	dir = 10
 	},
-/area/prison/hallway/east)
+/area/prison/hallway/entrance)
 "bAA" = (
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
@@ -32200,7 +32204,7 @@
 	icon_state = "bright_clean";
 	dir = 10
 	},
-/area/prison/hallway/east)
+/area/prison/hallway/entrance)
 "bBE" = (
 /turf/open/floor/prison/yellow{
 	dir = 10
@@ -107645,7 +107649,7 @@ bkG
 bkG
 bsa
 bAx
-bBB
+bmM
 bCS
 bAA
 bAA
@@ -107902,7 +107906,7 @@ bcz
 bcz
 bcz
 bAy
-bBB
+bmM
 bCS
 bAA
 bAA
@@ -108159,7 +108163,7 @@ bdp
 bdp
 bxj
 bAz
-bBC
+bbC
 bCS
 bAA
 bAA
@@ -108415,7 +108419,7 @@ bcA
 bcA
 bcA
 bdK
-bAA
+bnM
 bBD
 bAA
 bAA
@@ -108672,7 +108676,7 @@ bcz
 bcz
 bcz
 buy
-bJm
+bdp
 bvP
 bEH
 bJm
@@ -108929,8 +108933,8 @@ bxb
 bxH
 bwk
 bjD
-bAA
-bBC
+bnM
+bbC
 bCS
 bEI
 bFJ
@@ -109186,8 +109190,8 @@ bxc
 bxc
 byg
 bcz
-bAA
-bBB
+bnM
+bmM
 bCV
 bEJ
 bFJ
@@ -109417,7 +109421,7 @@ aXo
 aND
 aQp
 bay
-bbC
+bbz
 bcz
 bcz
 bcz
@@ -109697,8 +109701,8 @@ bcC
 aFy
 bcC
 bcC
-aXu
-aXu
+bcC
+bcC
 bzg
 bAC
 bAE
@@ -110984,7 +110988,7 @@ pOU
 aab
 aab
 aab
-aXt
+bFX
 bAF
 bAF
 bAF
@@ -111241,7 +111245,7 @@ pOU
 aab
 aab
 aab
-aXt
+bFX
 bAG
 bAG
 bCY
