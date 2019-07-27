@@ -9861,6 +9861,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/computer/nuke_disc_generator/red,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -19101,12 +19102,12 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "bpn" = (
-/obj/structure/table/almayer,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/computer/nuke_disc_generator/blue,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "bpo" = (
@@ -20003,6 +20004,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
+"mEo" = (
+/obj/machinery/nuclearbomb,
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics)
 "ncP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/coast{
@@ -20029,6 +20036,12 @@
 /obj/structure/sign/botany,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
+"uND" = (
+/obj/machinery/computer/nuke_disc_generator/green,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
 "vTe" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/sign/botany{
@@ -38278,7 +38291,7 @@ evP
 blK
 bnN
 bjF
-bnN
+uND
 boy
 bpB
 bhh
@@ -45153,7 +45166,7 @@ avF
 awa
 awa
 awa
-awa
+mEo
 awa
 ayc
 avZ
