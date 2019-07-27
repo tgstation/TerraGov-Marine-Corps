@@ -9772,7 +9772,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/computer/nuke_disc_generator/red,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -15395,8 +15394,8 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/atmos)
 "bdK" = (
-/obj/machinery/deployable/barrier,
 /obj/effect/decal/cleanable/cobweb,
+/obj/machinery/computer/nuke_disc_generator/green,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "bdL" = (
@@ -19057,13 +19056,12 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "bpn" = (
-/obj/structure/table/mainship,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/computer/nuke_disc_generator/blue,
+/obj/structure/table/mainship,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "bpo" = (
@@ -19997,10 +19995,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
-"jzx" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "eLi" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	density = 1;
@@ -20027,6 +20021,10 @@
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage/outdoors)
+"eXo" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "eXq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -20071,6 +20069,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
+"ifI" = (
+/obj/machinery/nuclearbomb,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
 "iqK" = (
 /obj/structure/jungle/vines/heavy,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -20091,6 +20093,10 @@
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
+"jmr" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west2)
 "jAE" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -20112,10 +20118,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
-"kng" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "jFm" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/river,
@@ -20124,6 +20126,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
+"jNm" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/platebotc,
+/area/lv624/lazarus/quartstorage/outdoors)
 "jOz" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -20163,6 +20169,11 @@
 	dir = 10
 	},
 /area/lv624/ground/river2)
+"lJi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/research)
 "lYR" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -20180,12 +20191,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
-"mEo" = (
-/obj/machinery/nuclearbomb,
-/turf/open/floor/tile/green/greentaupe{
-	dir = 1
-	},
-/area/lv624/lazarus/hydroponics)
 "mrH" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -20223,6 +20228,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
+"osg" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "oyC" = (
 /obj/structure/jungle/vines/heavy,
 /obj/structure/jungle/vines/heavy,
@@ -20240,12 +20249,6 @@
 /obj/structure/sign/botany,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
-"uND" = (
-/obj/machinery/computer/nuke_disc_generator/green,
-/turf/open/floor/tile/brown{
-	dir = 9
-	},
-/area/lv624/lazarus/comms)
 "ptc" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -20289,6 +20292,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
+"reI" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east2)
 "rpH" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -20316,6 +20323,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/river,
 /area/lv624/ground/river3)
+"sih" = (
+/obj/machinery/computer/nuke_disc_generator/blue,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
 "syO" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/coast{
@@ -20374,12 +20385,22 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"vTx" = (
+/obj/machinery/computer/nuke_disc_generator/red,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/lv624/lazarus/research)
 "waH" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/coast/corner{
 	dir = 4
 	},
 /area/lv624/ground/river2)
+"wdy" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/sw)
 "wix" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/coast{
@@ -24689,7 +24710,7 @@ abc
 abc
 abc
 abc
-abc
+osg
 abc
 abc
 abc
@@ -25202,7 +25223,7 @@ abc
 abc
 abc
 abc
-abd
+abc
 abc
 abc
 abc
@@ -26637,7 +26658,7 @@ aac
 aah
 aah
 aah
-aah
+jmr
 aah
 aah
 aah
@@ -29121,7 +29142,7 @@ aOW
 aOW
 aOW
 aOW
-jzx
+aOW
 aOW
 aOW
 aOW
@@ -29774,7 +29795,7 @@ abk
 abd
 abc
 abc
-abc
+osg
 abc
 abc
 abk
@@ -33245,7 +33266,7 @@ bbH
 bcs
 aZR
 aZd
-bfg
+sih
 aZP
 bgE
 aXQ
@@ -34789,7 +34810,7 @@ bdB
 aZd
 axs
 aZP
-aZP
+bfg
 aXQ
 aEU
 aKs
@@ -38654,7 +38675,7 @@ evP
 blK
 bnN
 bjF
-uND
+bnN
 boy
 bpB
 bhh
@@ -38865,7 +38886,7 @@ auH
 aLo
 aFo
 aFW
-aGd
+vTx
 aHe
 aGb
 aIu
@@ -39671,7 +39692,7 @@ aZl
 aZl
 aZl
 aZl
-aZl
+wdy
 bgJ
 bnN
 bnN
@@ -40149,7 +40170,7 @@ aDa
 aDa
 aEP
 aFq
-aFq
+lJi
 aFq
 aFq
 aHN
@@ -41282,7 +41303,7 @@ aai
 aaf
 aal
 aao
-aao
+ifI
 aao
 aao
 aao
@@ -45529,7 +45550,7 @@ avF
 awa
 awa
 awa
-mEo
+awa
 awa
 ayc
 avZ
@@ -46351,7 +46372,7 @@ aNz
 aNz
 bbV
 bdK
-beu
+bdM
 bbV
 bge
 bbV
@@ -46609,8 +46630,8 @@ bbV
 bbV
 bdL
 bdM
-bdM
-bdM
+beu
+beu
 bbV
 bhs
 bhs
@@ -55313,7 +55334,7 @@ aCG
 aCG
 aCG
 aCG
-aCG
+jNm
 aCG
 aCG
 aCG
@@ -59452,7 +59473,7 @@ aTR
 aTR
 aTR
 aTR
-kng
+aTR
 aTR
 aTR
 aTR
@@ -60818,7 +60839,7 @@ aae
 aae
 aas
 aas
-aas
+reI
 aas
 aas
 aas
@@ -62175,7 +62196,7 @@ abq
 abo
 abi
 abi
-abi
+eXo
 abi
 abi
 abi
@@ -62912,7 +62933,7 @@ abg
 abi
 abi
 abi
-abi
+eXo
 abi
 abq
 abJ
@@ -63168,7 +63189,7 @@ abg
 abg
 abi
 abi
-abo
+abi
 abi
 abi
 abq

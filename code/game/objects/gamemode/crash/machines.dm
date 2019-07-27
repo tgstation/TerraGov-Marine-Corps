@@ -12,7 +12,7 @@
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
-	var/generate_time = 2 MINUTES // time for the machine to generate the disc
+	var/generate_time = 1.5 MINUTES // time for the machine to generate the disc
 	var/segment_time = 15 SECONDS // time to start the hack 
 	var/printing_time = 15 SECONDS // time to print a disc 
 	

@@ -149,6 +149,12 @@
 		CRASH("Unable to get a valid shuttle target!")
 		return
 
+	var/list/xeno_silo_spawns = GLOB.xeno_resin_silo_turfs.Copy()
+	for(var/i in 1 to 3)
+		var/turf/loc_to_spawn_silo = pick(xeno_silo_spawns)
+		new /obj/structure/resin/silo(loc_to_spawn_silo)
+		xeno_silo_spawns -= loc_to_spawn_silo
+
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES) 
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 
