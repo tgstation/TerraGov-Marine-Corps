@@ -100,9 +100,6 @@
 /area/bigredv2/outside/space_port)
 "aay" = (
 /obj/machinery/vending/cigarette/colony,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/space_port)
-"aaz" = (
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
@@ -258,7 +255,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aaW" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Spaceport"
 	},
@@ -426,7 +423,7 @@
 /area/bigredv2/outside/space_port)
 "abx" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
@@ -558,7 +555,7 @@
 /area/bigredv2/outside/space_port)
 "abU" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
@@ -584,6 +581,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "aca" = (
@@ -702,6 +701,7 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/window_frame/colony/reinforced,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "act" = (
@@ -836,7 +836,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Telecommunications";
 	req_one_access_txt = "0"
@@ -1250,7 +1250,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "aem" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Marshal Office Prison";
 	req_one_access_txt = "0"
@@ -1259,7 +1259,7 @@
 /area/bigredv2/outside/marshal_office)
 "aen" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Marshal Office Prison";
 	req_one_access_txt = "0"
@@ -1267,7 +1267,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "aeo" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Marshal Office Prison Toilet"
 	},
@@ -1558,7 +1558,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "afi" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office Isolation"
 	},
@@ -1757,7 +1757,7 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "afP" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	icon_state = "door_locked";
 	locked = 1;
@@ -1768,7 +1768,7 @@
 /area/bigredv2/outside/marshal_office)
 "afQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	icon_state = "door_locked";
 	locked = 1;
@@ -1842,7 +1842,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "age" = (
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Lambda Lab Storage";
 	req_one_access_txt = "0"
@@ -1856,7 +1856,7 @@
 	dir = 2
 	},
 /obj/structure/foamedmetal,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "chem_lock";
 	name = "\improper Chemistry Lockdown"
 	},
@@ -1868,7 +1868,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Chemistry Lab";
 	req_access_txt = "0"
@@ -1902,7 +1902,7 @@
 /area/bigredv2/caves/lambda_lab)
 "agm" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
@@ -2006,7 +2006,7 @@
 /area/bigredv2/outside/space_port)
 "agy" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
@@ -2070,7 +2070,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "agJ" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshall Head Office";
 	req_access_txt = "0"
@@ -2090,7 +2090,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "agM" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Surgery";
 	req_access_txt = "0"
 	},
@@ -2255,6 +2255,9 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/telecomm)
 "ahe" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -2266,14 +2269,23 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "ahg" = (
 /obj/item/stack/sheet/metal,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/space_port)
 "ahh" = (
 /obj/structure/girder/reinforced,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
 "ahj" = (
@@ -2367,7 +2379,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "ahB" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Surgery";
 	req_one_access_txt = "0"
@@ -2455,7 +2467,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "ahM" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Cell"
 	},
@@ -2563,7 +2575,7 @@
 /area/bigredv2/outside/marshal_office)
 "aih" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	icon_state = "door_locked";
 	locked = 1;
@@ -2573,7 +2585,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aii" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office Equipment";
 	req_access_txt = "0"
@@ -2604,7 +2616,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Lambda Lab Maintenance";
 	req_one_access_txt = "0"
@@ -2692,7 +2704,7 @@
 	},
 /area/bigredv2/outside/nw)
 "aiC" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office Brig"
 	},
@@ -2764,7 +2776,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aiQ" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office"
 	},
@@ -2799,7 +2811,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aiU" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Lambda Lab Prison Restroom"
 	},
@@ -2880,7 +2892,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajk" = (
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Lambda Lab Maintenance";
 	req_one_access_txt = "0"
@@ -2950,7 +2962,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "ajr" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Prisoner Room";
 	req_one_access_txt = "0"
@@ -3050,7 +3062,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 4;
 	icon_state = "door_locked";
 	locked = 1;
@@ -3129,7 +3141,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Break Room";
 	req_one_access_txt = "0"
 	},
@@ -3240,7 +3252,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "akh" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 4;
 	name = "\improper Marshal Office Interrogation";
 	req_access_txt = "0"
@@ -3318,7 +3330,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "akv" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office";
 	req_access_txt = "0"
@@ -3482,7 +3494,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "akR" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office";
 	req_access_txt = "0"
@@ -3499,7 +3511,7 @@
 /area/bigredv2/outside/marshal_office)
 "akU" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Office Complex 2";
 	name = "\improper Marshal Office Complex Shutters"
@@ -3623,7 +3635,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "alp" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office Evidence Room";
 	req_access_txt = "0"
@@ -3730,7 +3742,7 @@
 /area/bigredv2/caves)
 "alH" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "tcomms";
 	name = "\improper Telecommunications Shutters"
@@ -4030,7 +4042,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	name = "\improper Marshal Office Courtroom";
 	req_access_txt = "0"
 	},
@@ -4054,7 +4066,7 @@
 /area/bigredv2/outside/telecomm)
 "amx" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
@@ -4063,7 +4075,7 @@
 /area/bigredv2/outside/general_offices)
 "amy" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -4139,7 +4151,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "amM" = (
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -4156,7 +4168,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "amP" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Xenobiology";
 	req_access_txt = "0"
 	},
@@ -4174,7 +4186,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "amR" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Hydroponics";
 	req_access_txt = "0"
 	},
@@ -4224,7 +4236,7 @@
 /area/bigredv2/outside/medical)
 "amZ" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Greenhouse";
 	name = "\improper Greenhouse Shutters"
@@ -4232,7 +4244,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
 "ana" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Marshal Office"
 	},
@@ -4339,7 +4351,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 4;
 	name = "\improper Lambda Lab Maintenance Storage";
 	req_one_access_txt = "0"
@@ -4426,7 +4438,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "anx" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	icon_state = "door_locked";
 	locked = 1;
@@ -4436,7 +4448,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "any" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office Checkpoint";
 	req_access_txt = "0"
@@ -4451,7 +4463,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office"
 	},
@@ -4510,7 +4522,7 @@
 /area/bigredv2/outside/general_offices)
 "anJ" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
 	},
@@ -4560,7 +4572,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "anR" = (
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -4617,7 +4629,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Xenobiology";
 	req_access_txt = "0"
 	},
@@ -4665,7 +4677,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Hydroponics";
 	req_access_txt = "0"
 	},
@@ -5046,7 +5058,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Dormitories EVA Maintenance";
 	req_one_access_txt = "0"
 	},
@@ -5076,7 +5088,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "apm" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Dormitories EVA";
 	req_one_access_txt = "0"
@@ -5134,7 +5146,7 @@
 /area/bigredv2/caves/lambda_lab)
 "apv" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "General Store";
 	name = "\improper General Store Shutters"
@@ -5187,7 +5199,7 @@
 /area/bigredv2/outside/medical)
 "apE" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
 	},
@@ -5216,7 +5228,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office"
 	},
@@ -5224,7 +5236,7 @@
 /area/bigredv2/outside/marshal_office)
 "apI" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
 	},
@@ -5247,7 +5259,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "apM" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper Dormitories Lavatory"
 	},
@@ -5276,7 +5288,7 @@
 /area/bigredv2/outside/general_offices)
 "apQ" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Operations";
 	name = "\improper Operations Shutters"
@@ -5285,7 +5297,7 @@
 /area/bigredv2/outside/admin_building)
 "apS" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Library";
 	name = "\improper Library Shutters"
@@ -5656,7 +5668,7 @@
 /area/bigredv2/outside/general_offices)
 "aqT" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Bar Complex";
 	name = "\improper Bar Complex Shutters"
@@ -5665,7 +5677,7 @@
 /area/bigredv2/outside/bar)
 "aqV" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Kitchen";
 	name = "\improper Kitchen Shutters"
@@ -5818,7 +5830,7 @@
 /area/bigredv2/outside/general_offices)
 "arw" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -5903,7 +5915,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "arJ" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Biology Wing";
 	req_one_access_txt = "0"
 	},
@@ -5925,6 +5937,7 @@
 /area/bigredv2/caves/lambda_lab)
 "arL" = (
 /obj/effect/glowshroom,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
 "arM" = (
@@ -6076,7 +6089,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "asi" = (
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Dormitories Tool Storage Maintenance";
 	req_one_access_txt = "0"
@@ -6088,7 +6101,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "ask" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Dormitories EVA";
 	req_one_access_txt = "0"
@@ -6176,7 +6189,7 @@
 /area/bigredv2/caves/lambda_lab)
 "asx" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
@@ -6244,7 +6257,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories"
 	},
@@ -6255,7 +6268,7 @@
 /area/bigredv2/outside/dorms)
 "asK" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
 	},
@@ -6304,7 +6317,7 @@
 /area/bigredv2/outside/general_offices)
 "asT" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
@@ -6320,7 +6333,7 @@
 /area/bigredv2/outside/general_offices)
 "asV" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
@@ -6427,7 +6440,7 @@
 /area/bigredv2/caves/lambda_lab)
 "atk" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "rad_door";
 	name = "\improper Radiation Shielding"
@@ -6490,7 +6503,7 @@
 /area/bigredv2/outside/medical)
 "atw" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
@@ -6543,7 +6556,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/secure{
+/obj/machinery/door/airlock/mainship/secure{
 	dir = 1;
 	icon_state = "door_locked";
 	id = "safe_room";
@@ -6565,7 +6578,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
 "atK" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Administration Office";
 	req_access_txt = "0"
@@ -6617,7 +6630,7 @@
 /area/bigredv2/caves/lambda_lab)
 "atP" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	id = "sci_br";
 	name = "\improper Lambda Observation Shutters"
 	},
@@ -6653,7 +6666,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
@@ -6662,7 +6675,7 @@
 /area/bigredv2/outside/medical)
 "atV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Medical Clinic CMO's Office";
 	req_one_access_txt = "0"
@@ -6671,7 +6684,7 @@
 /area/bigredv2/outside/medical)
 "atW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical{
+/obj/machinery/door/airlock/mainship/medical{
 	dir = 1;
 	name = "\improper Medical Clinic Morgue";
 	req_one_access_txt = "0"
@@ -6688,7 +6701,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "atZ" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Dormitories Bedroom"
 	},
 /turf/open/floor/wood,
@@ -6742,7 +6755,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Administration Office";
 	req_access_txt = "0"
 	},
@@ -6998,14 +7011,14 @@
 	},
 /area/bigredv2/outside/medical)
 "auU" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "auV" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories Tool Storage"
 	},
@@ -7049,7 +7062,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Administration Wing";
 	req_one_access_txt = "0"
@@ -7128,7 +7141,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "avl" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Break Room";
 	req_one_access_txt = "0"
@@ -7185,7 +7198,7 @@
 	},
 /area/bigredv2/outside/nw)
 "avu" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Medical Clinic Chemistry";
 	req_one_access_txt = "0"
@@ -7280,7 +7293,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "avO" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Relaxation Room";
 	req_one_access_txt = "0"
 	},
@@ -7494,7 +7507,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "awj" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Clinic Scanner Room";
 	req_one_access_txt = "0"
 	},
@@ -7740,7 +7753,7 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "axh" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories"
 	},
@@ -7833,7 +7846,7 @@
 /area/bigredv2/outside/medical)
 "axy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic Treatment";
 	req_one_access_txt = "0"
 	},
@@ -7923,7 +7936,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "axR" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
@@ -7936,7 +7949,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories"
 	},
@@ -8033,7 +8046,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
@@ -8409,7 +8422,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Medical Clinic Treatment";
 	req_one_access_txt = "0"
@@ -8500,7 +8513,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Medical Clinic Power Station";
 	req_one_access_txt = "0"
 	},
@@ -8718,7 +8731,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Bar Maintenance";
 	req_one_access_txt = "0"
 	},
@@ -8859,14 +8872,14 @@
 /area/bigredv2/outside/dorms)
 "aAD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Restroom"
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aAE" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Recreation"
 	},
@@ -8911,7 +8924,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Bar Maintenance";
 	req_one_access_txt = "0"
 	},
@@ -9047,7 +9060,7 @@
 /area/bigredv2/outside/medical)
 "aBe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
@@ -9172,7 +9185,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Greenhouse";
 	req_one_access_txt = "0"
@@ -9331,7 +9344,7 @@
 	},
 /area/bigredv2/outside/c)
 "aBT" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Dormitories Storage"
 	},
 /turf/open/floor,
@@ -9388,7 +9401,7 @@
 /area/bigredv2/outside/ne)
 "aCe" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Greenhouse";
 	name = "\improper Greenhouse Shutters"
@@ -9477,7 +9490,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aCv" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Technical Lab";
 	req_one_access_txt = "0"
@@ -9496,7 +9509,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aCy" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Anomaly Chamber";
 	req_access_txt = "0"
@@ -9537,7 +9550,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Clinic Storage";
 	req_one_access_txt = "0"
 	},
@@ -9561,7 +9574,7 @@
 	},
 /area/bigredv2/outside/medical)
 "aCG" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Clinic Storage";
 	req_one_access_txt = "0"
 	},
@@ -9590,7 +9603,7 @@
 /area/bigredv2/outside/medical)
 "aCL" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -9613,7 +9626,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "aCQ" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories Restroom"
 	},
@@ -9634,7 +9647,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Bar Maintenance";
 	req_one_access_txt = "0"
@@ -9705,7 +9718,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Library Backroom"
 	},
 /turf/open/floor/wood,
@@ -10056,7 +10069,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Bar Backroom"
 	},
@@ -10278,7 +10291,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aEN" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Toilet"
 	},
@@ -10514,7 +10527,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Clinic Operating Theatre";
 	req_one_access_txt = "0"
 	},
@@ -10604,7 +10617,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Dormitories Storage"
 	},
 /turf/open/floor,
@@ -10683,7 +10696,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aGa" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Greenhouse Storage"
 	},
@@ -10723,7 +10736,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper Greenhouse Storage"
 	},
@@ -10822,6 +10835,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aGo" = (
 /obj/structure/fence,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "aGp" = (
@@ -10909,7 +10923,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories"
 	},
@@ -11055,6 +11069,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aHf" = (
 /obj/structure/fence,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
 	},
@@ -11210,7 +11225,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
@@ -11254,7 +11269,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Anomaly Lab";
 	req_one_access_txt = "0"
 	},
@@ -11567,7 +11582,7 @@
 /area/bigredv2/outside/library)
 "aII" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Library";
 	name = "\improper Library Shutters"
@@ -11765,7 +11780,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
 	},
@@ -11777,7 +11792,7 @@
 	},
 /area/bigredv2/outside/c)
 "aJr" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Bar Backroom"
 	},
@@ -11791,7 +11806,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
@@ -11850,7 +11865,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
@@ -12133,7 +12148,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Virology Wing";
 	req_one_access_txt = "0"
@@ -12198,7 +12213,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Virology Wing";
 	req_one_access_txt = "0"
@@ -12357,7 +12372,7 @@
 /area/bigredv2/outside/c)
 "aKu" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Bar Complex";
 	name = "\improper Bar Complex Shutters"
@@ -12563,7 +12578,7 @@
 	},
 /area/bigredv2/outside/c)
 "aLe" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Command Complex"
 	},
 /turf/open/floor/tile/white,
@@ -12596,7 +12611,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Command Complex"
 	},
 /turf/open/floor/tile/white,
@@ -12962,7 +12977,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aMq" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab";
 	req_one_access_txt = "0"
 	},
@@ -13022,7 +13037,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research{
+/obj/machinery/door/airlock/mainship/research{
 	dir = 1;
 	name = "\improper Virology Lab Decontamination";
 	req_access_txt = "0"
@@ -13039,7 +13054,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "aME" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper General Store"
 	},
@@ -13052,7 +13067,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/comdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	name = "\improper Operations";
 	req_access_txt = "0"
 	},
@@ -13134,7 +13149,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aMX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 4;
 	name = "\improper Lambda Lab Virology Quarantine";
 	req_one_access_txt = "0"
@@ -13217,7 +13232,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aNp" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper General Store"
 	},
@@ -13583,7 +13598,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aON" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Operations Bedroom"
 	},
 /turf/open/floor/wood,
@@ -13598,7 +13613,7 @@
 /area/bigredv2/outside/admin_building)
 "aOQ" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Operations";
 	name = "\improper Operations Shutters"
@@ -13618,7 +13633,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aOU" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Crew Habitation Complex"
 	},
@@ -13701,7 +13716,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/outside/library)
 "aPq" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Anomaly Chamber";
 	req_access_txt = "0"
@@ -13730,7 +13745,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research{
+/obj/machinery/door/airlock/mainship/research{
 	dir = 1;
 	name = "\improper Virology Lab Decontamination";
 	req_access_txt = "0"
@@ -13999,7 +14014,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 4;
 	name = "\improper Lambda Lab Virology Quarantine";
 	req_one_access_txt = "0"
@@ -14199,7 +14214,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aRe" = (
-/obj/machinery/door/airlock/multi_tile/almayer/comdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	dir = 1;
 	name = "\improper Operations";
 	req_access_txt = "0"
@@ -14269,14 +14284,14 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRo" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Bar"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRp" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Kitchen"
 	},
@@ -14306,7 +14321,7 @@
 /area/bigredv2/outside/hydroponics)
 "aRu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Library"
 	},
@@ -14470,7 +14485,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	name = "\improper Operations Maintenance";
 	req_access_txt = "0"
@@ -14488,14 +14503,14 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aSc" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Bar"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aSe" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Kitchen"
 	},
@@ -14611,7 +14626,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/virology)
 "aSA" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Virology Lab Cell";
 	req_access_txt = "0"
@@ -14681,7 +14696,7 @@
 /area/bigredv2/outside/general_store)
 "aSP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper General Store Security";
 	req_access_txt = "0"
@@ -14694,7 +14709,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	name = "\improper Operations";
 	req_access_txt = "0"
@@ -15339,6 +15354,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUK" = (
 /obj/structure/mineral_door/resin,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/lambda_lab)
 "aUL" = (
@@ -15368,7 +15384,7 @@
 /area/bigredv2/outside/w)
 "aUR" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "General Store";
 	name = "\improper General Store Shutters"
@@ -15604,7 +15620,7 @@
 	},
 /area/bigredv2/outside/w)
 "aVJ" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper General Store"
 	},
@@ -15762,7 +15778,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper General Store"
 	},
@@ -15844,7 +15860,7 @@
 /area/bigredv2/outside/general_store)
 "aWC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Operations Armory";
 	req_access_txt = "0"
@@ -15905,7 +15921,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Virology Lab Chemistry";
 	req_access_txt = "0"
@@ -16074,7 +16090,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Office Complex"
 	},
@@ -16085,7 +16101,7 @@
 /area/bigredv2/outside/office_complex)
 "aXs" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
 	},
@@ -16106,7 +16122,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aXx" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Virology Lab Cell";
 	req_access_txt = "0"
@@ -16188,7 +16204,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "aXJ" = (
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 4;
 	name = "\improper General Store Storage";
 	req_one_access_txt = "0"
@@ -16293,7 +16309,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper General Store Maintenance";
 	req_one_access_txt = "0"
@@ -16379,7 +16395,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aYm" = (
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	name = "\improper Operations Office";
 	req_access_txt = "0"
@@ -16387,7 +16403,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aYo" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Operations Toilet"
 	},
 /turf/open/floor/freezer,
@@ -16629,7 +16645,7 @@
 /area/bigredv2/outside/chapel)
 "aZg" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
 	},
@@ -16642,7 +16658,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Chapel"
 	},
@@ -16655,7 +16671,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research{
+/obj/machinery/door/airlock/mainship/research{
 	name = "\improper Virology Lab Decontamination";
 	req_access_txt = "0"
 	},
@@ -16724,7 +16740,7 @@
 /area/bigredv2/outside/cargo)
 "aZy" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
@@ -16783,7 +16799,7 @@
 /area/bigredv2/outside/chapel)
 "aZL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper General Store Maintenance";
 	req_one_access_txt = "0"
@@ -16892,7 +16908,7 @@
 /area/bigredv2/outside/c)
 "bab" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -16934,7 +16950,7 @@
 /area/bigredv2/outside/office_complex)
 "bak" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
@@ -17039,7 +17055,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "baI" = (
-/obj/machinery/door/airlock/multi_tile/almayer/comdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	name = "\improper Operations";
 	req_access_txt = "0"
 	},
@@ -17134,6 +17150,7 @@
 /area/bigredv2/outside/w)
 "bbd" = (
 /obj/structure/window_frame/colony,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "bbe" = (
@@ -17141,7 +17158,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbg" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Cargo Bay"
 	},
@@ -17405,7 +17422,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bck" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Private Office"
 	},
@@ -17445,6 +17462,7 @@
 /obj/structure/barricade/wooden/lv_snowflake{
 	dir = 8
 	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "bcu" = (
@@ -17492,7 +17510,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcD" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Cargo Bay Offices"
 	},
@@ -17526,7 +17544,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	name = "\improper Operations Office";
 	req_access_txt = "0"
 	},
@@ -17654,7 +17672,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bdj" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Cargo Bay Offices";
 	req_one_access_txt = "0"
@@ -17671,7 +17689,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	name = "\improper Operations Meeting Room";
 	req_access_txt = "0"
 	},
@@ -17747,7 +17765,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "bdC" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Private Office"
 	},
 /turf/open/floor,
@@ -17931,7 +17949,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/comdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	name = "\improper Operations";
 	req_access_txt = "0"
 	},
@@ -17951,7 +17969,7 @@
 /area/bigredv2/outside/office_complex)
 "ben" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Robotics"
 	},
 /turf/open/floor,
@@ -17962,7 +17980,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Private Office"
 	},
@@ -18136,7 +18154,7 @@
 /area/bigredv2/outside/cargo)
 "beV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Cargo Offices"
 	},
@@ -18207,7 +18225,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Office Complex Storage"
 	},
 /turf/open/floor,
@@ -18356,7 +18374,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bfv" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Office Complex"
 	},
@@ -18434,7 +18452,7 @@
 /area/bigredv2/outside/office_complex)
 "bfQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Office Complex Janitor Room"
 	},
@@ -18473,7 +18491,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	name = "\improper Cargo Bay Security";
 	req_access_txt = "0"
 	},
@@ -18892,7 +18910,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/secure{
+/obj/machinery/door/airlock/mainship/secure{
 	icon_state = "door_locked";
 	locked = 1;
 	name = "\improper Emergency Vault";
@@ -19230,14 +19248,14 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "biD" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Office Complex"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "biE" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Office Complex Janitor Room"
 	},
@@ -19414,7 +19432,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bju" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Cargo Bay Storage";
 	req_one_access_txt = "0"
@@ -19576,7 +19594,7 @@
 /area/bigredv2/outside/cargo)
 "bjR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Cargo Bay Quartermaster";
 	req_one_access_txt = "0"
@@ -19662,7 +19680,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bko" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Cargo Bay Storage";
 	req_one_access_txt = "0"
@@ -19689,7 +19707,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -19700,7 +19718,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/filtration_plant)
 "bkw" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -19714,7 +19732,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -19727,7 +19745,7 @@
 	},
 /area/bigredv2/outside/se)
 "bkz" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Cargo Bay Quartermaster";
 	req_one_access_txt = "0"
@@ -19815,7 +19833,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bkP" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Storage";
 	req_one_access_txt = "0"
@@ -19960,7 +19978,7 @@
 /area/bigredv2/outside/s)
 "blw" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
@@ -20008,7 +20026,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "blF" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Air Filtration";
 	req_one_access_txt = "0"
@@ -20019,7 +20037,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
 "blK" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
@@ -20035,7 +20053,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
@@ -20368,7 +20386,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Storage";
 	req_one_access_txt = "0"
@@ -20490,7 +20508,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bnA" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -20572,7 +20590,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bnP" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
@@ -20653,7 +20671,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bog" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
 	},
@@ -20661,7 +20679,7 @@
 /area/bigredv2/outside/filtration_plant)
 "boi" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
@@ -20673,7 +20691,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bol" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering SMES";
 	req_one_access_txt = "0"
@@ -20720,7 +20738,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -20787,10 +20805,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Engineering Complex"
 	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "boE" = (
@@ -20853,7 +20872,7 @@
 /area/bigredv2/outside/engineering)
 "boM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/almayer/secure{
+/obj/machinery/door/airlock/mainship/secure{
 	name = "\improper Engineering Secure Storage";
 	req_access_txt = "0"
 	},
@@ -20893,7 +20912,7 @@
 /area/bigredv2/outside/engineering)
 "boU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Chief Engineer's Office";
 	req_one_access_txt = "0"
@@ -20907,7 +20926,7 @@
 /area/bigredv2/outside/engineering)
 "boV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
@@ -20984,7 +21003,7 @@
 /area/bigredv2/outside/engineering)
 "bpk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering Tool Storage";
 	req_one_access_txt = "0"
@@ -21087,7 +21106,7 @@
 	},
 /area/bigredv2/outside/sw)
 "bpz" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering Lockers";
 	req_one_access_txt = "0"
@@ -21096,7 +21115,7 @@
 /area/bigredv2/outside/engineering)
 "bpA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering Lockers";
 	req_one_access_txt = "0"
@@ -21211,7 +21230,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Water Filtration";
 	req_one_access_txt = "0"
@@ -21240,6 +21259,7 @@
 /area/bigredv2/outside/se)
 "bpZ" = (
 /obj/structure/fence,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "bqa" = (
@@ -21264,7 +21284,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering Break Room";
 	req_one_access_txt = "0"
@@ -21362,7 +21382,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Water Filtration";
 	req_one_access_txt = "0"
@@ -21500,7 +21520,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engineering Workshop";
 	req_one_access_txt = "0"
@@ -21534,7 +21554,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bqP" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engine Reactor Control";
 	req_one_access_txt = "0"
@@ -21629,7 +21649,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brf" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engineering Workshop";
 	req_one_access_txt = "0"
@@ -22006,7 +22026,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/secure{
+/obj/machinery/door/airlock/mainship/secure{
 	dir = 1;
 	name = "\improper Engine Reactor";
 	req_access_txt = "0"
@@ -22034,7 +22054,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engine Reactor Control";
 	req_one_access_txt = "0"
@@ -22042,14 +22062,14 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bsX" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bsY" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Atmospherics Condenser"
 	},
@@ -22215,7 +22235,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Engineering Complex"
 	},
@@ -22313,7 +22333,7 @@
 /area/bigredv2/outside/engineering)
 "bua" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
@@ -22535,7 +22555,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Power Substation";
 	req_one_access_txt = "0"
@@ -22618,7 +22638,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Power Substation";
 	req_one_access_txt = "0"
@@ -22726,7 +22746,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Eta Lab Storage Bay";
 	req_one_access_txt = "0"
 	},
@@ -22745,7 +22765,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/research{
+/obj/machinery/door/airlock/mainship/research{
 	dir = 1;
 	name = "\improper Eta Lab Decontamination";
 	req_access_txt = "0"
@@ -22928,7 +22948,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Robotics";
 	req_access_txt = "0"
@@ -23235,7 +23255,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Technical Storage";
 	req_access_txt = "0"
@@ -23244,7 +23264,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Eta Lab Dormitories"
 	},
@@ -23326,7 +23346,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Robotics";
 	req_access_txt = "0"
@@ -23433,7 +23453,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Eta Lab Armory";
 	req_access_txt = "0"
@@ -23573,7 +23593,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzQ" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Server";
 	req_access_txt = "0"
@@ -23582,7 +23602,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Eta Lab Security Office";
 	req_access_txt = "0"
@@ -23716,7 +23736,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAw" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Server";
 	req_access_txt = "0"
@@ -23767,7 +23787,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Director's Office";
 	req_access_txt = "0"
@@ -24015,7 +24035,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Eta Lab Maintenance Storage";
 	req_one_access_txt = "0"
 	},
@@ -24061,7 +24081,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Biology Laboratory";
 	req_access_txt = "0"
@@ -24069,7 +24089,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBH" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Cell";
 	req_access_txt = "0"
@@ -24118,7 +24138,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBS" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Cell";
 	req_access_txt = "0"
@@ -24310,7 +24330,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Xenobiology Lab";
 	req_access_txt = "0"
@@ -24415,7 +24435,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Eta Lab";
 	req_one_access_txt = "0"
 	},
@@ -24654,7 +24674,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Research Office";
 	req_access_txt = "0"
@@ -24662,7 +24682,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDP" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Canteen";
 	req_access_txt = "0"
@@ -24759,7 +24779,7 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEj" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Eta Lab Restroom"
 	},
@@ -24801,6 +24821,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEr" = (
 /obj/structure/mineral_door/resin,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
@@ -24868,7 +24889,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Relaxation";
 	req_access_txt = "0"
@@ -24960,6 +24981,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/se)
+"cmR" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/sw)
 "cuW" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -24971,9 +24998,19 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
+"cuX" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 1
+	},
+/area/bigredv2/outside/se)
 "cBD" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/sw)
+"cWF" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/se)
 "cXq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -24985,6 +25022,9 @@
 "cXu" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/se)
+"daV" = (
+/turf/open/space/basic,
+/area/lv624/lazarus/quartstorage/outdoors)
 "djN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -25012,6 +25052,12 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
+"dBp" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/sw)
 "dGd" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -25028,12 +25074,24 @@
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
+"dWa" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves)
 "dXh" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
+"dXK" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/sw)
 "dZi" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -25047,6 +25105,24 @@
 /obj/structure/sign/safety/medical_supplies,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
+"ehV" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship1,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/sw)
+"ekR" = (
+/obj/item/stack/rods,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/dmg3,
+/area/bigredv2/outside/space_port)
+"eqy" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
 "exJ" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -25090,6 +25166,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"fgX" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
 "fil" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
@@ -25119,6 +25201,18 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
+"fwi" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/w)
+"fDZ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves)
 "fJR" = (
 /obj/item/tool/warning_cone,
 /turf/open/floor/asteroidfloor,
@@ -25133,6 +25227,12 @@
 /obj/structure/sign/safety/breakroom,
 /turf/closed/wall,
 /area/bigredv2/outside/engineering)
+"fSQ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/telecomm)
 "fVM" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -25147,14 +25247,30 @@
 	},
 /area/bigredv2/outside/nw)
 "fWy" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"gbD" = (
+/obj/machinery/door/airlock/multi_tile/almayer/generic{
+	dir = 1;
+	name = "\improper Cargo Bay"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"ggp" = (
+/obj/machinery/button/door/open_only/landing_zone,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "ggV" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Chief Engineer's Office";
 	req_one_access_txt = "0"
@@ -25188,16 +25304,33 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
+"gqX" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves)
+"gva" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/sw)
 "gBV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"gOG" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "gON" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/nw)
 "gQc" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engineering Workshop";
 	req_one_access_txt = "0"
@@ -25221,7 +25354,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engineering SMES";
 	req_one_access_txt = "0"
@@ -25245,6 +25378,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
+"heW" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "hiJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -25254,6 +25392,10 @@
 	dir = 2
 	},
 /area/bigredv2/outside/admin_building)
+"hkk" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "hlD" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
@@ -25278,6 +25420,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"hzx" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves)
 "hHN" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -25290,6 +25436,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"hRh" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/virology)
 "hVb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -25311,6 +25463,12 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "iug" = (
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/virology)
+"iBK" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/virology)
 "iNd" = (
@@ -25356,6 +25514,10 @@
 	dir = 5
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"jHL" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves)
 "jKb" = (
 /obj/structure/sign/safety/blast_door,
 /turf/open/floor/tile/dark/purple2/corner{
@@ -25400,6 +25562,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"kel" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "knF" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/engineering)
@@ -25407,6 +25573,16 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
+"kpV" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/outside/s)
+"kvs" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves)
 "kxe" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -25415,6 +25591,9 @@
 "kEZ" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"kHc" = (
+/turf/open/space/basic,
+/area/shuttle/drop2/lz2)
 "kIY" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -25426,6 +25605,9 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
+"kMZ" = (
+/turf/open/space/basic,
+/area/space)
 "kOq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/lightreplacer,
@@ -25433,6 +25615,7 @@
 /area/bigredv2/outside/engineering)
 "kQy" = (
 /obj/structure/mineral_door/resin,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "kRt" = (
@@ -25442,6 +25625,18 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
+"kUZ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
+"loF" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/dmg2,
+/area/bigredv2/outside/space_port)
 "loH" = (
 /obj/structure/sign/safety/rad_hazard{
 	dir = 2
@@ -25470,6 +25665,9 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
+"lDc" = (
+/turf/open/space/basic,
+/area/lv624/ground/jungle3)
 "lFT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -25533,6 +25731,30 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"mKt" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/sw)
+"mSx" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/telecomm)
 "mXK" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
@@ -25553,6 +25775,14 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
+"nlp" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/virology)
+"nts" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating,
+/area/bigredv2/caves)
 "nvv" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -25584,6 +25814,12 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
+"nSc" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/w)
 "nTN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -25606,6 +25842,12 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/virology)
+"osC" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves)
 "oto" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -25644,6 +25886,14 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"owL" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/w)
 "oFB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -25696,6 +25946,58 @@
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
+"pgl" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/w)
+"plF" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/space_port)
+"ptA" = (
+/turf/open/space/basic,
+/area/shuttle/drop1/lz1)
+"pvw" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/w)
+"pzV" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/w)
+"pKv" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
+"pQZ" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/marshal_office)
+"pRU" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Marshal Offices";
+	name = "\improper Marshal Offices Shutters"
+	},
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating,
+/area/bigredv2/outside/marshal_office)
 "pZW" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -25713,7 +26015,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "qfc" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Cargo Bay"
 	},
@@ -25752,6 +26054,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
+"qvO" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "qxt" = (
 /obj/item/trash/candy,
 /turf/open/floor,
@@ -25764,6 +26070,18 @@
 	},
 /obj/structure/sign/safety/high_radiation,
 /turf/open/floor,
+/area/bigredv2/outside/engineering)
+"qFg" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 2;
+	id = "Engineering";
+	name = "\improper Engineering Shutters"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "qHT" = (
 /obj/structure/cable{
@@ -25782,6 +26100,14 @@
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
+"qNm" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/bigredv2/outside/w)
 "qQd" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark/purple2/corner{
@@ -25814,6 +26140,12 @@
 /obj/item/trash/tray,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
+"rdl" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/w)
 "riz" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -25850,6 +26182,19 @@
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
+"rZf" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/sw)
 "rZO" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -25913,6 +26258,10 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
+"sGO" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/space_port)
 "sUd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25926,10 +26275,24 @@
 "tku" = (
 /turf/closed/wall/indestructible/mineral,
 /area/storage/testroom)
+"tnE" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "twQ" = (
 /obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"txn" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 4;
+	id = "Engineering";
+	name = "\improper Engineering Shutters"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/plating,
+/area/bigredv2/outside/engineering)
 "txt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -25976,6 +26339,12 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/white,
 /area/bigredv2/caves/lambda_lab)
+"tSl" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/space_port)
 "tVO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -25995,10 +26364,15 @@
 /area/bigredv2/outside/c)
 "udw" = (
 /obj/structure/fence,
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/bigredv2/caves)
+"ued" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/wall,
+/area/bigredv2/outside/marshal_office)
 "ufT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -26012,17 +26386,68 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"ujn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/telecomm)
+"ukJ" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/s)
+"uwp" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/sw)
+"uxP" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/se)
+"uAE" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/w)
 "uHK" = (
 /obj/item/tool/wet_sign,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"uJV" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/almayer{
+	dir = 4;
+	id = "Cargonia";
+	name = "\improper Cargo Shutters"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"uKS" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/virology)
+"uOJ" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/w)
 "uTl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"uWN" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/s)
 "veE" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
@@ -26047,6 +26472,10 @@
 /obj/effect/alien/weeds/node,
 /turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"vTV" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves)
 "vUH" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
@@ -26081,6 +26510,12 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"wof" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/virology)
 "wxA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -26126,6 +26561,11 @@
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
+"xjd" = (
+/obj/effect/glowshroom,
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "xji" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -26181,6 +26621,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"xHR" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/sw)
 "xRR" = (
 /obj/machinery/light{
 	dir = 1
@@ -26201,6 +26645,18 @@
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
+"xXV" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"yek" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/se)
 "yjP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -26693,6 +27149,7 @@ aac
 aac
 aac
 aac
+kvs
 aac
 aac
 aac
@@ -26706,8 +27163,7 @@ aac
 aac
 aac
 aac
-aac
-aac
+hzx
 aac
 aac
 aac
@@ -26910,6 +27366,7 @@ aac
 aac
 aac
 aac
+kvs
 aac
 aac
 aac
@@ -26923,8 +27380,7 @@ aac
 aac
 aac
 aac
-aac
-aac
+hzx
 aac
 aac
 aac
@@ -27127,6 +27583,7 @@ aac
 aac
 aac
 aac
+kvs
 aac
 aac
 aac
@@ -27140,8 +27597,7 @@ aac
 aac
 aac
 aac
-aac
-aac
+hzx
 aac
 aac
 aac
@@ -27344,6 +27800,7 @@ aac
 aac
 aac
 aac
+kvs
 aac
 aac
 aac
@@ -27357,8 +27814,7 @@ aac
 aac
 aac
 aac
-aac
-aac
+hzx
 aac
 aac
 aac
@@ -27561,6 +28017,7 @@ aac
 aac
 aac
 aac
+kvs
 aac
 aac
 aac
@@ -27574,8 +28031,7 @@ aac
 aac
 aac
 aac
-aac
-aac
+hzx
 aac
 aac
 aac
@@ -27778,6 +28234,7 @@ aac
 aac
 aac
 aac
+kvs
 aac
 aac
 aac
@@ -27792,8 +28249,7 @@ aac
 aac
 aac
 aac
-aac
-aac
+hzx
 aac
 aac
 aac
@@ -27995,7 +28451,7 @@ aac
 aac
 aac
 aac
-aac
+kvs
 aac
 aac
 aac
@@ -28011,7 +28467,7 @@ aac
 aac
 aac
 aad
-aad
+hkk
 aad
 aad
 aad
@@ -28212,6 +28668,7 @@ aac
 aac
 aac
 aac
+kvs
 aac
 aac
 aac
@@ -28219,7 +28676,6 @@ aac
 aac
 aac
 aac
-aac
 aad
 aad
 aad
@@ -28229,7 +28685,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 aad
 aad
 aad
@@ -28429,7 +28885,7 @@ acA
 acA
 acA
 ahN
-acA
+fSQ
 abq
 abq
 aad
@@ -28447,7 +28903,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 abq
 aad
 aad
@@ -28646,7 +29102,7 @@ ahd
 ahd
 ahd
 amw
-acA
+fSQ
 aad
 aad
 aad
@@ -28664,7 +29120,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 aad
 aad
 aad
@@ -28863,7 +29319,7 @@ aas
 ahd
 ahd
 all
-acA
+fSQ
 aad
 aad
 aad
@@ -28882,7 +29338,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 aad
 aad
 aad
@@ -29080,7 +29536,7 @@ aas
 aas
 aas
 all
-acA
+fSQ
 aad
 aad
 aad
@@ -29099,7 +29555,7 @@ aad
 aad
 aad
 abq
-aad
+hkk
 aad
 aad
 aad
@@ -29297,7 +29753,7 @@ aas
 ahd
 aas
 all
-acA
+fSQ
 aad
 aad
 aad
@@ -29316,7 +29772,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -29514,7 +29970,7 @@ aas
 ahd
 aas
 all
-acA
+fSQ
 aac
 aad
 aad
@@ -29534,21 +29990,21 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
 aad
 aac
-aac
+hzx
 aGo
 aHf
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -29731,7 +30187,7 @@ aas
 ahd
 aas
 amw
-acA
+fSQ
 aac
 aad
 aad
@@ -29752,11 +30208,11 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aGp
 aFs
@@ -29766,22 +30222,22 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-abq
-aad
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-amE
-aad
-aac
+hzx
+hzx
+hzx
+hzx
+vTV
+hkk
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+nts
+hkk
+hzx
 aac
 aac
 aac
@@ -29941,13 +30397,13 @@ acQ
 acQ
 acQ
 acA
-ahN
-acA
-acA
-acA
-acA
-acA
-acA
+ujn
+mSx
+mSx
+mSx
+mSx
+mSx
+mSx
 acA
 aac
 aac
@@ -29999,7 +30455,7 @@ aMz
 aRD
 aRD
 aMz
-iug
+nlp
 iug
 iug
 iug
@@ -30157,7 +30613,7 @@ aaf
 aaf
 aaf
 aaf
-aae
+tSl
 aac
 aac
 aac
@@ -30217,28 +30673,28 @@ aYz
 aRE
 aMz
 iug
-iug
-iug
-iug
-iug
-iug
-iug
-iug
-iug
-vDI
-vDI
-vDI
-vDI
-aac
-aac
-aac
-aac
-abq
-aad
-abq
-abq
-abq
-aad
+nlp
+nlp
+nlp
+nlp
+nlp
+nlp
+nlp
+nlp
+uOJ
+uOJ
+uOJ
+uOJ
+hzx
+hzx
+hzx
+hzx
+vTV
+hkk
+vTV
+vTV
+vTV
+hkk
 aad
 aad
 aad
@@ -30374,7 +30830,7 @@ aeg
 aeg
 aeg
 agn
-aae
+tSl
 aac
 aac
 aac
@@ -30439,24 +30895,24 @@ iug
 iug
 iug
 iug
-iug
-iug
-iug
-iug
-vDI
-vDI
-vDI
-vDI
-aac
-aac
+wof
+wof
+wof
+wof
+pzV
+pzV
+pzV
+pzV
+osC
+osC
+nSc
+nSc
+nSc
+nSc
+nSc
+nSc
 biG
-biG
-biG
-biG
-biG
-biG
-biG
-aac
+hzx
 aac
 aac
 aac
@@ -30591,7 +31047,7 @@ aag
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -30655,7 +31111,7 @@ iug
 iug
 iug
 iug
-iug
+iBK
 iug
 iug
 iug
@@ -30672,9 +31128,9 @@ aQF
 aQF
 aQF
 aQF
-biG
+pvw
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -30808,7 +31264,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -30872,7 +31328,7 @@ iug
 iug
 iug
 iug
-iug
+iBK
 iug
 iug
 iug
@@ -30889,24 +31345,24 @@ aQF
 aQF
 aQF
 aQF
-biG
+pvw
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -31025,7 +31481,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -31089,11 +31545,11 @@ iug
 iug
 iug
 iug
+iBK
 iug
 iug
 iug
 iug
-iug
 aQF
 aQF
 aQF
@@ -31106,7 +31562,7 @@ aQF
 aQF
 aQF
 aQF
-biG
+pvw
 aac
 aac
 aac
@@ -31124,7 +31580,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 abq
@@ -31242,7 +31698,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aad
@@ -31306,7 +31762,7 @@ iug
 iug
 iug
 iug
-iug
+iBK
 iug
 iug
 iug
@@ -31324,25 +31780,25 @@ aQF
 aQF
 aQF
 biG
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
-bmc
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
+cmR
 bmc
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -31459,7 +31915,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aad
 aad
 aad
@@ -31523,7 +31979,7 @@ iug
 iug
 iug
 iug
-iug
+iBK
 iug
 aFv
 aFv
@@ -31555,12 +32011,12 @@ bcp
 wZg
 cBD
 bme
-bmc
+dXK
 aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -31603,9 +32059,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kMZ
+kMZ
+kMZ
 aaa
 aaa
 aaa
@@ -31676,7 +32132,7 @@ aaf
 aaf
 aaf
 amb
-aae
+tSl
 aad
 abq
 aad
@@ -31740,7 +32196,7 @@ aMz
 aMz
 aMz
 aMz
-aMz
+uKS
 aFv
 aFv
 aFv
@@ -31773,11 +32229,11 @@ brG
 brG
 aWk
 bmc
-bmc
-bmc
+cmR
+cmR
 bmc
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -31820,9 +32276,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kMZ
+kHc
+kMZ
 aaa
 aaa
 aaa
@@ -31893,7 +32349,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aad
 aad
 aac
@@ -31957,7 +32413,7 @@ aRF
 aNc
 bco
 aNc
-aMz
+uKS
 aFv
 aFv
 aFv
@@ -31992,9 +32448,9 @@ bpv
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -32037,9 +32493,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kHc
+kHc
+lDc
 aaa
 aaa
 aaa
@@ -32110,7 +32566,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -32174,7 +32630,7 @@ aNc
 aNc
 aNc
 aNc
-aMz
+uKS
 aFv
 aFv
 aFv
@@ -32209,9 +32665,9 @@ bsa
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -32254,9 +32710,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kMZ
+kHc
+kMZ
 aaa
 aaa
 aaa
@@ -32327,7 +32783,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -32391,7 +32847,7 @@ aNc
 aNc
 aNc
 aNc
-aMz
+uKS
 aFv
 aFv
 aFv
@@ -32426,9 +32882,9 @@ bsb
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -32471,9 +32927,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kMZ
+kMZ
+kMZ
 aaa
 aaa
 aaa
@@ -32544,7 +33000,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -32608,7 +33064,7 @@ aXx
 aMz
 aWj
 aXx
-aMz
+uKS
 aFv
 aFv
 aFv
@@ -32643,9 +33099,9 @@ bsc
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -32688,9 +33144,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kMZ
+kMZ
+kMZ
 aaa
 aaa
 aaa
@@ -32761,7 +33217,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -32825,7 +33281,7 @@ aNi
 aWj
 aYC
 aNi
-aMz
+uKS
 aFv
 aFv
 aFv
@@ -32860,9 +33316,9 @@ bsd
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -32905,9 +33361,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kMZ
+kMZ
+kMZ
 aaa
 aaa
 aaa
@@ -32978,7 +33434,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -33042,7 +33498,7 @@ aXy
 aWj
 aWT
 aXy
-aMz
+uKS
 aFv
 aFv
 aFv
@@ -33077,9 +33533,9 @@ bse
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -33122,9 +33578,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kHc
+ptA
+kMZ
 aaa
 aaa
 aaa
@@ -33195,7 +33651,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aac
@@ -33259,7 +33715,7 @@ aXz
 aWj
 aWU
 aXz
-aMz
+uKS
 aFv
 aFv
 aFv
@@ -33294,9 +33750,9 @@ bsb
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -33339,9 +33795,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+daV
+ptA
+ptA
 aaa
 aaa
 aaa
@@ -33412,7 +33868,7 @@ aaf
 aaf
 aaf
 acJ
-aae
+tSl
 aac
 aac
 aeI
@@ -33471,11 +33927,11 @@ aMz
 aMz
 aMz
 aMz
-aMz
-aMz
-aMz
-aMz
-aMz
+hRh
+hRh
+hRh
+hRh
+hRh
 aMz
 riz
 riz
@@ -33511,9 +33967,9 @@ bsc
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -33556,9 +34012,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+kMZ
+ptA
+kMZ
 aaa
 aaa
 aaa
@@ -33629,7 +34085,7 @@ aag
 aam
 aam
 ago
-aae
+tSl
 aeI
 aeI
 aeI
@@ -33687,7 +34143,7 @@ vDI
 vDI
 vDI
 vDI
-vDI
+fwi
 aSB
 aSB
 aSB
@@ -33728,9 +34184,9 @@ bsd
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -33846,7 +34302,7 @@ aah
 aah
 aah
 agp
-aae
+tSl
 aeI
 aeI
 aeI
@@ -33904,7 +34360,7 @@ aSB
 aSB
 aSB
 aSB
-aSB
+rdl
 aSB
 aSB
 aSB
@@ -33945,9 +34401,9 @@ bse
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -34063,7 +34519,7 @@ aah
 aah
 aah
 agp
-aae
+tSl
 ahO
 aeI
 aeI
@@ -34121,7 +34577,7 @@ aWk
 aWk
 aWk
 aVI
-aWk
+owL
 aWk
 aWk
 aVI
@@ -34162,9 +34618,9 @@ bsb
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -34280,7 +34736,7 @@ aah
 aah
 aah
 agp
-aae
+tSl
 ahP
 ahO
 aeI
@@ -34338,7 +34794,7 @@ aXA
 aXA
 aWV
 aXA
-aXA
+pgl
 aWV
 bba
 aXA
@@ -34379,9 +34835,9 @@ bsc
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -34497,7 +34953,7 @@ aah
 aah
 aah
 agp
-aae
+tSl
 ahQ
 ahP
 ahO
@@ -34555,7 +35011,7 @@ aSB
 aSB
 aYE
 aYE
-aYE
+qNm
 aYE
 aYE
 aSB
@@ -34596,9 +35052,9 @@ bsd
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -34679,15 +35135,15 @@ aaa
 (40,1,1) = {"
 aaa
 aab
-aac
-aac
-aac
-aac
-aac
-aad
-aae
-aae
-aae
+jHL
+jHL
+jHL
+jHL
+jHL
+pKv
+sGO
+sGO
+sGO
 aae
 aah
 aah
@@ -34714,7 +35170,7 @@ aah
 aah
 aah
 agp
-aae
+tSl
 ahR
 ahP
 ahP
@@ -34772,7 +35228,7 @@ aSB
 aXY
 aQF
 aQF
-aQF
+uAE
 aQF
 aQF
 bbJ
@@ -34813,9 +35269,9 @@ bsa
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -34896,16 +35352,16 @@ aaa
 (41,1,1) = {"
 aaa
 aab
-aac
-aac
-aac
-aac
-aad
-aad
-aad
-aad
-aad
-aae
+hzx
+hzx
+hzx
+hzx
+hkk
+hkk
+hkk
+hkk
+hkk
+plF
 aah
 aah
 aah
@@ -34989,7 +35445,7 @@ aMB
 aMB
 aXK
 aXK
-aXK
+kUZ
 aQF
 aQF
 aQF
@@ -35030,9 +35486,9 @@ bpv
 bpv
 bpv
 bpv
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -35121,8 +35577,8 @@ aad
 aad
 aad
 aad
-aad
-aae
+hkk
+plF
 aaq
 aaK
 aaV
@@ -35206,7 +35662,7 @@ aXB
 aMB
 aXH
 aXH
-aXK
+kUZ
 aQF
 aQF
 aQF
@@ -35232,12 +35688,12 @@ bdZ
 bdZ
 bpv
 bsa
-brc
+ehV
 brc
 brc
 brc
 boC
-bpw
+mKt
 bpw
 bpw
 bqF
@@ -35247,9 +35703,9 @@ brc
 brc
 brc
 brc
-bmc
+dXK
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -35338,8 +35794,8 @@ aad
 aad
 aad
 aad
-aad
-aae
+hkk
+plF
 abR
 agp
 aah
@@ -35365,7 +35821,7 @@ aah
 aah
 aah
 ags
-aam
+xXV
 ahT
 aiy
 aiy
@@ -35423,7 +35879,7 @@ aXC
 aMB
 aXH
 aXH
-aXK
+kUZ
 aQF
 aQF
 aQF
@@ -35437,22 +35893,22 @@ aSB
 aSB
 aSB
 aXK
-aXK
-aXK
-bih
-bbg
-aXK
-aZy
-aZy
-aZy
-aZy
-aZy
-aXK
-bmc
-bmc
-bmc
-blJ
-bmi
+eqy
+eqy
+gOG
+gbD
+eqy
+uJV
+uJV
+uJV
+uJV
+uJV
+eqy
+gva
+gva
+gva
+tnE
+kel
 boD
 blJ
 wZg
@@ -35464,9 +35920,9 @@ wZg
 wZg
 bpx
 bme
+dWa
 aac
-aac
-aac
+hzx
 aac
 aac
 aac
@@ -35555,8 +36011,8 @@ aad
 aad
 aad
 aad
-aad
-aae
+hkk
+plF
 aaw
 aaM
 aaW
@@ -35582,7 +36038,7 @@ aah
 aah
 aah
 aah
-aae
+tSl
 ahU
 ahP
 ahP
@@ -35640,7 +36096,7 @@ aXD
 aMB
 aXH
 aXH
-aXK
+kUZ
 aQF
 bbb
 aQF
@@ -35653,7 +36109,7 @@ beQ
 aSB
 aSB
 aSB
-aXK
+fgX
 aZt
 aZt
 bih
@@ -35671,7 +36127,7 @@ bmd
 asT
 bmi
 boE
-asT
+qFg
 wZg
 wZg
 bqG
@@ -35681,22 +36137,22 @@ wZg
 cBD
 bme
 bme
-akx
+fDZ
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -35772,8 +36228,8 @@ aad
 aad
 aad
 aad
-aad
-aae
+hkk
+plF
 aax
 aaN
 aaX
@@ -35799,7 +36255,7 @@ aah
 aah
 aah
 aah
-aae
+tSl
 ahT
 ahP
 ahP
@@ -35857,7 +36313,7 @@ aXE
 aMB
 aXH
 aXH
-aXK
+kUZ
 aQF
 aQF
 dLO
@@ -35870,7 +36326,7 @@ beQ
 aSB
 aSB
 aSB
-aXK
+fgX
 bhb
 bhb
 bii
@@ -35888,7 +36344,7 @@ bmd
 asT
 bmi
 boE
-asT
+qFg
 wZg
 wZg
 bqG
@@ -35898,7 +36354,7 @@ wZg
 wZg
 mXK
 bme
-akx
+fDZ
 aac
 aac
 aac
@@ -35914,7 +36370,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -35989,8 +36445,8 @@ aad
 aad
 aad
 aad
-aad
-aae
+hkk
+plF
 aay
 sqy
 aaO
@@ -36016,7 +36472,7 @@ aah
 aah
 aah
 afN
-aae
+tSl
 ahV
 ahV
 ahP
@@ -36074,7 +36530,7 @@ aXF
 aXZ
 aYG
 aXH
-aXK
+kUZ
 aQF
 dLO
 aSB
@@ -36087,7 +36543,7 @@ beQ
 aSB
 aSB
 aSB
-aXK
+fgX
 bhc
 bbe
 bij
@@ -36105,7 +36561,7 @@ bme
 asT
 bmi
 boE
-asT
+qFg
 wZg
 wZg
 bqG
@@ -36115,7 +36571,7 @@ brG
 brG
 brG
 brG
-brG
+uwp
 brG
 brG
 brG
@@ -36131,7 +36587,7 @@ blJ
 blJ
 blJ
 blJ
-aac
+hzx
 aac
 aac
 aac
@@ -36206,9 +36662,9 @@ aad
 aad
 aad
 aad
-aad
-aae
-aaz
+hkk
+plF
+aaB
 iNd
 aaP
 aaO
@@ -36291,7 +36747,7 @@ aXa
 aMB
 aYH
 aXH
-aXK
+kUZ
 vUH
 aSB
 bbK
@@ -36304,7 +36760,7 @@ beR
 aSB
 aSB
 aSB
-aXK
+fgX
 bhd
 bhD
 bik
@@ -36322,7 +36778,7 @@ bme
 bnP
 bmi
 boE
-asT
+qFg
 bpy
 wZg
 bqH
@@ -36332,7 +36788,7 @@ bpw
 bpw
 bpw
 bpw
-bpw
+rZf
 bpw
 bpw
 bpw
@@ -36348,7 +36804,7 @@ bvS
 bvS
 bvS
 blJ
-aad
+hkk
 aac
 aac
 aac
@@ -36423,9 +36879,9 @@ aad
 aad
 aad
 aad
-aad
-aae
-aaA
+hkk
+plF
+aaB
 aaP
 aaP
 abf
@@ -36450,7 +36906,7 @@ aah
 aah
 afM
 agw
-agv
+loF
 ahX
 ahX
 aiA
@@ -36508,7 +36964,7 @@ aXG
 aMB
 aYI
 aXH
-aXK
+kUZ
 aSB
 aSB
 bbL
@@ -36521,7 +36977,7 @@ beS
 aSB
 aSB
 aSB
-aXK
+fgX
 aZs
 aZs
 bil
@@ -36539,7 +36995,7 @@ bme
 asT
 bmi
 boE
-asT
+qFg
 bme
 bpy
 wZg
@@ -36549,7 +37005,7 @@ wZg
 wZg
 cBD
 bme
-bme
+dBp
 bmd
 bmd
 bmd
@@ -36565,7 +37021,7 @@ buF
 buF
 buF
 blJ
-aad
+hkk
 aac
 aac
 aac
@@ -36640,11 +37096,11 @@ aad
 aad
 aad
 aad
-aac
-aae
-aaB
+hzx
+plF
+aaA
 aaO
-aaO
+aaP
 aaO
 abo
 aaO
@@ -36667,7 +37123,7 @@ aah
 aah
 aah
 agx
-agv
+loF
 ahY
 aeI
 aiA
@@ -36726,18 +37182,18 @@ aMB
 aYH
 aXH
 aXK
-aZy
+uJV
 bbd
-aXK
+eqy
 bct
 bct
 bct
 bct
 bct
-aXK
-aZy
-aZy
-aZy
+eqy
+uJV
+uJV
+uJV
 aXK
 aXK
 aXK
@@ -36757,16 +37213,16 @@ asT
 bmi
 boE
 blJ
-boi
-blJ
-blJ
-boi
-boi
-boi
-blJ
-blJ
-bme
-bme
+txn
+tnE
+tnE
+txn
+txn
+txn
+tnE
+tnE
+xHR
+xHR
 bmd
 bmd
 bmd
@@ -36782,7 +37238,7 @@ bvT
 bvT
 bwo
 blJ
-aad
+hkk
 aac
 aac
 aac
@@ -36857,9 +37313,9 @@ aad
 aad
 aad
 aad
-aac
-aae
-aaB
+hzx
+plF
+aaO
 aaO
 aaO
 abg
@@ -36884,7 +37340,7 @@ aah
 aah
 aah
 afM
-agw
+ekR
 aeI
 ahX
 aiA
@@ -36999,7 +37455,7 @@ buF
 buF
 buF
 blJ
-aad
+hkk
 abq
 aac
 aac
@@ -37074,8 +37530,8 @@ aad
 aad
 aad
 aad
-aac
-aae
+hzx
+plF
 aaC
 aaQ
 aaQ
@@ -37101,7 +37557,7 @@ aah
 aah
 afN
 afh
-agv
+loF
 ahZ
 aeI
 aiA
@@ -37216,7 +37672,7 @@ bvU
 bvU
 bvU
 blJ
-aad
+hkk
 abq
 aac
 aac
@@ -37291,18 +37747,18 @@ aad
 aad
 aad
 aad
-aac
+hzx
 aae
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
 aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aah
+ggp
 acj
 aah
 aah
@@ -37433,7 +37889,7 @@ blJ
 blJ
 blJ
 blJ
-aad
+hkk
 aad
 abq
 abq
@@ -37509,32 +37965,32 @@ aad
 aad
 aad
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
-aae
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
+sGO
 aae
 ahX
 aeI
@@ -37650,7 +38106,7 @@ buj
 buj
 buj
 buj
-aad
+hkk
 aad
 aad
 abq
@@ -37735,19 +38191,19 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aad
-aad
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hkk
+hkk
+hzx
 aac
 aac
 aac
@@ -37867,7 +38323,7 @@ buk
 buk
 buk
 buk
-aad
+hkk
 abq
 aad
 aad
@@ -37965,7 +38421,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -38084,7 +38540,7 @@ buk
 buk
 buk
 buk
-abq
+vTV
 aad
 aad
 aad
@@ -38182,7 +38638,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -38301,7 +38757,7 @@ buk
 buk
 buk
 buj
-aac
+hzx
 aac
 aac
 aac
@@ -38399,7 +38855,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -38519,7 +38975,7 @@ buk
 buk
 buj
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -38616,7 +39072,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -38737,8 +39193,8 @@ buj
 bmd
 aac
 aac
-aac
-aac
+hzx
+hzx
 aac
 aac
 aac
@@ -38833,7 +39289,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -38956,7 +39412,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -39045,11 +39501,11 @@ aac
 aac
 aad
 aad
-aad
-aad
-aad
-aac
-aac
+hkk
+hkk
+hkk
+hzx
+hzx
 aac
 aac
 aeI
@@ -39174,7 +39630,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -39261,7 +39717,7 @@ aac
 aac
 aac
 aad
-aad
+hkk
 acp
 acp
 acp
@@ -39392,7 +39848,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -39478,7 +39934,7 @@ aac
 aac
 aac
 aad
-aad
+hkk
 acp
 adh
 ady
@@ -39609,7 +40065,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -39695,7 +40151,7 @@ aac
 aac
 aac
 aad
-aad
+hkk
 acp
 adh
 adh
@@ -39826,7 +40282,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -39912,7 +40368,7 @@ aac
 aac
 aad
 aad
-aad
+hkk
 acp
 adi
 adz
@@ -40043,7 +40499,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -40129,7 +40585,7 @@ aac
 aad
 aad
 aad
-aad
+hkk
 acp
 adj
 adA
@@ -40260,7 +40716,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -40346,7 +40802,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 acp
 adk
 adk
@@ -40477,7 +40933,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -40563,7 +41019,7 @@ aad
 abq
 aad
 aad
-aad
+hkk
 acp
 adl
 adB
@@ -40694,7 +41150,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -40779,8 +41235,8 @@ aad
 aad
 aad
 aad
-aad
-aad
+hkk
+hkk
 acp
 acp
 acp
@@ -40911,7 +41367,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -40994,8 +41450,8 @@ aad
 aad
 aad
 aad
-aad
-aad
+hkk
+hkk
 acp
 acp
 acp
@@ -41128,7 +41584,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -41210,7 +41666,7 @@ aad
 aad
 aad
 aad
-acp
+pQZ
 acp
 acp
 acp
@@ -41345,7 +41801,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aad
@@ -41427,7 +41883,7 @@ aad
 aad
 aad
 aad
-acp
+pQZ
 acy
 acC
 acE
@@ -41562,7 +42018,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aad
@@ -41644,7 +42100,7 @@ aad
 aad
 aad
 aad
-agm
+pRU
 acy
 acC
 acE
@@ -41779,7 +42235,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -41861,7 +42317,7 @@ aad
 aad
 aad
 aad
-acr
+ued
 acy
 acC
 acE
@@ -41996,7 +42452,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -42213,7 +42669,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -42295,7 +42751,7 @@ aad
 aad
 aad
 aad
-acp
+pQZ
 acz
 acD
 acF
@@ -42430,7 +42886,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -42512,7 +42968,7 @@ aad
 aad
 aad
 aad
-agm
+pRU
 acz
 acD
 acG
@@ -42647,7 +43103,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -42729,7 +43185,7 @@ aad
 aad
 aad
 aad
-acp
+pQZ
 acy
 acC
 acE
@@ -42864,7 +43320,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -42946,7 +43402,7 @@ aad
 abq
 aad
 abq
-agm
+pRU
 acy
 acC
 acE
@@ -43081,7 +43537,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -43163,7 +43619,7 @@ aad
 aad
 aad
 abq
-acp
+pQZ
 acy
 acC
 acE
@@ -43298,7 +43754,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -43380,7 +43836,7 @@ aad
 aad
 aad
 abq
-acp
+pQZ
 acp
 acp
 acp
@@ -43515,7 +43971,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -43597,7 +44053,7 @@ aad
 abq
 aad
 aad
-aac
+hzx
 aac
 aac
 aac
@@ -43732,7 +44188,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -43815,7 +44271,7 @@ abq
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -43949,7 +44405,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44033,7 +44489,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44166,7 +44622,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44250,7 +44706,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44383,7 +44839,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44467,7 +44923,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44600,7 +45056,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44684,7 +45140,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44817,7 +45273,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -44901,7 +45357,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -45034,7 +45490,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -45118,7 +45574,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 acP
@@ -45251,7 +45707,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -45335,7 +45791,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 acP
@@ -45468,7 +45924,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -45552,7 +46008,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 acP
@@ -45685,44 +46141,44 @@ tco
 tco
 aEu
 aac
-aac
-aac
-aac
-aac
-aac
-abq
-amE
-amE
-aad
-aad
-aad
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+vTV
+nts
+nts
+hkk
+hkk
+hkk
+vTV
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 abq
@@ -45769,7 +46225,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 acP
@@ -45940,7 +46396,7 @@ bwF
 bwF
 bwF
 bwF
-bwF
+qvO
 aac
 aad
 aad
@@ -45986,7 +46442,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 acP
@@ -46157,7 +46613,7 @@ bwF
 bvP
 bDk
 bvP
-bwF
+qvO
 aac
 aad
 aad
@@ -46203,7 +46659,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -46420,7 +46876,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -46591,7 +47047,7 @@ bwF
 bvP
 bwj
 bvP
-bwF
+qvO
 aad
 aad
 aad
@@ -46637,7 +47093,7 @@ abq
 aad
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -46808,7 +47264,7 @@ bwF
 bwJ
 bBH
 bwJ
-bwF
+qvO
 aad
 aad
 aad
@@ -46854,7 +47310,7 @@ abq
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 acP
@@ -47025,7 +47481,7 @@ bxN
 bDb
 bxg
 bDb
-bwF
+qvO
 aad
 aad
 aad
@@ -47072,7 +47528,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -47242,7 +47698,7 @@ bBR
 bBR
 bxo
 bBR
-bwF
+qvO
 aad
 aad
 aad
@@ -47289,7 +47745,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -47459,7 +47915,7 @@ bxg
 bxo
 bxg
 bxg
-bwF
+qvO
 aad
 aad
 aad
@@ -47506,7 +47962,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -47723,7 +48179,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -47893,7 +48349,7 @@ bxN
 bDd
 bxg
 bDd
-bwF
+qvO
 aac
 abq
 aad
@@ -47940,7 +48396,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -48110,7 +48566,7 @@ bwF
 bwJ
 bBH
 bwJ
-bwF
+qvO
 aac
 aac
 aac
@@ -48157,7 +48613,7 @@ abq
 aac
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -48327,7 +48783,7 @@ bwF
 bBp
 bBC
 bBp
-bwF
+qvO
 aac
 aac
 aac
@@ -48374,7 +48830,7 @@ abq
 aac
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -48544,7 +49000,7 @@ bwF
 bBp
 bBp
 bBp
-bwF
+qvO
 aac
 aac
 aac
@@ -48591,7 +49047,7 @@ abq
 aac
 aac
 aac
-aac
+hzx
 aac
 acP
 acP
@@ -48761,14 +49217,14 @@ bwF
 vTU
 bBI
 bBC
-bwF
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+qvO
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aad
 aad
@@ -48808,7 +49264,7 @@ aad
 abq
 aac
 aac
-aac
+hzx
 aac
 aac
 acP
@@ -48985,7 +49441,7 @@ bwF
 bwF
 bwF
 bwF
-aac
+hzx
 aac
 aad
 aad
@@ -49025,7 +49481,7 @@ aad
 abq
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -49202,7 +49658,7 @@ bCX
 bCX
 bDm
 bwF
-aac
+hzx
 aac
 aad
 aad
@@ -49242,7 +49698,7 @@ aad
 abq
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -49419,7 +49875,7 @@ bEh
 bEJ
 bCZ
 bwF
-aac
+hzx
 aac
 aad
 aad
@@ -49459,7 +49915,7 @@ aad
 abq
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -49636,7 +50092,7 @@ bxN
 bEK
 bCZ
 bwF
-aac
+hzx
 aac
 aad
 aad
@@ -49676,7 +50132,7 @@ aad
 abq
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -49853,7 +50309,7 @@ bzS
 bEK
 bEO
 bwF
-aac
+hzx
 aac
 aad
 ahw
@@ -49893,7 +50349,7 @@ abq
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -50070,7 +50526,7 @@ bxN
 bEK
 bCZ
 bwF
-aac
+hzx
 aac
 aad
 aad
@@ -50111,7 +50567,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -50287,7 +50743,7 @@ bxN
 bEK
 bEP
 bwF
-aac
+hzx
 aac
 aad
 aad
@@ -50329,7 +50785,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -50504,7 +50960,7 @@ bxN
 bEK
 bCZ
 bwF
-aac
+hzx
 aac
 aad
 aad
@@ -50547,7 +51003,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -50721,7 +51177,7 @@ bxN
 bEK
 bCZ
 bwF
-aac
+hzx
 aac
 aad
 aad
@@ -50765,7 +51221,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -50938,7 +51394,7 @@ bxN
 bEK
 bCZ
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -50983,7 +51439,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -51155,7 +51611,7 @@ bxN
 bEK
 bEO
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -51201,7 +51657,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -51372,7 +51828,7 @@ bxN
 bEK
 bDN
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -51419,7 +51875,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -51530,22 +51986,22 @@ buv
 buv
 buv
 bue
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 bwF
 bxR
 bxS
@@ -51589,7 +52045,7 @@ bxN
 bEM
 bDN
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -51637,7 +52093,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -51746,7 +52202,7 @@ bjy
 buu
 buv
 buv
-bue
+kpV
 aac
 aac
 aac
@@ -51762,7 +52218,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 bxS
 gTX
@@ -51806,7 +52262,7 @@ bxN
 bEM
 bEQ
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -51855,7 +52311,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -51961,8 +52417,8 @@ btS
 bjy
 bud
 buv
-buv
-buv
+uWN
+uWN
 bue
 aac
 aac
@@ -51979,7 +52435,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 bxR
 byc
@@ -52023,7 +52479,7 @@ bxN
 bEK
 bDN
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -52073,7 +52529,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -52177,7 +52633,7 @@ blv
 btS
 bjy
 buu
-buv
+uWN
 buv
 buv
 bue
@@ -52196,7 +52652,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 bxS
 byd
@@ -52240,7 +52696,7 @@ bxN
 bEK
 bDN
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -52291,7 +52747,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -52393,7 +52849,7 @@ bjA
 blv
 btR
 bud
-buv
+uWN
 buv
 buv
 buv
@@ -52413,7 +52869,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 bxR
 bxS
@@ -52457,7 +52913,7 @@ bxN
 bEK
 bER
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -52509,7 +52965,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -52610,7 +53066,7 @@ bjA
 blv
 btP
 bue
-buv
+uWN
 buv
 buv
 bue
@@ -52630,7 +53086,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 bwF
 bwF
@@ -52674,7 +53130,7 @@ bxN
 bEM
 bDN
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -52727,7 +53183,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -52826,7 +53282,7 @@ btm
 bjA
 bjy
 btP
-btP
+ukJ
 buv
 buv
 buv
@@ -52848,10 +53304,10 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
 bwF
 byW
 bzj
@@ -52891,7 +53347,7 @@ bEG
 byO
 bDN
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -52945,7 +53401,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -53043,7 +53499,7 @@ btm
 bjA
 bjy
 btP
-btP
+ukJ
 buv
 buv
 buv
@@ -53068,7 +53524,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 bww
 bzl
@@ -53108,7 +53564,7 @@ bDZ
 bCZ
 bDz
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -53163,7 +53619,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -53260,7 +53716,7 @@ btm
 bjA
 blv
 btP
-bue
+kpV
 buv
 buL
 buv
@@ -53285,7 +53741,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 wmL
 bzl
@@ -53325,7 +53781,7 @@ bEH
 bxN
 bxN
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -53381,7 +53837,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 acP
@@ -53478,7 +53934,7 @@ bjA
 blv
 btR
 bug
-buv
+uWN
 buv
 buv
 buv
@@ -53502,7 +53958,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 byX
 bzm
@@ -53542,7 +53998,7 @@ xtN
 byh
 bES
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -53599,7 +54055,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -53695,7 +54151,7 @@ bes
 bki
 btU
 beq
-bkW
+cuX
 bux
 bux
 bux
@@ -53719,7 +54175,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 byY
 bzn
@@ -53759,7 +54215,7 @@ bEI
 bEN
 bxc
 bwF
-aac
+hzx
 aac
 aac
 aad
@@ -53817,8 +54273,8 @@ aac
 aac
 aac
 aac
-aac
-aac
+hzx
+hzx
 aac
 anI
 aot
@@ -53913,7 +54369,7 @@ bki
 btU
 beq
 bkW
-bux
+yek
 bux
 bux
 bux
@@ -53936,7 +54392,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 bwF
 bwF
 bwF
@@ -53947,36 +54403,36 @@ bwF
 bwF
 bwF
 bwF
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-abq
-abq
-abq
-abq
-aac
-aac
-aac
-aac
-aac
-bwF
-bwF
-bwF
-bwF
-bwF
-bwF
-bwF
-bwF
-bwJ
-bwJ
-bwF
-bwF
-bwF
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+vTV
+vTV
+vTV
+vTV
+hzx
+hzx
+hzx
+hzx
+hzx
+qvO
+qvO
+qvO
+qvO
+qvO
+qvO
+qvO
+qvO
+heW
+heW
+qvO
+qvO
+qvO
+hzx
 aac
 aac
 aad
@@ -54036,7 +54492,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 anI
 aos
 ape
@@ -54129,7 +54585,7 @@ bkh
 beq
 btU
 bky
-bux
+yek
 bux
 bux
 bux
@@ -54154,16 +54610,16 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aad
-aad
-aad
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hkk
+hkk
+hkk
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -54253,7 +54709,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 anI
 anI
 anI
@@ -54347,7 +54803,7 @@ beq
 btU
 bkW
 bux
-bux
+yek
 bux
 bux
 bux
@@ -54470,7 +54926,7 @@ aac
 aac
 aac
 akx
-amE
+nts
 akx
 aou
 acl
@@ -54564,7 +55020,7 @@ beq
 btU
 bkW
 bfx
-bfx
+cWF
 bux
 bux
 bux
@@ -54687,7 +55143,7 @@ aac
 aac
 aac
 akx
-akx
+gqX
 amE
 aou
 api
@@ -54780,7 +55236,7 @@ beq
 beq
 bfx
 bfx
-bfx
+cWF
 bfx
 bux
 bux
@@ -54904,7 +55360,7 @@ aac
 akx
 akx
 amE
-akx
+gqX
 anI
 anI
 apj
@@ -54997,7 +55453,7 @@ beq
 beq
 bfx
 bfx
-bfx
+cWF
 bfx
 bux
 bux
@@ -55121,7 +55577,7 @@ akx
 akx
 akx
 akx
-akx
+gqX
 anI
 aov
 qZK
@@ -55214,7 +55670,7 @@ beq
 beq
 bfx
 bfx
-bfx
+cWF
 bfx
 bux
 bux
@@ -55338,7 +55794,7 @@ akx
 akx
 akx
 akx
-akx
+gqX
 anI
 aov
 qZK
@@ -55431,7 +55887,7 @@ bqZ
 bfx
 bfx
 bfx
-bfx
+cWF
 bfx
 bux
 bux
@@ -55555,7 +56011,7 @@ akx
 akW
 alG
 akx
-akx
+gqX
 anI
 aow
 jSv
@@ -55648,7 +56104,7 @@ brD
 bfx
 bfx
 bfx
-bfx
+cWF
 bfx
 buM
 bux
@@ -55772,7 +56228,7 @@ aac
 akX
 akX
 amF
-aac
+hzx
 anI
 aov
 gjg
@@ -55865,7 +56321,7 @@ brD
 brD
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bux
@@ -55989,7 +56445,7 @@ aac
 akX
 akX
 akX
-aac
+hzx
 anI
 aov
 apk
@@ -56082,7 +56538,7 @@ brD
 bfx
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 buM
@@ -56206,7 +56662,7 @@ abq
 akZ
 alI
 akX
-aac
+hzx
 anI
 aov
 apk
@@ -56299,7 +56755,7 @@ brD
 bfx
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bfx
@@ -56423,7 +56879,7 @@ aad
 aad
 alJ
 akX
-aac
+hzx
 anI
 aoy
 apk
@@ -56516,7 +56972,7 @@ bqZ
 bqZ
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bfx
@@ -56640,7 +57096,7 @@ aad
 aad
 alJ
 akX
-aac
+hzx
 anK
 aoz
 apm
@@ -56733,7 +57189,7 @@ brD
 bfx
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bfx
@@ -56857,7 +57313,7 @@ aad
 aad
 abq
 aac
-aac
+hzx
 anK
 aoA
 apk
@@ -56950,7 +57406,7 @@ bfx
 bfx
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bfx
@@ -57074,7 +57530,7 @@ abq
 aad
 aac
 aac
-aac
+hzx
 anK
 aoB
 apk
@@ -57167,7 +57623,7 @@ bfx
 bfx
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bfx
@@ -57291,7 +57747,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 anK
 aoB
 apn
@@ -57384,7 +57840,7 @@ bfx
 bfx
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bfx
@@ -57508,7 +57964,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 anK
 aoC
 aoB
@@ -57581,13 +58037,13 @@ bes
 bes
 bkh
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 udw
 bpZ
 bpZ
@@ -57601,7 +58057,7 @@ brD
 brE
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bfx
@@ -57725,7 +58181,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 anK
 anK
 anK
@@ -57797,7 +58253,7 @@ bes
 bes
 bkh
 beq
-aac
+hzx
 aac
 aac
 aac
@@ -57808,8 +58264,8 @@ abq
 bpt
 bqc
 bqc
-bqZ
-bqZ
+uxP
+uxP
 bqZ
 bqZ
 bqZ
@@ -57818,7 +58274,7 @@ bqZ
 bqZ
 bfx
 bfx
-bfx
+cWF
 bfx
 bfx
 bfx
@@ -57942,7 +58398,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 apo
@@ -58027,15 +58483,15 @@ abq
 abq
 abq
 abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-bfx
-bfx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+cWF
+cWF
 bfx
 bfx
 bfx
@@ -58160,7 +58616,7 @@ aac
 aac
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -58378,9 +58834,9 @@ aac
 aad
 abq
 abq
-aac
-aac
-aac
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -58597,7 +59053,7 @@ aad
 aad
 abq
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -58815,7 +59271,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -59032,7 +59488,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -59099,7 +59555,7 @@ bes
 aac
 aac
 aac
-aac
+hzx
 aad
 aad
 aad
@@ -59250,7 +59706,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -59316,7 +59772,7 @@ bes
 aac
 aac
 aac
-aac
+hzx
 aad
 aad
 aad
@@ -59468,7 +59924,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 arD
@@ -59533,7 +59989,7 @@ bes
 bes
 aac
 aac
-aac
+hzx
 aad
 aad
 aad
@@ -59685,7 +60141,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 arD
 arD
@@ -59750,7 +60206,7 @@ bes
 bes
 bes
 aac
-aac
+hzx
 aac
 aad
 aad
@@ -59902,7 +60358,7 @@ aad
 aad
 aad
 aad
-aac
+hzx
 aac
 arD
 arD
@@ -59967,7 +60423,7 @@ bes
 bes
 bes
 aac
-aac
+hzx
 aac
 aac
 aad
@@ -60119,7 +60575,7 @@ aad
 ahw
 aad
 aad
-aac
+hzx
 aac
 aac
 aac
@@ -60184,7 +60640,7 @@ bes
 bes
 bes
 aac
-aac
+hzx
 aac
 aac
 aad
@@ -60337,7 +60793,7 @@ aad
 aad
 aad
 aad
-aac
+hzx
 aac
 aac
 arD
@@ -60401,7 +60857,7 @@ bes
 bes
 bes
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -60555,7 +61011,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -60618,7 +61074,7 @@ bes
 bes
 bes
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -60773,13 +61229,13 @@ ahw
 aad
 aad
 aad
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 arD
@@ -60835,7 +61291,7 @@ bes
 bes
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -60997,7 +61453,7 @@ aad
 abq
 abq
 aac
-aac
+hzx
 aac
 arD
 arD
@@ -61052,7 +61508,7 @@ bes
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -61184,10 +61640,10 @@ aad
 aad
 aac
 aac
-aac
-aac
-aac
-abq
+hzx
+hzx
+hzx
+vTV
 aad
 ahw
 aad
@@ -61197,9 +61653,9 @@ aad
 ahw
 aad
 aad
-aad
-aad
-aad
+hkk
+hkk
+hkk
 aad
 aad
 aad
@@ -61215,7 +61671,7 @@ aad
 aad
 abq
 aac
-aac
+hzx
 aac
 aac
 arD
@@ -61269,7 +61725,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -61400,25 +61856,25 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 aac
 aad
-aad
-aad
+hkk
+hkk
 abq
 aac
 abq
 aad
 aad
 aad
+hkk
 aad
 aad
 aad
-aad
-aad
-aad
+hkk
+hkk
 abq
 ahw
 abq
@@ -61433,7 +61889,7 @@ aad
 aad
 aad
 abq
-aac
+hzx
 aac
 aac
 arD
@@ -61486,7 +61942,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -61616,42 +62072,42 @@ aad
 aad
 aad
 aac
+hzx
+aac
+aac
+aac
+aac
+aad
+aad
+aad
+vTV
+aac
+aac
+abq
+aad
+hkk
+aEu
+aEu
+aad
+aad
+aEu
+aEu
+hzx
+aad
 aac
 aac
 aac
 aac
 aac
+aac
+aac
+aad
+aad
 aad
 aad
 aad
 abq
-aac
-aac
-abq
-aad
-aad
-aEu
-aEu
-aad
-aad
-aEu
-aEu
-aac
-aad
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aad
-aad
-aad
-aad
-aad
-abq
-aac
+hzx
 aac
 aac
 aac
@@ -61703,7 +62159,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -61832,7 +62288,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 adZ
@@ -61842,10 +62298,10 @@ afX
 afY
 adZ
 adZ
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
 aac
 adZ
 ank
@@ -61853,23 +62309,23 @@ afz
 ann
 app
 adZ
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aad
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hkk
 aad
 afZ
 aad
 aad
 abq
-aac
+hzx
 aac
 aac
 aac
@@ -61920,7 +62376,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -62049,7 +62505,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 adZ
 adZ
@@ -62081,13 +62537,13 @@ adZ
 adZ
 adZ
 adZ
-aad
+hkk
 aad
 abq
 aad
 aad
 aad
-aac
+hzx
 aac
 aac
 aac
@@ -62137,7 +62593,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -62266,7 +62722,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 adZ
 aeS
@@ -62298,13 +62754,13 @@ avM
 aqc
 axn
 adZ
-aad
+hkk
 aad
 aad
 abq
 aad
 aad
-aad
+hkk
 abq
 aac
 aac
@@ -62354,7 +62810,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -62483,7 +62939,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 adZ
 aeS
@@ -62515,13 +62971,13 @@ auY
 asq
 arH
 adZ
-aac
+hzx
 aad
 aad
 aad
 aad
 aad
-aad
+hkk
 aad
 abq
 abq
@@ -62571,7 +63027,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -62700,7 +63156,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 adZ
 aeT
@@ -62732,12 +63188,12 @@ avN
 awA
 axo
 adZ
-aac
+hzx
 aad
 aad
 aad
 aad
-aad
+hkk
 aad
 aad
 aad
@@ -62774,21 +63230,21 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -62917,7 +63373,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 adZ
 adZ
@@ -62949,12 +63405,12 @@ auY
 awB
 kpd
 adZ
-aac
+hzx
 aac
 aad
 aad
 ahw
-aad
+hkk
 abq
 aad
 ahw
@@ -62990,7 +63446,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -63134,7 +63590,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 adZ
@@ -63167,10 +63623,10 @@ aqc
 aqc
 adZ
 aac
-aac
-aac
-aad
-aad
+hzx
+hzx
+hkk
+hkk
 abq
 aad
 aad
@@ -63207,7 +63663,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -63351,7 +63807,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 adZ
@@ -63424,7 +63880,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 abq
 abq
@@ -63568,7 +64024,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 adZ
@@ -63641,7 +64097,7 @@ abq
 aac
 aac
 aac
-aac
+hzx
 aac
 aad
 aad
@@ -63785,7 +64241,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 adZ
 adZ
 adZ
@@ -63858,7 +64314,7 @@ abq
 aac
 aac
 aac
-aac
+hzx
 aac
 abq
 aad
@@ -64002,7 +64458,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 adZ
 afz
 anL
@@ -64075,7 +64531,7 @@ abq
 aad
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -64219,7 +64675,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 adZ
 aew
 aeV
@@ -64292,7 +64748,7 @@ aad
 abq
 abq
 abq
-aac
+hzx
 aac
 aac
 aac
@@ -64436,7 +64892,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 adZ
 aex
 aex
@@ -64508,7 +64964,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 abq
 abq
 abq
@@ -64653,7 +65109,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 adZ
 adZ
 adZ
@@ -64724,7 +65180,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 aad
 aad
 aad
@@ -64870,7 +65326,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 adZ
 aey
 abr
@@ -64941,7 +65397,7 @@ aac
 aad
 abq
 aad
-aad
+hkk
 aad
 aad
 aad
@@ -65087,7 +65543,7 @@ aad
 aad
 aad
 aad
-aac
+hzx
 adZ
 aez
 aeX
@@ -65156,8 +65612,8 @@ aac
 aac
 aac
 aad
-aad
-aad
+hkk
+hkk
 aad
 bet
 aad
@@ -65304,7 +65760,7 @@ aad
 aad
 aad
 aad
-aac
+hzx
 adZ
 aez
 aeY
@@ -65372,7 +65828,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 abq
 aad
 aad
@@ -65521,7 +65977,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 adZ
 aeA
 aeZ
@@ -65588,7 +66044,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -65738,7 +66194,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 adZ
 adZ
 afa
@@ -65805,7 +66261,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -65956,7 +66412,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 adZ
 adZ
 adZ
@@ -66022,7 +66478,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -66174,7 +66630,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 aac
 adZ
@@ -66239,7 +66695,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -66392,7 +66848,7 @@ aad
 aad
 aad
 abq
-abq
+vTV
 aac
 aac
 adZ
@@ -66456,7 +66912,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -66609,7 +67065,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 abq
 aac
 aac
@@ -66673,7 +67129,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -66826,7 +67282,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 adZ
 adZ
 adZ
@@ -66890,7 +67346,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -67043,7 +67499,7 @@ aad
 aad
 aad
 aad
-abq
+vTV
 afv
 agh
 agd
@@ -67107,7 +67563,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -67260,7 +67716,7 @@ aad
 aad
 aad
 aad
-abq
+vTV
 afv
 agi
 agZ
@@ -67324,7 +67780,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -67477,7 +67933,7 @@ aad
 aad
 aad
 aad
-abq
+vTV
 adZ
 adZ
 adZ
@@ -67535,12 +67991,12 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -67694,7 +68150,7 @@ aad
 aad
 aad
 aad
-abq
+vTV
 afv
 agi
 aha
@@ -67714,15 +68170,15 @@ oWn
 aqn
 adZ
 aac
-aac
+hzx
 aac
 adZ
 auz
 avm
 adZ
 aac
-aac
-abq
+hzx
+vTV
 aad
 aac
 adZ
@@ -67751,7 +68207,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -67911,7 +68367,7 @@ aad
 aad
 aad
 aad
-abq
+vTV
 afH
 agj
 cca
@@ -67930,17 +68386,17 @@ aoM
 apA
 aqo
 adZ
+hzx
 aac
-aac
-abq
+vTV
 atP
 auA
 avn
 atP
+vTV
 abq
 abq
-abq
-aad
+hkk
 adZ
 adZ
 aAU
@@ -67968,7 +68424,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -68128,7 +68584,7 @@ aad
 aad
 aad
 aad
-abq
+vTV
 adZ
 adZ
 adZ
@@ -68154,10 +68610,10 @@ atP
 auB
 avo
 atP
+hkk
 aad
 aad
-aad
-abq
+vTV
 adZ
 aAT
 aAY
@@ -68185,7 +68641,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -68345,7 +68801,7 @@ aad
 aad
 aad
 aad
-abq
+vTV
 afv
 agj
 agd
@@ -68363,18 +68819,18 @@ adZ
 adZ
 adZ
 adZ
-aac
+hzx
 arM
 aad
-abq
+vTV
 adZ
 auC
 avp
 adZ
-arM
+xjd
 abq
 axU
-aad
+hkk
 adZ
 aAU
 aAU
@@ -68402,7 +68858,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -68562,7 +69018,7 @@ aac
 aad
 aad
 aad
-abq
+vTV
 afv
 agi
 agZ
@@ -68572,26 +69028,26 @@ aiU
 adZ
 adZ
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
 aac
 aad
 arM
-abq
+vTV
 atP
 auB
 avq
 atP
+hkk
 aad
 aad
-aad
-aad
+hkk
 adZ
 afv
 afv
@@ -68619,7 +69075,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -68779,7 +69235,7 @@ aac
 aad
 aad
 aad
-abq
+vTV
 adZ
 adZ
 adZ
@@ -68788,7 +69244,7 @@ ais
 agl
 ahb
 adZ
-aac
+hzx
 aac
 aac
 aac
@@ -68800,15 +69256,15 @@ abq
 abq
 abq
 aad
-aad
+hkk
 atP
 auA
 avn
 atP
-abq
+vTV
 aad
 arM
-aad
+hkk
 afv
 aAV
 aBG
@@ -68836,7 +69292,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -68996,7 +69452,7 @@ aac
 aad
 aad
 aad
-abq
+vTV
 afv
 agk
 agk
@@ -69005,9 +69461,9 @@ ait
 aiV
 tKU
 adZ
+hzx
 aac
 aac
-aac
 abq
 abq
 abq
@@ -69017,15 +69473,15 @@ aad
 aad
 abq
 aad
-aad
+hkk
 adZ
 auD
 jKb
 adZ
-aac
+hzx
 aac
 arM
-aad
+hkk
 afv
 aAW
 aBH
@@ -69053,7 +69509,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -69213,7 +69669,7 @@ aac
 aad
 aad
 aad
-abq
+vTV
 afv
 agl
 ahb
@@ -69222,7 +69678,7 @@ aiu
 aiu
 aiu
 adZ
-aac
+hzx
 aac
 aac
 aad
@@ -69234,15 +69690,15 @@ aad
 abq
 aad
 aad
-aad
+hkk
 adZ
 adZ
 adZ
 adZ
+hzx
 aac
-aac
 aad
-aad
+hkk
 adZ
 afv
 afv
@@ -69270,7 +69726,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -69430,7 +69886,7 @@ aac
 aad
 aad
 aad
-aad
+hkk
 adZ
 adZ
 adZ
@@ -69439,7 +69895,7 @@ adZ
 adZ
 adZ
 adZ
-aac
+hzx
 abq
 abq
 aad
@@ -69452,14 +69908,14 @@ aad
 aad
 aac
 aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 abq
-aad
+hkk
 adZ
 aAU
 aAU
@@ -69487,7 +69943,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -69648,6 +70104,21 @@ aad
 aad
 abq
 aad
+hkk
+vTV
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+aac
+aad
+aad
+aad
+aad
+aad
+aad
 aad
 abq
 aac
@@ -69657,26 +70128,11 @@ aac
 aac
 aac
 aac
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
 aac
 aac
 aac
 aad
-aad
+hkk
 adZ
 aAY
 aAU
@@ -69704,7 +70160,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -69893,7 +70349,7 @@ aac
 aac
 aac
 aad
-aad
+hkk
 adZ
 adZ
 aAU
@@ -69921,7 +70377,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -70111,7 +70567,7 @@ aac
 aac
 abq
 aad
-abq
+vTV
 adZ
 adZ
 adZ
@@ -70138,7 +70594,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -70329,10 +70785,10 @@ aac
 aad
 aad
 aad
-abq
-aac
-aac
-aac
+vTV
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -70355,7 +70811,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -70550,7 +71006,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -70572,7 +71028,7 @@ adZ
 adZ
 aac
 aac
-aac
+hzx
 aac
 aac
 aad
@@ -70767,7 +71223,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 adZ
@@ -70789,7 +71245,7 @@ aUD
 adZ
 adZ
 aac
-aac
+hzx
 aac
 aac
 aad
@@ -70984,7 +71440,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 adZ
 adZ
@@ -71006,7 +71462,7 @@ aUE
 aVx
 adZ
 adZ
-aac
+hzx
 aac
 aac
 aad
@@ -71201,7 +71657,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aEu
 adZ
 aeG
@@ -71223,7 +71679,7 @@ aUF
 aVy
 aVZ
 adZ
-aac
+hzx
 aac
 aad
 aad
@@ -71418,7 +71874,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aEu
 aFq
 aGl
@@ -71440,7 +71896,7 @@ aUG
 aVz
 agT
 adZ
-aac
+hzx
 aac
 aad
 aad
@@ -71635,7 +72091,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aEu
 aFr
 aGm
@@ -71657,7 +72113,7 @@ wfD
 xWK
 aWb
 adZ
-aac
+hzx
 aac
 aad
 aad
@@ -71852,7 +72308,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aEu
 adZ
 aGn
@@ -71874,7 +72330,7 @@ aUH
 aVA
 aWc
 adZ
-aac
+hzx
 aac
 aad
 aad
@@ -72069,7 +72525,7 @@ aad
 aad
 aac
 aac
-aac
+hzx
 aac
 adZ
 adZ
@@ -72091,7 +72547,7 @@ aUI
 aVB
 adZ
 adZ
-aac
+hzx
 aac
 aad
 aad
@@ -72287,7 +72743,7 @@ aad
 aac
 aac
 aac
-aac
+hzx
 aac
 adZ
 adZ
@@ -72307,7 +72763,7 @@ afx
 aUJ
 adZ
 adZ
-aac
+hzx
 aac
 aad
 aad
@@ -72505,7 +72961,7 @@ aad
 aad
 aad
 aac
-aac
+hzx
 aac
 adZ
 adZ
@@ -72523,7 +72979,7 @@ adZ
 adZ
 aUK
 aUK
-aad
+hkk
 aad
 aad
 aad
@@ -72723,21 +73179,21 @@ aad
 aad
 aad
 aac
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aac
-aac
-aac
-aac
-aac
-aac
-aad
+hkk
+hkk
+hkk
+hkk
+hkk
+hkk
+hkk
+hkk
+hzx
+hzx
+hzx
+hzx
+hzx
+hzx
+hkk
 aad
 aad
 aad

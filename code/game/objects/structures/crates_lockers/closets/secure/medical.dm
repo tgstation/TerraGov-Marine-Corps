@@ -75,7 +75,7 @@
 	new /obj/item/clothing/suit/surgical(src)
 	new /obj/item/clothing/tie/storage/white_vest(src)
 	if(is_mainship_level(z))
-		new /obj/item/radio/headset/almayer/doc(src)
+		new /obj/item/radio/headset/mainship/doc(src)
 
 /obj/structure/closet/secure_closet/medical3/colony
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
@@ -102,7 +102,7 @@
 	new /obj/item/clothing/suit/storage/labcoat(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/radio/headset/almayer/mcom(src)
+	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/reagent_container/hypospray/advanced/tricordrazine(src)
 	new /obj/item/flash(src)
 	new /obj/item/storage/pouch/medical(src)

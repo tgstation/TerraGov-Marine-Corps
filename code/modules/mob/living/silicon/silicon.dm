@@ -9,7 +9,7 @@
 	initial_language_holder = /datum/language_holder/synthetic
 
 	var/obj/machinery/camera/builtInCamera = null
-	var/obj/item/radio/headset/almayer/mcom/silicon/radio = null
+	var/obj/item/radio/headset/mainship/mcom/silicon/radio = null
 
 	var/list/HUD_toggled = list(0, 0, 0)
 

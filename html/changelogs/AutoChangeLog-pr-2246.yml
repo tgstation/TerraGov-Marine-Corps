@@ -1,0 +1,5 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Tweaked all ground maps. They will all have LV-like fog protecting areas, but it can be crossed by xenos at will. The marines gain shutters on both landing zones only they can open (and not close), from inside."
+  - rscadd: "Added a dropship consoles to every LZ."
