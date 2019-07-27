@@ -20214,7 +20214,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
-"ncP" = (
 "mrH" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker,
