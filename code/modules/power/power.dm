@@ -350,7 +350,8 @@
 	return null
 
 /area/proc/get_apc()
-	for(var/obj/machinery/power/apc/APC in GLOB.apcs_list)
+	for(var/i in GLOB.apcs_list)
+		var/obj/machinery/power/apc/APC = i
 		if(APC.area == src)
 			return APC
 

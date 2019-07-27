@@ -36,5 +36,3 @@ GLOBAL_LIST_EMPTY(deathmatch)
 GLOBAL_LIST_EMPTY(sorted_areas)
 /// An association from typepath to area instance. Only includes areas with `unique` set.
 GLOBAL_LIST_EMPTY_TYPED(areas_by_type, /area)
-
-GLOBAL_LIST_EMPTY(all_abstract_markers)
