@@ -572,7 +572,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "abY" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -605,7 +605,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "acc" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -5634,7 +5634,7 @@
 	},
 /area/bigredv2/outside/n)
 "aqN" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/structure/barricade/wooden,
@@ -6074,16 +6074,16 @@
 	},
 /area/bigredv2/outside/n)
 "asg" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "ash" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -7254,7 +7254,7 @@
 /area/bigredv2/outside/dorms)
 "avH" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor,
@@ -7267,7 +7267,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "avJ" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor,
@@ -7551,13 +7551,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "awv" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -13215,7 +13215,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aNk" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 1
 	},
 /turf/open/floor/tile/blue/whitebluefull,
@@ -13240,7 +13240,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aNq" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 1
 	},
 /turf/open/floor,
@@ -13291,13 +13291,13 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 1
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "aNA" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 1
 	},
 /turf/open/floor/tile/white,
@@ -13497,7 +13497,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aOv" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/whitebluefull,
@@ -14603,11 +14603,11 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aSu" = (
-/obj/structure/barricade/wooden/lv_snowflake,
+/obj/structure/barricade/wooden,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aSv" = (
-/obj/structure/barricade/wooden/lv_snowflake,
+/obj/structure/barricade/wooden,
 /turf/open/floor/plating,
 /area/bigredv2/outside/virology)
 "aSw" = (
@@ -15004,7 +15004,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aTK" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/tile/white,
@@ -15791,7 +15791,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/whitebluefull,
@@ -15933,7 +15933,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/tile/white,
@@ -17009,7 +17009,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 1
 	},
 /turf/open/floor,
@@ -17170,7 +17170,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbi" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 4
 	},
 /turf/open/floor,
@@ -17460,14 +17460,14 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/cargo)
 "bct" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "bcu" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/marking/delivery,
@@ -17917,7 +17917,7 @@
 "beb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
@@ -18614,7 +18614,7 @@
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
 "bgF" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -19202,7 +19202,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 4
 	},
 /turf/open/floor,
@@ -19313,7 +19313,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "biR" = (
-/obj/structure/barricade/wooden/lv_snowflake,
+/obj/structure/barricade/wooden,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "biV" = (
@@ -19908,12 +19908,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bli" = (
-/obj/structure/barricade/wooden/lv_snowflake,
+/obj/structure/barricade/wooden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/barricade/wooden/lv_snowflake,
+/obj/structure/barricade/wooden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blk" = (
@@ -25919,7 +25919,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "oOL" = (
-/obj/structure/barricade/wooden/lv_snowflake{
+/obj/structure/barricade/wooden{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{

@@ -20338,7 +20338,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "bbn" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy20"
+	icon_state = "nt20"
 	},
 /area/ice_colony/underground/responsehangar)
 "bbo" = (
@@ -20377,7 +20377,7 @@
 /area/ice_colony/exterior/underground/caves/open)
 "bbr" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy27"
+	icon_state = "nt27"
 	},
 /area/ice_colony/underground/responsehangar)
 "bbs" = (
@@ -20412,7 +20412,7 @@
 /area/ice_colony/exterior/surface/valley/west)
 "bbB" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy25"
+	icon_state = "nt25"
 	},
 /area/ice_colony/underground/responsehangar)
 "bbC" = (
@@ -21676,7 +21676,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bfh" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy22"
+	icon_state = "nt22"
 	},
 /area/ice_colony/underground/responsehangar)
 "bfi" = (
@@ -22300,7 +22300,7 @@
 /area/ice_colony/exterior/surface/valley/north)
 "bgW" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy23"
+	icon_state = "nt23"
 	},
 /area/ice_colony/underground/responsehangar)
 "bgX" = (
@@ -31732,7 +31732,7 @@
 /area/ice_colony/underground/command/checkpoint)
 "bFQ" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy4"
+	icon_state = "nt4"
 	},
 /area/ice_colony/underground/responsehangar)
 "bFR" = (
@@ -33585,7 +33585,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bKd" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy5"
+	icon_state = "nt5"
 	},
 /area/ice_colony/underground/responsehangar)
 "bKe" = (
@@ -35033,7 +35033,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bNY" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy_leftengine"
+	icon_state = "nt_leftengine"
 	},
 /area/ice_colony/underground/responsehangar)
 "bNZ" = (
@@ -35254,12 +35254,12 @@
 /area/ice_colony/underground/security/armory)
 "bOA" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy8"
+	icon_state = "nt8"
 	},
 /area/ice_colony/underground/responsehangar)
 "bOB" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy9"
+	icon_state = "nt9"
 	},
 /area/ice_colony/underground/responsehangar)
 "bOC" = (
@@ -35333,7 +35333,7 @@
 /area/ice_colony/underground/crew/lavatory)
 "bOM" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy_rightengine"
+	icon_state = "nt_rightengine"
 	},
 /area/ice_colony/underground/responsehangar)
 "bON" = (
@@ -35974,7 +35974,7 @@
 /area/ice_colony/underground/responsehangar)
 "bQO" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy1"
+	icon_state = "nt1"
 	},
 /area/ice_colony/underground/responsehangar)
 "bQP" = (
@@ -36007,12 +36007,12 @@
 /area/ice_colony/underground/responsehangar)
 "bQT" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy2"
+	icon_state = "nt2"
 	},
 /area/ice_colony/underground/responsehangar)
 "bQU" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy3"
+	icon_state = "nt3"
 	},
 /area/ice_colony/underground/responsehangar)
 "bQV" = (
