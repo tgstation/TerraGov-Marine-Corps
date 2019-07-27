@@ -32,7 +32,7 @@
 		if(!parentmob2.speed_activated)
 			parentmob2.speed_activated = TRUE //Vroom vroom
 
-		if(!(/obj/effect/alien/weeds/node) in range(1, parentmob2))
+		if(!locate(/obj/effect/alien/weeds/node) in range(1, parentmob2))
 			plantweeds.action_activate()
 		else
 
@@ -47,8 +47,7 @@
 				return //We plopped a thicc wall, can't build anything else here
 
 	var/turf/T2 = get_turf(parentmob2)
-	var/obj/effect/alien/resin/sticky/thingy
-	if(!(locate(thingy) in T2))
+	if(T2.check_alien_construction(parentmob2))
 		var/turf/T = get_turf(parentmob2)
 		new/obj/effect/alien/resin/sticky(T)
 		//parentmob2.selected_resin = /obj/effect/alien/resin/sticky
