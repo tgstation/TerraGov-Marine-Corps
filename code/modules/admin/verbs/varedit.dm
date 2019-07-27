@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(VVicon_edit_lock, list("icon", "icon_state", "overlays", "under
 GLOBAL_PROTECT(VVicon_edit_lock)
 GLOBAL_LIST_INIT(VVckey_edit, list("key", "ckey"))
 GLOBAL_PROTECT(VVckey_edit)
-GLOBAL_LIST_INIT(VVpixelmovement, list("step_x", "step_y", "bound_height", "bound_width", "bound_x", "bound_y"))
+GLOBAL_LIST_INIT(VVpixelmovement, list("step_x", "step_y", "bound_height", "bound_width", "bound_x", "bound_y", "step_size"))
 GLOBAL_PROTECT(VVpixelmovement)
 
 
