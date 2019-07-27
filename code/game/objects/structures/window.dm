@@ -636,7 +636,4 @@
 	basestate = "prison_cellwindow"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	damageable = FALSE
-	deconstructable = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	max_integrity = 1000000 //Failsafe, shouldn't matter
+	max_integrity = 300
