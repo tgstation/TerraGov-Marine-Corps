@@ -28,3 +28,11 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)
+
+/mob/living/carbon/xenomorph/drone/fun
+	caste_base_type = /mob/living/carbon/xenomorph/drone/fun
+	icon_state =  "Fun Drone Walking"
+	pixel_x = 4
+	old_x = 4
+	pixel_y = -14
+	old_y = -14
