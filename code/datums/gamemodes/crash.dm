@@ -86,12 +86,11 @@
 
 	// Reset all spawnpoints after spawning the ship
 	GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
-	var/marine_spawns = shuttle.marine_spawns_by_job[/datum/job/marine/standard]
 
 	GLOB.jobspawn_overrides = list()
-	GLOB.latejoin = marine_spawns
-	GLOB.latejoin_cryo = marine_spawns
-	GLOB.latejoin_gateway = marine_spawns
+	GLOB.latejoin = shuttle.latejoins
+	GLOB.latejoin_cryo = shuttle.latejoins
+	GLOB.latejoin_gateway = shuttle.latejoins
 
 	// Create xenos
 	var/number_of_xenos = length(xenomorphs)
