@@ -18,6 +18,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/obj/effect/AINode/destination_node
 	var/move_delay = 0 //The next world.time we can do a move at
 	var/datum/action_state/action_state //If we have an action state we feed it info and see what it tells us what to do
+	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat
 
 /datum/ai_behavior/New()
 	..()
