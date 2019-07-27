@@ -64,8 +64,8 @@
 			if(target2.stat) //Always hit laying down targets
 				target2.attack_alien(parentmob2)
 				parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
-			else //The less the target moves, the easier to hit. Every second of not moving increases chance to hit by 50%, 10% chance to hit base
-				if(prob(((world.time - target2.last_move_intent) * 100) + 10) * SSai.prob_melee_slash)
+			else //The less the target moves, the easier to hit. Every second of not moving increases chance to hit by 75%, 30% chance to hit base
+				if(prob(((world.time - target2.last_move_intent) * 75) + 30) * SSai.prob_melee_slash)
 					target.attack_alien(parentmob2)
 					parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
 					return
@@ -105,12 +105,12 @@
 
 /datum/ai_behavior/xeno/proc/HandleAbility()
 	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
+	ability_tick_threshold++
 	if(!parentmob || !parentmob2)
 		qdel(src)
 		return FALSE
 	if(!parentmob2.stat || !parentmob2.canmove) //Crit or dead
 		return FALSE
-	ability_tick_threshold++
 	return TRUE
 
 /datum/ai_behavior/xeno/HandleObstruction()
@@ -120,6 +120,8 @@
 			door.open()
 
 	for(var/turf/closed/probawall in range(1, parentmob))
+		if(!probawall.can_be_dissolved())
+			return
 		if(probawall.current_acid)
 			return
 		if(!probawall.acid_check(/obj/effect/xenomorph/acid/strong))
