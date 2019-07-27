@@ -38,7 +38,7 @@
 		return //can't move the thing you're sitting on.
 	if(istype(target, /obj/effect))//if you click a blood splatter with a grab instead of the turf,
 		target = get_turf(target)	//we still try to move the grabbed thing to the turf.
-	if(!isturf(target) || istype(target, /turf/open/floor/almayer/empty))
+	if(!isturf(target) || istype(target, /turf/open/floor/mainship/empty))
 		return
 	var/turf/T = target
 	if(T.density || !T.Adjacent(user))
@@ -157,8 +157,8 @@
 
 
 /mob/living/carbon/human/on_devour_by_xeno()
-	if(istype(wear_ear, /obj/item/radio/headset/almayer/marine))
-		var/obj/item/radio/headset/almayer/marine/marine_headset = wear_ear
+	if(istype(wear_ear, /obj/item/radio/headset/mainship/marine))
+		var/obj/item/radio/headset/mainship/marine/marine_headset = wear_ear
 		if(marine_headset.camera.status)
 			marine_headset.camera.status = FALSE //Turn camera off.
 			to_chat(src, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")

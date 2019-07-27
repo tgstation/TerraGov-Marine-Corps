@@ -17,7 +17,7 @@
 							/obj/item/ammo_magazine/flamer_tank			    = 1,
 							/obj/item/tool/lighter/zippo			= 2,
 							/obj/item/tool/weldingtool					= 1,
-							/obj/item/storage/box/uscm_mre			= 2,
+							/obj/item/storage/box/tgmc_mre			= 2,
 							/obj/item/camera				        	= 2,
 							/obj/item/camera_film					= 4,
 							/obj/item/cell/crap/empty				= 3,

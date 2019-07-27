@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		else
 			return FALSE
 
-	var/obj/item/radio/headset/almayer/headset = H.wear_ear
+	var/obj/item/radio/headset/mainship/headset = H.wear_ear
 	if(give_radio && !istype(headset))
 		if(H.wear_ear)
 			H.dropItemToGround(H.wear_ear)
@@ -208,7 +208,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		if(SQUAD_LEADER)
 			num_leaders--
 
-	var/obj/item/radio/headset/almayer/headset = H.wear_ear
+	var/obj/item/radio/headset/mainship/headset = H.wear_ear
 	if(istype(headset))
 		headset.set_frequency(initial(headset.frequency))
 
@@ -246,8 +246,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 			squad_leader.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
 			var/datum/job/J = SSjob.GetJob(squad_leader.mind.assigned_role)
 			squad_leader.mind.comm_title = J.comm_title
-		if(istype(squad_leader.wear_ear, /obj/item/radio/headset/almayer/marine))
-			var/obj/item/radio/headset/almayer/marine/R = squad_leader.wear_ear
+		if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
+			var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear
 			R.recalculateChannels()
 			R.use_command = FALSE
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
@@ -280,8 +280,8 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		if(istype(ID))
 			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 
-	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/almayer/marine))
-		var/obj/item/radio/headset/almayer/marine/R = squad_leader.wear_ear
+	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
+		var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear
 		R.channels[RADIO_CHANNEL_COMMAND] = TRUE
 		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
 		R.use_command = TRUE

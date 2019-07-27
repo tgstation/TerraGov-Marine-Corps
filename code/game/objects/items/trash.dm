@@ -126,8 +126,8 @@
 	icon_state = "cigarbutt"
 
 
-/obj/item/trash/USCMtray
-	name = "\improper TGMC Tray"
+/obj/item/trash/tgmc_tray
+	name = "\improper TGMC tray"
 	desc = "Finished with its tour of duty"
 	icon_state = "MREtray"
 

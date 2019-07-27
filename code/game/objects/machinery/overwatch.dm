@@ -661,8 +661,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	ID.assigned_fireteam = 0 //reset fireteam assignment
 
 	//Changes headset frequency to match new squad
-	var/obj/item/radio/headset/almayer/marine/H = transfer_marine.wear_ear
-	if(istype(H, /obj/item/radio/headset/almayer/marine))
+	var/obj/item/radio/headset/mainship/marine/H = transfer_marine.wear_ear
+	if(istype(H, /obj/item/radio/headset/mainship/marine))
 		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_squad()

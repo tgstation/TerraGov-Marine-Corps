@@ -528,9 +528,9 @@
 	icon_state = "prisontable"
 	table_prefix = "prison"
 
-/obj/structure/table/almayer
-	icon_state = "almtable"
-	table_prefix = "alm"
+/obj/structure/table/mainship
+	icon_state = "shiptable"
+	table_prefix = "ship"
 
 
 

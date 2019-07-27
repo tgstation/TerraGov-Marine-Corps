@@ -914,15 +914,15 @@
 		return null
 	return P
 
-// *** special cased almayer stuff because its all one z level ***
+// *** special cased marine ship stuff because its all one z level ***
 
-/obj/structure/disposalpipe/up/almayer
+/obj/structure/disposalpipe/up/mainship
 	var/id
 
-/obj/structure/disposalpipe/down/almayer
+/obj/structure/disposalpipe/down/mainship
 	var/id
 
-/obj/structure/disposalpipe/up/almayer/transfer(obj/structure/disposalholder/H)
+/obj/structure/disposalpipe/up/mainship/transfer(obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
 	H.setDir(nextdir)
 
@@ -930,7 +930,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 12)
-		for(var/obj/structure/disposalpipe/down/almayer/F in GLOB.disposal_list)
+		for(var/obj/structure/disposalpipe/down/mainship/F in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -950,7 +950,7 @@
 		return null
 	return P
 
-/obj/structure/disposalpipe/down/almayer/transfer(obj/structure/disposalholder/H)
+/obj/structure/disposalpipe/down/mainship/transfer(obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
 	H.setDir(nextdir)
 
@@ -958,7 +958,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 11)
-		for(var/obj/structure/disposalpipe/up/almayer/F in GLOB.disposal_list)
+		for(var/obj/structure/disposalpipe/up/mainship/F in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -978,7 +978,7 @@
 		return null
 	return P
 
-// *** end special cased almayer stuff ***
+// *** end special cased marine ship stuff ***
 
 //Z-Level stuff
 //A three-way junction with dir being the dominant direction
