@@ -33,8 +33,6 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	. = ..()
 	GLOB.nuke_list += src
 
-	if(!iscrashgamemode(SSticker.mode))
-		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/nuclearbomb/Destroy()
 	GLOB.nuke_list -= src
