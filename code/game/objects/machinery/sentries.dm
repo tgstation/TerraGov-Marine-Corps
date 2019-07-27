@@ -1070,7 +1070,6 @@
 	rounds = 50000
 
 
-
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
@@ -1139,6 +1138,15 @@
 		deployment_system.deployed_turret = null
 		deployment_system = null
 	. = ..()
+
+/obj/machinery/marine_turret/premade/canterbury
+	name = "UA-577 Gauss Dropship Turret"
+	burst_size = 10
+	burst_delay = 15
+
+/obj/machinery/marine_turret/premade/canterbury/Initialize()
+	. = ..()
+	start_processing()
 
 /obj/item/ammo_magazine/sentry/premade/dropship
 	name = "UA-577 box magazine (12x40mm Gauss Slugs)"

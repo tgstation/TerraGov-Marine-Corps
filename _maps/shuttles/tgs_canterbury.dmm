@@ -195,7 +195,7 @@
 /turf/closed/wall/almayer,
 /area/shuttle/canterbury/general)
 "aw" = (
-/obj/machinery/marine_turret,
+/obj/machinery/marine_turret/premade/canterbury,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -438,7 +438,7 @@
 	},
 /area/shuttle/canterbury/general)
 "aV" = (
-/obj/machinery/marine_turret{
+/obj/machinery/marine_turret/premade/canterbury{
 	icon_state = "sentry_base";
 	dir = 1
 	},
