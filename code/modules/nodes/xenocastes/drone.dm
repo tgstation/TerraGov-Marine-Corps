@@ -12,7 +12,9 @@
 	var/datum/action/xeno_action/plant_weeds/plantweeds = new
 
 /datum/ai_behavior/xeno/drone/Init()
-	..()
+	. = ..()
+	if(!.)
+		return
 	var/mob/living/carbon/xenomorph/drone/parentmob2 = parentmob
 	if(SSai.init_pheromones)
 		parentmob2.current_aura = pick(list("recovery", "warding", "frenzy"))
