@@ -18,7 +18,7 @@
 	last_health = parentmob.health
 	action_state = new/datum/action_state/random_move/scout(src)
 	if(SSai.randomized_xeno_tiers) //Equal chances of being young, mature, elder or ancient
-		parentmob.upgrade_xeno(pick(SSai.random_tier_probs))
+		parentmob2.upgrade_xeno(pick(list(0, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE)))
 
 /datum/ai_behavior/xeno/proc/AttemptGetTarget()
 	for(var/mob/living/carbon/human/human in cheap_get_humans_near(parentmob, 10))
