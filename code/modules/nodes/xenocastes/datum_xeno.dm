@@ -109,7 +109,7 @@
 	if(!parentmob || !parentmob2)
 		qdel(src)
 		return FALSE
-	if(!parentmob2.stat || !parentmob2.canmove) //Crit or dead
+	if(parentmob2.stat || !parentmob2.canmove) //Crit or dead
 		return FALSE
 	return TRUE
 
