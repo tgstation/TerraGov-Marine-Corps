@@ -164,7 +164,7 @@
 						var/obj/O = i
 						T = O.loc
 					else
-						CRASH("Invalid latejoin type")
+						CRASH("Invalid latejoin spawn location type")
 
 					if(T)
 						to_chat(src, "<span class='notice'>Now teleporting.</span>")
