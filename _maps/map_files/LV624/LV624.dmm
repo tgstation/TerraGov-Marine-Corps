@@ -19973,7 +19973,7 @@
 /area/shuttle/drop1/lz1)
 "csn" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
@@ -20030,7 +20030,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "eLi" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	density = 1;
 	dir = 1;
 	icon_state = "door_closed";
@@ -20121,7 +20121,7 @@
 /area/lv624/lazarus/main_hall)
 "jAE" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	density = 0;
 	dir = 4;
 	icon_state = "pdoor0";
@@ -20308,7 +20308,7 @@
 /area/shuttle/drop1/lz1)
 "qYr" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 1;
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
@@ -20324,12 +20324,12 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/internal_affairs)
 "rxi" = (
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 1;
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
 	},
-/obj/machinery/door/airlock/almayer/generic/corporate{
+/obj/machinery/door/airlock/mainship/generic/corporate{
 	dir = 1;
 	name = "Corporate Dome"
 	},

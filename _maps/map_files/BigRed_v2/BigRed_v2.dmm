@@ -25254,7 +25254,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "gbD" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Cargo Bay"
 	},
@@ -25994,7 +25994,7 @@
 /area/bigredv2/outside/marshal_office)
 "pRU" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
@@ -26077,7 +26077,7 @@
 /area/bigredv2/outside/engineering)
 "qFg" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
@@ -26289,7 +26289,7 @@
 /area/bigredv2/outside/cargo)
 "txn" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
@@ -26424,7 +26424,7 @@
 /area/bigredv2/outside/hydroponics)
 "uJV" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
