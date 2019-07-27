@@ -214,5 +214,5 @@
 	icon_state = "stamp-cent"
 
 
-/obj/item/tool/stamp/attack_paw(mob/user as mob)
+/obj/item/tool/stamp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)

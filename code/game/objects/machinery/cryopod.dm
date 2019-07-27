@@ -50,7 +50,7 @@
 	cryotypes = list(CRYO_DELTA)
 	category = CRYO_DELTA
 
-/obj/machinery/computer/cryopod/attack_paw()
+/obj/machinery/computer/cryopod/attack_paw(mob/living/carbon/monkey/user)
 	attack_hand()
 
 /obj/machinery/computer/cryopod/attack_ai(mob/living/silicon/ai/AI)

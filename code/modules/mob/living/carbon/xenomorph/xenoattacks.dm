@@ -18,25 +18,21 @@
 			log_combat(S, src, "attacked")
 			updatehealth()
 
-/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/M as mob)
-	if(!ismonkey(M)) //Fix for aliens receiving double messages when attacking other aliens
-		return 0
+/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/user)
+	. = ..()
 
-	..()
-
-	switch(M.a_intent)
+	switch(user.a_intent)
 
 		if(INTENT_HELP)
-			help_shake_act(M)
+			help_shake_act(user)
 		else
 			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 				return 0
 			if(health > 0)
-				M.do_attack_animation(src)
-				M.flick_attack_overlay(src, "punch")
+				user.do_attack_animation(src)
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
-				visible_message("<span class='danger'>\The [M] bites \the [src].</span>", \
-				"<span class='danger'>We are bit by \the [M].</span>", null, 5)
+				visible_message("<span class='danger'>\The [user] bites \the [src].</span>", \
+				"<span class='danger'>We are bit by \the [user].</span>", null, 5)
 				apply_damage(rand(1, 3), BRUTE)
 				updatehealth()
 

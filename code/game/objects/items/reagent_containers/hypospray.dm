@@ -49,7 +49,7 @@
 	name = "[core_name] ([str])"
 	label = str
 
-/obj/item/reagent_container/hypospray/attack_paw(mob/user as mob)
+/obj/item/reagent_container/hypospray/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/item/reagent_container/hypospray/afterattack(atom/A, mob/living/user)

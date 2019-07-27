@@ -717,7 +717,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	return src.attack_hand(user) //or maybe it'll have some special functions? No idea.
 
 
-/obj/machinery/newscaster/attack_paw(mob/user as mob)
+/obj/machinery/newscaster/attack_paw(mob/living/carbon/monkey/user)
 	to_chat(user, "<font color='blue'>The newscaster controls are far too complicated for your tiny brain!</font>")
 	return
 

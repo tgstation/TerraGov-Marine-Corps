@@ -60,7 +60,7 @@
 	healthcheck()
 
 
-/obj/structure/displaycase/attack_paw(mob/user as mob)
+/obj/structure/displaycase/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/structure/displaycase/attack_hand(mob/living/user)

@@ -75,7 +75,7 @@
 	src.icon_state = "medibot[src.on]"
 	src.updateUsrDialog()
 
-/obj/machinery/bot/medbot/attack_paw(mob/user as mob)
+/obj/machinery/bot/medbot/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/bot/medbot/attack_hand(mob/living/user)

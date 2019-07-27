@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/user as mob) //why monkey why
+/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/living/carbon/monkey/user) //why monkey why
 	return attack_hand(user)
 
 

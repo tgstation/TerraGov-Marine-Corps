@@ -46,7 +46,7 @@
 /obj/machinery/computer/med_data/attack_ai(user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/med_data/attack_paw(user as mob)
+/obj/machinery/computer/med_data/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/med_data/attack_hand(mob/living/user)
