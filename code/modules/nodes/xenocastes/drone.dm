@@ -14,14 +14,13 @@
 /datum/ai_behavior/xeno/drone/Init()
 	..()
 	var/mob/living/carbon/xenomorph/drone/parentmob2 = parentmob
-	parentmob2.current_aura = pick(list("recovery", "warding", "frenzy"))
+	if(SSai.init_pheromones)
+		parentmob2.current_aura = pick(list("recovery", "warding", "frenzy"))
 	plantweeds.owner = parentmob2
 
 //We make magic weeds
 /datum/ai_behavior/xeno/drone/HandleAbility()
-	. = ..()
-	if(!.)
-		return
+	..()
 	if(ability_tick_threshold % 2 == 0)
 		for(var/obj/effect/alien/weeds/node/node in range(1, parentmob))
 			if(node)

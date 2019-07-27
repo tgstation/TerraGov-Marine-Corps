@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(ai)
 
 	var/prob_sidestep_melee = 25 //Probability of a xeno side stepping while in melee every time its suppose to move
 
-	var/prob_melee_slash = 50 //Want to give marines less of a chance to die? decrease this bad boi
+	var/prob_melee_slash = 0.5 //Default makes attacks that require prob() succeed 1/2th as often, good for stuff
 
 	var/prioritize_nodes_with_enemies = FALSE //If xenos will beeline to nodes with seen enemies
 
@@ -19,7 +19,9 @@ SUBSYSTEM_DEF(ai)
 
 	var/retreat_health_threshold = 0.50 //What percentage of health the xeno must be to do a retreat
 
-	var/stop_retreat_health_threshold = 0.75 //What health percentage we should be at to stop retreating
+	//var/stop_retreat_health_threshold = 0.75 //What health percentage we should be at to stop retreating
+
+	var/init_pheromones = FALSE //If pheromone emitting xenos will emit a random pheromone
 
 /datum/controller/subsystem/ai/fire(resume = FALSE)
 	if(!resume)

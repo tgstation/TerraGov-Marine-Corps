@@ -51,12 +51,24 @@
 	HandleAbility()
 
 /datum/ai_behavior/xeno/proc/attack_target(atom/target) //Attempts a attack on a target with cooldown restrictions
-	if(parentmob.canmove && prob(SSai.prob_melee_slash))
+	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
+
+	if(istype(target, /obj/structure) || istype(target, /obj/machinery)) //We don't miss these targets from prob_melee_slash
+		target.attack_alien(parentmob2)
+		parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
+		return
+
+	if(istype(target, /mob/living/carbon) && parentmob.canmove)
 		if(parentmob.next_move < world.time) //If we can attack again or not
-			var/mob/living/carbon/xenomorph/parentmob2 = parentmob
-			target.attack_alien(parentmob2)
-			parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
-			return
+			var/mob/living/carbon/target2 = target
+			if(target2.stat) //Always hit laying down targets
+				target2.attack_alien(parentmob2)
+				parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
+			else //The less the target moves, the easier to hit. Every second of not moving increases chance to hit by 50%, 10% chance to hit base
+				if(prob(((world.time - target2.last_move_intent) * 100) + 10) * SSai.prob_melee_slash)
+					target.attack_alien(parentmob2)
+					parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
+					return
 
 /datum/ai_behavior/xeno/action_completed(reason) //Action state was completed, let's replace it with something else
 	switch(reason)
@@ -93,6 +105,9 @@
 
 /datum/ai_behavior/xeno/proc/HandleAbility()
 	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
+	if(!parentmob || !parentmob2)
+		qdel(src)
+		return FALSE
 	if(!parentmob2.stat || !parentmob2.canmove) //Crit or dead
 		return FALSE
 	ability_tick_threshold++
