@@ -6,7 +6,6 @@
 	ai_datum.parentmob = src
 	ai_datum.Init()
 
-//Uses runner abilities
 /datum/ai_behavior/xeno/queen
 	var/datum/action/xeno_action/activable/screech/screech = new
 	var/datum/action/xeno_action/plant_weeds/plantweeds = new
