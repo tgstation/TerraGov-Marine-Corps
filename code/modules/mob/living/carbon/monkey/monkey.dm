@@ -94,7 +94,7 @@
 	. = ..()
 
 	if(reagents)
-		if(reagents.has_reagent("hyperzine")) . -= 1
+		if(reagents.has_reagent(/datum/reagent/medicine/hyperzine)) . -= 1
 
 	var/health_deficiency = (100 - health)
 	if(health_deficiency >= 45) . += (health_deficiency / 25)

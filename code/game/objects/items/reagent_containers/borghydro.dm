@@ -13,7 +13,7 @@
 	var/charge_tick = 0
 	var/recharge_time = 2 //Time it takes for shots to recharge (in seconds)
 
-	var/list/reagent_ids = list("tricordrazine", "bicaridine", "kelotane", "dexalinplus", "dylovene", "inaprovaline", "tramadol", "imidazoline", "spaceacillin", "quickclot")
+	var/list/reagent_ids = list(/datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/dylovene, /datum/reagent/medicine/inaprovaline, /datum/reagent/medicine/tramadol, /datum/reagent/medicine/imidazoline, /datum/reagent/medicine/spaceacillin, /datum/reagent/medicine/quickclot)
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 

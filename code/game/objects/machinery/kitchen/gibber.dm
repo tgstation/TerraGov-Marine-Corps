@@ -136,7 +136,7 @@
 			newmeat.name = sourcename + newmeat.name
 			newmeat.subjectname = sourcename
 			newmeat.subjectjob = sourcejob
-			newmeat.reagents.add_reagent("nutriment", sourcenutriment / totalslabs) // Thehehe. Fat guys go first
+			newmeat.reagents.add_reagent(/datum/reagent/consumable/nutriment, sourcenutriment / totalslabs) // Thehehe. Fat guys go first
 			src.occupant.reagents.trans_to(newmeat, round (sourcetotalreagents / totalslabs, 1)) // Transfer all the reagents from the
 			allmeat[i] = newmeat
 
@@ -167,7 +167,7 @@
 			var/obj/item/reagent_container/food/snacks/meat/newmeat = new
 			newmeat.name = "[sourcename]-[newmeat.name]"
 
-			newmeat.reagents.add_reagent("nutriment", sourcenutriment / totalslabs)
+			newmeat.reagents.add_reagent(/datum/reagent/consumable/nutriment, sourcenutriment / totalslabs)
 
 			// Transfer reagents from the old mob to the meat
 			if( istype(src.occupant, /mob/living/carbon/) )

@@ -5,7 +5,6 @@
 
 /datum/reagent/consumable
 	name = "Consumable"
-	id = "consumable"
 	custom_metabolism = FOOD_METABOLISM
 	taste_description = "generic food"
 	taste_multi = 4
@@ -21,12 +20,11 @@
 		C.nutrition += nutriment_factor * REM
 	if(adj_temp)
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
-	holder.remove_reagent(id, custom_metabolism)
+	holder.remove_reagent(type, custom_metabolism)
 	return TRUE
 
 /datum/reagent/consumable/nutriment
 	name = "Nutriment"
-	id = "nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	nutriment_factor = 15
 	color = "#664330" // rgb: 102, 67, 48
@@ -81,7 +79,6 @@
 
 /datum/reagent/consumable/sugar
 	name = "Sugar"
-	id = "sugar"
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	taste_multi = 1.5 // stop sugar drowning out other flavours
@@ -90,7 +87,6 @@
 
 /datum/reagent/consumable/virus_food
 	name = "Virus Food"
-	id = "virusfood"
 	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
 	reagent_state = LIQUID
 	nutriment_factor = 2
@@ -99,7 +95,6 @@
 
 /datum/reagent/consumable/soysauce
 	name = "Soysauce"
-	id = "soysauce"
 	description = "A salty sauce made from the soy plant."
 	reagent_state = LIQUID
 	nutriment_factor = 2
@@ -108,7 +103,6 @@
 
 /datum/reagent/consumable/ketchup
 	name = "Ketchup"
-	id = "ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
 	reagent_state = LIQUID
 	nutriment_factor = 5
@@ -117,7 +111,6 @@
 
 /datum/reagent/consumable/capsaicin
 	name = "Capsaicin Oil"
-	id = "capsaicin"
 	description = "This is what makes chilis hot."
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
@@ -130,8 +123,8 @@
 	var/agony_amount = 2
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/L, metabolism)
-	if(holder.has_reagent("frostoil"))
-		holder.remove_reagent("frostoil", 5)
+	if(holder.has_reagent(/datum/reagent/consumable/frostoil))
+		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if((H.species.species_flags & NO_PAIN))
@@ -149,7 +142,6 @@
 
 /datum/reagent/consumable/capsaicin/condensed
 	name = "Condensed Capsaicin"
-	id = "condensedcapsaicin"
 	description = "A chemical agent used for self-defense and in police work."
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
@@ -224,7 +216,6 @@
 
 /datum/reagent/consumable/frostoil
 	name = "Frost Oil"
-	id = "frostoil"
 	description = "A special oil that noticably chills the body. Extracted from Ice Peppers."
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 139, 166, 233
@@ -235,13 +226,12 @@
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/L, metabolism)
 	if(prob(1))
 		L.emote("shiver")
-	if(holder.has_reagent("capsaicin"))
-		holder.remove_reagent("capsaicin", 5)
+	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
+		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 5)
 	return ..()
 
 /datum/reagent/consumable/sodiumchloride
 	name = "Table Salt"
-	id = "sodiumchloride"
 	description = "A salt made of sodium chloride. Commonly used to season food."
 	color = "#FFFFFF" // rgb: 255,255,255
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -262,14 +252,12 @@
 
 /datum/reagent/consumable/blackpepper
 	name = "Black Pepper"
-	id = "blackpepper"
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
 	// no color (ie, black)
 	taste_description = "pepper"
 
 /datum/reagent/consumable/coco
 	name = "Coco Powder"
-	id = "coco"
 	description = "A fatty, bitter paste made from coco beans."
 	nutriment_factor = 5
 	color = "#302000" // rgb: 48, 32, 0
@@ -277,7 +265,6 @@
 
 /datum/reagent/consumable/hot_coco
 	name = "Hot Chocolate"
-	id = "hot_coco"
 	description = "Made with love! And cocoa beans."
 	reagent_state = LIQUID
 	nutriment_factor = 2
@@ -287,7 +274,6 @@
 
 /datum/reagent/consumable/psilocybin
 	name = "Psilocybin"
-	id = "psilocybin"
 	description = "A strong psycotropic derived from certain species of mushroom."
 	color = "#E700E7" // rgb: 231, 0, 231
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -331,7 +317,6 @@
 
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"
-	id = "sprinkles"
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
 	nutriment_factor = 5
 	color = "#FF00FF" // rgb: 255, 0, 255
@@ -339,7 +324,6 @@
 
 /datum/reagent/consumable/cornoil
 	name = "Corn Oil"
-	id = "cornoil"
 	description = "An oil derived from various types of corn."
 	reagent_state = LIQUID
 	nutriment_factor = 20
@@ -352,7 +336,6 @@
 
 /datum/reagent/consumable/enzyme
 	name = "Universal Enzyme"
-	id = "enzyme"
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
 	reagent_state = LIQUID
 	color = "#365E30" // rgb: 54, 94, 48
@@ -368,7 +351,6 @@
 
 /datum/reagent/consumable/dry_ramen
 	name = "Dry Ramen"
-	id = "dry_ramen"
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
 	nutriment_factor = 1
 	color = "#302000" // rgb: 48, 32, 0
@@ -376,7 +358,6 @@
 
 /datum/reagent/consumable/hot_ramen
 	name = "Hot Ramen"
-	id = "hot_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	reagent_state = LIQUID
 	nutriment_factor = 5
@@ -386,7 +367,6 @@
 
 /datum/reagent/consumable/hell_ramen
 	name = "Hell Ramen"
-	id = "hell_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	reagent_state = LIQUID
 	nutriment_factor = 5
@@ -397,7 +377,6 @@
 
 /datum/reagent/consumable/rice
 	name = "Rice"
-	id = "rice"
 	description = "Enjoy the great taste of nothing."
 	nutriment_factor = 2
 	color = "#FFFFFF" // rgb: 0, 0, 0
@@ -406,7 +385,6 @@
 
 /datum/reagent/consumable/cherryjelly
 	name = "Cherry Jelly"
-	id = "cherryjelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
 	reagent_state = LIQUID
 	nutriment_factor = 5
@@ -415,14 +393,13 @@
 
 /datum/reagent/consumable/honey
 	name = "Honey"
-	id = "honey"
 	description = "A golden yellow syrup, loaded with sugary sweetness."
 	color = "#FFFF00"
 	nutriment_factor = 15
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
-	L.reagents.add_reagent("sugar",3)
+	L.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
 	L.adjustBruteLoss(-0,5 * REM, FALSE)
 	L.adjustFireLoss(-0,5 * REM, FALSE)
 	L.adjustOxyLoss(-0,5 * REM, FALSE)

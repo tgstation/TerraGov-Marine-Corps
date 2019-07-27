@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/D = new path()
-		GLOB.chemical_reagents_list[D.id] = D
+		GLOB.chemical_reagents_list[path] = D
 
 	for(var/path in subtypesof(/datum/chemical_reaction))
 
