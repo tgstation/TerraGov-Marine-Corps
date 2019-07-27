@@ -40018,6 +40018,14 @@
 /obj/structure/sign/electricshock,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"kEO" = (
+/obj/machinery/nuclearbomb,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/research)
+"kRD" = (
+/obj/machinery/computer/nuke_disc_generator/blue,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/disposals)
 "lbl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -40034,6 +40042,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
+"pqZ" = (
+/obj/machinery/computer/nuke_disc_generator/red,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/engineering)
 "rcI" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
@@ -40047,6 +40059,10 @@
 /obj/structure/sign/electricshock,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
+"tTP" = (
+/obj/machinery/computer/nuke_disc_generator/green,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition)
 
 (1,1,1) = {"
 aaa
@@ -47160,7 +47176,7 @@ bce
 bde
 bdL
 bdL
-bdL
+tTP
 bpH
 bdL
 bdL
@@ -54074,7 +54090,7 @@ aPu
 aOo
 aPm
 aQl
-aPl
+kEO
 aPl
 aSL
 aTm
@@ -65431,7 +65447,7 @@ btS
 buE
 btz
 bnL
-box
+pqZ
 box
 byw
 bql
@@ -86930,7 +86946,7 @@ axI
 axW
 azc
 azC
-aAg
+kRD
 aAg
 aAX
 awP
