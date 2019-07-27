@@ -26,6 +26,12 @@
 
 /datum/game_mode/crash/New()
 	. = ..()
+	// All marine roles, MD, Synth, and FC
+	valid_job_types = subtypesof(/datum/job/marine) + list(
+		/datum/job/medical/medicalofficer,
+		/datum/job/civilian/synthetic,
+		/datum/job/command/fieldcommander
+	)
 	xenomorphs = list()
 
 

@@ -41,8 +41,6 @@ SUBSYSTEM_DEF(job)
 			continue
 		if(!job.map_check())
 			continue
-		if(!job.gamemode_check())
-			continue
 		occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job
@@ -74,14 +72,7 @@ SUBSYSTEM_DEF(job)
 		if(!job)
 			JobDebug("AR job doesn't exists ! Player: [player], Rank:[rank]")
 			return FALSE
-		if(is_banned_from(player.ckey, rank))
-			JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
-			return FALSE
-		if(QDELETED(player))
-			JobDebug("AR player deleted during job ban check")
-			return FALSE
-		if(!job.player_old_enough(player.client))
-			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
+		if(!player.IsJobAvailable(rank,latejoin))
 			return FALSE
 		if(rank in GLOB.jobs_marines)
 			if(handle_initial_squad(player, rank, latejoin))

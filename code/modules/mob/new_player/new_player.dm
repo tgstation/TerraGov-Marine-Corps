@@ -463,4 +463,6 @@
 		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
 		return FALSE
+	if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
+		return FALSE
 	return TRUE

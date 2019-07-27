@@ -7,6 +7,7 @@
 
 	var/round_finished
 	var/list/round_end_states = list()
+	var/list/valid_job_types = list()
 
 	var/round_time_fog
 	var/flags_round_type = NONE
@@ -26,7 +27,6 @@
 	var/xeno_required_num = 1 // Number of xenos required to start 
 	var/xeno_starting_num // Number of xenos given at start
 	var/list/xenomorphs
-
 
 /datum/game_mode/New()
 	initialize_emergency_calls()
@@ -124,6 +124,8 @@
 		if(!istype(player) || !player?.mind.assigned_role)
 			continue
 		var/datum/job/J = SSjob.GetJob(player.mind.assigned_role)
+		if(!N.IsJobAvailable(J.title, FALSE))
+			continue
 		if(istype(J, /datum/job/command/captain))
 			captainless = FALSE
 		if(player.mind.assigned_role)
