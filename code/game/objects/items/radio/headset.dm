@@ -281,25 +281,27 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	. = ..()
 	if(.)
 		return
-	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
+	if(!ishuman(usr))
 		return
-	if(usr.contents.Find(src) )
-		usr.set_interaction(src)
-		var/mob/living/carbon/human/user = usr
-		if(href_list["headset_hud_on"])
-			toggle_squadhud(user)
+	var/mob/living/carbon/human/H = usr
 
-		else if(href_list["sl_direction"])
-			toggle_sl_direction(user)
+	if(!H.contents.Find(src) || !H.assigned_squad)
+		DIRECT_OUTPUT(H, browse(null, "window=radio"))
+		return
 
-		if(!master)
-			if(ishuman(loc))
-				handle_interface(loc)
-		else
-			if(ishuman(master.loc))
-				handle_interface(master.loc)
+	H.set_interaction(src)
+	if(href_list["headset_hud_on"])
+		toggle_squadhud(H)
+
+	else if(href_list["sl_direction"])
+		toggle_sl_direction(H)
+
+	if(!master)
+		if(ishuman(loc))
+			handle_interface(loc)
 	else
-		usr << browse(null, "window=radio")
+		if(ishuman(master.loc))
+			handle_interface(master.loc)
 
 
 /obj/item/radio/headset/mainship/mt
