@@ -7314,7 +7314,6 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/computer/nuke_disc_generator/blue,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -23547,6 +23546,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzG" = (
+/obj/machinery/computer/nuke_disc_generator/green,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -23796,7 +23796,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAF" = (
-/obj/machinery/computer/nuke_disc_generator/green,
+/obj/structure/table,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -25007,6 +25007,11 @@
 "cBD" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/sw)
+"cGZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor,
+/area/bigredv2/outside/hydroponics)
 "cWF" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -25025,6 +25030,13 @@
 "daV" = (
 /turf/open/space/basic,
 /area/lv624/lazarus/quartstorage/outdoors)
+"dcO" = (
+/obj/machinery/door/airlock/mainship/research{
+	name = "\improper Virology Lab Administration";
+	req_access_txt = "0"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "djN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -25052,6 +25064,10 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
+"dzS" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
 "dBp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -25186,6 +25202,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"fmM" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "fra" = (
 /obj/effect/landmark/start/xeno_spawn,
 /turf/open/floor/tile/white,
@@ -25451,6 +25473,13 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"idM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/nuke_disc_generator/blue,
+/turf/open/floor/elevatorshaft,
+/area/bigredv2/caves/lambda_lab)
 "iiY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -25514,10 +25543,6 @@
 	dir = 5
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"jFj" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "jHL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
@@ -25570,6 +25595,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"khf" = (
+/obj/structure/table,
+/obj/item/tool/pen/red,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "knF" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/engineering)
@@ -25818,6 +25848,11 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
+"nJs" = (
+/obj/structure/table,
+/obj/item/alienjar,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "nSc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -25898,6 +25933,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/w)
+"oEN" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "oFB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -26018,6 +26057,12 @@
 	dir = 1
 	},
 /area/bigredv2/outside/chapel)
+"qeE" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "qfc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -26062,6 +26107,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"qvY" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "qxt" = (
 /obj/item/trash/candy,
 /turf/open/floor,
@@ -26463,6 +26512,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"vsq" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/c)
 "vDI" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/w)
@@ -26497,11 +26550,6 @@
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
-"wbc" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/nuclearbomb,
-/turf/open/floor/marking/bot,
-/area/bigredv2/outside/cargo)
 "wfD" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/darkish,
@@ -26605,6 +26653,13 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"xvo" = (
+/obj/machinery/nuclearbomb{
+	step_x = 13;
+	step_y = 16
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "xCx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -26648,6 +26703,11 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"xWh" = (
+/obj/structure/table,
+/obj/item/ashtray/bronze,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "xWK" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -29875,7 +29935,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 aad
@@ -30889,7 +30949,7 @@ aQz
 aRF
 aSu
 aSz
-aUM
+aNc
 aNc
 aNc
 aNc
@@ -31115,11 +31175,11 @@ aMz
 aYB
 aRF
 aMz
-iug
-iug
-iug
-iug
-iug
+aMz
+aMz
+aMz
+aMz
+aMz
 iBK
 iug
 iug
@@ -31332,11 +31392,11 @@ aMz
 aYA
 aWe
 aMz
-iug
-iug
-iug
-iug
-iug
+aUM
+fmM
+aNc
+aNc
+aMz
 iBK
 iug
 iug
@@ -31549,11 +31609,11 @@ aMz
 aMz
 aZk
 aMz
-iug
-iug
-iug
-iug
-iug
+nJs
+khf
+xWh
+aNc
+aMz
 iBK
 iug
 iug
@@ -31766,11 +31826,11 @@ aWd
 aNc
 aRH
 aMz
-iug
-iug
-iug
-iug
-iug
+aNc
+qeE
+aNc
+aNc
+aMz
 iBK
 iug
 iug
@@ -31983,11 +32043,11 @@ aRF
 aNc
 aRH
 aMz
-iug
-iug
-iug
-iug
-iug
+oEN
+aNc
+aNc
+aQy
+aMz
 iBK
 iug
 aFv
@@ -32201,7 +32261,7 @@ aXw
 aZl
 aMz
 aMz
-aMz
+dcO
 aMz
 aMz
 aMz
@@ -32560,7 +32620,7 @@ aao
 aao
 aao
 aau
-jFj
+aao
 aao
 aao
 aao
@@ -38505,7 +38565,7 @@ beU
 bfF
 bfX
 baF
-wbc
+bgE
 baF
 aXK
 bil
@@ -40865,7 +40925,7 @@ aBR
 aMc
 aMB
 aNr
-aNo
+dzS
 aOB
 aOB
 aOy
@@ -44222,7 +44282,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 aad
@@ -45010,7 +45070,7 @@ aPU
 aNF
 aUb
 aMe
-aHD
+vsq
 aBR
 aBR
 aBR
@@ -54483,7 +54543,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 aad
@@ -56260,7 +56320,7 @@ arD
 arD
 amZ
 aCf
-aCo
+cGZ
 aEe
 aEW
 aCf
@@ -63403,7 +63463,7 @@ adZ
 afv
 adZ
 adZ
-aqY
+idM
 arF
 arF
 ate
@@ -69599,7 +69659,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 aad
@@ -70032,7 +70092,7 @@ aad
 aad
 aad
 aad
-aad
+xvo
 aad
 aad
 aad
@@ -71846,7 +71906,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 abq

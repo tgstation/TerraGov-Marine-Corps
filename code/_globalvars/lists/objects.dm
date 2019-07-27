@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY(wire_name_directory)
 
 GLOBAL_LIST_EMPTY(ai_status_displays)
 
+GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_silos)
 
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(

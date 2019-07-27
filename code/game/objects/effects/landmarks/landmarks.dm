@@ -145,3 +145,13 @@
 /obj/effect/landmark/distress
 
 /obj/effect/landmark/distress_item
+
+
+/obj/effect/landmark/xeno_silo_spawn
+	icon_state = "tdome_observer"
+
+/obj/effect/landmark/xeno_silo_spawn/Initialize()
+	name = "xeno silo spawn landmark"
+	GLOB.xeno_resin_silo_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL

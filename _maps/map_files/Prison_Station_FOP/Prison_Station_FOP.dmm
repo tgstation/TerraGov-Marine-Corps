@@ -22866,6 +22866,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -52275,6 +52276,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-4"
 	},
+/obj/machinery/nuclearbomb,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cxF" = (
@@ -53138,6 +53140,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hangar/main)
+"fRT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/wood,
+/area/prison/residential/north)
 "geX" = (
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/timed_late{
@@ -53187,10 +53194,6 @@
 	dir = 1
 	},
 /area/prison/cellblock/lowsec/se)
-"ilt" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/prison/hangar/main)
 "ilF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -53201,14 +53204,18 @@
 	},
 /turf/open/floor/prison/red/corner,
 /area/prison/cellblock/highsec/south/north)
-"iBh" = (
-/obj/machinery/computer/nuke_disc_generator/blue,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/research/secret/testing)
+"ipp" = (
+/obj/machinery/computer/nuke_disc_generator/red,
+/turf/open/floor/wood,
+/area/prison/residential/north)
 "izb" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall/prison,
 /area/prison/laundry)
+"iBh" = (
+/obj/machinery/computer/nuke_disc_generator/blue,
+/turf/open/floor/prison/sterilewhite,
+/area/prison/research/secret/testing)
 "iOM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -53380,6 +53387,10 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
+"pnb" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating,
+/area/prison/cellblock/mediumsec/south)
 "pOU" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -53427,6 +53438,10 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
+"rYj" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall/r_wall/prison,
+/area/prison/quarters/research)
 "shN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/prison,
@@ -53446,10 +53461,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/west)
-"tWw" = (
-/obj/machinery/computer/nuke_disc_generator/red,
-/turf/open/floor/prison/darkred/full,
-/area/prison/security/checkpoint/maxsec)
 "sXw" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall/prison,
@@ -53462,10 +53473,22 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall/prison,
 /area/prison/storage/medsec)
+"tMn" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/prison{
+	icon_state = "bright_clean";
+	dir = 10
+	},
+/area/prison/yard)
 "tPJ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/canteen)
+"tWw" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/prison/darkred/full,
+/area/prison/security/checkpoint/maxsec)
 "udZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -53480,10 +53503,6 @@
 	dir = 10
 	},
 /area/prison/hallway/central)
-"uwH" = (
-/obj/machinery/nuclearbomb,
-/turf/open/floor/plating/platebot,
-/area/prison/pirate)
 "upV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 8
@@ -53494,6 +53513,16 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall/prison,
 /area/prison/hallway/central)
+"uHq" = (
+/obj/structure/toilet{
+	dir = 8;
+	pixel_x = -4
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/prison/cellblock/mediumsec/north)
 "uUB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -53536,10 +53565,6 @@
 	},
 /turf/open/floor/prison,
 /area/prison/cellblock/vip)
-"wGh" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/prison/hangar/civilian)
 "vpQ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison{
@@ -53570,6 +53595,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall/prison,
 /area/prison/storage/vip)
+"ybh" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating,
+/area/prison/research/secret/testing)
 "yhS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -53582,6 +53611,11 @@
 	dir = 1
 	},
 /area/prison/cellblock/mediumsec/south)
+"yif" = (
+/obj/structure/bed,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/highsec/north/south)
 "ykl" = (
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -57574,7 +57608,7 @@ aok
 aok
 aok
 aok
-wGh
+aok
 aoj
 aok
 aok
@@ -59349,7 +59383,7 @@ axG
 aJE
 aKs
 aLb
-aLb
+fRT
 aMB
 avm
 aab
@@ -60382,7 +60416,7 @@ aMC
 avN
 axa
 awi
-avK
+ipp
 aRT
 aSN
 aTW
@@ -76131,7 +76165,7 @@ ckn
 ckn
 cnH
 ckn
-uwH
+ckn
 cjw
 cqA
 crl
@@ -78631,7 +78665,7 @@ aDS
 aPc
 aES
 aCl
-aEO
+yif
 aJP
 aVt
 aWA
@@ -81809,7 +81843,7 @@ cqK
 cyx
 cyx
 cyx
-cyx
+pnb
 cyx
 cyx
 cyx
@@ -86152,7 +86186,7 @@ cae
 bYx
 ccV
 ckq
-cln
+uHq
 ccV
 ckq
 cln
@@ -90382,7 +90416,7 @@ acF
 acG
 acF
 acF
-acF
+ybh
 acG
 acU
 adi
@@ -90985,7 +91019,7 @@ aHp
 aWR
 bmB
 bjj
-bny
+tMn
 aWR
 bpG
 aWR
@@ -93117,7 +93151,7 @@ cpU
 cyx
 cyx
 cyx
-cyx
+pnb
 cyx
 cyx
 cyx
@@ -102773,7 +102807,7 @@ atl
 atl
 atl
 aBL
-aDA
+rYj
 aEA
 aFQ
 aHb
@@ -114629,7 +114663,7 @@ aYM
 aYM
 aYM
 bcF
-ilt
+aYM
 aYM
 aYM
 aYM
