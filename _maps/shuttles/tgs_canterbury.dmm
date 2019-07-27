@@ -285,6 +285,7 @@
 	id = "port_umbilical_outer";
 	name = "\improper Umbillical Airlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "aH" = (
@@ -948,6 +949,7 @@
 	id = "starboard_umbilical_outer";
 	name = "\improper Umbillical Airlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "bT" = (
@@ -1779,6 +1781,7 @@
 	id = "starboard_umbilical_outer";
 	pixel_y = -32
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "VH" = (
@@ -1790,6 +1793,7 @@
 	id = "port_umbilical_outer";
 	pixel_y = -32
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/almayer/mono,
 /area/shuttle/canterbury/general)
 "Wo" = (
