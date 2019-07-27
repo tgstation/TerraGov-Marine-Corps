@@ -1017,7 +1017,6 @@
 
 	var/shuttle_id = input(usr, "Which shuttle do you want to move?", "Force Dropship") as null|anything in available_shuttles
 	if(!shuttle_id)
-		to_chat(usr, "<span class='warning'>Invalid shuttle ID</span>")
 		return
 
 	var/obj/docking_port/mobile/D
