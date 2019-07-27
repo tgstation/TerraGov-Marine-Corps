@@ -1,5 +1,3 @@
-#define ENEMY_PRESENCE 1
-#define DANGER_SCALE 2
 
 //A file containing helpers for nodes and direction related things
 

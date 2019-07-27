@@ -1,8 +1,5 @@
 GLOBAL_LIST_EMPTY(nodes_with_enemies)
 
-#define ENEMY_PRESENCE 1
-#define DANGER_SCALE 2
-
 //The actual node; really only to hold the ai_node datum that stores all the information
 
 /obj/effect/AINode //A effect that has a ai_node datum in it, used by AIs to pathfind over long distances as well as knowing what's happening at it

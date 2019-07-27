@@ -1,8 +1,6 @@
 //A datum that stores information about this node, the actual effect nodes have these
 
 //Different names for the weights being utilized and accounted for
-#define ENEMY_PRESENCE 1
-#define DANGER_SCALE 2
 
 /datum/ai_node
 	var/obj/effect/AINode/parentnode //The effect node this is attached to

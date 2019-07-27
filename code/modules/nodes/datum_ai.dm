@@ -3,10 +3,6 @@ Datums that represent an AI mind and it's way of doing various things like movem
 Base datums for stuff like humans or xenos have possible actions to do as well as attitudes
 */
 
-#define ENEMY_PRESENCE 1
-#define DANGER_SCALE 2
-#define FINISHED_MOVE "finished moving to node"
-
 //The most basic of AI; can pathfind to a turf and path around objects in it's path if needed to
 /datum/ai_behavior
 
@@ -23,7 +19,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 /datum/ai_behavior/New()
 	..()
 	SSai.aidatums += src
-	SSai_movement.list_of_lists[1] += src
+	SSai_movement.lists_of_lists[1] += src
 
 /datum/ai_behavior/proc/Init() //Bandaid solution for initializing things
 
