@@ -46,7 +46,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 //Squad Engineer
 /datum/job/marine/engineer
 	title = SQUAD_ENGINEER
-	paygrade = "E2.5"
+	paygrade = "E3"
 	comm_title = "Eng"
 	total_positions = 12
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)

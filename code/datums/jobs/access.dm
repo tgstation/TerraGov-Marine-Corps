@@ -239,8 +239,6 @@
 			. = size ? "PVT " : "Private"
 		if("E2")
 			. = size ? "PFC " : "Private First Class"
-		if("E2.5")
-			. = size ? "SPR" : "Sapper"
 		if("E3")
 			. = size ? "LCPL " : "Lance Corporal"
 		if("E4")
