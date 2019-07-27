@@ -55,12 +55,8 @@
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
 
 
-/obj/machinery/computer/nuke_disc_generator/attackby(obj/item/I, mob/user, params)
+/obj/machinery/computer/nuke_disc_generator/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-
-	if(isxeno(user))
-		return attack_alien(user)
-
 	return attack_hand(user)
 
 /obj/machinery/computer/nuke_disc_generator/attack_hand(mob/user)
