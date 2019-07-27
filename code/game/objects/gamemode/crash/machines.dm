@@ -56,7 +56,6 @@
 
 
 /obj/machinery/computer/nuke_disc_generator/attackby(obj/item/I, mob/living/user, params)
-	. = ..()
 	return attack_hand(user)
 
 /obj/machinery/computer/nuke_disc_generator/attack_hand(mob/user)
