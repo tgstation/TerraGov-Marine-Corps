@@ -734,6 +734,3 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 /datum/job/ai/config_check()
 	return CONFIG_GET(flag/allow_ai)
-
-/datum/job/ai/gamemode_check()
-	return !iscrashgamemode(SSticker.mode)
