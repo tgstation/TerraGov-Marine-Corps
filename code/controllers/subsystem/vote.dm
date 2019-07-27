@@ -340,7 +340,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote
 	name = "Vote!"
-	icon_icon_state = "vote"
+	action_icon_state = "vote"
 
 /datum/action/innate/vote/give_action(mob/M)
 	. = ..()
