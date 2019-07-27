@@ -3,7 +3,7 @@
 	desc = "Better keep this safe."
 	icon_state = "datadisk0"
 	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = UNACIDABLE | INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/item/disk/nuclear/crash/Initialize()
 	. = ..()
