@@ -1,6 +1,3 @@
-#define ENEMY_PRESENCE 1
-#define DANGER_SCALE 2
-
 SUBSYSTEM_DEF(nodes)
 	name = "Nodes"
 	init_order = INIT_ORDER_NODES
