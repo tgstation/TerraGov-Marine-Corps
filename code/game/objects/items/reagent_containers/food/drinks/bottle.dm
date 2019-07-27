@@ -91,42 +91,42 @@
 	desc = "A bottle of high quality gin, produced in the New London Space Station."
 	icon_state = "ginbottle"
 	center_of_mass = list("x"=16, "y"=4)
-	list_reagents = list("gin" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/gin = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/whiskey
 	name = "\improper Uncle Git's Special Reserve"
 	desc = "A premium single-malt whiskey, gently matured for four years by hillbillies in the backwaters of Alabama."
 	icon_state = "whiskeybottle"
 	center_of_mass = list("x"=16, "y"=3)
-	list_reagents = list("whiskey" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/sake
 	name = "\improper Harakiri traditional styled sake"
 	desc = "Sweet as can be, and burns like fire going down."
 	icon_state = "sakebottle"
 	center_of_mass = list("x"=17, "y"=7)
-	list_reagents = list("sake" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/sake = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/vodka
 	name = "\improper Red Star Vodka"
 	desc = "The bottle reads, 'Ra Ra Red Star Man: Lover of the Finer Things.' Or at least that's what you assume...."
 	icon_state = "vodkabottle"
 	center_of_mass = list("x"=17, "y"=3)
-	list_reagents = list("vodka" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/vodka = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/tequila
 	name = "\improper Caccavo Guaranteed Quality Tequila"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
 	icon_state = "tequilabottle"
 	center_of_mass = list("x"=16, "y"=3)
-	list_reagents = list("tequila" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/tequila = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/davenport
 	name = "\improper Davenport Rye Whiskey"
 	desc = "An expensive whiskey with a distinct flavor. The bottle proudly proclaims that it's, 'A True Classic.'"
 	icon_state = "davenportbottle"
 	center_of_mass = list("x"=16, "y"=3)
-	list_reagents = list("davenport" = 50)
+	list_reagents = list(/datum/reagent/consumable/ethanol/davenport = 50)
 
 
 /obj/item/reagent_container/food/drinks/bottle/bottleofnothing
@@ -134,98 +134,98 @@
 	desc = "A bottle filled with nothing"
 	icon_state = "bottleofnothing"
 	center_of_mass = list("x"=17, "y"=5)
-	list_reagents = list("nothing" = 100)
+	list_reagents = list(/datum/reagent/consumable/drink/nothing = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
 	desc = "Silver laced tequila, served in space night clubs across the galaxy."
 	icon_state = "patronbottle"
 	center_of_mass = list("x"=16, "y"=6)
-	list_reagents = list("patron" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/patron = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
 	desc = "Named after the famed Captain 'Cuban' Pete, this rum is about as volatile as his final mission."
 	icon_state = "rumbottle"
 	center_of_mass = list("x"=16, "y"=8)
-	list_reagents = list("rum" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/rum = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/holywater
 	name = "Flask of Holy Water"
 	desc = "A flask of the chaplain's holy water."
 	icon_state = "holyflask"
 	center_of_mass = list("x"=17, "y"=10)
-	list_reagents = list("holywater" = 100)
+	list_reagents = list(/datum/reagent/water/holywater = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/vermouth
 	name = "Goldeneye Vermouth"
 	desc = "Sweet, sweet dryness~"
 	icon_state = "vermouthbottle"
 	center_of_mass = list("x"=17, "y"=3)
-	list_reagents = list("vermouth" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/vermouth = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/kahlua
 	name = "Robert Robust's Coffee Liqueur"
 	desc = "A widely known, Mexican coffee-flavoured liqueur. In production since 1936, HONK"
 	icon_state = "kahluabottle"
 	center_of_mass = list("x"=17, "y"=3)
-	list_reagents = list("kahlua" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/kahlua = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/goldschlager
 	name = "College Girl Goldschlager"
 	desc = "Because they are the only ones who will drink 100 proof cinnamon schnapps."
 	icon_state = "goldschlagerbottle"
 	center_of_mass = list("x"=15, "y"=3)
-	list_reagents = list("goldschlager" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/goldschlager = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
 	desc = "A sweet and strongly alchoholic drink, made after numerous distillations and years of maturing. You might as well not scream 'SHITCURITY' this time."
 	icon_state = "cognacbottle"
 	center_of_mass = list("x"=16, "y"=6)
-	list_reagents = list("cognac" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/cognac = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/wine
 	name = "Doublebeard Bearded Special Wine"
 	desc = "A faint aura of unease and asspainery surrounds the bottle."
 	icon_state = "winebottle"
 	center_of_mass = list("x"=16, "y"=4)
-	list_reagents = list("wine" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/wine = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/absinthe
 	name = "Jailbreaker Verte"
 	desc = "One sip of this and you just know you're gonna have a good time."
 	icon_state = "absinthebottle"
 	center_of_mass = list("x"=16, "y"=6)
-	list_reagents = list("absinthe" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/melonliquor
 	name = "Emeraldine Melon Liquor"
 	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
 	icon_state = "alco-green" //Placeholder.
 	center_of_mass = list("x"=16, "y"=6)
-	list_reagents = list("melonliquor" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/melonliquor = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/bluecuracao
 	name = "Miss Blue Curacao"
 	desc = "A fruity, exceptionally azure drink. Does not allow the imbiber to use the fifth magic."
 	icon_state = "alco-blue" //Placeholder.
 	center_of_mass = list("x"=16, "y"=6)
-	list_reagents = list("bluecuracao" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/bluecuracao = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
 	desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
 	icon_state = "grenadinebottle"
 	center_of_mass = list("x"=16, "y"=6)
-	list_reagents = list("grenadine" = 100)
+	list_reagents = list(/datum/reagent/consumable/drink/grenadine = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/pwine
 	name = "Warlock's Velvet"
 	desc = "What a delightful packaging for a surely high quality wine! The vintage must be amazing!"
 	icon_state = "pwinebottle"
 	center_of_mass = list("x"=16, "y"=4)
-	list_reagents = list("pwine" = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/pwine = 100)
 
 //////////////////////////JUICES AND STUFF ///////////////////////
 
@@ -236,7 +236,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=7)
 	isGlass = 0
-	list_reagents = list("orangejuice" = 100)
+	list_reagents = list(/datum/reagent/consumable/drink/orangejuice = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/cream
 	name = "Milk Cream"
@@ -245,7 +245,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
-	list_reagents = list("cream" = 100)
+	list_reagents = list(/datum/reagent/consumable/drink/milk/cream = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/tomatojuice
 	name = "Tomato Juice"
@@ -254,7 +254,7 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
-	list_reagents = list("tomatojuice" = 100)
+	list_reagents = list(/datum/reagent/consumable/drink/tomatojuice = 100)
 
 /obj/item/reagent_container/food/drinks/bottle/limejuice
 	name = "Lime Juice"
@@ -263,4 +263,4 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
-	list_reagents = list("limejuice" = 100)
+	list_reagents = list(/datum/reagent/consumable/drink/limejuice = 100)

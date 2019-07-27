@@ -1004,36 +1004,36 @@ Defined in conflicts.dm of the #defines folder.
 		var/obj/item/tool/weldpack/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
+		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/storage/backpack/marine/engineerpack))
 		var/obj/item/storage/backpack/marine/engineerpack/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
+		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/reagent_container))
 		var/obj/item/reagent_container/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
+		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else

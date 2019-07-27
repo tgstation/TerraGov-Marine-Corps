@@ -18,7 +18,7 @@
 	create_reagents(5)
 
 /turf/proc/clean(atom/source)
-	if(source.reagents.has_reagent("water", 1))
+	if(source.reagents.has_reagent(/datum/reagent/water, 1))
 		clean_blood()
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))

@@ -427,7 +427,7 @@
 	var/datum/reagents/R = new/datum/reagents(max_water)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("water", max_water)
+	R.add_reagent(/datum/reagent/water, max_water)
 
 	var/obj/item/attachable/hydro_cannon/G = new(src)
 	G.icon_state = ""

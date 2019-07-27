@@ -373,7 +373,7 @@
 	GLOB.round_statistics.larval_growth_stings++
 
 	add_cooldown()
-	X.recurring_injection(A, "xeno_growthtoxin", XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
+	X.recurring_injection(A, /datum/reagent/toxin/xeno_growthtoxin, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 
 // ***************************************
 // *********** Spitter-y abilities
@@ -747,7 +747,7 @@
 
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
 
-	X.recurring_injection(A, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
 
 // ***************************************

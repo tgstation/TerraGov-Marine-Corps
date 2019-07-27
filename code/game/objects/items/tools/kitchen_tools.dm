@@ -47,10 +47,10 @@
 		reagents.trans_to(M, reagents.total_volume)
 		if(M == user)
 			visible_message("<span class='notice'>[user] eats some [loaded] from \the [src].</span>")
-			M.reagents.add_reagent("nutriment", 1)
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		else
 			visible_message("<span class='notice'>[user] feeds [M] some [loaded] from \the [src]</span>")
-			M.reagents.add_reagent("nutriment", 1)
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 		overlays.Cut()
 		return

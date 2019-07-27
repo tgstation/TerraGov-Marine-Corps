@@ -157,7 +157,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lastHolder = null
 	var/smoketime = 300
 	var/chem_volume = 30
-	var/list/list_reagents = list("nicotine" = 15)
+	var/list/list_reagents = list(/datum/reagent/nicotine = 15)
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/cigarette/Initialize()
@@ -266,15 +266,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "lit [name]"
 	attack_verb = list("burnt", "singed")
 	damtype = "fire"
-	if(reagents.get_reagent_amount("phoron")) // the phoron explodes when exposed to fire
+	if(reagents.get_reagent_amount(/datum/reagent/toxin/phoron)) // the phoron explodes when exposed to fire
 		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount("phoron") / 2.5, 1), get_turf(src), 0, 0)
+		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/phoron) / 2.5, 1), get_turf(src), 0, 0)
 		e.start()
 		qdel(src)
 		return
-	if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
+	if(reagents.get_reagent_amount(/datum/reagent/fuel)) // the fuel explodes, too, but much less violently
 		var/datum/effect_system/reagents_explosion/e = new()
-		e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
+		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/fuel) / 5, 1), get_turf(src), 0, 0)
 		e.start()
 		qdel(src)
 		return
