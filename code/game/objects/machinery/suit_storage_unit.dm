@@ -309,8 +309,8 @@
 
 
 /obj/machinery/suit_storage_unit/carbon_unit
-	starting_suit_type = /obj/item/clothing/suit/space/uscm
-	starting_helmet_type = /obj/item/clothing/head/helmet/space/uscm
+	starting_suit_type = /obj/item/clothing/suit/space/tgmc
+	starting_helmet_type = /obj/item/clothing/head/helmet/space/tgmc
 	starting_mask_type = /obj/item/clothing/mask/breath
 	starting_tank_type = /obj/item/tank/oxygen
 

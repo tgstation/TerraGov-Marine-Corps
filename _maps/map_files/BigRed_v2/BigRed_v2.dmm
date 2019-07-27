@@ -258,7 +258,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aaW" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Spaceport"
 	},
@@ -426,7 +426,7 @@
 /area/bigredv2/outside/space_port)
 "abx" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
@@ -558,7 +558,7 @@
 /area/bigredv2/outside/space_port)
 "abU" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
@@ -836,7 +836,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Telecommunications";
 	req_one_access_txt = "0"
@@ -1250,7 +1250,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "aem" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Marshal Office Prison";
 	req_one_access_txt = "0"
@@ -1259,7 +1259,7 @@
 /area/bigredv2/outside/marshal_office)
 "aen" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Marshal Office Prison";
 	req_one_access_txt = "0"
@@ -1267,7 +1267,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "aeo" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Marshal Office Prison Toilet"
 	},
@@ -1558,7 +1558,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "afi" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office Isolation"
 	},
@@ -1757,7 +1757,7 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "afP" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	icon_state = "door_locked";
 	locked = 1;
@@ -1768,7 +1768,7 @@
 /area/bigredv2/outside/marshal_office)
 "afQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	icon_state = "door_locked";
 	locked = 1;
@@ -1842,7 +1842,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "age" = (
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Lambda Lab Storage";
 	req_one_access_txt = "0"
@@ -1856,7 +1856,7 @@
 	dir = 2
 	},
 /obj/structure/foamedmetal,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "chem_lock";
 	name = "\improper Chemistry Lockdown"
 	},
@@ -1868,7 +1868,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Chemistry Lab";
 	req_access_txt = "0"
@@ -1902,7 +1902,7 @@
 /area/bigredv2/caves/lambda_lab)
 "agm" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
@@ -2006,7 +2006,7 @@
 /area/bigredv2/outside/space_port)
 "agy" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
@@ -2070,7 +2070,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "agJ" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshall Head Office";
 	req_access_txt = "0"
@@ -2090,7 +2090,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "agM" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Surgery";
 	req_access_txt = "0"
 	},
@@ -2367,7 +2367,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "ahB" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Surgery";
 	req_one_access_txt = "0"
@@ -2455,7 +2455,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "ahM" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Cell"
 	},
@@ -2563,7 +2563,7 @@
 /area/bigredv2/outside/marshal_office)
 "aih" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	icon_state = "door_locked";
 	locked = 1;
@@ -2573,7 +2573,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "aii" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office Equipment";
 	req_access_txt = "0"
@@ -2604,7 +2604,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Lambda Lab Maintenance";
 	req_one_access_txt = "0"
@@ -2692,7 +2692,7 @@
 	},
 /area/bigredv2/outside/nw)
 "aiC" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office Brig"
 	},
@@ -2764,7 +2764,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aiQ" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office"
 	},
@@ -2799,7 +2799,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aiU" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Lambda Lab Prison Restroom"
 	},
@@ -2880,7 +2880,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ajk" = (
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Lambda Lab Maintenance";
 	req_one_access_txt = "0"
@@ -2950,7 +2950,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "ajr" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Prisoner Room";
 	req_one_access_txt = "0"
@@ -3050,7 +3050,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 4;
 	icon_state = "door_locked";
 	locked = 1;
@@ -3129,7 +3129,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Break Room";
 	req_one_access_txt = "0"
 	},
@@ -3240,7 +3240,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "akh" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 4;
 	name = "\improper Marshal Office Interrogation";
 	req_access_txt = "0"
@@ -3318,7 +3318,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "akv" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office";
 	req_access_txt = "0"
@@ -3482,7 +3482,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "akR" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office";
 	req_access_txt = "0"
@@ -3499,7 +3499,7 @@
 /area/bigredv2/outside/marshal_office)
 "akU" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Office Complex 2";
 	name = "\improper Marshal Office Complex Shutters"
@@ -3623,7 +3623,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "alp" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office Evidence Room";
 	req_access_txt = "0"
@@ -3730,7 +3730,7 @@
 /area/bigredv2/caves)
 "alH" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "tcomms";
 	name = "\improper Telecommunications Shutters"
@@ -4030,7 +4030,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	name = "\improper Marshal Office Courtroom";
 	req_access_txt = "0"
 	},
@@ -4054,7 +4054,7 @@
 /area/bigredv2/outside/telecomm)
 "amx" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
@@ -4063,7 +4063,7 @@
 /area/bigredv2/outside/general_offices)
 "amy" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -4139,7 +4139,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "amM" = (
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -4156,7 +4156,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "amP" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Xenobiology";
 	req_access_txt = "0"
 	},
@@ -4174,7 +4174,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "amR" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Hydroponics";
 	req_access_txt = "0"
 	},
@@ -4224,7 +4224,7 @@
 /area/bigredv2/outside/medical)
 "amZ" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Greenhouse";
 	name = "\improper Greenhouse Shutters"
@@ -4232,7 +4232,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/hydroponics)
 "ana" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Marshal Office"
 	},
@@ -4339,7 +4339,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 4;
 	name = "\improper Lambda Lab Maintenance Storage";
 	req_one_access_txt = "0"
@@ -4426,7 +4426,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "anx" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	icon_state = "door_locked";
 	locked = 1;
@@ -4436,7 +4436,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "any" = (
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Marshal Office Checkpoint";
 	req_access_txt = "0"
@@ -4451,7 +4451,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office"
 	},
@@ -4510,7 +4510,7 @@
 /area/bigredv2/outside/general_offices)
 "anJ" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
 	},
@@ -4560,7 +4560,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "anR" = (
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -4617,7 +4617,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Xenobiology";
 	req_access_txt = "0"
 	},
@@ -4665,7 +4665,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Hydroponics";
 	req_access_txt = "0"
 	},
@@ -5046,7 +5046,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Dormitories EVA Maintenance";
 	req_one_access_txt = "0"
 	},
@@ -5076,7 +5076,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "apm" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Dormitories EVA";
 	req_one_access_txt = "0"
@@ -5134,7 +5134,7 @@
 /area/bigredv2/caves/lambda_lab)
 "apv" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "General Store";
 	name = "\improper General Store Shutters"
@@ -5187,7 +5187,7 @@
 /area/bigredv2/outside/medical)
 "apE" = (
 /obj/effect/decal/cleanable/blood/gibs,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
 	},
@@ -5216,7 +5216,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Marshal Office"
 	},
@@ -5224,7 +5224,7 @@
 /area/bigredv2/outside/marshal_office)
 "apI" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
 	},
@@ -5247,7 +5247,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "apM" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper Dormitories Lavatory"
 	},
@@ -5276,7 +5276,7 @@
 /area/bigredv2/outside/general_offices)
 "apQ" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Operations";
 	name = "\improper Operations Shutters"
@@ -5285,7 +5285,7 @@
 /area/bigredv2/outside/admin_building)
 "apS" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Library";
 	name = "\improper Library Shutters"
@@ -5656,7 +5656,7 @@
 /area/bigredv2/outside/general_offices)
 "aqT" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Bar Complex";
 	name = "\improper Bar Complex Shutters"
@@ -5665,7 +5665,7 @@
 /area/bigredv2/outside/bar)
 "aqV" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Kitchen";
 	name = "\improper Kitchen Shutters"
@@ -5818,7 +5818,7 @@
 /area/bigredv2/outside/general_offices)
 "arw" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -5903,7 +5903,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "arJ" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Biology Wing";
 	req_one_access_txt = "0"
 	},
@@ -6076,7 +6076,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "asi" = (
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Dormitories Tool Storage Maintenance";
 	req_one_access_txt = "0"
@@ -6088,7 +6088,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "ask" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Dormitories EVA";
 	req_one_access_txt = "0"
@@ -6176,7 +6176,7 @@
 /area/bigredv2/caves/lambda_lab)
 "asx" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
@@ -6244,7 +6244,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories"
 	},
@@ -6255,7 +6255,7 @@
 /area/bigredv2/outside/dorms)
 "asK" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
 	},
@@ -6304,7 +6304,7 @@
 /area/bigredv2/outside/general_offices)
 "asT" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
@@ -6320,7 +6320,7 @@
 /area/bigredv2/outside/general_offices)
 "asV" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
@@ -6427,7 +6427,7 @@
 /area/bigredv2/caves/lambda_lab)
 "atk" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	dir = 2;
 	id = "rad_door";
 	name = "\improper Radiation Shielding"
@@ -6490,7 +6490,7 @@
 /area/bigredv2/outside/medical)
 "atw" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
@@ -6543,7 +6543,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/secure{
+/obj/machinery/door/airlock/mainship/secure{
 	dir = 1;
 	icon_state = "door_locked";
 	id = "safe_room";
@@ -6565,7 +6565,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
 "atK" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Administration Office";
 	req_access_txt = "0"
@@ -6617,7 +6617,7 @@
 /area/bigredv2/caves/lambda_lab)
 "atP" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/almayer{
+/obj/machinery/door/poddoor/mainship{
 	id = "sci_br";
 	name = "\improper Lambda Observation Shutters"
 	},
@@ -6653,7 +6653,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
@@ -6662,7 +6662,7 @@
 /area/bigredv2/outside/medical)
 "atV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Medical Clinic CMO's Office";
 	req_one_access_txt = "0"
@@ -6671,7 +6671,7 @@
 /area/bigredv2/outside/medical)
 "atW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical{
+/obj/machinery/door/airlock/mainship/medical{
 	dir = 1;
 	name = "\improper Medical Clinic Morgue";
 	req_one_access_txt = "0"
@@ -6688,7 +6688,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "atZ" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Dormitories Bedroom"
 	},
 /turf/open/floor/wood,
@@ -6742,7 +6742,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	name = "\improper Lambda Lab Administration Office";
 	req_access_txt = "0"
 	},
@@ -6998,14 +6998,14 @@
 	},
 /area/bigredv2/outside/medical)
 "auU" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
 "auV" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories Tool Storage"
 	},
@@ -7049,7 +7049,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Administration Wing";
 	req_one_access_txt = "0"
@@ -7128,7 +7128,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "avl" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Break Room";
 	req_one_access_txt = "0"
@@ -7185,7 +7185,7 @@
 	},
 /area/bigredv2/outside/nw)
 "avu" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Medical Clinic Chemistry";
 	req_one_access_txt = "0"
@@ -7280,7 +7280,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
 "avO" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Relaxation Room";
 	req_one_access_txt = "0"
 	},
@@ -7494,7 +7494,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "awj" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Clinic Scanner Room";
 	req_one_access_txt = "0"
 	},
@@ -7740,7 +7740,7 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "axh" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories"
 	},
@@ -7833,7 +7833,7 @@
 /area/bigredv2/outside/medical)
 "axy" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic Treatment";
 	req_one_access_txt = "0"
 	},
@@ -7923,7 +7923,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "axR" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
@@ -7936,7 +7936,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories"
 	},
@@ -8033,7 +8033,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
@@ -8409,7 +8409,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Medical Clinic Treatment";
 	req_one_access_txt = "0"
@@ -8500,7 +8500,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Medical Clinic Power Station";
 	req_one_access_txt = "0"
 	},
@@ -8718,7 +8718,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Bar Maintenance";
 	req_one_access_txt = "0"
 	},
@@ -8859,14 +8859,14 @@
 /area/bigredv2/outside/dorms)
 "aAD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Restroom"
 	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aAE" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Recreation"
 	},
@@ -8911,7 +8911,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Bar Maintenance";
 	req_one_access_txt = "0"
 	},
@@ -9047,7 +9047,7 @@
 /area/bigredv2/outside/medical)
 "aBe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
@@ -9172,7 +9172,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Greenhouse";
 	req_one_access_txt = "0"
@@ -9331,7 +9331,7 @@
 	},
 /area/bigredv2/outside/c)
 "aBT" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Dormitories Storage"
 	},
 /turf/open/floor,
@@ -9388,7 +9388,7 @@
 /area/bigredv2/outside/ne)
 "aCe" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Greenhouse";
 	name = "\improper Greenhouse Shutters"
@@ -9477,7 +9477,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aCv" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Technical Lab";
 	req_one_access_txt = "0"
@@ -9496,7 +9496,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aCy" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Anomaly Chamber";
 	req_access_txt = "0"
@@ -9537,7 +9537,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Clinic Storage";
 	req_one_access_txt = "0"
 	},
@@ -9561,7 +9561,7 @@
 	},
 /area/bigredv2/outside/medical)
 "aCG" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Clinic Storage";
 	req_one_access_txt = "0"
 	},
@@ -9590,7 +9590,7 @@
 /area/bigredv2/outside/medical)
 "aCL" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
@@ -9613,7 +9613,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "aCQ" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories Restroom"
 	},
@@ -9634,7 +9634,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper Bar Maintenance";
 	req_one_access_txt = "0"
@@ -9705,7 +9705,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Library Backroom"
 	},
 /turf/open/floor/wood,
@@ -10056,7 +10056,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Bar Backroom"
 	},
@@ -10278,7 +10278,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/dorms)
 "aEN" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Toilet"
 	},
@@ -10514,7 +10514,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Clinic Operating Theatre";
 	req_one_access_txt = "0"
 	},
@@ -10604,7 +10604,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Dormitories Storage"
 	},
 /turf/open/floor,
@@ -10683,7 +10683,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
 "aGa" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Greenhouse Storage"
 	},
@@ -10723,7 +10723,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper Greenhouse Storage"
 	},
@@ -10909,7 +10909,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Dormitories"
 	},
@@ -11210,7 +11210,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
@@ -11254,7 +11254,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab Anomaly Lab";
 	req_one_access_txt = "0"
 	},
@@ -11567,7 +11567,7 @@
 /area/bigredv2/outside/library)
 "aII" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Library";
 	name = "\improper Library Shutters"
@@ -11765,7 +11765,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic";
 	req_one_access_txt = "0"
 	},
@@ -11777,7 +11777,7 @@
 	},
 /area/bigredv2/outside/c)
 "aJr" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Bar Backroom"
 	},
@@ -11791,7 +11791,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
@@ -11850,7 +11850,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
@@ -12133,7 +12133,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Virology Wing";
 	req_one_access_txt = "0"
@@ -12198,7 +12198,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
 	name = "\improper Lambda Lab Virology Wing";
 	req_one_access_txt = "0"
@@ -12357,7 +12357,7 @@
 /area/bigredv2/outside/c)
 "aKu" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Bar Complex";
 	name = "\improper Bar Complex Shutters"
@@ -12563,7 +12563,7 @@
 	},
 /area/bigredv2/outside/c)
 "aLe" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Command Complex"
 	},
 /turf/open/floor/tile/white,
@@ -12596,7 +12596,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Medical Command Complex"
 	},
 /turf/open/floor/tile/white,
@@ -12962,7 +12962,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aMq" = (
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Lambda Lab";
 	req_one_access_txt = "0"
 	},
@@ -13022,7 +13022,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research{
+/obj/machinery/door/airlock/mainship/research{
 	dir = 1;
 	name = "\improper Virology Lab Decontamination";
 	req_access_txt = "0"
@@ -13039,7 +13039,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
 "aME" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper General Store"
 	},
@@ -13052,7 +13052,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/comdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	name = "\improper Operations";
 	req_access_txt = "0"
 	},
@@ -13134,7 +13134,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aMX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 4;
 	name = "\improper Lambda Lab Virology Quarantine";
 	req_one_access_txt = "0"
@@ -13217,7 +13217,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "aNp" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper General Store"
 	},
@@ -13583,7 +13583,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aON" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Operations Bedroom"
 	},
 /turf/open/floor/wood,
@@ -13598,7 +13598,7 @@
 /area/bigredv2/outside/admin_building)
 "aOQ" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Operations";
 	name = "\improper Operations Shutters"
@@ -13618,7 +13618,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aOU" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 1;
 	name = "\improper Crew Habitation Complex"
 	},
@@ -13701,7 +13701,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/outside/library)
 "aPq" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Lambda Lab Anomaly Chamber";
 	req_access_txt = "0"
@@ -13730,7 +13730,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research{
+/obj/machinery/door/airlock/mainship/research{
 	dir = 1;
 	name = "\improper Virology Lab Decontamination";
 	req_access_txt = "0"
@@ -13999,7 +13999,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 4;
 	name = "\improper Lambda Lab Virology Quarantine";
 	req_one_access_txt = "0"
@@ -14199,7 +14199,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aRe" = (
-/obj/machinery/door/airlock/multi_tile/almayer/comdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	dir = 1;
 	name = "\improper Operations";
 	req_access_txt = "0"
@@ -14269,14 +14269,14 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRo" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Bar"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aRp" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Kitchen"
 	},
@@ -14306,7 +14306,7 @@
 /area/bigredv2/outside/hydroponics)
 "aRu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Library"
 	},
@@ -14470,7 +14470,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	name = "\improper Operations Maintenance";
 	req_access_txt = "0"
@@ -14488,14 +14488,14 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aSc" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Bar"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aSe" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Kitchen"
 	},
@@ -14611,7 +14611,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/virology)
 "aSA" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Virology Lab Cell";
 	req_access_txt = "0"
@@ -14681,7 +14681,7 @@
 /area/bigredv2/outside/general_store)
 "aSP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper General Store Security";
 	req_access_txt = "0"
@@ -14694,7 +14694,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	name = "\improper Operations";
 	req_access_txt = "0"
@@ -15368,7 +15368,7 @@
 /area/bigredv2/outside/w)
 "aUR" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "General Store";
 	name = "\improper General Store Shutters"
@@ -15604,7 +15604,7 @@
 	},
 /area/bigredv2/outside/w)
 "aVJ" = (
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper General Store"
 	},
@@ -15762,7 +15762,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper General Store"
 	},
@@ -15844,7 +15844,7 @@
 /area/bigredv2/outside/general_store)
 "aWC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Operations Armory";
 	req_access_txt = "0"
@@ -15905,7 +15905,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Virology Lab Chemistry";
 	req_access_txt = "0"
@@ -16074,7 +16074,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Office Complex"
 	},
@@ -16085,7 +16085,7 @@
 /area/bigredv2/outside/office_complex)
 "aXs" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
 	},
@@ -16106,7 +16106,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aXx" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Virology Lab Cell";
 	req_access_txt = "0"
@@ -16188,7 +16188,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "aXJ" = (
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 4;
 	name = "\improper General Store Storage";
 	req_one_access_txt = "0"
@@ -16293,7 +16293,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper General Store Maintenance";
 	req_one_access_txt = "0"
@@ -16379,7 +16379,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aYm" = (
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	name = "\improper Operations Office";
 	req_access_txt = "0"
@@ -16387,7 +16387,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aYo" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Operations Toilet"
 	},
 /turf/open/floor/freezer,
@@ -16629,7 +16629,7 @@
 /area/bigredv2/outside/chapel)
 "aZg" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
 	},
@@ -16642,7 +16642,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Chapel"
 	},
@@ -16655,7 +16655,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research{
+/obj/machinery/door/airlock/mainship/research{
 	name = "\improper Virology Lab Decontamination";
 	req_access_txt = "0"
 	},
@@ -16724,7 +16724,7 @@
 /area/bigredv2/outside/cargo)
 "aZy" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
@@ -16783,7 +16783,7 @@
 /area/bigredv2/outside/chapel)
 "aZL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
 	name = "\improper General Store Maintenance";
 	req_one_access_txt = "0"
@@ -16892,7 +16892,7 @@
 /area/bigredv2/outside/c)
 "bab" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
@@ -16934,7 +16934,7 @@
 /area/bigredv2/outside/office_complex)
 "bak" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
@@ -17039,7 +17039,7 @@
 /turf/open/floor/carpet,
 /area/bigredv2/outside/admin_building)
 "baI" = (
-/obj/machinery/door/airlock/multi_tile/almayer/comdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	name = "\improper Operations";
 	req_access_txt = "0"
 	},
@@ -17141,7 +17141,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbg" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Cargo Bay"
 	},
@@ -17405,7 +17405,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bck" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Private Office"
 	},
@@ -17492,7 +17492,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bcD" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Cargo Bay Offices"
 	},
@@ -17526,7 +17526,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	name = "\improper Operations Office";
 	req_access_txt = "0"
 	},
@@ -17654,7 +17654,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bdj" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Cargo Bay Offices";
 	req_one_access_txt = "0"
@@ -17671,7 +17671,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	name = "\improper Operations Meeting Room";
 	req_access_txt = "0"
 	},
@@ -17747,7 +17747,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "bdC" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Private Office"
 	},
 /turf/open/floor,
@@ -17931,7 +17931,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/comdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
 	name = "\improper Operations";
 	req_access_txt = "0"
 	},
@@ -17951,7 +17951,7 @@
 /area/bigredv2/outside/office_complex)
 "ben" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Robotics"
 	},
 /turf/open/floor,
@@ -17962,7 +17962,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Private Office"
 	},
@@ -18136,7 +18136,7 @@
 /area/bigredv2/outside/cargo)
 "beV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Cargo Offices"
 	},
@@ -18207,7 +18207,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Office Complex Storage"
 	},
 /turf/open/floor,
@@ -18356,7 +18356,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bfv" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Office Complex"
 	},
@@ -18434,7 +18434,7 @@
 /area/bigredv2/outside/office_complex)
 "bfQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Office Complex Janitor Room"
 	},
@@ -18473,7 +18473,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	name = "\improper Cargo Bay Security";
 	req_access_txt = "0"
 	},
@@ -18892,7 +18892,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/secure{
+/obj/machinery/door/airlock/mainship/secure{
 	icon_state = "door_locked";
 	locked = 1;
 	name = "\improper Emergency Vault";
@@ -19230,14 +19230,14 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "biD" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Office Complex"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "biE" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Office Complex Janitor Room"
 	},
@@ -19414,7 +19414,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bju" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Cargo Bay Storage";
 	req_one_access_txt = "0"
@@ -19576,7 +19576,7 @@
 /area/bigredv2/outside/cargo)
 "bjR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Cargo Bay Quartermaster";
 	req_one_access_txt = "0"
@@ -19662,7 +19662,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bko" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Cargo Bay Storage";
 	req_one_access_txt = "0"
@@ -19689,7 +19689,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -19700,7 +19700,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/filtration_plant)
 "bkw" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -19714,7 +19714,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -19727,7 +19727,7 @@
 	},
 /area/bigredv2/outside/se)
 "bkz" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Cargo Bay Quartermaster";
 	req_one_access_txt = "0"
@@ -19815,7 +19815,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bkP" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Storage";
 	req_one_access_txt = "0"
@@ -19960,7 +19960,7 @@
 /area/bigredv2/outside/s)
 "blw" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
@@ -20008,7 +20008,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "blF" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Air Filtration";
 	req_one_access_txt = "0"
@@ -20019,7 +20019,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
 "blK" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
@@ -20035,7 +20035,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
@@ -20368,7 +20368,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Storage";
 	req_one_access_txt = "0"
@@ -20490,7 +20490,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bnA" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -20572,7 +20572,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bnP" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
@@ -20653,7 +20653,7 @@
 /area/bigredv2/outside/filtration_plant)
 "bog" = (
 /obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
 	},
@@ -20661,7 +20661,7 @@
 /area/bigredv2/outside/filtration_plant)
 "boi" = (
 /obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/almayer{
+/obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
@@ -20673,7 +20673,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bol" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering SMES";
 	req_one_access_txt = "0"
@@ -20720,7 +20720,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Atmospherics Condenser";
 	req_one_access_txt = "0"
@@ -20787,7 +20787,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Engineering Complex"
 	},
@@ -20853,7 +20853,7 @@
 /area/bigredv2/outside/engineering)
 "boM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/almayer/secure{
+/obj/machinery/door/airlock/mainship/secure{
 	name = "\improper Engineering Secure Storage";
 	req_access_txt = "0"
 	},
@@ -20893,7 +20893,7 @@
 /area/bigredv2/outside/engineering)
 "boU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Chief Engineer's Office";
 	req_one_access_txt = "0"
@@ -20907,7 +20907,7 @@
 /area/bigredv2/outside/engineering)
 "boV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
@@ -20984,7 +20984,7 @@
 /area/bigredv2/outside/engineering)
 "bpk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering Tool Storage";
 	req_one_access_txt = "0"
@@ -21087,7 +21087,7 @@
 	},
 /area/bigredv2/outside/sw)
 "bpz" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering Lockers";
 	req_one_access_txt = "0"
@@ -21096,7 +21096,7 @@
 /area/bigredv2/outside/engineering)
 "bpA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering Lockers";
 	req_one_access_txt = "0"
@@ -21211,7 +21211,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Water Filtration";
 	req_one_access_txt = "0"
@@ -21264,7 +21264,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engineering Break Room";
 	req_one_access_txt = "0"
@@ -21362,7 +21362,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Atmospherics Condenser Water Filtration";
 	req_one_access_txt = "0"
@@ -21500,7 +21500,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engineering Workshop";
 	req_one_access_txt = "0"
@@ -21534,7 +21534,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bqP" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Engine Reactor Control";
 	req_one_access_txt = "0"
@@ -21629,7 +21629,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brf" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engineering Workshop";
 	req_one_access_txt = "0"
@@ -22006,7 +22006,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/secure{
+/obj/machinery/door/airlock/mainship/secure{
 	dir = 1;
 	name = "\improper Engine Reactor";
 	req_access_txt = "0"
@@ -22034,7 +22034,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engine Reactor Control";
 	req_one_access_txt = "0"
@@ -22042,14 +22042,14 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bsX" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bsY" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Atmospherics Condenser"
 	},
@@ -22215,7 +22215,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Engineering Complex"
 	},
@@ -22313,7 +22313,7 @@
 /area/bigredv2/outside/engineering)
 "bua" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 4;
 	name = "\improper Engineering Complex"
 	},
@@ -22535,7 +22535,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Power Substation";
 	req_one_access_txt = "0"
@@ -22618,7 +22618,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 1;
 	name = "\improper Power Substation";
 	req_one_access_txt = "0"
@@ -22726,7 +22726,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Eta Lab Storage Bay";
 	req_one_access_txt = "0"
 	},
@@ -22745,7 +22745,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/almayer/research{
+/obj/machinery/door/airlock/mainship/research{
 	dir = 1;
 	name = "\improper Eta Lab Decontamination";
 	req_access_txt = "0"
@@ -22928,7 +22928,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Robotics";
 	req_access_txt = "0"
@@ -23235,7 +23235,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Technical Storage";
 	req_access_txt = "0"
@@ -23244,7 +23244,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Eta Lab Dormitories"
 	},
@@ -23326,7 +23326,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Robotics";
 	req_access_txt = "0"
@@ -23433,7 +23433,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Eta Lab Armory";
 	req_access_txt = "0"
@@ -23573,7 +23573,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzQ" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Server";
 	req_access_txt = "0"
@@ -23582,7 +23582,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass{
 	dir = 1;
 	name = "\improper Eta Lab Security Office";
 	req_access_txt = "0"
@@ -23716,7 +23716,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAw" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Server";
 	req_access_txt = "0"
@@ -23767,7 +23767,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Director's Office";
 	req_access_txt = "0"
@@ -24015,7 +24015,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/maint{
+/obj/machinery/door/airlock/mainship/maint{
 	name = "\improper Eta Lab Maintenance Storage";
 	req_one_access_txt = "0"
 	},
@@ -24061,7 +24061,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Biology Laboratory";
 	req_access_txt = "0"
@@ -24069,7 +24069,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBH" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Cell";
 	req_access_txt = "0"
@@ -24118,7 +24118,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBS" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Cell";
 	req_access_txt = "0"
@@ -24310,7 +24310,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Xenobiology Lab";
 	req_access_txt = "0"
@@ -24415,7 +24415,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/almayer/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Eta Lab";
 	req_one_access_txt = "0"
 	},
@@ -24654,7 +24654,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Research Office";
 	req_access_txt = "0"
@@ -24662,7 +24662,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bDP" = (
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 1;
 	name = "\improper Eta Lab Canteen";
 	req_access_txt = "0"
@@ -24759,7 +24759,7 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEj" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "\improper Eta Lab Restroom"
 	},
@@ -24868,7 +24868,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/almayer/research/glass{
+/obj/machinery/door/airlock/mainship/research/glass{
 	dir = 4;
 	name = "\improper Eta Lab Relaxation";
 	req_access_txt = "0"
@@ -25147,14 +25147,14 @@
 	},
 /area/bigredv2/outside/nw)
 "fWy" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "ggV" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Chief Engineer's Office";
 	req_one_access_txt = "0"
@@ -25197,7 +25197,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/nw)
 "gQc" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engineering Workshop";
 	req_one_access_txt = "0"
@@ -25221,7 +25221,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	dir = 4;
 	name = "\improper Engineering SMES";
 	req_one_access_txt = "0"
@@ -25713,7 +25713,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "qfc" = (
-/obj/machinery/door/airlock/multi_tile/almayer/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Cargo Bay"
 	},

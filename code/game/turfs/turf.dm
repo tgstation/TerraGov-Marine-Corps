@@ -539,7 +539,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/open/floor/plating/catwalk/can_dig_xeno_tunnel()
 	return FALSE
 
-/turf/open/floor/almayer/research/containment/can_dig_xeno_tunnel()
+/turf/open/floor/mainship/research/containment/can_dig_xeno_tunnel()
 	return FALSE
 
 /turf/open/ground/jungle/can_dig_xeno_tunnel()

@@ -300,10 +300,10 @@
 	return
 
 
-/obj/machinery/door/firedoor/theseus
+/obj/machinery/door/firedoor/mainship
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
-	icon = 'icons/obj/doors/almayer/purinadoor.dmi'
+	icon = 'icons/obj/doors/mainship/purinadoor.dmi'
 	icon_state = "door_open"
 	openspeed = 4
 

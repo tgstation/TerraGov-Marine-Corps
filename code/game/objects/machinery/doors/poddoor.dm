@@ -95,21 +95,21 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 
-/obj/machinery/door/poddoor/almayer
-	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+/obj/machinery/door/poddoor/mainship
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/closed/wall,
-		/obj/structure/window/framed/almayer,
+		/obj/structure/window/framed/mainship,
 		/obj/machinery/door/airlock)
 
-/obj/machinery/door/poddoor/almayer/Initialize()
+/obj/machinery/door/poddoor/mainship/Initialize()
 	relativewall_neighbours()
 	return ..()
 
 
 /obj/machinery/door/poddoor/timed_late
-	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
 	use_power = FALSE
 
