@@ -38,6 +38,9 @@ GLOBAL_LIST_EMPTY(all_languages)
 GLOBAL_LIST_EMPTY(all_species)
 
 GLOBAL_LIST_EMPTY_TYPED(xeno_caste_datums, /list/datum/xeno_caste)
+GLOBAL_LIST_INIT(xeno_types_tier_one, list(/mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender))
+GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/spitter, /mob/living/carbon/xenomorph/hivelord, /mob/living/carbon/xenomorph/carrier))
+GLOBAL_LIST_INIT(xeno_types_tier_three, list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/praetorian, /mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/Defiler, /mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/shrike))
 
 GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
 

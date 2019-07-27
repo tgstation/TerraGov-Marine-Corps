@@ -5917,7 +5917,7 @@
 "amn" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "warnwhite"
@@ -7397,7 +7397,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /obj/item/radio/intercom/general{
 	icon_state = "intercom";
 	dir = 8
@@ -7770,7 +7770,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -15095,7 +15095,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -17554,7 +17554,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
@@ -17660,7 +17660,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /obj/structure/closet/walllocker/emerglocker{
 	dir = 1
 	},
@@ -21403,7 +21403,7 @@
 	},
 /area/sulaco/hallway/central_hall3)
 "aPW" = (
-/turf/closed/wall/almayer/outer,
+/turf/closed/wall/mainship/outer,
 /area/space)
 "aPX" = (
 /obj/machinery/door/poddoor{

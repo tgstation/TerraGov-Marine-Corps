@@ -104,7 +104,7 @@
 
 
 /obj/item/book/codebook
-	name = "Theseus Code Book"
+	name = "Ship Code Book"
 	unique = TRUE
 	dat = ""
 

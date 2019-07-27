@@ -72,7 +72,7 @@
 /mob/living/simple_animal/parrot/Initialize()
 	. = ..()
 	if(!ears)
-		ears = new /obj/item/radio/headset/almayer/mcom(src)
+		ears = new /obj/item/radio/headset/mainship/mcom(src)
 
 	parrot_sleep_dur = parrot_sleep_max //In case someone decides to change the max without changing the duration var
 
@@ -556,7 +556,7 @@
 
 
 /mob/living/simple_animal/parrot/Poly/Initialize()
-	ears = new /obj/item/radio/headset/almayer/mt(src)
+	ears = new /obj/item/radio/headset/mainship/mt(src)
 	available_channels = list(RADIO_TOKEN_ENGINEERING)
 	Read_Memory()
 	return ..()

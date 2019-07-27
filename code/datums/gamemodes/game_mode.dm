@@ -294,9 +294,7 @@
 			new /obj/effect/forcefield/fog(T)
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
-	switch(SSmapping.configs[GROUND_MAP].map_name)
-		if(MAP_PRISON_STATION)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 50 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 50 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 
