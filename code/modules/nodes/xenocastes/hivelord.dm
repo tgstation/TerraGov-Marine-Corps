@@ -34,6 +34,7 @@
 
 		if(!locate(/obj/effect/alien/weeds/node) in range(1, parentmob2))
 			plantweeds.action_activate()
+		/*
 		else
 
 			var/got_wall = FALSE
@@ -45,7 +46,7 @@
 				var/turf/T = get_turf(parentmob2)
 				T.ChangeTurf(/turf/closed/wall/resin)
 				return //We plopped a thicc wall, can't build anything else here
-
+		*/
 	var/turf/T2 = get_turf(parentmob2)
 	if(T2.check_alien_construction(parentmob2))
 		var/turf/T = get_turf(parentmob2)
