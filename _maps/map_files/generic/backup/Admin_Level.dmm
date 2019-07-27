@@ -805,46 +805,46 @@
 /turf/closed/wall/indestructible,
 /area/centcom)
 "cw" = (
-/turf/open/floor/mainship{
+/turf/open/floor/almayer{
 	dir = 9;
 	icon_state = "red"
 	},
 /area/centcom)
 "cx" = (
-/turf/open/floor/mainship{
+/turf/open/floor/almayer{
 	dir = 1;
 	icon_state = "red"
 	},
 /area/centcom)
 "cy" = (
-/turf/open/floor/mainship{
+/turf/open/floor/almayer{
 	dir = 5;
 	icon_state = "red"
 	},
 /area/centcom)
 "cz" = (
-/turf/open/floor/mainship{
+/turf/open/floor/almayer{
 	icon_state = "test_floor4"
 	},
 /area/centcom)
 "cA" = (
 /obj/effect/AINode/debug,
-/turf/open/floor/mainship,
+/turf/open/floor/almayer,
 /area/centcom)
 "cB" = (
-/turf/open/floor/mainship{
+/turf/open/floor/almayer{
 	dir = 10;
 	icon_state = "red"
 	},
 /area/centcom)
 "cC" = (
-/turf/open/floor/mainship{
+/turf/open/floor/almayer{
 	dir = 2;
 	icon_state = "red"
 	},
 /area/centcom)
 "cD" = (
-/turf/open/floor/mainship{
+/turf/open/floor/almayer{
 	dir = 6;
 	icon_state = "red"
 	},
