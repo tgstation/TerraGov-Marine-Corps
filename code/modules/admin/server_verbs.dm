@@ -315,9 +315,7 @@
 	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")
 		return
 
-	var/list/gamemode_winstates = SSticker.mode.round_end_states + list("Custom", "Admin Intervention")	
-
-	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in gamemode_winstates
+	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in SSticker.mode.round_end_states + list("Custom", "Admin Intervention")	
 	if(!winstate)
 		return
 
