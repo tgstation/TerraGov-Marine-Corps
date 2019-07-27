@@ -30,9 +30,6 @@
 		)
 
 /mob/living/carbon/xenomorph/drone/fun
-	caste_base_type = /mob/living/carbon/xenomorph/drone/fun
-	icon_state =  "Fun Drone Walking"
-	pixel_x = 4
-	old_x = 4
-	pixel_y = -14
-	old_y = -14
+    icon_state =  "Fun Drone Walking"
+    pixel_y = -14
+    old_y = -14

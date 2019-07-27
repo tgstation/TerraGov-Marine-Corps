@@ -51,15 +51,6 @@
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-/mob/living/carbon/xenomorph/drone/fun/mature
-	upgrade = XENO_UPGRADE_ONE
-
-/mob/living/carbon/xenomorph/drone/fun/elder
-	upgrade = XENO_UPGRADE_TWO
-
-/mob/living/carbon/xenomorph/drone/fun/ancient
-	upgrade = XENO_UPGRADE_THREE
-
 /mob/living/carbon/xenomorph/carrier/mature
 	upgrade = XENO_UPGRADE_ONE
 
