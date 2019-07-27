@@ -16,10 +16,6 @@
 	var/segment_time = 15 SECONDS // time to start the hack 
 	var/printing_time = 15 SECONDS // time to print a disc 
 	
-	// var/generate_time = 3 SECONDS // time for the machine to generate the disc
-	// var/segment_time = 1 SECONDS // time to start the hack 
-	// var/printing_time = 5 SECONDS // time to print a disc 
-
 	var/total_segments = 5 // total number of times the hack is required
 	var/completed_segments = 0 // what segment we are on, (once this hits total, disc is printed)
 	var/current_timer
