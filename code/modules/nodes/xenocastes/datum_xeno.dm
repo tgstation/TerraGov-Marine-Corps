@@ -31,7 +31,7 @@
 	parentmob.away_time = 200 //No grabbing it now, haven't handled ckey transfer yet for ai behavior
 
 	//If we aren't on a stack of fire and not already resting, we'll go and try to put out the fire, very effective fire!
-	if(parentmob.fire_stacks >= 3 && parentmob.canmove && !locate(/obj/effect/particle_effect/fire) in get_turf(parentmob))
+	if(parentmob.fire_stacks >= 3 && parentmob.canmove && !locate(/obj/effect/particle_effect/fire) in get_turf(parentmob) && prob(100 - ((parentmob.health / parentmob.maxHealth) * 100)))
 		parentmob.resist_fire()
 
 	if(parentmob.resting)
@@ -93,9 +93,10 @@
 
 /datum/ai_behavior/xeno/proc/HandleAbility()
 	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
-	if(!parentmob2.stat) //Crit or dead
-		return
+	if(!parentmob2.stat || !parentmob2.canmove) //Crit or dead
+		return FALSE
 	ability_tick_threshold++
+	return TRUE
 
 /datum/ai_behavior/xeno/HandleObstruction()
 

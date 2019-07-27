@@ -139,10 +139,20 @@
 				return(pick(shuffle(CARDINAL_ALL_DIRS)))
 
 /datum/action_state/hunt_and_destroy/Process()
-	if(!SSai.is_suicidal && (parent_ai.parentmob.health < (parent_ai.parentmob.maxHealth * SSai.retreat_health_threshold))) //Abort attack let's run!
-		parent_ai.action_completed(DISENGAGE)
-		qdel(src)
-		return
+	var/datum/ai_behavior/xeno/parent_ai2 = parent_ai
+	if(!SSai.is_suicidal) //If xenos aren't suicidal, check for low health and if on fire
+		if(parent_ai.parentmob.health < (parent_ai.parentmob.maxHealth * SSai.retreat_health_threshold)) //Abort attack let's run!
+			parent_ai.action_completed(DISENGAGE)
+			qdel(src)
+			return
+
+		//We're on fire, let's get a move on out of here like true loreful xenos (unless its a ravager then screw you)
+		var/mob/living/carbon/xenomorph/parentmob2 = parent_ai.parentmob
+		if(!(parentmob2.xeno_caste.caste_flags && CASTE_FIRE_IMMUNE) && prob(2 * parentmob2.fire_stacks * (parentmob2.xeno_caste.fire_resist)))
+			parent_ai.action_completed(DISENGAGE)
+			qdel(src)
+			return
+
 	if(!atomtowalkto)
 		var/list/potential_enemies = cheap_get_humans_near(parent_ai.parentmob, 10)
 		if(potential_enemies.len)
@@ -151,7 +161,6 @@
 			parent_ai.action_completed(NO_ENEMIES_FOUND) //No enemies located, back to scouting
 			return
 	if(get_dist(parent_ai.parentmob, atomtowalkto) <= 1)
-		var/datum/ai_behavior/xeno/parent_ai2 = parent_ai
 		if(istype(parent_ai2))
 			parent_ai2.attack_target(atomtowalkto)
 	if(CanComplete())

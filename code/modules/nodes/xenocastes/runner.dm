@@ -15,7 +15,9 @@
 	pounce.owner = parentmob
 
 /datum/ai_behavior/xeno/runner/HandleAbility()
-	..()
+	. = ..()
+	if(!.)
+		return
 	if(istype(action_state, /datum/action_state/hunt_and_destroy))
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
 		if((get_dist(parentmob, action_state2.atomtowalkto) > 1) && istype(action_state2.atomtowalkto, /mob/living/carbon))
