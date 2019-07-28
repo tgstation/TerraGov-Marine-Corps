@@ -176,11 +176,11 @@
 	switch(marines_per_xeno)
 		if(0)
 			return check_finished() //No more marines.
-		if(0 to 1) //Same number of marines and xenos, or more xenos.
+		if(0 to 3) //Xenos grow up until they are a third the number of marines.
 			return
-		if(1 to 4)
+		if(3 to 5)
 			HS.stored_larva++
-		else
+		else //If there's more than 5 marines per xenos, then xenos spawn in larger quantities.
 			HS.stored_larva += CLAMP(round(marines_per_xeno * 0.2), 1, num_humans - num_xenos)
 
 
