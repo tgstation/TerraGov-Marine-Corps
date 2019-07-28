@@ -196,6 +196,14 @@
 		var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point.loc)
 		new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 		"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
+
+		// Try to find someone for the xeno
+		var/xeno_candidate = get_alien_candidate()
+		if(!xeno_candidate)
+			return
+
+		transfer_xeno(xeno_candidate, new_xeno)
+		
 	return TRUE
 
 
