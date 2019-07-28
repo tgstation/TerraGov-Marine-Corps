@@ -38,9 +38,6 @@
 		to_chat(user, "<span class='notice'>You deactivate the pinpointer</span>")
 
 /obj/item/pinpointer/process()
-	if(!active)
-		STOP_PROCESSING(SSobj, src)
-		return
 	if(!target)
 		icon_state = "pinonnull"
 		active = FALSE
