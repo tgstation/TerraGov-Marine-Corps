@@ -7,6 +7,18 @@
 	else		return dy + (0.5*dx)
 
 
+
+/*
+Parameters explained
+[turf/epicenter]: 		Turf to center the explosion from
+[devastation_range]: 	Causes sev 1 ex_act
+[heavy_impact_range]: 	Causes sev 2 ex_act
+[light_impact_range]: 	Causes Sev 3 ex_act
+[flash_range]: 			Not used, except for range calculations
+[adminlog = TRUE]: 		Should there be an admin log for this explosion
+[z_transfer = FALSE]: 	Not used
+[flame_range = 0]: 		Turfs within this range have a 40% chance to catch fire, also sev 4 ex_act
+*/
 /proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, z_transfer = FALSE, flame_range = 0)
 	spawn(0)
 		epicenter = get_turf(epicenter)
