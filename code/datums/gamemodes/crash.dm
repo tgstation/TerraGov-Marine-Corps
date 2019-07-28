@@ -3,7 +3,7 @@
 /datum/game_mode/crash
 	name = "Crash"
 	config_tag = "Crash"
-	required_players = 0
+	required_players = 3
 	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
@@ -83,9 +83,9 @@
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
 		return FALSE
 
-	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
+	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates[shuttle_id]
 	var/obj/docking_port/stationary/L = SSshuttle.getDock("canterbury_loadingdock")
-	shuttle = SSshuttle.action_load(S, L)
+	shuttle = SSshuttle.action_load(ST, L)
 
 	// Reset all spawnpoints after spawning the ship
 	GLOB.marine_spawns_by_job = shuttle.marine_spawns_by_job
@@ -94,6 +94,25 @@
 	GLOB.latejoin = shuttle.latejoins
 	GLOB.latejoin_cryo = shuttle.latejoins
 	GLOB.latejoin_gateway = shuttle.latejoins
+	
+	var/list/validdocks = list()
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(!shuttle.check_dock(S, silent=TRUE))
+			continue
+		validdocks += S.name
+
+	var/dock = pick(validdocks)
+
+	var/obj/docking_port/stationary/target
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(S.name == dock)
+			target = S
+			break
+
+	if(!target)
+		CRASH("Unable to get a valid shuttle target!")
+		return
+	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
 
 	// Create xenos
 	var/number_of_xenos = length(xenomorphs)
@@ -104,7 +123,6 @@
 			transform_ruler(M, number_of_xenos > HN.xenos_per_queen)
 		else
 			transform_xeno(M)
-
 
 
 /datum/game_mode/crash/setup()
@@ -127,32 +145,12 @@
 
 /datum/game_mode/crash/post_setup()
 	. = ..()
-
-	var/list/validdocks = list()
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!shuttle.check_dock(S, silent=TRUE))
-			continue
-		validdocks += S.name
-
-	var/dock = pick(validdocks)
-
-	var/obj/docking_port/stationary/target
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.name == dock)
-			target = S
-			break
-
-	if(!target)
-		CRASH("Unable to get a valid shuttle target!")
-		return
-
 	var/list/xeno_silo_spawns = GLOB.xeno_resin_silo_turfs.Copy()
 	for(var/i in 1 to 3)
 		var/turf/loc_to_spawn_silo = pick(xeno_silo_spawns)
 		new /obj/structure/resin/silo(loc_to_spawn_silo)
 		xeno_silo_spawns -= loc_to_spawn_silo
 
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES) 
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 
 /datum/game_mode/crash/announce()
