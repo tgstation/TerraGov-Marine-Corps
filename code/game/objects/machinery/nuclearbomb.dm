@@ -50,9 +50,10 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		updateUsrDialog()
 
 /obj/machinery/nuclearbomb/proc/set_victory_condition()
-	if(iscrashgamemode(SSticker.mode))
-		var/datum/game_mode/crash/C = SSticker.mode
-		C.planet_nuked = TRUE
+	if(!iscrashgamemode(SSticker.mode))
+		return
+	var/datum/game_mode/crash/C = SSticker.mode
+	C.planet_nuked = TRUE
 
 
 /obj/machinery/nuclearbomb/proc/explode()
