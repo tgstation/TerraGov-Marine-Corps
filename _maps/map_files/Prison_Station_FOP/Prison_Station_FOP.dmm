@@ -1911,12 +1911,6 @@
 /obj/item/stack/rods,
 /turf/open/floor/plating,
 /area/prison/research/secret/bioengineering)
-"ahM" = (
-/obj/structure/xenoautopsy/tank/larva{
-	pixel_y = 7
-	},
-/turf/open/floor/prison/marked,
-/area/prison/research/secret/bioengineering)
 "ahN" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/security/monitoring/maxsec/panopticon)
@@ -11560,17 +11554,7 @@
 /area/prison/recreation/highsec/n)
 "aFc" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison{
-	icon_state = "kitchen"
-	},
-/area/prison/recreation/highsec/n)
-"aFd" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/prison{
-	icon_state = "kitchen"
-	},
+/turf/open/floor/prison,
 /area/prison/recreation/highsec/n)
 "aFe" = (
 /obj/structure/sink{
@@ -17198,9 +17182,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/highsec/north/south)
-"aRX" = (
-/turf/open/floor/prison/cleanmarked,
-/area/prison/cellblock/highsec/north/south)
 "aRY" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
@@ -17214,7 +17195,7 @@
 "aRZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison/cleanmarked,
+/turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/north/south)
 "aSb" = (
 /obj/structure/cable{
@@ -17551,16 +17532,16 @@
 /turf/open/floor/prison/kitchen,
 /area/prison/cellblock/highsec/north/south)
 "aSZ" = (
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/prison/sterilewhite,
 /area/prison/cellblock/highsec/north/south)
 "aTa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/prison/sterilewhite,
 /area/prison/cellblock/highsec/north/south)
 "aTb" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/prison/sterilewhite,
 /area/prison/cellblock/highsec/north/south)
 "aTc" = (
 /obj/machinery/shower{
@@ -19592,7 +19573,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/prison/sterilewhite,
 /area/prison/cellblock/highsec/north/south)
 "aXV" = (
 /obj/machinery/shower{
@@ -19623,7 +19604,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
 	},
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/prison/sterilewhite,
 /area/prison/cellblock/highsec/north/south)
 "aXY" = (
 /obj/machinery/alarm,
@@ -28936,7 +28917,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/prison/sterilewhite,
+/turf/open/floor/prison{
+	icon_state = "kitchen"
+	},
 /area/prison/holding/holding1)
 "btM" = (
 /obj/machinery/light/small{
@@ -29462,7 +29445,9 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/turf/open/floor/prison/sterilewhite,
+/turf/open/floor/prison{
+	icon_state = "kitchen"
+	},
 /area/prison/holding/holding1)
 "buZ" = (
 /obj/structure/cable{
@@ -30920,7 +30905,9 @@
 	dir = 4
 	},
 /obj/machinery/light/small,
-/turf/open/floor/prison/sterilewhite,
+/turf/open/floor/prison{
+	icon_state = "kitchen"
+	},
 /area/prison/holding/holding1)
 "byM" = (
 /obj/structure/cable{
@@ -30998,7 +30985,9 @@
 /area/prison/cellblock/lowsec/se)
 "byU" = (
 /obj/structure/toilet,
-/turf/open/floor/prison/sterilewhite,
+/turf/open/floor/prison{
+	icon_state = "kitchen"
+	},
 /area/prison/holding/holding1)
 "byV" = (
 /obj/structure/cable{
@@ -31939,8 +31928,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	icon_state = "kitchen"
 	},
 /area/prison/holding/holding2)
 "bBn" = (
@@ -34282,13 +34270,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/laundry)
-"bGo" = (
-/turf/open/floor/prison/marked,
-/area/prison/cellblock/highsec/south/north)
 "bGp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/prison/marked,
+/turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
 "bGr" = (
 /obj/machinery/vending/security,
@@ -35792,8 +35777,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	icon_state = "kitchen"
 	},
 /area/prison/holding/holding2)
 "bJU" = (
@@ -36475,8 +36459,7 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	icon_state = "kitchen"
 	},
 /area/prison/holding/holding2)
 "bLF" = (
@@ -37268,8 +37251,7 @@
 "bNG" = (
 /obj/structure/toilet,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	icon_state = "kitchen"
 	},
 /area/prison/holding/holding2)
 "bNH" = (
@@ -37403,7 +37385,7 @@
 	opacity = 0
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
+	icon_state = "bright_clean2";
 	dir = 10
 	},
 /area/prison/holding/holding1)
@@ -39265,13 +39247,13 @@
 	},
 /area/prison/recreation/highsec/s)
 "bSw" = (
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/prison,
 /area/prison/recreation/highsec/s)
 "bSx" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/prison,
 /area/prison/recreation/highsec/s)
 "bSy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -39949,7 +39931,7 @@
 /area/prison/recreation/highsec/s)
 "bUd" = (
 /obj/effect/landmark/corpsespawner/prison_security,
-/turf/open/floor/prison/kitchen,
+/turf/open/floor/prison,
 /area/prison/recreation/highsec/s)
 "bUe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -40549,7 +40531,7 @@
 	opacity = 0
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
+	icon_state = "bright_clean2";
 	dir = 10
 	},
 /area/prison/holding/holding2)
@@ -47125,25 +47107,6 @@
 	},
 /turf/open/floor/wood,
 /area/prison/parole/protective_custody)
-"cls" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/prison/cellblock/mediumsec/north)
 "clt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -52674,16 +52637,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/highsec/north/south)
-"eIn" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/prison,
-/area/prison/cellblock/mediumsec/north)
 "eLE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -52975,6 +52928,9 @@
 	dir = 4
 	},
 /area/prison/cellblock/highsec/north/south)
+"kGQ" = (
+/turf/open/floor/prison,
+/area/prison/recreation/highsec/n)
 "kPu" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison/darkred/full,
@@ -80323,7 +80279,7 @@ aBg
 aBg
 aBg
 aFc
-aCz
+kGQ
 aBg
 aBg
 aBj
@@ -80579,7 +80535,7 @@ apl
 aBg
 aCy
 aBg
-aFd
+aCq
 aFc
 aBg
 aCy
@@ -80592,7 +80548,7 @@ aLO
 aDS
 aPc
 aES
-aRX
+aDS
 aSZ
 aSZ
 aSZ
@@ -80631,7 +80587,7 @@ bwJ
 bwJ
 bwJ
 bwJ
-bGo
+bwH
 byC
 bGf
 bwH
@@ -80849,7 +80805,7 @@ aNh
 aNK
 aPl
 aES
-aRX
+aDS
 aSZ
 aUf
 aVw
@@ -80888,7 +80844,7 @@ bwK
 bwK
 bwK
 bwJ
-bGo
+bwH
 byC
 bIF
 bJG
@@ -81363,7 +81319,7 @@ aLO
 aDS
 aPc
 aES
-aRX
+aDS
 aTb
 aSZ
 aSZ
@@ -81402,7 +81358,7 @@ bwJ
 bwJ
 bwJ
 bwJ
-bGo
+bwH
 byC
 bGf
 bwH
@@ -88111,8 +88067,8 @@ cfn
 ccV
 ccV
 cae
-cls
-eIn
+sRe
+nOc
 cnb
 njY
 njY
@@ -98271,7 +98227,7 @@ afS
 afw
 afS
 afS
-ahM
+afv
 afS
 afw
 afM
