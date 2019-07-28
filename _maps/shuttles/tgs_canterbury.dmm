@@ -608,6 +608,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/marine_selector/clothes/synth,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
@@ -1784,17 +1785,6 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"TA" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/shower,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury/general)
 "VH" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "port_umbilical_outer";
@@ -1810,6 +1800,17 @@
 "Wo" = (
 /turf/closed/wall/mainship,
 /area/shuttle/canterbury/medical)
+"XR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/shower,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury/general)
 
 (1,1,1) = {"
 aa
@@ -1956,7 +1957,7 @@ aX
 bm
 by
 bH
-TA
+XR
 cc
 ck
 cv
