@@ -1,5 +1,0 @@
-author: "ma44"
-delete-after: True
-changes: 
-  - bugfix: "Ravager's now actually gain rage on harm slashing"
-  - bugfix: "Defiler's neuroinjectors now inject neuro on disarm and harm attacks"
