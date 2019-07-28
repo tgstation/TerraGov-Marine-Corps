@@ -30,8 +30,8 @@
 		return
 	go_out()
 
-/obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/M, mob/user)
 	if (M.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+/obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/M, mob/user)
 		return
 	if (occupant)
 		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")
@@ -46,6 +46,8 @@
 		qdel(O)
 		
 /obj/machinery/bodyscanner/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
 	move_inside_wrapper(M, user)
 
 /obj/machinery/bodyscanner/verb/move_inside()

@@ -432,7 +432,7 @@
 		return
 	go_out()
 
-/obj/machinery/cryopod/proc/move_inside_wrapper(mob/M, mob/user)
+/obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/M, mob/user)
 	if(user.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
 		return
 
@@ -443,6 +443,8 @@
 	climb_in(M, user)
 
 /obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
 	move_inside_wrapper(M, user)
 
 /obj/machinery/cryopod/verb/move_inside()

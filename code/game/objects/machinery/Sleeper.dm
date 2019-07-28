@@ -450,8 +450,8 @@
 		return
 	go_out()
 
-/obj/machinery/sleeper/proc/move_inside_wrapper(mob/M, mob/user)
 	if(M.stat != CONSCIOUS || !ishuman(M))
+/obj/machinery/sleeper/proc/move_inside_wrapper(mob/living/M, mob/user)
 		return
 
 	if(occupant)
@@ -480,6 +480,8 @@
 		qdel(O)
 
 /obj/machinery/sleeper/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
 	move_inside_wrapper(M, user)
 
 /obj/machinery/sleeper/verb/move_inside()

@@ -655,7 +655,7 @@
 				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
 		go_out()
 
-/obj/machinery/autodoc/proc/move_inside_wrapper(mob/M, mob/user)
+/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/M, mob/user)
 	if(M.incapacitated() || !ishuman(M))
 		return
 
@@ -694,6 +694,8 @@
 			qdel(O)
 
 /obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
 	move_inside_wrapper(M, user)
 
 /obj/machinery/autodoc/verb/move_inside()
