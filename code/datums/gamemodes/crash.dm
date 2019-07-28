@@ -222,7 +222,7 @@
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(!num_xenos && num_humans && world.time < CRASH_MINIMUM_TIME + SSticker.round_start_time && respawn_xenos(num_humans))
+	if(!num_xenos && num_humans && !planet_nuked && world.time < CRASH_MINIMUM_TIME + SSticker.round_start_time && respawn_xenos(num_humans))
 		return FALSE //Xenos keep respawning for like an hour or so.
 
 	var/list/grounded_living_player_list = count_humans_and_xenos(SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)))
