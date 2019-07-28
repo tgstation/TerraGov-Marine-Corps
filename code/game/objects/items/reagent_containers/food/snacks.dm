@@ -179,7 +179,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 		if(length(contents) > max_items)
-			to_chat(user, "<span class='warning'>There isn't more space left inside of [src].</span>")
+			to_chat(user, "<span class='warning'>[src] is full, you can't stuff [I] inside.</span>")
 			return
 		to_chat(user, "<span class='notice'>You slip [I] inside of [src].</span>")
 		return
