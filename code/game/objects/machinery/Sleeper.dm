@@ -450,8 +450,8 @@
 		return
 	go_out()
 
-	if(M.stat != CONSCIOUS || !ishuman(M))
 /obj/machinery/sleeper/proc/move_inside_wrapper(mob/living/M, mob/user)
+	if(M.stat != CONSCIOUS || !ishuman(M))
 		return
 
 	if(occupant)
