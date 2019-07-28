@@ -1144,9 +1144,11 @@
 	burst_size = 10
 	burst_delay = 15
 
-/obj/machinery/marine_turret/premade/canterbury/Initialize()
+obj/machinery/marine_turret/premade/canterbury/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
-	start_processing()
+	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
+		ENABLE_BITFIELD(turret_flags, TURRET_ON)
+		update_icon()
 
 /obj/item/ammo_magazine/sentry/premade/dropship
 	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
