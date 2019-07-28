@@ -7,6 +7,16 @@
 	var/alarms = list("Fire"=list(), "Atmosphere"=list(), "Power"=list())
 
 
+/obj/machinery/computer/station_alert/Initialize()
+	. = ..()
+	GLOB.alert_consoles += src
+
+
+/obj/machinery/computer/station_alert/Destroy()
+	GLOB.alert_consoles -= src
+	return ..()
+
+
 /obj/machinery/computer/station_alert/attack_ai(mob/user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
