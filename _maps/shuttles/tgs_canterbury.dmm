@@ -1363,8 +1363,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/item/m56d_post,
-/obj/item/m56d_gun,
 /obj/item/tool/hand_labeler,
 /obj/item/storage/toolbox/electrical,
 /obj/structure/window/reinforced{
@@ -1374,6 +1372,7 @@
 	dir = 4;
 	icon_state = "camera"
 	},
+/obj/item/storage/box/m56d_hmg,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
