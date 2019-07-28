@@ -64,6 +64,8 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		GLOB.nukes_set_list -= src
 		return
 
+	if(exploded)
+		return
 	exploded = TRUE
 	safety = TRUE
 	if(!lighthack)
