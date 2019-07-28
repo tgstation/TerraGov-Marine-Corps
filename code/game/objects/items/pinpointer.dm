@@ -74,8 +74,9 @@
 /obj/item/pinpointer/advpinpointer/set_target(mob/user)
 	if(mode == PINPOINTER_MODE_DISK)
 		var/obj/item/disk/nuclear/the_disk = locate()
-		if(the_disk)
-			target = the_disk
+		if(!the_disk)
+			return
+		target = the_disk
 	if(mode == PINPOINTER_MODE_TARGET)
 		if (!target)
 			to_chat(user, "<span class='notice'>\The [src] beeps, and turns off</span>")
