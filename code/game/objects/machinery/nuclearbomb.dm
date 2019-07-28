@@ -17,8 +17,9 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	var/extended = FALSE
 	var/lighthack = FALSE
 	var/timeleft = 60
-	var/timing = 0
+	var/timer_enabled = FALSE
 	var/safety = TRUE
+	var/exploded = FALSE
 	var/removal_stage = NUKE_STAGE_NONE // 0 is no removal, 1 is covers removed, 2 is covers open,
 							// 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = 0
@@ -40,7 +41,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 
 /obj/machinery/nuclearbomb/process()
-	if(timing)
+	if(timer_enabled)
 		GLOB.nukes_set_list |= src
 		timeleft--
 		if(timeleft <= 0)
@@ -55,12 +56,14 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 
 /obj/machinery/nuclearbomb/proc/explode()
+	stop_processing()
+
 	if(safety)
-		timing = 0
+		timer_enabled = FALSE
 		GLOB.nukes_set_list -= src
-		stop_processing()
 		return
-	timing = -1.0
+
+	exploded = TRUE
 	safety = TRUE
 	if(!lighthack)
 		icon_state = "nuclearbomb3"
@@ -115,12 +118,12 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		var/safe_text = (safety) ? "Safe" : "Engaged"
 		var/status
 		if(has_auth)
-			if(timing)
+			if(timer_enabled)
 				status = "Func/Set-[safe_text]"
 			else
 				status = "Functional-[safe_text]"
 		else
-			if(timing)
+			if(timer_enabled)
 				status = "Set-[safe_text]"
 			else
 				status = "Auth. S1-[safe_text]"
@@ -131,7 +134,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		<b>Status</b>: [status]<br />
 		<b>Timer</b>: [timeleft]<br />
 		<br />
-		Timer: [timing ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];timer=1'>Toggle</a>" : "Toggle"] <br />
+		Timer: [timer_enabled ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];timer=1'>Toggle</a>" : "Toggle"] <br />
 		Time: [has_auth ? "<a href='?src=[REF(src)];time=-10'>--</a> <a href='?src=[REF(src)];time=-1'>-</a> [timeleft] <a href='?src=[REF(src)];time=1'>+</a> <a href='?src=[REF(src)];time=10'>++</a>" : "- - [timeleft] + +"] <br />
 		<br />
 		Safety: [safety ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];safety=1'>Toggle</a>" : "Toggle"] <br />
@@ -212,21 +215,21 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			timeleft += time
 			timeleft = CLAMP(timeleft, 60, 600)
 		if(href_list["timer"])
-			if(timing == -1)
+			if(exploded)
 				return
 			if(safety)
 				to_chat(usr, "<span class='warning'>The safety is still on.</span>")
 				return
-			timing = !timing
-			if(timing)
+			timer_enabled = !timer_enabled
+			if(timer_enabled)
 				GLOB.nukes_set_list |= src
 				start_processing()
 			if(!lighthack)
-				icon_state = (timing) ? "nuclearbomb2" : "nuclearbomb1"
+				icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
 		if(href_list["safety"])
 			safety = !safety
 			if(safety)
-				timing = FALSE
+				timer_enabled = FALSE
 				GLOB.nukes_set_list -= src
 				stop_processing()
 			else
