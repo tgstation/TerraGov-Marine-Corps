@@ -40,16 +40,16 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 
 /obj/machinery/nuclearbomb/process()
-	if (timing)
+	if(timing)
 		GLOB.nukes_set_list |= src
 		timeleft--
-		if (timeleft <= 0)
+		if(timeleft <= 0)
 			explode()
 			return
 		updateUsrDialog()
 
 /obj/machinery/nuclearbomb/proc/set_victory_condition()
-	if (iscrashgamemode(SSticker.mode))
+	if(iscrashgamemode(SSticker.mode))
 		var/datum/game_mode/crash/C = SSticker.mode
 		C.planet_nuked = TRUE
 
@@ -107,20 +107,20 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	if(.)
 		return
 	if(extended)
-		if (!ishuman(user))
+		if(!ishuman(user))
 			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return TRUE
 		user.set_interaction(src)
 
 		var/safe_text = (safety) ? "Safe" : "Engaged"
 		var/status
-		if (has_auth)
-			if (timing)
+		if(has_auth)
+			if(timing)
 				status = "Func/Set-[safe_text]"
 			else
 				status = "Functional-[safe_text]"
 		else
-			if (timing)
+			if(timing)
 				status = "Set-[safe_text]"
 			else
 				status = "Auth. S1-[safe_text]"
@@ -146,8 +146,8 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		popup.set_content(html)
 		popup.open(FALSE)
 		onclose(user, "nuclearbomb")
-	else if (deployable)
-		if (!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	else if(deployable)
+		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return
 		if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
 			anchored = TRUE
@@ -168,20 +168,20 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	usr.set_interaction(src)
 	
 	if(href_list["r_auth"])
-		if (r_auth)
+		if(r_auth)
 			r_auth.forceMove(loc)
 			has_auth = FALSE
 			r_auth = null
 		else
 			var/obj/item/I = usr.get_active_held_item()
-			if (!istype(I, /obj/item/disk/nuclear/crash/red))
+			if(!istype(I, /obj/item/disk/nuclear/crash/red))
 				return
 			if(!usr.drop_held_item())
 				return
 			I.forceMove(src)
 			r_auth = I
 	if(href_list["g_auth"])
-		if (g_auth)
+		if(g_auth)
 			g_auth.forceMove(loc)
 			has_auth = FALSE
 			g_auth = null
@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			I.forceMove(src)
 			g_auth = I
 	if(href_list["b_auth"])
-		if (b_auth)
+		if(b_auth)
 			b_auth.forceMove(loc)
 			has_auth = FALSE
 			b_auth = null
@@ -206,15 +206,15 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 				return
 			I.forceMove(src)
 			b_auth = I
-	if (has_auth)
-		if (href_list["time"])
+	if(has_auth)
+		if(href_list["time"])
 			var/time = text2num(href_list["time"])
 			timeleft += time
 			timeleft = CLAMP(timeleft, 60, 600)
-		if (href_list["timer"])
-			if (timing == -1)
+		if(href_list["timer"])
+			if(timing == -1)
 				return
-			if (safety)
+			if(safety)
 				to_chat(usr, "<span class='warning'>The safety is still on.</span>")
 				return
 			timing = !timing
@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 				start_processing()
 			if(!lighthack)
 				icon_state = (timing) ? "nuclearbomb2" : "nuclearbomb1"
-		if (href_list["safety"])
+		if(href_list["safety"])
 			safety = !safety
 			if(safety)
 				timing = FALSE
@@ -232,7 +232,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			else
 				GLOB.nukes_set_list |= src
 				start_processing()
-		if (href_list["anchor"])
+		if(href_list["anchor"])
 			if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)
 				anchored = FALSE
 				visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
