@@ -705,24 +705,12 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
 
-	if(!IsGuestKey(NP.key))
-		if(SSdbcore.Connect())
-			var/isadmin = FALSE
-			if(check_rights(R_ADMIN, FALSE))
-				isadmin = TRUE
-			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
-			if(query_get_new_polls.Execute())
-				var/newpoll = FALSE
-				if(query_get_new_polls.NextRow())
-					newpoll = TRUE
-
-				if(newpoll)
-					output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-				else
-					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
-			qdel(query_get_new_polls)
-			if(QDELETED(NP))
-				return FALSE
+	var/player_votes = player_votes_available(NP)
+	if(player_votes[1])
+		if(player_votes[2])
+			output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+		else
+			output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 
 	output += "</div>"
 
@@ -733,6 +721,18 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	return TRUE
 
+/datum/game_mode/proc/player_votes_available(mob/new_player/NP)
+	if(QDELETED(NP) || IsGuestKey(NP.key) || !SSdbcore.IsConnected())
+		return list(FALSE, FALSE)
+
+	var/isadmin = check_rights(R_ADMIN, FALSE)
+	var/newpoll = FALSE
+	var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
+	if(query_get_new_polls.Execute())
+		if(query_get_new_polls.NextRow())
+			newpoll = TRUE
+	qdel(query_get_new_polls)
+	return list(TRUE, newpoll)
 
 /datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
 	if(!isnewplayer(M))
