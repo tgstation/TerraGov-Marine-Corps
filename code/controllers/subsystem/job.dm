@@ -72,7 +72,17 @@ SUBSYSTEM_DEF(job)
 		if(!job)
 			JobDebug("AR job doesn't exists ! Player: [player], Rank:[rank]")
 			return FALSE
-		if(!player.IsJobAvailable(rank,latejoin))
+		if(is_banned_from(player.ckey, rank))
+			JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
+			return FALSE
+		if(QDELETED(player))
+			JobDebug("AR player deleted during job ban check")
+			return FALSE
+		if(!job.player_old_enough(player.client))
+			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
+			return FALSE
+		if(!player.IsJobAvailable(rank, latejoin))
+			JobDebug("AR player failed IsJobAvailable check, Player: [player], Job:[job.title]")
 			return FALSE
 		if(rank in GLOB.jobs_marines)
 			if(handle_initial_squad(player, rank, latejoin))
