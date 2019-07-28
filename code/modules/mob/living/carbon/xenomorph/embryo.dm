@@ -86,9 +86,9 @@
 		counter = 0
 		stage++
 		log_combat(affected_mob, null, "had their embryo advance to stage [stage]")
-		if(iscarbon(affected_mob))
-			var/mob/living/carbon/C = affected_mob
-			C.med_hud_set_status()
+		var/mob/living/carbon/C = affected_mob
+		C.med_hud_set_status()
+		affected_mob.jitter(stage * 5)
 
 	switch(stage)
 		if(2)
