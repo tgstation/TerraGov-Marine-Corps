@@ -675,7 +675,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		var/mob/living/carbon/xenomorph/X = i
 		if(!X.client)
 			continue
-		if(!(X.z in z_levels) || isspaceturf(X.loc))
+		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
 			continue
 		num_xenos++
 
