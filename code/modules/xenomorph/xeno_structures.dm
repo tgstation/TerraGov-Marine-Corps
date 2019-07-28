@@ -43,6 +43,7 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 400
+	destruction_sound = 'sound/effects/alien_egg_burst.ogg'
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
@@ -69,14 +70,9 @@
 
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
-	return ..()
-
-
-/obj/structure/resin/silo/structure_destruction()
 	if(associated_hive)
 		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area]!</span>", 2, TRUE)
-	playsound(src, "sound/effects/alien_egg_burst.ogg", 25)
-	qdel(src)
+	return ..()
 
 
 /obj/structure/resin/silo/examine(mob/user)

@@ -7,6 +7,8 @@
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	anchored = TRUE
 
+	var/destruction_sound = 'sound/effects/metal_crash.ogg'
+
 /obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)
 		new parts(loc)
@@ -240,17 +242,13 @@
 
 //Damage
 /obj/structure/proc/take_damage(dam)
-	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
 		return
 
 	obj_integrity = max(0, obj_integrity - dam)
 
 	if(obj_integrity <= 0)
-		structure_destruction()
+		playsound(src, destruction_sound, 35)
+		qdel(src)
 	else
 		update_icon()
-
-
-/obj/structure/proc/structure_destruction()
-	playsound(src, 'sound/effects/metal_crash.ogg', 35)
-	qdel(src)
