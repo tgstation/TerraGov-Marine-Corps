@@ -150,7 +150,15 @@
 		new /obj/structure/resin/silo(loc_to_spawn_silo)
 		xeno_silo_spawns -= loc_to_spawn_silo
 
+	for(var/i in GLOB.shuttle_controls_list)
+		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable
+		computer_to_disable.machine_stat |= BROKEN
+		computer_to_disable.update_icon()
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
+
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
+
 
 /datum/game_mode/crash/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")

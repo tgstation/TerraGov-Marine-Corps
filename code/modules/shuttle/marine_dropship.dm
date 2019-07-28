@@ -797,6 +797,16 @@
 	icon_state = "shuttle"
 
 
+/obj/machinery/computer/shuttle/shuttle_control/Initialize()
+	. = ..()
+	GLOB.shuttle_controls_list += src
+
+
+/obj/machinery/computer/shuttle/shuttle_control/Destroy()
+	GLOB.shuttle_controls_list -= src
+	return ..()
+
+
 /obj/machinery/computer/shuttle/shuttle_control/ui_interact(mob/user)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")

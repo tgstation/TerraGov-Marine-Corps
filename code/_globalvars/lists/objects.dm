@@ -33,6 +33,8 @@ GLOBAL_LIST_EMPTY(ai_status_displays)
 GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_silos)
 
+GLOBAL_LIST_EMPTY(shuttle_controls_list)
+
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
 	/obj/machinery/vending)))
