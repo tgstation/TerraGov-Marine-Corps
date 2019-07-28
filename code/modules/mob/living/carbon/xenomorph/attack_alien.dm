@@ -109,7 +109,7 @@
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
-	
+
 	if(X.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 		if(status_flags & XENO_HOST)
 			for(var/obj/item/alien_embryo/embryo in src)
@@ -235,7 +235,7 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			knock_out(knockout_stacks) //...And we knock 
+			knock_out(knockout_stacks) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
@@ -284,11 +284,11 @@
 		"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, 5)
 		return FALSE
 
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)
+
 	. = ..()
 	if(!.)
 		return FALSE
-	
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
