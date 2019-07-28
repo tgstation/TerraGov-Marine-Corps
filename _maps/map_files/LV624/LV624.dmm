@@ -20126,6 +20126,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
+"jNm" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/platebotc,
+/area/lv624/lazarus/quartstorage/outdoors)
 "jOz" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -55330,7 +55334,7 @@ aCG
 aCG
 aCG
 aCG
-aCG
+jNm
 aCG
 aCG
 aCG
