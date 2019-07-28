@@ -78,9 +78,6 @@
 /datum/game_mode/crash/pre_setup()
 	. = ..()
 
-	// Setup signals
-	// RegisterSignal(src, COMSIG_MOB_DEATH, .proc/on_mob_death)
-
 	// Spawn the ship
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
