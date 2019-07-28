@@ -943,7 +943,6 @@
 /area/shuttle/canterbury/general)
 "bR" = (
 /obj/machinery/vending/nanomed,
-/obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
@@ -1154,7 +1153,7 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "cn" = (
-/obj/machinery/vending/attachments,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "co" = (
@@ -1506,7 +1505,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/vending/uniform_supply,
+/obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1785,7 +1784,7 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"SP" = (
+"TA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -1957,7 +1956,7 @@ aX
 bm
 by
 bH
-SP
+TA
 cc
 ck
 cv
