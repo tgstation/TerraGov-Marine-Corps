@@ -32,7 +32,6 @@
 		/datum/job/civilian/synthetic,
 		/datum/job/command/fieldcommander
 	)
-	xenomorphs = list()
 
 
 /datum/game_mode/crash/can_start()

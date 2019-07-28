@@ -26,7 +26,7 @@
 	// Xeno round start conditions
 	var/xeno_required_num = 1 // Number of xenos required to start 
 	var/xeno_starting_num // Number of xenos given at start
-	var/list/xenomorphs
+	var/list/xenomorphs = list()
 
 /datum/game_mode/New()
 	initialize_emergency_calls()
