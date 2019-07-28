@@ -81,8 +81,8 @@ SUBSYSTEM_DEF(job)
 		if(!job.player_old_enough(player.client))
 			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 			return FALSE
-		if(!player.IsJobAvailable(rank, latejoin))
-			JobDebug("AR player failed IsJobAvailable check, Player: [player], Job:[job.title]")
+		if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
+			JobDebug("AR job disallowed by gamemode, Player: [player], Job:[job.title]")
 			return FALSE
 		if(rank in GLOB.jobs_marines)
 			if(handle_initial_squad(player, rank, latejoin))
