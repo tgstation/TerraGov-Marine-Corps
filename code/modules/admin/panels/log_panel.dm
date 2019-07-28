@@ -23,6 +23,6 @@
 		<a href='?src=[ref];explosion_log=1'>Explosion Log</a><br>
 		"}
 
-	var/datum/browser/browser = new(usr, "logpanel", "<div align='center'>Log Panel</div>", 220, 300)
+	var/datum/browser/browser = new(usr, "logpanel", "<div align='center'>Log Panel</div>", 220, 350)
 	browser.set_content(dat)
 	browser.open()
