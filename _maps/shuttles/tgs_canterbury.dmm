@@ -1800,17 +1800,6 @@
 "Wo" = (
 /turf/closed/wall/mainship,
 /area/shuttle/canterbury/medical)
-"XR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/shower,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury/general)
 
 (1,1,1) = {"
 aa
@@ -1957,7 +1946,7 @@ aX
 bm
 by
 bH
-XR
+bH
 cc
 ck
 cv
