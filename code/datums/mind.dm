@@ -87,7 +87,11 @@
 
 
 /datum/mind/proc/store_memory(new_text)
-	memory += "[new_text]<br>"
+	var/combined = length(memory + new_text)
+	if(combined > MAX_PAPER_MESSAGE_LEN)
+		memory = copytext(memory, combined - MAX_PAPER_MESSAGE_LEN, combined)
+	else
+		memory += "[new_text]<br>"
 
 
 /datum/mind/proc/wipe_memory()
