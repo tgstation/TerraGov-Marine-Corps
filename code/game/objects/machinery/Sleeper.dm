@@ -451,7 +451,7 @@
 	go_out()
 
 /obj/machinery/sleeper/proc/move_inside_wrapper(mob/M, mob/user)
-	if(M.stat || !ishuman(M))
+	if(M.stat != CONSCIOUS || !ishuman(M))
 		return
 
 	if(occupant)
@@ -466,7 +466,7 @@
 	if(!M.forceMove(src))
 		return
 
-	visible_message("[M] climbs into the sleeper.", 3)
+	visible_message("[M] climbs into the sleeper.", null, null, 3)
 	occupant = M
 	
 	start_processing()

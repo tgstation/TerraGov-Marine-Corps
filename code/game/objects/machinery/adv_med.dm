@@ -31,7 +31,7 @@
 	go_out()
 
 /obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/M, mob/user)
-	if (M.stat || !(ishuman(M) || ismonkey(M)))
+	if (M.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
 		return
 	if (occupant)
 		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")

@@ -667,7 +667,7 @@
 		to_chat(M, "<span class='notice'>\ [src] is non-functional!</span>")
 		return
 
-	if(M.mind && M.mind.cm_skills && M.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+	if(M.mind?.cm_skills && M.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
 		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
