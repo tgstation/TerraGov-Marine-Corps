@@ -413,11 +413,4 @@
 
 	return TRUE
 
-// Signals
-// /datum/game_mode/crash/proc/on_mob_death(mob/M, gibbed)
-// 	var/list/living_player_list = count_humans_and_xenos()
-// 	var/num_humans = living_player_list[1]
-// 	var/num_xenos = living_player_list[2]
-
-
 #undef CRASH_MINIMUM_TIME
