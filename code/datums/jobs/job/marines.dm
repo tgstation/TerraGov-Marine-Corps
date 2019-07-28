@@ -183,7 +183,7 @@ You are also in charge of communicating with command and letting them know about
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-/datum/job/marine/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+/datum/job/marine/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
 	if(!latejoin || !ishuman(C))
 		return
