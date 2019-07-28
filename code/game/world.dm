@@ -162,6 +162,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		if(length(msg))
 			send2update(msg.Join(" | "))
 
+	Master.Shutdown()
 	TgsReboot()
 
 	var/linkylink = CONFIG_GET(string/server)

@@ -21,8 +21,9 @@
 		return
 
 	//Asset cache
+	var/job
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = round(text2num(href_list["asset_cache_confirm_arrival"]))
+		job = round(text2num(href_list["asset_cache_confirm_arrival"]))
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
 		//into letting append to a list without limit.
 		if(job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
@@ -68,6 +69,11 @@
 	//Logs all hrefs, except chat pings
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
+
+	//byond bug ID:2256651
+	if(job && (job in completed_asset_jobs))
+		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		src << browse("...", "window=asset_cache_browser")
 
 
 	//Admin PM
