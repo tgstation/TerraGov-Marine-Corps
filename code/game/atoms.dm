@@ -640,3 +640,20 @@ Proc for attack log creation, because really why not
 	if(.)
 		return
 	add_fingerprint(usr, "topic")
+
+
+/atom/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("light_range")
+			set_light(l_range = var_value)
+			return TRUE
+
+		if("light_power")
+			set_light(l_power = var_value)
+			return TRUE
+
+		if("light_color")
+			set_light(l_color = var_value)
+			return TRUE
+
+	return ..()

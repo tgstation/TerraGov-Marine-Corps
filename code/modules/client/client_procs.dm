@@ -563,3 +563,16 @@
 		last_message = message
 		last_message_count = 0
 		return FALSE
+
+/client/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("holder")
+			return FALSE
+		if("ckey")
+			return FALSE
+		if("key")
+			return FALSE
+		if("view")
+			change_view(var_value)
+			return TRUE
+	return ..()
