@@ -1,6 +1,5 @@
 #define PINPOINTER_MODE_DISK "disk"
 #define PINPOINTER_MODE_TARGET "target"
-#define PINPOINTER_MODE_UNKNOWN "unknown"
 
 /obj/item/pinpointer
 	name = "pinpointer"
@@ -15,7 +14,7 @@
 	var/active = FALSE
 	var/target = null
 
-/obj/item/pinpointer/proc/set_target(mob/user)
+/obj/item/pinpointer/proc/set_target(mob/living/user)
 	if (iscrashgamemode(SSticker.mode))
 		target = input("Select the item you wish to track.", "Pinpointer") as null|anything in GLOB.gamemode_key_items
 		return
@@ -24,7 +23,7 @@
 	if(the_disk)
 		target = the_disk
 
-/obj/item/pinpointer/attack_self(mob/user)
+/obj/item/pinpointer/attack_self(mob/living/user)
 	if(!active)
 		active = TRUE
 		set_target(user)
@@ -62,8 +61,9 @@
 	. = ..()
 	for(var/i in GLOB.nuke_list)
 		var/obj/machinery/nuclearbomb/bomb = i
-		if(bomb.timing)
-			to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
+		if(!bomb.timer_enabled)
+			return
+		to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
 
 
 /obj/item/pinpointer/advpinpointer
@@ -71,22 +71,18 @@
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
 	var/mode = PINPOINTER_MODE_DISK  // Mode 0 locates disk, mode 1 locates coordinates, 2 to find an item
 
-/obj/item/pinpointer/advpinpointer/set_target(mob/user)
-	if(mode == PINPOINTER_MODE_DISK)
-		var/obj/item/disk/nuclear/the_disk = locate()
-		if(!the_disk)
-			return
-		target = the_disk
-	if(mode == PINPOINTER_MODE_TARGET)
-		if (!target)
+/obj/item/pinpointer/advpinpointer/set_target(mob/living/user)
+	switch(mode)
+		if(PINPOINTER_MODE_DISK)
+			var/obj/item/disk/nuclear/the_disk = locate() in  GLOB.nuke_disk_list
+			if(!the_disk)
+				return
+			target = the_disk
+		if(PINPOINTER_MODE_TARGET)
+			if(target)
+				return
 			to_chat(user, "<span class='notice'>\The [src] beeps, and turns off</span>")
 			active = FALSE
-			return
-	if(mode == PINPOINTER_MODE_UNKNOWN)
-		// This never worked,
-		to_chat(user, "<span class='notice'>\The [src] beeps twice, and turns off</span>")
-		active = FALSE
-		return
 
 /obj/item/pinpointer/advpinpointer/verb/toggle_mode()
 	set category = "Object"
@@ -97,7 +93,7 @@
 	icon_state = "pinoff"
 	target = null
 
-	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
+	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery"))
 		if("Disk Recovery")
 			mode = PINPOINTER_MODE_DISK
 			return attack_self(usr)
@@ -115,7 +111,4 @@
 
 			to_chat(usr, "You set the pinpointer to locate [locationx],[locationy]")
 
-			return attack_self()
-		if("Other Signature")
-			mode = PINPOINTER_MODE_UNKNOWN
 			return attack_self()

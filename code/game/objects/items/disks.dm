@@ -11,3 +11,11 @@
 	icon_state = "nucleardisk"
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+
+/obj/item/disk/nuclear/Initialize()
+	. = ..()
+	GLOB.nuke_disk_list += src
+
+/obj/item/disk/nuclear/Destroy()
+	GLOB.nuke_disk_list -= src
+	return ..()
