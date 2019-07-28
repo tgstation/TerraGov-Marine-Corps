@@ -60,7 +60,7 @@
 	dwidth = 7
 	dheight = 12
 
-	prearrivalTime = 5 SECONDS
+	prearrivalTime = 12 SECONDS
 
 	var/list/spawnpoints = list()
 	var/list/latejoins = list()
