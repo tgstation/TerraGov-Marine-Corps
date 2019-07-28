@@ -51197,7 +51197,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/smes/buildable,
+/obj/machinery/power/smes/buildable/empty,
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/engineering)
 "cuV" = (
@@ -51296,7 +51296,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/power/smes/buildable,
+/obj/machinery/power/smes/buildable/empty,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -51920,7 +51920,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/smes/buildable,
+/obj/machinery/power/smes/buildable/empty,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cwM" = (
@@ -51941,7 +51941,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes/buildable,
+/obj/machinery/power/smes/buildable/empty,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cwO" = (
