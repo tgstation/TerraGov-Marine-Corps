@@ -195,7 +195,7 @@
 		// Try to find someone for the xeno
 		var/xeno_candidate = get_alien_candidate()
 		if(!xeno_candidate)
-			return
+			continue
 
 		transfer_xeno(xeno_candidate, new_xeno)
 		
