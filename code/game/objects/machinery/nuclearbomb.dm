@@ -92,17 +92,20 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	. = ..()
 	if(!extended)
 		return
-	if(istype(I, /obj/item/disk/nuclear/crash))
-		if(!user.transferItemToLoc(I, src))
-			return
-		if(istype(I, /obj/item/disk/nuclear/crash/red))
-			r_auth = I
-		else if(istype(I, /obj/item/disk/nuclear/crash/green))
-			g_auth = I
-		else if(istype(I, /obj/item/disk/nuclear/crash/blue))
-			b_auth = I
-		if(r_auth && g_auth && b_auth)
-			has_auth = TRUE
+	if(!istype(I, /obj/item/disk/nuclear/crash))
+		return
+	if(!user.transferItemToLoc(I, src))
+		return
+	if(istype(I, /obj/item/disk/nuclear/crash/red))
+		r_auth = I
+	else if(istype(I, /obj/item/disk/nuclear/crash/green))
+		g_auth = I
+	else if(istype(I, /obj/item/disk/nuclear/crash/blue))
+		b_auth = I
+	if(r_auth && g_auth && b_auth)
+		has_auth = TRUE
+
+	updateUsrDialog()
 
 
 /obj/machinery/nuclearbomb/attack_hand(mob/living/user)
@@ -140,9 +143,9 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		Safety: [safety ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];safety=1'>Toggle</a>" : "Toggle"] <br />
 		Anchor: [anchored ? "Engaged" : "Off"] [has_auth ? "<a href='?src=[REF(src)];anchor=1'>Toggle</a>" : "Toggle"] <br />
 		<hr />
-		Red Auth. Disk: <a href='?src=[REF(src)];r_auth=1'>[r_auth ? "++++++++++" : "----------"]</a><br />
-		Green Auth. Disk: <a href='?src=[REF(src)];g_auth=1'>[g_auth ? "++++++++++" : "----------"]</a><br />
-		Blue Auth. Disk: <a href='?src=[REF(src)];b_auth=1'>[b_auth ? "++++++++++" : "----------"]</a><br />
+		Red Auth. Disk: <a href='?src=[REF(src)];disk=red'>[r_auth ? "++++++++++" : "----------"]</a><br />
+		Green Auth. Disk: <a href='?src=[REF(src)];disk=green'>[g_auth ? "++++++++++" : "----------"]</a><br />
+		Blue Auth. Disk: <a href='?src=[REF(src)];disk=blue'>[b_auth ? "++++++++++" : "----------"]</a><br />
 		"}
 
 		var/datum/browser/popup = new(user, "nuclearbomb", "<div align='center'>Nuclear Bomb</div>", 300, 400)
@@ -170,45 +173,48 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 	usr.set_interaction(src)
 	
-	if(href_list["r_auth"])
-		if(r_auth)
-			r_auth.forceMove(loc)
+	if(href_list["disk"])
+		var/disk_colour = href_list["disk"]
+		var/disk_type
+		var/obj/item/disk/nuclear/crash/disk_slot
+		switch(disk_colour)
+			if("red")
+				disk_slot = r_auth
+				disk_type = /obj/item/disk/nuclear/crash/red
+			if("green")
+				disk_slot = g_auth
+				disk_type = /obj/item/disk/nuclear/crash/green
+			if("blue")
+				disk_slot = b_auth
+				disk_type = /obj/item/disk/nuclear/crash/blue
+
+		if(disk_slot)
 			has_auth = FALSE
-			r_auth = null
+			switch(disk_colour)
+				if("red")
+					r_auth.forceMove(loc)
+					r_auth = null
+				if("green")
+					g_auth.forceMove(loc)
+					g_auth = null
+				if("blue")
+					b_auth.forceMove(loc)
+					b_auth = null
 		else
 			var/obj/item/I = usr.get_active_held_item()
-			if(!istype(I, /obj/item/disk/nuclear/crash/red))
+			if(!istype(I, disk_type))
 				return
 			if(!usr.drop_held_item())
 				return
 			I.forceMove(src)
-			r_auth = I
-	if(href_list["g_auth"])
-		if(g_auth)
-			g_auth.forceMove(loc)
-			has_auth = FALSE
-			g_auth = null
-		else
-			var/obj/item/I = usr.get_active_held_item()
-			if(!istype(I, /obj/item/disk/nuclear/crash/green))
-				return
-			if(!usr.drop_held_item())
-				return
-			I.forceMove(src)
-			g_auth = I
-	if(href_list["b_auth"])
-		if(b_auth)
-			b_auth.forceMove(loc)
-			has_auth = FALSE
-			b_auth = null
-		else
-			var/obj/item/I = usr.get_active_held_item()
-			if(!istype(I, /obj/item/disk/nuclear/crash/blue))
-				return
-			if(!usr.drop_held_item())
-				return
-			I.forceMove(src)
-			b_auth = I
+			switch(disk_colour)
+				if("red")
+					r_auth = I
+				if("green")
+					g_auth = I
+				if("blue")
+					b_auth = I
+
 	if(has_auth)
 		if(href_list["time"])
 			var/time = text2num(href_list["time"])
