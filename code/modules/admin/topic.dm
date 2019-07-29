@@ -223,7 +223,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(!M?.client)
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
-			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
+			to_chat_immediate(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
 			qdel(M.client)
 
 			log_admin_private("[key_name(usr)] kicked [key_name(M)].")
