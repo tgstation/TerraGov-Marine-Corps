@@ -27,10 +27,11 @@ GLOBAL_LIST_EMPTY(silicon_mobs)				//all silicon mobs
 GLOBAL_LIST_EMPTY(mob_living_list)				//all instances of /mob/living and subtypes
 GLOBAL_LIST_EMPTY(carbon_list)				//all instances of /mob/living/carbon and subtypes, notably does not contain brains or simple animals
 GLOBAL_LIST_EMPTY(offered_mob_list)				//all /mobs offered by admins
-GLOBAL_LIST_EMPTY(ai_list)
+GLOBAL_LIST_EMPTY(ai_list)					// i'm guessing this is the list of all ais
 GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for each AI_* status define
 GLOBAL_LIST_EMPTY(living_cameras)
 GLOBAL_LIST_EMPTY(aiEyes)
+GLOBAL_LIST_EMPTY(aiShells)					// list of all ai shells
 
 GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)
