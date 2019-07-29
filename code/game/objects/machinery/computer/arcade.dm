@@ -46,7 +46,7 @@
 /obj/machinery/computer/arcade/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/arcade/attack_paw(mob/user as mob)
+/obj/machinery/computer/arcade/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/arcade/attack_hand(mob/living/user)

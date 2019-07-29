@@ -29,7 +29,7 @@
 		new /obj/item/stack/sheet/wood(src)
 		spawn_stuff()
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							"<span class='notice'>We pry open \the [src].</span>", \
+							"<span class='notice'>You pry open \the [src].</span>", \
 							"<span class='notice'>You hear splitting wood.</span>")
 		qdel(src)
 		return

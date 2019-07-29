@@ -126,7 +126,7 @@
 		to_chat(user, "<span class='notice'>\The [src] smartly refuses [I].</span>")
 		return TRUE
 
-/obj/machinery/smartfridge/attack_paw(mob/user)
+/obj/machinery/smartfridge/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/smartfridge/attack_ai(mob/user)

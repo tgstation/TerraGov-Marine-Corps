@@ -12,7 +12,7 @@
 	. = ..()
 	if(blood_type)
 		name = "BloodPack [blood_type]"
-		reagents.add_reagent("blood", 200, list("donor"=null,"blood_DNA"=null,"blood_type"=blood_type))
+		reagents.add_reagent(/datum/reagent/blood, 200, list("donor"=null,"blood_DNA"=null,"blood_type"=blood_type))
 		update_icon()
 
 

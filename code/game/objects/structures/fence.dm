@@ -67,7 +67,7 @@
 		if(H.species.can_shred(H))
 			attack_generic(H, 25)
 
-/obj/structure/fence/attack_paw(mob/user as mob)
+/obj/structure/fence/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/structure/fence/attack_alien(mob/living/carbon/xenomorph/M)

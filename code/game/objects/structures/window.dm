@@ -170,7 +170,7 @@
 		"<span class='notice'>You hear a knocking sound.</span>")
 		windowknock_cooldown = world.time + 100
 
-/obj/structure/window/attack_paw(mob/user as mob)
+/obj/structure/window/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 //Used by attack_animal

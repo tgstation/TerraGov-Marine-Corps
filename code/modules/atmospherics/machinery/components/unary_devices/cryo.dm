@@ -5,17 +5,13 @@
 	icon = 'icons/obj/machines/cryogenics2.dmi'
 	icon_state = "cell-off"
 	density = TRUE
-	//max_integrity = 350
+	max_integrity = 350
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
 	layer = ABOVE_WINDOW_LAYER
-	//state_open = FALSE
-	//circuit = /obj/item/circuitboard/machine/cryo_tube
-	pipe_flags = PIPING_ONE_PER_TURF | PIPING_DEFAULT_LAYER_ONLY
-	//occupant_typecache = list(/mob/living/carbon, /mob/living/simple_animal)
+	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 
 	var/auto_release = FALSE
 	var/release_notice = FALSE
-	//var/volume = 100
 
 	var/temperature = 100
 
@@ -36,8 +32,6 @@
 	var/escape_in_progress = FALSE
 	var/message_cooldown
 	var/breakout_time = 300
-	//fair_market_price = 10
-	//payment_department = ACCOUNT_MED
 
 	var/mob/living/carbon/occupant
 
@@ -74,8 +68,8 @@
 				var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
 				var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
 				occupant.heal_limb_damage(heal_brute,heal_fire)
-		var/has_cryo = occupant.reagents.get_reagent_amount("cryoxadone") >= 1
-		var/has_clonexa = occupant.reagents.get_reagent_amount("clonexadone") >= 1
+		var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
+		var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
 		var/has_cryo_medicine = has_cryo || has_clonexa
 		if(beaker && !has_cryo_medicine)
 			beaker.reagents.trans_to(occupant, 1, 10)
@@ -105,16 +99,16 @@
 	QDEL_NULL(beaker)
 	return ..()
 
-///obj/machinery/atmospherics/components/unary/cryo_cell/contents_explosion(severity, target)
-//	..()
-//	if(beaker)
-//		beaker.ex_act(severity, target)
+/obj/machinery/atmospherics/components/unary/cryo_cell/contents_explosion(severity, target)
+	. = ..()
+	if(beaker)
+		beaker.ex_act(severity, target)
 
-///obj/machinery/atmospherics/components/unary/cryo_cell/handle_atom_del(atom/A)
-//	..()
-//	if(A == beaker)
-//		beaker = null
-//		updateUsrDialog()
+/obj/machinery/atmospherics/components/unary/cryo_cell/handle_atom_del(atom/A)
+	. = ..()
+	if(A == beaker)
+		beaker = null
+		updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
 	if(on)
@@ -193,63 +187,13 @@
 
 	updateUsrDialog()
 	return 1
-/*
-/obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()
-	..()
 
-	if(!on)
-		return
-
-	var/datum/gas_mixture/air1 = airs[1]
-
-	if(!nodes[1] || !airs[1] || !air1.gases.len || air1.gases[/datum/gas/oxygen][MOLES] < 5) // Turn off if the machine won't work.
-		on = FALSE
-		update_icon()
-		return
-
-	if(occupant)
-		var/mob/living/mob_occupant = occupant
-		var/cold_protection = 0
-		var/temperature_delta = air1.temperature - mob_occupant.bodytemperature // The only semi-realistic thing here: share temperature between the cell and the occupant.
-
-		if(ishuman(occupant))
-			var/mob/living/carbon/human/H = occupant
-			cold_protection = H.get_cold_protection(air1.temperature)
-
-		if(abs(temperature_delta) > 1)
-			var/air_heat_capacity = air1.heat_capacity()
-
-			var/heat = ((1 - cold_protection) * 0.1 + conduction_coefficient) * temperature_delta * (air_heat_capacity * heat_capacity / (air_heat_capacity + heat_capacity))
-
-			air1.temperature = max(air1.temperature - heat / air_heat_capacity, TCMB)
-			mob_occupant.adjust_bodytemperature(heat / heat_capacity, TCMB)
-
-		air1.gases[/datum/gas/oxygen][MOLES] = max(0,air1.gases[/datum/gas/oxygen][MOLES] - 0.5 / efficiency) // Magically consume gas? Why not, we run on cryo magic.
-		air1.garbage_collect()
-*/
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
 	if(message_cooldown <= world.time)
 		message_cooldown = world.time + 50
 		to_chat(user, "<span class='warning'>[src]'s door won't budge!</span>")
-/*
-/obj/machinery/atmospherics/components/unary/cryo_cell/open_machine(drop = FALSE)
-	if(!state_open && !panel_open)
-		on = FALSE
-	for(var/mob/M in contents) //only drop mobs
-		M.forceMove(get_turf(src))
-		if(isliving(M))
-			var/mob/living/L = M
-			L.update_mobility()
-	occupant = null
-	flick("pod-open-anim", src)
-	..()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/close_machine(mob/living/carbon/user)
-	if((isnull(user) || istype(user)) && state_open && !panel_open)
-		flick("pod-close-anim", src)
-		..(user)
-		return occupant*/
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/verb/move_eject()
 	set name = "Eject occupant"
@@ -435,13 +379,6 @@
 		data["cellTemperatureStatus"] = "average"
 
 	data["isBeakerLoaded"] = beaker ? 1 : 0
-	/* // Removing beaker contents list from front-end, replacing with a total remaining volume
-	var beakerContents[0]
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
-		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
-	data["beakerContents"] = beakerContents
-	*/
 	data["beakerLabel"] = null
 	data["beakerVolume"] = 0
 	if(beaker)
@@ -509,39 +446,10 @@
 	return 1 // update UIs attached to this object
 
 
-///obj/machinery/atmospherics/components/unary/cryo_cell/update_remote_sight(mob/living/user)
-//	return // we don't see the pipe network while inside cryo.
-
-///obj/machinery/atmospherics/components/unary/cryo_cell/get_remote_view_fullscreens(mob/user)
-//	user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 1)
-
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
 	return // can't ventcrawl in or out of cryo.
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_see_pipes()
 	return 0 // you can't see the pipe network when inside a cryo cell.
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/return_temperature()
-	//var/datum/gas_mixture/G = airs[1]
-
-	//if(G.total_moles() > 10)
-	//	return G.temperature
-	//return ..()
-/*
-/obj/machinery/atmospherics/components/unary/cryo_cell/default_change_direction_wrench(mob/user, obj/item/tool/wrench/W)
-	. = ..()
-	if(.)
-		SetInitDirections()
-		var/obj/machinery/atmospherics/node = nodes[1]
-		if(node)
-			node.disconnect(src)
-			nodes[1] = null
-		nullifyPipenet(parents[1])
-		atmosinit()
-		node = nodes[1]
-		if(node)
-			node.atmosinit()
-			node.addMember(src)
-		build_network()*/
 
 #undef CRYOMOBS

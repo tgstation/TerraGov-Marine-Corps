@@ -75,7 +75,7 @@
 	src.icon_state = "medibot[src.on]"
 	src.updateUsrDialog()
 
-/obj/machinery/bot/medbot/attack_paw(mob/user as mob)
+/obj/machinery/bot/medbot/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/bot/medbot/attack_hand(mob/living/user)
@@ -375,7 +375,7 @@
 	if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
 		var/safety_fail = 0
 		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
-			if(C.reagents.has_reagent(R.id))
+			if(C.reagents.has_reagent(R.type))
 				safety_fail = 1
 				break
 		if(!safety_fail)

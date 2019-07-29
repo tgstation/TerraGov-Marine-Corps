@@ -16,7 +16,7 @@
 /mob/living/carbon/monkey/UnarmedAttack(atom/A)
 	A.attack_paw(src)
 
-/atom/proc/attack_paw(mob/user as mob)
+/atom/proc/attack_paw(mob/living/carbon/monkey/user)
 	return
 
 

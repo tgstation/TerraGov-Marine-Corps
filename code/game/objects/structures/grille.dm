@@ -60,7 +60,7 @@
 	if(ismob(user)) shock(user, 70)
 
 
-/obj/structure/grille/attack_paw(mob/user as mob)
+/obj/structure/grille/attack_paw(mob/living/carbon/monkey/user)
 	attack_hand(user)
 
 /obj/structure/grille/attack_alien(mob/living/carbon/xenomorph/M)

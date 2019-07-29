@@ -46,7 +46,7 @@
 		else
 	return
 
-/obj/machinery/optable/attack_paw(mob/user as mob)
+/obj/machinery/optable/attack_paw(mob/living/carbon/monkey/user)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
 		step(user, get_dir(user, src))
 		if (user.loc == src.loc)

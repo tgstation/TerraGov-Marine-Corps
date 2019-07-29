@@ -35,7 +35,7 @@
 /obj/machinery/computer/skills/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/skills/attack_paw(mob/user as mob)
+/obj/machinery/computer/skills/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.

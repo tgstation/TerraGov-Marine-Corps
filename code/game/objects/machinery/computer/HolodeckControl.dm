@@ -8,7 +8,7 @@
 	throwpass = 1	//You can throw objects over this, despite it's density.
 
 
-/obj/structure/table/holotable/attack_paw(mob/user as mob)
+/obj/structure/table/holotable/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/structure/table/holotable/attack_animal(mob/living/user as mob) //Removed code for larva since it doesn't work. Previous code is now a larva ability. /N
@@ -68,7 +68,7 @@
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 
 	//Can be picked up by aliens if the fun_allowed config is enabled.
-/obj/item/toy/beach_ball/holoball/attack_paw(user as mob)
+/obj/item/toy/beach_ball/holoball/attack_paw(mob/living/carbon/monkey/user)
 	if(!isxeno(user))
 		return FALSE
 	attack_alien(user)
