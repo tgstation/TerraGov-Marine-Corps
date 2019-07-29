@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(ai_movement)
 	var/current_deci_second = 1 //What deci second we're at; 1 is 0.1, 2 is 0.2 ETC.
 
 	//AI datums to process, split into 20 lists, 1 for each 0.5 decisecond
-	var/list/lists_of_lists = list()
+	var/list/list/lists_of_lists = list()
 
 	//Current AI datums being processed
 	var/list/currentrun = list()

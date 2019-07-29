@@ -31,6 +31,7 @@ SUBSYSTEM_DEF(ai)
 	while(current_run.len)
 		var/datum/ai_behavior/aidatum = current_run[current_run.len]
 		if(!aidatum)
+			qdel(aidatum)
 			continue
 		aidatum.Process()
 		current_run.len--

@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(nodes)
 	name = "Nodes"
 	init_order = INIT_ORDER_NODES
-	wait = 10
+	wait = 1 SECONDS
 	var/list/current_run
 
 /datum/controller/subsystem/nodes/Initialize()

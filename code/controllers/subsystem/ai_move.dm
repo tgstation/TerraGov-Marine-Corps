@@ -1,3 +1,4 @@
+/*
 //How many controlelrs do you need, four?
 
 //Handles tile by tile movement, meant for experimental reasons
@@ -29,3 +30,4 @@ SUBSYSTEM_DEF(ai_movement)
 
 		if (MC_TICK_CHECK)
 			return
+*/
