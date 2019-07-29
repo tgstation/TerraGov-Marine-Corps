@@ -93,7 +93,7 @@
 /datum/keybinding/xeno/spray_acid
 	key = "Unbound"
 	name = "spray_acid"
-	full_name = "Xeon: Acid spary"
+	full_name = "Xeon: Acid Spray"
 	description = "Sprays some acid"
 	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
 
