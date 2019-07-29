@@ -32,7 +32,7 @@
 	else
 		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
 
-/obj/machinery/gibber/attack_paw(mob/user as mob)
+/obj/machinery/gibber/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/gibber/relaymove(mob/user)

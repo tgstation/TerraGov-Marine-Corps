@@ -154,6 +154,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 			msg += "Next Ship Map: [next_ship_map.map_name]"
 
 		if(SSticker.mode)
+			msg += "Game Mode: [SSticker.mode.name]"
 			msg += "Round End State: [SSticker.mode.round_finished]"
 
 		if(length(GLOB.clients))

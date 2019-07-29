@@ -136,7 +136,7 @@
 	updateUsrDialog()
 	return TRUE
 
-/obj/machinery/microwave/attack_paw(mob/user as mob)
+/obj/machinery/microwave/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/microwave/attack_ai(mob/user as mob)

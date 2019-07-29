@@ -73,7 +73,7 @@ obj/machinery/recharger/attack_hand(mob/living/user)
 		percent_charge_complete = 0
 		update_icon()
 
-obj/machinery/recharger/attack_paw(mob/user as mob)
+obj/machinery/recharger/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 obj/machinery/recharger/process()

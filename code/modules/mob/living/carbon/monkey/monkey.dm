@@ -161,22 +161,22 @@
 	..()
 
 
-/mob/living/carbon/monkey/attack_paw(mob/M as mob)
-	..()
+/mob/living/carbon/monkey/attack_paw(mob/living/carbon/monkey/user)
+	. = ..()
 
-	if (M.a_intent == INTENT_HARM)
-		help_shake_act(M)
+	if (user.a_intent == INTENT_HARM)
+		help_shake_act(user)
 	else
-		if ((M.a_intent == INTENT_HARM && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
+		if ((user.a_intent == INTENT_HARM && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
-				visible_message("<span class='danger'>[M] has bit [src]!</span>")
+				visible_message("<span class='danger'>[user] has bit [src]!</span>")
 				var/damage = rand(1, 5)
 				adjustBruteLoss(damage)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 			else
-				visible_message("<span class='danger'>[M] has attempted to bite [src]!</span>")
-	return
+				visible_message("<span class='danger'>[user] has attempted to bite [src]!</span>")
+
 
 /mob/living/carbon/monkey/attack_hand(mob/living/user)
 	. = ..()

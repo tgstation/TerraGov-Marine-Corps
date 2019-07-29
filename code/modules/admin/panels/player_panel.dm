@@ -371,7 +371,7 @@
 
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
+		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key];close=1'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
 	if(isnewplayer(M))
 		body += " <b>Hasn't Entered Game</b> "

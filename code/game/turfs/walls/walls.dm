@@ -285,7 +285,7 @@
 
 
 //Interactions
-/turf/closed/wall/attack_paw(mob/user as mob)
+/turf/closed/wall/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 

@@ -19,7 +19,7 @@
 /obj/machinery/computer/area_atmos/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/area_atmos/attack_paw(mob/user as mob)
+/obj/machinery/computer/area_atmos/attack_paw(mob/living/carbon/monkey/user)
 	return
 
 /obj/machinery/computer/area_atmos/attack_hand(mob/living/user)

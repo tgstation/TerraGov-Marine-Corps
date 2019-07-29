@@ -28,7 +28,7 @@
 	if(!istype(src, /turf/open/space/transit))
 		icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 
-/turf/open/space/attack_paw(mob/user)
+/turf/open/space/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)

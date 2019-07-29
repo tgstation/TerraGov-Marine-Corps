@@ -10,7 +10,7 @@
 		next_move_dir_add |= movement
 
 	// Check if chat should have focus but doesn't, give it focus and pre-enter the key.
-	if(prefs.focus_chat && winget(src, null, "input.focus"))
+	if(prefs.focus_chat && !winget(src, null, "input.focus"))
 		winset(src, null, "input.focus=true")
 		winset(src, null, "input=[list2params(list(text = _key))]")
 		return

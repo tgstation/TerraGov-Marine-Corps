@@ -53,12 +53,9 @@
 	return ..()
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/M)
-	if(!iscarbon(M))
-		return
+/mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
+	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
-	next_move += 7 //Adds some lag to the 'attack'
-	return
 
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode

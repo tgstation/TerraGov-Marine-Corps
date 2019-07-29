@@ -111,6 +111,10 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	updateUsrDialog()
 
 
+/obj/machinery/nuclearbomb/attack_paw(mob/living/carbon/monkey/user)
+	return attack_hand(user)
+
+
 /obj/machinery/nuclearbomb/attack_hand(mob/living/user)
 	. = ..()
 	if(.)

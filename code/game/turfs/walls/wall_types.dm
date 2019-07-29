@@ -463,7 +463,7 @@
 	return TRUE
 
 
-/turf/closed/wall/resin/attack_paw(mob/user)
+/turf/closed/wall/resin/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 

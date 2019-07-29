@@ -67,7 +67,7 @@
 		icon_state = "[initial(icon_state)]"
 
 //Can be picked up by aliens
-/obj/item/clothing/mask/facehugger/attack_paw(user as mob)
+/obj/item/clothing/mask/facehugger/attack_paw(mob/living/carbon/monkey/user)
 	if(isxeno(user))
 		attack_alien(user)
 	else
