@@ -315,7 +315,7 @@
 /obj/machinery/computer/communications/attack_ai(mob/living/silicon/ai/AI)
 	return attack_hand(AI)
 
-/obj/machinery/computer/communications/attack_paw(mob/user as mob)
+/obj/machinery/computer/communications/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/communications/attack_hand(mob/living/user)
@@ -324,7 +324,7 @@
 		return
 
 	//Should be refactored later, if there's another ship that can appear during a mode with a comm console.
-	if(!istype(loc.loc, /area/almayer/command/cic)) //Has to be in the CIC. Can also be a generic CIC area to communicate, if wanted.
+	if(!istype(loc.loc, /area/mainship/command/cic)) //Has to be in the CIC. Can also be a generic CIC area to communicate, if wanted.
 		to_chat(usr, "<span class='warning'>Unable to establish a connection.</span>")
 		return FALSE
 

@@ -12,7 +12,6 @@ SUBSYSTEM_DEF(air)
 	var/list/pipe_init_dirs_cache = list()
 
 /datum/controller/subsystem/air/Initialize(timeofday)
-	//map_loading = FALSE
 	setup_atmos_machinery()
 	setup_pipenets()
 	return ..()

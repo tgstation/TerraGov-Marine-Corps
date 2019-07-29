@@ -106,7 +106,7 @@
 	return
 
 
-/obj/attack_paw(mob/user)
+/obj/attack_paw(mob/living/carbon/monkey/user)
 	if(can_buckle) return src.attack_hand(user)
 	else . = ..()
 
@@ -137,8 +137,6 @@
 
 
 /obj/proc/unbuckle(mob/user, silent = TRUE)
-	if(!buckled_mob || buckled_mob.buckled != src)
-		CRASH("[src] called unbuckle() with [user ? user : "no"] user and [buckled_mob ? (buckled_mob.buckled ? "with [buckled_mob.buckled] as buckled_mob.buckled" : "no buckled_mob.buckled") : "no buckled_mob"].")
 	buckled_mob.buckled = null
 	buckled_mob.anchored = initial(buckled_mob.anchored)
 	buckled_mob.update_canmove()

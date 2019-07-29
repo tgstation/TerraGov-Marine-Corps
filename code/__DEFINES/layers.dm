@@ -27,6 +27,7 @@
 
 #define SPACE_LAYER 1.8
 
+#define UNDER_TURF_LAYER 1.99
 #define ABOVE_TURF_LAYER 2.01
 
 #define LATTICE_LAYER 2.15

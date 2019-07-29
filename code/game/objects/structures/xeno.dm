@@ -99,7 +99,7 @@
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
-/obj/effect/alien/resin/attack_paw()
+/obj/effect/alien/resin/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand()
 
 /obj/effect/alien/resin/attackby(obj/item/I, mob/user, params)
@@ -302,7 +302,7 @@
 	new /obj/structure/mineral_door/resin/thick(oldloc)
 	return TRUE
 
-/obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
+/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/monkey/user)
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")

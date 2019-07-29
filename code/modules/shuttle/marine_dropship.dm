@@ -143,7 +143,7 @@
 				D.lockdown()
 		if("rear")
 			for(var/i in rear_airlocks)
-				var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D = i
+				var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D = i
 				D.lockdown()
 
 /obj/docking_port/mobile/marine_dropship/proc/unlock_all()
@@ -163,7 +163,7 @@
 				D.release()
 		if("rear")
 			for(var/i in rear_airlocks)
-				var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D = i
+				var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D = i
 				D.release()
 
 /obj/docking_port/mobile/marine_dropship/Destroy(force)
@@ -282,7 +282,7 @@
 			locked_sides++
 			break
 		for(var/i in D.rear_airlocks)
-			var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/DH = i
+			var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/DH = i
 			if(!DH.locked)
 				continue
 			locked_sides++
@@ -358,7 +358,7 @@
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/user)
+/obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/carbon/monkey/user)
 	attack_alien(user)
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)
@@ -499,7 +499,7 @@
 /turf/open/shuttle/dropship/floor
 	icon_state = "rasputin15"
 
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	. = ..()
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship))
 		return

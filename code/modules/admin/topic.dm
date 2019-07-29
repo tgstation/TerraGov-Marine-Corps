@@ -223,7 +223,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(!M?.client)
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
-			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
+			to_chat_immediate(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
 			qdel(M.client)
 
 			log_admin_private("[key_name(usr)] kicked [key_name(M)].")
@@ -387,7 +387,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		edit_rights_topic(href_list)
+		var/close = text2num(href_list["close"])
+		edit_rights_topic(href_list, close)
 
 
 	else if(href_list["spawncookie"])
@@ -672,79 +673,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [ADMIN_VERBOSEJMP(target)].")
 
 
-	else if(href_list["faxreply"])
-		var/ref = locate(href_list["faxreply"])
-		if(!ref)
-			return
-		var/datum/fax/F = GLOB.faxes[ref]
-		if(!F || F.admin)
-			return
-
-		if(F.marked && F.marked != usr.client)
-			to_chat(usr, "<span class='warning'>This fax has already been marked by [F.marked], please unmark it to be able to proceed.")
-			return
-		else if(!F.marked)
-			F.marked = usr.client
-			message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
-
-		var/mob/sender = F.sender
-
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
-		if(!dep)
-			return
-
-		var/department = input("Which department do you want to reply as?", "Fax Message") as null|anything in list("TGMC High Command", "TGMC Provost General", "Nanotrasen")
-		if(!department)
-			return
-
-		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
-
-		var/fax_message
-		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
-		if(!type)
-			return
-
-		switch(type)
-			if("Template")
-				var/addressed_to
-				var/addressed = input("Address it to the sender or custom?", "Fax Message") as null|anything in list("Sender", "Custom")
-				if(!addressed)
-					return
-
-				switch(addressed)
-					if("Sender")
-						addressed_to = "[sender.real_name]"
-					if("Custom")
-						addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
-
-				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
-				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
-
-				if(!addressed_to && !message_body && !sent_by)
-					return
-
-				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
-
-			if("Custom")
-				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
-				if(!input)
-					return
-				fax_message = "[input]"
-
-				if(!fax_message)
-					return
-
-		usr << browse(fax_message, "window=faxpreview;size=600x600")
-
-		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-			return
-
-		send_fax(usr, null, dep, subject, fax_message, TRUE)
-
-		log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
-		message_staff("[ADMIN_TPMONTY(usr)] replied to a fax message from [ismob(sender) ? ADMIN_TPMONTY(sender) : key_name_admin(sender)].")
-
-
 	else if(href_list["faxview"])
 		if(!check_rights(R_ADMIN|R_MENTOR))
 			return
@@ -787,11 +715,27 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_staff("[key_name_admin(usr)] has marked a fax from [key_name_admin(F.sender)].")
 
 
-	else if(href_list["faxcreate"])
+	else if(href_list["faxcreate"] || href_list["faxreply"])
 		if(!check_rights(R_ADMIN|R_MENTOR))
 			return
 
-		var/mob/sender = locate(href_list["faxcreate"])
+		var/mob/sender
+		if(href_list["faxreply"])
+			var/ref = locate(href_list["faxreply"])
+			if(!ref)
+				return
+			var/datum/fax/F = GLOB.faxes[ref]
+			if(!F || F.admin)
+				return
+
+			if(F.marked && F.marked != usr.client)
+				to_chat(usr, "<span class='warning'>This fax has already been marked by [F.marked], please unmark it to be able to proceed.")
+				return
+			else if(!F.marked)
+				F.marked = usr.client
+				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
+			
+			sender = F.sender
 
 		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
 		if(!dep)
@@ -802,27 +746,66 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
-
-		var/fax_message
-		var/addressed_to
-		var/type = input("Do you want to use the template or type a custom message?", "Template") as null|anything in list("Template", "Custom")
+		var/type = input("Do you want to use the pencode, template or type a raw message?", "Fax Message") as null|anything in list("Pencode", "Template", "Raw")
 		if(!type)
 			return
 
+		var/fax_message
 		switch(type)
+			if("Pencode")
+				var/message = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
+				if(!message)
+					return
+
+				if(check_rights(R_ADMIN, FALSE))
+					message = noscript(message)
+				else
+					message = sanitize(message)
+				fax_message = parse_pencode(message)
+
+				if(!fax_message)
+					return
+
 			if("Template")
-				addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
-				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Fax Message", "") as message|null
+				var/addressed_to
+
+				if(sender) // For the case we might be replying to a fax.
+					var/addressed = input("Address it to the sender or custom?", "Fax Message") as null|anything in list("Sender", "Custom")
+					if(!addressed)
+						return
+					if(addressed == "Sender")
+						addressed_to = "[sender.real_name]"
+						
+				if(!addressed_to)
+					addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
+				var/message_body = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
 				var/sent_by = input("Enter the name and rank you are sending from.", "Fax Message", "") as text|null
 
 				if(!addressed_to && !message_body && !sent_by)
 					return
 
-				fax_message = generate_templated_fax(department, subject, addressed_to, message_body, sent_by, department)
+				addressed_to = sanitize(addressed_to)
+				sent_by = sanitize(sent_by)
 
-			if("Custom")
-				var/input = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
-				fax_message = "[input]"
+				if(check_rights(R_ADMIN, FALSE))
+					message_body = noscript(message_body)
+				else
+					message_body = sanitize(message_body)
+
+				message_body = replacetext(message_body, "\n", "<br />") // Lets just always do this one
+				fax_message = generate_templated_fax(dep, subject, addressed_to, message_body, sent_by, department)
+				if(!fax_message)
+					return
+
+			if("Raw")
+				var/message = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
+				if(!message)
+					return
+
+				if(check_rights(R_ADMIN, FALSE))
+					fax_message = noscript(message)
+				else
+					fax_message = sanitize(message)
 
 				if(!fax_message)
 					return
@@ -830,11 +813,15 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
 		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
+			usr << browse(null, "window=faxpreview")
 			return
 
-		send_fax(sender, null, dep, subject, fax_message, TRUE)
-
-		message_staff("[key_name_admin(usr)] sent a new fax - Department: [dep] | Subject: [subject].")
+		send_fax(usr, null, dep, subject, fax_message, TRUE)
+		if(sender)
+			log_admin("[key_name(usr)] replied to a fax message from [key_name(sender)].")
+			message_staff("[ADMIN_TPMONTY(usr)] replied to a fax message from [ismob(sender) ? ADMIN_TPMONTY(sender) : key_name_admin(sender)].")
+		else
+			message_staff("[key_name_admin(usr)] sent a new fax - Department: [dep] | Subject: [subject].")
 
 
 	else if(href_list["create_object"])

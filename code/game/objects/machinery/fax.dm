@@ -37,7 +37,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/faxmachine/attack_paw(mob/user as mob)
+/obj/machinery/faxmachine/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 

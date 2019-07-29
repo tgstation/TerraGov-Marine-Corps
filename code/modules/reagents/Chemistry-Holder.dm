@@ -36,9 +36,8 @@
 	var/list/data = list()
 	for(var/r in reagent_list) //no reagents will be left behind
 		var/datum/reagent/R = r
-		data += "[R.id] ([round(R.volume, CHEMICAL_QUANTISATION_LEVEL)]u)"
-		//Using IDs because SOME chemicals (I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
-	return english_list(data)
+		data += "[R.name] ([round(R.volume, 0.1)]u)"
+		//Using	return english_list(data)
 
 /datum/reagents/proc/remove_any(amount=1)
 	var/list/cached_reagents = reagent_list
@@ -57,7 +56,7 @@
 			current_list_element = 1
 
 		var/datum/reagent/R = cached_reagents[current_list_element]
-		remove_reagent(R.id, 1)
+		remove_reagent(R.type, 1)
 
 		current_list_element++
 		total_transfered++
@@ -72,7 +71,7 @@
 		var/part = amount / total_volume
 		for(var/reagent in cached_reagents)
 			var/datum/reagent/R = reagent
-			remove_reagent(R.id, R.volume * part)
+			remove_reagent(R.type, R.volume * part)
 
 		update_total()
 		handle_reactions()
@@ -92,15 +91,15 @@
 
 /datum/reagents/proc/get_master_reagent_id()
 	var/list/cached_reagents = reagent_list
-	var/id
+	var/max_type
 	var/max_volume = 0
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
 		if(R.volume > max_volume)
 			max_volume = R.volume
-			id = R.id
+			max_type = R.type
 
-	return id
+	return max_type
 
 /datum/reagents/proc/get_master_reagent()
 	var/list/cached_reagents = reagent_list
@@ -136,8 +135,8 @@
 		var/transfer_amount = T.volume * part
 		if(preserve_data)
 			trans_data = copy_data(T)
-		R.add_reagent(T.id, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1) //we only handle reaction after every reagent has been transfered.
-		remove_reagent(T.id, transfer_amount)
+		R.add_reagent(T.type, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1) //we only handle reaction after every reagent has been transfered.
+		remove_reagent(T.type, transfer_amount)
 
 	update_total()
 	R.update_total()
@@ -169,7 +168,7 @@
 		var/copy_amount = T.volume * part
 		if(preserve_data)
 			trans_data = T.data
-		R.add_reagent(T.id, copy_amount * multiplier, trans_data)
+		R.add_reagent(T.type, copy_amount * multiplier, trans_data)
 
 	src.update_total()
 	R.update_total()
@@ -194,11 +193,11 @@
 	var/trans_data = null
 	for(var/CR in cached_reagents)
 		var/datum/reagent/current_reagent = CR
-		if(current_reagent.id == reagent)
+		if(current_reagent.type == reagent)
 			if(preserve_data)
 				trans_data = current_reagent.data
-			R.add_reagent(current_reagent.id, amount, trans_data, src.chem_temp)
-			remove_reagent(current_reagent.id, amount, 1)
+			R.add_reagent(current_reagent.type, amount, trans_data, src.chem_temp)
+			remove_reagent(current_reagent.type, amount, 1)
 			break
 
 	src.update_total()
@@ -307,7 +306,7 @@
 		reaction_occured = 0
 		for(var/reagent in cached_reagents)
 			var/datum/reagent/R = reagent
-			for(var/reaction in cached_reactions[R.id]) // Was a big list but now it should be smaller since we filtered it with our reagent id
+			for(var/reaction in cached_reactions[R.type]) // Was a big list but now it should be smaller since we filtered it with our reagent id
 				if(!reaction)
 					continue
 
@@ -403,15 +402,15 @@
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
-		if (R.id != reagent)
-			del_reagent(R.id)
+		if (R.type != reagent)
+			del_reagent(R.type)
 			update_total()
 
 /datum/reagents/proc/del_reagent(reagent)
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
-		if (R.id == reagent)
+		if (R.type == reagent)
 			if(my_atom && isliving(my_atom))
 				var/mob/living/L = my_atom
 				R.on_mob_delete(L, L.get_reagent_tags())
@@ -430,7 +429,7 @@
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
 		if(R.volume < 0.1)
-			del_reagent(R.id)
+			del_reagent(R.type)
 		else
 			total_volume += R.volume
 
@@ -441,7 +440,7 @@
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		del_reagent(R.id)
+		del_reagent(R.type)
 	return 0
 
 
@@ -497,7 +496,7 @@
 
 	var/datum/reagent/D = GLOB.chemical_reagents_list[reagent]
 	if(!D)
-		warning("[my_atom] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
+		stack_trace("[my_atom] attempted to add a reagent called '[reagent]' which doesn't exist. ([usr])")
 		return FALSE
 
 	update_total()
@@ -528,7 +527,7 @@
 	//add the reagent to the existing if it exists
 	for(var/A in cached_reagents)
 		var/datum/reagent/R = A
-		if (R.id == reagent)
+		if (R.type == reagent)
 			R.volume += amount
 			update_total()
 			if(my_atom)
@@ -557,7 +556,7 @@
 		handle_reactions()
 	return TRUE
 
-/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) //// Like add_reagent but you can enter a list. Format it like this: list("toxin" = 10, "beer" = 15)
+/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) //// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)
 	for(var/r_id in list_reagents)
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
@@ -575,7 +574,7 @@
 
 	for(var/A in cached_reagents)
 		var/datum/reagent/R = A
-		if(R.id == reagent)
+		if(R.type == reagent)
 			//clamp the removal amount to be between current reagent amount
 			//and zero, to prevent removing more than the holder has stored
 			amount = CLAMP(amount, 0, R.volume) //P.S. Change it with the define when the other PR is merged.
@@ -593,7 +592,7 @@
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
-		if (R.id == reagent)
+		if (R.type == reagent)
 			if(!amount)
 				return R
 			else
@@ -607,7 +606,7 @@
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
-		if(R.id == reagent)
+		if(R.type == reagent)
 			return round(R.volume, CHEMICAL_QUANTISATION_LEVEL)
 
 	return 0
@@ -616,7 +615,7 @@
 /datum/reagents/proc/get_reagent(reagent_id)
 	for(var/X in reagent_list)
 		var/datum/reagent/R = X
-		if(R.id == reagent_id)
+		if(R.type == reagent_id)
 			return R
 
 
@@ -648,7 +647,7 @@
 		// We found a match, proceed to remove the reagent.	Keep looping, we might find other reagents of the same type.
 		if(matches)
 			// Have our other proc handle removement
-			has_removed_reagent = remove_reagent(R.id, amount, safety)
+			has_removed_reagent = remove_reagent(R.type, amount, safety)
 
 	return has_removed_reagent
 
@@ -659,14 +658,14 @@
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		if(R.id == reagent_id)
+		if(R.type == reagent_id)
 			return R.data
 
 /datum/reagents/proc/set_data(reagent_id, new_data)
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		if(R.id == reagent_id)
+		if(R.type == reagent_id)
 			R.data = new_data
 
 /datum/reagents/proc/copy_data(datum/reagent/current_reagent)
@@ -748,12 +747,12 @@
 	if(init_reagents)
 		reagents.add_reagent_list(init_reagents, data)
 
-/proc/get_random_reagent_id() //Returns a random reagent ID minus blacklisted reagents
+/proc/get_random_reagent_id()	// Returns a random reagent ID minus blacklisted reagents
 	var/static/list/random_reagents = list()
-	if(!random_reagents.len)
-		for(var/thing in subtypesof(/datum/reagent))
+	if(!length(random_reagents))
+		for(var/thing  in subtypesof(/datum/reagent))
 			var/datum/reagent/R = thing
 			if(initial(R.can_synth))
-				random_reagents += initial(R.id)
+				random_reagents += R
 	var/picked_reagent = pick(random_reagents)
 	return picked_reagent

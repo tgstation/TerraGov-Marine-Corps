@@ -298,33 +298,33 @@
 	max_integrity = 300 //Stronger doors for prison (regular window door health is 200)
 
 
-//theseus brig doors
-/obj/machinery/door/window/brigdoor/theseus
+// Main ship brig doors
+/obj/machinery/door/window/brigdoor/mainship
 	name = "Cell"
 	id = "Cell"
 	max_integrity = 500
 
-/obj/machinery/door/window/brigdoor/theseus/cell_1
+/obj/machinery/door/window/brigdoor/mainship/cell_1
 	name = "Cell 1"
 	id = "Cell 1"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_2
+/obj/machinery/door/window/brigdoor/mainship/cell_2
 	name = "Cell 2"
 	id = "Cell 2"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_3
+/obj/machinery/door/window/brigdoor/mainship/cell_3
 	name = "Cell 3"
 	id = "Cell 3"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_4
+/obj/machinery/door/window/brigdoor/mainship/cell_4
 	name = "Cell 4"
 	id = "Cell 4"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_5
+/obj/machinery/door/window/brigdoor/mainship/cell_5
 	name = "Cell 5"
 	id = "Cell 5"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_6
+/obj/machinery/door/window/brigdoor/mainship/cell_6
 	name = "Cell 6"
 	id = "Cell 6"
 

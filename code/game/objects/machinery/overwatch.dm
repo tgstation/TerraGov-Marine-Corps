@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/user as mob) //why monkey why
+/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/living/carbon/monkey/user) //why monkey why
 	return attack_hand(user)
 
 
@@ -661,8 +661,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	ID.assigned_fireteam = 0 //reset fireteam assignment
 
 	//Changes headset frequency to match new squad
-	var/obj/item/radio/headset/almayer/marine/H = transfer_marine.wear_ear
-	if(istype(H, /obj/item/radio/headset/almayer/marine))
+	var/obj/item/radio/headset/mainship/marine/H = transfer_marine.wear_ear
+	if(istype(H, /obj/item/radio/headset/mainship/marine))
 		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_squad()

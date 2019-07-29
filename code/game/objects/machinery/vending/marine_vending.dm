@@ -743,19 +743,19 @@
 	if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
 		switch(squad_tag)
 			if("Alpha")
-				products2 = list(/obj/item/radio/headset/almayer/marine/alpha = 20,
+				products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
 								/obj/item/clothing/gloves/marine/alpha = 10)
 			if("Bravo")
-				products2 = list(/obj/item/radio/headset/almayer/marine/bravo = 20,
+				products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
 								/obj/item/clothing/gloves/marine/bravo = 10)
 			if("Charlie")
-				products2 = list(/obj/item/radio/headset/almayer/marine/charlie = 20,
+				products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
 								/obj/item/clothing/gloves/marine/charlie = 10)
 			if("Delta")
-				products2 = list(/obj/item/radio/headset/almayer/marine/delta = 20,
+				products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
 								/obj/item/clothing/gloves/marine/delta = 10)
 	else
-		products2 = list(/obj/item/radio/headset/almayer = 10,
+		products2 = list(/obj/item/radio/headset/mainship = 10,
 						/obj/item/clothing/gloves/marine = 10)
 	build_inventory(products2)
 	GLOB.marine_vendors.Add(src)

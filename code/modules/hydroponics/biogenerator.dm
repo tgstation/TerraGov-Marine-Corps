@@ -144,9 +144,9 @@
 	var/S = 0
 	for(var/obj/item/reagent_container/food/snacks/grown/I in contents)
 		S += 5
-		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
+		if(I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) < 0.1)
 			points += 1
-		else points += I.reagents.get_reagent_amount("nutriment")*10
+		else points += I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)*10
 		qdel(I)
 	if(S)
 		processing = 1
@@ -172,7 +172,7 @@
 	sleep(30)
 	switch(item)
 		if("milk")
-			beaker.reagents.add_reagent("milk",10)
+			beaker.reagents.add_reagent(/datum/reagent/consumable/drink/milk,10)
 		if("meat")
 			new/obj/item/reagent_container/food/snacks/meat(src.loc)
 		if("ez")

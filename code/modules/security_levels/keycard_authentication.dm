@@ -24,7 +24,7 @@
 	to_chat(user, "The station AI is not to interact with these devices.")
 	return
 
-/obj/machinery/keycard_auth/attack_paw(mob/user as mob)
+/obj/machinery/keycard_auth/attack_paw(mob/living/carbon/monkey/user)
 	to_chat(user, "You are too primitive to use this device.")
 	return
 

@@ -169,7 +169,7 @@
 					var/R
 					if(D.reagents)
 						for(var/datum/reagent/A in D.reagents.reagent_list)
-							R += A.id + " ("
+							R += A.name + " ("
 							R += num2text(A.volume) + "),"
 					if (istype(M, /mob))
 						log_combat(user, M, "shot", src, "Reagents: ([R])")

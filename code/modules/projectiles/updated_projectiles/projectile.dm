@@ -740,7 +740,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	return 1
 
 
-/turf/closed/wall/almayer/research/containment/bullet_act(obj/item/projectile/P)
+/turf/closed/wall/mainship/research/containment/bullet_act(obj/item/projectile/P)
 	if(P && P.ammo.flags_ammo_behavior & AMMO_XENO_ACID)
 		return //immune to acid spit
 	. = ..()

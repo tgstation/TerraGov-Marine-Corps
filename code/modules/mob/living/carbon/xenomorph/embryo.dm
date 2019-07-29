@@ -79,16 +79,16 @@
 	else if(stage <= 4)
 		counter++
 
-	if(affected_mob.reagents.get_reagent_amount("xeno_growthtoxin"))
+	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
 		counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
 		stage++
 		log_combat(affected_mob, null, "had their embryo advance to stage [stage]")
-		if(iscarbon(affected_mob))
-			var/mob/living/carbon/C = affected_mob
-			C.med_hud_set_status()
+		var/mob/living/carbon/C = affected_mob
+		C.med_hud_set_status()
+		affected_mob.jitter(stage * 5)
 
 	switch(stage)
 		if(2)

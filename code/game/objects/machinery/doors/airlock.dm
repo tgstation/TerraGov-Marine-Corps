@@ -260,7 +260,7 @@
 				src.attack_ai(user)
 
 
-/obj/machinery/door/airlock/attack_paw(mob/user as mob)
+/obj/machinery/door/airlock/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 //Prying open doors
