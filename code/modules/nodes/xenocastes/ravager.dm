@@ -28,6 +28,7 @@
 	if(parentmob2.rage < 15 && istype(action_state, /datum/action_state/hunt_and_destroy))
 		var/datum/action_state/hunt_and_destroy/action_state2 = action_state
 
+		if(get_dist(parentmob, action_state2.atomtowalkto) <= 5)
 		if(charge.can_use_ability(action_state2.atomtowalkto, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 			charge.use_ability(action_state2.atomtowalkto)
 

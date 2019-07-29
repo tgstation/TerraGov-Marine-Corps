@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(allnodes)
 
 //The equivalent of get_step_towards but now for nodes; will NOT intelligently pathfind based on node weights or anything else
 //Returns nothing if a suitable node in a direction isn't found, otherwise returns a node
-/proc/get_node_towards(var/obj/effect/AINode/startnode, var/obj/effect/AINode/destination)
+/proc/get_node_towards(obj/effect/AINode/startnode, obj/effect/AINode/destination)
 	if(startnode == destination)
 		return startnode
 	var/list/possibledir = DiagonalToCardinal(get_dir(startnode, destination))
@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(allnodes)
 	return null
 
 //Returns a list of humans via get_dist and same z level method, very cheap compared to range()
-/proc/cheap_get_humans_near(var/source, var/distance)
+/proc/cheap_get_humans_near(source, distance)
 	var/list/listofhuman = list() //All humans in range
 	for(var/human in GLOB.alive_human_list)
 		if(get_dist(source, human) <= distance)
