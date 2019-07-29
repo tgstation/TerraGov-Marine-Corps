@@ -358,7 +358,7 @@
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/user)
+/obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/carbon/monkey/user)
 	attack_alien(user)
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)

@@ -169,7 +169,7 @@
 	return FALSE
 
 
-/obj/machinery/attack_paw(mob/user)
+/obj/machinery/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 

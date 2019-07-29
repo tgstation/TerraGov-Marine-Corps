@@ -45,7 +45,7 @@
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		destroy_structure()
 
-/obj/structure/attack_paw(mob/user)
+/obj/structure/attack_paw(mob/living/carbon/monkey/user)
 	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		attack_hand(user)
 

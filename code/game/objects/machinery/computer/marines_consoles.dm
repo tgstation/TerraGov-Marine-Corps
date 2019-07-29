@@ -46,7 +46,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/computer/marine_card/attack_paw(mob/user as mob)
+/obj/machinery/computer/marine_card/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
@@ -386,7 +386,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/computer/squad_changer/attack_paw(mob/user as mob)
+/obj/machinery/computer/squad_changer/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 

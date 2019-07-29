@@ -49,7 +49,7 @@
 		return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_paw()
+/obj/item/reagent_container/syringe/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand()
 
 /obj/item/reagent_container/syringe/attackby(obj/item/I, mob/user, params)

@@ -106,7 +106,7 @@
 	return
 
 
-/obj/attack_paw(mob/user)
+/obj/attack_paw(mob/living/carbon/monkey/user)
 	if(can_buckle) return src.attack_hand(user)
 	else . = ..()
 

@@ -155,7 +155,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			removal_stage = 5
 
 
-/obj/machinery/nuclearbomb/attack_paw(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/nuclearbomb/attack_hand(mob/living/user)
