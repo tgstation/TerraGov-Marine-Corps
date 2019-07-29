@@ -132,7 +132,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_BELT
-	storage_slots = 6
+	storage_slots = 20
 	can_hold = list(
 		/obj/item/clothing/mask/cigarette, 
 		/obj/item/tool/lighter)
