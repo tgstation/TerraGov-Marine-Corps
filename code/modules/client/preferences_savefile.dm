@@ -178,6 +178,7 @@
 	try
 		WRITE_FILE(S["savefile_write_test"], "lebowskilebowski")
 	catch
+		to_chat(parent, "<span class='warning'>Writing to the savefile failed, please try again.</span>")
 		return FALSE
 
 	WRITE_FILE(S["version"], savefile_version)
@@ -371,6 +372,7 @@
 	try
 		WRITE_FILE(S["savefile_write_test"], "lebowskilebowski")
 	catch
+		to_chat(parent, "<span class='warning'>Writing to the savefile failed, please try again.</span>")
 		return FALSE
 
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
