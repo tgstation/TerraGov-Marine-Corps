@@ -181,3 +181,15 @@ You are also in charge of communicating with command and letting them know about
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+
+/datum/job/marine/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	if(!latejoin || !ishuman(C))
+		return
+	var/mob/living/carbon/human/H = C
+	if(!H.assigned_squad)
+		return
+	if(H.assigned_squad.squad_leader)
+		H.assigned_squad.demote_leader()
+	H.assigned_squad.promote_leader(H)
