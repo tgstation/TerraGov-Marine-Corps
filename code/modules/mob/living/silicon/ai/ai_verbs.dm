@@ -315,3 +315,35 @@
 
 	ghostize(FALSE)
 	offer_mob()
+
+/mob/living/silicon/ai/verb/switch_shell()
+	set category = "Silicon"
+	set name = "Deploy to Shell"
+
+	if(remote_control && istype(remote_control, /mob/living/silicon/controlled))
+		var/mob/living/silicon/controlled/shell = remote_control
+		shell.stopControl(src)
+		remote_control = null
+
+	if(remote_control)
+		message_admins("Something went very bad here. [remote_control.name]")
+		return
+
+
+	var/list/possible = list()
+	
+	for(var/mob/living/silicon/controlled/shell in GLOB.aiShells)
+		//TODO: in the future, perhaps do some checks here?
+		possible += shell
+
+	if(!length(possible))
+		to_chat(src, "No usable AI shells found.")
+	
+	var/mob/living/silicon/controlled/shell = input(src, "Which shell to control?") as null|anything in possible
+
+	if(!shell)
+		message_admins("Heil Syndicate.")
+		return
+
+	remote_control = shell
+	shell.startControl(src)

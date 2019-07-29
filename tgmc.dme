@@ -1191,6 +1191,7 @@
 #include "code\modules\mob\living\silicon\ai\freelook\chunk.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\eye.dm"
 #include "code\modules\mob\living\silicon\ai\freelook\read_me.dm"
+#include "code\modules\mob\living\silicon\controlled\controlled.dm"
 #include "code\modules\mob\living\silicon\decoy\decoy.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cat.dm"
