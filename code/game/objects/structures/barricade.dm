@@ -524,6 +524,9 @@
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
 			return
 
+		if(!WT.remove_fuel(2, user))
+			return
+
 		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 		"<span class='notice'>You repair [src].</span>")
 		obj_integrity += 150
