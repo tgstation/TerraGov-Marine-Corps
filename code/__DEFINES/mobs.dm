@@ -438,7 +438,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_DECAY_PROOF			(1<<8)
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
-#define CASTE_NO_STAND_HEAL_PENALTY	(1<<11) // Xenomorphs don't suffer a penalty to healing when not resting
+#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_NO_QUEEN_HEAL_FULL	(1<<12) // Xenomorphs don't suffer a penalty to healing if there's no queen on the same z level
 
 // Xeno charge types
