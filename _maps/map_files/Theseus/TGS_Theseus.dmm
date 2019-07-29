@@ -977,7 +977,10 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/terragov/west{
+	icon_state = "logo_directional_west";
+	dir = 9
+	},
 /area/mainship/living/briefing)
 "acE" = (
 /obj/machinery/light/small{
@@ -45274,6 +45277,12 @@
 	icon_state = "orangecorner"
 	},
 /area/mainship/engineering/upper_engineering)
+"cKD" = (
+/turf/open/floor/mainship/terragov/west{
+	icon_state = "logo_directional_west";
+	dir = 6
+	},
+/area/mainship/living/briefing)
 "cSa" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2;
@@ -45407,6 +45416,15 @@
 	icon_state = "sterile_green_side"
 	},
 /area/mainship/medical/lower_medical)
+"ehB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/terragov{
+	icon_state = "logo_central";
+	dir = 8
+	},
+/area/mainship/living/briefing)
 "emC" = (
 /obj/docking_port/stationary/ert/target{
 	name = "Starboard";
@@ -45600,6 +45618,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
+"fSI" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/terragov/west{
+	icon_state = "logo_directional_west";
+	dir = 4
+	},
+/area/mainship/living/briefing)
 "fXd" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -45704,6 +45731,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
+"gRX" = (
+/turf/open/floor/mainship/terragov/west,
+/area/mainship/living/briefing)
 "gVe" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -46126,6 +46156,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
+"kwO" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/terragov/west{
+	icon_state = "logo_directional_west";
+	dir = 10
+	},
+/area/mainship/living/briefing)
 "kwY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -46322,6 +46361,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"lJq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/terragov/west{
+	icon_state = "logo_directional_west";
+	dir = 8
+	},
+/area/mainship/living/briefing)
 "lKi" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/combat,
@@ -47255,6 +47303,12 @@
 	icon_state = "orange"
 	},
 /area/mainship/engineering/upper_engineering)
+"uwO" = (
+/turf/open/floor/mainship/terragov/west{
+	icon_state = "logo_directional_west";
+	dir = 5
+	},
+/area/mainship/living/briefing)
 "uAE" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -47408,6 +47462,12 @@
 "vHb" = (
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/ex_firing_range)
+"vHl" = (
+/turf/open/floor/mainship/terragov/west{
+	icon_state = "logo_directional_west";
+	dir = 1
+	},
+/area/mainship/living/briefing)
 "vJo" = (
 /obj/machinery/photocopier,
 /obj/machinery/light,
@@ -83379,8 +83439,8 @@ bvX
 bqV
 bqV
 acD
-bqX
-acD
+lJq
+kwO
 bqV
 bqV
 bvX
@@ -83635,9 +83695,9 @@ bDw
 bvX
 bIz
 vFl
-bIz
-bqX
-ckX
+vHl
+ehB
+gRX
 ckX
 ckX
 bvX
@@ -83892,9 +83952,9 @@ bDw
 bvX
 bIz
 bIz
-bIz
-bqX
-ckX
+uwO
+fSI
+cKD
 ckX
 ckX
 bvX

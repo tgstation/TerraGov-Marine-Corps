@@ -57,13 +57,21 @@
 
 
 //Others
-/turf/open/floor/mainship/tgmc
-	icon_state = "logo_c"
-	name = "\improper TGMC Logo"
+/turf/open/floor/mainship/terragov
+	icon_state = "logo_central"
+	name = "\improper TerraGov logo"
 
-/turf/open/floor/mainship/tgmc/directional
-	icon_state = "logo_directional"
+/turf/open/floor/mainship/terragov/west
+	icon_state = "logo_directional_west"
 
+/turf/open/floor/mainship/terragov/south
+	icon_state = "logo_directional_south"
+
+/turf/open/floor/mainship/terragov/east
+	icon_state = "logo_directional_east"
+
+/turf/open/floor/mainship/terragov/north
+	icon_state = "logo_directional_north"
 
 
 // RESEARCH STUFF
