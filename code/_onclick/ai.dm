@@ -120,11 +120,17 @@
 
 /* Holopads */
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
+	if(z != user.z)
+		return
+
 	hangup_all_calls()
 
 
 /* Airlocks */
-/obj/machinery/door/airlock/AICtrlClick() // Bolts doors
+/obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
+	if(z != user.z)
+		return
+
 	if(obj_flags & EMAGGED)
 		return
 
@@ -134,7 +140,10 @@
 		bolt_drop(usr)
 
 
-/obj/machinery/door/airlock/AIAltClick() // Eletrifies doors.
+/obj/machinery/door/airlock/AIAltClick(mob/living/silicon/ai/user) // Eletrifies doors.
+	if(z != user.z)
+		return
+
 	if(obj_flags & EMAGGED)
 		return
 
@@ -144,7 +153,10 @@
 		shock_restore(usr)
 
 
-/obj/machinery/door/airlock/AIShiftClick()  // Opens and closes doors!
+/obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
+	if(z != user.z)
+		return
+
 	if(obj_flags & EMAGGED)
 		return
 
@@ -152,7 +164,9 @@
 
 
 /* APC */
-/obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
+/obj/machinery/power/apc/AICtrlClick(mob/living/silicon/ai/user) // turns off/on APCs.
+	if(z != user.z)
+		return
 	toggle_breaker(usr)
 
 
