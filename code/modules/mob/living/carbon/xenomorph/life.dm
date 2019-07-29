@@ -108,11 +108,11 @@
 		return
 
 	var/ruler_healing_penalty = 0.5
-	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_IGNORE_NO_QUEEN_HEAL_PENALTY) //if the living queen's z-level is the same as ours.
+	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_NO_QUEEN_HEAL_FULL) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
-		if(lying || resting || xeno_caste.caste_flags & CASTE_IGNORE_STAND_HEAL_PENALTY)
+		if(lying || resting || xeno_caste.caste_flags & CASTE_NO_STAND_HEAL_PENALTY)
 			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
