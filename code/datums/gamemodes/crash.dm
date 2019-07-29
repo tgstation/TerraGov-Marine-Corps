@@ -1,5 +1,3 @@
-#define CRASH_MINIMUM_TIME 1 HOURS
-
 /datum/game_mode/crash
 	name = "Crash"
 	config_tag = "Crash"
@@ -167,23 +165,24 @@
 	
 
 /datum/game_mode/crash/proc/add_larva()
-	var/list/living_player_list = count_humans_and_xenos()
-	var/num_humans = living_player_list[1]
-	var/num_xenos = living_player_list[2]
-	if(!num_xenos)
-		if(world.time < CRASH_MINIMUM_TIME + SSticker.round_start_time) //Xenos keep respawning for like an hour or so.
-			return respawn_xenos(num_humans)
+	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/num_humans = living_player_list[1]
+	var/num_xenos = living_player_list[2] + HS.stored_larva
+	if(!num_xenos)
+		return respawn_xenos(num_humans)
 	var/marines_per_xeno = num_humans / num_xenos
 	switch(marines_per_xeno)
 		if(0)
 			return check_finished() //No more marines.
 		if(0 to 3) //Xenos grow up until they are a third the number of marines.
 			return
-		if(3 to 5)
+		if(3 to 4)
 			HS.stored_larva++
-		else //If there's more than 5 marines per xenos, then xenos spawn in larger quantities.
-			HS.stored_larva += CLAMP(round(marines_per_xeno * 0.2), 1, num_humans - num_xenos)
+		if(4 to 5)
+			HS.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 10 marines.
+		else //If there's more than 5 marines per xenos, then xenos gain larvas to fill the gap.
+			HS.stored_larva += CLAMP(round(num_humans * 0.2), 1, num_humans - num_xenos)
 
 
 /datum/game_mode/crash/proc/respawn_xenos(num_humans)
@@ -192,19 +191,20 @@
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(xeno_hive.stored_larva)
 		return TRUE //No need for respawns nor to end the game. They can use their burrowed larvas.
-	var/new_xeno_batch = CLAMP(num_humans * 0.2, 1, 3)
+	var/new_xeno_batch = min(1, round(num_humans * 0.2))
 	for(var/i in new_xeno_batch)
 		var/obj/structure/resin/silo/spawn_point = pick(GLOB.xeno_resin_silos)
 		var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point.loc)
-		new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-		"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 
 		// Try to find someone for the xeno
 		var/xeno_candidate = get_alien_candidate()
 		if(!xeno_candidate)
+			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>")
 			continue
 
 		transfer_xeno(xeno_candidate, new_xeno)
+		new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
+		"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 		
 	return TRUE
 
@@ -229,8 +229,14 @@
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(!num_xenos && num_humans && !planet_nuked && world.time < CRASH_MINIMUM_TIME + SSticker.round_start_time && respawn_xenos(num_humans))
-		return FALSE //Xenos keep respawning for like an hour or so.
+	if(num_humans && !planet_nuked)
+		if(!num_xenos)
+			if(respawn_xenos(num_humans))
+				return FALSE //Xenos keep respawning for like an hour or so.
+		else
+			if(num_humans / num_xenos > 5)
+				add_larva()
+			return FALSE
 
 	var/list/grounded_living_player_list = count_humans_and_xenos(SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)))
 	var/num_grounded_humans = grounded_living_player_list[1]
@@ -405,5 +411,3 @@
 	popup.open(FALSE)
 
 	return TRUE
-
-#undef CRASH_MINIMUM_TIME
