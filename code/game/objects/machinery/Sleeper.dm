@@ -380,7 +380,8 @@
 	connected.stop_processing()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
-	icon_state = "sleeper_0"
+	else
+		icon_state = "sleeper_0"
 	return
 
 
