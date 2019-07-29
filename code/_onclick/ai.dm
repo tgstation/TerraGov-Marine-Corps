@@ -36,6 +36,9 @@
 	if(check_click_intercept(params, A))
 		return
 
+	if(level_locked && A.z != z)
+		return
+
 	if(control_disabled || incapacitated())
 		return
 
@@ -61,9 +64,6 @@
 		return
 
 	if(world.time <= next_move)
-		return
-
-	if(level_locked && A.z != z)
 		return
 
 	A.attack_ai(src)
