@@ -50,8 +50,9 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Start name span.
 	var/spanpart2 = "<span class='name'>"
 	//Radio freq/name display
-	var/job = speaker.GetJob()
-	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq)][job ? " ([job])": ""]\] " : ""
+	var/freqpart = compose_freq(speaker, radio_freq)
+	//Job display
+	var/jobpart = compose_job(speaker, message_language, raw_message, radio_freq)
 	//Speaker name
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 	if(face_name && ishuman(speaker))
@@ -68,11 +69,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(istype(D) && D.display_icon(src))
 		languageicon = "[D.get_icon()] "
 
-	return "[spanpart1][spanpart2][freqpart][languageicon][compose_track_href(speaker, namepart)][compose_job(speaker, message_language, raw_message, radio_freq)][namepart][endspanpart][messagepart]"
+	return "[spanpart1][spanpart2][freqpart][languageicon][jobpart][namepart][endspanpart][messagepart]"
 
 
-/atom/movable/proc/compose_track_href(atom/movable/speaker, message_langs, raw_message, radio_freq)
-	return ""
+/atom/movable/proc/compose_freq(atom/movable/speaker, radio_freq)
+	var/job = speaker.GetJob()
+	return radio_freq ? "\[[get_radio_name(radio_freq)][job ? " ([job])": ""]\] " : ""
 
 
 /atom/movable/proc/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq) 
