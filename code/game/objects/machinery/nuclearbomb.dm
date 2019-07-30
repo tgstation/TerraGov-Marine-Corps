@@ -72,14 +72,13 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		icon_state = "nuclearbomb3"
 
 	play_cinematic() //The round ends as soon as this happens, or it should.
-	addtimer(CALLBACK(src, .proc/set_victory_condition), 15 SECONDS) // TODO: Refine the time here, for however long the cinematic is
+	addtimer(CALLBACK(src, .proc/set_victory_condition), 15 SECONDS)
 	return TRUE
 
 
 /obj/machinery/nuclearbomb/proc/play_cinematic()
 	GLOB.enter_allowed = FALSE
-	// TODO: Text might need an update
-	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
+	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
 	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
 
 	for(var/x in GLOB.player_list)
