@@ -1,4 +1,4 @@
 /mob/living/carbon/human/Logout()
-	..()
-	if(species) species.handle_logout_special(src)
-	return
+	. = ..()
+	species?.handle_logout_special(src)
+	away_time = addtimer(CALLBACK(GLOBAL_PROC, /proc/afk_message, src), 15 MINUTES, TIMER_STOPPABLE)
