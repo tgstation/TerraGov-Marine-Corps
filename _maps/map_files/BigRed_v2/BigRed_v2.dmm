@@ -15363,7 +15363,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aUM" = (
-/obj/machinery/computer/nuke_disc_generator/red,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aUN" = (
@@ -23546,7 +23546,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzG" = (
-/obj/machinery/computer/nuke_disc_generator/green,
+/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -25477,7 +25477,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/nuke_disc_generator/blue,
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "iiY" = (

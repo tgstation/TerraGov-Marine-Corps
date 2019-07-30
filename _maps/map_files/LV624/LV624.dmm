@@ -15395,7 +15395,7 @@
 /area/lv624/lazarus/atmos)
 "bdK" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/computer/nuke_disc_generator/green,
+/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "bdL" = (
@@ -20331,7 +20331,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
 "sih" = (
-/obj/machinery/computer/nuke_disc_generator/blue,
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "sGt" = (
@@ -20401,7 +20401,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "vTx" = (
-/obj/machinery/computer/nuke_disc_generator/red,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},

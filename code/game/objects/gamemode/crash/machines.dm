@@ -1,30 +1,30 @@
-// -- Print disc computer
-/obj/item/circuitboard/computer/nuke_disc_generator
-	name = "Circuit board (Nuke Disc Generator)"
-	build_path = /obj/machinery/computer/nuke_disc_generator
+// -- Print disk computer
+/obj/item/circuitboard/computer/nuke_disk_generator
+	name = "Circuit board (Nuke Disk Generator)"
+	build_path = /obj/machinery/computer/nuke_disk_generator
 
 
-/obj/machinery/computer/nuke_disc_generator
-	name = "Nuke Disc Generator"
+/obj/machinery/computer/nuke_disk_generator
+	name = "Nuke Disk Generator"
 	desc = "Used to generate the correct auth discs for the nuke."
 	icon_state = "request" // TODO: Better icon state
-	circuit = "/obj/item/circuitboard/computer/nuke_disc_generator"
+	circuit = "/obj/item/circuitboard/computer/nuke_disk_generator"
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
 	var/generate_time = 1.5 MINUTES // time for the machine to generate the disc
 	var/segment_time = 15 SECONDS // time to start the hack 
-	var/printing_time = 15 SECONDS // time to print a disc 
+	var/printing_time = 15 SECONDS // time to print a disk 
 	
 	var/total_segments = 5 // total number of times the hack is required
-	var/completed_segments = 0 // what segment we are on, (once this hits total, disc is printed)
+	var/completed_segments = 0 // what segment we are on, (once this hits total, disk is printed)
 	var/current_timer
 
-	var/reprintable = FALSE // once the disc is printed, reprinting is enabled
+	var/reprintable = FALSE // once the disk is printed, reprinting is enabled
 	var/printing = FALSE // check if someone is printing already
 
-	var/disc_type
-	var/obj/item/disk/nuclear/crash/disc
+	var/disk_type
+	var/obj/item/disk/nuclear/crash/disk
 
 	var/list/technobabble = list(
 		"Booting up terminal-  -Terminal running",
@@ -34,14 +34,14 @@
 		"Downloading nuke_fission_timing.exe to removable storage- nuke_fission_timing.exe downloaded to floppy disk, have a nice day"
 	)
 
-/obj/machinery/computer/nuke_disc_generator/Initialize()
+/obj/machinery/computer/nuke_disk_generator/Initialize()
 	. = ..()
 
-	if(!disc_type)
-		WARNING("disc_type is required to be set before init")
+	if(!disk_type)
+		WARNING("disk_type is required to be set before init")
 		return INITIALIZE_HINT_QDEL
 
-/obj/machinery/computer/nuke_disc_generator/process()
+/obj/machinery/computer/nuke_disk_generator/process()
 	. = ..()
 	if(. || !current_timer)
 		return
@@ -51,17 +51,17 @@
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
 
 
-/obj/machinery/computer/nuke_disc_generator/attackby(obj/item/I, mob/living/user, params)
+/obj/machinery/computer/nuke_disk_generator/attackby(obj/item/I, mob/living/user, params)
 	return attack_hand(user)
 
-/obj/machinery/computer/nuke_disc_generator/attack_hand(mob/living/user)
+/obj/machinery/computer/nuke_disk_generator/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 
 	interact(user)
 
-/obj/machinery/computer/nuke_disc_generator/interact(mob/user)
+/obj/machinery/computer/nuke_disk_generator/interact(mob/user)
 	user.set_interaction(src)
 	var/dat = ""
 	dat += "<a href='?src=[REF(src)];mach_close=computer'>Close</a><br><br>"
@@ -72,7 +72,7 @@
 
 	var/message = "Error"
 	if(completed_segments >= total_segments)
-		message = "Disc generated. Run program to print."
+		message = "Disk generated. Run program to print."
 	else if(current_timer)
 		message = "Program running"
 	else if(completed_segments == 0)
@@ -94,11 +94,11 @@
 
 	dat += "<br /><br /><span style='font-family: monospace, monospace;'>[flair]</span>"
 
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Nuke Disc Generator</div>")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Nuke Disk Generator</div>")
 	popup.set_content(dat)
 	popup.open()
 
-/obj/machinery/computer/nuke_disc_generator/Topic(href, href_list)
+/obj/machinery/computer/nuke_disk_generator/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -111,7 +111,7 @@
 			printing = TRUE
 			addtimer(VARSET_CALLBACK(src, printing, FALSE), printing_time) // TODO Change to larger time
 
-			usr.visible_message("[usr] started a program to regenerate a nuclear disc code.", "You started a program to generate a nuclear disc code.")
+			usr.visible_message("[usr] started a program to regenerate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
 			if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
 				return
 
@@ -121,7 +121,7 @@
 		printing = TRUE
 		addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time) // TODO Change to larger time
 
-		usr.visible_message("[usr] started a program to generate a nuclear disc code.", "You started a program to generate a nuclear disc code.")
+		usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
 		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
 			return
 
@@ -130,7 +130,7 @@
 	updateUsrDialog()
 
 
-/obj/machinery/computer/nuke_disc_generator/proc/complete_segment()
+/obj/machinery/computer/nuke_disk_generator/proc/complete_segment()
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)	
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
@@ -143,17 +143,17 @@
 	visible_message("<span class='notice'>[src] beeps as it program requires attention.</span>")
 
 
-/obj/machinery/computer/nuke_disc_generator/proc/print_disc()
-	disc = new disc_type(loc)
+/obj/machinery/computer/nuke_disk_generator/proc/print_disc()
+	disk = new disk_type(loc)
 	visible_message("<span class='notice'>[src] beeps as it finishes printing the disc.</span>")
 	reprintable = TRUE
 		
-/obj/machinery/computer/nuke_disc_generator/red
-	disc_type = /obj/item/disk/nuclear/crash/red
+/obj/machinery/computer/nuke_disk_generator/red
+	disk_type = /obj/item/disk/nuclear/crash/red
 
-/obj/machinery/computer/nuke_disc_generator/green
-	disc_type = /obj/item/disk/nuclear/crash/green
+/obj/machinery/computer/nuke_disk_generator/green
+	disk_type = /obj/item/disk/nuclear/crash/green
 
-/obj/machinery/computer/nuke_disc_generator/blue
-	disc_type = /obj/item/disk/nuclear/crash/blue
+/obj/machinery/computer/nuke_disk_generator/blue
+	disk_type = /obj/item/disk/nuclear/crash/blue
 

@@ -41932,7 +41932,7 @@
 /turf/open/floor/prison,
 /area/prison/security/head)
 "bYf" = (
-/obj/machinery/computer/nuke_disc_generator/green,
+/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "bYg" = (
@@ -53160,11 +53160,11 @@
 /turf/open/floor/prison/red/corner,
 /area/prison/cellblock/highsec/south/north)
 "ipp" = (
-/obj/machinery/computer/nuke_disc_generator/red,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/wood,
 /area/prison/residential/north)
 "iBh" = (
-/obj/machinery/computer/nuke_disc_generator/blue,
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/testing)
 "iOM" = (

@@ -10866,7 +10866,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/computer/nuke_disc_generator/blue,
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -29349,7 +29349,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/canteen)
 "bzK" = (
-/obj/machinery/computer/nuke_disc_generator/red,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
@@ -34153,7 +34153,7 @@
 	},
 /area/ice_colony/underground/hallway/south_east)
 "bLD" = (
-/obj/machinery/computer/nuke_disc_generator/green,
+/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
