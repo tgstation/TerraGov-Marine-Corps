@@ -43,7 +43,6 @@
 	bound_width = 96
 	bound_height = 96
 	max_integrity = 400
-	destruction_sound = 'sound/effects/alien_egg_burst.ogg'
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
@@ -92,3 +91,15 @@
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	silos += src
+
+/obj/structure/resin/silo/take_damage(damage)
+	if(!damage || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+
+	obj_integrity = max(0, obj_integrity - damage)
+
+	if(obj_integrity <= 0)
+		playsound(src, 'sound/effects/alien_egg_burst.ogg', 35)
+		qdel(src)
+	else
+		update_icon()

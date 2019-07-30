@@ -242,13 +242,13 @@
 
 //Damage
 /obj/structure/proc/take_damage(dam)
-	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
 		return
 
 	obj_integrity = max(0, obj_integrity - dam)
 
 	if(obj_integrity <= 0)
-		playsound(src, destruction_sound, 35)
+		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		qdel(src)
 	else
 		update_icon()
