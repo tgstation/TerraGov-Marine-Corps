@@ -43,16 +43,14 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		AM.Hear(rendered, src, message_language, message, , spans, message_mode)
 
 
+#define CMSG_FREQPART compose_freq(speaker, radio_freq)
+#define CMSG_JOBPART compose_job(speaker, message_language, raw_message, radio_freq)
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode, face_name = FALSE)
 	//This proc uses text() because it is faster than appending strings. Thanks BYOND.
 	//Basic span
 	var/spanpart1 = "<span class='[radio_freq ? get_radio_span(radio_freq) : "game say"]'>"
 	//Start name span.
 	var/spanpart2 = "<span class='name'>"
-	//Radio freq/name display
-	var/freqpart = compose_freq(speaker, radio_freq)
-	//Job display
-	var/jobpart = compose_job(speaker, message_language, raw_message, radio_freq)
 	//Speaker name
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 	if(face_name && ishuman(speaker))
@@ -69,7 +67,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(istype(D) && D.display_icon(src))
 		languageicon = "[D.get_icon()] "
 
-	return "[spanpart1][spanpart2][freqpart][languageicon][jobpart][namepart][endspanpart][messagepart]"
+	return "[spanpart1][spanpart2][CMSG_FREQPART][languageicon][CMSG_JOBPART][namepart][endspanpart][messagepart]"
 
 
 /atom/movable/proc/compose_freq(atom/movable/speaker, radio_freq)
