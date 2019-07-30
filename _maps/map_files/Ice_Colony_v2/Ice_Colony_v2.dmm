@@ -11468,9 +11468,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/item/stack/sheet/metal,
 /obj/item/shard,
 /obj/item/shard,
@@ -25850,15 +25847,6 @@
 	dir = 1
 	},
 /area/ice_colony/underground/hallway/south_east)
-"bqF" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/valley/southeast)
 "bqG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -25940,9 +25928,6 @@
 /area/ice_colony/exterior/underground/caves)
 "bqT" = (
 /obj/structure/fence,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -34458,11 +34443,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/hallway/south_east)
-"bMq" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/southwest)
 "bMs" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/security)
@@ -38922,7 +38902,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bYL" = (
@@ -40224,15 +40203,6 @@
 	},
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
-"hTx" = (
-/obj/effect/turf_overlay/icerock{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/closed/ice_rock/corners,
-/area/ice_colony/exterior/surface/cliff)
 "iao" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -40480,6 +40450,13 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"nyy" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/hallway/south_east)
 "nBB" = (
 /obj/effect/turf_overlay/icerock{
 	dir = 4
@@ -40660,6 +40637,14 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/thin/end,
 /area/ice_colony/underground/maintenance/east)
+"tJT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/ice_colony/underground/hallway/south_east)
 "tMa" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -46798,7 +46783,7 @@ afO
 afx
 aaQ
 aaU
-hTx
+gEI
 bfl
 bfZ
 bdn
@@ -57666,7 +57651,7 @@ aMG
 bHX
 bbS
 bbS
-bMq
+bbS
 bbS
 bRn
 aMG
@@ -64440,7 +64425,7 @@ bTO
 bTQ
 bMM
 bMM
-bMM
+nyy
 bMM
 bNX
 bpu
@@ -64697,7 +64682,7 @@ bMp
 brY
 bsv
 bsv
-bsv
+tJT
 bsv
 bsv
 btb
@@ -81031,7 +81016,7 @@ aar
 aEC
 awL
 aui
-bqF
+bqg
 azG
 azG
 aui
