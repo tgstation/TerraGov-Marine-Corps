@@ -1,0 +1,4 @@
+author: "MoXuT0"
+delete-after: True
+changes: 
+  - tweak: "Prison station adjustments. Added catwalks to canteen. Added podlocks to civilian hangar. Deleted signs containing space refference. Replaced water sprite with sea. Fixed some areas having zero or more than one APC's."
