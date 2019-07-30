@@ -52558,7 +52558,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1)
 "dOO" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison{
