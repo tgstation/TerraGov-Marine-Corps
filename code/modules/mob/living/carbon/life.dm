@@ -55,12 +55,11 @@
 	if(knocked_out || sleeping || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
-			set_ear_damage(deaf = 30000)
+			DEAF(1<<2)
 		stat = UNCONSCIOUS
 	else if(stat == UNCONSCIOUS)
 		stat = CONSCIOUS
 		adjust_blindness(-1)
-		ear_deaf = 0
 	update_canmove()
 
 /mob/living/carbon/handle_status_effects()
