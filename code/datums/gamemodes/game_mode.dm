@@ -705,13 +705,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
 
-	var/player_votes = player_votes_available(NP)
-	if(player_votes[1])
-		if(player_votes[2])
-			output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-		else
-			output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
-
+	output += append_player_votes_link(NP)
 	output += "</div>"
 
 	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
@@ -721,9 +715,9 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	return TRUE
 
-/datum/game_mode/proc/player_votes_available(mob/new_player/NP)
+/datum/game_mode/proc/append_player_votes_link(mob/new_player/NP)
 	if(QDELETED(NP) || IsGuestKey(NP.key) || !SSdbcore.IsConnected())
-		return list(FALSE, FALSE)
+		return "" // append nothing
 
 	var/isadmin = check_rights(R_ADMIN, FALSE)
 	var/newpoll = FALSE
@@ -732,7 +726,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		if(query_get_new_polls.NextRow())
 			newpoll = TRUE
 	qdel(query_get_new_polls)
-	return list(TRUE, newpoll)
+
+	if(newpoll)
+		return "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+	else
+		return "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 
 /datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
 	if(!isnewplayer(M))

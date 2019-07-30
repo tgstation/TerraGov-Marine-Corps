@@ -396,12 +396,7 @@
 
 	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
 
-	var/player_votes = player_votes_available(NP)
-	if(player_votes[1])
-		if(player_votes[2])
-			output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-		else
-			output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
+	output += append_player_votes_link(NP)
 
 	output += "</div>"
 
