@@ -715,3 +715,34 @@
 	if(anchored || throwing)
 		return FALSE
 	return TRUE
+
+
+/atom/movable/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("x")
+			var/turf/T = locate(var_value, y, z)
+			if(T)
+				forceMove(T)
+				return TRUE
+			return FALSE
+		if("y")
+			var/turf/T = locate(x, var_value, z)
+			if(T)
+				forceMove(T)
+				return TRUE
+			return FALSE
+		if("z")
+			var/turf/T = locate(x, y, var_value)
+			if(T)
+				forceMove(T)
+				return TRUE
+			return FALSE
+		if("loc")
+			if(istype(var_value, /atom))
+				forceMove(var_value)
+				return TRUE
+			else if(isnull(var_value))
+				moveToNullspace()
+				return TRUE
+			return FALSE
+	return ..()

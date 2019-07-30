@@ -818,3 +818,10 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		var/atom/A = i
 		if(!QDELETED(A) && A.level >= severity)
 			A.ex_act(severity, target)
+
+
+/turf/vv_edit_var(var_name, new_value)
+	var/static/list/banned_edits = list("x", "y", "z")
+	if(var_name in banned_edits)
+		return FALSE
+	return ..()
