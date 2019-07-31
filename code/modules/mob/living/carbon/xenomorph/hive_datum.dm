@@ -103,7 +103,7 @@
 				continue
 			if(X.client)
 				continue
-			if(isaghost(X) && GLOB.directory[X.key]) //To prevent adminghosted xenos to be snatched.
+			if(isclientedaghost(X)) //To prevent adminghosted xenos to be snatched.
 				continue
 			if(only_away && X.afk_timer_id)
 				continue

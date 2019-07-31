@@ -322,7 +322,7 @@
 /mob/living/carbon/xenomorph/proc/handle_afk_takeover()
 	if(client)
 		return
-	if(isaghost(src) && GLOB.directory[key]) // If aghosted, and admin still online
+	if(isclientedaghost(src)) // If aghosted, and admin still online
 		return
 	if(stat == DEAD)
 		return
