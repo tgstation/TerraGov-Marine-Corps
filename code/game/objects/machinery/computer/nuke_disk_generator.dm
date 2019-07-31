@@ -57,6 +57,7 @@
 	deltimer(current_timer)
 	current_timer = null
 	visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit")
+	return PROCESS_KILL
 
 
 /obj/machinery/computer/nuke_disk_generator/attackby(obj/item/I, mob/living/user, params)

@@ -45,13 +45,15 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 
 /obj/machinery/nuclearbomb/process()
-	if(timer_enabled)
-		GLOB.nukes_set_list |= src
-		timeleft--
-		if(timeleft <= 0)
-			explode()
-			return
-		updateUsrDialog()
+	if(!timer_enabled)
+		stop_processing()
+		return
+	GLOB.nukes_set_list |= src
+	timeleft--
+	if(timeleft <= 0)
+		explode()
+		return
+	updateUsrDialog()
 
 
 /obj/machinery/nuclearbomb/start_processing()

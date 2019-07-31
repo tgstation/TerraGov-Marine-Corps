@@ -42,7 +42,7 @@
 	return
 
 /obj/effect/countdown/process()
-	if(!attached_to || QDELETED(attached_to))
+	if(QDELETED(attached_to))
 		qdel(src)
 	forceMove(get_turf(attached_to))
 	var/new_val = get_value()
@@ -58,7 +58,7 @@
 /obj/effect/countdown/Destroy()
 	attached_to = null
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 /obj/effect/countdown/ex_act(severity, target) //immune to explosions
 	return
@@ -68,9 +68,9 @@
 	color = "#81FF14"
 
 /obj/effect/countdown/nuclearbomb/get_value()
-	var/obj/machinery/nuclearbomb/N = attached_to
-	if(!istype(N))
+	if(QDELETED(attached_to))
 		return
+	var/obj/machinery/nuclearbomb/N = attached_to
 	if(!N.timer_enabled)
 		return
 	return round(N.get_time_left())
