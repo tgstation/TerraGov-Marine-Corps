@@ -144,8 +144,11 @@
 
 	source.click_intercepted = world.time //From this point onwards Click() will no longer be triggered.
 
-	if(auto_delay_timer)
-		CRASH("on_mouse_down() called with an active auto_delay_timer")
+	switch(autofire_stat)
+		if(AUTOFIRE_STAT_SLEEPING, AUTOFIRE_STAT_IDLE)
+			CRASH("on_mouse_down() called with [autofire_stat] autofire_stat")
+		if(AUTOFIRE_STAT_FIRING)
+			stop_autofiring() //This can happen if we click and hold and then alt+tab, printscreen or other such action. MouseUp won't be called then and it will keep autofiring.
 
 	src.target = target
 	mouse_parameters = params
