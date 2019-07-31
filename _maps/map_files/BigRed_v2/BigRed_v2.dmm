@@ -5238,6 +5238,7 @@
 "apI" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
 	},
@@ -16101,14 +16102,6 @@
 "aXr" = (
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"aXs" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Office Complex 1";
-	name = "\improper Office Complex Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/office_complex)
 "aXu" = (
 /obj/machinery/computer/med_data,
 /turf/open/floor/tile/white,
@@ -16648,6 +16641,7 @@
 "aZg" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
 	},
@@ -20590,14 +20584,6 @@
 /obj/structure/table,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"bnP" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Engineering";
-	name = "\improper Engineering Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "bnQ" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/machinery/light{
@@ -36777,7 +36763,7 @@ aXK
 bmd
 bmd
 bme
-bnP
+asT
 bmi
 boE
 qFg
@@ -54321,7 +54307,7 @@ aQu
 aQu
 aQu
 aQu
-aXs
+arw
 aXU
 aYt
 arZ
@@ -55193,7 +55179,7 @@ aQu
 aTr
 aTq
 aTq
-aXs
+arw
 baj
 baP
 bbC
@@ -56061,7 +56047,7 @@ aSh
 aTr
 aTq
 aTq
-aXs
+arw
 baj
 baQ
 bbC
