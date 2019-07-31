@@ -559,6 +559,14 @@ GLOBAL_VAR_INIT(automute_on, null)
 	if(isnull(GLOB.automute_on))
 		GLOB.automute_on = CONFIG_GET(flag/automute_on)
 
+	total_message_count += 1
+
+	var/weight = SPAM_TRIGGER_WEIGHT_FORMULA(message)
+	total_message_weight += weight
+
+	var/message_cache = total_message_count
+	var/weight_cache = total_message_weight
+
 	if(last_message_time && world.time > last_message_time)
 		last_message_time = 0
 		total_message_count = 0
@@ -568,10 +576,6 @@ GLOBAL_VAR_INIT(automute_on, null)
 		last_message_time = world.time + SPAM_TRIGGER_TIME_PERIOD
 	
 	last_message = message
-	total_message_count += 1
-
-	var/weight = SPAM_TRIGGER_WEIGHT_FORMULA(message)
-	total_message_weight += weight
 
 	var/mute = total_message_count >= SPAM_TRIGGER_AUTOMUTE || (total_message_weight > SPAM_TRIGGER_WEIGHT_AUTOMUTE && total_message_count != 1)
 	var/warning = total_message_count >= SPAM_TRIGGER_WARNING || (total_message_weight > SPAM_TRIGGER_WEIGHT_WARNING && total_message_count != 1)
