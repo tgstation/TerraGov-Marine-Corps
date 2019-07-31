@@ -104,25 +104,6 @@ SUBSYSTEM_DEF(atoms)
 	old_initialized = SSatoms.old_initialized
 	BadInitializeCalls = SSatoms.BadInitializeCalls
 
-/*/datum/controller/subsystem/atoms/proc/setupGenetics()
-	var/list/avnums = new /list(DNA_STRUC_ENZYMES_BLOCKS)
-	for(var/i=1, i<=DNA_STRUC_ENZYMES_BLOCKS, i++)
-		avnums[i] = i
-		CHECK_TICK
-
-	for(var/A in subtypesof(/datum/mutation/human))
-		var/datum/mutation/human/B = new A()
-		if(B.dna_block == NON_SCANNABLE)
-			continue
-		B.dna_block = pick_n_take(avnums)
-		if(B.quality == POSITIVE)
-			GLOB.good_mutations |= B
-		else if(B.quality == NEGATIVE)
-			GLOB.bad_mutations |= B
-		else if(B.quality == MINOR_NEGATIVE)
-			GLOB.not_good_mutations |= B
-		CHECK_TICK*/
-
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""
 	for(var/path in BadInitializeCalls)
@@ -140,7 +121,7 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()
 	if(initlog)
-		text2file(initlog, "[GLOB.log_directory]/initialize.log")
+		log_world(initlog)
 
 #undef BAD_INIT_QDEL_BEFORE
 #undef BAD_INIT_DIDNT_INIT

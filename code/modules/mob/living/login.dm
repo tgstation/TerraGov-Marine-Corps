@@ -10,5 +10,3 @@
 		if(istype(A)) //a sanity check just to be safe
 			remove_ventcrawl()
 			add_ventcrawl(A)
-
-	set_away_time(0) //Reset away timer once back.

@@ -132,6 +132,9 @@
 		qdel(src)
 		return
 	explosion(plant_target, -1, -1, 3)
+	if(QDELETED(plant_target))
+		qdel(src)
+		return
 	if(istype(plant_target,/turf/closed/wall))
 		var/turf/closed/wall/W = plant_target
 		W.ChangeTurf(/turf/open/floor/plating)

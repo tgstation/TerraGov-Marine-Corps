@@ -252,3 +252,11 @@
 /obj/on_set_interaction(mob/user)
 	. = ..()
 	ENABLE_BITFIELD(obj_flags, IN_USE)
+
+
+/obj/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("anchored")
+			setAnchored(var_value)
+			return TRUE
+	return ..()

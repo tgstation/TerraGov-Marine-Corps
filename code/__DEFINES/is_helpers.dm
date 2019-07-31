@@ -179,3 +179,6 @@
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+
+// Xeno hives
+#define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))

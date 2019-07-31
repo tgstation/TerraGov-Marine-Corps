@@ -1,0 +1,4 @@
+author: "ma44"
+delete-after: True
+changes: 
+  - rscadd: "Xenomorphs can now potentially be able to suffer no healing penalties when not resting on weeds and when there's no queen that lives, accessible to admin memery only"
