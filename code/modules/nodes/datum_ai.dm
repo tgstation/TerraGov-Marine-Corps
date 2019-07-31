@@ -18,11 +18,16 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 
 /datum/ai_behavior/New()
 	..()
-	SSai.aidatums += src
-	SSai_movement.lists_of_lists[1] += src
+
+/datum/ai_behavior/Destroy()
+	SSai.aidatums -= src
+	SSai_movement.RemoveFromProcess(src)
+	..()
 
 /datum/ai_behavior/proc/Init() //Bandaid solution for initializing things
 
+	SSai.aidatums += src
+	SSai_movement.lists_of_lists[1] += src
 	for(var/obj/effect/AINode/node in range(7))
 		if(node)
 			current_node = node
@@ -36,12 +41,12 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	action_state = new/datum/action_state/random_move(src)
 
 /datum/ai_behavior/proc/Process() //Processes and updates things
-	if(!parentmob)
-		qdel(src)
-		return
+	if(QDELETED(parentmob))
+		return FALSE
 	lastturf = parentmob.loc
 	if(action_state)
 		action_state.Process()
+	return TRUE
 
 /datum/ai_behavior/proc/action_completed(reason) //Action state was completed, let's replace it with something else
 	switch(reason)

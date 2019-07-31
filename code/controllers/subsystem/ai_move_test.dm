@@ -18,6 +18,10 @@ SUBSYSTEM_DEF(ai_movement)
 	for(var/i in 1 to 20)
 		lists_of_lists += list(list())
 
+/datum/controller/subsystem/ai_movement/proc/RemoveFromProcess(datum/ai_behavior/ai_datum)
+	for(var/list/list in lists_of_lists)
+		list -= ai_datum
+
 /datum/controller/subsystem/ai_movement/fire(resumed = 0)
 
 	if(!resumed)

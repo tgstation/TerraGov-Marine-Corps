@@ -30,8 +30,10 @@ SUBSYSTEM_DEF(ai)
 		current_run = aidatums.Copy()
 	while(current_run.len)
 		var/datum/ai_behavior/aidatum = current_run[current_run.len]
-		if(!aidatum)
+		if(!aidatum || QDELETED(aidatum))
+			aidatums -= aidatum
 			qdel(aidatum)
+			current_run.len--
 			continue
 		aidatum.Process()
 		current_run.len--

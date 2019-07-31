@@ -7,7 +7,9 @@
 /datum/ai_behavior/xeno/Init()
 	..()
 	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
-	parentmob2.xeno_caste.caste_flags += CASTE_INNATE_HEALING //Sneeki breeki healing
+	parentmob2.xeno_caste.caste_flags += CASTE_INNATE_HEALING
+	parentmob2.xeno_caste.caste_flags += CASTE_QUICK_HEAL_STANDING
+	parentmob2.xeno_caste.caste_flags += CASTE_CAN_HEAL_WIHOUT_QUEEN
 	parentmob.a_intent = INTENT_HARM
 	last_health = parentmob.health
 	action_state = new/datum/action_state/random_move/scout(src)
@@ -22,7 +24,9 @@
 
 //Below proc happens every 1/2 second
 /datum/ai_behavior/xeno/Process()
-	..()
+	. = ..()
+	if(!.) //Deleted due to no parent mob or other errors
+		return FALSE
 
 	parentmob.away_time = 200 //No grabbing it now, haven't handled ckey transfer yet for ai behavior
 
@@ -51,13 +55,14 @@
 /datum/ai_behavior/xeno/proc/attack_target(atom/target) //Attempts a attack on a target with cooldown restrictions
 	var/mob/living/carbon/xenomorph/parentmob2 = parentmob
 
-	if(istype(target, /obj/structure) || istype(target, /obj/machinery)) //We don't miss these targets from prob_melee_slash
-		target.attack_alien(parentmob2)
-		parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
-		return
+	if(parentmob.next_move < world.time) //If we can attack again or not
 
-	if(istype(target, /mob/living/carbon) && parentmob.canmove)
-		if(parentmob.next_move < world.time) //If we can attack again or not
+		if(istype(target, /obj/structure) || istype(target, /obj/machinery)) //We don't miss these targets from prob_melee_slash
+			target.attack_alien(parentmob2)
+			parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
+			return
+
+		if(istype(target, /mob/living/carbon) && parentmob.canmove)
 			var/mob/living/carbon/target2 = target
 			if(target2.stat) //Always hit laying down targets
 				target2.attack_alien(parentmob2)
@@ -71,7 +76,7 @@
 /datum/ai_behavior/xeno/action_completed(reason) //Action state was completed, let's replace it with something else
 	switch(reason)
 		if(FINISHED_MOVE)
-			if(SSai.prioritize_nodes_with_enemies && GLOB.nodes_with_enemies.len && !(current_node in GLOB.nodes_with_enemies)) //There's no enemies at this node but if they're somewhere else we moving to that
+			if(!SSai.is_pacifist && SSai.prioritize_nodes_with_enemies && GLOB.nodes_with_enemies.len && !(current_node in GLOB.nodes_with_enemies)) //There's no enemies at this node but if they're somewhere else we moving to that
 				action_state = new/datum/action_state/move_to_node(src)
 				var/datum/action_state/move_to_node/the_state = action_state
 				the_state.destination_node = pick(shuffle(GLOB.nodes_with_enemies))
