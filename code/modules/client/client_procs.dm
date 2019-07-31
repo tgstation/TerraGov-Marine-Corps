@@ -302,9 +302,6 @@
 //////////////////
 /client/Del()
 	log_access("Logout: [key_name(src)]")
-	if(isliving(mob))
-		var/mob/living/L = mob
-		L.begin_away()
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin logout: [key_name(src)].")
