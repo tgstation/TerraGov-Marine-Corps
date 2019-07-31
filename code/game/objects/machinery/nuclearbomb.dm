@@ -72,7 +72,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		icon_state = "nuclearbomb3"
 
 	play_cinematic() //The round ends as soon as this happens, or it should.
-	addtimer(CALLBACK(src, .proc/set_victory_condition), 15 SECONDS)
+	addtimer(CALLBACK(src, .proc/set_victory_condition), 7 SECONDS)
 	return TRUE
 
 
