@@ -7,15 +7,16 @@ SUBSYSTEM_DEF(input)
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
 	var/list/macro_set
-	var/list/movement_keys
+	var/list/wasd_movement_keys
+	var/list/arrow_movement_keys
 
 
 /datum/controller/subsystem/input/Initialize()
 	macro_set = list("Any" = "\"KeyDown \[\[*\]\]\"", "Any+UP" = "\"KeyUp \[\[*\]\]\"", "Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
 		"Tab" = "\".winset \\\"input.focus=true?map.focus=true:input.focus=true\\\"\"", "Escape" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",)
 
-	movement_keys = list("W" = NORTH, "A" = WEST, "S" = SOUTH, "D" = EAST,// WASD
-		"North" = NORTH, "West" = WEST, "South" = SOUTH, "East" = EAST)	// Arrow keys & Numpad
+	wasd_movement_keys = list("W" = NORTH, "A" = WEST, "S" = SOUTH, "D" = EAST) // WASD
+	arrow_movement_keys = list("North" = NORTH, "West" = WEST, "South" = SOUTH, "East" = EAST) // Arrow keys & Numpad
 
 	initialized = TRUE
 

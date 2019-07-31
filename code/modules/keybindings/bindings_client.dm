@@ -5,12 +5,13 @@
 	set hidden = TRUE
 
 	keys_held[_key] = world.time
-	var/movement = SSinput.movement_keys[_key]
+	var/focus_chat = prefs.focus_chat
+	var/movement = focus_chat ? SSinput.arrow_movement_keys[_key] : SSinput.wasd_movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
 
 	// Check if chat should have focus but doesn't, give it focus and pre-enter the key.
-	if(prefs.focus_chat && winget(src, null, "input.focus"))
+	if(focus_chat && winget(src, null, "input.focus"))
 		winset(src, null, "input.focus=true")
 		winset(src, null, "input=[list2params(list(text = _key))]")
 		return
@@ -37,7 +38,9 @@
 	set hidden = TRUE
 
 	keys_held -= _key
-	var/movement = SSinput.movement_keys[_key]
+
+	var/focus_chat = prefs.focus_chat
+	var/movement = focus_chat ? SSinput.arrow_movement_keys[_key] : SSinput.wasd_movement_keys[_key]
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
 
