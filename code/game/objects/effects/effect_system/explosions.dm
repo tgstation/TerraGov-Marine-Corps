@@ -21,9 +21,7 @@
 
 	start()
 		if (amount <= 2)
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(2, 1, location)
-			s.start()
+			new /datum/effect_system/spark_spread(null, location, 2, 1, TRUE)
 
 			for(var/mob/M in viewers(5, location))
 				to_chat(M, "<span class='warning'>The solution violently explodes.</span>")
@@ -86,17 +84,12 @@
 	if(istype(loca, /turf/)) location = loca
 	else location = get_turf(loca)
 
-/datum/effect_system/expl_particles/start()
-	var/i = 0
-	for(i=0, i<src.number, i++)
-		spawn(0)
-			var/obj/effect/particle_effect/expl_particles/expl = new /obj/effect/particle_effect/expl_particles(src.location)
-			var/direct = pick(GLOB.alldirs)
-			for(i=0, i<pick(1;25,2;50,3,4;200), i++)
-				sleep(1)
-				step(expl,direct)
-
-
+/datum/effect_system/expl_particles/spawn_particle()
+	var/obj/effect/particle_effect/expl_particles/expl = new /obj/effect/particle_effect/expl_particles(location)
+	var/direct = pick(GLOB.alldirs)
+	for(var/i in 1 to pick(1;25,2;50,3,4;200))
+		sleep(1) // sleep is fine here this is only invoked ASYNC
+		step(expl,direct)
 
 //EXPLOSION EFFECT
 
@@ -126,11 +119,7 @@
 	else location = get_turf(loca)
 
 /datum/effect_system/explosion/start()
-	new/obj/effect/particle_effect/explosion( location )
-	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
-	P.set_up(10, 0, location)
-	P.start()
-	spawn(5)
-		var/datum/effect_system/smoke_spread/S = new
-		S.set_up(rand(0,3), location, rand(1,3))
-		S.start()
+	new /obj/effect/particle_effect/explosion( location )
+	new /datum/effect_system/expl_particles(null, location, 10, 0, TRUE)
+
+	addtimer(CALLBACK_NEW(/datum/effect_system/smoke_spread, list(null, location, rand(0,3), rand(1,3), TRUE)), 0.5 SECONDS)

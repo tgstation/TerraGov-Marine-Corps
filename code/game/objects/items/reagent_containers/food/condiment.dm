@@ -88,47 +88,47 @@
 			return
 		if(reagents.reagent_list.len > 0)
 			switch(reagents.get_master_reagent_id())
-				if("ketchup")
+				if(/datum/reagent/consumable/ketchup)
 					name = "Ketchup"
 					desc = "You feel more American already."
 					icon_state = "ketchup"
 					center_of_mass = list("x"=16, "y"=6)
-				if("capsaicin")
+				if(/datum/reagent/consumable/capsaicin)
 					name = "Hotsauce"
 					desc = "You can almost TASTE the stomach ulcers now!"
 					icon_state = "hotsauce"
 					center_of_mass = list("x"=16, "y"=6)
-				if("enzyme")
+				if(/datum/reagent/consumable/enzyme)
 					name = "Universal Enzyme"
 					desc = "Used in cooking various dishes."
 					icon_state = "enzyme"
 					center_of_mass = list("x"=16, "y"=6)
-				if("soysauce")
+				if(/datum/reagent/consumable/soysauce)
 					name = "Soy Sauce"
 					desc = "A salty soy-based flavoring."
 					icon_state = "soysauce"
 					center_of_mass = list("x"=16, "y"=6)
-				if("frostoil")
+				if(/datum/reagent/consumable/frostoil)
 					name = "Coldsauce"
 					desc = "Leaves the tongue numb in its passage."
 					icon_state = "coldsauce"
 					center_of_mass = list("x"=16, "y"=6)
-				if("sodiumchloride")
+				if(/datum/reagent/consumable/sodiumchloride)
 					name = "Salt Shaker"
 					desc = "Salt. From space oceans, presumably."
 					icon_state = "saltshaker"
 					center_of_mass = list("x"=16, "y"=10)
-				if("blackpepper")
+				if(/datum/reagent/consumable/blackpepper)
 					name = "Pepper Mill"
 					desc = "Often used to flavor food or make people sneeze."
 					icon_state = "peppermillsmall"
 					center_of_mass = list("x"=16, "y"=10)
-				if("cornoil")
+				if(/datum/reagent/consumable/cornoil)
 					name = "Corn Oil"
 					desc = "A delicious oil used in cooking. Made from corn."
 					icon_state = "oliveoil"
 					center_of_mass = list("x"=16, "y"=6)
-				if("sugar")
+				if(/datum/reagent/consumable/sugar)
 					name = "Sugar"
 					desc = "Tastey space sugar!"
 					center_of_mass = list("x"=16, "y"=6)
@@ -151,10 +151,10 @@
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
-	list_reagents = list("enzyme" = 50)
+	list_reagents = list(/datum/reagent/consumable/enzyme = 50)
 
 /obj/item/reagent_container/food/condiment/sugar
-	list_reagents = list("sugar" = 50)
+	list_reagents = list(/datum/reagent/consumable/sugar = 50)
 
 /obj/item/reagent_container/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
 	name = "Salt Shaker"											//	a large one.
@@ -163,7 +163,7 @@
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	list_reagents = list("sodiumchloride" = 20)
+	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 20)
 
 /obj/item/reagent_container/food/condiment/peppermill
 	name = "Pepper Mill"
@@ -172,4 +172,4 @@
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	list_reagents = list("blackpepper" = 20)
+	list_reagents = list(/datum/reagent/consumable/blackpepper = 20)

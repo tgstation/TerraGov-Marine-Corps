@@ -150,7 +150,7 @@
 		dropped(user)
 
 
-/obj/item/attack_paw(mob/user)
+/obj/item/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.

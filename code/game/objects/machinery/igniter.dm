@@ -13,7 +13,7 @@
 /obj/machinery/igniter/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/igniter/attack_paw(mob/user as mob)
+/obj/machinery/igniter/attack_paw(mob/living/carbon/monkey/user)
 	return
 
 /obj/machinery/igniter/attack_hand(mob/living/user)
@@ -118,7 +118,7 @@
 /obj/machinery/ignition_switch/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/ignition_switch/attack_paw(mob/user as mob)
+/obj/machinery/ignition_switch/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/ignition_switch/attackby(obj/item/I, mob/user, params)

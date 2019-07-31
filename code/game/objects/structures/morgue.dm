@@ -46,7 +46,7 @@
 		ex_act(severity)
 	qdel(src)
 
-/obj/structure/morgue/attack_paw(mob/user)
+/obj/structure/morgue/attack_paw(mob/living/carbon/monkey/user)
 	toggle_morgue(user)
 
 /obj/structure/morgue/attack_hand(mob/living/user)
@@ -134,7 +134,7 @@
 	. = ..()
 	linked_morgue = null
 
-/obj/structure/morgue_tray/attack_paw(mob/user)
+/obj/structure/morgue_tray/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/structure/morgue_tray/attack_hand(mob/living/user)

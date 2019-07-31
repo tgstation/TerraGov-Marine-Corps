@@ -95,6 +95,16 @@
 	specialfunctions = DOOR_FLAG_OPEN_ONLY
 
 
+/obj/machinery/button/door/open_only/landing_zone
+	name = "lockdown override"
+	id = "landing_zone"
+	use_power = NO_POWER_USE
+
+
+/obj/machinery/button/door/open_only/landing_zone/lz2
+	id = "landing_zone_2"
+
+
 /obj/machinery/driver_button
 	name = "mass driver button"
 	icon = 'icons/obj/objects.dmi'

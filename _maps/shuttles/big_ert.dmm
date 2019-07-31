@@ -3,22 +3,22 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/closed/wall/almayer/white{
-	tiles_with = list(/turf/closed/wall/almayer/white,/obj/structure/window/framed/almayer/white)
+/turf/closed/wall/mainship/white{
+	tiles_with = list(/turf/closed/wall/mainship/white,/obj/structure/window/framed/mainship/white)
 	},
 /area/shuttle/big_ert)
 "ac" = (
-/obj/structure/window/framed/almayer/white,
+/obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
 /area/shuttle/big_ert)
 "ad" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/transit/open{
 	id = "top_ERTLARGE"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ae" = (
 /obj/machinery/vending/engivend,
@@ -26,7 +26,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -44,17 +44,17 @@
 /obj/machinery/power/apc/hyper{
 	dir = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/shuttle/big_ert)
 "ag" = (
-/turf/closed/wall/almayer/white,
+/turf/closed/wall/mainship/white,
 /area/shuttle/big_ert)
 "ah" = (
 /obj/structure/closet/crate,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -62,13 +62,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "aj" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ak" = (
 /obj/structure/largecrate/random/barrel/red,
@@ -77,20 +77,20 @@
 	name = "shutter controller";
 	pixel_x = 32
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "am" = (
 /obj/structure/closet/secure_closet/personal,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "an" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -99,13 +99,13 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "ap" = (
 /obj/structure/largecrate/random/case/small,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -113,13 +113,13 @@
 /obj/machinery/bioprinter{
 	stored_metal = 1000
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "ar" = (
 /obj/structure/sink,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -129,26 +129,26 @@
 	pixel_x = -5;
 	pixel_y = -5
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "at" = (
 /obj/item/storage/surgical_tray,
-/obj/structure/table/almayer,
-/turf/open/floor/almayer{
+/obj/structure/table/mainship,
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "au" = (
 /obj/machinery/microwave,
-/obj/structure/table/almayer,
-/turf/open/floor/almayer{
+/obj/structure/table/mainship,
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "av" = (
-/turf/open/floor/almayer,
+/turf/open/floor/mainship,
 /area/shuttle/big_ert)
 "aw" = (
 /obj/machinery/light{
@@ -156,25 +156,25 @@
 	},
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/turf/open/floor/almayer,
+/turf/open/floor/mainship,
 /area/shuttle/big_ert)
 "ax" = (
 /obj/structure/largecrate/random/barrel/blue,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "ay" = (
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "az" = (
-/obj/machinery/door/airlock/almayer/medical{
+/obj/machinery/door/airlock/mainship/medical{
 	name = "Operating Theatre";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -185,15 +185,15 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "aB" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -204,7 +204,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "aD" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -213,22 +213,22 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "aE" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/turf/open/floor/almayer,
+/turf/open/floor/mainship,
 /area/shuttle/big_ert)
 "aF" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 2
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "aG" = (
 /obj/machinery/vending/medical,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -239,12 +239,12 @@
 	},
 /obj/item/reagent_container/blood/OMinus,
 /obj/item/reagent_container/blood/OMinus,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "aI" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medical,
@@ -252,12 +252,12 @@
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/reagent_container/spray/surgery,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "aJ" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/folder/black{
 	pixel_x = 3;
 	pixel_y = 5
@@ -277,23 +277,23 @@
 /turf/open/floor/wood,
 /area/shuttle/big_ert)
 "aM" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/shuttle/big_ert)
 "aN" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
 	name = "Crew Bunks"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "aO" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -301,22 +301,22 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "aQ" = (
-/obj/machinery/door/airlock/almayer/medical{
+/obj/machinery/door/airlock/mainship/medical{
 	dir = 2;
 	name = "Operating Theatre";
 	req_one_access_txt = "0"
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "aR" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/machinery/computer/communications,
 /obj/machinery/light{
 	dir = 8
@@ -326,7 +326,7 @@
 	},
 /area/shuttle/big_ert)
 "aS" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/edge2{
 	dir = 6
@@ -345,13 +345,13 @@
 /obj/item/clothing/tie/storage/webbing,
 /obj/item/cell/infinite,
 /obj/item/cell/infinite,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "aW" = (
 /obj/structure/rack,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -362,11 +362,11 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "aY" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -375,7 +375,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -383,7 +383,7 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/radio,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -391,7 +391,7 @@
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/belt/combatLifesaver,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -415,33 +415,33 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/machinery/computer/security,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "bg" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/clipboard,
 /obj/item/folder/red,
 /obj/item/restraints/handcuffs,
 /obj/item/restraints/handcuffs,
 /obj/item/restraints/handcuffs,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "bh" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/machinery/computer/secure_data,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "bi" = (
 /obj/machinery/autolathe,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -452,13 +452,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bk" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bl" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -470,7 +470,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bm" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -479,7 +479,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bn" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -488,7 +488,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bo" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -497,7 +497,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bp" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -512,7 +512,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bq" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -521,7 +521,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plating";
 	dir = 5
 	},
@@ -533,20 +533,20 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bs" = (
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	name = "Captain's Quarters"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bt" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
@@ -558,7 +558,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bv" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -567,15 +567,15 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/shuttle/big_ert)
 "bw" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/machinery/computer/card,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -590,16 +590,16 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bz" = (
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bA" = (
-/obj/machinery/door/airlock/almayer/engineering{
+/obj/machinery/door/airlock/mainship/engineering{
 	name = "Aft Storage"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bB" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -608,14 +608,14 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bC" = (
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 4;
 	name = "Bridge"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bD" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -625,7 +625,7 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bE" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -634,7 +634,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bF" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -649,7 +649,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bG" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -661,10 +661,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bH" = (
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
@@ -679,7 +679,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bJ" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -688,13 +688,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/shuttle/big_ert)
 "bK" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/stack/sheet/metal{
 	amount = 50;
 	pixel_x = 3;
@@ -725,7 +725,7 @@
 	},
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -736,13 +736,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bM" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bN" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -754,7 +754,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bO" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -769,7 +769,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bP" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -778,20 +778,20 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bQ" = (
-/obj/machinery/door/airlock/almayer/command{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	name = "Captain's Storage"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
@@ -801,7 +801,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bT" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -810,15 +810,15 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_plating = "tcomms";
 	icon_state = "tcomms"
 	},
 /area/shuttle/big_ert)
 "bU" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/machinery/computer/communications,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -830,7 +830,7 @@
 /obj/item/clothing/tie/storage/webbing,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -839,28 +839,28 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "bX" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/adv,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "bY" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/light,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "bZ" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/clothing/suit/armor/bulletproof,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -874,7 +874,7 @@
 	},
 /obj/item/weapon/gun/shotgun/combat,
 /obj/item/weapon/gun/shotgun/combat,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -884,7 +884,7 @@
 /obj/item/ammo_magazine/smg/m39,
 /obj/item/ammo_magazine/smg/m39,
 /obj/item/weapon/gun/smg/m39/elite,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -892,47 +892,47 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/machinery/computer/med_data/laptop,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cd" = (
 /obj/machinery/computer/crew,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "ce" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/paper_bin,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cf" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
 	name = "Secure Storage"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "cg" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
 	name = "Crew Lockers"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ch" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/ammo_magazine/pistol/vp70{
 	pixel_x = 5
 	},
@@ -942,7 +942,7 @@
 /obj/item/weapon/gun/pistol/vp70{
 	pixel_y = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -956,7 +956,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "cj" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -968,20 +968,20 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ck" = (
 /obj/structure/closet/secure_closet/securecom{
 	desc = "You could probably get thrown out an airlock just by looking at this...";
 	name = "captain's secure box"
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cl" = (
 /obj/machinery/cryopod/right,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -998,13 +998,13 @@
 /obj/item/storage/box/m94,
 /obj/item/storage/box/m94,
 /obj/item/storage/box/zipcuffs,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cn" = (
 /obj/structure/closet,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -1017,7 +1017,7 @@
 	dir = 4
 	},
 /obj/item/tool/soap,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -1026,7 +1026,7 @@
 /obj/item/ammo_magazine/smg/m39,
 /obj/item/ammo_magazine/smg/m39,
 /obj/item/weapon/gun/smg/m39/elite,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -1037,7 +1037,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ct" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -1046,7 +1046,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "cu" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -1057,13 +1057,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cv" = (
 /obj/structure/largecrate/random/barrel/white,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -1072,7 +1072,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -1086,14 +1086,14 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "cy" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
 	name = "Restroom"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "cz" = (
 /obj/structure/mirror{
@@ -1105,23 +1105,23 @@
 /turf/open/floor/freezer,
 /area/shuttle/big_ert)
 "cA" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/paper_bin{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/storage/box/wy_mre,
-/obj/item/storage/box/wy_mre,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
+/obj/item/storage/box/nt_mre,
+/obj/item/storage/box/nt_mre,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cB" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/item/clipboard,
 /obj/item/clipboard,
 /obj/item/folder,
@@ -1130,12 +1130,12 @@
 /obj/item/tool/crowbar,
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cC" = (
-/obj/structure/table/almayer,
+/obj/structure/table/mainship,
 /obj/structure/largecrate/random/case/small{
 	pixel_y = 5
 	},
@@ -1149,7 +1149,7 @@
 /obj/item/radio,
 /obj/item/radio,
 /obj/item/radio,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -1158,13 +1158,13 @@
 	dir = 8
 	},
 /obj/structure/largecrate/random/case/double,
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cE" = (
-/obj/structure/table/almayer,
-/turf/open/floor/almayer{
+/obj/structure/table/mainship,
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
@@ -1182,22 +1182,22 @@
 	name = "shutter controller";
 	pixel_x = 32
 	},
-/turf/open/floor/almayer{
+/turf/open/floor/mainship{
 	icon_state = "plate"
 	},
 /area/shuttle/big_ert)
 "cI" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/transit/open{
 	id = "bot_ERTLARGE"
 	},
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "uS" = (
 /obj/docking_port/mobile/ert_big,
-/turf/open/floor/plating/almayer,
+/turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 
 (1,1,1) = {"

@@ -431,13 +431,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_VENT_CRAWL		(1<<1)
 #define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
 #define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
-#define CASTE_INNATE_HEALING		(1<<4)
+#define CASTE_INNATE_HEALING		(1<<4) // Xenomorphs heal outside of weeds. Larvas, for example.
 #define CASTE_FIRE_IMMUNE			(1<<5)
 #define CASTE_EVOLUTION_ALLOWED		(1<<6)
 #define CASTE_IS_INTELLIGENT		(1<<7) // A hive leader or able to use more human controls
 #define CASTE_DECAY_PROOF			(1<<8)
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
+#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
+#define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1

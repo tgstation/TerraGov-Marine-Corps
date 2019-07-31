@@ -70,7 +70,7 @@
 	return ..()
 
 
-/mob/living/carbon/human/setEarDamage(damage, deaf)
+/mob/living/carbon/human/set_ear_damage(damage = 0, deaf = 0)
 	if(isspeciessynthetic(src))
 		return
 	return ..()

@@ -13,7 +13,14 @@
 
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
 	var/mob/living/carbon/xenomorph/shrike/caller = owner
-	RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+	if(!isnormalhive(caller.hive))
+		to_chat(caller, "<span class='warning'>Burrowed larva? What a strange concept... It's not for our hive.</span>")
+		return FALSE
+	var/datum/hive_status/normal/shrike_hive = caller.hive
+	if(!shrike_hive.stored_larva)
+		to_chat(caller, "<span class='warning'>Our hive currently has no burrowed to call forth!</span>")
+		return FALSE
+	RegisterSignal(shrike_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 
 	playsound(caller,'sound/magic/invoke_general.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(caller))

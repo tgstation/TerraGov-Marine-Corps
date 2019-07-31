@@ -104,7 +104,7 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/obj/machinery/camera/autoname/almayer/dropship_one{
+/obj/machinery/camera/autoname/mainship/dropship_one{
 	dir = 2;
 	pixel_x = -6;
 	pixel_y = -16
@@ -246,7 +246,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/machinery/camera/autoname/almayer/dropship_one{
+/obj/machinery/camera/autoname/mainship/dropship_one{
 	dir = 8;
 	pixel_x = 16
 	},
@@ -436,7 +436,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/almayer/dropship_one{
+/obj/machinery/camera/autoname/mainship/dropship_one{
 	dir = 4;
 	pixel_x = -16
 	},
@@ -534,7 +534,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bY" = (
-/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1,
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds1,
 /obj/machinery/door/poddoor/shutters/transit{
 	dir = 1
 	},

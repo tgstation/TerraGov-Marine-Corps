@@ -155,7 +155,7 @@
 
 /obj/item/tool/pen/paralysis/Initialize()
 	. = ..()
-	create_reagents(50, OPENCONTAINER, list("zombiepowder" = 10, "cryptobiolin" = 15))
+	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/zombiepowder = 10, /datum/reagent/cryptobiolin = 15))
 
 
 
@@ -214,5 +214,5 @@
 	icon_state = "stamp-cent"
 
 
-/obj/item/tool/stamp/attack_paw(mob/user as mob)
+/obj/item/tool/stamp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)

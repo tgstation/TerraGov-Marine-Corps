@@ -50,7 +50,7 @@
 	cryotypes = list(CRYO_DELTA)
 	category = CRYO_DELTA
 
-/obj/machinery/computer/cryopod/attack_paw()
+/obj/machinery/computer/cryopod/attack_paw(mob/living/carbon/monkey/user)
 	attack_hand()
 
 /obj/machinery/computer/cryopod/attack_ai(mob/living/silicon/ai/AI)
@@ -316,9 +316,9 @@
 			if(istype(J, /datum/job/marine/leader))
 				assigned_squad.num_leaders--
 		assigned_squad.count--
-		assigned_squad.clean_marine_from_squad(src, TRUE) //Remove from squad records, if any.
+		assigned_squad.remove_from_squad(src)
 
-	. = ..()
+	return ..()
 
 /obj/item/proc/store_in_cryo(list/items)
 

@@ -1129,13 +1129,13 @@
 /obj/machinery/power/apc/hyper
 	cell_type = /obj/item/cell/hyper
 
-//------Theseus APCs ------//
+//------Marine ship APCs ------//
 
-/obj/machinery/power/apc/almayer
+/obj/machinery/power/apc/mainship
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 	cell_type = /obj/item/cell/high
 
-/obj/machinery/power/apc/almayer/hardened
+/obj/machinery/power/apc/mainship/hardened
 	name = "hardened area power controller"
 	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
 	crash_break_probability = 0

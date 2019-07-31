@@ -32,7 +32,7 @@
 			icon_state = "[base_bed_icon]_down"
 
 obj/structure/bed/Destroy()
-	if(buckled_bodybag)
+	if(buckled_mob || buckled_bodybag)
 		unbuckle()
 	. = ..()
 
@@ -156,7 +156,8 @@ obj/structure/bed/Destroy()
 		playsound(src, hit_bed_sound, 25, 1)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 		"<span class='danger'>We slice [src] apart!</span>", null, 5)
-		unbuckle()
+		if(buckled_mob || buckled_bodybag)
+			unbuckle()
 		destroy_structure()
 		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
 	else attack_hand(M)
@@ -315,14 +316,15 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/item/medevac_beacon/linked_beacon = null
 	var/stretcher_activated
 	var/obj/structure/dropship_equipment/medevac_system/linked_medevac
-	var/obj/item/radio/headset/almayer/doc/radio
+	var/obj/item/radio/headset/mainship/doc/radio
 
 /obj/structure/bed/medevac_stretcher/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 
 /obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/M)
-	unbuckle()
+	if(buckled_mob || buckled_bodybag)
+		unbuckle()
 
 /obj/structure/bed/medevac_stretcher/Destroy()
 	QDEL_NULL(radio)
@@ -567,7 +569,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/obj/item/roller/medevac/linked_bed = null
 	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
-	var/obj/item/radio/headset/almayer/doc/radio
+	var/obj/item/radio/headset/mainship/doc/radio
 
 /obj/item/medevac_beacon/Initialize(mapload)
 	. = ..()

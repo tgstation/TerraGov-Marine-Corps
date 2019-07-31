@@ -75,7 +75,7 @@
 			F.create_reagents(10)
 			if (reagents)
 				for(var/datum/reagent/R in reagents.reagent_list)
-					F.reagents.add_reagent(R.id, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
+					F.reagents.add_reagent(R.type, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
 
 // foam disolves when heated
 // except metal foams
@@ -123,7 +123,7 @@
 
 		if(carry && !metal)
 			for(var/datum/reagent/R in carry.reagent_list)
-				carried_reagents += R.id
+				carried_reagents += R.type
 
 	start()
 		spawn(0)
@@ -142,7 +142,7 @@
 					for(var/id in carried_reagents)
 						F.reagents.add_reagent(id, 1, null, 1) //makes a safety call because all reagents should have already reacted anyway
 				else
-					F.reagents.add_reagent("water", 1, safety = 1)
+					F.reagents.add_reagent(/datum/reagent/water, 1, safety = 1)
 
 
 
@@ -179,7 +179,7 @@
 		qdel(src)
 	return TRUE
 
-/obj/structure/foamedmetal/attack_paw(mob/user)
+/obj/structure/foamedmetal/attack_paw(mob/living/carbon/monkey/user)
 	attack_hand(user)
 	return
 

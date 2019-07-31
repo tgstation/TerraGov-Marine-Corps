@@ -2,7 +2,6 @@
 
 /datum/reagent/blood
 	name = "Blood"
-	id = "blood"
 	reagent_state = LIQUID
 	color = "#A10808"
 	taste_description = "iron"
@@ -19,14 +18,12 @@
 
 /datum/reagent/blood/synth_blood
 	name = "Synthetic Blood"
-	id = "whiteblood"
 	color = "#EEEEEE"
 	taste_description = "sludge"
 	description = "A synthetic blood-like liquid used by all Synthetics."
 
 /datum/reagent/blood/xeno_blood
 	name = "Acid Blood"
-	id = "xenoblood"
 	color = "#dffc00"
 	taste_description = "acid"
 	description = "A corrosive yellow-ish liquid..."
@@ -34,7 +31,6 @@
 
 /datum/reagent/water
 	name = "Water"
-	id = "water"
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
@@ -60,13 +56,11 @@
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
-	id = "holywater"
 	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 	color = "#E0E8EF" // rgb: 224, 232, 239
 
 /datum/reagent/lube
 	name = "Space Lube"
-	id = "lube"
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	reagent_state = LIQUID
 	spray_warning = TRUE
@@ -89,7 +83,6 @@
 
 /datum/reagent/space_drugs
 	name = "Space drugs"
-	id = "space_drugs"
 	description = "An illegal chemical compound used as drug."
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
@@ -120,7 +113,6 @@
 
 /datum/reagent/serotrotium
 	name = "Serotrotium"
-	id = "serotrotium"
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
 	reagent_state = LIQUID
 	color = "#202040" // rgb: 20, 20, 40
@@ -147,7 +139,6 @@
 
 /datum/reagent/oxygen
 	name = "Oxygen"
-	id = "oxygen"
 	description = "A colorless, odorless gas."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -162,7 +153,6 @@
 
 /datum/reagent/copper
 	name = "Copper"
-	id = "copper"
 	description = "A highly ductile metal."
 	color = "#6E3B08" // rgb: 110, 59, 8
 	taste_description = "metal"
@@ -171,7 +161,6 @@
 
 /datum/reagent/nitrogen
 	name = "Nitrogen"
-	id = "nitrogen"
 	description = "A colorless, odorless, tasteless gas."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -186,7 +175,6 @@
 
 /datum/reagent/hydrogen
 	name = "Hydrogen"
-	id = "hydrogen"
 	description = "A colorless, odorless, nonmetallic, tasteless, highly combustible diatomic gas."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -195,7 +183,6 @@
 
 /datum/reagent/potassium
 	name = "Potassium"
-	id = "potassium"
 	description = "A soft, low-melting solid that can easily be cut with a knife. Reacts violently with water."
 	color = "#A0A0A0" // rgb: 160, 160, 160
 	taste_description = "sweetness"
@@ -204,7 +191,6 @@
 
 /datum/reagent/mercury
 	name = "Mercury"
-	id = "mercury"
 	description = "A chemical element."
 	reagent_state = LIQUID
 	color = "#484848" // rgb: 72, 72, 72
@@ -220,7 +206,6 @@
 
 /datum/reagent/sulfur
 	name = "Sulfur"
-	id = "sulfur"
 	description = "A chemical element with a pungent smell."
 	color = "#BF8C00" // rgb: 191, 140, 0
 	custom_metabolism = 0.01
@@ -228,7 +213,6 @@
 
 /datum/reagent/carbon
 	name = "Carbon"
-	id = "carbon"
 	description = "A chemical element, the builing block of life."
 	color = "#1C1300" // rgb: 30, 20, 0
 	custom_metabolism = 0.01
@@ -245,7 +229,6 @@
 
 /datum/reagent/chlorine
 	name = "Chlorine"
-	id = "chlorine"
 	description = "A chemical element with a characteristic odour."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -265,7 +248,6 @@
 
 /datum/reagent/fluorine
 	name = "Fluorine"
-	id = "fluorine"
 	description = "A highly-reactive chemical element."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -285,7 +267,6 @@
 
 /datum/reagent/sodium
 	name = "Sodium"
-	id = "sodium"
 	description = "A chemical element, readily reacts with water."
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "salty metal"
@@ -293,7 +274,6 @@
 
 /datum/reagent/phosphorus
 	name = "Phosphorus"
-	id = "phosphorus"
 	description = "A chemical element, the backbone of biological energy carriers."
 	color = "#832828" // rgb: 131, 40, 40
 	custom_metabolism = 0.01
@@ -301,7 +281,6 @@
 
 /datum/reagent/lithium
 	name = "Lithium"
-	id = "lithium"
 	description = "A chemical element, used as antidepressant."
 	reagent_state = SOLID
 	color = "#808080" // rgb: 128, 128, 128
@@ -324,7 +303,6 @@
 
 /datum/reagent/glycerol
 	name = "Glycerol"
-	id = "glycerol"
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
 	reagent_state = LIQUID
 	color = "#808080" // rgb: 128, 128, 128
@@ -332,7 +310,6 @@
 
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
-	id = "nitroglycerin"
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
 	reagent_state = LIQUID
 	color = "#808080" // rgb: 128, 128, 128
@@ -342,7 +319,6 @@
 
 /datum/reagent/radium
 	name = "Radium"
-	id = "radium"
 	description = "Radium is an alkaline earth metal. It is extremely radioactive."
 	reagent_state = SOLID
 	color = "#C7C7C7" // rgb: 199,199,199
@@ -361,7 +337,6 @@
 
 /datum/reagent/thermite
 	name = "Thermite"
-	id = "thermite"
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
 	color = "#673910" // rgb: 103, 57, 16
 	taste_description = "sweet tasting metal"
@@ -378,7 +353,6 @@
 
 /datum/reagent/iron
 	name = "Iron"
-	id = "iron"
 	description = "Pure iron is a metal."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -400,21 +374,18 @@
 
 /datum/reagent/gold
 	name = "Gold"
-	id = "gold"
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
 	color = "#F7C430" // rgb: 247, 196, 48
 	taste_description = "expensive metal"
 
 /datum/reagent/silver
 	name = "Silver"
-	id = "silver"
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 	color = "#D0D0D0" // rgb: 208, 208, 208
 	taste_description = "expensive yet reasonable metal"
 
 /datum/reagent/uranium
 	name ="Uranium"
-	id = "uranium"
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
 	color = "#B8B8C0" // rgb: 184, 184, 192
 	taste_description = "the inside of a reactor"
@@ -432,21 +403,18 @@
 
 /datum/reagent/aluminum
 	name = "Aluminum"
-	id = "aluminum"
 	description = "A silvery white and ductile member of the boron group of chemical elements."
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_description = "metal"
 
 /datum/reagent/silicon
 	name = "Silicon"
-	id = "silicon"
 	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
 	color = "#A8A8A8" // rgb: 168, 168, 168
 	taste_multi = 0
 
 /datum/reagent/fuel
 	name = "Welding fuel"
-	id = "fuel"
 	description = "Required for blowtorches. Highly flamable."
 	color = "#660000" // rgb: 102, 0, 0
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -476,7 +444,6 @@
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
-	id = "cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	reagent_state = LIQUID
 	color = "#A5F0EE" // rgb: 165, 240, 238
@@ -535,7 +502,6 @@
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
-	id = "cryptobiolin"
 	description = "Cryptobiolin causes confusion and dizzyness."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
@@ -556,7 +522,6 @@
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
-	id = "impedrezene"
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
 	reagent_state = LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
@@ -585,7 +550,6 @@
 
 /datum/reagent/nanites
 	name = "Nanomachines"
-	id = "nanites"
 	description = "Microscopic construction robots."
 	taste_description = "sludge"
 	reagent_state = LIQUID
@@ -593,7 +557,6 @@
 
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"
-	id = "xenomicrobes"
 	description = "Microbes with an entirely alien cellular structure."
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
@@ -601,7 +564,6 @@
 
 /datum/reagent/fluorosurfactant//foam precursor
 	name = "Fluorosurfactant"
-	id = "fluorosurfactant"
 	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
 	reagent_state = LIQUID
 	color = "#9E6B38" // rgb: 158, 107, 56
@@ -609,14 +571,12 @@
 
 /datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
-	id = "foaming_agent"
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
 	color = "#664B63" // rgb: 102, 75, 99
 	taste_description = "metal"
 
 /datum/reagent/nicotine
 	name = "Nicotine"
-	id = "nicotine"
 	description = "A highly addictive stimulant extracted from the tobacco plant."
 	reagent_state = LIQUID
 	color = "#181818" // rgb: 24, 24, 24
@@ -625,7 +585,6 @@
 
 /datum/reagent/ammonia
 	name = "Ammonia"
-	id = "ammonia"
 	description = "A caustic substance commonly used in fertilizer or household cleaners."
 	reagent_state = GAS
 	color = "#404030" // rgb: 64, 64, 48
@@ -633,14 +592,12 @@
 
 /datum/reagent/ultraglue
 	name = "Ultra Glue"
-	id = "glue"
 	description = "An extremely powerful bonding agent."
 	color = "#FFFFCC" // rgb: 255, 255, 204
 	taste_description = "something chewy"
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"
-	id = "diethylamine"
 	description = "A secondary amine, mildly corrosive."
 	reagent_state = LIQUID
 	color = "#604030" // rgb: 96, 64, 48
@@ -648,7 +605,6 @@
 
 /datum/reagent/lipozine
 	name = "Lipozine" // The anti-nutriment.
-	id = "lipozine"
 	description = "A chemical compound that causes a powerful fat-burning reaction."
 	reagent_state = LIQUID
 	color = "#BBEDA4" // rgb: 187, 237, 164
@@ -681,7 +637,6 @@
 
 /datum/reagent/sterilizine
 	name = "Sterilizine"
-	id = "sterilizine"
 	description = "Sterilizes wounds in preparation for surgery."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 

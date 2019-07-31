@@ -190,13 +190,15 @@
 
 				if(halloss > 0)
 					status = "tingling"
+					if(brutedamage > 0 || burndamage > 0)
+						status += " and "
 
 				if(brutedamage > 0)
-					status = "bruised"
-				if(brutedamage > 20)
-					status = "battered"
-				if(brutedamage > 40)
-					status = "mangled"
+					status += "bruised"
+				else if(brutedamage > 20)
+					status += "battered"
+				else if(brutedamage > 40)
+					status += "mangled"
 				if(brutedamage > 0 && burndamage > 0)
 					status += " and "
 				if(burndamage > 40)

@@ -452,7 +452,7 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
-	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
+	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
@@ -652,11 +652,6 @@ below 100 is not dizzy
 /mob/living/proc/clear_leader_tracking()
 	return
 
-// called when the client disconnects and is away.
-/mob/living/proc/begin_away()
-	set_away_time(world.time)
-
-
 /mob/living/reset_perspective(atom/A)
 	. = ..()
 	if(!.)
@@ -743,3 +738,35 @@ below 100 is not dizzy
 		start_pulling(AM)
 	else
 		stop_pulling()
+
+
+/mob/living/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("maxHealth")
+			if(!isnum(var_value) || var_value <= 0)
+				return FALSE
+		if("stat")
+			if((stat == DEAD) && (var_value < DEAD))//Bringing the dead back to life
+				GLOB.dead_mob_list -= src
+				GLOB.alive_mob_list += src
+			if((stat < DEAD) && (var_value == DEAD))//Kill he
+				GLOB.alive_mob_list -= src
+				GLOB.dead_mob_list += src
+	. = ..()
+	switch(var_name)
+		if("knockdown")
+			set_knocked_down(var_value)
+		if("stun")
+			set_stunned(var_value)
+		if("sleeping")
+			set_sleeping(var_value)
+		if("eye_blind")
+			set_blindness(var_value)
+		if("eye_blurry")
+			set_blurriness(var_value)
+		if("maxHealth")
+			updatehealth()
+		if("resize")
+			update_transform()
+		if("lighting_alpha")
+			sync_lighting_plane_alpha()

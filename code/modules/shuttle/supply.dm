@@ -260,13 +260,13 @@ GLOBAL_LIST_EMPTY(exports_types)
 /obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_paw(mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_paw(mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/ordercomp/attack_hand(mob/living/user)

@@ -213,7 +213,7 @@
 	possible_transfer_amounts = list(5,10,15,25)
 
 /obj/item/reagent_container/glass/beaker/cryoxadone
-	list_reagents = list("cryoxadone" = 30)
+	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
 
 
 /obj/item/reagent_container/glass/beaker/cryoxadone/Initialize()
@@ -222,7 +222,7 @@
 
 
 /obj/item/reagent_container/glass/beaker/cryomix
-	list_reagents = list("cryoxadone" = 10, "clonexadone" = 10, "iron" = 10, "tricordrazine" = 10, "quickclot" = 5, "peridaxon" = 5, "dexalinplus" = 5, "spaceacillin" = 5)
+	list_reagents = list(/datum/reagent/medicine/cryoxadone = 10, /datum/reagent/medicine/clonexadone = 10, /datum/reagent/iron = 10, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/quickclot = 5, /datum/reagent/medicine/peridaxon = 5, /datum/reagent/medicine/dexalinplus = 5, /datum/reagent/medicine/spaceacillin = 5)
 
 
 /obj/item/reagent_container/glass/beaker/cryomix/Initialize()
@@ -231,7 +231,7 @@
 
 
 /obj/item/reagent_container/glass/beaker/sulphuric
-	list_reagents = list("sacid" = 60)
+	list_reagents = list(/datum/reagent/toxin/acid = 60)
 
 
 /obj/item/reagent_container/glass/beaker/sulphuric/Initialize()

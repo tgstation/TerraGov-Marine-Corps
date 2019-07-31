@@ -154,6 +154,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 			msg += "Next Ship Map: [next_ship_map.map_name]"
 
 		if(SSticker.mode)
+			msg += "Game Mode: [SSticker.mode.name]"
 			msg += "Round End State: [SSticker.mode.round_finished]"
 
 		if(length(GLOB.clients))
@@ -162,6 +163,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		if(length(msg))
 			send2update(msg.Join(" | "))
 
+	Master.Shutdown()
 	TgsReboot()
 
 	var/linkylink = CONFIG_GET(string/server)

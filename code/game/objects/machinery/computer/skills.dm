@@ -35,7 +35,7 @@
 /obj/machinery/computer/skills/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/skills/attack_paw(mob/user as mob)
+/obj/machinery/computer/skills/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 //Someone needs to break down the dat += into chunks instead of long ass lines.
@@ -90,10 +90,12 @@
 				if(3.0)
 					dat += "<CENTER><B>Employment Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && GLOB.datacore.general.Find(active1)))
-						var/icon/front = active1.fields["photo_front"]
-						var/icon/side = active1.fields["photo_side"]
-						user << browse_rsc(front, "front.png")
-						user << browse_rsc(side, "side.png")
+						if(istype(active1.fields["photo_front"], /obj/item/photo))
+							var/obj/item/photo/P1 = active1.fields["photo_front"]
+							DIRECT_OUTPUT(user, browse_rsc(P1.picture.picture_image, "photo_front"))
+						if(istype(active1.fields["photo_side"], /obj/item/photo))
+							var/obj/item/photo/P2 = active1.fields["photo_side"]
+							DIRECT_OUTPUT(user, browse_rsc(P2.picture.picture_image, "photo_side"))
 						dat += text("<table><tr><td>	\
 						Name: <A href='?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
 						ID: <A href='?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n	\
@@ -104,8 +106,8 @@
 						Physical Status: [active1.fields["p_stat"]]<BR>\n	\
 						Mental Status: [active1.fields["m_stat"]]<BR><BR>\n	\
 						Employment/skills summary:<BR> [decode(active1.fields["notes"])]<BR></td>	\
-						<td align = center valign = top>Photo:<br><img src=front.png height=80 width=80 border=4>	\
-						<img src=side.png height=80 width=80 border=4></td></tr></table>")
+						<td align = center valign = top>Photo:<br><img src=photo_front height=80 width=80 border=4>	\
+						<img src=photo_side height=80 width=80 border=4></td></tr></table>")
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					dat += text("\n<A href='?src=\ref[];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR>\n<A href='?src=\ref[];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[];choice=Return'>Back</A><BR>", src, src, src)

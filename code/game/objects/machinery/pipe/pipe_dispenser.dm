@@ -7,7 +7,7 @@
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
-/obj/machinery/pipedispenser/attack_paw(user as mob)
+/obj/machinery/pipedispenser/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/pipedispenser/attack_hand(mob/living/user)

@@ -347,7 +347,7 @@
 		return
 	is_washing = 1
 	var/turf/T = get_turf(src)
-//	reagents.add_reagent("water", 2)
+//	reagents.add_reagent(/datum/reagent/water, 2)
 	T.clean(src)
 	spawn(100)
 		is_washing = 0
@@ -432,7 +432,7 @@
 
 	var/obj/item/reagent_container/RG = I
 	if(istype(RG) && RG.is_open_container())
-		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")
 		return
 

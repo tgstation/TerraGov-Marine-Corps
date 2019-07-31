@@ -27,35 +27,8 @@
 	integer = FALSE
 	min_val = -1
 
-/datum/config_entry/keyed_list/multiplicative_movespeed
-	key_mode = KEY_MODE_TYPE
-	value_mode = VALUE_MODE_NUM
-	config_entry_value = list(			//DEFAULTS
-	/mob/living/simple_animal = 1,
-	)
-
-/datum/config_entry/keyed_list/multiplicative_movespeed/ValidateAndSet()
-	. = ..()
-	if(.)
-		update_config_movespeed_type_lookup(TRUE)
-
-/datum/config_entry/keyed_list/multiplicative_movespeed/vv_edit_var(var_name, var_value)
-	. = ..()
-	if(. && (var_name == NAMEOF(src, config_entry_value)))
-		update_config_movespeed_type_lookup(TRUE)
-
 /datum/config_entry/number/movedelay	//Used for modifying movement speed for mobs.
 	abstract_type = /datum/config_entry/number/movedelay
-
-/datum/config_entry/number/movedelay/ValidateAndSet()
-	. = ..()
-	if(.)
-		update_mob_config_movespeeds()
-
-/datum/config_entry/number/movedelay/vv_edit_var(var_name, var_value)
-	. = ..()
-	if(. && (var_name == NAMEOF(src, config_entry_value)))
-		update_mob_config_movespeeds()
 
 /datum/config_entry/number/movedelay/run_delay
 	config_entry_value = 1

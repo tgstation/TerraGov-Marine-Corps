@@ -225,14 +225,14 @@
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(CHECK_BITFIELD(species_flags, NO_CHEM_METABOLIZATION)) //explicit
-		H.reagents.del_reagent(chem.id) //for the time being
+		H.reagents.del_reagent(chem.type) //for the time being
 		return TRUE
 	if(CHECK_BITFIELD(species_flags, NO_POISON) && istype(chem, /datum/reagent/toxin))
-		H.reagents.remove_reagent(chem.id, chem.custom_metabolism * H.metabolism_efficiency)
+		H.reagents.remove_reagent(chem.type, chem.custom_metabolism * H.metabolism_efficiency)
 		return TRUE
 	if(CHECK_BITFIELD(species_flags, NO_OVERDOSE)) //no stacking
 		if(chem.overdose_threshold && chem.volume > chem.overdose_threshold)
-			H.reagents.remove_reagent(chem.id, chem.volume - chem.overdose_threshold)
+			H.reagents.remove_reagent(chem.type, chem.volume - chem.overdose_threshold)
 	return FALSE
 
 /datum/species/human
@@ -579,6 +579,8 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 
 /datum/species/early_synthetic
 	name = "Early Synthetic"
@@ -615,6 +617,8 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	see_in_dark = 6
 
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 
 /mob/living/carbon/human/proc/reset_jitteriness()
 	jitteriness = 0

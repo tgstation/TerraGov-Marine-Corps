@@ -21,8 +21,9 @@
 		return
 
 	//Asset cache
+	var/job
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = round(text2num(href_list["asset_cache_confirm_arrival"]))
+		job = round(text2num(href_list["asset_cache_confirm_arrival"]))
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
 		//into letting append to a list without limit.
 		if(job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
@@ -68,6 +69,11 @@
 	//Logs all hrefs, except chat pings
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
+
+	//byond bug ID:2256651
+	if(job && (job in completed_asset_jobs))
+		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		src << browse("...", "window=asset_cache_browser")
 
 
 	//Admin PM
@@ -296,9 +302,6 @@
 //////////////////
 /client/Del()
 	log_access("Logout: [key_name(src)]")
-	if(isliving(mob))
-		var/mob/living/L = mob
-		L.begin_away()
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin logout: [key_name(src)].")
@@ -316,6 +319,7 @@
 
 
 /client/Destroy()
+	. = ..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 
 
@@ -563,3 +567,16 @@
 		last_message = message
 		last_message_count = 0
 		return FALSE
+
+/client/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("holder")
+			return FALSE
+		if("ckey")
+			return FALSE
+		if("key")
+			return FALSE
+		if("view")
+			change_view(var_value)
+			return TRUE
+	return ..()

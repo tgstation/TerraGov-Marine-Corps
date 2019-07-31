@@ -46,7 +46,7 @@
 /obj/machinery/computer/med_data/attack_ai(user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/med_data/attack_paw(user as mob)
+/obj/machinery/computer/med_data/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/med_data/attack_hand(mob/living/user)
@@ -80,10 +80,12 @@
 				if(3.0)
 					dat += text("<B>Records Maintenance</B><HR>\n<A href='?src=\ref[];back=1'>Backup To Disk</A><BR>\n<A href='?src=\ref[];u_load=1'>Upload From disk</A><BR>\n<A href='?src=\ref[];del_all=1'>Delete All Records</A><BR>\n<BR>\n<A href='?src=\ref[];screen=1'>Back</A>", src, src, src, src)
 				if(4.0)
-					var/icon/front = active1.fields["photo_front"]
-					var/icon/side = active1.fields["photo_side"]
-					user << browse_rsc(front, "front.png")
-					user << browse_rsc(side, "side.png")
+					if(istype(active1.fields["photo_front"], /obj/item/photo))
+						var/obj/item/photo/P1 = active1.fields["photo_front"]
+						DIRECT_OUTPUT(user, browse_rsc(P1.picture.picture_image, "photo_front"))
+					if(istype(active1.fields["photo_side"], /obj/item/photo))
+						var/obj/item/photo/P2 = active1.fields["photo_side"]
+						DIRECT_OUTPUT(user, browse_rsc(P2.picture.picture_image, "photo_side"))
 					dat += "<CENTER><B>Medical Record</B></CENTER><BR>"
 					if ((istype(src.active1, /datum/data/record) && GLOB.datacore.general.Find(src.active1)))
 						dat += "<table><tr><td>Name: [active1.fields["name"]] \
@@ -93,7 +95,7 @@
 								Fingerprint: <A href='?src=\ref[src];field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
 								Physical Status: <A href='?src=\ref[src];field=p_stat'>[active1.fields["p_stat"]]</A><BR>\n	\
 								Mental Status: <A href='?src=\ref[src];field=m_stat'>[active1.fields["m_stat"]]</A><BR></td><td align = center valign = top> \
-								Photo:<br><img src=front.png height=64 width=64 border=5><img src=side.png height=64 width=64 border=5></td></tr></table>"
+								Photo:<br><img src=photo_front height=64 width=64 border=5><img src=photo_side height=64 width=64 border=5></td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					if ((istype(src.active2, /datum/data/record) && GLOB.datacore.medical.Find(src.active2)))
