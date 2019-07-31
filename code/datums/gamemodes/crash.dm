@@ -149,7 +149,7 @@
 		xeno_silo_spawns -= loc_to_spawn_silo
 
 	for(var/i in GLOB.shuttle_controls_list)
-		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable
+		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable = i
 		computer_to_disable.machine_stat |= BROKEN
 		computer_to_disable.update_icon()
 
