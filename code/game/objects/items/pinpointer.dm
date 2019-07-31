@@ -1,3 +1,7 @@
+#define PINPOINTER_MODE_DISK "disk"
+#define PINPOINTER_MODE_DISK_GENERATOR "disk_generator"
+
+
 /obj/item/pinpointer
 	name = "pinpointer"
 	icon_state = "pinoff"
@@ -7,137 +11,114 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	matter = list("metal" = 500)
-	var/obj/item/disk/nuclear/the_disk = null
-	var/active = 0
+	var/active = FALSE
+	var/atom/movable/target
+	var/list/tracked_list
 
 
-	attack_self()
-		if(!active)
-			active = 1
-			workdisk()
-			to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
-		else
-			active = 0
-			icon_state = "pinoff"
-			to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
+/obj/item/pinpointer/proc/set_target(mob/living/user)
+	if(!length(tracked_list))
+		to_chat(user, "<span class='warning'>No traceable signals found!</span>")
+		return
+	target = input("Select the item you wish to track.", "Pinpointer") as null|anything in tracked_list
 
-	proc/workdisk()
-		if(!active) return
-		if(!the_disk)
-			the_disk = locate()
-			if(!the_disk)
-				icon_state = "pinonnull"
-				return
-		setDir(get_dir(src,the_disk))
-		switch(get_dist(src,the_disk))
-			if(0)
-				icon_state = "pinondirect"
-			if(1 to 8)
-				icon_state = "pinonclose"
-			if(9 to 16)
-				icon_state = "pinonmedium"
-			if(16 to INFINITY)
-				icon_state = "pinonfar"
-		spawn(5) .()
 
-	examine(mob/user)
-		..()
-		for(var/obj/machinery/nuclearbomb/bomb in GLOB.machines)
-			if(bomb.timing)
-				to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
+/obj/item/pinpointer/attack_self(mob/living/user)
+	if(active)
+		deactivate(user)
+	else
+		activate(user)
+
+
+/obj/item/pinpointer/proc/activate(mob/living/user)
+	set_target(user)
+	if(!target)
+		return
+	active = TRUE
+	START_PROCESSING(SSobj, src)
+	to_chat(user, "<span class='notice'>You activate the pinpointer</span>")
+
+
+/obj/item/pinpointer/proc/deactivate(mob/living/user)
+	active = FALSE
+	target = null
+	STOP_PROCESSING(SSobj, src)
+	icon_state = "pinoff"
+	to_chat(user, "<span class='notice'>You deactivate the pinpointer</span>")
+
+
+/obj/item/pinpointer/process()
+	if(!target)
+		icon_state = "pinonnull"
+		active = FALSE
+		return
+
+	setDir(get_dir(src, target))
+	switch(get_dist(src, target))
+		if(0)
+			icon_state = "pinondirect"
+		if(1 to 8)
+			icon_state = "pinonclose"
+		if(9 to 16)
+			icon_state = "pinonmedium"
+		if(16 to INFINITY)
+			icon_state = "pinonfar"
 
 
 /obj/item/pinpointer/advpinpointer
-	name = "Advanced Pinpointer"
+	name = "advanced pinpointer"
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
-	var/mode = 0  // Mode 0 locates disk, mode 1 locates coordinates.
-	var/turf/location = null
-	var/obj/target = null
-
-	attack_self()
-		if(!active)
-			active = 1
-			if(mode == 0)
-				workdisk()
-			if(mode == 1)
-				worklocation()
-			if(mode == 2)
-				workobj()
-			to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
-		else
-			active = 0
-			icon_state = "pinoff"
-			to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
+	var/mode = PINPOINTER_MODE_DISK_GENERATOR
 
 
-	proc/worklocation()
-		if(!active)
-			return
-		if(!location)
-			icon_state = "pinonnull"
-			return
-		setDir(get_dir(src,location))
-		switch(get_dist(src,location))
-			if(0)
-				icon_state = "pinondirect"
-			if(1 to 8)
-				icon_state = "pinonclose"
-			if(9 to 16)
-				icon_state = "pinonmedium"
-			if(16 to INFINITY)
-				icon_state = "pinonfar"
-		spawn(5) .()
+/obj/item/pinpointer/advpinpointer/Initialize()
+	. = ..()
+	switch(mode)
+		if(PINPOINTER_MODE_DISK)
+			tracked_list = GLOB.nuke_disk_list
+		if(PINPOINTER_MODE_DISK_GENERATOR)
+			tracked_list = GLOB.nuke_disk_generators
 
 
-	proc/workobj()
-		if(!active)
-			return
-		if(!target)
-			icon_state = "pinonnull"
-			return
-		setDir(get_dir(src,target))
-		switch(get_dist(src,target))
-			if(0)
-				icon_state = "pinondirect"
-			if(1 to 8)
-				icon_state = "pinonclose"
-			if(9 to 16)
-				icon_state = "pinonmedium"
-			if(16 to INFINITY)
-				icon_state = "pinonfar"
-		spawn(5) .()
+/obj/item/pinpointer/advpinpointer/examine(mob/user)
+	. = ..()
+	if(mode == PINPOINTER_MODE_DISK)
+		for(var/i in tracked_list)
+			var/obj/machinery/nuclearbomb/bomb = i
+			if(!bomb.timer_enabled)
+				continue
+			to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
+
 
 /obj/item/pinpointer/advpinpointer/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Pinpointer Mode"
 	set src in view(1)
 
-	active = 0
-	icon_state = "pinoff"
-	target=null
-	location = null
+	if(active)
+		deactivate()
 
-	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
-		if("Location")
-			mode = 1
-
-			var/locationx = input(usr, "Please input the x coordinate to search for.", "Location?" , "") as num
-			if(!locationx || !(usr in view(1,src)))
-				return
-			var/locationy = input(usr, "Please input the y coordinate to search for.", "Location?" , "") as num
-			if(!locationy || !(usr in view(1,src)))
-				return
-
-			var/turf/Z = get_turf(src)
-
-			location = locate(locationx,locationy,Z.z)
-
-			to_chat(usr, "You set the pinpointer to locate [locationx],[locationy]")
-
-
-			return attack_self()
-
+	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Disk Recovery", "Disk Generator Tracking"))
 		if("Disk Recovery")
-			mode = 0
-			return attack_self()
+			do_toggle_mode(PINPOINTER_MODE_DISK)
+			activate(usr)
+			return
+		if("Disk Generator Tracking")
+			do_toggle_mode(PINPOINTER_MODE_DISK_GENERATOR)
+			activate(usr)
+			return
+
+
+/obj/item/pinpointer/advpinpointer/proc/do_toggle_mode(new_mode)
+	switch(new_mode)
+		if(PINPOINTER_MODE_DISK)
+			tracked_list = GLOB.nuke_disk_list
+		if(PINPOINTER_MODE_DISK_GENERATOR)
+			tracked_list = GLOB.nuke_disk_generators
+		else
+			CRASH("do_toggle_mode called with an invalid new_mode")
+	mode = new_mode
+
+
+#undef PINPOINTER_MODE_DISK
+#undef PINPOINTER_MODE_DISK_GENERATOR

@@ -26,6 +26,7 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
+#define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 
 //////////////////////////////////////////////////////////////////
 
