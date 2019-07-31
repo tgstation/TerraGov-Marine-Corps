@@ -664,3 +664,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			chosen = locate(X, Y, Z)
 
 	return chosen
+
+
+/datum/admins/vv_edit_var(var_name, var_value)
+	return FALSE

@@ -30900,10 +30900,6 @@
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
 "bwZ" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "hangar_upper_railing"
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -30917,13 +30913,12 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 2
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
 "bxa" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "hangar_upper_railing"
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -30932,26 +30927,24 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 2
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
 "bxb" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "hangar_upper_railing"
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 2
+	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
 "bxc" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -30960,13 +30953,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 2
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
 "bxd" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -30977,6 +30969,9 @@
 	},
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
+	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
@@ -33818,9 +33813,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "bFl" = (
-/obj/machinery/door/poddoor/railing{
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -33829,12 +33821,12 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
 "bFm" = (
-/obj/machinery/door/poddoor/railing{
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -33843,12 +33835,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
 "bFn" = (
-/obj/machinery/door/poddoor/railing{
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
@@ -33856,6 +33848,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 1
 	},
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
@@ -45919,10 +45914,7 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "iwM" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 4;
-	id = "hangar_upper_railing"
-	},
+/obj/machinery/door/poddoor/railing/opened,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
 "ixF" = (
@@ -46602,16 +46594,15 @@
 	},
 /area/mainship/command/cic)
 "olm" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
@@ -46649,10 +46640,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/stern_hallway)
 "oCl" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 4;
-	id = "hangar_upper_railing"
-	},
+/obj/machinery/door/poddoor/railing/opened,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_regular_floor = "cargo_arrow";
@@ -46666,9 +46654,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "oIc" = (
-/obj/machinery/door/poddoor/railing{
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -46679,6 +46664,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
@@ -46797,10 +46785,6 @@
 	},
 /area/mainship/medical/surgery_hallway)
 "pGw" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
 	d1 = 1;
@@ -46808,6 +46792,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
 "pIv" = (
@@ -46823,15 +46810,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "pJd" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -47295,10 +47281,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "vdx" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "hangar_upper_railing"
-	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
@@ -47314,6 +47296,9 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
@@ -47388,10 +47373,6 @@
 	},
 /area/mainship/living/briefing)
 "vFM" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "hangar_upper_railing"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
@@ -47402,6 +47383,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/railing/opened{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)

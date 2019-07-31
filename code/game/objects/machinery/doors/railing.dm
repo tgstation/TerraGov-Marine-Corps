@@ -10,8 +10,14 @@
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
 
-/obj/machinery/door/poddoor/railing/New()
-	..()
+
+/obj/machinery/door/poddoor/railing/opened
+	icon_state = "railing0"
+	density = FALSE
+
+
+/obj/machinery/door/poddoor/railing/Initialize()
+	. = ..()
 	if(dir == SOUTH)
 		closed_layer = ABOVE_MOB_LAYER
 	layer = closed_layer
@@ -51,6 +57,13 @@
 
 	addtimer(CALLBACK(src, .proc/do_open), 12)
 	return TRUE
+
+
+/obj/machinery/door/poddoor/railing/update_icon()
+	if(density)
+		icon_state = "railing1"
+	else
+		icon_state = "railing0"
 
 /obj/machinery/door/poddoor/railing/proc/do_open()
 	density = FALSE

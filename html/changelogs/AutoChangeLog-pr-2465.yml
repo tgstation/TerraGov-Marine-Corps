@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Warding nerfed. Instead of being able to reduce damage up to 12.5%, it can only go up to 5%."
