@@ -82,33 +82,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		icon_state = "nuclearbomb3"
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_EXPLODED)
-	addtimer(CALLBACK(src, .proc/BurnEveryoneOnZLevel, z), 5 SECONDS)
-	play_cinematic() //The round ends as soon as this happens, or it should.
 	return TRUE
-
-
-/obj/machinery/nuclearbomb/proc/play_cinematic()
-	GLOB.enter_allowed = FALSE
-	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
-
-	for(var/x in GLOB.player_list)
-		var/mob/M = x
-		if(isobserver(M))
-			continue
-		shake_camera(M, 110, 4)
-
-	Cinematic(CINEMATIC_SELFDESTRUCT, world)
-
-
-/obj/machinery/nuclearbomb/proc/BurnEveryoneOnZLevel(z)
-	if(!z)
-		return
-	for(var/i in GLOB.alive_mob_list)
-		var/mob/living/victim = i
-		if(victim.z != z)
-			continue
-		victim.adjustFireLoss(victim.maxHealth*2)
 
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
