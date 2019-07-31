@@ -1695,6 +1695,7 @@
 	icon_state = "pdoor1";
 	id = "storage_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
@@ -1739,6 +1740,7 @@
 	icon_state = "pdoor1";
 	id = "port_engine_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
 "dB" = (
@@ -1747,6 +1749,7 @@
 	icon_state = "pdoor1";
 	id = "starboard_engine_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
 "dC" = (
@@ -1754,6 +1757,9 @@
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "port_engine_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
@@ -1763,6 +1769,9 @@
 	icon_state = "pdoor1";
 	id = "starboard_engine_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
 "dE" = (
@@ -1770,6 +1779,9 @@
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "aft_engine_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
