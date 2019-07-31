@@ -104,8 +104,9 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 /obj/machinery/nuclearbomb/proc/BurnEveryoneOnZLevel(z)
 	if(!z)
 		return
-	for(var/mob/living/victim in GLOB.alive_mob_list)
-		if(victim.z != z || !istype(victim))
+	for(var/i in GLOB.alive_mob_list)
+		var/mob/living/victim = i
+		if(victim.z != z)
 			continue
 		victim.adjustFireLoss(victim.maxHealth*2)
 
