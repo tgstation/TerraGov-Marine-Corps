@@ -1,5 +1,8 @@
 /mob/living/carbon/xenomorph/Login()
 	. = ..()
+	if(afk_timer_id)
+		deltimer(afk_timer_id)
+		afk_timer_id = null
 
 	if(see_in_dark == XENO_NIGHTVISION_ENABLED)
 		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE

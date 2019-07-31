@@ -110,5 +110,3 @@
 	var/specset //Simple way to track which set has the player taken
 
 	hud_type = /datum/hud/human
-
-	var/afk_timer_id
