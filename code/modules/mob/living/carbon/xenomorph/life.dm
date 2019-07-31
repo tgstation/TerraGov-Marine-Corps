@@ -332,7 +332,7 @@
 		return
 
 	if(afk_timer_id)
-		INVOKE_NEXT_TICK(src, /proc/deltimer, afk_timer_id)
+		INVOKE_NEXT_TICK(GLOBAL_PROC, /proc/deltimer, afk_timer_id)
 		afk_timer_id = null
 
 	SSticker.mode.transfer_xeno(picked, src)
