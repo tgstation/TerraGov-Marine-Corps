@@ -88,6 +88,8 @@
 	. = ..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 	GLOB.mob_living_list += src
+	if(stat != DEAD)
+		GLOB.alive_mob_list += src
 	START_PROCESSING(SSmobs, src)
 
 /mob/living/Destroy()

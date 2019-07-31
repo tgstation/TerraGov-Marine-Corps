@@ -575,10 +575,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!(mother in possible_mothers))
 		to_chat(xeno_candidate, "<span class='warning'>This mother is not in a state to receive us.</span>")
 		return FALSE
-	return do_spawn_larva(xeno_candidate, mother.loc)
+	return do_spawn_larva(xeno_candidate, get_turf(mother))
 
 
-/datum/hive_status/normal/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point)
+/datum/hive_status/normal/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point)	
+	if(is_banned_from(xeno_candidate.ckey, ROLE_XENOMORPH))
+		to_chat(xeno_candidate, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
+		return FALSE
+
 	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point)
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
