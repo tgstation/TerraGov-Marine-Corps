@@ -76,17 +76,18 @@
 
 /obj/structure/resin/silo/examine(mob/user)
 	. = ..()
-	switch(obj_integrity)
-		if(350 to 400)
-			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthiy.</span>")
-		if(250 to 350)
-			to_chat(user, "<span class='warning'>It's slightly damaged, but still seems healthy.</span>")
-		if(150 to 250)
-			to_chat(user, "<span class='warning'>It's quite beat up, but it seems alive.</span>")
-		if(50 to 150)
-			to_chat(user, "<span class='warning'>It looks severely damaged, its movements slow.</span>")
-		if(0 to 50)
+	var/current_integrity = (obj_integrity / max_integrity) * 100
+	switch(current_integrity)
+		if(0 to 20)
 			to_chat(user, "<span class='warning'>It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.</span>")
+		if(20 to 40)
+			to_chat(user, "<span class='warning'>It looks severely damaged, its movements slow.</span>")
+		if(40 to 60)
+			to_chat(user, "<span class='warning'>It's quite beat up, but it seems alive.</span>")
+		if(60 to 80)
+			to_chat(user, "<span class='warning'>It's slightly damaged, but still seems healthy.</span>")
+		if(80 to 100)
+			to_chat(user, "<span class='info'>It appears in good shape, pulsating healthiy.</span>")
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)

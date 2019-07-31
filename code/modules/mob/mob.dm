@@ -16,8 +16,6 @@
 	GLOB.mob_list += src
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
-	else
-		GLOB.alive_mob_list += src
 	set_focus(src)
 	prepare_huds()
 	return ..()

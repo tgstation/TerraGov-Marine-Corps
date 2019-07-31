@@ -7,12 +7,13 @@
 GLOBAL_LIST_EMPTY(nukes_set_list)
 
 /obj/machinery/nuclearbomb
-	name = "\improper Nuclear Fission Explosive"
-	desc = "Uh oh. RUN!!!!"
+	name = "nuclear fission explosive"
+	desc = "You probably shouldn't stick around to see if this is armed."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
 	density = TRUE
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
+	anchored = TRUE
+	resistance_flags = INDESTRUCTIBLE|UNACIDABLE|LAVA_PROOF|FIRE_PROOF|ACID_PROOF
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
@@ -22,38 +23,47 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	var/exploded = FALSE
 	var/removal_stage = NUKE_STAGE_NONE // 0 is no removal, 1 is covers removed, 2 is covers open,
 							// 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
-	use_power = 0
+	use_power = FALSE
+	var/obj/effect/countdown/nuclearbomb/countdown
 
 	var/has_auth
-	var/obj/item/disk/nuclear/crash/red/r_auth
-	var/obj/item/disk/nuclear/crash/green/g_auth
-	var/obj/item/disk/nuclear/crash/blue/b_auth
+	var/obj/item/disk/nuclear/red/r_auth
+	var/obj/item/disk/nuclear/green/g_auth
+	var/obj/item/disk/nuclear/blue/b_auth
 
 
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
 	GLOB.nuke_list += src
+	countdown = new(src)
 
 
 /obj/machinery/nuclearbomb/Destroy()
 	GLOB.nuke_list -= src
+	QDEL_NULL(countdown)
 	return ..()
 
 
 /obj/machinery/nuclearbomb/process()
-	if(timer_enabled)
-		GLOB.nukes_set_list |= src
-		timeleft--
-		if(timeleft <= 0)
-			explode()
-			return
-		updateUsrDialog()
-
-/obj/machinery/nuclearbomb/proc/set_victory_condition()
-	if(!iscrashgamemode(SSticker.mode))
+	if(!timer_enabled)
+		stop_processing()
 		return
-	var/datum/game_mode/crash/C = SSticker.mode
-	C.planet_nuked = TRUE
+	GLOB.nukes_set_list |= src
+	timeleft--
+	if(timeleft <= 0)
+		explode()
+		return
+	updateUsrDialog()
+
+
+/obj/machinery/nuclearbomb/start_processing()
+	. = ..()
+	countdown.start()
+
+
+/obj/machinery/nuclearbomb/stop_processing()
+	countdown.stop()
+	return ..()
 
 
 /obj/machinery/nuclearbomb/proc/explode()
@@ -71,39 +81,25 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	if(!lighthack)
 		icon_state = "nuclearbomb3"
 
-	play_cinematic() //The round ends as soon as this happens, or it should.
-	addtimer(CALLBACK(src, .proc/set_victory_condition), 7 SECONDS)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_EXPLODED)
 	return TRUE
-
-
-/obj/machinery/nuclearbomb/proc/play_cinematic()
-	GLOB.enter_allowed = FALSE
-	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
-
-	for(var/x in GLOB.player_list)
-		var/mob/M = x
-		if(isobserver(M))
-			continue
-		shake_camera(M, 110, 4)
-
-	Cinematic(CINEMATIC_SELFDESTRUCT, world)
 
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(!extended)
 		return
-	if(!istype(I, /obj/item/disk/nuclear/crash))
+	if(!istype(I, /obj/item/disk/nuclear))
 		return
 	if(!user.transferItemToLoc(I, src))
 		return
-	if(istype(I, /obj/item/disk/nuclear/crash/red))
-		r_auth = I
-	else if(istype(I, /obj/item/disk/nuclear/crash/green))
-		g_auth = I
-	else if(istype(I, /obj/item/disk/nuclear/crash/blue))
-		b_auth = I
+	switch(I.type)
+		if(/obj/item/disk/nuclear/red)
+			r_auth = I
+		if(/obj/item/disk/nuclear/green)
+			g_auth = I
+		if(/obj/item/disk/nuclear/blue)
+			b_auth = I
 	if(r_auth && g_auth && b_auth)
 		has_auth = TRUE
 
@@ -162,8 +158,11 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return
 		if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
-			anchored = TRUE
-			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+			if(anchored)
+				visible_message("<span class='warning'>With a loud beep, lights flicker on the [src]'s display panel. It's working!</span>")
+			else
+				anchored = TRUE
+				visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
 			visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 		if(!lighthack)
@@ -182,17 +181,17 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	if(href_list["disk"])
 		var/disk_colour = href_list["disk"]
 		var/disk_type
-		var/obj/item/disk/nuclear/crash/disk_slot
+		var/obj/item/disk/nuclear/disk_slot
 		switch(disk_colour)
 			if("red")
 				disk_slot = r_auth
-				disk_type = /obj/item/disk/nuclear/crash/red
+				disk_type = /obj/item/disk/nuclear/red
 			if("green")
 				disk_slot = g_auth
-				disk_type = /obj/item/disk/nuclear/crash/green
+				disk_type = /obj/item/disk/nuclear/green
 			if("blue")
 				disk_slot = b_auth
-				disk_type = /obj/item/disk/nuclear/crash/blue
+				disk_type = /obj/item/disk/nuclear/blue
 
 		if(disk_slot)
 			has_auth = FALSE
@@ -220,6 +219,8 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 					g_auth = I
 				if("blue")
 					b_auth = I
+			if(r_auth && g_auth && b_auth)
+				has_auth = TRUE
 
 	if(has_auth)
 		if(href_list["time"])
@@ -260,6 +261,10 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 				visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
 
 	updateUsrDialog()
+
+
+/obj/machinery/nuclearbomb/proc/get_time_left()
+	return timeleft
 
 
 #undef NUKE_STAGE_NONE
