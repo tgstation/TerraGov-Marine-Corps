@@ -419,7 +419,8 @@
 /turf/open/floor/carpet/LateInitialize(mapload)
 	update_icon()
 	for(var/direction in list(1,2,4,8,5,6,9,10))
-		if(istype(get_step(src, direction), /turf/open/floor))
+		if(!istype(get_step(src, direction), /turf/open/floor))
+			continue
 		var/turf/open/floor/FF = get_step(src,direction)
 		FF.update_icon() //so siding get updated properly
 
