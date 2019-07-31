@@ -76,7 +76,7 @@
 /datum/ai_behavior/xeno/action_completed(reason) //Action state was completed, let's replace it with something else
 	switch(reason)
 		if(FINISHED_MOVE)
-			if(SSai.prioritize_nodes_with_enemies && GLOB.nodes_with_enemies.len && !(current_node in GLOB.nodes_with_enemies) && (!SSai.is_suicidal && (parent_ai.parentmob.health < (parent_ai.parentmob.maxHealth * SSai.retreat_health_threshold)))) //There's no enemies at this node but if they're somewhere else we moving to that
+			if(SSai.prioritize_nodes_with_enemies && GLOB.nodes_with_enemies.len && !(current_node in GLOB.nodes_with_enemies) && (!SSai.is_suicidal && (parentmob.health < (parentmob.maxHealth * SSai.retreat_health_threshold)))) //There's no enemies at this node but if they're somewhere else we moving to that
 				action_state = new/datum/action_state/move_to_node(src)
 				var/datum/action_state/move_to_node/the_state = action_state
 				the_state.destination_node = pick(shuffle(GLOB.nodes_with_enemies))
