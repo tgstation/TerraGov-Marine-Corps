@@ -54,10 +54,10 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/crash/captain,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/start/marine/crash/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ak" = (
@@ -76,10 +76,10 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/crash/pilotofficer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/landmark/start/marine/crash/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "am" = (
@@ -1040,7 +1040,6 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/crash/pilotofficer,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
@@ -1325,7 +1324,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
 "cE" = (
-/obj/effect/landmark/start/marine/crash/medicalofficer,
+/obj/effect/landmark/start/marine/crash/cmo,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -1343,6 +1342,7 @@
 	dir = 4;
 	on = 1
 	},
+/obj/effect/landmark/start/marine/crash/medicalofficer,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green"
 	},
