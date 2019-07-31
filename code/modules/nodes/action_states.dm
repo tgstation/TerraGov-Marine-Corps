@@ -1,4 +1,3 @@
-
 /datum/action_state
 	var/datum/ai_behavior/parent_ai
 
