@@ -577,8 +577,8 @@ GLOBAL_VAR_INIT(automute_on, null)
 	
 	last_message = message
 
-	var/mute = total_message_count >= SPAM_TRIGGER_AUTOMUTE || (total_message_weight > SPAM_TRIGGER_WEIGHT_AUTOMUTE && total_message_count != 1)
-	var/warning = total_message_count >= SPAM_TRIGGER_WARNING || (total_message_weight > SPAM_TRIGGER_WEIGHT_WARNING && total_message_count != 1)
+	var/mute = message_cache >= SPAM_TRIGGER_AUTOMUTE || (weight_cache > SPAM_TRIGGER_WEIGHT_AUTOMUTE && message_cache != 1)
+	var/warning = message_cache >= SPAM_TRIGGER_WARNING || (weight_cache > SPAM_TRIGGER_WEIGHT_WARNING && message_cache != 1)
 
 	if(mute)
 		if(GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
