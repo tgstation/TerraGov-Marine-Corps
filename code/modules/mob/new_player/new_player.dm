@@ -163,8 +163,6 @@
 
 					to_chat(src, "<span class='notice'>Now teleporting.</span>")
 					observer.forceMove(T)
-					else
-						failed = TRUE
 				else
 					failed = TRUE
 
