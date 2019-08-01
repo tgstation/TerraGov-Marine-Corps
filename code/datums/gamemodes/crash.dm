@@ -263,11 +263,6 @@
 			message_admins("Round finished: [MODE_CRASH_X_MINOR]")
 			round_finished = MODE_CRASH_X_MINOR 
 		if(CRASH_MARINE_MINOR)
-			// Marine Major if they win under an hour.
-			if(world.time < SSticker.round_start_time + 1 HOURS)
-				message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
-				round_finished = MODE_CRASH_M_MAJOR
-				return FALSE 
 			message_admins("Round finished: [MODE_CRASH_M_MINOR]")
 			round_finished = MODE_CRASH_M_MINOR 
 		if(CRASH_MARINE_MAJOR)
