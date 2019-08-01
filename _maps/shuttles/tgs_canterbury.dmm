@@ -11,7 +11,7 @@
 /area/shuttle/canterbury/cic)
 "ad" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/security/marinemainship_network,
+/obj/machinery/computer/security/marine_network,
 /turf/open/floor/mainship{
 	dir = 9;
 	icon_state = "blue"
