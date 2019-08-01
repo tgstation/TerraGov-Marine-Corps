@@ -873,4 +873,4 @@
 
 	if(href_list["move"] && iscrashgamemode(SSticker.mode))
 		var/datum/game_mode/crash/C = SSticker.mode
-		addtimer(VARSET_CALLBACK(C, marines_evac, TRUE), 3 SECONDS)		
+		C.marines_evac = world.time

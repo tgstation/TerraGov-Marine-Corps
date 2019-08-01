@@ -234,7 +234,7 @@
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(num_humans && !planet_nuked)
+	if(num_humans && !planet_nuked && !marines_evac)
 		if(!num_xenos)
 			if(respawn_xenos(num_humans))
 				return FALSE //Xenos keep respawning for like an hour or so.
@@ -248,7 +248,7 @@
 	
 	var/victory_options = (num_humans == 0 && num_xenos == 0 || (planet_nuked && !marines_evac)) 						<< 0 // Draw, for all other reasons
 	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) 												<< 1 // XENO Major (All marines killed)
-	victory_options |= (marines_evac && !planet_nuked) 																	<< 2 // XENO Minor (Marines evac'd )
+	victory_options |= ((marines_evac < world.time + 5 MINUTES) && !planet_nuked)										<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
 	victory_options |= (planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) 									<< 3 // Marine minor (Planet nuked, some human left on planet)
 	victory_options |= ((marines_evac && planet_nuked && num_grounded_humans == 0) || num_xenos == 0 && num_humans > 0) << 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
 
