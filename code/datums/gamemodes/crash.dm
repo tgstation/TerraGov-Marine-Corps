@@ -404,8 +404,9 @@
 	planet_nuked = TRUE
 	if(!z_level)
 		return
-	for(var/i in GLOB.mob_living_list)
+	for(var/i in GLOB.alive_living_list)
 		var/mob/living/victim = i
-		if(victim.z != z_level || victim.stat == DEAD)
+		if(victim.z != z_level)
 			continue
+		// Only living can be alive in this list
 		victim.adjustFireLoss(victim.maxHealth*2)
