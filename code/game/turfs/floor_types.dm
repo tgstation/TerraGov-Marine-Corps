@@ -122,7 +122,7 @@
 
 /turf/open/floor/light/Initialize()
 	. = ..()
-	floor_tile = new /obj/item/stack/tile/light(src)
+	floor_tile = new /obj/item/stack/tile/light
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -221,7 +221,7 @@
 
 /turf/open/floor/grass/Initialize()
 	. = ..()
-	floor_tile = new /obj/item/stack/tile/grass(src)
+	floor_tile = new /obj/item/stack/tile/grass
 	icon_state = "grass[pick("1","2","3","4")]"
 	return INITIALIZE_HINT_LATELOAD
 
@@ -412,7 +412,7 @@
 
 /turf/open/floor/carpet/Initialize()
 	. = ..()
-	floor_tile = new /obj/item/stack/tile/carpet(src)
+	floor_tile = new /obj/item/stack/tile/carpet
 	return INITIALIZE_HINT_LATELOAD
 
 
