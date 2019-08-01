@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	if(!lighthack)
 		icon_state = "nuclearbomb3"
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_EXPLODED)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_EXPLODED, z)
 	return TRUE
 
 
