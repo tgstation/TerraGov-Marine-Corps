@@ -4,7 +4,6 @@
 #define NUKE_STAGE_SEALANT_OPEN 3
 #define NUKE_STAGE_UNWRENCHED 4
 #define NUKE_STAGE_BOLTS_REMOVED 5
-GLOBAL_LIST_EMPTY(nukes_set_list)
 
 /obj/machinery/nuclearbomb
 	name = "nuclear fission explosive"
@@ -48,7 +47,6 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	if(!timer_enabled)
 		stop_processing()
 		return
-	GLOB.nukes_set_list |= src
 	timeleft--
 	if(timeleft <= 0)
 		explode()
@@ -59,9 +57,11 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 /obj/machinery/nuclearbomb/start_processing()
 	. = ..()
 	countdown.start()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 
 
 /obj/machinery/nuclearbomb/stop_processing()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	return ..()
 
@@ -71,7 +71,6 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 
 	if(safety)
 		timer_enabled = FALSE
-		GLOB.nukes_set_list -= src
 		return
 
 	if(exploded)
@@ -235,7 +234,6 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 				return
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
-				GLOB.nukes_set_list |= src
 				start_processing()
 			if(!lighthack)
 				icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
@@ -243,10 +241,8 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 			safety = !safety
 			if(safety)
 				timer_enabled = FALSE
-				GLOB.nukes_set_list -= src
 				stop_processing()
 			else
-				GLOB.nukes_set_list |= src
 				start_processing()
 		if(href_list["anchor"])
 			if(removal_stage == NUKE_STAGE_BOLTS_REMOVED)

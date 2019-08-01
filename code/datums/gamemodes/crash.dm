@@ -406,7 +406,7 @@
 		return
 	for(var/i in GLOB.alive_living_list)
 		var/mob/living/victim = i
-		if(victim.z != z_level)
+		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
+		if(victim_turf.z != z_level)
 			continue
-		// Only living can be alive in this list
 		victim.adjustFireLoss(victim.maxHealth*2)
