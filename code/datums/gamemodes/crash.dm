@@ -109,6 +109,9 @@
 	if(!target)
 		CRASH("Unable to get a valid shuttle target!")
 		return
+		
+	shuttle.crashing = TRUE
+	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
 
 	// Create xenos
@@ -211,8 +214,6 @@
 
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
-	shuttle.crashing = TRUE
-	SSshuttle.moveShuttleToDock(shuttle.id, target, FALSE) // FALSE = instant arrival
 	shuttle_landed = TRUE
 
 	announce_bioscans(TRUE, 0, FALSE, TRUE) // Announce exact information to the xenos.
