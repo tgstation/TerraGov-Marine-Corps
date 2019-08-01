@@ -246,11 +246,13 @@
 	var/list/grounded_living_player_list = count_humans_and_xenos(SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)))
 	var/num_grounded_humans = grounded_living_player_list[1]
 	
+	var/did_evac = (marines_evac && marines_evac < world.time + 15 SECONDS)
+
 	var/victory_options = (num_humans == 0 && num_xenos == 0 || (planet_nuked && !marines_evac)) 						<< 0 // Draw, for all other reasons
 	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) 												<< 1 // XENO Major (All marines killed)
-	victory_options |= ((marines_evac < world.time + 5 MINUTES) && !planet_nuked)										<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
+	victory_options |= (did_evac && !planet_nuked)																		<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
 	victory_options |= (planet_nuked && (num_humans == 0 || num_grounded_humans > 0)) 									<< 3 // Marine minor (Planet nuked, some human left on planet)
-	victory_options |= ((marines_evac && planet_nuked && num_grounded_humans == 0) || num_xenos == 0 && num_humans > 0) << 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
+	victory_options |= ((did_evac && planet_nuked && num_grounded_humans == 0) || num_xenos == 0 && num_humans > 0) 	<< 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
 
 	switch(victory_options)
 		if(CRASH_DRAW)
