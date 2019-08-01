@@ -36,6 +36,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	. = ..()
 	GLOB.nuke_list += src
 	countdown = new(src)
+	name = "[initial(name)] ([UNIQUEID])"
 
 
 /obj/machinery/nuclearbomb/Destroy()

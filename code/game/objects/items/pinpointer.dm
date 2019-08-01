@@ -15,6 +15,29 @@
 	var/active = FALSE
 	var/atom/movable/target
 	var/list/tracked_list
+	var/mode = PINPOINTER_MODE_DISK
+
+
+/obj/item/pinpointer/Initialize()
+	. = ..()
+	switch(mode)
+		if(PINPOINTER_MODE_DISK)
+			tracked_list = GLOB.nuke_disk_list
+		if(PINPOINTER_MODE_DISK_GENERATOR)
+			tracked_list = GLOB.nuke_disk_generators
+		if(PINPOINTER_MODE_NUKE)
+			tracked_list = GLOB.nuke_list
+
+
+/obj/item/pinpointer/examine(mob/user)
+	. = ..()
+	switch(mode)
+		if(PINPOINTER_MODE_DISK, PINPOINTER_MODE_DISK_GENERATOR, PINPOINTER_MODE_NUKE)
+			for(var/i in GLOB.nuke_list)
+				var/obj/machinery/nuclearbomb/bomb = i
+				if(!bomb.timer_enabled)
+					continue
+				to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
 
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
@@ -24,7 +47,8 @@
 	target = input("Select the item you wish to track.", "Pinpointer") as null|anything in tracked_list
 	if(QDELETED(target))
 		return
-	if(target.z != z)
+	var/turf/disk_loc = get_turf(src)
+	if(target.z != disk_loc.z)
 		to_chat(user, "<span class='warning'>Chosen target signal too weak. Choose another.</span>")
 		target = null
 		return
@@ -75,29 +99,7 @@
 /obj/item/pinpointer/advpinpointer
 	name = "advanced pinpointer"
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
-	var/mode = PINPOINTER_MODE_DISK_GENERATOR
-
-
-/obj/item/pinpointer/advpinpointer/Initialize()
-	. = ..()
-	switch(mode)
-		if(PINPOINTER_MODE_DISK)
-			tracked_list = GLOB.nuke_disk_list
-		if(PINPOINTER_MODE_DISK_GENERATOR)
-			tracked_list = GLOB.nuke_disk_generators
-		if(PINPOINTER_MODE_NUKE)
-			tracked_list = GLOB.nuke_list
-
-
-/obj/item/pinpointer/advpinpointer/examine(mob/user)
-	. = ..()
-	switch(mode)
-		if(PINPOINTER_MODE_DISK, PINPOINTER_MODE_DISK_GENERATOR, PINPOINTER_MODE_NUKE)
-			for(var/i in GLOB.nuke_list)
-				var/obj/machinery/nuclearbomb/bomb = i
-				if(!bomb.timer_enabled)
-					continue
-				to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
+	mode = PINPOINTER_MODE_DISK_GENERATOR
 
 
 /obj/item/pinpointer/advpinpointer/verb/toggle_mode()
