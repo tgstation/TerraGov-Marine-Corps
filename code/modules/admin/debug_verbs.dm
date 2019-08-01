@@ -222,7 +222,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/dat
 
-	var/choice = input("Which list?") as null|anything in list("Players", "Observers", "New Players", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
+	var/choice = input("Which list?") as null|anything in list("Players", "Observers", "New Players", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	if(!choice)
 		return
 
@@ -255,8 +255,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			for(var/i in GLOB.mob_living_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
-		if("Alive Mobs")
-			for(var/i in GLOB.alive_mob_list)
+		if("Alive Living Mobs")
+			for(var/i in GLOB.alive_living_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Mobs")
