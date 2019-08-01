@@ -403,8 +403,9 @@
 	planet_nuked = TRUE
 	if(!z_level)
 		return
-	for(var/i in GLOB.mob_living_list)
+	for(var/i in GLOB.alive_living_list)
 		var/mob/living/victim = i
-		if(victim.z != z_level || victim.stat == DEAD)
+		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
+		if(victim_turf.z != z_level)
 			continue
 		victim.adjustFireLoss(victim.maxHealth*2)
