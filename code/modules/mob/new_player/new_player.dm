@@ -254,8 +254,10 @@
 			if(!GLOB.enter_allowed)
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
-
-			SSticker?.mode.AttemptLateSpawn(src, href_list["job_selected"])
+			var/rank = href_list["job_selected"]
+			if(!SSticker?.mode.CanLateSpawn(src, rank))
+				return
+			SSticker?.mode.AttemptLateSpawn(src, rank)
 
 
 	if(href_list["showpoll"])

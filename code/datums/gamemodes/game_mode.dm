@@ -732,24 +732,28 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	else
 		return "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
 
-/datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
+
+/datum/game_mode/proc/CanLateSpawn(mob/M, rank)
 	if(!isnewplayer(M))
-		return
+		return FALSE
 	var/mob/new_player/NP = M
-	if(!NP.IsJobAvailable(rank))
+	if(!NP.IsJobAvailable(rank, TRUE))
 		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
-		return
+		return FALSE
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
-		return
+		return FALSE
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
-		return
-
+		return FALSE
 	if(!SSjob.AssignRole(NP, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
-		return
+		return FALSE
 
+	return TRUE
+
+
+/datum/game_mode/proc/AttemptLateSpawn(mob/new_player/NP, rank)
 	NP.close_spawn_windows()
 	NP.spawning = TRUE
 
