@@ -19,7 +19,8 @@
 			A.set_broken()
 		CHECK_TICK
 
-	for(var/mob/living/carbon/M in GLOB.alive_mob_list) //knock down mobs
+	for(var/i in GLOB.alive_living_list) //knock down mobs
+		var/mob/living/M = i
 		if(!is_mainship_level(M.z)) 
 			continue
 		if(M.buckled)

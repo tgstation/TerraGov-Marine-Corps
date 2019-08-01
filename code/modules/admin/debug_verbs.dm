@@ -255,8 +255,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			for(var/i in GLOB.mob_living_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
-		if("Alive Mobs")
-			for(var/i in GLOB.alive_mob_list)
+		if("Alive Living Mobs")
+			for(var/i in GLOB.alive_living_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Mobs")
