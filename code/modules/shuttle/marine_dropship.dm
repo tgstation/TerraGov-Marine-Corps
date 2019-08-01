@@ -856,3 +856,21 @@
 	icon_state = "shuttle"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury
+	name = "\improper 'Canterbury' shuttle console"
+	desc = "The remote controls for the 'Canterbury' shuttle."
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	shuttleId = "tgs_canterbury"
+	possible_destinations = "canterbury_loadingdock"
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+
+	if(href_list["move"] && iscrashgamemode(SSticker.mode))
+		var/datum/game_mode/crash/C = SSticker.mode
+		addtimer(VARSET_CALLBACK(C, marines_evac, TRUE), 3 SECONDS)		

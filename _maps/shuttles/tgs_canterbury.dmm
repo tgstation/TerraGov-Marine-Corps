@@ -19,7 +19,7 @@
 /area/shuttle/canterbury/cic)
 "ae" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/communications,
+/obj/machinery/computer/shuttle/shuttle_control/canterbury,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "af" = (
