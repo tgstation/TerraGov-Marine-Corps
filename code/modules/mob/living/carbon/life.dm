@@ -55,7 +55,7 @@
 	if(knocked_out || sleeping || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
-			stat = disabilities |= DEAF
+			disabilities |= DEAF
 		stat = UNCONSCIOUS
 	else if(stat == UNCONSCIOUS)
 		stat = CONSCIOUS
