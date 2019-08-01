@@ -21,8 +21,7 @@ GLOBAL_LIST_EMPTY(nukes_set_list)
 	var/timer_enabled = FALSE
 	var/safety = TRUE
 	var/exploded = FALSE
-	var/removal_stage = NUKE_STAGE_NONE // 0 is no removal, 1 is covers removed, 2 is covers open,
-							// 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
+	var/removal_stage = NUKE_STAGE_NONE 
 	use_power = FALSE
 	var/obj/effect/countdown/nuclearbomb/countdown
 
