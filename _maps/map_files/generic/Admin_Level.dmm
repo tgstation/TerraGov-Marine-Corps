@@ -3309,6 +3309,7 @@
 	},
 /area/centcom)
 "QN" = (
+/obj/docking_port/stationary/crashmode/loading,
 /turf/open/space,
 /area/space)
 "QP" = (
