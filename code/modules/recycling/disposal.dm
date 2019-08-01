@@ -171,7 +171,7 @@
 		update()
 
 //Monkeys can only pull the flush lever
-/obj/machinery/disposal/attack_paw(mob/user as mob)
+/obj/machinery/disposal/attack_paw(mob/living/carbon/monkey/user)
 	if(machine_stat & BROKEN)
 		return
 

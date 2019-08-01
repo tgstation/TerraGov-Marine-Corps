@@ -300,7 +300,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/suit_storage_unit/attack_paw(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_paw(mob/living/carbon/monkey/user)
 	to_chat(user, "<font color='blue'>The console controls are far too complicated for your tiny brain!</font>")
 	return
 

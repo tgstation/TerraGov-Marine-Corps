@@ -164,16 +164,19 @@
 
 
 /area/proc/poweralert(state, obj/source)
-	if(state != poweralm)
-		poweralm = state
-		if(istype(source))	//Only report power alarms on the z-level where the source is located.
-			var/list/cameras = list()
-			for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
-				if(a.z == source.z)
-					if(state == 1)
-						a.cancelAlarm("Power", src, source)
-					else
-						a.triggerAlarm("Power", src, cameras, source)
+	if(state == poweralm)
+		return
+
+	poweralm = state
+
+	for(var/i in GLOB.alert_consoles)
+		var/obj/machinery/computer/station_alert/SA = i
+		if(SA.z != source.z)
+			continue
+		if(state == 1)
+			SA.cancelAlarm("Power", src, source)
+		else
+			SA.triggerAlarm("Power", src, null, source)
 
 
 /area/proc/atmosalert(danger_level)

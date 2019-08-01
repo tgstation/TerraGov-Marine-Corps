@@ -47,7 +47,7 @@
 /obj/machinery/sleep_console/attack_ai(mob/living/user)
 	return attack_hand(user)
 
-/obj/machinery/sleep_console/attack_paw(mob/living/user)
+/obj/machinery/sleep_console/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/sleep_console/attack_hand(mob/living/user)

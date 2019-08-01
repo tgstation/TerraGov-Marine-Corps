@@ -28,6 +28,7 @@
 	qdel(button)
 	button = null
 	target = null
+	return ..()
 
 /datum/action/proc/should_show()
 	return TRUE

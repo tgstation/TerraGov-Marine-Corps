@@ -579,6 +579,8 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 
 /datum/species/early_synthetic
 	name = "Early Synthetic"
@@ -615,6 +617,8 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	see_in_dark = 6
 
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 
 /mob/living/carbon/human/proc/reset_jitteriness()
 	jitteriness = 0

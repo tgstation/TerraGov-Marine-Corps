@@ -18,13 +18,13 @@
 
 	if(active)
 		playsound(X, 'sound/weapons/slash.ogg', 15, 1)
-		RegisterSignal(src, list(
+		RegisterSignal(X, list(
 			COMSIG_XENOMORPH_DISARM_HUMAN,
 			COMSIG_XENOMORPH_ATTACK_HUMAN),
 			.proc/slash)
 	else
 		playsound(X, 'sound/weapons/slashmiss.ogg', 15, 1)
-		UnregisterSignal(src, list(
+		UnregisterSignal(X, list(
 			COMSIG_XENOMORPH_DISARM_HUMAN,
 			COMSIG_XENOMORPH_ATTACK_HUMAN))
 

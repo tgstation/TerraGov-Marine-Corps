@@ -173,38 +173,39 @@
 /obj/item/reagent_container/food/snacks/sliceable/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(user.a_intent == INTENT_HELP && I.w_class <= 2)
-		if(!iscarbon(user))
-			return TRUE
-
+	if(I.sharp != IS_SHARP_ITEM_ACCURATE || I.sharp != IS_SHARP_ITEM_BIG)
+		if(I.w_class >= WEIGHT_CLASS_SMALL)
+			return
 		if(!user.transferItemToLoc(I, src))
-			return TRUE
+			return
+		if(length(contents) > max_items)
+			to_chat(user, "<span class='warning'>[src] is full, you can't stuff [I] inside.</span>")
+			return
+		to_chat(user, "<span class='notice'>You slip [I] inside of [src].</span>")
+		return
 
-		to_chat(user, "<span class='warning'>You slip [I] inside [src].</span>")
-
-	else if(!isturf(loc) || !(locate(/obj/structure/table) in loc) || !istype(loc, /obj/item/tool/kitchen/tray))
+	if(!isturf(loc) || !(locate(/obj/structure/table) in loc) || !istype(loc, /obj/item/tool/kitchen/tray))
 		to_chat(user, "<span class='warning'>You cannot slice [src] here! You need a table or at least a tray to do it.</span>")
+		return
 
-	else if(I.sharp == IS_SHARP_ITEM_ACCURATE || I.sharp == IS_SHARP_ITEM_BIG)
-		user.visible_message("<span class='notice'>[user] slices \the [src] with [I]!</span>", \
-			"<span class='notice'>You crudely \the [src] with your [I]!</span>")
+	user.visible_message("<span class='notice'>[user] slices \the [src] with [I]!</span>", \
+		"<span class='notice'>You crudely \the [src] with your [I]!</span>")
 
-		var/reagents_per_slice = reagents.total_volume / slices_num
+	var/reagents_per_slice = reagents.total_volume / slices_num
 
-		for(var/i in 1 to slices_num)
-			var/obj/slice = new slice_path(loc)
-			reagents.trans_to(slice,reagents_per_slice)
+	for(var/i in 1 to slices_num)
+		var/obj/slice = new slice_path(loc)
+		reagents.trans_to(slice,reagents_per_slice)
 
-		qdel(src)
-
+	qdel(src)
 	return TRUE
 
 
 /obj/item/reagent_container/food/snacks/Destroy()
-	if(contents)
-		for(var/atom/movable/something in contents)
-			something.loc = get_turf(src)
-	. = ..()
+	for(var/i in contents)
+		var/atom/movable/AM = i
+		AM.forceMove(get_turf(src))
+	return ..()
 
 /obj/item/reagent_container/food/snacks/attack_animal(mob/M)
 	if(isanimal(M))
@@ -1769,6 +1770,7 @@
 	name = "sliceable food"
 	bitesize = 1
 	slices_num = 5
+	var/max_items = 4
 
 /obj/item/reagent_container/food/snacks/sliceable/meatbread
 	name = "meatbread loaf"

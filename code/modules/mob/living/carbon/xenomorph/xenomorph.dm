@@ -291,12 +291,14 @@
 	var/obj/screen/LL_dir = hud_used.locate_leader
 	LL_dir.icon_state = "trackoff"
 
-/mob/living/carbon/xenomorph/begin_away()
-	. = ..()
-	addtimer(CALLBACK(src, .proc/handle_afk_takeover), XENO_AFK_TIMER)
-
 
 /mob/living/carbon/xenomorph/Moved(atom/newloc, direct)
 	if(is_zoomed)
 		zoom_out()
 	return ..()
+
+/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse)
+	. = ..()
+	if(!. || can_reenter_corpse)
+		return
+	handle_afk_takeover()

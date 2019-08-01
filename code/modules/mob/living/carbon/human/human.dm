@@ -119,8 +119,7 @@
 			throw_at(target, 200, 4)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 60 * armor
-				ear_deaf += 240 * armor
+				adjust_ear_damage(60 * armor, 240 * armor)
 
 			adjust_stagger(12 * armor)
 			add_slowdown(round(12 * armor,0.1))
@@ -131,8 +130,7 @@
 			f_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 30 * armor
-				ear_deaf += 120 * armor
+				adjust_ear_damage(30 * armor, 120 * armor)
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
@@ -143,8 +141,7 @@
 			f_loss += (rand(40, 50) * armor)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 10 * armor
-				ear_deaf += 30 * armor
+				adjust_ear_damage(10 * armor, 30 * armor)
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))

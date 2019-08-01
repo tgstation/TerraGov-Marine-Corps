@@ -188,3 +188,6 @@
 		D.vv_edit_var(var_name, var_value)
 	else
 		D.vars[var_name] = var_value
+
+/proc/___callbacknew(typepath, arguments)
+	new typepath(arglist(arguments))

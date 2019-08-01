@@ -207,7 +207,7 @@
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/attack_paw(mob/user as mob)
+/obj/machinery/power/port_gen/pacman/attack_paw(mob/living/carbon/monkey/user)
 	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)

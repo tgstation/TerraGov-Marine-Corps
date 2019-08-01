@@ -21,8 +21,14 @@
 	var/fail_rate = 5 //% chance of failure each fail_tick check
 	var/cur_tick = 0 //Tick updater
 
-	var/obj/item/fuelCell/fusion_cell = new //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
+	var/obj/item/fuelCell/fusion_cell
 	var/fuel_rate = 0 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
+
+
+/obj/machinery/power/fusion_engine/Initialize()
+	. = ..()
+	fusion_cell = new(src)
+
 
 /obj/machinery/power/fusion_engine/preset/Initialize()
 	. = ..()

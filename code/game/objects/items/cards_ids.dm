@@ -336,3 +336,11 @@
 			msg += ".</span>"
 
 			to_chat(user, msg)
+
+
+/obj/item/card/id/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(.)
+		switch(var_name)
+			if("assignment", "registered_name")
+				update_label()

@@ -179,7 +179,7 @@
 		qdel(src)
 	return TRUE
 
-/obj/structure/foamedmetal/attack_paw(mob/user)
+/obj/structure/foamedmetal/attack_paw(mob/living/carbon/monkey/user)
 	attack_hand(user)
 	return
 

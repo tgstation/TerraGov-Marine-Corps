@@ -178,7 +178,7 @@
 /obj/machinery/chem_dispenser/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/chem_dispenser/attack_paw(mob/user as mob)
+/obj/machinery/chem_dispenser/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/chem_dispenser/attack_hand(mob/living/user)
@@ -760,7 +760,7 @@
 	updateUsrDialog()
 	return FALSE
 
-/obj/machinery/reagentgrinder/attack_paw(mob/user as mob)
+/obj/machinery/reagentgrinder/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/reagentgrinder/attack_ai(mob/user as mob)

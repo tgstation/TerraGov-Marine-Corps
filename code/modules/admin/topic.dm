@@ -223,7 +223,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(!M?.client)
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
-			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
+			to_chat_immediate(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
 			qdel(M.client)
 
 			log_admin_private("[key_name(usr)] kicked [key_name(M)].")
@@ -387,7 +387,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		edit_rights_topic(href_list)
+		var/close = text2num(href_list["close"])
+		edit_rights_topic(href_list, close)
 
 
 	else if(href_list["spawncookie"])
@@ -1119,6 +1120,34 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
+	else if(href_list["say_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.say_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "say_log", "<div align='center'>Say Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["telecomms_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.telecomms_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "telecomms_log", "<div align='center'>Telecomms Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
 	else if(href_list["game_log"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1129,6 +1158,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			dat += "[x]<br>"
 
 		var/datum/browser/browser = new(usr, "game_log", "<div align='center'>Game Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["manifest_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.access_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "manifest_log", "<div align='center'>Manifest Log</div>")
 		browser.set_content(dat)
 		browser.open(FALSE)
 
@@ -1147,6 +1190,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
+	else if(href_list["attack_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.attack_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "attack_log", "<div align='center'>Attack Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
 	else if(href_list["ffattack_log"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1156,7 +1213,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		for(var/x in GLOB.ffattack_log)
 			dat += "[x]<br>"
 
-		var/datum/browser/browser = new(usr, "ffattack_log", "<div align='center'>FF Log</div>")
+		var/datum/browser/browser = new(usr, "ffattack_log", "<div align='center'>FF Attack Log</div>")
 		browser.set_content(dat)
 		browser.open(FALSE)
 

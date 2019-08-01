@@ -106,7 +106,7 @@
 	return
 
 
-/obj/attack_paw(mob/user)
+/obj/attack_paw(mob/living/carbon/monkey/user)
 	if(can_buckle) return src.attack_hand(user)
 	else . = ..()
 
@@ -252,3 +252,11 @@
 /obj/on_set_interaction(mob/user)
 	. = ..()
 	ENABLE_BITFIELD(obj_flags, IN_USE)
+
+
+/obj/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("anchored")
+			setAnchored(var_value)
+			return TRUE
+	return ..()
