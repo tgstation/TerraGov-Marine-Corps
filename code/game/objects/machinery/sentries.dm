@@ -1143,6 +1143,7 @@
 	name = "UA-577 Gauss Dropship Turret"
 	burst_size = 10
 	burst_delay = 15
+	ammo = /datum/ammo/bullet/turret
 
 obj/machinery/marine_turret/premade/canterbury/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
