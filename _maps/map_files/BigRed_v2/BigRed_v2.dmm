@@ -25962,6 +25962,15 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/w)
+"pyW" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Dormitories";
+	name = "\improper Dormitories Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/dorms)
 "pzV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -47996,7 +48005,7 @@ asJ
 aDQ
 aua
 aws
-asK
+pyW
 aHD
 aIm
 aBR
@@ -48213,7 +48222,7 @@ asJ
 asJ
 aua
 aws
-asK
+pyW
 aHD
 aIn
 aIm
