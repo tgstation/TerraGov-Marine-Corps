@@ -7,8 +7,6 @@
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	anchored = TRUE
 
-	var/destruction_sound = 'sound/effects/metal_crash.ogg'
-
 /obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)
 		new parts(loc)

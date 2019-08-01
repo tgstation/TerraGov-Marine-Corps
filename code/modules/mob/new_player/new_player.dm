@@ -155,20 +155,14 @@
 
 				var/failed = FALSE
 
-				if(GLOB.latejoin.len)
+				if(length(GLOB.latejoin))
 					var/i = pick(GLOB.latejoin)
-					var/turf/T
-					if(isturf(i))
-						T = i
-					else if(isobj(i))
-						var/obj/O = i
-						T = O.loc
-					else
+					var/turf/T = get_turf(i)
+					if(!T)
 						CRASH("Invalid latejoin spawn location type")
 
-					if(T)
-						to_chat(src, "<span class='notice'>Now teleporting.</span>")
-						observer.forceMove(T)
+					to_chat(src, "<span class='notice'>Now teleporting.</span>")
+					observer.forceMove(T)
 					else
 						failed = TRUE
 				else

@@ -251,6 +251,8 @@ SUBSYSTEM_DEF(shuttle)
 
 	if (istype(SSshuttle.supply))
 		supply = SSshuttle.supply
+	if (istype(SSshuttle.canterbury))
+		canterbury = SSshuttle.canterbury
 
 	if (istype(SSshuttle.shoppinglist))
 		shoppinglist = SSshuttle.shoppinglist

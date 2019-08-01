@@ -7,8 +7,9 @@
 	dwidth = 7
 	dheight = 12
 
-/obj/docking_port/stationary/crashmode/loading
+/obj/docking_port/stationary/crashmode/pre_spawned
 	id = "canterbury_loadingdock"
+	roundstart_template = /datum/map_template/shuttle/tgs_canterbury
 	
 // -- Shuttles
 /obj/docking_port/mobile/crashmode
