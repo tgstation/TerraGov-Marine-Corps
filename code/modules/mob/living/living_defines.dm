@@ -101,5 +101,3 @@
 
 	var/job
 	var/faction = "Neutral"
-
-	var/away_time = 0 //When the player has disconnected.

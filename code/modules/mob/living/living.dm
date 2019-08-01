@@ -652,11 +652,6 @@ below 100 is not dizzy
 /mob/living/proc/clear_leader_tracking()
 	return
 
-// called when the client disconnects and is away.
-/mob/living/proc/begin_away()
-	set_away_time(world.time)
-
-
 /mob/living/reset_perspective(atom/A)
 	. = ..()
 	if(!.)
