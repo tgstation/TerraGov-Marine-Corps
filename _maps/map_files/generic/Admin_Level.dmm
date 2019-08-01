@@ -582,7 +582,6 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "bR" = (
-/obj/machinery/nuclearbomb,
 /obj/machinery/light{
 	dir = 4
 	},
