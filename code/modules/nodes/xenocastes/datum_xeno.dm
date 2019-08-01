@@ -13,6 +13,7 @@
 	parentmob.a_intent = INTENT_HARM
 	last_health = parentmob.health
 	action_state = new/datum/action_state/random_move/scout(src)
+	parentmob2.away_time = -9999999
 	if(SSai.randomized_xeno_tiers) //Equal chances of being young, mature, elder or ancient
 		parentmob2.upgrade_xeno(pick(list(0, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE)))
 
@@ -27,8 +28,6 @@
 	. = ..()
 	if(!.) //Deleted due to no parent mob or other errors
 		return FALSE
-
-	parentmob.away_time = 200 //No grabbing it now, haven't handled ckey transfer yet for ai behavior
 
 	//If we aren't on a stack of fire and not already resting, we'll go and try to put out the fire, very effective fire!
 	if(parentmob.fire_stacks >= 3 && parentmob.canmove && !locate(/obj/effect/particle_effect/fire) in get_turf(parentmob) && prob(100 - ((parentmob.health / parentmob.maxHealth) * 100)))
