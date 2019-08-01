@@ -20,7 +20,6 @@
 	if(!shrike_hive.stored_larva)
 		to_chat(caller, "<span class='warning'>Our hive currently has no burrowed to call forth!</span>")
 		return FALSE
-	RegisterSignal(shrike_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 
 	playsound(caller,'sound/magic/invoke_general.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
