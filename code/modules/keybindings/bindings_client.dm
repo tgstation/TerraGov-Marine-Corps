@@ -39,8 +39,7 @@
 
 	keys_held -= _key
 
-	var/focus_chat = prefs.focus_chat
-	var/movement = focus_chat ? SSinput.arrow_movement_keys[_key] : SSinput.wasd_movement_keys[_key]
+	var/movement = prefs.focus_chat ? SSinput.arrow_movement_keys[_key] : SSinput.wasd_movement_keys[_key]
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement
 
