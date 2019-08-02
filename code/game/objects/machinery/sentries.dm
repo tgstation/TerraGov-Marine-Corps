@@ -1141,7 +1141,7 @@
 
 /obj/machinery/marine_turret/premade/canterbury
 	name = "UA-577 Gauss Dropship Turret"
-	burst_size = 10
+	burst_size = 6
 	burst_delay = 15
 	ammo = /datum/ammo/bullet/turret
 
