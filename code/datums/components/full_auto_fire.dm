@@ -128,7 +128,8 @@
 
 	if(source.mob.in_throw_mode)
 		return
-
+	if(!isturf(source.mob.loc)) //No firing inside lockers and stuff.
+		return
 	if(get_dist(source.mob, target) < 2) //Adjacent clicking.
 		return
 
