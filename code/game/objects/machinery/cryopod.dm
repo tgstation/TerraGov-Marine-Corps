@@ -454,9 +454,11 @@
 
 	move_inside_wrapper(usr, usr)
 
-/obj/machinery/cryopod/proc/climb_in(mob/user, mob/helper)
+/obj/machinery/cryopod/proc/climb_in(mob/living/carbon/user, mob/helper)
 	if(helper && user != helper)
-		if(!user.client)
+		var/sec_left = timeleft(user.afk_timer_id)
+		if(!user.client && sec_left)
+			to_chat(helper, "<span class='notice'>You should wait another [round((sec_left * 0.1) / 60, 2)] minutes before they are ready to cryosleep</span>")
 			return
 
 		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
