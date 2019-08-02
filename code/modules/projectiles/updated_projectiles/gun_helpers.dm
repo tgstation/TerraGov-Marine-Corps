@@ -619,7 +619,7 @@ should be alright.
 	set desc = "Toggle between fire modes, if the gun has more than has one."
 	set src = usr.contents
 
-	var/obj/item/weapon/gun/G = usr.get_active_held_item()
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
 	if(!G)
 		return
 	G.do_toggle_firemode(usr)
