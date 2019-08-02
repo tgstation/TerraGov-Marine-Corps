@@ -20087,7 +20087,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "ifI" = (
-/obj/machinery/nuclearbomb,
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "jgW" = (

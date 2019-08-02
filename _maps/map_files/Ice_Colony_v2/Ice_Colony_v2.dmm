@@ -40837,7 +40837,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "vPm" = (
 /obj/effect/turf_underlay/icefloor,
-/obj/machinery/nuclearbomb,
+/obj/effect/landmark/nuke_spawn,
 /turf/closed/ice/thin/single,
 /area/ice_colony/underground/maintenance/south)
 "wmQ" = (

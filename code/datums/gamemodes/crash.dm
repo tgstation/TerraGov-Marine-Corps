@@ -151,14 +151,12 @@
 
 /datum/game_mode/crash/post_setup()
 	. = ..()
-	var/list/xeno_silo_spawns = GLOB.xeno_resin_silo_turfs.Copy()
-	for(var/i in 1 to 3)
-		if(!length(xeno_silo_spawns))
-			WARNING("Trying to spawn xeno silo, but GLOB.xeno_resin_silo_turfs was empty")
-			break
-		var/turf/loc_to_spawn_silo = pick(xeno_silo_spawns)
-		new /obj/structure/resin/silo(loc_to_spawn_silo)
-		xeno_silo_spawns -= loc_to_spawn_silo
+	for(var/i in GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/resin/silo(i)
+
+	for(var/i in GLOB.nuke_spawn_locs)
+		new /obj/machinery/nuclearbomb(i)
+
 
 	for(var/i in GLOB.shuttle_controls_list)
 		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable = i
