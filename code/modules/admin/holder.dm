@@ -543,6 +543,8 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 /proc/afk_message(mob/living/carbon/human/H)
 	if(QDELETED(H))
 		return
+	if(isclientedaghost(H))
+		return
 	log_admin("[key_name(H)] (Job: [H.job]) has been away for 15 minutes.")
 	message_admins("[ADMIN_TPMONTY(H)] (Job: [H.job]) has been away for 15 minutes.")
 

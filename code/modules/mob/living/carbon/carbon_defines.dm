@@ -42,3 +42,5 @@
 	var/blood_type
 
 	var/overeatduration = 0		// How long this guy is overeating
+
+	var/afk_timer_id

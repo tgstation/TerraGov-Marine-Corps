@@ -320,9 +320,9 @@
 		adjustHalLoss(XENO_HALOSS_REGEN)
 
 /mob/living/carbon/xenomorph/proc/handle_afk_takeover()
-	if(client || world.time - away_time < XENO_AFK_TIMER)
+	if(client)
 		return
-	if(isaghost(src) && GLOB.directory[key]) // If aghosted, and admin still online
+	if(isclientedaghost(src)) // If aghosted, and admin still online
 		return
 	if(stat == DEAD)
 		return
@@ -330,6 +330,10 @@
 	var/mob/picked = get_alien_candidate()
 	if(!picked)
 		return
+
+	if(afk_timer_id)
+		INVOKE_NEXT_TICK(GLOBAL_PROC, /proc/deltimer, afk_timer_id)
+		afk_timer_id = null
 
 	SSticker.mode.transfer_xeno(picked, src)
 

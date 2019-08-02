@@ -18,7 +18,7 @@
 		add_overlay("cell-o1")
 
 /obj/item/cell/proc/percent()		// return % charge of cell
-	return 100.0*charge/maxcharge
+	return 100 * (charge / maxcharge)
 
 /obj/item/cell/proc/fully_charged()
 	return (charge == maxcharge)
