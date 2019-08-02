@@ -84,4 +84,4 @@
 
 /obj/machinery/computer/operating/process()
 	if(..())
-		src.updateDialog()
+		src.updateUsrDialog()
