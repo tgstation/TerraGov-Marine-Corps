@@ -20,7 +20,7 @@
 	return
 
 
-/obj/item/paper_bin/attack_paw(mob/user)
+/obj/item/paper_bin/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 

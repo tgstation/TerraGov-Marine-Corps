@@ -249,7 +249,7 @@
 
 /obj/machinery/door/airlock/evacuation
 	name = "\improper Evacuation Airlock"
-	icon = 'icons/obj/doors/almayer/pod_doors.dmi'
+	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
 	icon_state = "door_locked"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = TRUE

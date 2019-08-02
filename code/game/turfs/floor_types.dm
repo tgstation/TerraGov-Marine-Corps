@@ -4,11 +4,11 @@
 
 //Floors
 
-/turf/open/floor/almayer
-	icon = 'icons/turf/almayer.dmi'
+/turf/open/floor/mainship
+	icon = 'icons/turf/mainship.dmi'
 	icon_state = "default"
 
-/turf/open/floor/almayer/mono
+/turf/open/floor/mainship/mono
 	icon_state = "mono"
 	icon_regular_floor = "mono"
 
@@ -37,53 +37,53 @@
 	icon_state = "asteroidfloor"
 
 //Cargo elevator
-/turf/open/floor/almayer/empty
+/turf/open/floor/mainship/empty
 	name = "empty space"
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "black"
 
-/turf/open/floor/almayer/empty/is_weedable()
+/turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
 
-/turf/open/floor/almayer/empty/ex_act(severity) //Should make it indestructable
+/turf/open/floor/mainship/empty/ex_act(severity) //Should make it indestructable
 	return
 
-/turf/open/floor/almayer/empty/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/mainship/empty/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/open/floor/almayer/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
+/turf/open/floor/mainship/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
 
 //Others
-/turf/open/floor/almayer/uscm
+/turf/open/floor/mainship/tgmc
 	icon_state = "logo_c"
 	name = "\improper TGMC Logo"
 
-/turf/open/floor/almayer/uscm/directional
+/turf/open/floor/mainship/tgmc/directional
 	icon_state = "logo_directional"
 
 
 
 // RESEARCH STUFF
 
-/turf/open/floor/almayer/research/containment/floor1
+/turf/open/floor/mainship/research/containment/floor1
 	icon_state = "containment_floor_1"
 
-/turf/open/floor/almayer/research/containment/floor2
+/turf/open/floor/mainship/research/containment/floor2
 	icon_state = "containment_floor_2"
 
-/turf/open/floor/almayer/research/containment/corner1
+/turf/open/floor/mainship/research/containment/corner1
 	icon_state = "containment_corner_1"
 
-/turf/open/floor/almayer/research/containment/corner2
+/turf/open/floor/mainship/research/containment/corner2
 	icon_state = "containment_corner_2"
 
-/turf/open/floor/almayer/research/containment/corner3
+/turf/open/floor/mainship/research/containment/corner3
 	icon_state = "containment_corner_3"
 
-/turf/open/floor/almayer/research/containment/corner4
+/turf/open/floor/mainship/research/containment/corner4
 	icon_state = "containment_corner_4"
 
 
@@ -94,13 +94,13 @@
 
 //Outerhull
 
-/turf/open/floor/theseus_hull
-	icon = 'icons/turf/almayer.dmi'
+/turf/open/floor/mainship_hull
+	icon = 'icons/turf/mainship.dmi'
 	icon_state = "outerhull"
 	name = "hull"
 	hull_floor = TRUE
 
-/turf/open/floor/theseus_hull/dir
+/turf/open/floor/mainship_hull/dir
 	icon_state = "outerhull_dir"
 
 

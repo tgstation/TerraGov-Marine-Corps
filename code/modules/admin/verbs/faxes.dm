@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(faxes)
 
 		if(admin)
 			var/image/stampoverlay = image('icons/obj/items/paper.dmi')
-			stampoverlay.icon_state = "paper_stamp-uscm"
+			stampoverlay.icon_state = "paper_stamp-tgmc"
 			if(!P.stamped)
 				P.stamped = new
 			P.stamped += /obj/item/tool/stamp
@@ -99,90 +99,43 @@ GLOBAL_LIST_EMPTY(faxes)
 	browser.open(FALSE)
 
 
-/proc/generate_templated_fax(show_nt_logo, fax_header, fax_subject, addressed_to, message_body, sent_by, sent_department)
-	var/dat = ""
-	dat += "<style>"
-	dat += "body {"
-	dat += "margin:0 auto;"
-	dat += "padding:0;"
-	dat += "background-image: url('https://i.imgur.com/uM2I2gT.jpg');"
-	dat += "font-family: monospace;"
-	dat += "}"
+/proc/generate_templated_fax(to_department, subject, addressed_to, message_body, sent_by, sent_department)
+	var/fax_html = {"
+		<font face="Verdana" color="black" size="1">
+			<center>
+				Secure Communication SC-CLTMGC-01b
+			</center>
 
-	dat += "#fax-logo {"
-	dat += "text-align: center;"
-	dat += "}"
+			<hr />
 
-	dat += "#fax-logo img {"
-	dat += "width:250px;"
-	dat += "margin-top: 20px;"
-	dat += "margin-bottom: 12px;"
-	dat += "opacity: .6;"
-	dat += "}"
+			<b>Assignment detail</b><br />
+			Vessel: [CONFIG_GET(string/ship_name)]
+			<br />
+			Date, Time: [GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [worldtime2text()]<br />
+			Index: #001<br />
 
-	dat += "#width-container {"
-	dat += "width: 500px;"
-	dat += "min-height:500px;"
-	dat += "margin:0 auto;"
-	dat += "margin-top: 10px;"
-	dat += "margin-bottom: 10px;"
-	dat += "padding-left: 20px;"
-	dat += "padding-right: 20px;"
-	dat += "}"
+			<hr />
+			
+			<br />
+			Recipient: [addressed_to] [to_department], [CONFIG_GET(string/ship_name)].<br />
+			Subject: <b>[subject]</b>
 
-	dat += ".message-header-text p {"
-	dat += "text-align: center;"
-	dat += "margin: 0;"
-	dat += "margin-bottom: 40px;"
-	dat += "}"
+			<br /><br />
+			[message_body]
+			<br /><br />
 
-	dat += "#header-title {"
-	dat += "font-size: 17px;"
-	dat += "font-weight: 600;"
-	dat += "margin-bottom: 7px;"
-	dat += "}"
-
-	dat += "#header-subtitle {"
-	dat += "font-size: 17px;"
-	dat += "}"
-
-	dat += ".message-body-text p {"
-	dat += "text-align: left;"
-	dat += "font-size: 17px;"
-	dat += "}"
-
-	dat += ".message-signature-text p {"
-	dat += "text-align:right;"
-	dat += "font-size:15px;"
-	dat += "margin-bottom: 20px;"
-	dat += "}"
-	dat += "</style>"
-
-	dat += "<body>"
-	dat += "<div id='width-container'>"
-
-	dat += "<div class='message-header-text'>"
-	dat += "<p id='header-title'>[fax_header]</p>"
-	dat += "<p id='header-subtitle'>[fax_subject] - [time2text(world.realtime, "DD Month")] [GAME_YEAR]</p>"
-	dat += "</div> <!-- /message-header-text -->"
-
-	dat += "<div class='message-body-text'>"
-
-	dat += "<p>[addressed_to],</p>"
-
-	dat += "[message_body]"
-
-	dat += "</div> <!-- /message-body-text -->"
-
-	dat += "<div class='message-signature-text'>"
-	dat += "<p>"
-	dat += "<em>[sent_by]</em>"
-	dat += "<br/>"
-	dat += "<em>[sent_department]</em>"
-	dat += "<br/>"
-	dat += "</p>"
-	dat += "</div> <!-- /message-signature-text -->"
-
-	dat += "</div> <!-- /width-container -->"
-	dat += "</body>"
-	return dat
+			Regards,<br />
+			<center>[sent_by] - [sent_department]</center>
+			<br />
+			<hr />
+			<font size ="1">
+				<i>
+					This message is intended only for the Corporate Liason aboard the [CONFIG_GET(string/ship_name)], 
+					all other suchs persons should not read, receive a copy, or be exposed to this communication in any form. 
+					Failing to adhere to this warning will result in liquidation of division under Act 09.B-4. 
+					By authoring a reply to this transmission, such person confirms they abide by the regulations as set forth to them.
+				</i>
+			</font>
+		</font>	
+	"}
+	return fax_html

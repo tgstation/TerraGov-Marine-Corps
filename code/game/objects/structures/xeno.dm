@@ -26,9 +26,6 @@
 /obj/effect/alien/flamer_fire_act()
 	take_damage(50)
 
-/obj/effect/alien/fire_act()
-	take_damage(50)
-
 /obj/effect/alien/bullet_act(obj/item/projectile/Proj)
 	if(Proj.damtype == "fire")
 		take_damage(Proj.damage*2)
@@ -82,7 +79,7 @@
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
-	"<span class='xenonotice'>You claw \the [src].</span>")
+	"<span class='xenonotice'>We claw \the [src].</span>")
 	if(istype(src, /obj/effect/alien/resin/sticky))
 		playsound(loc, "alien_resin_move", 25)
 	else
@@ -102,7 +99,7 @@
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
-/obj/effect/alien/resin/attack_paw()
+/obj/effect/alien/resin/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand()
 
 /obj/effect/alien/resin/attackby(obj/item/I, mob/user, params)
@@ -244,7 +241,7 @@
 				M.put_in_active_hand(hugger)
 				hugger.GoActive(TRUE)
 				hugger = null
-				to_chat(M, "<span class='xenonotice'>You remove the facehugger from [src].</span>")
+				to_chat(M, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
 		return
 	..()
 
@@ -291,13 +288,13 @@
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
-/obj/structure/mineral_door/resin/New()
-	spawn(0)
-		relativewall()
-		relativewall_neighbours()
-		if(!locate(/obj/effect/alien/weeds) in loc)
-			new /obj/effect/alien/weeds(loc)
-	..()
+/obj/structure/mineral_door/resin/Initialize()
+	. = ..()
+	
+	relativewall()
+	relativewall_neighbours()
+	if(!locate(/obj/effect/alien/weeds) in loc)
+		new /obj/effect/alien/weeds(loc)
 
 /obj/structure/mineral_door/resin/proc/thicken()
 	var/oldloc = loc
@@ -305,7 +302,7 @@
 	new /obj/structure/mineral_door/resin/thick(oldloc)
 	return TRUE
 
-/obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
+/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/monkey/user)
 	if(user.a_intent == INTENT_HARM)
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")
@@ -336,11 +333,11 @@
 		return TRUE
 
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
-	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>", null, 5)
+	"<span class='warning'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
 	playsound(src, "alien_resin_break", 25)
 	if(do_after(M, 80, FALSE, src, BUSY_ICON_HOSTILE))
 		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
-		"<span class='danger'>You rip down \the [src]!</span>", null, 5)
+		"<span class='danger'>We rip down \the [src]!</span>", null, 5)
 		qdel(src)
 
 /obj/structure/mineral_door/resin/bullet_act(obj/item/projectile/Proj)
@@ -511,7 +508,7 @@
 
 	if(!issamexenohive(M))
 		M.do_attack_animation(src)
-		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
+		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>We crush \the [src]")
 		Burst(TRUE)
 		return
 
@@ -519,14 +516,14 @@
 		if(EGG_BURST, EGG_DESTROYED)
 			if(M.xeno_caste.can_hold_eggs)
 				M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
-				"<span class='xenonotice'>You clear the hatched egg.</span>")
+				"<span class='xenonotice'>We clear the hatched egg.</span>")
 				playsound(src.loc, "alien_resin_break", 25)
 				M.plasma_stored++
 				qdel(src)
 		if(EGG_GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
 		if(EGG_GROWN)
-			to_chat(M, "<span class='xenonotice'>You retrieve the child.</span>")
+			to_chat(M, "<span class='xenonotice'>We retrieve the child.</span>")
 			Burst(FALSE)
 
 /obj/effect/alien/egg/proc/Burst(kill = TRUE) //drops and kills the hugger if any is remaining
@@ -759,7 +756,7 @@ TUNNEL
 		return
 
 	if(M.a_intent == INTENT_HARM && M == creator)
-		to_chat(M, "<span class='xenowarning'>You begin filling in your tunnel...</span>")
+		to_chat(M, "<span class='xenowarning'>We begin filling in our tunnel...</span>")
 		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			obj_integrity = 0
 			healthcheck()
@@ -768,14 +765,14 @@ TUNNEL
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
 		if(!M.hive.living_xeno_ruler)
-			to_chat(M, "<span class='xenowarning'>There is no ruler. You must choose one first.</span>")
+			to_chat(M, "<span class='xenowarning'>There is no ruler. We must choose one first.</span>")
 			return FALSE
 		else if(isxenoqueen(M))
 			to_chat(M, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")
 			return FALSE
 
 	if(M.anchored)
-		to_chat(M, "<span class='xenowarning'>You can't climb through a tunnel while immobile.</span>")
+		to_chat(M, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
 	if(!other || !isturf(other.loc))
@@ -789,10 +786,10 @@ TUNNEL
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
 		tunnel_time = CLAMP(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
-		"<span class='xenonotice'>You begin heaving your monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
 	else
 		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
-		"<span class='xenonotice'>You begin crawling down into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+		"<span class='xenonotice'>We begin crawling down into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
 
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
@@ -801,8 +798,8 @@ TUNNEL
 		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
 			M.forceMove(other.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
-			"<span class='xenonotice'>You pop out through the other side!</span>")
+			"<span class='xenonotice'>We pop out through the other side!</span>")
 		else
-			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so you return back up.</span>")
+			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
-		to_chat(M, "<span class='warning'>Your crawling was interrupted!</span>")
+		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")

@@ -294,9 +294,7 @@
 			new /obj/effect/forcefield/fog(T)
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
-	switch(SSmapping.configs[GROUND_MAP].map_name)
-		if(MAP_PRISON_STATION)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 50 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 50 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 
@@ -590,8 +588,8 @@
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 
-	if(world.time - new_xeno.away_time < XENO_AFK_TIMER) //We do not want to occupy them if they've only been gone for a little bit.
-		to_chat(xeno_candidate, "<span class='warning'>That player hasn't been away long enough. Please wait [round((new_xeno.away_time + XENO_AFK_TIMER - world.time) * 0.1)] second\s longer.</span>")
+	if(new_xeno.afk_timer_id) //We do not want to occupy them if they've only been gone for a little bit.
+		to_chat(xeno_candidate, "<span class='warning'>That player hasn't been away long enough. Please wait [round(timeleft(new_xeno.afk_timer_id) * 0.1)] second\s longer.</span>")
 		return FALSE
 
 	return new_xeno

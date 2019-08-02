@@ -67,7 +67,7 @@
 				deflate(1)
 
 
-/obj/structure/inflatable/attack_paw(mob/user as mob)
+/obj/structure/inflatable/attack_paw(mob/living/carbon/monkey/user)
 	return attack_generic(user, 15)
 
 
@@ -187,7 +187,7 @@
 	var/isSwitchingStates = 0
 
 
-/obj/structure/inflatable/door/attack_paw(mob/user as mob)
+/obj/structure/inflatable/door/attack_paw(mob/living/carbon/monkey/user)
 	return TryToSwitchState(user)
 
 /obj/structure/inflatable/door/attack_hand(mob/living/user)

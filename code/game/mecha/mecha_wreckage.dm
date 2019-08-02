@@ -27,7 +27,7 @@
 		return
 		
 	playsound(src, 'sound/effects/metal_crash.ogg', 50, 1)
-	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>You slice [src] apart!</span>")
+	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>We slice [src] apart!</span>")
 	robogibs(src)
 	qdel(src)
 

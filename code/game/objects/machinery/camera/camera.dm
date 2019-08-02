@@ -161,7 +161,7 @@
 
 	X.do_attack_animation(src)
 	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
-	"<span class='danger'>You slash \the [src]!</span>")
+	"<span class='danger'>We slash \the [src]!</span>")
 	playsound(loc, "alien_claw_metal", 25, 1)
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -308,16 +308,16 @@
 	c_tag = "[A.name] #[++id_by_area[A]]"
 
 
-//cameras installed inside the dropships, accessible via both cockpit monitor and Theseus camera computers
-/obj/machinery/camera/autoname/almayer/dropship_one
+//cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
+/obj/machinery/camera/autoname/mainship/dropship_one
 	network = list("marinemainship", "dropship1")
 
 
-/obj/machinery/camera/autoname/almayer/dropship_two
+/obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
 
 
-/obj/machinery/camera/autoname/almayer
+/obj/machinery/camera/autoname/mainship
 	name = "military-grade camera"
 	network = list("marinemainship")
 

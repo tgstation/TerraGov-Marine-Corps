@@ -108,7 +108,7 @@
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/flasher_button/attack_paw(mob/user as mob)
+/obj/machinery/flasher_button/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
@@ -135,8 +135,7 @@
 
 	for(var/obj/machinery/flasher/M in GLOB.machines)
 		if(M.id == id)
-			spawn()
-				M.flash()
+			INVOKE_ASYNC(M, /obj/machinery/flasher.proc/flash)
 
 	sleep(50)
 

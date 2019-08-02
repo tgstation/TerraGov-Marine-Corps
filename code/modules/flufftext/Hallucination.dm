@@ -32,8 +32,8 @@ mob/living/carbon/proc/handle_hallucinations()
 				//Screwy HUD
 				//to_chat(src, "Screwy HUD")
 				hal_screwyhud = pick(1,2,3,3,4,4)
-				spawn(rand(100,250))
-					hal_screwyhud = 0
+				addtimer(VARSET_CALLBACK(src, hal_screwyhud, 0), rand(10,25) SECONDS)
+
 			if(16 to 25)
 				//Strange items
 				//to_chat(src, "Traitor Items")
@@ -251,8 +251,7 @@ proc/check_panel(mob/M)
 
 	attackby(var/obj/item/P as obj, mob/user as mob)
 		step_away(src,my_target,2)
-		for(var/mob/M in oviewers(world.view,my_target))
-			to_chat(M, "<span class='danger'>[my_target] flails around wildly.</span>")
+		visible_message("<span class='danger'>[my_target] flails around wildly.</span>")
 		my_target.show_message("<span class='danger'>[src] has been attacked by [my_target] </span>", 1) //Lazy.
 
 		src.health -= P.force
@@ -355,12 +354,10 @@ proc/check_panel(mob/M)
 	O.name = "blood"
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
 	to_chat(target, I)
-	spawn(300)
-		qdel(O)
-	return
+	QDEL_IN(O, 30 SECONDS)
 
 GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/disk/nuclear,\
-	/obj/item/clothing/suit/space/uscm, /obj/item/tank))
+	/obj/item/clothing/suit/space/tgmc, /obj/item/tank))
 
 /proc/fake_attack(mob/living/target)
 //	var/list/possible_clones = new/list()

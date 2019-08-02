@@ -4,7 +4,6 @@
 
 /datum/reagent/toxin
 	name = "Toxin"
-	id = "toxin"
 	description = "A toxic chemical."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
@@ -20,7 +19,6 @@
 
 /datum/reagent/toxin/hptoxin
 	name = "Toxin"
-	id = "hptoxin"
 	description = "A toxic chemical."
 	custom_metabolism = 1
 	toxpwr = 1
@@ -28,7 +26,6 @@
 
 /datum/reagent/toxin/pttoxin
 	name = "Toxin"
-	id = "pttoxin"
 	description = "A toxic chemical."
 	custom_metabolism = 1
 	toxpwr = 1
@@ -36,7 +33,6 @@
 
 /datum/reagent/toxin/sdtoxin
 	name = "Toxin"
-	id = "sdtoxin"
 	description = "A toxic chemical."
 	custom_metabolism = 1
 	toxpwr = 0
@@ -49,7 +45,6 @@
 
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
-	id = "amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 1
@@ -57,7 +52,6 @@
 
 /datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
-	id = "mutagen"
 	description = "Might cause unpredictable mutations. Keep away from children."
 	color = "#13BC5E" // rgb: 19, 188, 94
 	toxpwr = 0
@@ -70,18 +64,16 @@
 
 /datum/reagent/toxin/phoron
 	name = "Phoron"
-	id = "phoron"
 	description = "Phoron in its liquid form."
 	color = "#E71B00" // rgb: 231, 27, 0
 	toxpwr = 3
 
 /datum/reagent/toxin/phoron/on_mob_life(mob/living/L, metabolism)
-	holder.remove_reagent("inaprovaline", 2*REM)
+	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, 2*REM)
 	return ..()
 
 /datum/reagent/toxin/lexorin
 	name = "Lexorin"
-	id = "lexorin"
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	toxpwr = 0
@@ -105,7 +97,6 @@
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
-	id = "cyanide"
 	description = "A highly toxic chemical."
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 3
@@ -119,7 +110,6 @@
 
 /datum/reagent/toxin/minttoxin
 	name = "Mint Toxin"
-	id = "minttoxin"
 	description = "Useful for dealing with undesirable customers."
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0
@@ -127,7 +117,6 @@
 
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
-	id = "carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded space carp."
 	color = "#003333" // rgb: 0, 51, 51
 	toxpwr = 2
@@ -135,7 +124,6 @@
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
-	id = "zombiepowder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	reagent_state = SOLID
 	color = "#669900" // rgb: 102, 153, 0
@@ -157,7 +145,6 @@
 
 /datum/reagent/toxin/mindbreaker
 	name = "Mindbreaker Toxin"
-	id = "mindbreaker"
 	description = "A powerful hallucinogen, it can cause fatal effects in users."
 	color = "#B31008" // rgb: 139, 166, 233
 	toxpwr = 0
@@ -186,26 +173,21 @@
 //Reagents used for plant fertilizers.
 /datum/reagent/toxin/fertilizer
 	name = "fertilizer"
-	id = "fertilizer"
 	description = "A chemical mix good for growing plants with."
 	toxpwr = 0.2 //It's not THAT poisonous.
 	color = "#664330" // rgb: 102, 67, 48
 
 /datum/reagent/toxin/fertilizer/eznutrient
 	name = "EZ Nutrient"
-	id = "eznutrient"
 
 /datum/reagent/toxin/fertilizer/left4zed
 	name = "Left-4-Zed"
-	id = "left4zed"
 
 /datum/reagent/toxin/fertilizer/robustharvest
 	name = "Robust Harvest"
-	id = "robustharvest"
 
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
-	id = "plantbgone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
 	color = "#49002E" // rgb: 73, 0, 46
 	toxpwr = 1
@@ -242,7 +224,6 @@
 
 /datum/reagent/toxin/sleeptoxin
 	name = "Soporific"
-	id = "sleeptoxin"
 	description = "An effective hypnotic used to treat insomnia."
 	color = "#E895CC" // rgb: 232, 149, 204
 	toxpwr = 0
@@ -277,7 +258,6 @@
 
 /datum/reagent/toxin/chloralhydrate
 	name = "Chloral Hydrate"
-	id = "chloralhydrate"
 	description = "A powerful sedative."
 	reagent_state = SOLID
 	color = "#000067" // rgb: 0, 0, 103
@@ -306,7 +286,6 @@
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
-	id = "potassium_chloride"
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
@@ -329,7 +308,6 @@
 
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
-	id = "potassium_chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	color = "#FFFFFF" // rgb: 255,255,255
 	toxpwr = 2
@@ -350,7 +328,6 @@
 
 /datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
 	name = "Beer"
-	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	color = "#664300" // rgb: 102, 67, 0
 	custom_metabolism = 0.5 // Sleep toxins should always be consumed pretty fast
@@ -367,7 +344,6 @@
 
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
-	id = "plasticide"
 	description = "Liquid plastic, do not eat."
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0.2
@@ -379,7 +355,6 @@
 
 /datum/reagent/toxin/acid
 	name = "Sulphuric acid"
-	id = "sacid"
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
 	spray_warning = TRUE
 	color = "#DB5008" // rgb: 219, 80, 8
@@ -464,7 +439,6 @@
 
 /datum/reagent/toxin/acid/polyacid
 	name = "Polytrinic acid"
-	id = "pacid"
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
 	color = "#8E18A9" // rgb: 142, 24, 169
 	toxpwr = 2
@@ -473,7 +447,6 @@
 
 /datum/reagent/toxin/xeno_neurotoxin
 	name = "Neurotoxin"
-	id = "xeno_toxin"
 	description = "A debilitating nerve toxin. Impedes motor control. Causes temporary blindness, hallucinations and deafness at higher doses."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
@@ -510,7 +483,6 @@
 
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
-	id = "xeno_growthtoxin"
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0

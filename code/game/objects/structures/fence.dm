@@ -67,14 +67,14 @@
 		if(H.species.can_shred(H))
 			attack_generic(H, 25)
 
-/obj/structure/fence/attack_paw(mob/user as mob)
+/obj/structure/fence/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/structure/fence/attack_alien(mob/living/carbon/xenomorph/M)
 	M.do_attack_animation(src)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
-	"<span class='danger'>You mangle [src]!</span>", \
+	"<span class='danger'>We mangle [src]!</span>", \
 	"<span class='danger'>You hear twisting metal!</span>", 5)
 
 	obj_integrity -= damage_dealt

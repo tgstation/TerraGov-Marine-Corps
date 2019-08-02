@@ -169,7 +169,7 @@
 	return FALSE
 
 
-/obj/machinery/attack_paw(mob/user)
+/obj/machinery/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
@@ -181,7 +181,7 @@
 //Xenomorphs can't use machinery, not even the "intelligent" ones
 //Exception is Queen and shuttles, because plot power
 /obj/machinery/attack_alien(mob/living/carbon/xenomorph/X)
-	to_chat(X, "<span class='warning'>You stare at \the [src] cluelessly.</span>")
+	to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
 
 
 /obj/machinery/attack_hand(mob/living/user)
@@ -268,11 +268,11 @@
 		"brainloss" = H.getBrainLoss(),
 		"knocked_out" = H.knocked_out,
 		"bodytemp" = H.bodytemperature,
-		"inaprovaline_amount" = H.reagents.get_reagent_amount("inaprovaline"),
-		"dexalin_amount" = H.reagents.get_reagent_amount("dexalin"),
-		"sleeptoxin_amount" = H.reagents.get_reagent_amount("sleeptoxin"),
-		"bicaridine_amount" = H.reagents.get_reagent_amount("bicaridine"),
-		"dermaline_amount" = H.reagents.get_reagent_amount("dermaline"),
+		"inaprovaline_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline),
+		"dexalin_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/dexalin),
+		"sleeptoxin_amount" = H.reagents.get_reagent_amount(/datum/reagent/toxin/sleeptoxin),
+		"bicaridine_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine),
+		"dermaline_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/dermaline),
 		"blood_amount" = H.blood_volume,
 		"disabilities" = H.disabilities,
 		"lung_ruptured" = H.is_lung_ruptured(),

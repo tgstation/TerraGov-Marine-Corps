@@ -45,6 +45,7 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
+				GLOB.cameranet.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -682,8 +683,7 @@ mob/proc/yank_out_object()
 	if(!.)
 		return
 	stop_pulling()
-	if(buckled)
-		buckled.unbuckle()
+	buckled?.unbuckle()
 
 
 /mob/proc/trainteleport(atom/destination)

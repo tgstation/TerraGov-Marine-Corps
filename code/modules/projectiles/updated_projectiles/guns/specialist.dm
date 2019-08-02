@@ -17,7 +17,7 @@
 	icon_state = "m42a"
 	item_state = "m42a"
 	max_shells = 15 //codex
-	caliber = "10x28mm Caseless" //codex
+	caliber = "10x28mm"
 	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
@@ -206,7 +206,7 @@
 	icon_state = "m42c"
 	item_state = "m42c"
 	max_shells = 6 //codex
-	caliber = "10x99mm Caseless" //codex
+	caliber = "10x99mm"
 	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
@@ -317,7 +317,7 @@
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	burst_accuracy_mult = CONFIG_GET(number/combat_define/min_burst_accuracy_penalty)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
@@ -573,8 +573,7 @@
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
-	for(var/mob/O in viewers(world.view, user))
-		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
+	visible_message("<span class='danger'>[user] fired a grenade!</span>")
 	to_chat(user, "<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenades[1]
 	grenades -= F
@@ -774,6 +773,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/Destroy()
 	QDEL_NULL(smoke)
+	return ..()
 
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user) || user.action_busy)

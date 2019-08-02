@@ -104,6 +104,8 @@
 	var/lighting_alpha
 	var/see_in_dark
 
+	var/datum/namepool/namepool = /datum/namepool
+
 /datum/species/New()
 	if(hud_type)
 		hud = new hud_type()
@@ -159,10 +161,7 @@
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
 /datum/species/proc/random_name(gender)
-	if(gender == FEMALE)
-		return capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
-	else
-		return capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
+	return GLOB.namepool[namepool].get_random_name(gender)
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -226,14 +225,14 @@
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(CHECK_BITFIELD(species_flags, NO_CHEM_METABOLIZATION)) //explicit
-		H.reagents.del_reagent(chem.id) //for the time being
+		H.reagents.del_reagent(chem.type) //for the time being
 		return TRUE
 	if(CHECK_BITFIELD(species_flags, NO_POISON) && istype(chem, /datum/reagent/toxin))
-		H.reagents.remove_reagent(chem.id, chem.custom_metabolism * H.metabolism_efficiency)
+		H.reagents.remove_reagent(chem.type, chem.custom_metabolism * H.metabolism_efficiency)
 		return TRUE
 	if(CHECK_BITFIELD(species_flags, NO_OVERDOSE)) //no stacking
 		if(chem.overdose_threshold && chem.volume > chem.overdose_threshold)
-			H.reagents.remove_reagent(chem.id, chem.volume - chem.overdose_threshold)
+			H.reagents.remove_reagent(chem.type, chem.volume - chem.overdose_threshold)
 	return FALSE
 
 /datum/species/human
@@ -393,14 +392,13 @@
 
 	reagent_tag = IS_MOTH
 
+	namepool = /datum/namepool/moth
+
 /datum/species/moth/handle_fire(mob/living/carbon/human/H)
 	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
 		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
 		H.moth_wings = "Burnt Off"
 		H.update_body()
-
-/datum/species/moth/random_name()
-	return "[pick(SSstrings.get_list_from_file("names/moth_first"))] [pick(SSstrings.get_list_from_file("names/moth_last"))]"
 
 /datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
 	H.remove_overlay(MOTH_WINGS_LAYER)
@@ -581,6 +579,8 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 
 /datum/species/early_synthetic
 	name = "Early Synthetic"
@@ -617,6 +617,8 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	see_in_dark = 6
 
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 
 /mob/living/carbon/human/proc/reset_jitteriness()
 	jitteriness = 0

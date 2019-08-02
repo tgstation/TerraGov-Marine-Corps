@@ -139,7 +139,7 @@
 			if("cellremove")
 				if(open && cell && !usr.get_active_held_item())
 					usr.visible_message("<span class='notice'> [usr] removes \the [cell] from \the [src].</span>", "<span class='notice'> You remove \the [cell] from \the [src].</span>")
-					cell.updateicon()
+					cell.update_icon()
 					usr.put_in_hands(cell)
 					cell = null
 

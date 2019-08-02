@@ -532,7 +532,7 @@ and you're good to go.
 		to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
 		to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
 		playsound(user, active_attachable.activation_sound, 15, 1)
-		active_attachable.activate_attachment(src, null, TRUE)
+		active_attachable.activate_attachment(null, TRUE)
 		return
 
 	if(in_chamber) //If we have a round chambered and no active attachable, we're good to go.
@@ -661,33 +661,15 @@ and you're good to go.
 
 		apply_bullet_effects(projectile_to_fire, user, i, reflex, dual_wield) //User can be passed as null.
 
-
-		//BIPODS BEGINS HERE
-		var/scatter_chance_mod = 0
-		var/burst_scatter_chance_mod = 0
-		//They decrease scatter chance and increase accuracy a tad. Can also increase damage.
-		if(flags_item & WIELDED && user && under?.bipod_deployed) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
-			if(under.check_bipod_support(src, user))
-				//Passive accuracy and recoil buff, but only when firing in position.
-				projectile_to_fire.accuracy *= CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult) //More accuracy.
-				recoil_comp-- //Less recoil.
-				scatter_chance_mod -= CONFIG_GET(number/combat_define/med_scatter_value)
-				burst_scatter_chance_mod = -3
-				if(prob(30))
-					projectile_to_fire.damage *= CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult) //Lower chance of a damage buff.
-				if(i == 1)
-					to_chat(user, "<span class='notice'>Your bipod keeps [src] steady!</span>")
-		//End of bipods.
-
-		target = original_target ? original_target : targloc
-		target = simulate_scatter(projectile_to_fire, target, targloc, scatter_chance_mod, user, burst_scatter_chance_mod)
-
 		if(params)
 			var/list/mouse_control = params2list(params)
 			if(mouse_control["icon-x"])
 				projectile_to_fire.p_x = text2num(mouse_control["icon-x"])
 			if(mouse_control["icon-y"])
 				projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
+
+		target = original_target ? original_target : targloc
+		target = simulate_scatter(projectile_to_fire, target, targloc, user)
 
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
@@ -749,7 +731,7 @@ and you're good to go.
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
-			active_attachable.activate_attachment(src, null, TRUE)//No way.
+			active_attachable.activate_attachment(null, TRUE)//No way.
 		var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
 		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 			return // no ..(), already invoked above
@@ -800,7 +782,7 @@ and you're good to go.
 		return
 
 	if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
-		active_attachable.activate_attachment(src, null, TRUE)//We're not firing off a nade into our mouth.
+		active_attachable.activate_attachment(null, TRUE)//We're not firing off a nade into our mouth.
 	var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
 
 	if(!projectile_to_fire) //We actually have a projectile, let's move on.
@@ -1004,56 +986,72 @@ and you're good to go.
 
 	return TRUE
 
-/obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0, mob/user, burst_scatter_bonus = 0)
-	total_scatter_chance += projectile_to_fire.scatter
+/obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, mob/user)
+	var/total_scatter = projectile_to_fire.scatter
 
-	//Not if the gun doesn't scatter at all, or negative scatter.
-	if(total_scatter_chance > 0)
-		var/targdist = get_dist(target, user)
-		if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)//Much higher chance on a burst.
-			total_scatter_chance += (flags_item & WIELDED && wielded_stable()) ? burst_amount * (burst_scatter_mult + burst_scatter_bonus) : burst_amount * (5+burst_scatter_bonus)
+	if(total_scatter <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
+		return target
 
-			//long range burst shots have more chance to scatter
-			if(targdist > 7)
-				total_scatter_chance += min(targdist*2, 15)
+	var/targdist = get_dist(target, get_turf(src))
 
-		else if(user && targdist <= (4 + rand(-1,1))) //no scatter on single fire for close targets
-			return target
-
-
-		if(user && user.mind && user.mind.cm_skills)
-
-			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-				total_scatter_chance += CONFIG_GET(number/combat_define/low_scatter_value)
+	switch(gun_firemode)
+		if(GUN_FIREMODE_BURSTFIRE) //Much higher chance on a burst.
+			if(flags_item & WIELDED && wielded_stable())
+				total_scatter += burst_amount * burst_scatter_mult
 			else
-				var/scatter_tweak = 0
-				switch(gun_skill_category)
-					if(GUN_SKILL_PISTOLS)
-						scatter_tweak = user.mind.cm_skills.pistols
-					if(GUN_SKILL_SMGS)
-						scatter_tweak = user.mind.cm_skills.smgs
-					if(GUN_SKILL_RIFLES)
-						scatter_tweak = user.mind.cm_skills.rifles
-					if(GUN_SKILL_SHOTGUNS)
-						scatter_tweak = user.mind.cm_skills.shotguns
-					if(GUN_SKILL_HEAVY_WEAPONS)
-						scatter_tweak = user.mind.cm_skills.heavy_weapons
-					if(GUN_SKILL_SMARTGUN)
-						scatter_tweak = user.mind.cm_skills.smartgun
-					if(GUN_SKILL_SPEC)
-						scatter_tweak = user.mind.cm_skills.spec_weapons
-				if(scatter_tweak)
-					total_scatter_chance -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
+				total_scatter += burst_amount * burst_scatter_mult * 5
+			if(targdist > world.view) //Long range burst shots have more chance to scatter.
+				total_scatter += 25
+		if(GUN_FIREMODE_SEMIAUTO)
+			if(targdist < 4) //No scatter on single fire for close targets.
+				return target
 
-		if(prob(total_scatter_chance)) //Scattered!
-			var/scatter_x = rand(-1,1)
-			var/scatter_y = rand(-1,1)
-			var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
+	if(user?.mind?.cm_skills)
+		if(user.mind.cm_skills.firearms <= 0) //no training in any firearms
+			total_scatter += CONFIG_GET(number/combat_define/low_scatter_value)
+		else
+			var/scatter_tweak = 0
+			switch(gun_skill_category)
+				if(GUN_SKILL_PISTOLS)
+					scatter_tweak = user.mind.cm_skills.pistols
+				if(GUN_SKILL_SMGS)
+					scatter_tweak = user.mind.cm_skills.smgs
+				if(GUN_SKILL_RIFLES)
+					scatter_tweak = user.mind.cm_skills.rifles
+				if(GUN_SKILL_SHOTGUNS)
+					scatter_tweak = user.mind.cm_skills.shotguns
+				if(GUN_SKILL_HEAVY_WEAPONS)
+					scatter_tweak = user.mind.cm_skills.heavy_weapons
+				if(GUN_SKILL_SMARTGUN)
+					scatter_tweak = user.mind.cm_skills.smartgun
+				if(GUN_SKILL_SPEC)
+					scatter_tweak = user.mind.cm_skills.spec_weapons
+			if(scatter_tweak)
+				total_scatter -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
+
+	if(prob(total_scatter)) //Scattered?
+		var/scatter_x = abs(16 - projectile_to_fire.p_x) //The value starts in pixels, depending on where the user clicked.
+		var/scatter_y = abs(16 - projectile_to_fire.p_y) //Distance to the center of the tile.
+		switch(get_dir(get_turf(src), target)) //Projectile direction.
+			if(NORTH, SOUTH)
+				scatter_x += total_scatter //The higher the scatter chance, the higher deviation.
+			if(EAST, WEST)
+				scatter_y += total_scatter
+			if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+				scatter_x += total_scatter * 0.5
+				scatter_y += total_scatter * 0.5
+		
+		scatter_x = min(rand(0, round(scatter_x / 32) + 1), targdist - 1) //Value is turned into tiles.
+		scatter_y = min(rand(0, round(scatter_y / 32) + 1), targdist - 1)
+
+		if(scatter_x || scatter_y) //Scattered!
+			var/turf/new_target = locate(targloc.x + (rand(0, 1) ? scatter_x : -scatter_x), targloc.y + (rand(0, 1) ? scatter_y : -scatter_y), targloc.z) //Locate an adjacent turf.
 			if(new_target)
 				target = new_target//Looks like we found a turf.
 
 	projectile_to_fire.original = target
 	return target
+
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
 	var/total_recoil = recoil_bonus

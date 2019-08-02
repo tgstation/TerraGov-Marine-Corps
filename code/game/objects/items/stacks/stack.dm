@@ -315,6 +315,8 @@
 
 
 /obj/item/stack/AltClick(mob/user)
+	if(isxeno(user))
+		return ..()
 	if(!user.canUseTopic(src))
 		return ..() //Alt click on turf if not human or too far away.
 	var/stackmaterial = round(input(user,"How many sheets do you wish to take out of this stack? (Maximum  [get_amount()])") as null|num)

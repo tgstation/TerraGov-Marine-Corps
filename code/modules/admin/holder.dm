@@ -540,6 +540,15 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			to_chat(C, msg)
 
 
+/proc/afk_message(mob/living/carbon/human/H)
+	if(QDELETED(H))
+		return
+	if(isclientedaghost(H))
+		return
+	log_admin("[key_name(H)] (Job: [H.job]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(H)] (Job: [H.job]) has been away for 15 minutes.")
+
+
 /client/proc/find_stealth_key(txt)
 	if(txt)
 		for(var/P in GLOB.stealthminID)
@@ -664,3 +673,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			chosen = locate(X, Y, Z)
 
 	return chosen
+
+
+/datum/admins/vv_edit_var(var_name, var_value)
+	return FALSE

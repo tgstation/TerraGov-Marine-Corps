@@ -104,7 +104,7 @@
 			flick("door_deny", src)
 
 
-/obj/machinery/door/attack_paw(mob/user)
+/obj/machinery/door/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 

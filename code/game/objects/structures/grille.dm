@@ -60,7 +60,7 @@
 	if(ismob(user)) shock(user, 70)
 
 
-/obj/structure/grille/attack_paw(mob/user as mob)
+/obj/structure/grille/attack_paw(mob/living/carbon/monkey/user)
 	attack_hand(user)
 
 /obj/structure/grille/attack_alien(mob/living/carbon/xenomorph/M)
@@ -68,12 +68,12 @@
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	var/damage_dealt = 5
 	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
-	"<span class='danger'>You mangle [src]!</span>", \
+	"<span class='danger'>We mangle [src]!</span>", \
 	"<span class='danger'>You hear twisting metal!</span>", 5)
 
 	if(shock(M, 70))
 		M.visible_message("<span class='danger'>ZAP! \The [M] spazzes wildly amongst a smell of burnt ozone.</span>", \
-		"<span class='danger'>ZAP! You twitch and dance like a monkey on hyperzine!</span>", \
+		"<span class='danger'>ZAP! We twitch and dance like a monkey on hyperzine!</span>", \
 		"<span class='danger'>You hear a sharp ZAP and a smell of ozone.</span>")
 		return FALSE //Intended apparently ?
 
@@ -269,20 +269,20 @@
 
 
 
-//ALMAYER GRILLE
+//MARINE SHIP GRILLE
 
-/obj/structure/grille/almayer
-	icon = 'icons/turf/almayer.dmi'
+/obj/structure/grille/mainship
+	icon = 'icons/turf/mainship.dmi'
 	icon_state = "grille0"
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/machinery/door/airlock,
-		/obj/structure/grille/almayer)
+		/obj/structure/grille/mainship)
 
-/obj/structure/grille/almayer/Initialize()
+/obj/structure/grille/mainship/Initialize()
 	. = ..()
 	relativewall()
 	relativewall_neighbours()
 
-/obj/structure/grille/almayer/update_icon()
+/obj/structure/grille/mainship/update_icon()
 	relativewall()

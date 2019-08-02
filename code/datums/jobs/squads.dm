@@ -22,7 +22,6 @@
 
 	var/count = 0 //Current # in the squad
 	var/list/marines_list = list() // list of humans in that squad.
-	var/list/gibbed_marines_list = list() // List of the names of the gibbed humans associated with roles.
 
 	var/radio_freq = 1461
 	var/mob/living/carbon/human/squad_leader
@@ -96,102 +95,108 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	tracking_id = SSdirection.init_squad(src)
 
+
 /datum/squad/proc/get_all_members()
 	return marines_list
+
 
 /datum/squad/proc/get_total_members()
 	return length(marines_list)
 
-/datum/squad/proc/put_marine_in_squad(mob/living/carbon/human/H)
-	if(!istype(H))
-		return FALSE
+
+/datum/squad/proc/insert_into_squad(mob/living/carbon/human/H, give_radio = FALSE)
 	if(!usable)
 		return FALSE
-	if(!H.mind?.assigned_role)
-		return FALSE
-	if(H.assigned_squad)
+
+	if(!(H.job in GLOB.jobs_marines))
 		return FALSE
 
-	var/obj/item/card/id/C = null
-
-	C = H.wear_id
-	if(!C)
-		C = H.get_active_held_item()
+	var/obj/item/card/id/C = H.get_idcard()
 	if(!istype(C))
 		return FALSE
 
-	switch(H.mind.assigned_role)
+	if(H.assigned_squad)
+		CRASH("attempted to insert marine [H] into squad while already having one")
+
+	switch(H.job)
+		if(SQUAD_MARINE)
+			pass()
 		if(SQUAD_ENGINEER)
 			num_engineers++
-			C.claimedgear = 0
+			C.claimedgear = FALSE
 		if(SQUAD_CORPSMAN)
 			num_medics++
-			C.claimedgear = 0
+			C.claimedgear = FALSE
 		if(SQUAD_SPECIALIST)
 			num_specialists++
 		if(SQUAD_SMARTGUNNER)
 			num_smartgun++
 		if(SQUAD_LEADER)
-			if(squad_leader && (!squad_leader.mind || squad_leader.mind.assigned_role != SQUAD_LEADER)) //field promoted SL
-				demote_squad_leader() //replaced by the real one
-			squad_leader = H
-			SSdirection.set_leader(tracking_id, H)
-			SSdirection.start_tracking("marine-sl", H)
-			if(H.mind.assigned_role == SQUAD_LEADER) //field promoted SL don't count as real ones
-				num_leaders++
+			num_leaders++
+			if(!squad_leader)
+				squad_leader = H
+				SSdirection.set_leader(tracking_id, H)
+				SSdirection.start_tracking("marine-sl", H)
+		else
+			return FALSE
 
-	count++ //Add up the tally. This is important in even squad distribution.
+	var/obj/item/radio/headset/mainship/headset = H.wear_ear
+	if(give_radio && !istype(headset))
+		if(H.wear_ear)
+			H.dropItemToGround(H.wear_ear)
+		headset = new()
+		H.equip_to_slot_or_del(headset, SLOT_EARS)
 
-	log_manifest("[key_name(H)] has been assigned as [name] [H.mind.assigned_role]")
-
-	marines_list += H
-	H.assigned_squad = src //Add them to the squad
-
-	if(istype(H.wear_ear, /obj/item/radio/headset/almayer)) // they've been transferred
-		var/obj/item/radio/headset/almayer/headset = H.wear_ear
-		if(headset.sl_direction && H.assigned_squad.squad_leader != H)
+	if(istype(headset))
+		headset.set_frequency(radio_freq)
+		if(headset.sl_direction && H != squad_leader)
 			SSdirection.start_tracking(tracking_id, H)
 
-	var/c_oldass = C.assignment
-	C.access += access //Add their squad access to their ID
-	C.assignment = "[name] [c_oldass]"
-	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
+	for(var/i in GLOB.datacore.general)
+		var/datum/data/record/R = i
+		if(R.fields["name"] == H.real_name)
+			R.fields["squad"] = name
+			break
+
+	C.access += access
+	C.assignment = "[name] [H.mind.assigned_role]"
+	C.assigned_fireteam = 0
+	C.update_label()
+
+	count++
+	marines_list += H
+	H.assigned_squad = src
+	H.hud_set_squad()
+	H.update_action_buttons()
+	H.update_inv_head()
+	H.update_inv_wear_suit()
+	log_manifest("[key_name(H)] has been assigned as [name] [H.mind.assigned_role].")
 	return TRUE
 
 
-/datum/squad/proc/remove_marine_from_squad(mob/living/carbon/human/H)
-	if(!H.mind)
+/datum/squad/proc/remove_from_squad(mob/living/carbon/human/H)
+	if(!usable)
+		return FALSE
+
+	if(!(H.job in GLOB.jobs_marines))
 		return FALSE
 
 	if(!H.assigned_squad)
 		return FALSE
 
-	var/obj/item/card/id/C
-	C = H.wear_id
+	if(H.assigned_squad != src)
+		CRASH("attempted to remove marine [H] from squad [name] while being a member of squad [H.assigned_squad.name]")
+
+	var/obj/item/card/id/C = H.get_idcard()
 	if(!istype(C))
 		return FALSE
 
-	C.access -= access
-	C.update_label()
-
-	count--
-	marines_list -= H
-
-
-	if(H.assigned_squad.squad_leader == H)
-		if(H.mind.assigned_role != SQUAD_LEADER) //a field promoted SL, not a real one
-			demote_squad_leader()
-		else
-			H.assigned_squad.squad_leader = null
-		SSdirection.clear_leader(tracking_id)
-		SSdirection.stop_tracking("marine-sl", H)
+	if(H == squad_leader)
+		demote_leader()
 	else
 		SSdirection.stop_tracking(tracking_id, H)
 
-
-	H.assigned_squad = null
-
-	switch(H.mind.assigned_role)
+	switch(H.job)
 		if(SQUAD_ENGINEER)
 			num_engineers--
 		if(SQUAD_CORPSMAN)
@@ -203,58 +208,90 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		if(SQUAD_LEADER)
 			num_leaders--
 
+	var/obj/item/radio/headset/mainship/headset = H.wear_ear
+	if(istype(headset))
+		headset.set_frequency(initial(headset.frequency))
 
-//proc used by human dispose to clean the mob from squad lists
-/datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe)
-	if(!H.assigned_squad || !(H in marines_list))
-		return FALSE
-	marines_list -= src
-	if(!wipe)
-		var/role = "unknown"
-		if(H.mind?.assigned_role)
-			role = H.mind.assigned_role
-		gibbed_marines_list[H.name] = role
-	if(squad_leader == src)
-		squad_leader = null
-		SSdirection.clear_leader(tracking_id)
-		SSdirection.stop_tracking("marine-sl", H, wipe)
-	else
-		SSdirection.stop_tracking(tracking_id, H, wipe)
+	for(var/i in GLOB.datacore.general)
+		var/datum/data/record/R = i
+		if(R.fields["name"] == H.real_name)
+			R.fields["squad"] = null
+			break
+
+	C.access -= access
+	C.assignment = H.job
+	C.update_label()
+
+	count--
+	marines_list -= H
+
 	H.assigned_squad = null
+	H.hud_set_squad()
+	H.update_action_buttons()
+	H.update_inv_head()
+	H.update_inv_wear_suit()
 	return TRUE
 
 
-/datum/squad/proc/demote_squad_leader(leader_killed)
-	var/mob/living/carbon/human/old_lead = squad_leader
-	squad_leader = null
+/datum/squad/proc/demote_leader()
+	if(!squad_leader)
+		CRASH("attempted to remove squad leader from squad [name] while not having one set")
+
 	SSdirection.clear_leader(tracking_id)
-	SSdirection.stop_tracking("marine-sl", old_lead)
+	SSdirection.stop_tracking("marine-sl", squad_leader)
 
-	if(old_lead.mind?.assigned_role)
-		if(old_lead.mind.cm_skills)
-			if(old_lead.mind.assigned_role == (SQUAD_SPECIALIST || SQUAD_ENGINEER || SQUAD_CORPSMAN || SQUAD_SMARTGUNNER))
-				old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
-
-			else if(old_lead.mind == SQUAD_LEADER)
-				if(!leader_killed)
-					old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
-			else
-				old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
-
-		old_lead.update_action_buttons()
-
-	if(!old_lead.mind || old_lead.mind.assigned_role != SQUAD_LEADER || !leader_killed)
-		if(istype(old_lead.wear_ear, /obj/item/radio/headset/almayer/marine))
-			var/obj/item/radio/headset/almayer/marine/R = old_lead.wear_ear
+	//Handle aSL skill level and radio
+	if(squad_leader.job != SQUAD_LEADER)
+		if(squad_leader.mind)
+			squad_leader.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
+			var/datum/job/J = SSjob.GetJob(squad_leader.mind.assigned_role)
+			squad_leader.mind.comm_title = J.comm_title
+		if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
+			var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear
 			R.recalculateChannels()
 			R.use_command = FALSE
-		if(istype(old_lead.wear_id, /obj/item/card/id))
-			var/obj/item/card/id/ID = old_lead.wear_id
+		var/obj/item/card/id/ID = squad_leader.get_idcard()
+		if(istype(ID))
 			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
-	old_lead.hud_set_squad()
-	old_lead.update_inv_head() //updating marine helmet leader overlays
-	old_lead.update_inv_wear_suit()
-	to_chat(old_lead, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
+
+	to_chat(squad_leader, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
+	var/mob/living/carbon/human/H = squad_leader
+	squad_leader = null
+	H.update_action_buttons()
+	H.hud_set_squad()
+	H.update_inv_head()
+	H.update_inv_wear_suit()
+
+
+/datum/squad/proc/promote_leader(mob/living/carbon/human/H)
+	if(squad_leader)
+		CRASH("attempted to promote [H] to squad leader of [src] while having one set - [squad_leader]")
+
+	squad_leader = H
+	SSdirection.set_leader(tracking_id, H)
+	SSdirection.start_tracking("marine-sl", H)
+
+	//Handle aSL skill level and radio
+	if(squad_leader.job != SQUAD_LEADER)
+		if(squad_leader.mind)
+			squad_leader.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
+			squad_leader.mind.comm_title = "aSL"
+		var/obj/item/card/id/ID = squad_leader.get_idcard()
+		if(istype(ID))
+			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+
+	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
+		var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear
+		R.channels[RADIO_CHANNEL_COMMAND] = TRUE
+		R.secure_radio_connections[RADIO_CHANNEL_COMMAND] = add_radio(R, GLOB.radiochannels[RADIO_CHANNEL_COMMAND])
+		R.use_command = TRUE
+
+	squad_leader.hud_set_squad()
+	squad_leader.update_action_buttons()
+	squad_leader.update_inv_head()
+	squad_leader.update_inv_wear_suit()
+	to_chat(squad_leader, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
+
 
 /datum/squad/proc/format_message(message, mob/living/carbon/human/sender)
 	var/nametext = ""
@@ -265,15 +302,19 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 		text = "<font size='3'><b>[text]<b></font>"
 	return "[nametext][text]"
 
+
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
 	var/text = "<font color='blue'><B>\[Overwatch\]:</b> [format_message(message, sender)]</font>"
-	for(var/mob/living/L in marines_list)
+	for(var/i in marines_list)
+		var/mob/living/L = i
 		message_member(L, text, sender)
 
+
 /datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
-	if(!squad_leader || squad_leader.stat || !squad_leader.client)
+	if(!squad_leader || squad_leader.stat != CONSCIOUS || !squad_leader.client)
 		return FALSE
 	return message_member(squad_leader, "<font color='blue'><B>\[SL Overwatch\]:</b> [format_message(message, sender)]</font>", sender)
+
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
 	if(!target.client)
@@ -281,9 +322,12 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(sender)
 		SEND_SOUND(squad_leader, sound('sound/effects/radiostatic.ogg'))
 	to_chat(target, message)
+	return TRUE
 
 
 /datum/squad/proc/check_entry(rank)
+	if(!usable)
+		return FALSE
 	switch(rank)
 		if(SQUAD_MARINE)
 			return TRUE
@@ -311,9 +355,9 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 			return FALSE
 
 
-/datum/squad/proc/assign(mob/M, rank, latejoin = FALSE)
-	if(!rank || !M?.mind)
-		return FALSE
+//This reserves a player a spot in the squad by using a mind variable.
+//It is necessary so that they can smoothly reroll a squad role in case of the strict preference.
+/datum/squad/proc/assign_initial(mob/M, rank, latejoin = FALSE)
 	switch(rank)
 		if(SQUAD_MARINE)
 			M.mind.assigned_squad = src
@@ -347,24 +391,20 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 			return FALSE
 
 
-/proc/handle_squad(mob/M, rank, latejoin = FALSE)
-	var/strict = FALSE
+//A generic proc for handling the initial squad role assignment in SSjob
+/proc/handle_initial_squad(mob/M, rank, latejoin = FALSE)
+	var/strict = M.client.prefs.be_special && (M.client.prefs.be_special & BE_SQUAD_STRICT)
 	var/datum/squad/P = SSjob.squads[M.client.prefs.preferred_squad]
 	var/datum/squad/R = SSjob.squads[pick(SSjob.squads)]
-	if(M.client?.prefs?.be_special && (M.client.prefs.be_special & BE_SQUAD_STRICT))
-		strict = TRUE
 	switch(rank)
 		if(SQUAD_MARINE)
-			if(P && P.assign(M, rank))
-				return TRUE
-			else if(R.assign(M, rank))
-				return TRUE
+			return P?.assign_initial(M, rank, latejoin) || R.assign_initial(M, rank, latejoin)
 		if(SQUAD_ENGINEER)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank, latejoin))
+				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -372,14 +412,14 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				else if(S.assign(M, rank, latejoin))
+				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 		if(SQUAD_CORPSMAN)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank, latejoin))
+				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -387,14 +427,14 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				else if(S.assign(M, rank, latejoin))
+				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 		if(SQUAD_SMARTGUNNER)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank, latejoin))
+				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -402,14 +442,14 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank, latejoin))
 					continue
-				else if(S.assign(M, rank, latejoin))
+				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 		if(SQUAD_SPECIALIST)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank, latejoin))
+				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -417,14 +457,14 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				else if(S.assign(M, rank, latejoin))
+				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 		if(SQUAD_LEADER)
 			for(var/i in shuffle(SSjob.squads))
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				if(P && P == S && S.assign(M, rank, latejoin))
+				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
@@ -432,7 +472,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 				var/datum/squad/S = SSjob.squads[i]
 				if(!S.check_entry(rank))
 					continue
-				else if(S.assign(M, rank, latejoin))
+				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 	return FALSE
 

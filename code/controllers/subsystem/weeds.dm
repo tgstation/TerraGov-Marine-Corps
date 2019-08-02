@@ -18,6 +18,9 @@ SUBSYSTEM_DEF(weeds)
 		creating = list()
 
 	for(var/A in currentrun)
+		if(MC_TICK_CHECK)
+			return
+
 		var/obj/effect/alien/weeds/node/N = currentrun[A]
 		currentrun -= A
 		var/turf/T = A
@@ -44,22 +47,20 @@ SUBSYSTEM_DEF(weeds)
 			creating[T] = N
 			break
 
-		if(MC_TICK_CHECK)
-			return
-
+		
 	// We create weeds outside of the loop to not influence new weeds within the loop
 	for(var/A in creating)
+		if(MC_TICK_CHECK)
+			return
 		var/turf/T = A
 		creating -= T
 
 		var/obj/effect/alien/weeds/node/N = creating[T]
 		// Adds a bit of jitter to the spawning weeds.
-		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(0,10))
+		addtimer(CALLBACK(src, .proc/create_weed, T, N), rand(0, 3 SECONDS))
 		pending -= T
 
-		if(MC_TICK_CHECK)
-			return
-		
+
 
 /datum/controller/subsystem/weeds/proc/add_node(obj/effect/alien/weeds/node/N)
 	if(!N)
@@ -70,7 +71,9 @@ SUBSYSTEM_DEF(weeds)
 		var/turf/T = X
 
 		// Skip if there is a node there
-		if(locate(/obj/effect/alien/weeds/node) in T)
+		var/obj/effect/alien/weeds/W = locate() in T
+		if(W)
+			W.parent_node = N // new parent
 			continue
 
 		pending[T] = N

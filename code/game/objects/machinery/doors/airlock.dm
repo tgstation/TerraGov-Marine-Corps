@@ -260,7 +260,7 @@
 				src.attack_ai(user)
 
 
-/obj/machinery/door/airlock/attack_paw(mob/user as mob)
+/obj/machinery/door/airlock/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 //Prying open doors
@@ -286,7 +286,7 @@
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
-	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
+	"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
 
 	if(do_after(M, 40, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying)
 		if(locked)
@@ -299,7 +299,7 @@
 			spawn(0)
 				open(1)
 				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+				"<span class='danger'>We pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	for(var/atom/movable/AM in get_turf(src))
@@ -735,8 +735,7 @@
 	if (operating || src.locked) return
 
 	src.locked = 1
-	for(var/mob/M in range(1,src))
-		M.show_message("You hear a click from the bottom of the door.", 2)
+	audible_message("You hear a click from the bottom of the door.", null, 1)
 	update_icon()
 
 /obj/machinery/door/airlock/proc/unlock(forced=0)
@@ -744,8 +743,7 @@
 
 	if(forced || hasPower()) //only can raise bolts if power's on
 		src.locked = 0
-		for(var/mob/M in range(1,src))
-			M.show_message("You hear a click from the bottom of the door.", 2)
+		audible_message("You hear a click from the bottom of the door.", null, 1)
 		update_icon()
 		return 1
 	return 0

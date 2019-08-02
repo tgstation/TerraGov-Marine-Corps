@@ -258,11 +258,11 @@
 	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 		destroy_structure()
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
+		"<span class='danger'>We slash [src]!</span>", null, 5)
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TABLE)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
@@ -528,9 +528,9 @@
 	icon_state = "prisontable"
 	table_prefix = "prison"
 
-/obj/structure/table/almayer
-	icon_state = "almtable"
-	table_prefix = "alm"
+/obj/structure/table/mainship
+	icon_state = "shiptable"
+	table_prefix = "ship"
 
 
 
@@ -574,7 +574,7 @@
 	M.do_attack_animation(src)
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
-	"<span class='danger'>You slice [src] apart!</span>", null, 5)
+	"<span class='danger'>We slice [src] apart!</span>", null, 5)
 	destroy_structure()
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RACK)
 

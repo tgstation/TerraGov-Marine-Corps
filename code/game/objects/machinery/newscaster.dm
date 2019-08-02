@@ -717,7 +717,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	return src.attack_hand(user) //or maybe it'll have some special functions? No idea.
 
 
-/obj/machinery/newscaster/attack_paw(mob/user as mob)
+/obj/machinery/newscaster/attack_paw(mob/living/carbon/monkey/user)
 	to_chat(user, "<font color='blue'>The newscaster controls are far too complicated for your tiny brain!</font>")
 	return
 
@@ -925,10 +925,8 @@ obj/item/newspaper/Topic(href, href_list)
 //	return                                  //bode well with a newscaster network of 10+ machines. Let's just return it, as it's added in the machines list.
 
 /obj/machinery/newscaster/proc/newsAlert(channel)   //This isn't Agouri's work, for it is ugly and vile.
-	var/turf/T = get_turf(src)                      //Who the fuck uses spawn(600) anyway, jesus christ
 	if(channel)
-		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Breaking news from [channel]!\"</span>",2)
+		audible_message("<span class='newscaster'><b>[src]</b> beeps, \"Breaking news from [channel]!\"</span>")
 		src.alert = 1
 		src.update_icon()
 		spawn(300)
@@ -936,7 +934,6 @@ obj/item/newspaper/Topic(href, href_list)
 			src.update_icon()
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 1)
 	else
-		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>",2)
+		audible_message("<span class='newscaster'><b>[src]</b> beeps, \"Attention! Wanted issue distributed!\"</span>")
 		playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 25, 1)
 	return

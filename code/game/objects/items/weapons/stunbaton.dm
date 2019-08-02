@@ -108,7 +108,7 @@
 		if(!bcell)
 			return
 
-		bcell.updateicon()
+		bcell.update_icon()
 		bcell.forceMove(loc)
 		to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 		status = 0

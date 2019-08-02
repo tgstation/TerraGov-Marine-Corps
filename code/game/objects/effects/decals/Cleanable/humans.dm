@@ -196,6 +196,6 @@
 	random_icon_states = list("mucus")
 	var/dry=0 // Keeps the lag down
 
-/obj/effect/decal/cleanable/mucus/New()
-	spawn(DRYING_TIME * 2)
-		dry=1
+/obj/effect/decal/cleanable/mucus/Initialize()
+	. = ..()
+	addtimer(VARSET_CALLBACK(src, dry, TRUE), DRYING_TIME * 2)

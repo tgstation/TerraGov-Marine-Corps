@@ -40,6 +40,10 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "mixed <tab><space> indentation detected"
 		exit 1
 	fi;
+	if grep '(^(?!(.*\n)).*$)' code/**/*.dm; then
+		echo "No newline at end of file detected"
+		exit 1
+	fi;
 	if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
 		echo "changed files contains proc argument starting with 'var'"
     	exit 1

@@ -404,8 +404,7 @@
 		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
 		return
 	else if (status == LIGHT_OK||status == LIGHT_BURNED)
-		for(var/mob/O in viewers(src))
-			O.show_message("<span class='warning'> [M.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
+		visible_message("<span class='warning'>[M] smashed the light!</span>", null, "You hear a tinkle of breaking glass")
 		broken()
 	return
 
@@ -415,7 +414,7 @@
 		return FALSE
 	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
-	"<span class='danger'>You smash [src]!</span>", null, 5)
+	"<span class='danger'>We smash [src]!</span>", null, 5)
 	broken() //Smashola!
 
 // attack with hand - remove tube/bulb
@@ -432,8 +431,7 @@
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			for(var/mob/M in viewers(src))
-				M.show_message("<span class='warning'> [user.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
+			visible_message("<span class='warning'>[user] smashed the light!</span>", null, "You hear a tinkle of breaking glass")
 			broken()
 			return
 
@@ -635,7 +633,7 @@
 
 		to_chat(user, "You inject the solution into the [src].")
 
-		if(S.reagents.has_reagent("phoron", 5))
+		if(S.reagents.has_reagent(/datum/reagent/toxin/phoron, 5))
 
 			log_game("[key_name(user)] injected a light with phoron, rigging it to explode.")
 			message_admins("[ADMIN_TPMONTY(user)] injected a light with phoron, rigging it to explode.")

@@ -38,7 +38,7 @@ Godspeed, captain! And remember, you are not above the law."})
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/belt/gun/mateba/captain/full
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
@@ -80,7 +80,7 @@ Make the TGMC proud!"})
 
 	id = /obj/item/card/id/dogtag
 	belt = /obj/item/storage/belt/gun/m4a3/fieldcommander/
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	shoes = /obj/item/clothing/shoes/marine
@@ -95,7 +95,7 @@ Make the TGMC proud!"})
 //Intelligence Officer
 /datum/job/command/intelligenceofficer
 	title = INTELLIGENCE_OFFICER
-	paygrade = "O3"
+	paygrade = "O4"
 	comm_title = "IO"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
@@ -119,7 +119,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/officer
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine
 	head = /obj/item/clothing/head/tgmccap/ro
@@ -154,7 +154,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
 	shoes = /obj/item/clothing/shoes/marine
@@ -194,7 +194,7 @@ You could use MTs help to repair and replace hardpoints."})
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/tanker
 	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tanker
 	shoes = /obj/item/clothing/shoes/marine
@@ -241,7 +241,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/security/MP/full
-	ears = /obj/item/radio/headset/almayer/mmpo
+	ears = /obj/item/radio/headset/mainship/mmpo
 	w_uniform = /obj/item/clothing/under/marine/mp
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -255,7 +255,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 //Command Master at Arms
 /datum/job/police/chief
 	title = COMMAND_MASTER_AT_ARMS
-	paygrade = "O3"
+	paygrade = "O2"
 	comm_title = "CMA"
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
@@ -282,7 +282,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/security/MP/full
-	ears = /obj/item/radio/headset/almayer/cmpcom
+	ears = /obj/item/radio/headset/mainship/cmpcom
 	w_uniform = /obj/item/clothing/under/marine/officer/warrant
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -304,7 +304,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 //Chief Ship Engineer
 /datum/job/engineering/chief
 	title = CHIEF_SHIP_ENGINEER
-	paygrade = "O3"
+	paygrade = "O2"
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
@@ -329,7 +329,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/ce
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -368,7 +368,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/almayer/mt
+	ears = /obj/item/radio/headset/mainship/mt
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -416,7 +416,7 @@ A happy ship is a well-functioning ship."})
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m44/full
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/ro_suit
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -429,7 +429,7 @@ A happy ship is a well-functioning ship."})
 //Cargo Tech
 /datum/job/requisitions/tech
 	title = CARGO_TECHNICIAN
-	paygrade = "PO"
+	paygrade = "CMN"
 	comm_title = "CT"
 	total_positions = 2
 	supervisors = "the requisitions officer"
@@ -454,7 +454,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/clothing/tie/holster/m4a3
-	ears = /obj/item/radio/headset/almayer/ct
+	ears = /obj/item/radio/headset/mainship/ct
 	w_uniform = /obj/item/clothing/under/rank/cargotech
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -488,7 +488,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 /datum/job/medical/professor/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are the chief medical officer aboard the Theseus, navy officer and supervisor to the medical department.
+	to_chat(M, {"You are the chief medical officer aboard the [CONFIG_GET(string/ship_name)], navy officer and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
 
@@ -499,7 +499,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/medical/green
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
 	shoes = /obj/item/clothing/shoes/white
@@ -530,7 +530,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/job/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a military doctor stationed aboard the Theseus.
+	to_chat(M, {"You are a military doctor stationed aboard the [CONFIG_GET(string/ship_name)].
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."})
 
@@ -541,7 +541,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/radio/headset/almayer/doc
+	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/rank/medical/green
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/latex
@@ -582,7 +582,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
-	ears = /obj/item/radio/headset/almayer/doc
+	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
 	shoes = /obj/item/clothing/shoes/laceup
@@ -627,7 +627,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	jobtype = /datum/job/civilian/liaison
 
 	id = /obj/item/card/id/silver
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/liaison_suit
 	shoes = /obj/item/clothing/shoes/laceup
 	back = /obj/item/storage/backpack/marine/satchel
@@ -648,7 +648,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	exp_type = EXP_TYPE_REGULAR_ALL
 
 
-/datum/job/civilian/synthetic/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)	
+/datum/job/civilian/synthetic/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
 		return FALSE
 
@@ -683,7 +683,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/almayer/mcom
+	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/synthetic
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/yellow

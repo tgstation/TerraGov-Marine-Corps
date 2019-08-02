@@ -102,7 +102,7 @@
 	if(isturf(usr.loc))
 		to_chat(usr, "<span class='notice'>You empty \the [src] onto the floor.</span>")
 		reagents.reaction(usr.loc)
-		spawn(5) src.reagents.clear_reagents()
+		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 
 //space cleaner
 /obj/item/reagent_container/spray/cleaner
@@ -117,14 +117,14 @@
 
 /obj/item/reagent_container/spray/cleaner/Initialize()
 	. = ..()
-	reagents.add_reagent("cleaner", volume)
+	reagents.add_reagent(/datum/reagent/space_cleaner, volume)
 
 
 /obj/item/reagent_container/spray/surgery
 	name = "sterilizing spray"
 	desc = "Infection and necrosis are a thing of the past!"
 	volume = 100
-	list_reagents = list("cleaner" = 50, "sterilizine" = 50)
+	list_reagents = list(/datum/reagent/space_cleaner = 50, /datum/reagent/sterilizine = 50)
 
 
 //pepperspray
@@ -136,7 +136,7 @@
 	possible_transfer_amounts = null
 	volume = 40
 	safety = TRUE
-	list_reagents = list("condensedcapsaicin" = 40)
+	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 40)
 
 /obj/item/reagent_container/spray/pepper/examine(mob/user)
 	..()
@@ -157,7 +157,7 @@
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = null
 	volume = 10
-	list_reagents = list("water" = 10)
+	list_reagents = list(/datum/reagent/water = 10)
 
 //chemsprayer
 /obj/item/reagent_container/spray/chemsprayer
@@ -217,7 +217,7 @@
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
 	volume = 100
-	list_reagents = list("plantbgone" = 100)
+	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
 
 
 /obj/item/reagent_container/spray/plantbgone/afterattack(atom/A, mob/user, proximity)

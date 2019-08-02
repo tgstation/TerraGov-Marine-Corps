@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(direction)
 	name = "Direction"
 	priority = FIRE_PRIORITY_DIRECTION
-	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 1 SECONDS
 
 	// this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)
@@ -30,11 +30,13 @@ SUBSYSTEM_DEF(direction)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 		init_squad(null, HS.living_xeno_ruler, hivenumber)
 
+
 /datum/controller/subsystem/direction/stat_entry()
 	var/mobcount = 0
 	for(var/L in processing_mobs)
 		mobcount += length(processing_mobs[L])
 	return ..("P:[mobcount]")
+
 
 /datum/controller/subsystem/direction/fire(resumed = FALSE)
 	if(!resumed)
@@ -56,6 +58,7 @@ SUBSYSTEM_DEF(direction)
 			if(MC_TICK_CHECK)
 				return
 
+
 /datum/controller/subsystem/direction/proc/clear_run(squad_id)
 	var/mob/living/L
 	while(currentrun[squad_id].len)
@@ -69,6 +72,7 @@ SUBSYSTEM_DEF(direction)
 			return FALSE
 	return TRUE
 
+
 /datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/C)
 	if(!C)
 		stack_trace("SSdirection.start_tracking called with a null mob")
@@ -78,7 +82,8 @@ SUBSYSTEM_DEF(direction)
 	if(mobs_in_processing[C])
 		stop_tracking(mobs_in_processing[C], C) // remove from tracking the other squad
 	mobs_in_processing[C] = squad_id
-	processing_mobs[squad_id].Add(C)
+	processing_mobs[squad_id] += C
+
 
 /datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/C, force = FALSE)
 	if(!mobs_in_processing[C])
@@ -89,17 +94,20 @@ SUBSYSTEM_DEF(direction)
 	if(tracking_id != squad_id)
 		if(!force)
 			stack_trace("mismatch in tracking mobs by reference")
-		processing_mobs[squad_id].Remove(C)
+		processing_mobs[squad_id] -= C
 
-	processing_mobs[tracking_id].Remove(C)
+	processing_mobs[tracking_id] -= C
+
 
 /datum/controller/subsystem/direction/proc/set_leader(squad_id, mob/living/carbon/C)
 	if(leader_mapping[squad_id])
 		clear_leader(squad_id)
 	leader_mapping[squad_id] = C
 
+
 /datum/controller/subsystem/direction/proc/clear_leader(squad_id)
 	leader_mapping[squad_id] = null
+
 
 /datum/controller/subsystem/direction/proc/init_squad(datum/squad/S, mob/L, tracking_id)
 	if(!tracking_id)

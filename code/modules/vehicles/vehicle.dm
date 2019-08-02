@@ -90,7 +90,7 @@
 		M.flick_attack_overlay(src, "slash")
 		obj_integrity -= 15
 		playsound(src.loc, "alien_claw_metal", 25, 1)
-		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>", null, 5)
+		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>We slash [src].</span>", null, 5)
 		healthcheck()
 	else
 		attack_hand(M)

@@ -539,7 +539,7 @@ should be alright.
 
 	usr.visible_message("<span class='notice'>[usr] strips [A] from [src].</span>",
 	"<span class='notice'>You strip [A] from [src].</span>", null, 4)
-	A.Detach(src, usr)
+	A.Detach(usr)
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
 	update_attachables()
@@ -764,7 +764,7 @@ should be alright.
 		if(!A || A.loc != src)
 			return
 	if(A)
-		A.ui_action_click(usr, src)
+		A.ui_action_click(usr, null, src)
 
 
 /obj/item/weapon/gun/verb/toggle_rail_attachment()
@@ -781,7 +781,7 @@ should be alright.
 		to_chat(usr, "<span class='warning'>[src] does not have any usable rail attachment!</span>")
 		return
 
-	G.rail.activate_attachment(G, usr)
+	G.rail.activate_attachment(usr)
 
 
 /obj/item/weapon/gun/verb/toggle_ammo_hud()

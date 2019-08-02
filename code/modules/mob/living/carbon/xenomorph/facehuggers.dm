@@ -67,7 +67,7 @@
 		icon_state = "[initial(icon_state)]"
 
 //Can be picked up by aliens
-/obj/item/clothing/mask/facehugger/attack_paw(user as mob)
+/obj/item/clothing/mask/facehugger/attack_paw(mob/living/carbon/monkey/user)
 	if(isxeno(user))
 		attack_alien(user)
 	else
@@ -121,10 +121,13 @@
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()
-	if(stat != CONSCIOUS)
-		to_chat(user, "<span class='warning'>[src] is not moving.</span>")
-	else
-		to_chat(user, "<span class='danger'>[src] seems to be active.</span>")
+	switch(stat)
+		if(CONSCIOUS)
+			to_chat(user, "<span class='warning'>[src] seems to be active.</span>")
+		if(UNCONSCIOUS)
+			to_chat(user, "<span class='warning'>[src] seems to be asleep.</span>")
+		if(DEAD)
+			to_chat(user, "<span class='danger'>[src] is not moving.</span>")
 	if(initial(sterile))
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
@@ -403,8 +406,8 @@
 				M.dropItemToGround(W)
 			if(ishuman(M)) //Check for camera; if we have one, turn it off.
 				var/mob/living/carbon/human/H = M
-				if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
-					var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
+				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
+					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
 					if(R.camera.status)
 						R.camera.status = FALSE //Turn camera off.
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")

@@ -143,6 +143,7 @@
 		if(cell_type)
 			cell = new cell_type(src)
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
+			cell.update_icon()
 
 		var/area/A = get_area(src)
 
@@ -293,7 +294,7 @@
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
 	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-	"<span class='danger'>You slash \the [src]!</span>", null, 5)
+	"<span class='danger'>We slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	var/allcut = wires.is_all_cut()
 
@@ -1128,13 +1129,13 @@
 /obj/machinery/power/apc/hyper
 	cell_type = /obj/item/cell/hyper
 
-//------Theseus APCs ------//
+//------Marine ship APCs ------//
 
-/obj/machinery/power/apc/almayer
+/obj/machinery/power/apc/mainship
 	req_access = list(ACCESS_MARINE_ENGINEERING)
 	cell_type = /obj/item/cell/high
 
-/obj/machinery/power/apc/almayer/hardened
+/obj/machinery/power/apc/mainship/hardened
 	name = "hardened area power controller"
 	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
 	crash_break_probability = 0

@@ -210,7 +210,7 @@
 */
 
 
-/obj/machinery/body_scanconsole/attack_paw(user as mob)
+/obj/machinery/body_scanconsole/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/body_scanconsole/attack_ai(user as mob)

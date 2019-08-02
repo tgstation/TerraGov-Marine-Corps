@@ -260,13 +260,13 @@ GLOBAL_LIST_EMPTY(exports_types)
 /obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_paw(mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_paw(mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/ordercomp/attack_hand(mob/living/user)
@@ -330,8 +330,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
-			for(var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
+			visible_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
 			return
 
 		//Find the correct supply_pack datum
@@ -524,8 +523,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
-			for(var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
+			visible_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
 			return
 
 		//Find the correct supply_pack datum

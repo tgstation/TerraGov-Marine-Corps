@@ -75,7 +75,7 @@
 	src.icon_state = "medibot[src.on]"
 	src.updateUsrDialog()
 
-/obj/machinery/bot/medbot/attack_paw(mob/user as mob)
+/obj/machinery/bot/medbot/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/bot/medbot/attack_hand(mob/living/user)
@@ -206,9 +206,7 @@
 	..()
 	if(open && !locked)
 		if(user) to_chat(user, "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>")
-		spawn(0)
-			for(var/mob/O in hearers(src, null))
-				O.show_message("<span class='danger'>[src] buzzes oddly!</span>", 1)
+		audible_message("<span class='danger'>[src] buzzes oddly!</span>")
 		flick("medibot_spark", src)
 		src.patient = null
 		if(user) src.oldpatient = user
@@ -377,7 +375,7 @@
 	if(use_beaker && reagent_glass && reagent_glass.reagents.total_volume)
 		var/safety_fail = 0
 		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
-			if(C.reagents.has_reagent(R.id))
+			if(C.reagents.has_reagent(R.type))
 				safety_fail = 1
 				break
 		if(!safety_fail)
@@ -471,16 +469,6 @@
 		src.loc = M:loc
 		src.frustration = 0
 	return
-
-/* terrible
-/obj/machinery/bot/medbot/Bumped(atom/movable/M as mob|obj)
-	spawn(0)
-		if (M)
-			var/turf/T = get_turf(src)
-			M:loc = T
-*/
-
-
 
 /*
 *	Medbot Assembly -- Can be made out of all three medkits.

@@ -27,6 +27,19 @@
 			return TRUE
 	return ..()
 
+
+/obj/item/storage/backpack/AltClick(mob/user)
+	if(!ishuman(user) || !length(contents) || isturf(loc))
+		return ..() //Return to fail and go back to base.
+	if(worn_accessible)
+		return ..() //Return to succeed and draw the item.
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.back == src)
+		to_chat(human_user, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
+		return
+	return ..()
+
+
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	
@@ -351,7 +364,7 @@
 			if(!cell)
 				replace_install = "You install a cell in [src]'s defibrillator recharge unit."
 			else
-				cell.updateicon()
+				cell.update_icon()
 				user.put_in_hands(cell)
 			cell = W
 			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
@@ -657,7 +670,7 @@
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/I, mob/user, params)
@@ -679,7 +692,7 @@
 			return ..()
 
 		var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
-		reagents.remove_reagent("fuel", fuel_available)
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_available)
 		FT.current_rounds = fuel_available
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = "Fuel"
@@ -727,7 +740,7 @@
 		var/fuel_refill = FTL.max_rounds - FTL.current_rounds
 		if(reagents.total_volume < fuel_refill)
 			fuel_refill = reagents.total_volume
-		reagents.remove_reagent("fuel", fuel_refill)
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_refill)
 		FTL.current_rounds = FTL.current_rounds + fuel_refill
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")

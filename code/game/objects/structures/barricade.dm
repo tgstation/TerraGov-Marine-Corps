@@ -124,13 +124,13 @@
 		playsound(src, barricade_hitsound, 25, 1)
 	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
+		"<span class='danger'>We slash [src]!</span>", null, 5)
 	if(is_wired)
 		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
-		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
+		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
 		M.apply_damage(10)
 	update_health(TRUE)
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
@@ -409,10 +409,6 @@
 	barricade_type = "wooden"
 	can_wire = FALSE
 
-/obj/structure/barricade/wooden/lv_snowflake
-	desc = "A reinforced wooden barricade. Pretty good at keeping neighbours away from your lawn."
-	max_integrity = 400
-
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -526,6 +522,9 @@
 
 		var/old_loc = loc
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
+			return
+
+		if(!WT.remove_fuel(2, user))
 			return
 
 		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",

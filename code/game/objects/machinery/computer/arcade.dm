@@ -17,7 +17,7 @@
 							/obj/item/ammo_magazine/flamer_tank			    = 1,
 							/obj/item/tool/lighter/zippo			= 2,
 							/obj/item/tool/weldingtool					= 1,
-							/obj/item/storage/box/uscm_mre			= 2,
+							/obj/item/storage/box/tgmc_mre			= 2,
 							/obj/item/camera				        	= 2,
 							/obj/item/camera_film					= 4,
 							/obj/item/cell/crap/empty				= 3,
@@ -46,7 +46,7 @@
 /obj/machinery/computer/arcade/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/arcade/attack_paw(mob/user as mob)
+/obj/machinery/computer/arcade/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/computer/arcade/attack_hand(mob/living/user)

@@ -14,7 +14,6 @@ SUBSYSTEM_DEF(vote)
 	var/list/choices = list()
 	var/list/voted = list()
 	var/list/voting = list()
-	var/list/generated_actions = list()
 
 
 /datum/controller/subsystem/vote/fire()
@@ -229,7 +228,6 @@ SUBSYSTEM_DEF(vote)
 				V.name = "Vote: [question]"
 			C.player_details.player_actions += V
 			V.give_action(C.mob)
-			generated_actions += V
 		return TRUE
 	return FALSE
 
@@ -337,33 +335,33 @@ SUBSYSTEM_DEF(vote)
 	popup.set_content(SSvote.interface(client))
 	popup.open(FALSE)
 
-
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
-	for(var/v in generated_actions)
-		var/datum/action/innate/vote/V = v
-		if(!QDELETED(V))
-			V.remove_from_client()
-			V.remove_action(V.owner)
-	generated_actions = list()
-
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REMOVE_VOTE_BUTTON)
 
 /datum/action/innate/vote
 	name = "Vote!"
 	icon_icon_state = "vote"
 
+/datum/action/innate/vote/give_action(mob/M)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_REMOVE_VOTE_BUTTON, .proc/remove_vote_action)
+
+/datum/action/innate/vote/proc/remove_vote_action(datum/source)
+	if(remove_from_client())
+		remove_action(owner)
+	qdel(src)
 
 /datum/action/innate/vote/action_activate()
 	owner.vote()
-	remove_from_client()
-	remove_action(owner)
-
+	remove_vote_action()
 
 /datum/action/innate/vote/proc/remove_from_client()
 	if(!owner)
-		return
+		return FALSE
 	if(owner.client)
 		owner.client.player_details.player_actions -= src
 	else if(owner.ckey)
 		var/datum/player_details/P = GLOB.player_details[owner.ckey]
 		if(P)
 			P.player_actions -= src
+	return TRUE

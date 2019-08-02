@@ -235,10 +235,15 @@
 
 /mob/living/carbon/monkey/handle_regular_hud_updates()
 	. = ..()
-	if(!(.))
+	if(!.)
 		return FALSE
 
 	update_sight()
+
+	interactee?.check_eye(src)
+
+	if(!hud_used)
+		return
 
 	if(hud_used.pressure_icon)
 		hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
@@ -274,21 +279,11 @@
 			else
 				hud_used.bodytemp_icon.icon_state = "temp-4"
 
-
-
-
-
-	if(stat != DEAD) //the dead get zero fullscreens
-
-		interactee?.check_eye(src)
-
 	return 1
 
 /mob/living/carbon/monkey/proc/handle_random_events()
 	if (prob(1) && prob(2))
-		spawn(0)
-			emote("scratch")
-			return
+		INVOKE_ASYNC(src, .proc/emote, "scratch")
 
 ///FIRE CODE
 /mob/living/carbon/monkey/handle_fire()

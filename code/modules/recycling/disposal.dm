@@ -171,7 +171,7 @@
 		update()
 
 //Monkeys can only pull the flush lever
-/obj/machinery/disposal/attack_paw(mob/user as mob)
+/obj/machinery/disposal/attack_paw(mob/living/carbon/monkey/user)
 	if(machine_stat & BROKEN)
 		return
 
@@ -339,8 +339,7 @@
 	if(flush_count >= flush_every_ticks)
 		if(contents.len)
 			if(mode == 2)
-				spawn(0)
-					flush()
+				INVOKE_ASYNC(src, .proc/flush)
 		flush_count = 0
 
 	updateDialog()
@@ -486,8 +485,7 @@
 	loc = D.trunk
 	active = 1
 	setDir(DOWN)
-	spawn(1)
-		move() //Spawn off the movement process
+	INVOKE_NEXT_TICK(src, .proc/move) //Spawn off the movement process
 
 //Movement process, persists while holder is moving through pipes
 /obj/structure/disposalholder/proc/move()
@@ -724,8 +722,7 @@
 		if(H && H.loc)
 			expel(H, T, 0)
 
-	spawn(2) //Delete pipe after 2 ticks to ensure expel proc finished
-		qdel(src)
+	QDEL_IN(src, 2) //Delete pipe after 2 ticks to ensure expel proc finished
 
 //Pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
@@ -917,15 +914,15 @@
 		return null
 	return P
 
-// *** special cased almayer stuff because its all one z level ***
+// *** special cased marine ship stuff because its all one z level ***
 
-/obj/structure/disposalpipe/up/almayer
+/obj/structure/disposalpipe/up/mainship
 	var/id
 
-/obj/structure/disposalpipe/down/almayer
+/obj/structure/disposalpipe/down/mainship
 	var/id
 
-/obj/structure/disposalpipe/up/almayer/transfer(obj/structure/disposalholder/H)
+/obj/structure/disposalpipe/up/mainship/transfer(obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
 	H.setDir(nextdir)
 
@@ -933,7 +930,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 12)
-		for(var/obj/structure/disposalpipe/down/almayer/F in GLOB.disposal_list)
+		for(var/obj/structure/disposalpipe/down/mainship/F in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -953,7 +950,7 @@
 		return null
 	return P
 
-/obj/structure/disposalpipe/down/almayer/transfer(obj/structure/disposalholder/H)
+/obj/structure/disposalpipe/down/mainship/transfer(obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
 	H.setDir(nextdir)
 
@@ -961,7 +958,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 11)
-		for(var/obj/structure/disposalpipe/up/almayer/F in GLOB.disposal_list)
+		for(var/obj/structure/disposalpipe/up/mainship/F in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -981,7 +978,7 @@
 		return null
 	return P
 
-// *** end special cased almayer stuff ***
+// *** end special cased marine ship stuff ***
 
 //Z-Level stuff
 //A three-way junction with dir being the dominant direction
@@ -1199,11 +1196,10 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	//The linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/New()
-	..()
+/obj/structure/disposalpipe/trunk/Initialize()
+	. = ..()
 	dpdir = dir
-	spawn(1)
-		getlinked()
+	getlinked()
 	update()
 
 /obj/structure/disposalpipe/trunk/proc/getlinked()
@@ -1302,14 +1298,13 @@
 	var/turf/target	//This will be where the output objects are 'thrown' to.
 	var/mode = 0
 
-	New()
-		..()
-
-		spawn(1)
-			target = get_ranged_target_turf(src, dir, 10)
-			var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
-			if(trunk)
-				trunk.linked = src	//Link the pipe trunk to self
+/obj/structure/disposaloutlet/Initialize()
+	. = ..()
+	
+	target = get_ranged_target_turf(src, dir, 10)
+	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
+	if(trunk)
+		trunk.linked = src	//Link the pipe trunk to self
 
 //Expel the contents of the holder object, then delete it. Called when the holder exits the outlet
 /obj/structure/disposaloutlet/proc/expel(obj/structure/disposalholder/H)

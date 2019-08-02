@@ -16,7 +16,7 @@
 /mob/living/carbon/monkey/UnarmedAttack(atom/A)
 	A.attack_paw(src)
 
-/atom/proc/attack_paw(mob/user as mob)
+/atom/proc/attack_paw(mob/living/carbon/monkey/user)
 	return
 
 
@@ -37,11 +37,9 @@
 	var/armor = ML.run_armor_check(dam_zone, "melee")
 	if(prob(75))
 		ML.apply_damage(rand(1,3), BRUTE, dam_zone, armor)
-		for(var/mob/O in viewers(ML, null))
-			O.show_message("<span class='danger'>[name] has bit [ML]!</span>", 1)
+		visible_message("<span class='danger'>[name] has bit [ML]!</span>")
 	else
-		for(var/mob/O in viewers(ML, null))
-			O.show_message("<span class='danger'>[src] has attempted to bite [ML]!</span>", 1)
+		visible_message("<span class='danger'>[src] has attempted to bite [ML]!</span>")
 
 
 /*

@@ -217,10 +217,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.real_name = mind.name
 	else if(real_name)
 		ghost.real_name = real_name
-	else if(gender == MALE)
-		ghost.real_name = capitalize(pick(SSstrings.get_list_from_file("names/first_male"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
 	else
-		ghost.real_name = capitalize(pick(SSstrings.get_list_from_file("names/first_female"))) + " " + capitalize(pick(SSstrings.get_list_from_file("names/last_name")))
+		ghost.real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 	ghost.name = ghost.real_name
 	ghost.gender = gender
@@ -232,7 +230,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.key = key
 
 	if(!can_reenter_corpse)
-		set_away_time()
 		ghost.mind?.current = ghost
 
 	if(!T)
@@ -243,18 +240,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.forceMove(T)
 
 	return ghost
-
-
-/mob/proc/set_away_time(new_away)
-	return
-
-/mob/living/set_away_time(new_away = world.time)
-	away_time = new_away //Generic way to handle away time, currently unused.
-
-
-/mob/living/carbon/xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
-	away_time = new_away //Xenos who force-ghost can be immediately taken by observers.
-	handle_afk_takeover()
 
 
 /mob/dead/observer/Move(atom/newloc, direct)
