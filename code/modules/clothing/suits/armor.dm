@@ -16,7 +16,7 @@
 	if(!.)
 		return FALSE
 
-	if(!ishuman(M)
+	if(!ishuman(M))
 		return TRUE
 
 	var/mob/living/carbon/human/H = M
