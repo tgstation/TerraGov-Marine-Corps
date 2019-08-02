@@ -553,8 +553,8 @@
 	return FALSE
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
-	xeno_candidate.mind.transfer_to(X, TRUE)
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
+	xeno_candidate.mind.transfer_to(X, TRUE)
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
 		X.add_ventcrawl(X.loc)
 
