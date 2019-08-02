@@ -176,6 +176,7 @@
 "dt" = (/obj/machinery/light{dir = 1},/obj/structure/bed/roller,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "du" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "dv" = (/obj/structure/bed/roller,/obj/machinery/light{dir = 1},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
+"dw" = (/obj/machinery/m56d_hmg/mg_turret,/obj/structure/barricade/sandbags{pixel_z = -7},/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/north)
 "dx" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "dy" = (/obj/structure/barricade/sandbags{pixel_z = -7},/turf/open/floor/plating/ground/dirt,/area/space)
 "dz" = (/obj/structure/barricade/sandbags{icon_state = "sandbag_0"; dir = 1; pixel_z = 7; pixel_w = 0},/turf/open/floor/plating/asteroidwarning{dir = 1},/area/whiskey_outpost/outside/north)
@@ -321,7 +322,7 @@
 "gj" = (/obj/structure/bed,/obj/machinery/light{dir = 8},/turf/open/floor/mainship{dir = 10; icon_state = "emerald"},/area/whiskey_outpost)
 "gk" = (/turf/open/floor/mainship{dir = 6; icon_state = "emerald"},/area/whiskey_outpost)
 "gl" = (/turf/open/floor/mainship{dir = 10; icon_state = "blue"},/area/whiskey_outpost)
-"gm" = (/obj/machinery/m56d_hmg/mg_turret,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/north)
+"gm" = (/obj/machinery/m56d_hmg/mg_turret,/obj/structure/barricade/sandbags{pixel_z = -7},/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/east)
 "gn" = (/obj/structure/bed,/turf/open/floor/mainship{dir = 6; icon_state = "blue"},/area/whiskey_outpost)
 "go" = (/turf/open/ground/coast/corner2{dir = 4},/area/whiskey_outpost/outside/north)
 "gp" = (/obj/machinery/m56d_hmg/mg_turret{dir = 8; icon_state = "towergun"},/turf/open/floor/plating/warning{dir = 8},/area/whiskey_outpost/outside/north)
@@ -525,7 +526,6 @@
 "kL" = (/obj/structure/shuttle/engine/propulsion{pixel_y = 24},/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/east)
 "kM" = (/turf/closed/shuttle/dropship{icon_state = "rasputin3"},/area/whiskey_outpost/outside/east)
 "kP" = (/turf/open/ground/coast/corner{dir = 1},/area/whiskey_outpost/outside/east)
-"kQ" = (/obj/machinery/m56d_hmg/mg_turret,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/east)
 "kT" = (/obj/machinery/m56d_hmg/mg_turret,/turf/open/floor/plating/warning{dir = 2},/area/whiskey_outpost/outside/west)
 "kU" = (/obj/machinery/m56d_hmg/mg_turret,/turf/open/floor/plating/warning{dir = 2},/area/whiskey_outpost/outside/east)
 "kV" = (/turf/open/ground/jungle{bushes_spawn = 0; icon_state = "grass_impenetrable"},/area/whiskey_outpost/outside/south)
@@ -632,7 +632,7 @@ aaaaaaaaaaaaaaaaaaabaSdmdmdmdmdmdmaSaSaSaSbWbWbWbWbWdzdzdzdzdzdzdzdzbWbWbWcwbWbW
 aaaaaaaaaaaaaaaaaaabaSdmdmdmaSaSaSaSaSaSbWbWbWbWbWbWfsfsfsfsfsfsfsfsbWbWbWbWbWbWbWbWbWbWbWbWbWbWdcbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbXcKbWbWbWbWbWbWbWbWbWbWbWcWcxcxcxcxeubWbWbWfsfsfsfyfEfEfCfCfLfMfNfDbWaSabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaabaSfPfPfPaSaSaSaSaSbWbWbWbWbWbWbWfsfsfsfsfsfsfsfsbWbWbWbWbWbWbWbWbWbWbWbWbWbWdJcmcmcmcmcmcmcmcmcmcmcmcmcmcmdrdrdrcmcmcmdLdLdLdLcmcmdrdrdrcmcmcmcmcmcmcmcubWbWbWbWbWecfSfTbWbWbWbWcWcxcxcxcxeubWcybWfsfsfsfUfVfVfVfVfVfVfVfWbWaSabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaabdOfPfPfPaSaSaSaSaSfXfTbWbWbWbWbWdedededededededebWbWbWbWbWbWbWbWbWbWbWbWcwbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWdTdYefbWbWbWbWbWbWbWbWbWdTdYefbWbWbWbWbWbWbWbWbWbWbWbWbWbWgcgdbWbWbWbWcWcxcxcxcxeubWcwbWfsfsfsbWbWbWdSdSbWdSbWbWbWaSabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaabdOfPfPfPaSaSaSfPdmdmdobWbWbWbWbWdidkcxcxcxcxcxgfexgCgDgGbWbWbWaSaSaSbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWcwbWbWbWbWbWbWdydScWcxcxcxcxeudSgmdSfsfsfsbWdSdidjdjdjdjaSaSaSaSabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaabdOfPfPfPaSaSaSfPdmdmdobWbWbWbWbWdidkcxcxcxcxcxgfexgCgDgGbWbWbWaSaSaSbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWcwbWbWbWbWbWbWdydScWcxcxcxcxeudSdwdSfsfsfsbWdSdidjdjdjdjaSaSaSaSabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaabdOfPfPfPfPfPfPfPdmdndobWbWbWbWbWeYgocxdlcxcJcxcxeugpfCgrbWbWaSaSaSaSaSfXfTcybWbWbWbWbWbWbWbWbWbWbWbWbWcwbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWcybWbWewdjdjdjdkcxcxcxcxgtdjdjgufsfsfsgvdjdkcxcxcxcxaSababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaabdOfPfPfPfPfPfPfPfPdmdobWbWbWbWbWbWcWcxcxcxcxcxcxeugIdAgJbWbWaSaSaSaSaSdmdobWbWcKbWbWbWbWdsbdgAbddBbWbWbWfSfXfXfXfXfTbWbWbWbWbWbWcKbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWdScWcxcxcxcxcxcxdlcxcxcxcxgufsfsfsgvcxcxcxcxcxcxaSabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaabdOfPfPfPfPfPfPfPfPfPdobWbWbWbWbWbWcWcxcxcxcxcxcxeubWbWbWbWaSaSaSaSaSaSaSdobWbWbWbWbWbWbWdFgEgFgEdGbWbWbWgcgHgHgHgHgdbWbWbWbWbWbWbWfSfXfTbWbWbWdsbdgAbddBbWbWbWbWbWbWewdjdkcxcxcJcxcxcxcxcxcxcxcxgufsfsfsgvcxcxdlcxcxcxaSababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -668,7 +668,7 @@ aaaaaaaaaaaaaaaaaaaaabhBhwhwbmkekfkfkgkhhwhwhwhwhwhwhwhwiwixixixixixixhqhqhqhqhq
 aaaaaaaaaaaaaaaaaaaaabhBhwhwhwjIkxkgkxjIhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwikhshqhqhrhqhRhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwcQhwhwhwhwhwhwhwhwhwhwhwkyiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchckzkAkAkAkBknknknknknknknknknknknknkCkDkEkFkGhgkwkwhgkHhEhEhchcabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaabhBhBhBhwkIjIkJjIkKhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwikhqhqhqhqhqhRhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwbmhwhwhwhwhwhwbmhwiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchchcgUhbgUhthghghghghghgiehghgiUhghghgkLkMkLhghghghgkHiAgUgUhcababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaababhBhBhwhwekhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwiBiBiBesiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchchcgUgUgUhteQeQeQeQhghgeQeQhghghghgiUhghgiUhghghghghhgUhchchcabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaabhBhBhwhwhwhwhwhwevhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwbmhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchcgUgUgUhDhEhEhEkPkQeQhghgeQhghghgeQkQeQhghghgihkHiAgUhcabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaabhBhBhwhwhwhwhwhwevhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwbmhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchcgUgUgUhDhEhEhEkPgmeQhghgeQhghghgeQgmeQhghghgihkHiAgUhcabababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaabhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwiBiBemiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchchcgUgXgUgUgUhHhDhEhEhEhEkPiheQhghghghgeQeQeQkHiAgUhchcabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaabhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwbmhwhwhwhwhwhwbmhwhwhwhwhwiBiBesiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchchchcgUgUgUgUgUgUgUgUgUgUhDhEhEhEhEhEhEhEhEhEhFhbgUhcababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaabhBhBiNiNiNiNhwiNiNkTiNhwhwiNkTiNiNhwhwiNiNiNhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBemiBiBiBiBhchchchchchchchcgUgUhbgUgUgXgUgUgUgUgUhHgUgUhbgUgUgUgXgUgUgUgUhcabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
