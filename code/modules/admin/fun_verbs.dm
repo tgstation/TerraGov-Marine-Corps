@@ -1039,27 +1039,24 @@
 	if(D.mode != SHUTTLE_IDLE && alert("[D.name] is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
 		return
 
-	var/list/validdocks = list()
+	var/list/valid_docks = list()
+	var/i = 1
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!possible_destinations.Find(S.id))
 			continue
 		if(!D.check_dock(S, silent=TRUE))
 			continue
-		validdocks += S.name
+		valid_docks["[S.name] ([i++])"] = S
 
-	if(!length(validdocks))
+	if(!length(valid_docks))
 		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
 		return
 
-	var/dock = input("Choose the destination.", "Force Dropship") as null|anything in validdocks
+	var/dock = input("Choose the destination.", "Force Dropship") as null|anything in valid_docks
+	if(!dock)
+		return
 
-	var/obj/docking_port/stationary/target
-
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.name != dock)
-			continue
-		target = S
-
+	var/obj/docking_port/stationary/target = valid_docks[dock]
 	if(!target)
 		return
 

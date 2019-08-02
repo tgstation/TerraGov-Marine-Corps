@@ -105,6 +105,21 @@
 	updateUsrDialog()
 
 
+/obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/X)
+	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+		to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
+		return
+
+	if(!timer_enabled)
+		to_chat(X, "<span class='warning'>The [src] is soundly asleep. We better not disturb it.</span>")
+		return
+
+	if(!do_after(X, 5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+		return
+
+	timer_enabled = FALSE
+	stop_processing()
+
 /obj/machinery/nuclearbomb/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
