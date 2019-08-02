@@ -751,9 +751,9 @@ below 100 is not dizzy
 		if("stat")
 			if((stat == DEAD) && (var_value < DEAD))//Bringing the dead back to life
 				GLOB.dead_mob_list -= src
-				GLOB.alive_mob_list += src
+				GLOB.alive_living_list += src
 			if((stat < DEAD) && (var_value == DEAD))//Kill he
-				GLOB.alive_mob_list -= src
+				GLOB.alive_living_list -= src
 				GLOB.dead_mob_list += src
 	. = ..()
 	switch(var_name)
