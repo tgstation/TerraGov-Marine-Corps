@@ -110,7 +110,11 @@
 		to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
 		return
 
-	if(!do_after(X, 15 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!timer_enabled)
+		to_chat(X, "<span class='warning'>The [src] is soundly asleep. We better not disturb it.</span>")
+		return
+
+	if(!do_after(X, 5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 
 	timer_enabled = FALSE
