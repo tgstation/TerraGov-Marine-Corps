@@ -93,13 +93,27 @@
 	GLOB.latejoin_cryo = shuttle.latejoins
 	GLOB.latejoin_gateway = shuttle.latejoins
 	
-	var/list/validdocks = list()
+	// Create xenos
+	var/number_of_xenos = length(xenomorphs)
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	for(var/i in xenomorphs)
+		var/datum/mind/M = i
+		if(M.assigned_role == ROLE_XENO_QUEEN)
+			transform_ruler(M, number_of_xenos > HN.xenos_per_queen)
+		else
+			transform_xeno(M)
+
+	// Launch shuttle 
+	var/list/valid_docks = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
-		validdocks += S.name
+		valid_docks += S.name
 
-	var/dock = pick(validdocks)
+	if(!length(valid_docks))
+		CRASH("No valid docks found for shuttle!")
+		return
+	var/dock = pick(valid_docks)
 
 	var/obj/docking_port/stationary/target
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
@@ -115,15 +129,6 @@
 	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
 
-	// Create xenos
-	var/number_of_xenos = length(xenomorphs)
-	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	for(var/i in xenomorphs)
-		var/datum/mind/M = i
-		if(M.assigned_role == ROLE_XENO_QUEEN)
-			transform_ruler(M, number_of_xenos > HN.xenos_per_queen)
-		else
-			transform_xeno(M)
 
 
 /datum/game_mode/crash/setup()
@@ -148,6 +153,9 @@
 	. = ..()
 	var/list/xeno_silo_spawns = GLOB.xeno_resin_silo_turfs.Copy()
 	for(var/i in 1 to 3)
+		if(!length(xeno_silo_spawns))
+			WARNING("Trying to spawn xeno silo, but GLOB.xeno_resin_silo_turfs was empty")
+			break
 		var/turf/loc_to_spawn_silo = pick(xeno_silo_spawns)
 		new /obj/structure/resin/silo(loc_to_spawn_silo)
 		xeno_silo_spawns -= loc_to_spawn_silo
