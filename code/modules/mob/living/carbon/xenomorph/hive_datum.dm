@@ -103,9 +103,9 @@
 				continue
 			if(X.client)
 				continue
-			if(!X.away_time) //To prevent adminghosted xenos to be snatched.
+			if(isclientedaghost(X)) //To prevent adminghosted xenos to be snatched.
 				continue
-			if(only_away && world.time - X.away_time < XENO_AFK_TIMER)
+			if(only_away && X.afk_timer_id)
 				continue
 			xenos += X
 	return xenos
