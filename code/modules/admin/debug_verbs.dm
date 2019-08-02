@@ -453,17 +453,23 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/mob/M = usr
 	var/mob/living/carbon/human/H
+	var/spatial = FALSE
 	if(ishuman(M))
 		H = M
+		var/datum/job/J = SSjob.GetJob(H.job)
+		spatial = istype(J, /datum/job/other/spatial_agent)
 
-		log_admin("[key_name(usr)] stopped being a spatial agent.")
-		message_admins("[ADMIN_TPMONTY(usr)] stopped being a spatial agent.")
+	if(spatial)
+		log_admin("[key_name(M)] stopped being a spatial agent.")
+		message_admins("[ADMIN_TPMONTY(M)] stopped being a spatial agent.")
+		qdel(M)
 	else
 		H = new(get_turf(M))
+		M.client.prefs.copy_to(H)
 		M.mind.transfer_to(H, TRUE)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/other/spatial_agent)
 		J.assign_equip(H)
 		qdel(M)
 
-		log_admin("[key_name(usr)] became a spatial agent.")
-		message_admins("[ADMIN_TPMONTY(usr)] became a spatial agent.")
+		log_admin("[key_name(H)] became a spatial agent.")
+		message_admins("[ADMIN_TPMONTY(H)] became a spatial agent.")
