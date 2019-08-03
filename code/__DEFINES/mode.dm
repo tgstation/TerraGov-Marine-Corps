@@ -71,6 +71,10 @@
 #define CRASH_MARINE_MINOR (1 << 3)
 #define CRASH_MARINE_MAJOR (1 << 4)
 
+#define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
+#define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
+#define CRASH_EVAC_COMPLETED "CRASH_EVAC_COMPLETED"
+
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
 				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\

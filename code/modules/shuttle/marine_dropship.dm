@@ -873,6 +873,7 @@
 
 	if(href_list["move"] && iscrashgamemode(SSticker.mode))
 		var/datum/game_mode/crash/C = SSticker.mode
-		C.marines_evac = world.time
+		C.marines_evac = CRASH_EVAC_INPROGRESS
+		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
 		var/obj/docking_port/mobile/S = SSshuttle.getShuttle(shuttleId)
 		S.setTimer(1 HOURS) // Some insanely large number 
