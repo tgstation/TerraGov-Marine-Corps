@@ -20,17 +20,26 @@
 "ae" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/canterbury,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "af" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera_advanced/overwatch/alpha,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "ag" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/station_alert,
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "ah" = (
 /obj/structure/table/mainship,
@@ -476,13 +485,6 @@
 /obj/machinery/fuelcell_recycler,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"bb" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/structure/window/framed/mainship,
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
 "bc" = (
 /obj/machinery/alarm,
 /obj/machinery/light/small,
@@ -688,19 +690,19 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /obj/structure/cable{
-	d1 = 2;
+	d1 = 4;
 	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "4-8"
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
+/area/space)
 "br" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -708,8 +710,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury/general)
+/area/space)
 "bs" = (
 /obj/machinery/marine_selector/gear/engi,
 /obj/structure/window/reinforced{
@@ -801,19 +808,18 @@
 /area/shuttle/canterbury/general)
 "bC" = (
 /obj/effect/landmark/start/latejoin/crash,
+/turf/open/floor/mainship/mono,
+/area/space)
+"bD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"bD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury/general)
+/area/space)
 "bE" = (
 /obj/machinery/marine_selector/gear/medic,
 /obj/structure/window/reinforced{
@@ -899,25 +905,24 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "bM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/mono,
+/area/space)
+"bN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"bN" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
 	},
-/area/shuttle/canterbury/general)
+/area/space)
 "bO" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -992,8 +997,14 @@
 /area/shuttle/canterbury/general)
 "bX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury/general)
+/area/space)
 "bY" = (
 /obj/machinery/marine_selector/gear/spec,
 /obj/structure/window/reinforced,
@@ -1039,7 +1050,6 @@
 	},
 /area/shuttle/canterbury/general)
 "cc" = (
-/obj/effect/landmark/start/marine/crash/synthetic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -1152,12 +1162,18 @@
 /area/shuttle/canterbury/general)
 "co" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
 	},
-/area/shuttle/canterbury/general)
+/area/space)
 "cp" = (
 /obj/machinery/door/window/westright,
 /obj/structure/window/reinforced,
@@ -1233,11 +1249,6 @@
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/item/storage/belt/utility/full,
 /obj/item/flashlight,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/open/floor/mainship{
@@ -1262,25 +1273,25 @@
 	},
 /area/shuttle/canterbury/general)
 "cz" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/mainship,
+/area/space)
+"cA" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /turf/open/floor/mainship,
-/area/shuttle/canterbury/general)
-"cA" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	icon_state = "manifold-1";
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/shuttle/canterbury/general)
+/area/space)
 "cB" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1294,7 +1305,16 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/largecrate/supply/supplies/water,
+/obj/structure/closet/crate/weapon,
+/obj/item/attachable/burstfire_assembly,
+/obj/item/attachable/bipod,
+/obj/item/attachable/extended_barrel,
+/obj/item/attachable/gyro,
+/obj/item/attachable/stock/tactical,
+/obj/item/attachable/reddot,
+/obj/item/attachable/quickfire,
+/obj/item/attachable/lasersight,
+/obj/item/attachable/compensator,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1410,32 +1430,37 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "cL" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/mainship{
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/space)
+"cM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
 	},
-/area/shuttle/canterbury/general)
-"cM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
-	},
-/area/shuttle/canterbury/general)
+/area/space)
 "cN" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -1789,6 +1814,12 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
+"HQ" = (
+/obj/effect/landmark/start/marine/crash/synthetic,
+/turf/open/floor/mainship{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
 "VH" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "port_umbilical_outer";
@@ -1894,7 +1925,7 @@ aO
 aE
 as
 as
-bb
+bw
 bk
 bw
 as
@@ -1925,7 +1956,7 @@ dl
 bx
 bG
 bT
-bT
+HQ
 cj
 cu
 cG
