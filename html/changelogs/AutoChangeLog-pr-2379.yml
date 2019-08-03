@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "You can now drag a body over the sleeper, autodoc, cryo, and bodyscanner to enter."
