@@ -635,9 +635,9 @@
 		if(usr == occupant)
 			if(surgery)
 				to_chat(usr, "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>")
+				return
 			else
 				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
-			return
 		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
@@ -654,38 +654,34 @@
 				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
 		go_out()
 
-/obj/machinery/autodoc/verb/move_inside()
-	set name = "Enter Med-Pod"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.incapacitated() || !ishuman(usr))
+/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/M, mob/user)
+	if(M.incapacitated() || !ishuman(M))
 		return
 
 	if(occupant)
-		to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
+		to_chat(M, "<span class='notice'>\ [src] is already occupied!</span>")
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(usr, "<span class='notice'>\ [src] is non-functional!</span>")
+		to_chat(M, "<span class='notice'>\ [src] is non-functional!</span>")
 		return
 
-	if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to get into \the [src].</span>",
+	if(M.mind?.cm_skills && M.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
-		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
+	M.visible_message("<span class='notice'>[M] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
-	if(do_after(usr, 10, FALSE, src, BUSY_ICON_GENERIC))
+	if(do_after(M, 10, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
-			to_chat(usr, "<span class='notice'>\ [src] is already occupied!</span>")
+			to_chat(M, "<span class='notice'>\ [src] is already occupied!</span>")
 			return
-		usr.stop_pulling()
-		usr.forceMove(src)
-		occupant = usr
+		M.stop_pulling()
+		M.forceMove(src)
+		occupant = M
 		icon_state = "autodoc_closed"
 		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
@@ -695,6 +691,18 @@
 		connected.start_processing()
 		for(var/obj/O in src)
 			qdel(O)
+
+/obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
+	move_inside_wrapper(M, user)
+
+/obj/machinery/autodoc/verb/move_inside()
+	set name = "Enter Med-Pod"
+	set category = "Object"
+	set src in oview(1)
+
+	move_inside_wrapper(usr, usr)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
 	for(var/i in contents)
