@@ -1041,7 +1041,7 @@
 
 	usr.set_interaction(src)
 
-	if(connected.occupant && ishuman(connected.occupant))
+	if(ishuman(connected.occupant))
 		// manual surgery handling
 		var/datum/data/record/N = null
 		for(var/i in GLOB.datacore.medical)
