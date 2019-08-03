@@ -20,17 +20,26 @@
 "ae" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/communications,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "af" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera_advanced/overwatch/alpha,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "ag" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/station_alert,
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "ah" = (
 /obj/structure/table/mainship,
@@ -704,16 +713,16 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/cable{
-	d1 = 2;
+	d1 = 4;
 	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
@@ -723,6 +732,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
@@ -817,17 +831,16 @@
 /area/shuttle/canterbury/general)
 "bC" = (
 /obj/effect/landmark/start/latejoin,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "bD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "bE" = (
@@ -914,20 +927,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"bM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+"bN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"bN" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_regular_floor = "cargo_arrow";
@@ -1004,10 +1013,6 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"bX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "bY" = (
 /obj/machinery/marine_selector/gear/spec,
@@ -1156,6 +1161,12 @@
 /area/shuttle/canterbury/general)
 "co" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_regular_floor = "cargo_arrow";
@@ -1268,12 +1279,6 @@
 	},
 /area/shuttle/canterbury/general)
 "cz" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
@@ -1285,6 +1290,12 @@
 	icon_state = "manifold-1";
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "cB" = (
@@ -1292,15 +1303,6 @@
 	dir = 1
 	},
 /obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/shuttle/canterbury/general)
-"cC" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1403,15 +1405,17 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "cL" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
@@ -1421,8 +1425,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
@@ -1791,6 +1798,14 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
+"nF" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
 "Wo" = (
 /turf/closed/wall/mainship,
 /area/shuttle/canterbury/medical)
@@ -2079,10 +2094,10 @@ aX
 be
 bq
 bC
-bM
+cd
 bC
-bM
-bM
+cd
+cd
 cz
 cL
 cW
@@ -2107,8 +2122,8 @@ bf
 br
 bD
 bN
-bX
-bX
+bH
+bH
 co
 cA
 cM
@@ -2137,7 +2152,7 @@ bO
 bY
 cf
 cp
-cB
+nF
 cN
 cX
 as
@@ -2164,7 +2179,7 @@ bP
 bZ
 cg
 cq
-cC
+cB
 dd
 cY
 as
