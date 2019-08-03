@@ -129,7 +129,7 @@
 	},
 /area/shuttle/canterbury/cic)
 "ao" = (
-/obj/structure/prop/mainship/mapping_computer,
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ap" = (
@@ -173,9 +173,6 @@
 "as" = (
 /turf/closed/wall/mainship/outer,
 /area/shuttle/canterbury/general)
-"at" = (
-/turf/closed/wall/mainship,
-/area/shuttle/canterbury/cic)
 "au" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 1;
@@ -192,9 +189,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
-"av" = (
-/turf/closed/wall/mainship,
-/area/shuttle/canterbury/general)
 "aw" = (
 /obj/machinery/marine_turret/premade/canterbury,
 /obj/machinery/light/small{
@@ -1685,13 +1679,13 @@
 /obj/machinery/door_control{
 	id = "aft_engine_podlock"
 	},
-/turf/closed/wall/mainship,
+/turf/closed/wall/mainship/outer,
 /area/shuttle/canterbury/medical)
 "do" = (
 /obj/machinery/door_control{
 	id = "port_engine_podlock"
 	},
-/turf/closed/wall/mainship,
+/turf/closed/wall/mainship/outer,
 /area/shuttle/canterbury/medical)
 "dp" = (
 /obj/machinery/door/poddoor/mainship{
@@ -1821,7 +1815,7 @@ aa
 aa
 aa
 aa
-av
+as
 as
 as
 as
@@ -1843,15 +1837,15 @@ aa
 aa
 aa
 as
-av
+as
 aG
 VH
 as
-av
+as
 aZ
 bi
 bu
-av
+as
 bQ
 ca
 ci
@@ -1873,11 +1867,11 @@ aw
 aF
 aN
 aV
-av
+as
 ba
 bj
 bv
-av
+as
 bR
 cb
 ci
@@ -1895,22 +1889,22 @@ aa
 aa
 aa
 as
-av
+as
 aO
 aE
-av
-av
+as
+as
 bb
 bk
 bw
-av
+as
 cx
 bT
 ci
 ct
 cF
 ct
-Wo
+ch
 de
 dC
 aa
@@ -1946,7 +1940,7 @@ ac
 ad
 ai
 an
-at
+ab
 ay
 aI
 aQ
@@ -1962,7 +1956,7 @@ ck
 cv
 cH
 cS
-Wo
+ch
 bc
 as
 as
@@ -1972,7 +1966,7 @@ ac
 ae
 aj
 ao
-at
+ab
 az
 aI
 aR
@@ -1988,7 +1982,7 @@ cl
 cw
 cO
 cT
-Wo
+ch
 dh
 dk
 dE
@@ -2024,7 +2018,7 @@ ac
 ag
 al
 aq
-at
+ab
 aB
 aK
 aQ
@@ -2040,7 +2034,7 @@ ce
 cI
 cJ
 cU
-av
+as
 dj
 df
 dE
@@ -2050,7 +2044,7 @@ ac
 ah
 am
 ar
-at
+ab
 aC
 aI
 aR
@@ -2092,7 +2086,7 @@ bM
 cz
 cL
 cW
-av
+as
 cZ
 dD
 aa
@@ -2103,11 +2097,11 @@ aa
 aa
 aa
 as
-av
+as
 ds
 aY
-av
-av
+as
+as
 bf
 br
 bD
@@ -2118,7 +2112,7 @@ co
 cA
 cM
 cW
-av
+as
 de
 dD
 aa
@@ -2185,7 +2179,7 @@ aa
 aa
 aa
 aa
-av
+as
 as
 as
 as
