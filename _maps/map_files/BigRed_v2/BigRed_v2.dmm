@@ -1857,6 +1857,7 @@
 	},
 /obj/structure/foamedmetal,
 /obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
 	id = "chem_lock";
 	name = "\improper Chemistry Lockdown"
 	},
@@ -5237,6 +5238,7 @@
 "apI" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
 	},
@@ -6631,6 +6633,7 @@
 "atP" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
+	dir = 2;
 	id = "sci_br";
 	name = "\improper Lambda Observation Shutters"
 	},
@@ -16099,14 +16102,6 @@
 "aXr" = (
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"aXs" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Office Complex 1";
-	name = "\improper Office Complex Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/office_complex)
 "aXu" = (
 /obj/machinery/computer/med_data,
 /turf/open/floor/tile/white,
@@ -16646,6 +16641,7 @@
 "aZg" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
 	},
@@ -20588,14 +20584,6 @@
 /obj/structure/table,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"bnP" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Engineering";
-	name = "\improper Engineering Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "bnQ" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/machinery/light{
@@ -25974,6 +25962,15 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/w)
+"pyW" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Dormitories";
+	name = "\improper Dormitories Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/dorms)
 "pzV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -36775,7 +36772,7 @@ aXK
 bmd
 bmd
 bme
-bnP
+asT
 bmi
 boE
 qFg
@@ -48008,7 +48005,7 @@ asJ
 aDQ
 aua
 aws
-asK
+pyW
 aHD
 aIm
 aBR
@@ -48225,7 +48222,7 @@ asJ
 asJ
 aua
 aws
-asK
+pyW
 aHD
 aIn
 aIm
@@ -54319,7 +54316,7 @@ aQu
 aQu
 aQu
 aQu
-aXs
+arw
 aXU
 aYt
 arZ
@@ -55191,7 +55188,7 @@ aQu
 aTr
 aTq
 aTq
-aXs
+arw
 baj
 baP
 bbC
@@ -56059,7 +56056,7 @@ aSh
 aTr
 aTq
 aTq
-aXs
+arw
 baj
 baQ
 bbC
