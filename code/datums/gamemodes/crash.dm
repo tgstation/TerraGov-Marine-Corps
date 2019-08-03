@@ -240,7 +240,7 @@
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(num_humans && !planet_nuked && !marines_evac)
+	if(num_humans && !planet_nuked && marines_evac == CRASH_EVAC_NONE)
 		if(!num_xenos)
 			if(respawn_xenos(num_humans))
 				return FALSE //Xenos keep respawning for like an hour or so.
