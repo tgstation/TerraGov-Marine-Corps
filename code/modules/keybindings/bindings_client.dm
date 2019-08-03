@@ -12,7 +12,8 @@
 	// Check if chat should have focus but doesn't, give it focus and pre-enter the key.
 	if(prefs.focus_chat && !winget(src, null, "input.focus"))
 		winset(src, null, "input.focus=true")
-		winset(src, null, "input=[list2params(list(text = _key))]")
+		if(length(_key) == 1) //Keys longer than 1 aren't printable
+			winset(src, "input", "text=[url_encode(_key)]")
 		return
 
 	// Client-level keybindings are ones anyone should be able to do at any time
