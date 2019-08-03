@@ -52572,7 +52572,7 @@
 /obj/structure/toilet{
 	dir = 1
 	},
-/obj/docking_port/mobile/crashmode,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/toilet/canteen)
 "exP" = (
@@ -53210,7 +53210,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
 "tlK" = (
-/obj/docking_port/mobile/crashmode,
+/obj/docking_port/stationary/crashmode,
 /turf/closed/wall/prison,
 /area/prison/cellblock/vip)
 "tme" = (
@@ -53397,7 +53397,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/obj/docking_port/mobile/crashmode,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "ydX" = (
