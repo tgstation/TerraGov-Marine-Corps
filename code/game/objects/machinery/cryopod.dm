@@ -458,7 +458,7 @@
 	if(helper && user != helper)
 		var/sec_left = timeleft(user.afk_timer_id)
 		if(!user.client && sec_left)
-			to_chat(helper, "<span class='notice'>You should wait another [round((sec_left * 0.1) / 60, 2)] minutes before they are ready to cryosleep</span>")
+			to_chat(helper, "<span class='notice'>You should wait another [round((sec_left * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
 			return
 
 		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
