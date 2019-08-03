@@ -510,21 +510,21 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/message_admins(msg)
-	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message'>[msg]</span></span>"
+	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, msg)
 
 
 /proc/message_staff(msg)
-	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
+	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
 			to_chat(C, msg)
 
 
 /proc/msg_admin_attack(msg)
-	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message'>[msg]</span></span>"
+	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
@@ -533,7 +533,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/msg_admin_ff(msg)
-	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green'>[msg]</span></span>"
+	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
