@@ -384,8 +384,8 @@
 
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
 	INVOKE_ASYNC(src, .proc/play_cinematic)
-	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), 7 SECONDS)
-
+	addtimer(VARSET_CALLBACK(src, planet_nuked, TRUE), 12 SECONDS)
+	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), 12 SECONDS)
 
 /datum/game_mode/crash/proc/play_cinematic()
 	GLOB.enter_allowed = FALSE
@@ -402,7 +402,6 @@
 
 
 /datum/game_mode/crash/proc/do_nuke_z_level(z_level)
-	planet_nuked = TRUE
 	if(!z_level)
 		return
 	for(var/i in GLOB.alive_living_list)
@@ -411,3 +410,4 @@
 		if(QDELETED(victim_turf) || victim_turf.z != z_level)
 			continue
 		victim.adjustFireLoss(victim.maxHealth*2)
+		CHECK_TICK
