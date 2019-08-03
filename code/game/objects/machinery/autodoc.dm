@@ -1044,9 +1044,11 @@
 	if(connected.occupant && ishuman(connected.occupant))
 		// manual surgery handling
 		var/datum/data/record/N = null
-		for(var/datum/data/record/R in GLOB.datacore.medical)
-			if (R.fields["name"] == connected.occupant.real_name)
+		for(var/i in GLOB.datacore.medical)
+			var/datum/data/record/R = i
+			if(R.fields["name"] == connected.occupant.real_name)
 				N = R
+		
 		if(isnull(N))
 			N = create_medical_record(connected.occupant)
 
@@ -1073,98 +1075,100 @@
 			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.internal_organs_by_name["eyes"])
 
 		if(href_list["organdamage"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					for(var/datum/internal_organ/I in L.internal_organs)
-						if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
-							// we can't deal with these
-							continue
-						if(I.damage > 0)
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_DAMAGE,0,I)
-							needed++
+			for(var/i in connected.occupant.limbs)
+				var/datum/limb/L = i
+				for(var/x in L.internal_organs)
+					var/datum/internal_organ/I = x
+					if(I.robotic == ORGAN_ASSISTED || I.robotic == ORGAN_ROBOT)
+						continue
+					if(I.damage > 0)
+						N.fields["autodoc_manual"] += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_DAMAGE,0,I)
+						needed++
 			if(!needed)
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_DAMAGE,1)
 
 		if(href_list["internal"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					for(var/datum/wound/W in L.wounds)
-						if(W.internal)
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
-							needed++
-							break
+			for(var/i in connected.occupant.limbs)
+				var/datum/limb/L = i
+				for(var/x in L.wounds)
+					var/datum/wound/W = x
+					if(!W.internal)
+						continue
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
+					needed++
+					break
 			if(!needed)
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_INTERNAL,1)
 
 		if(href_list["broken"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.limb_status & LIMB_BROKEN)
-						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_BROKEN)
-						needed++
+			for(var/i in connected.occupant.limbs)
+				var/datum/limb/L = i
+				if(L.limb_status & LIMB_BROKEN)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_BROKEN)
+					needed++
 			if(!needed)
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_BROKEN,1)
 
 		if(href_list["missing"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.limb_status & LIMB_DESTROYED)
-						if(!(L.parent.limb_status & LIMB_DESTROYED) && L.body_part != HEAD)
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_MISSING)
-							needed++
+			for(var/i in connected.occupant.limbs)
+				var/datum/limb/L = i
+				if(L.limb_status & LIMB_DESTROYED && !(L.parent.limb_status & LIMB_DESTROYED) && L.body_part != HEAD)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_MISSING)
+					needed++
 			if(!needed)
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_MISSING,1)
 
 		if(href_list["necro"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.limb_status & LIMB_NECROTIZED)
-						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
-						needed++
+			for(var/i in connected.occupant.limbs)
+				var/datum/limb/L = i
+				if(L.limb_status & LIMB_NECROTIZED)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
+					needed++
 			if(!needed)
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_NECRO,1)
 
 
 		if(href_list["shrapnel"])
 			var/known_implants = list(/obj/item/implant/neurostim)
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					var/skip_embryo_check = FALSE
-					var/obj/item/alien_embryo/A = locate() in connected.occupant
-					if(L.implants.len)
-						for(var/I in L.implants)
-							if(!is_type_in_list(I,known_implants))
-								N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
-								needed++
-								if(L.body_part == CHEST)
-									skip_embryo_check = TRUE
-					if(A && L.body_part == CHEST && !skip_embryo_check) //If we're not already doing a shrapnel removal surgery of the chest proceed.
-						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
-						needed++
+			for(var/i in connected.occupant.limbs)
+				var/datum/limb/L = i
+				var/skip_embryo_check = FALSE
+				var/obj/item/alien_embryo/A = locate() in connected.occupant
+				for(var/I in L.implants)
+					if(is_type_in_list(I, known_implants))
+						continue
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
+					needed++
+					if(L.body_part == CHEST)
+						skip_embryo_check = TRUE
+				if(A && L.body_part == CHEST && !skip_embryo_check) //If we're not already doing a shrapnel removal surgery of the chest proceed.
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
+					needed++
 
 			if(!needed)
-				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_SHRAPNEL,1)
+				N.fields["autodoc_manual"] += create_autodoc_surgery(null, LIMB_SURGERY,ADSURGERY_SHRAPNEL, 1)
 
 		if(href_list["limbgerm"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_GERM)
+			N.fields["autodoc_manual"] += create_autodoc_surgery(null, LIMB_SURGERY,ADSURGERY_GERM)
 
 		if(href_list["facial"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(istype(L,/datum/limb/head))
-						var/datum/limb/head/J = L
-						if(J.disfigured || J.face_surgery_stage)
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_FACIAL)
-						else
-							N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_FACIAL,1)
-						break
+			for(var/i in connected.occupant.limbs)
+				var/datum/limb/L = i
+				if(!istype(L, /datum/limb/head))
+					continue
+				var/datum/limb/head/J = L
+				if(J.disfigured || J.face_surgery_stage)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_FACIAL)
+				else
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_FACIAL, 1)
+				break
 
 		if(href_list["open"])
-			for(var/datum/limb/L in connected.occupant.limbs)
-				if(L)
-					if(L.surgery_open_stage)
-						N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
-						needed++
+			for(var/i in connected.occupant.limbs)
+				var/datum/limb/L = i
+				if(L.surgery_open_stage)
+					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
+					needed++
 			if(href_list["open"])
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_OPEN,1)
 
@@ -1189,10 +1193,6 @@
 
 	if(href_list["automatictoggle"])
 		connected.automaticmode = !connected.automaticmode
-
-	if(href_list["refresh"])
-		updateUsrDialog()
-		return
 
 	if(href_list["surgery"])
 		if(connected.occupant)
