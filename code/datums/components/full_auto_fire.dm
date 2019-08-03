@@ -1,3 +1,6 @@
+#define AUTOFIRE_MOUSEUP 0
+#define AUTOFIRE_MOUSEDOWN 1
+
 /datum/component/automatic_fire
 	var/client/clicker
 	var/mob/living/shooter
@@ -11,6 +14,7 @@
 	var/burstfire_shot_delay = 0.2 SECONDS
 	var/shots_to_fire = 0
 	var/component_fire_mode
+	var/mouse_status = AUTOFIRE_MOUSEUP //This seems hacky but there can be two MouseDown() without a MouseUp() in between if the user holds click and uses alt+tab, printscreen or similar.
 
 
 /datum/component/automatic_fire/Initialize(autofire_shot_delay, burstfire_shot_delay, shots_to_fire, firemode, parent_loc)
@@ -106,6 +110,7 @@
 	autofire_stat = AUTOFIRE_STAT_IDLE
 	if(!QDELETED(clicker))
 		UnregisterSignal(clicker, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG))
+	mouse_status = AUTOFIRE_MOUSEUP //In regards to the component there's no click anymore to care about.
 	clicker = null
 	if(!QDELETED(shooter))
 		UnregisterSignal(shooter, COMSIG_MOB_LOGOUT)
@@ -166,7 +171,9 @@
 			INVOKE_NEXT_TICK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer)
 		auto_delay_timer = null
 	clicker.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
-	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/on_mouse_up)
+	if(mouse_status == AUTOFIRE_MOUSEUP) //This is not guaranteed. See the var definition for the motive.
+		RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/on_mouse_up)
+		mouse_status = AUTOFIRE_MOUSEDOWN
 	RegisterSignal(shooter, COMSIG_CARBON_SWAPPED_HANDS, .proc/stop_autofiring)
 	if(isgun(parent))
 		var/obj/item/weapon/gun/shoota = parent
@@ -192,9 +199,10 @@
 
 
 /datum/component/automatic_fire/proc/on_mouse_up(datum/source, atom/object, turf/location, control, params)
-	if(clicker)
-		UnregisterSignal(clicker, COMSIG_CLIENT_MOUSEUP)
-	stop_autofiring()
+	UnregisterSignal(clicker, COMSIG_CLIENT_MOUSEUP)
+	mouse_status = AUTOFIRE_MOUSEUP
+	if(autofire_stat == AUTOFIRE_STAT_FIRING)
+		stop_autofiring()
 	return COMPONENT_CLIENT_MOUSEUP_INTERCEPT
 
 
@@ -349,3 +357,6 @@
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
 	if(!do_after(shooter, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
 		return FALSE
+
+#undef AUTOFIRE_MOUSEUP
+#undef AUTOFIRE_MOUSEDOWN
