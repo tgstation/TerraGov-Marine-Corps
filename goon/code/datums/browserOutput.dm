@@ -184,8 +184,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!client.chatOutput)
 		return
 	var/new_input = input(usr, "Enter custom CSS", "Client CSS", client.chatOutput.clientCSS) as message|null
-	if(!new_input)
+	if(!new_input || length(new_input) > UPLOAD_LIMIT)
 		return
+	to_chat(src, "<span class='notice'>Updating custom CSS.</span>")
 	client.chatOutput.clientCSS = new_input
 	client.chatOutput.saveClientCSS()
 	client.chatOutput.syncClientCSS()
@@ -198,8 +199,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 // Save the CSS locally on the client
 /datum/chatOutput/proc/saveClientCSS()
-	var/key = owner.key
-	var/savefile/F = new("data/player_saves/[copytext(key, 1, 2)]/[key]/client-css.sav")
+	var/savefile/F = new()
 	WRITE_FILE(F["CSS"], clientCSS)
 	owner.Export(F)
 	qdel(F)
@@ -212,6 +212,11 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		return 
 	var/savefile/F = new(last_savefile)
 	READ_FILE(F["CSS"], clientCSS)
+	
+	if(length(clientCSS) > UPLOAD_LIMIT)
+		clientCSS = ""
+	clientCSS = sanitize_text(clientCSS, "")
+
 	syncClientCSS(clientCSS)
 
 
