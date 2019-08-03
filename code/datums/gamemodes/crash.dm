@@ -408,6 +408,6 @@
 	for(var/i in GLOB.alive_living_list)
 		var/mob/living/victim = i
 		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
-		if(victim_turf.z != z_level)
+		if(QDELETED(victim_turf) || victim_turf.z != z_level)
 			continue
 		victim.adjustFireLoss(victim.maxHealth*2)
