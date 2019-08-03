@@ -467,18 +467,24 @@
 	return attack_hand(user)
 
 
-/turf/closed/wall/resin/attackby(obj/item/I, mob/user, params)
+/turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
 	if(I.flags_item & NOBLUDGEON || !isliving(user))
 		return attack_hand(user)
 
-	var/mob/living/L = user
-
 	user.changeNext_move(I.attack_speed)
-	L.do_attack_animation(src)
+	user.do_attack_animation(src)
+	
 	var/damage = I.force
 	var/multiplier = 1
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
+
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
+			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
+
 	damage *= max(0, multiplier)
 	take_damage(damage)
 	playsound(src, "alien_resin_break", 25)
