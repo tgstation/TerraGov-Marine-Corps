@@ -32,8 +32,3 @@
 		var/key = macro_set[k]
 		var/command = macro_set[key]
 		winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[command]")
-
-	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
-	else
-		winset(src, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
