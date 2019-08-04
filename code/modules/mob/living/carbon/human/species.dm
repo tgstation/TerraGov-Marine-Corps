@@ -582,6 +582,19 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 
+
+/datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.add_hud_to(H)
+
+
+/datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.remove_hud_from(H)
+	return ..()
+
+
 /datum/species/early_synthetic
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
@@ -619,6 +632,19 @@
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
+
+
+/datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.add_hud_to(H)
+
+
+/datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.remove_hud_from(H)
+	return ..()
+
 
 /mob/living/carbon/human/proc/reset_jitteriness()
 	jitteriness = 0
