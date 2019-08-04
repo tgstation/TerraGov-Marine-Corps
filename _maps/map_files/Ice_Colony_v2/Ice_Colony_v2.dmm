@@ -7930,7 +7930,7 @@
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auV" = (
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/red/whitered{
@@ -10675,7 +10675,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
@@ -11014,7 +11014,7 @@
 	},
 /obj/structure/window/reinforced/tinted,
 /obj/structure/table/reinforced,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command/control/office)
@@ -11801,7 +11801,7 @@
 /obj/machinery/door/window/eastright{
 	name = "Security Desk"
 	},
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/stamp,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -13393,7 +13393,7 @@
 /area/ice_colony/surface/command/crisis)
 "aIR" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
@@ -13440,7 +13440,7 @@
 /area/ice_colony/surface/command/control/pv1)
 "aIY" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/stamp,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv1)
@@ -13504,7 +13504,7 @@
 /area/ice_colony/exterior/surface/clearing/pass)
 "aJh" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/stamp,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/control/pv2)
@@ -13588,7 +13588,7 @@
 /area/ice_colony/surface/command/crisis)
 "aJv" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -15184,7 +15184,7 @@
 /obj/machinery/door/window/eastright{
 	name = "Security Desk"
 	},
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/stamp,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -21915,7 +21915,7 @@
 /area/ice_colony/surface/excavation)
 "bfN" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -22408,7 +22408,7 @@
 "bhi" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/stamp,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/alarm{
 	dir = 8
 	},
@@ -25584,7 +25584,7 @@
 /obj/machinery/door/window/brigdoor/westleft{
 	id = "brg"
 	},
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/noticeboard{
 	pixel_y = 32
@@ -26598,7 +26598,7 @@
 /area/ice_colony/underground/reception/checkpoint_north)
 "bsR" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/door/window/brigdoor/westleft{
 	dir = 2;
 	icon_state = "leftsecure";
@@ -27596,7 +27596,7 @@
 "bvv" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/northright,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
@@ -28086,7 +28086,7 @@
 "bwF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westleft,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/red/whitered{
 	dir = 8
@@ -29250,7 +29250,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bzv" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
@@ -29941,7 +29941,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
@@ -30426,7 +30426,7 @@
 	},
 /obj/structure/window/reinforced/tinted,
 /obj/structure/table/reinforced,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
@@ -30811,7 +30811,7 @@
 /area/ice_colony/underground/command/center)
 "bDq" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /turf/open/floor/tile/dark/blue2{
 	dir = 2
 	},
@@ -31624,7 +31624,7 @@
 /area/ice_colony/underground/command/pv1)
 "bFC" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/stamp,
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
@@ -31649,7 +31649,7 @@
 /area/ice_colony/underground/command/pv2)
 "bFG" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/stamp,
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv2)
@@ -31880,7 +31880,7 @@
 /obj/machinery/door/window/brigdoor/westleft{
 	id = "brg"
 	},
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/noticeboard{
 	pixel_y = 32
@@ -32538,7 +32538,7 @@
 /obj/item/tool/pen/blue{
 	pixel_x = -6
 	},
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/door/window/brigdoor/westright{
 	name = "Security Desk"
 	},
@@ -34648,7 +34648,7 @@
 	},
 /area/ice_colony/underground/security)
 "bMW" = (
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/red2{
@@ -34919,7 +34919,7 @@
 	},
 /area/ice_colony/underground/security/brig)
 "bNH" = (
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark/yellow2{

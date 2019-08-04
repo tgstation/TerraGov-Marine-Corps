@@ -2411,7 +2411,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -4061,7 +4061,7 @@
 /area/sulaco/cryosleep)
 "aiN" = (
 /obj/structure/table,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -4634,7 +4634,7 @@
 "ajO" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor{
 	icon_state = "white"
@@ -4769,7 +4769,7 @@
 /area/sulaco/cargo/office)
 "akd" = (
 /obj/structure/table,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -4926,7 +4926,7 @@
 /area/sulaco/bridge/office)
 "aku" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -5142,7 +5142,7 @@
 /area/sulaco/medbay)
 "akM" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/clothing/glasses/hud/health,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5157,7 +5157,7 @@
 /obj/structure/table,
 /obj/item/clipboard,
 /obj/item/tool/pen,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -8209,7 +8209,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -9721,7 +9721,7 @@
 "atJ" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -9749,7 +9749,7 @@
 "atM" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -11611,7 +11611,7 @@
 "awS" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -14154,7 +14154,7 @@
 /area/sulaco/cap_office)
 "aAZ" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -15884,7 +15884,7 @@
 	req_access_txt = "3"
 	},
 /obj/machinery/door/window/westleft,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/door_control{
 	id = "Secure Gate";
 	name = "Security Lockdown";
@@ -16414,7 +16414,7 @@
 /area/sulaco/marine/delta)
 "aFB" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -16904,7 +16904,7 @@
 /obj/item/storage/box/evidence,
 /obj/item/folder/red,
 /obj/item/folder/red,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor{
 	icon_state = "floor4"
@@ -18420,7 +18420,7 @@
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
 /obj/item/folder/red,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /turf/open/floor{
 	icon_state = "floor4"
 	},
@@ -18748,7 +18748,7 @@
 "aKs" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/pen,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/clothing/glasses/sunglasses,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -19769,7 +19769,7 @@
 "aMA" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/camera/autoname,
 /obj/item/book/manual/marine_law,
 /turf/open/floor{
@@ -23311,7 +23311,7 @@
 "aUB" = (
 /obj/structure/table,
 /obj/structure/window/reinforced,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/autopsy_scanner,
 /turf/open/floor{
@@ -27001,7 +27001,7 @@
 	},
 /area/sulaco/command/ai)
 "bcN" = (
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
