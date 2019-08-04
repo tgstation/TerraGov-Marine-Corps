@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "A new verb has been added to preferences that allows you to set your own custom css for goonchat."
