@@ -40,17 +40,18 @@
 	if(!client)
 		return
 
-	if(!client.holder && !GLOB.dsay_allowed)
-		to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
-		return
-
-	if(client.prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, "<span class='warning'>You cannot emote in deadchat (muted).</span>")
-		return
-
-	if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
-		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
-		return
+	if(!check_rights(R_ADMIN, FALSE))
+		if(!GLOB.dsay_allowed)
+			to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
+			return
+		if(client.prefs.muted & MUTE_DEADCHAT)
+			to_chat(src, "<span class='warning'>You cannot emote in deadchat (muted).</span>")
+			return
+		if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
+			to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
+			return
+		if(client.handle_spam_prevention(message, MUTE_IC))
+			return
 
 	log_talk(message, LOG_SAY, "ghost")
 

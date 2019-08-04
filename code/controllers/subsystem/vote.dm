@@ -297,7 +297,7 @@ SUBSYSTEM_DEF(vote)
 			usr << browse(null, "window=vote")
 			return
 		if("cancel")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE))
+			if(check_other_rights(usr.client, R_ADMIN, FALSE) && alert(usr, "Are you sure you want to cancel the vote?", "Cancel Vote", "Yes", "No") == "Yes")
 				reset()
 				to_chat(world, "<b><font color='purple'>The vote has been cancelled.</font></b>")
 		if("toggle_restart")

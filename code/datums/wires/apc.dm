@@ -45,14 +45,15 @@
 
 /datum/wires/apc/on_cut(index, mend)	
 	var/obj/machinery/power/apc/A = holder
+	var/charge_percent = CLAMP(round(A.cell.percent()), 0, 100)
 	switch(index)
 		if(WIRE_POWER1, WIRE_POWER2) // Short out.
 			if(mend && !is_cut(WIRE_POWER1) && !is_cut(WIRE_POWER2))
 				A.shorted = FALSE
-				A.shock(usr, 50)
+				A.shock(usr, charge_percent)
 			else
 				A.shorted = TRUE
-				A.shock(usr, 50)
+				A.shock(usr, charge_percent)
 		if(WIRE_AI) // Disable AI control.
 			if(mend)
 				A.aidisabled = FALSE

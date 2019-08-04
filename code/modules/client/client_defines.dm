@@ -8,7 +8,9 @@
 	var/datum/admins/holder = null
 	var/ban_cache = null //Used to cache this client's bans to save on DB queries
 	var/last_message = "" //Contains the last message sent by this client - used to protect against copy-paste spamming.
-	var/last_message_count = 0 //contins a number of how many times a message identical to last_message was sent.
+	var/last_message_time = 0 //The world.time when last message was sent.
+	var/total_message_count = 0 //The total amount of messages sent per a time period.
+	var/total_message_weight = 0 //The total weight of the messages sent per a time period.
 	var/ircreplyamount = 0
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 	var/ai_interact = FALSE

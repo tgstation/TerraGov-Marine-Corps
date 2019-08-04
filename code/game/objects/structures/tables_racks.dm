@@ -588,7 +588,7 @@
 	else if((I.flags_item & ITEM_ABSTRACT))
 		return
 
-	else
+	else if(!QDELETED(src)) //The parent call may have destroyed us
 		user.transferItemToLoc(I, loc)
 
 

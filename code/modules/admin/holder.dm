@@ -340,7 +340,8 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/map_template_load,
 	/datum/admins/proc/map_template_upload,
 	/datum/admins/proc/reestablish_db_connection,
-	/datum/admins/proc/view_runtimes
+	/datum/admins/proc/view_runtimes,
+	/datum/admins/proc/spatial_agent
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -542,6 +543,10 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 /proc/afk_message(mob/living/carbon/human/H)
 	if(QDELETED(H))
+		return
+	if(H.stat == DEAD)
+		return
+	if(isclientedaghost(H))
 		return
 	log_admin("[key_name(H)] (Job: [H.job]) has been away for 15 minutes.")
 	message_admins("[ADMIN_TPMONTY(H)] (Job: [H.job]) has been away for 15 minutes.")

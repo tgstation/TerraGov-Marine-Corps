@@ -81,7 +81,7 @@
 	if(terminal)
 		terminal.connect_to_network()
 
-/obj/machinery/power/apc/updateDialog()
+/obj/machinery/power/apc/updateUsrDialog()
 	if(machine_stat & (BROKEN|MAINT))
 		return
 	..()
@@ -842,7 +842,7 @@
 		return FALSE
 
 	if(usingUI)
-		updateDialog()
+		updateUsrDialog()
 
 	return TRUE
 

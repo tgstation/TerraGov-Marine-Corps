@@ -342,7 +342,7 @@
 				INVOKE_ASYNC(src, .proc/flush)
 		flush_count = 0
 
-	updateDialog()
+	updateUsrDialog()
 
 	if(flush && disposal_pressure >= SEND_PRESSURE) //Flush can happen even without power
 		flush()
