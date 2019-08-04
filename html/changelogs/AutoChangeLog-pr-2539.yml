@@ -1,5 +1,0 @@
-author: "Francinum"
-delete-after: True
-changes: 
-  - bugfix: "Focus Chat now relays text to the input."
-  - rscadd: "Focus Chat now allows unprintable keys to be used as hotkeys."
