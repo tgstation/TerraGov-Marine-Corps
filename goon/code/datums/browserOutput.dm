@@ -92,6 +92,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(loaded)
 		return
 
+	if(!owner)
+		return FALSE
+
 	loaded = TRUE
 	showChat()
 
