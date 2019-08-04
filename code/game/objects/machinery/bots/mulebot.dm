@@ -100,7 +100,7 @@
 			return
 
 		cell = C
-		updateDialog()
+		updateUsrDialog()
 
 	else if(iswrench(I))
 		if(obj_integrity >= max_integrity)
@@ -234,7 +234,7 @@
 			if("lock", "unlock")
 				if(src.allowed(usr))
 					locked = !locked
-					updateDialog()
+					updateUsrDialog()
 				else
 					to_chat(usr, "<span class='warning'>Access denied.</span>")
 					return
@@ -248,7 +248,7 @@
 				else
 					return
 				visible_message("[usr] switches [on ? "on" : "off"] [src].")
-				updateDialog()
+				updateUsrDialog()
 
 
 			if("cellremove")
@@ -258,7 +258,7 @@
 					cell = null
 
 					usr.visible_message("<span class='notice'> [usr] removes the power cell from [src].</span>", "<span class='notice'> You remove the power cell from [src].</span>")
-					updateDialog()
+					updateUsrDialog()
 
 			if("cellinsert")
 				if(open && !cell)
@@ -269,23 +269,23 @@
 							C.forceMove(src)
 
 							usr.visible_message("<span class='notice'> [usr] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
-							updateDialog()
+							updateUsrDialog()
 
 
 			if("stop")
 				if(mode >=2)
 					mode = 0
-					updateDialog()
+					updateUsrDialog()
 
 			if("go")
 				if(mode == 0)
 					start()
-					updateDialog()
+					updateUsrDialog()
 
 			if("home")
 				if(mode == 0 || mode == 2)
 					start_home()
-					updateDialog()
+					updateUsrDialog()
 
 			if("destination")
 				refresh=0
@@ -302,7 +302,7 @@
 				if(new_id)
 					suffix = new_id
 					name = "Mulebot ([suffix])"
-					updateDialog()
+					updateUsrDialog()
 
 			if("sethome")
 				refresh=0
@@ -310,7 +310,7 @@
 				refresh=1
 				if(new_home)
 					home_destination = new_home
-					updateDialog()
+					updateUsrDialog()
 
 			if("unload")
 				if(load && mode !=1)
@@ -329,7 +329,7 @@
 				usr.unset_interaction()
 				usr << browse(null,"window=mulebot")
 
-		updateDialog()
+		updateUsrDialog()
 		//src.updateUsrDialog()
 	else
 		usr << browse(null, "window=mulebot")
@@ -483,7 +483,7 @@
 			process_bot()
 
 	if(refresh) 
-		updateDialog()
+		updateUsrDialog()
 
 /obj/machinery/bot/mulebot/proc/process_bot()
 	//if(mode) to_chat(world, "Mode: [mode]")
@@ -621,7 +621,7 @@
 	spawn(0)
 		new_destination = new_dest
 		post_signal(beacon_freq, "findbeacon", "delivery")
-		updateDialog()
+		updateUsrDialog()
 
 // starts bot moving to current destination
 /obj/machinery/bot/mulebot/proc/start()
@@ -784,7 +784,7 @@
 				loaddir = 0
 			icon_state = "mulebot[!wires.is_cut(WIRE_AVOIDANCE)]"
 			calc_path()
-			updateDialog()
+			updateUsrDialog()
 
 // send a radio signal with a single data key/value pair
 /obj/machinery/bot/mulebot/proc/post_signal(freq, key, value)
