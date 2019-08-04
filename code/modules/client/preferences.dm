@@ -35,6 +35,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
 	var/focus_chat = FALSE
+	var/clientfps = 0
 
 	// Custom Keybindings
 	var/list/key_bindings = null
@@ -319,6 +320,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
 	dat += "<b>Focus chat:</b> <a href='?_src_=prefs;preference=focus_chat'>[(focus_chat) ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
+	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 
 
 
@@ -923,6 +925,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 			else
 				winset(user, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
+
+		if("clientfps")
+			var/desiredfps = input(user, "Choose your desired FPS. (0 = synced with server tick rate, currently:[world.fps])", "FPS", clientfps) as null|num
+			if(isnull(desiredfps))
+				return
+			clientfps = desiredfps
+			parent.fps = desiredfps
 
 		if("tooltips")
 			tooltips = !tooltips
