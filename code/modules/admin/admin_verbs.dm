@@ -88,8 +88,11 @@
 	if(!istype(mob_received))
 		return
 
-	if(isliving(mob_received) && mob_received.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
-		return
+	if(isliving(mob_received) && mob_received.client)
+		if(alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+			return
+		else
+			mob_received.ghostize()
 
 	if(!istype(given_living))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
