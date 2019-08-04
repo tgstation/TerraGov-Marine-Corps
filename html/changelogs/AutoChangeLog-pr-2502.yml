@@ -1,0 +1,4 @@
+author: "Maciekkub"
+delete-after: True
+changes: 
+  - tweak: "toggles deaf when unconscious"
