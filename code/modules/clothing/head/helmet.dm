@@ -203,7 +203,7 @@
 		/obj/item/reagent_container/food/drinks/flask)
 	cant_hold = list(
 		/obj/item/stack/)
-	max_storage_space = 3
+	max_storage_space = 4
 
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
