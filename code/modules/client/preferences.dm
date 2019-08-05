@@ -601,11 +601,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("xeno_name")
 			var/newname = input(user, "Choose your Xenomorph name:", "Xenomorph Name") as text|null
-			newname = reject_bad_name(newname)
-			if(!newname)
-				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
-				return
-			xeno_name = newname
+			if(newname == "")
+				xeno_name = "Undefined"
+			else
+				newname = reject_bad_name(newname)
+				if(!newname)
+					to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+					return
+				xeno_name = newname
 
 		if("name_real")
 			var/newname = input(user, "Choose your character's name:", "Character Name") as text|null
