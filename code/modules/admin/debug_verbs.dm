@@ -442,3 +442,34 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	GLOB.error_cache.show_to(usr.client)
 
 	log_admin("[key_name(usr)] viewed the runtimes.")
+
+
+/datum/admins/proc/spatial_agent()
+	set category = "Debug"
+	set name = "Spatial Agent"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/mob/M = usr
+	var/mob/living/carbon/human/H
+	var/spatial = FALSE
+	if(ishuman(M))
+		H = M
+		var/datum/job/J = SSjob.GetJob(H.job)
+		spatial = istype(J, /datum/job/other/spatial_agent)
+
+	if(spatial)
+		log_admin("[key_name(M)] stopped being a spatial agent.")
+		message_admins("[ADMIN_TPMONTY(M)] stopped being a spatial agent.")
+		qdel(M)
+	else
+		H = new(get_turf(M))
+		M.client.prefs.copy_to(H)
+		M.mind.transfer_to(H, TRUE)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/other/spatial_agent)
+		J.assign_equip(H)
+		qdel(M)
+
+		log_admin("[key_name(H)] became a spatial agent.")
+		message_admins("[ADMIN_TPMONTY(H)] became a spatial agent.")

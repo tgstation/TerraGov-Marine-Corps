@@ -4979,7 +4979,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/surgury)
 "aoY" = (
-/turf/open/floor/icefloor{
+/turf/open/floor{
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "vfloor"
 	},

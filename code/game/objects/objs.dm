@@ -70,33 +70,23 @@
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))
 		return
 	var/is_in_use = FALSE
-	var/list/nearby = viewers(1, src)
-	for(var/mob/M in nearby)
-		if ((M.client && M.interactee == src))
+
+	var/mob/living/silicon/ai/AI
+	if(isAI(usr))
+		AI = usr
+		if(AI.client && AI.interactee == src)
 			is_in_use = TRUE
-			attack_hand(M)
-	if (isAI(usr))
-		if (!(usr in nearby))
-			if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-				is_in_use = TRUE
-				attack_ai(usr)
+			attack_ai(AI)
+
+	for(var/mob/M in viewers(1, src))
+		if(!M.client || M.interactee != src || M == AI)
+			continue
+		is_in_use = TRUE
+		attack_hand(M)
 
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
-/obj/proc/updateDialog()
-	// Check that people are actually using the machine. If not, don't update anymore.
-	if(!CHECK_BITFIELD(obj_flags, IN_USE))
-		return
-	var/list/nearby = viewers(1, src)
-	var/is_in_use = FALSE
-	for(var/mob/M in nearby)
-		if ((M.client && M.interactee == src))
-			is_in_use = TRUE
-			interact(M)
-			
-	if(!is_in_use)
-		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 /obj/proc/interact(mob/user)
 	return

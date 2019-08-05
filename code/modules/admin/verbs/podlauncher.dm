@@ -556,6 +556,10 @@
 /datum/podlauncher/proc/on_set_interaction()
 	return
 
+
+/datum/podlauncher/proc/check_eye()
+	return
+
 			
 /datum/podlauncher/proc/on_unset_interaction()
 	qdel(src)
