@@ -555,8 +555,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 
-	log_game("[key_name(xeno_candidate)] has joined as [new_xeno].")
-	message_admins("[ADMIN_TPMONTY(xeno_candidate)] has joined as [new_xeno].")
+	log_game("[key_name(xeno_candidate)] has joined as [new_xeno] at [AREACOORD(new_xeno.loc)].")
+	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
