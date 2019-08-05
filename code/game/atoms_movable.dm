@@ -592,23 +592,30 @@
 	. = H.copy_known_languages_from(thing, replace)
 
 
-// Whether an AM can speak in a language or not, independent of whether
-// it KNOWS the language
-/atom/movable/proc/could_speak_in_language(datum/language/dt)
-	. = TRUE
-
-
 /atom/movable/proc/can_speak_in_language(datum/language/dt)
 	var/datum/language_holder/H = get_language_holder()
 
-	if(!H.has_language(dt))
-		return FALSE
-	else if(H.omnitongue)
+	if(H.has_language(dt) == LANGUAGE_KNOWN)
 		return TRUE
-	else if(could_speak_in_language(dt) && (!H.only_speaks_language || H.only_speaks_language == dt))
+	if(H.omnitongue)
 		return TRUE
-	else
-		return FALSE
+	if(H.only_speaks_language == dt)
+		return TRUE
+
+	return FALSE
+
+
+/atom/movable/proc/can_understand_in_language(datum/language/dt)
+	var/datum/language_holder/H = get_language_holder()
+
+	if(H.has_language(dt) == LANGUAGE_SHADOWED)
+		return TRUE
+	if(H.omnitongue)
+		return TRUE
+	if(H.only_speaks_language == dt)
+		return TRUE
+
+	return FALSE
 
 
 /atom/movable/proc/get_default_language()

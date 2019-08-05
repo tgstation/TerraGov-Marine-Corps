@@ -991,11 +991,6 @@
 
 		if(species.name && species.name == new_species) //we're already that species.
 			return
-		if(species.language)
-			remove_language(species.language)
-
-		if(species.default_language)
-			remove_language(species.default_language)
 
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
@@ -1010,13 +1005,8 @@
 
 	species.create_organs(src)
 
-	if(species.language)
-		grant_language(species.language)
-
-	if(species.default_language)
-		grant_language(species.default_language)
-		var/datum/language_holder/H = get_language_holder()
-		H.selected_default_language = species.default_language
+	if(species.default_language_holder)
+		language_holder = new species.default_language_holder(src)
 
 	if(species.base_color && default_colour)
 		//Apply colour.
@@ -1380,3 +1370,14 @@
 		return
 
 	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)
+
+
+/mob/living/carbon/human/get_language_holder()
+	if(language_holder)
+		return language_holder
+	else if(species)
+		language_holder = new species.default_language_holder(src)
+		return language_holder
+	else
+		language_holder = new initial_language_holder(src)
+		return language_holder
