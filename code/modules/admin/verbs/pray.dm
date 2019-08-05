@@ -35,6 +35,8 @@
 	else
 		to_chat(usr, "Your prayers have been received by the gods.")
 
+	log_prayer(msg)
+
 
 /proc/tgmc_message(text, mob/sender)
 	text = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)

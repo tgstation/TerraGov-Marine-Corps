@@ -1806,7 +1806,14 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(href_list["appearance"])
 			if("hairstyle")
-				change = input("Select the hair style.", "Edit Appearance") as null|anything in sortList(GLOB.hair_styles_list)
+				var/list/valid_hairstyles = list()
+				for(var/hairstyle in GLOB.hair_styles_list)
+					var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
+					if(!(H.species.name in S.species_allowed))
+						continue
+
+					valid_hairstyles += hairstyle
+				change = input("Select the hair style.", "Edit Appearance") as null|anything in sortList(valid_hairstyles)
 				if(!change || !istype(H))
 					return
 				previous = H.h_style

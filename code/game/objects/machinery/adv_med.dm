@@ -204,7 +204,7 @@
 //		else
 ///			src.temphtml = "Process terminated due to lack of occupant in scanning chamber."
 //			src.limb_status = null
-//	src.updateDialog()
+//	src.updateUsrDialog()
 //	return
 
 */

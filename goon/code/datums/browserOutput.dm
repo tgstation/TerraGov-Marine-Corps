@@ -14,6 +14,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	var/broken       = FALSE
 	var/list/connectionHistory //Contains the connection history passed from chat cookie
 	var/adminMusicVolume = 10 //This is for the Play Global Sound verb
+	var/clientCSS = "" // This is a string var that stores client CSS.
 
 /datum/chatOutput/New(client/C)
 	owner = C
@@ -101,6 +102,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	messageQueue = null
 	sendClientData()
+	loadClientCSS()
 
 	//do not convert to to_chat()
 	SEND_TEXT(owner, "<span class=\"userdanger\">Failed to load fancy chat, reverting to old chat. Certain features won't work.</span>")
@@ -172,6 +174,51 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 //Called by js client on js error
 /datum/chatOutput/proc/debug(error)
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
+
+
+
+/mob/verb/update_client_css()
+	set category = "Preferences"
+	set name = "Update Custom CSS"
+
+	if(!client.chatOutput)
+		return
+	var/new_input = input(usr, "Enter custom CSS", "Client CSS", client.chatOutput.clientCSS) as message|null
+	if(!new_input || length(new_input) > UPLOAD_LIMIT)
+		return
+	to_chat(src, "<span class='notice'>Updating custom CSS.</span>")
+	client.chatOutput.clientCSS = new_input
+	client.chatOutput.saveClientCSS()
+	client.chatOutput.syncClientCSS()
+
+// Load the CSS into the user browser
+/datum/chatOutput/proc/syncClientCSS()
+	var/css_data = _replacetext(clientCSS, ";", "||") // ; is a reserved key so lets just replace it and replace it back in js
+	var/list/ajax_data = list("clientCSS" = css_data)
+	ehjax_send(data = ajax_data)
+
+// Save the CSS locally on the client
+/datum/chatOutput/proc/saveClientCSS()
+	var/savefile/F = new()
+	WRITE_FILE(F["CSS"], clientCSS)
+	owner.Export(F)
+	qdel(F)
+
+// Load the CSS from the local client
+/datum/chatOutput/proc/loadClientCSS()
+	var/last_savefile = owner.Import()
+	if(!last_savefile)
+		saveClientCSS("")
+		return 
+	var/savefile/F = new(last_savefile)
+	READ_FILE(F["CSS"], clientCSS)
+	
+	if(length(clientCSS) > UPLOAD_LIMIT)
+		clientCSS = ""
+	clientCSS = sanitize_text(clientCSS, "")
+
+	syncClientCSS(clientCSS)
+
 
 //Global chat procs
 /proc/to_chat_immediate(target, message, handle_whitespace = TRUE)
