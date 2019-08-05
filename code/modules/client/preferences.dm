@@ -930,6 +930,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/desiredfps = input(user, "Choose your desired FPS. (0 = synced with server tick rate, currently:[world.fps])", "FPS", clientfps) as null|num
 			if(isnull(desiredfps))
 				return
+			desiredfps = CLAMP(desiredfps, 0, 240)
 			clientfps = desiredfps
 			parent.fps = desiredfps
 
