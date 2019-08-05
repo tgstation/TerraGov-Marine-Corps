@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aaa" = (
-/turf/open/space,
+/turf/open/space/basic/,
 /area/space)
 "aab" = (
 /turf/closed/wall/indestructible/mineral,
@@ -1747,10 +1747,6 @@
 /area/bigredv2/outside/telecomm)
 "afM" = (
 /turf/open/floor/plating/dmg3,
-/area/bigredv2/outside/space_port)
-"afN" = (
-/turf/open/floor/plating,
-/turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/space_port)
 "afO" = (
 /obj/effect/decal/cleanable/dirt,
@@ -25010,9 +25006,6 @@
 "cXu" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/se)
-"daV" = (
-/turf/open/space/basic,
-/area/lv624/lazarus/quartstorage/outdoors)
 "djN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -25579,9 +25572,6 @@
 "kEZ" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
-"kHc" = (
-/turf/open/space/basic,
-/area/shuttle/drop2/lz2)
 "kIY" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -25593,9 +25583,6 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
-"kMZ" = (
-/turf/open/space/basic,
-/area/space)
 "kOq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/lightreplacer,
@@ -25653,9 +25640,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"lDc" = (
-/turf/open/space/basic,
-/area/lv624/ground/jungle3)
 "lFT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
@@ -25953,9 +25937,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
-"ptA" = (
-/turf/open/space/basic,
-/area/shuttle/drop1/lz1)
 "pvw" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -32056,9 +32037,9 @@ aaa
 aaa
 aaa
 aaa
-kMZ
-kMZ
-kMZ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -32273,9 +32254,9 @@ aaa
 aaa
 aaa
 aaa
-kMZ
-kHc
-kMZ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -32490,9 +32471,9 @@ aaa
 aaa
 aaa
 aaa
-kHc
-kHc
-lDc
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -32707,9 +32688,9 @@ aaa
 aaa
 aaa
 aaa
-kMZ
-kHc
-kMZ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -32924,9 +32905,9 @@ aaa
 aaa
 aaa
 aaa
-kMZ
-kMZ
-kMZ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -33141,9 +33122,9 @@ aaa
 aaa
 aaa
 aaa
-kMZ
-kMZ
-kMZ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -33358,9 +33339,9 @@ aaa
 aaa
 aaa
 aaa
-kMZ
-kMZ
-kMZ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -33575,9 +33556,9 @@ aaa
 aaa
 aaa
 aaa
-kHc
-ptA
-kMZ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -33792,9 +33773,9 @@ aaa
 aaa
 aaa
 aaa
-daV
-ptA
-ptA
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -34009,9 +33990,9 @@ aaa
 aaa
 aaa
 aaa
-kMZ
-ptA
-kMZ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -36468,7 +36449,7 @@ aah
 aah
 aah
 aah
-afN
+agv
 tSl
 ahV
 ahV
@@ -37552,7 +37533,7 @@ aah
 aah
 aah
 aah
-afN
+agv
 afh
 loF
 ahZ
