@@ -5841,7 +5841,7 @@
 /area/bigredv2/outside/general_offices)
 "ary" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -5905,7 +5905,7 @@
 /area/bigredv2/caves/lambda_lab)
 "arH" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
 "arI" = (
@@ -13278,7 +13278,7 @@
 /area/bigredv2/outside/admin_building)
 "aNy" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
@@ -16068,7 +16068,7 @@
 /area/bigredv2/outside/admin_building)
 "aXm" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
@@ -17636,7 +17636,7 @@
 /area/bigredv2/outside/office_complex)
 "bdb" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "bdc" = (
@@ -23670,7 +23670,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAo" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/disk/nuclear,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8

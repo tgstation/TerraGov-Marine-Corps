@@ -3503,7 +3503,7 @@
 /area/lv624/ground/river2)
 "amP" = (
 /obj/structure/table,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_y = 6
 	},
 /obj/item/tool/pen{
@@ -7127,7 +7127,7 @@
 "aAx" = (
 /obj/structure/table,
 /obj/machinery/door/window/westright,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/cable/yellow{
 	d1 = 4;

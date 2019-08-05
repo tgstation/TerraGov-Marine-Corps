@@ -789,7 +789,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/testing)
 "aeE" = (
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = 3;
 	pixel_y = 7
 	},
@@ -1715,7 +1715,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/bioengineering)
 "aho" = (
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -5295,7 +5295,7 @@
 /obj/item/autopsy_scanner{
 	pixel_y = 8
 	},
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -5512,7 +5512,7 @@
 /area/prison/cellblock/highsec/north/north)
 "aqC" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -5774,7 +5774,7 @@
 /area/prison/research/RD)
 "arn" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -9288,7 +9288,7 @@
 /area/prison/medbay/foyer)
 "azG" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -10884,7 +10884,7 @@
 /area/prison/medbay/foyer)
 "aDo" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -11628,7 +11628,7 @@
 /area/prison/security/checkpoint/maxsec)
 "aFo" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -13121,7 +13121,7 @@
 	pixel_x = 5;
 	pixel_y = 8
 	},
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -6;
 	pixel_y = 4
 	},
@@ -13214,7 +13214,7 @@
 /area/prison/security/checkpoint/maxsec)
 "aIX" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -13242,7 +13242,7 @@
 /area/prison/medbay)
 "aJb" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -14659,7 +14659,7 @@
 /area/prison/security/checkpoint/highsec/n)
 "aLZ" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -15468,7 +15468,7 @@
 /area/prison/security/monitoring/lowsec/ne)
 "aOh" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -17378,7 +17378,7 @@
 /area/prison/hallway/staff)
 "aSC" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -17438,7 +17438,7 @@
 /area/prison/command/office)
 "aSK" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -17571,7 +17571,7 @@
 /area/prison/security/checkpoint/highsec/n)
 "aTf" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -19947,7 +19947,7 @@
 /area/prison/security/monitoring/maxsec/panopticon)
 "aYU" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -22273,7 +22273,7 @@
 /area/prison/residential/central)
 "beN" = (
 /obj/structure/table,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -22410,7 +22410,7 @@
 /area/prison/security/monitoring/highsec)
 "bfa" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -23431,7 +23431,7 @@
 /area/prison/hangar/main)
 "bhv" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -24250,7 +24250,7 @@
 /area/prison/hallway/central)
 "biO" = (
 /obj/structure/table,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -24810,7 +24810,7 @@
 /area/prison/security/checkpoint/vip)
 "bkg" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -28145,7 +28145,7 @@
 /area/prison/security/checkpoint/vip)
 "brJ" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -29534,7 +29534,7 @@
 /area/prison/hangar/main)
 "bvk" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -30432,7 +30432,7 @@
 /area/prison/visitation)
 "bxD" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -33600,7 +33600,7 @@
 /area/prison/security/checkpoint/hangar)
 "bEQ" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -33727,7 +33727,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bFg" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -35727,7 +35727,7 @@
 /area/prison/security/monitoring/lowsec/sw)
 "bJN" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -36604,7 +36604,7 @@
 /area/prison/security/checkpoint/highsec/s)
 "bLX" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -39372,7 +39372,7 @@
 /area/prison/security/checkpoint/medsec)
 "bSO" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -39995,7 +39995,7 @@
 /area/prison/security/checkpoint/medsec)
 "bUr" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -40102,7 +40102,7 @@
 /area/prison/library)
 "bUE" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_y = 3
 	},
 /turf/open/floor/wood,
@@ -40258,7 +40258,7 @@
 /area/prison/security)
 "bVj" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -42294,7 +42294,7 @@
 /area/prison/security/head)
 "caR" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -47068,7 +47068,7 @@
 /area/prison/security/monitoring/protective)
 "cmt" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -48813,7 +48813,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "crl" = (
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -51457,7 +51457,7 @@
 /area/prison/security/monitoring/medsec/south)
 "czw" = (
 /obj/structure/table/reinforced,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},

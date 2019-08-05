@@ -150,7 +150,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/clipboard,
 /turf/open/floor/mainship/mono,
