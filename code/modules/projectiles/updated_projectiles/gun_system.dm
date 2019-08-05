@@ -843,8 +843,8 @@ and you're good to go.
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
-	if(!CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
-		to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
+	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
+		to_chat(user, "<span class='warning'>Your program does not allow you to use this firearm.</span>")
 		return FALSE
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		to_chat(user, "<span class='warning'>The safety is on!</span>")
