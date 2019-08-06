@@ -101,3 +101,9 @@
 
 	var/job
 	var/faction = "Neutral"
+
+	var/last_taste_time
+	var/last_taste_text
+
+	var/blood_volume = 0 //how much blood the mob has
+	var/heart_multi = 1 //Multiplier.
