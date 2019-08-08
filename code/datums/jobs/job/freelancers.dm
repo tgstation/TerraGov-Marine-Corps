@@ -1,7 +1,7 @@
 /datum/job/freelancer
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/pfc/crafty
+	skills_type = /datum/skillset/pfc/crafty
 	faction = "Freelancers"
 
 
@@ -59,7 +59,7 @@
 /datum/job/freelancer/medic
 	title = "Freelancer Medic"
 	paygrade = "FRE2"
-	skills_type = /datum/skills/combat_medic
+	skills_type = /datum/skillset/combat_medic
 	outfit = /datum/outfit/job/freelancer/medic
 
 
@@ -117,7 +117,7 @@
 /datum/job/freelancer/leader
 	title = "Freelancer Leader"
 	paygrade = "FRE3"
-	skills_type = /datum/skills/SL
+	skills_type = /datum/skillset/SL
 	outfit = /datum/outfit/job/freelancer/leader
 
 

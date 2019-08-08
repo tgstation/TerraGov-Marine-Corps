@@ -51,11 +51,10 @@
 		return
 
 	//Job knowledge requirement
-	if (istype(user))
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
+	if(!HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_TRAINED))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * user.mind.cm_skills.medical) // 3 seconds with medical skill, 5 without
+		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * D_GET_SKILL(user, SKILL_MEDICAL)) // 3 seconds with medical skill, 5 without
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -98,15 +97,14 @@
 	var/defib_heal_amt = damage_threshold
 
 	//job knowledge requirement
-	if(user.mind && user.mind.cm_skills)
-		if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
+	if(!HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_TRAINED))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
+		var/fumbling_time = SKILL_TASK_AVERAGE - SKILL_TASK_VERY_EASY * (SKILL_LEVEL_TRAINED - D_GET_SKILL(user, SKILL_MEDICAL)) // 3 seconds with medical skill, 5 without
 			if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
 				return
 		else
-			defib_heal_amt *= user.mind.cm_skills.medical*0.5 //more healing power when used by a doctor (this means non-trained don't heal)
+		defib_heal_amt *= GET_SKILL(user, SKILL_MEDICAL) *0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
 	if(!ishuman(H))
 		to_chat(user, "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>")

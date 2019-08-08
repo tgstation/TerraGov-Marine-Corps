@@ -118,18 +118,16 @@
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
 			return
-		var/delay = SKILL_TASK_EASY
-		var/skill
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
-			skill = user.mind.cm_skills.engineer
-			delay -= 5 + skill * 1.25
-
 		if(user.action_busy)
 			return
+
+		var/skill = GET_SKILL(user, SKILL_ENGINEERING)
+		var/delay = SKILL_TASK_EASY - skill * 3
+
 		var/obj/effect/overlay/sparks/spark_overlay = new
 
 		if(!rigged)
-			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.
+			if(skill < SKILL_LEVEL_PROFESSIONAL) //Field engi skill or better or ya fumble.
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
 				"<span class='notice'>You fumble around, trying to figure out how to rig [src] to explode.</span>")
 				if(!do_after(user, delay, TRUE, src, BUSY_ICON_UNSKILLED))
@@ -144,19 +142,18 @@
 			user.visible_message("<span class='notice'>[user] finishes manipulating [src] with [I].</span>",
 			"<span class='notice'>You rig [src] to explode on use with [I].</span>")
 		else
-			if(skill < SKILL_ENGINEER_ENGI)
+			if(skill < SKILL_LEVEL_PROFESSIONAL)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to manipulate [src].</span>",
 				"<span class='notice'>You fumble around, trying to figure out how to stabilize [src].</span>")
-				var/fumbling_time = SKILL_TASK_EASY
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, delay, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
-				if(prob((SKILL_ENGINEER_PLASTEEL - skill) * 20))
+				if(prob((SKILL_LEVEL_TRAINED - skill) * 20))
 					to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 					rigged = TRUE
 					explode() //Oops. Now you fucked up (or succeeded only too well). Immediate detonation.
 			user.visible_message("<span class='notice'>[user] begins manipulating [src] with [I].</span>",
 			"<span class='notice'>You begin stabilizing [src] with [I] so it won't detonate on use.</span>")
-			if(skill > SKILL_ENGINEER_ENGI)
+			if(skill > SKILL_LEVEL_PROFESSIONAL)
 				delay = max(delay - 10, 0)
 			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
 				return

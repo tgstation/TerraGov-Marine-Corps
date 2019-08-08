@@ -17,7 +17,7 @@
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_SMGS
+	gun_skill_category = SKILL_SMG
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
 	return cock(user)

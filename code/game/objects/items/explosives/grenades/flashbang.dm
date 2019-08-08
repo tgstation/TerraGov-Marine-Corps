@@ -7,7 +7,7 @@
 
 
 /obj/item/explosive/grenade/flashbang/attack_self(mob/user)
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if(!HAS_SKILL_LEVEL(user, SKILL_POLICE, SKILL_LEVEL_TRAINED))
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 	..()

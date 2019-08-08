@@ -158,18 +158,27 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			GLOB.chemical_reactions_list[id] += D
 			break // Don't bother adding ourselves to other reagent ids, it is redundant
 
-	for(var/path in typesof(/datum/namepool))
-		var/datum/namepool/NP = new path
-		GLOB.namepool[path] = NP
+	GLOB.namepool = init_paths_assoc_types(/datum/namepool, subtypes = FALSE)
+
+	GLOB.skillsets = init_paths_assoc_types(/datum/skillset)
 
 	return TRUE
 
 
-//creates every subtype of prototype (excluding prototype) and adds it to list L.
+//creates every subtype of prototype (excluding prototype and blacklisted) and adds it to list L.
 //if no list/L is provided, one is created.
-/proc/init_subtypes(prototype, list/L)
+/proc/init_subtypes(prototype, list/L, blacklist, subtypes = TRUE)
 	if(!istype(L))
 		L = list()
-	for(var/path in subtypesof(prototype))
+	for(var/path in (subtypes ? subtypesof(prototype) : typesof(prototype)) - blacklist)
 		L += new path()
+	return L
+
+//returns a list of paths to every type prototype (excluding blacklisted), while setting a newly created type as associated value.
+//if no list/L is provided, one is created.
+/proc/init_paths_assoc_types(prototype, list/L, blacklist, subtypes = TRUE)
+	if(!istype(L))
+		L = list()
+	for(var/path in (subtypes ? subtypesof(prototype) : typesof(prototype)) - blacklist)
+		L[path] = new path()
 	return L

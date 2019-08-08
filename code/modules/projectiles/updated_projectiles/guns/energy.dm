@@ -84,8 +84,8 @@
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_PISTOLS
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_POLICE
+	gun_skill_category = SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 	cell_type = /obj/item/cell/high
 
@@ -102,14 +102,6 @@
 		icon_state = base_gun_icon + "_e"
 	else
 		icon_state = base_gun_icon
-
-/obj/item/weapon/gun/energy/taser/able_to_fire(mob/living/user)
-	. = ..()
-	if (.) //Let's check all that other stuff first.
-		if(user?.mind?.cm_skills?.police && user.mind.cm_skills.police < SKILL_POLICE_MP)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-			return FALSE
-
 
 //-------------------------------------------------------
 //Lasguns
@@ -131,7 +123,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
 	aim_slowdown = SLOWDOWN_ADS_LASGUN
 	wield_delay = WIELD_DELAY_SLOW
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 
 
 /obj/item/weapon/gun/energy/lasgun/set_gun_config_values()

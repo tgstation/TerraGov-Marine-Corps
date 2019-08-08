@@ -1,7 +1,7 @@
 /datum/job/marine
 	supervisors = "the acting squad leader"
 	selection_color = "#ffeeee"
-	skills_type = /datum/skills/pfc
+	skills_type = /datum/skillset/pfc
 	faction = "Marine"
 	exp_type_department = EXP_TYPE_MARINES
 
@@ -51,7 +51,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	total_positions = 12
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/combat_engineer
+	skills_type = /datum/skillset/combat_engineer
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
 
@@ -78,7 +78,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	total_positions = 16
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/combat_medic
+	skills_type = /datum/skillset/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
 
@@ -105,7 +105,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/smartgunner
+	skills_type = /datum/skillset/smartgunner
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	outfit = /datum/outfit/job/marine/smartgunner
 
@@ -131,7 +131,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/specialist
+	skills_type = /datum/skillset/specialist
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SPECIALIST
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -162,7 +162,7 @@ You can serve a variety of roles, so choose carefully."})
 	supervisors = "the acting field commander"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/SL
+	skills_type = /datum/skillset/SL
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
 	exp_requirements = XP_REQ_EXPERIENCED

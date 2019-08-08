@@ -117,9 +117,7 @@
 	if(!user.mind)
 		return
 
-	var/acquisition_time = target_acquisition_delay
-	if(user.mind.cm_skills)
-		acquisition_time = max(15, acquisition_time - 25*user.mind.cm_skills.leadership)
+	var/acquisition_time = max(15, target_acquisition_delay - 25 * GET_SKILL(user, SKILL_LEADERSHIP))
 
 	var/datum/squad/S = user.assigned_squad
 

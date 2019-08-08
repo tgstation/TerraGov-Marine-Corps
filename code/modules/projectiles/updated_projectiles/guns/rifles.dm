@@ -11,7 +11,7 @@
 	load_method = MAGAZINE //codex
 	aim_slowdown = SLOWDOWN_ADS_RIFLE
 	wield_delay = WIELD_DELAY_NORMAL
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 
 /obj/item/weapon/gun/rifle/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
@@ -310,7 +310,7 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/lmg/set_gun_config_values()

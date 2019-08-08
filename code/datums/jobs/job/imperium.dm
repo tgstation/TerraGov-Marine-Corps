@@ -1,7 +1,7 @@
 /datum/job/imperial
 	comm_title = "IMP"
 	faction = "Imperium of Mankind"
-	skills_type = /datum/skills/imperial
+	skills_type = /datum/skillset/imperial
 	supervisors = "the sergeant"
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
@@ -71,7 +71,7 @@
 /datum/job/imperial/guardsman/sergeant
 	title = "Guardsman Sergeant"
 	comm_title = "Sergeant"
-	skills_type = /datum/skills/imperial/SL
+	skills_type = /datum/skillset/imperial/SL
 	paygrade = "Sergeant"
 	outfit = /datum/outfit/job/imperial/sergeant
 
@@ -112,7 +112,7 @@
 /datum/job/imperial/guardsman/medicae
 	title = "Guardsman Medicae"
 	comm_title = "Medicae"
-	skills_type = /datum/skills/imperial/medicae
+	skills_type = /datum/skillset/imperial/medicae
 	paygrade = "Medicae"
 	outfit = /datum/outfit/job/imperial/medicae
 

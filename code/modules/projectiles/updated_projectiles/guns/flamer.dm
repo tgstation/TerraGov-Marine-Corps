@@ -22,7 +22,7 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	gun_skill_category = SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
 /obj/item/weapon/gun/flamer/set_gun_config_values()
@@ -440,8 +440,7 @@
 		last_fired = world.time
 		last_use = world.time
 		return
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 10, TRUE, src))
+	if(!HAS_SKILL_LEVEL(user, SKILL_SPEC_WEAPONS, SKILL_LEVEL_TRAINED) && !do_after(user, 10, TRUE, src))
 			return
 	return ..()
 

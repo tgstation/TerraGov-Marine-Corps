@@ -210,14 +210,14 @@
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
 	var/final_delay = PLASMACUTTER_CUT_DELAY
-	if (!istype(user) || !user.mind || !user.mind.cm_skills)
+	if (!(user?.mind?.cm_skills))
 		return
-	if(user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI) //We don't have proper skills; time to fumble and bumble.
+	if(!D_HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)) //We don't have proper skills; time to fumble and bumble.
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		final_delay *= max(1, 4 + (user.mind.cm_skills.engineer * -1)) //Takes twice to four times as long depending on your skill.
+		final_delay *= 1 + D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL) //Takes twice to four times as long depending on your skill.
 	else
-		final_delay -= min(PLASMACUTTER_CUT_DELAY,(user.mind.cm_skills.engineer - 3)*5) //We have proper skills; delay lowered by 0.5 per skill point in excess of a field engineer's.
+		final_delay -= min(PLASMACUTTER_CUT_DELAY, GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL) * 5) //We have proper skills; delay lowered by 0.5 per skill point in excess of a field engineer's.
 	return final_delay
 
 /obj/item/tool/pickaxe/plasmacutter/emp_act(severity)

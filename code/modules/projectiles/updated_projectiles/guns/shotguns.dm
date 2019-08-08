@@ -24,7 +24,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	aim_slowdown = SLOWDOWN_ADS_SHOTGUN
 	wield_delay = WIELD_DELAY_NORMAL //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
-	gun_skill_category = GUN_SKILL_SHOTGUNS
+	gun_skill_category = SKILL_SHOTGUNS
 
 /obj/item/weapon/gun/shotgun/Initialize()
 	. = ..()
@@ -576,7 +576,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	load_method = SINGLE_CASING //codex
 	max_shells = 5 //codex
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
-	gun_skill_category = GUN_SKILL_RIFLES
+	gun_skill_category = SKILL_RIFLES
 	type_of_casings = "cartridge"
 	pump_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	attachable_allowed = list(

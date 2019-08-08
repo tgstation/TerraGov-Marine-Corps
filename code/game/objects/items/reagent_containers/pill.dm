@@ -49,9 +49,7 @@
 
 		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")
 
-		var/ingestion_time = 30
-		if(user.mind && user.mind.cm_skills)
-			ingestion_time = max(10, 30 - 10*user.mind.cm_skills.medical)
+		var/ingestion_time = 30 - 10 * GET_SKILL(user, SKILL_MEDICAL)
 
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return

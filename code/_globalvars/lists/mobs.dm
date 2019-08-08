@@ -43,3 +43,5 @@ GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, 
 GLOBAL_LIST_INIT(xeno_types_tier_three, list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/praetorian, /mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/Defiler, /mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/shrike))
 
 GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
+
+GLOBAL_LIST_EMPTY(skillsets) // same as above.

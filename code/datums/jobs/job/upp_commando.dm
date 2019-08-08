@@ -1,7 +1,7 @@
 /datum/job/upp/commando
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/commando
+	skills_type = /datum/skillset/commando
 	faction = "Union of Progressive People"
 
 
@@ -59,7 +59,7 @@
 /datum/job/upp/commando/medic
 	title = "UPP Commando Medic"
 	paygrade = "UPPC2"
-	skills_type = /datum/skills/commando/medic
+	skills_type = /datum/skillset/commando/medic
 	outfit = /datum/outfit/job/upp/commando/medic
 
 
@@ -112,7 +112,7 @@
 /datum/job/upp/commando/leader
 	title = "UPP Commando Leader"
 	paygrade = "UPPC3"
-	skills_type = /datum/skills/commando/leader
+	skills_type = /datum/skillset/commando/leader
 	outfit = /datum/outfit/job/upp/commando/leader
 
 

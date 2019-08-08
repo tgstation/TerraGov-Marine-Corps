@@ -26,7 +26,7 @@
 			command_aura = null
 
 		if(stat == CONSCIOUS)
-			command_aura_strength = mind.cm_skills.leadership - 1
+			command_aura_strength = D_GET_SKILL(src, SKILL_LEADERSHIP) - 1
 			var/command_aura_range = round(4 + command_aura_strength * 1)
 			for(var/mob/living/carbon/human/H in range(command_aura_range, src))
 				if(command_aura == "move" && command_aura_strength > H.mobility_new)

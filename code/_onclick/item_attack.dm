@@ -83,8 +83,9 @@
 
 	var/power = force
 
-	if(user.mind && user.mind.cm_skills)
-		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
+	var/extra_strength = GET_SKILL(user, SKILL_MELEE)
+	if(extra_strength)
+		power = round(power * (1 + 0.3 * extra_strength)) //30% bonus per melee level
 
 	SEND_SIGNAL(user, COMSIG_HUMAN_ITEM_ATTACK, M, src, user)
 

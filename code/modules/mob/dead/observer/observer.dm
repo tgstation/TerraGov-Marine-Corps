@@ -226,6 +226,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.can_reenter_corpse = can_reenter_corpse
 	ghost.timeofdeath = timeofdeath
 	ghost.mind = mind
+
+	if(mind?.cm_skills)
+		mind.cm_skills.omnighost = TRUE
+		mind.current.verbs -= /mob/proc/check_skills
+
 	mind = null
 	ghost.key = key
 

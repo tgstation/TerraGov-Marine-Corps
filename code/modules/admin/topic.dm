@@ -1917,19 +1917,18 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					previous = H.job
 					H.job = change
 			if("skills")
-				var/list/skilltypes = subtypesof(/datum/skills)
 				var/list/skills = list()
-				for(var/i in skilltypes)
-					var/datum/skills/S = i
-					skills[initial(S.name)] = S
+				for(var/i in GLOB.skillsets)
+					var/datum/skillset/S = GLOB.skillsets[i]
+					skills[S.name] = S
 				var/newskillset = input("Select a skillset.", "Edit Rank") as null|anything in sortList(skills)
 				if(!newskillset || !istype(H) || !H.mind)
 					return
 				var/pickedtype = skills[newskillset]
-				var/datum/skills/S = new pickedtype
+				var/datum/skillset/S = pickedtype
 				previous = H.mind.cm_skills.name
 				change = S.name
-				H.mind.cm_skills = S
+				H.mind.set_skills(S)
 			if("commstitle")
 				change = input("Input a comms title - \[Requisitions (Title)\]", "Edit Rank") as null|text
 				if(!change || !istype(H) || !H.mind)

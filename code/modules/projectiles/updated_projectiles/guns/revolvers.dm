@@ -21,7 +21,7 @@
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	movement_acc_penalty_mult = 2
 
 /obj/item/weapon/gun/revolver/Initialize()

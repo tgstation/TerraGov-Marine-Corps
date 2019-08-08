@@ -32,7 +32,7 @@
 	log_combat(user, M, "attempted to flash", src)
 	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to flash [ADMIN_TPMONTY(M)].")
 
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_FLASH)
+	if(!HAS_SKILL_LEVEL(user, SKILL_POLICE, SKILL_LEVEL_NOVICE))
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 
@@ -93,7 +93,7 @@
 	if(!user)
 		return
 
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_FLASH)
+	if(HAS_SKILL_LEVEL(user, SKILL_POLICE, SKILL_LEVEL_NOVICE))
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 

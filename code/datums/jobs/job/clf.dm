@@ -1,7 +1,7 @@
 /datum/job/clf
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/pfc/crafty
+	skills_type = /datum/skillset/pfc/crafty
 	faction = "Colonial Liberation Force"
 
 
@@ -54,7 +54,7 @@
 /datum/job/clf/medic
 	title = "CLF Medic"
 	paygrade = "CLF2"
-	skills_type = /datum/skills/combat_medic/crafty
+	skills_type = /datum/skillset/combat_medic/crafty
 	outfit = /datum/outfit/job/clf/medic
 
 

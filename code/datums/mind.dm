@@ -74,12 +74,16 @@
 
 	SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
+	if(cm_skills)
+		cm_skills.omnighost = FALSE
+		current.verbs -= /mob/proc/check_skills
+		new_character.verbs += /mob/proc/check_skills
+
 	current = new_character								//associate ourself with our new body
 	new_character.mind = src							//and associate our new body with ourself
 
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
-
 
 /datum/mind/proc/set_death_time()
 	last_death = world.time
@@ -118,7 +122,8 @@
 /mob/living/carbon/human/mind_initialize()
 	. = ..()
 	if(!mind.cm_skills)
-		mind.cm_skills = new /datum/skills/pfc
+		mind.cm_skills = new
+		mind.set_skills(GLOB.skillsets[DEFAULT_SKILLSET])
 
 
 /mob/living/carbon/xenomorph/mind_initialize()
@@ -139,3 +144,10 @@
 /mob/living/simple_animal/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Animal"
+
+/datum/mind/proc/set_skills(datum/skillset/S)
+	if(!cm_skills)
+		cm_skills = new(src)
+	else if(cm_skills.skillset)
+		cm_skills.skillset.on_loss(cm_skills)
+	S.on_gain(cm_skills)

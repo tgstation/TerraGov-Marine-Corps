@@ -18,7 +18,7 @@
 	. = ..()
 
 /obj/item/explosive/plastique/attack_self(mob/user)
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+	if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 2 SECONDS
@@ -50,7 +50,7 @@
 		if(!W.damageable)
 			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
 			return FALSE
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+	if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 5 SECONDS
@@ -96,7 +96,7 @@
 
 /obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
 	if(ismultitool(I) && armed)
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to disarm [src].</span>")
 			var/fumbling_time = 3 SECONDS

@@ -1,7 +1,7 @@
 /datum/job/som
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/pfc/crafty
+	skills_type = /datum/skillset/pfc/crafty
 	faction = "Sons of Mars"
 
 
@@ -61,7 +61,7 @@
 /datum/job/som/medic
 	title = "SOM Medic"
 	paygrade = "SOM2"
-	skills_type = /datum/skills/combat_medic/crafty
+	skills_type = /datum/skillset/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
 
 

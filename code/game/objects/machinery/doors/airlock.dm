@@ -334,10 +334,10 @@
 
 	if((in_range(src, usr) && istype(src.loc, /turf)) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		usr.set_interaction(src)
-		if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(usr, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
-			var/fumbling_time = 100 - 20 * usr.mind.cm_skills.engineer
+			var/fumbling_time = 100 - 20 * GET_SKILL(usr, SKILL_ENGINEERING)
 			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 
@@ -593,11 +593,11 @@
 		return TRUE
 
 	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 

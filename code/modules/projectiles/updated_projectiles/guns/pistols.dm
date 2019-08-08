@@ -16,7 +16,7 @@
 	movement_acc_penalty_mult = 2
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
@@ -510,7 +510,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 8
 	type_of_casings = null
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
@@ -540,7 +540,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	wield_delay = WIELD_DELAY_VERY_FAST
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	type_of_casings = "bullet"
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 14,"rail_x" = 9, "rail_y" = 17, "under_x" = 23, "under_y" = 11, "stock_x" = 23, "stock_y" = 10)
 	attachable_allowed = list(
 						/obj/item/attachable/quickfire,

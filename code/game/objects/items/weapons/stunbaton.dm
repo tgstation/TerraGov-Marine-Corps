@@ -116,7 +116,7 @@
 	update_icon()
 
 /obj/item/weapon/baton/attack_self(mob/user)
-	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if(has_user_lock && !HAS_SKILL_LEVEL(user, SKILL_POLICE, SKILL_LEVEL_TRAINED))
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 	if(bcell && bcell.charge > hitcost)
@@ -133,7 +133,7 @@
 
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
-	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if(!HAS_SKILL_LEVEL(user, SKILL_POLICE, SKILL_LEVEL_TRAINED))
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 

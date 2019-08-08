@@ -662,7 +662,7 @@
 
 	else if(istype(I, magazine_type))
 		var/obj/item/ammo_magazine/M = I
-		if(user.mind?.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
+		if(!HAS_SKILL_LEVEL(user, SKILL_HEAVY_WEAPONS, SKILL_LEVEL_TRAINED))
 			user.visible_message("<span class='notice'>[user] begins fumbling about, swapping a new [I] into [src].</span>",
 			"<span class='notice'>You begin fumbling about, swapping a new [I] into [src].</span>")
 			if(user.action_busy)

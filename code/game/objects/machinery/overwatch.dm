@@ -850,9 +850,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
 		return
 
-	var/delay = activation_time
-	if(user.mind.cm_skills)
-		delay = max(10, delay - 20*user.mind.cm_skills.leadership)
+	var/delay = max(10, activation_time - 20 * GET_SKILL(user, SKILL_LEADERSHIP))
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
@@ -903,9 +901,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		to_chat(H, "<span class='warning'>This won't work if you're standing deep underground.</span>")
 		return
-	var/delay = activation_time
-	if(H.mind.cm_skills)
-		delay = max(15, delay - 20*H.mind.cm_skills.leadership)
+	var/delay = max(15, activation_time - 20 * GET_SKILL(H, SKILL_LEADERSHIP))
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -934,9 +930,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		"You activate [src]")
 
 /obj/item/squad_beacon/bomb/proc/deactivate(mob/living/carbon/human/H)
-	var/delay = activation_time * 0.5 //Half as long as setting it up.
-	if(H.mind.cm_skills)
-		delay = max(10, delay - 20 * H.mind.cm_skills.leadership)
+	var/delay = max(10, activation_time * 0.5 - 20 * GET_SKILL(H, SKILL_LEADERSHIP))
 	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
 	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -968,7 +962,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
 	set category = "IC"
 
-	if(!mind.cm_skills || (mind.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED))
+	if(!HAS_SKILL_LEVEL(usr, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED))
 		to_chat(src, "<span class='warning'>You are not competent enough in leadership to issue an order.</span>")
 		return
 
@@ -1021,8 +1015,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 /datum/action/skill/issue_order
 	name = "Issue Order"
-	skill_name = "leadership"
-	skill_min = SKILL_LEAD_TRAINED
+	skill_type = SKILL_LEADERSHIP
+	skill_min = SKILL_LEVEL_TRAINED
 	var/order_type = null
 
 /datum/action/skill/issue_order/action_activate()
@@ -1058,8 +1052,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"
-	skill_name = "leadership"
-	skill_min = SKILL_LEAD_TRAINED
+	skill_type = SKILL_LEADERSHIP
+	skill_min = SKILL_LEVEL_TRAINED
 	var/orders_visible = TRUE
 
 /datum/action/skill/toggle_orders/New()

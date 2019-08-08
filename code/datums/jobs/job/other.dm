@@ -1,5 +1,5 @@
 /datum/job/other
-	skills_type = /datum/skills/pfc
+	skills_type = /datum/skillset/pfc
 
 
 //Colonist
@@ -58,7 +58,7 @@
 	title = "Spatial Agent"
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
-	skills_type = /datum/skills/spatial_agent
+	skills_type = /datum/skillset/spatial_agent
 	outfit = /datum/outfit/job/other/spatial_agent
 
 

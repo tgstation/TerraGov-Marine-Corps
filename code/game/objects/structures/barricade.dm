@@ -497,10 +497,10 @@
 		if(user.action_busy)
 			return
 
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 				return
 
@@ -539,10 +539,10 @@
 				if(user.action_busy)
 					return
 
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					var/fumbling_time = 10 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
@@ -558,10 +558,10 @@
 			if(isscrewdriver(I))
 				if(user.action_busy)
 					return
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					var/fumbling_time = 10 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
@@ -577,10 +577,10 @@
 				if(user.action_busy)
 					return
 
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					var/fumbling_time = 10 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
@@ -598,10 +598,10 @@
 				if(user.action_busy)
 					return
 
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					var/fumbling_time = 10 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
@@ -624,10 +624,10 @@
 				if(user.action_busy)
 					return
 
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 50 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
@@ -721,10 +721,10 @@
 
 		tool_cooldown = world.time + 10
 
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
@@ -762,10 +762,10 @@
 				if(busy || tool_cooldown > world.time || user.action_busy)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					var/fumbling_time = 10 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 
@@ -787,10 +787,10 @@
 				if(busy || tool_cooldown > world.time || user.action_busy)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					var/fumbling_time = 10 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
@@ -802,10 +802,10 @@
 				if(busy || tool_cooldown > world.time || user.action_busy)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					var/fumbling_time = 10 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
@@ -819,10 +819,10 @@
 				if(busy || tool_cooldown > world.time || user.action_busy)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					var/fumbling_time = 10 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
@@ -836,10 +836,10 @@
 				if(busy || tool_cooldown > world.time)
 					return
 				tool_cooldown = world.time + 10
-				if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
+				if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED))
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 50 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_TRAINED)
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",

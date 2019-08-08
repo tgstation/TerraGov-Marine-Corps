@@ -222,7 +222,7 @@ directive is properly returned.
 			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 				if(isxeno(user))
 					return
-				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_NOVICE) // If they have no skillset(admin-spawn, etc), or are properly skilled.
+				if(HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_NOVICE))
 					to_chat(user, "It contains these reagents:")
 					if(reagents.reagent_list.len)
 						for(var/datum/reagent/R in reagents.reagent_list)

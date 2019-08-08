@@ -384,7 +384,7 @@
 						to_chat(usr, "<span class='warning'>Someone's already taken [src]'s information tag.</span>")
 					return
 			//police skill lets you strip multiple items from someone at once.
-			if(!usr.action_busy || (!usr.mind || !usr.mind.cm_skills || usr.mind.cm_skills.police >= SKILL_POLICE_MP))
+			if(!usr.action_busy || HAS_SKILL_LEVEL(usr, SKILL_POLICE, SKILL_LEVEL_TRAINED))
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
@@ -1227,29 +1227,6 @@
 	update_body()
 	regenerate_icons()
 
-
-/mob/living/carbon/human/verb/check_skills()
-	set category = "IC"
-	set name = "Check Skills"
-
-	var/dat
-	if(!mind)
-		dat += "You have no mind!"
-	else if(!mind.cm_skills)
-		dat += "You don't have any skills restrictions. Enjoy."
-	else
-		var/datum/skills/S = mind.cm_skills
-		for(var/i = 1 to length(S.values))
-			var/index = S.values[i]
-			var/value = max(S.values[index], 0)
-			dat += "[index]: [value]<br>"
-
-	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
-	popup.set_content(dat)
-	popup.open(FALSE)
-
-
-
 /mob/living/carbon/human/proc/set_rank(rank)
 	if(!rank)
 		return FALSE
@@ -1370,6 +1347,15 @@
 		return
 
 	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)
+
+/mob/living/carbon/human/point_to_atom(atom/A, turf/T)
+	//Squad Leaders and above have reduced cooldown and get a bigger arrow
+	if(HAS_SKILL_LEVEL(src, SKILL_LEADERSHIP, SKILL_LEVEL_TRAINED))
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
+		new /obj/effect/overlay/temp/point/big(T)
+		visible_message("<b>[src]</b> points to [A]")
+		return TRUE
+	return ..()
 
 
 /mob/living/carbon/human/get_language_holder()

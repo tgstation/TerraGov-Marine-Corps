@@ -68,10 +68,10 @@
 	if(!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 0
-	if(ishuman(user) && user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
+	if(!HAS_SKILL_LEVEL(usr, SKILL_CONSTRUCTION, SKILL_LEVEL_TRAINED))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to build with [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to build with [src].</span>")
-		var/fumbling_time = 100 - 20 * user.mind.cm_skills.construction
+		var/fumbling_time = 100 - 20 * D_GET_SKILL(usr, SKILL_CONSTRUCTION)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	var/title = "Sheet-[name]"

@@ -76,9 +76,7 @@
 			H.do_attack_animation(src)
 			H.flick_attack_overlay(src, "punch")
 
-			var/max_dmg = 5
-			if(H.mind && H.mind.cm_skills)
-				max_dmg += user.mind.cm_skills.cqc
+			var/max_dmg = 5 + GET_SKILL(user, SKILL_CQC)
 			var/damage = rand(0, max_dmg)
 			if(!damage)
 				playsound(loc, attack.miss_sound, 25, 1)
@@ -110,7 +108,7 @@
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 
 			//Accidental gun discharge
-			if(!H.mind?.cm_skills || H.mind.cm_skills.cqc < SKILL_CQC_MP)
+			if(!HAS_SKILL_LEVEL(H, SKILL_CQC, SKILL_LEVEL_TRAINED))
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -132,13 +130,9 @@
 						var/turf/target = pick(turfs)
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100)
-			if(H.mind && H.mind.cm_skills)
-				randn -= 5 * H.mind.cm_skills.cqc //attacker's martial arts training
-
-			if(mind && mind.cm_skills)
-				randn += 5 * mind.cm_skills.cqc //defender's martial arts training
-
+			var/attacker_cqc = GET_SKILL(H, SKILL_CQC)
+			var/defender_cqc = GET_SKILL(src, SKILL_CQC)
+			var/randn = rand(1, 100) - 5 * (attacker_cqc - defender_cqc)  //attacker's martial arts training minus defender's
 
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))

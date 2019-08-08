@@ -1,7 +1,7 @@
 /datum/job/mercenaries
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
-	skills_type = /datum/skills/mercenary
+	skills_type = /datum/skillset/mercenary
 	faction = "Unknown Mercenary Group"
 
 

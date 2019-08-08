@@ -149,10 +149,10 @@
 
 
 /datum/wires/proc/cut(wire)
-	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(!HAS_SKILL_LEVEL(usr, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 		"<span class='notice'>You fumble around figuring out the wiring.</span>")
-		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
+		var/fumbling_time = 20 * D_GET_SKILL_DIFF(usr, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED))
 			return
 
@@ -181,10 +181,10 @@
 	if(is_cut(wire))
 		return
 
-	if(usr.mind?.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(!HAS_SKILL_LEVEL(usr, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 		"<span class='notice'>You fumble around figuring out the wiring.</span>")
-		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer)
+		var/fumbling_time = 20 * D_GET_SKILL_DIFF(usr, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 		if(!do_after(usr, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
 			return
 

@@ -68,7 +68,7 @@
 	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
 		var/mob/M = target
 		var/mob/living/L = user
-		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
+		if(M != L && M.a_intent != INTENT_HELP && !M.incapacitated() && HAS_SKILL_LEVEL(M, SKILL_POLICE, SKILL_LEVEL_TRAINED))
 			L.knock_down(3)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
@@ -80,9 +80,7 @@
 		syringestab(target, user)
 		return
 
-	var/injection_time = 30
-	if(user.mind && user.mind.cm_skills)
-		injection_time = max(5, 50 - 10*user.mind.cm_skills.medical)
+	var/injection_time = max(5, 50 - 10 * GET_SKILL(user, SKILL_MEDICAL))
 
 	switch(mode)
 		if(SYRINGE_DRAW)

@@ -1,166 +1,42 @@
+//skill types
+#define SKILL_CQC "Close Quarter Combat"
+#define SKILL_MELEE "Melee Weapons"
+#define SKILL_FIREARMS "Firearms"
+#define SKILL_PISTOLS "Pistols"
+#define SKILL_SHOTGUNS "Shotguns"
+#define SKILL_RIFLES "Rifles"
+#define SKILL_SMG "Submachine Guns"
+#define SKILL_HEAVY_WEAPONS "Heavy Weapons"
+#define SKILL_SMARTGUN "Smartgun"
+#define SKILL_SPEC_WEAPONS "Specialist Weapons"
+#define SKILL_ENGINEERING "Engineering"
+#define SKILL_CONSTRUCTION "Construction"
+#define SKILL_LEADERSHIP "Leadership"
+#define SKILL_MEDICAL "Medical"
+#define SKILL_SURGERY "Surgery"
+#define SKILL_PILOTING "Piloting"
+#define SKILL_POLICE "Police"
+#define SKILL_POWERLOADERS "Powerloaders"
+#define SKILL_LARGE_VEHICLES "Large Vehicles"
 
-//skill defines
+#define AMT_SKILL_TYPES 19 //keep these two updaed with each new skill added, thanks.
 
+#define ALL_SKILL_TYPES list(SKILL_CQC, SKILL_MELEE, SKILL_FIREARMS, SKILL_PISTOLS, SKILL_SHOTGUNS,\
+								SKILL_RIFLES, SKILL_SMG, SKILL_HEAVY_WEAPONS, SKILL_SMARTGUN, SKILL_SPEC_WEAPONS, \
+								SKILL_ENGINEERING, SKILL_CONSTRUCTION, SKILL_LEADERSHIP, SKILL_MEDICAL, SKILL_SURGERY, \
+								SKILL_PILOTING, SKILL_POLICE, SKILL_POWERLOADERS, SKILL_LARGE_VEHICLES)
 
-//firearms skill (general knowledge of guns) (hidden skill)
-//increase or decrase accuracy, recoil, and firing delay of rifles and smgs.
-#define SKILL_FIREARMS_UNTRAINED 0	//civilian
-#define SKILL_FIREARMS_DEFAULT 	1	//marines (allow tactical reloads)
-#define SKILL_FIREARMS_TRAINED	2	//special training
+//skill levels
+#define SKILL_LEVEL_INCOMPETENT -1
+#define SKILL_LEVEL_NONE 0
+#define SKILL_LEVEL_NOVICE 1
+#define SKILL_LEVEL_TRAINED 2
+#define SKILL_LEVEL_PROFESSIONAL 3
+#define SKILL_LEVEL_EXPERT 4
+#define SKILL_LEVEL_MASTER 5
 
-//pistols skill
-//increase or decrase accuracy, recoil, and firing delay of pistols and revolvers.
-#define SKILL_PISTOLS_DEFAULT 	0	//marines
-#define SKILL_PISTOLS_TRAINED	1	//special training
-
-//smgs skill
-//increase or decrase accuracy, recoil, and firing delay of submachineguns.
-#define SKILL_SMGS_DEFAULT 	0	//marines
-#define SKILL_SMGS_TRAINED	1	//special training
-
-//rifles skill
-//increase or decrase accuracy, recoil, and firing delay of rifles.
-#define SKILL_RIFLES_DEFAULT 	0	//marines
-#define SKILL_RIFLES_TRAINED	1	//special training
-
-//shotguns skill
-//increase or decrase accuracy, recoil, and firing delay of shotguns.
-#define SKILL_SHOTGUNS_DEFAULT 	0	//marines
-#define SKILL_SHOTGUNS_TRAINED	1	//special training
-
-//heavy weapons skill
-//increase or decrase accuracy, recoil, and firing delay of heavy weapons (non spec weapons, e.g. flamethrower).
-#define SKILL_HEAVY_WEAPONS_DEFAULT 	0	//marines
-#define SKILL_HEAVY_WEAPONS_TRAINED		1	//special training
-
-
-
-//smartgun skill
-//increase or decrase accuracy, recoil, and firing delay for smartgun, and whether we can use smartguns at all.
-#define SKILL_SMART_DEFAULT 		-4 //big negative so the effects are far worse than pistol/rifle untrained
-#define SKILL_SMART_USE				-3 //can use smartgun
-#define SKILL_SMART_TRAINED			0 //default for smartgunner
-#define SKILL_SMART_EXPERT			1
-#define SKILL_SMART_MASTER			2
-
-
-
-//spec_weapons skill
-//increase or decrase accuracy, recoil, and firing delay of spec weapons
-#define SKILL_SPEC_DEFAULT		-2 //marines
-#define SKILL_SPEC_TRAINED		1 //special training
-
-
-
-
-//construction skill
-#define SKILL_CONSTRUCTION_DEFAULT	0
-#define SKILL_CONSTRUCTION_METAL 	1	//metal barricade construction (CT)
-#define SKILL_CONSTRUCTION_PLASTEEL 2	//plasteel barricade,(RO, SL)
-#define SKILL_CONSTRUCTION_ADVANCED	3	//windows and girder construction (combat engi, CO)
-#define SKILL_CONSTRUCTION_MASTER	4	//building machine&computer frames (MT, CE)
-
-
-
-
-// engineer skill
-#define SKILL_ENGINEER_DEFAULT	0
-#define SKILL_ENGINEER_METAL 	1	//metal barricade repair && c4 use
-#define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade repair
-#define SKILL_ENGINEER_ENGI 	3	//hacking&&planet engine fixing&&apc building (combat engi)
-#define SKILL_ENGINEER_MT 		4	//Telecomms fixing, faster engine fixing (MT)
-//higher levels give faster engine repair.
-
-
-//medical skill
-#define SKILL_MEDICAL_UNTRAINED	0
-#define SKILL_MEDICAL_NOVICE	1 //Premed or paramedic. Recognizing chemicals. SL, survivors.
-#define SKILL_MEDICAL_PRACTICED	2 //Beginning intern, Squad Corpsman, IO.
-#define SKILL_MEDICAL_COMPETENT	3 //General practitioner. Survivor doc, early synth.
-#define SKILL_MEDICAL_EXPERT	4 //Surgeons. CMO, MO, synth.
-#define SKILL_MEDICAL_MASTER	5 //Modern-day Aesculapius. Spatial agent only now.
-//higher levels means faster syringe use and better defibrillation
-
-
-//surgery skill
-#define SKILL_SURGERY_DEFAULT		0 //untrained, really slow
-#define SKILL_SURGERY_AMATEUR		1 //basic notions of first aid and biology (SL, SO)
-#define SKILL_SURGERY_TRAINED		2 //semi-professional surgery (Squad Corpsman)
-#define SKILL_SURGERY_PROFESSIONAL	3 //professional but unspecialized (Researcher)
-#define SKILL_SURGERY_EXPERT		4 //specialized (Doctor, CMO)
-#define SKILL_SURGERY_MASTER		5 //to be implemented, perhaps instant surgery
-//higher levels means faster surgery.
-
-
-
-
-
-//police skill, hidden
-#define SKILL_POLICE_DEFAULT 	0
-#define SKILL_POLICE_FLASH 		1 //flash use (CE, CMO, any officer starting with a flash)
-#define SKILL_POLICE_MP 		2 //all police gear use, can strip someone's clothes simultaneously (MP)
-
-
-//cqc skill
-//higher disarm chance on humans(+5% per level)
-//slight increase in punch damage.
-#define SKILL_CQC_WEAK		-1
-#define SKILL_CQC_DEFAULT	0
-#define SKILL_CQC_TRAINED	1
-#define SKILL_CQC_MP		2 //no risk of accidental weapon discharge upon disarming (MP)
-#define SKILL_CQC_MASTER	5
-
-
-//powerloader skill
-//hidden
-//proficiency with powerloader, changes powerloader speed.
-#define SKILL_POWERLOADER_DEFAULT	0
-#define SKILL_POWERLOADER_DABBLING	1 //Pilot
-#define SKILL_POWERLOADER_TRAINED	2 //CT, Req
-#define SKILL_POWERLOADER_PRO		3 //MT
-#define SKILL_POWERLOADER_MASTER	4 //CE
-
-
-//leadership skill
-#define SKILL_LEAD_NOVICE			0 //Anyone but the above. Using SL items is possible but painfully slow
-#define SKILL_LEAD_BEGINNER			1 //All non-Standard Marines
-#define SKILL_LEAD_TRAINED			2 //SL
-#define SKILL_LEAD_EXPERT			3 //SOs
-#define SKILL_LEAD_MASTER			4 //XO, CO
-
-
-//melee_weapons skill
-//buff to melee weapon attack damage(+30% dmg per level)
-#define SKILL_MELEE_WEAK		-1
-#define SKILL_MELEE_DEFAULT		0
-#define SKILL_MELEE_TRAINED		1
-#define SKILL_MELEE_SUPER		2
-
-
-//pilot skill, hidden
-#define SKILL_PILOT_DEFAULT		0
-#define SKILL_PILOT_TRAINED		1 //Pilot
-
-
-
-////////////////////////////////////////////////
-
-//gun skill categories, matches the name of the job knowledge types for gun proficiency.
-#define GUN_SKILL_FIREARMS		"firearms"
-#define GUN_SKILL_PISTOLS		"pistols"
-#define GUN_SKILL_SHOTGUNS		"shotguns"
-#define GUN_SKILL_SMGS			"smgs"
-#define GUN_SKILL_RIFLES		"rifles"
-#define GUN_SKILL_HEAVY_WEAPONS	"heavy_weapons"
-#define GUN_SKILL_SMARTGUN		"smartgun"
-#define GUN_SKILL_SPEC			"spec_weapons"
-
-
-//multitile vehicle skills
-#define SKILL_LARGE_VEHICLE_DEFAULT 0
-#define SKILL_LARGE_VEHICLE_TRAINED 1
-
-////////////////////////////////////////////////
+#define SKILL_LEVEL_MAX SKILL_LEVEL_MASTER
+#define SKILL_LEVEL_MIN SKILL_LEVEL_INCOMPETENT
 
 //skill-related fumble and delay times
 #define SKILL_TASK_TRIVIAL		10
@@ -171,3 +47,28 @@
 #define SKILL_TASK_DIFFICULT	100
 #define SKILL_TASK_CHALLENGING	150
 #define SKILL_TASK_FORMIDABLE	200
+
+#define DEFAULT_SKILLSET /datum/skillset/pfc
+
+//D(irect) as in they don't perform the mind and skills datums existence sanity check. Use these only if their existence has been already checked.
+#define D_GET_SKILL_MOD(user, skill) (user.mind.cm_skills.skill_mods ? user.mind.cm_skills.skill_mods[skill] : SKILL_LEVEL_NONE)
+#define D_GET_SKILL(user, skill) (user.mind.cm_skills.omnighost ? SKILL_LEVEL_MASTER : CLAMP((user.mind.cm_skills.skill_list ? user.mind.cm_skills.skill_list[skill] : SKILL_LEVEL_NONE) + D_GET_SKILL_MOD(user, skill), SKILL_LEVEL_MIN, SKILL_LEVEL_MAX))
+#define D_HAS_SKILL_LEVEL(user, skill, level) (D_GET_SKILL(user, skill) >= level)
+#define D_GET_SKILL_MOD_ID(user, skill, id) (user.mind.cm_skills.skill_mod_ids && user.mind.cm_skills.skill_mod_ids[skill] ? user.mind.cm_skills.skill_mod_ids[skill[id]] : null)
+#define D_GET_SKILL_DIFF(user, skill, level) abs(level - D_GET_SKILL(user, skill))
+
+//safer to use versions of the macros above.
+#define GET_SKILL(user, skill) (user.mind?.cm_skills ? D_GET_SKILL(user, skill) : SKILL_LEVEL_NONE)
+#define HAS_SKILL_LEVEL(user, skill, level) (user.mind?.cm_skills ? D_HAS_SKILL_LEVEL(user, skill, level) : TRUE)
+
+#define GET_SKILL_DIFF(user, skill, level) (user.mind?.cm_skills ? level - D_GET_SKILL(user, skill) : 0)
+
+#define GET_SKILL_MOD(user, skill) (user.mind?.cm_skills ? D_GET_SKILL_MOD(user, skill) : null)
+#define GET_SKILL_MOD_ID(user, skill, id) (user.mind?.cm_skills ? D_GET_SKILL_MOD_ID(user, skill, id) : null)
+
+#define ADD_SKILL_MOD(user, skills, id, mod) (user.mind?.cm_skills?.add_skill_mod(user, skills, id, mod))
+
+#define REMOVE_SKILL_MOD(user, skills, id) (user.mind?.cm_skills?.remove_skill_mod(user, skills, id))
+
+//skill modifier ids.
+#define SKILL_MOD_ASSIGNED_SL "assigned_squad_leader"

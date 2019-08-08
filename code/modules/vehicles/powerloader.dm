@@ -113,8 +113,7 @@
 	if(.)
 		icon_state = "powerloader"
 		overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
-		if(M.mind && M.mind.cm_skills)
-			move_delay = max(4, move_delay - M.mind.cm_skills.powerloader)
+		move_delay = max(4, move_delay - GET_SKILL(M, SKILL_POWERLOADERS))
 		var/clamp_equipped = 0
 		for(var/obj/item/powerloader_clamp/PC in contents)
 			if(!M.put_in_hands(PC))

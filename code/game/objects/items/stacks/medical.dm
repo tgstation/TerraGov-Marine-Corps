@@ -57,9 +57,7 @@
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
-				if(!do_mob(user, M, 10, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+		if(!HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_TRAINED) && !do_mob(user, M, 10, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 					return TRUE
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
@@ -107,9 +105,7 @@
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
-				if(!do_mob(user, M, 10, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+		if(!HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_TRAINED) && !do_mob(user, M, 10, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 					return TRUE
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
@@ -186,8 +182,7 @@
 		var/mob/living/carbon/human/H = M
 
 		var/heal_amt = heal_brute
-		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
+		if(!HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_TRAINED)) //untrained marines have a hard time using it
 				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
 				if(!do_mob(user, M, 30, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 					return
@@ -244,8 +239,7 @@
 		var/mob/living/carbon/human/H = M
 
 		var/heal_amt = heal_burn
-		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
+		if(!HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_TRAINED)) //untrained marines have a hard time using it
 				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
 				if(!do_mob(user, M, 30, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 					return

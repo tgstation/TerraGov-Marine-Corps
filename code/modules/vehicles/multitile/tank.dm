@@ -150,11 +150,7 @@
 		return
 	M.visible_message("<span class='warning'>[M] starts pulling [occupant] out of \the [src].</span>",
 	"<span class='warning'>You start pulling [occupant] out of \the [src]. (this will take a while...)</span>", null, 6)
-	var/fumbling_time = 20 SECONDS
-	if(M.mind?.cm_skills?.police)
-		fumbling_time -= 2 SECONDS * M.mind.cm_skills.police
-	if(M.mind?.cm_skills?.large_vehicle)
-		fumbling_time -= 2 SECONDS * M.mind.cm_skills.large_vehicle
+	var/fumbling_time = 20 SECONDS - 2 SECONDS * (GET_SKILL(M, SKILL_POLICE) + GET_SKILL(M, SKILL_LARGE_VEHICLES))
 	if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_HOSTILE))
 		return
 	exit_tank(occupant, TRUE, TRUE)
@@ -195,10 +191,10 @@
 		to_chat(M, "<span class='warning'>You need your hands free to climb on [src].</span>")
 		return
 
-	if(M.mind?.cm_skills && M.mind.cm_skills.large_vehicle < SKILL_LARGE_VEHICLE_TRAINED)
+	if(!HAS_SKILL_LEVEL(M, SKILL_LARGE_VEHICLES, SKILL_LEVEL_TRAINED))
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.mind.cm_skills.large_vehicle
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * GET_SKILL(M, SKILL_LARGE_VEHICLES)
 		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 

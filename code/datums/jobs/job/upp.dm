@@ -1,7 +1,7 @@
 /datum/job/upp
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/pfc/crafty
+	skills_type = /datum/skillset/pfc/crafty
 	faction = "Union of Progressive People"
 
 
@@ -58,7 +58,7 @@
 /datum/job/upp/medic
 	title = "UPP Medic"
 	paygrade = "UPP2"
-	skills_type = /datum/skills/combat_medic/crafty
+	skills_type = /datum/skillset/combat_medic/crafty
 	outfit = /datum/outfit/job/upp/medic
 
 
@@ -110,7 +110,7 @@
 /datum/job/upp/heavy
 	title = "UPP Heavy"
 	paygrade = "UPP3"
-	skills_type = /datum/skills/specialist/upp
+	skills_type = /datum/skillset/specialist/upp
 	outfit = /datum/outfit/job/upp/heavy
 
 
@@ -161,7 +161,7 @@
 /datum/job/upp/leader
 	title = "UPP Leader"
 	paygrade = "UPP4"
-	skills_type = /datum/skills/SL/upp
+	skills_type = /datum/skillset/SL/upp
 	outfit = /datum/outfit/job/upp/leader
 
 

@@ -6,7 +6,7 @@
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = SLOWDOWN_ADS_SCOPE
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = SKILL_SPEC_WEAPONS
 	wield_delay = WIELD_DELAY_SLOW
 
 //Pow! Headshot
@@ -308,7 +308,7 @@
 						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = SKILL_SPEC_WEAPONS
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
@@ -346,7 +346,7 @@
 	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety on.
-	gun_skill_category = GUN_SKILL_SMARTGUN
+	gun_skill_category = SKILL_SMARTGUN
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
@@ -485,7 +485,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = SKILL_SPEC_WEAPONS
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
@@ -534,7 +534,7 @@
 		return
 	if(gun_on_cooldown(user))
 		return
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+	if(!HAS_SKILL_LEVEL(user, SKILL_SPEC_WEAPONS, SKILL_LEVEL_TRAINED) && !do_after(user, 0.8 SECONDS, TRUE, src))
 		return
 	if(get_dist(target,user) <= 2)
 		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
@@ -618,7 +618,7 @@
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = SKILL_SPEC_WEAPONS
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_allowed = list()
 	var/grenade
@@ -760,7 +760,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = SKILL_SPEC_WEAPONS
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -786,7 +786,7 @@
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 3
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
+	if(!HAS_SKILL_LEVEL(user, SKILL_SPEC_WEAPONS, SKILL_LEVEL_TRAINED))
 		delay += 6
 
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
@@ -939,7 +939,7 @@
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = SKILL_SPEC_WEAPONS
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -992,7 +992,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 15
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = SKILL_SPEC_WEAPONS
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE)

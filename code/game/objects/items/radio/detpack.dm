@@ -69,14 +69,14 @@
 	. = ..()
 
 	if(ismultitool(I) && armed)
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = 30
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-			if(prob((SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer) * 20))
+			if(prob((SKILL_LEVEL_NOVICE - D_GET_SKILL(user, SKILL_ENGINEERING)) * 20))
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
 		
@@ -197,7 +197,7 @@
 
 	if(!ishuman(user))
 		return
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+	if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 20
@@ -253,7 +253,7 @@
 			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
 			return FALSE
 
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+	if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_NOVICE))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 50

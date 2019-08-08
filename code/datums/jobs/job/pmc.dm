@@ -1,7 +1,7 @@
 /datum/job/pmc
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
-	skills_type = /datum/skills/pfc/pmc
+	skills_type = /datum/skillset/pfc/pmc
 	faction = "Nanotrasen"
 
 
@@ -51,7 +51,7 @@
 /datum/job/pmc/gunner
 	title = "PMC Gunner"
 	paygrade = "PMC2"
-	skills_type = /datum/skills/smartgunner/pmc
+	skills_type = /datum/skillset/smartgunner/pmc
 	outfit = /datum/outfit/job/pmc/gunner
 
 
@@ -92,7 +92,7 @@
 /datum/job/pmc/sniper
 	title = "PMC Sniper"
 	paygrade = "PMC3"
-	skills_type = /datum/skills/specialist/pmc
+	skills_type = /datum/skillset/specialist/pmc
 	outfit = /datum/outfit/job/pmc/sniper
 
 
@@ -135,7 +135,7 @@
 /datum/job/pmc/leader
 	title = "PMC Leader"
 	paygrade = "PMC4"
-	skills_type = /datum/skills/SL/pmc
+	skills_type = /datum/skillset/SL/pmc
 	outfit = /datum/outfit/job/pmc/leader
 
 

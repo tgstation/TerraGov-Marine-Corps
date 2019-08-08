@@ -1,7 +1,7 @@
 /datum/job/survivor
 	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
-	skills_type = /datum/skills/civilian/survivor
+	skills_type = /datum/skillset/civilian/survivor
 	faction = "Marine"
 
 
@@ -23,7 +23,7 @@
 //Scientist
 /datum/job/survivor/scientist
 	title = "Scientist"
-	skills_type = /datum/skills/civilian/survivor/scientist
+	skills_type = /datum/skillset/civilian/survivor/scientist
 	outfit = /datum/outfit/job/survivor/scientist
 
 
@@ -40,7 +40,7 @@
 //Doctor
 /datum/job/survivor/doctor
 	title = "Doctor's Assistant"
-	skills_type = /datum/skills/civilian/survivor/doctor
+	skills_type = /datum/skillset/civilian/survivor/doctor
 	outfit = /datum/outfit/job/survivor/doctor
 
 
@@ -72,7 +72,7 @@
 //Security Guard
 /datum/job/survivor/security
 	title = "Security Guard"
-	skills_type = /datum/skills/civilian/survivor/marshal
+	skills_type = /datum/skillset/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/security
 
 
@@ -103,7 +103,7 @@
 //Chef
 /datum/job/survivor/chef
 	title = "Chef"
-	skills_type = /datum/skills/civilian/survivor/chef
+	skills_type = /datum/skillset/civilian/survivor/chef
 	outfit = /datum/outfit/job/survivor/chef
 
 
@@ -136,7 +136,7 @@
 //Atmospherics Technician
 /datum/job/survivor/atmos
 	title = "Atmospherics Technician"
-	skills_type = /datum/skills/civilian/survivor/atmos
+	skills_type = /datum/skillset/civilian/survivor/atmos
 	outfit = /datum/outfit/job/survivor/atmos
 
 
@@ -167,7 +167,7 @@
 //Miner
 /datum/job/survivor/miner
 	title = "Miner"
-	skills_type = /datum/skills/civilian/survivor/miner
+	skills_type = /datum/skillset/civilian/survivor/miner
 	outfit = /datum/outfit/job/survivor/miner
 
 
@@ -199,7 +199,7 @@
 //Colonial Marshal
 /datum/job/survivor/marshal
 	title = "Colonial Marshal"
-	skills_type = /datum/skills/civilian/survivor/marshal
+	skills_type = /datum/skillset/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/marshal
 
 

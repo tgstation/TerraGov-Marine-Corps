@@ -45,7 +45,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/exp_type_department = ""
 
 	var/outfit = null
-	var/skills_type = null
+	var/datum/skillset/skills_type
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 
@@ -110,9 +110,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 	if(skills_type)
-		var/datum/skills/L = new skills_type
-		H.mind.cm_skills = L
-
+		H.mind.set_skills(GLOB.skillsets[skills_type])
 	H.mind.assigned_role = title
 	H.mind.comm_title = comm_title
 

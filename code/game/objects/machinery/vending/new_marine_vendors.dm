@@ -219,9 +219,6 @@
 					if(!H.mind || H.mind.assigned_role != SQUAD_SPECIALIST)
 						to_chat(H, "<span class='warning'>Only specialists can take specialist sets.</span>")
 						return
-					else if(!H.mind.cm_skills || H.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
-						to_chat(H, "<span class='warning'>You already have a specialist specialization.</span>")
-						return
 					var/p_name = L[1]
 					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 						p_name = "Scout Set"

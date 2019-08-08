@@ -444,10 +444,10 @@
 	if(.)
 		return
 
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+		var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 

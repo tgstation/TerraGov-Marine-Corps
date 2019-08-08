@@ -141,9 +141,7 @@
 	else if(iswirecutter(I))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
-		var/delay_disassembly = SKILL_TASK_AVERAGE
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
-			delay_disassembly -= 5 + user.mind.cm_skills.engineer * 5
+		var/delay_disassembly = SKILL_TASK_AVERAGE - GET_SKILL(user, SKILL_ENGINEERING) * 5
 
 		if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
 			return
@@ -158,9 +156,7 @@
 		if(!WT.remove_fuel(0, user))
 			return
 
-		var/delay = SKILL_TASK_TOUGH
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
-			delay -= 10 + user.mind.cm_skills.engineer * 5
+		var/delay = SKILL_TASK_TOUGH - GET_SKILL(user, SKILL_ENGINEERING) * 5
 		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 		"<span class='notice'>You begin repairing the damage to [src].</span>")
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)

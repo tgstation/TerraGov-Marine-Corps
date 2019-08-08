@@ -100,10 +100,10 @@
 	. = ..()
 
 	if(istype(I, /obj/item/stack/rods) && obj_integrity < max_integrity)
-		if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
+		if(!HAS_SKILL_LEVEL(user, SKILL_CONSTRUCTION, SKILL_LEVEL_TRAINED))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fix [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out how to fix [src]'s wiring.</span>")
-			var/fumbling_time = 100 - 20 * user.mind.cm_skills.construction
+			var/fumbling_time = 100 - 20 * D_GET_SKILL(user, SKILL_CONSTRUCTION)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 

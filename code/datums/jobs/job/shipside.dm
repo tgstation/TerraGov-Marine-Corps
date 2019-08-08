@@ -13,7 +13,7 @@
 	comm_title = "CPT"
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
-	skills_type = /datum/skills/captain
+	skills_type = /datum/skillset/captain
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
@@ -53,7 +53,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	title = FIELD_COMMANDER
 	paygrade = "MO4"
 	comm_title = "FCDR"
-	skills_type = /datum/skills/FO
+	skills_type = /datum/skillset/FO
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
@@ -100,7 +100,7 @@ Make the TGMC proud!"})
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = ALL_MARINE_ACCESS
-	skills_type = /datum/skills/SO
+	skills_type = /datum/skillset/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
 	outfit = /datum/outfit/job/command/intelligenceofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -136,7 +136,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	total_positions = 2
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/pilot
+	skills_type = /datum/skillset/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
 
@@ -173,7 +173,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	total_positions = 0
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/tank_crew
+	skills_type = /datum/skillset/tank_crew
 	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
 	outfit = /datum/outfit/job/command/tank_crew
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -221,7 +221,7 @@ You could use MTs help to repair and replace hardpoints."})
 	selection_color = "#ffdddd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/MP
+	skills_type = /datum/skillset/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
 	outfit = /datum/outfit/job/police/officer
 
@@ -260,7 +260,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RO)
-	skills_type = /datum/skills/CMP
+	skills_type = /datum/skillset/CMP
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
 	outfit = /datum/outfit/job/police/chief
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -309,7 +309,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	selection_color = "#ffeeaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/CE
+	skills_type = /datum/skillset/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/engineering/chief
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -351,7 +351,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	selection_color = "#fff5cc"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO)
-	skills_type = /datum/skills/MT
+	skills_type = /datum/skillset/MT
 	display_order = JOB_DISPLAY_ORDER_MAINTENANCE_TECH
 	outfit = /datum/outfit/job/engineering/tech
 
@@ -395,7 +395,7 @@ Start with the ship's engine, and don't forget radiation equipment."})
 	selection_color = "#9990B2"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/RO
+	skills_type = /datum/skillset/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/requisitions/officer
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -436,7 +436,7 @@ A happy ship is a well-functioning ship."})
 	selection_color = "#BAAFD9"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/CT
+	skills_type = /datum/skillset/CT
 	display_order = JOB_DISPLAY_ORDER_CARGO_TECH
 	outfit = /datum/outfit/job/requisitions/tech
 
@@ -479,7 +479,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	selection_color = "#99FF99"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/CMO
+	skills_type = /datum/skillset/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
 	exp_requirements = XP_REQ_INTERMEDIATE
@@ -523,7 +523,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/doctor
+	skills_type = /datum/skillset/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
 	outfit = /datum/outfit/job/medical/medicalofficer
 
@@ -563,7 +563,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/doctor
+	skills_type = /datum/skillset/doctor
 	display_order = JOB_DISPLAY_ORDER_MEDIAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
 
@@ -609,7 +609,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	selection_color = "#ffeedd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/civilian
+	skills_type = /datum/skillset/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison
 
@@ -639,7 +639,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	comm_title = "Syn"
 	supervisors = "the acting captain"
 	selection_color = "#aaee55"
-	skills_type = /datum/skills/synthetic
+	skills_type = /datum/skillset/synthetic
 	access = ALL_ACCESS
 	minimal_access = ALL_ACCESS
 	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
@@ -655,7 +655,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
-			H.mind.cm_skills = new /datum/skills/early_synthetic
+			H.mind.set_skills(GLOB.skillsets[/datum/skillset/early_synthetic])
 		H.real_name = preference_source.prefs.synthetic_name
 
 	if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.

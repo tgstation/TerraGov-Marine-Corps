@@ -14,7 +14,7 @@
 	var/num_flares = 1
 	var/max_flares = 1
 	flags_gun_features = GUN_UNUSUAL_DESIGN
-	gun_skill_category = GUN_SKILL_PISTOLS
+	gun_skill_category = SKILL_PISTOLS
 
 /obj/item/weapon/gun/flare/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
@@ -82,7 +82,7 @@
 	name = "\improper toy rocket launcher"
 	desc = "Where did this come from?"
 	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/toy
-	gun_skill_category = GUN_SKILL_FIREARMS
+	gun_skill_category = SKILL_FIREARMS
 
 
 //Syringe Gun

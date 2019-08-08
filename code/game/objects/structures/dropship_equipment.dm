@@ -943,10 +943,10 @@
 		return
 	if(!ship_base) //not installed
 		return
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.pilot < SKILL_PILOT_TRAINED)
+	if(!HAS_SKILL_LEVEL(user, SKILL_PILOTING, SKILL_LEVEL_TRAINED))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the medevac system.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the medevac system.</span>")
-		var/fumbling_time = 60 - 20 * user.mind.cm_skills.pilot
+		var/fumbling_time = 60 - 20 * D_GET_SKILL(user, SKILL_PILOTING)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return
 

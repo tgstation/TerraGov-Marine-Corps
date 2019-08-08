@@ -318,10 +318,10 @@
 		return attack_hand(user)
 
 	else if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [I] into [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to fit [I] into [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -343,10 +343,10 @@
 		update_icon()
 
 	else if(istype(I, /obj/item/card/id)) //Trying to unlock the interface with an ID card
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [I] on [src].</span>",
 			"<span class='notice'>You fumble around figuring out where to swipe [I] on [src].</span>")
-			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 30 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -403,10 +403,10 @@
 	else if(iscablecoil(I) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
 		var/obj/item/stack/cable_coil/C = I
 
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -442,10 +442,10 @@
 		terminal.connect_to_network()
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED)) 
 				return
 
@@ -463,20 +463,20 @@
 		qdel(I)
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED)) 
 				return
 		
 		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 
 	else if(istype(I, /obj/item/frame/apc) && opened && CHECK_BITFIELD(obj_flags, EMAGGED))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -489,10 +489,10 @@
 		update_icon()
 
 	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -537,10 +537,10 @@
 			if(terminal)
 				to_chat(user, "<span class='warning'>Disconnect the wires first!</span>")
 				return
-			if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to remove the power cell from [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to remove the power cell from [src].</span>")
-				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+				var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 			I.play_tool_sound(src)
@@ -591,10 +591,10 @@
 	. = TRUE
 	if(opened)
 		if(cell)
-			if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 				"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+				var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 			user.visible_message("[user] removes \the [cell] from [src]!", "<span class='notice'>You remove \the [cell].</span>")
@@ -640,10 +640,10 @@
 	if(!opened || has_electronics || terminal)
 		return
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+		var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -677,10 +677,10 @@
 		return
 
 	if(opened && cell && !issilicon(user))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 		user.visible_message("[user] removes \the [cell] from [src]!", "<span class='notice'>You remove \the [cell].</span>")
