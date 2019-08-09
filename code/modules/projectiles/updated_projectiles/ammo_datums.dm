@@ -603,7 +603,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
 	hud_state = "shotgun_fire"
-	damage_type = BURN
+	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 
 /datum/ammo/bullet/shotgun/incendiary/New()
