@@ -16,7 +16,8 @@
 	ENABLE_BITFIELD(sight, SEE_MOBS)
 	ENABLE_BITFIELD(sight, SEE_OBJS)
 	ENABLE_BITFIELD(sight, SEE_TURFS)
-	see_in_dark = XENO_NIGHTVISION_ENABLED
+	see_in_dark = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 	create_reagents(1000)
 	gender = NEUTER

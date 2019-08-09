@@ -384,15 +384,15 @@
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision()
-	if(see_in_dark == XENO_NIGHTVISION_DISABLED)
+	if(lighting_alpha == LIGHTING_PLANE_ALPHA_NV_TRAIT)
 		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		see_in_dark = XENO_NIGHTVISION_ENABLED
+		see_in_dark = 8
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		ENABLE_BITFIELD(sight, SEE_OBJS)
 		ENABLE_BITFIELD(sight, SEE_TURFS)
 	else
-		lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-		see_in_dark = XENO_NIGHTVISION_DISABLED
+		lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+		see_in_dark = 8
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		DISABLE_BITFIELD(sight, SEE_OBJS)
 		DISABLE_BITFIELD(sight, SEE_TURFS)
