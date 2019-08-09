@@ -398,7 +398,7 @@
 		shake_camera(M, 110, 4)
 
 	var/datum/cinematic/nuke_selfdestruct/C = /datum/cinematic/nuke_selfdestruct
-	var/nuketime = initial(C.runtime)
+	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
 	addtimer(VARSET_CALLBACK(src, planet_nuked, TRUE), nuketime)
 	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
 
