@@ -137,7 +137,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return TRUE //Not if the config removed it.
 
 	if(HAS_SKILL_LEVEL(user, SKILL_POLICE, SKILL_LEVEL_TRAINED) || allowed(user))
-			return TRUE
+		return TRUE
 	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 	return FALSE
 
@@ -337,7 +337,7 @@ should be alright.
 	if(HAS_SKILL_LEVEL(user, SKILL_FIREARMS, SKILL_LEVEL_NOVICE)) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
-			final_delay *= 0.5
+		final_delay *= 0.5
 	else //If the user has no training, attaching takes twice as long and they fumble about, looking like a retard.
 		final_delay *= 2
 		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",

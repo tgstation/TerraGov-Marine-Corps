@@ -52,11 +52,11 @@
 
 	//Job knowledge requirement
 	if(!HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_TRAINED))
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * D_GET_SKILL(user, SKILL_MEDICAL)) // 3 seconds with medical skill, 5 without
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 
 	defib_cooldown = world.time + 20 //2 seconds cooldown every time the defib is toggled
 	ready = !ready
@@ -98,13 +98,13 @@
 
 	//job knowledge requirement
 	if(!HAS_SKILL_LEVEL(user, SKILL_MEDICAL, SKILL_LEVEL_TRAINED))
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = SKILL_TASK_AVERAGE - SKILL_TASK_VERY_EASY * (SKILL_LEVEL_TRAINED - D_GET_SKILL(user, SKILL_MEDICAL)) // 3 seconds with medical skill, 5 without
-			if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
-				return
+		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
+			return
 		else
-		defib_heal_amt *= GET_SKILL(user, SKILL_MEDICAL) *0.5 //more healing power when used by a doctor (this means non-trained don't heal)
+			defib_heal_amt *= GET_SKILL(user, SKILL_MEDICAL) *0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
 	if(!ishuman(H))
 		to_chat(user, "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>")

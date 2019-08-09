@@ -441,7 +441,7 @@
 		last_use = world.time
 		return
 	if(!HAS_SKILL_LEVEL(user, SKILL_SPEC_WEAPONS, SKILL_LEVEL_TRAINED) && !do_after(user, 10, TRUE, src))
-			return
+		return
 	return ..()
 
 /obj/item/weapon/gun/flamer/M240T/afterattack(atom/target, mob/user)

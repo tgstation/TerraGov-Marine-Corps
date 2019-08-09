@@ -256,13 +256,13 @@
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
 	if(!HAS_SKILL_LEVEL(user, SKILL_FIREARMS, SKILL_LEVEL_NOVICE)) //no training in any firearms
-			wdelay += 3
-		else
+		wdelay += 3
+	else
 		var/skill_value = GET_SKILL(user, gun_skill_category)
-			if(skill_value > 0)
-				wdelay -= 2*skill_value
-			else
-				wdelay += wield_penalty
+		if(skill_value > 0)
+			wdelay -= 2*skill_value
+		else
+			wdelay += wield_penalty
 	wield_time = world.time + wdelay
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.add_hud(user)
@@ -846,11 +846,11 @@ and you're good to go.
 	if(active_attachable?.attachment_firing_delay && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		added_delay = active_attachable.attachment_firing_delay
 	if(!HAS_SKILL_LEVEL(user, SKILL_FIREARMS, SKILL_LEVEL_NOVICE)) //no training in any firearms
-			added_delay += CONFIG_GET(number/combat_define/low_fire_delay) //untrained humans fire more slowly.
-		else
-			switch(gun_skill_category)
+		added_delay += CONFIG_GET(number/combat_define/low_fire_delay) //untrained humans fire more slowly.
+	else
+		switch(gun_skill_category)
 			if(SKILL_HEAVY_WEAPONS)
-					if(fire_delay > 10) //long delay to fire
+				if(fire_delay > 10) //long delay to fire
 					added_delay = max(fire_delay - 3 * GET_SKILL(user, gun_skill_category), 6)
 			if(SKILL_SMARTGUN || SKILL_SPEC_WEAPONS)
 				var/skill_diff = GET_SKILL_DIFF(user, gun_skill_category, SKILL_LEVEL_TRAINED)
@@ -903,9 +903,9 @@ and you're good to go.
 			gun_scatter += 10*rand(3,5)
 
 	// Apply any skill-based bonuses to accuracy
-		var/skill_accuracy = 0
+	var/skill_accuracy = 0
 	if(!HAS_SKILL_LEVEL(user, SKILL_FIREARMS, SKILL_LEVEL_NOVICE)) //no training in any firearms
-			skill_accuracy = -1
+		skill_accuracy = -1
 	else if(gun_skill_category)
 		skill_accuracy = GET_SKILL(user, gun_skill_category)
 		if(skill_accuracy)
@@ -973,11 +973,11 @@ and you're good to go.
 				return target
 
 	if(!HAS_SKILL_LEVEL(user, SKILL_FIREARMS, SKILL_LEVEL_NOVICE)) //no training in any firearms
-			total_scatter += CONFIG_GET(number/combat_define/low_scatter_value)
+		total_scatter += CONFIG_GET(number/combat_define/low_scatter_value)
 	else if(gun_skill_category)
 		var/scatter_tweak = GET_SKILL(user, gun_skill_category)
-			if(scatter_tweak)
-				total_scatter -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
+		if(scatter_tweak)
+			total_scatter -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
 
 	if(prob(total_scatter)) //Scattered?
 		var/scatter_x = abs(16 - projectile_to_fire.p_x) //The value starts in pixels, depending on where the user clicked.
@@ -1013,11 +1013,11 @@ and you're good to go.
 			total_recoil += 1
 
 	if(!HAS_SKILL_LEVEL(user, SKILL_FIREARMS, SKILL_LEVEL_NOVICE)) //no training in any firearms
-			total_recoil += CONFIG_GET(number/combat_define/min_recoil_value)
+		total_recoil += CONFIG_GET(number/combat_define/min_recoil_value)
 	else if(gun_skill_category)
 		var/recoil_tweak = GET_SKILL(user, gun_skill_category)
-			if(recoil_tweak)
-				total_recoil -= recoil_tweak * CONFIG_GET(number/combat_define/min_recoil_value)
+		if(recoil_tweak)
+			total_recoil -= recoil_tweak * CONFIG_GET(number/combat_define/min_recoil_value)
 	if(total_recoil > 0 && ishuman(user))
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE
