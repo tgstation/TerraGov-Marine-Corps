@@ -6,7 +6,6 @@
 	datum_flags = DF_USE_TAG
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-
 	//Mob
 	var/stat = CONSCIOUS //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
 	var/datum/mind/mind
@@ -30,7 +29,6 @@
 	var/list/embedded = list()
 	var/list/cooldowns = list()
 
-
 	//Movement
 	var/next_click	= 0
 	var/next_move = 0
@@ -47,14 +45,12 @@
 	var/lying = FALSE
 	var/lying_prev = FALSE
 
-
 	//Security
 	var/computer_id
 	var/ip_address
 	var/list/logging = list()
 	var/static/next_mob_id = 0
 	var/immune_to_ssd = FALSE
-
 
 	//HUD and overlays
 	var/hud_type = /datum/hud
@@ -69,7 +65,6 @@
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	var/image/typing_indicator
 
-
 	//Interaction
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
 	var/datum/click_intercept
@@ -82,3 +77,6 @@
 	var/obj/item/storage/s_active //Carbon
 	var/obj/item/clothing/mask/wear_mask //Carbon
 	var/turf/listed_turf	//the current turf being examined in the stat panel
+
+	//Input
+	var/datum/focus //What receives our keyboard inputs. src by default

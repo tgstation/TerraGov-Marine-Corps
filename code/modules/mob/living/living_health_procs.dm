@@ -139,7 +139,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 
 /mob/living/proc/on_revive()
-	GLOB.alive_mob_list += src
+	GLOB.alive_living_list += src
 	GLOB.dead_mob_list -= src
 
 /mob/living/carbon/human/on_revive()
