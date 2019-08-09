@@ -109,7 +109,8 @@
 	dat = ""
 
 
-/obj/item/book/codebook/Initialize(mapload, ...)
+/obj/item/book/codebook/Initialize()
+	. = ..()
 	var/number
 	var/letter
 	dat = "<table><tr><th>Call</th><th>Response<th></tr>"
