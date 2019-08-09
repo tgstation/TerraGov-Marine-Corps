@@ -11,6 +11,8 @@
 	var/datum/action/innate/camera_off/off_action
 	var/datum/action/innate/camera_jump/jump_action
 	var/list/actions
+	var/mob/living/tracking_target
+	var/tracking = FALSE
 
 
 /obj/machinery/computer/camera_advanced/Initialize()
@@ -158,6 +160,55 @@
 	eyeobj.setLoc(eyeobj.loc)
 
 
+/obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
+	if(!istype(target))
+		return
+
+	INVOKE_ASYNC(src, .proc/track_actual, target)
+
+
+
+/obj/machinery/computer/camera_advanced/proc/track_actual(mob/living/target)
+	set waitfor = FALSE
+
+	tracking_target = target
+	tracking = TRUE
+
+	if(!target || !target.can_track(current_user))
+		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		tracking_target = null
+		return
+
+	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+
+	var/cameraticks = 0
+	while(tracking_target == target)
+		if(tracking_target == null)
+			return
+
+		if(!target.can_track(current_user))
+			tracking = TRUE
+			if(!cameraticks)
+				to_chat(current_user, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+			cameraticks++
+			if(cameraticks > 9)
+				tracking_target = null
+				to_chat(current_user, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+				tracking = FALSE
+				return
+			else
+				stoplag(5)
+				continue
+
+		else
+			cameraticks = 0
+			tracking = FALSE
+
+		eyeobj?.setLoc(get_turf(target))
+
+		stoplag(3)
+
+
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
@@ -223,6 +274,10 @@
 /mob/camera/aiEye/remote/relaymove(mob/user, direct)
 	var/initial = initial(sprint)
 	var/max_sprint = 50
+
+	if(istype(origin, /obj/machinery/computer/camera_advanced))
+		var/obj/machinery/computer/camera_advanced/CA = origin
+		CA.tracking_target = null
 
 	if(cooldown && cooldown < world.timeofday) // 3 seconds
 		sprint = initial
