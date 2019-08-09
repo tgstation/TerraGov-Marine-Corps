@@ -6264,14 +6264,6 @@
 "asJ" = (
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
-"asK" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Dormitories";
-	name = "\improper Dormitories Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/dorms)
 "asL" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
@@ -49053,7 +49045,7 @@ acr
 acP
 acP
 acP
-asK
+pyW
 atz
 atz
 asH
@@ -49921,7 +49913,7 @@ acr
 acP
 acP
 ash
-asK
+pyW
 atz
 atz
 asH
@@ -50789,7 +50781,7 @@ acr
 acP
 acP
 acP
-asK
+pyW
 atz
 atz
 asH
@@ -51657,7 +51649,7 @@ acP
 acP
 acP
 acP
-asK
+pyW
 atz
 atz
 asH
