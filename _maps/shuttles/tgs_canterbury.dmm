@@ -11,7 +11,7 @@
 /area/shuttle/canterbury/cic)
 "ad" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/security/marinemainship_network,
+/obj/machinery/computer/security/marine_network,
 /turf/open/floor/mainship{
 	dir = 9;
 	icon_state = "blue"
@@ -19,18 +19,27 @@
 /area/shuttle/canterbury/cic)
 "ae" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/communications,
-/turf/open/floor/mainship/mono,
+/obj/machinery/computer/shuttle/shuttle_control/canterbury,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "af" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera_advanced/overwatch/alpha,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "ag" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/station_alert,
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
 /area/shuttle/canterbury/cic)
 "ah" = (
 /obj/structure/table/mainship,
@@ -54,10 +63,10 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/captain,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/start/marine/crash/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ak" = (
@@ -76,10 +85,10 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/pilotofficer,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/effect/landmark/start/marine/crash/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "am" = (
@@ -117,12 +126,19 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	dir = 4;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
 /area/shuttle/canterbury/cic)
 "ao" = (
-/obj/structure/prop/mainship/mapping_computer,
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ap" = (
@@ -137,12 +153,6 @@
 /area/shuttle/canterbury/cic)
 "aq" = (
 /obj/structure/table/mainship,
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_x = 7
-	},
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
@@ -172,14 +182,12 @@
 "as" = (
 /turf/closed/wall/mainship/outer,
 /area/shuttle/canterbury/general)
-"at" = (
-/turf/closed/wall/mainship,
-/area/shuttle/canterbury/cic)
 "au" = (
 /obj/machinery/door/airlock/mainship/command{
-	name = "\improper Combat Information Center";
+	dir = 1;
 	icon_state = "door_closed";
-	dir = 1
+	name = "\improper Combat Information Center";
+	req_access = null
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -190,11 +198,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
-"av" = (
-/turf/closed/wall/mainship,
-/area/shuttle/canterbury/general)
 "aw" = (
-/obj/machinery/marine_turret,
+/obj/machinery/marine_turret/premade/canterbury,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -207,14 +212,12 @@
 	dir = 4
 	},
 /obj/structure/closet/firecloset,
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "ay" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/firealarm,
+/obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
 "az" = (
@@ -222,6 +225,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 2
 	},
+/obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
 "aA" = (
@@ -242,11 +246,13 @@
 /area/shuttle/canterbury/general)
 "aB" = (
 /obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
 "aC" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/alarm,
+/obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
 "aD" = (
@@ -260,10 +266,14 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "aE" = (
-/obj/machinery/door_control{
-	id = "port_umbilical_inner"
+/obj/machinery/door/poddoor/mainship{
+	id = "port_umbilical_inner";
+	name = "\improper Umbillical Airlock"
 	},
-/turf/closed/wall/mainship,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "aF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -279,6 +289,7 @@
 	id = "port_umbilical_outer";
 	name = "\improper Umbillical Airlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "aH" = (
@@ -362,6 +373,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/door_control{
+	id = "port_umbilical_inner";
+	pixel_y = 32
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "aP" = (
@@ -427,7 +442,7 @@
 	},
 /area/shuttle/canterbury/general)
 "aV" = (
-/obj/machinery/marine_turret{
+/obj/machinery/marine_turret/premade/canterbury{
 	icon_state = "sentry_base";
 	dir = 1
 	},
@@ -437,31 +452,26 @@
 	},
 /area/shuttle/canterbury/general)
 "aW" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
+/obj/machinery/light,
+/turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "aX" = (
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
+/obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
 "aY" = (
-/obj/machinery/light{
+/obj/machinery/door/poddoor/mainship{
+	id = "starboard_umbilical_inner";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "aZ" = (
 /obj/machinery/power/fusion_engine/random,
@@ -475,29 +485,10 @@
 /obj/machinery/fuelcell_recycler,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"bb" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/structure/window/framed/mainship,
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
 "bc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring"
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/open/floor/mainship{
-	icon_state = "orangefull"
-	},
+/obj/machinery/alarm,
+/obj/machinery/light/small,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "bd" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -537,7 +528,7 @@
 /area/shuttle/canterbury/general)
 "bg" = (
 /obj/machinery/door/window/westright,
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/marine/crash/squadengineer,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -593,7 +584,9 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "bk" = (
-/obj/machinery/door/airlock/mainship/engineering,
+/obj/machinery/door/airlock/mainship/engineering{
+	req_one_access = null
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -606,22 +599,15 @@
 /area/shuttle/canterbury/general)
 "bl" = (
 /obj/effect/decal/warning_stripes/thin{
-	dir = 5
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/marine_selector/clothes/synth,
+/turf/open/floor/mainship{
+	icon_state = "orangefull"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "bm" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -704,16 +690,16 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /obj/structure/cable{
-	d1 = 2;
+	d1 = 4;
 	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "4-8"
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
@@ -723,6 +709,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
@@ -792,7 +783,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/marine/crash/squadmarine,
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
@@ -805,7 +796,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/marine/crash/squadmarine,
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
@@ -816,18 +807,17 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "bC" = (
-/obj/effect/landmark/start/latejoin,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "bD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "bE" = (
@@ -846,7 +836,7 @@
 	icon_state = "right";
 	dir = 2
 	},
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/marine/crash/squadcorpsman,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -914,20 +904,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"bM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+"bN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"bN" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_regular_floor = "cargo_arrow";
@@ -963,6 +949,7 @@
 	id = "starboard_umbilical_outer";
 	name = "\improper Umbillical Airlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "bT" = (
@@ -982,7 +969,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "bV" = (
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/marine/crash/squadleader,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -1005,10 +992,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"bX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury/general)
 "bY" = (
 /obj/machinery/marine_selector/gear/spec,
 /obj/structure/window/reinforced,
@@ -1025,7 +1008,7 @@
 	icon_state = "right";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/marine/crash/squadspecialist,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1049,13 +1032,11 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/maintenancetech,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
 "cc" = (
-/obj/effect/landmark/start/marine/synthetic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -1069,14 +1050,15 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "ce" = (
-/obj/machinery/light,
+/obj/machinery/vending/cigarette,
 /obj/item/radio/intercom{
 	anyai = 1;
+	dir = 4;
 	freerange = 1;
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "cf" = (
 /obj/machinery/marine_selector/gear/smartgun,
@@ -1147,15 +1129,32 @@
 	},
 /area/shuttle/canterbury/medical)
 "cm" = (
-/obj/machinery/vending/cigarette,
-/turf/open/floor/mainship/mono,
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1;
+	icon_state = "door_closed";
+	req_one_access = null
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "cn" = (
-/obj/structure/closet/crate/trashcart,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "co" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_regular_floor = "cargo_arrow";
@@ -1165,7 +1164,7 @@
 "cp" = (
 /obj/machinery/door/window/westright,
 /obj/structure/window/reinforced,
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/marine/crash/squadsmartgunner,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1188,9 +1187,7 @@
 /area/shuttle/canterbury/medical)
 "cs" = (
 /obj/machinery/iv_drip,
-/obj/structure/sink{
-	pixel_y = 13
-	},
+/obj/machinery/shower,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -1239,11 +1236,6 @@
 /obj/item/storage/backpack/marine/engineerpack,
 /obj/item/storage/belt/utility/full,
 /obj/item/flashlight,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/open/floor/mainship{
@@ -1268,12 +1260,6 @@
 	},
 /area/shuttle/canterbury/general)
 "cz" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
@@ -1284,6 +1270,12 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	icon_state = "manifold-1";
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
@@ -1300,30 +1292,54 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/largecrate/supply/supplies/water,
+/obj/structure/closet/crate/weapon,
+/obj/item/attachable/burstfire_assembly,
+/obj/item/attachable/bipod,
+/obj/item/attachable/extended_barrel,
+/obj/item/attachable/gyro,
+/obj/item/attachable/stock/tactical,
+/obj/item/attachable/reddot,
+/obj/item/attachable/quickfire,
+/obj/item/attachable/lasersight,
+/obj/item/attachable/compensator,
+/obj/item/attachable/suppressor,
+/obj/item/attachable/verticalgrip,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/stock/revolver,
+/obj/item/attachable/stock/shotgun,
+/obj/item/attachable/attached_gun/shotgun,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury/general)
 "cD" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
 	},
-/area/shuttle/canterbury/medical)
+/obj/effect/landmark/start/latejoin/crash,
+/obj/item/radio/intercom{
+	anyai = 1;
+	dir = 4;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/plating/mainship,
+/area/shuttle/canterbury/general)
 "cE" = (
-/obj/effect/landmark/start/marine/medicalofficer,
+/obj/effect/landmark/start/marine/crash/cmo,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
 /area/shuttle/canterbury/medical)
 "cF" = (
-/obj/machinery/door/airlock/mainship/medical/glass,
+/obj/machinery/door/airlock/mainship/medical/glass{
+	req_one_access = null
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -1333,6 +1349,7 @@
 	dir = 4;
 	on = 1
 	},
+/obj/effect/landmark/start/marine/crash/medicalofficer,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green"
 	},
@@ -1358,8 +1375,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/item/m56d_post,
-/obj/item/m56d_gun,
 /obj/item/tool/hand_labeler,
 /obj/item/storage/toolbox/electrical,
 /obj/structure/window/reinforced{
@@ -1369,6 +1384,7 @@
 	dir = 4;
 	icon_state = "camera"
 	},
+/obj/item/storage/box/m56d_hmg,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1380,6 +1396,10 @@
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
+	},
+/obj/machinery/door_control{
+	id = "storage_podlock";
+	pixel_x = -32
 	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
@@ -1403,15 +1423,17 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "cL" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
@@ -1421,8 +1443,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
@@ -1494,13 +1519,10 @@
 	},
 /area/shuttle/canterbury/medical)
 "cU" = (
-/obj/structure/rack,
-/obj/item/flashlight,
-/obj/item/tool/extinguisher/mini,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/radio,
+/obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1537,23 +1559,56 @@
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury/general)
-"db" = (
-/obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
+"cZ" = (
+/obj/machinery/door_control{
+	id = "starboard_engine_podlock";
+	pixel_y = 32
+	},
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"da" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/landmark/start/latejoin/crash,
+/obj/item/radio/intercom{
+	anyai = 1;
+	dir = 8;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship,
+/turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
+"db" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	anyai = 1;
+	dir = 4;
+	freerange = 1;
+	name = "General Listening Channel";
+	pixel_y = -28
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/shuttle/canterbury/medical)
 "dc" = (
-/obj/structure/shuttle/engine/propulsion/burst/left,
-/turf/open/space,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "dd" = (
 /turf/open/floor/mainship,
@@ -1572,7 +1627,18 @@
 	},
 /area/shuttle/canterbury/general)
 "dg" = (
-/obj/machinery/alarm,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "dh" = (
@@ -1580,15 +1646,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"di" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
@@ -1607,44 +1664,46 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "dk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/machinery/camera/autoname/mainship{
+	dir = 4;
+	icon_state = "camera"
 	},
 /obj/item/radio/intercom{
 	anyai = 1;
+	dir = 4;
 	freerange = 1;
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
+/turf/open/floor/mainship{
+	icon_state = "cargo"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "dl" = (
-/obj/structure/shuttle/engine/propulsion/burst/right,
-/turf/open/space,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "dm" = (
 /obj/machinery/door_control{
 	id = "aft_engine_podlock"
 	},
-/turf/closed/wall/mainship,
+/turf/closed/wall/mainship/outer,
 /area/shuttle/canterbury/medical)
-"dn" = (
-/obj/structure/shuttle/engine/propulsion/burst,
-/turf/open/space,
-/area/shuttle/canterbury/general)
 "do" = (
 /obj/machinery/door_control{
 	id = "port_engine_podlock"
 	},
-/turf/closed/wall/mainship,
+/turf/closed/wall/mainship/outer,
 /area/shuttle/canterbury/medical)
 "dp" = (
 /obj/machinery/door/poddoor/mainship{
@@ -1652,31 +1711,10 @@
 	icon_state = "pdoor1";
 	id = "storage_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
-/area/shuttle/canterbury/general)
-"dq" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "port_umbilical_inner";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"dr" = (
-/obj/machinery/door_control{
-	id = "starboard_umbilical_inner"
-	},
-/turf/closed/wall/mainship,
 /area/shuttle/canterbury/general)
 "ds" = (
 /obj/machinery/door/poddoor/mainship{
@@ -1686,50 +1724,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"dt" = (
 /obj/machinery/door_control{
-	id = "storage_podlock"
-	},
-/turf/closed/wall/mainship,
-/area/shuttle/canterbury/medical)
-"du" = (
-/obj/machinery/door/poddoor/mainship{
 	id = "starboard_umbilical_inner";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	anyai = 1;
-	freerange = 1;
-	name = "General Listening Channel";
-	pixel_y = -28
+	pixel_y = 32
 	},
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
-"dv" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4;
-	icon_state = "camera"
-	},
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/shuttle/canterbury/general)
-"dw" = (
-/obj/machinery/door_control{
-	id = "starboard_umbilical_outer"
-	},
-/turf/closed/wall/mainship/outer,
-/area/shuttle/canterbury/general)
-"dx" = (
-/obj/machinery/door_control{
-	id = "port_umbilical_outer"
-	},
-/turf/closed/wall/mainship/outer,
 /area/shuttle/canterbury/general)
 "dy" = (
 /obj/structure/window/reinforced{
@@ -1738,18 +1737,12 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/marine/crash/squadmarine,
 /obj/docking_port/mobile/crashmode,
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
 	icon_state = "cargo_arrow"
 	},
-/area/shuttle/canterbury/general)
-"dz" = (
-/obj/machinery/door_control{
-	id = "starboard_engine_podlock"
-	},
-/turf/closed/wall/mainship,
 /area/shuttle/canterbury/general)
 "dA" = (
 /obj/machinery/door/poddoor/mainship{
@@ -1757,6 +1750,7 @@
 	icon_state = "pdoor1";
 	id = "port_engine_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
 "dB" = (
@@ -1765,6 +1759,7 @@
 	icon_state = "pdoor1";
 	id = "starboard_engine_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
 "dC" = (
@@ -1772,6 +1767,9 @@
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "port_engine_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
@@ -1781,6 +1779,9 @@
 	icon_state = "pdoor1";
 	id = "starboard_engine_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
 "dE" = (
@@ -1789,7 +1790,40 @@
 	icon_state = "pdoor1";
 	id = "aft_engine_podlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit{
+	dir = 2
+	},
 /turf/open/floor/plating,
+/area/shuttle/canterbury/general)
+"eA" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "starboard_umbilical_outer";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/door_control{
+	id = "starboard_umbilical_outer";
+	pixel_y = -32
+	},
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury/general)
+"qL" = (
+/obj/effect/landmark/start/marine/crash/synthetic,
+/turf/open/floor/mainship{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"VH" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "port_umbilical_outer";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/door_control{
+	id = "port_umbilical_outer";
+	pixel_y = -32
+	},
+/obj/machinery/door/poddoor/shutters/transit,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "Wo" = (
 /turf/closed/wall/mainship,
@@ -1805,7 +1839,7 @@ aa
 aa
 aa
 aa
-av
+as
 as
 as
 as
@@ -1817,7 +1851,6 @@ ch
 ch
 ch
 ch
-aa
 aa
 aa
 aa
@@ -1828,23 +1861,22 @@ aa
 aa
 aa
 as
-av
+as
 aG
-aG
-dx
-av
+VH
+as
+as
 aZ
 bi
 bu
-av
+as
 bQ
 ca
 ci
 cr
-cD
+db
 cP
 ch
-dc
 aa
 aa
 aa
@@ -1859,11 +1891,11 @@ aw
 aF
 aN
 aV
-av
+as
 ba
 bj
 bv
-av
+as
 bR
 cb
 ci
@@ -1874,7 +1906,6 @@ ch
 dA
 as
 aa
-aa
 "}
 (4,1,1) = {"
 aa
@@ -1882,25 +1913,24 @@ aa
 aa
 aa
 as
-aE
+as
 aO
-dq
-av
-av
-bb
+aE
+as
+as
+bw
 bk
 bw
-av
+as
 cx
 bT
 ci
 ct
 cF
 ct
-Wo
+ch
 de
 dC
-dn
 aa
 "}
 (5,1,1) = {"
@@ -1912,14 +1942,14 @@ ab
 ax
 aH
 aP
-aW
+cD
 aX
-bc
 bl
+dl
 bx
 bG
 bT
-bT
+qL
 cj
 cu
 cG
@@ -1927,7 +1957,6 @@ cR
 do
 df
 dC
-dl
 aa
 "}
 (6,1,1) = {"
@@ -1935,7 +1964,7 @@ ac
 ad
 ai
 an
-at
+ab
 ay
 aI
 aQ
@@ -1951,18 +1980,17 @@ ck
 cv
 cH
 cS
-Wo
-dg
+ch
+bc
 as
 as
-aa
 "}
 (7,1,1) = {"
 ac
 ae
 aj
 ao
-at
+ab
 az
 aI
 aR
@@ -1978,11 +2006,10 @@ cl
 cw
 cO
 cT
-Wo
+ch
 dh
-dv
+dk
 dE
-dn
 "}
 (8,1,1) = {"
 ac
@@ -2000,23 +2027,22 @@ bo
 dy
 bJ
 bV
-ce
+aW
 Wo
 Wo
-dt
+Wo
 Wo
 dm
-di
+dc
 df
 dE
-dn
 "}
 (9,1,1) = {"
 ac
 ag
 al
 aq
-at
+ab
 aB
 aK
 aQ
@@ -2028,22 +2054,21 @@ bA
 bK
 bW
 cd
-cm
+ce
 cI
 cJ
 cU
-av
+as
 dj
 df
 dE
-dn
 "}
 (10,1,1) = {"
 ac
 ah
 am
 ar
-at
+ab
 aC
 aI
 aR
@@ -2059,11 +2084,10 @@ cn
 cy
 cK
 cV
-db
-dk
+cm
+dg
 as
 as
-aa
 "}
 (11,1,1) = {"
 ab
@@ -2074,22 +2098,21 @@ ab
 aD
 aL
 aT
-aY
+da
 aX
 be
 bq
 bC
-bM
+cd
 bC
-bM
-bM
+cd
+cd
 cz
 cL
 cW
-dz
-df
+as
+cZ
 dD
-dc
 aa
 "}
 (12,1,1) = {"
@@ -2098,25 +2121,24 @@ aa
 aa
 aa
 as
-dr
+as
 ds
-du
-av
-av
+aY
+as
+as
 bf
 br
 bD
 bN
-bX
-bX
+bH
+bH
 co
 cA
 cM
 cW
-av
+as
 de
 dD
-dl
 aa
 "}
 (13,1,1) = {"
@@ -2144,7 +2166,6 @@ as
 dB
 as
 aa
-aa
 "}
 (14,1,1) = {"
 aa
@@ -2154,8 +2175,8 @@ aa
 as
 as
 bS
-bS
-dw
+eA
+as
 as
 bh
 bt
@@ -2168,7 +2189,6 @@ cC
 dd
 cY
 as
-dl
 aa
 aa
 aa
@@ -2183,7 +2203,7 @@ aa
 aa
 aa
 aa
-av
+as
 as
 as
 as
@@ -2195,7 +2215,6 @@ dp
 dp
 dp
 as
-aa
 aa
 aa
 aa

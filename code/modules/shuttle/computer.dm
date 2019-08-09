@@ -37,7 +37,7 @@
 				dat += "<A href='?src=[REF(src)];request=1]'>Request Authorization</A><br>"
 	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
-	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? M.name : "shuttle"]</div>", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
@@ -74,8 +74,10 @@
 				visible_message("Shuttle departing. Please stand away from the doors.")
 			if(1)
 				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
+				return TRUE
 			else
 				to_chat(usr, "<span class='notice'>Unable to comply.</span>")
+				return TRUE
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))

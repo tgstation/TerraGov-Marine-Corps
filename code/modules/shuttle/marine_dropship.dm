@@ -19,7 +19,8 @@
 			A.set_broken()
 		CHECK_TICK
 
-	for(var/mob/living/carbon/M in GLOB.alive_mob_list) //knock down mobs
+	for(var/i in GLOB.alive_living_list) //knock down mobs
+		var/mob/living/M = i
 		if(!is_mainship_level(M.z)) 
 			continue
 		if(M.buckled)
@@ -797,6 +798,16 @@
 	icon_state = "shuttle"
 
 
+/obj/machinery/computer/shuttle/shuttle_control/Initialize()
+	. = ..()
+	GLOB.shuttle_controls_list += src
+
+
+/obj/machinery/computer/shuttle/shuttle_control/Destroy()
+	GLOB.shuttle_controls_list -= src
+	return ..()
+
+
 /obj/machinery/computer/shuttle/shuttle_control/ui_interact(mob/user)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
@@ -845,3 +856,24 @@
 	icon_state = "shuttle"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury
+	name = "\improper 'Canterbury' shuttle console"
+	desc = "The remote controls for the 'Canterbury' shuttle."
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	shuttleId = "tgs_canterbury"
+	possible_destinations = "canterbury_loadingdock"
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+
+	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
+		return
+		
+	var/datum/game_mode/crash/C = SSticker.mode
+	C.marines_evac = CRASH_EVAC_INPROGRESS
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)

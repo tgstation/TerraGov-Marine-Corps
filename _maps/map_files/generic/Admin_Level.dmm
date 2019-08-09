@@ -582,7 +582,6 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "bR" = (
-/obj/machinery/nuclearbomb,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -3309,6 +3308,10 @@
 	icon_state = "redcorner"
 	},
 /area/centcom)
+"QN" = (
+/obj/docking_port/stationary/crashmode/loading,
+/turf/open/space,
+/area/space)
 "QP" = (
 /obj/machinery/light{
 	dir = 8
@@ -11920,7 +11923,7 @@ aa
 aa
 aa
 aa
-aa
+QN
 aa
 aa
 aa
