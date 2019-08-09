@@ -253,24 +253,23 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom info?", "Custom Info") as null|anything in list("Change", "Clear"))
-		if("Change")
-			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	var/new_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	new_info = noscript(new_info)
+	if(isnull(new_info) || GLOB.custom_info == new_info)
+		return
 
-			GLOB.custom_info = noscript(GLOB.custom_info)
+	if(!new_info)
+		log_admin("[key_name(usr)] has cleared the custom info.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
+		return
 
-			if(!GLOB.custom_info)
-				return
+	GLOB.custom_info = new_info
 
-			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-			to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
+	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
+	to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
 
-			log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
-			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
-		if("Clear")
-			GLOB.custom_info = null
-			log_admin("[key_name(usr)] has cleared the custom info.")
-			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
+	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
 
 
 /client/verb/custom_info()
