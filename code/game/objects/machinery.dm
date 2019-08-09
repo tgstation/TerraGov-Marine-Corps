@@ -34,7 +34,7 @@
 
 /obj/machinery/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return

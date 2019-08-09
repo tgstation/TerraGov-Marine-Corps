@@ -56,3 +56,13 @@
 	var/related_accounts_cid = "Requires database"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
 	var/account_join_date = null	//Date of byond account creation in ISO 8601 format
 	var/account_age = -1	//Age of byond account in days
+
+	//Asset cache
+	var/list/cache = list() // List of all assets sent to this client by the asset cache.
+	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
+	var/list/sending = list()
+	var/last_asset_job = 0 // Last job done.
+
+	//Codex
+	var/codex_on_cooldown = FALSE
+	var/const/max_codex_entries_shown = 10

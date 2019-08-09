@@ -92,6 +92,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(loaded)
 		return
 
+	if(!owner)
+		return FALSE
+
 	loaded = TRUE
 	showChat()
 
@@ -184,7 +187,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!client.chatOutput)
 		return
 	var/new_input = input(usr, "Enter custom CSS", "Client CSS", client.chatOutput.clientCSS) as message|null
-	if(!new_input || length(new_input) > UPLOAD_LIMIT)
+	if(isnull(new_input) || length(new_input) > UPLOAD_LIMIT)
 		return
 	to_chat(src, "<span class='notice'>Updating custom CSS.</span>")
 	client.chatOutput.clientCSS = new_input

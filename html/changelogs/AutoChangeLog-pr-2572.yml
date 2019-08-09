@@ -1,0 +1,4 @@
+author: "DoctorMad"
+delete-after: True
+changes: 
+  - tweak: "Shotgun's incendiary slugs now deal brute damage when hitting someone. Still sets them on fire."

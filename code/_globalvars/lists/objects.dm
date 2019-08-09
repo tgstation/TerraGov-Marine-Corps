@@ -18,6 +18,10 @@ GLOBAL_LIST_EMPTY(supply_pad_list)
 GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/tunnel
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(faxmachines)
+GLOBAL_LIST_EMPTY(nuke_disk_generators)
+GLOBAL_LIST_EMPTY(nuke_list)						//list of all /obj/machinery/nuclearbomb
+GLOBAL_LIST_EMPTY(nuke_spawn_locs)
+GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reagents_list)				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
@@ -28,6 +32,11 @@ GLOBAL_LIST_EMPTY(wire_name_directory)
 
 GLOBAL_LIST_EMPTY(ai_status_displays)
 GLOBAL_LIST_EMPTY(alert_consoles)			// Station alert consoles, /obj/machinery/computer/station_alert
+
+GLOBAL_LIST_EMPTY(xeno_resin_silo_turfs)
+GLOBAL_LIST_EMPTY(xeno_resin_silos)
+
+GLOBAL_LIST_EMPTY(shuttle_controls_list)
 
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
