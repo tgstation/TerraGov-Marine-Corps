@@ -53,6 +53,7 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(!ishuman(L))
 		return
+
 	var/mob/living/carbon/human/H = L
 	var/obj/item/card/id/C = H.wear_id
 	if(istype(C) && H.mind?.initial_account)

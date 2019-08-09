@@ -6264,14 +6264,6 @@
 "asJ" = (
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
-"asK" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Dormitories";
-	name = "\improper Dormitories Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/dorms)
 "asL" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
@@ -11068,7 +11060,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aHf" = (
 /obj/structure/fence,
-/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
 	},
@@ -15362,7 +15353,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aUM" = (
-/obj/machinery/computer/operating,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aUN" = (
@@ -23530,6 +23521,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzG" = (
+/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -23780,7 +23772,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAF" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
@@ -24991,6 +24982,11 @@
 "cBD" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/sw)
+"cGZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor,
+/area/bigredv2/outside/hydroponics)
 "cWF" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -25006,6 +25002,16 @@
 "cXu" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/outside/se)
+"daV" = (
+/turf/open/space/basic,
+/area/lv624/lazarus/quartstorage/outdoors)
+"dcO" = (
+/obj/machinery/door/airlock/mainship/research{
+	name = "\improper Virology Lab Administration";
+	req_access_txt = "0"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "djN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -25033,6 +25039,10 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
+"dzS" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
 "dBp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -25167,6 +25177,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"fmM" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "fra" = (
 /obj/effect/landmark/start/xeno_spawn,
 /turf/open/floor/tile/white,
@@ -25432,6 +25448,13 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"idM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/nuke_disk_generator/blue,
+/turf/open/floor/elevatorshaft,
+/area/bigredv2/caves/lambda_lab)
 "iiY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -25452,6 +25475,10 @@
 	},
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/virology)
+"iCv" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "iNd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -25547,6 +25574,11 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"khf" = (
+/obj/structure/table,
+/obj/item/tool/pen/red,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "knF" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/engineering)
@@ -25563,6 +25595,10 @@
 	dir = 2
 	},
 /turf/closed/mineral/bigred,
+/area/bigredv2/caves)
+"kvX" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "kxe" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -25747,10 +25783,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
-"nlp" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
-/area/bigredv2/outside/virology)
 "nts" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
@@ -25786,6 +25818,11 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
+"nJs" = (
+/obj/structure/table,
+/obj/item/alienjar,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "nSc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -25866,6 +25903,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/w)
+"oEN" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "oFB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -25992,6 +26033,12 @@
 	dir = 1
 	},
 /area/bigredv2/outside/chapel)
+"qeE" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "qfc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -26036,6 +26083,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"qvY" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "qxt" = (
 /obj/item/trash/candy,
 /turf/open/floor,
@@ -26412,10 +26463,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/virology)
-"uOJ" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
-/area/bigredv2/outside/w)
 "uTl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -26437,6 +26484,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"vsq" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/c)
 "vDI" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/w)
@@ -26617,6 +26668,11 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"xWh" = (
+/obj/structure/table,
+/obj/item/ashtray/bronze,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "xWK" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -27141,52 +27197,52 @@ aac
 aac
 aac
 aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
 hzx
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
 aac
 aac
 aac
@@ -27358,52 +27414,52 @@ aac
 aac
 aac
 aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+abq
+abq
+abq
+abq
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+abq
+abq
+abq
+abq
+abq
+abq
+abq
+abq
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
 hzx
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-abq
-abq
-abq
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-abq
-abq
-abq
-abq
-abq
-abq
-abq
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
 aac
 aac
 aac
@@ -27575,7 +27631,7 @@ aac
 aac
 aac
 aac
-hzx
+aac
 aac
 aac
 aac
@@ -27620,7 +27676,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -27792,52 +27848,52 @@ aac
 aac
 aac
 aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+abq
+aad
+aad
+aad
+aad
+aad
+aad
+abq
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aad
+aac
+abq
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aac
+aac
+aad
+aac
+abq
+abq
 hzx
-aac
-aac
-aac
-aac
-aac
-aac
-abq
-aad
-aad
-aad
-aad
-aad
-aad
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aad
-aac
-abq
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aac
-aac
-aad
-aac
-abq
-abq
-aac
 abq
 abq
 abq
@@ -28009,7 +28065,7 @@ aac
 aac
 aac
 aac
-hzx
+aac
 aac
 aac
 aac
@@ -28054,7 +28110,7 @@ aad
 abq
 aad
 aad
-abq
+vTV
 aad
 aad
 aad
@@ -28227,7 +28283,7 @@ aac
 aac
 aac
 aac
-hzx
+aac
 aac
 aac
 aac
@@ -28272,7 +28328,7 @@ aad
 aad
 aad
 aad
-aad
+hkk
 aad
 aad
 aad
@@ -28445,51 +28501,51 @@ aac
 aac
 aac
 aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+abq
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+abq
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
 hkk
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-abq
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
 aad
 aad
 aad
@@ -28663,18 +28719,6 @@ aad
 aad
 aad
 aad
-hkk
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-abq
-aad
 aad
 aad
 aad
@@ -28686,6 +28730,18 @@ aad
 aad
 aad
 abq
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+abq
 aac
 aac
 aac
@@ -28707,7 +28763,7 @@ abq
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -28881,14 +28937,6 @@ aad
 aad
 aad
 aad
-hkk
-abq
-aad
-aad
-aad
-aad
-aad
-aad
 aad
 abq
 aad
@@ -28898,6 +28946,14 @@ aad
 aad
 aad
 aad
+abq
+aad
+aad
+aad
+aad
+aad
+aad
+aad
 aad
 aad
 aad
@@ -28924,7 +28980,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -29098,7 +29154,7 @@ aad
 aad
 aad
 aad
-hkk
+aad
 aad
 aad
 aad
@@ -29142,10 +29198,10 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
+hzx
+hzx
+hzx
+hzx
 aac
 aac
 aac
@@ -29316,7 +29372,7 @@ aad
 aad
 aad
 aad
-hkk
+aad
 aad
 aad
 aad
@@ -29363,7 +29419,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -29533,24 +29589,6 @@ aad
 aad
 aad
 abq
-hkk
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aad
-aad
 aad
 aad
 aad
@@ -29562,6 +29600,24 @@ aad
 aad
 abq
 aac
+aac
+aac
+aac
+aac
+aac
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+abq
+aac
 aad
 aad
 aac
@@ -29580,7 +29636,7 @@ aac
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -29750,58 +29806,58 @@ aac
 aac
 aac
 aac
+aac
+aac
+aac
+aac
+aac
+aad
+aad
+aad
+aad
+abq
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aad
+abq
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aad
+abq
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
 hzx
 aac
 aac
 aac
 aac
-aad
-aad
-aad
-aad
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aad
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aad
-abq
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
 aac
 aac
 aac
@@ -29844,7 +29900,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 aad
@@ -29968,21 +30024,21 @@ aac
 aac
 aac
 aac
-hzx
+aac
 aac
 aac
 aac
 aad
 aac
-hzx
-aGo
+aac
+kvX
 aHf
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
+aac
+aac
+aac
+aac
+aac
+aac
 aac
 aac
 aac
@@ -30014,7 +30070,7 @@ vDI
 aac
 aac
 aac
-aac
+hzx
 aac
 aac
 aac
@@ -30186,11 +30242,11 @@ aac
 aac
 aac
 aac
-hzx
-hzx
-hzx
-hzx
-hzx
+aac
+aac
+aac
+aac
+aac
 aac
 aGp
 aFs
@@ -30200,22 +30256,22 @@ aac
 aac
 aac
 aac
-hzx
-hzx
-hzx
-hzx
-vTV
-hkk
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-nts
-hkk
-hzx
+aac
+aac
+aac
+aac
+abq
+aad
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+amE
+aad
+aac
 aac
 aac
 aac
@@ -30231,7 +30287,7 @@ vDI
 vDI
 aac
 aac
-aac
+hzx
 aac
 aac
 aad
@@ -30433,7 +30489,7 @@ aMz
 aRD
 aRD
 aMz
-nlp
+iug
 iug
 iug
 iug
@@ -30448,7 +30504,7 @@ vDI
 vDI
 aac
 aac
-aac
+hzx
 aac
 abq
 aad
@@ -30651,21 +30707,21 @@ aYz
 aRE
 aMz
 iug
-nlp
-nlp
-nlp
-nlp
-nlp
-nlp
-nlp
-nlp
-uOJ
-uOJ
-uOJ
-uOJ
-hzx
-hzx
-hzx
+iug
+iug
+iug
+iug
+iug
+iug
+iug
+iug
+vDI
+vDI
+vDI
+vDI
+aac
+aac
+aac
 hzx
 vTV
 hkk
@@ -30858,7 +30914,7 @@ aQz
 aRF
 aSu
 aSz
-aUM
+aNc
 aNc
 aNc
 aNc
@@ -31084,11 +31140,11 @@ aMz
 aYB
 aRF
 aMz
-iug
-iug
-iug
-iug
-iug
+aMz
+aMz
+aMz
+aMz
+aMz
 iBK
 iug
 iug
@@ -31301,11 +31357,11 @@ aMz
 aYA
 aWe
 aMz
-iug
-iug
-iug
-iug
-iug
+aUM
+fmM
+aNc
+aNc
+aMz
 iBK
 iug
 iug
@@ -31518,11 +31574,11 @@ aMz
 aMz
 aZk
 aMz
-iug
-iug
-iug
-iug
-iug
+nJs
+khf
+xWh
+aNc
+aMz
 iBK
 iug
 iug
@@ -31735,11 +31791,11 @@ aWd
 aNc
 aRH
 aMz
-iug
-iug
-iug
-iug
-iug
+aNc
+qeE
+aNc
+aNc
+aMz
 iBK
 iug
 iug
@@ -31952,11 +32008,11 @@ aRF
 aNc
 aRH
 aMz
-iug
-iug
-iug
-iug
-iug
+oEN
+aNc
+aNc
+aQy
+aMz
 iBK
 iug
 aFv
@@ -32170,7 +32226,7 @@ aXw
 aZl
 aMz
 aMz
-aMz
+dcO
 aMz
 aMz
 aMz
@@ -40834,7 +40890,7 @@ aBR
 aMc
 aMB
 aNr
-aNo
+dzS
 aOB
 aOB
 aOy
@@ -44191,7 +44247,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 aad
@@ -44979,7 +45035,7 @@ aPU
 aNF
 aUb
 aMe
-aHD
+vsq
 aBR
 aBR
 aBR
@@ -49053,7 +49109,7 @@ acr
 acP
 acP
 acP
-asK
+pyW
 atz
 atz
 asH
@@ -49921,7 +49977,7 @@ acr
 acP
 acP
 ash
-asK
+pyW
 atz
 atz
 asH
@@ -50789,7 +50845,7 @@ acr
 acP
 acP
 acP
-asK
+pyW
 atz
 atz
 asH
@@ -51657,7 +51713,7 @@ acP
 acP
 acP
 acP
-asK
+pyW
 atz
 atz
 asH
@@ -54452,7 +54508,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 aad
@@ -56229,7 +56285,7 @@ arD
 arD
 amZ
 aCf
-aCo
+cGZ
 aEe
 aEW
 aCf
@@ -63372,7 +63428,7 @@ adZ
 afv
 adZ
 adZ
-aqY
+idM
 arF
 arF
 ate
@@ -68914,7 +68970,7 @@ aad
 aad
 aad
 aad
-aad
+iCv
 aac
 aad
 aad
@@ -69568,7 +69624,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 aad
@@ -71815,7 +71871,7 @@ aad
 aad
 aad
 aad
-aad
+qvY
 aad
 aad
 abq

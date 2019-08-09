@@ -6,6 +6,8 @@
 	var/required_players = 0
 
 	var/round_finished
+	var/list/round_end_states = list()
+	var/list/valid_job_types = list()
 
 	var/round_time_fog
 	var/flags_round_type = NONE
@@ -20,6 +22,11 @@
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
 	var/on_distress_cooldown = FALSE
 	var/waiting_for_candidates = FALSE
+
+	// Xeno round start conditions
+	var/xeno_required_num = 1 // Number of xenos required to start 
+	var/xeno_starting_num // Number of xenos given at start
+	var/list/xenomorphs = list()
 
 /datum/game_mode/New()
 	initialize_emergency_calls()
@@ -196,6 +203,57 @@
 	return candidates
 
 
+/datum/game_mode/proc/initialize_xeno_leader()
+	var/list/possible_queens = get_players_for_role(BE_QUEEN)
+	if(!length(possible_queens))
+		return FALSE
+
+	var/found = FALSE
+	for(var/i in possible_queens)
+		var/datum/mind/new_queen = i
+		if(new_queen.assigned_role || is_banned_from(new_queen.current?.ckey, ROLE_XENO_QUEEN))
+			continue
+		if(queen_age_check(new_queen.current?.client))
+			continue
+		new_queen.assigned_role = ROLE_XENO_QUEEN
+		xenomorphs += new_queen
+		found = TRUE
+		break
+
+	return found
+
+
+/datum/game_mode/proc/initialize_xenomorphs()
+	var/list/possible_xenomorphs = get_players_for_role(BE_ALIEN)
+	if(length(possible_xenomorphs) < xeno_required_num)
+		return FALSE
+
+	for(var/i in possible_xenomorphs)
+		var/datum/mind/new_xeno = i
+		if(new_xeno.assigned_role || is_banned_from(new_xeno.current?.ckey, ROLE_XENOMORPH))
+			continue
+		new_xeno.assigned_role = ROLE_XENOMORPH
+		xenomorphs += new_xeno
+		possible_xenomorphs -= new_xeno
+		if(length(xenomorphs) >= xeno_starting_num)
+			break
+
+	if(!length(xenomorphs))
+		return FALSE
+
+	xeno_required_num = CONFIG_GET(number/min_xenos)
+
+	if(length(xenomorphs) < xeno_required_num)
+		for(var/i = 1 to xeno_starting_num - length(xenomorphs))
+			new /mob/living/carbon/xenomorph/larva(pick(GLOB.xeno_spawn))
+
+	else if(length(xenomorphs) < xeno_starting_num)
+		var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		HN.stored_larva += xeno_starting_num - length(xenomorphs)
+
+	return TRUE
+
+
 /datum/game_mode/proc/display_roundstart_logout_report()
 	var/msg = "<hr><span class='notice'><b>Roundstart logout report</b></span><br>"
 	for(var/mob/living/L in GLOB.mob_living_list)
@@ -266,6 +324,94 @@
 				new /obj/item/map/FOP_map(T)
 
 
+/datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE)
+	var/list/xenoLocationsP = list()
+	var/list/xenoLocationsS = list()
+	var/list/hostLocationsP = list()
+	var/list/hostLocationsS = list()
+	var/numHostsPlanet	= 0
+	var/numHostsShip	= 0
+	var/numXenosPlanet	= 0
+	var/numXenosShip	= 0
+	var/numLarvaPlanet  = 0
+	var/numLarvaShip    = 0
+
+	for(var/i in GLOB.alive_xeno_list)
+		var/mob/living/carbon/xenomorph/X = i
+		var/area/A = get_area(X)
+		if(is_ground_level(A?.z))
+			if(isxenolarva(X))
+				numLarvaPlanet++
+			numXenosPlanet++
+			xenoLocationsP += A
+		else if(is_mainship_level(A?.z))
+			if(isxenolarva(X))
+				numLarvaShip++
+			numXenosShip++
+			xenoLocationsS += A
+
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		var/area/A = get_area(H)
+		if(is_ground_level(A?.z))
+			numHostsPlanet++
+			hostLocationsP += A
+		else if(is_mainship_level(A?.z))
+			numHostsShip++
+			hostLocationsS += A
+
+
+	//Adjust the randomness there so everyone gets the same thing
+	var/numHostsShipr = max(0, numHostsShip + rand(-delta, delta))
+	var/numXenosPlanetr = max(0, numXenosPlanet + rand(-delta, delta))
+	var/hostLocationP
+	var/hostLocationS
+
+	if(length(hostLocationsP))
+		hostLocationP = pick(hostLocationsP)
+
+	if(length(hostLocationsS))
+		hostLocationS = pick(hostLocationsS)
+
+
+	if(announce_xenos)
+		for(var/i in GLOB.alive_xeno_list)
+			var/mob/M = i
+			SEND_SOUND(M, sound(get_sfx("queen"), wait = 0, volume = 50))
+			to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
+			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[show_locations && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[show_locations && hostLocationP ? ", including one in [hostLocationP]":""].</span>")
+
+	var/xenoLocationP
+	var/xenoLocationS
+
+	if(length(xenoLocationsP))
+		xenoLocationP = pick(xenoLocationsP)
+
+	if(length(xenoLocationsS))
+		xenoLocationS = pick(xenoLocationsS)
+
+	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
+	var/input = {"Bioscan complete.
+
+Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[show_locations && xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[show_locations && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
+	
+	if(announce_humans)
+		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
+
+	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
+
+	for(var/i in GLOB.observer_list)
+		var/mob/M = i
+		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
+		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet, including [numLarvaPlanet] larva.
+[numXenosShip] xeno\s on the ship, including [numLarvaShip] larva.
+[numHostsPlanet] human\s on the planet.
+[numHostsShip] human\s on the ship.</span>"})
+
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]")
+	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]")
+
+
 /datum/game_mode/proc/setup_xeno_tunnels()
 	var/i = 0
 	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
@@ -294,7 +440,7 @@
 			new /obj/effect/forcefield/fog(T)
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 50 MINUTES)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 40 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
 
@@ -357,6 +503,94 @@
 
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
 		CHECK_TICK
+
+
+/datum/game_mode/distress/proc/transform_survivor(datum/mind/M)
+	var/mob/living/carbon/human/H = new (pick(GLOB.surv_spawn))
+
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
+
+	M.transfer_to(H, TRUE)
+	H.client.prefs.copy_to(H)
+
+	var/survivor_job = pick(subtypesof(/datum/job/survivor))
+	var/datum/job/J = new survivor_job
+
+	J.assign_equip(H)
+
+	H.mind.assigned_role = "Survivor"
+
+	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
+
+	var/weapons = pick(SURVIVOR_WEAPONS)
+	var/obj/item/weapon/W = weapons[1]
+	var/obj/item/ammo_magazine/A = weapons[2]
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+	H.put_in_hands(new W(H))
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
+
+	to_chat(H, "<h2>You are a survivor!</h2>")
+	switch(SSmapping.configs[GROUND_MAP].map_name)
+		if(MAP_PRISON_STATION)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_ICE_COLONY)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_BIG_RED)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+		if(MAP_LV_624)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
+		else
+			to_chat(H, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
+
+
+
+/datum/game_mode/proc/transform_xeno(datum/mind/M, list/xeno_spawn = GLOB.xeno_spawn)
+	var/mob/living/carbon/xenomorph/larva/X = new (pick(GLOB.xeno_spawn))
+
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
+
+	M.transfer_to(X, TRUE)
+
+	to_chat(X, "<B>You are now an alien!</B>")
+	to_chat(X, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')")
+
+	X.update_icons()
+
+
+/datum/game_mode/proc/transform_ruler(datum/mind/M, queen = FALSE, list/xeno_spawn = GLOB.xeno_spawn)
+	var/mob/living/carbon/xenomorph/X
+	if(queen)
+		X = new /mob/living/carbon/xenomorph/queen(pick(GLOB.xeno_spawn))
+	else
+		X = new /mob/living/carbon/xenomorph/shrike(pick(GLOB.xeno_spawn))
+
+	if(isnewplayer(M.current))
+		var/mob/new_player/N = M.current
+		N.close_spawn_windows()
+
+	M.transfer_to(X, TRUE)
+
+	to_chat(X, "<B>You are now the alien ruler!</B>")
+	to_chat(X, "<B>Your job is to spread the hive.</B>")
+	to_chat(X, "Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the hive!')")
+
+	X.update_icons()
 
 
 /datum/game_mode/proc/check_queen_status(queen_time)
@@ -423,13 +657,13 @@
 			to_chat(player, output)
 
 
-/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)))
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_ssd = FALSE)
 	var/num_humans = 0
 	var/num_xenos = 0
 
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
-		if(!H.client)
+		if(!H.client && !count_ssd)
 			continue
 		if(H.status_flags & XENO_HOST)
 			continue
@@ -439,9 +673,9 @@
 
 	for(var/i in GLOB.alive_xeno_list)
 		var/mob/living/carbon/xenomorph/X = i
-		if(!X.client)
+		if(!X.client && !count_ssd)
 			continue
-		if(!(X.z in z_levels) || isspaceturf(X.loc))
+		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
 			continue
 		num_xenos++
 
@@ -471,25 +705,7 @@
 
 	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
 
-	if(!IsGuestKey(NP.key))
-		if(SSdbcore.Connect())
-			var/isadmin = FALSE
-			if(check_rights(R_ADMIN, FALSE))
-				isadmin = TRUE
-			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
-			if(query_get_new_polls.Execute())
-				var/newpoll = FALSE
-				if(query_get_new_polls.NextRow())
-					newpoll = TRUE
-
-				if(newpoll)
-					output += "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
-				else
-					output += "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
-			qdel(query_get_new_polls)
-			if(QDELETED(NP))
-				return FALSE
-
+	output += append_player_votes_link(NP)
 	output += "</div>"
 
 	var/datum/browser/popup = new(NP, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
@@ -499,25 +715,45 @@
 
 	return TRUE
 
+/datum/game_mode/proc/append_player_votes_link(mob/new_player/NP)
+	if(QDELETED(NP) || IsGuestKey(NP.key) || !SSdbcore.IsConnected())
+		return "" // append nothing
 
-/datum/game_mode/proc/AttemptLateSpawn(mob/M, rank)
+	var/isadmin = check_rights(R_ADMIN, FALSE)
+	var/newpoll = FALSE
+	var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[sanitizeSQL(NP.ckey)]\")")
+	if(query_get_new_polls.Execute())
+		if(query_get_new_polls.NextRow())
+			newpoll = TRUE
+	qdel(query_get_new_polls)
+
+	if(newpoll)
+		return "<p><b><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+	else
+		return "<p><a href='byond://?src=[REF(NP)];showpoll=1'>Show Player Polls</A></p>"
+
+
+/datum/game_mode/proc/CanLateSpawn(mob/M, rank)
 	if(!isnewplayer(M))
-		return
+		return FALSE
 	var/mob/new_player/NP = M
-	if(!NP.IsJobAvailable(rank))
+	if(!NP.IsJobAvailable(rank, TRUE))
 		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
-		return
+		return FALSE
 	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
-		return
+		return FALSE
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
-		return
-
+		return FALSE
 	if(!SSjob.AssignRole(NP, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
-		return
+		return FALSE
 
+	return TRUE
+
+
+/datum/game_mode/proc/AttemptLateSpawn(mob/new_player/NP, rank)
 	NP.close_spawn_windows()
 	NP.spawning = TRUE
 

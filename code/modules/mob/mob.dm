@@ -2,7 +2,6 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
-	GLOB.alive_mob_list -= src
 	GLOB.offered_mob_list -= src
 	if(length(observers))
 		for(var/i in observers)
@@ -16,8 +15,6 @@
 	GLOB.mob_list += src
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
-	else
-		GLOB.alive_mob_list += src
 	set_focus(src)
 	prepare_huds()
 	return ..()

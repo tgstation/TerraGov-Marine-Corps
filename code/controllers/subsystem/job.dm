@@ -81,6 +81,9 @@ SUBSYSTEM_DEF(job)
 		if(!job.player_old_enough(player.client))
 			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 			return FALSE
+		if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
+			JobDebug("AR job disallowed by gamemode, Player: [player], Job:[job.title]")
+			return FALSE
 		if(rank in GLOB.jobs_marines)
 			if(handle_initial_squad(player, rank, latejoin))
 				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Rank: [rank], Squad: [player.mind.assigned_squad]")

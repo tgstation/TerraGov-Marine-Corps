@@ -172,6 +172,7 @@
 
 //Gamemode
 #define isdistress(O) (istype(O, /datum/game_mode/distress))
+#define iscrashgamemode(O) (istype(O, /datum/game_mode/crash))
 
 
 // Admin
