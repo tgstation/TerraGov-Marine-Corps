@@ -383,11 +383,10 @@
 
 
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
-	INVOKE_ASYNC(src, .proc/play_cinematic)
-	addtimer(VARSET_CALLBACK(src, planet_nuked, TRUE), 12 SECONDS)
-	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), 12 SECONDS)
+	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
-/datum/game_mode/crash/proc/play_cinematic()
+
+/datum/game_mode/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE
 	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
 	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
@@ -397,6 +396,11 @@
 		if(isobserver(M) || isnewplayer(M))
 			continue
 		shake_camera(M, 110, 4)
+
+	var/datum/cinematic/nuke_selfdestruct/C = /datum/cinematic/nuke_selfdestruct
+	var/nuketime = initial(C.runtime)
+	addtimer(VARSET_CALLBACK(src, planet_nuked, TRUE), nuketime)
+	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
 
 	Cinematic(CINEMATIC_SELFDESTRUCT, world)
 
