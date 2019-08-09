@@ -66,6 +66,14 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/ice_colony/surface/engineering/electric)
+"aap" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "req_sec_storage";
+	name = "\improper Requesitions Storage Shutters"
+	},
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition/sec_storage)
 "aaq" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/straight{
@@ -815,6 +823,19 @@
 "acY" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/requesitions)
+"acZ" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "req_sec_storage";
+	name = "\improper Requesitions Storage Shutters"
+	},
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition/sec_storage)
 "ada" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -22797,25 +22818,6 @@
 	},
 /turf/open/floor/animated/bcircuit,
 /area/ice_colony/underground/engineering/substation)
-"bim" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "req_sec_storage";
-	name = "\improper Requesitions Storage Shutters"
-	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/requesition/sec_storage)
-"bin" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "req_sec_storage";
-	name = "\improper Requesitions Storage Shutters"
-	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/requesition/sec_storage)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -46632,7 +46634,7 @@ bfo
 bfo
 bfn
 bhV
-bim
+aap
 biJ
 bjm
 bjm
@@ -46889,7 +46891,7 @@ bdL
 bdL
 bdL
 bhV
-bim
+aap
 biJ
 bjj
 bji
@@ -47146,7 +47148,7 @@ bfm
 bfm
 bgY
 brw
-bin
+acZ
 biK
 bjo
 bjo
