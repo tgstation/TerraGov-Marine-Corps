@@ -1066,8 +1066,8 @@
 
 	SSshuttle.moveShuttleToDock(D.id, target, !instant)
 
-	log_admin("[key_name(usr)] has moved [D.name] \[[D]([D.id])] to [target]([target.id])[instant ? " instantly" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] has moved [D.name] \[[D]([D.id])] to [target]([target.id])[instant ? " instantly" : ""].")
+	log_admin("[key_name(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""].")
 
 
 /datum/admins/proc/play_cinematic()

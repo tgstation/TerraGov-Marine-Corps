@@ -21,7 +21,7 @@
 	var/safety = TRUE
 	var/exploded = FALSE
 	var/removal_stage = NUKE_STAGE_NONE 
-	use_power = FALSE
+	use_power = NO_POWER_USE
 	var/obj/effect/countdown/nuclearbomb/countdown
 
 	var/has_auth

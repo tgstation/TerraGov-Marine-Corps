@@ -7,8 +7,8 @@
 /obj/machinery/computer/nuke_disk_generator
 	name = "nuke disk generator"
 	desc = "Used to generate the correct auth discs for the nuke."
-	icon_state = "request" // TODO: Better icon state
-	circuit = "/obj/item/circuitboard/computer/nuke_disk_generator"
+	icon_state = "request"
+	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 

@@ -101,8 +101,13 @@
 
 
 // Latejoin markers
-/obj/effect/landmark/start/latejoin/crash/Initialize()
+/obj/effect/landmark/start/latejoin/crash
 	delete_after_roundstart = FALSE
+
+	
+/obj/effect/landmark/start/latejoin/crash/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_NORMAL
 
 
 /obj/effect/landmark/start/latejoin/crash/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)

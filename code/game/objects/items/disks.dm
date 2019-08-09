@@ -21,16 +21,6 @@
 	return ..()
 
 
-/obj/item/disk/nuclear/Initialize()
-	. = ..()
-	GLOB.nuke_disk_list += src
-
-
-/obj/item/disk/nuclear/Destroy()
-	GLOB.nuke_disk_list -= src
-	return ..()
-
-
 /obj/item/disk/nuclear/red
 	name = "red nuclear authentication disk"
 	icon_state = "datadisk0"
