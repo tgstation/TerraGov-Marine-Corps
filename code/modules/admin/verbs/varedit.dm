@@ -1,9 +1,5 @@
-GLOBAL_LIST_INIT(VVlocked, list("vars", "datum_flags", "client", "force_ending"))
-GLOBAL_PROTECT(VVlocked)
-GLOBAL_LIST_INIT(VVicon_edit_lock, list("icon", "icon_state", "overlays", "underlays", "resize"))
-GLOBAL_PROTECT(VVicon_edit_lock)
-GLOBAL_LIST_INIT(VVckey_edit, list("key", "ckey"))
-GLOBAL_PROTECT(VVckey_edit)
+GLOBAL_LIST_INIT(VVwarning, list("vars", "datum_flags", "client", "key", "ckey", "type"))
+GLOBAL_PROTECT(VVwarning)
 GLOBAL_LIST_INIT(VVpixelmovement, list("step_x", "step_y", "bound_height", "bound_width", "bound_x", "bound_y", "step_size"))
 GLOBAL_PROTECT(VVpixelmovement)
 
@@ -524,20 +520,11 @@ GLOBAL_PROTECT(VVpixelmovement)
 	message_admins("[key_name_admin(src)] modified [original_name]'s varlist [objectvar]: [original_var]=[new_var]")
 
 /proc/vv_varname_lockcheck(param_var_name)
-	if(param_var_name in GLOB.VVlocked)
-		if(!check_rights(R_DEBUG))
-			return FALSE
-	if(param_var_name in GLOB.VVckey_edit)
-		if(!check_rights(R_SPAWN|R_DEBUG))
-			return FALSE
-	if(param_var_name in GLOB.VVicon_edit_lock)
-		if(!check_rights(R_FUN|R_DEBUG))
+	if(param_var_name in GLOB.VVwarning)
+		if(alert(usr, "Editing this var may break things. Are you sure you want to continue?", "Warning", "Yes", "No") != "Yes")
 			return FALSE
 	if(param_var_name in GLOB.VVpixelmovement)
-		if(!check_rights(R_DEBUG))
-			return FALSE
-		var/prompt = alert(usr, "Editing this var WILL break smooth tile movement for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT")
-		if (prompt != "Continue")
+		if(alert(usr, "Editing this var WILL break smooth tile movement for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT") != "Continue")
 			return FALSE
 	return TRUE
 
