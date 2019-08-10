@@ -7,7 +7,6 @@
 	if(!GLOB.marine_spawns_by_job[job])
 		GLOB.marine_spawns_by_job[job] = list()
 	GLOB.marine_spawns_by_job[job] += loc
-	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/start/marine/captain
 	icon_state = "CAP"

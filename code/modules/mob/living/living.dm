@@ -88,12 +88,15 @@
 	. = ..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 	GLOB.mob_living_list += src
+	if(stat != DEAD)
+		GLOB.alive_living_list += src
 	START_PROCESSING(SSmobs, src)
 
 /mob/living/Destroy()
 	if(attack_icon)
 		qdel(attack_icon)
 		attack_icon = null
+	GLOB.alive_living_list -= src
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
 	STOP_PROCESSING(SSmobs, src)
@@ -748,9 +751,9 @@ below 100 is not dizzy
 		if("stat")
 			if((stat == DEAD) && (var_value < DEAD))//Bringing the dead back to life
 				GLOB.dead_mob_list -= src
-				GLOB.alive_mob_list += src
+				GLOB.alive_living_list += src
 			if((stat < DEAD) && (var_value == DEAD))//Kill he
-				GLOB.alive_mob_list -= src
+				GLOB.alive_living_list -= src
 				GLOB.dead_mob_list += src
 	. = ..()
 	switch(var_name)

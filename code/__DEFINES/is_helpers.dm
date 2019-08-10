@@ -172,10 +172,12 @@
 
 //Gamemode
 #define isdistress(O) (istype(O, /datum/game_mode/distress))
+#define iscrashgamemode(O) (istype(O, /datum/game_mode/crash))
 
 
 // Admin
 #define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
+#define isclientedaghost(mob) (isaghost(mob) && GLOB.directory[mob.key])
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))

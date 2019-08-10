@@ -2040,7 +2040,7 @@
 /area/mainship/hallways/exoarmor)
 "aeF" = (
 /obj/structure/table/mainship,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},

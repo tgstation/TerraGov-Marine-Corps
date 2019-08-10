@@ -67,6 +67,7 @@
 #define GUN_WIELDED_FIRING_ONLY	(1<<11)
 #define GUN_POLICE				(1<<12)
 #define GUN_BURST_FIRING		(1<<13)
+#define GUN_ALLOW_SYNTHETIC		(1<<14)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst fire mode"
