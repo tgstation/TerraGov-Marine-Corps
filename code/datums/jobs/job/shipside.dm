@@ -92,9 +92,9 @@ Make the TGMC proud!"})
 	suit_store = /obj/item/weapon/gun/smartgun
 
 
-//Intelligence Officer
-/datum/job/command/intelligenceofficer
-	title = INTELLIGENCE_OFFICER
+//Staff Officer
+/datum/job/command/staffofficer
+	title = STAFF_OFFICER
 	paygrade = "O4"
 	comm_title = "IO"
 	total_positions = 4
@@ -102,20 +102,20 @@ Make the TGMC proud!"})
 	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
-	outfit = /datum/outfit/job/command/intelligenceofficer
+	outfit = /datum/outfit/job/command/staffofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 
 
-/datum/job/command/intelligenceofficer/radio_help_message(mob/M)
+/datum/job/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
 You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
 
 
-/datum/outfit/job/command/intelligenceofficer
-	name = INTELLIGENCE_OFFICER
-	jobtype = /datum/job/command/intelligenceofficer
+/datum/outfit/job/command/staffofficer
+	name = STAFF_OFFICER
+	jobtype = /datum/job/command/staffofficer
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/officer

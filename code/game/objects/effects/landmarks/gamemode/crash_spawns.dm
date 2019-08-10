@@ -19,9 +19,9 @@
 	icon_state = "FC"
 	job = /datum/job/command/fieldcommander
 
-/obj/effect/landmark/start/marine/crash/intelligenceofficer
+/obj/effect/landmark/start/marine/crash/staffofficer
 	icon_state = "IO"
-	job = /datum/job/command/intelligenceofficer
+	job = /datum/job/command/staffofficer
 
 /obj/effect/landmark/start/marine/crash/pilotofficer
 	icon_state = "PO"
