@@ -47,6 +47,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Xenomorph specific preferences
 	var/xeno_name = "Undefined"
 
+	//AI specific preferences
+	var/ai_name = "ARES v3.2"
+
 	//Character preferences
 	var/real_name = ""
 	var/random_name = FALSE
@@ -203,9 +206,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 	dat += "<b>Synthetic Type:</b>"
 	dat += "<a href='?_src_=prefs;preference=synth_type'>[synthetic_type]</a>"
-	dat += "<br><br>"
+	dat += "<br>"
 	dat += "<b>Xenomorph name:</b>"
 	dat += "<a href='?_src_=prefs;preference=xeno_name'>[xeno_name]</a>"
+	dat += "<br>"
+	dat += "<b>AI name:</b>"
+	dat += "<a href='?_src_=prefs;preference=ai_name'>[ai_name]</a>"
 	dat += "<br><br>"
 
 
@@ -611,6 +617,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 					return
 				xeno_name = newname
+
+		if("ai_name")
+			var/newname = input(user, "Choose your AI name:", "AI Name") as text|null
+			if(newname == "")
+				ai_name = "ARES v3.2"
+			else
+				newname = reject_bad_name(newname)
+				if(!newname)
+					to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+					return
+				ai_name = newname
 
 		if("name_real")
 			var/newname = input(user, "Choose your character's name:", "Character Name") as text|null
