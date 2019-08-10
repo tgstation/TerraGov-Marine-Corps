@@ -207,7 +207,6 @@
 				var/AllMarines[] = All[1]
 				var/AllXenos[] = All[2]
 				if((AllXenos < round(AllMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
-					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat.")
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
 
