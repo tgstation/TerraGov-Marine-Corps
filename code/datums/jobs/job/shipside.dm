@@ -713,8 +713,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 /datum/job/ai/assign(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
 	if(preference_source?.prefs)
-		new_name = preference_source.prefs.synthetic_name
-		H.fully_replace_character_name(H.name, new_name)
+		H.fully_replace_character_name(H.name, preference_source.prefs.synthetic_name)
 
 	return ..()
 
