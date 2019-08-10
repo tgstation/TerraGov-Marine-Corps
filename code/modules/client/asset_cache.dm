@@ -428,7 +428,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	children = list(
 		/datum/asset/simple/jquery,
 		/datum/asset/simple/goonchat,
-		/datum/asset/spritesheet/goonchat
+		/datum/asset/spritesheet/goonchat,
+		/datum/asset/simple/emoji
 	)
 
 
@@ -450,7 +451,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"fontawesome-webfont.ttf"  = 'goon/browserassets/css/fonts/fontawesome-webfont.ttf',
 		"fontawesome-webfont.woff" = 'goon/browserassets/css/fonts/fontawesome-webfont.woff',
 		"font-awesome.css"	       = 'goon/browserassets/css/font-awesome.css',
-		"emojib64.css" 			   = 'goon/browserassets/css/emojib64.css',
 		"browserOutput.css"	       = 'goon/browserassets/css/browserOutput.css'
 	)
 
@@ -472,6 +472,15 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	return ..()
 
+/datum/asset/simple/emoji
+	verify = FALSE
+	assets = list(
+		"emojib.css" 			    = 'goon/browserassets/css/emojib.css',
+		"huntercqc.png"				= 'goon/browserassets/css/emoji/huntercqc.png',
+		"huntereyes.png"			= 'goon/browserassets/css/emoji/huntereyes.png',
+		"autospitter.png"			= 'goon/browserassets/css/emoji/autospitter.png',
+		"hyperthonk.png"			= 'goon/browserassets/css/emoji/hyperthonk.png',
+	)
 
 /datum/asset/spritesheet/pipes
 	name = "pipes"
