@@ -20361,13 +20361,13 @@
 /area/mainship/living/bridgebunks)
 "aSC" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/intelligenceofficer,
+/obj/effect/landmark/start/marine/staffofficer,
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "aSD" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/intelligenceofficer,
+/obj/effect/landmark/start/marine/staffofficer,
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "aSE" = (

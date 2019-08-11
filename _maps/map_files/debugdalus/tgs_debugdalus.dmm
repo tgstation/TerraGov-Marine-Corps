@@ -2250,7 +2250,7 @@
 	},
 /area/mainship/hallways/hangar)
 "aff" = (
-/obj/effect/landmark/start/marine/intelligenceofficer,
+/obj/effect/landmark/start/marine/staffofficer,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
