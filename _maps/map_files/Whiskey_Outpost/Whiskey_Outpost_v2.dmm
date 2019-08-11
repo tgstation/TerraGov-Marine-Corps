@@ -371,7 +371,7 @@
 /area/whiskey_outpost)
 "bb" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
@@ -4060,7 +4060,7 @@
 /area/whiskey_outpost/outside/south)
 "lD" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/folder/white,
 /turf/open/floor,

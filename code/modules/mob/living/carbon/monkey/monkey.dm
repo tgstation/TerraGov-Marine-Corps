@@ -70,8 +70,6 @@
 	if(greaterform_type)
 		species = new greaterform_type()
 
-		grant_language(species.language)
-
 		cold_level_1 = null ? species.cold_level_1 : cold_level_1
 		cold_level_2 = null ? species.cold_level_2 : cold_level_2
 		cold_level_3 = null ? species.cold_level_3 : cold_level_3

@@ -96,7 +96,7 @@
 		usr.unset_interaction()
 		return
 	if( href_list["update"] )
-		src.updateDialog()
+		src.updateUsrDialog()
 		return
 
 

@@ -418,7 +418,6 @@
 	climb_in(M, user)
 
 /obj/machinery/cryopod/verb/eject()
-
 	set name = "Eject Pod"
 	set category = "Object"
 	set src in view(0)
@@ -427,42 +426,54 @@
 		return
 
 	go_out()
-	return
+
+/obj/machinery/cryopod/relaymove(mob/user)
+	if(user.incapacitated(TRUE)) 
+		return
+	go_out()
+
+/obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/M, mob/user)
+	if(user.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+		return
+
+	if(!QDELETED(occupant))
+		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
+		return
+
+	climb_in(M, user)
+
+/obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
+	move_inside_wrapper(M, user)
 
 /obj/machinery/cryopod/verb/move_inside()
 	set name = "Enter Pod"
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != CONSCIOUS || !(ishuman(usr) || ismonkey(usr)))
-		return
+	move_inside_wrapper(usr, usr)
 
-	if(!QDELETED(occupant))
-		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
-		return
+/obj/machinery/cryopod/proc/climb_in(mob/living/carbon/user, mob/helper)
+	if(helper && user != helper)
+		var/sec_left = timeleft(user.afk_timer_id)
+		if(!user.client && sec_left)
+			to_chat(helper, "<span class='notice'>You should wait another [round((sec_left * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
+			return
 
-	climb_in(usr)
-
-/obj/machinery/cryopod/proc/climb_in(mob/user, mob/helper)
-	if(helper)
 		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
 		"<span class='notice'>You start putting [user] into [src].</span>")
 	else
 		user.visible_message("<span class='notice'>[user] starts climbing into [src].</span>",
 		"<span class='notice'>You start climbing into [src].</span>")
+		
 
-	var/mob/doafterman = helper ? helper : user
-	if(!do_after(doafterman, 20, TRUE, user, BUSY_ICON_GENERIC))
-		return
-	if(helper)
-		var/obj/item/grab/G = helper.get_active_held_item()
-		if(!istype(G) || G.grabbed_thing != user)
-			return
-	else if(!user.client)
+	var/mob/initiator = helper ? helper : user
+	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
 		return
 
 	if(!QDELETED(occupant))
-		to_chat(doafterman, "<span class='warning'>[src] is occupied.</span>")
+		to_chat(initiator, "<span class='warning'>[src] is occupied.</span>")
 		return
 
 	user.forceMove(src)
@@ -477,7 +488,6 @@
 	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
 
 /obj/machinery/cryopod/proc/go_out()
-
 	if(QDELETED(occupant))
 		return
 

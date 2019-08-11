@@ -113,40 +113,21 @@
 
 
 
-
-
-/turf/open/floor/airless
-	icon_state = "floor"
-	name = "airless floor"
-
-	New()
-		..()
-		name = "floor"
-
-/turf/open/floor/icefloor
-	icon_state = "floor"
-	name = "ice colony floor"
-
-	New()
-		..()
-		name = "floor"
-
 /turf/open/floor/freezer
 	icon_state = "freezerfloor"
 
 /turf/open/floor/light
 	name = "Light floor"
 	icon_state = "light_on"
-	floor_tile = new/obj/item/stack/tile/light
 
-	New()
-		floor_tile.New() //I guess New() isn't run on objects spawned without the definition of a turf to house them, ah well.
-		var/n = name //just in case commands rename it in the ..() call
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				name = n
+/turf/open/floor/light/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/light
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/light/LateInitialize(mapload)
+	update_icon()
 
 
 /turf/open/floor/wood
@@ -161,9 +142,9 @@
 /turf/open/floor/vault
 	icon_state = "rockvault"
 
-	New(location,type)
-		..()
-		icon_state = "[type]vault"
+/turf/open/floor/vault/Initialize(mapload, state)
+	. = ..()
+	icon_state = "[state]vault"
 
 
 
@@ -237,17 +218,21 @@
 	icon_state = "grass1"
 	floor_tile = new/obj/item/stack/tile/grass
 
-	New()
-		floor_tile.New() //I guess New() isn't ran on objects spawned without the definition of a turf to house them, ah well.
-		icon_state = "grass[pick("1","2","3","4")]"
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				for(var/direction in GLOB.cardinals)
-					if(istype(get_step(src,direction),/turf/open/floor))
-						var/turf/open/floor/FF = get_step(src,direction)
-						FF.update_icon() //so siding get updated properly
+
+/turf/open/floor/grass/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/grass
+	icon_state = "grass[pick("1","2","3","4")]"
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/grass/LateInitialize(mapload)
+	update_icon()
+	for(var/direction in GLOB.cardinals)
+		if(!istype(get_step(src,direction), /turf/open/floor))
+			continue
+		var/turf/open/floor/FF = get_step(src,direction)
+		FF.update_icon() //so siding get updated properly
 
 /turf/open/floor/tile/white
 	icon_state = "white"
@@ -423,20 +408,21 @@
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
-	floor_tile = new/obj/item/stack/tile/carpet
 
-	New()
-		floor_tile.New() //I guess New() isn't ran on objects spawned without the definition of a turf to house them, ah well.
-		if(!icon_state)
-			icon_state = "carpet"
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				for(var/direction in list(1,2,4,8,5,6,9,10))
-					if(istype(get_step(src,direction),/turf/open/floor))
-						var/turf/open/floor/FF = get_step(src,direction)
-						FF.update_icon() //so siding get updated properly
+
+/turf/open/floor/carpet/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/carpet
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/carpet/LateInitialize(mapload)
+	update_icon()
+	for(var/direction in list(1,2,4,8,5,6,9,10))
+		if(!istype(get_step(src, direction), /turf/open/floor))
+			continue
+		var/turf/open/floor/FF = get_step(src,direction)
+		FF.update_icon() //so siding get updated properly
 
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"

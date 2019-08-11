@@ -1266,7 +1266,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/mainship,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "aeA" = (
@@ -1421,7 +1423,9 @@
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "afe" = (
-/obj/machinery/door/poddoor/shutters/mainship,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "aff" = (
@@ -3499,7 +3503,7 @@
 /area/lv624/ground/river2)
 "amP" = (
 /obj/structure/table,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_y = 6
 	},
 /obj/item/tool/pen{
@@ -7123,7 +7127,7 @@
 "aAx" = (
 /obj/structure/table,
 /obj/machinery/door/window/westright,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -20038,6 +20042,14 @@
 	},
 /turf/closed/wall,
 /area/shuttle/drop2/lz2)
+"fTB" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 2
+	},
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/comms)
 "fWG" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -37857,7 +37869,7 @@ bhh
 bhh
 bhh
 bgI
-blc
+fTB
 blK
 bnN
 bgI

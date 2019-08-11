@@ -47,7 +47,7 @@
 		lastgenlev = genlev
 		updateicon()
 
-	src.updateDialog()
+	src.updateUsrDialog()
 
 
 /obj/machinery/power/generator_type2/attack_ai(mob/user)

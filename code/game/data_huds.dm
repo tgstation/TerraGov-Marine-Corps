@@ -97,6 +97,10 @@
 /datum/atom_hud/medical/advanced
 
 
+//HUD used by the synth, separate typepath so it's not accidentally removed.
+/datum/atom_hud/medical/advanced/synthetic
+
+
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
 	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, STATUS_HUD)

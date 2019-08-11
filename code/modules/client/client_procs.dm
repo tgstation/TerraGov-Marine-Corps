@@ -147,6 +147,7 @@
 	prefs.parent = src
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
+	fps = prefs.clientfps
 
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
@@ -553,20 +554,41 @@
 	return TRUE
 
 
+GLOBAL_VAR_INIT(automute_on, null)
 /client/proc/handle_spam_prevention(message, mute_type)
-	if(CONFIG_GET(flag/automute_on) && !check_rights(R_ADMIN, FALSE) && last_message == message)
-		last_message_count++
-		if(last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, "<span class='danger'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
+	//Performance
+	if(isnull(GLOB.automute_on))
+		GLOB.automute_on = CONFIG_GET(flag/automute_on)
+
+	total_message_count += 1
+
+	var/weight = SPAM_TRIGGER_WEIGHT_FORMULA(message)
+	total_message_weight += weight
+
+	var/message_cache = total_message_count
+	var/weight_cache = total_message_weight
+
+	if(last_message_time && world.time > last_message_time)
+		last_message_time = 0
+		total_message_count = 0
+		total_message_weight = 0
+
+	else if(!last_message_time)
+		last_message_time = world.time + SPAM_TRIGGER_TIME_PERIOD
+	
+	last_message = message
+
+	var/mute = message_cache >= SPAM_TRIGGER_AUTOMUTE || (weight_cache > SPAM_TRIGGER_WEIGHT_AUTOMUTE && message_cache != 1)
+	var/warning = message_cache >= SPAM_TRIGGER_WARNING || (weight_cache > SPAM_TRIGGER_WEIGHT_WARNING && message_cache != 1)
+
+	if(mute)
+		if(GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
+			to_chat(src, "<span class='danger'>You have exceeded the spam filter. An auto-mute was applied.</span>")
 			mute(src, mute_type, TRUE)
-			return TRUE
-		else if(last_message_count >= SPAM_TRIGGER_WARNING)
-			to_chat(src, "<span class='danger'>You are nearing the spam filter limit for identical messages.</span>")
-			return TRUE
-	else
-		last_message = message
-		last_message_count = 0
-		return FALSE
+		return TRUE
+
+	if(warning && GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
+		to_chat(src, "<span class='danger'>You are nearing the spam filter limit.</span>")
 
 /client/vv_edit_var(var_name, var_value)
 	switch(var_name)

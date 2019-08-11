@@ -20,12 +20,6 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 //When passively preloading assets, how many to send at once? Too high creates noticable lag where as too low can flood the client's cache with "verify" files
 #define ASSET_CACHE_PRELOAD_CONCURRENT 3
 
-/client
-	var/list/cache = list() // List of all assets sent to this client by the asset cache.
-	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
-	var/list/sending = list()
-	var/last_asset_job = 0 // Last job done.
-
 //This proc sends the asset to the client, but only if it needs it.
 //This proc blocks(sleeps) unless verify is set to false
 /proc/send_asset(client/client, asset_name, verify = TRUE)
