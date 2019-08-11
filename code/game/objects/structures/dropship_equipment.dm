@@ -15,7 +15,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "equip_base"
 	var/base_category //what kind of equipment this base accepts.
-	var/ship_tag//used to associate the base to a dropship.
+	var/ship_tag //used to associate the base to a dropship.
 	var/obj/structure/dropship_equipment/installed_equipment
 
 /obj/effect/attach_point/Destroy()
@@ -51,7 +51,11 @@
 		installed_equipment = SE
 		SE.ship_base = src
 		
-		// linking code goes here
+		for(var/obj/docking_port/mobile/marine_dropship/S in SSshuttle.dropships)
+			if(S.id == ship_tag)	
+				SE.linked_shuttle = S	
+				S.equipments += SE	
+				break
 
 		SE.update_equipment()
 		return TRUE
@@ -66,13 +70,13 @@
 
 /obj/effect/attach_point/weapon/dropship1/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
+	ship_tag = "alamo"
 
 /obj/effect/attach_point/weapon/dropship2
 
 /obj/effect/attach_point/weapon/dropship2/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
+	ship_tag = "normandy"
 
 
 /obj/effect/attach_point/crew_weapon
@@ -84,14 +88,14 @@
 
 /obj/effect/attach_point/crew_weapon/dropship1/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
+	ship_tag = "alamo"
 
 /obj/effect/attach_point/crew_weapon/dropship2
 
 
 /obj/effect/attach_point/crew_weapon/dropship2/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
+	ship_tag = "normandy"
 
 
 /obj/effect/attach_point/electronics
@@ -104,13 +108,13 @@
 
 /obj/effect/attach_point/electronics/dropship1/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
+	ship_tag = "alamo"
 
 /obj/effect/attach_point/electronics/dropship2
 
 /obj/effect/attach_point/electronics/dropship2/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
+	ship_tag = "normandy"
 
 
 /obj/effect/attach_point/fuel
@@ -123,13 +127,13 @@
 
 /obj/effect/attach_point/fuel/dropship1/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
+	ship_tag = "alamo"
 
 /obj/effect/attach_point/fuel/dropship2
 
 /obj/effect/attach_point/fuel/dropship2/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
+	ship_tag = "normandy"
 
 
 /obj/effect/attach_point/computer
@@ -139,13 +143,13 @@
 
 /obj/effect/attach_point/computer/dropship1/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 1"
+	ship_tag = "alamo"
 
 /obj/effect/attach_point/computer/dropship2
 
 /obj/effect/attach_point/computer/dropship2/Initialize()
 	. = ..()
-	ship_tag = "[CONFIG_GET(string/ship_name)] Dropship 2"
+	ship_tag = "normandy"
 
 
 
@@ -166,7 +170,7 @@
 	var/is_weapon = FALSE //whether the equipment is a weapon usable for dropship bombardment.
 	var/obj/machinery/computer/dropship_weapons/linked_console //the weapons console of the dropship we're installed on.
 	var/is_interactable = FALSE //whether they get a button when shown on the shuttle console's equipment list.
-	var/datum/shuttle/ferry/marine/linked_shuttle
+	var/obj/docking_port/mobile/marine_dropship/linked_shuttle
 	var/screen_mode = 0 //used by the dropship console code when this equipment is selected
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 
@@ -174,16 +178,16 @@
 	if(ammo_equipped)
 		qdel(ammo_equipped)
 		ammo_equipped = null
-/*	if(linked_shuttle)
+	if(linked_shuttle)
 		linked_shuttle.equipments -= src
-		linked_shuttle = null*/
+		linked_shuttle = null
 	if(ship_base)
 		ship_base.installed_equipment = null
-		ship_base = null/*
+		ship_base = null
 	if(linked_console)
 		if(linked_console.selected_equipment && linked_console.selected_equipment == src)
 			linked_console.selected_equipment = null
-		linked_console = null*/
+		linked_console = null
 	return ..()
 
 /obj/structure/dropship_equipment/attackby(obj/item/I, mob/user, params)
@@ -245,7 +249,11 @@
 			if(ship_base)
 				ship_base.installed_equipment = null
 				ship_base = null
-				// linking code goes here
+				if(linked_shuttle)
+					linked_shuttle.equipments -= src	
+					linked_shuttle = null	
+					if(linked_console && linked_console.selected_equipment == src)	
+						linked_console.selected_equipment = null
 			update_equipment()
 			return TRUE //removed or uninstalled equipment
 
@@ -335,11 +343,11 @@
 		icon_state = "sentry_system_installed"
 		if(deployed_turret)
 			deployed_turret.setDir(dir)
-/*			if(linked_shuttle && deployed_turret.camera)
-				if(linked_shuttle.shuttle_tag == "[CONFIG_GET(string/ship_name)] Dropship 1")
+			if(linked_shuttle && deployed_turret.camera)
+				if(linked_shuttle.id == "alamo")
 					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
 				else
-					deployed_turret.camera.network.Add("dropship2")*/
+					deployed_turret.camera.network.Add("dropship2")
 			switch(dir)
 				if(SOUTH) deployed_turret.pixel_y = 8
 				if(NORTH) deployed_turret.pixel_y = -8
@@ -663,12 +671,12 @@
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
 	last_fired = world.time
-/*	if(linked_shuttle)
+	if(linked_shuttle)
 		for(var/obj/structure/dropship_equipment/electronics/targeting_system/TS in linked_shuttle.equipments)
 			ammo_accuracy_range = max(ammo_accuracy_range-2, 0) //targeting system increase accuracy and reduce travelling time.
 			ammo_max_inaccuracy = max(ammo_max_inaccuracy -3, 1)
 			ammo_travelling_time = max(ammo_travelling_time - 20, 10)
-			break*/
+			break
 
 	if(ammo_travelling_time)
 		var/total_seconds = max(round(ammo_travelling_time/10),1)
@@ -770,7 +778,7 @@
 			icon_state = "laser_beam"
 
 
-/*TBD
+
 /obj/structure/dropship_equipment/weapon/launch_bay
 	name = "launch bay"
 	icon_state = "launch_bay"
@@ -781,13 +789,13 @@
 	equip_category = DROPSHIP_CREW_WEAPON //fits inside the central spot of the dropship
 	point_cost = 0
 
-	update_icon()
-		if(ammo_equipped && ammo_equipped.ammo_count)
-			icon_state = "launch_bay_loaded"
-		else
-			if(ship_base) icon_state = "launch_bay"
-			else icon_state = "launch_bay"
-*/
+/obj/structure/dropship_equipment/weapon/launch_bay/update_icon()
+	if(ammo_equipped && ammo_equipped.ammo_count)
+		icon_state = "launch_bay_loaded"
+	else
+		if(ship_base) icon_state = "launch_bay"
+		else icon_state = "launch_bay"
+
 
 
 
@@ -823,15 +831,11 @@
 
 
 /obj/structure/dropship_equipment/medevac_system/equipment_interact(mob/user)
-/*	if(!linked_shuttle)
+	if(!linked_shuttle)
 		return
 
-	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
+	if(linked_shuttle.mode != SHUTTLE_CALL)
 		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
-		return
-
-	if(!linked_shuttle.transit_gun_mission)
-		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
 		return
 
 	if(busy_winch)
@@ -892,12 +896,8 @@
 	if(!linked_shuttle)
 		return
 
-	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
+	if(linked_shuttle.mode != SHUTTLE_CALL)
 		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
-		return
-
-	if(!linked_shuttle.transit_gun_mission)
-		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
 		return
 
 	if(busy_winch)
@@ -925,7 +925,7 @@
 	linked_stretcher.linked_medevac = src
 	linked_stretcher.visible_message("<span class='notice'>[linked_stretcher] detects a dropship overhead.</span>")
 
-*/
+
 
 
 //on arrival we break any link
@@ -950,15 +950,11 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-/*	if(!linked_shuttle)
+	if(!linked_shuttle)
 		return
 
-	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
+	if(linked_shuttle.mode != SHUTTLE_CALL)
 		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
-		return
-
-	if(!linked_shuttle.transit_gun_mission)
-		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
 		return
 
 	if(busy_winch)
@@ -979,10 +975,10 @@
 		to_chat(user, "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>")
 		return
 
-	activate_winch(user)*/
+	activate_winch(user)
 
 
-/obj/structure/dropship_equipment/medevac_system/proc/activate_winch(mob/user)/*
+/obj/structure/dropship_equipment/medevac_system/proc/activate_winch(mob/user)
 	set waitfor = 0
 	var/old_stretcher = linked_stretcher
 	busy_winch = TRUE
@@ -990,7 +986,7 @@
 	flick("medevac_system_active", src)
 	user.visible_message("<span class='notice'>[user] activates [src]'s winch.</span>", \
 						"<span class='notice'>You activate [src]'s winch.</span>")
-	sleep(30)
+	sleep(3 SECONDS)
 
 	busy_winch = FALSE
 	var/fail
@@ -1000,7 +996,7 @@
 	else if(!ship_base) //uninstalled midway
 		fail = TRUE
 
-	else if(!linked_shuttle || linked_shuttle.moving_status != SHUTTLE_INTRANSIT || !linked_shuttle.transit_gun_mission)
+	else if(!linked_shuttle || linked_shuttle.mode != SHUTTLE_CALL)
 		fail = TRUE
 
 	if(fail)
@@ -1031,4 +1027,4 @@
 
 	medevac_cooldown = world.time + 600
 	linked_stretcher.linked_medevac = null
-	linked_stretcher = null*/
+	linked_stretcher = null
