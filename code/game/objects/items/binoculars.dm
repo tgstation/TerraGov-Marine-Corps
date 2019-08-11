@@ -51,21 +51,26 @@
 	if(!user?.client)
 		return
 	user.client.click_intercept = src
-	user.client.eye = src
 
-
-/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
-	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
-	user.sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS|SEE_BLACKNESS
-	user.see_in_dark = 100
-	user.lighting_alpha = 50
-	return TRUE
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
 	if(!pa.Find("ctrl"))
 		return FALSE
 	acquire_target(object, user)
+	return TRUE
+
+
+/obj/item/binoculars/tactical/on_set_interaction(mob/user)
+	. = ..()
+	user.client.eye = src
+	user.update_sight()
+
+
+/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
+	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
 	return TRUE
 
 
@@ -77,6 +82,7 @@
 
 	user.client.click_intercept = null
 	user.client.eye = user
+	user.update_sight()
 
 	if(zoom)
 		return
