@@ -13,7 +13,7 @@
 	parentmob.a_intent = INTENT_HARM
 	last_health = parentmob.health
 	action_state = new/datum/action_state/random_move/scout(src)
-	parentmob2.away_time = -9999999
+	parentmob2.afk_timer_id = addtimer(CALLBACK(GLOBAL_PROC, /proc/afk_message, src), 999 HOURS, TIMER_STOPPABLE)
 	if(SSai.randomized_xeno_tiers) //Equal chances of being young, mature, elder or ancient
 		parentmob2.upgrade_xeno(pick(list(0, XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE)))
 
