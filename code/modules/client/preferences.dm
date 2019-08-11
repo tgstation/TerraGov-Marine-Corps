@@ -994,6 +994,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				new_key = "Numpad[new_key]"
 
 			var/full_key = "[AltMod][CtrlMod][ShiftMod][new_key]"
+			if(!key_bindings[old_key])
+				key_bindings[old_key] = list()
 			key_bindings[old_key] -= kb_name
 			key_bindings[full_key] += list(kb_name)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
