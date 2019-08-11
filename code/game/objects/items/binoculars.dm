@@ -63,7 +63,7 @@
 
 /obj/item/binoculars/tactical/on_set_interaction(mob/user)
 	. = ..()
-	user.client.eye = src
+	user.reset_perspective(src)
 	user.update_sight()
 
 
@@ -81,7 +81,7 @@
 		return
 
 	user.client.click_intercept = null
-	user.client.eye = user
+	user.reset_perspective(user)
 	user.update_sight()
 
 	if(zoom)
