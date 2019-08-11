@@ -885,6 +885,5 @@
 	if(nuke_set && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
 		return
 
-	var/datum/game_mode/crash/C = SSticker.mode
 	C.marines_evac = CRASH_EVAC_INPROGRESS
 	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
