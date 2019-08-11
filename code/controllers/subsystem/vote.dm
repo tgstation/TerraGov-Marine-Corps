@@ -272,12 +272,11 @@ SUBSYSTEM_DEF(vote)
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 
-		. += "<br><hr>"
-
 		if(admin)
 			. += "[GLOB.TAB](<a href='?src=[REF(src)];vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
 
-		. += "</li>"
+		. += "</li><hr>"
+
 		if(admin)
 			. += "<li><a href='?src=[REF(src)];vote=groundmap'>Ground Map Vote</a></li>"
 			. += "<li><a href='?src=[REF(src)];vote=shipmap'>Ship Map Vote</a></li>"
