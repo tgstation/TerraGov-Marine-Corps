@@ -33,6 +33,7 @@
 	name = "river_overlay"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = RIVER_OVERLAY_LAYER
+	plane = FLOOR_PLANE
 
 
 /turf/open/ground/river/Initialize()
