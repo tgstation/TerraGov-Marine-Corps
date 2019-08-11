@@ -51,7 +51,15 @@
 	if(!user?.client)
 		return
 	user.client.click_intercept = src
+	user.client.eye = src
 
+
+/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
+	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
+	user.sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS|SEE_BLACKNESS
+	user.see_in_dark = 100
+	user.lighting_alpha = 50
+	return TRUE
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
@@ -68,6 +76,7 @@
 		return
 
 	user.client.click_intercept = null
+	user.client.eye = user
 
 	if(zoom)
 		return
