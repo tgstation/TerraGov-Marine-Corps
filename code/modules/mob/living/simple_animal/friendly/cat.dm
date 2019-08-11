@@ -82,3 +82,58 @@
 				emote("me", 1, pick("grooms its fur.", "twitches its whiskers.", "shakes out its coat."))
 
 	return ..()
+
+
+/mob/living/simple_animal/cat/MouseDrop(atom/over_object)
+	. = ..()
+	
+	if(!ishuman(over_object))
+		return
+
+	var/mob/living/carbon/human/H = over_object
+	if(H.incapacitated())
+		return
+
+	if(H.l_hand && H.r_hand)
+		return
+
+	var/obj/item/cat/C = new
+	C.name = name
+	C.desc = desc
+	C.icon_state = initial(icon_state)
+	C.cat = src
+	forceMove(C)
+	H.put_in_hands(C)
+
+
+/obj/item/cat
+	name = "Cat"
+	desc = "Kitty!!"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "cat2"
+	var/mob/living/simple_animal/cat/cat
+	flags_equip_slot = ITEM_SLOT_HEAD
+
+
+/obj/item/cat/Destroy()
+	if(cat)
+		cat.forceMove(get_turf(src))
+		cat = null
+	return ..()
+
+
+/obj/item/cat/throw_at(atom/target, range, speed, thrower, spin)
+	qdel(src)
+
+
+/obj/item/cat/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	qdel(src)
+
+
+/obj/item/cat/dropped(mob/user)
+	. = ..()
+	if(loc == user)
+		return
+	qdel(src)
+
