@@ -128,22 +128,14 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 /obj/machinery/bot/cleanbot/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/card/id))
-		if(allowed(user) && !open && !CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(allowed(user) && !open)
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
-		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>ERROR</span>")
 		else if(open)
 			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 		else
 			to_chat(user, "<span class='notice'>This [src] doesn't seem to respect your authority.</span>")
 
-/obj/machinery/bot/cleanbot/Emag(mob/user as mob)
-	..()
-	if(open && !locked)
-		if(user) to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
-		src.oddbutton = 1
-		src.screwloose = 1
 
 /obj/machinery/bot/cleanbot/process()
 	set background = 1

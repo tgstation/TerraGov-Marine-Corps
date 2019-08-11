@@ -200,10 +200,6 @@
 
 
 /obj/machinery/door/airlock/attack_ai(mob/user)
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(user, "<span class='warning'>Unable to interface: Airlock is unresponsive.</span>")
-		return
-
 	ui_interact(user)
 
 
