@@ -272,7 +272,7 @@ SUBSYSTEM_DEF(vote)
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 
-		. += "<hr>"
+		. += "<br><hr>"
 
 		if(admin)
 			. += "[GLOB.TAB](<a href='?src=[REF(src)];vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
