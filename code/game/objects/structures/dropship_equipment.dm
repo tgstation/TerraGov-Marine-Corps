@@ -790,7 +790,7 @@
 	point_cost = 0
 
 /obj/structure/dropship_equipment/weapon/launch_bay/update_icon()
-	if(ammo_equipped && ammo_equipped.ammo_count)
+	if(ammo_equipped?.ammo_count)
 		icon_state = "launch_bay_loaded"
 	else
 		if(ship_base) icon_state = "launch_bay"

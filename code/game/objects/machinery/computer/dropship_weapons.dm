@@ -126,7 +126,7 @@
 				if(shuttle.mode == SHUTTLE_HIJACK_LOCK) 
 					return	
 
-				if(!selected_equipment || !selected_equipment.is_weapon)	
+				if(!selected_equipment?.is_weapon)	
 					to_chat(L, "<span class='warning'>No weapon selected.</span>")	
 					return	
 				var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment	
