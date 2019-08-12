@@ -43,7 +43,7 @@
 			to_chat(user, "You load [I] into [secondary_weapon] with a satisfying click.")
 			user.transferItemToLoc(I,src)
 		return
-	. = ..()
+	return ..()
 
 
 /obj/vehicle/attackby(obj/item/I, mob/user, params)

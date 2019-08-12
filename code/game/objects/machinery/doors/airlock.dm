@@ -702,22 +702,20 @@
 		var/atom/thing = i
 		if(isliving(thing))
 			if(safe)
-				spawn (60 + openspeed)
-					close()
+				addtimer(CALLBACK(src, .proc/close), 6 SECONDS + openspeed)
 				return
-			else
-				var/mob/living/M = thing
-				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-				M.SetStunned(5)
-				M.SetKnockeddown(5)
-				if (iscarbon(M))
-					var/mob/living/carbon/C = M
-					var/datum/species/S = C.species
-					if(S?.species_flags & NO_PAIN)
-						M.emote("pain")
-				var/turf/location = src.loc
-				if(istype(location, /turf))
-					location.add_mob_blood(M)
+			var/mob/living/M = thing
+			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
+			M.SetStunned(5)
+			M.SetKnockeddown(5)
+			if (iscarbon(M))
+				var/mob/living/carbon/C = M
+				var/datum/species/S = C.species
+				if(S?.species_flags & NO_PAIN)
+					M.emote("pain")
+			var/turf/location = src.loc
+			if(istype(location, /turf))
+				location.add_mob_blood(M)
 		if(thing.density)
 			return //Can't close with shit ontop
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
