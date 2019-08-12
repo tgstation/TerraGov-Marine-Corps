@@ -13,11 +13,6 @@
 	add_inherent_verbs()
 	add_abilities()
 
-	ENABLE_BITFIELD(sight, SEE_MOBS)
-	ENABLE_BITFIELD(sight, SEE_OBJS)
-	ENABLE_BITFIELD(sight, SEE_TURFS)
-	see_in_dark = XENO_NIGHTVISION_ENABLED
-
 	create_reagents(1000)
 	gender = NEUTER
 
