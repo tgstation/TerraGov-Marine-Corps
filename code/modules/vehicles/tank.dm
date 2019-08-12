@@ -347,7 +347,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	enter(user, position) //Yeah i could do this with a define, but this way we're not using multiple things
 
 /obj/vehicle/tank/proc/can_enter(mob/living/carbon/M, position) //NO BENOS ALLOWED
-	if(!istype(M) || in_range(src, M))
+	if(!istype(M) || !in_range(src, M))
 		return
 	if(!M.IsAdvancedToolUser())
 		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
