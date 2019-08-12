@@ -243,8 +243,7 @@
 	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards MG direction
 	var/view_tiles = 7		//this is amount of tiles we want person to see in each direction (7 by default)
 
-
-/obj/machinery/m56d_hmg/Initialize()
+/obj/machinery/m56d_hmg/New()
 	. = ..()
 	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
 	update_icon()
