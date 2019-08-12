@@ -386,12 +386,12 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tank/relaymove(mob/user, direction)
 	if(world.time < last_move_time + move_delay)
 		return
+	last_move_time = world.time
 	if(!allow_diagonal_movement && direction in GLOB.diagonals)
 		return
 	if(user.incapacitated() || user != pilot)
 		to_chat(user, "<span class ='notice'>You can't reach the gas pedal from down here, maybe try manning the driver's seat?</span>")
 		return FALSE
-	last_move_time = world.time
 	. = step(src, direction)
 	update_icon()
 
