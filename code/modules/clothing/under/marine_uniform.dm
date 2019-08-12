@@ -178,8 +178,8 @@
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/bear
-	name = "\improper Iron Bear uniform"
-	desc = "A uniform worn by Iron Bears mercenaries in the service of Mother Russia. Smells a little like an actual bear."
+	name = "\improper Steel Wolves uniform"
+	desc = "A uniform worn by Steel Wolvess mercenaries in the service of Mother Russia. Smells a little like an actual bear."
 	icon_state = "bear_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0

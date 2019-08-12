@@ -640,8 +640,8 @@
 //===========================//DISTRESS\\================================
 
 /obj/item/clothing/suit/storage/marine/veteran/bear
-	name = "\improper H1 Iron Bears vest"
-	desc = "A protective vest worn by Iron Bears mercenaries."
+	name = "\improper H1 Steel Wolvess vest"
+	desc = "A protective vest worn by Steel Wolvess mercenaries."
 	icon_state = "bear_armor"
 	flags_armor_protection = CHEST|GROIN
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)

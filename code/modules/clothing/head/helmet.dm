@@ -459,7 +459,7 @@
 	flags_marine_helmet = NONE
 
 /obj/item/clothing/head/helmet/marine/veteran/bear
-	name = "\improper Iron Bear helmet"
+	name = "\improper Steel Wolves helmet"
 	desc = "Is good for winter, because it has hole to put vodka through."
 	icon_state = "dutch_helmet"
 	armor = list("melee" = 90, "bullet" = 65, "laser" = 40, "energy" = 35, "bomb" = 35, "bio" = 5, "rad" = 5, "fire" = 35, "acid" = 35)
