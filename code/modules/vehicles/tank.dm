@@ -382,20 +382,26 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	for(var/M in operators)
 		exit_tank(M)
 
-/obj/vehicle/tank/proc/exit_tank(mob/user) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
-	if(user == pilot)
-		user.forceMove(get_turf(src))
+/obj/vehicle/tank/proc/exit_tank(mob/living/L) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
+	if(!istype(L))
+		return
+	if(L == pilot)
 		pilot = null
-		operators -= user
-	else if(user == gunner)
-		user.forceMove(get_turf(src))
+		operators -= L
+	else if(L == gunner)
 		gunner = null
-		operators -= user
-	else if(user in passengers)
-		user.forceMove(get_turf(src))
-		passengers -= user
-		operators -= user
-	to_chat(user, "<span class ='notice'>You hop out of [src] and slam its hatch shut behind you.</span>")
+		operators -= L
+	else if(L in passengers)
+		passengers -= L
+		operators -= L
+
+	var/turf/T = get_step(L, turn(src.dir, 180))
+	if(!T.CanPass(L, T))
+		to_chat(L, "<span class='warning'>You can't exit right now, there is something blocking the exit.</span>")
+		return
+
+	L.forceMove(get_step(L, turn(src.dir, 180)))
+	to_chat(L, "<span class='notice'>You hop out of [L] and slam its hatch shut behind you.</span>")
 
 /obj/vehicle/tank/relaymove(mob/user, direction)
 	if(world.time < last_move_time + move_delay)
