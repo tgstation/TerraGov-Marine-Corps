@@ -6,6 +6,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 
 //generic component stuff
 
+#define POSITION_DRIVER "Driver"
+#define POSITION_GUNNER "Gunner"
+#define POSITION_PASSENGER "Passenger"
+
+
 /obj/item/tank_weapon //These are really just proof of concept weapons. You'll probably want to adapt them to use the hardpoint crap that CM has.
 	name = "TGS 4 main tank cannon"
 	desc = "A gun that works about 50% of the time, but at least it's open source! It fires tank shells."
@@ -235,8 +240,8 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	update_icon()
 	if(world.time < last_drive_sound + 2 SECONDS)
 		return
-	playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
 	last_drive_sound = world.time
+	playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
 
 /obj/vehicle/tank/update_icon() //To show damage, gun firing, whatever. We need to re apply the gun turret overlay.
 	if(!turret_overlay)
@@ -314,31 +319,31 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		"<span class='notice'>You start to load [user.pulling] into [src].</span>")
 		var/time = 10 SECONDS - (2 SECONDS * user.mind.cm_skills.large_vehicle)
 		if(do_after(user, time, TRUE, src, BUSY_ICON_BUILD))
-			return enter(user.pulling, "passenger")
-			return TRUE
-	var/position = alert("What seat would you like to enter?.",name,"pilot","gunner", "passenger") //God I wish I had radials to work with
-	if(!position)
+			return enter(user.pulling, POSITION_PASSENGER)
+	var/position = alert("What seat would you like to enter?.", name, POSITION_DRIVER, POSITION_GUNNER, POSITION_PASSENGER, "Cancel") //God I wish I had radials to work with
+	if(!position || position == "Cancel")
 		return
-	if(pilot && position == "pilot")
-		to_chat(user, "[pilot] is already controlling [src]!")
+	if(pilot && position == POSITION_DRIVER)
+		to_chat(user, "[pilot] is already piloting [src]!")
 		return
-	if(gunner && position == "gunner")
-		to_chat(user, "[gunner] is already controlling [src]!")
+	if(gunner && position == POSITION_GUNNER)
+		to_chat(user, "[gunner] is already gunning [src]!")
 		return
-	if(passengers.len >= max_passengers && position == "passenger") //We have a few slots for people to enter as passengers without gunning / driving.
-		to_chat(user, "[src] is already full!")
+	if(passengers.len >= max_passengers && position == POSITION_PASSENGER) //We have a few slots for people to enter as passengers without gunning / driving.
+		to_chat(user, "[src] is full! There isn't enough space for you")
 		return
-	if(can_enter(user, position)) //OWO can they enter us????
-		to_chat(user, "You climb into [src] as a [position]!")
-		return enter(user, position) //Yeah i could do this with a define, but this way we're not using multiple things
+	if(!can_enter(user, position)) //OWO can they enter us????
+		return 
+	to_chat(user, "You climb into [src] as a [position]!")
+	enter(user, position) //Yeah i could do this with a define, but this way we're not using multiple things
 
 /obj/vehicle/tank/proc/can_enter(mob/living/carbon/M, position) //NO BENOS ALLOWED
-	if(get_dist(src, M) > 1)
+	if(!istype(M) || in_range(src, M))
 		return
 	if(!M.IsAdvancedToolUser())
 		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
 		return FALSE
-	if(!allowed(M) && position != "passenger")
+	if(!allowed(M) && position != POSITION_PASSENGER)
 		to_chat(M, "<span class='warning'>Access denied.</span>")
 		return FALSE
 	var/obj/item/offhand = M.get_inactive_held_item()
@@ -357,11 +362,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	user.forceMove(src)
 	operators += user
 	switch(position)
-		if("pilot")
+		if(POSITION_DRIVER)
 			pilot = user
-		if("gunner")
+		if(POSITION_GUNNER)
 			gunner = user
-		if("passenger")
+		if(POSITION_PASSENGER)
 			passengers += user
 
 /obj/vehicle/tank/proc/remove_all_players()
@@ -578,3 +583,7 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 /obj/vehicle/tank/take_damage(amount)
 	. = ..()
 	update_icon() //Update damage overlays
+
+#undef POSITION_DRIVER
+#undef POSITION_PASSENGER
+#undef POSITION_GUNNER
