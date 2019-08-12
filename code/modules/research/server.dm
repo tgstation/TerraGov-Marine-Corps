@@ -184,7 +184,7 @@
 		return
 
 	usr.set_interaction(src)
-	if(!src.allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED))
+	if(!allowed(usr))
 		to_chat(usr, "<span class='warning'>You do not have the required access level</span>")
 		return
 
@@ -314,17 +314,6 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "server_control")
-
-
-/obj/machinery/computer/rdservercontrol/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
-		playsound(loc, 'sound/effects/sparks4.ogg', 25, 1)
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
-	
-	updateUsrDialog()
 
 
 /obj/machinery/r_n_d/server/robotics

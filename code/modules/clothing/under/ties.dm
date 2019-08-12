@@ -600,8 +600,7 @@
 
 /*
 	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized
-	Security agent - the user details can be imprinted on the badge with a Security-access ID card,
-	or they can be emagged to accept any ID for use in disguises.
+	Security agent - the user details can be imprinted on the badge with a Security-access ID card
 */
 
 /obj/item/clothing/tie/holobadge
@@ -627,18 +626,10 @@
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag))
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>[src] is already cracked.</span>")
-			return
-
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "<span class='warning'>You swipe [I] and crack the holobadge security checks.</span>")
-
-	else if(istype(I, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/id_card = I
 
-		if(!(ACCESS_MARINE_BRIG in id_card.access) || !CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(!(ACCESS_MARINE_BRIG in id_card.access))
 			to_chat(user, "[src] rejects your insufficient access rights.")
 			return
 

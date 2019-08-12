@@ -34,12 +34,6 @@
 					return
 			else
 				to_chat(user, "<span class='warning'>Access Denied</span>")
-		else if(istype(W, /obj/item/card/emag) && !broken)
-			broken = 1
-			locked = 0
-			desc = "It appears to be broken."
-			icon_state = src.icon_broken
-			visible_message("<span class='notice'>The locker has been broken by [user] with an electromagnetic card!</span>", null, "You hear a faint electrical spark.", 3)
 
 		if(!locked)
 			..()

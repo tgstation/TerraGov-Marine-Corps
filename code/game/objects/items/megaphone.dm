@@ -30,22 +30,7 @@
 	log_game("[key_name(user)] used a megaphone to say: [message]")
 	user.log_talk(message, LOG_SAY)
 	if ((src.loc == user && usr.stat == 0))
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			if(insults)
-				audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>")
-				insults--
-			else
-				to_chat(user, "<span class='warning'>*BZZZZzzzzzt*</span>")
-		else
-			audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>")
+		audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>")
 
 		spamcheck = TRUE
 		addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)
-
-/obj/item/megaphone/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(user, "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>")
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		insults = rand(1, 3)

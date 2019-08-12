@@ -58,7 +58,6 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"OVERLAY_QUEUED" = OVERLAY_QUEUED
 		),
 	"obj_flags" = list(
-		"EMAGGED" = EMAGGED,
 		"IN_USE" = IN_USE,
 		"CAN_BE_HIT" = CAN_BE_HIT
 		),
