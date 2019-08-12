@@ -24408,10 +24408,6 @@
 	icon_state = "test_floor4"
 	},
 /area/mainship/hallways/exoarmor)
-"beR" = (
-/obj/effect/multitile_spawner/cm_armored/tank,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/exoarmor)
 "beT" = (
 /obj/machinery/light,
 /turf/open/floor/mainship{
@@ -66958,7 +66954,7 @@ aVs
 bbO
 hxX
 bbE
-beR
+bbE
 bbE
 bbE
 aTu
