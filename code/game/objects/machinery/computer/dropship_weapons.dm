@@ -111,7 +111,7 @@
 		var/mob/living/L = usr	
 		if(!istype(L))
 			return
-		if(L.mind.assigned_role != "Pilot Officer") //everyone can fire dropship weapons while fumbling.	
+		if(!istype(SSjob.GetJob(L.mind.assigned_role), /datum/job/command/pilot)) //everyone can fire dropship weapons while fumbling.	
 			L.visible_message("<span class='notice'>[L] fumbles around figuring out how to use the automated targeting system.</span>",	
 			"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")	
 			var/fumbling_time = 100 - 20 * L.mind.cm_skills.pilot	
@@ -136,7 +136,7 @@
 				if(DEW.last_fired > world.time - DEW.firing_delay)	
 					to_chat(L, "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>")	
 					return	
-				if(!LT.loc) 
+				if(QDELETED(LT)) // Quick final check on the Laser target
 					return	
 				DEW.open_fire(LT)	
 				break	

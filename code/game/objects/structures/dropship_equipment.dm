@@ -67,15 +67,9 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
-
-/obj/effect/attach_point/weapon/dropship1/Initialize()
-	. = ..()
 	ship_tag = "alamo"
 
 /obj/effect/attach_point/weapon/dropship2
-
-/obj/effect/attach_point/weapon/dropship2/Initialize()
-	. = ..()
 	ship_tag = "normandy"
 
 
@@ -84,17 +78,9 @@
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
-
-
-/obj/effect/attach_point/crew_weapon/dropship1/Initialize()
-	. = ..()
 	ship_tag = "alamo"
 
 /obj/effect/attach_point/crew_weapon/dropship2
-
-
-/obj/effect/attach_point/crew_weapon/dropship2/Initialize()
-	. = ..()
 	ship_tag = "normandy"
 
 
@@ -104,16 +90,9 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-
-
-/obj/effect/attach_point/electronics/dropship1/Initialize()
-	. = ..()
 	ship_tag = "alamo"
 
 /obj/effect/attach_point/electronics/dropship2
-
-/obj/effect/attach_point/electronics/dropship2/Initialize()
-	. = ..()
 	ship_tag = "normandy"
 
 
@@ -124,15 +103,9 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-
-/obj/effect/attach_point/fuel/dropship1/Initialize()
-	. = ..()
 	ship_tag = "alamo"
 
 /obj/effect/attach_point/fuel/dropship2
-
-/obj/effect/attach_point/fuel/dropship2/Initialize()
-	. = ..()
 	ship_tag = "normandy"
 
 
@@ -140,15 +113,9 @@
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-
-/obj/effect/attach_point/computer/dropship1/Initialize()
-	. = ..()
 	ship_tag = "alamo"
 
 /obj/effect/attach_point/computer/dropship2
-
-/obj/effect/attach_point/computer/dropship2/Initialize()
-	. = ..()
 	ship_tag = "normandy"
 
 
