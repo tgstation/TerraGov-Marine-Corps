@@ -39,7 +39,7 @@
 
 /obj/item/clothing/mask/gas/bear
 	name = "tactical balaclava"
-	desc = "A superior balaclava worn by the Steel Wolvess."
+	desc = "A superior balaclava worn by the Steel Wolves."
 	icon_state = "bear_mask"
 	anti_hug = 2
 	tint = TINT_NONE
