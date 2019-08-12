@@ -16,11 +16,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	desc = "A gun that works about 50% of the time, but at least it's open source! It fires tank shells."
 	icon = 'icons/obj/hardpoint_modules.dmi'
 	icon_state = "glauncher"
-	var/obj/item/ammo_magazine/ammo
 	var/obj/vehicle/tank/owner
 	var/list/fire_sounds = list('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg')
+	var/obj/item/ammo_magazine/ammo
 	var/default_ammo = /obj/item/ammo_magazine/tank/ltb_cannon //What do we start with?
-	var/list/accepted_ammo = list(/obj/item/ammo_magazine/tank/tank_glauncher) //Alternative ammo types that we'll accept. The default ammo is in this by default
+	var/list/accepted_ammo = list( //Alternative ammo types that we'll accept. The default ammo is in this by default
+		/obj/item/ammo_magazine/tank/tank_glauncher
+	) 
 	var/fire_delay
 	var/cooldown = 6 SECONDS //6 second weapons cooldown
 	var/lastfired = 0 //When were we last shot?
@@ -34,23 +36,30 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/item/tank_weapon/secondary_weapon
 	name = "TGS 3 XENOCRUSHER tank machine gun"
 	desc = "A much better gun that shits out bullets at ridiculous speeds, don't get in its way!"
-	icon = 'icons/obj/hardpoint_modules.dmi'
 	icon_state = "m56_cupola"
-	default_ammo = /obj/item/ammo_magazine/tank/ltaaap_minigun
 	fire_sounds = list('sound/weapons/tank_minigun_loop.ogg')
+	default_ammo = /obj/item/ammo_magazine/tank/ltaaap_minigun
+	accepted_ammo = list(
+		/obj/item/ammo_magazine/tank/towlauncher,
+		/obj/item/ammo_magazine/tank/m56_cupola,
+		/obj/item/ammo_magazine/tank/flamer,
+		/obj/item/ammo_magazine/tank/tank_slauncher
+	)
 	cooldown = 0.3 SECONDS //Minimal cooldown
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/towlauncher,/obj/item/ammo_magazine/tank/m56_cupola,/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/tank_slauncher)
 	range_safety_check = 0
 
 /obj/item/tank_weapon/apc_cannon
 	name = "MKV-7 utility payload launcher"
 	desc = "A double barrelled cannon which can rapidly deploy utility packages to the battlefield."
-	icon = 'icons/obj/hardpoint_modules.dmi'
-	icon_state = "APC uninstalled dualcannon"
-	default_ammo = /obj/item/ammo_magazine/tank/tank_slauncher
-	cooldown = 0.7 SECONDS //Minimal cooldown
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/towlauncher,/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/tank_slauncher, /obj/item/ammo_magazine/tank/tank_glauncher)
+	icon_state = "APC uninstalled dualcannon" // TODO: Err?
 	fire_sounds = list('sound/weapons/gun_shotgun_automatic.ogg', 'sound/weapons/gun_shotgun_light.ogg', 'sound/weapons/gun_shotgun_heavy.ogg')
+	default_ammo = /obj/item/ammo_magazine/tank/tank_slauncher
+	accepted_ammo = list(
+		/obj/item/ammo_magazine/tank/towlauncher, 
+		/obj/item/ammo_magazine/tank/flamer,
+		/obj/item/ammo_magazine/tank/tank_glauncher
+	)
+	cooldown = 0.7 SECONDS //Minimal cooldown
 
 /obj/item/tank_weapon/proc/fire(atom/T,mob/user)
 	if(!can_fire(T))
