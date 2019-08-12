@@ -1059,8 +1059,8 @@
 	var/light_off = 0
 	var/goes_out = 0
 	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-			var/obj/item/clothing/suit/storage/marine/S = wear_suit
+		if(istype(wear_suit, /obj/item/clothing/suit/storage))
+			var/obj/item/clothing/suit/storage/S = wear_suit
 			S.turn_off_light(src)
 			light_off++
 	if(guns)
