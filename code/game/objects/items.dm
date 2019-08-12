@@ -136,17 +136,17 @@
 
 	throwing = FALSE
 
-	if(loc == user)
-		if(!user.dropItemToGround(src))
-			return
-	else
-		user.changeNext_move(CLICK_CD_RAPID)
+	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
+		return
+
+	user.changeNext_move(CLICK_CD_RAPID)
 
 	if(QDELETED(src))
 		return
 
 	pickup(user)
 	if(!user.put_in_active_hand(src))
+		user.dropItemToGround(src)
 		dropped(user)
 
 

@@ -92,9 +92,9 @@ Make the TGMC proud!"})
 	suit_store = /obj/item/weapon/gun/smartgun
 
 
-//Intelligence Officer
-/datum/job/command/intelligenceofficer
-	title = INTELLIGENCE_OFFICER
+//Staff Officer
+/datum/job/command/staffofficer
+	title = STAFF_OFFICER
 	paygrade = "O4"
 	comm_title = "IO"
 	total_positions = 4
@@ -102,20 +102,20 @@ Make the TGMC proud!"})
 	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
-	outfit = /datum/outfit/job/command/intelligenceofficer
+	outfit = /datum/outfit/job/command/staffofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 
 
-/datum/job/command/intelligenceofficer/radio_help_message(mob/M)
+/datum/job/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
 You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
 
 
-/datum/outfit/job/command/intelligenceofficer
-	name = INTELLIGENCE_OFFICER
-	jobtype = /datum/job/command/intelligenceofficer
+/datum/outfit/job/command/staffofficer
+	name = STAFF_OFFICER
+	jobtype = /datum/job/command/staffofficer
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/officer
@@ -652,20 +652,18 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!H)
 		return FALSE
 
+	var/new_name
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
 			H.mind.cm_skills = new /datum/skills/early_synthetic
-		H.real_name = preference_source.prefs.synthetic_name
+		new_name = preference_source.prefs.synthetic_name
 
-	if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
-		H.real_name = "David"
+	if(!new_name || new_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
+		new_name = "David"
 		to_chat(H, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
 
-	H.name = H.real_name
-
-	if(H.mind)
-		H.mind.name = H.real_name
+	H.fully_replace_character_name(H.name, new_name)
 
 	return ..()
 
@@ -711,6 +709,13 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
 	H.mind.transfer_to(AI, TRUE)
 	qdel(H)
+
+
+/datum/job/ai/assign(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
+	if(preference_source?.prefs)
+		H.fully_replace_character_name(H.name, preference_source.prefs.synthetic_name)
+
+	return ..()
 
 
 /datum/job/ai/after_spawn(mob/living/L, mob/M, latejoin = FALSE)

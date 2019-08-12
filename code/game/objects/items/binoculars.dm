@@ -61,6 +61,19 @@
 	return TRUE
 
 
+/obj/item/binoculars/tactical/on_set_interaction(mob/user)
+	. = ..()
+	user.reset_perspective(src)
+	user.update_sight()
+
+
+/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
+	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
+
+
 /obj/item/binoculars/tactical/on_unset_interaction(mob/user)
 	. = ..()
 
@@ -68,6 +81,8 @@
 		return
 
 	user.client.click_intercept = null
+	user.reset_perspective(user)
+	user.update_sight()
 
 	if(zoom)
 		return

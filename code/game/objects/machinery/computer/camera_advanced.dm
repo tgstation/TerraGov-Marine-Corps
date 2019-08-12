@@ -241,8 +241,8 @@
 
 /datum/action/innate/camera_off
 	name = "End Camera View"
-	button_icon_state = "template2"
-	icon_icon_state = "camera_off"
+	background_icon_state = "template2"
+	action_icon_state = "camera_off"
 
 
 /datum/action/innate/camera_off/Activate()
@@ -256,8 +256,8 @@
 
 /datum/action/innate/camera_jump
 	name = "Jump To Camera"
-	button_icon_state = "template2"
-	icon_icon_state = "camera_jump"
+	background_icon_state = "template2"
+	action_icon_state = "camera_jump"
 
 
 /datum/action/innate/camera_jump/Activate()

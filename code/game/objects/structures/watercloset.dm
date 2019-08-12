@@ -164,7 +164,6 @@
 	. = ..()
 	create_reagents(2)
 
-//add heat controls? when emagged, you can freeze to death in it?
 
 /obj/effect/mist
 	name = "mist"
