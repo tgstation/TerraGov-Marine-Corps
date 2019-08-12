@@ -26,38 +26,11 @@
 		timestamp += timerecorded
 		storedinfo += "\[[time2text(timerecorded * 10, "mm:ss")]\] [speaker.name]: \"[message]\""
 
-
-/obj/item/taperecorder/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	
-	if(istype(I, /obj/item/card/emag))
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>It is already emagged!</span>")
-			return
-
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		recording = FALSE
-		to_chat(user, "<span class='warning'>PZZTTPFFFT</span>")
-		icon_state = "taperecorderidle"
-
-/obj/item/taperecorder/proc/explode()
-	var/turf/T = get_turf(loc)
-	if(ismob(loc))
-		var/mob/M = loc
-		to_chat(M, "<span class='danger'>[src] explodes!</span>")
-	if(T)
-		explosion(T, -1, -1, 0, 4)
-	qdel(src)
-	return
-
 /obj/item/taperecorder/verb/record()
 	set name = "Start Recording"
 	set category = "Object"
 
 	if(usr.stat)
-		return
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	icon_state = "taperecorderrecording"
 	if(timerecorded < 3600 && playing == 0)
@@ -83,9 +56,6 @@
 
 	if(usr.stat)
 		return
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
-		return
 	if(recording == 1)
 		recording = 0
 		timestamp+= timerecorded
@@ -107,9 +77,6 @@
 
 	if(usr.stat)
 		return
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
-		return
 	if(recording == 1 || playing == 1)
 		to_chat(usr, "<span class='notice'>You can't clear the memory while playing or recording!</span>")
 		return
@@ -126,9 +93,6 @@
 	set category = "Object"
 
 	if(usr.stat)
-		return
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(recording == 1)
 		to_chat(usr, "<span class='notice'>You can't playback when recording!</span>")
@@ -161,23 +125,6 @@
 		i++
 	icon_state = "taperecorderidle"
 	playing = 0
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		var/turf/T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: Device will self-destruct in... Five.</font>")
-		sleep(10)
-		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: Four.</font>")
-		sleep(10)
-		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: Three.</font>")
-		sleep(10)
-		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: Two.</font>")
-		sleep(10)
-		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: One.</font>")
-		sleep(10)
-		explode()
 
 
 /obj/item/taperecorder/verb/print_transcript()
@@ -185,9 +132,6 @@
 	set category = "Object"
 
 	if(usr.stat)
-		return
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(!canprint)
 		to_chat(usr, "<span class='notice'>The recorder can't print that fast!</span>")
@@ -210,9 +154,6 @@
 /obj/item/taperecorder/attack_self(mob/user)
 	if(recording == 0 && playing == 0)
 		if(usr.stat)
-			return
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 			return
 		icon_state = "taperecorderrecording"
 		if(timerecorded < 3600 && playing == 0)

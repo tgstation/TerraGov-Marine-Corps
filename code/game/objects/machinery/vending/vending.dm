@@ -202,10 +202,6 @@
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
 
-	else if(istype(I, /obj/item/card/emag))
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "You short out the product lock on [src]")
-
 	else if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
@@ -440,7 +436,7 @@
 		usr.set_interaction(src)
 		if ((href_list["vend"]) && vend_ready && !currently_vending)
 
-			if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
+			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				flick(src.icon_deny,src)
 				return
@@ -483,7 +479,7 @@
 
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if(!allowed(user) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
+	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		flick(src.icon_deny,src)
 		return

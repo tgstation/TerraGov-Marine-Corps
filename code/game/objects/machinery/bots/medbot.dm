@@ -176,12 +176,10 @@
 	. = ..()
 
 	if(istype(I, /obj/item/card/id))
-		if(allowed(user) && !open && !CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(allowed(user) && !open)
 			locked = !locked
 			to_chat(user, "<span class='notice'>Controls are now [src.locked ? "locked." : "unlocked."]</span>")
 			updateUsrDialog()
-		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>ERROR</span>")
 		else if(open)
 			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 		else
@@ -202,21 +200,6 @@
 	if(obj_integrity < max_integrity && !isscrewdriver(I) && I.force)
 		step_to(src, (get_step_away(src, user)))
 
-/obj/machinery/bot/medbot/Emag(mob/user as mob)
-	..()
-	if(open && !locked)
-		if(user) to_chat(user, "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>")
-		audible_message("<span class='danger'>[src] buzzes oddly!</span>")
-		flick("medibot_spark", src)
-		src.patient = null
-		if(user) src.oldpatient = user
-		src.currently_healing = 0
-		src.last_found = world.time
-		src.anchored = FALSE
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		src.safety_checks = 0
-		src.on = 1
-		src.icon_state = "medibot[src.on]"
 
 /obj/machinery/bot/medbot/process()
 	set background = 1
@@ -318,9 +301,6 @@
 	if(C.suiciding)
 		return 0 //Kevorkian school of robotic medical assistants.
 
-	if(CHECK_BITFIELD(obj_flags, EMAGGED)) //Everyone needs our medicine. (Our medicine is toxins)
-		return 1
-
 	if(safety_checks)
 		if(C.reagents.total_volume > 0)
 			for(var/datum/reagent/R in C.reagents.reagent_list)
@@ -380,9 +360,6 @@
 				break
 		if(!safety_fail)
 			reagent_id = "internal_beaker"
-
-	if(CHECK_BITFIELD(obj_flags, EMAGGED) == 2) //Emagged! Time to poison everybody.
-		reagent_id = "toxin"
 
 	if (!reagent_id && (C.getBruteLoss() >= heal_threshold))
 		if(!C.reagents.has_reagent(src.treatment_brute))

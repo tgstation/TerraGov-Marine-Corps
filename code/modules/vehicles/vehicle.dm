@@ -157,12 +157,6 @@
 	set_light(0)
 	update_icon()
 
-/obj/vehicle/proc/Emag(mob/user as mob)
-	ENABLE_BITFIELD(obj_flags, EMAGGED)
-
-	if(locked)
-		locked = FALSE
-		to_chat(user, "<span class='warning'>You bypass [src]'s controls.</span>")
 
 /obj/vehicle/proc/explode()
 	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
