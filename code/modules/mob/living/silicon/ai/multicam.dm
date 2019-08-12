@@ -99,8 +99,10 @@
 
 
 /area/ai_multicam_room
-	name = "ai_multicam_room"
+	name = "AI Multicam Room"
 	icon_state = "ai_camera_room"
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	ambience = list()
 
 
 GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
@@ -166,7 +168,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 		var/datum/camerachunk/CC = VV
 		for(var/V in CC.cameras)
 			var/obj/machinery/camera/C = V
-			if(!C.can_use() || (get_dist(C, src) > telegraph_range))
+			if(QDELETED(C) || !C.can_use() || (get_dist(C, src) > telegraph_range))
 				continue
 			visible |= C
 

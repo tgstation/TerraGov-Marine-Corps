@@ -46,14 +46,14 @@
 	return attack_hand(user)
 
 
-/obj/machinery/computer/marine_card/attack_paw(mob/user as mob)
+/obj/machinery/computer/marine_card/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
 /obj/machinery/computer/marine_card/bullet_act()
 	return 0
 
-/obj/machinery/computer/marine_card/attack_hand(mob/user as mob)
+/obj/machinery/computer/marine_card/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -386,14 +386,14 @@
 	return attack_hand(user)
 
 
-/obj/machinery/computer/squad_changer/attack_paw(mob/user as mob)
+/obj/machinery/computer/squad_changer/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
 /obj/machinery/computer/squad_changer/bullet_act()
 	return 0
 
-/obj/machinery/computer/squad_changer/attack_hand(mob/user as mob)
+/obj/machinery/computer/squad_changer/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

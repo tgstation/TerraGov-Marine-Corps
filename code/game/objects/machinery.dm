@@ -34,7 +34,7 @@
 
 /obj/machinery/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			return
@@ -169,7 +169,7 @@
 	return FALSE
 
 
-/obj/machinery/attack_paw(mob/user)
+/obj/machinery/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
@@ -181,10 +181,10 @@
 //Xenomorphs can't use machinery, not even the "intelligent" ones
 //Exception is Queen and shuttles, because plot power
 /obj/machinery/attack_alien(mob/living/carbon/xenomorph/X)
-	to_chat(X, "<span class='warning'>You stare at \the [src] cluelessly.</span>")
+	to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
 
 
-/obj/machinery/attack_hand(mob/user)
+/obj/machinery/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -268,13 +268,13 @@
 		"brainloss" = H.getBrainLoss(),
 		"knocked_out" = H.knocked_out,
 		"bodytemp" = H.bodytemperature,
-		"inaprovaline_amount" = H.reagents.get_reagent_amount("inaprovaline"),
-		"dexalin_amount" = H.reagents.get_reagent_amount("dexalin"),
-		"sleeptoxin_amount" = H.reagents.get_reagent_amount("sleeptoxin"),
-		"bicaridine_amount" = H.reagents.get_reagent_amount("bicaridine"),
-		"dermaline_amount" = H.reagents.get_reagent_amount("dermaline"),
+		"inaprovaline_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline),
+		"dexalin_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/dexalin),
+		"sleeptoxin_amount" = H.reagents.get_reagent_amount(/datum/reagent/toxin/sleeptoxin),
+		"bicaridine_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine),
+		"dermaline_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/dermaline),
 		"blood_amount" = H.blood_volume,
-		"disabilities" = H.sdisabilities,
+		"disabilities" = H.disabilities,
 		"lung_ruptured" = H.is_lung_ruptured(),
 		"external_organs" = H.limbs.Copy(),
 		"internal_organs" = H.internal_organs.Copy(),
@@ -445,9 +445,9 @@
 		if(!locate(species_organs[organ_name]) in occ["internal_organs"])
 			dat += text("<font color=#b54646>No [organ_name] detected.</font><BR>")
 
-	if(occ["sdisabilities"] & BLIND)
+	if(occ["disabilities"] & BLIND)
 		dat += text("<font color=#b54646>Cataracts detected.</font><BR>")
-	if(occ["sdisabilities"] & NEARSIGHTED)
+	if(occ["disabilities"] & NEARSIGHTED)
 		dat += text("<font color=#b54646>Retinal misalignment detected.</font><BR>")
 	return dat
 

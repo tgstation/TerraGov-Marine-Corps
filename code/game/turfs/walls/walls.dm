@@ -285,7 +285,7 @@
 
 
 //Interactions
-/turf/closed/wall/attack_paw(mob/user as mob)
+/turf/closed/wall/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
@@ -376,7 +376,7 @@
 		user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 		"<span class='notice'>You start repairing the damage to [src].</span>")
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
+		if(!do_after(user, max(5, round(damage / 5)), TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
 			return
 
 		user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",

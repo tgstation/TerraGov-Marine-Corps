@@ -107,7 +107,7 @@
 //*******************************//
 
 GLOBAL_LIST_INIT(fruit_icon_states, list("badrecipe","kudzupod","reishi","lime","grapes","boiledrorocore","chocolateegg"))
-GLOBAL_LIST_INIT(reagent_effects, list("toxin","dylovene","sleeptoxin","space_drugs","mindbreaker","zombiepowder","impedrezene"))
+GLOBAL_LIST_INIT(reagent_effects, list(/datum/reagent/toxin,/datum/reagent/medicine/dylovene,/datum/reagent/toxin/sleeptoxin,/datum/reagent/space_drugs,/datum/reagent/toxin/mindbreaker,/datum/reagent/impedrezene))
 
 /obj/item/reagent_container/food/snacks/grown/jungle_fruit
 	name = "jungle fruit"
@@ -141,7 +141,7 @@ GLOBAL_LIST_INIT(reagent_effects, list("toxin","dylovene","sleeptoxin","space_dr
 	overlays += fruit_overlay
 	plant_strength = rand(20,200)
 
-/obj/structure/jungle_plant/attack_hand(mob/user as mob)
+/obj/structure/jungle_plant/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

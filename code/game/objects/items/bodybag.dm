@@ -124,7 +124,7 @@
 	if(mob_to_stuff.stat != DEAD) //Only the dead for bodybags.
 		return FALSE
 	var/mob/living/carbon/human/human_to_stuff = mob_to_stuff
-	if((!check_tod(human_to_stuff) || issynth(human_to_stuff)) && human_to_stuff.is_revivable())
+	if(human_to_stuff.is_revivable() && (check_tod(human_to_stuff) || issynth(human_to_stuff)))
 		return FALSE //We don't want to store those that can be revived.
 	return TRUE
 
@@ -192,7 +192,7 @@
 /obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno)
 	if(opened)
 		return FALSE // stop xeno closing things
-	xeno.animation_attack_on(src)
+	xeno.do_attack_animation(src)
 	open()
 	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)

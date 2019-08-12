@@ -9,7 +9,7 @@
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
-	var/obj/structure/window/framed/almayer/window_type = /obj/structure/window/framed/almayer
+	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
 	var/basestate = "window"
 	var/junction = 0
 	var/reinforced = FALSE
@@ -102,20 +102,20 @@
 		var/oldloc = loc
 		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc) 
 			return
-		M.KnockDown(2)
+		M.knock_down(2)
 		user.visible_message("<span class='warning'>[user] pulls [M] onto [src].</span>",
 		"<span class='notice'>You pull [M] onto [src].</span>")
 		M.forceMove(loc)
 
 
-/obj/structure/window_frame/almayer
-	icon_state = "alm_window0_frame"
-	basestate = "alm_window"
+/obj/structure/window_frame/mainship
+	icon_state = "ship_window0_frame"
+	basestate = "ship_window"
 
-/obj/structure/window_frame/almayer/white
+/obj/structure/window_frame/mainship/white
 	icon_state = "white_window0_frame"
 	basestate = "white_window"
-	window_type = /obj/structure/window/framed/almayer/white
+	window_type = /obj/structure/window/framed/mainship/white
 
 /obj/structure/window_frame/colony
 	icon_state = "col_window0_frame"

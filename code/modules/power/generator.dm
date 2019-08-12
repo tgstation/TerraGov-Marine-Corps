@@ -60,7 +60,7 @@
 	if(!circ1 || !circ2 || !anchored || machine_stat & (BROKEN|NOPOWER))
 		return
 
-	updateDialog()
+	updateUsrDialog()
 
 	// update icon overlays and power usage only if displayed level has changed
 	if(lastgen > 250000 && prob(10))
@@ -89,7 +89,7 @@
 		use_power = anchored
 		reconnect()
 
-/obj/machinery/power/generator/attack_hand(mob/user)
+/obj/machinery/power/generator/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -144,7 +144,7 @@
 		usr.unset_interaction()
 		return 0
 
-	updateDialog()
+	updateUsrDialog()
 	return 1
 
 

@@ -8,7 +8,7 @@
 	desc = "A gun that fires flares. Replace with flares. Simple!"
 	icon_state = "flaregun" //REPLACE THIS
 	item_state = "gun" //YUCK
-	fire_sound = 'sound/weapons/gun_flare.ogg'
+	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	origin_tech = "combat=1;materials=2"
 	ammo = /datum/ammo/flare
 	var/num_flares = 1
@@ -136,7 +136,7 @@
 
 /obj/item/weapon/gun/syringe/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 	if(syringes.len)
-		spawn(0) fire_syringe(target,user)
+		INVOKE_ASYNC(src, .proc/fire_syringe, target, user)
 	else
 		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
 
@@ -169,7 +169,7 @@
 					var/R
 					if(D.reagents)
 						for(var/datum/reagent/A in D.reagents.reagent_list)
-							R += A.id + " ("
+							R += A.name + " ("
 							R += num2text(A.volume) + "),"
 					if (istype(M, /mob))
 						log_combat(user, M, "shot", src, "Reagents: ([R])")

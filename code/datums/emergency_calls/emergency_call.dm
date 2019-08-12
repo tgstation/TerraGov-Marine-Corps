@@ -1,13 +1,6 @@
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
 
-//Persistent gamemode variables.
-/datum/game_mode
-	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
-	var/datum/emergency_call/picked_call = null //Which distress call is currently active
-	var/on_distress_cooldown = FALSE
-	var/waiting_for_candidates = FALSE
-
 
 //The distress call parent.
 /datum/emergency_call
@@ -73,15 +66,11 @@
 		to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
 
 
-/datum/game_mode/proc/activate_distress()
-	picked_call = get_random_call()
-
-	if(!picked_call) //Something went horribly wrong
-		return FALSE
+/datum/game_mode/proc/activate_distress(datum/emergency_call/chosen_call)
+	picked_call = chosen_call || get_random_call()
 
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
-
 
 	picked_call.mob_max = rand(5, 15)
 

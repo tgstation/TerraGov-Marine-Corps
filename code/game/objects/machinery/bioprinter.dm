@@ -32,7 +32,7 @@
 		"synthetic right leg (125 - Metal)" = list(/obj/item/robot_parts/r_leg,  0, LIMB_METAL_AMOUNT, LIMB_PRINTING_TIME)
 		)
 
-/obj/machinery/bioprinter/attack_hand(mob/user)
+/obj/machinery/bioprinter/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

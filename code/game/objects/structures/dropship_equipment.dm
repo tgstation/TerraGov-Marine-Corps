@@ -12,7 +12,7 @@
 	name = "equipment attach point"
 	desc = "A place where heavy equipment can be installed with a powerloader."
 	anchored = TRUE
-	icon = 'icons/Marine/almayer_props.dmi'
+	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "equip_base"
 	var/base_category //what kind of equipment this base accepts.
 	var/ship_tag//used to associate the base to a dropship.
@@ -115,7 +115,7 @@
 
 /obj/effect/attach_point/fuel
 	name = "engine system attach point"
-	icon = 'icons/Marine/almayer_props64.dmi'
+	icon = 'icons/Marine/mainship_props64.dmi'
 	icon_state = "fuel_base"
 	base_category = DROPSHIP_FUEL_EQP
 
@@ -156,7 +156,7 @@
 /obj/structure/dropship_equipment
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/Marine/almayer_props.dmi'
+	icon = 'icons/Marine/mainship_props.dmi'
 	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	var/equip_category //on what kind of base this can be installed.
@@ -255,10 +255,10 @@
 
 /obj/structure/dropship_equipment/attack_alien(mob/living/carbon/xenomorph/X)
 	if(X.a_intent == INTENT_HARM)
-		X.animation_attack_on(src)
+		X.do_attack_animation(src)
 		X.flick_attack_overlay(src, "slash")
 		playsound(loc, "alien_claw_metal", 25, 1)
-		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
+		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>We slash [src].</span>")
 		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
 	else
 		attack_hand(X)
@@ -416,7 +416,7 @@
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
 /obj/structure/dropship_equipment/fuel
-	icon = 'icons/Marine/almayer_props64.dmi'
+	icon = 'icons/Marine/mainship_props64.dmi'
 	equip_category = DROPSHIP_FUEL_EQP
 
 
@@ -606,7 +606,7 @@
 
 /obj/structure/dropship_equipment/weapon
 	name = "abstract weapon"
-	icon = 'icons/Marine/almayer_props64.dmi'
+	icon = 'icons/Marine/mainship_props64.dmi'
 	equip_category = DROPSHIP_WEAPON
 	bound_width = 32
 	bound_height = 64
@@ -709,7 +709,7 @@
 	name = "rocket pod"
 	icon_state = "rocket_pod"
 	desc = "A rocket pod weapon system capable of launching a single laser-guided rocket. Moving this will require some sort of lifter."
-	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
+	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
 	firing_delay = 5
 	point_cost = 600
 
@@ -731,8 +731,8 @@
 	name = "minirocket pod"
 	icon_state = "minirocket_pod"
 	desc = "A mini rocket pod capable of launching six laser-guided mini rockets. Moving this will require some sort of lifter."
-	icon = 'icons/Marine/almayer_props64.dmi'
-	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
+	icon = 'icons/Marine/mainship_props64.dmi'
+	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
 	firing_delay = 10 //1 seconds
 	point_cost = 600
 
@@ -754,7 +754,7 @@
 	name = "laser beam gun"
 	icon_state = "laser_beam"
 	desc = "State of the art technology recently acquired by the TGMC, it fires a battery-fed pulsed laser beam at near lightspeed setting on fire everything it touches. Moving this will require some sort of lifter."
-	icon = 'icons/Marine/almayer_props64.dmi'
+	icon = 'icons/Marine/mainship_props64.dmi'
 	firing_sound = 'sound/effects/phasein.ogg'
 	firing_delay = 50 //5 seconds
 	point_cost = 500
@@ -775,8 +775,8 @@
 	name = "launch bay"
 	icon_state = "launch_bay"
 	desc = "A launch bay to drop special ordnance. Fits inside the dropship's crew weapon emplacement. Moving this will require some sort of lifter."
-	icon = 'icons/Marine/almayer_props.dmi'
-	firing_sound = 'sound/weapons/gun_flare_explode.ogg'
+	icon = 'icons/Marine/mainship_props.dmi'
+	firing_sound = 'sound/weapons/guns/fire/flare_explode.ogg'
 	firing_delay = 10 //1 seconds
 	equip_category = DROPSHIP_CREW_WEAPON //fits inside the central spot of the dropship
 	point_cost = 0
@@ -935,7 +935,7 @@
 		linked_stretcher = null
 
 
-/obj/structure/dropship_equipment/medevac_system/attack_hand(mob/user)
+/obj/structure/dropship_equipment/medevac_system/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

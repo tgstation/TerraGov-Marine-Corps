@@ -70,33 +70,23 @@
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))
 		return
 	var/is_in_use = FALSE
-	var/list/nearby = viewers(1, src)
-	for(var/mob/M in nearby)
-		if ((M.client && M.interactee == src))
+
+	var/mob/living/silicon/ai/AI
+	if(isAI(usr))
+		AI = usr
+		if(AI.client && AI.interactee == src)
 			is_in_use = TRUE
-			attack_hand(M)
-	if (isAI(usr))
-		if (!(usr in nearby))
-			if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-				is_in_use = TRUE
-				attack_ai(usr)
+			attack_ai(AI)
+
+	for(var/mob/M in viewers(1, src))
+		if(!M.client || M.interactee != src || M == AI)
+			continue
+		is_in_use = TRUE
+		attack_hand(M)
 
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
-/obj/proc/updateDialog()
-	// Check that people are actually using the machine. If not, don't update anymore.
-	if(!CHECK_BITFIELD(obj_flags, IN_USE))
-		return
-	var/list/nearby = viewers(1, src)
-	var/is_in_use = FALSE
-	for(var/mob/M in nearby)
-		if ((M.client && M.interactee == src))
-			is_in_use = TRUE
-			interact(M)
-			
-	if(!is_in_use)
-		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 /obj/proc/interact(mob/user)
 	return
@@ -106,16 +96,16 @@
 	return
 
 
-/obj/attack_paw(mob/user)
+/obj/attack_paw(mob/living/carbon/monkey/user)
 	if(can_buckle) return src.attack_hand(user)
 	else . = ..()
 
-/obj/attack_hand(mob/user)
+/obj/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
-		return
+		return FALSE
 	if(can_buckle) 
-		manual_unbuckle(user)
+		return manual_unbuckle(user)
 
 
 /obj/proc/handle_rotation()
@@ -135,17 +125,30 @@
 	handle_rotation()
 	return buckled_mob
 
-/obj/proc/unbuckle()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
-			buckled_mob.buckled = null
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_canmove()
 
-			var/M = buckled_mob
-			buckled_mob = null
-			UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
-			afterbuckle(M)
+/obj/proc/unbuckle(mob/user, silent = TRUE)
+	buckled_mob.buckled = null
+	buckled_mob.anchored = initial(buckled_mob.anchored)
+	buckled_mob.update_canmove()
+
+	if(!silent)
+		if(buckled_mob == user)
+			buckled_mob.visible_message(
+			"<span class='notice'>[buckled_mob] unbuckled [buckled_mob.p_them()]self!</span>",
+			"<span class='notice'>You unbuckle yourself from [src].</span>",
+			"<span class='notice'>You hear metal clanking</span>"
+			)
+		else
+			buckled_mob.visible_message(
+			"<span class='notice'>[buckled_mob] was unbuckled by [user]!</span>",
+			"<span class='notice'>You were unbuckled from [src] by [user].</span>",
+			"<span class='notice'>You hear metal clanking.</span>"
+			)
+
+	var/buckled_mob_backup = buckled_mob
+	buckled_mob = null
+	UnregisterSignal(buckled_mob_backup, COMSIG_LIVING_DO_RESIST)
+	afterbuckle(buckled_mob_backup)
 
 
 /obj/proc/resisted_against(datum/source, mob/user) //COMSIG_LIVING_DO_RESIST
@@ -154,23 +157,11 @@
 	manual_unbuckle(user)
 
 
-/obj/proc/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			if(buckled_mob != user)
-				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] was unbuckled by [user.name]!</span>",\
-					"<span class='notice'>You were unbuckled from [src] by [user.name].</span>",\
-					"<span class='notice'>You hear metal clanking.</span>")
-			else
-				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] unbuckled [buckled_mob.p_them()]self!</span>",\
-					"<span class='notice'>You unbuckle yourself from [src].</span>",\
-					"<span class='notice'>You hear metal clanking</span>")
-			unbuckle()
-			return 1
-
-	return 0
+/obj/proc/manual_unbuckle(mob/user)
+	if(!buckled_mob || buckled_mob.buckled != src)
+		return FALSE
+	unbuckle(user, FALSE)
+	return TRUE
 
 
 //trying to buckle a mob
@@ -251,3 +242,11 @@
 /obj/on_set_interaction(mob/user)
 	. = ..()
 	ENABLE_BITFIELD(obj_flags, IN_USE)
+
+
+/obj/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("anchored")
+			setAnchored(var_value)
+			return TRUE
+	return ..()

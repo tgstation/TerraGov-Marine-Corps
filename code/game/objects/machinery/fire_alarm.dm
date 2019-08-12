@@ -76,7 +76,7 @@ FIRE ALARM
 /obj/machinery/firealarm/bullet_act(BLAH)
 	return src.alarm()
 
-/obj/machinery/firealarm/attack_paw(mob/user as mob)
+/obj/machinery/firealarm/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/firealarm/emp_act(severity)
@@ -146,7 +146,7 @@ FIRE ALARM
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				qdel(src)
 
-/obj/machinery/firealarm/attack_hand(mob/user as mob)
+/obj/machinery/firealarm/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

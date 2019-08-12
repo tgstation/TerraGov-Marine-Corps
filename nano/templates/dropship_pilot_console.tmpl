@@ -1,0 +1,51 @@
+{{if data.hijack_state != 0}}
+<center>
+	<h4>POSSIBLE HIJACK</h4>
+	<h3>SYSTEMS REBOOTING...</h3>
+</center>
+{{else}}
+<h3>Ship Status</h3> 
+<center>{{:data.ship_status}}</center>
+
+<h3>Destinations</h3> 
+{{for data.destinations}}
+	{{:helper.link(value.name, null, {'move' : value.id}, (data.shuttle_mode == 'idle' || data.shuttle_mode == 'call') ? null : 'disabled', null)}}
+{{/for}}
+
+<h3>Door Controls</h3>
+<div class='alamo-background'>
+	<div style="float: left;">
+		<center>
+		<h4>All</h4>
+		{{:helper.link("Lockdown", null, {'lockdown' : '1'}, null, null)}}
+		{{:helper.link("Unlock", null, {'release' : '1'}, null, null)}}
+		</center>
+	</div>
+	<div style="clear: both;"></div>
+	<br />	<br /><br />
+	<div style="float: left;">
+		<center>
+		<h4>Left</h4>
+		{{:helper.link("Lockdown", null, {'lock' : 'left'}, null, null)}}
+		{{:helper.link("Unlock", null, {'unlock' : 'left'}, null, null)}}
+		</center>
+	</div>
+	<div style="float: right;">
+		<center>
+		<h4>Right</h4>
+		{{:helper.link("Lockdown", null, {'lock' : 'right'}, null, null)}}
+		{{:helper.link("Unlock", null, {'unlock' : 'right'}, null, null)}}
+		</center>
+	</div>
+	<div style="clear: both;"></div>
+	<br />	<br /><br />
+	<div style="float: left;">
+		<center>
+		<h4>Rear</h4>
+		{{:helper.link("Lockdown", null, {'lock' : 'rear'}, null, null)}}
+		{{:helper.link("Unlock", null, {'unlock' : 'rear'}, null, null)}}
+		</center>
+	</div>
+	<div style="clear: both;"></div>
+</div>
+{{/if}}

@@ -98,8 +98,7 @@
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(door.density)	continue
-		spawn(0)
-			door.close()
+		INVOKE_ASYNC(door, /obj/machinery/door.proc/close)
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
 		if(C.broken)	continue
@@ -119,8 +118,7 @@
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
 		if(!door.density)	continue
-		spawn(0)
-			door.open()
+		INVOKE_ASYNC(door, /obj/machinery/door.proc/open)
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
 		if(C.broken)	continue
@@ -155,7 +153,7 @@
 //Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
 // Flasher activation limited to 150 seconds
-/obj/machinery/door_timer/attack_hand(mob/user as mob)
+/obj/machinery/door_timer/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

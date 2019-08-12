@@ -64,7 +64,6 @@
 	timeofdeath = world.time
 	mind?.store_memory("Time of death: [worldtime2text()]", 0)
 
-	GLOB.alive_mob_list -= src
 	GLOB.dead_mob_list |= src
 	GLOB.offered_mob_list -= src
 

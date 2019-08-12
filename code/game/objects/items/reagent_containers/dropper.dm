@@ -31,8 +31,7 @@
 			if(ismob(target))
 
 				var/time = 20 //2/3rds the time of a syringe
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message(text("<span class='danger'>[] is trying to squirt something into []'s eyes!</span>", user, target), 1)
+				visible_message("<span class='danger'>[user] is trying to squirt something into [target]'s eyes!</span>")
 
 				if(!do_mob(user, target, time, BUSY_ICON_HOSTILE))
 					return
@@ -56,10 +55,8 @@
 							safe_thing.create_reagents(100)
 						trans = src.reagents.trans_to(safe_thing, amount_per_transfer_from_this)
 
-						for(var/mob/O in viewers(world.view, user))
-							O.show_message(text("<span class='danger'>[] tries to squirt something into []'s eyes, but fails!</span>", user, target), 1)
-						spawn(5)
-							src.reagents.reaction(safe_thing, TOUCH)
+						visible_message("<span class='danger'>[user] tries to squirt something into [target]s eyes, but fails!</span>")
+						addtimer(CALLBACK(reagents, /datum/reagents.proc/reaction, safe_thing, TOUCH), 5)
 
 						to_chat(user, "<span class='notice'>You transfer [trans] units of the solution.</span>")
 						if (src.reagents.total_volume<=0)
@@ -67,8 +64,7 @@
 							icon_state = "dropper[filled]"
 						return
 
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message(text("<span class='danger'>[] squirts something into []'s eyes!</span>", user, target), 1)
+				visible_message("<span class='danger'>[user] squirts something into [target]'s eyes!</span>")
 				src.reagents.reaction(target, TOUCH)
 
 				var/mob/living/M = target

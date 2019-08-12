@@ -54,7 +54,7 @@
 	icon_state = "pirateranged"
 	icon_living = "pirateranged"
 	icon_dead = "pirateranged_dead"
-	projectilesound = 'sound/weapons/laser.ogg'
+	projectilesound = 'sound/weapons/guns/fire/laser.ogg'
 	ranged = 1
 	rapid = 2
 	rapid_fire_delay = 6

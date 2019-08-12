@@ -15,7 +15,7 @@
 	siemens_coefficient = 0.9
 	tint = TINT_HEAVY
 	var/gas_filter_strength = 1			//For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
+	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"

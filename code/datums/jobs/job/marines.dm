@@ -100,7 +100,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 //Squad Smartgunner
 /datum/job/marine/smartgunner
 	title = SQUAD_SMARTGUNNER
-	paygrade = "E4"
+	paygrade = "E3"
 	comm_title = "SGnr"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -126,7 +126,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 //Squad Specialist
 /datum/job/marine/specialist
 	title = SQUAD_SPECIALIST
-	paygrade = "E5"
+	paygrade = "E4"
 	comm_title = "Spec"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
@@ -156,7 +156,7 @@ You can serve a variety of roles, so choose carefully."})
 //Squad Leader
 /datum/job/marine/leader
 	title = SQUAD_LEADER
-	paygrade = "E6"
+	paygrade = "E5"
 	comm_title = "SL"
 	total_positions = 4
 	supervisors = "the acting field commander"
@@ -181,3 +181,15 @@ You are also in charge of communicating with command and letting them know about
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+
+/datum/job/marine/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	if(!latejoin || !ishuman(C))
+		return
+	var/mob/living/carbon/human/H = C
+	if(!H.assigned_squad)
+		return
+	if(H.assigned_squad.squad_leader)
+		H.assigned_squad.demote_leader()
+	H.assigned_squad.promote_leader(H)

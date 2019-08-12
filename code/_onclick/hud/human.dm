@@ -11,7 +11,9 @@
 
 
 /datum/hud/human/New(mob/living/carbon/human/owner, ui_style='icons/mob/screen/White.dmi', ui_color = "#ffffff", ui_alpha = 230)
-	..()
+	. = ..()
+	owner.overlay_fullscreen("see_through_darkness", /obj/screen/fullscreen/see_through_darkness)
+	
 	var/datum/hud_data/hud_data
 	if(!istype(owner))
 		hud_data = new()
@@ -201,8 +203,8 @@
 	eject_mag = new /obj/screen/firearms/magazine()
 	static_inventory += eject_mag
 
-	toggle_burst = new /obj/screen/firearms/burstfire()
-	static_inventory += toggle_burst
+	toggle_firemode = new /obj/screen/firearms/firemode()
+	static_inventory += toggle_firemode
 
 	unique_action = new /obj/screen/firearms/unique()
 	static_inventory += unique_action
@@ -219,7 +221,7 @@
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"
-	set name = "Toggle hotkey buttons"
+	set name = "Toggle Hotkey Buttons"
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
 
 	if(hud_used.hotkey_ui_hidden)

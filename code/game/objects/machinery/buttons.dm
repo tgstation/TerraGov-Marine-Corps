@@ -37,7 +37,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/button/attack_hand(mob/user)
+/obj/machinery/button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -93,6 +93,16 @@
 	name = "open button"
 	desc = "Opens whatever it is linked to. Does not close. Careful on what you release."
 	specialfunctions = DOOR_FLAG_OPEN_ONLY
+
+
+/obj/machinery/button/door/open_only/landing_zone
+	name = "lockdown override"
+	id = "landing_zone"
+	use_power = NO_POWER_USE
+
+
+/obj/machinery/button/door/open_only/landing_zone/lz2
+	id = "landing_zone_2"
 
 
 /obj/machinery/driver_button
@@ -166,7 +176,7 @@
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/machinery/medical_help_button/attack_hand(mob/living/carbon/human/user)
+/obj/machinery/medical_help_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

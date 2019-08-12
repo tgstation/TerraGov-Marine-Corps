@@ -54,7 +54,7 @@
 		ui.close()
 		return FALSE
 	if(href_list["update"])
-		updateDialog()
+		updateUsrDialog()
 		return TRUE
 	if(href_list["sortkey"])
 		if(sortkey == href_list["sortkey"])

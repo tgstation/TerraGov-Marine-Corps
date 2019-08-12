@@ -45,7 +45,7 @@
 
 /obj/structure/closet/secure_closet/marine/standard/alpha/PopulateContents()
 	. = ..()
-	new /obj/item/radio/headset/almayer/marine/alpha(src)
+	new /obj/item/radio/headset/mainship/marine/alpha(src)
 	new /obj/item/clothing/gloves/marine/alpha(src)
 
 
@@ -56,7 +56,7 @@
 
 /obj/structure/closet/secure_closet/marine/standard/bravo/PopulateContents()
 	. = ..()
-	new /obj/item/radio/headset/almayer/marine/bravo(src)
+	new /obj/item/radio/headset/mainship/marine/bravo(src)
 	new /obj/item/clothing/gloves/marine/bravo(src)
 
 
@@ -67,7 +67,7 @@
 
 /obj/structure/closet/secure_closet/marine/standard/charlie/PopulateContents()
 	. = ..()
-	new /obj/item/radio/headset/almayer/marine/charlie(src)
+	new /obj/item/radio/headset/mainship/marine/charlie(src)
 	new /obj/item/clothing/gloves/marine/charlie(src)
 
 
@@ -78,7 +78,7 @@
 
 /obj/structure/closet/secure_closet/marine/standard/delta/PopulateContents()
 	. = ..()
-	new /obj/item/radio/headset/almayer/marine/delta(src)
+	new /obj/item/radio/headset/mainship/marine/delta(src)
 	new /obj/item/clothing/gloves/marine/delta(src)
 
 
@@ -99,7 +99,7 @@
 /obj/structure/closet/secure_closet/marine/leader/alpha/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/alpha(src)
-	new /obj/item/radio/headset/almayer/marine/alpha/lead(src)
+	new /obj/item/radio/headset/mainship/marine/alpha/lead(src)
 
 
 /obj/structure/closet/secure_closet/marine/leader/bravo
@@ -110,7 +110,7 @@
 /obj/structure/closet/secure_closet/marine/leader/bravo/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/bravo(src)
-	new /obj/item/radio/headset/almayer/marine/bravo/lead(src)
+	new /obj/item/radio/headset/mainship/marine/bravo/lead(src)
 
 
 /obj/structure/closet/secure_closet/marine/leader/charlie
@@ -121,7 +121,7 @@
 /obj/structure/closet/secure_closet/marine/leader/charlie/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/charlie(src)
-	new /obj/item/radio/headset/almayer/marine/charlie/lead(src)
+	new /obj/item/radio/headset/mainship/marine/charlie/lead(src)
 
 /obj/structure/closet/secure_closet/marine/leader/delta
 	name = "delta leader equipment locker"
@@ -131,7 +131,7 @@
 /obj/structure/closet/secure_closet/marine/leader/delta/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/delta(src)
-	new /obj/item/radio/headset/almayer/marine/delta/lead(src)
+	new /obj/item/radio/headset/mainship/marine/delta/lead(src)
 
 
 
@@ -158,7 +158,7 @@
 /obj/structure/closet/secure_closet/marine/engi/alpha/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/alpha/insulated(src)
-	new /obj/item/radio/headset/almayer/marine/alpha/engi(src)
+	new /obj/item/radio/headset/mainship/marine/alpha/engi(src)
 
 
 /obj/structure/closet/secure_closet/marine/engi/bravo
@@ -169,7 +169,7 @@
 /obj/structure/closet/secure_closet/marine/engi/bravo/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/bravo/insulated(src)
-	new /obj/item/radio/headset/almayer/marine/bravo/engi(src)
+	new /obj/item/radio/headset/mainship/marine/bravo/engi(src)
 
 
 /obj/structure/closet/secure_closet/marine/engi/charlie
@@ -180,7 +180,7 @@
 /obj/structure/closet/secure_closet/marine/engi/charlie/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/charlie/insulated(src)
-	new /obj/item/radio/headset/almayer/marine/charlie/engi(src)
+	new /obj/item/radio/headset/mainship/marine/charlie/engi(src)
 
 /obj/structure/closet/secure_closet/marine/engi/delta
 	name = "delta engineer equipment locker"
@@ -190,7 +190,7 @@
 /obj/structure/closet/secure_closet/marine/engi/delta/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/delta/insulated(src)
-	new /obj/item/radio/headset/almayer/marine/delta/engi(src)
+	new /obj/item/radio/headset/mainship/marine/delta/engi(src)
 
 
 
@@ -218,7 +218,7 @@
 /obj/structure/closet/secure_closet/marine/medic/alpha/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/alpha(src)
-	new /obj/item/radio/headset/almayer/marine/alpha/med(src)
+	new /obj/item/radio/headset/mainship/marine/alpha/med(src)
 
 
 /obj/structure/closet/secure_closet/marine/medic/bravo
@@ -229,7 +229,7 @@
 /obj/structure/closet/secure_closet/marine/medic/bravo/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/bravo(src)
-	new /obj/item/radio/headset/almayer/marine/bravo/med(src)
+	new /obj/item/radio/headset/mainship/marine/bravo/med(src)
 
 
 /obj/structure/closet/secure_closet/marine/medic/charlie
@@ -240,7 +240,7 @@
 /obj/structure/closet/secure_closet/marine/medic/charlie/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/charlie(src)
-	new /obj/item/radio/headset/almayer/marine/charlie/med(src)
+	new /obj/item/radio/headset/mainship/marine/charlie/med(src)
 
 
 /obj/structure/closet/secure_closet/marine/medic/delta
@@ -251,7 +251,7 @@
 /obj/structure/closet/secure_closet/marine/medic/delta/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/gloves/marine/delta(src)
-	new /obj/item/radio/headset/almayer/marine/delta/med(src)
+	new /obj/item/radio/headset/mainship/marine/delta/med(src)
 
 
 
@@ -277,12 +277,12 @@
 	new /obj/item/clothing/under/marine/officer/command(src)
 	new /obj/item/clothing/head/beret/marine/captain(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/radio/headset/almayer/mcom(src)
+	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/clothing/suit/captain_cloak(src)
+	new /obj/item/storage/backpack/marine/satchel/captain_cloak(src)
 
 /obj/structure/closet/secure_closet/securecom
 	name = "captain's secure box"
@@ -308,7 +308,7 @@
 	new /obj/item/clothing/head/tgmcberet(src)
 	new /obj/item/clothing/head/tgmcberet/tan(src)
 	new /obj/item/clothing/head/tgmccap/ro(src)
-	new /obj/item/radio/headset/almayer/mcom(src)
+	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/clothing/under/marine/officer/bridge(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/suit/storage/marine/MP/RO(src)
@@ -318,7 +318,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/clothing/suit/officer_cloak(src)
+	new /obj/item/storage/backpack/marine/satchel/officer_cloak
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"
@@ -333,14 +333,14 @@
 /obj/structure/closet/secure_closet/pilot_officer/PopulateContents()
 	new /obj/item/attachable/stock/vp70(src)
 	new /obj/item/clothing/head/helmet/marine/pilot(src)
-	new /obj/item/radio/headset/almayer/mcom(src)
+	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/clothing/under/marine/officer/pilot(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/suit/armor/vest/pilot(src)
 	new /obj/item/storage/large_holster/m39(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
 	new /obj/item/clothing/gloves/yellow(src)
-	new /obj/item/clothing/glasses/sunglasses(src)
+	new /obj/item/clothing/glasses/sunglasses/aviator/yellow(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
@@ -371,7 +371,7 @@
 	new /obj/item/storage/belt/security/MP(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/radio/headset/almayer/mmpo(src)
+	new /obj/item/radio/headset/mainship/mmpo(src)
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/storage/backpack/security (src)
@@ -399,7 +399,7 @@
 	new /obj/item/storage/belt/security/MP(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/radio/headset/almayer/mcom(src)
+	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/storage/backpack/security (src)
@@ -427,16 +427,16 @@
 	new /obj/item/clothing/head/helmet/riot(src)
 	new /obj/item/flashlight(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/radio/headset/almayer/mmpo(src)
+	new /obj/item/radio/headset/mainship/mmpo(src)
 	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/radio/headset/almayer/mmpo(src)
+	new /obj/item/radio/headset/mainship/mmpo(src)
 	new /obj/item/clothing/tie/holster/waist(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 
-//ALMAYER MEDICAL CLOSET
+//MARINE SHIP MEDICAL CLOSET
 /obj/structure/closet/secure_closet/medical_doctor
 	name = "medical doctor's locker"
 	req_access = list(ACCESS_MARINE_MEDBAY)
@@ -451,7 +451,7 @@
 /obj/structure/closet/secure_closet/medical_doctor/PopulateContents()
 	new /obj/item/storage/backpack/marine/satchel(src)
 	if(!is_ground_level(z))
-		new /obj/item/radio/headset/almayer/doc(src)
+		new /obj/item/radio/headset/mainship/doc(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/storage/belt/medical(src)
@@ -478,7 +478,7 @@
 	icon_off = "secure_off_cargo"
 
 /obj/structure/closet/secure_closet/req_officer/PopulateContents()
-	new /obj/item/radio/headset/almayer/mcom(src)
+	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/clothing/under/rank/ro_suit(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/storage/belt/marine(src)
@@ -505,7 +505,7 @@
 /obj/structure/closet/secure_closet/cargotech/PopulateContents()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/marine(src)
-	new /obj/item/radio/headset/almayer/ct(src)
+	new /obj/item/radio/headset/mainship/ct(src)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/head/beanie(src)
 	new /obj/item/flashlight(src)

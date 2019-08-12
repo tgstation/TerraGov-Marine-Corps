@@ -30,18 +30,18 @@
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>", \
-	"<span class='warning'>You shove [src]!</span>", null, 5)
+	"<span class='warning'>We shove [src]!</span>", null, 5)
 	return TRUE
 
 /mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	. = ..()
-	KnockDown(8)
+	knock_down(8)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
 		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
@@ -49,7 +49,7 @@
 	X.flick_attack_overlay(src, "disarm")
 
 	if(!knocked_down && !no_stun && (traumatic_shock > 100))
-		KnockDown(1)
+		knock_down(1)
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
@@ -80,7 +80,7 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks)
+			knock_out(knockout_stacks)
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
@@ -109,7 +109,7 @@
 /mob/living/proc/can_xeno_slash(mob/living/carbon/xenomorph/X)
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT)) // intelligent ignore restrictions
 		return TRUE
-	
+
 	if(X.hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
 		if(status_flags & XENO_HOST)
 			for(var/obj/item/alien_embryo/embryo in src)
@@ -165,7 +165,7 @@
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
 
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 
 	var/attack_flick =  "slash"
 	var/attack_sound = "alien_claw_flesh"
@@ -196,7 +196,7 @@
 	//Somehow we will deal no damage on this attack
 	if(!damage)
 		playsound(X.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-		X.animation_attack_on(src)
+		X.do_attack_animation(src)
 		X.visible_message("<span class='danger'>\The [X] lunges at [src]!</span>", \
 		"<span class='danger'>We lunge at [src]!</span>", null, 5)
 		return FALSE
@@ -235,7 +235,7 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			KnockOut(knockout_stacks) //...And we knock 
+			knock_out(knockout_stacks) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
@@ -284,11 +284,11 @@
 		"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, 5)
 		return FALSE
 
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)
+
 	. = ..()
 	if(!.)
 		return FALSE
-	
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)
 
 //Every other type of nonhuman mob
 /mob/living/attack_alien(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

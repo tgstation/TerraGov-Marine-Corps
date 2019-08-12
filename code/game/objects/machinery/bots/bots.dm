@@ -30,18 +30,6 @@
 	if(obj_integrity <= 0)
 		explode()
 
-/obj/machinery/bot/proc/Emag(mob/user as mob)
-	if(locked)
-		locked = FALSE
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>")
-		log_game("[key_name(user)] emagged [src]'s maintenance hatch lock.")
-		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s maintenance hatch lock.")
-	if(!locked && open)
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		log_game("[key_name(user)] emagged [src]'s inner circuits.")
-		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s inner circuits.")
-
 /obj/machinery/bot/examine(mob/user)
 	..()
 	if(obj_integrity < max_integrity)
@@ -61,14 +49,14 @@
 	healthcheck()
 
 /obj/machinery/bot/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	obj_integrity -= rand(15, 30)
 	if(obj_integrity <= 0)
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		"<span class='danger'>We slice [src] apart!</span>", null, 5)
 	else
 		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
+		"<span class='danger'>We slash [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -94,9 +82,6 @@
 
 		obj_integrity = min(max_integrity, obj_integrity + 10)
 		user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
-
-	else if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
-		Emag(user)
 
 	else if(I.force && I.damtype)
 		switch(I.damtype)
@@ -140,16 +125,18 @@
 /obj/machinery/bot/attack_ai(mob/user as mob)
 	attack_hand(user)
 
-/obj/machinery/bot/attack_hand(mob/living/carbon/human/user)
+/obj/machinery/bot/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(!istype(user))
+	if(!ishuman(user))
 		return
 
-	if(user.species.can_shred(user))
+	var/mob/living/carbon/human/H = user
+
+	if(H.species.can_shred(H))
 		src.obj_integrity -= rand(15,30)*brute_dam_coeff
-		src.visible_message("<span class ='danger'>[user] has slashed [src]!</span>")
+		src.visible_message("<span class ='danger'>[H] has slashed [src]!</span>")
 		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)

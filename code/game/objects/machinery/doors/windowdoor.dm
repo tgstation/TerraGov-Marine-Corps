@@ -92,16 +92,13 @@
 		return TRUE
 
 /obj/machinery/door/window/open(forced = DOOR_NOT_FORCED)
-	if(operating) //doors can still open when emag-disabled
+	if(operating)
 		return FALSE
 	switch(forced)
 		if(DOOR_NOT_FORCED)
 			if(!hasPower())
 				return FALSE
-		if(DOOR_FORCED_NORMAL)
-			if(CHECK_BITFIELD(obj_flags, EMAGGED))
-				return FALSE
-	if(!operating) //in case of emag
+	if(!operating)
 		operating = TRUE
 	icon_state = "[base_state]open"
 	do_animate("opening")
@@ -110,7 +107,7 @@
 
 	density = FALSE
 
-	if(operating == 1) //emag again
+	if(operating)
 		operating = FALSE
 	return TRUE
 
@@ -121,9 +118,6 @@
 	switch(forced)
 		if(DOOR_NOT_FORCED)
 			if(!hasPower())
-				return FALSE
-		if(DOOR_FORCED_NORMAL)
-			if(CHECK_BITFIELD(obj_flags, EMAGGED))
 				return FALSE
 	operating = TRUE
 	icon_state = base_state
@@ -186,21 +180,21 @@
 	return
 
 
-/obj/machinery/door/window/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/door/window/attack_ai(mob/living/silicon/ai/AI)
+	return try_to_activate_door(AI)
 
 //Slashing windoors
 /obj/machinery/door/window/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
-	"<span class='danger'>You smash against [src]!</span>", null, 5)
+	"<span class='danger'>We smash against [src]!</span>", null, 5)
 	var/damage = 25
 	if(M.mob_size == MOB_SIZE_BIG)
 		damage = 40
 	take_damage(damage)
 
-/obj/machinery/door/window/attack_hand(mob/user)
+/obj/machinery/door/window/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -215,12 +209,6 @@
 	. = ..()
 
 	if(operating)
-		return TRUE
-
-	else if(density && istype(I, /obj/item/card/emag))
-		operating = -1
-		flick("[base_state]spark", src)
-		addtimer(CALLBACK(src, .proc/open), 6)
 		return TRUE
 
 	else if(operating == -1 && iscrowbar(I))
@@ -298,33 +286,33 @@
 	max_integrity = 300 //Stronger doors for prison (regular window door health is 200)
 
 
-//theseus brig doors
-/obj/machinery/door/window/brigdoor/theseus
+// Main ship brig doors
+/obj/machinery/door/window/brigdoor/mainship
 	name = "Cell"
 	id = "Cell"
 	max_integrity = 500
 
-/obj/machinery/door/window/brigdoor/theseus/cell_1
+/obj/machinery/door/window/brigdoor/mainship/cell_1
 	name = "Cell 1"
 	id = "Cell 1"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_2
+/obj/machinery/door/window/brigdoor/mainship/cell_2
 	name = "Cell 2"
 	id = "Cell 2"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_3
+/obj/machinery/door/window/brigdoor/mainship/cell_3
 	name = "Cell 3"
 	id = "Cell 3"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_4
+/obj/machinery/door/window/brigdoor/mainship/cell_4
 	name = "Cell 4"
 	id = "Cell 4"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_5
+/obj/machinery/door/window/brigdoor/mainship/cell_5
 	name = "Cell 5"
 	id = "Cell 5"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_6
+/obj/machinery/door/window/brigdoor/mainship/cell_6
 	name = "Cell 6"
 	id = "Cell 6"
 

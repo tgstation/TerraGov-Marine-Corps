@@ -34,13 +34,6 @@
 					return
 			else
 				to_chat(user, "<span class='warning'>Access Denied</span>")
-		else if(istype(W, /obj/item/card/emag) && !broken)
-			broken = 1
-			locked = 0
-			desc = "It appears to be broken."
-			icon_state = src.icon_broken
-			for(var/mob/O in viewers(user, 3))
-				O.show_message("<span class='notice'> The locker has been broken by [user] with an electromagnetic card!</span>", 1, "You hear a faint electrical spark.", 2)
 
 		if(!locked)
 			..()
@@ -55,18 +48,6 @@
 		else
 			..()
 		return
-
-
-/obj/item/storage/lockbox/loyalty
-	name = "\improper lockbox of loyalty implants"
-	req_access = list(ACCESS_MARINE_BRIG)
-
-	New()
-		..()
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implantcase/loyalty(src)
-		new /obj/item/implanter/loyalty(src)
 
 
 /obj/item/storage/lockbox/clusterbang

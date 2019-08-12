@@ -46,7 +46,7 @@
 		I.forceMove(src)
 		mybag = I
 
-/obj/structure/bed/chair/janicart/attack_hand(mob/user)
+/obj/structure/bed/chair/janicart/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

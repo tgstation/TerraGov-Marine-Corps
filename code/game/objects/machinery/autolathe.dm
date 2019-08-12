@@ -195,10 +195,10 @@
 	updateUsrDialog()
 	return TRUE //so the item's afterattack isn't called
 
-/obj/machinery/autolathe/attack_paw(mob/user as mob)
+/obj/machinery/autolathe/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
-/obj/machinery/autolathe/attack_hand(mob/user as mob)
+/obj/machinery/autolathe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

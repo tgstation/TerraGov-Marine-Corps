@@ -5,7 +5,6 @@
 #define HEALTH_HUD					"health_hud" // a simple line rounding the mob's number health
 #define STATUS_HUD_SIMPLE			"status_hud_simple" // basic statuses: dead, asleep, knocked out, sluggish, etc.
 #define STATUS_HUD					"status_hud" // medical hud, shows simple status plus defib stages.
-#define ID_HUD						"id_hud" // the job asigned to your ID
 #define WANTED_HUD					"wanted_hud" // wanted, released, parroled, security status
 #define IMPLOYAL_HUD				"loyalty_implant_hud" // loyality implant
 #define IMPCHEM_HUD					"chemical_implant_hud" // chemical implant
@@ -29,17 +28,18 @@
 
 
 //data HUD defines
-#define DATA_HUD_BASIC				1
-#define DATA_HUD_SECURITY_ADVANCED	2
-#define DATA_HUD_MEDICAL_BASIC		3
-#define DATA_HUD_MEDICAL_ADVANCED	4
-#define DATA_HUD_MEDICAL_OBSERVER	5
-#define DATA_HUD_XENO_INFECTION		6
-#define DATA_HUD_XENO_STATUS		7
-#define DATA_HUD_SQUAD				8
-#define DATA_HUD_ORDER				9
-#define DATA_HUD_AI_DETECT			10
-#define DATA_HUD_MEDICAL_PAIN		11
+#define DATA_HUD_BASIC					1
+#define DATA_HUD_SECURITY_ADVANCED		2
+#define DATA_HUD_MEDICAL_BASIC			3
+#define DATA_HUD_MEDICAL_ADVANCED		4
+#define DATA_HUD_MEDICAL_ADVANCED_SYNTH	5
+#define DATA_HUD_MEDICAL_OBSERVER		6
+#define DATA_HUD_XENO_INFECTION			7
+#define DATA_HUD_XENO_STATUS			8
+#define DATA_HUD_SQUAD					9
+#define DATA_HUD_ORDER					10
+#define DATA_HUD_AI_DETECT				11
+#define DATA_HUD_MEDICAL_PAIN			12
 
 
 // Notification action types

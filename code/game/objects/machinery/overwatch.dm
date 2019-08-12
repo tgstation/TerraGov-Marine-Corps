@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/datum/squad/current_squad = null //Squad being currently overseen
 	var/list/squads = list() //All the squads available
 	var/obj/selected_target //Selected target for bombarding
-//	var/console_locked = 0
+
 
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
@@ -64,7 +64,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/user as mob) //why monkey why
+/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/living/carbon/monkey/user) //why monkey why
 	return attack_hand(user)
 
 
@@ -75,13 +75,17 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	eyeobj.icon_state = "generic_camera"
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/user)
+/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/living/user)
 	. = ..()
-	if(.)  //Checks for power outages
+	if(.)
 		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
+	interact(user)
+
+
+/obj/machinery/computer/camera_advanced/overwatch/interact(mob/living/user)
 	if(!length(squads))
 		for(var/i in SSjob.squads)
 			var/datum/squad/S = SSjob.squads[i]
@@ -119,9 +123,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
 					dat += "<b>Secondary Objective:</b> "
 					if(current_squad.secondary_objective)
-						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]<br></a>"
+						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
 					else
-						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]<br></a>"
+						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
 					dat += "<br>"
 					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
 					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
@@ -400,17 +404,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	updateUsrDialog()
 
-/obj/machinery/computer/camera_advanced/overwatch/main/attack_hand(mob/user)
-	. = ..()
-	if(.)  //Checks for power outages
-		return
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>You don't have access.</span>")
-		return
-	if(!length(squads))
-		for(var/i in SSjob.squads)
-			var/datum/squad/S = SSjob.squads[i]
-			squads += S
+/obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
 	user.set_interaction(src)
 	var/dat
 	if(!operator)
@@ -554,39 +548,15 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(current_squad.squad_leader)
 		current_squad.message_squad("Attention: [current_squad.squad_leader] is [current_squad.squad_leader.stat == DEAD ? "stepping down" : "demoted"]. A new Squad Leader has been set: [H.real_name].")
 		visible_message("<span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files.</span>")
-		current_squad.demote_squad_leader(current_squad.squad_leader.stat != DEAD)
+		current_squad.demote_leader()
 	else
 		current_squad.message_squad("Attention: A new Squad Leader has been set: [H.real_name].")
 		visible_message("<span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")
 
 	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == SQUAD_LEADER ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
-	current_squad.squad_leader = H
-	SSdirection.set_leader(current_squad.tracking_id, H)
-	SSdirection.start_tracking("marine-sl", H)
+	current_squad.promote_leader(H)
 
-	if(H.mind.assigned_role == SQUAD_LEADER)
-		H.mind.comm_title = "SL"
-	else
-		H.mind.comm_title = "aSL"
-	if(H.mind.cm_skills)
-		H.mind.cm_skills.leadership = max(SKILL_LEAD_TRAINED, H.mind.cm_skills.leadership)
-		H.update_action_buttons()
-
-	if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
-		var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
-		if(!R.keyslot)
-			R.keyslot = new /obj/item/encryptionkey/squadlead (src)
-		else if(!R.keyslot2)
-			R.keyslot2 = new /obj/item/encryptionkey/squadlead (src)
-		R.recalculateChannels()
-		R.use_command = TRUE
-	if(istype(H.wear_id, /obj/item/card/id))
-		var/obj/item/card/id/ID = H.wear_id
-		ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
-	H.hud_set_squad()
-	H.update_inv_head() //updating marine helmet leader overlays
-	H.update_inv_wear_suit()
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/mark_insubordination()
 	if(!usr || usr != operator)
@@ -679,8 +649,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [new_squad] can't have another [transfer_marine.mind.assigned_role].</span>")
 		return
 
-	old_squad.remove_marine_from_squad(transfer_marine)
-	new_squad.put_marine_in_squad(transfer_marine)
+	old_squad.remove_from_squad(transfer_marine)
+	new_squad.insert_into_squad(transfer_marine)
 
 	for(var/datum/data/record/t in GLOB.datacore.general) //we update the crew manifest
 		if(t.fields["name"] == transfer_marine.real_name)
@@ -691,8 +661,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	ID.assigned_fireteam = 0 //reset fireteam assignment
 
 	//Changes headset frequency to match new squad
-	var/obj/item/radio/headset/almayer/marine/H = transfer_marine.wear_ear
-	if(istype(H, /obj/item/radio/headset/almayer/marine))
+	var/obj/item/radio/headset/mainship/marine/H = transfer_marine.wear_ear
+	if(istype(H, /obj/item/radio/headset/mainship/marine))
 		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_squad()
@@ -913,9 +883,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		return
 	activate(H)
 
-/obj/item/squad_beacon/bomb/attack_hand(mob/living/carbon/human/H)
-	if(!istype(H))
+/obj/item/squad_beacon/bomb/attack_hand(mob/living/user)
+	if(!ishuman(user))
 		return ..()
+	var/mob/living/carbon/human/H = user
 	if(!H.mind)
 		to_chat(H, "<span class='warning'>It doesn't seem to do anything for you.</span>")
 		return ..()
@@ -1224,36 +1195,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				marine_count++
 			else
 				misc_text += marine_infos
-	if(!dead_hidden && !z_hidden) //gibbed marines are neither on the colony nor on the almayer
-		for(var/X in current_squad.gibbed_marines_list) //listed marine was deleted or gibbed, all we have is their name
-			var/role = current_squad.gibbed_marines_list[X]
-			var/mob_state = "<font color='red'>FUBAR</font>"
-			var/mob_name = X
-			var/area_name = "<b>???</b>"
-			var/dist = "<b>???</b>"
-			gibbed_text += "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
-			var/marine_infos = "<tr><td>[mob_name]</td><td>[role]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
-			switch(role)
-				if(SQUAD_LEADER)
-					leader_text += marine_infos
-					leader_count++
-				if(SQUAD_SPECIALIST)
-					spec_text += marine_infos
-					spec_count++
-				if(SQUAD_CORPSMAN)
-					medic_text += marine_infos
-					medic_count++
-				if(SQUAD_ENGINEER)
-					engi_text += marine_infos
-					engi_count++
-				if(SQUAD_SMARTGUNNER)
-					smart_text += marine_infos
-					smart_count++
-				if(SQUAD_MARINE)
-					marine_text += marine_infos
-					marine_count++
-				else
-					misc_text += marine_infos
 	if(current_squad.overwatch_officer)
 		dat += "<b>Squad Overwatch:</b> [current_squad.overwatch_officer.name]<br>"
 	else

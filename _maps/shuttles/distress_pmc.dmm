@@ -4,28 +4,28 @@
 /area/template_noop)
 "b" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy20"
+	icon_state = "nt20"
 	},
 /area/shuttle/ert/pmc)
 "c" = (
 /obj/docking_port/mobile/ert,
 /turf/closed/shuttle/ert{
-	icon_state = "wy27"
+	icon_state = "nt27"
 	},
 /area/shuttle/ert/pmc)
 "d" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy25"
+	icon_state = "nt25"
 	},
 /area/shuttle/ert/pmc)
 "e" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy21"
+	icon_state = "nt21"
 	},
 /area/shuttle/ert/pmc)
 "f" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy22"
+	icon_state = "nt22"
 	},
 /area/shuttle/ert/pmc)
 "g" = (
@@ -35,12 +35,12 @@
 /area/shuttle/ert/pmc)
 "h" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy23"
+	icon_state = "nt23"
 	},
 /area/shuttle/ert/pmc)
 "i" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy18"
+	icon_state = "nt18"
 	},
 /area/shuttle/ert/pmc)
 "j" = (
@@ -83,11 +83,11 @@
 /area/shuttle/ert/pmc)
 "o" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy19"
+	icon_state = "nt19"
 	},
 /area/shuttle/ert/pmc)
 "p" = (
-/obj/machinery/door/airlock/almayer/generic,
+/obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 4
 	},
@@ -110,7 +110,7 @@
 /area/shuttle/ert/pmc)
 "s" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy16"
+	icon_state = "nt16"
 	},
 /area/shuttle/ert/pmc)
 "t" = (
@@ -143,12 +143,12 @@
 /area/shuttle/ert/pmc)
 "x" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy17"
+	icon_state = "nt17"
 	},
 /area/shuttle/ert/pmc)
 "y" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy14"
+	icon_state = "nt14"
 	},
 /area/shuttle/ert/pmc)
 "z" = (
@@ -158,12 +158,12 @@
 /area/shuttle/ert/pmc)
 "A" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy15"
+	icon_state = "nt15"
 	},
 /area/shuttle/ert/pmc)
 "B" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy12"
+	icon_state = "nt12"
 	},
 /area/shuttle/ert/pmc)
 "C" = (
@@ -174,7 +174,7 @@
 /area/shuttle/ert/pmc)
 "D" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy13"
+	icon_state = "nt13"
 	},
 /area/shuttle/ert/pmc)
 "E" = (
@@ -187,7 +187,7 @@
 /area/shuttle/ert/pmc)
 "F" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy4"
+	icon_state = "nt4"
 	},
 /area/shuttle/ert/pmc)
 "G" = (
@@ -208,7 +208,7 @@
 	},
 /area/shuttle/ert/pmc)
 "I" = (
-/obj/machinery/door/airlock/almayer/generic{
+/obj/machinery/door/airlock/mainship/generic{
 	dir = 2
 	},
 /obj/machinery/door/poddoor/shutters/transit/open{
@@ -220,42 +220,42 @@
 /area/shuttle/ert/pmc)
 "J" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy5"
+	icon_state = "nt5"
 	},
 /area/shuttle/ert/pmc)
 "K" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy_leftengine"
+	icon_state = "nt_leftengine"
 	},
 /area/shuttle/ert/pmc)
 "L" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy8"
+	icon_state = "nt8"
 	},
 /area/shuttle/ert/pmc)
 "M" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy9"
+	icon_state = "nt9"
 	},
 /area/shuttle/ert/pmc)
 "N" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy_rightengine"
+	icon_state = "nt_rightengine"
 	},
 /area/shuttle/ert/pmc)
 "Q" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy1"
+	icon_state = "nt1"
 	},
 /area/shuttle/ert/pmc)
 "R" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy2"
+	icon_state = "nt2"
 	},
 /area/shuttle/ert/pmc)
 "S" = (
 /turf/closed/shuttle/ert{
-	icon_state = "wy3"
+	icon_state = "nt3"
 	},
 /area/shuttle/ert/pmc)
 

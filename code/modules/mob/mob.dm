@@ -2,7 +2,6 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
-	GLOB.alive_mob_list -= src
 	GLOB.offered_mob_list -= src
 	if(length(observers))
 		for(var/i in observers)
@@ -16,8 +15,6 @@
 	GLOB.mob_list += src
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
-	else
-		GLOB.alive_mob_list += src
 	set_focus(src)
 	prepare_huds()
 	return ..()
@@ -45,6 +42,7 @@
 				stat("World Time:", "[world.time]")
 				GLOB.stat_entry()
 				config.stat_entry()
+				GLOB.cameranet.stat_entry()
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -682,8 +680,7 @@ mob/proc/yank_out_object()
 	if(!.)
 		return
 	stop_pulling()
-	if(buckled)
-		buckled.unbuckle()
+	buckled?.unbuckle()
 
 
 /mob/proc/trainteleport(atom/destination)

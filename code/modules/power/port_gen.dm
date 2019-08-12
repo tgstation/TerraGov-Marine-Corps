@@ -181,10 +181,6 @@
 		sheets += amount
 		addstack.use(amount)
 
-	else if(istype(I, /obj/item/card/emag))
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		emp_act(TRUE)
-
 	else if(!active && iswrench(I))
 		anchored = !anchored
 
@@ -198,7 +194,7 @@
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
 
-/obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
+/obj/machinery/power/port_gen/pacman/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -207,7 +203,7 @@
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/power/port_gen/pacman/attack_paw(mob/user as mob)
+/obj/machinery/power/port_gen/pacman/attack_paw(mob/living/carbon/monkey/user)
 	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
@@ -253,7 +249,7 @@
 			power_output--
 			. = TRUE
 	if (href_list["higher_power"])
-		if (power_output < 4 || CHECK_BITFIELD(obj_flags, EMAGGED))
+		if (power_output < 4)
 			power_output++
 			. = TRUE
 

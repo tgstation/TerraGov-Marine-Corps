@@ -32,33 +32,33 @@
 	to_chat(user, "<span class='notice'>You can't see how you'd use [I] with [src]...</span>")
 	return
 
-/obj/machinery/fuelcell_recycler/attack_hand(mob/M)
+/obj/machinery/fuelcell_recycler/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(cell_left == null && cell_right == null)
-		to_chat(M, "<span class='notice'>The recycler is empty.</span>")
+		to_chat(user, "<span class='notice'>The recycler is empty.</span>")
 		return
 
 	if(cell_right == null)
 		cell_left.update_icon()
-		M.put_in_hands(cell_left)
+		user.put_in_hands(cell_left)
 		cell_left = null
 		update_icon()
 	else if(cell_left == null)
 		cell_right.update_icon()
-		M.put_in_hands(cell_right)
+		user.put_in_hands(cell_right)
 		cell_right = null
 		update_icon()
 	else
 		if(cell_left.get_fuel_percent() > cell_right.get_fuel_percent())
 			cell_left.update_icon()
-			M.put_in_hands(cell_left)
+			user.put_in_hands(cell_left)
 			cell_left = null
 			update_icon()
 		else
 			cell_right.update_icon()
-			M.put_in_hands(cell_right)
+			user.put_in_hands(cell_right)
 			cell_right = null
 			update_icon()
 

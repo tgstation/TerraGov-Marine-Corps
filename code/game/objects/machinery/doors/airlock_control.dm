@@ -25,12 +25,11 @@ obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
 
 	cur_command = signal.data["command"]
-	spawn()
-		execute_current_command()
+	INVOKE_ASYNC(src, .proc/execute_current_command)
 
 obj/machinery/door/airlock/proc/execute_current_command()
 	if(operating)
-		return //emagged or busy doing something else
+		return
 
 	if (!cur_command)
 		return
@@ -158,7 +157,7 @@ obj/machinery/airlock_sensor/update_icon()
 	else
 		icon_state = "airlock_sensor_off"
 
-obj/machinery/airlock_sensor/attack_hand(mob/user)
+obj/machinery/airlock_sensor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -238,7 +237,7 @@ obj/machinery/access_button/update_icon()
 	if(istype(I, /obj/item/card/id))
 		attack_hand(user)
 
-obj/machinery/access_button/attack_hand(mob/user)
+obj/machinery/access_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

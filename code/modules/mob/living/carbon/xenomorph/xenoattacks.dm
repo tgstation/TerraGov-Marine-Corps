@@ -10,7 +10,7 @@
 		if(!S.melee_damage_upper)
 			S.emote("[S.friendly] [src]")
 		else
-			M.animation_attack_on(src)
+			M.do_attack_animation(src)
 			M.flick_attack_overlay(src, "punch")
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>", null, null, 5)
 			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
@@ -18,70 +18,72 @@
 			log_combat(S, src, "attacked")
 			updatehealth()
 
-/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/M as mob)
-	if(!ismonkey(M)) //Fix for aliens receiving double messages when attacking other aliens
-		return 0
+/mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/user)
+	. = ..()
 
-	..()
-
-	switch(M.a_intent)
+	switch(user.a_intent)
 
 		if(INTENT_HELP)
-			help_shake_act(M)
+			help_shake_act(user)
 		else
 			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 				return 0
 			if(health > 0)
-				M.animation_attack_on(src)
-				M.flick_attack_overlay(src, "punch")
+				user.do_attack_animation(src)
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
-				visible_message("<span class='danger'>\The [M] bites \the [src].</span>", \
-				"<span class='danger'>We are bit by \the [M].</span>", null, 5)
+				visible_message("<span class='danger'>\The [user] bites \the [src].</span>", \
+				"<span class='danger'>We are bit by \the [user].</span>", null, 5)
 				apply_damage(rand(1, 3), BRUTE)
 				updatehealth()
 
 
-/mob/living/carbon/xenomorph/attack_hand(mob/living/carbon/human/M)
+/mob/living/carbon/xenomorph/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	M.next_move += 7 //Adds some lag to the 'attack'. This will add up to 10
-	switch(M.a_intent)
+
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+
+	H.changeNext_move(7)
+	switch(H.a_intent)
 
 		if(INTENT_HELP)
 			if(stat == DEAD)
-				M.visible_message("<span class='warning'>\The [M] pokes \the [src], but nothing happens.</span>", \
+				H.visible_message("<span class='warning'>\The [H] pokes \the [src], but nothing happens.</span>", \
 				"<span class='warning'>You poke \the [src], but nothing happens.</span>", null, 5)
 			else
-				M.visible_message("<span class='notice'>\The [M] pets \the [src].</span>", \
+				H.visible_message("<span class='notice'>\The [H] pets \the [src].</span>", \
 					"<span class='notice'>You pet \the [src].</span>", null, 5)
 
 		if(INTENT_GRAB)
-			if(M == src || anchored)
+			if(H == src || anchored)
 				return 0
 
-			M.start_pulling(src)
+			H.start_pulling(src)
 
 		else
-			var/datum/unarmed_attack/attack = M.species.unarmed
-			if(!attack.is_usable(M)) attack = M.species.secondary_unarmed
-			if(!attack.is_usable(M))
+			var/datum/unarmed_attack/attack = H.species.unarmed
+			if(!attack.is_usable(H)) attack = H.species.secondary_unarmed
+			if(!attack.is_usable(H))
 				return 0
 
-			M.animation_attack_on(src)
-			M.flick_attack_overlay(src, "punch")
+			H.do_attack_animation(src)
+			H.flick_attack_overlay(src, "punch")
 
 			var/damage = rand(1, 3)
 			if(prob(85))
 				damage += attack.damage > 5 ? attack.damage : 0
 
 				playsound(loc, attack.attack_sound, 25, 1)
-				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
+				visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 				apply_damage(damage, BRUTE)
 				updatehealth()
 			else
 				playsound(loc, attack.miss_sound, 25, 1)
-				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
+				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
 
 	return
 
@@ -123,7 +125,7 @@
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
 			if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
-				M.animation_attack_on(src)
+				M.do_attack_animation(src)
 				if(issamexenohive(M))
 					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
 					"<span class='warning'>We nibble \the [src].</span>", null, 5)
@@ -149,11 +151,11 @@
 					apply_damage(damage, BRUTE)
 
 			if(INTENT_DISARM)
-				M.animation_attack_on(src)
+				M.do_attack_animation(src)
 				M.flick_attack_overlay(src, "disarm")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
 				"<span class='warning'>We shove \the [src]!</span>", null, 5)
 				if(ismonkey(src))
-					KnockDown(8)
+					knock_down(8)
 		return 1

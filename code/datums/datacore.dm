@@ -122,11 +122,12 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	medical = list()
 	general = list()
 	security = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!ishumanbasic(H))
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		if(!H.client)
 			continue
-		CHECK_TICK
 		manifest_inject(H)
+		CHECK_TICK
 
 
 /datum/datacore/proc/manifest_update(oldname, newname, rank)
@@ -159,6 +160,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 
 /datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
+	set waitfor = FALSE
+	var/static/list/show_directions = list(SOUTH, WEST)
 	if(!H.mind)
 		return
 
@@ -172,8 +175,17 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
 
-	var/icon/front = new(get_id_photo(H, show_directions = list(SOUTH)))
-	var/icon/side = new(get_id_photo(H, show_directions = list(WEST)))
+	var/image = get_id_photo(H, H.client, show_directions)
+	var/datum/picture/pf = new
+	var/datum/picture/ps = new
+	pf.picture_name = "[H]"
+	ps.picture_name = "[H]"
+	pf.picture_desc = "This is [H]."
+	ps.picture_desc = "This is [H]."
+	pf.picture_image = icon(image, dir = SOUTH)
+	ps.picture_image = icon(image, dir = WEST)
+	var/obj/item/photo/photo_front = new(null, pf)
+	var/obj/item/photo/photo_side = new(null, ps)
 	//General Record
 	var/datum/data/record/G = new()
 	G.fields["id"]			= id
@@ -190,8 +202,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["citizenship"]	= H.citizenship
 	G.fields["faction"]		= H.personal_faction
 	G.fields["religion"]	= H.religion
-	G.fields["photo_front"]	= front
-	G.fields["photo_side"]	= side
+	G.fields["photo_front"]	= photo_front
+	G.fields["photo_side"]	= photo_side
 	if(H.gen_record)
 		G.fields["notes"] = H.gen_record
 	else
@@ -265,8 +277,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["citizenship"]	= "Unknown"
 	G.fields["faction"]		= "Unknown"
 	G.fields["religion"]	= "Unknown"
-	G.fields["photo_front"] = new /icon()
-	G.fields["photo_side"] = new /icon()
+	G.fields["photo_front"] = null
+	G.fields["photo_side"] = null
 	GLOB.datacore.general += G
 	return G
 

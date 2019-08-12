@@ -78,8 +78,7 @@ REAGENT SCANNER
 	var/dat = ""
 	if((user.getBrainLoss() >= 60) && prob(50))
 		to_chat(user, "<span class='warning'>You try to analyze the floor's vitals!</span>")
-		for(var/mob/O in viewers(M, null))
-			O.show_message("<span class='warning'>[user] has analyzed the floor's vitals!</span>", 1)
+		visible_message("<span class='warning'>[user] has analyzed the floor's vitals!</span>")
 		user.show_message("<span class='notice'>Health Analyzer results for The floor:\n\t Overall Status: Healthy</span>", 1)
 		user.show_message("<span class='notice'>\t Damage Specifics: [0]-[0]-[0]-[0]</span>", 1)
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
@@ -218,7 +217,7 @@ REAGENT SCANNER
 	var/fracture_detected = FALSE
 	var/unknown_body = 0
 	//var/infected = FALSE
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
+	var/known_implants = list(/obj/item/implant/neurostim)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/core_fracture = FALSE
@@ -277,13 +276,13 @@ REAGENT SCANNER
 			var/reagentdata[0]
 			for(var/A in M.reagents.reagent_list)
 				var/datum/reagent/R = A
-				reagents_in_body["[R.id]"] = R.volume
+				reagents_in_body["[R.type]"] = R.volume
 				if(R.scannable)
 					if(R.overdosed)
-						reagentdata["[R.id]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+						reagentdata["[R.type]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
 						overdosed++
 					else
-						reagentdata["[R.id]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+						reagentdata["[R.type]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
 				else
 					unknown++
 			if(reagentdata.len)
@@ -321,11 +320,11 @@ REAGENT SCANNER
 				unrevivable = TRUE
 		if(!unrevivable)
 			//Chems that conflict with others:
-			var/synaptizine_amount = reagents_in_body["synaptizine"]
-			var/hyperzine_amount = reagents_in_body["hyperzine"]
-			var/paracetamol_amount = reagents_in_body["paracetamol"]
-			var/neurotoxin_amount = reagents_in_body["xeno_toxin"]
-			var/growthtoxin_amount = reagents_in_body["xeno_growthtoxin"]
+			var/synaptizine_amount = reagents_in_body[/datum/reagent/medicine/synaptizine]
+			var/hyperzine_amount = reagents_in_body[/datum/reagent/medicine/hyperzine]
+			var/paracetamol_amount = reagents_in_body[/datum/reagent/medicine/paracetamol]
+			var/neurotoxin_amount = reagents_in_body[/datum/reagent/toxin/xeno_neurotoxin]
+			var/growthtoxin_amount = reagents_in_body[/datum/reagent/toxin/xeno_growthtoxin]
 			//Recurring chems:
 			var/peridaxon = ""
 			var/tricordrazine = ""
@@ -349,22 +348,22 @@ REAGENT SCANNER
 				advice += "<span class='scanner'><b>Patient Dead:</b> [death_message]</span>\n"
 			if(M.on_fire)
 				advice += "<span class='scanner'><b>Patient Combusting:</b> Administer fire extinguisher, pat out or submerge patient in water, or employ other fire suppressant.</span>\n"
-			if(blood_volume <= 500 && !reagents_in_body["nutriment"])
+			if(blood_volume <= 500 && !reagents_in_body[/datum/reagent/consumable/nutriment])
 				var/iron = "."
-				if(reagents_in_body["iron"] < 5)
+				if(reagents_in_body[/datum/reagent/iron] < 5)
 					iron = " or one dose of iron."
 				advice += "<span class='scanner'><b>Low Blood:</b> Administer or recommend consumption of food[iron]</span>\n"
-			if(overdosed && reagents_in_body["hypervene"] < 3)
+			if(overdosed && reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
 				advice += "<span class='scanner'><b>Overdose:</b> Administer one dose of hypervene or perform dialysis on patient via sleeper.</span>\n"
 			if(rad > 5)
 				var/arithrazine = ""
 				var/hyronalin = ""
 				//var/hypervene = ""
-				//if(reagents_in_body["hypervene"] < 3)
+				//if(reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
 				//	hypervene = "hypervene"
-				if(reagents_in_body["arithrazine"] < 3)
+				if(reagents_in_body[/datum/reagent/medicine/arithrazine] < 3)
 					arithrazine = "arithrazine"
-				if(reagents_in_body["hyronalin"] < 3)
+				if(reagents_in_body[/datum/reagent/medicine/hyronalin] < 3)
 					hyronalin = "hyronalin"
 				advice += "<span class='scanner'><b>Radiation:</b> Administer one dose of: [arithrazine] | [hyronalin]</span>\n"
 			if(unknown_body)
@@ -375,21 +374,21 @@ REAGENT SCANNER
 				advice += "<span class='scanner'><b>Unsecured Fracture:</b> Administer splints to specified areas.</span>\n"
 			if(internal_bleed_detected)
 				var/internal_bleed_advice = "Administer one dose of quick-clot then seek surgical remedy."
-				if(reagents_in_body["quickclot"] > 4)
+				if(reagents_in_body[/datum/reagent/medicine/quickclot] > 4)
 					internal_bleed_advice = "Quick-Clot has been administered to patient. Seek surgical remedy."
 				advice += "<span class='scanner'><b>Internal Bleeding:</b> [internal_bleed_advice]</span>\n"
 			if(H.getToxLoss() > 10)
 				var/dylovene = ""
 				//var/hypervene = ""
 				var/dylo_recommend = ""
-				//if(reagents_in_body["hypervene"] < 3)
+				//if(reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
 				//	hypervene = "hypervene"
-				if(reagents_in_body["dylovene"] < 5)
+				if(reagents_in_body[/datum/reagent/medicine/dylovene] < 5)
 					if(synaptizine_amount)
 						dylo_recommend = "Addendum: Dylovene recommended, but conflicting synaptizine present."
 					else
 						dylovene = "dylovene"
-				if(reagents_in_body["tricordrazine"] < 5)
+				if(reagents_in_body[/datum/reagent/medicine/tricordrazine] < 5)
 					tricordrazine = "tricordrazine"
 				if(H.getToxLoss() > 50) //Serious toxin damage that is likely to threaten liver damage or be caused by it
 					peridaxon = "Administer one dose of peridaxon and: "
@@ -398,39 +397,39 @@ REAGENT SCANNER
 					advice += "<span class='scanner'><b>Extreme Toxin Damage/Probable or Imminent Liver Damage:</b> [peridaxon] [dylovene] | [tricordrazine]. [dylo_recommend]</span>\n"
 				else
 					advice += "<span class='scanner'><b>Toxin Damage:</b> Administer one dose of: [tricordrazine] | [dylovene].</span>\n"
-			if(((H.getOxyLoss() > 50 && blood_volume > 400) || H.getBrainLoss() >= 10) && reagents_in_body["peridaxon"] < 5)
+			if(((H.getOxyLoss() > 50 && blood_volume > 400) || H.getBrainLoss() >= 10) && reagents_in_body[/datum/reagent/medicine/peridaxon] < 5)
 				peridaxon = "Administer one dose of peridaxon."
 				if(hyperzine_amount) //Need to make sure no conflicting chems are present; if so, warn the operator
 					peridaxon = "Purge hyperzine in patient or wait for it to metabolize, then administer one dose of peridaxon."
 				advice += "<span class='scanner'><b>Brain Damage/Probable Organ Damage:</b> [peridaxon]</span>\n"
-			if(infection_present && reagents_in_body["spaceacillin"] < infection_present)
+			if(infection_present && reagents_in_body[/datum/reagent/medicine/spaceacillin] < infection_present)
 				advice += "<span class='scanner'><b>Infection:</b> Administer one dose of spaceacillin.</span>\n"
 			if(H.getOxyLoss() > 10)
 				var/dexalin = ""
 				var/dexplus = ""
-				if(reagents_in_body["dexalin"] < 5)
+				if(reagents_in_body[/datum/reagent/medicine/dexalin] < 5)
 					dexalin = "dexalin"
-				if(reagents_in_body["dexalinplus"] < 1)
+				if(reagents_in_body[/datum/reagent/medicine/dexalinplus] < 1)
 					dexplus = "dexalin plus"
 				advice += "<span class='scanner'><b>Oxygen Deprivation:</b> Administer one dose of: [dexalin] | [dexplus].</span>\n"
 			if(H.getFireLoss(1)  > 10)
 				var/kelotane = ""
 				var/dermaline = ""
-				if(reagents_in_body["kelotane"] < 5)
+				if(reagents_in_body[/datum/reagent/medicine/kelotane] < 5)
 					kelotane = "kelotane"
-				if(reagents_in_body["dermaline"] < 1)
+				if(reagents_in_body[/datum/reagent/medicine/dermaline] < 1)
 					dermaline = "dermaline"
-				if(reagents_in_body["tricordrazine"] < 5)
+				if(reagents_in_body[/datum/reagent/medicine/tricordrazine] < 5)
 					tricordrazine = "tricordrazine"
 				advice += "<span class='scanner'><b>Burn Damage:</b> Administer burn kit to affected areas and one dose of: [kelotane] | [dermaline] | [tricordrazine].</span>\n"
 			if(H.getBruteLoss(1) > 10)
 				var/bicaridine = ""
-				if (reagents_in_body["bicaridine"] < 5)
+				if (reagents_in_body[/datum/reagent/medicine/bicaridine] < 5)
 					bicaridine = "bicaridine"
-				if(reagents_in_body["tricordrazine"] < 5)
+				if(reagents_in_body[/datum/reagent/medicine/tricordrazine] < 5)
 					tricordrazine = "tricordrazine"
 				advice += "<span class='scanner'><b>Physical Trauma:</b> Administer trauma kit to affected areas and one dose of: [bicaridine] | [tricordrazine].</span>\n"
-			if(H.health < 0 && reagents_in_body["inaprovaline"] < 5)
+			if(H.health < 0 && reagents_in_body[/datum/reagent/medicine/inaprovaline] < 5)
 				advice += "<span class='scanner'><b>Patient Critical:</b> Administer one dose of inaprovaline.</span>\n"
 			var/shock_number = H.traumatic_shock
 			if(shock_number > 30)
@@ -439,12 +438,12 @@ REAGENT SCANNER
 				var/oxycodone = ""
 				var/oxy_recommend = "N/A"
 				var/trama_recommend = "N/A"
-				if (reagents_in_body["tramadol"] < 3)
+				if (reagents_in_body[/datum/reagent/medicine/tramadol] < 3)
 					if(paracetamol_amount)
 						trama_recommend = "Tramadol recommended, but conflicting paracetamol present."
 					else
 						tramadol = "tramadol"
-				if (reagents_in_body["oxycodone"] < 3)
+				if (reagents_in_body[/datum/reagent/medicine/oxycodone] < 3)
 					oxycodone = "oxycodone"
 				if(shock_number > 120)
 					painlevel = "Extreme"
@@ -582,7 +581,7 @@ REAGENT SCANNER
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.id != "blood")
+			if(R.type != /datum/reagent/blood)
 				reagents.clear_reagents()
 				to_chat(user, "<span class='warning'>The sample was contaminated! Please insert another sample</span>")
 				return

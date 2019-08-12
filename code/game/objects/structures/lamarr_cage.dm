@@ -65,10 +65,10 @@
 	healthcheck()
 
 
-/obj/structure/lamarr/attack_paw(mob/user as mob)
+/obj/structure/lamarr/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
-/obj/structure/lamarr/attack_hand(mob/user as mob)
+/obj/structure/lamarr/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -93,8 +93,10 @@
 /obj/item/clothing/mask/facehugger/lamarr
 	name = "Lamarr"
 	desc = "The worst she might do is attempt to... couple with your head."//hope we don't get sued over a harmless reference, rite?
-	sterile = 1
+	sterile = TRUE
 	gender = FEMALE
+	stat = DEAD
 
-/obj/item/clothing/mask/facehugger/lamarr/New()//to prevent deleting it if aliums are disabled
+
+/obj/item/clothing/mask/facehugger/lamarr/update_icon()
 	return

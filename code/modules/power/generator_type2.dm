@@ -47,7 +47,7 @@
 		lastgenlev = genlev
 		updateicon()
 
-	src.updateDialog()
+	src.updateUsrDialog()
 
 
 /obj/machinery/power/generator_type2/attack_ai(mob/user)
@@ -55,7 +55,7 @@
 	interact(user)
 
 
-/obj/machinery/power/generator_type2/attack_hand(mob/user)
+/obj/machinery/power/generator_type2/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

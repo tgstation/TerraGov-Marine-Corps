@@ -140,6 +140,9 @@
 	if(next_move > world.time)
 		return
 
+	if(!modifiers["catcher"] && A.IsObscured())
+		return
+
 	if(restrained())
 		changeNext_move(CLICK_CD_HANDCUFFED)
 		RestrainedClickOn(A)
@@ -230,6 +233,25 @@
 
 /mob/living/DirectAccess(atom/target)
 	return ..() + GetAllContents()
+
+
+/atom/proc/IsObscured()
+	if(!isturf(loc)) //This only makes sense for things directly on turfs for now
+		return FALSE
+	var/turf/T = get_turf_pixel(src)
+	if(!T)
+		return FALSE
+	for(var/atom/movable/AM in T)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
+			return TRUE
+	return FALSE
+
+
+/turf/IsObscured()
+	for(var/atom/movable/AM in src)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density)
+			return TRUE
+	return FALSE
 
 
 /atom/proc/AllowClick()
@@ -331,8 +353,10 @@
 	For most objects, pull
 */
 /mob/proc/CtrlClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMSIG_ITEM_CLICKCTRLON_INTERCEPTED)
+		return
 	A.CtrlClick(src)
-	return
 
 
 /atom/proc/CtrlClick(mob/user)

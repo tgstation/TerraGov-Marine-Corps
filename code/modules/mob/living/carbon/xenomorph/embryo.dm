@@ -79,16 +79,16 @@
 	else if(stage <= 4)
 		counter++
 
-	if(affected_mob.reagents.get_reagent_amount("xeno_growthtoxin"))
+	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
 		counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
 		stage++
 		log_combat(affected_mob, null, "had their embryo advance to stage [stage]")
-		if(iscarbon(affected_mob))
-			var/mob/living/carbon/C = affected_mob
-			C.med_hud_set_status()
+		var/mob/living/carbon/C = affected_mob
+		C.med_hud_set_status()
+		affected_mob.jitter(stage * 5)
 
 	switch(stage)
 		if(2)
@@ -108,8 +108,8 @@
 				if(affected_mob.knocked_out < 1)
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
 												"<span class='danger'>You start shaking uncontrollably!</span>")
-					affected_mob.KnockOut(10)
-					affected_mob.Jitter(105)
+					affected_mob.knock_out(10)
+					affected_mob.jitter(105)
 					affected_mob.take_limb_damage(1)
 			if(prob(2))
 				to_chat(affected_mob, "<span class='warning'>[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")].</span>")
@@ -164,10 +164,10 @@
 	victim.chestburst = 1
 	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
-	victim.KnockOut(20)
+	victim.knock_out(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								"<span class='danger'>You feel something ripping up your insides!</span>")
-	victim.Jitter(300)
+	victim.jitter(300)
 
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
 

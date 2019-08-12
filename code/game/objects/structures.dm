@@ -22,7 +22,7 @@
 /obj/structure/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!istype(I, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+	if(!istype(I, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 
 	var/obj/item/tool/pickaxe/plasmacutter/P = I
@@ -45,7 +45,7 @@
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		destroy_structure()
 
-/obj/structure/attack_paw(mob/user)
+/obj/structure/attack_paw(mob/living/carbon/monkey/user)
 	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		attack_hand(user)
 
@@ -185,7 +185,7 @@
 		if(M.lying)
 			return //No spamming this on people.
 
-		M.KnockDown(5)
+		M.knock_down(5)
 		to_chat(M, "<span class='warning'>You topple as \the [src] moves under you!</span>")
 
 		if(prob(25))

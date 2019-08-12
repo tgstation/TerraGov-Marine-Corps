@@ -249,7 +249,7 @@
 
 /obj/machinery/door/airlock/evacuation
 	name = "\improper Evacuation Airlock"
-	icon = 'icons/obj/doors/almayer/pod_doors.dmi'
+	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
 	icon_state = "door_locked"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = TRUE
@@ -287,7 +287,7 @@
 	return FALSE
 /obj/machinery/door/airlock/evacuation/attackby()
 	return FALSE
-/obj/machinery/door/airlock/evacuation/attack_hand()
+/obj/machinery/door/airlock/evacuation/attack_hand(mob/living/user)
 	return TRUE
 /obj/machinery/door/airlock/evacuation/attack_alien()
 	return FALSE //Probably a better idea that these cannot be forced open.

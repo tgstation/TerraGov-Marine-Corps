@@ -24,7 +24,7 @@
 	to_chat(user, "The station AI is not to interact with these devices.")
 	return
 
-/obj/machinery/keycard_auth/attack_paw(mob/user as mob)
+/obj/machinery/keycard_auth/attack_paw(mob/living/carbon/monkey/user)
 	to_chat(user, "You are too primitive to use this device.")
 	return
 
@@ -51,7 +51,7 @@
 	if(machine_stat &NOPOWER)
 		icon_state = "auth_off"
 
-/obj/machinery/keycard_auth/attack_hand(mob/user as mob)
+/obj/machinery/keycard_auth/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -123,8 +123,7 @@
 	for(var/obj/machinery/keycard_auth/KA in GLOB.machines)
 		if(KA == src) continue
 		KA.reset()
-		spawn()
-			KA.receive_request(src)
+		KA.receive_request(src)
 
 	sleep(confirm_delay)
 	if(confirmed)
@@ -142,8 +141,9 @@
 	active = 1
 	icon_state = "auth_on"
 
-	sleep(confirm_delay)
+	addtimer(CALLBACK(src, .proc/confirm), confirm_delay)
 
+/obj/machinery/keycard_auth/proc/confirm()
 	event_source = null
 	icon_state = "auth_off"
 	active = 0

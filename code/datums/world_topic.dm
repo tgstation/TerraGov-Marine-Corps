@@ -20,15 +20,10 @@
 // DATUM
 /datum/world_topic
 	var/keyword
-	var/log = TRUE
-	var/key_valid
-	var/require_comms_key = FALSE
+	var/log = FALSE
 
 
 /datum/world_topic/proc/TryRun(list/input)
-	key_valid = config && (CONFIG_GET(string/comms_key) == input["key"])
-	if(require_comms_key && !key_valid)
-		return "Bad Key"
 	input -= "key"
 	. = Run(input)
 	if(islist(.))
@@ -40,73 +35,6 @@
 
 
 // TOPICS
-/datum/world_topic/ping
-	keyword = "ping"
-	log = FALSE
-
-
-/datum/world_topic/ping/Run(list/input)
-	. = 0
-	for (var/client/C in GLOB.clients)
-		++.
-
-
-/datum/world_topic/playing
-	keyword = "playing"
-	log = FALSE
-
-
-/datum/world_topic/playing/Run(list/input)
-	return length(GLOB.player_list)
-
-
-/datum/world_topic/pr_announce
-	keyword = "announce"
-	require_comms_key = TRUE
-	var/static/list/PRcounts = list()	//PR id -> number of times announced this round
-
-
-/datum/world_topic/pr_announce/Run(list/input)
-	var/list/payload = json_decode(input["payload"])
-	var/id = "[payload["pull_request"]["id"]]"
-	if(!PRcounts[id])
-		PRcounts[id] = 1
-	else
-		++PRcounts[id]
-		if(PRcounts[id] > PR_ANNOUNCEMENTS_PER_ROUND)
-			return
-
-	var/final_composed = "<span class='announce'>PR: [input[keyword]]</span>"
-	to_chat(world, final_composed)
-
-
-/datum/world_topic/ahelp_relay
-	keyword = "Ahelp"
-	require_comms_key = TRUE
-
-
-/datum/world_topic/ahelp_relay/Run(list/input)
-	message_admins("<span class='adminnotice'><b><font color=red>RELAY: </font> [input["source"]] [input["message_sender"]]: [input["message"]]</b></span>")
-
-
-/datum/world_topic/adminmsg
-	keyword = "adminmsg"
-	require_comms_key = TRUE
-
-
-/datum/world_topic/adminmsg/Run(list/input)
-	return IrcPm(input[keyword], input["msg"], input["sender"])
-
-
-/datum/world_topic/adminwho
-	keyword = "adminwho"
-	require_comms_key = TRUE
-
-
-/datum/world_topic/adminwho/Run(list/input)
-	return ircadminwho()
-
-
 /datum/world_topic/status
 	keyword = "status"
 
@@ -132,10 +60,6 @@
 	.["gamestate"] = SSticker.current_state
 
 	.["map_name"] = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
-
-	if(key_valid)
-		if(SSticker.HasRoundStarted())
-			.["real_mode"] = SSticker.mode.name
 
 	.["security_level"] = GLOB.marine_main_ship?.get_security_level()
 	.["round_duration"] = SSticker ? round((world.time - SSticker.round_start_time) / 10) : 0

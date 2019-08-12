@@ -35,7 +35,7 @@
 					continue
 				req_one_access += n
 
-	if(!length(req_one_access) && !length(req_one_access)) 
+	if(!length(req_access) && !length(req_one_access)) 
 		return TRUE
 
 	if(!istype(ID)) 
@@ -219,6 +219,8 @@
 			. = size ? "Dr. " : "Doctor"
 		if("CCMO")
 			. = size ? "Prof. " : "Professor"
+		if("CMN")
+			. = size ? "CMN" : "Crewman"
 		if("PMC1")
 			. = size ? "PMC " : "PM Contractor"
 		if("PMC2")

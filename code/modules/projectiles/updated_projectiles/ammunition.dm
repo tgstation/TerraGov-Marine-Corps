@@ -50,7 +50,7 @@ They're all essentially identical when it comes to getting the job done.
 		to_chat(user, "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>.")
 
 
-/obj/item/ammo_magazine/attack_hand(mob/user)
+/obj/item/ammo_magazine/attack_hand(mob/living/user)
 	if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
 		if(src == user.get_inactive_held_item()) //Have to be holding it in the hand.
 			if (current_rounds > 0)
@@ -331,8 +331,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 				return
-				
-			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+
+			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)
 			AM.current_rounds += S
 			bullet_amount -= S
@@ -349,7 +349,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(bullet_amount == max_bullet_amount)
 				to_chat(user, "<span class='warning'>[src] is full!</span>")
 				return
-			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 			var/S = min(AM.current_rounds, max_bullet_amount - bullet_amount)
 			AM.current_rounds -= S
 			bullet_amount += S
@@ -371,7 +371,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //Deployable ammo box
 /obj/item/ammobox
-	name = "M41A Ammo Box"
+	name = "M41A1 Ammo Box"
 	desc = "A large, deployable ammo box."
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
@@ -417,7 +417,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	magazine_amount++
 	update_icon()
 
-/obj/item/ammobox/attack_hand(mob/user)
+/obj/item/ammobox/attack_hand(mob/living/user)
 	if(!deployed)
 		user.put_in_hands(src)
 		return
@@ -483,7 +483,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	. = ..()
 	to_chat(user, "It contains [current_rounds] out of [max_rounds] shotgun shells.")
 
-/obj/item/ammo_magazine/shotgunbox/attack_hand(mob/user)
+/obj/item/ammo_magazine/shotgunbox/attack_hand(mob/living/user)
 	if(!deployed)
 		user.put_in_hands(src)
 		return
@@ -505,7 +505,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 
-
+/obj/item/ammo_magazine/acp
+	name = "Box of .45 ACP"
+	icon_state = "box45" //With thanks to Eris
+	default_ammo = /datum/ammo/bullet/pistol/heavy
+	caliber = ".45"
+	current_rounds = 50
+	max_rounds = 50
 
 /obj/item/big_ammo_box/ap
 	name = "big ammo box (10x24mm AP)"
@@ -524,13 +530,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 /obj/item/ammobox/ap
-	name = "M41A AP Ammo Box"
+	name = "M41A1 AP Ammo Box"
 	icon_state = "ammoboxap"
 	ammo_type = /datum/ammo/bullet/rifle/ap
 	magazine_type = /obj/item/ammo_magazine/rifle/ap
 
 /obj/item/ammobox/ext
-	name = "M41A Extended Ammo Box"
+	name = "M41A1 Extended Ammo Box"
 	icon_state = "ammoboxext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/rifle/extended

@@ -155,13 +155,14 @@
 
 				var/failed = FALSE
 
-				if(GLOB.latejoin.len)
-					var/turf/T = pick(GLOB.latejoin)
-					if(T)
-						to_chat(src, "<span class='notice'>Now teleporting.</span>")
-						observer.forceMove(T)
-					else
-						failed = TRUE
+				if(length(GLOB.latejoin))
+					var/i = pick(GLOB.latejoin)
+					var/turf/T = get_turf(i)
+					if(!T)
+						CRASH("Invalid latejoin spawn location type")
+
+					to_chat(src, "<span class='notice'>Now teleporting.</span>")
+					observer.forceMove(T)
 				else
 					failed = TRUE
 
@@ -245,8 +246,10 @@
 			if(!GLOB.enter_allowed)
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
-
-			SSticker?.mode.AttemptLateSpawn(src, href_list["job_selected"])
+			var/rank = href_list["job_selected"]
+			if(!SSticker?.mode.CanLateSpawn(src, rank))
+				return
+			SSticker?.mode.AttemptLateSpawn(src, rank)
 
 
 	if(href_list["showpoll"])
@@ -453,5 +456,7 @@
 	if(job.required_playtime_remaining(client))
 		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
+		return FALSE
+	if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
 		return FALSE
 	return TRUE

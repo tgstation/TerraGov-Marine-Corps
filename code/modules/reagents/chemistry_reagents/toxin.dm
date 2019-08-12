@@ -4,7 +4,6 @@
 
 /datum/reagent/toxin
 	name = "Toxin"
-	id = "toxin"
 	description = "A toxic chemical."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
@@ -20,7 +19,6 @@
 
 /datum/reagent/toxin/hptoxin
 	name = "Toxin"
-	id = "hptoxin"
 	description = "A toxic chemical."
 	custom_metabolism = 1
 	toxpwr = 1
@@ -28,7 +26,6 @@
 
 /datum/reagent/toxin/pttoxin
 	name = "Toxin"
-	id = "pttoxin"
 	description = "A toxic chemical."
 	custom_metabolism = 1
 	toxpwr = 1
@@ -36,7 +33,6 @@
 
 /datum/reagent/toxin/sdtoxin
 	name = "Toxin"
-	id = "sdtoxin"
 	description = "A toxic chemical."
 	custom_metabolism = 1
 	toxpwr = 0
@@ -49,7 +45,6 @@
 
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
-	id = "amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 1
@@ -57,7 +52,6 @@
 
 /datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
-	id = "mutagen"
 	description = "Might cause unpredictable mutations. Keep away from children."
 	color = "#13BC5E" // rgb: 19, 188, 94
 	toxpwr = 0
@@ -70,18 +64,16 @@
 
 /datum/reagent/toxin/phoron
 	name = "Phoron"
-	id = "phoron"
 	description = "Phoron in its liquid form."
 	color = "#E71B00" // rgb: 231, 27, 0
 	toxpwr = 3
 
 /datum/reagent/toxin/phoron/on_mob_life(mob/living/L, metabolism)
-	holder.remove_reagent("inaprovaline", 2*REM)
+	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, 2*REM)
 	return ..()
 
 /datum/reagent/toxin/lexorin
 	name = "Lexorin"
-	id = "lexorin"
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	toxpwr = 0
@@ -105,7 +97,6 @@
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
-	id = "cyanide"
 	description = "A highly toxic chemical."
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 3
@@ -114,12 +105,11 @@
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(4*REM)
 	if(current_cycle > 10)
-		L.Sleeping(2)
+		L.sleeping(2)
 	return ..()
 
 /datum/reagent/toxin/minttoxin
 	name = "Mint Toxin"
-	id = "minttoxin"
 	description = "Useful for dealing with undesirable customers."
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0
@@ -127,7 +117,6 @@
 
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
-	id = "carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded space carp."
 	color = "#003333" // rgb: 0, 51, 51
 	toxpwr = 2
@@ -135,7 +124,6 @@
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
-	id = "zombiepowder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	reagent_state = SOLID
 	color = "#669900" // rgb: 102, 153, 0
@@ -148,7 +136,7 @@
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
-	L.KnockDown(10)
+	L.knock_down(10)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
@@ -157,7 +145,6 @@
 
 /datum/reagent/toxin/mindbreaker
 	name = "Mindbreaker Toxin"
-	id = "mindbreaker"
 	description = "A powerful hallucinogen, it can cause fatal effects in users."
 	color = "#B31008" // rgb: 139, 166, 233
 	toxpwr = 0
@@ -171,41 +158,36 @@
 
 /datum/reagent/toxin/mindbreaker/overdose_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
-	L.Jitter(5)
+	L.jitter(5)
 	if(prob(10) && !L.stat)
-		L.KnockOut(5)
+		L.knock_out(5)
 
 /datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
 	L.adjustBrainLoss(1, TRUE)
-	L.Jitter(5)
+	L.jitter(5)
 	if(prob(10) && !L.stat)
-		L.KnockOut(5)
+		L.knock_out(5)
 	L.drowsyness = max(L.drowsyness, 30)
 
 //Reagents used for plant fertilizers.
 /datum/reagent/toxin/fertilizer
 	name = "fertilizer"
-	id = "fertilizer"
 	description = "A chemical mix good for growing plants with."
 	toxpwr = 0.2 //It's not THAT poisonous.
 	color = "#664330" // rgb: 102, 67, 48
 
 /datum/reagent/toxin/fertilizer/eznutrient
 	name = "EZ Nutrient"
-	id = "eznutrient"
 
 /datum/reagent/toxin/fertilizer/left4zed
 	name = "Left-4-Zed"
-	id = "left4zed"
 
 /datum/reagent/toxin/fertilizer/robustharvest
 	name = "Robust Harvest"
-	id = "robustharvest"
 
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
-	id = "plantbgone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
 	color = "#49002E" // rgb: 73, 0, 46
 	toxpwr = 1
@@ -242,7 +224,6 @@
 
 /datum/reagent/toxin/sleeptoxin
 	name = "Soporific"
-	id = "sleeptoxin"
 	description = "An effective hypnotic used to treat insomnia."
 	color = "#E895CC" // rgb: 232, 149, 204
 	toxpwr = 0
@@ -261,10 +242,10 @@
 			L.blur_eyes(10)
 		if(16 to 40)
 			if(prob(10))
-				L.Sleeping(10)
+				L.sleeping(10)
 			L.drowsyness  = max(L.drowsyness, 20)
 		if(41 to INFINITY)
-			L.Sleeping(20) //previously knockdown, no good for a soporific.
+			L.sleeping(20) //previously knockdown, no good for a soporific.
 			L.drowsyness  = max(L.drowsyness, 30)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
@@ -277,7 +258,6 @@
 
 /datum/reagent/toxin/chloralhydrate
 	name = "Chloral Hydrate"
-	id = "chloralhydrate"
 	description = "A powerful sedative."
 	reagent_state = SOLID
 	color = "#000067" // rgb: 0, 0, 103
@@ -292,9 +272,9 @@
 			L.confused += 2
 			L.drowsyness += 2
 		if(21 to 60)
-			L.Sleeping(5)
+			L.sleeping(5)
 		if(61 to INFINITY)
-			L.Sleeping(5)
+			L.sleeping(5)
 			L.adjustToxLoss((current_cycle/2 - 50)*REM)
 	return ..()
 
@@ -306,7 +286,6 @@
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
-	id = "potassium_chloride"
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
@@ -322,14 +301,13 @@
 	L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.KnockDown(5)
+			L.knock_down(5)
 		if(16 to INFINITY)
-			L.KnockOut(5)
+			L.knock_out(5)
 	return ..()
 
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
-	id = "potassium_chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	color = "#FFFFFF" // rgb: 255,255,255
 	toxpwr = 2
@@ -343,14 +321,13 @@
 		L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.KnockDown(5)
+			L.knock_down(5)
 		if(16 to INFINITY)
-			L.KnockOut(5)
+			L.knock_out(5)
 	return ..()
 
-/datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
+/datum/reagent/toxin/beer2	//disguised as normal beer
 	name = "Beer"
-	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	color = "#664300" // rgb: 102, 67, 0
 	custom_metabolism = 0.5 // Sleep toxins should always be consumed pretty fast
@@ -359,15 +336,14 @@
 /datum/reagent/toxin/beer2/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 50)
-			L.Sleeping(5)
+			L.sleeping(5)
 		if(51 to INFINITY)
-			L.Sleeping(5)
+			L.sleeping(5)
 			L.adjustToxLoss((current_cycle - 50)*REM)
 	return ..()
 
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
-	id = "plasticide"
 	description = "Liquid plastic, do not eat."
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0.2
@@ -379,7 +355,6 @@
 
 /datum/reagent/toxin/acid
 	name = "Sulphuric acid"
-	id = "sacid"
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
 	spray_warning = TRUE
 	color = "#DB5008" // rgb: 219, 80, 8
@@ -464,7 +439,6 @@
 
 /datum/reagent/toxin/acid/polyacid
 	name = "Polytrinic acid"
-	id = "pacid"
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
 	color = "#8E18A9" // rgb: 142, 24, 169
 	toxpwr = 2
@@ -473,7 +447,6 @@
 
 /datum/reagent/toxin/xeno_neurotoxin
 	name = "Neurotoxin"
-	id = "xeno_toxin"
 	description = "A debilitating nerve toxin. Impedes motor control. Causes temporary blindness, hallucinations and deafness at higher doses."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
@@ -493,16 +466,16 @@
 	if(volume > 15) //3rd level neurotoxin effects: eye blur
 		L.blur_eyes(5)
 	if(volume > 20) //4th level neurotoxin effects: blindness, deafness
-		L.adjustEarDamage(0, 1)
+		L.adjust_ear_damage(0, 1)
 		L.blind_eyes(5)
 	if(volume > 25) //5th level neurotoxin effects: paralysis
-		L.KnockDown(1)
+		L.knock_down(1)
 	return ..()
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
 	L.adjustOxyLoss(5) //Overdose starts applying more oxy damage
-	L.Jitter(4) //Lets Xenos know they're ODing and should probably stop.
+	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
@@ -510,7 +483,6 @@
 
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
-	id = "xeno_growthtoxin"
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
@@ -532,7 +504,7 @@
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
 	L.adjustOxyLoss(2)
-	L.Jitter(4)
+	L.jitter(4)
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)

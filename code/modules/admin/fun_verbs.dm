@@ -253,24 +253,23 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom info?", "Custom Info") as null|anything in list("Change", "Clear"))
-		if("Change")
-			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	var/new_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	new_info = noscript(new_info)
+	if(isnull(new_info) || GLOB.custom_info == new_info)
+		return
 
-			GLOB.custom_info = noscript(GLOB.custom_info)
+	if(!new_info)
+		log_admin("[key_name(usr)] has cleared the custom info.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
+		return
 
-			if(!GLOB.custom_info)
-				return
+	GLOB.custom_info = new_info
 
-			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-			to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
+	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
+	to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
 
-			log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
-			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
-		if("Clear")
-			GLOB.custom_info = null
-			log_admin("[key_name(usr)] has cleared the custom info.")
-			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
+	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
 
 
 /client/verb/custom_info()
@@ -537,8 +536,7 @@
 	if(!method)
 		return
 
-	for(var/mob/V in hearers(O))
-		V.show_message("<b>[O.name]</b> [method], \"[message]\"", 2)
+	O.audible_message("<b>[O]</b> [method], \"[message]\"")
 	if(usr.control_object)
 		usr.show_message("<b>[O.name]</b> [method], \"[message]\"", 2)
 
@@ -910,7 +908,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
-/datum/admins/proc/release()
+/datum/admins/proc/release(obj/OB in world)
 	set category = null
 	set name = "Release Obj"
 
@@ -977,46 +975,30 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
-	if(istype(usr, /mob/camera/imaginary_friend))
-		var/mob/camera/imaginary_friend/IF = usr
-		IF.deactivate()
+	var/client/C = usr.client
+
+	if(istype(C.mob, /mob/camera/imaginary_friend))
+		var/mob/camera/imaginary_friend/IF = C.mob
+		IF.ghostize()
 		return
 
-	if(is_mentor(usr.client) && !isobserver(usr))
-		to_chat(usr, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
-		return
+	if(!isobserver(C.mob))
+		if(is_mentor(C))
+			to_chat(C, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
+			return
+		C.holder.admin_ghost()
 
-	if(!isobserver(usr))
-		usr.client.holder.admin_ghost()
-
-	var/mob/living/L
-	switch(input("Select by:", "Imaginary Friend") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Imaginary Friend") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			L = C.mob
-		if("Mob")
-			var/mob/M = input("Please, select a mob.", "Imaginary Friend") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!M)
-				return
-			L = M
-
-	if(!isobserver(usr))
-		return
-
-	if(!istype(L))
-		to_chat("<span class='warning'>Selected mob is not alive.</span>")
+	var/mob/living/L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!istype(L) || !isobserver(C.mob))
 		return
 
 	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
-	usr.mind.transfer_to(IF)
+	C.mob.mind.transfer_to(IF)
 
 	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
 
 
-	
 /datum/admins/proc/force_dropship()
 	set category = "Fun"
 	set name = "Force Dropship"
@@ -1024,53 +1006,67 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!length(SSshuttle.dropships))
+	if(!length(SSshuttle.dropships) && !SSshuttle.canterbury)
 		return
 
-	var/obj/docking_port/mobile/marine_dropship/D = SSshuttle.dropships[1]
+	var/list/available_shuttles = list()
+	for(var/i in SSshuttle.mobile)
+		var/obj/docking_port/mobile/M = i
+		available_shuttles["[M.name] ([M.id])"] = M.id
 
-	if(!istype(D))
+	var/answer = input(usr, "Which shuttle do you want to move?", "Force Dropship") as null|anything in available_shuttles
+	var/shuttle_id = available_shuttles[answer]
+	if(!shuttle_id)
 		return
 
-	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Active Shuttle", "Yes", "No") != "Yes")
+	var/obj/docking_port/mobile/D
+	for(var/i in SSshuttle.mobile)
+		var/obj/docking_port/mobile/M = i
+		if(M.id == shuttle_id)
+			D = M
+
+	if(!D)
+		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
 		return
 
-	var/instant = FALSE
+	var/list/possible_destinations
+	if(shuttle_id == SSshuttle.canterbury.id)
+		possible_destinations = list("canterbury_dock")
+	else
+		possible_destinations = list("lz1", "lz2", "alamo", "normandy")
 
-	if(alert("Move Shuttle instantly??", "Instant Move", "Yes", "No") == "Yes")
-		instant = TRUE
+	if(D.mode != SHUTTLE_IDLE && alert("[D.name] is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
+		return
 
-	var/list/possible_destinations = list("lz1", "lz2", "alamo", "normandy")
-	var/list/validdocks = list()
-
+	var/list/valid_docks = list()
+	var/i = 1
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!possible_destinations.Find(S.id))
 			continue
 		if(!D.check_dock(S, silent=TRUE))
 			continue
-		validdocks += S.name
+		valid_docks["[S.name] ([i++])"] = S
 
-	if(!length(validdocks))
+	if(!length(valid_docks))
 		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
 		return
 
-	var/dock = input("Choose the destination.", "Choose Destination") as null|anything in validdocks
+	var/dock = input("Choose the destination.", "Force Dropship") as null|anything in valid_docks
+	if(!dock)
+		return
 
-	var/obj/docking_port/stationary/target
-
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.name != dock)
-			continue
-		target = S
-
+	var/obj/docking_port/stationary/target = valid_docks[dock]
 	if(!target)
 		return
 
+	var/instant = FALSE
+	if(alert("Do you want to move the [D.name] instantly?", "Force Dropship", "Yes", "No") == "Yes")
+		instant = TRUE
+
 	SSshuttle.moveShuttleToDock(D.id, target, !instant)
 
-	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
-	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
-
+	log_admin("[key_name(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""].")
 
 
 /datum/admins/proc/play_cinematic()
@@ -1088,3 +1084,24 @@
 
 	log_admin("[key_name(usr)] played the [choice] cinematic.")
 	message_admins("[ADMIN_TPMONTY(usr)] played the [choice] cinematic.")
+
+
+/datum/admins/proc/set_tip()
+	set category = "Fun"
+	set name = "Set Tip"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/tip = input(usr, "Please specify your tip that you want to send to the players.", "Tip") as message|null
+	if(!tip)
+		return
+
+	SSticker.selected_tip = tip
+
+	//If we've already tipped, then send it straight away.
+	if(SSticker.tipped)
+		SSticker.send_tip_of_the_round()
+
+	log_admin("[key_name(usr)] set a tip of the round: [tip]")
+	message_admins("[ADMIN_TPMONTY(usr)] set a tip of the round.")

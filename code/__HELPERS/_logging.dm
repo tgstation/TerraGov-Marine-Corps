@@ -62,6 +62,7 @@
 
 
 /proc/log_attack(text)
+	LAZYADD(GLOB.attack_log, "\[[stationTimestamp()]\] ATTACK: [text]")
 	if(CONFIG_GET(flag/log_attack))
 		WRITE_LOG(GLOB.world_attack_log, "ATTACK: [text]")
 
@@ -79,51 +80,61 @@
 
 
 /proc/log_manifest(text)
+	LAZYADD(GLOB.manifest_log, "\[[stationTimestamp()]\] MANIFEST: [text]")
 	if(CONFIG_GET(flag/log_manifest))
 		WRITE_LOG(GLOB.world_manifest_log, "MANIFEST: [text]")
 
 
 /proc/log_say(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] SAY: [text]")
 	if(CONFIG_GET(flag/log_say))
 		WRITE_LOG(GLOB.world_game_log, "SAY: [text]")
 
 
 /proc/log_telecomms(text)
+	LAZYADD(GLOB.telecomms_log, "\[[stationTimestamp()]\] TCOMMS: [text]")
 	if(CONFIG_GET(flag/log_telecomms))
 		WRITE_LOG(GLOB.world_telecomms_log, "TCOMMS: [text]")
 
 
 /proc/log_ooc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] OOC: [text]")
 	if(CONFIG_GET(flag/log_ooc))
 		WRITE_LOG(GLOB.world_game_log, "OOC: [text]")
 
 
 /proc/log_looc(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] LOOC: [text]")
 	if(CONFIG_GET(flag/log_looc))
 		WRITE_LOG(GLOB.world_game_log, "LOOC: [text]")
 
 
 /proc/log_hivemind(text)
+	LAZYADD(GLOB.telecomms_log, "\[[stationTimestamp()]\] HIVEMIND: [text]")
 	if(CONFIG_GET(flag/log_hivemind))
 		WRITE_LOG(GLOB.world_game_log, "HIVEMIND: [text]")
 
 
 /proc/log_whisper(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] WHISPER: [text]")
 	if(CONFIG_GET(flag/log_whisper))
 		WRITE_LOG(GLOB.world_game_log, "WHISPER: [text]")
 
 
 /proc/log_emote(text)
+	LAZYADD(GLOB.say_log, "\[[stationTimestamp()]\] EMOTE: [text]")
 	if(CONFIG_GET(flag/log_emote))
 		WRITE_LOG(GLOB.world_game_log, "EMOTE: [text]")
 
 
 /proc/log_prayer(text)
+	LAZYADD(GLOB.game_log, "\[[stationTimestamp()]\] PRAY: [text]")
 	if(CONFIG_GET(flag/log_prayer))
 		WRITE_LOG(GLOB.world_game_log, "PRAY: [text]")
 
 
 /proc/log_vote(text)
+	LAZYADD(GLOB.game_log, "\[[stationTimestamp()]\] VOTE: [text]")
 	if(CONFIG_GET(flag/log_vote))
 		WRITE_LOG(GLOB.world_game_log, "VOTE: [text]")
 

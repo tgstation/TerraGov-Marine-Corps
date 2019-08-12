@@ -14,7 +14,7 @@
 		return
 	if(!check_plasma(50))
 		return
-	if(last_special > world.time)
+	if(cooldowns[COOLDOWN_ORDER])
 		return
 	plasma_stored -= 50
 	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
@@ -25,7 +25,7 @@
 	else
 		hive.hive_orders = ""
 
-	last_special = world.time + 150
+	cooldowns[COOLDOWN_ORDER] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ORDER, null), 15 SECONDS)
 
 // ***************************************
 // *********** Hive message
@@ -168,7 +168,7 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(X.last_special > world.time)
+	if(X.cooldowns[COOLDOWN_GUT])
 		return FALSE
 	if(!iscarbon(A))
 		return FALSE
@@ -201,7 +201,7 @@
 
 	succeed_activate()
 
-	X.last_special = world.time + 5 SECONDS
+	X.cooldowns[COOLDOWN_GUT] = addtimer(VARSET_LIST_CALLBACK(X.cooldowns, COOLDOWN_GUT, null), 5 SECONDS)
 
 	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
@@ -357,7 +357,7 @@
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/grow_ovipositor,
 		/datum/action/xeno_action/activable/screech,
-		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,

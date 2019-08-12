@@ -37,11 +37,11 @@
 	spawn (0)
 		attack_self(user)
 
-/obj/item/radio/intercom/attack_paw(mob/user as mob)
+/obj/item/radio/intercom/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 
-/obj/item/radio/intercom/attack_hand(mob/user as mob)
+/obj/item/radio/intercom/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

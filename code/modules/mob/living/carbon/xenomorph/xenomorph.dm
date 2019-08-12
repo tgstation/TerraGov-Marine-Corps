@@ -13,11 +13,6 @@
 	add_inherent_verbs()
 	add_abilities()
 
-	ENABLE_BITFIELD(sight, SEE_MOBS)
-	ENABLE_BITFIELD(sight, SEE_OBJS)
-	ENABLE_BITFIELD(sight, SEE_TURFS)
-	see_in_dark = XENO_NIGHTVISION_ENABLED
-
 	create_reagents(1000)
 	gender = NEUTER
 
@@ -184,7 +179,7 @@
 
 /mob/living/carbon/xenomorph/handle_knocked_out()
 	if(knocked_out)
-		AdjustKnockedout(-2)
+		adjust_knockedout(-2)
 	return knocked_out
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
@@ -206,7 +201,7 @@
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.KnockDown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
+		H.knock_down(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
 		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		H.stop_pulling()
@@ -241,10 +236,10 @@
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
 	if(queen_chosen_lead || isxenoqueen(src))
-		recently_pointed_to = world.time + 10
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	else
-		recently_pointed_to = world.time + 50
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return 1
@@ -291,12 +286,14 @@
 	var/obj/screen/LL_dir = hud_used.locate_leader
 	LL_dir.icon_state = "trackoff"
 
-/mob/living/carbon/xenomorph/begin_away()
-	. = ..()
-	addtimer(CALLBACK(src, .proc/handle_afk_takeover), XENO_AFK_TIMER)
-
 
 /mob/living/carbon/xenomorph/Moved(atom/newloc, direct)
 	if(is_zoomed)
 		zoom_out()
 	return ..()
+
+/mob/living/carbon/xenomorph/ghostize(can_reenter_corpse)
+	. = ..()
+	if(!. || can_reenter_corpse)
+		return
+	handle_afk_takeover()

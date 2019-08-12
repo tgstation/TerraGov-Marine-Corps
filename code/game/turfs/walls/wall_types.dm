@@ -1,9 +1,9 @@
-//-----TGS Theseus Walls ---//
+//----- Marine ship walls ---//
 
-/turf/closed/wall/almayer
+/turf/closed/wall/mainship
 	name = "hull"
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship."
-	icon = 'icons/turf/almayerwalls.dmi'
+	icon = 'icons/turf/mainshipwalls.dmi'
 	icon_state = "testwall0"
 	walltype = "testwall"
 
@@ -15,7 +15,7 @@
 	opacity = TRUE
 	density = TRUE
 
-/turf/closed/wall/almayer/handle_icon_junction(junction)
+/turf/closed/wall/mainship/handle_icon_junction(junction)
 	if (!walltype)
 		return
 	//lets make some detailed randomized shit happen.
@@ -26,82 +26,82 @@
 			if(0 to 8)
 				icon_state = "[walltype]12"
 			if(9 to 10)
-				icon_state = "almayer_deco_wall[r2]"
+				icon_state = "mainship_deco_wall[r2]"
 	else
 		icon_state = "[walltype][junction]"
 	junctiontype = junction
 
-/turf/closed/wall/almayer/nosmooth //for SD and other special walls
+/turf/closed/wall/mainship/nosmooth //for SD and other special walls
 	tiles_with = list(/turf/closed/wall,/obj/structure/window/framed,/obj/structure/window_frame,/obj/structure/girder)
 
-/turf/closed/wall/almayer/outer
+/turf/closed/wall/mainship/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	//icon_state = "testwall0_debug" //Uncomment to check hull in the map editor.
 	walltype = "testwall"
 	hull = 1 //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
 
-/turf/closed/wall/almayer/outer/reinforced
+/turf/closed/wall/mainship/outer/reinforced
 	name = "reinforced hull"
 
-/turf/closed/wall/almayer/white
+/turf/closed/wall/mainship/white
 	walltype = "wwall"
 	icon_state = "wwall0"
 
-/turf/closed/wall/almayer/white/handle_icon_junction(junction)
+/turf/closed/wall/mainship/white/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
 	junctiontype = junction
 
 
 
-/turf/closed/wall/almayer/research/can_be_dissolved()
+/turf/closed/wall/mainship/research/can_be_dissolved()
 	return FALSE
 
-/turf/closed/wall/almayer/research/containment/wall
+/turf/closed/wall/mainship/research/containment/wall
 	name = "cell wall"
 	tiles_with = null
 	walltype = null
 
-/turf/closed/wall/almayer/research/containment/wall/corner
+/turf/closed/wall/mainship/research/containment/wall/corner
 	icon_state = "containment_wall_corner"
 
-/turf/closed/wall/almayer/research/containment/wall/divide
+/turf/closed/wall/mainship/research/containment/wall/divide
 	icon_state = "containment_wall_divide"
 
-/turf/closed/wall/almayer/research/containment/wall/south
+/turf/closed/wall/mainship/research/containment/wall/south
 	icon_state = "containment_wall_s"
 
-/turf/closed/wall/almayer/research/containment/wall/west
+/turf/closed/wall/mainship/research/containment/wall/west
 	icon_state = "containment_wall_w"
 
-/turf/closed/wall/almayer/research/containment/wall/connect_e
+/turf/closed/wall/mainship/research/containment/wall/connect_e
 	icon_state = "containment_wall_connect_e"
 
-/turf/closed/wall/almayer/research/containment/wall/connect3
+/turf/closed/wall/mainship/research/containment/wall/connect3
 	icon_state = "containment_wall_connect3"
 
-/turf/closed/wall/almayer/research/containment/wall/connect_w
+/turf/closed/wall/mainship/research/containment/wall/connect_w
 	icon_state = "containment_wall_connect_w"
 
-/turf/closed/wall/almayer/research/containment/wall/connect_w2
+/turf/closed/wall/mainship/research/containment/wall/connect_w2
 	icon_state = "containment_wall_connect_w2"
 
-/turf/closed/wall/almayer/research/containment/wall/east
+/turf/closed/wall/mainship/research/containment/wall/east
 	icon_state = "containment_wall_e"
 
-/turf/closed/wall/almayer/research/containment/wall/north
+/turf/closed/wall/mainship/research/containment/wall/north
 	icon_state = "containment_wall_n"
 
-/turf/closed/wall/almayer/research/containment/wall/connect_e2
+/turf/closed/wall/mainship/research/containment/wall/connect_e2
 	icon_state = "containment_wall_connect_e2"
 
-/turf/closed/wall/almayer/research/containment/wall/connect_s1
+/turf/closed/wall/mainship/research/containment/wall/connect_s1
 	icon_state = "containment_wall_connect_s1"
 
-/turf/closed/wall/almayer/research/containment/wall/connect_s2
+/turf/closed/wall/mainship/research/containment/wall/connect_s2
 	icon_state = "containment_wall_connect_s2"
 
-/turf/closed/wall/almayer/research/containment/wall/purple
+/turf/closed/wall/mainship/research/containment/wall/purple
 	name = "cell window"
 	icon_state = "containment_window"
 	opacity = FALSE
@@ -274,7 +274,7 @@
 			return
 	return
 
-/turf/closed/wall/mineral/uranium/attack_hand(mob/user as mob)
+/turf/closed/wall/mineral/uranium/attack_hand(mob/living/user)
 	radiate()
 	return ..()
 
@@ -443,9 +443,9 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
 	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
-	"<span class='xenonotice'>You claw \the [src].</span>")
+	"<span class='xenonotice'>We claw \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
 	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
 
@@ -454,31 +454,37 @@
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
 	playsound(src, "alien_resin_break", 25)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	take_damage(40)
 
 
-/turf/closed/wall/resin/attack_hand(mob/user)
+/turf/closed/wall/resin/attack_hand(mob/living/user)
 	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
 
-/turf/closed/wall/resin/attack_paw(mob/user)
+/turf/closed/wall/resin/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
-/turf/closed/wall/resin/attackby(obj/item/I, mob/user, params)
+/turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
 	if(I.flags_item & NOBLUDGEON || !isliving(user))
 		return attack_hand(user)
 
-	var/mob/living/L = user
-
 	user.changeNext_move(I.attack_speed)
-	L.animation_attack_on(src)
+	user.do_attack_animation(src)
+	
 	var/damage = I.force
 	var/multiplier = 1
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
+
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
+			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
+
 	damage *= max(0, multiplier)
 	take_damage(damage)
 	playsound(src, "alien_resin_break", 25)

@@ -69,9 +69,7 @@
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
 		updateicon()
-	spawn(det_time)
-		prime()
-		return
+	addtimer(CALLBACK(src, .proc/prime), det_time)
 
 /obj/item/explosive/grenade/proc/updateicon()
 	if(dangerous)
@@ -101,12 +99,12 @@
 				det_time = 1
 				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
 
-/obj/item/explosive/grenade/attack_hand()
+/obj/item/explosive/grenade/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	walk(src, null, null)
 	return
 
-/obj/item/explosive/grenade/attack_paw(mob/user as mob)
+/obj/item/explosive/grenade/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)

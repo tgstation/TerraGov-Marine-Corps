@@ -26,7 +26,7 @@
 			to_chat(user, "<span class='notice'>You extract some seeds from [I].</span>")
 			var/produce = rand(1, 4)
 			for(var/i = 1 to produce)
-				var/obj/item/seeds/seeds = new(get_turf(src))
+				var/obj/item/seeds/seeds = new(get_turf(src), FALSE)
 				seeds.seed_type = new_seed_type.name
 				seeds.update_seed()
 		else

@@ -23,7 +23,7 @@
 	icon_state = "mirror_broke"
 	shattered = TRUE
 
-/obj/structure/mirror/attack_hand(mob/user as mob)
+/obj/structure/mirror/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -85,17 +85,17 @@
 		H.update_hair()
 
 /obj/structure/mirror/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	if(shattered)
 		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 		return TRUE
 
 	if(M.a_intent == INTENT_HELP)
 		M.visible_message("<span class='warning'>\The [M] oogles its own reflection in [src].</span>", \
-		"<span class='warning'>You oogle your own reflection in [src].</span>", null, 5)
+		"<span class='warning'>We oogle our own reflection in [src].</span>", null, 5)
 	else
 		M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
-		"<span class='danger'>You smash [src]!</span>", null, 5)
+		"<span class='danger'>We smash [src]!</span>", null, 5)
 		shatter()
 
 /obj/structure/mirror/proc/shatter()

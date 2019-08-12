@@ -191,7 +191,6 @@
 		update_inv_belt()
 	else if (I == wear_id)
 		wear_id = null
-		sec_hud_set_ID()
 		hud_set_squad()
 		update_inv_wear_id()
 		name = get_visible_name()
@@ -204,6 +203,9 @@
 	else if (I == s_store)
 		s_store = null
 		update_inv_s_store()
+
+	if(I.flags_armor_protection)
+		remove_limb_armor(I)
 
 
 
@@ -257,7 +259,6 @@
 		if(SLOT_WEAR_MASK)
 			wear_mask = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			wear_mask_update(W, TRUE)
 		if(SLOT_HANDCUFFED)
 			update_handcuffed(W)
@@ -279,7 +280,6 @@
 		if(SLOT_WEAR_ID)
 			wear_id = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			hud_set_squad()
 			update_inv_wear_id()
 			name = get_visible_name()
@@ -332,7 +332,6 @@
 		if(SLOT_W_UNIFORM)
 			w_uniform = W
 			W.equipped(src, slot)
-			sec_hud_set_ID()
 			update_inv_w_uniform()
 		if(SLOT_L_STORE)
 			l_store = W
@@ -398,9 +397,11 @@
 			S.handle_item_insertion(W, FALSE, src)
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
+
+	if(W.flags_armor_protection)
+		add_limb_armor(W)
+
 	return TRUE
-
-
 
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)

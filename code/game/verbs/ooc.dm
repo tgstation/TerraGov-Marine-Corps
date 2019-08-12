@@ -1,3 +1,9 @@
+/client/verb/ooc_wrapper()
+	set hidden = TRUE
+	var/message = input("", "OOC") as text
+	ooc(message)
+
+
 /client/verb/ooc(msg as text)
 	set name = "OOC"
 	set category = "OOC"
@@ -88,7 +94,13 @@
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")
+
+
+/client/verb/looc_wrapper()
+	set hidden = TRUE
+	var/message = input("", "LOOC") as text
+	looc(message)
 
 
 /client/verb/looc(msg as text)
