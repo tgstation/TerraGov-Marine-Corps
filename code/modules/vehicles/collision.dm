@@ -37,7 +37,7 @@
 
 	if(src in get_turf(tank)) // trodden over.
 		if(!knocked_down)
-			KnockDown(1)
+			set_knocked_down(1)
 		var/target_dir = turn(tank.dir, 180)
 		temp = get_step(tank.loc, target_dir)
 		T = temp
@@ -56,7 +56,7 @@
 	else
 		throw_at(T, 3, 2, tank, 1)
 	if(!knocked_down)
-		KnockDown(1)
+		set_knocked_down(1)
 	apply_damage(rand(10, 15), BRUTE)
 	visible_message("<span class='danger'>[tank] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[tank] violently bumps into you!</span>")
 

@@ -60,8 +60,11 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	P.generate_bullet(new ammo.default_ammo)
 	log_combat(user, T, "fired the [src].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-	if(!CONFIG_GET(flag/tank_mouth_noise))
-		playsound(get_turf(owner), pick(fire_sounds), 60, 1)
+
+	// TODO: Fix this config?!
+	// if(!CONFIG_GET(flag/tank_mouth_noise))
+	// 	playsound(get_turf(owner), pick(fire_sounds), 60, 1)
+
 	ammo.current_rounds--
 	return TRUE
 
@@ -557,7 +560,7 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 	exit_tank(occupant)
 	M.visible_message("<span class='warning'>[M] forcibly pulls [occupant] out of [src].</span>",
 					"<span class='notice'>you forcibly pull [occupant] out of [src].</span>", null, 6)
-	occupant.KnockDown(4)
+	occupant.set_knocked_down(4)
 
 /obj/vehicle/tank/Bumped(atom/A) //Don't ..() because then you can shove the tank into a wall.
 	if(isliving(A))
