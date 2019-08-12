@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	36
+#define SAVEFILE_VERSION_MAX	37
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -19,6 +19,9 @@
 					fdel(delpath)
 				break
 		return FALSE
+
+	if(savefile_version < 37)
+		WRITE_FILE(S["ai_name"], "ARES v3.2")
 
 	if(savefile_version < 36)
 		WRITE_FILE(S["clientfps"], 0)
@@ -259,8 +262,8 @@
 
 	READ_FILE(S["synthetic_name"], synthetic_name)
 	READ_FILE(S["synthetic_type"], synthetic_type)
-
 	READ_FILE(S["xeno_name"], xeno_name)
+	READ_FILE(S["ai_name"], ai_name)
 
 	READ_FILE(S["real_name"], real_name)
 	READ_FILE(S["random_name"], random_name)
@@ -310,8 +313,8 @@
 
 	synthetic_name	= reject_bad_name(synthetic_name)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
-
 	xeno_name		= reject_bad_name(xeno_name)
+	ai_name			= reject_bad_name(ai_name)
 
 	real_name		= reject_bad_name(real_name)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
@@ -362,6 +365,8 @@
 		synthetic_name = "David"
 	if(!xeno_name)
 		xeno_name = "Undefined"
+	if(!ai_name)
+		ai_name = "ARES v3.2"
 	if(!real_name)
 		real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
@@ -386,8 +391,8 @@
 
 	synthetic_name	= reject_bad_name(synthetic_name)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
-
 	xeno_name		= reject_bad_name(xeno_name)
+	ai_name			= reject_bad_name(ai_name)
 
 	real_name		= reject_bad_name(real_name)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
@@ -438,8 +443,8 @@
 
 	WRITE_FILE(S["synthetic_name"], synthetic_name)
 	WRITE_FILE(S["synthetic_type"], synthetic_type)
-
 	WRITE_FILE(S["xeno_name"], xeno_name)
+	WRITE_FILE(S["ai_name"], ai_name)
 
 	WRITE_FILE(S["real_name"], real_name)
 	WRITE_FILE(S["random_name"], random_name)

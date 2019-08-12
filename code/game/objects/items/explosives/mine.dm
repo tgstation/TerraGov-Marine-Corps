@@ -103,16 +103,21 @@
 		if(!L.lying)//so dragged corpses don't trigger mines.
 			Bumped(A)
 
-/obj/item/explosive/mine/Bumped(mob/living/carbon/human/H)
+/obj/item/explosive/mine/Bumped(mob/living/L)
 	. = ..()
 	if(!armed || triggered)
 		return
 
-	if((istype(H) && H.get_target_lock(iff_signal)))
+	if(issilicon(L))
 		return
 
-	H.visible_message("<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as [H] moves in front of it.</span>", \
-	"<span class='danger'>[icon2html(src, viewers(H))] The [name] clicks as you move in front of it.</span>", \
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.get_target_lock(iff_signal))
+			return
+
+	L.visible_message("<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it.</span>", \
+	"<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it.</span>", \
 	"<span class='danger'>You hear a click.</span>")
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)

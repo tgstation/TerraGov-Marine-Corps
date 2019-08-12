@@ -30,18 +30,6 @@
 	if(obj_integrity <= 0)
 		explode()
 
-/obj/machinery/bot/proc/Emag(mob/user as mob)
-	if(locked)
-		locked = FALSE
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>")
-		log_game("[key_name(user)] emagged [src]'s maintenance hatch lock.")
-		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s maintenance hatch lock.")
-	if(!locked && open)
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		log_game("[key_name(user)] emagged [src]'s inner circuits.")
-		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s inner circuits.")
-
 /obj/machinery/bot/examine(mob/user)
 	..()
 	if(obj_integrity < max_integrity)
@@ -94,9 +82,6 @@
 
 		obj_integrity = min(max_integrity, obj_integrity + 10)
 		user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
-
-	else if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
-		Emag(user)
 
 	else if(I.force && I.damtype)
 		switch(I.damtype)

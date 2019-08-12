@@ -196,7 +196,7 @@
 
 
 /datum/skills/SO
-	name = INTELLIGENCE_OFFICER
+	name = STAFF_OFFICER
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED

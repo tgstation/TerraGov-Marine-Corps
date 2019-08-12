@@ -181,10 +181,6 @@
 		sheets += amount
 		addstack.use(amount)
 
-	else if(istype(I, /obj/item/card/emag))
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		emp_act(TRUE)
-
 	else if(!active && iswrench(I))
 		anchored = !anchored
 
@@ -253,7 +249,7 @@
 			power_output--
 			. = TRUE
 	if (href_list["higher_power"])
-		if (power_output < 4 || CHECK_BITFIELD(obj_flags, EMAGGED))
+		if (power_output < 4)
 			power_output++
 			. = TRUE
 

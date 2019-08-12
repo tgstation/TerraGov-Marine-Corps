@@ -9,12 +9,14 @@
 
 <h3>Destinations</h3> 
 {{for data.destinations}}
-	{{:helper.link(value.name, null, {'move' : value.id}, (data.mode != "call") ? null : 'disabled', null)}}
+
+	{{:helper.link(value.name, null, {'move' : value.id}, (data.shuttle_mode == 'idle' || data.shuttle_mode == 'call') ? null : 'disabled', null)}}
 {{/for}}
+
 <h3>Door Controls</h3>
-<div style="background-image: url('https://i.imgur.com/QqM5nMS.png');">
-	<div>
-		<center style="float: none !important;">
+<div class='alamo-background'>
+	<div style="float: left;">
+		<center>
 		<h4>All</h4>
 		{{:helper.link("Lockdown", null, {'lockdown' : '1'}, null, null)}}
 		{{:helper.link("Unlock", null, {'release' : '1'}, null, null)}}
@@ -38,12 +40,13 @@
 	</div>
 	<div style="clear: both;"></div>
 	<br />	<br /><br />
-	<div>
-		<center style="float: none !important;">
+	<div style="float: left;">
+		<center>
 		<h4>Rear</h4>
 		{{:helper.link("Lockdown", null, {'lock' : 'rear'}, null, null)}}
 		{{:helper.link("Unlock", null, {'unlock' : 'rear'}, null, null)}}
 		</center>
 	</div>
+	<div style="clear: both;"></div>
 </div>
 {{/if}}

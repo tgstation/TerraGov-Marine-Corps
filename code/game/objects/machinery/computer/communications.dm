@@ -203,11 +203,10 @@
 				var/Ship[] = SSticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
 				var/ShipMarines[] = Ship[1]
 				var/ShipXenos[] = Ship[2]
-				var/Planet[] = SSticker.mode.count_humans_and_xenos(SSmapping.levels_by_trait(ZTRAIT_GROUND))
-				var/PlanetMarines[] = Planet[1]
-				var/PlanetXenos[] = Planet[2]
-				if((PlanetXenos < round(PlanetMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
-					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat.")
+				var/All[] = SSticker.mode.count_humans_and_xenos()
+				var/AllMarines[] = All[1]
+				var/AllXenos[] = All[2]
+				if((AllXenos < round(AllMarines * 0.8)) && (ShipXenos < round(ShipMarines * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
 
@@ -215,7 +214,7 @@
 					var/client/C = i
 					if(check_other_rights(C, R_ADMIN, FALSE))
 						SEND_SOUND(C, 'sound/effects/sos-morse-code.ogg')
-						to_chat(C, "<span class='notice'><b><font color='purple'>DISTRESS:</font> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. Humans: [ShipMarines + PlanetMarines], Xenos: [ShipXenos + PlanetXenos]. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</b></span>")
+						to_chat(C, "<span class='notice'><b><font color='purple'>DISTRESS:</font> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. Humans: [AllMarines], Xenos: [AllXenos]. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</b></span>")
 				to_chat(usr, "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
 
 				SSticker.mode.distress_cancelled = FALSE
