@@ -179,18 +179,6 @@
 #define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
 #define EGG_MAX_GROWTH_TIME 15 SECONDS
 
-//Xeno Overlays Indexes//////////
-#define X_LASER_LAYER			9
-#define X_WOUND_LAYER			8
-#define X_HEAD_LAYER			7
-#define X_SUIT_LAYER			6
-#define X_L_HAND_LAYER			5
-#define X_R_HAND_LAYER			4
-#define X_TARGETED_LAYER		3
-#define X_LEGCUFF_LAYER			2
-#define X_FIRE_LAYER			1
-#define X_TOTAL_LAYERS			9
-/////////////////////////////////
 
 //We will round to this value in damage calculations.
 #define DAMAGE_PRECISION 0.1
@@ -206,3 +194,17 @@
 // ^^ stop_autofiring() ^^
 // VV start_autofiring() VV
 #define AUTOFIRE_STAT_FIRING 3 //Dakka-dakka-dakka.
+
+
+//Xeno Overlays Indexes//////////
+#define X_LASER_LAYER			9
+#define X_WOUND_LAYER			8
+#define X_HEAD_LAYER			7
+#define X_SUIT_LAYER			6
+#define X_L_HAND_LAYER			5
+#define X_R_HAND_LAYER			4
+#define X_TARGETED_LAYER		3
+#define X_LEGCUFF_LAYER			2
+#define X_FIRE_LAYER			1
+#define X_TOTAL_LAYERS			9
+/////////////////////////////////
