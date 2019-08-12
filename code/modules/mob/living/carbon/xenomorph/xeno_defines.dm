@@ -239,9 +239,6 @@
 	//Hunter vars
 	var/sneak_bonus = 0.00
 
-	//Larva Growth
-	var/last_larva_growth_used = 0
-
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
