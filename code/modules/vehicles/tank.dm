@@ -55,11 +55,6 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/item/tank_weapon/proc/fire(atom/T,mob/user)
 	if(!can_fire(T))
 		return FALSE
-	if(world.time < lastfired + cooldown)
-		return FALSE
-	if(ammo.current_rounds <= 0)
-		playsound(get_turf(src), 'sound/weapons/gun_empty.ogg', 100, 1)
-		return FALSE
 	lastfired = world.time
 	var/obj/item/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
@@ -74,8 +69,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	return TRUE
 
 /obj/item/tank_weapon/proc/can_fire(turf/T)
+	if(world.time < lastfired + cooldown)
+		return FALSE
 	if(get_dist(T, src) <= range_safety_check)
 		to_chat(owner.gunner, "<span class='warning'>Firing [src] here would damage your vehicle!</span>")
+		return FALSE
+	if(ammo.current_rounds <= 0)
+		playsound(get_turf(src), 'sound/weapons/gun_empty.ogg', 100, 1)
 		return FALSE
 	return TRUE
 
