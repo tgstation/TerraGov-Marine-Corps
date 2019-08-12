@@ -63,20 +63,6 @@
 	update_button_icon()
 
 
-/datum/action/item_action/firemode/give_action(mob/M)
-	. = ..()
-	RegisterSignal(owner, COMSIG_CARBON_SWAPPED_HANDS, .proc/update_owner_button_icons)
-
-
-/datum/action/item_action/firemode/remove_action(mob/M)
-	UnregisterSignal(owner || M, COMSIG_CARBON_SWAPPED_HANDS)
-	return ..()
-
-
-/datum/action/item_action/firemode/should_show()
-	return (holder_gun == owner.get_active_held_item())
-
-
 /datum/action/item_action/firemode/update_button_icon()
 	if(holder_gun.gun_firemode == action_firemode)
 		return
@@ -96,7 +82,3 @@
 			current_action_vis_obj = autoburst
 	button.vis_contents += current_action_vis_obj	
 	action_firemode = holder_gun.gun_firemode
-
-
-/datum/action/item_action/firemode/proc/update_owner_button_icons()
-	owner.update_action_buttons()
