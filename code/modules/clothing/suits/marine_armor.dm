@@ -639,7 +639,7 @@
 
 //===========================//DISTRESS\\================================
 
-/obj/item/clothing/suit/storage/marine/veteran/bear
+/obj/item/clothing/suit/storage/marine/veteran/wolves
 	name = "\improper H1 Steel Wolvess vest"
 	desc = "A protective vest worn by Steel Wolvess mercenaries."
 	icon_state = "bear_armor"

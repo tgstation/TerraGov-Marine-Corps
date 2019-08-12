@@ -458,7 +458,7 @@
 	flags_inv_hide = NONE
 	flags_marine_helmet = NONE
 
-/obj/item/clothing/head/helmet/marine/veteran/bear
+/obj/item/clothing/head/helmet/marine/veteran/wolves
 	name = "\improper Steel Wolves helmet"
 	desc = "Is good for winter, because it has hole to put vodka through."
 	icon_state = "dutch_helmet"

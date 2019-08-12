@@ -177,7 +177,7 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 	has_sensor = 0
 
-/obj/item/clothing/under/marine/veteran/bear
+/obj/item/clothing/under/marine/veteran/wolves
 	name = "\improper Steel Wolves uniform"
 	desc = "A uniform worn by Steel Wolvess mercenaries in the service of Mother Russia. Smells a little like an actual bear."
 	icon_state = "bear_jumpsuit"
