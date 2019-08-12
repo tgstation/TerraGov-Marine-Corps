@@ -719,6 +719,10 @@
 		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
 		playsound(src.loc, 'sound/machines/airlock.ogg', 25, 0)
+	for(var/turf/turf in locs)	
+		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)	
+		if(killthis)	
+			killthis.ex_act(2)//Smashin windows
 	..()
 	return
 
