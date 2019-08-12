@@ -20644,14 +20644,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"bog" = (
-/obj/structure/window/framed/colony,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Filtration Plant";
-	name = "\improper Filtration Plant Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
 "boi" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -49837,7 +49829,7 @@ bqX
 bkE
 brZ
 bsF
-bog
+asV
 btn
 bjA
 bjA
@@ -50054,7 +50046,7 @@ bpU
 bkE
 bkQ
 bsG
-bog
+asV
 btn
 bjA
 bjA
@@ -50271,7 +50263,7 @@ bkE
 bkQ
 bly
 bsG
-bog
+asV
 btm
 bjA
 bjA
