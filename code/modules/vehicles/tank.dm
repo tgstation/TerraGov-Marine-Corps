@@ -234,15 +234,14 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tank/proc/remove_mobs()
 	for(var/x in contents) //Yeet the occupants out so they arent deleted
 		if(ismob(x))
-			var/mob/living/mob = x
+			var/mob/living/M = x
 			var/turf/T = get_turf(pick(orange(src,5)))
-			mob.forceMove(get_turf(src))
-			mob.SpinAnimation(1,1)
-			mob.throw_at(T, 3)
-			mob.apply_effect(6, STUN,)
-			mob.apply_effect(6, WEAKEN)
-			mob.apply_effect(6, STUTTER)
-			to_chat(mob, "<span class='warning'>You violently dive out of [src] as it explodes behind you!</span>")
+			M.forceMove(get_turf(src))
+			M.SpinAnimation(1,1)
+			M.throw_at(T, 3)
+			// Applying STUN, WEAKEN and STUTTER
+			M.apply_effects(6, 6, 0, 0, 6, 0, 0, 0, 0)
+			to_chat(M, "<span class='warning'>You violently dive out of [src] as it explodes behind you!</span>")
 
 /obj/vehicle/tank/Move()
 	. = ..()
@@ -288,37 +287,13 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tank/attack_hand(mob/living/user)
 	if(!ishuman(user)) //Aliens can't get in a tank...as hilarious as that would be
 		return
-	if(user.a_intent == INTENT_GRAB) //Grab the tank to rip people out of it. Use this if someone dies in it.
-		if(!allowed(user))
-			to_chat(user, "<span class='warning'>[src]'s hatch won't budge!.</span>")
-			return FALSE
-		var/list/mobs = list() //Mobs inside src
-		for(var/x in contents)
-			if(ismob(x))
-				mobs += x
-		if(!mobs.len)
-			to_chat(user, "<span class='warning'>No one is currently occupying [src]!.</span>")
-			return
-		var/input
-		input = input(user, "Who do you want to forcibly remove from [src]?", "Your violent tendencies", input) as null|anything in mobs
-		var/mob/living/target = input
-		user.visible_message("<span class='warning'>[user] starts to force their way through [src]'s hatch!.</span>",
-		"<span class='notice'>You start to force your way through [src]'s hatch to grab [target].</span>")
-		var/time = 6 SECONDS - (1 SECONDS * user.mind.cm_skills.large_vehicle)
-		if(do_after(user, time, TRUE, src, BUSY_ICON_BUILD))
-			exit_tank(target)
-			target.SpinAnimation(1,1)
-			target.throw_at(user, 3)
-			target.apply_effect(6, STUN,)
-			target.apply_effect(6, WEAKEN)
-			target.apply_effect(6, STUTTER)
-			user.visible_message("<span class='warning'>[user] rips [target] out of [src] and bodyslams them!.</span>",
-			"<span class='notice'>You rip [target] out of [src] and bodyslam them!.</span>")
-			playsound(get_turf(src), 'sound/effects/throw.ogg', 100, 1)
-			return
+
+	// Exiting the tank
 	if(user in operators)
 		exit_tank(user)
 		return
+
+	// Putting someone inside the tank
 	if(user.pulling && ismob(user.pulling)) //If theyre pulling someone and click the tank, load that person into a passenger seat first. This allows for medics to put marines into the tank / apc safely
 		if(passengers.len >= max_passengers) //We have a few slots for people to enter as passengers without gunning / driving.
 			to_chat(user, "[user.pulling] won't fit in because [src] is already full!")
@@ -329,6 +304,39 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		var/time = 10 SECONDS - (2 SECONDS * user.mind.cm_skills.large_vehicle)
 		if(do_after(user, time, TRUE, src, BUSY_ICON_BUILD))
 			return enter(user.pulling, POSITION_PASSENGER)
+
+	// Removing someone from the tank
+	if(user.a_intent == INTENT_GRAB) //Grab the tank to rip people out of it. Use this if someone dies in it.
+		if(!allowed(user))
+			to_chat(user, "<span class='warning'>[src]'s hatch won't budge!.</span>")
+			return FALSE
+
+		var/list/occupants = list()
+		for(var/mob/living/L in contents)
+			occupants["[L.name] [L.stat == DEAD ? "(DEAD)" :""]"] += L
+		if(!length(occupants))
+			to_chat(user, "<span class='warning'>No one is currently occupying [src]!.</span>")
+			return
+		var/choice = input(user, "Who do you want to forcibly remove from [src]?", "Your violent tendencies") as null|anything in occupants
+		if(!choice)
+			return
+		var/mob/living/L = choice
+		user.visible_message("<span class='warning'>[user] starts to force their way through [src]'s hatch!.</span>",
+		"<span class='notice'>You start to force your way through [src]'s hatch to grab [L].</span>")
+		var/time = 6 SECONDS - (1 SECONDS * user.mind.cm_skills.large_vehicle)
+		if(!do_after(user, time, TRUE, src, BUSY_ICON_BUILD))
+			return
+		exit_tank(L)
+		L.SpinAnimation(1,1)
+		L.throw_at(user, 3)
+		// Applying STUN, WEAKEN and STUTTER
+		L.apply_effects(6, 6, 0, 0, 6, 0, 0, 0, 0)
+		user.visible_message("<span class='warning'>[user] rips [L] out of [src] and bodyslams them!.</span>",
+		"<span class='notice'>You rip [L] out of [src] and bodyslam them!.</span>")
+		playsound(get_turf(src), 'sound/effects/throw.ogg', 100, 1)
+		return
+
+	// Entering the tank
 	var/position = alert("What seat would you like to enter?.", name, POSITION_DRIVER, POSITION_GUNNER, POSITION_PASSENGER, "Cancel") //God I wish I had radials to work with
 	if(!position || position == "Cancel")
 		return
@@ -385,6 +393,12 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tank/proc/exit_tank(mob/living/L) //By this point, we've checked that the seats are actually empty, so we won't need to do that again HOPEFULLY
 	if(!istype(L))
 		return
+	
+	var/turf/T = get_step(L, turn(src.dir, 180))
+	if(!T.CanPass(L, T))
+		to_chat(L, "<span class='warning'>You can't exit right now, there is something blocking the exit.</span>")
+		return
+
 	if(L == pilot)
 		pilot = null
 		operators -= L
@@ -395,12 +409,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		passengers -= L
 		operators -= L
 
-	var/turf/T = get_step(L, turn(src.dir, 180))
-	if(!T.CanPass(L, T))
-		to_chat(L, "<span class='warning'>You can't exit right now, there is something blocking the exit.</span>")
-		return
-
-	L.forceMove(get_step(L, turn(src.dir, 180)))
+	L.forceMove(T)
 	to_chat(L, "<span class='notice'>You hop out of [L] and slam its hatch shut behind you.</span>")
 
 /obj/vehicle/tank/relaymove(mob/user, direction)
