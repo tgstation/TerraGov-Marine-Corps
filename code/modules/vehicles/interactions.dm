@@ -30,8 +30,6 @@
 
 /obj/vehicle/tank/welder_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(!iswelder(I)) //Weld to repair the tank
-		return
 	if(obj_integrity >= max_integrity)
 		to_chat(user, "<span class='warning'>You can't see any visible dents on [src].</span>")
 		return

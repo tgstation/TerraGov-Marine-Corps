@@ -5,7 +5,7 @@
 	layer = ABOVE_HUD_LAYER
 
 /obj/screen/human/equip/Click()
-	if(istype(usr.loc, /obj/vehicle)) // stops inventory actions in a mech
+	if(istype(usr.loc, /obj/vehicle/tank)) // stops inventory actions in a mech
 		return TRUE
 	SEND_SIGNAL(usr, COMSIG_CLICK_QUICKEQUIP)
 
