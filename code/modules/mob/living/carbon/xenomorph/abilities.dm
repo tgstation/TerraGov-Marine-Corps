@@ -521,8 +521,8 @@
 	succeed_activate()
 
 	if(istype(A, /obj/vehicle))
-		var/obj/vehicle/roadtrafficaccident = A
-		roadtrafficaccident.take_damage((1 / newacid.acid_strength) * 20)
+		var/obj/vehicle/veh = A
+		veh.take_damage((1 / newacid.acid_strength) * 20)
 		X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff at \the [A]. It sizzles under the bubbling mess of acid!</span>", \
 			"<span class='xenowarning'>We vomit globs of vile stuff at \the [A]. It sizzles under the bubbling mess of acid!</span>", null, 5)
 		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)

@@ -178,8 +178,8 @@
 
 /obj/structure/bed/chair/dropship/passenger/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle) && !is_animating)
-		var/obj/vehicle/roadtrafficaccident =  mover
-		if(!roadtrafficaccident.demolish_on_ram)
+		var/obj/vehicle/veh =  mover
+		if(!veh.demolish_on_ram)
 			return ..()
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
 		INVOKE_ASYNC(src, .proc/fold_down, TRUE)

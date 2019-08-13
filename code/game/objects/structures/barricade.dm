@@ -101,8 +101,8 @@
 		return TRUE
 
 	if(istype(mover, /obj/vehicle))
-		var/obj/vehicle/tank = mover
-		if(!tank.demolish_on_ram)
+		var/obj/vehicle/veh = mover
+		if(!veh.demolish_on_ram)
 			return FALSE
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
 		destroy_structure(0)
