@@ -109,7 +109,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		L.mind.cm_skills = S
 
 	if(!ishuman(L))
-		return FALSE
+		return TRUE
 	var/mob/living/carbon/human/H = L
 
 	var/datum/outfit/job/O
