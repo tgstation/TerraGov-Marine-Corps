@@ -314,7 +314,7 @@
 	synthetic_name	= reject_bad_name(synthetic_name)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
 	xeno_name		= reject_bad_name(xeno_name)
-	ai_name			= reject_bad_name(ai_name)
+	ai_name			= reject_bad_name(ai_name, TRUE)
 
 	real_name		= reject_bad_name(real_name)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
@@ -392,7 +392,7 @@
 	synthetic_name	= reject_bad_name(synthetic_name)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
 	xeno_name		= reject_bad_name(xeno_name)
-	ai_name			= reject_bad_name(ai_name)
+	ai_name			= reject_bad_name(ai_name, TRUE)
 
 	real_name		= reject_bad_name(real_name)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
