@@ -185,14 +185,14 @@
 
 //Autofire component
 #define AUTOFIRE_STAT_SLEEPING (1<<0) //Component is in the gun, but the gun is in a different firemode. Sleep until a compatible firemode is activated.
-// ^^ sleep_up() ^^
 // VV wake_up() VV
+// ^^ sleep_up() ^^
 #define AUTOFIRE_STAT_IDLE (1<<1) //Compatible firemode is in the gun. Wait until it's held in the user hands.
-// ^^ autofire_off() ^^
 // VV autofire_on() VV
+// ^^ autofire_off() ^^
 #define AUTOFIRE_STAT_ALERT	(1<<2) //Gun is active and in the user hands. Wait until user does a valid click.
-// ^^ stop_autofiring() ^^
 // VV start_autofiring() VV
+// ^^ stop_autofiring() ^^
 #define AUTOFIRE_STAT_FIRING (1<<3) //Dakka-dakka-dakka.
 
 
