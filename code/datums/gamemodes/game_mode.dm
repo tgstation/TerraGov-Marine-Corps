@@ -180,6 +180,8 @@
 			roletext = "End of Round Deathmatch"
 		if(BE_ALIEN)
 			roletext = ROLE_XENOMORPH
+		if(BE_ALIEN_UNREVIVABLE)
+			roletext = "[ROLE_XENOMORPH] when unrevivable"
 		if(BE_QUEEN)
 			roletext = ROLE_XENO_QUEEN
 		if(BE_SURVIVOR)
