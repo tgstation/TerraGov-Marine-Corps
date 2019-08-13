@@ -430,7 +430,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	var/facing = get_dir(src, A)
 	var/turf/temp = get_turf(loc)
 	var/turf/T = get_turf(loc)
-	A.tank_collision(src, facing, T, temp)
+	A.vehicle_collision(src, facing, T, temp)
 	if(isliving(A) && pilot)
 		log_attack("[pilot] drove over [A] with [src]")
 

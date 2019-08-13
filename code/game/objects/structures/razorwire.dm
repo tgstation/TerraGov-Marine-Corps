@@ -297,8 +297,8 @@
 	if(mover.throwing && istype(mover,/obj/item))
 		return TRUE
 	if(istype(mover, /obj/vehicle))
-		var/obj/vehicle/roadtrafficaccident =  mover
-		if(!roadtrafficaccident.demolish_on_ram)
+		var/obj/vehicle/veh =  mover
+		if(!veh.demolish_on_ram)
 			return ..()
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
 		destroyed()
