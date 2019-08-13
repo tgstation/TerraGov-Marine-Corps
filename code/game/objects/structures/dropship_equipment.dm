@@ -14,6 +14,7 @@
 	anchored = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "equip_base"
+	layer = ABOVE_OBJ_LAYER
 	var/base_category //what kind of equipment this base accepts.
 	var/ship_tag //used to associate the base to a dropship.
 	var/obj/structure/dropship_equipment/installed_equipment
