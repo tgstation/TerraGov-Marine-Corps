@@ -7,7 +7,7 @@
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
-	color = "#FF0000"
+	color = COLOR_RED
 	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -344,26 +344,26 @@
 	update_wclass()
 
 /obj/item/stack/cable_coil/yellow
-	color = "#FFFF00"
+	color = COLOR_YELLOW
 
 /obj/item/stack/cable_coil/blue
-	color = "#1919C8"
+	color = COLOR_BLUE
 
 /obj/item/stack/cable_coil/green
-	color = "#00AA00"
+	color = COLOR_GREEN
 
 /obj/item/stack/cable_coil/pink
-	color = "#FF3CCD"
+	color = COLOR_PINK
 
 /obj/item/stack/cable_coil/orange
-	color = "#FF8000"
+	color = COLOR_ORANGE
 
 /obj/item/stack/cable_coil/cyan
-	color = "#00FFFF"
+	color = COLOR_CYAN
 
 /obj/item/stack/cable_coil/white
-	color = "#FFFFFF"
+	color = COLOR_WHITE
 
 /obj/item/stack/cable_coil/random/Initialize(mapload, new_amount, param_color)
 	. = ..()
-	color = pick("#FF0000", "#1919C8", "#00AA00", "#FFFFFF", "#FF3CCD", "#FFFF00", "#00FFFF")
+	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_BLUE, COLOR_GREEN, COLOR_PINK, COLOR_ORANGE, COLOR_CYAN, COLOR_WHITE)
