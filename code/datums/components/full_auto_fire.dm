@@ -49,16 +49,15 @@
 		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 			component_fire_mode = fire_mode
 		else
-			if(autofire_stat & AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING)
+			if(autofire_stat & (AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING))
 				sleep_up()
 			return //No need for autofire on other modes.
 	
-	switch(autofire_stat)
-		if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT)
-			return //We've updated the firemode. No need for more.
-		if(AUTOFIRE_STAT_FIRING)
-			stop_autofiring() //Let's stop shooting to avoid issues.
-			return
+	if(autofire_stat & (AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT))
+		return //We've updated the firemode. No need for more.
+	if(autofire_stat & AUTOFIRE_STAT_FIRING)
+		stop_autofiring() //Let's stop shooting to avoid issues.
+		return
 	
 	autofire_stat = AUTOFIRE_STAT_IDLE
 
@@ -86,7 +85,7 @@
 
 // There is a gun and there is a user wielding it. The component now waits for the mouse click.
 /datum/component/automatic_fire/proc/autofire_on(client/usercli)
-	if(autofire_stat & AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING)
+	if(autofire_stat & (AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING))
 		return
 	autofire_stat = AUTOFIRE_STAT_ALERT
 	clicker = usercli
@@ -99,12 +98,13 @@
 
 
 /datum/component/automatic_fire/proc/autofire_off(datum/source)
-	switch(autofire_stat)
-		if(AUTOFIRE_STAT_SLEEPING, AUTOFIRE_STAT_IDLE)
-			return
-		if(AUTOFIRE_STAT_FIRING)
-			stop_autofiring()
+	if(autofire_stat & (AUTOFIRE_STAT_SLEEPING|AUTOFIRE_STAT_IDLE))
+		return
+	if(autofire_stat & AUTOFIRE_STAT_FIRING)
+		stop_autofiring()
+
 	autofire_stat = AUTOFIRE_STAT_IDLE
+
 	if(!QDELETED(clicker))
 		UnregisterSignal(clicker, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP, COMSIG_CLIENT_MOUSEDRAG))
 	mouse_status = AUTOFIRE_MOUSEUP //In regards to the component there's no click anymore to care about.
@@ -147,11 +147,10 @@
 
 	source.click_intercepted = world.time //From this point onwards Click() will no longer be triggered.
 
-	switch(autofire_stat)
-		if(AUTOFIRE_STAT_SLEEPING, AUTOFIRE_STAT_IDLE)
-			CRASH("on_mouse_down() called with [autofire_stat] autofire_stat")
-		if(AUTOFIRE_STAT_FIRING)
-			stop_autofiring() //This can happen if we click and hold and then alt+tab, printscreen or other such action. MouseUp won't be called then and it will keep autofiring.
+	if(autofire_stat & (AUTOFIRE_STAT_SLEEPING|AUTOFIRE_STAT_IDLE))
+		CRASH("on_mouse_down() called with [autofire_stat] autofire_stat")
+	if(autofire_stat & AUTOFIRE_STAT_FIRING)
+		stop_autofiring() //This can happen if we click and hold and then alt+tab, printscreen or other such action. MouseUp won't be called then and it will keep autofiring.
 
 	src.target = target
 	mouse_parameters = params
