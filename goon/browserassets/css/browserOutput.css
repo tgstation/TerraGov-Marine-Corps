@@ -210,13 +210,13 @@ a.popt {text-decoration: none;}
 
 .icon-stack {height: 1em; line-height: 1em; width: 1em; vertical-align: middle; margin-top: -2px;}
 
-.emojiPicker1 {padding: 10px; text-align: center;}
-.emojiPicker1 .emojiList {max-height: 185px; overflow-y: auto;}
-.emojiPicker1 i {margin: 4px;}
-.emojiPicker1 a {font-size: 20px;}
-.emojiPicker1 a:hover {background: #ccc;}
-.emojiPicker1 #picker-notify {display: none; position: absolute; width: 100%; text-align: center;}
-.emojiPicker1 #picker-notify span {background-color: #67ba5d; padding-left: 5px; padding-right: 5px;}
+.emojiPicker {padding: 10px; text-align: center;}
+.emojiPicker .emojiList {max-height: 185px; overflow-y: auto;}
+.emojiPicker i {margin: 4px;}
+.emojiPicker a {font-size: 20px;}
+.emojiPicker a:hover {background: #ccc;}
+.emojiPicker #picker-notify {display: none; position: absolute; width: 100%; text-align: center;}
+.emojiPicker #picker-notify span {background-color: #67ba5d; padding-left: 5px; padding-right: 5px;}
 
 /*****************************************
 *
