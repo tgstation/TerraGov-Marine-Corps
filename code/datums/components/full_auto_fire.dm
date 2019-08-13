@@ -49,9 +49,8 @@
 		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 			component_fire_mode = fire_mode
 		else
-			switch(autofire_stat)
-				if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
-					sleep_up()
+			if(autofire_stat & AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING)
+				sleep_up()
 			return //No need for autofire on other modes.
 	
 	switch(autofire_stat)
@@ -75,11 +74,10 @@
 
 
 /datum/component/automatic_fire/proc/sleep_up()
-	switch(autofire_stat)
-		if(AUTOFIRE_STAT_SLEEPING)
-			return //Already asleep
-		if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
-			autofire_off()
+	if(autofire_stat & AUTOFIRE_STAT_SLEEPING)
+		return //Already asleep
+
+	autofire_off()
 
 	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETED, COMSIG_ITEM_EQUIPPED))
 	
@@ -88,9 +86,8 @@
 
 // There is a gun and there is a user wielding it. The component now waits for the mouse click.
 /datum/component/automatic_fire/proc/autofire_on(client/usercli)
-	switch(autofire_stat)
-		if(AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
-			return
+	if(autofire_stat & AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING)
+		return
 	autofire_stat = AUTOFIRE_STAT_ALERT
 	clicker = usercli
 	shooter = clicker.mob
@@ -164,37 +161,45 @@
 //Dakka-dakka
 /datum/component/automatic_fire/proc/start_autofiring()
 	if(autofire_stat == AUTOFIRE_STAT_FIRING)
-		return
+		return //Already pew-pewing.
 	autofire_stat = AUTOFIRE_STAT_FIRING
-	if(auto_delay_timer)
+
+	if(auto_delay_timer) //This shouldn't be happening, so let's stack_trace it and remove it if nothing is caught.
+		stack_trace("start_autofiring called with a non-null auto_delay_timer")
 		if(!deltimer(auto_delay_timer))
 			INVOKE_NEXT_TICK(src, .proc/keep_trying_to_delete_timer, auto_delay_timer)
 		auto_delay_timer = null
+
 	clicker.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
-	if(mouse_status == AUTOFIRE_MOUSEUP) //This is not guaranteed. See the var definition for the motive.
+
+	if(mouse_status == AUTOFIRE_MOUSEUP) //See mouse_status definition for the reason for this.
 		RegisterSignal(clicker, COMSIG_CLIENT_MOUSEUP, .proc/on_mouse_up)
 		mouse_status = AUTOFIRE_MOUSEDOWN
+
 	RegisterSignal(shooter, COMSIG_CARBON_SWAPPED_HANDS, .proc/stop_autofiring)
+
 	if(isgun(parent))
 		var/obj/item/weapon/gun/shoota = parent
 		if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
 			stop_autofiring()
 			return
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
-		return //Might have been interrupted while on_autofire_start() was being processed.
+		return //Things may have changed while on_autofire_start() was being processed, due to do_after's sleep.
+
 	switch(component_fire_mode)
 		if(GUN_FIREMODE_AUTOMATIC)
-			if(!process_shot())
-				return //Clicked empty most likely.
+			if(!process_shot()) //First shot is processed instantly.
+				return //If it fails, such as when the gun is empty, then there's no need to schedule a second shot.
 			auto_delay_timer = addtimer(CALLBACK(src, .proc/process_shot), autofire_shot_delay, TIMER_STOPPABLE|TIMER_LOOP)
 		if(GUN_FIREMODE_AUTOBURST)
 			process_burst()
 			if(autofire_stat != AUTOFIRE_STAT_FIRING)
 				return //If process_burst() fails, it will stop autofiring. We don't want a timer added then.
-			var/burstfire_burst_delay = (burstfire_shot_delay * shots_to_fire) + (autofire_shot_delay * 3) //For testing. In the long run this will be set via signals.
+			var/burstfire_burst_delay = (burstfire_shot_delay * shots_to_fire) + (autofire_shot_delay * 3) //Delay between bursts, values taken from the maximum possible in non-auto burst mode.
 			auto_delay_timer = addtimer(CALLBACK(src, .proc/process_burst), burstfire_burst_delay, TIMER_STOPPABLE|TIMER_LOOP)
 		else
 			CRASH("start_autofiring() called with no valid component_fire_mode")
+
 	RegisterSignal(clicker, COMSIG_CLIENT_MOUSEDRAG, .proc/on_mouse_drag)
 
 
