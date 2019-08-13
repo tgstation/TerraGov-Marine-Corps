@@ -165,7 +165,7 @@
 	if(!istype(target))
 		return
 
-	if(!tracking_target.can_track(current_user))
+	if(!target.can_track(current_user))
 		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
 		tracking_target = null
 		return
