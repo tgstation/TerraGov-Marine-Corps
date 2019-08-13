@@ -110,7 +110,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	if(!ishuman(L))
 		return FALSE
-	var/mob/living/carbon/human/H
+	var/mob/living/carbon/human/H = L
 
 	var/datum/outfit/job/O
 	if(outfit)
