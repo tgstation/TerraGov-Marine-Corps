@@ -17,7 +17,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	icon = 'icons/obj/hardpoint_modules.dmi'
 	icon_state = "glauncher"
 	var/obj/vehicle/tank/owner
-	var/list/fire_sounds = list('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg')
+	var/list/fire_sounds = list('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg')
 	var/obj/item/ammo_magazine/ammo
 	var/default_ammo = /obj/item/ammo_magazine/tank/ltb_cannon //What do we start with?
 	var/list/accepted_ammo = list( //Alternative ammo types that we'll accept. The default ammo is in this by default
@@ -37,7 +37,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	name = "TGS 3 XENOCRUSHER tank machine gun"
 	desc = "A much better gun that shits out bullets at ridiculous speeds, don't get in its way!"
 	icon_state = "m56_cupola"
-	fire_sounds = list('sound/weapons/tank_minigun_loop.ogg')
+	fire_sounds = list('sound/weapons/guns/fire/tank_minigun_loop.ogg')
 	default_ammo = /obj/item/ammo_magazine/tank/ltaaap_minigun
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/towlauncher,
@@ -52,7 +52,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	name = "MKV-7 utility payload launcher"
 	desc = "A double barrelled cannon which can rapidly deploy utility packages to the battlefield."
 	icon_state = "APC uninstalled dualcannon" // TODO: Err?
-	fire_sounds = list('sound/weapons/gun_shotgun_automatic.ogg', 'sound/weapons/gun_shotgun_light.ogg', 'sound/weapons/gun_shotgun_heavy.ogg')
+	fire_sounds = list('sound/weapons/guns/fire/shotgun_automatic.ogg', 'sound/weapons/guns/fire/shotgun_light.ogg', 'sound/weapons/guns/fire/shotgun_heavy.ogg')
 	default_ammo = /obj/item/ammo_magazine/tank/tank_slauncher
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/towlauncher, 
@@ -84,7 +84,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		to_chat(owner.gunner, "<span class='warning'>Firing [src] here would damage your vehicle!</span>")
 		return FALSE
 	if(ammo.current_rounds <= 0)
-		playsound(get_turf(src), 'sound/weapons/gun_empty.ogg', 100, 1)
+		playsound(get_turf(src), 'sound/weapons/guns/fire/empty.ogg', 100, 1)
 		return FALSE
 	return TRUE
 
@@ -228,7 +228,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	QDEL_NULL(turret_overlay)
 	QDEL_NULL(primary_weapon)
 	QDEL_NULL(secondary_weapon)
-	playsound(get_turf(src), 'sound/weapons/tank_cannon_fire1.ogg', 100, 1) //Explosion sound
+	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_cannon1.ogg', 100, 1) //Explosion sound
 	return ..()
 
 /obj/vehicle/tank/proc/remove_mobs()
@@ -284,8 +284,9 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	add_overlay(damage_overlay)
 	add_overlay(underlay)
 
+
 /obj/vehicle/tank/attack_hand(mob/living/user)
-	if(!ishuman(user)) //Aliens can't get in a tank...as hilarious as that would be
+	if(!ishuman(user)) // Aliens can't get in a tank...as hilarious as that would be
 		return
 
 	// Exiting the tank
@@ -454,7 +455,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 		to_chat(gunner, "[src]'s secondary weapon hardpoint spins pathetically. Maybe you should install a secondary weapon on this tank?")
 		return FALSE
 	firing_target = A
-	playsound(get_turf(src), 'sound/weapons/tank_minigun_start.ogg', 60, 1)
+	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 60, 1)
 	firing_secondary_weapon = TRUE
 	START_PROCESSING(SSfastprocess, src)
 
