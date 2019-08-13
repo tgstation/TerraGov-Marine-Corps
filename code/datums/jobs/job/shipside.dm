@@ -706,6 +706,9 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	if(!length(GLOB.ai_spawn))
 		CRASH("attempted to spawn an AI with no landmark set")
 
+	if(!H.mind) //Could be a dummy.
+		return
+
 	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
 	H.mind.transfer_to(AI, TRUE)
 	qdel(H)
