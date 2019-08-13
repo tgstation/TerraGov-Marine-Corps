@@ -259,7 +259,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(is_banned_from(user.ckey, ban_check_name))
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
 		else
-			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
+			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[CHECK_BITFIELD(be_special, n) ? "Yes" : "No"]</a><br>"
 
 	dat += "<br><b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=squad'>[preferred_squad]</a><br>"
 
