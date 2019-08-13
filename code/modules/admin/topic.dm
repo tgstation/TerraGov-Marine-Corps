@@ -2028,3 +2028,68 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		if(href_list["doset"])
 			Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "rank" = "equipment", "mob" = REF(H)))
+
+
+	else if(href_list["xeno"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/xenomorph/X = locate(href_list["mob"]) in GLOB.xeno_mob_list
+		if(!istype(X))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/change
+		var/previous
+
+		switch(href_list["xeno"])
+			if("hive")
+				previous = X.hivenumber
+
+				var/newhive = input("Select a hive.", "Xeno Panel") as null|anything in GLOB.hive_datums
+				if(!newhive)
+					return
+
+				var/datum/hive_status/S = GLOB.hive_datums[newhive]
+
+				change = S.hivenumber
+				if(previous == change)
+					return
+
+				if(!istype(X) || X.hivenumber != previous)
+					to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+					return
+
+				X.transfer_to_hive(change)
+			
+			if("nicknumber")
+				previous = X.nicknumber 
+
+				change = input("Select a nicknumber.", "Xeno Panel", previous) as null|num
+				if(!change || change == previous)
+					return
+
+				if(!istype(X))
+					to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+					return
+
+				X.nicknumber = change
+				X.generate_name()
+
+			if("upgrade")
+				previous = X.xeno_caste.upgrade 
+
+				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)
+				if(!change || change == previous)
+					return
+
+				if(!istype(X))
+					to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+					return
+
+				X.upgrade_xeno(change)
+
+		usr.client.holder.xeno_panel(X)
+
+		log_admin("[key_name(usr)] changed [href_list["xeno"]] of [X] from [previous] to [change].")
+		message_admins("[ADMIN_TPMONTY(usr)] changed [href_list["xeno"]] of [ADMIN_TPMONTY(X)] from [previous] to [change].")
