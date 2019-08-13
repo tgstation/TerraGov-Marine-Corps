@@ -46,13 +46,13 @@
 
 /datum/component/automatic_fire/proc/wake_up(datum/source, fire_mode, client/usercli)
 	switch(fire_mode)
-		if(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE)
+		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+			component_fire_mode = fire_mode
+		else
 			switch(autofire_stat)
 				if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT, AUTOFIRE_STAT_FIRING)
 					sleep_up()
-			return //No need for autofire on this mode.
-	
-	component_fire_mode = fire_mode
+			return //No need for autofire on other modes.
 	
 	switch(autofire_stat)
 		if(AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT)
