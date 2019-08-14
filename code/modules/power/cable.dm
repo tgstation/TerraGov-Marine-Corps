@@ -21,6 +21,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	layer = WIRE_LAYER
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
+	color = COLOR_RED
 
 	var/datum/powernet/powernet
 	var/obj/item/stack/cable_coil/stored
@@ -33,25 +34,25 @@ By design, d1 is the smallest direction and d2 is the highest
 
 
 /obj/structure/cable/yellow
-	color = "#ffe28a"
+	color = COLOR_YELLOW
 
 /obj/structure/cable/green
-	color = "#589471"
+	color = COLOR_GREEN
 
 /obj/structure/cable/blue
-	color = "#a8c1dd"
+	color = COLOR_BLUE
 
 /obj/structure/cable/pink
-	color = "#6fcb9f"
+	color = COLOR_PINK
 
 /obj/structure/cable/orange
-	color = "#ff9845"
+	color = COLOR_ORANGE
 
 /obj/structure/cable/cyan
-	color = "#a8c1dd"
+	color = COLOR_CYAN
 
 /obj/structure/cable/white
-	color = "#666547"
+	color = COLOR_WHITE
 
 /obj/structure/cable/Initialize(mapload, param_color)
 	. = ..()
