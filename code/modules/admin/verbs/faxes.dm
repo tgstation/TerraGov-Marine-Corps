@@ -31,10 +31,7 @@ GLOBAL_LIST_EMPTY(faxes)
 
 	GLOB.faxes[F] = F
 
-	if(admin)
-		log_admin("[key_name(sender)] sent a fax. | Adressed to: [department][SM?.department ? " | From: [SM.department]" : ""] | Titled: [title] | Message: [message]")
-	else
-		log_game("[key_name(sender)] sent a fax. | Adressed to: [department][SM?.department ? " | From: [SM.department]" : ""] | Titled: [title] | Message: [message]")
+	log_game("[key_name(sender)] sent a fax. | Adressed to: [department][SM?.department ? " | From: [SM.department]" : ""] | Titled: [title] | Message: [message]")
 
 	if(SM)
 		for(var/client/C in GLOB.admins)
