@@ -240,6 +240,9 @@
 		attack_hand(X)
 
 
+/obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
+	. = ..()
+	on_launch()
 
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
