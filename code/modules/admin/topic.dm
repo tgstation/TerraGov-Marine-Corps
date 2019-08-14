@@ -2041,6 +2041,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/change
 		var/previous
+		var/old_keyname = key_name(X)
 
 		switch(href_list["xeno"])
 			if("hive")
@@ -2089,6 +2090,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 				X.upgrade_xeno(change)
 
+		DIRECT_OUTPUT(usr, browse(null, "window=xeno_panel_[old_keyname]"))
 		usr.client.holder.xeno_panel(X)
 
 		log_admin("[key_name(usr)] changed [href_list["xeno"]] of [X] from [previous] to [change].")
