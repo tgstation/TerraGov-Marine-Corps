@@ -2,9 +2,9 @@
 	name = "cat"
 	desc = "Kitty!!"
 	icon = 'icons/mob/pets.dmi'
-	icon_state = "cat2"
-	icon_living = "cat2"
-	icon_dead = "cat2_dead"
+	icon_state = "cat"
+	icon_living = "cat"
+	icon_dead = "cat_dead"
 	gender = MALE
 	speak = list("Meow!", "Esp!", "Purr!", "HSSSSS")
 	speak_emote = list("purrs", "meows")
@@ -51,9 +51,6 @@
 /mob/living/simple_animal/cat/Runtime
 	name = "Runtime"
 	desc = "GCAT"
-	icon_state = "cat"
-	icon_living = "cat"
-	icon_dead = "cat_dead"
 	gender = FEMALE
 
 
@@ -61,7 +58,9 @@
 	name = "Jones"
 	real_name = "Jones"
 	desc = "Old and grumpy cat."
-
+	icon_state = "cat2"
+	icon_living = "cat2"
+	icon_dead = "cat2_dead"
 
 /mob/living/simple_animal/cat/Life()
 	if(!stat && !buckled && !client)
@@ -86,7 +85,7 @@
 
 /mob/living/simple_animal/cat/MouseDrop(atom/over_object)
 	. = ..()
-	
+
 	if(!ishuman(over_object))
 		return
 
