@@ -159,8 +159,6 @@
 /obj/item/transfer_valve/proc/toggle_valve()
 	if(valve_open==0 && (tank_one && tank_two))
 		valve_open = 1
-		var/turf/bombturf = get_turf(src)
-		var/area/A = get_area(bombturf)
 
 		merge_gases()
 		spawn(20) // In case one tank bursts

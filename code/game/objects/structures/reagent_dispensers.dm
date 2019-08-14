@@ -120,7 +120,6 @@
 			return
 
 		user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
-		var/obj/item/assembly_holder/H = I
 		rig = I
 		user.transferItemToLoc(I, src)
 
