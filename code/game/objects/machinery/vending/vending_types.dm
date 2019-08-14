@@ -49,7 +49,7 @@
 					/obj/item/reagent_container/food/drinks/cans/aspen = 20,/obj/item/reagent_container/food/drinks/bottle/davenport = 3)
 	contraband = list(/obj/item/reagent_container/food/drinks/tea = 10)
 	vend_delay = 15
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211
 	//product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
 	//product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 
@@ -86,7 +86,7 @@
 					/obj/item/reagent_container/food/snacks/packaged_burrito = 12,
 					/obj/item/reagent_container/food/snacks/packaged_hdogs =12,
 					/obj/item/reagent_container/food/snacks/kepler_crisps = 12,
-					/obj/item/reagent_container/food/snacks/eat_bar = 12,
+					/obj/item/reagent_container/food/snacks/enrg_bar = 12,
 					/obj/item/reagent_container/food/snacks/wrapped/booniebars = 6,
 					/obj/item/reagent_container/food/snacks/wrapped/chunk = 6,
 					/obj/item/reagent_container/food/snacks/wrapped/barcardine = 6)
@@ -122,8 +122,7 @@
 					/obj/item/reagent_container/food/drinks/cans/souto/grape/diet = 5,
 					/obj/item/reagent_container/food/drinks/cans/waterbottle = 2,
 					/obj/item/reagent_container/food/drinks/cans/cola = 10)
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-
+	idle_power_usage = 200
 
 /obj/machinery/vending/cigarette
 	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
@@ -196,7 +195,7 @@
 
 	contraband = list(/obj/item/reagent_container/glass/bottle/toxin = 1)
 
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211
 
 
 //This one's from bay12
@@ -311,7 +310,7 @@
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(/obj/item/reagent_container/food/drinks/drinkingglass/soda = 30)
 	contraband = list(/obj/item/reagent_container/food/drinks/drinkingglass/cola = 20)
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211
 
 /obj/machinery/vending/tool
 	name = "YouTool"
@@ -346,9 +345,6 @@
 					/obj/item/t_scanner = 12, /obj/item/cell = 8, /obj/item/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/light_bulb/tube = 10, /obj/item/stock_parts/scanning_module = 5,/obj/item/stock_parts/micro_laser = 5,
 					/obj/item/stock_parts/matter_bin = 5,/obj/item/stock_parts/manipulator = 5,/obj/item/stock_parts/console_screen = 5)
-	// There was an incorrect entry (cablecoil/power).  I improvised to cablecoil/heavyduty.
-	// Another invalid entry, /obj/item/circuitry.  I don't even know what that would translate to, removed it.
-	// The original products list wasn't finished.  The ones without given quantities became quantity 5.  -Sayu
 
 //This one's from bay12
 /obj/machinery/vending/robotics
@@ -361,10 +357,6 @@
 					/obj/item/cell/high = 12, /obj/item/assembly/prox_sensor = 3,/obj/item/assembly/signaler = 3,/obj/item/healthanalyzer = 3,
 					/obj/item/tool/surgery/scalpel = 2,/obj/item/tool/surgery/circular_saw = 2,/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/tool/screwdriver = 5,/obj/item/tool/crowbar = 5)
-	//everything after the power cell had no amounts, I improvised.  -Sayu
-
-
-
 
 
 // All instances of this vendor will share a single inventory for items in the shared list.
