@@ -2678,7 +2678,7 @@
 
 /obj/item/reagent_container/food/snacks/enrg_bar
 	name = "EnrG Bar"
-	desc = "A calorie dense bar made with ingredients with unpronounceable names. Somehow, even the packaging is edible."
+	desc = "A calorie-dense bar made with ingredients with unpronounceable names. Somehow, even the packaging is edible."
 	icon_state = "energybar"
 	bitesize = 2
 	w_class = WEIGHT_CLASS_TINY
