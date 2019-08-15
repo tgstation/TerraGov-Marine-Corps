@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - imageadd: "Jones now shows up on your head when you equip him"
