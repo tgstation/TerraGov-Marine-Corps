@@ -290,7 +290,7 @@
 /*
 CEILING() is used on some contexts:
 1) For absolute pixel locations to tile conversions, as the coordinates are read from left-to-right (from low to high numbers) and each tile occupies 32 pixels. 
-So if we are in the 32th absolute pixel coordinate we are in tile 1, but if we are in the 33th (to 64th) then we are then in the second tile.
+So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we are on the 33th (to 64th) we are then on the second tile.
 2) For relative pixel coordinates as floats to integers. No special reason, we could use FLOOR()/round() instead and it would tend to offset things a little down instead of up.
 3) For number of pixel moves, as it is counting number of full (pixel) moves required.
 */
@@ -312,7 +312,7 @@ So if we are in the 32th absolute pixel coordinate we are in tile 1, but if we a
 		//Here we take the projectile's absolute pixel coordinate + the travelled distance and use PROJ_ABS_PIXEL_TO_TURF to first convert it into tile coordinates, and then use those to locate the turf.
 		var/turf/next_turf = PROJ_ABS_PIXEL_TO_TURF(apx_to_check, apy_to_check, z)
 		if(!next_turf) //Map limit.
-			end_of_movement = i
+			end_of_movement = (i-- || 1)
 			break
 		if(next_turf == last_processed_turf)
 			x_pixel_dist_travelled += 32 * x_offset
@@ -321,7 +321,7 @@ So if we are in the 32th absolute pixel coordinate we are in tile 1, but if we a
 		var/movement_dir = get_dir(last_processed_turf, next_turf)
 		
 		if(ISDIAGONALDIR(movement_dir)) //Diagonal case. We need to check the turf to cross to get there.
-			if(!x_offset || !y_offset) //Unless a coder screws up this won't happen. Buf if they do, it will cause an infinite processing loop due to division by zero so better safe than sorry.
+			if(!x_offset || !y_offset) //Unless a coder screws up this won't happen. Buf if they do it will cause an infinite processing loop due to division by zero, so better safe than sorry.
 				stack_trace("projectile_batch_move called with diagonal movement_dir and offset-lacking. x_offset: [x_offset], y_offset: [y_offset].")
 				return TRUE
 			var/turf/turf_crossed_by
@@ -333,12 +333,12 @@ So if we are in the 32th absolute pixel coordinate we are in tile 1, but if we a
 				if(NORTHEAST)
 					pixel_moves_until_crossing_x_border = CEILING(((33 - rel_pixel_x_pre) / x_offset), 1)
 					pixel_moves_until_crossing_y_border = CEILING(((33 - rel_pixel_y_pre) / y_offset), 1)
-					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border) //Escapes through the Y border.
+					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border) //Escapes vertically.
 						turf_crossed_by = get_step(last_processed_turf, NORTH)
-					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border) //Escapes through the X border.
+					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border) //Escapes horizontally.
 						turf_crossed_by = get_step(last_processed_turf, EAST)
 					else //Escapes both borders at the same time, perfectly diagonal.
-						turf_crossed_by = get_step(last_processed_turf, pick(NORTH, EAST)) //So choose at random to avoid quirkiness.
+						turf_crossed_by = get_step(last_processed_turf, pick(NORTH, EAST)) //So choose at random to preserve behavior of no purely diagonal movements allowed.
 				if(SOUTHEAST)
 					pixel_moves_until_crossing_x_border = CEILING(((33 - rel_pixel_x_pre) / x_offset), 1)
 					pixel_moves_until_crossing_y_border = CEILING(((0 - rel_pixel_y_pre) / y_offset), 1)
@@ -366,6 +366,18 @@ So if we are in the 32th absolute pixel coordinate we are in tile 1, but if we a
 						turf_crossed_by = get_step(last_processed_turf, WEST)
 					else
 						turf_crossed_by = get_step(last_processed_turf, pick(NORTH, WEST))
+			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+				last_processed_turf = turf_crossed_by
+				ammo.on_hit_turf(turf_crossed_by, src)
+				turf_crossed_by.bullet_act(src)
+				if(pixel_moves_until_crossing_x_border <= pixel_moves_until_crossing_y_border)
+					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
+				else
+					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
+				end_of_movement = i
+				break
 			if(scan_a_turf(turf_crossed_by))
 				last_processed_turf = turf_crossed_by
 				if(pixel_moves_until_crossing_x_border <= pixel_moves_until_crossing_y_border) //Escapes through X or pure diagonal.
@@ -392,7 +404,7 @@ So if we are in the 32th absolute pixel coordinate we are in tile 1, but if we a
 			end_of_movement = i
 			break
 
-	if(last_processed_turf == loc && end_of_movement)
+	if(end_of_movement && last_processed_turf == loc)
 		last_projectile_move = world.time
 		return TRUE
 
@@ -406,13 +418,12 @@ So if we are in the 32th absolute pixel coordinate we are in tile 1, but if we a
 		pixel_y = CEILING(new_pixel_y, 1) - 16
 		forceMove(last_processed_turf)
 	else //Pixel shifts during the animation, which happens after the fact has happened. Light travels slowly here...
-		animate(src, flags = ANIMATION_END_NOW) //End old animation if any.
 		var/old_pixel_x = new_pixel_x - x_pixel_dist_travelled //The pixel offset relative to the new position of where we came from. Float value.
 		var/old_pixel_y = new_pixel_y - y_pixel_dist_travelled
 		pixel_x = CEILING(old_pixel_x, 1) - 16 //Projectile's sprite is displaced back to where it came from through relative pixel offset. Integer value.
 		pixel_y = CEILING(old_pixel_y, 1) - 16 //We substract 16 because this value should range from 1 to 32, but pixel offset usually ranges within the same tile from -15 to 16 (depending on the sprite).
 		forceMove(last_processed_turf)
-		animate(src, pixel_x = (CEILING(new_pixel_x, 1) - 16), pixel_y = (CEILING(new_pixel_y, 1) - 16), time = PROJ_ANIMATION_SPEED) //Then we represent the movement through the animation, which updates the position to the new and correct one.
+		animate(src, pixel_x = (CEILING(new_pixel_x, 1) - 16), pixel_y = (CEILING(new_pixel_y, 1) - 16), time = PROJ_ANIMATION_SPEED, flags = ANIMATION_END_NOW) //Then we represent the movement through the animation, which updates the position to the new and correct one.
 
 	last_projectile_move = world.time
 	if(end_of_movement) //We hit something ...probably!
