@@ -17,10 +17,10 @@
 	GLOB.aiShells -= src
 	..()
 
-/mob/living/silicon/controlled/proc/startControl(mob/living/silicon/ai/ai)
+/mob/living/silicon/controlled/proc/startControl(mob/living/silicon/ai/AI)
 	return
 
-mob/living/silicon/controlled/proc/stopControl(mob/living/silicon/ai/ai)
+/mob/living/silicon/controlled/proc/stopControl(mob/living/silicon/ai/AI)
 	return
 
 /mob/living/silicon/controlled/relaymove(mob/luser, direct)

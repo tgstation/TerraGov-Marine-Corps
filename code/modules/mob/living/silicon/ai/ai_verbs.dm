@@ -316,13 +316,13 @@
 	ghostize(FALSE)
 	offer_mob()
 
-/mob/living/silicon/ai/verb/switch_shell()
+/mob/living/silicon/ai/verb/switch_borg()
 	set category = "Silicon"
 	set name = "Deploy to Shell"
 
 	if(remote_control && istype(remote_control, /mob/living/silicon/controlled))
-		var/mob/living/silicon/controlled/shell = remote_control
-		shell.stopControl(src)
+		var/mob/living/silicon/controlled/borg = remote_control
+		borg.stopControl(src)
 		remote_control = null
 
 	if(remote_control)
@@ -332,18 +332,19 @@
 
 	var/list/possible = list()
 	
-	for(var/mob/living/silicon/controlled/shell in GLOB.aiShells)
+	for(var/mob/living/silicon/controlled/borg in GLOB.aiShells)
 		//TODO: in the future, perhaps do some checks here?
-		possible += shell
+		possible += borg
 
 	if(!length(possible))
 		to_chat(src, "No usable AI shells found.")
+		return
 	
-	var/mob/living/silicon/controlled/shell = input(src, "Which shell to control?") as null|anything in possible
+	var/mob/living/silicon/controlled/borg = input(src, "Which shell to control?") as null|anything in possible
 
-	if(!shell)
+	if(!borg)
 		message_admins("Heil Syndicate.")
 		return
 
-	remote_control = shell
-	shell.startControl(src)
+	remote_control = borg
+	borg.startControl(src)
