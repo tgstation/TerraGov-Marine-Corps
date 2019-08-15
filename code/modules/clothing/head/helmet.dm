@@ -190,7 +190,7 @@
 						/obj/item/toy/handcard = "helmet_card_card",
 						/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
 						/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/reagent_container/food/snacks/eat_bar = "helmet_snack_eat",
+						/obj/item/reagent_container/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
@@ -199,7 +199,7 @@
 	storage_slots = 2
 	max_w_class = 1
 	bypass_w_limit = list(
-		/obj/item/clothing/glasses, 
+		/obj/item/clothing/glasses,
 		/obj/item/reagent_container/food/drinks/flask)
 	cant_hold = list(
 		/obj/item/stack/)
