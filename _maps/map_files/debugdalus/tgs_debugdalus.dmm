@@ -1844,11 +1844,6 @@
 	pixel_z = -1
 	},
 /area/mainship/living/cryo_cells)
-"aej" = (
-/obj/vehicle/tank/apc,
-/turf/open/floor/mainship{
-	pixel_z = -1
-	},
 /area/mainship/hallways/exoarmor)
 "aek" = (
 /obj/structure/rack,
@@ -20296,10 +20291,10 @@ aax
 aax
 aWV
 adD
-adD
-aej
-adD
-adD
+adA
+adA
+adA
+adA
 aVs
 adw
 adw

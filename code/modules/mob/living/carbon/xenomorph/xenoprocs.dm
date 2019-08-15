@@ -679,9 +679,10 @@
 	xeno_mobhud = !xeno_mobhud
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 	if(xeno_mobhud)
-		H.add_hud_to(usr)
+		H.add_hud_to(src)
 	else
-		H.remove_hud_from(usr)
+		H.remove_hud_from(src)
+	to_chat(src, "<span class='notice'>You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD.</span>")
 
 
 /mob/living/carbon/xenomorph/verb/middle_mousetoggle()

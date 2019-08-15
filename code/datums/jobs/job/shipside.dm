@@ -96,7 +96,7 @@ Make the TGMC proud!"})
 /datum/job/command/staffofficer
 	title = STAFF_OFFICER
 	paygrade = "O4"
-	comm_title = "IO"
+	comm_title = "SO"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = ALL_MARINE_ACCESS

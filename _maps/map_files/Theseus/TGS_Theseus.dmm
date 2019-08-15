@@ -24407,10 +24407,6 @@
 	icon_state = "test_floor4"
 	},
 /area/mainship/hallways/exoarmor)
-"beR" = (
-/obj/vehicle/tank/apc,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/exoarmor)
 "beT" = (
 /obj/machinery/light,
 /turf/open/floor/mainship{
@@ -66956,10 +66952,10 @@ aVm
 aVs
 bbO
 hxX
-bbO
-beR
-bbO
-bbO
+bbE
+bbE
+bbE
+bbE
 aTu
 biK
 bjE
