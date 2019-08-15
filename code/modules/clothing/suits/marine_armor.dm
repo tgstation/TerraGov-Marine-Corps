@@ -163,6 +163,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
+		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun)
 
 /obj/item/clothing/suit/storage/marine/MP/WO
