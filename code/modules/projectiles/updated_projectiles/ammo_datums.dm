@@ -69,9 +69,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed 		= CONFIG_GET(number/combat_define/slow_shell_speed) 	// How fast the projectile moves.
 
 
-/datum/ammo/proc/do_at_half_range(obj/item/projectile/proj)
-	return
-
 /datum/ammo/proc/do_at_max_range(obj/item/projectile/proj)
 	return
 
@@ -198,15 +195,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(prob(new_proj.scatter))
 			var/scatter_x = rand(-1, 1)
 			var/scatter_y = rand(-1, 1)
-			new_target = locate(original_P.target_turf.x + round(scatter_x), original_P.target_turf.y + round(scatter_y), original_P.target_turf.z)
+			new_target = locate(original_P.original_target_turf.x + round(scatter_x), original_P.original_target_turf.y + round(scatter_y), original_P.original_target_turf.z)
 			if(!istype(new_target))
 				continue	//If we didn't find anything, make another pass.
-			new_proj.original = new_target
+			new_proj.original_target = new_target
 
 		new_proj.accuracy = round(new_proj.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
 
 		if(!new_target)
-			new_target = original_P.target_turf
+			new_target = original_P.original_target_turf
 		new_proj.fire_at(new_target,original_P.firer, original_P.shot_from, new_proj.ammo.max_range, new_proj.ammo.shell_speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
@@ -780,7 +777,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
 	damage = CONFIG_GET(number/combat_define/super_hit_damage)
-	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed) + 1
+	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
 
 /*
 //================================================

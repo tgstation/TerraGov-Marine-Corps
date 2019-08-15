@@ -34,5 +34,5 @@
 			take_damage(75)
 
 // Density override
-/obj/ovipositor/get_projectile_hit_chance(obj/item/projectile/P)
+/obj/ovipositor/projectile_hit(obj/item/projectile/P)
 	return TRUE

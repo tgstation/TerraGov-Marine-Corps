@@ -411,7 +411,7 @@ Number of tiles.
 
 /*
 Speed.
-How quick the projectile travels, or more accurately how many turfs per sleep(1) it travels.
+How quick the projectile travels, or more accurately how many turfs per decisecond it travels.
 */
 /datum/config_entry/number/combat_define/min_shell_speed
 	config_entry_value = 1

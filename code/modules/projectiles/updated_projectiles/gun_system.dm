@@ -1042,7 +1042,7 @@ and you're good to go.
 			if(new_target)
 				target = new_target//Looks like we found a turf.
 
-	projectile_to_fire.original = target
+	projectile_to_fire.original_target = target
 	return target
 
 

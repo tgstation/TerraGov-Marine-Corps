@@ -331,6 +331,7 @@
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_M56)
 	return ..()
 
+
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
 	if(in_chamber)
 		return TRUE //Already set!
@@ -338,9 +339,14 @@
 		update_icon() //make sure the user can see the lack of ammo.
 		return FALSE //Out of ammo.
 
-	in_chamber = new /obj/item/projectile(loc) //New bullet!
+	create_bullet()
+	return TRUE
+
+
+/obj/machinery/m56d_hmg/proc/create_bullet()
+	in_chamber = new /obj/item/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
-	return 1
+
 
 /obj/machinery/m56d_hmg/proc/process_shot()
 	set waitfor = 0
@@ -396,7 +402,7 @@
 
 	if(load_into_chamber() == 1)
 		if(istype(in_chamber,/obj/item/projectile))
-			in_chamber.original = target
+			in_chamber.original_target = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
 			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)

@@ -100,13 +100,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 /proc/Get_Angle(atom/start, atom/end)//For beams.
 	if(!start || !end) 
-		return FALSE
+		CRASH("Get_Angle called for inexisting atoms: [isnull(start) ? "null" : start] to [isnull(end) ? "null" : end].")
 	if(!start.z || !end.z) 
-		return FALSE //Atoms are not on turfs.
-	var/dy
-	var/dx
-	dy = (32 * end.y + end.pixel_y) - (32 * start.y + start.pixel_y)
-	dx = (32 * end.x + end.pixel_x) - (32 * start.x + start.pixel_x)
+		CRASH("Get_Angle called for inexisting atoms: [isnull(start.loc) ? "null loc" : start.loc] [start] to [isnull(end.loc) ? "null loc" : end.loc] [end].") //Atoms are not on turfs.
+	var/dy = (32 * end.y + end.pixel_y) - (32 * start.y + start.pixel_y)
+	var/dx = (32 * end.x + end.pixel_x) - (32 * start.x + start.pixel_x)
 	if(!dy)
 		return (dx >= 0) ? 90 : 270
 	. = arctan(dx / dy)
@@ -114,6 +112,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		. += 180
 	else if(dx < 0)
 		. += 360
+
+
+/proc/Get_Pixel_Angle(dx, dy)//for getting the angle when animating something's pixel_x and pixel_y
+	var/da = (90 - ATAN2(dx, dy))
+	return (da >= 0 ? da : da + 360)
 
 
 /proc/LinkBlocked(turf/A, turf/B)

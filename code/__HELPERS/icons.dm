@@ -1072,13 +1072,3 @@ ColorTone(rgb, tone)
 		return out_icon
 	else
 		return humanoid_icon_cache[icon_id]
-
-
-/proc/Get_Pixel_Angle(y, x)
-	if(!y)
-		return (x >= 0) ? 90 : 270
-	. = arctan(x / y)
-	if(y < 0)
-		. += 180
-	else if(x < 0)
-		. += 360

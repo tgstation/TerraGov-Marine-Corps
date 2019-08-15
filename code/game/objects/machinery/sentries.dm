@@ -838,12 +838,19 @@
 	return
 
 /obj/machinery/marine_turret/proc/load_into_chamber()
-	if(in_chamber) return 1 //Already set!
-	if(!CHECK_BITFIELD(turret_flags, TURRET_ON) || !cell || rounds == 0 || machine_stat == 1) return 0
+	if(in_chamber)
+		return TRUE //Already set!
+	if(!CHECK_BITFIELD(turret_flags, TURRET_ON) || !cell || rounds == 0 || machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
-	in_chamber = new /obj/item/projectile(loc) //New bullet!
+	create_bullet()
+	return TRUE
+
+
+/obj/machinery/marine_turret/proc/create_bullet()
+	in_chamber = new /obj/item/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
-	return 1
+
 
 /obj/machinery/marine_turret/proc/process_shot()
 	set waitfor = 0
@@ -922,7 +929,7 @@
 				in_chamber.ammo.penetration = round(in_chamber.ammo.penetration * 1.5, 0.01)
 
 			//Setup projectile
-			in_chamber.original = target
+			in_chamber.original_target = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 
