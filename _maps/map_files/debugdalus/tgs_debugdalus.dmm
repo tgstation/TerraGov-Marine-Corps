@@ -1844,7 +1844,6 @@
 	pixel_z = -1
 	},
 /area/mainship/living/cryo_cells)
-/area/mainship/hallways/exoarmor)
 "aek" = (
 /obj/structure/rack,
 /obj/item/tool/weldingtool,
