@@ -454,6 +454,9 @@
 		L.knock_down(10)
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
+	if(I.flags_item & ITEM_ABSTRACT)
+		return
+
 	var/turf/location = user.loc
 	if(!isturf(location)) 
 		return
