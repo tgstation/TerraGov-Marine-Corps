@@ -858,10 +858,9 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(L)].")
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
+/datum/admins/proc/xeno_panel(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
 	set category = "Fun"
-	set name = "Change Hivenumber"
-	set desc = "Set the hivenumber of a xenomorph."
+	set name = "Xeno Panel"
 
 	if(!check_rights(R_FUN))
 		return
@@ -869,43 +868,16 @@
 	if(!istype(X))
 		return
 
-	var/hivenumber_status = X.hivenumber
+	var/dat = "<br>"
 
-	var/list/namelist = list()
-	for(var/Y in GLOB.hive_datums)
-		var/datum/hive_status/H = GLOB.hive_datums[Y]
-		namelist += H.name
+	dat += "Hive: [X.hive.hivenumber] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=hive;mob=[REF(X)]'>Edit</a><br>"
+	dat += "Nicknumber: [X.nicknumber] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=nicknumber;mob=[REF(X)]'>Edit</a><br>"
+	dat += "Upgrade Tier: [X.xeno_caste.upgrade_name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=upgrade;mob=[REF(X)]'>Edit</a><br>"
 
-	var/newhive = input("Select a hive.", "Change Hivenumber") as null|anything in namelist
-	if(!newhive)
-		return
+	var/datum/browser/browser = new(usr, "xeno_panel_[key_name(X)]", "<div align='center'>Xeno Panel [key_name(X)]</div>")
+	browser.set_content(dat)
+	browser.open(FALSE)
 
-	var/newhivenumber
-	switch(newhive)
-		if("Normal")
-			newhivenumber = XENO_HIVE_NORMAL
-		if("Corrupted")
-			newhivenumber = XENO_HIVE_CORRUPTED
-		if("Alpha")
-			newhivenumber = XENO_HIVE_ALPHA
-		if("Beta")
-			newhivenumber = XENO_HIVE_BETA
-		if("Zeta")
-			newhivenumber = XENO_HIVE_ZETA
-		if("Admeme")
-			newhivenumber = XENO_HIVE_ADMEME
-		else
-			return
-
-	if(!istype(X) || X.hivenumber != hivenumber_status)
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-		return
-		return
-
-	X.transfer_to_hive(newhivenumber)
-
-	log_admin("[key_name(usr)] changed hivenumber of [X] from [hivenumber_status] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
 /datum/admins/proc/release(obj/OB in world)
