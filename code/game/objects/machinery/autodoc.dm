@@ -625,8 +625,6 @@
 		return
 	if(occupant)
 		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
-			log_game("[key_name(usr)] ejected [key_name(occupant)] from the autodoc.")
-			message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc.")
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
 			return
 		if(!ishuman(usr))

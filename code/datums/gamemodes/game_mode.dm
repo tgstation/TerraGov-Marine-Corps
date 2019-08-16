@@ -193,8 +193,7 @@
 		if(!(player.client?.prefs?.be_special & role) || !player.ready)
 			continue
 		else if(is_banned_from(player.ckey, roletext))
-			continue	
-		log_game("[key_name(player)] had [roletext] enabled, so we are drafting them.")
+			continue
 		candidates += player.mind
 
 	//Shuffle the players list so that it becomes ping-independent.
