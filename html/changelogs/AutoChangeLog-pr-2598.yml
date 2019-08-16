@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "CAS has been re-enabled"
