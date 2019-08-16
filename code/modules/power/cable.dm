@@ -22,6 +22,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	color = COLOR_RED
+	plane = FLOOR_PLANE
 
 	var/datum/powernet/powernet
 	var/obj/item/stack/cable_coil/stored

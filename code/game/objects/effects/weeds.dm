@@ -9,6 +9,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = TURF_LAYER
+	plane = FLOOR_PLANE
 	var/parent_node
 	max_integrity = 4
 
@@ -142,6 +143,7 @@
 
 /obj/effect/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
+	plane = GAME_PLANE
 	icon_state = "weedwall"
 
 /obj/effect/alien/weeds/weedwall/update_sprite()
