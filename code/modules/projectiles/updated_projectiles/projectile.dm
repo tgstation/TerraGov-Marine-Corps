@@ -4,7 +4,6 @@
 #define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
-#define PROJ_REQMOVES_FAIL -1
 
 //The actual bullet objects.
 /obj/item/projectile
@@ -109,7 +108,7 @@
 		original_target = target
 
 	// VVVVVVVVVVV
-	if(projectile_speed < 1)
+	if(projectile_speed <= 0)
 		stack_trace("[src] achieved [projectile_speed] velocity somehow at fire_at. Type: [type]. From: [target]. Shot by: [shooter].")
 		qdel(src)
 		return
@@ -150,7 +149,7 @@
 	y_offset = round(cos(dir_angle), 0.01)
 
 	var/proj_dir
-	switch(dir_angle) //The projectile starts at the edge of the firer's tile.
+	switch(dir_angle) //The projectile starts at the edge of the firer's tile (still inside it), roughly where the muzzle flash shows.
 		if(0, 360)
 			proj_dir = NORTH
 			pixel_x = 0
@@ -234,12 +233,14 @@
 	rotate.Turn(dir_angle)
 	transform = rotate
 
+	var/first_move = min(projectile_speed, 1)
 	var/first_moves = projectile_speed
-	if(projectile_batch_move(1)) //Hit on first tile travelled.
+	if(projectile_batch_move(first_move)) //Hit on first movement.
 		qdel(src)
 		return
 	invisibility = 0 //Let there be light (visibility).
-	if(--first_moves && projectile_batch_move(first_moves)) //First movement batch happens on the same tick.
+	first_moves -= first_move
+	if(first_moves && projectile_batch_move(first_moves)) //First movement batch happens on the same tick.
 		qdel(src)
 		return
 
@@ -251,13 +252,8 @@
 		return PROCESS_KILL
 
 	var/required_moves = required_moves_calc()
-	switch(required_moves)
-		if(0)
-			return //Slowpoke. Maybe next tick.
-		if(-INFINITY to -1)
-			stack_trace("[src] called process with [required_moves] required_moves somehow. Type: [type]. Shot from: [shot_from]. Speed: [projectile_speed].")
-			qdel(src)
-			return PROCESS_KILL //Error, such as PROJ_REQMOVES_FAIL
+	if(!required_moves)
+		return //Slowpoke. Maybe next tick.
 
 	if(projectile_batch_move(required_moves))
 		qdel(src)
@@ -265,9 +261,6 @@
 
 
 /obj/item/projectile/proc/required_moves_calc()
-	if(projectile_speed < 1)
-		return PROJ_REQMOVES_FAIL
-
 	var/elapsed_time_deciseconds = world.time - last_projectile_move
 	if(!elapsed_time_deciseconds)
 		return 0 //No moves needed if not a tick has passed.
@@ -419,7 +412,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/old_pixel_y = new_pixel_y - y_pixel_dist_travelled
 		pixel_x = CEILING(old_pixel_x, 1) - 16 //Projectile's sprite is displaced back to where it came from through relative pixel offset. Integer value.
 		pixel_y = CEILING(old_pixel_y, 1) - 16 //We substract 16 because this value should range from 1 to 32, but pixel offset usually ranges within the same tile from -15 to 16 (depending on the sprite).
-		forceMove(last_processed_turf)
+		if(last_processed_turf != loc)
+			forceMove(last_processed_turf)
 		animate(src, pixel_x = (CEILING(new_pixel_x, 1) - 16), pixel_y = (CEILING(new_pixel_y, 1) - 16), time = PROJ_ANIMATION_SPEED, flags = ANIMATION_END_NOW) //Then we represent the movement through the animation, which updates the position to the new and correct one.
 
 	last_projectile_move = world.time
@@ -991,4 +985,3 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 #undef DEBUG_HIT_CHANCE
 #undef DEBUG_HUMAN_DEFENSE
 #undef DEBUG_XENO_DEFENSE
-#undef PROJ_REQMOVES_FAIL
