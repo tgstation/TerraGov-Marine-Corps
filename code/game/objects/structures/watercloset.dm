@@ -390,7 +390,7 @@
 		if(WEST)
 			pixel_x = -12
 		if(NORTH)
-			pixel_y = 30
+			pixel_y = -10
 		if(EAST)
 			pixel_x = 12
 
