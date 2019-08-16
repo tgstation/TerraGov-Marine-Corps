@@ -295,12 +295,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/y_pixel_dist_travelled = 0
 	for(var/i in 1 to required_moves)
 		distance_travelled++
-		var/apx_to_check
-		var/apy_to_check
-		apx_to_check = (apx + x_pixel_dist_travelled + (32 * x_offset))
-		apy_to_check = (apy + y_pixel_dist_travelled + (32 * y_offset))
 		//Here we take the projectile's absolute pixel coordinate + the travelled distance and use PROJ_ABS_PIXEL_TO_TURF to first convert it into tile coordinates, and then use those to locate the turf.
-		var/turf/next_turf = PROJ_ABS_PIXEL_TO_TURF(apx_to_check, apy_to_check, z)
+		var/turf/next_turf = PROJ_ABS_PIXEL_TO_TURF((apx + x_pixel_dist_travelled + (32 * x_offset)), (apy + y_pixel_dist_travelled + (32 * y_offset)), z)
 		if(!next_turf) //Map limit.
 			end_of_movement = (i-- || 1)
 			break
