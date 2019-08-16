@@ -334,6 +334,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 			if("ai")
 				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
+				var/datum/job/J = SSjob.GetJobType(/datum/job/ai)
+				J.assign(newmob, preference_source = newmob.client)
 
 		C.holder.show_player_panel(newmob)
 
@@ -1909,7 +1911,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(H.mind)
 					previous = H.mind.assigned_role
 					var/datum/job/J = SSjob.GetJob(change)
-					J.assign(H)
+					J.assign(H, preference_source = H.client)
 					if(href_list["doequip"])
 						H.set_equipment(J.title)
 						addition = ", equipping them"
