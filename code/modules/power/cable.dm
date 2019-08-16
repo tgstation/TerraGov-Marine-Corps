@@ -1,16 +1,3 @@
-GLOBAL_LIST_INIT(cable_colors, list(
-	"yellow" = "#ffff00",
-	"green" = "#00aa00",
-	"blue" = "#1919c8",
-	"pink" = "#ff3cc8",
-	"orange" = "#ff8000",
-	"cyan" = "#00ffff",
-	"white" = "#ffffff",
-	"red" = "#ff0000"
-))
-
-// the power cable object
-
 /* Cable directions (d1 and d2)
 
 //  9   1   5
@@ -34,45 +21,38 @@ By design, d1 is the smallest direction and d2 is the highest
 	layer = WIRE_LAYER
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
+	color = COLOR_RED
 
 	var/datum/powernet/powernet
 	var/obj/item/stack/cable_coil/stored
 
 	var/d1 = CABLE_NODE
 	var/d2 = NORTH
-	var/cable_color = "red"
 	var/id //used for up/down cables
 	//var/obj/machinery/power/breakerbox/breaker_box
 
 
 
 /obj/structure/cable/yellow
-	cable_color = "yellow"
-	color = "#ffe28a"
+	color = COLOR_YELLOW
 
 /obj/structure/cable/green
-	cable_color = "green"
-	color = "#589471"
+	color = COLOR_GREEN
 
 /obj/structure/cable/blue
-	cable_color = "blue"
-	color = "#a8c1dd"
+	color = COLOR_BLUE
 
 /obj/structure/cable/pink
-	cable_color = "pink"
-	color = "#6fcb9f"
+	color = COLOR_PINK
 
 /obj/structure/cable/orange
-	cable_color = "orange"
-	color = "#ff9845"
+	color = COLOR_ORANGE
 
 /obj/structure/cable/cyan
-	cable_color = "cyan"
-	color = "#a8c1dd"
+	color = COLOR_CYAN
 
 /obj/structure/cable/white
-	cable_color = "white"
-	color = "#666547"
+	color = COLOR_WHITE
 
 /obj/structure/cable/Initialize(mapload, param_color)
 	. = ..()
@@ -89,15 +69,13 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(d2 == UP_OR_DOWN)
 		SSmachines.zlevel_cables += src
 
-	var/list/cable_colors = GLOB.cable_colors
-	cable_color = param_color || cable_color || pick(cable_colors)
-	if(cable_colors[cable_color])
-		color = cable_colors[cable_color]
+	if(param_color)
+		color = param_color
 
 	if(d1 != CABLE_NODE)
-		stored = new/obj/item/stack/cable_coil(null,2,cable_color)
+		stored = new/obj/item/stack/cable_coil(null, 2, color)
 	else
-		stored = new/obj/item/stack/cable_coil(null,1,cable_color)
+		stored = new/obj/item/stack/cable_coil(null, 1, color)
 
 	update_icon()
 
@@ -131,7 +109,6 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/cable/update_icon()
 	icon_state = "[d1]-[d2]"
-	color = GLOB.cable_colors[cable_color]
 
 /obj/structure/cable/proc/handlecable(obj/item/I, mob/user, params)
 	var/turf/T = get_turf(src)
@@ -185,10 +162,9 @@ By design, d1 is the smallest direction and d2 is the highest
 	else
 		return FALSE
 
-/obj/structure/cable/proc/update_stored(length = 1, colorC = "red")
+/obj/structure/cable/proc/update_stored(length = 1)
 	stored.amount = length
-	stored.color = GLOB.cable_colors[colorC]
-	stored.item_color = colorC
+	stored.color = color
 	stored.update_icon()
 
 /obj/structure/cable/ex_act(severity)
@@ -203,12 +179,12 @@ By design, d1 is the smallest direction and d2 is the highest
 			qdel(src)
 		if(2.0)
 			if (prob(50))
-				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, cable_color)
+				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, color)
 				qdel(src)
 
 		if(3.0)
 			if (prob(25))
-				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, cable_color)
+				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, color)
 				qdel(src)
 
 ////////////////////////////////////////////
