@@ -16615,7 +16615,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZo" = (
-/obj/structure/closet/secure_closet/cargotech,
+/obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "aZp" = (

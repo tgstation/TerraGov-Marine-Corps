@@ -304,10 +304,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			handle_interface(master.loc)
 
 
-/obj/item/radio/headset/mainship/mt
-	name = "engineering radio headset"
+/obj/item/radio/headset/mainship/st
+	name = "technician radio headset"
 	icon_state = "eng_headset"
-	keyslot = new /obj/item/encryptionkey/engi
+/obj/item/radio/headset/mainship/st/Initialize()
+	. = ..()
+	keyslot = new /obj/item/encryptionkey/engi(src)
+	keyslot2 = new /obj/item/encryptionkey/req(src)
 
 
 /obj/item/radio/headset/mainship/doc
