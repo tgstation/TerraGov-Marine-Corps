@@ -61,7 +61,7 @@
 		update_icon()
 
 	else if(istype(I, /obj/item/grab))
-		if(isxeno(user)) 
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I
 
@@ -104,7 +104,7 @@
 		if(w_items + I.w_class > 5)
 			to_chat(user, "<span class='notice'>The cistern is full.</span>")
 			return
-			
+
 		user.drop_held_item()
 		I.forceMove(src)
 		w_items += I.w_class
@@ -124,7 +124,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/grab))
-		if(isxeno(user)) 
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
@@ -455,7 +455,7 @@
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
 	var/turf/location = user.loc
-	if(!isturf(location)) 
+	if(!isturf(location))
 		return
 
 	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
@@ -463,7 +463,7 @@
 	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		return
 
-	if(user.loc != location || user.get_active_held_item() != I) 
+	if(user.loc != location || user.get_active_held_item() != I)
 		return
 
 	I.clean_blood()
@@ -474,8 +474,11 @@
 
 /obj/structure/sink/kitchen
 	name = "kitchen sink"
-	icon_state = "sink_alt"
+	icon_state = "sink2"
 
+/obj/structure/sink/bathroom
+	name = "kitchen sink"
+	icon_state = "sink3"
 
 /obj/structure/sink/puddle	//splishy splashy ^_^
 	name = "puddle"
