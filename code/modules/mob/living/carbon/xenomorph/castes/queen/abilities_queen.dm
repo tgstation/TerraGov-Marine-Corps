@@ -361,7 +361,6 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/larva_growth,
 		/datum/action/xeno_action/toggle_pheromones
 		)
 
@@ -703,60 +702,3 @@
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	qdel(T)
 	X.use_plasma(600)
-
-// ***************************************
-// *********** Larval growth
-// ***************************************
-/datum/action/xeno_action/activable/larva_growth
-	name = "Advance Larval Growth"
-	action_icon_state = "larva_growth"
-	mechanics_text = "Instantly cause the larva inside a host to grow a set amount."
-	ability_name = "advance larval growth"
-	plasma_cost = 300
-	cooldown_timer = 15 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH
-
-/datum/action/xeno_action/activable/larva_growth/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(!ishuman(A) && !ismonkey(A))
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't accelerate the growth of that host")
-		return FALSE
-
-	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in A
-
-	if(!E)
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>[A] doesn't have a larva growing inside of them.</xenowarning>")
-		return FALSE
-
-	if(E.stage >= 3)
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>\The [E] inside of [A] is too old to be advanced.</xenowarning>")
-		return FALSE
-
-
-/datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/queen/X = owner
-
-	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in A
-
-	X.visible_message("<span class='xenowarning'>\The [X] begins buzzing menacingly at [A].</span>", \
-	"<span class='xenowarning'>We start to advance larval growth inside of [A].</span>", \
-	"<span class='italics'>You hear an angry buzzing...</span>")
-	if(!do_after(X, 50, TRUE, A, BUSY_ICON_CLOCK_ALT) && X.check_plasma(300))
-		return fail_activate()
-
-	if(!can_use_ability(A, TRUE))
-		return fail_activate()
-
-	succeed_activate()
-	X.visible_message("<span class='xenowarning'>\The [X] finishes buzzing, [X.p_their()] echo slowly waning away!</span>", \
-	"<span class='xenowarning'>We advance the larval growth inside of [A] a little!</span>", \
-	"<span class='italics'>You hear buzzing waning away...</span>")
-
-	E.stage++
-	add_cooldown()
