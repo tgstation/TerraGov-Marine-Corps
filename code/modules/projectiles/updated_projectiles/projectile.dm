@@ -110,20 +110,16 @@
 
 	// VVVVVVVVVVV
 	if(projectile_speed < 1)
-		CRASH("[src] achieved [projectile_speed] velocity somehow at fire_at. Type: [type]. From: [target]. Shot by: [shooter].")
-
-	if(!shooter) //This was checked for. Let's investigate if it  has a reason to be.
+		stack_trace("[src] achieved [projectile_speed] velocity somehow at fire_at. Type: [type]. From: [target]. Shot by: [shooter].")
 		qdel(src)
-		CRASH("[src] triggered fire_at without a shooter. target: [target]. source: [source]")
-
-	if(!loc) //This was checked for. Let's investigate if it  has a reason to be.
-		qdel(src)
-		CRASH("[src] triggered fire_at without a loc. target: [target]. shooter: [shooter]. source: [source]")
+		return
 	// ^^^^^^^^^^^
 
-	shot_from = source
-	firer = shooter
-	permutated += firer //Don't hit the shooter
+	if(shooter)
+		firer = shooter
+		permutated += firer //Don't hit the shooter
+	if(source)
+		shot_from = source
 	permutated += src //Don't try to hit self.
 	if(!isturf(loc))
 		forceMove(get_turf(src))
@@ -132,8 +128,9 @@
 
 	// VVVVVVVVVVV
 	if(!original_target_turf) //This shouldn't happen, but it can. //If that's true, then let's fix it.
+		stack_trace("[src] triggered fire_at without a original_target_turf. target: [target]. shooter: [shooter]. source: [source]")
 		qdel(src)
-		CRASH("[src] triggered fire_at without a original_target_turf. target: [target]. shooter: [shooter]. source: [source]")
+		return
 	// ^^^^^^^^^^^
 
 	if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
@@ -144,11 +141,11 @@
 	apx = (((x - 1) * 32) + 16) //Set the absolute coordinates. Center of a tile is assumed to be (16,16)
 	apy = (((y - 1) * 32) + 16)
 
-	//If we clicked on a turf, aim for the clicked pixel. Else use the clicked atom pixel location.
+	//If we clicked on a turf, aim for the clicked pixel. Else use the clicked atom tile's center for maximum accuracy.
 	if(isturf(target))
 		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + p_x) - apx), ((((target.y - 1) * 32) + p_y) - apy))) //Using absolute pixel coordinates.
 	else
-		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + 16 + target.pixel_x) - apx), ((((target.y - 1) * 32) + 16 + target.pixel_y) - apy)))
+		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + 16) - apx), ((((target.y - 1) * 32) + 16) - apy)))
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
 
@@ -413,7 +410,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/new_pixel_x = PROJ_ABS_PIXEL_TO_REL(apx) //The final pixel offset after this movement. Float value.
 	var/new_pixel_y = PROJ_ABS_PIXEL_TO_REL(apy)
-	if(projectile_speed >= 4) //At this speed the projectile is not even a blur. Changing the var through animation alone takes almost 5 times the CPU than setting them directly. No need for that if there's nothing to show for it.
+	if(projectile_speed >= 4) //At this speed the animation barely shows. Changing the vars through animation alone takes almost 5 times the CPU than setting them directly. No need for that if there's nothing to show for it.
 		pixel_x = CEILING(new_pixel_x, 1) - 16
 		pixel_y = CEILING(new_pixel_y, 1) - 16
 		forceMove(last_processed_turf)
@@ -657,8 +654,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P)
 
 /mob/living/bullet_act(obj/item/projectile/P)
-	if(!P) return
-
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
@@ -682,8 +677,6 @@ sniper rifle or something similar. I suppose that's to be expected though.
 Normal range for a defender's bullet resist should be something around 30-50. ~N
 */
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P)
-	if(!P) return
-
 	flash_weak_pain()
 
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
@@ -781,8 +774,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 //Deal with xeno bullets.
 /mob/living/carbon/xenomorph/bullet_act(obj/item/projectile/P)
-	if(!P || !istype(P))
-		return
 	if(issamexenohive(P.firer)) //Aliens won't be harming allied aliens.
 		bullet_ping(P)
 		return
@@ -925,7 +916,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	return 1
 
 
-
 //----------------------------------------------------------
 					//				    \\
 					//    OTHER PROCS	\\
@@ -936,7 +926,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 //This is where the bullet bounces off.
 /atom/proc/bullet_ping(obj/item/projectile/P)
-	if(!P || !P.ammo.ping) return
+	if(!P.ammo.ping)
+		return
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
 		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
@@ -996,17 +987,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 #undef BULLET_MESSAGE_OTHER_SHOOTER
 
 
-//Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals
-/proc/get_adj_simple(atom/Loc1,atom/Loc2)
-	var/dx = Loc1.x - Loc2.x
-	var/dy = Loc1.y - Loc2.y
-
-	if(dx == 0) //left or down of you
-		if(dy == -1 || dy == 1)
-			return 1
-	if(dy == 0) //above or below you
-		if(dx == -1 || dx == 1)
-			return 1
 
 #undef DEBUG_HIT_CHANCE
 #undef DEBUG_HUMAN_DEFENSE
