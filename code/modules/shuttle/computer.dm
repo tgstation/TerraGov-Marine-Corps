@@ -69,9 +69,13 @@
 			if(M.mode != SHUTTLE_IDLE)
 				to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
 				return TRUE
+		var/previous_status = M.mode
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
-				visible_message("Shuttle departing. Please stand away from the doors.")
+				if(previous_status != SHUTTLE_IDLE)
+					visible_message("<span class='notice'>Destination updated, recalculating route.</span>")
+				else
+					visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
 			if(1)
 				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
 				return TRUE

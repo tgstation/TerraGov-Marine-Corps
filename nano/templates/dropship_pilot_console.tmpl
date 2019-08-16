@@ -9,6 +9,7 @@
 
 <h3>Destinations</h3> 
 {{for data.destinations}}
+
 	{{:helper.link(value.name, null, {'move' : value.id}, (data.shuttle_mode == 'idle' || data.shuttle_mode == 'call') ? null : 'disabled', null)}}
 {{/for}}
 

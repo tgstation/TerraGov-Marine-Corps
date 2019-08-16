@@ -118,6 +118,11 @@
 	var/list/right_airlocks = list()
 	var/list/rear_airlocks = list()
 
+
+	var/list/equipments = list()
+	var/list/installed_equipment = list()
+	var/list/selected_equipment = list()
+
 	var/hijack_state = HIJACK_STATE_NORMAL
 
 /obj/docking_port/mobile/marine_dropship/register()
