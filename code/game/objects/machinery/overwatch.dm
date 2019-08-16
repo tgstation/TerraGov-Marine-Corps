@@ -630,29 +630,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is already in [new_squad]!</span>")
 		return
 
-
-	var/no_place = FALSE
-	switch(transfer_marine.mind.assigned_role)
-		if(SQUAD_LEADER)
-			if(new_squad.num_leaders == new_squad.max_leaders)
-				no_place = TRUE
-		if(SQUAD_SPECIALIST)
-			if(new_squad.num_specialists == new_squad.max_specialists)
-				no_place = TRUE
-		if(SQUAD_ENGINEER)
-			if(new_squad.num_engineers >= new_squad.max_engineers)
-				no_place = TRUE
-		if(SQUAD_CORPSMAN)
-			if(new_squad.num_medics >= new_squad.max_medics)
-				no_place = TRUE
-		if(SQUAD_SMARTGUNNER)
-			if(new_squad.num_smartgun == new_squad.max_smartgun)
-				no_place = TRUE
-
-	if(no_place)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [new_squad] can't have another [transfer_marine.mind.assigned_role].</span>")
-		return
-
 	old_squad.remove_from_squad(transfer_marine)
 	new_squad.insert_into_squad(transfer_marine)
 
