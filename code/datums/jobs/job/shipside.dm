@@ -711,14 +711,9 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
 	H.mind.transfer_to(AI, TRUE)
-	qdel(H)
-
-
-/datum/job/ai/assign(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
 	if(preference_source?.prefs)
-		H.fully_replace_character_name(H.name, preference_source.prefs.ai_name)
-
-	return ..()
+		AI.fully_replace_character_name(AI.name, preference_source.prefs.ai_name)
+	qdel(H)
 
 
 /datum/job/ai/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
