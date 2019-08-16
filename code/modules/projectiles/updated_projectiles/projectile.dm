@@ -149,7 +149,7 @@
 	y_offset = round(cos(dir_angle), 0.01)
 
 	var/proj_dir
-	switch(dir_angle) //The projectile starts at the edge of the firer's tile (still inside it), roughly where the muzzle flash shows.
+	switch(dir_angle) //The projectile starts at the edge of the firer's tile (still inside it).
 		if(0, 360)
 			proj_dir = NORTH
 			pixel_x = 0
@@ -403,7 +403,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/new_pixel_x = PROJ_ABS_PIXEL_TO_REL(apx) //The final pixel offset after this movement. Float value.
 	var/new_pixel_y = PROJ_ABS_PIXEL_TO_REL(apy)
-	if(projectile_speed >= 4) //At this speed the animation barely shows. Changing the vars through animation alone takes almost 5 times the CPU than setting them directly. No need for that if there's nothing to show for it.
+	if(projectile_speed > 5) //At this speed the animation barely shows. Changing the vars through animation alone takes almost 5 times the CPU than setting them directly. No need for that if there's nothing to show for it.
 		pixel_x = CEILING(new_pixel_x, 1) - 16
 		pixel_y = CEILING(new_pixel_y, 1) - 16
 		forceMove(last_processed_turf)
