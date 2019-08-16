@@ -140,11 +140,11 @@
 	apx = (((x - 1) * 32) + 16) //Set the absolute coordinates. Center of a tile is assumed to be (16,16)
 	apy = (((y - 1) * 32) + 16)
 
-	//If we clicked on a turf, aim for the clicked pixel. Else use the clicked atom tile's center for maximum accuracy.
-	if(isturf(target))
-		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + p_x) - apx), ((((target.y - 1) * 32) + p_y) - apy))) //Using absolute pixel coordinates.
+	//If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel. 
+	if(isliving(target))
+		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + 16) - apx), ((((target.y - 1) * 32) + 16) - apy))) //Using absolute pixel coordinates.
 	else
-		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + 16) - apx), ((((target.y - 1) * 32) + 16) - apy)))
+		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + p_x) - apx), ((((target.y - 1) * 32) + p_y) - apy)))
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
 
