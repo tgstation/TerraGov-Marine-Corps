@@ -34,7 +34,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/focus_chat = FALSE
 	var/clientfps = 0
 
 	// Custom Keybindings
@@ -126,8 +125,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/keybindings_setup(client/C)
 	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
-	focus_chat = (choice == "Classic")
-	key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+	key_bindings = (!choice || choice == "Hotkey") ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 	save_preferences()
 
 
@@ -323,7 +321,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<h2>Game Settings:</h2>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
-	dat += "<b>Focus chat:</b> <a href='?_src_=prefs;preference=focus_chat'>[(focus_chat) ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 
@@ -531,7 +528,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/bound_key = user_binds[kb.name]
 			bound_key = (bound_key) ? bound_key : "Unbound"
 
-			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [focus_chat ? kb.hotkey_key : kb.classic_key] )</a>"
+			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ([kb.hotkey_key])</a>"
 			HTML += "<br>"
 
 	HTML += "<br><br>"
@@ -938,13 +935,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("windowflashing")
 			windowflashing = !windowflashing
 
-		if("focus_chat")
-			focus_chat = !focus_chat
-			if(focus_chat)
-				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
-			else
-				winset(user, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
-
 		if("clientfps")
 			var/desiredfps = input(user, "Choose your desired FPS. (0 = synced with server tick rate, currently:[world.fps])", "FPS", clientfps) as null|num
 			if(isnull(desiredfps))
@@ -1029,8 +1019,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (choice == "Cancel")
 				ShowKeybindings(user)
 				return
-			focus_chat = (choice == "Classic")
-			key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+			key_bindings = (!choice || choice == "Hotkey") ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 			save_preferences()
 			ShowKeybindings(user)
 			return

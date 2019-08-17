@@ -1,6 +1,3 @@
-#define COLOR_INPUT_DISABLED	"#F0F0F0"
-#define COLOR_INPUT_ENABLED		"#D3B5B5"
-
 #define COLOR_WHITE            "#EEEEEE"
 #define COLOR_GRAY             "#808080"
 #define COLOR_BLACK            "#000000"
