@@ -412,29 +412,21 @@
 	visible_message("[src] beeps, \"[message]\"")
 	return
 
-/obj/machinery/bot/medbot/explode()
-	src.on = 0
-	visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
+/obj/machinery/bot/medbot/deconstruct(disassembled = TRUE)
+	new /obj/item/storage/firstaid(loc)
+	new /obj/item/assembly/prox_sensor(loc)
+	new /obj/item/healthanalyzer(loc)
 
-	new /obj/item/storage/firstaid(Tsec)
+	if(reagent_glass)
+		reagent_glass.forceMove(loc)
 
-	new /obj/item/assembly/prox_sensor(Tsec)
-
-	new /obj/item/healthanalyzer(Tsec)
-
-	if(src.reagent_glass)
-		src.reagent_glass.loc = Tsec
-		src.reagent_glass = null
-
-	if (prob(50))
-		new /obj/item/robot_parts/l_arm(Tsec)
+	if(prob(50))
+		new /obj/item/robot_parts/l_arm(loc)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	return ..()
 
 /obj/machinery/bot/medbot/Bump(M as mob|obj) //Leave no door unopened!
 	if ((istype(M, /obj/machinery/door)) && (!isnull(src.botcard)))

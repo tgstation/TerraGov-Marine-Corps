@@ -17,7 +17,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/cryotypes = list(CRYO_REQ, CRYO_ALPHA, CRYO_BRAVO, CRYO_CHARLIE, CRYO_DELTA)
 	var/mode = CRYOCONSOLE_ITEM_LIST
 	var/category = CRYO_REQ
@@ -198,6 +198,7 @@
 	icon_state = "body_scanner_0"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = RESIST_ALL
 
 	var/mob/living/occupant //Person waiting to be despawned.
 	var/orient_right = FALSE // Flips the sprite.

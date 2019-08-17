@@ -27,7 +27,6 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
-	damage_cap = 3000
 	var/emergency = FALSE
 
 	tiles_with = list(
@@ -560,7 +559,7 @@
 			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
 				return
 
-			obj_integrity = max_integrity
+			repair_damage(max_integrity)
 			DISABLE_BITFIELD(machine_stat, BROKEN)
 			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
 								"<span class='notice'>You finish repairing the airlock.</span>")

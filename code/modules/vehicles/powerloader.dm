@@ -150,10 +150,10 @@
 	if(buckled_mob?.dir != dir)
 		buckled_mob.setDir(dir)
 
-/obj/vehicle/powerloader/explode()
+/obj/vehicle/powerloader/deconstruct(disassembled)
 	new /obj/structure/powerloader_wreckage(loc)
 	playsound(loc, 'sound/effects/metal_crash.ogg', 75)
-	..()
+	return ..()
 
 /obj/item/powerloader_clamp
 	icon = 'icons/obj/powerloader.dmi'
@@ -280,14 +280,4 @@
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE
-
-
-/obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)
-	if(X.a_intent == INTENT_HARM)
-		X.do_attack_animation(src)
-		X.flick_attack_overlay(src, "slash")
-		playsound(loc, "alien_claw_metal", 25, 1)
-		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>We slash [src].</span>")
-		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
-	else
-		attack_hand(X)
+	resistance_flags = XENO_DAMAGEABLE

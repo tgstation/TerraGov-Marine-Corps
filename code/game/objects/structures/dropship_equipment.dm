@@ -131,6 +131,7 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
+	resistance_flags = XENO_DAMAGEABLE
 	var/equip_category //on what kind of base this can be installed.
 	var/obj/effect/attach_point/ship_base //the ship base the equipment is currently installed on.
 	var/uses_ammo = FALSE //whether it uses ammo
@@ -229,21 +230,9 @@
 /obj/structure/dropship_equipment/update_icon()
 	return
 
-/obj/structure/dropship_equipment/attack_alien(mob/living/carbon/xenomorph/X)
-	if(X.a_intent == INTENT_HARM)
-		X.do_attack_animation(src)
-		X.flick_attack_overlay(src, "slash")
-		playsound(loc, "alien_claw_metal", 25, 1)
-		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>We slash [src].</span>")
-		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
-	else
-		attack_hand(X)
-
-
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
 	on_launch()
-
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
 

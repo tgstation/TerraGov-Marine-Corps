@@ -2,7 +2,7 @@
 	name = "deployable"
 	desc = "deployable"
 	icon = 'icons/obj/objects.dmi'
-	req_access = list(ACCESS_MARINE_PREP)//I'm changing this until these are properly tested./N
+
 
 
 /obj/machinery/deployable/barrier

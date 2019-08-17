@@ -188,3 +188,6 @@
 #define X_FIRE_LAYER			1
 #define X_TOTAL_LAYERS			9
 /////////////////////////////////
+
+//We will round to this value in damage calculations.
+#define DAMAGE_PRECISION 0.1

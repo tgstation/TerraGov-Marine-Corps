@@ -315,6 +315,7 @@
 #include "code\game\objects\explosion.dm"
 #include "code\game\objects\items.dm"
 #include "code\game\objects\machinery.dm"
+#include "code\game\objects\obj_defense.dm"
 #include "code\game\objects\objs.dm"
 #include "code\game\objects\ovipositor.dm"
 #include "code\game\objects\structures.dm"
