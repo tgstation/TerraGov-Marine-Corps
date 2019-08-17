@@ -44,7 +44,7 @@
 
 /obj/item/flashlight/proc/turn_off_light(mob/bearer)
 	if(on)
-		on = 0
+		on = FALSE
 		update_brightness(bearer)
 		update_action_button_icons()
 		return 1
@@ -134,7 +134,7 @@
 	item_state = "lamp"
 	brightness_on = 5
 	w_class = WEIGHT_CLASS_BULKY
-	on = 1
+	on = TRUE
 	raillight_compatible = FALSE
 
 //Menorah!
@@ -187,7 +187,7 @@
 
 /obj/item/flashlight/flare/proc/turn_off()
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
-	on = 0
+	on = FALSE
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
@@ -214,16 +214,16 @@
 		force = on_damage
 		heat = 1500
 		damtype = "fire"
-		addtimer(CALLBACK(src, turn_off), fuel)
+		addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
 /obj/item/flashlight/flare/on/Initialize()
 	. = ..()
-	on = 1
+	on = TRUE
 	heat = 1500
 	update_brightness()
 	force = on_damage
 	damtype = "fire"
-	addtimer(CALLBACK(src, turn_off), fuel)
+	addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
 /obj/item/flashlight/slime
 	gender = PLURAL
