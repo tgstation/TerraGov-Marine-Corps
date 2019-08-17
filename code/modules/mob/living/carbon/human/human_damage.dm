@@ -360,6 +360,7 @@ This function restores all limbs.
 			return EO
 
 /mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, sharp = 0, edge = 0, obj/used_weapon = null)
+	
 	if(blocked >= 1) //total negation
 		return 0
 
