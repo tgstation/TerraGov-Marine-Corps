@@ -20,14 +20,55 @@
 				break
 		return FALSE
 
-	if(savefile_version < 37)
-		WRITE_FILE(S["ai_name"], "ARES v3.2")
+	if(savefile_version < 22)
+		WRITE_FILE(S["windowflashing"], TRUE)
 
-	if(savefile_version < 36)
-		WRITE_FILE(S["clientfps"], 0)
+	if(savefile_version < 23)
+		WRITE_FILE(S["focus_chat"], TRUE)
 
-	if(savefile_version < 35)
-		WRITE_FILE(S["focus_chat"], FALSE)
+	if(savefile_version < 24)
+		WRITE_FILE(S["menuoptions"], list())
+
+	if(savefile_version < 25)
+		WRITE_FILE(S["ghost_vision"], TRUE)
+		WRITE_FILE(S["ghost_orbit"], GHOST_ORBIT_CIRCLE)
+		WRITE_FILE(S["ghost_form"], GHOST_DEFAULT_FORM)
+		WRITE_FILE(S["ghost_others"], GHOST_OTHERS_DEFAULT_OPTION)
+
+	if(savefile_version < 26)
+		WRITE_FILE(S["key_bindings"], null)
+
+	if(savefile_version < 27)
+		switch(S["ui_style"])
+			if("Orange")
+				WRITE_FILE(S["ui_style"], "Plasmafire")
+			if("old")
+				WRITE_FILE(S["ui_style"], "Retro")
+		if(S["ui_style_alpha"] > 230)
+			WRITE_FILE(S["ui_style_alpha"], 230)
+
+	if(savefile_version < 28)
+		WRITE_FILE(S["tooltips"], TRUE)
+
+	if(savefile_version < 29)
+		WRITE_FILE(S["metadata"], null)
+		WRITE_FILE(S["jobs_low"], null)
+		WRITE_FILE(S["jobs_medium"], null)
+		WRITE_FILE(S["jobs_high"], null)
+		WRITE_FILE(S["job_preferences"], list())
+
+	if(savefile_version < 30)
+		WRITE_FILE(S["key_bindings"], null)
+
+	if(savefile_version < 31)
+		WRITE_FILE(S["key_bindings"], null)
+
+	if(savefile_version < 32)
+		WRITE_FILE(S["observer_actions"], TRUE)
+
+	if(savefile_version < 33)
+		if(!length(S["key_bindings"]))
+			WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.hotkey_keybinding_list_by_key))
 
 	if(savefile_version < 34)
 		READ_FILE(S["key_bindings"], key_bindings)
@@ -39,55 +80,14 @@
 			key_bindings["L"] = list(1 = "looc")
 			WRITE_FILE(S["key_bindings"], key_bindings)
 
-	if(savefile_version < 33)
-		if(!length(S["key_bindings"]))
-			WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.hotkey_keybinding_list_by_key))
+	if(savefile_version < 35)
+		WRITE_FILE(S["focus_chat"], FALSE)
 
-	if(savefile_version < 32)
-		WRITE_FILE(S["observer_actions"], TRUE)
+	if(savefile_version < 36)
+		WRITE_FILE(S["clientfps"], 0)
 
-	if(savefile_version < 31)
-		WRITE_FILE(S["key_bindings"], null)
-
-	if(savefile_version < 30)
-		WRITE_FILE(S["key_bindings"], null)
-
-	if(savefile_version < 29)
-		WRITE_FILE(S["metadata"], null)
-		WRITE_FILE(S["jobs_low"], null)
-		WRITE_FILE(S["jobs_medium"], null)
-		WRITE_FILE(S["jobs_high"], null)
-		WRITE_FILE(S["job_preferences"], list())
-
-	if(savefile_version < 28)
-		WRITE_FILE(S["tooltips"], TRUE)
-
-	if(savefile_version < 27)
-		switch(S["ui_style"])
-			if("Orange")
-				WRITE_FILE(S["ui_style"], "Plasmafire")
-			if("old")
-				WRITE_FILE(S["ui_style"], "Retro")
-		if(S["ui_style_alpha"] > 230)
-			WRITE_FILE(S["ui_style_alpha"], 230)
-
-	if(savefile_version < 26)
-		WRITE_FILE(S["key_bindings"], null)
-
-	if(savefile_version < 25)
-		WRITE_FILE(S["ghost_vision"], TRUE)
-		WRITE_FILE(S["ghost_orbit"], GHOST_ORBIT_CIRCLE)
-		WRITE_FILE(S["ghost_form"], GHOST_DEFAULT_FORM)
-		WRITE_FILE(S["ghost_others"], GHOST_OTHERS_DEFAULT_OPTION)
-
-	if(savefile_version < 24)
-		WRITE_FILE(S["menuoptions"], list())
-
-	if(savefile_version < 23)
-		WRITE_FILE(S["focus_chat"], TRUE)
-
-	if(savefile_version < 22)
-		WRITE_FILE(S["windowflashing"], TRUE)
+	if(savefile_version < 37)
+		WRITE_FILE(S["ai_name"], "ARES v3.2")
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
