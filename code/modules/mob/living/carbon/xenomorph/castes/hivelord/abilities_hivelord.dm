@@ -102,7 +102,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		return FALSE
 
 /datum/action/xeno_action/build_tunnel/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We are ready to dig a tunnel again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We are ready to dig a tunnel again.</span>")
 	return ..()
 
 /datum/action/xeno_action/build_tunnel/action_activate()

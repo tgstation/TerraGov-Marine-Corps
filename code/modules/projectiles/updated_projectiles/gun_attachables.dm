@@ -1299,6 +1299,8 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/bipod/proc/retract_bipod(datum/source)
+	if(!ismob(source))
+		return
 	activate_attachment(source, TRUE)
 	to_chat(source, "<span class='warning'>Losing support, the bipod retracts!</span>")
 	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
