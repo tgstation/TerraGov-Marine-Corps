@@ -658,7 +658,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/lever
 	name = "\improper Lever Action rifle"
-	desc = "A lever action rifle with side loading port."
+	desc = "A 44 magnum lever action rifle with side loading port."
 	icon_state = "mares_leg"
 	item_state = "mares_leg" //With thanks to D4n0w4r https://youtu.be/PV4uWGGb4xM
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'//I like how this one sounds.
