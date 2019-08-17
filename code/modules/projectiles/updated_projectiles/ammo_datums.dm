@@ -482,7 +482,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
-	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
+	penetration = CONFIG_GET(number/combat_define/min_armor_penetration)
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -491,7 +491,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/ap/New()
 	..()
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
-	penetration = CONFIG_GET(number/combat_define/high_armor_penetration)
+	penetration = CONFIG_GET(number/combat_define/hmed_armor_penetration)
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -635,11 +635,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
-	damage = CONFIG_GET(number/combat_define/lmmed_hit_damage)
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
-	penetration	= CONFIG_GET(number/combat_define/high_armor_penetration)
+	penetration	= CONFIG_GET(number/combat_define/med_armor_penetration)
 	bonus_projectiles_amount = CONFIG_GET(number/combat_define/low_proj_extra)
 
 /datum/ammo/bullet/shotgun/flechette_spread
@@ -655,7 +655,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
-	penetration	= CONFIG_GET(number/combat_define/high_armor_penetration)
+	penetration	= CONFIG_GET(number/combat_define/med_armor_penetration)
 	scatter = CONFIG_GET(number/combat_define/thirty_scatter_value) //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/buckshot
@@ -1065,7 +1065,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/New()
 	. = ..()
 	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
-	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
+	damage = CONFIG_GET(number/combat_define/llow_hit_damage)
 	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
@@ -1080,7 +1080,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43/New()
 	. = ..()
-	penetration = CONFIG_GET(number/combat_define/med_armor_penetration)
+	penetration = CONFIG_GET(number/combat_define/lmed_armor_penetration)
 
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
@@ -1089,9 +1089,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43/overcharge/New()
 	. = ..()
-	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
-	penetration = CONFIG_GET(number/combat_define/mhigh_armor_penetration)
+	penetration = CONFIG_GET(number/combat_define/hmed_armor_penetration)
 
 /*
 //================================================
