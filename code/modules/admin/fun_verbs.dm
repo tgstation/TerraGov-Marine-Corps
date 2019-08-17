@@ -50,8 +50,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = input("What do you want it to be called?.",, "Queen Mother Psychic Directive")
-	var/input = input("This should be a message from the ruler of the Xenomorph race.",, "") as message|null
+	var/customname = input("What do you want it to be called?.", "Queen Mother Report", "Queen Mother")
+	var/input = input("This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "") as message|null
 	if(!input || !customname)
 		return
 
