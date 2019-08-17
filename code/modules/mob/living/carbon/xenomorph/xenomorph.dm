@@ -264,7 +264,7 @@
 		return
 
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if(xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
+	if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader. 
 		LL_dir.icon_state = "trackoff"
 		return
 
