@@ -273,7 +273,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			message_staff("Ticket [TicketHref("#[id]")] created.")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] created.")
-		marked = usr.client
+		marked = usr.client.key
 	else
 		MessageNoRecipient(msg)
 
@@ -457,7 +457,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 	if(marked)
-		if(marked == usr.client)
+		if(marked == usr.client.key)
 			if(alert("Do you want to unmark this ticket?", "Confirmation", "Yes", "No") != "Yes")
 				return
 			marked = null
@@ -473,10 +473,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			message_staff("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
-		marked = usr.client
+		marked = usr.client.key
 		log_admin_private("Ticket (#[id]) has been re-marked by [key_name(usr)].")
 		return
-	marked = usr.client
+	marked = usr.client.key
 	if(tier == TICKET_MENTOR)
 		message_staff("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
 	else if(tier == TICKET_ADMIN)
