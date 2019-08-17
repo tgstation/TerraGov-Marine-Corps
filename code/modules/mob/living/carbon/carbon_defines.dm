@@ -25,6 +25,7 @@
 	var/rotate_on_lying = TRUE
 
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
+	var/OwO = 0 // Overhealth wellness Output, in short, overheal/overhealth that does not decay. Currently gained by headpats.
 
 	var/traumatic_shock = 0
 	var/shock_stage = 0

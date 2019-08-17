@@ -90,6 +90,16 @@
 	if(species && species.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
+	message_admins("Amount: [amount] OwO: [OwO]")
+	if(amount > 0 && OwO > 0)
+		if(OwO > amount)
+			OwO -= amount
+			amount = 0
+		else
+			amount -= OwO
+			OwO = 0
+	message_admins("New amount: [amount] OwO: [OwO]")
+
 	if(amount > 0)
 		take_overall_damage(amount, 0)
 	else
@@ -100,6 +110,16 @@
 	if(species && species.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
+	message_admins("Amount: [amount] OwO: [OwO]")
+	if(amount > 0 && OwO > 0)
+		if(OwO > amount)
+			OwO -= amount
+			amount = 0
+		else
+			amount -= OwO
+			OwO = 0
+	message_admins("New amount: [amount] OwO: [OwO]")
+
 	if(amount > 0)
 		take_overall_damage(0, amount)
 	else
@@ -109,6 +129,16 @@
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
 	if(species && species.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
+
+	message_admins("Amount: [amount] OwO: [OwO]")
+	if(amount > 0 && OwO > 0)
+		if(OwO > amount)
+			OwO -= amount
+			amount = 0
+		else
+			amount -= OwO
+			OwO = 0
+	message_admins("New amount: [amount] OwO: [OwO]")
 
 	for(var/X in limbs)
 		var/datum/limb/O = X

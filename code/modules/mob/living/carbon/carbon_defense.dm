@@ -48,3 +48,8 @@
 		reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(reagent_amount * protection, 0.1))
 		if(prob(10 * S.strength * protection))
 			to_chat(src, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
+
+/mob/living/carbon/proc/adjustOverhealth(amount, cap)
+	if(OwO >= cap) // Only add OwO if we have less than the cap
+		return
+	OwO = CLAMP(OwO + amount, 0, cap)
