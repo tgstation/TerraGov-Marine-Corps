@@ -964,9 +964,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
 /mob/living/carbon/human/verb/issue_order(which as null|text)
-	set name = "Issue Order"
-	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
-	set category = "IC"
 	set hidden = TRUE
 
 	if(!mind.cm_skills || (mind.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED))
