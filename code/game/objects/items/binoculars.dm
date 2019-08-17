@@ -61,6 +61,13 @@
 	return TRUE
 
 
+/obj/item/binoculars/tactical/dropped(mob/user)
+	. = ..()
+	if(user.interactee != src)
+		return
+	user.unset_interaction()
+
+
 /obj/item/binoculars/tactical/on_set_interaction(mob/user)
 	. = ..()
 	user.reset_perspective(src)
