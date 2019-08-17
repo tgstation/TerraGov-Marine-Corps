@@ -99,3 +99,6 @@ csolaris = Admin
 devilsaaron = Admin
 shadow_quill = Admin
 cosmicscientist = Admin
+ma44 = Admin
+Henriquekill9576 = Admin
+David Stormwell = Admin
