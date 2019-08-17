@@ -18,13 +18,12 @@
 		return
 
 	var/oldkey = M.key
-
-	M.ghostize(TRUE)
+	var/mob/dead/observer/ghost = M.ghostize(TRUE)
 	M.key = "@[oldkey]"
 
-	log_admin("[key_name(usr)] admin ghosted at [AREACOORD(usr)].")
+	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
-		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
+		message_admins("[ADMIN_TPMONTY(ghost)] admin ghosted.")
 
 
 /datum/admins/proc/invisimin()
