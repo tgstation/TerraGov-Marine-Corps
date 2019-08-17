@@ -153,8 +153,10 @@
 	if(H.zone_selected == "head")
 		H.visible_message("<span class='notice'>[H] pats [target] on the head.</span>", \
 					"<span class='notice'>You pat [target] on the head.</span>", null, 4)
-		target.adjustOverhealth(1, 10) // Add 1 overhealth per headpat, maximum of 10 overhealth from headpats.
-		target.heal_overall_damage(0.5, 0.5) // Headpats are a form of love. Love is said to have a healing effect.
+		if(istype(target, /mob/living/carbon))
+			var/mob/living/carbon/carb = target
+			carb.adjustOverhealth(1, 10) // Add 1 overhealth per headpat, maximum of 10 overhealth from headpats.
+			carb.heal_overall_damage(0.5, 0.5) // Headpats are a form of love. Love is said to have a healing effect.
 	else
 		H.visible_message("<span class='notice'>[H] hugs [target] to make [target.p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
