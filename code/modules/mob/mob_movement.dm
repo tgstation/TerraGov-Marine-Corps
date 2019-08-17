@@ -14,10 +14,13 @@
 
 
 /client/verb/attack_self()
-	set hidden = 1
-	if(mob)
-		mob.mode()
-	return
+	set hidden = TRUE
+
+	if(!isliving(mob))
+		return
+
+	var/mob/living/L = mob
+	L.mode()
 
 
 /client/verb/toggle_throw_mode()
