@@ -2,7 +2,6 @@
 	see_invisible = SEE_INVISIBLE_LIVING
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
-	var/living_flags = NONE
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
 
 	//Health and life related vars
