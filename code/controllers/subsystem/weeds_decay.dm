@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(weeds_decay)
 
 		// Skip if there is not a weed there
 		var/obj/effect/alien/weeds/W = locate() in T
-		if(!W)
+		if(!W || istype(W, /obj/effect/alien/weeds/node))
 			continue
 
 		W.parent_node = null // mark this null otherwise the weed regrows
