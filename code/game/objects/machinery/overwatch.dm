@@ -967,6 +967,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	set name = "Issue Order"
 	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
 	set category = "IC"
+	set hidden = TRUE
 
 	if(!mind.cm_skills || (mind.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED))
 		to_chat(src, "<span class='warning'>You are not competent enough in leadership to issue an order.</span>")
