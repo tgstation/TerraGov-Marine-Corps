@@ -409,6 +409,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	updateUsrDialog()
 
 /obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
+	if(!length(squads))
+		for(var/i in SSjob.squads)
+			var/datum/squad/S = SSjob.squads[i]
+			squads += S
 	user.set_interaction(src)
 	var/dat
 	if(!operator)
