@@ -135,7 +135,6 @@
 	for(var/i in amount_mod)
 		amount -= i
 	
-	message_admins("Amount: [amount] OwO: [OwO]")
 	if(amount > 0 && OwO > 0)
 		if(OwO > amount)
 			OwO -= amount
@@ -143,7 +142,6 @@
 		else
 			amount -= OwO
 			OwO = 0
-	message_admins("New amount: [amount] OwO: [OwO]")
 	
 	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
@@ -153,7 +151,6 @@
 	for(var/i in amount_mod)
 		amount -= i
 	
-	message_admins("Amount: [amount] OwO: [OwO]")
 	if(amount > 0 && OwO > 0)
 		if(OwO > amount)
 			OwO -= amount
@@ -161,7 +158,6 @@
 		else
 			amount -= OwO
 			OwO = 0
-	message_admins("New amount: [amount] OwO: [OwO]")
 
 	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
 

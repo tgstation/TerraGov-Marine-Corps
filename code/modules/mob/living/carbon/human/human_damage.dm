@@ -393,7 +393,6 @@ This function restores all limbs.
 	if(!organ)
 		return FALSE
 
-	message_admins("Damage: [damage] OwO: [OwO]")
 	if(damage > 0 && OwO > 0)
 		if(OwO > damage)
 			OwO -= damage
@@ -401,7 +400,6 @@ This function restores all limbs.
 		else
 			damage -= OwO
 			OwO = 0
-	message_admins("New damage: [damage] OwO: [OwO]")
 
 	switch(damagetype)
 		if(BRUTE)
