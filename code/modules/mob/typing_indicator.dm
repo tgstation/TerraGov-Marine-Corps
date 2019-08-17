@@ -37,7 +37,7 @@
 	set hidden = TRUE
 
 	add_typing_indicator(emoting = TRUE)
-	var/message = input("", "Me") as text
+	var/message = input("", "Me \"text\"") as null|text
 	remove_typing_indicator(emoting = TRUE)
 
 	if(!message)

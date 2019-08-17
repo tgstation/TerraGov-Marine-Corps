@@ -390,7 +390,7 @@
 		if(WEST)
 			pixel_x = -12
 		if(NORTH)
-			pixel_y = 30
+			pixel_y = -10
 		if(EAST)
 			pixel_x = 12
 
@@ -430,7 +430,7 @@
 		return
 
 	var/obj/item/reagent_container/RG = I
-	if(istype(RG) && RG.is_open_container())
+	if(istype(RG) && RG.is_open_container() && RG.reagents.total_volume < RG.reagents.maximum_volume)
 		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")
 		return
@@ -453,6 +453,9 @@
 		L.stuttering = 10
 		L.knock_down(10)
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
+
+	if(I.flags_item & ITEM_ABSTRACT)
+		return
 
 	var/turf/location = user.loc
 	if(!isturf(location)) 

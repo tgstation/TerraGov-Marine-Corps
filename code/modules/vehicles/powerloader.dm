@@ -169,13 +169,13 @@
 	if(linked_powerloader)
 		forceMove(linked_powerloader)
 		if(linked_powerloader.buckled_mob && linked_powerloader.buckled_mob == user)
-			linked_powerloader.unbuckle() //drop a clamp, you auto unbuckle from the powerloader.
+			linked_powerloader.unbuckle(user) //drop a clamp, you auto unbuckle from the powerloader.
 	else qdel(src)
 
 
 /obj/item/powerloader_clamp/attack(mob/living/victim, mob/living/user, def_zone)
 	if(victim == linked_powerloader.buckled_mob)
-		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
+		unbuckle(victim) //if the pilot clicks themself with the clamp, it unbuckles them.
 		return TRUE
 	if(isxeno(victim) && victim.stat == DEAD && !victim.anchored && user.a_intent == INTENT_HELP)
 		victim.forceMove(linked_powerloader)

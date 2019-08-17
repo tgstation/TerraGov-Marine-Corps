@@ -2,6 +2,7 @@
 	name = "Extended"
 	config_tag = "Extended"
 	required_players = 0
+	votable = FALSE
 
 
 /datum/game_mode/extended/announce()
