@@ -513,7 +513,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	max_rounds = 50
 
 /obj/item/ammo_magazine/magnum
-	name = "Box of .44 magun"
+	name = "Box of .44 magnum"
 	icon_state = "box45" //Maybe change this
 	default_ammo = /datum/ammo/bullet/revolver
 	caliber = ".44"
