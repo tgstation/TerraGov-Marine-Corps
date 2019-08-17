@@ -185,7 +185,7 @@
 
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()
-	name = CONFIG_GET(string/ship_name)
+	name = SSmapping.configs[SHIP_MAP].map_name
 
 
 /obj/structure/prop/mainship/hangar_stencil
