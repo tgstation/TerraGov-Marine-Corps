@@ -1002,7 +1002,7 @@
 		return
 
 	var/list/possible_destinations
-	if(shuttle_id == SSshuttle.canterbury.id)
+	if(shuttle_id == SSshuttle.canterbury?.id)
 		possible_destinations = list("canterbury_dock")
 	else
 		possible_destinations = list("lz1", "lz2", "alamo", "normandy")
