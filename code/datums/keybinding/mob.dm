@@ -127,8 +127,10 @@
 	description = "Uses whatever item you have inhand"
 
 /datum/keybinding/mob/activate_inhand/down(client/user)
-	var/mob/M = user.mob
-	M.mode()
+	var/mob/living/L = user.mob
+	if(!istype(L))
+		return
+	L.mode()
 	return TRUE
 
 /datum/keybinding/mob/drop_item
