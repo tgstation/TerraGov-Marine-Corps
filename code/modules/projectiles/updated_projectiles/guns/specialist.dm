@@ -495,7 +495,7 @@
 		grenades += new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/weapon/gun/launcher/m92/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/tacshottie_fire_delay)
+	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
