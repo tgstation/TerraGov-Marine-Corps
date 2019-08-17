@@ -105,30 +105,22 @@
 
 	// Launch shuttle 
 	var/list/valid_docks = list()
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!shuttle.check_dock(S, silent=TRUE))
+	for(var/obj/docking_port/stationary/D in SSshuttle.stationary)
+		if(!shuttle.check_dock(D, silent=TRUE))
 			continue
-		valid_docks += S.name
+		valid_docks += D
 
 	if(!length(valid_docks))
 		CRASH("No valid docks found for shuttle!")
 		return
-	var/dock = pick(valid_docks)
-
-	var/obj/docking_port/stationary/target
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.name == dock)
-			target = S
-			break
-
-	if(!target)
+	var/obj/docking_port/stationary/target = pick(valid_docks)
+	if(!target || !istype(target))
 		CRASH("Unable to get a valid shuttle target!")
 		return
 		
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
-
 
 
 /datum/game_mode/crash/setup()
