@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	/obj/structure/mineral_door/resin), FALSE, TRUE))
 
 /datum/action/xeno_action/activable/secrete_resin/hivelord/use_ability(atom/A)
-	if(get_dist(src,A) > 1)
+	if(get_dist(owner, A) != 1)
 		return ..()
 
 	if(!is_type_in_typecache(A, GLOB.thickenable_resin))
