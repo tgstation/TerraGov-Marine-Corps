@@ -90,16 +90,6 @@
 	if(species && species.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
-	message_admins("Amount: [amount] OwO: [OwO]")
-	if(amount > 0 && OwO > 0)
-		if(OwO > amount)
-			OwO -= amount
-			amount = 0
-		else
-			amount -= OwO
-			OwO = 0
-	message_admins("New amount: [amount] OwO: [OwO]")
-
 	if(amount > 0)
 		take_overall_damage(amount, 0)
 	else
@@ -110,16 +100,6 @@
 	if(species && species.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
-	message_admins("Amount: [amount] OwO: [OwO]")
-	if(amount > 0 && OwO > 0)
-		if(OwO > amount)
-			OwO -= amount
-			amount = 0
-		else
-			amount -= OwO
-			OwO = 0
-	message_admins("New amount: [amount] OwO: [OwO]")
-
 	if(amount > 0)
 		take_overall_damage(0, amount)
 	else
@@ -129,16 +109,6 @@
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
 	if(species && species.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
-
-	message_admins("Amount: [amount] OwO: [OwO]")
-	if(amount > 0 && OwO > 0)
-		if(OwO > amount)
-			OwO -= amount
-			amount = 0
-		else
-			amount -= OwO
-			OwO = 0
-	message_admins("New amount: [amount] OwO: [OwO]")
 
 	for(var/X in limbs)
 		var/datum/limb/O = X
@@ -390,7 +360,6 @@ This function restores all limbs.
 			return EO
 
 /mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, sharp = 0, edge = 0, obj/used_weapon = null)
-
 	if(blocked >= 1) //total negation
 		return 0
 
@@ -423,6 +392,16 @@ This function restores all limbs.
 		organ = get_limb(check_zone(def_zone))
 	if(!organ)
 		return FALSE
+
+	message_admins("Damage: [damage] OwO: [OwO]")
+	if(damage > 0 && OwO > 0)
+		if(OwO > damage)
+			OwO -= damage
+			damage = 0
+		else
+			damage -= OwO
+			OwO = 0
+	message_admins("New damage: [damage] OwO: [OwO]")
 
 	switch(damagetype)
 		if(BRUTE)
