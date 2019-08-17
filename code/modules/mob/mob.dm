@@ -779,12 +779,13 @@ mob/proc/yank_out_object()
 	overlays += emote_overlay
 
 	if(remove_delay)
-		addtimer(CALLBACK(src, .proc/remove_emote_overlay, emote_overlay), remove_delay)
+		addtimer(CALLBACK(src, .proc/remove_emote_overlay, emote_overlay, TRUE), remove_delay)
 
 
-/mob/proc/remove_emote_overlay(image/emote_overlay)
+/mob/proc/remove_emote_overlay(image/emote_overlay, delete)
 	overlays -= emote_overlay
-	qdel(emote_overlay)
+	if(delete)
+		qdel(emote_overlay)
 
 
 /mob/proc/spin(spintime, speed)
