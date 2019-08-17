@@ -159,7 +159,6 @@
 
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"
-	icon_state = "nuke_red"
 	disk_type = /obj/item/disk/nuclear/red
 
 /obj/machinery/computer/nuke_disk_generator/green
