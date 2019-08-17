@@ -1,4 +1,4 @@
-/mob/living/verb/mode()
+/mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
 	set src = usr
@@ -90,7 +90,7 @@
 	M.key = key
 
 
-/mob/living/verb/cancel_camera()
+/mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "Object"
 	reset_perspective(null)
