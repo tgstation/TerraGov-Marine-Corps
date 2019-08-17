@@ -1101,7 +1101,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/storage/box/MRE
+						/obj/item/weapon/combat_knife,
+						/obj/item/storage/box/MRE,
 						)
 
 
@@ -1110,6 +1111,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1117,6 +1119,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1127,6 +1130,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1136,6 +1140,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/corpsman,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1145,6 +1150,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
