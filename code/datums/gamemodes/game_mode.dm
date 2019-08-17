@@ -460,6 +460,9 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
 			continue
+		if(!M.mind) //This proc is too important to prevent one admin shenanigan from runtiming it entirely
+			to_chat(M, "<br><br><h1><span class='danger'>You don't have a mind, if you believe this is not intended, please report it.</span></h1><br><br>")
+			continue
 
 		var/turf/picked
 		if(length(spawns))
