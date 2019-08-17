@@ -33,6 +33,13 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/obj/selected_target //Selected target for bombarding
 
 
+/obj/machinery/computer/camera_advanced/overwatch/Initialize()
+	. = ..()
+	for(var/i in SSjob.squads)
+		var/datum/squad/S = SSjob.squads[i]
+		squads += S
+
+
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
 	name = "Main Overwatch Console"
@@ -86,10 +93,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/interact(mob/living/user)
-	if(!length(squads))
-		for(var/i in SSjob.squads)
-			var/datum/squad/S = SSjob.squads[i]
-			squads += S
 	if(!current_squad && !(current_squad = get_squad_by_id(squad_console)))
 		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
 		return
@@ -409,10 +412,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	updateUsrDialog()
 
 /obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
-	if(!length(squads))
-		for(var/i in SSjob.squads)
-			var/datum/squad/S = SSjob.squads[i]
-			squads += S
 	user.set_interaction(src)
 	var/dat
 	if(!operator)
