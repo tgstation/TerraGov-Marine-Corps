@@ -365,40 +365,9 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
-	getFiles(
-		'html/postcardsmall.jpg',
-		'html/somerights20.png',
-		'html/88x31.png',
-		'html/bug-minus.png',
-		'html/cross-circle.png',
-		'html/hard-hat-exclamation.png',
-		'html/image-minus.png',
-		'html/image-plus.png',
-		'html/music-minus.png',
-		'html/music-plus.png',
-		'html/tick-circle.png',
-		'html/wrench-screwdriver.png',
-		'html/spell-check.png',
-		'html/burn-exclamation.png',
-		'html/chevron.png',
-		'html/chevron-expand.png',
-		'html/changelog.css',
-		'html/changelog.js',
-		'html/changelog.html',
-		'html/chrome-wrench.png',
-		'html/ban.png',
-		'html/coding.png',
-		'html/scales.png'
-		)
 
-	src << browse_rsc('html/changelog2015.html', "changelog2015.html")
-	src << browse_rsc('html/changelog2016.html', "changelog2016.html")
-	src << browse_rsc('html/changelog2017.html', "changelog2017.html")
-	src << browse_rsc('html/changelog20181.html', "changelog20181.html")
-	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
-	src << browse_rsc('html/changelog.html', "changelog.html")
-
-
+	var/datum/asset/changelog = get_asset_datum(/datum/asset/simple/changelog)
+	changelog.send(src)
 	src << browse('html/changelog.html', "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
