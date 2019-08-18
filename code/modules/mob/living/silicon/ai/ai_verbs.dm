@@ -5,6 +5,7 @@
 	if(incapacitated())
 		return
 
+	stopControlling("<span class='notice'>Disconnecting from shell, network is being changed.</span>")
 	unset_interaction()
 	cameraFollow = null
 
@@ -184,6 +185,8 @@
 	set category = "Silicon"
 	set name = "Cancel Camera View"
 
+	stopControlling("<span class='notice'>Disconnecting from shell, camera view cancelled.</span>")
+
 	view_core()
 
 
@@ -313,6 +316,7 @@
 
 	to_chat(src, "<span class='notice'>Systems shutting down...</span>")
 
+	stopControlling()
 	ghostize(FALSE)
 	offer_mob()
 
@@ -321,8 +325,7 @@
 	set name = "Deploy to Shell"
 
 	if(remote_control && istype(remote_control, /mob/living/silicon/controlled))
-		var/mob/living/silicon/controlled/borg = remote_control
-		stopControlling(borg)
+		stopControlling("<span class='notice'>Disconnecting from shell, new one being picked.</span>")
 
 	if(remote_control)
 		message_admins("Something went very bad here. [remote_control.name]")
@@ -343,7 +346,6 @@
 	var/mob/living/silicon/controlled/borg = input(src, "Which shell to control?") as null|anything in possible
 
 	if(!borg)
-		message_admins("Hail Syndicate.")
 		return
 
 	startControlling(borg)

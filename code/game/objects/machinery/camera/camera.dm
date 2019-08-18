@@ -326,6 +326,9 @@
 	name = "headset camera"
 	network = list("marine")
 
+/obj/machinery/camera/borg
+	name = "borg camera"
+	network = list("marine")
 
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam

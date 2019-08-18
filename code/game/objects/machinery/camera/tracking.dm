@@ -77,7 +77,12 @@
 
 
 /mob/living/silicon/ai/proc/ai_actual_track(mob/living/target)
+	message_admins("ai_actual_track")
 	if(!istype(target))
+		return
+
+	if(controlling)
+		to_chat(src, "<span class='notice'>You are controlling a shell, please disconnect from it to use tracking.</span>")
 		return
 
 	cameraFollow = target

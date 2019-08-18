@@ -72,6 +72,7 @@
 // Use this when setting the aiEye's location.
 // It will also stream the chunk that the new loc is in.
 /mob/camera/aiEye/proc/setLoc(T, force_update = FALSE)
+	message_admins("setLoc")
 	if(!ai)
 		return
 
@@ -122,9 +123,10 @@
 
 
 /atom/proc/move_camera_by_click()
+	
 	if(!isAI(usr))
 		return
-
+	message_admins("move_camera_by_click()")
 	var/mob/living/silicon/ai/AI = usr
 	if(AI.eyeobj && (AI.multicam_on || (AI.client.eye == AI.eyeobj)) && (AI.eyeobj.z == z))
 		AI.cameraFollow = null
@@ -135,6 +137,7 @@
 // This will move the AIEye. It will also cause lights near the eye to light up, if toggled.
 // This is handled in the proc below this one.
 /client/proc/AIMove(n, direct, mob/living/silicon/ai/user)
+	message_admins("AIMove")
 	var/initial = initial(user.sprint)
 	var/max_sprint = 50
 
@@ -158,6 +161,7 @@
 
 // Return to the Core.
 /mob/living/silicon/ai/proc/view_core()
+	message_admins("view_core()")
 	if(istype(current, /obj/machinery/holopad))
 		var/obj/machinery/holopad/H = current
 		H.clear_holo(src)

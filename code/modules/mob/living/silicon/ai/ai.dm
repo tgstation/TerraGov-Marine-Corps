@@ -40,6 +40,9 @@
 	var/camera_light_on = FALSE
 	var/list/obj/machinery/camera/lit_cameras = list()
 
+	var/controlling = FALSE
+	var/mob/living/silicon/controlled/lastControlled
+
 	var/datum/trackable/track
 
 
@@ -122,6 +125,7 @@
 			
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
+	message_admins("switchCamera [controlling]")
 	if(QDELETED(C))
 		return FALSE
 
@@ -131,6 +135,9 @@
 	if(QDELETED(eyeobj))
 		view_core()
 		return
+
+	if(controlling)
+		stopControlling(lastControlled)
 
 	eyeobj.setLoc(get_turf(C))
 	return TRUE
@@ -194,6 +201,9 @@
 
 
 /mob/living/silicon/ai/reset_perspective(atom/A)
+	message_admins("reset_perspective")
+	if(controlling && !istype(A, /mob/living/silicon/controlled))
+		stopControlling("<span class='notice'>Disconnecting from shell, resetting perspective.</span>")
 	if(camera_light_on)
 		light_cameras()
 	if(istype(A, /obj/machinery/camera))
@@ -260,3 +270,21 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+/mob/living/silicon/ai/proc/startControlling(mob/living/silicon/controlled/borg)
+	remote_control = borg
+	controlling = TRUE
+	lastControlled = borg
+	reset_perspective(borg)
+	borg.startControl(src)
+
+/mob/living/silicon/ai/proc/stopControlling(var/message = null)
+	if(!lastControlled || !controlling || !remote_control)
+		return
+	if(message)
+		to_chat(src, message)
+	remote_control = null
+	controlling = FALSE
+	reset_perspective(get_turf(lastControlled))
+	eyeobj.setLoc(get_turf(lastControlled))
+	lastControlled.stopControl(src)

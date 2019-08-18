@@ -51,11 +51,13 @@
 
 /obj/screen/movable/pic_in_pic/ai/set_view_center(atom/target, do_refresh = TRUE)
 	. = ..()
+	message_admins("set_view_center")
 	aiEye.setLoc(get_turf(target))
 
 
 /obj/screen/movable/pic_in_pic/ai/refresh_view()
 	. = ..()
+	message_admins("refresh_view")
 	aiEye.setLoc(get_turf(center))
 
 
