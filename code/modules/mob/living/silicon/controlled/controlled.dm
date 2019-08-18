@@ -6,13 +6,15 @@
 
 /mob/living/silicon/controlled/Initialize()
 	. = ..()
-	for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
+	for(var/elem in GLOB.ai_list)
+		var/mob/living/silicon/ai/ai = elem
 		to_chat(ai, "AI shell [name] created.")
 	GLOB.aiShells += src
 	
 
 /mob/living/silicon/controlled/Destroy()
-	for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
+	for(var/elem in GLOB.ai_list)
+		var/mob/living/silicon/ai/ai = elem
 		to_chat(ai, "AI shell [name] destroyed.")
 	GLOB.aiShells -= src
 	return ..()

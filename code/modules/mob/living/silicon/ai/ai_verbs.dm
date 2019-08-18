@@ -322,8 +322,7 @@
 
 	if(remote_control && istype(remote_control, /mob/living/silicon/controlled))
 		var/mob/living/silicon/controlled/borg = remote_control
-		borg.stopControl(src)
-		remote_control = null
+		stopControlling(borg)
 
 	if(remote_control)
 		message_admins("Something went very bad here. [remote_control.name]")
@@ -332,7 +331,8 @@
 
 	var/list/possible = list()
 	
-	for(var/mob/living/silicon/controlled/borg in GLOB.aiShells)
+	for(var/elem in GLOB.aiShells)
+		var/mob/living/silicon/controlled/borg = elem
 		//TODO: in the future, perhaps do some checks here?
 		possible += borg
 
@@ -343,8 +343,7 @@
 	var/mob/living/silicon/controlled/borg = input(src, "Which shell to control?") as null|anything in possible
 
 	if(!borg)
-		message_admins("Heil Syndicate.")
+		message_admins("Hail Syndicate.")
 		return
 
-	remote_control = borg
-	borg.startControl(src)
+	startControlling(borg)
