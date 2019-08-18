@@ -679,7 +679,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 
 /obj/item/weapon/gun/shotgun/pump/bolt/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 2
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
@@ -687,7 +687,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
-	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
+	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
 
 /obj/item/weapon/gun/shotgun/pump/lever/unique_action(mob/user)
 	return work_the_lever(user)
