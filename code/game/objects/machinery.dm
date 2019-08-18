@@ -153,10 +153,11 @@
 	. = ..()
 	if(.)
 		return
+
 	if(!is_operational())
 		return TRUE
-
-	if(usr.restrained() || usr.lying || usr.stat != CONSCIOUS)
+		
+	if(usr.incapacitated() || usr.lying)
 		return TRUE
 
 	if(!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))

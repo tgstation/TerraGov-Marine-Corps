@@ -358,7 +358,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /mob/proc/incapacitated(ignore_restrained)
-	return (stat || (!ignore_restrained && restrained()))
+	return (stat == UNCONSCIOUS || (!ignore_restrained && restrained()))
 
 
 

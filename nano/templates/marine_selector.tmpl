@@ -1,35 +1,135 @@
+<style>
+/*<![CDATA[*/
+	.clearfix::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+	.header {
+
+	}
+
+	.user-points {
+		display: inline-block;
+		float: right;
+		color: #fff;
+		font-weight: 400;
+	}
+	.user-points .points {
+		font-weight: 800;
+	}
+
+	.info-text {
+		margin-left: 15px;
+		padding: 5px;
+		border-left: 5px solid rgba(167, 118, 38, 0.5);
+	}
+
+	.product-listing {
+	}
+
+	.product-group {
+		background-color: rgba(70, 70, 70, 0.6);
+		margin: 10px;
+	}
+	.product-group .header {
+		display: block;
+		background-color: rgba(100, 100, 100, 0.4);
+		color: rgba(190, 190, 190, 0.8);
+		font-weight: bold;
+		font-size: 1.01em;
+		padding: 3px 5px;
+	}
+	.product-group .information {
+		display: block;
+		padding: 3px 5px;
+		color: rgba(220, 220, 220, 1);
+	}
+	.product-group .selection {
+		display: block;
+		padding: 10px;
+		padding-left: 15px;
+	}
+	.product-group .selection .sub-group {
+		display: block;
+		padding: 3px;
+		font-weight: bold;
+		color: rgba(220, 220, 220, 0.9);
+	}
+	.product-group .selection .sub-group .summary {
+		font-weight: normal;
+	}
+
+	.product-item {
+		display: inline-block;
+		min-height: 20px;
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.essential {
+		font-weight: bold;
+		color: #fff;
+	}
+	.essential::after {
+		content: " *";
+		color: rgba(255, 0, 0, 0.7);
+	}
+	.suggested {
+		font-weight: bold;
+		color: rgba(255, 150, 90, 0.8);
+	}
+	.standard {
+		color: #fff;
+	}
 
 
+/*]]>*/
+</style>
 
-<div itemLabel>
-	<h2>Choose your equipment:</h2>
+
+<div class='header'>
+	<h2>Welcome</h2>
+	{{if data.show_points}}
+		<div class='user-points'>
+			Points Remaining: <span class="points">{{:data.current_m_points}}</span>
+		</div>
+	{{/if}}
 </div>
 
-{{if data.show_points}}
-	<div itemContent>
-		<h3>Your Remaining Points: <span class="white">{{:data.current_m_points}}</span></h3>
+<div class='info-text'>
+	Items marked with <span style="color: rgba(255, 0, 0, 0.7);">*</span> are required for everyone. <br />
+	<span class='suggested'>Coloured items</span> are suggested for new marines.
+</div>
+
+<div class='product-listing'>
+{{props data.display_list}}
+	<div class='product-group'>
+		<div class='header'>
+			{{:value.name}} <span style='float: right;'>{{if value.limits != -1}}(Select {{:value.limits}}){{/if}}</span>
+		</div>
+		<div class='clearfix'></div>
+		<div class='selection'>
+			<div class='information'>
+				{{:value.summary}}
+			</div>
+			{{for value.products}}
+				{{if value.is_util}}
+					<div class='sub-group'>
+						{{:value.name}} {{if value.summary}}- <span class='summary'>{{:value.summary}}</span>{{/if}}
+					</div>
+				{{else}}
+					{{if value.type}}
+						<div class='product-item'>
+							{{:helper.link(value.name, null, {'vend' : value.id}, (value.available ? null : 'disabled'), 'link ' + value.type)}}
+						</div>
+					{{else}}
+						<div>
+							<span class="product-item">{{:value.name}}</span>
+						</div>
+					{{/if}}
+				{{/if}}
+			{{/for}}
+		</div>
 	</div>
-{{/if}}
-<div itemContent>
-	<span class="white">white = mandatory</span>
-</div>
-
-<div style="font-weight: bold ; float: left ; clear : both ; width: 50% ; color: orange">
-	orange = recommended
-</div>
-
-<div itemLabel>
-	{{for data.displayed_records}}
-		{{if value.prod_color}}
-			<div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; width: 50% ; color: {{:value.prod_color}}">
-				{{:helper.link(value.prod_name, null, {'vend' : value.prod_index}, value.prod_available ? null : 'disabled', null)}}
-			</div>
-		{{else}}
-			<div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; width: 50%">
-				<span class="white">{{:value.prod_name}}</span>
-			</div>
-		{{/if}}
-
-
-	{{/for}}
+{{/for}}
 </div>
