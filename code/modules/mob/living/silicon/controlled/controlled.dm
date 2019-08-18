@@ -15,7 +15,7 @@
 	for(var/mob/living/silicon/ai/ai in GLOB.ai_list)
 		to_chat(ai, "AI shell [name] destroyed.")
 	GLOB.aiShells -= src
-	..()
+	return ..()
 
 /mob/living/silicon/controlled/proc/startControl(mob/living/silicon/ai/AI)
 	return
