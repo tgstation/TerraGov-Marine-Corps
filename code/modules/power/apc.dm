@@ -438,21 +438,6 @@
 		
 		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 
-	else if(istype(I, /obj/item/frame/apc) && opened)
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
-
-		if(opened == APC_COVER_REMOVED)
-			opened = APC_COVER_OPENED
-		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
-		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-		qdel(I)
-		update_icon()
-
 	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
@@ -474,9 +459,24 @@
 		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
 		qdel(I)
-		machine_stat &= ~BROKEN
+		DISABLE_BITFIELD(machine_stat, BROKEN)
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
+		update_icon()
+
+	else if(istype(I, /obj/item/frame/apc) && opened)
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
+		if(opened == APC_COVER_REMOVED)
+			opened = APC_COVER_OPENED
+		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
+		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
+		qdel(I)
 		update_icon()
 
 	else
