@@ -1170,7 +1170,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/dat
 
-		for(var/x in GLOB.access_log)
+		for(var/x in GLOB.manifest_log)
 			dat += "[x]<br>"
 
 		var/datum/browser/browser = new(usr, "manifest_log", "<div align='center'>Manifest Log</div>")
