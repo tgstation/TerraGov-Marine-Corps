@@ -1,0 +1,4 @@
+author: "LaKiller8"
+delete-after: True
+changes: 
+  - tweak: "The AI can no longer toggle it's floor bolts, dropship crash disables them automatically."
