@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(faxes)
 			P.overlays += stampoverlay
 			P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
 
-		playsound(FM.loc, "sound/machines/dotprinter.ogg", 15, 1)
+		playsound(FM.loc, "sound/machines/dotprinter.ogg", 25, 1)
 
 
 /datum/admins/proc/view_faxes()
@@ -99,6 +99,9 @@ GLOBAL_LIST_EMPTY(faxes)
 /proc/generate_templated_fax(to_department, subject, addressed_to, message_body, sent_by, sent_department)
 	var/fax_html = {"
 		<font face="Verdana" color="black" size="1">
+			<center>
+				<img src='tgmclogo.png' />
+			</center>
 			<center>
 				Secure Communication SC-CLTMGC-01b
 			</center>
