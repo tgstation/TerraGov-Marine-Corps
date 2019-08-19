@@ -64,8 +64,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/machinery/computer/camera_advanced/overwatch/bullet_act(obj/item/projectile/Proj) //Can't shoot it
-	return FALSE
 
 /obj/machinery/computer/camera_advanced/overwatch/attack_ai(mob/user as mob)
 	return attack_hand(user)

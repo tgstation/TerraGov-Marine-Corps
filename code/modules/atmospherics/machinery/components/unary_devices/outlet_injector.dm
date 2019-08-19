@@ -8,7 +8,7 @@
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE
 
-	resistance_flags = FIRE_PROOF|UNACIDABLE|ACID_PROOF
+	resistance_flags = UNACIDABLE
 
 	var/injecting = 0
 

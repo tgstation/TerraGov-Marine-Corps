@@ -12,7 +12,7 @@
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE|LAVA_PROOF|FIRE_PROOF|ACID_PROOF
+	resistance_flags = RESIST_ALL
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE

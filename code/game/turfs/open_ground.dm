@@ -297,7 +297,7 @@
 	. = ..()
 	if(bushes_spawn)
 		var/obj/structure/bush/B = new(src)
-		B.indestructable = TRUE
+		ENABLE_BITFIELD(B.resistance_flags, INDESTRUCTIBLE)
 
 
 /turf/open/ground/jungle/water

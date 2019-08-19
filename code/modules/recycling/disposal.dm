@@ -695,58 +695,15 @@
 
 			qdel(H)
 
-//Call to break the pipe, will expel any holder inside at the time then delete the pipe
-//Remains : set to leave broken pipe pieces in place
-/obj/structure/disposalpipe/proc/broken(remains = 0)
-	if(remains)
-		for(var/D in GLOB.cardinals)
-			if(D & dpdir)
-				var/obj/structure/disposalpipe/broken/P = new(loc)
-				P.setDir(D)
-
-	invisibility = INVISIBILITY_MAXIMUM	//Make invisible (since we won't delete the pipe immediately)
-	var/obj/structure/disposalholder/H = locate() in src
-	if(H)
-		//Holder was present
-		H.active = 0
-		var/turf/T = src.loc
-		if(T.density)
-			//Broken pipe is inside a dense turf (wall)
-			//This is unlikely, but just dump out everything into the turf in case
-			for(var/atom/movable/AM in H)
-				AM.loc = T
-				AM.pipe_eject(0)
-			qdel(H)
-			return
-
-		//Otherwise, do normal expel from turf
-		if(H && H.loc)
-			expel(H, T, 0)
-
-	QDEL_IN(src, 2) //Delete pipe after 2 ticks to ensure expel proc finished
-
 //Pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
-
 	switch(severity)
 		if(1)
-			broken(0)
-			return
+			qdel(src)
 		if(2)
-			obj_integrity -= rand(5, 15)
-			healthcheck()
-			return
+			take_damage(rand(5, 15))
 		if(3)
-			obj_integrity -= rand(0, 15)
-			healthcheck()
-			return
-
-//Test health for brokenness
-/obj/structure/disposalpipe/proc/healthcheck()
-	if(obj_integrity < -2)
-		broken(0)
-	else if(obj_integrity < 1)
-		broken(1)
+			take_damage(rand(0, 15))
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
 /obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
@@ -817,13 +774,15 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"
 
-	New()
-		..()
-		if(icon_state == "pipe-s")
-			dpdir = dir|turn(dir, 180)
-		else
-			dpdir = dir|turn(dir, -90)
-		update()
+
+/obj/structure/disposalpipe/segment/Initialize()
+	. = ..()
+
+	if(icon_state == "pipe-s")
+		dpdir = dir|turn(dir, 180)
+	else
+		dpdir = dir|turn(dir, -90)
+	update()
 
 /obj/structure/disposalpipe/segment/corner
 	icon_state = "pipe-c"
@@ -832,10 +791,11 @@
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
 
-	New()
-		..()
-		dpdir = dir
-		update()
+
+/obj/structure/disposalpipe/up/Initialize()
+	. = ..()
+	dpdir = dir
+	update()
 
 /obj/structure/disposalpipe/up/nextdir(fromdir)
 	var/nextdir
@@ -875,10 +835,11 @@
 /obj/structure/disposalpipe/down
 	icon_state = "pipe-d"
 
-	New()
-		..()
-		dpdir = dir
-		update()
+
+/obj/structure/disposalpipe/down/Initialize()
+	. = ..()
+	dpdir = dir
+	update()
 
 /obj/structure/disposalpipe/down/nextdir(fromdir)
 	var/nextdir
@@ -986,15 +947,16 @@
 /obj/structure/disposalpipe/junction
 	icon_state = "pipe-j1"
 
-	New()
-		..()
-		if(icon_state == "pipe-j1")
-			dpdir = dir|turn(dir, -90)|turn(dir, 180)
-		else if(icon_state == "pipe-j2")
-			dpdir = dir|turn(dir, 90)|turn(dir, 180)
-		else //Pipe-y
-			dpdir = dir|turn(dir,90)|turn(dir, -90)
-		update()
+
+/obj/structure/disposalpipe/junction/Initialize()
+	. = ..()
+	if(icon_state == "pipe-j1")
+		dpdir = dir|turn(dir, -90)|turn(dir, 180)
+	else if(icon_state == "pipe-j2")
+		dpdir = dir|turn(dir, 90)|turn(dir, 180)
+	else //Pipe-y
+		dpdir = dir|turn(dir,90)|turn(dir, -90)
+	update()
 
 /obj/structure/disposalpipe/junction/flipped
 	icon_state = "pipe-j2"
@@ -1030,14 +992,14 @@
 	var/sort_tag = ""
 	var/partial = 0
 
-	New()
-		. = ..()
-		dpdir = dir|turn(dir, 180)
-		if(sort_tag) 
-			GLOB.tagger_locations |= sort_tag
-		updatename()
-		updatedesc()
-		update()
+/obj/structure/disposalpipe/tagger/Initialize()
+	. = ..()
+	dpdir = dir|turn(dir, 180)
+	if(sort_tag) 
+		GLOB.tagger_locations |= sort_tag
+	updatename()
+	updatedesc()
+	update()
 
 /obj/structure/disposalpipe/tagger/proc/updatedesc()
 	desc = initial(desc)
@@ -1089,15 +1051,15 @@
 	var/negdir = 0
 	var/sortdir = 0
 
-	New()
-		. = ..()
-		if(sortType) 
-			GLOB.tagger_locations |= sortType
+/obj/structure/disposalpipe/sortjunction/Initialize()
+	. = ..()
+	if(sortType) 
+		GLOB.tagger_locations |= sortType
 
-		updatedir()
-		updatename()
-		updatedesc()
-		update()
+	updatedir()
+	updatename()
+	updatedesc()
+	update()
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = initial(desc)
@@ -1279,9 +1241,9 @@
 	dpdir = 0 //Broken pipes have dpdir = 0 so they're not found as 'real' pipes i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-	New()
-		..()
-		update()
+/obj/structure/disposalpipe/broken/Initialize()
+	. = ..()
+	update()
 
 //Called when welded, for broken pipe, remove and turn into scrap
 /obj/structure/disposalpipe/broken/welded()
