@@ -35,6 +35,8 @@ SUBSYSTEM_DEF(ticker)
 	var/tipped = FALSE
 	var/selected_tip
 
+	var/graceful = FALSE //Will this server gracefully shut down?
+
 	var/queue_delay = 0
 	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
 
@@ -272,7 +274,6 @@ SUBSYSTEM_DEF(ticker)
 	if(usr && !check_rights(R_SERVER))
 		return
 
-	var/graceful
 	if(istype(GLOB.tgs, /datum/tgs_api/v3210))
 		var/datum/tgs_api/v3210/API = GLOB.tgs
 		if(API.reboot_mode == 2)
