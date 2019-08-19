@@ -473,6 +473,7 @@
 		M.crashing = TRUE
 		M.hijack_state = HIJACK_STATE_CRASHING
 		M.unlock_all()
+		no_destination_swap = TRUE
 		priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 		to_chat(X, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
 		X.hive.xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Rejoice!")
