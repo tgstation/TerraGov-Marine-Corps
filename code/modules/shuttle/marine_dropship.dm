@@ -32,6 +32,11 @@
 			M.knock_down(3)
 		CHECK_TICK
 
+	for(var/i in GLOB.ai_list)
+		var/mob/living/silicon/ai/AI = i
+		AI.anchored = FALSE
+		CHECK_TICK
+
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	//clear areas around the shuttle with explosions
