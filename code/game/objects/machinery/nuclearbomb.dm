@@ -255,6 +255,7 @@
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
 				start_processing()
+				notify_ghosts("[usr] enabled the [src], it has [timeleft] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 			if(!lighthack)
 				icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
 		if(href_list["safety"])
