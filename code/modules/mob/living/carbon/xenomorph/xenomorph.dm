@@ -296,4 +296,4 @@
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
-	handle_afk_takeover()
+	addtimer(CALLBACK(src, .proc/handle_afk_takeover), 5 SECONDS)
