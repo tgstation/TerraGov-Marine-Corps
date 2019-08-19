@@ -124,7 +124,7 @@
 		return
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
-		print_command_report(input, "[CONFIG_GET(string/ship_name)] Update", announce = FALSE)
+		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
 
 	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
 		if("Yes")

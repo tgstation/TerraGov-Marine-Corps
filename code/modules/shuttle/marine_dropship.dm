@@ -376,7 +376,7 @@
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
-		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [CONFIG_GET(string/ship_name)]</A><br>"
+		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.hijack_state = HIJACK_STATE_CALLED_DOWN
 		M.unlock_all()
 	dat += "<a href='?src=[REF(X)];mach_close=computer'>Close</a>"

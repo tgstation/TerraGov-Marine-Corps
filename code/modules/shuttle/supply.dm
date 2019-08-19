@@ -354,7 +354,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		SSshuttle.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -539,7 +539,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		SSshuttle.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"

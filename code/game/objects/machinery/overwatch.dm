@@ -362,7 +362,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			switch(z_hidden)
 				if(HIDE_NONE)
 					z_hidden = HIDE_ON_SHIP
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [CONFIG_GET(string/ship_name)] are now hidden.</span>")
+					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [SSmapping.configs[SHIP_MAP].map_name] are now hidden.</span>")
 				if(HIDE_ON_SHIP)
 					z_hidden = HIDE_ON_GROUND
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
