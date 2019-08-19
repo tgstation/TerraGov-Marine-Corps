@@ -894,4 +894,4 @@
 		return
 
 	C.marines_evac = CRASH_EVAC_INPROGRESS
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
