@@ -743,23 +743,18 @@ mob/proc/yank_out_object()
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
-	var/viewers = viewers()
-	for(var/mob/M in viewers)
-		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
-			continue
-		SEND_IMAGE(M, emote_overlay)
+	emote_overlay.plane = ABOVE_HUD_PLANE
+	emote_overlay.layer = ABOVE_HUD_LAYER
+	overlays += emote_overlay
 
 	if(remove_delay)
-		addtimer(CALLBACK(src, .proc/remove_emote_overlay, client, emote_overlay, viewers), remove_delay)
+		addtimer(CALLBACK(src, .proc/remove_emote_overlay, emote_overlay, TRUE), remove_delay)
 
 
-/mob/proc/remove_emote_overlay(client/C, image/emote_overlay, list/viewers)
-	if(C)
-		C.images -= emote_overlay
-	for(var/mob/M in viewers)
-		if(M.client)
-			M.client.images -= emote_overlay
-	qdel(emote_overlay)
+/mob/proc/remove_emote_overlay(image/emote_overlay, delete)
+	overlays -= emote_overlay
+	if(delete)
+		qdel(emote_overlay)
 
 
 /mob/proc/spin(spintime, speed)
