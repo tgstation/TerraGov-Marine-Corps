@@ -3,6 +3,8 @@
 	anchored = TRUE
 	density = TRUE
 	layer = OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE
+	hit_sound = 'sound/effects/metalhit.ogg'
 	var/state = 0
 	var/dismantlectr = 0
 	var/buildctr = 0
@@ -11,40 +13,6 @@
 	// To store what type of wall it used to be
 	var/original
 
-
-
-/obj/structure/girder/bullet_act(obj/item/projectile/Proj)
-	//Tasers and the like should not damage girders.
-	if(Proj.ammo.damage_type == HALLOSS || Proj.ammo.damage_type == TOX || Proj.ammo.damage_type == CLONE || Proj.damage == 0)
-		return 0
-
-	if(Proj.ammo.damage_type == BURN)
-		obj_integrity -= Proj.damage
-		if(obj_integrity <= 0)
-			update_state()
-	else
-		if(prob(50))
-			obj_integrity -= round(Proj.ammo.damage / 2)
-			if(obj_integrity <= 0)
-				update_state()
-	return 1
-
-/obj/structure/girder/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.mob_size != MOB_SIZE_BIG || CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		to_chat(M, "<span class='warning'>Our claws aren't sharp enough to damage \the [src].</span>")
-		return FALSE
-	else
-		M.do_attack_animation(src)
-		obj_integrity -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
-		if(obj_integrity <= 0)
-			M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
-			"<span class='danger'>We slice \the [src] apart!</span>", null, 5)
-			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			dismantle()
-		else
-			M.visible_message("<span class='danger'>[M] smashes \the [src]!</span>", \
-			"<span class='danger'>We slash \the [src]!</span>", null, 5)
-			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 
 /obj/structure/girder/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -79,7 +47,10 @@
 			if(!I || repair_state != 1) 
 				return
 			to_chat(user, "<span class='notice'>You weld the girder together!</span>")
-			repair()
+			repair_damage(200)
+			buildctr = 0
+			repair_state = 0
+			update_icon()
 
 	else if(iswrench(I))
 		if(!anchored)
@@ -102,7 +73,7 @@
 				return
 
 			dismantlectr++
-			obj_integrity -= 15
+			take_damage(15)
 			to_chat(user, "<span class='notice'>You unfasten a bolt from the girder!</span>")
 
 	else if(isscrewdriver(I) && state == 2 && istype(src, /obj/structure/girder/reinforced))
@@ -217,11 +188,11 @@
 			return
 
 		if(dismantlectr >= 5)
-			dismantle()
+			deconstruct(FALSE)
 			dismantlectr = 0
 			return
 
-		obj_integrity -= 15
+		take_damage(15)
 		dismantlectr++
 		to_chat(user, "<span class='notice'>You cut away from structural piping!</span>")
 
@@ -272,16 +243,19 @@
 		else if (dismantlectr < 5)
 			to_chat(user, "It needs 1 bolt removed.")
 
-/obj/structure/girder/proc/dismantle()
-	new /obj/item/stack/sheet/metal(src)
-	qdel(src)
+/obj/structure/girder/deconstruct(disassembled = TRUE)
+	if(disassembled)
+		new /obj/item/stack/sheet/metal(loc)
+		return ..()
+	else
+		obj_integrity = 0
+		buildctr = 0
+		repair_state = 0
+		update_icon()
 
-/obj/structure/girder/proc/repair()
-	obj_integrity = 200
-	update_state()
 
-/obj/structure/girder/proc/update_state()
-	if (obj_integrity <= 0)
+/obj/structure/girder/update_icon()
+	if(obj_integrity <= 0)
 		icon_state = "[icon_state]_damaged"
 		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		density = FALSE
@@ -291,29 +265,18 @@
 		icon_state = new_state
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		density = TRUE
-	buildctr = 0
-	repair_state = 0
 
-/obj/structure/girder/attack_animal(mob/living/simple_animal/user)
-	if(user.wall_smash)
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		dismantle()
-		return
-	return ..()
 
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
 		if(1)
-			obj_integrity = 0
-			update_state()
+			deconstruct(FALSE)
 		if(2)
-			if (prob(30))
-				obj_integrity = 0
-				update_state()
+			if(prob(30))
+				deconstruct(FALSE)
 		if(3)
 			if(prob(5))
-				obj_integrity = 0
-				update_state()
+				deconstruct(FALSE)
 
 
 

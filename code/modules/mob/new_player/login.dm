@@ -3,7 +3,7 @@
 		to_chat(src, "<div class='motd'>[GLOB.motd]</div>")
 
 	if(CONFIG_GET(flag/use_exp_tracking))
-		client.set_exp_from_db()
+		client?.set_exp_from_db()
 
 	if(!mind)
 		mind = new /datum/mind(key)
@@ -15,4 +15,4 @@
 	sight |= SEE_TURFS
 
 	new_player_panel()
-	client.playtitlemusic()
+	client?.playtitlemusic()

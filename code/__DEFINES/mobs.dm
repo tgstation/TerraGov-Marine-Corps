@@ -112,12 +112,10 @@
 #define CANKNOCKDOWN	(1<<1)
 #define CANKNOCKOUT		(1<<2)
 #define CANPUSH			(1<<3)
-#define LEAPING			(1<<4)
-#define PASSEMOTES		(1<<5)      //holders inside of mob that need to see emotes.
-#define GODMODE			(1<<6)
-#define FAKEDEATH		(1<<7)	//Replaces stuff like changeling.changeling_fakedeath
-#define DISFIGURED		(1<<8)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
-#define XENO_HOST		(1<<9)	//Tracks whether we're gonna be a baby alien's mummy.
+#define GODMODE			(1<<4)
+#define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
+#define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
+#define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
 
 // =============================
 // hive types
@@ -159,9 +157,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SLASHING_ALLOWED 1
 #define XENO_SLASHING_RESTRICTED 2
 
-
-#define XENO_NIGHTVISION_ENABLED 8
-#define XENO_NIGHTVISION_DISABLED 4
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////

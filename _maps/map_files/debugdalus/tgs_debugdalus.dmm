@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aaa" = (
-/turf/open/space,
+/turf/open/space/basic,
 /area/space)
 "aab" = (
 /obj/machinery/vending/uniform_supply{
@@ -1845,12 +1845,6 @@
 	pixel_z = -1
 	},
 /area/mainship/living/cryo_cells)
-"aej" = (
-/obj/effect/multitile_spawner/cm_armored/tank,
-/turf/open/floor/mainship{
-	pixel_z = -1
-	},
-/area/mainship/hallways/exoarmor)
 "aek" = (
 /obj/structure/rack,
 /obj/item/tool/weldingtool,
@@ -2250,7 +2244,7 @@
 	},
 /area/mainship/hallways/hangar)
 "aff" = (
-/obj/effect/landmark/start/marine/intelligenceofficer,
+/obj/effect/landmark/start/marine/staffofficer,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -20298,7 +20292,7 @@ aax
 aWV
 adD
 adA
-aej
+adA
 adA
 adA
 aVs

@@ -162,7 +162,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 	else if(href_list["claim"])
-		var/mob/living/target = locate(href_list["claim"]) in GLOB.mob_list
+		var/mob/living/target = locate(href_list["claim"]) in GLOB.offered_mob_list
 		if(!istype(target))
 			to_chat(usr, "<span class='warning'>Invalid target.</span>")
 			return

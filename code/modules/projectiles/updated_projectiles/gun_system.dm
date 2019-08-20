@@ -772,9 +772,7 @@ and you're good to go.
 	DISABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK) //If they try to click again, they're going to hit themselves.
 
 	user.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
-	log_game("[key_name(user)] is trying to commit suicide.")
-	var/u = "[key_name(user)] is trying to commit suicide."
-	user.log_message(u, LOG_ATTACK, "red")
+	log_combat(user, null, "is trying to commit suicide")
 
 	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
 		M.visible_message("<span class='notice'>[user] decided life was worth living.</span>")
@@ -796,7 +794,7 @@ and you're good to go.
 	playsound(user, actual_sound, sound_volume, 1)
 	simulate_recoil(2, user)
 	var/obj/item/weapon/gun/revolver/current_revolver = src
-	log_game("[key_name(user)] committed suicide with [src] at [AREACOORD(user.loc)].")
+	log_combat(user, null, "committed suicide with [src].")
 	message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
 	if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
 		user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)

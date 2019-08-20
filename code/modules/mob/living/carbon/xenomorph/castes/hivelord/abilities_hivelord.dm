@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	/obj/structure/mineral_door/resin), FALSE, TRUE))
 
 /datum/action/xeno_action/activable/secrete_resin/hivelord/use_ability(atom/A)
-	if(get_dist(src,A) > 1)
+	if(get_dist(owner, A) != 1)
 		return ..()
 
 	if(!is_type_in_typecache(A, GLOB.thickenable_resin))
@@ -134,8 +134,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(newt.z != newt.other.z)
 		X.start_dig = newt
 		to_chat(X, "<span class='xenonotice'>The first tunnel of this set has been destroyed as it cannot connect to this tunnel.</span>")
-		newt.other.obj_integrity = 0
-		newt.other.healthcheck()
+		newt.other.deconstruct(FALSE)
 		newt.other = null
 		return fail_activate()
 
@@ -155,8 +154,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	if(length(X.tunnels) * 0.5 > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
-		old_tunnel.obj_integrity = 0
-		old_tunnel.healthcheck()
+		old_tunnel.deconstruct(FALSE)
 		to_chat(X, "<span class='xenodanger'>Having exceeding our tunnel set limit, our oldest tunnel set has collapsed.</span>")
 
 	succeed_activate()

@@ -9,17 +9,17 @@
 
 .icon24.uiStatusGood
 {
-	background: url(uiIcons24.png) 0 0 no-repeat;
+	background: url('uiIcons24.png') 0 0 no-repeat;
 }
 
 .icon24.uiStatusAverage
 {
-	background: url(uiIcons24.png) 0 -24px no-repeat;
+	background: url('uiIcons24.png') 0 -24px no-repeat;
 }
 
 .icon24.uiStatusBad
 {
-	background: url(uiIcons24.png) 0 -48px no-repeat;
+	background: url('uiIcons24.png') 0 -48px no-repeat;
 }
 
 /* states and images */
@@ -28,7 +28,7 @@
 	width: 16px;
 	height: 16px;
 	margin: 2px 2px 0 2px;
-	background-image: url(uiIcons16.png);
+	background-image: url('uiIcons16.png');
 }
 
 .uiLinkPendingIcon {
@@ -37,7 +37,7 @@
 	width: 16px;
 	height: 16px;
 	margin: 2px 2px 0 2px;
-	background-image: url(uiLinkPendingIcon.gif);
+	background-image: url('uiLinkPendingIcon.gif');
 }
 
 .linkPending .uiIcon16 {
@@ -227,16 +227,16 @@
 .uiIcon16.icon-grip-solid-horizontal { background-position: -48px -224px; }
 .uiIcon16.icon-gripsmall-diagonal-se { background-position: -64px -224px; }
 .uiIcon16.icon-grip-diagonal-se { background-position: -80px -224px; }
-.uiIcon16.icon-batt_full { background-image: url(c_max.gif); background-position: 0px 0px }
-.uiIcon16.icon-batt_disc { background-image: url(c_discharging.gif); background-position: 0px 0px }
-.uiIcon16.icon-batt_chrg { background-image: url(c_charging.gif); background-position: 0px 0px }
-.uiIcon16.icon-close64 { background-image: url(uiIcons64.png); background-position: -128px -64px; width: 64px; height: 64px; }
+.uiIcon16.icon-batt_full { background-image: url('c_max.gif'); background-position: 0px 0px }
+.uiIcon16.icon-batt_disc { background-image: url('c_discharging.gif'); background-position: 0px 0px }
+.uiIcon16.icon-batt_chrg { background-image: url('c_charging.gif'); background-position: 0px 0px }
+.uiIcon16.icon-close64 { background-image: url('uiIcons64.png'); background-position: -128px -64px; width: 64px; height: 64px; }
 
 .mapIcon16 {
     position: absolute;
     width: 16px;
     height: 16px;
-    background-image: url(uiIcons16Green.png);
+    background-image: url('uiIcons16Green.png');
     background-position: -144px -96px;
     background-repeat: no-repeat;
     zoom: 0.125;
@@ -244,7 +244,7 @@
     /*margin-bottom: -1px;*/
 }
 .mapIcon16.dead {
-    background-image: url(uiIcons16Red.png);
+    background-image: url('uiIcons16Red.png');
 }
 
 /* Command Positions */

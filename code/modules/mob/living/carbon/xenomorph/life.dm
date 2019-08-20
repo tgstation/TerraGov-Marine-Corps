@@ -320,6 +320,8 @@
 		adjustHalLoss(XENO_HALOSS_REGEN)
 
 /mob/living/carbon/xenomorph/proc/handle_afk_takeover()
+	if(QDELETED(src)) // Deleted by an admin.
+		return
 	if(client)
 		return
 	if(isclientedaghost(src)) // If aghosted, and admin still online

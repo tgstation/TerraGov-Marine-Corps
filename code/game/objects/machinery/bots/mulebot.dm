@@ -13,8 +13,6 @@
 	anchored = TRUE
 	animate_movement=1
 	max_integrity = 150
-	fire_dam_coeff = 0.7
-	brute_dam_coeff = 0.5
 	var/atom/movable/load = null		// the loaded crate (usually)
 	var/beacon_freq = 1400
 	var/control_freq = FREQ_AI
@@ -81,20 +79,13 @@
 
 
 // attack by item
-// emag : lock/unlock,
 // screwdriver: open/close hatch
 // cell: insert it
 // other: chance to knock rider off bot
 /obj/machinery/bot/mulebot/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag))
-		locked = !locked
-		to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
-		flick("mulebot-emagged", src)
-		playsound(loc, 'sound/effects/sparks1.ogg', 25, 0)
-
-	else if(istype(I, /obj/item/cell) && open && !cell)
+	if(istype(I, /obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
 		if(!user.transferItemToLoc(C, src))
 			return
@@ -107,7 +98,7 @@
 			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
 			return
 
-		obj_integrity = min(max_integrity, obj_integrity + 25)
+		repair_damage(25)
 		user.visible_message("<span class='warning'> [user] repairs [src]!</span>", "<span class='notice'> You repair [src]!</span>")
 
 	else if(load && ismob(load))  // chance to knock off rider
@@ -343,7 +334,6 @@
 	return !open && cell && cell.charge > 0 && (!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
 
 // mousedrop a crate to load the bot
-// can load anything if emagged
 
 /obj/machinery/bot/mulebot/MouseDrop_T(atom/movable/C, mob/user)
 
@@ -364,7 +354,7 @@
 	if(!wires.is_cut(WIRE_LOADCHECK) && !istype(C,/obj/structure/closet/crate))
 		src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 25, 0)
-		return		// if not emagged, only allow crates to be loaded
+		return
 
 	//I'm sure someone will come along and ask why this is here... well people were dragging screen items onto the mule, and that was not cool.
 	//So this is a simple fix that only allows a selection of item types to be considered. Further narrowing-down is below.
@@ -650,7 +640,7 @@
 			// not loaded
 			if(auto_pickup)		// find a crate
 				var/atom/movable/AM
-				if(wires.is_cut(WIRE_LOADCHECK))		// if emagged, load first unanchored thing we find
+				if(wires.is_cut(WIRE_LOADCHECK))
 					for(var/atom/movable/A in get_step(loc, loaddir))
 						if(!A.anchored)
 							AM = A
@@ -842,23 +832,20 @@
 	..()
 
 
-/obj/machinery/bot/mulebot/explode()
-	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
+/obj/machinery/bot/mulebot/deconstruct(disassembled = TRUE)
+	new /obj/item/assembly/prox_sensor(loc)
+	new /obj/item/stack/rods(loc)
+	new /obj/item/stack/rods(loc)
+	new /obj/item/stack/cable_coil/cut(loc)
 
-	new /obj/item/assembly/prox_sensor(Tsec)
-	new /obj/item/stack/rods(Tsec)
-	new /obj/item/stack/rods(Tsec)
-	new /obj/item/stack/cable_coil/cut(Tsec)
-	if (cell)
-		cell.loc = Tsec
+	if(cell)
+		cell.forceMove(loc)
 		cell.update_icon()
-		cell = null
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 
-	new /obj/effect/decal/cleanable/blood/oil(src.loc)
-	unload(0)
-	qdel(src)
+	new /obj/effect/decal/cleanable/blood/oil(loc)
+	unload(FALSE)
+	return ..()

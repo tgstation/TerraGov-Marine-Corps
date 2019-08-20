@@ -5,7 +5,7 @@
 	opacity = TRUE
 	density = TRUE
 
-	damage_cap = 3000
+	max_integrity = 3000
 	max_temperature = 6000
 
 	walltype = "rwall"

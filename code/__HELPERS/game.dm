@@ -85,8 +85,13 @@
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/O = i
 		//Players without preferences or jobbaned players cannot be drafted.
-		if(!O.key || !O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || is_banned_from(O.ckey, ROLE_XENOMORPH))
+		if(!O.key || !O.mind || !O.client?.prefs || !(O.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) || is_banned_from(O.ckey, ROLE_XENOMORPH))
 			continue
+
+		if(O.client.prefs.be_special & BE_ALIEN_UNREVIVABLE && !(O.client.prefs.be_special & BE_ALIEN) && ishuman(O.mind.current))
+			var/mob/living/carbon/human/H = O.mind.current
+			if(check_tod(H))
+				continue
 
 		//AFK players cannot be drafted
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
