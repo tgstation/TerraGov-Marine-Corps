@@ -142,7 +142,7 @@
 					screen = 0
 
 	else if(href_list["delete"])
-		if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(!allowed(usr))
 			to_chat(usr, "<span class='danger'>ACCESS DENIED.</span>")
 			return
 

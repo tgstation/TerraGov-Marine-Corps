@@ -101,7 +101,9 @@ SUBSYSTEM_DEF(codex)
 		return
 	if(href_list["show_examined_info"] && href_list["show_to"])
 		var/atom/showing_atom = locate(href_list["show_examined_info"])
-		var/mob/showing_mob =   locate(href_list["show_to"])
+		var/mob/showing_mob = locate(href_list["show_to"]) in GLOB.mob_list
+		if(!showing_atom || !showing_mob)
+			return
 		var/entry = get_codex_entry(showing_atom)
 		if(entry && showing_mob.can_use_codex())
 			present_codex_entry(showing_mob, entry)

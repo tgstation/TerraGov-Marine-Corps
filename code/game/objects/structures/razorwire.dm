@@ -9,6 +9,7 @@
 	layer = ABOVE_OBJ_LAYER
 	throwpass = TRUE	//You can throw objects over this
 	climbable = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 	var/list/entangled_list = list()
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
@@ -16,8 +17,8 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
-/obj/structure/razorwire/proc/destroyed(deconstruct = FALSE)
-	if(deconstruct)
+/obj/structure/razorwire/deconstruct(disassembled = TRUE)
+	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
 			new sheet_type(loc)
 		var/obj/item/stack/rods/salvage = new sheet_type2(loc)
@@ -28,10 +29,10 @@
 		if(prob(50))
 			var/obj/item/stack/rods/salvage = new sheet_type2(loc)
 			salvage.amount = rand(1,4)
-	qdel(src)
+	return ..()
 
-/obj/structure/razorwire/New()
-	..()
+/obj/structure/razorwire/Initialize()
+	. = ..()
 	for(var/obj/structure/razorwire/T in loc)
 		if(T != src)
 			qdel(T)
@@ -49,7 +50,7 @@
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
-	if(QDELETED(src) || obj_integrity <= 0) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
+	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		return
 	M.cooldowns[COOLDOWN_ENTANGLE] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_ENTANGLE, null), duration)
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
@@ -151,7 +152,7 @@
 		user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 		"<span class='notice'>You disassemble [src].</span>")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		destroyed(TRUE)
+		deconstruct(TRUE)
 
 	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
@@ -170,60 +171,28 @@
 
 		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 		"<span class='notice'>You repair [src].</span>")
-		obj_integrity = min(obj_integrity + 100, max_integrity)
-		update_health()
+		repair_damage(100)
+		update_icon()
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-
-	else if((I.flags_item & ITEM_ABSTRACT))
-		return
-
-	var/damage = I.force
-	if(!I.sharp)
-		damage *= 0.25
-	damage = max(damage - soak,0)
-
-	if(damage)
-		obj_integrity -= damage
-		update_health()
-
-	if(isliving(user))
-		var/mob/living/M = user
-		var/armor_block = null
-		var/def_zone = ran_zone()
-		armor_block = M.run_armor_check(def_zone, "melee")
-		M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW), BRUTE, def_zone, armor_block, null, 1)
-		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
-		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
-		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
-	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-	if(obj_integrity <= 0)
-		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
-		"<span class='danger'>We slice [src] apart!</span>", null, 5)
-	else
-		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>We slash [src]!</span>", null, 5)
-	M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
-	"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
-	update_health(TRUE)
+	update_icon()
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
+	return ..()
 
 /obj/structure/razorwire/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			visible_message("<span class='danger'>[src] is blown apart!</span>")
-			destroyed()
+			deconstruct(FALSE)
 			return
-		if(2.0)
-			obj_integrity -= rand(33, 66)
-		if(3.0)
-			obj_integrity -= rand(10, 33)
-	update_health()
+		if(2)
+			take_damage(rand(33, 66))
+		if(3)
+			take_damage(rand(10, 33))
+	update_icon()
 
 /obj/structure/razorwire/Bumped(atom/A)
 	. = ..()
@@ -235,7 +204,7 @@
 		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
 			return
 
-		obj_integrity -= C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI
+		take_damage(C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI)
 
 
 		var/def_zone = ran_zone()
@@ -251,45 +220,8 @@
 		C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
 		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-		update_health()
+		update_icon()
 
-
-
-/obj/structure/razorwire/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage * 0.1)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
-
-/obj/structure/razorwire/hitby(atom/movable/AM)
-	if(AM.throwing)
-		if(isliving(AM))
-			var/mob/living/C = AM
-			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
-			"<span class='danger'>The barbed wire slices into you!</span>")
-			C.loc = loc
-			var/armor_block = null
-			var/def_zone = ran_zone()
-			armor_block = C.run_armor_check(def_zone, "melee")
-			C.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_HIGH, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_HIGH), BRUTE, def_zone, armor_block, null, 1) //pouncing into razor wire is especially ouchy
-			C.knock_down(1)
-			razorwire_tangle(C)
-	return ..()
-
-/obj/structure/razorwire/update_health(nomessage)
-	obj_integrity = CLAMP(obj_integrity, 0, max_integrity)
-
-	if(!obj_integrity)
-		if(!nomessage)
-			visible_message("<span class='danger'>[src] falls apart!</span>")
-		destroyed()
-		return
-
-	update_icon()
 
 /obj/structure/razorwire/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
@@ -298,7 +230,7 @@
 		return TRUE
 	if(istype(mover, /obj/vehicle/multitile))
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
-		destroyed()
+		deconstruct(FALSE)
 		return TRUE
 
 /obj/structure/razorwire/update_icon()
@@ -311,5 +243,4 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		obj_integrity -= 2 * S.strength
-		update_health()
+		take_damage(2 * S.strength)

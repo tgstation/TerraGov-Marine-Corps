@@ -299,7 +299,7 @@
 				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
 					var/obj/structure/S = O
 					visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
-					S.destroy_structure() //We want to continue moving, so we do not reset throwing.
+					S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 				else O.hitby(src, speed) //This resets throwing.
 		return TRUE
 
@@ -384,15 +384,13 @@
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision()
-	if(see_in_dark == XENO_NIGHTVISION_DISABLED)
+	if(lighting_alpha == LIGHTING_PLANE_ALPHA_NV_TRAIT)
 		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		see_in_dark = XENO_NIGHTVISION_ENABLED
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		ENABLE_BITFIELD(sight, SEE_OBJS)
 		ENABLE_BITFIELD(sight, SEE_TURFS)
 	else
-		lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-		see_in_dark = XENO_NIGHTVISION_DISABLED
+		lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		DISABLE_BITFIELD(sight, SEE_OBJS)
 		DISABLE_BITFIELD(sight, SEE_TURFS)
@@ -573,8 +571,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	obj_integrity -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
-	update_health(TRUE)
+	take_damage(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X))
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -686,9 +683,10 @@
 	xeno_mobhud = !xeno_mobhud
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 	if(xeno_mobhud)
-		H.add_hud_to(usr)
+		H.add_hud_to(src)
 	else
-		H.remove_hud_from(usr)
+		H.remove_hud_from(src)
+	to_chat(src, "<span class='notice'>You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD.</span>")
 
 
 /mob/living/carbon/xenomorph/verb/middle_mousetoggle()

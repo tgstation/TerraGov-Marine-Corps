@@ -150,10 +150,10 @@
 				T.ChangeTurf(/turf/open/floor/plating)
 		else if (istype(acid_t, /obj/structure/girder))
 			var/obj/structure/girder/G = acid_t
-			G.dismantle()
+			G.deconstruct(FALSE)
 		else if(istype(acid_t, /obj/structure/window/framed))
 			var/obj/structure/window/framed/WF = acid_t
-			WF.drop_window_frame()
+			WF.deconstruct(FALSE)
 
 		else
 			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..
