@@ -110,7 +110,11 @@
 		w_items += I.w_class
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 
+/obj/structure/toilet/alternate
+	icon_state = "toilet200"
 
+/obj/structure/toilet/alternate/update_icon()
+	icon_state = "toilet2[open][cistern]"
 
 /obj/structure/urinal
 	name = "urinal"
