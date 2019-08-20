@@ -327,3 +327,20 @@
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
 		ST.update_icon(1,0)
 		cut_apart(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "You melt the snow with [src]. ") //costs 25% normal
+
+
+
+/obj/item/tool/pickaxe/plasmacutter/attack_obj(obj/O, mob/living/user)
+	if(!powered || user.action_busy || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
+		. = ..()
+		return TRUE
+
+	if(!start_cut(user, O.name, O))
+		return TRUE
+		
+	if(!do_after(user, calc_delay(user), TRUE, O, BUSY_ICON_HOSTILE))
+		return TRUE
+
+	cut_apart(user, O.name, O)
+	qdel(O)
+	return TRUE

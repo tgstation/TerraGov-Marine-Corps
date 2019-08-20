@@ -170,15 +170,16 @@
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
 
-/obj/machinery/light/built/New()
+/obj/machinery/light/built/Initialize()
+	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
-	..()
+	update(FALSE)
 
-/obj/machinery/light/small/built/New()
+
+/obj/machinery/light/small/built/Initialize()
+	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
-	..()
+	update(FALSE)
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
@@ -397,16 +398,6 @@
 	src.flicker(1)
 	return
 
-/obj/machinery/light/attack_animal(mob/living/M)
-	if(M.melee_damage_upper == 0)
-		return
-	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
-		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
-		return
-	else if (status == LIGHT_OK||status == LIGHT_BURNED)
-		visible_message("<span class='warning'>[M] smashed the light!</span>", null, "You hear a tinkle of breaking glass")
-		broken()
-	return
 
 //Xenos smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
@@ -634,10 +625,6 @@
 		to_chat(user, "You inject the solution into the [src].")
 
 		if(S.reagents.has_reagent(/datum/reagent/toxin/phoron, 5))
-
-			log_game("[key_name(user)] injected a light with phoron, rigging it to explode.")
-			message_admins("[ADMIN_TPMONTY(user)] injected a light with phoron, rigging it to explode.")
-
 			rigged = TRUE
 
 		S.reagents.clear_reagents()
@@ -692,14 +679,14 @@
 
 /obj/machinery/landinglight/ds1/Initialize(mapload, ...)
 	. = ..()
-	id = "[CONFIG_GET(string/ship_name)] Dropship 1"
+	id = "alamo"
 
 /obj/machinery/landinglight/ds2
 
 
 /obj/machinery/landinglight/ds2/Initialize(mapload, ...)
 	. = ..()
-	id = "[CONFIG_GET(string/ship_name)] Dropship 2" // ID for landing zone
+	id = "normandy" // ID for landing zone
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"

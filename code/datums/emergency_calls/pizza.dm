@@ -1,7 +1,7 @@
 /datum/emergency_call/pizza
 	name = "Pizza Delivery"
 	mob_max = 3
-	probability = 5
+	probability = 0
 
 /datum/emergency_call/pizza/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You are a pizza deliverer! Your employer is the Zippy Pizza Corporation.</b>")

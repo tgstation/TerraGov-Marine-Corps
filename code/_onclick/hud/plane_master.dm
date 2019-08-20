@@ -60,6 +60,7 @@
 
 /obj/screen/plane_master/game_world/backdrop(mob/mymob)
 	filters = list()
+	filters += AMBIENT_OCCLUSION
 	if(!isliving(mymob))
 		return
 	var/mob/living/L = mymob

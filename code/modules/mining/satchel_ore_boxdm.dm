@@ -1,6 +1,3 @@
-
-/**********************Ore box**************************/
-
 /obj/structure/ore_box
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox0"
@@ -8,3 +5,4 @@
 	desc = "A heavy box used for storing ore."
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE

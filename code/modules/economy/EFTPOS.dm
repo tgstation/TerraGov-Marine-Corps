@@ -228,9 +228,6 @@
 					if(ACCESS_MARINE_LOGISTICS in C.access)
 						access_code = 0
 						to_chat(usr, "[icon2html(src, usr)]<span class='info'>Access code reset to 0.</span>")
-				else if (istype(I, /obj/item/card/emag))
-					access_code = 0
-					to_chat(usr, "[icon2html(src, usr)]<span class='info'>Access code reset to 0.</span>")
 
 	src.attack_self(usr)
 
@@ -289,14 +286,3 @@
 					to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Connected account has been suspended.</span>")
 			else
 				to_chat(usr, "[icon2html(src, usr)]<span class='warning'>EFTPOS is not connected to an account.</span>")
-	else if (istype(I, /obj/item/card/emag))
-		if(transaction_locked)
-			if(transaction_paid)
-				to_chat(usr, "[icon2html(src, usr)]<span class='info'>You stealthily swipe [I] through [src].</span>")
-				transaction_locked = 0
-				transaction_paid = 0
-			else
-				visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
-				playsound(src, 'sound/machines/chime.ogg', 25, 1)
-				src.visible_message("[icon2html(src, viewers(src))] The [src] chimes.")
-				transaction_paid = 1

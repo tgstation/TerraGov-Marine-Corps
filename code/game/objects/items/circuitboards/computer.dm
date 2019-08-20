@@ -164,19 +164,7 @@
 /obj/item/circuitboard/computer/security/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag))
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "Circuit lock is already removed.")
-			return
-		to_chat(user, "<span class='notice'>You override the circuit lock and open controls.</span>")
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		locked = FALSE
-
-	else if(istype(I, /obj/item/card/id))
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>Circuit lock does not respond.</span>")
-			return
-
+	if(istype(I, /obj/item/card/id))
 		if(!check_access(I))
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 			return

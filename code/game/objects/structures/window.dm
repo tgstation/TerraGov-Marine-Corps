@@ -3,10 +3,12 @@
 	desc = "A glass window. It looks thin and flimsy. A few knocks with anything should shatter it."
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "window"
+	hit_sound = 'sound/effects/Glasshit.ogg'
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER
+	resistance_flags = XENO_DAMAGEABLE
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
 	max_integrity = 15
 	var/state = 2
@@ -45,49 +47,14 @@
 	return ..()
 
 
-//create_debris creates debris like shards and rods. This also includes the window frame for explosions
-//If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
-//Please only fire this after a hit
-/obj/structure/window/proc/healthcheck(make_hit_sound = 1, make_shatter_sound = 1, create_debris = 1, mob/user, atom/movable/AM)
-
-	if(!damageable)
-		if(make_hit_sound) //We'll still make the noise for immersion's sake
-			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		return
-	if(obj_integrity <= 0)
-		if(user)
-			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? " with [AM]":""]!</span>")
-		if(make_shatter_sound)
-			playsound(src, "shatter", 50, 1)
-		shatter_window(create_debris)
-	else
-		if(make_hit_sound)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-
-/obj/structure/window/bullet_act(obj/item/projectile/Proj)
-	//Tasers and the like should not damage windows.
-	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
-		return FALSE
-
-	if(damageable) //Possible to destroy
-		obj_integrity -= Proj.damage
-	..()
-	healthcheck()
-	return TRUE
-
 /obj/structure/window/ex_act(severity)
-	if(!damageable) //Impossible to destroy
-		return
 	switch(severity)
 		if(1)
-			obj_integrity -= rand(125, 250)
-			healthcheck(0, 1, 0)
+			take_damage(rand(125, 250))
 		if(2)
-			obj_integrity -= rand(75, 125)
-			healthcheck(0, 1)
+			take_damage(rand(75, 125))
 		if(3)
-			obj_integrity -= rand(25, 75)
-			healthcheck(0, 1)
+			take_damage(rand(25, 75))
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -115,32 +82,6 @@
 		return !density
 	return TRUE
 
-/obj/structure/window/hitby(AM as mob|obj)
-	..()
-	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 40
-	else if(isobj(AM))
-		var/obj/item/I = AM
-		tforce = I.throwforce
-	if(reinf) tforce *= 0.25
-	if(damageable) //Possible to destroy
-		obj_integrity = max(0, obj_integrity - tforce)
-		if(obj_integrity <= 7 && !reinf && !static_frame)
-			anchored = FALSE
-			update_nearby_icons()
-			step(src, get_dir(AM, src))
-	healthcheck()
-
-/obj/structure/window/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent == INTENT_HELP)
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 25, 1)
-		M.visible_message("<span class='warning'>\The [M] creepily taps on [src] with its huge claw.</span>", \
-		"<span class='warning'>We creepily tap on [src].</span>", \
-		"<span class='warning'>You hear a glass tapping sound.</span>", 5)
-	else
-		attack_generic(M, M.xeno_caste.melee_damage_lower)
 
 /obj/structure/window/attack_hand(mob/living/user)
 	. = ..()
@@ -170,25 +111,6 @@
 		"<span class='notice'>You hear a knocking sound.</span>")
 		windowknock_cooldown = world.time + 100
 
-/obj/structure/window/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-//Used by attack_animal
-/obj/structure/window/proc/attack_generic(mob/living/user, damage = 0)
-	if(damageable) //Possible to destroy
-		obj_integrity -= damage
-	user.do_attack_animation(src)
-	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
-	healthcheck(1, 1, 1, user)
-
-/obj/structure/window/attack_animal(mob/user as mob)
-	if(!isanimal(user))
-		return
-	var/mob/living/simple_animal/M = user
-	if(M.melee_damage_upper <= 0)
-		return
-	attack_generic(M, M.melee_damage_upper)
-
 /obj/structure/window/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -208,8 +130,7 @@
 				log_combat(user, M, "slammed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
 				M.apply_damage(7)
-				if(damageable) //Possible to destroy
-					obj_integrity -= 10
+				take_damage(10)
 			if(GRAB_AGGRESSIVE)
 				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 				log_combat(user, M, "bashed", "", "against \the [src]")
@@ -217,18 +138,14 @@
 				if(prob(50))
 					M.knock_down(1)
 				M.apply_damage(10)
-				if(damageable) //Possible to destroy
-					obj_integrity -= 25
+				take_damage(25)
 			if(GRAB_NECK)
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 				log_combat(user, M, "crushed", "", "against \the [src]")
 				msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
 				M.knock_down(5)
 				M.apply_damage(20)
-				if(damageable) //Possible to destroy
-					obj_integrity -= 50
-			
-		healthcheck(1, 1, 1, M) //The person thrown into the window literally shattered it
+				take_damage(50)
 
 	else if(I.flags_item & NOBLUDGEON)
 		return
@@ -250,7 +167,7 @@
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>"))
 		else if(!reinf || (static_frame && state == 0))
-			disassemble_window()
+			deconstruct(TRUE)
 
 	else if(iscrowbar(I) && reinf && state <= 1 && deconstructable)
 		dismantle = TRUE
@@ -258,28 +175,20 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		to_chat(user, (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>"))
 
-	else if(damageable && dismantle == FALSE) //Possible to destroy
-		obj_integrity -= I.force
-		if(obj_integrity <= 7  && !reinf && !static_frame && deconstructable)
-			anchored = FALSE
-			update_nearby_icons()
-			step(src, get_dir(user, src))
-		healthcheck(1, 1, 1, user, I)
 
-
-/obj/structure/window/proc/disassemble_window()
-	new /obj/item/stack/sheet/glass/reinforced(loc, 2)
-	qdel(src)
-
-
-/obj/structure/window/proc/shatter_window(create_debris)
-	if(create_debris)
+/obj/structure/window/deconstruct(disassembled = TRUE)
+	if(disassembled)
+		if(reinf)
+			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
+		else
+			new /obj/item/stack/sheet/glass(loc, 2)
+	else
 		new shardtype(loc)
 		if(is_full_window())
 			new shardtype(loc)
 		if(reinf)
 			new /obj/item/stack/rods(loc)
-	qdel(src)
+	return ..()
 
 
 /obj/structure/window/verb/rotate()
@@ -354,10 +263,8 @@
 
 /obj/structure/window/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		if(damageable)
-			obj_integrity -= round(exposed_volume / 100)
-		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
-	..()
+		take_damage(round(exposed_volume / 100), BURN, "fire")
+	return ..()
 
 /obj/structure/window/phoronbasic
 	name = "phoron window"
@@ -369,9 +276,8 @@
 
 /obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
-		obj_integrity -= round(exposed_volume / 1000)
-		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
-	..()
+		take_damage(round(exposed_volume / 1000), BURN, "fire")
+	return ..()
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced phoron window"
@@ -448,11 +354,6 @@
 	relativewall_neighbours()
 	. = ..()
 
-/obj/structure/window/framed/Destroy()
-	for(var/obj/effect/alien/weeds/weedwall/window/WW in loc)
-		qdel(WW)
-	. = ..()
-
 /obj/structure/window/framed/update_nearby_icons()
 	relativewall_neighbours()
 
@@ -460,28 +361,13 @@
 	relativewall()
 
 
-/obj/structure/window/framed/disassemble_window()
+/obj/structure/window/framed/deconstruct(disassembled = TRUE)
 	if(window_frame)
 		var/obj/structure/window_frame/WF = new window_frame(loc)
 		WF.icon_state = "[WF.basestate][junction]_frame"
 		WF.setDir(dir)
 	return ..()
 
-
-/obj/structure/window/framed/shatter_window(create_debris)
-	if(window_frame)
-		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
-		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
-		new_window_frame.setDir(dir)
-	return ..()
-
-
-/obj/structure/window/framed/proc/drop_window_frame()
-	if(window_frame)
-		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
-		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
-		new_window_frame.setDir(dir)
-	qdel(src)
 
 /obj/structure/window/framed/mainship
 	name = "reinforced window"

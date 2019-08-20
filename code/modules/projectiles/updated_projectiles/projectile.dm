@@ -465,10 +465,7 @@
 //----------------------------------------------------------
 
 /atom/proc/bullet_act(obj/item/projectile/P)
-	return density
-
-/mob/dead/bullet_act(/obj/item/projectile/P)
-	return
+	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P)
 
 /mob/living/bullet_act(obj/item/projectile/P)
 	if(!P) return
@@ -725,7 +722,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 // walls can get shot and damaged, but bullets (vs energy guns) do much less.
 /turf/closed/wall/bullet_act(obj/item/projectile/P)
-	if(!..())
+	. = ..()
+	if(!.)
 		return
 	var/damage = P.damage
 	if(damage < 1) return
@@ -739,29 +737,6 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(prob(30 + damage)) P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
 	return 1
 
-
-/turf/closed/wall/mainship/research/containment/bullet_act(obj/item/projectile/P)
-	if(P && P.ammo.flags_ammo_behavior & AMMO_XENO_ACID)
-		return //immune to acid spit
-	. = ..()
-
-
-
-
-//Hitting an object. These are too numerous so they're staying in their files.
-//Why are there special cases listed here? Oh well, whatever. ~N
-/obj/bullet_act(obj/item/projectile/P)
-	if(!CanPass(P, get_turf(src)) && density)
-		bullet_ping(P)
-		return 1
-
-/obj/structure/table/bullet_act(obj/item/projectile/P)
-	src.bullet_ping(P)
-	obj_integrity -= round(P.damage/2)
-	if (obj_integrity < 0)
-		visible_message("<span class='warning'>[src] breaks down!</span>")
-		destroy_structure()
-	return 1
 
 
 //----------------------------------------------------------

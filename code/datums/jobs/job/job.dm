@@ -94,10 +94,23 @@ GLOBAL_PROTECT(exp_specialmap)
 	equip(H, visualsOnly, announce, latejoin, outfit_override, preference_source)
 
 
-/datum/job/proc/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
-	if(!H?.mind)
+/datum/job/proc/assign(mob/living/L, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
+	if(!L?.mind)
 		return FALSE
 
+	L.mind.assigned_role = title
+	L.mind.comm_title = comm_title
+
+	L.job = title
+	L.faction = faction
+
+	if(skills_type)
+		var/datum/skills/S = new skills_type
+		L.mind.cm_skills = S
+
+	if(!ishuman(L))
+		return TRUE
+	var/mob/living/carbon/human/H = L
 
 	var/datum/outfit/job/O
 	if(outfit)
@@ -108,17 +121,6 @@ GLOBAL_PROTECT(exp_specialmap)
 			QDEL_NULL(H.wear_id)
 
 		H.equip_to_slot_or_del(I, SLOT_WEAR_ID)
-
-
-	if(skills_type)
-		var/datum/skills/L = new skills_type
-		H.mind.cm_skills = L
-
-	H.mind.assigned_role = title
-	H.mind.comm_title = comm_title
-
-	H.job = title
-	H.faction = faction
 
 	O?.handle_id(H)
 

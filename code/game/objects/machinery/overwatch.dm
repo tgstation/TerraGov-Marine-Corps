@@ -33,6 +33,13 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/obj/selected_target //Selected target for bombarding
 
 
+/obj/machinery/computer/camera_advanced/overwatch/Initialize()
+	. = ..()
+	for(var/i in SSjob.squads)
+		var/datum/squad/S = SSjob.squads[i]
+		squads += S
+
+
 /obj/machinery/computer/camera_advanced/overwatch/main
 	icon_state = "overwatch_main"
 	name = "Main Overwatch Console"
@@ -57,8 +64,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/machinery/computer/camera_advanced/overwatch/bullet_act(obj/item/projectile/Proj) //Can't shoot it
-	return FALSE
 
 /obj/machinery/computer/camera_advanced/overwatch/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -86,10 +91,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/interact(mob/living/user)
-	if(!length(squads))
-		for(var/i in SSjob.squads)
-			var/datum/squad/S = SSjob.squads[i]
-			squads += S
 	if(!current_squad && !(current_squad = get_squad_by_id(squad_console)))
 		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
 		return
@@ -359,7 +360,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			switch(z_hidden)
 				if(HIDE_NONE)
 					z_hidden = HIDE_ON_SHIP
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [CONFIG_GET(string/ship_name)] are now hidden.</span>")
+					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [SSmapping.configs[SHIP_MAP].map_name] are now hidden.</span>")
 				if(HIDE_ON_SHIP)
 					z_hidden = HIDE_ON_GROUND
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -400,7 +401,11 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			var/atom/cam_target = locate(href_list["cam_target"])
 			open_prompt(usr)
 			eyeobj.setLoc(get_turf(cam_target))
-			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
+			if(isliving(cam_target))
+				var/mob/living/L = cam_target
+				track(L)
+			else
+				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
 
 	updateUsrDialog()
 
@@ -964,9 +969,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
 /mob/living/carbon/human/verb/issue_order(which as null|text)
-	set name = "Issue Order"
-	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
-	set category = "IC"
+	set hidden = TRUE
 
 	if(!mind.cm_skills || (mind.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED))
 		to_chat(src, "<span class='warning'>You are not competent enough in leadership to issue an order.</span>")

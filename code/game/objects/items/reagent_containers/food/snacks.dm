@@ -2676,10 +2676,10 @@
 	name = "\improper UPP ration (cereal)"
 	variation = "rice"
 
-/obj/item/reagent_container/food/snacks/eat_bar
-	name = "EAT Bar"
-	desc = "Packed full of nutrients you can't pronounce."
-	icon_state = "eat_bar"
+/obj/item/reagent_container/food/snacks/enrg_bar
+	name = "EnrG Bar"
+	desc = "A calorie-dense bar made with ingredients with unpronounceable names. Somehow, even the packaging is edible."
+	icon_state = "energybar"
 	bitesize = 2
 	w_class = WEIGHT_CLASS_TINY
 	trash = /obj/item/trash/eat
