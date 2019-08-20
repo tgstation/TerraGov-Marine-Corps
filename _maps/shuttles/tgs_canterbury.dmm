@@ -35,7 +35,7 @@
 /area/shuttle/canterbury/cic)
 "ag" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/station_alert,
+/obj/machinery/faxmachine/cic,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "blue"
@@ -163,6 +163,7 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/clipboard,
+/obj/item/pinpointer/advpinpointer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ar" = (
@@ -1024,6 +1025,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/pinpointer/advpinpointer,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
@@ -1807,7 +1809,7 @@
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"qL" = (
+"Oh" = (
 /obj/effect/landmark/start/marine/crash/synthetic,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
@@ -1949,7 +1951,7 @@ dl
 bx
 bG
 bT
-qL
+Oh
 cj
 cu
 cG

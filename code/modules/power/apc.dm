@@ -213,15 +213,12 @@
 		if(CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_CELL_IN))
 			overlays += "apco-cell"
 		else if(CHECK_BITFIELD(update_state, UPSTATE_ALLGOOD))
-			if(CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_BLUESCREEN))
-				overlays += image(icon, "apco-emag")
-			else
-				overlays += image(icon, "apcox-[locked]")
-				overlays += image(icon, "apco3-[charging]")
-				var/operating = CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_OPERATING)
-				overlays += image(icon, "apco0-[operating ? equipment : 0]")
-				overlays += image(icon, "apco1-[operating ? lighting : 0]")
-				overlays += image(icon, "apco2-[operating ? environ : 0]")
+			overlays += image(icon, "apcox-[locked]")
+			overlays += image(icon, "apco3-[charging]")
+			var/operating = CHECK_BITFIELD(update_overlay, APC_UPOVERLAY_OPERATING)
+			overlays += image(icon, "apco0-[operating ? equipment : 0]")
+			overlays += image(icon, "apco1-[operating ? lighting : 0]")
+			overlays += image(icon, "apco2-[operating ? environ : 0]")
 
 /obj/machinery/power/apc/proc/check_updates()
 
@@ -243,8 +240,6 @@
 		ENABLE_BITFIELD(update_state, UPSTATE_WIREEXP)
 	if(!update_state)
 		ENABLE_BITFIELD(update_state, UPSTATE_ALLGOOD)
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_BLUESCREEN)
 		if(locked)
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LOCKED)
 		if(operating)
@@ -350,10 +345,6 @@
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>The interface is broken.</span>")
-			return
-		
 		if(opened)
 			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
 			return
@@ -375,31 +366,6 @@
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
 		update_icon()
 
-	else if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED)) // trying to unlock with an emag card
-		if(opened)
-			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
-			return
-
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			to_chat(user, "<span class='warning'>You must close the panel first</span>")
-			return
-
-		if(machine_stat & (BROKEN|MAINT))
-			to_chat(user, "<span class='warning'>Nothing happens.</span>")
-			return
-
-		flick("apc-spark", src)
-		if(!do_after(user, 6, TRUE, src, BUSY_ICON_HOSTILE))
-			return
-
-		if(prob(50))
-			ENABLE_BITFIELD(obj_flags, EMAGGED)
-			locked = FALSE
-			to_chat(user, "<span class='warning'>You emag [src]'s interface.</span>")
-			update_icon()
-		else
-			to_chat(user, "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] [src]'s interface.</span>")
-	
 	else if(iscablecoil(I) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
 		var/obj/item/stack/cable_coil/C = I
 
@@ -422,7 +388,7 @@
 		user.visible_message("<span class='notice'>[user] starts wiring [src]'s frame.</span>",
 		"<span class='notice'>You start wiring [src]'s frame.</span>")
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-		
+
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || terminal || !opened || has_electronics == APC_ELECTRONICS_SECURED)
 			return
 
@@ -446,7 +412,7 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED)) 
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		user.visible_message("<span class='notice'>[user] starts inserting the power control board into [src].</span>",
@@ -467,26 +433,10 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
 			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED)) 
-				return
-		
-		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
-
-	else if(istype(I, /obj/item/frame/apc) && opened && CHECK_BITFIELD(obj_flags, EMAGGED))
-		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		DISABLE_BITFIELD(obj_flags, EMAGGED)
-		if(opened == APC_COVER_REMOVED)
-			opened = APC_COVER_OPENED
-		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
-		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-		qdel(I)
-		update_icon()
+		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 
 	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
 		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
@@ -502,16 +452,31 @@
 
 		user.visible_message("<span class='notice'>[user] begins replacing [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You begin replacing [src]'s damaged frontal panel with a new one.</span>")
-		
+
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
 		qdel(I)
-		machine_stat &= ~BROKEN
+		DISABLE_BITFIELD(machine_stat, BROKEN)
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
+		update_icon()
+
+	else if(istype(I, /obj/item/frame/apc) && opened)
+		if(!HAS_SKILL_LEVEL(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
+			var/fumbling_time = 50 * D_GET_SKILL_DIFF(user, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
+		if(opened == APC_COVER_REMOVED)
+			opened = APC_COVER_OPENED
+		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
+		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
+		qdel(I)
 		update_icon()
 
 	else
@@ -553,12 +518,6 @@
 							"[user.name] has broken the power control board inside [src]!",\
 							"<span class='notice'>You break the charred power control board and remove the remains.</span>",
 							"<span class='notice'>You hear a crack.</span>")
-						return
-					else if(obj_flags & EMAGGED)
-						obj_flags &= ~EMAGGED
-						user.visible_message(\
-							"[user.name] has discarded an emagged power control board from [src]!",\
-							"<span class='notice'>You discard the emagged power control board.</span>")
 						return
 					else
 						user.visible_message(\
@@ -621,9 +580,6 @@
 					to_chat(user, "<span class='warning'>There is nothing to secure!</span>")
 					return
 			update_icon()
-	else if(obj_flags & EMAGGED)
-		to_chat(user, "<span class='warning'>The interface is broken!</span>")
-		return
 	else
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")

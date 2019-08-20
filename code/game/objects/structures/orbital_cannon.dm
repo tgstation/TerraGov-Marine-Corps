@@ -38,13 +38,6 @@
 	tray.linked_ob = src
 
 
-
-
-/obj/structure/orbital_cannon/bullet_act()
-	return
-
-
-
 /obj/structure/orbital_cannon/update_icon()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
@@ -253,9 +246,6 @@
 		linked_ob = null
 	. = ..()
 
-/obj/structure/orbital_tray/bullet_act()
-	return
-
 
 /obj/structure/orbital_tray/update_icon()
 	overlays.Cut()
@@ -435,9 +425,6 @@
 /obj/machinery/computer/orbital_cannon_console/ex_act()
 	return
 
-/obj/machinery/computer/orbital_cannon_console/bullet_act()
-	return
-
 
 /obj/machinery/computer/orbital_cannon_console/attack_hand(mob/living/user)
 	. = ..()
@@ -557,7 +544,3 @@
 	sleep(15)
 	rail_gun_ammo.detonate_on(target)
 	cannon_busy = FALSE
-
-
-/obj/structure/ship_rail_gun/bullet_act()
-	return

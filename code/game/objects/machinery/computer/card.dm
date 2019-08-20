@@ -97,7 +97,7 @@
 
 	var/data[0]
 	data["src"] = "\ref[src]"
-	data["ship_name"] = CONFIG_GET(string/ship_name)
+	data["ship_name"] = SSmapping.configs[SHIP_MAP].map_name
 	data["mode"] = mode
 	data["printing"] = printing
 	data["manifest"] = GLOB.datacore ? GLOB.datacore.get_manifest(0) : null

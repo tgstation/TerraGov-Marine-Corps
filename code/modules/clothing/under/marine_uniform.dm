@@ -98,8 +98,8 @@
 	icon_state = "marine_tanker"
 
 /obj/item/clothing/under/marine/officer/bridge
-	name = "intelligence officer uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented intelligence officer uniform. Do the navy proud."
+	name = "staff officer uniform"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."
 	icon_state = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec

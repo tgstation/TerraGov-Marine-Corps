@@ -320,7 +320,7 @@
 
 
 /datum/skillset/SO
-	name = INTELLIGENCE_OFFICER
+	name = STAFF_OFFICER
 	construction = SKILL_LEVEL_TRAINED
 	leadership = SKILL_LEVEL_PROFESSIONAL
 	medical = SKILL_LEVEL_TRAINED

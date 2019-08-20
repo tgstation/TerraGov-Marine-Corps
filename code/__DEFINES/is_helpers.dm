@@ -177,7 +177,7 @@
 
 // Admin
 #define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
-#define isclientedaghost(mob) (isaghost(mob) && GLOB.directory[mob.key])
+#define isclientedaghost(mob) (isaghost(mob) && GLOB.directory[copytext(mob.key, 2)])
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))

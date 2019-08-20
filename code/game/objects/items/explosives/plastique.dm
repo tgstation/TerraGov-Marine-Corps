@@ -66,14 +66,8 @@
 		forceMove(location)
 		armed = TRUE
 
-		if(ismob(target))
-			log_combat(user, target, "attached [src] to")
-			log_game("[key_name(usr)] planted [src.name] on [key_name(target)] with [timer] second fuse.")
-			message_admins("[ADMIN_TPMONTY(user)]  planted [src.name] on [ADMIN_TPMONTY(target)] with [timer] second fuse.")
-		else
-			log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
-			message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
-
+		log_combat(user, target, "attached [src] to")
+		message_admins("[ADMIN_TPMONTY(user)] planted [src] on [target] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
 		log_explosion("[key_name(user)] planted [src] at [AREACOORD(user.loc)] with [timer] second fuse.")
 
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",

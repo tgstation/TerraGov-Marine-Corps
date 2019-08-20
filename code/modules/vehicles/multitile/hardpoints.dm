@@ -95,7 +95,7 @@ Currently only has the tank hardpoints
 		WT.remove_fuel(repair_delays, user)
 	user.visible_message("<span class='notice'>[user] finishes repairing [src].</span>",
 		"<span class='notice'>You finish repairing [src].</span>")
-	obj_integrity = max_integrity
+	repair_damage(max_integrity)
 
 //Called on attaching, for weapons sets the actual cooldowns
 /obj/item/hardpoint/proc/apply_buff()

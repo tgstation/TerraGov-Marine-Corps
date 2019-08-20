@@ -28,12 +28,6 @@
 
 	if(istype(I, /obj/item/detective_scanner))
 		return
-
-	else if(istype(I, /obj/item/card/emag))
-		req_access = list()
-		req_one_access = list()
-		playsound(loc, "sparks", 25, 1)
-
 	else 
 		return attack_hand(user)
 

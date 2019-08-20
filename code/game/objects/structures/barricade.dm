@@ -8,6 +8,7 @@
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
+	resistance_flags = XENO_DAMAGEABLE
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	var/stack_type //The type of stack the barricade dropped when disassembled if any.
 	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
@@ -16,11 +17,9 @@
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
 	var/base_acid_damage = 2
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
-	var/barricade_hitsound
 
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
 	var/can_change_dmg_state = TRUE
-	var/damage_state = 0
 	var/closed = FALSE
 	var/can_wire = FALSE
 	var/is_wired = FALSE
@@ -39,22 +38,15 @@
 
 	if(is_wired)
 		to_chat(user, "<span class='info'>There is a length of wire strewn across the top of this barricade.</span>")
-	switch(damage_state)
-		if(0) to_chat(user, "<span class='info'>It appears to be in good shape.</span>")
-		if(1) to_chat(user, "<span class='warning'>It's slightly damaged, but still very functional.</span>")
-		if(2) to_chat(user, "<span class='warning'>It's quite beat up, but it's holding together.</span>")
-		if(3) to_chat(user, "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>")
-
-/obj/structure/barricade/hitby(atom/movable/AM)
-	if(AM.throwing && is_wired)
-		if(iscarbon(AM))
-			var/mob/living/carbon/C = AM
-			C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
-			"<span class='danger'>The barbed wire slices into you!</span>")
-			C.apply_damage(10)
-			C.knock_down(2) //Leaping into barbed wire is VERY bad
-	..()
-
+	switch((obj_integrity / max_integrity) * 100)
+		if(75 to INFINITY) 
+			to_chat(user, "<span class='info'>It appears to be in good shape.</span>")
+		if(50 to 75) 
+			to_chat(user, "<span class='warning'>It's slightly damaged, but still very functional.</span>")
+		if(25 to 50) 
+			to_chat(user, "<span class='warning'>It's quite beat up, but it's holding together.</span>")
+		if(-INFINITY to 25)
+			to_chat(user, "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>")
 
 
 /obj/structure/barricade/Bumped(atom/A)
@@ -68,12 +60,11 @@
 			return
 
 		if(crusher_resistant)
-			obj_integrity -= C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI
-			update_health()
+			take_damage(C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI)
 
 		else if(!C.stat)
 			visible_message("<span class='danger'>[C] smashes through [src]!</span>")
-			destroy_structure()
+			deconstruct(FALSE)
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
 	if(closed)
@@ -102,7 +93,7 @@
 
 	if(istype(mover, /obj/vehicle/multitile))
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
-		destroy_structure(0)
+		deconstruct(FALSE)
 		return FALSE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -118,22 +109,12 @@
 	return attack_alien(user)
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
-	if(barricade_hitsound)
-		playsound(src, barricade_hitsound, 25, 1)
-	if(obj_integrity <= 0)
-		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
-		"<span class='danger'>We slice [src] apart!</span>", null, 5)
-	else
-		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>We slash [src]!</span>", null, 5)
 	if(is_wired)
 		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
 		M.apply_damage(10)
-	update_health(TRUE)
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
+	return ..()
 
 /obj/structure/barricade/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -164,9 +145,8 @@
 
 		B.use(1)
 		overlays += wired_overlay
-		max_integrity += 50
-		obj_integrity += 50
-		update_health()
+		modify_max_integrity(max_integrity + 50)
+		update_icon()
 		can_wire = FALSE
 		is_wired = TRUE
 		climbable = FALSE
@@ -185,51 +165,55 @@
 		user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
 		"<span class='notice'>You remove the barbed wire on [src].</span>")
 		overlays -= wired_overlay
-		max_integrity -= 50
-		obj_integrity -= 50
-		update_health()
+		modify_max_integrity(max_integrity - 50)
 		can_wire = TRUE
 		is_wired = FALSE
 		climbable = TRUE
 		new /obj/item/stack/barbed_wire(loc)
 
-	else if(I.force > barricade_resistance && user.a_intent != INTENT_HELP)
-		if(barricade_hitsound)
-			playsound(src, barricade_hitsound, 25, 1)
-		hit_barricade(I)
 
-
-/obj/structure/barricade/destroy_structure(deconstruct)
-	if(deconstruct && is_wired)
+/obj/structure/barricade/deconstruct(disassembled = TRUE)
+	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
 		var/stack_amt
-		if(!deconstruct && destroyed_stack_amount)
+		if(!disassembled && destroyed_stack_amount)
 			stack_amt = destroyed_stack_amount
 		else
 			stack_amt = round(stack_amount * (obj_integrity/max_integrity)) //Get an amount of sheets back equivalent to remaining health. Obviously, fully destroyed means 0
 
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
-	qdel(src)
+	return ..()
 
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			visible_message("<span class='danger'>[src] is blown apart!</span>")
-			qdel(src)
+			deconstruct(FALSE)
 			return
 		if(2.0)
-			obj_integrity -= rand(33, 66)
+			take_damage(rand(33, 66))
 		if(3.0)
-			obj_integrity -= rand(10, 33)
-	update_health()
+			take_damage(rand(10, 33))
+	update_icon()
 
 /obj/structure/barricade/setDir(newdir)
 	. = ..()
 	update_icon()
 
 /obj/structure/barricade/update_icon()
+	var/damage_state
+	var/percentage = (obj_integrity / max_integrity) * 100
+	switch(percentage)
+		if(-INFINITY to 25)
+			damage_state = 3
+		if(25 to 50)
+			damage_state = 2
+		if(50 to 75)
+			damage_state = 1
+		if(75 to INFINITY)
+			damage_state = 0
 	if(!closed)
 		if(can_change_dmg_state)
 			icon_state = "[barricade_type]_[damage_state]"
@@ -262,38 +246,13 @@
 		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 	overlays += wired_overlay
 
-/obj/structure/barricade/proc/hit_barricade(obj/item/I)
-	obj_integrity -= I.force * 0.5
-	update_health()
-
-/obj/structure/barricade/update_health(nomessage)
-	obj_integrity = CLAMP(obj_integrity, 0, max_integrity)
-
-	if(!obj_integrity)
-		if(!nomessage)
-			visible_message("<span class='danger'>[src] falls apart!</span>")
-		destroy_structure()
-		return
-
-	update_damage_state()
-	update_icon()
-
-/obj/structure/barricade/proc/update_damage_state()
-	var/health_percent = round(obj_integrity/max_integrity * 100)
-	switch(health_percent)
-		if(0 to 25) damage_state = 3
-		if(25 to 50) damage_state = 2
-		if(50 to 75) damage_state = 1
-		if(75 to INFINITY) damage_state = 0
-
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
-		obj_integrity -= base_acid_damage * S.strength
-		update_health()
+		take_damage(base_acid_damage * S.strength)
 
 
 /obj/structure/barricade/verb/rotate()
@@ -365,29 +324,7 @@
 
 		if(!ET.folded)
 			user.visible_message("<span class='notice'> \The [user] removes \the [src].</span>")
-			destroy_structure(TRUE)
-
-
-/obj/structure/barricade/snow/hit_barricade(obj/item/I)
-	switch(I.damtype)
-		if("fire")
-			obj_integrity -= I.force * 0.6
-		if("brute")
-			obj_integrity -= I.force * 0.3
-
-	update_health()
-	update_icon()
-	return
-
-/obj/structure/barricade/snow/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/2) //Not that durable.
-
-	if (istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
+			deconstruct(TRUE)
 
 /*----------------------*/
 // WOOD
@@ -404,7 +341,7 @@
 	stack_type = /obj/item/stack/sheet/wood
 	stack_amount = 5
 	destroyed_stack_amount = 3
-	barricade_hitsound = "sound/effects/woodhit.ogg"
+	hit_sound = "sound/effects/woodhit.ogg"
 	can_change_dmg_state = FALSE
 	barricade_type = "wooden"
 	can_wire = FALSE
@@ -434,26 +371,8 @@
 		if(!D.use(1))
 			return
 
-		obj_integrity = max_integrity
+		repair_damage(max_integrity)
 		visible_message("<span class='notice'>[user] repairs [src].</span>")
-
-/obj/structure/barricade/wooden/hit_barricade(obj/item/I)
-	switch(I.damtype)
-		if("fire")
-			obj_integrity -= I.force * 1.5
-		if("brute")
-			obj_integrity -= I.force * 0.75
-	update_health()
-
-/obj/structure/barricade/wooden/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/2) //Not that durable.
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
 
 
 /*----------------------*/
@@ -470,7 +389,7 @@
 	stack_type = /obj/item/stack/sheet/metal
 	stack_amount = 4
 	destroyed_stack_amount = 2
-	barricade_hitsound = "sound/effects/metalhit.ogg"
+	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "metal"
 	can_wire = TRUE
 	var/build_state = 2 //2 is fully secured, 1 is after screw, 0 is after wrench. Crowbar disassembles
@@ -529,8 +448,8 @@
 
 		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 		"<span class='notice'>You repair [src].</span>")
-		obj_integrity += 150
-		update_health()
+		repair_damage(150)
+		update_icon()
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	switch(build_state)
@@ -641,29 +560,19 @@
 				user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 				"<span class='notice'>You take [src]'s panels apart.</span>")
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				destroy_structure(TRUE) //Note : Handles deconstruction too !
+				deconstruct(TRUE) //Note : Handles deconstruction too !
 
 
 /obj/structure/barricade/metal/ex_act(severity)
 	switch(severity)
 		if(1)
-			obj_integrity -= rand(400, 600)
+			take_damage(rand(400, 600))
 		if(2)
-			obj_integrity -= rand(150, 350)
+			take_damage(rand(150, 350))
 		if(3)
-			obj_integrity -= rand(50, 100)
+			take_damage(rand(50, 100))
 
-	update_health()
-
-/obj/structure/barricade/metal/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/10)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
+	update_icon()
 
 /*----------------------*/
 // PLASTEEL
@@ -679,7 +588,7 @@
 	stack_type = /obj/item/stack/sheet/plasteel
 	stack_amount = 5
 	destroyed_stack_amount = 2
-	barricade_hitsound = "sound/effects/metalhit.ogg"
+	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "plasteel"
 	density = FALSE
 	closed = TRUE
@@ -752,8 +661,8 @@
 		busy = FALSE
 		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
 		"<span class='notice'>You repair [src].</span>")
-		obj_integrity += 150
-		update_health()
+		repair_damage(150)
+		update_icon()
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	switch(build_state)
@@ -855,7 +764,7 @@
 				user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 				"<span class='notice'>You take [src]'s panels apart.</span>")
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				destroy_structure(TRUE) //Note : Handles deconstruction too !
+				deconstruct(TRUE) //Note : Handles deconstruction too !
 
 
 /obj/structure/barricade/plasteel/attack_hand(mob/living/user)
@@ -882,23 +791,13 @@
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
 		if(1)
-			obj_integrity -= rand(450, 650)
+			take_damage(rand(450, 650))
 		if(2)
-			obj_integrity -= rand(200, 400)
+			take_damage(rand(200, 400))
 		if(3)
-			obj_integrity -= rand(50, 150)
+			take_damage(rand(50, 150))
 
-	update_health()
-
-/obj/structure/barricade/plasteel/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/10)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-	return TRUE
+	update_icon()
 
 /*----------------------*/
 // SANDBAGS
@@ -911,7 +810,7 @@
 	barricade_resistance = 15
 	max_integrity = 400
 	stack_type = /obj/item/stack/sandbags
-	barricade_hitsound = "sound/weapons/genhit.ogg"
+	hit_sound = "sound/weapons/genhit.ogg"
 	barricade_type = "sandbag"
 	can_wire = TRUE
 
@@ -941,7 +840,7 @@
 			if(do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
-				destroy_structure(TRUE)
+				deconstruct(TRUE)
 		return TRUE
 
 	if(istype(I, /obj/item/stack/sandbags) )
@@ -960,17 +859,6 @@
 		if(!D.use(1))
 			return
 
-		obj_integrity = min(obj_integrity + (max_integrity * 0.2), max_integrity) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
 		user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
 		"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
-
-/obj/structure/barricade/sandbags/bullet_act(obj/item/projectile/P)
-	bullet_ping(P)
-	obj_integrity -= round(P.damage/10)
-
-	if(istype(P.ammo, /datum/ammo/xeno/boiler_gas))
-		obj_integrity -= 50
-
-	update_health()
-
-	return TRUE

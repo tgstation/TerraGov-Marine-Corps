@@ -8,7 +8,7 @@
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(!S.melee_damage_upper)
-			S.emote("[S.friendly] [src]")
+			S.emote("me", EMOTE_VISIBLE, "[S.friendly] [src]")
 		else
 			M.do_attack_animation(src)
 			M.flick_attack_overlay(src, "punch")

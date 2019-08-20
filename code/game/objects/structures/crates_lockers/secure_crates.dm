@@ -8,7 +8,6 @@
 	var/icon_locked = "secure_locked_basic"
 	var/icon_unlocked = "secure_unlocked_basic"
 	var/sparks = "securecratesparks"
-	var/emag = "securecrateemag"
 	locked = TRUE
 	max_integrity = 500
 	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
@@ -51,7 +50,6 @@
 			locked = 1
 		else
 			overlays.Cut()
-			overlays += emag
 			overlays += sparks
 			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 			playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)

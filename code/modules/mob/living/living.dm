@@ -314,13 +314,6 @@
 	if(isliving(AM))
 		var/mob/living/L = AM
 
-		//Leaping mobs just land on the tile, no pushing, no anything.
-		if(status_flags & LEAPING)
-			loc = L.loc
-			status_flags &= ~LEAPING
-			now_pushing = 0
-			return
-
 		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos can still push small Xenos
 			var/mob/living/carbon/xenomorph/X = L
 			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isxeno(src) && X.mob_size == MOB_SIZE_BIG))
@@ -396,21 +389,34 @@
 			return
 
 	now_pushing = 0
-	..()
-	if (!ismovableatom(AM))
+	. = ..()
+	
+	if(ismovableatom(AM))
+		PushAM(AM)
+
+
+//Called when we want to push an atom/movable
+/mob/living/proc/PushAM(atom/movable/AM)
+	if(AM.anchored)
+		return TRUE
+	if(now_pushing)
+		return TRUE
+	if(moving_diagonally)// no pushing during diagonal moves.
+		return TRUE
+	if(!client && (mob_size < MOB_SIZE_SMALL))
 		return
-	if (!( now_pushing ))
-		now_pushing = 1
-		if (!( AM.anchored ))
-			var/t = get_dir(src, AM)
-			if (istype(AM, /obj/structure/window))
-				var/obj/structure/window/W = AM
-				if(W.is_full_window())
-					for(var/obj/structure/window/win in get_step(AM,t))
-						now_pushing = 0
-						return
-			step(AM, t)
-		now_pushing = 0
+	now_pushing = TRUE
+	var/t = get_dir(src, AM)
+	if(istype(AM, /obj/structure/window))
+		var/obj/structure/window/W = AM
+		if(W.is_full_window())
+			for(var/obj/structure/window/win in get_step(W,t))
+				now_pushing = FALSE
+				return
+	if(pulling == AM)
+		stop_pulling()
+	step(AM, t)
+	now_pushing = FALSE
 
 
 /mob/living/throw_at(atom/target, range, speed, thrower)
