@@ -7143,6 +7143,9 @@
 	d2 = 4
 	},
 /obj/machinery/power/apc/mainship,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "aqE" = (
@@ -8260,11 +8263,19 @@
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "atm" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -8897,6 +8908,11 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/corporateliaison)
@@ -11277,6 +11293,11 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "azD" = (
@@ -11673,6 +11694,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/structure/cable,
+/obj/machinery/holopad,
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
 	},
@@ -11842,6 +11865,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
 "aAE" = (
@@ -11855,6 +11883,11 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "orangecorner";
@@ -24744,6 +24777,11 @@
 /area/mainship/living/cafeteria_starboard)
 "bfN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/holopad,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "red"
@@ -25494,6 +25532,11 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -28560,6 +28603,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bpL" = (
@@ -31209,6 +31257,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bxX" = (
@@ -31218,11 +31271,21 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bxY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
 	},
 /turf/open/floor/mainship{
 	icon_regular_floor = "cargo_arrow";
@@ -31236,11 +31299,21 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bya" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -31721,6 +31794,11 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bzq" = (
@@ -32198,6 +32276,11 @@
 /area/mainship/living/briefing)
 "bAB" = (
 /obj/machinery/door/window/northright/briefing,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/mainship{
 	icon_state = "silvercorner";
 	dir = 4
@@ -32610,6 +32693,11 @@
 	pixel_y = 27;
 	req_access_txt = "19"
 	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
 "bBP" = (
@@ -32656,6 +32744,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable,
+/obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "bBV" = (
@@ -32812,6 +32902,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "orange"
@@ -32825,12 +32920,22 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/lower_engine_monitoring)
 "bCt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/holopad,
 /turf/open/floor/mainship,
 /area/mainship/engineering/lower_engine_monitoring)
 "bCu" = (
@@ -38823,6 +38928,11 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
@@ -45207,6 +45317,8 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/cable,
+/obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "crd" = (
@@ -45385,6 +45497,16 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/bridgebunks)
+"dTN" = (
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/lower_medical)
 "dUd" = (
 /turf/open/floor/mainship{
 	icon_state = "blue";
@@ -45618,6 +45740,11 @@
 	dir = 4
 	},
 /area/mainship/living/briefing)
+"fUZ" = (
+/obj/structure/cable,
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/cafeteria_port)
 "fXd" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -45672,6 +45799,18 @@
 	icon_state = "red"
 	},
 /area/mainship/shipboard/weapon_room)
+"gec" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "red"
+	},
+/area/mainship/living/cafeteria_starboard)
 "gjm" = (
 /turf/open/floor/mainship{
 	dir = 4;
@@ -45952,6 +46091,18 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"iDg" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/cryo_cells)
 "iDq" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -46102,6 +46253,23 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
+"kfp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
+"kgL" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/briefing)
 "kjP" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -46115,6 +46283,14 @@
 /obj/machinery/alarm,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cafeteria_port)
+"kpZ" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "kqP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -46341,11 +46517,24 @@
 	icon_state = "floor5"
 	},
 /area/mainship/command/self_destruct)
+"lEm" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "lEo" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -46668,6 +46857,24 @@
 	icon_state = "orange"
 	},
 /area/mainship/engineering/upper_engineering)
+"ovo" = (
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
+/area/mainship/command/corporateliaison)
+"owW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/living/cryo_cells)
 "oye" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/warning_stripes/thin{
@@ -46788,6 +46995,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
@@ -46926,6 +47138,18 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/repair_bay)
+"qhO" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
+	},
+/area/mainship/squads/req)
 "qlu" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -47101,6 +47325,23 @@
 	icon_state = "tcomms"
 	},
 /area/mainship/command/self_destruct)
+"swf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/lower_medical)
 "syF" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship{
@@ -47115,6 +47356,14 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/engineering/starboard_atmos)
+"sLs" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/cafeteria_port)
 "sLN" = (
 /obj/structure/closet,
 /obj/item/storage/fancy/crayons,
@@ -47190,6 +47439,22 @@
 	icon_state = "silver"
 	},
 /area/mainship/command/cic)
+"tpI" = (
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/holopad,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
+"tEQ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "tIh" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -47302,6 +47567,14 @@
 	dir = 2
 	},
 /area/mainship/command/cic)
+"uCy" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/command/corporateliaison)
 "uCE" = (
 /obj/machinery/light{
 	dir = 8
@@ -47358,6 +47631,17 @@
 	dir = 1
 	},
 /area/mainship/living/numbertwobunks)
+"vlu" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "vsq" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship{
@@ -47536,6 +47820,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"wiI" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/mainship,
+/area/mainship/living/briefing)
 "wpW" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
@@ -47699,9 +47991,48 @@
 	icon_state = "sterile_green_side"
 	},
 /area/mainship/medical/lower_medical)
+"xBI" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/mainship,
+/area/mainship/living/briefing)
 "xGM" = (
 /turf/closed/wall/mainship/nosmooth,
 /area/mainship/engineering/upper_engineering)
+"xNg" = (
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/holopad,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/engineering/upper_engineering)
+"xOp" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable,
+/obj/machinery/holopad,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
+"xSm" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "xXw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -62733,7 +63064,7 @@ atb
 ajU
 als
 aoh
-ajU
+tpI
 aoh
 aCX
 ajU
@@ -67612,7 +67943,7 @@ akd
 aok
 are
 arv
-ake
+ovo
 aSk
 aMF
 ayd
@@ -67869,7 +68200,7 @@ akd
 akd
 apz
 arv
-ake
+uCy
 aSl
 aMF
 aye
@@ -68126,7 +68457,7 @@ akd
 aol
 apA
 akd
-ake
+uCy
 ake
 ayf
 bHX
@@ -73659,7 +73990,7 @@ bDd
 boC
 aIZ
 aIZ
-aIZ
+dTN
 aIZ
 bMa
 bNv
@@ -73916,7 +74247,7 @@ aIZ
 boF
 aIZ
 aIZ
-aIZ
+ctN
 aIZ
 bMa
 bNw
@@ -74173,7 +74504,7 @@ bqG
 bFM
 bqG
 bDe
-bqG
+swf
 bKz
 bMb
 bNx
@@ -77899,7 +78230,7 @@ alz
 afr
 aBT
 aDv
-aDv
+xOp
 aDv
 aDv
 aBT
@@ -81871,13 +82202,13 @@ blf
 bnv
 bpa
 atl
-acB
-bpb
-bpb
-bpb
-bzk
+xSm
+lEm
+lEm
+lEm
+vlu
 bAB
-bqV
+wiI
 bDt
 bzk
 bpb
@@ -82134,7 +82465,7 @@ bqV
 bxS
 bxS
 bAC
-bBL
+kgL
 bDu
 bHk
 bHk
@@ -82391,7 +82722,7 @@ bqV
 bxS
 bxS
 bAC
-bBL
+kgL
 bDu
 bHk
 bHk
@@ -82648,7 +82979,7 @@ bqV
 bxS
 bxS
 bAC
-bqV
+xBI
 bDu
 bHk
 bHk
@@ -87530,7 +87861,7 @@ buF
 bwd
 bxW
 bzo
-bAK
+kfp
 bBU
 bAK
 bAK
@@ -88813,7 +89144,7 @@ brj
 bnC
 gas
 bnC
-bnC
+kpZ
 bnC
 bnC
 bBV
@@ -89069,8 +89400,8 @@ bpt
 brk
 gEh
 lEo
-bnC
-byc
+tEQ
+qhO
 bnC
 byc
 bnC
@@ -94977,13 +95308,13 @@ ble
 blZ
 aqD
 bpK
-brw
-btg
-btg
-btg
-btg
-btg
-btg
+iDg
+owW
+owW
+owW
+owW
+owW
+owW
 clb
 btg
 btg
@@ -95115,7 +95446,7 @@ aHh
 aoM
 awR
 ayN
-asc
+xNg
 atO
 awP
 aFj
@@ -95225,7 +95556,7 @@ bbm
 bdz
 beH
 bfN
-bfN
+gec
 bhF
 biC
 bjn
@@ -95514,8 +95845,8 @@ bQJ
 bRp
 bRV
 bSW
-bUI
-bUI
+sLs
+fUZ
 bUI
 bYg
 bYh
