@@ -477,7 +477,7 @@
 	icon_state = "sink2"
 
 /obj/structure/sink/bathroom
-	name = "kitchen sink"
+	name = "bathroom sink"
 	icon_state = "sink3"
 
 /obj/structure/sink/puddle	//splishy splashy ^_^
