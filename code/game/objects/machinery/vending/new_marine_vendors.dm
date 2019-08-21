@@ -306,8 +306,10 @@
 
 			var/type_p = L[3]
 
-			var/obj/item = new type_p(loc)
-			usr.put_in_hands(item)
+			var/item = new type_p(loc)
+			if(istype(item, /obj))
+				var/obj/O = item
+				usr.put_in_hands(O)
 
 			if(icon_vend)
 				flick(icon_vend, src)
