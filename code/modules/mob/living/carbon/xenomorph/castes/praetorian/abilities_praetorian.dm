@@ -55,6 +55,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			if(!O.CheckExit(owner, next_T))
 				if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(owner))
 					return // returned true if normal density applies
+				if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+					return
 
 		T = next_T
 
@@ -65,6 +67,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			if(!O.CanPass(owner, get_turf(owner)))
 				if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(owner))
 					return // returned true if normal density applies
+				if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
+					return
 
 		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
 		do_acid_spray_cone_normal(T, i, facing, S)

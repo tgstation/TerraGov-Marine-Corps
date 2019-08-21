@@ -46,13 +46,11 @@
 		reagents.reaction(M, INGEST)
 		reagents.trans_to(M, reagents.total_volume)
 		if(M == user)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='notice'> [] eats some [] from \the [].</span>", user, loaded, src), 1)
-				M.reagents.add_reagent("nutriment", 1)
+			visible_message("<span class='notice'>[user] eats some [loaded] from \the [src].</span>")
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		else
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='notice'> [] feeds [] some [] from \the []</span>", user, M, loaded, src), 1)
-				M.reagents.add_reagent("nutriment", 1)
+			visible_message("<span class='notice'>[user] feeds [M] some [loaded] from \the [src]</span>")
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 		overlays.Cut()
 		return
@@ -199,9 +197,9 @@
 					return
 				var/time = rand(2, 6)
 				if (prob(75))
-					H.KnockOut(time)
+					H.knock_out(time)
 				else
-					H.Stun(time)
+					H.stun(time)
 				if(H.stat != 2)	H.stat = 1
 				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
 				return
@@ -274,19 +272,17 @@
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
 
 		if(prob(15))
-			M.KnockDown(3)
+			M.knock_down(3)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
+			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
 			return
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
+			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
 			return
 
 
@@ -308,14 +304,12 @@
 
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
+			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
+			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
 		if(prob(10))
-			M.Stun(rand(1,3))
+			M.stun(rand(1,3))
 			M.take_limb_damage(3)
 			return
 		else
@@ -332,20 +326,18 @@
 
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
+			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
-			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
+			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
 		if(prob(30))
-			M.Stun(rand(2,4))
+			M.stun(rand(2,4))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.KnockDown(2)
+				M.knock_down(2)
 				return
 			return
 

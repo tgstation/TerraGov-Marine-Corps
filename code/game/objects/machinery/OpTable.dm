@@ -46,7 +46,7 @@
 		else
 	return
 
-/obj/machinery/optable/attack_paw(mob/user as mob)
+/obj/machinery/optable/attack_paw(mob/living/carbon/monkey/user)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
 		step(user, get_dir(user, src))
 		if (user.loc == src.loc)
@@ -64,9 +64,6 @@
 /obj/machinery/optable/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
-		return
-	if(buckled_mob)
-		unbuckle(user)
 		return
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
@@ -159,7 +156,7 @@
 	if (C == user)
 		user.visible_message("<span class='notice'>[user] climbs on the operating table.","You climb on the operating table.</span>", null, null, 4)
 	else
-		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, 4)
+		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, null, 4)
 	C.set_resting(TRUE)
 	C.forceMove(loc)
 

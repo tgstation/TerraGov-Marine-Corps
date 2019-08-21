@@ -13,7 +13,7 @@
 	melee_damage_upper = 3
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	projectilesound = 'sound/weapons/gunshot.ogg'
+	projectilesound = 'sound/weapons/guns/fire/gunshot.ogg'
 	faction = "Hivebot"
 	check_friendly_fire = TRUE
 	speak_emote = list("states")

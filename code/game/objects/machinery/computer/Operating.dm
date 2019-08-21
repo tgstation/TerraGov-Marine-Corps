@@ -23,7 +23,7 @@
 	interact(user)
 
 
-/obj/machinery/computer/operating/attack_hand(mob/user)
+/obj/machinery/computer/operating/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -84,4 +84,4 @@
 
 /obj/machinery/computer/operating/process()
 	if(..())
-		src.updateDialog()
+		src.updateUsrDialog()

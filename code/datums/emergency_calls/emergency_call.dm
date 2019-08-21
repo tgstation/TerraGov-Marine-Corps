@@ -66,15 +66,11 @@
 		to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
 
 
-/datum/game_mode/proc/activate_distress()
-	picked_call = get_random_call()
-
-	if(!picked_call) //Something went horribly wrong
-		return FALSE
+/datum/game_mode/proc/activate_distress(datum/emergency_call/chosen_call)
+	picked_call = chosen_call || get_random_call()
 
 	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
-
 
 	picked_call.mob_max = rand(5, 15)
 
@@ -140,7 +136,7 @@
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
-		priority_announce("A distress beacon has been launched from the [CONFIG_GET(string/ship_name)].", "Priority Alert", sound = 'sound/AI/distressbeacon.ogg')
+		priority_announce("A distress beacon has been launched from the [SSmapping.configs[SHIP_MAP].map_name].", "Priority Alert", sound = 'sound/AI/distressbeacon.ogg')
 
 	SSticker.mode.on_distress_cooldown = TRUE
 

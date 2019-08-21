@@ -80,9 +80,6 @@
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ";[R.name]"
 
-		log_game("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(src.loc)].")
-		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
-		
 		to_chat(user, "You attach \the [I] to \the [src].")
 		update_icon()
 
@@ -139,7 +136,7 @@
 		T.take_blood(beaker, amount)
 		update_icon()
 
-/obj/machinery/iv_drip/attack_hand(mob/user as mob)
+/obj/machinery/iv_drip/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

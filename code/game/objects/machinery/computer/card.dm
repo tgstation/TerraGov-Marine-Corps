@@ -81,10 +81,10 @@
 /obj/machinery/computer/card/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/card/attack_paw(mob/user as mob)
+/obj/machinery/computer/card/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/card/attack_hand(mob/user as mob)
+/obj/machinery/computer/card/attack_hand(mob/living/user)
 	. = ..()
 	if(.) 
 		return
@@ -97,7 +97,7 @@
 
 	var/data[0]
 	data["src"] = "\ref[src]"
-	data["ship_name"] = CONFIG_GET(string/ship_name)
+	data["ship_name"] = SSmapping.configs[SHIP_MAP].map_name
 	data["mode"] = mode
 	data["printing"] = printing
 	data["manifest"] = GLOB.datacore ? GLOB.datacore.get_manifest(0) : null

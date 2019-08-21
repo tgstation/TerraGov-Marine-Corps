@@ -18,13 +18,12 @@
 		return
 
 	var/oldkey = M.key
-
-	M.ghostize(TRUE)
+	var/mob/dead/observer/ghost = M.ghostize(TRUE)
 	M.key = "@[oldkey]"
 
-	log_admin("[key_name(usr)] admin ghosted at [AREACOORD(usr)].")
+	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
-		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
+		message_admins("[ADMIN_TPMONTY(ghost)] admin ghosted.")
 
 
 /datum/admins/proc/invisimin()
@@ -88,8 +87,11 @@
 	if(!istype(mob_received))
 		return
 
-	if(isliving(mob_received) && mob_received.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
-		return
+	if(isliving(mob_received) && mob_received.client)
+		if(alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+			return
+		else
+			mob_received.ghostize()
 
 	if(!istype(given_living))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
@@ -513,7 +515,7 @@
 	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminsay"
 
-	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>"
+	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C, msg)
@@ -550,11 +552,11 @@
 
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C) && mob.stat == DEAD)
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 
 
 /client/proc/get_dsay()

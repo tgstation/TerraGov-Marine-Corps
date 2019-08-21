@@ -35,7 +35,7 @@
 	else
 		icon_state = "drone_fab_idle"
 
-/obj/machinery/tank_part_fabricator/attack_hand(mob/user)
+/obj/machinery/tank_part_fabricator/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -237,7 +237,7 @@
 	tank_points -= cost
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/H = loaded_mod
-		H.obj_integrity = H.max_integrity
+		H.repair_damage(H.max_integrity)
 		if(H.ammo)
 			H.ammo.current_rounds = H.ammo.max_rounds
 			H.ammo.update_icon()

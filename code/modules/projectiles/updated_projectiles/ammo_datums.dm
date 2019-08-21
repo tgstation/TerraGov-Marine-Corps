@@ -54,175 +54,177 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
-
-
-	New()
-		accuracy 			= CONFIG_GET(number/combat_define/min_hit_accuracy) 	// This is added to the bullet's base accuracy.
-		accuracy_var_low	= CONFIG_GET(number/combat_define/min_proj_variance) 	// How much the accuracy varies when fired.
-		accuracy_var_high	= CONFIG_GET(number/combat_define/min_proj_variance)
-		accurate_range 		= CONFIG_GET(number/combat_define/close_shell_range) 	// For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
-		max_range 			= CONFIG_GET(number/combat_define/norm_shell_range) 	// This will de-increment a counter on the bullet.
-		damage_var_low		= CONFIG_GET(number/combat_define/min_proj_variance) 	// Same as with accuracy variance.
-		damage_var_high		= CONFIG_GET(number/combat_define/min_proj_variance)
-		damage_falloff 		= CONFIG_GET(number/combat_define/reg_damage_falloff) 	// How much damage the bullet loses per turf traveled.
-		shell_speed 		= CONFIG_GET(number/combat_define/slow_shell_speed) 	// How fast the projectile moves.
-
 	var/flags_ammo_behavior = NONE
 
-	proc/do_at_half_range(obj/item/projectile/P)
-		return
 
-	proc/do_at_max_range(obj/item/projectile/P)
-		return
+/datum/ammo/New()
+	accuracy 			= CONFIG_GET(number/combat_define/min_hit_accuracy) 	// This is added to the bullet's base accuracy.
+	accuracy_var_low	= CONFIG_GET(number/combat_define/min_proj_variance) 	// How much the accuracy varies when fired.
+	accuracy_var_high	= CONFIG_GET(number/combat_define/min_proj_variance)
+	accurate_range 		= CONFIG_GET(number/combat_define/close_shell_range) 	// For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
+	max_range 			= CONFIG_GET(number/combat_define/norm_shell_range) 	// This will de-increment a counter on the bullet.
+	damage_var_low		= CONFIG_GET(number/combat_define/min_proj_variance) 	// Same as with accuracy variance.
+	damage_var_high		= CONFIG_GET(number/combat_define/min_proj_variance)
+	damage_falloff 		= CONFIG_GET(number/combat_define/reg_damage_falloff) 	// How much damage the bullet loses per turf traveled.
+	shell_speed 		= CONFIG_GET(number/combat_define/slow_shell_speed) 	// How fast the projectile moves.
 
-	proc/on_shield_block(mob/M, obj/item/projectile/P) //Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
-		return
 
-	proc/on_hit_turf(turf/T, obj/item/projectile/P) //Special effects when hitting dense turfs.
-		return
+/datum/ammo/proc/do_at_half_range(obj/item/projectile/proj)
+	return
 
-	proc/on_hit_mob(mob/M, obj/item/projectile/P) //Special effects when hitting mobs.
-		return
+/datum/ammo/proc/do_at_max_range(obj/item/projectile/proj)
+	return
 
-	proc/on_hit_obj(obj/O, obj/item/projectile/P) //Special effects when hitting objects.
-		return
+/datum/ammo/proc/on_shield_block(mob/M, obj/item/projectile/proj) //Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
+	return
 
-	proc/knockback(mob/M, obj/item/projectile/P, var/max_range = 2)
-		if(!M || M == P.firer)
-			return
-		if(P.distance_travelled > max_range || M.lying) shake_camera(M, 2, 1) //Three tiles away or more, basically.
+/datum/ammo/proc/on_hit_turf(turf/T, obj/item/projectile/proj) //Special effects when hitting dense turfs.
+	return
 
-		else //Two tiles away or less.
-			shake_camera(M, 3, 4)
-			if(isliving(M)) //This is pretty ugly, but what can you do.
-				if(isxeno(M))
-					var/mob/living/carbon/xenomorph/target = M
-					if(target.mob_size == MOB_SIZE_BIG)
-						return //Big xenos are not affected.
-					target.apply_effects(0,1) //Smaller ones just get shaken.
-					to_chat(target, "<span class='xenodanger'>You are shaken by the sudden impact!</span>")
-				else
-					var/mob/living/target = M
-					target.apply_effects(1,2) //Humans get stunned a bit.
-					to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
-			step_away(M,P)
+/datum/ammo/proc/on_hit_mob(mob/M, obj/item/projectile/proj) //Special effects when hitting mobs.
+	return
 
-	proc/staggerstun(mob/M, obj/item/projectile/P, var/max_range = 2, var/stun = 0, var/weaken = 1, var/stagger = 2, var/slowdown = 1, var/knockback = 1, var/shake = 1, var/soft_size_threshold = 3, var/hard_size_threshold = 2)
-		if(!M || M == P.firer)
-			return
-		if(shake && (P.distance_travelled > max_range || M.lying))
-			shake_camera(M, shake+1, shake)
-			return
-		if(!isliving(M))
-			return
-		var/impact_message = ""
-		if(isxeno(M))
-			var/mob/living/carbon/xenomorph/D = M
-			if(D.fortify) //If we're fortified we don't give a shit about staggerstun.
-				impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
-				return
-			if(D.crest_defense) //Crest defense halves all effects, and protects us from the stun.
-				impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
-				slowdown *= 0.5
-				stagger *= 0.5
-				stun = 0
-		if(shake)
-			shake_camera(M, shake+2, shake+3)
-			if(isxeno(M))
-				impact_message += "<span class='xenodanger'>You are shaken by the sudden impact!</span>"
+/datum/ammo/proc/on_hit_obj(obj/O, obj/item/projectile/proj) //Special effects when hitting objects.
+	return
+
+/datum/ammo/proc/knockback(mob/victim, obj/item/projectile/proj, max_range = 2)
+	if(!victim || victim == proj.firer)
+		CRASH("knockback called [victim ? "without a mob target" : "while the mob target was the firer"]")
+	if(proj.distance_travelled > max_range || victim.lying) shake_camera(victim, 2, 1) //Three tiles away or more, basically.
+
+	else //Two tiles away or less.
+		shake_camera(victim, 3, 4)
+		if(isliving(victim)) //This is pretty ugly, but what can you do.
+			if(isxeno(victim))
+				var/mob/living/carbon/xenomorph/target = victim
+				if(target.mob_size == MOB_SIZE_BIG)
+					return //Big xenos are not affected.
+				target.apply_effects(0, 1) //Smaller ones just get shaken.
+				to_chat(target, "<span class='xenodanger'>You are shaken by the sudden impact!</span>")
 			else
-				impact_message += "<span class='warning'>You are shaken by the sudden impact!</span>"
+				var/mob/living/target = victim
+				target.apply_effects(1, 2) //Humans get stunned a bit.
+				to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
+		step_away(victim, proj)
 
-		//Check for and apply hard CC.
-		if(( M.mob_size == MOB_SIZE_BIG && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
-			var/mob/living/L = M
-			if(!L.stunned && !L.knocked_down) //Prevent chain stunning.
-				L.apply_effects(stun,weaken)
-			if(knockback)
-				if(isxeno(M))
-					impact_message += "<span class='xenodanger'>The blast knocks you off your feet!</span>"
-				else
-					impact_message += "<span class='highdanger'>The blast knocks you off your feet!</span>"
-				for(var/i=0, i<knockback, i++)
-					step_away(M,P)
-
-		//Check for and apply soft CC
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
-			var/stagger_immune = FALSE
-			if(isxeno(C))
-				var/mob/living/carbon/xenomorph/X = M
-				if(isxenoqueen(X)) //Stagger too powerful vs the Queen, so she's immune.
-					stagger_immune = TRUE
-			#if DEBUG_STAGGER_SLOWDOWN
-			to_chat(world, "<span class='debuginfo'>Damage: Initial stagger is: <b>[target.stagger]</b></span>")
-			#endif
-			if(!stagger_immune)
-				C.adjust_stagger(stagger)
-			#if DEBUG_STAGGER_SLOWDOWN
-			to_chat(world, "<span class='debuginfo'>Damage: Final stagger is: <b>[target.stagger]</b></span>")
-			#endif
-			#if DEBUG_STAGGER_SLOWDOWN
-			to_chat(world, "<span class='debuginfo'>Damage: Initial slowdown is: <b>[target.slowdown]</b></span>")
-			#endif
-			C.add_slowdown(slowdown)
-			#if DEBUG_STAGGER_SLOWDOWN
-			to_chat(world, "<span class='debuginfo'>Damage: Final slowdown is: <b>[target.slowdown]</b></span>")
-			#endif
-		to_chat(M, "[impact_message]") //Summarize all the bad shit that happened
-
-	proc/burst(atom/target, obj/item/projectile/P, damage_type = BRUTE, radius = 1, modifier = 0.5, attack_type = "bullet", apply_armor = TRUE)
-		if(!target || !P)
+/datum/ammo/proc/staggerstun(mob/victim, obj/item/projectile/proj, max_range = 2, stun = 0, weaken = 1, stagger = 2, slowdown = 1, knockback = 1, shake = 1, soft_size_threshold = 3,hard_size_threshold = 2)
+	if(!victim || victim == proj.firer)
+		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
+	if(!isliving(victim))
+		return
+	if(shake && (proj.distance_travelled > max_range || victim.lying))
+		shake_camera(victim, shake + 1, shake)
+		return
+	var/impact_message = ""
+	if(isxeno(victim))
+		var/mob/living/carbon/xenomorph/xeno_victim = victim
+		if(xeno_victim.fortify) //If we're fortified we don't give a shit about staggerstun.
+			impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
 			return
-		for(var/mob/living/carbon/M in orange(radius,target))
-			if(P.firer == M)
-				continue
-			M.visible_message("<span class='danger'>[M] is hit by backlash from \a [P.name]!</span>","[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]You are hit by backlash from \a </b>[P.name]</b>!</span>")
-			if(apply_armor)
-				var/armor_block = M.run_armor_check(M, attack_type)
-				M.apply_damage(rand(P.damage * modifier * 0.1,P.damage * modifier),damage_type, null, armor_block)
+		if(xeno_victim.crest_defense) //Crest defense halves all effects, and protects us from the stun.
+			impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
+			slowdown *= 0.5
+			stagger *= 0.5
+			stun = 0
+	if(shake)
+		shake_camera(victim, shake+2, shake+3)
+		if(isxeno(victim))
+			impact_message += "<span class='xenodanger'>We are shaken by the sudden impact!</span>"
+		else
+			impact_message += "<span class='warning'>You are shaken by the sudden impact!</span>"
+
+	//Check for and apply hard CC.
+	if((victim.mob_size == MOB_SIZE_BIG && hard_size_threshold > 2) || (victim.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(victim) && hard_size_threshold > 0))
+		var/mob/living/living_victim = victim
+		if(!living_victim.stunned && !living_victim.knocked_down) //Prevent chain stunning.
+			living_victim.apply_effects(stun,weaken)
+		if(knockback)
+			if(isxeno(victim))
+				impact_message += "<span class='xenodanger'>The blast knocks you off your feet!</span>"
 			else
-				M.apply_damage(rand(P.damage * modifier * 0.1,P.damage * modifier),damage_type)
+				impact_message += "<span class='highdanger'>The blast knocks you off your feet!</span>"
+			for(var/i in 1 to knockback)
+				step_away(victim, proj)
+
+	//Check for and apply soft CC
+	if(iscarbon(victim))
+		var/mob/living/carbon/carbon_victim = victim
+		var/stagger_immune = FALSE
+		if(isxeno(carbon_victim))
+			var/mob/living/carbon/xenomorph/xeno_victim = victim
+			if(isxenoqueen(xeno_victim)) //Stagger too powerful vs the Queen, so she's immune.
+				stagger_immune = TRUE
+		#if DEBUG_STAGGER_SLOWDOWN
+		to_chat(world, "<span class='debuginfo'>Damage: Initial stagger is: <b>[target.stagger]</b></span>")
+		#endif
+		if(!stagger_immune)
+			carbon_victim.adjust_stagger(stagger)
+		#if DEBUG_STAGGER_SLOWDOWN
+		to_chat(world, "<span class='debuginfo'>Damage: Final stagger is: <b>[target.stagger]</b></span>")
+		#endif
+		#if DEBUG_STAGGER_SLOWDOWN
+		to_chat(world, "<span class='debuginfo'>Damage: Initial slowdown is: <b>[target.slowdown]</b></span>")
+		#endif
+		carbon_victim.add_slowdown(slowdown)
+		#if DEBUG_STAGGER_SLOWDOWN
+		to_chat(world, "<span class='debuginfo'>Damage: Final slowdown is: <b>[target.slowdown]</b></span>")
+		#endif
+	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
 
-	proc/fire_bonus_projectiles(obj/item/projectile/original_P)
-		set waitfor = 0
-		var/i
-		for(i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
-			P.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
-			var/turf/new_target = null
+/datum/ammo/proc/burst(atom/target, obj/item/projectile/proj, damage_type = BRUTE, radius = 1, modifier = 0.5, attack_type = "bullet", apply_armor = TRUE)
+	if(!target || !proj)
+		CRASH("burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	for(var/mob/living/carbon/victim in orange(radius,target))
+		if(proj.firer == victim)
+			continue
+		victim.visible_message("<span class='danger'>[victim] is hit by backlash from \a [proj.name]!</span>","[isxeno(victim)?"<span class='xenodanger'>We":"<span class='highdanger'>You"] are hit by backlash from \a </b>[proj.name]</b>!</span>")
+		if(apply_armor)
+			var/armor_block = victim.run_armor_check(null, attack_type)
+			victim.apply_damage(rand(proj.damage * modifier * 0.1, proj.damage * modifier), damage_type, null, armor_block)
+		else
+			victim.apply_damage(rand(proj.damage * modifier * 0.1, proj.damage * modifier),damage_type)
 
-			P.scatter = round(P.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
 
-			if(prob(P.scatter))
-				var/scatter_x = rand(-1,1)
-				var/scatter_y = rand(-1,1)
-				new_target = locate(original_P.target_turf.x + round(scatter_x),original_P.target_turf.y + round(scatter_y),original_P.target_turf.z)
-				if(!istype(new_target) || isnull(new_target))
-					continue	//If we didn't find anything, make another pass.
-				P.original = new_target
+/datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/original_P)
+	set waitfor = FALSE
+	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
+		var/obj/item/projectile/new_proj = new /obj/item/projectile(original_P.shot_from)
+		new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
+		var/turf/new_target = null
 
-			P.accuracy = round(P.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
+		new_proj.scatter = round(new_proj.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
 
-			if(!new_target)
-				new_target = original_P.target_turf
-			P.fire_at(new_target,original_P.firer,original_P.shot_from,P.ammo.max_range,P.ammo.shell_speed) //Fire!
+		if(prob(new_proj.scatter))
+			var/scatter_x = rand(-1, 1)
+			var/scatter_y = rand(-1, 1)
+			new_target = locate(original_P.target_turf.x + round(scatter_x), original_P.target_turf.y + round(scatter_y), original_P.target_turf.z)
+			if(!istype(new_target))
+				continue	//If we didn't find anything, make another pass.
+			new_proj.original = new_target
+
+		new_proj.accuracy = round(new_proj.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
+
+		if(!new_target)
+			new_target = original_P.target_turf
+		new_proj.fire_at(new_target,original_P.firer, original_P.shot_from, new_proj.ammo.max_range, new_proj.ammo.shell_speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
-	proc/stun_living(mob/living/target, obj/item/projectile/P) //Taser proc to stun folks.
-		if(istype(target))
-			if(isxeno(target))
-				return //Not on aliens.
-			target.apply_effects(12,20)
+/datum/ammo/proc/stun_living(mob/living/target, obj/item/projectile/proj) //Taser proc to stun folks.
+	if(!isliving(target) || isxeno(target))
+		return //Not on aliens.
+	target.apply_effects(12, 20)
 
-	proc/drop_flame(turf/T) // ~Art updated fire 20JAN17
-		if(!istype(T))
-			return
-		T.ignite(20, 20)
+
+/datum/ammo/proc/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(20, 20)
+
 
 /datum/ammo/proc/set_smoke()
 	return
+
 
 /datum/ammo/proc/drop_nade(turf/T)
 	return
@@ -515,7 +517,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
 	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
-	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
+	penetration = CONFIG_GET(number/combat_define/med_armor_penetration)
 	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
@@ -525,11 +527,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/rifle/m4ra/incendiary/New()
 	..()
-	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
-	accuracy = CONFIG_GET(number/combat_define/hmed_hit_accuracy)
-	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
-	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
+	damage = CONFIG_GET(number/combat_define/lmmed_hit_damage)
+	accuracy = CONFIG_GET(number/combat_define/low_hit_accuracy)
+	penetration = CONFIG_GET(number/combat_define/low_armor_penetration)
 
 /datum/ammo/bullet/rifle/m4ra/impact
 	name = "A19 high velocity impact bullet"
@@ -540,9 +540,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
-	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
-	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
+	penetration = CONFIG_GET(number/combat_define/low_armor_penetration)
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, CONFIG_GET(number/combat_define/max_shell_range), 0, 1, 1)
@@ -605,7 +603,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
 	hud_state = "shotgun_fire"
-	damage_type = BURN
+	damage_type = BRUTE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 
 /datum/ammo/bullet/shotgun/incendiary/New()
@@ -991,7 +989,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	set_smoke()
 	smoke.set_up(1, T)
 	smoke.start()
-	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 50, 1, 4)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 25, 25, 25, 15)
 
 /datum/ammo/rocket/wp/quad
@@ -1120,7 +1118,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 7)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
@@ -1161,18 +1159,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 8.05)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.05)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list("xeno_toxin" = 8.75)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.75)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list("xeno_toxin" = 9.1)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.1)
 
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
-	ammo_reagents = list("xeno_toxin" = 8.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.5)
 	added_spit_delay = 10
 	spit_cost = 75
 
@@ -1181,17 +1179,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list("xeno_toxin" = 9.78)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.78)
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list("xeno_toxin" = 10.63)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10.63)
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list("xeno_toxin" = 11.05)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 11.05)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list("xeno_toxin" = 10)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10)
 	added_spit_delay = 15
 	spit_cost = 100
 
@@ -1200,13 +1198,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list("xeno_toxin" = 11.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 11.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list("xeno_toxin" = 12.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 12.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list("xeno_toxin" = 13)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 13)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -1299,9 +1297,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		T = get_turf(P)
 	drop_nade(T)
 
-	if(istype(M,/mob/living/carbon))
-		var/mob/living/carbon/C = M
-		C.acid_process_cooldown = world.time
+	M.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_ACID, null), 1 SECONDS)
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
 	var/turf/T = get_turf(O)

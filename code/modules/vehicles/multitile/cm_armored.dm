@@ -258,8 +258,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		to_chat(user, "[span_class]There is a [status] [HP] installed on the [i] slot.</span>")
 
 //Special armored vic healthcheck that mainly updates the hardpoint states
-/obj/vehicle/multitile/root/cm_armored/healthcheck()
-	obj_integrity = max_integrity //The tank itself doesn't take damage
+/obj/vehicle/multitile/root/cm_armored/proc/healthcheck()
+	repair_damage(max_integrity) //The tank itself doesn't take damage
 	var/i
 	var/remove_person = TRUE //Whether or not to call handle_all_modules_broken()
 	for(i in hardpoints)
@@ -343,7 +343,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		return
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
-			KnockDown(1)
+			knock_down(1)
 		var/target_dir = turn(C.dir, 180)
 		temp = get_step(C.loc, target_dir)
 		T = temp
@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		else
 			throw_at(T, 3, 2, C, 1)
 		if(!knocked_down)
-			KnockDown(1)
+			knock_down(1)
 		apply_damage(rand(10, 15), BRUTE)
 		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -392,7 +392,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /mob/living/carbon/xenomorph/larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
 		if(!knocked_down)
-			KnockDown(1)
+			knock_down(1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -521,7 +521,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	for(var/i in hardpoints)
 		var/obj/item/hardpoint/HP = hardpoints[i]
 		if(HP)
-			HP.obj_integrity = CLAMP(HP.obj_integrity - damage * dmg_distribs[i] * get_dmg_multi(type), 0, HP.max_integrity)
+			HP.take_damage(HP.obj_integrity - damage * dmg_distribs[i] * get_dmg_multi(type))
 
 	healthcheck()
 
@@ -537,27 +537,16 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	return ..()
 
-//Differentiates between damage types from different bullets
-//Applies a linear transformation to bullet damage that will generally decrease damage done
-/obj/vehicle/multitile/root/cm_armored/bullet_act(obj/item/projectile/P)
-
-	var/dam_type = "bullet"
-
-	if(P.ammo.flags_ammo_behavior & AMMO_XENO_ACID) dam_type = "acid"
-
-	take_damage_type(P.damage * (0.75 + P.ammo.penetration/100), dam_type, P.firer)
 
 //severity 1.0 explosions never really happen so we're gonna follow everyone else's example
 /obj/vehicle/multitile/root/cm_armored/ex_act(severity)
 
 	switch(severity)
 		if(1)
-			take_damage_type(rand(250, 350), "explosive") //Devastation level explosives are anti-tank and do real damage.
-			take_damage_type(rand(20, 40), "slash")
+			take_damage(rand(250, 350)) //Devastation level explosives are anti-tank and do real damage.
 
 		if(2)
-			take_damage_type(rand(30, 40), "explosive") //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
-			take_damage_type(rand(10, 15), "slash")
+			take_damage(rand(30, 40)) //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
 
 //Honestly copies some code from the Xeno files, just handling some special cases
 /obj/vehicle/multitile/root/cm_armored/attack_alien(mob/living/carbon/xenomorph/M, dam_bonus)
@@ -575,7 +564,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 		M.do_attack_animation(src)
 		M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
-		"<span class='danger'>You lunge at [src]!</span>")
+		"<span class='danger'>We lunge at [src]!</span>")
 		return FALSE
 
 	else
@@ -584,12 +573,12 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TANK)
 
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
-	"<span class='danger'>You slash [src]!</span>")
+	"<span class='danger'>We slash [src]!</span>")
 
 	take_damage_type(damage * ( (isxenoravager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 
 //Special case for entering the vehicle without using the verb
-/obj/vehicle/multitile/root/cm_armored/attack_hand(mob/user)
+/obj/vehicle/multitile/root/cm_armored/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -745,7 +734,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	user.visible_message("<span class='notice'>[user] repairs the [slot] slot on the [src].</span>",
 		"<span class='notice'>You repair the [slot] slot on [src].</span>")
 
-	old.obj_integrity = old.max_integrity //We repaired it, good job
+	old.repair_damage(old.max_integrity) //We repaired it, good job
 	old.apply_buff()
 
 	update_icon()

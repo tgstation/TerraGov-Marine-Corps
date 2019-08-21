@@ -27,7 +27,6 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
-	damage_cap = 3000
 	var/emergency = FALSE
 
 	tiles_with = list(
@@ -103,15 +102,15 @@
 		if(secondsMainPowerLost > 0)
 			if(!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
 				secondsMainPowerLost -= 1
-				updateDialog()
+				updateUsrDialog()
 			cont = TRUE
 		if(secondsBackupPowerLost > 0)
 			if(!wires.is_cut(WIRE_BACKUP1) && !wires.is_cut(WIRE_BACKUP2))
 				secondsBackupPowerLost -= 1
-				updateDialog()
+				updateUsrDialog()
 			cont = TRUE
 	spawnPowerRestoreRunning = FALSE
-	updateDialog()
+	updateUsrDialog()
 	update_icon()
 
 
@@ -200,10 +199,6 @@
 
 
 /obj/machinery/door/airlock/attack_ai(mob/user)
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(user, "<span class='warning'>Unable to interface: Airlock is unresponsive.</span>")
-		return
-
 	ui_interact(user)
 
 
@@ -260,7 +255,7 @@
 				src.attack_ai(user)
 
 
-/obj/machinery/door/airlock/attack_paw(mob/user as mob)
+/obj/machinery/door/airlock/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 //Prying open doors
@@ -286,7 +281,7 @@
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
-	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
+	"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
 
 	if(do_after(M, 40, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying)
 		if(locked)
@@ -299,7 +294,7 @@
 			spawn(0)
 				open(1)
 				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
-				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+				"<span class='danger'>We pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	for(var/atom/movable/AM in get_turf(src))
@@ -313,7 +308,7 @@
 	"<span class='warning'>You squeeze and scuttle underneath \the [src].</span>", null, 5)
 	M.forceMove(loc)
 
-/obj/machinery/door/airlock/attack_hand(mob/user)
+/obj/machinery/door/airlock/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -564,7 +559,7 @@
 			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
 				return
 
-			obj_integrity = max_integrity
+			repair_damage(max_integrity)
 			DISABLE_BITFIELD(machine_stat, BROKEN)
 			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
 								"<span class='notice'>You finish repairing the airlock.</span>")
@@ -708,8 +703,8 @@
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
 			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-			M.SetStunned(5)
-			M.SetKnockeddown(5)
+			M.set_stunned(5)
+			M.set_knocked_down(5)
 			if (iscarbon(M))
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species
@@ -735,8 +730,7 @@
 	if (operating || src.locked) return
 
 	src.locked = 1
-	for(var/mob/M in range(1,src))
-		M.show_message("You hear a click from the bottom of the door.", 2)
+	audible_message("You hear a click from the bottom of the door.", null, 1)
 	update_icon()
 
 /obj/machinery/door/airlock/proc/unlock(forced=0)
@@ -744,8 +738,7 @@
 
 	if(forced || hasPower()) //only can raise bolts if power's on
 		src.locked = 0
-		for(var/mob/M in range(1,src))
-			M.show_message("You hear a click from the bottom of the door.", 2)
+		audible_message("You hear a click from the bottom of the door.", null, 1)
 		update_icon()
 		return 1
 	return 0
@@ -806,13 +799,13 @@
 			return
 
 		secondsElectrified--
-		updateDialog()
+		updateUsrDialog()
 	// This is to protect against changing to permanent, mid loop.
 	if(secondsElectrified == MACHINE_NOT_ELECTRIFIED)
 		set_electrified(MACHINE_NOT_ELECTRIFIED)
 	else
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT)
-	updateDialog()
+	updateUsrDialog()
 
 
 /obj/machinery/door/airlock/proc/user_toggle_open(mob/user)

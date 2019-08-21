@@ -10,7 +10,7 @@
 	opacity = TRUE
 	anchored = TRUE
 
-/obj/structure/cargo_container/attack_hand(mob/user as mob)
+/obj/structure/cargo_container/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

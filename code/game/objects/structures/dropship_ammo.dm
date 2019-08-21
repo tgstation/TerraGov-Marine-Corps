@@ -5,11 +5,12 @@
 //////////////////////////////////// dropship weapon ammunition ////////////////////////////
 
 /obj/structure/ship_ammo
-	icon = 'icons/Marine/almayer_props.dmi'
+	icon = 'icons/Marine/mainship_props.dmi'
 	density = TRUE
 	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 	var/travelling_time = 100 //time to impact
 	var/equipment_type //type of equipment that accept this type of ammo.
 	var/ammo_count
@@ -65,18 +66,6 @@
 
 /obj/structure/ship_ammo/proc/detonate_on(turf/impact)
 	return
-
-
-/obj/structure/ship_ammo/attack_alien(mob/living/carbon/xenomorph/X)
-	if(X.a_intent == INTENT_HARM)
-		X.do_attack_animation(src)
-		X.flick_attack_overlay(src, "slash")
-		playsound(loc, "alien_claw_metal", 25, 1)
-		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
-		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
-	else
-		attack_hand(X)
-
 
 
 //30mm gun
@@ -207,7 +196,7 @@
 /obj/structure/ship_ammo/rocket
 	name = "abstract rocket"
 	icon_state = "single"
-	icon = 'icons/Marine/almayer_props64.dmi'
+	icon = 'icons/Marine/mainship_props64.dmi'
 	equipment_type = /obj/structure/dropship_equipment/weapon/rocket_pod
 	ammo_count = 1
 	max_ammo_count = 1
@@ -314,7 +303,7 @@
 	name = "mini rocket stack"
 	desc = "A pack of laser guided mini rockets."
 	icon_state = "minirocket"
-	icon = 'icons/Marine/almayer_props.dmi'
+	icon = 'icons/Marine/mainship_props.dmi'
 	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
 	ammo_count = 6
 	max_ammo_count = 6
@@ -393,4 +382,4 @@
 	var/turf/T = get_turf(src)
 	fuel = rand(700, 900) // About the same burn time as a flare, considering it requires it's own CAS run.
 	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from the flare as it lights off in the sky!</span>")
-	playsound(T, 'sound/weapons/gun_flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
+	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry

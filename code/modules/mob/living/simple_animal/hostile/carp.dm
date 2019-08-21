@@ -55,7 +55,7 @@
 
 /mob/living/simple_animal/hostile/carp/megacarp/Initialize()
 	. = ..()
-	name = "[pick(GLOB.megacarp_first_names)] [pick(GLOB.megacarp_last_names)]"
+	name = "[pick(SSstrings.get_list_from_file("names/megacarp_first"))] [pick(SSstrings.get_list_from_file("names/megacarp_last"))]"
 	melee_damage_lower += rand(2, 10)
 	melee_damage_upper += rand(10, 20)
 	maxHealth += rand(30, 60)

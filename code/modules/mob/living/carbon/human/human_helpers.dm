@@ -202,7 +202,7 @@
 	return 0
 
 /mob/living/carbon/human/has_vision()
-	if(sdisabilities & BLIND)
+	if(disabilities & BLIND)
 		return FALSE
 	if(!species.has_organ["eyes"]) //can see through other means
 		return TRUE

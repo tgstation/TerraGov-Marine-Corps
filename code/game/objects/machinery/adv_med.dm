@@ -16,7 +16,8 @@
 
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
-	if(user.incapacitated(TRUE)) return
+	if(user.incapacitated(TRUE)) 
+		return
 	go_out()
 
 
@@ -25,42 +26,45 @@
 	set category = "Object"
 	set name = "Eject Body Scanner"
 
-	if (usr.stat != 0)
+	if (usr.stat != CONSCIOUS)
 		return
-	src.go_out()
-	return
+	go_out()
+
+/obj/machinery/bodyscanner/proc/move_inside_wrapper(mob/living/M, mob/user)
+	if (M.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+		return
+	if (occupant)
+		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")
+		return
+	if (M.abiotic())
+		to_chat(user, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
+		return
+	M.forceMove(src)
+	occupant = M
+	icon_state = "body_scanner_1"
+	for(var/obj/O in src)
+		qdel(O)
+		
+/obj/machinery/bodyscanner/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
+	move_inside_wrapper(M, user)
 
 /obj/machinery/bodyscanner/verb/move_inside()
 	set src in oview(1)
 	set category = "Object"
 	set name = "Enter Body Scanner"
 
-	if (usr.stat || !(ishuman(usr) || ismonkey(usr)))
-		return
-	if (src.occupant)
-		to_chat(usr, "<span class='boldnotice'>The scanner is already occupied!</span>")
-		return
-	if (usr.abiotic())
-		to_chat(usr, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
-		return
-	usr.forceMove(src)
-	src.occupant = usr
-	src.icon_state = "body_scanner_1"
-	for(var/obj/O in src)
-		//O = null
-		qdel(O)
-		//Foreach goto(124)
-	return
+	move_inside_wrapper(usr, usr)
 
 /obj/machinery/bodyscanner/proc/go_out()
-	if ((!( src.occupant ) || src.locked))
+	if (!occupant || locked)
 		return
 	for(var/obj/O in src)
-		O.loc = src.loc
-		//Foreach goto(30)
-	src.occupant.forceMove(loc)
-	src.occupant = null
-	src.icon_state = "body_scanner_0"
+		O.loc = loc
+	occupant.forceMove(loc)
+	occupant = null
+	icon_state = "body_scanner_0"
 	return
 
 /obj/machinery/bodyscanner/attack_hand(mob/living/user)
@@ -200,13 +204,13 @@
 //		else
 ///			src.temphtml = "Process terminated due to lack of occupant in scanning chamber."
 //			src.limb_status = null
-//	src.updateDialog()
+//	src.updateUsrDialog()
 //	return
 
 */
 
 
-/obj/machinery/body_scanconsole/attack_paw(user as mob)
+/obj/machinery/body_scanconsole/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/body_scanconsole/attack_ai(user as mob)

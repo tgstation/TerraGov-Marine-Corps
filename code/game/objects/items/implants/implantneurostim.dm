@@ -53,7 +53,7 @@
 		C.visible_message("<span class='danger'>[C] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
 		C.flash_eyes(1, TRUE)
 		C.stunned += 10
-		C.KnockDown(10)
+		C.knock_down(10)
 		C.apply_damage(100, HALLOSS, part)
 		C.apply_damage(5, BURN, part, 0, 0, 0, src)
 
@@ -87,9 +87,9 @@
 		if(istype(imp_in, /mob/living/carbon/))
 			var/mob/living/carbon/M = imp_in
 
-			var/neuraline_inject_amount = max(1-M.reagents.get_reagent_amount("neuraline"), 0)
+			var/neuraline_inject_amount = max(1-M.reagents.get_reagent_amount(/datum/reagent/medicine/neuraline), 0)
 
-			M.reagents.add_reagent("neuraline", neuraline_inject_amount, null, 1)
+			M.reagents.add_reagent(/datum/reagent/medicine/neuraline, neuraline_inject_amount, null, 1)
 
 
 /obj/item/implant/neurostim/emp_act(severity)

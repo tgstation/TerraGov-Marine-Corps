@@ -95,25 +95,41 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 
-/obj/machinery/door/poddoor/almayer
-	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+/obj/machinery/door/poddoor/mainship
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/closed/wall,
-		/obj/structure/window/framed/almayer,
+		/obj/structure/window/framed/mainship,
 		/obj/machinery/door/airlock)
 
-/obj/machinery/door/poddoor/almayer/Initialize()
+/obj/machinery/door/poddoor/mainship/Initialize()
 	relativewall_neighbours()
 	return ..()
 
 
 /obj/machinery/door/poddoor/timed_late
-	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
 	use_power = FALSE
 
 
 /obj/machinery/door/poddoor/timed_late/Initialize()
-	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/open)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), .proc/open)
 	return ..()
+
+
+/obj/machinery/door/poddoor/timed_late/containment
+	name = "Containment shutters"
+	desc = "Safety shutters triggered by some kind of lockdown event."
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
+	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
+
+
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone
+	id = "landing_zone"
+
+
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2
+	id = "landing_zone_2"

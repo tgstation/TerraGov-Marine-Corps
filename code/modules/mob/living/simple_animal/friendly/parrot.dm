@@ -72,7 +72,7 @@
 /mob/living/simple_animal/parrot/Initialize()
 	. = ..()
 	if(!ears)
-		ears = new /obj/item/radio/headset/almayer/mcom(src)
+		ears = new /obj/item/radio/headset/mainship/mcom(src)
 
 	parrot_sleep_dur = parrot_sleep_max //In case someone decides to change the max without changing the duration var
 
@@ -217,18 +217,18 @@
 		return ..()
 
 
-/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M)
+/mob/living/simple_animal/parrot/attack_hand(mob/living/user)
 	. = ..()
 	if(client)
 		return
-	if(!stat && M.a_intent == INTENT_HARM)
+	if(!stat && user.a_intent == INTENT_HARM)
 
 		icon_state = icon_living //It is going to be flying regardless of whether it flees or attacks
 
 		if(parrot_state == PARROT_PERCH)
 			parrot_sleep_dur = parrot_sleep_max //Reset it's sleep timer if it was perched
 
-		parrot_interest = M
+		parrot_interest = user
 		parrot_state = PARROT_SWOOP //The parrot just got hit, it WILL move, now to pick a direction..
 
 		if(health > 30) //Let's get in there and squawk it up!
@@ -236,12 +236,12 @@
 		else
 			parrot_state |= PARROT_FLEE		//Otherwise, fly like a bat out of hell!
 			drop_held_item(0)
-	if(stat != DEAD && M.a_intent == INTENT_HELP)
+	if(stat != DEAD && user.a_intent == INTENT_HELP)
 		handle_automated_speech(1) //assured speak/emote
 
 
-/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/M)
-	return attack_hand(M)
+/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/user)
+	return attack_hand(user)
 
 
 /mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/xenomorph/X)
@@ -556,7 +556,7 @@
 
 
 /mob/living/simple_animal/parrot/Poly/Initialize()
-	ears = new /obj/item/radio/headset/almayer/mt(src)
+	ears = new /obj/item/radio/headset/mainship/mt(src)
 	available_channels = list(RADIO_TOKEN_ENGINEERING)
 	Read_Memory()
 	return ..()

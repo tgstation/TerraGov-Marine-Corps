@@ -102,7 +102,7 @@ FLOOR SAFES
 		icon_state = initial(icon_state)
 
 
-/obj/structure/safe/attack_hand(mob/user as mob)
+/obj/structure/safe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

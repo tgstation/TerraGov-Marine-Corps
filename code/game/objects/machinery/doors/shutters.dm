@@ -14,11 +14,11 @@
 		layer = PODDOOR_CLOSED_LAYER
 
 /obj/machinery/door/poddoor/shutters/open()
-	if(operating) //doors can still open when emag-disabled
+	if(operating)
 		return FALSE
 	if(!SSticker)
 		return FALSE
-	if(!operating) //in case of emag
+	if(!operating)
 		operating = TRUE
 	do_animate("opening")
 	icon_state = "shutter0"
@@ -31,7 +31,7 @@
 	layer = open_layer
 	set_opacity(FALSE)
 
-	if(operating) //emag again
+	if(operating)
 		operating = FALSE
 	if(autoclose)
 		addtimer(CALLBACK(src, .proc/autoclose), 150)
@@ -68,29 +68,29 @@
 			flick("shutterc1", src)
 
 
-/obj/machinery/door/poddoor/shutters/almayer
-	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+/obj/machinery/door/poddoor/shutters/mainship
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	icon_state = "shutter1"
 	openspeed = 4 //shorter open animation.
 	tiles_with = list(
 		/turf/closed/wall,
-		/obj/structure/window/framed/almayer,
+		/obj/structure/window/framed/mainship,
 		/obj/machinery/door/airlock)
 
 
-/obj/machinery/door/poddoor/shutters/almayer/Initialize()
+/obj/machinery/door/poddoor/shutters/mainship/Initialize()
 	relativewall_neighbours()
 	return ..()
 
 
 /obj/machinery/door/poddoor/shutters/timed_late
-	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
 	use_power = FALSE
 
 
 /obj/machinery/door/poddoor/shutters/timed_late/Initialize()
-	RegisterSignal(SSdcs, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, .proc/open)
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH), .proc/open)
 	return ..()
 
 
@@ -98,18 +98,18 @@
 /obj/machinery/door/poddoor/shutters/transit
 	name = "Transit shutters"
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
-	icon = 'icons/obj/doors/almayer/blastdoors_shutters.dmi'
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 
-/obj/machinery/door/poddoor/shutters/almayer/open
+/obj/machinery/door/poddoor/shutters/mainship/open
 	density = FALSE
 	opacity = FALSE
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
 
-/obj/machinery/door/poddoor/shutters/almayer/open/indestructible
+/obj/machinery/door/poddoor/shutters/mainship/open/indestructible
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 
@@ -121,7 +121,7 @@
 	icon_state = "shutter0"
 
 
-/obj/machinery/door/poddoor/shutters/almayer/pressure
+/obj/machinery/door/poddoor/shutters/mainship/pressure
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE

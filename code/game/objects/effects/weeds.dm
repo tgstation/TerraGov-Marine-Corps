@@ -1,21 +1,20 @@
-#define NODERANGE 3
+#define NODERANGE 2
 
 /obj/effect/alien/weeds
 	name = "weeds"
 	desc = "Weird black weeds..."
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "base"
-
 	anchored = TRUE
 	density = FALSE
 	layer = TURF_LAYER
+	plane = FLOOR_PLANE
 	var/parent_node
 	max_integrity = 4
 
-/obj/effect/alien/weeds/healthcheck()
-	if(obj_integrity <= 0)
-		GLOB.round_statistics.weeds_destroyed++
-		qdel(src)
+/obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
+	GLOB.round_statistics.weeds_destroyed++
+	return ..()
 
 /obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
@@ -27,7 +26,8 @@
 
 
 /obj/effect/alien/weeds/Destroy()
-	SSweeds.add_weed(src)
+	if(parent_node)
+		SSweeds.add_weed(src)
 
 	var/oldloc = loc
 	. = ..()
@@ -83,70 +83,9 @@
 		icon_state = "weed_dir[my_dir]"
 
 
-/obj/effect/alien/weeds/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-		if(2.0)
-			if(prob(70))
-				qdel(src)
-		if(3.0)
-			if(prob(50))
-				qdel(src)
-
-/obj/effect/alien/weeds/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(I.flags_item & NOBLUDGEON || !isliving(user))
-		return
-
-	var/damage = I.force
-	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate
-		damage *= 0.25
-
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!WT.remove_fuel(0))
-			return
-		damage = 15
-		playsound(loc, 'sound/items/welder.ogg', 25, 1)
-	else
-		playsound(loc, "alien_resin_break", 25)
-
-	var/mob/living/L = user
-	L.do_attack_animation(src)
-
-	var/multiplier = 1
-	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
-		multiplier += 1
-
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-
-	else //Plasma cutters have their own message.
-		if(istype(src, /obj/effect/alien/weeds/node)) //The pain is real
-			to_chat(user, "<span class='warning'>You hit \the [src] with \the [I].</span>")
-		else
-			to_chat(user, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
-
-	obj_integrity -= damage * multiplier
-	healthcheck()
-	return TRUE //don't call afterattack
-
-/obj/effect/alien/weeds/update_icon()
-	return
-
-/obj/effect/alien/weeds/fire_act()
-	if(!gc_destroyed)
-		spawn(rand(100,175))
-			qdel(src)
-
-
 /obj/effect/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
+	plane = GAME_PLANE
 	icon_state = "weedwall"
 
 /obj/effect/alien/weeds/weedwall/update_sprite()
@@ -180,9 +119,13 @@
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
 	var/node_range = NODERANGE
-	max_integrity = 15
+	max_integrity = 100
 
 	var/node_turfs = list() // list of all potential turfs that we can expand to
+
+/obj/effect/alien/weeds/node/Destroy()
+	. = ..()
+	SSweeds_decay.decay_weeds(node_turfs)
 
 
 /obj/effect/alien/weeds/node/update_icon()
@@ -202,7 +145,6 @@
 	generate_weed_graph()
 	SSweeds.add_node(src)
 
-
 /obj/effect/alien/weeds/node/proc/generate_weed_graph()
 	var/list/turfs_to_check = list()
 	turfs_to_check += get_turf(src)
@@ -211,7 +153,7 @@
 		node_size--
 		for(var/X in turfs_to_check)
 			var/turf/T = X
-			for(var/direction in GLOB.cardinals)
+			for(var/direction in GLOB.alldirs)
 				var/turf/AdjT = get_step(T, direction)
 				if (AdjT == src) // Ignore the node
 					continue

@@ -22,7 +22,7 @@
 	var/firing = 0 //Used for deconstruction and aiming sanity
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
 
-/obj/structure/mortar/attack_hand(mob/user as mob)
+/obj/structure/mortar/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -148,7 +148,7 @@
 
 		user.visible_message("<span class='notice'>[user] starts loading \a [mortar_shell.name] into [src].</span>",
 		"<span class='notice'>You start loading \a [mortar_shell.name] into [src].</span>")
-		playsound(loc, 'sound/weapons/gun_mortar_reload.ogg', 50, 1)
+		playsound(loc, 'sound/weapons/guns/interact/mortar_reload.ogg', 50, 1)
 		busy = TRUE
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
@@ -159,7 +159,7 @@
 		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
 		visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")
 		user.transferItemToLoc(mortar_shell, src)
-		playsound(loc, 'sound/weapons/gun_mortar_fire.ogg', 50, 1)
+		playsound(loc, 'sound/weapons/guns/fire/mortar_fire.ogg', 50, 1)
 		firing = TRUE
 		flick(icon_state + "_fire", src)
 		mortar_shell.forceMove(src)
@@ -170,7 +170,7 @@
 		for(var/mob/M in range(7))
 			shake_camera(M, 3, 1)
 		spawn(travel_time) //What goes up
-			playsound(T, 'sound/weapons/gun_mortar_travel.ogg', 50, 1)
+			playsound(T, 'sound/weapons/guns/misc/mortar_travel.ogg', 50, 1)
 			spawn(45) //Must go down //This should always be 45 ticks!
 				T.ceiling_debris_check(2)
 				mortar_shell.detonate(T)
@@ -245,7 +245,7 @@
 	if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 		user.visible_message("<span class='notice'>[user] deploys [src].",
 		"<span class='notice'>You deploy [src].")
-		playsound(loc, 'sound/weapons/gun_mortar_unpack.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/guns/interact/mortar_unpack.ogg', 25, 1)
 		var/obj/structure/mortar/M = new /obj/structure/mortar(get_turf(user))
 		M.setDir(user.dir)
 		qdel(src)
@@ -280,7 +280,7 @@
 
 	explosion(T, 0, 2, 4, 7)
 	flame_radius(3, T)
-	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /obj/item/mortal_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
@@ -323,7 +323,7 @@
 
 	//TODO: Add flare sound
 	new /obj/item/flashlight/flare/on/illumination(T)
-	playsound(T, 'sound/weapons/gun_flare.ogg', 50, 1, 4)
+	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 //Special flare subtype for the illumination flare shell
 //Acts like a flare, just even stronger, and set length
@@ -359,8 +359,7 @@
 	icon_opened = "open_mortar_crate"
 	icon_closed = "closed_mortar_crate"
 
-/obj/structure/closet/crate/mortar_ammo/full/New()
-	..()
+/obj/structure/closet/crate/mortar_ammo/full/PopulateContents()
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
@@ -382,8 +381,7 @@
 	name = "\improper M402 mortar kit"
 	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
 
-/obj/structure/closet/crate/mortar_ammo/mortar_kit/New()
-	..()
+/obj/structure/closet/crate/mortar_ammo/mortar_kit/PopulateContents()
 	new /obj/item/mortar_kit(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)

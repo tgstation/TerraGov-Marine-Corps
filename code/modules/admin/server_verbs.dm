@@ -226,16 +226,24 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has cancelled the early round start.")
 		return
 
-	if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "No")
+	var/msg = "has started the round early."
+
+	if(SSticker.setup_failed)
+		if(alert("Previous setup failed. Would you like to try again, bypassing the checks? Win condition checking will also be paused.", "Start Round", "Yes", "No") != "Yes")
+			return
+		msg += " Bypassing roundstart checks."
+		SSticker.bypass_checks = TRUE
+		SSticker.roundend_check_paused = TRUE
+
+	else if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "No")
 		return
 
-	var/startup_msg = ""
 	if(SSticker.current_state == GAME_STATE_STARTUP)
-		startup_msg = " The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again."
+		msg += " The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again."
 
 	SSticker.start_immediately = TRUE
-	log_admin("[key_name(usr)] has started the round early.[startup_msg]")
-	message_admins("[ADMIN_TPMONTY(usr)] has started the round early.[startup_msg]")
+	log_admin("[key_name(usr)] [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] [msg]")
 
 
 /datum/admins/proc/toggle_join()
@@ -307,7 +315,7 @@
 	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")
 		return
 
-	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention", MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_X_MINOR,  MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
+	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention") + SSticker.mode.round_end_states
 	if(!winstate)
 		return
 
@@ -369,12 +377,15 @@
 		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
 		if(!reason)
 			return
+		if(SSticker.admin_delay_notice)
+			to_chat(usr, "<span class='warning'>Someone already delayed the round end meanwhile.</span>")
+			return
 		SSticker.admin_delay_notice = reason
 
 	SSticker.delay_end = !SSticker.delay_end
 
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
-	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
+	message_admins("<hr><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
@@ -541,5 +552,5 @@
 
 	SSticker.roundend_check_paused = !SSticker.roundend_check_paused
 
-	log_admin("[key_name(usr)] has [SSticker.roundend_check_paused ? "enabled" : "disabled"] gamemode end condition checking.")
-	message_admins("[ADMIN_TPMONTY(usr)] has [SSticker.roundend_check_paused ? "enabled" : "disabled"] gamemode end condition checking.")
+	log_admin("[key_name(usr)] has [SSticker.roundend_check_paused ? "disabled" : "enabled"] gamemode end condition checking.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [SSticker.roundend_check_paused ? "disabled" : "enabled"] gamemode end condition checking.")

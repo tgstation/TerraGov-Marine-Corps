@@ -69,17 +69,35 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	return siemens_coefficient
 
+
+/mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
+	for(var/i in limbs)
+		var/datum/limb/limb_to_check = i
+		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
+			continue
+		limb_to_check.armor = limb_to_check.armor.attachArmor(armor_item.armor)
+
+
+/mob/living/carbon/human/dummy/add_limb_armor(obj/item/armor_item)
+	return
+
+
+/mob/living/carbon/human/proc/remove_limb_armor(obj/item/armor_item)
+	for(var/i in limbs)
+		var/datum/limb/limb_to_check = i
+		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
+			continue
+		limb_to_check.armor = limb_to_check.armor.detachArmor(armor_item.armor)
+
+
+/mob/living/carbon/human/dummy/remove_limb_armor(obj/item/armor_item)
+	return
+
+
 //this proc returns the armour value for a particular external organ.
-/mob/living/carbon/human/proc/getarmor_organ(datum/limb/def_zone, type)
-	if(!type)	return 0
-	var/protection = 0
-	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
-	for(var/gear in protective_gear)
-		if(gear && istype(gear ,/obj/item/clothing))
-			var/obj/item/clothing/C = gear
-			if(C.flags_armor_protection & def_zone?.body_part)
-				protection += C.armor.getRating(type)
-	return protection
+/mob/living/carbon/human/proc/getarmor_organ(datum/limb/affected_limb, type)
+	return affected_limb.armor.getRating(type)
+
 
 /mob/living/carbon/human/proc/check_head_coverage()
 
@@ -135,7 +153,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		L?.take_damage(1, TRUE)
 
 //Returns 1 if the attack hit, 0 if it missed.
-/mob/living/carbon/human/proc/attacked_by(obj/item/I, mob/living/user, def_zone)
+/mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, def_zone)
 	if(!I || !user)	return 0
 
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
@@ -383,9 +401,9 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
 	stunned += stun_duration
-	KnockDown(stun_duration)
+	knock_down(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
 	if(!ear_deaf)
-		ear_deaf += stun_duration * 20  //Deafens them temporarily
+		adjust_ear_damage(deaf = stun_duration * 20)  //Deafens them temporarily
 	//Perception distorting effects of the psychic scream
 	addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, src, stun_duration * 1 SECONDS, 0.75), 31)

@@ -79,12 +79,12 @@
 	icon_state = "taser"
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
-	fire_sound = 'sound/weapons/taser.ogg'
+	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 	cell_type = /obj/item/cell/high
@@ -118,8 +118,8 @@
 	name = "\improper Lasgun"
 	desc = "A laser based firearm. Uses power cells."
 	origin_tech = "combat=5;materials=4"
-	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/laser.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	matter = list("metal" = 2000)
 	load_method = CELL //codex
 
@@ -215,7 +215,7 @@
 		charge_cost = M43_OVERCHARGE_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = M43_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
-		fire_sound = 'sound/weapons/Laser3.ogg'
+		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
 	else
@@ -223,7 +223,7 @@
 		charge_cost = M43_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-		fire_sound = 'sound/weapons/laser.ogg'
+		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 
@@ -238,7 +238,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
@@ -246,7 +246,7 @@
 			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
 			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
 			playsound(user, active_attachable.activation_sound, 15, 1)
-			active_attachable.activate_attachment(src, null, TRUE)
+			active_attachable.activate_attachment(null, TRUE)
 
 	if(!cell?.use(charge_cost))
 		return
@@ -260,7 +260,7 @@
 	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
 	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
 	*/
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
 
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.

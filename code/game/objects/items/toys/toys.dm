@@ -60,7 +60,7 @@
 			to_chat(user, "The [I] is empty.")
 			return
 
-		if(I.reagents.has_reagent("pacid", 1))
+		if(I.reagents.has_reagent(/datum/reagent/toxin/acid/polyacid, 1))
 			to_chat(user, "The acid chews through the balloon!")
 			I.reagents.reaction(user, TOUCH)
 			qdel(src)
@@ -80,10 +80,7 @@
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
 		src.icon_state = "burst"
-		spawn(5)
-			if(src)
-				qdel(src)
-	return
+		QDEL_IN(src, 5)
 
 /obj/item/toy/balloon/update_icon()
 	if(src.reagents.total_volume >= 1)
@@ -196,7 +193,7 @@
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("water", 10)
+	R.add_reagent(/datum/reagent/water, 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -264,7 +261,7 @@
 		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1)
 		cooldown = world.time
 
-/obj/item/toy/prize/attack_hand(mob/user as mob)
+/obj/item/toy/prize/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -481,6 +478,8 @@
 
 
 /obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/user)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
 	attack_hand(user)
 
 
@@ -509,7 +508,7 @@
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		L.forceMove(loc)
-		L.KnockDown(5)
+		L.knock_down(5)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob

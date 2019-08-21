@@ -94,7 +94,7 @@
 	icon_state = "fortune" //Thank you Alterist
 
 /obj/item/trash/fortunecookie/Initialize(mapload, ...)
-	desc = "The fortune reads. <br><span class='tip'>[pick(GLOB.marinetips)]</span>"
+	desc = "The fortune reads. <br><span class='tip'>[pick(SSstrings.get_list_from_file("tips/marine"))]</span>"
 
 /obj/item/trash/c_tube
 	name = "cardboard tube"
@@ -126,8 +126,8 @@
 	icon_state = "cigarbutt"
 
 
-/obj/item/trash/USCMtray
-	name = "\improper TGMC Tray"
+/obj/item/trash/tgmc_tray
+	name = "\improper TGMC tray"
 	desc = "Finished with its tour of duty"
 	icon_state = "MREtray"
 

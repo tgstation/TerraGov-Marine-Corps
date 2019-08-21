@@ -93,8 +93,8 @@
 	hugger_delay = 2.0 SECONDS
 	eggs_max = 4
 
-/datum/xeno_caste/carrier/elite
-	upgrade_name = "Elite"
+/datum/xeno_caste/carrier/elder
+	upgrade_name = "Elder"
 	caste_desc = "A portable Love transport. It looks pretty strong."
 
 	upgrade = XENO_UPGRADE_TWO

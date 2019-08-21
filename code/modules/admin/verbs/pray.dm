@@ -20,8 +20,8 @@
 	if(mind?.assigned_role && mind.assigned_role == CORPORATE_LIAISON)
 		liaison = TRUE
 
-	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"
-	mentor_msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
+	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"
+	mentor_msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
 
 
 	for(var/client/C in GLOB.admins)
@@ -34,6 +34,8 @@
 		to_chat(usr, "Your corporate overlords at Nanotrasen have received your message.")
 	else
 		to_chat(usr, "Your prayers have been received by the gods.")
+
+	log_prayer(msg)
 
 
 /proc/tgmc_message(text, mob/sender)

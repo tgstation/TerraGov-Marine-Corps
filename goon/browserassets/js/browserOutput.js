@@ -506,6 +506,8 @@ function ehjaxCallback(data) {
 	} else if (data == 'roundrestart') {
 		opts.restarting = true;
 		internalOutput('<div class="connectionClosed internal restarting">The connection has been closed because the server is restarting. Please wait while you automatically reconnect.</div>', 'internal');
+	} else if (data == 'shutdown') {
+		internalOutput('<div class="connectionClosed internal">The connection has been closed because the server is shutting down. See you next time!</div>', 'internal');
 	} else if (data == 'stopMusic') {
 		$('#adminMusic').prop('src', '');
 	} else {
@@ -541,6 +543,13 @@ function ehjaxCallback(data) {
 			var firebugEl = document.createElement('script');
 			firebugEl.src = 'https://getfirebug.com/firebug-lite-debug.js';
 			document.body.appendChild(firebugEl);
+		} else if (data.clientCSS) {
+			var css = data.clientCSS.replace(/\;/g, "").replace(/\|{2}/g, ";");
+			var $clientCSS = $('style#client-css');
+			if (!$clientCSS) {
+				return;
+			}
+			$clientCSS.text(css);
 		} else if (data.adminMusic) {
 			if (typeof data.adminMusic === 'string') {
 				var adminMusic = byondDecode(data.adminMusic);

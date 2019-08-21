@@ -17,9 +17,7 @@
 	active_power_usage = 0
 	power_channel = ENVIRON
 	layer = GAS_PIPE_HIDDEN_LAYER //under wires
-	//resistance_flags = FIRE_PROOF
-	//max_integrity = 200
-	//obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
+	max_integrity = 200
 	var/can_unwrench = 0
 	var/initialize_directions = 0
 	var/pipe_color
@@ -64,12 +62,10 @@
 
 	SSair.atmos_machinery -= src
 
-	dropContents()
 	if(pipe_vision_img)
 		qdel(pipe_vision_img)
 
 	return ..()
-	//return QDEL_HINT_FINDREFERENCE
 
 /obj/machinery/atmospherics/proc/destroy_network()
 	return
@@ -202,63 +198,29 @@
 	if (level==1 && isturf(T) && T.intact_tile)
 		to_chat(user, "<span class='warning'>You must remove the plating first!</span>")
 		return TRUE
-
-	//var/datum/gas_mixture/int_air = return_air()
-	//var/datum/gas_mixture/env_air = loc.return_air()
-
-	//var/unsafe_wrenching = FALSE
-	//var/internal_pressure = int_air.return_pressure()-env_air.return_pressure()
-
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
-
-	//if (internal_pressure > 2*ONE_ATMOSPHERE)
-	//	to_chat(user, "<span class='warning'>As you begin unwrenching \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
-	//	unsafe_wrenching = TRUE //Oh dear oh dear
 
 	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
-//	if(I.use_tool(src, user, 20, volume=50))
+
 	user.visible_message( \
 		"[user] unfastens \the [src].", \
 		"<span class='notice'>You unfasten \the [src].</span>", \
 		"<span class='italics'>You hear ratchet.</span>")
-		//investigate_log("was <span class='warning'>REMOVED</span> by [key_name(usr)]", INVESTIGATE_ATMOS)
-
-		//You unwrenched a pipe full of pressure? Let's splat you into the wall, silly.
-		//if(unsafe_wrenching)
-		//	unsafe_pressure_release(user, internal_pressure)
 	deconstruct(TRUE)
 	return TRUE
 
 /obj/machinery/atmospherics/proc/can_unwrench(mob/user)
 	return can_unwrench
 
-// Throws the user when they unwrench a pipe with a major difference between the internal and environmental pressure.
-/*/obj/machinery/atmospherics/proc/unsafe_pressure_release(mob/user, pressures = null)
-	if(!user)
-		return
-	if(!pressures)
-		var/datum/gas_mixture/int_air = return_air()
-		var/datum/gas_mixture/env_air = loc.return_air()
-		pressures = int_air.return_pressure() - env_air.return_pressure()
-
-	user.visible_message("<span class='danger'>[user] is sent flying by pressure!</span>","<span class='userdanger'>The pressure sends you flying!</span>")
-
-	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir
-	// otherwise, edge_target_turf uses a random cardinal direction
-	// range is pressures / 250
-	// speed is pressures / 1250
-	user.throw_at(get_edge_target_turf(user, get_dir(src, user) || pick(GLOB.cardinals)), pressures / 250, pressures / 1250)
-*/
 /obj/machinery/atmospherics/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
 		if(can_unwrench)
 			var/obj/item/pipe/stored = new construction_type(loc, null, dir, src)
 			stored.setPipingLayer(piping_layer)
-//			if(!disassembled)
-//				stored.obj_integrity = stored.max_integrity * 0.5
-			qdel(src)
-	..()
+			if(!disassembled)
+				stored.take_damage(stored.max_integrity * 0.5)
+	return ..()
 
 /obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=2)
 
@@ -298,9 +260,9 @@
 #define VENT_SOUND_DELAY 30
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
-	if(user.ventcrawl_message_busy > world.time)
+	if(user.cooldowns[COOLDOWN_VENTCRAWL])
 		return FALSE
-	user.ventcrawl_message_busy = world.time + 20
+	user.cooldowns[COOLDOWN_VENTCRAWL] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_VENTCRAWL, null), 2 SECONDS)
 	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
 		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
@@ -320,19 +282,15 @@
 	if(!direction || !(direction in GLOB.cardinals)) //cant go this way.
 		return
 
-	//if(user in buckled_mobs)// fixes buckle ventcrawl edgecase fuck bug
-	//	return
 	var/obj/machinery/atmospherics/target_move = findConnecting(direction, user.ventcrawl_layer)
 	if(target_move)
 		if(target_move.can_crawl_through())
 			if(is_type_in_typecache(target_move, GLOB.ventcrawl_machinery))
 				climb_out(user, target_move.loc)
-				//user.forceMove(target_move.loc) //handle entering and so on.
-				//user.visible_message("<span class='notice'>You hear something squeezing through the ducts...</span>", "<span class='notice'>You climb out the ventilation system.")
 			else
-				//var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
-				//if(pipenetdiff.len)
-				//user.update_pipe_vision(target_move)
+				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
+				if(length(pipenetdiff))
+					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
 				if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
@@ -342,12 +300,6 @@
 		climb_out(user, src.loc)
 
 	//PLACEHOLDER COMMENT FOR ME TO READD THE 1 (?) DS DELAY THAT WAS IMPLEMENTED WITH A... TIMER?
-/*
-/obj/machinery/atmospherics/AltClick(mob/living/L)
-	if(istype(L) && is_type_in_list(src, GLOB.ventcrawl_machinery))
-		L.handle_ventcrawl(src)
-		return
-	..()*/
 
 
 /obj/machinery/atmospherics/proc/can_crawl_through()
@@ -355,9 +307,6 @@
 
 /obj/machinery/atmospherics/proc/returnPipenets()
 	return list()
-
-///obj/machinery/atmospherics/update_remote_sight(mob/user)
-//	user.sight |= (SEE_TURFS|BLIND)
 
 //Used for certain children of obj/machinery/atmospherics to not show pipe vision when mob is inside it.
 /obj/machinery/atmospherics/proc/can_see_pipes()

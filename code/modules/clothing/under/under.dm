@@ -20,7 +20,6 @@
 	var/displays_id = 1
 	var/rollable_sleeves = FALSE //can we roll the sleeves on this uniform?
 	var/rolled_sleeves = FALSE //are the sleeves currently rolled?
-	var/list/suit_restricted //for uniforms that only accept to be combined with certain suits
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 
 
@@ -69,7 +68,7 @@
 	else
 		return ..()
 
-/obj/item/clothing/under/attack_hand(mob/user as mob)
+/obj/item/clothing/under/attack_hand(mob/living/user)
 	//only forward to the attached accessory if the clothing is equipped (not in a storage)
 	if(hastie && src.loc == user)
 		hastie.attack_hand(user)
@@ -149,17 +148,13 @@
 	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("<span class='warning'> [user] disables [src.loc]'s remote sensing equipment.</span>", 1)
+				visible_message("<span class='warning'>[user] disables [loc]'s remote sensing equipment.</span>", null, null, 1)
 			if(1)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] turns [src.loc]'s remote sensors to binary.", 1)
+				visible_message("[user] turns [loc]'s remote sensors to binary.", null, null, 1)
 			if(2)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] sets [src.loc]'s sensors to track vitals.", 1)
+				visible_message("[user] sets [loc]'s sensors to track vitals.", null, null, 1)
 			if(3)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[user] sets [src.loc]'s sensors to maximum.", 1)
+				visible_message("[user] sets [loc]'s sensors to maximum.", null, null, 1)
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Toggle Suit Sensors"

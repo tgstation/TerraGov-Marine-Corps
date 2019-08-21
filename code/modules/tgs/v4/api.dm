@@ -31,7 +31,7 @@
 	var/chat_channels_json_path
 	var/chat_commands_json_path
 	var/server_commands_json_path
-	reboot_mode = TGS_REBOOT_MODE_NORMAL
+	var/reboot_mode = TGS_REBOOT_MODE_NORMAL
 	var/security_level
 
 	var/requesting_new_port = FALSE

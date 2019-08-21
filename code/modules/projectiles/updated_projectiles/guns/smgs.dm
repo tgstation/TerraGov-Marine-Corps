@@ -1,8 +1,9 @@
 /obj/item/weapon/gun/smg
-	reload_sound = 'sound/weapons/gun_rifle_reload.ogg' //Could use a unique sound.
-	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_m39.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m39.ogg'
+	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
 	type_of_casings = "bullet"
 	load_method = MAGAZINE //codex
 	force = 8
@@ -115,7 +116,9 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/gun_mp5.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp5
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -152,7 +155,7 @@
 	caliber = "4.6x30mm" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/gun_mp7.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -187,7 +190,10 @@
 	caliber = ".32 ACP" //codex
 	max_shells = 20 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/gun_skorpion.ogg'
+	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
+	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/skorpion_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
@@ -220,7 +226,11 @@
 	caliber = "7.62x25mm" //codex
 	max_shells = 35 //codex
 	origin_tech = "combat=3;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/gun_ppsh.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ppsh_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ppsh_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ppsh_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	attachable_allowed = list(
 						/obj/item/attachable/compensator,
@@ -256,7 +266,10 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 32 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/uzi.ogg'
+	fire_sound = 'sound/weapons/guns/fire/uzi.ogg'
+	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
@@ -286,7 +299,10 @@
 	caliber = "5.7x28mm" //codex
 	max_shells = 50 //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_p90.ogg'
+	fire_sound = 'sound/weapons/guns/fire/p90.ogg'
+	unload_sound = 'sound/weapons/guns/interact/p90_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/p90_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/p90_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/p90
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,

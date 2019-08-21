@@ -25,13 +25,9 @@
 			<span class="white">Ammo loaded:</span> {{:data.selected_eqp_ammo_name}}
 		</div>
 		<div class="itemContent">
-			{{if data.selected_eqp_ammo_amt > data.selected_eqp_max_ammo_amt*0.5}}
-		<span class="white">Ammo count:</span> <span class="good">{{:data.selected_eqp_ammo_amt}} / {{:data.selected_eqp_max_ammo_amt}}</span>
-			{{else data.selected_eqp_ammo_amt > 0}}
-				<span class="white">Ammo count:</span> <span class="average">{{:data.selected_eqp_ammo_amt}} / {{:data.selected_eqp_max_ammo_amt}}</span>
-			{{else}}
-				<span class="white">Ammo count:</span> <span class="bad">{{:data.selected_eqp_ammo_amt}} / {{:data.selected_eqp_max_ammo_amt}}</span>
-			{{/if}}
+		<span class="white">Ammo count:</span> 
+		<span class="{{:data.selected_eqp_ammo_status}}">{{:data.selected_eqp_ammo_amt}} / {{:data.selected_eqp_max_ammo_amt}}</span>
+		
 			
 		</div>
 	{{else}}
@@ -43,7 +39,7 @@
 	<span style="font-weight: bold;color: #ee5500;font-size: 12px;clear: both;margin: 0;padding-top: 8px">Available Targets:</span>
 	<div class="itemContent" style="padding-top: 2px">
 		{{for data.targets_data}}
-			{{:helper.link(value.target_name, null, {'open_fire' : value.target_tag},  (data.shuttle_state == "in_transit") ? null : 'disabled' , null)}}
+			{{:helper.link(value.target_name, null, {'open_fire' : value.target_tag},  (data.shuttle_mode != 'idle') ? null : 'disabled' , null)}}
 		{{empty}}
 			No laser target detected.
 		{{/for}}

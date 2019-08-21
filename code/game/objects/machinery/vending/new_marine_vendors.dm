@@ -3,6 +3,8 @@
 
 /////////////////////////////////////////////////////////////
 
+#define SQUAD_LOCK (1<<0)
+#define JOB_LOCK (1<<1)
 
 #define MARINE_CAN_BUY_UNIFORM 		1
 #define MARINE_CAN_BUY_SHOES	 	2
@@ -49,6 +51,10 @@
 	var/vendor_role = "" //to be compared with assigned_role to only allow those to use that machine.
 	var/squad_tag = ""
 	var/use_points = FALSE
+	var/lock_flags = SQUAD_LOCK|JOB_LOCK
+
+	var/icon_vend
+	var/icon_deny
 
 	var/list/listed_products
 
@@ -60,7 +66,7 @@
 
 
 
-/obj/machinery/marine_selector/attack_hand(mob/user)
+/obj/machinery/marine_selector/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -85,7 +91,7 @@
 		to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
 		return
 
-	if(vendor_role && I.rank != vendor_role)
+	if(lock_flags & JOB_LOCK && vendor_role && I.rank != vendor_role)
 		to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
 		return
 
@@ -158,6 +164,8 @@
 
 			if(!allowed(usr))
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			var/idx=text2num(href_list["vend"])
@@ -169,28 +177,40 @@
 			var/obj/item/card/id/I = H.wear_id
 			if(!istype(I)) //not wearing an ID
 				to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			if(I.registered_name != H.real_name)
 				to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			if(vendor_role && I.rank != vendor_role)
 				to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			if(use_points && I.marine_points < cost)
 				to_chat(H, "<span class='warning'>Not enough points.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
-			if(!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag))
+			if(lock_flags & SQUAD_LOCK && (!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag)))
 				to_chat(H, "<span class='warning'>This machine isn't for your squad.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 
 			var/turf/T = loc
 			if(T.contents.len > 25)
 				to_chat(H, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
 				return
 
 			var/bitf = L[4]
@@ -232,8 +252,11 @@
 
 			new type_p(loc)
 
-			if(bitf == MARINE_CAN_BUY_UNIFORM)
-				new /obj/item/radio/headset/almayer/marine(loc, H.assigned_squad.name, vendor_role)
+			if(icon_vend)
+				flick(icon_vend, src)
+
+			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
+				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
 				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
 				//if(istype(SSticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
 				if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
@@ -663,6 +686,100 @@
 
 
 
+/obj/machinery/marine_selector/clothes/synth
+	name = "M57 Synthetic Equipment Vendor"
+	desc = "An automated synthetic equipment vendor hooked up to a modest storage unit."
+	icon_state = "synth"
+	icon_vend = "synth-vend"
+	icon_deny = "synth-deny"
+	vendor_role = "Synthetic"
+	lock_flags = JOB_LOCK
+
+	listed_products = list(
+							list("STANDARD EQUIPMENT", 0, null, null, null),
+							list("Essential Synthetic Set", 0, /obj/effect/essentials_set/synth, MARINE_CAN_BUY_ESSENTIALS, "white"),
+							list("UNIFORM (choose 1)", 0, null, null, null),
+							list("TGMC marine uniform", 0, /obj/item/clothing/under/marine, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("Medical scrubs", 0, /obj/item/clothing/under/rank/medical/green, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("Engineering uniform", 0, /obj/item/clothing/under/marine/officer/engi, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("Officer uniform", 0, /obj/item/clothing/under/marine/officer/logistics, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("TGMC dress uniform", 0, /obj/item/clothing/under/whites, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("Pilot bodysuit", 0, /obj/item/clothing/under/marine/officer/pilot, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("Military police uniform", 0, /obj/item/clothing/under/marine/mp, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("Researcher outfit", 0, /obj/item/clothing/under/marine/officer/researcher, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("Chef uniform", 0, /obj/item/clothing/under/rank/chef, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("Bartender uniform", 0, /obj/item/clothing/under/rank/bartender, MARINE_CAN_BUY_UNIFORM, "black"),
+							list("OUTERWEAR (choose 1)", 0, null, null, null),
+							list("Hazard vest", 0, /obj/item/clothing/suit/storage/hazardvest, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Surgical apron", 0, /obj/item/clothing/suit/surgical , MARINE_CAN_BUY_ARMOR, "black"),
+							list("Labcoat", 0, /obj/item/clothing/suit/storage/labcoat, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Researcher's labcoat", 0, /obj/item/clothing/suit/storage/labcoat/researcher, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Snow suit", 0, /obj/item/clothing/suit/storage/snow_suit , MARINE_CAN_BUY_ARMOR, "black"),
+							list("M70 flak jacket", 0, /obj/item/clothing/suit/armor/vest/pilot, MARINE_CAN_BUY_ARMOR, "black"),
+							list("N2 pattern MA armor", 0, /obj/item/clothing/suit/storage/marine/MP, MARINE_CAN_BUY_ARMOR, "black"),
+							list("M3 pattern officer armor", 0, /obj/item/clothing/suit/storage/marine/MP/RO, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Chef's apron", 0, /obj/item/clothing/suit/chef, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Waistcoat", 0, /obj/item/clothing/suit/wcoat, MARINE_CAN_BUY_ARMOR, "black"),
+							list("BACKPACK (choose 1)", 0, null, null, null),
+							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("Lightweight IMP backpack", 0, /obj/item/storage/backpack/marine, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("Industrial backpack", 0, /obj/item/storage/backpack/industrial, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("TGMC corpsman backpack", 0, /obj/item/storage/backpack/marine/corpsman, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("TGMC technician backpack", 0, /obj/item/storage/backpack/marine/tech , MARINE_CAN_BUY_BACKPACK, "black"),
+							list("TGMC technician welderpack", 0, /obj/item/storage/backpack/marine/engineerpack , MARINE_CAN_BUY_BACKPACK, "black"),
+							list("Lightweight combat pack", 0, /obj/item/storage/backpack/lightpack, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("Officer cloak", 0, /obj/item/storage/backpack/marine/satchel/officer_cloak, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("Officer cloak, red", 0, /obj/item/storage/backpack/marine/satchel/officer_cloak_red, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("WEBBING (choose 1)", 0, null, null, null),
+							list("Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "black"),
+							list("White medical vest", 0, /obj/item/clothing/tie/storage/white_vest/medic, MARINE_CAN_BUY_WEBBING, "black"),
+							list("GLOVES (choose 1)", 0, null, null, null),
+							list("Insulated gloves", 0, /obj/item/clothing/gloves/yellow, MARINE_CAN_BUY_GLOVES, "black"),
+							list("Latex gloves", 0, /obj/item/clothing/gloves/latex , MARINE_CAN_BUY_GLOVES, "black"),
+							list("Officer gloves", 0, /obj/item/clothing/gloves/marine/officer, MARINE_CAN_BUY_GLOVES, "black"),
+							list("White gloves", 0, /obj/item/clothing/gloves/white, MARINE_CAN_BUY_GLOVES, "black"),
+							list("BELT (choose 1)", 0, null, null, null),
+							list("M276 pattern medical storage rig", 0, /obj/item/storage/belt/medical, MARINE_CAN_BUY_BELT, "black"),
+							list("M276 pattern lifesaver bag", 0, /obj/item/storage/belt/combatLifesaver, MARINE_CAN_BUY_BELT, "black"),
+							list("M276 pattern toolbelt rig", 0, /obj/item/storage/belt/utility/full, MARINE_CAN_BUY_BELT, "black"),
+							list("M276 pattern security rig ", 0, /obj/item/storage/belt/security/MP/full, MARINE_CAN_BUY_BELT, "black"),
+							list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "black"),
+							list("SHOES (choose 1)", 0, null, null, null),
+							list("Marine combat boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "black"),
+							list("White shoes", 0, /obj/item/clothing/shoes/white, MARINE_CAN_BUY_SHOES, "black"),
+							list("Formal shoes", 0, /obj/item/clothing/shoes/marinechief, MARINE_CAN_BUY_SHOES, "black"),
+							list("POUCHES (choose 2)", 0, null, null, null),
+							list("Large general pouch", 0, /obj/item/storage/pouch/general/large , (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Tool pouch", 0, /obj/item/storage/pouch/tools/full , (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Construction pouch", 0, /obj/item/storage/pouch/construction/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Electronics pouch", 0, /obj/item/storage/pouch/electronics/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Medical pouch", 0, /obj/item/storage/pouch/medical, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Medkit pouch", 0, /obj/item/storage/pouch/medkit , (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Autoinjector pouch", 0, /obj/item/storage/pouch/autoinjector, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Radio pouch", 0, /obj/item/storage/pouch/radio, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("Field pouch", 0, /obj/item/storage/pouch/field_pouch/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
+							list("HATS (choose 1)", 0, null, null, null),
+							list("Hard hat", 0, /obj/item/clothing/head/hardhat, MARINE_CAN_BUY_HELMET, "black"),
+							list("Welding helmet", 0, /obj/item/clothing/head/welding , MARINE_CAN_BUY_HELMET, "black"),
+							list("Surgical cap", 0, /obj/item/clothing/head/surgery/green, MARINE_CAN_BUY_HELMET, "black"),
+							list("TGMC cap", 0, /obj/item/clothing/head/tgmccap, MARINE_CAN_BUY_HELMET, "black"),
+							list("Boonie hat", 0, /obj/item/clothing/head/boonie, MARINE_CAN_BUY_HELMET, "black"),
+							list("Marine beret", 0, /obj/item/clothing/head/beret/marine, MARINE_CAN_BUY_HELMET, "black"),
+							list("MP beret", 0, /obj/item/clothing/head/tgmcberet/red, MARINE_CAN_BUY_HELMET, "black"),
+							list("Engineering beret", 0, /obj/item/clothing/head/beret/eng, MARINE_CAN_BUY_HELMET, "black"),
+							list("Ushanka", 0, /obj/item/clothing/head/ushanka, MARINE_CAN_BUY_HELMET, "black"),
+							list("Top hat", 0, /obj/item/clothing/head/collectable/tophat, MARINE_CAN_BUY_HELMET, "black"),
+							list("MASKS", 0, null, null, null),
+							list("Sterile mask", 0, /obj/item/clothing/mask/surgical, MARINE_CAN_BUY_MASK, "black"),
+							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
+							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
+							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
+							)
+
+
+
 ////////////////////// Gear ////////////////////////////////////////////////////////
 
 
@@ -984,7 +1101,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/storage/box/MRE
+						/obj/item/weapon/combat_knife,
+						/obj/item/storage/box/MRE,
 						)
 
 
@@ -993,6 +1111,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1000,6 +1119,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1010,6 +1130,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1019,6 +1140,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/corpsman,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1028,6 +1150,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1068,6 +1191,22 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 
+/obj/effect/essentials_set/synth
+	spawned_gear_list = list(
+						/obj/item/stack/sheet/plasteel/medium_stack,
+						/obj/item/stack/sheet/metal/large_stack,
+						/obj/item/lightreplacer,
+						/obj/item/healthanalyzer,
+						/obj/item/defibrillator,
+						/obj/item/medevac_beacon,
+						/obj/item/roller/medevac,
+						/obj/item/bodybag/cryobag,
+						/obj/item/reagent_container/hypospray/advanced/oxycodone
+						)
+
+		
+
+
 
 #undef MARINE_CAN_BUY_UNIFORM
 #undef MARINE_CAN_BUY_SHOES
@@ -1085,3 +1224,5 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 #undef MARINE_CAN_BUY_ALL
 #undef MARINE_TOTAL_BUY_POINTS
+#undef SQUAD_LOCK
+#undef JOB_LOCK

@@ -124,7 +124,7 @@
 		if (add)
 			.+=cur
 
-/obj/machinery/computer/forensic_scanning/attack_hand(mob/user)
+/obj/machinery/computer/forensic_scanning/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

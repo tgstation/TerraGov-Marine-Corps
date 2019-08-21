@@ -121,9 +121,11 @@
 
 		for(var/i in I.reagents.reagent_list)
 			var/datum/reagent/R = i
-			if(!(R.id in acceptable_reagents))
+			if(!(R.type in acceptable_reagents))
 				to_chat(user, "<span class='warning'>Your [I] contains components unsuitable for cookery.</span>")
 				return TRUE
+
+		return FALSE
 
 	else if(istype(I, /obj/item/grab))
 		return TRUE
@@ -134,13 +136,13 @@
 	updateUsrDialog()
 	return TRUE
 
-/obj/machinery/microwave/attack_paw(mob/user as mob)
+/obj/machinery/microwave/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/machinery/microwave/attack_ai(mob/user as mob)
 	return 0
 
-/obj/machinery/microwave/attack_hand(mob/user as mob)
+/obj/machinery/microwave/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -194,9 +196,9 @@
 
 		for (var/datum/reagent/R in reagents.reagent_list)
 			var/display_name = R.name
-			if (R.id == "capsaicin")
+			if (R.type == /datum/reagent/consumable/capsaicin)
 				display_name = "Hotsauce"
-			if (R.id == "frostoil")
+			if (R.type == /datum/reagent/consumable/frostoil)
 				display_name = "Coldsauce"
 			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
 
@@ -355,8 +357,8 @@
 				amount+=O.reagents.get_reagent_amount(id)
 		qdel(O)
 	src.reagents.clear_reagents()
-	ffuu.reagents.add_reagent("carbon", amount)
-	ffuu.reagents.add_reagent("toxin", amount/10)
+	ffuu.reagents.add_reagent(/datum/reagent/carbon, amount)
+	ffuu.reagents.add_reagent(/datum/reagent/toxin, amount/10)
 	return ffuu
 
 /obj/machinery/microwave/Topic(href, href_list)

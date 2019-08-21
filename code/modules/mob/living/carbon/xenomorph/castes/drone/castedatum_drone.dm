@@ -80,8 +80,8 @@
 	// *** Pheromones *** //
 	aura_strength = 1.5
 
-/datum/xeno_caste/drone/elite
-	upgrade_name = "Elite"
+/datum/xeno_caste/drone/elder
+	upgrade_name = "Elder"
 	caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_TWO

@@ -29,7 +29,7 @@
 #define SERVICE_RETURN_SUCCESS "SUCCESS"
 
 /datum/tgs_api/v3210
-	reboot_mode = REBOOT_MODE_NORMAL
+	var/reboot_mode = REBOOT_MODE_NORMAL
 	var/comms_key
 	var/instance_name
 	var/originmastercommit

@@ -7,7 +7,6 @@
 	if(!GLOB.marine_spawns_by_job[job])
 		GLOB.marine_spawns_by_job[job] = list()
 	GLOB.marine_spawns_by_job[job] += loc
-	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/start/marine/captain
 	icon_state = "CAP"
@@ -17,9 +16,9 @@
 	icon_state = "FC"
 	job = /datum/job/command/fieldcommander
 
-/obj/effect/landmark/start/marine/intelligenceofficer
+/obj/effect/landmark/start/marine/staffofficer
 	icon_state = "IO"
-	job = /datum/job/command/intelligenceofficer
+	job = /datum/job/command/staffofficer
 
 /obj/effect/landmark/start/marine/pilotofficer
 	icon_state = "PO"

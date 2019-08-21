@@ -60,6 +60,17 @@
 	GLOB.newplayer_start += loc
 	return
 
+
+/obj/effect/landmark/start/ai_spawn
+	icon_state = "AI"
+
+
+/obj/effect/landmark/start/ai_spawn/Initialize(mapload)
+	. = ..()
+	GLOB.ai_spawn += loc
+	return INITIALIZE_HINT_QDEL
+
+
 /obj/effect/landmark/start/latejoin/Initialize()
 	. = ..()
 	GLOB.latejoin += loc
@@ -134,3 +145,23 @@
 /obj/effect/landmark/distress
 
 /obj/effect/landmark/distress_item
+
+
+/obj/effect/landmark/xeno_silo_spawn
+	name = "xeno silo spawn landmark"
+	icon_state = "tdome_observer"
+
+/obj/effect/landmark/xeno_silo_spawn/Initialize()
+	GLOB.xeno_resin_silo_turfs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+
+/obj/effect/landmark/nuke_spawn
+	name = "nuke spawn landmark"
+	icon_state = "tdome_observer"
+
+/obj/effect/landmark/nuke_spawn/Initialize()
+	GLOB.nuke_spawn_locs += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL

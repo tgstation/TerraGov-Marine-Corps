@@ -99,8 +99,7 @@
 				qdel(src)
 		if(3)
 			if(prob(25))
-				spawn(0)
-					malfunction()
+				INVOKE_ASYNC(src, .proc/malfunction)
 
 /obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
 	return
@@ -119,7 +118,7 @@
 		R.amount = amount
 		R.price = price
 
-		if(ispath(typepath,/obj/item/weapon/gun/rifle/m41a) || ispath(typepath,/obj/item/ammo_magazine/rifle) || ispath(typepath,/obj/item/weapon/combat_knife) || ispath(typepath,/obj/item/radio/headset/almayer/marine) || ispath(typepath,/obj/item/clothing/gloves/marine) || ispath(typepath,/obj/item/clothing/shoes/marine) || ispath(typepath,/obj/item/clothing/under/marine) || ispath(typepath,/obj/item/storage/backpack/marine/satchel) || ispath(typepath,/obj/item/clothing/suit/storage/marine) || ispath(typepath,/obj/item/storage/belt/marine) || ispath(typepath,/obj/item/storage/pouch/flare) || ispath(typepath,/obj/item/storage/pouch/firstaid) )
+		if(ispath(typepath,/obj/item/weapon/gun/rifle/m41a) || ispath(typepath,/obj/item/ammo_magazine/rifle) || ispath(typepath,/obj/item/weapon/combat_knife) || ispath(typepath,/obj/item/radio/headset/mainship/marine) || ispath(typepath,/obj/item/clothing/gloves/marine) || ispath(typepath,/obj/item/clothing/shoes/marine) || ispath(typepath,/obj/item/clothing/under/marine) || ispath(typepath,/obj/item/storage/backpack/marine/satchel) || ispath(typepath,/obj/item/clothing/suit/storage/marine) || ispath(typepath,/obj/item/storage/belt/marine) || ispath(typepath,/obj/item/storage/pouch/flare) || ispath(typepath,/obj/item/storage/pouch/firstaid) )
 			R.display_color = "white"
 //		else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/storage))
 //			R.display_color = "white"
@@ -157,12 +156,12 @@
 		if(prob(M.xeno_caste.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
-			"<span class='danger'>You enter a frenzy and smash \the [src] apart!</span>", null, 5)
+			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
 			malfunction()
 			return TRUE
 		else
 			M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
-			"<span class='danger'>You slash \the [src]!</span>", null, 5)
+			"<span class='danger'>We slash \the [src]!</span>", null, 5)
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
 
@@ -202,10 +201,6 @@
 
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
-
-	else if(istype(I, /obj/item/card/emag))
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "You short out the product lock on [src]")
 
 	else if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
@@ -315,7 +310,7 @@
 		to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 
-/obj/machinery/vending/attack_paw(mob/user as mob)
+/obj/machinery/vending/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/vending/attack_ai(mob/user as mob)
@@ -346,7 +341,7 @@
 			stack_trace("UNKNOWN PRODUCT: PID: [pid], CAT: [category] INSIDE [type]!")
 			return null
 
-/obj/machinery/vending/attack_hand(mob/user as mob)
+/obj/machinery/vending/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -441,7 +436,7 @@
 		usr.set_interaction(src)
 		if ((href_list["vend"]) && vend_ready && !currently_vending)
 
-			if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
+			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				flick(src.icon_deny,src)
 				return
@@ -484,7 +479,7 @@
 
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if(!allowed(user) && !CHECK_BITFIELD(obj_flags, EMAGGED) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
+	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		flick(src.icon_deny,src)
 		return

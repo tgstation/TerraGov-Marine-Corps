@@ -18,7 +18,7 @@
 	var/busy = FALSE
 
 
-/obj/machinery/photocopier/attack_hand(mob/user)
+/obj/machinery/photocopier/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

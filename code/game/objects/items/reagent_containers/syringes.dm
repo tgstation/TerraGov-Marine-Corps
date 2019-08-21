@@ -43,13 +43,13 @@
 			return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_hand()
+/obj/item/reagent_container/syringe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_paw()
+/obj/item/reagent_container/syringe/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand()
 
 /obj/item/reagent_container/syringe/attackby(obj/item/I, mob/user, params)
@@ -69,7 +69,7 @@
 		var/mob/M = target
 		var/mob/living/L = user
 		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
-			L.KnockDown(3)
+			L.knock_down(3)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \
@@ -247,21 +247,18 @@
 			return
 
 		if (target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</span>"), 1)
+			visible_message("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!</span>")
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 			return
 
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>"), 1)
+		visible_message("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src]!</span>")
 
 		if(affecting.take_damage_limb(3))
 			target:UpdateDamageIcon()
 
 	else
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] with [src.name]!</span>"), 1)
+		visible_message("<span class='danger'>[user] stabs [target] with [src]!</span>")
 		target.take_limb_damage(3)// 7 is the same as crowbar punch
 
 	reagents.reaction(target, INJECT)
@@ -370,7 +367,7 @@
 /obj/item/reagent_container/syringe/inaprovaline
 	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	list_reagents = list("inaprovaline" = 15)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
 /obj/item/reagent_container/syringe/inaprovaline/New()
 	. = ..()
@@ -380,7 +377,7 @@
 /obj/item/reagent_container/syringe/dylovene
 	name = "syringe (dylovene)"
 	desc = "Contains anti-toxins."
-	list_reagents = list("dylovene" = 15)
+	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 
 /obj/item/reagent_container/syringe/dylovene/New()
 	. = ..()
@@ -390,7 +387,7 @@
 /obj/item/reagent_container/syringe/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
-	list_reagents = list("spaceacillin" = 15)
+	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
 /obj/item/reagent_container/syringe/antiviral/New()
 	. = ..()
@@ -400,7 +397,7 @@
 /obj/item/reagent_container/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
-	list_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
+	list_reagents = list(/datum/reagent/space_drugs = 5, /datum/reagent/toxin/mindbreaker = 5, /datum/reagent/cryptobiolin = 5)
 
 /obj/item/reagent_container/syringe/drugs/New()
 	. = ..()
@@ -408,7 +405,7 @@
 	update_icon()
 
 /obj/item/reagent_container/syringe/ld50_syringe/choral
-	list_reagents = list("chloralhydrate" = 50)
+	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 50)
 
 /obj/item/reagent_container/syringe/ld50_syringe/choral/New()
 	. = ..()
@@ -418,7 +415,7 @@
 /obj/item/reagent_container/syringe/mixed
 	name = "syringe (mixed)"
 	desc = "Contains inaprovaline & dylovene."
-	list_reagents = list("inaprovaline" = 7, "dylovene" = 8)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 7, /datum/reagent/medicine/dylovene = 8)
 
 /obj/item/reagent_container/syringe/mixed/New()
 	. = ..()

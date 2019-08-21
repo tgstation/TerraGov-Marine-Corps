@@ -28,9 +28,7 @@
 		if(user.client)
 			user.client.move_delay = world.time + 20
 		if(prob(30))
-			for(var/mob/M in hearers(4, src))
-				if(M.client)
-					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
+			audible_message("<span class='warning'>You hear something rumbling inside [src]'s stomach...</span>", null, 4)
 	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
@@ -55,12 +53,9 @@
 	return ..()
 
 
-/mob/living/carbon/attack_paw(mob/living/carbon/M)
-	if(!iscarbon(M))
-		return
+/mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
+	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
-	next_move += 7 //Adds some lag to the 'attack'
-	return
 
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -78,11 +73,11 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
-			KnockDown(1)
+			stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
+			knock_down(1)
 		else
-			Stun(10)//This should work for now, more is really silly and makes you lay there forever
-			KnockDown(10)
+			stun(10)//This should work for now, more is really silly and makes you lay there forever
+			knock_down(10)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -135,14 +130,16 @@
 	if(stat == DEAD) //Corpses don't puke
 		return
 
-	if(!lastpuke)
-		lastpuke = TRUE
-		to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
-		addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
+	if(cooldowns[COOLDOWN_PUKE])
+		return
+
+	cooldowns[COOLDOWN_PUKE] = TRUE
+	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
+	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
 
 
 /mob/living/carbon/proc/do_vomit()
-	Stun(5)
+	stun(5)
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
@@ -152,7 +149,7 @@
 
 	nutrition = max(nutrition - 40, 0)
 	adjustToxLoss(-3)
-	addtimer(VARSET_CALLBACK(src, lastpuke, FALSE), 35 SECONDS) //wait 35 seconds before next volley
+	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
@@ -165,14 +162,14 @@
 				t_him = "her"
 			if(lying || sleeping)
 				if(client)
-					AdjustSleeping(-5)
+					adjust_sleeping(-5)
 				if(sleeping == 0)
 					set_resting(FALSE)
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
-				AdjustKnockedout(-3)
-				AdjustStunned(-3)
-				AdjustKnockeddown(-3)
+				adjust_knockedout(-3)
+				adjust_stunned(-3)
+				adjust_knocked_down(-3)
 
 				if(halloss > 0)
 					var/halloss_mod = 1
@@ -334,8 +331,8 @@
 	stop_pulling()
 	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
-	Stun(stun_level)
-	KnockDown(weaken_level)
+	stun(stun_level)
+	knock_down(weaken_level)
 	. = TRUE
 	if(slide_steps && lying)//lying check to make sure we downed the mob
 		var/slide_dir = dir

@@ -31,7 +31,7 @@
 		icon_state = "nboard0[notices]"	//update sprite
 		to_chat(user, "<span class='notice'>You pin the paper to the noticeboard.</span>")
 
-/obj/structure/noticeboard/attack_hand(user as mob)
+/obj/structure/noticeboard/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

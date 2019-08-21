@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 /obj/machinery/newscaster/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
+/obj/machinery/newscaster/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -686,40 +686,9 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 			src.updateUsrDialog()
 
 
-/obj/machinery/newscaster/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(isbroken)
-		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
-		visible_message("<b>[user.name]</b> further abuses the shattered [name].")
-		return
-
-	if(I.flags_item & NOBLUDGEON || !I.force)
-		return
-
-	if(I.force <15)
-		visible_message("[user] hits \the [src] with \the [I] with no visible effect." )
-		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		return
-
-	hitstaken++
-	if(hitstaken == 3)
-		visible_message("[user] smashes \the [src]!")
-		isbroken = TRUE
-		playsound(loc, 'sound/effects/glassbr3.ogg', 50, 1)
-	else
-		visible_message("[user] forcefully slams \the [src] with \the [I]!" )
-		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-
-	update_icon()
-
 /obj/machinery/newscaster/attack_ai(mob/user as mob)
 	return src.attack_hand(user) //or maybe it'll have some special functions? No idea.
 
-
-/obj/machinery/newscaster/attack_paw(mob/user as mob)
-	to_chat(user, "<font color='blue'>The newscaster controls are far too complicated for your tiny brain!</font>")
-	return
 
 /obj/machinery/newscaster/proc/AttachPhoto(mob/user as mob)
 	if(photo)
@@ -752,7 +721,7 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 	var/scribble=""
 	var/scribble_page = null
 
-/*obj/item/newspaper/attack_hand(mob/user as mob)
+/*obj/item/newspaper/attack_hand(mob/living/user)
 	..()
 	to_chat(world, "derp")*/
 
@@ -925,10 +894,8 @@ obj/item/newspaper/Topic(href, href_list)
 //	return                                  //bode well with a newscaster network of 10+ machines. Let's just return it, as it's added in the machines list.
 
 /obj/machinery/newscaster/proc/newsAlert(channel)   //This isn't Agouri's work, for it is ugly and vile.
-	var/turf/T = get_turf(src)                      //Who the fuck uses spawn(600) anyway, jesus christ
 	if(channel)
-		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Breaking news from [channel]!\"</span>",2)
+		audible_message("<span class='newscaster'><b>[src]</b> beeps, \"Breaking news from [channel]!\"</span>")
 		src.alert = 1
 		src.update_icon()
 		spawn(300)
@@ -936,7 +903,6 @@ obj/item/newspaper/Topic(href, href_list)
 			src.update_icon()
 		playsound(src.loc, 'sound/machines/twobeep.ogg', 25, 1)
 	else
-		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>",2)
+		audible_message("<span class='newscaster'><b>[src]</b> beeps, \"Attention! Wanted issue distributed!\"</span>")
 		playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 25, 1)
 	return

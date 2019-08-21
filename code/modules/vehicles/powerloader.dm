@@ -35,18 +35,10 @@
 			if(.)
 				pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25))
 
-/obj/vehicle/powerloader/attack_hand(mob/user)
+/obj/vehicle/powerloader/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(buckled_mob && user != buckled_mob)
-		buckled_mob.visible_message("<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",\
-		"<span class='danger'>[user] tries to move you out of [src]!</span>")
-		var/olddir = dir
-		var/old_buckled_mob = buckled_mob
-		if(do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE) && dir == olddir && buckled_mob == old_buckled_mob)
-			manual_unbuckle(user)
-			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 	if(panel_open)
 		if(cell)
 			usr.put_in_hands(cell)
@@ -94,6 +86,26 @@
 	else
 		to_chat(user, "There is no power cell in the [src].")
 
+
+/obj/vehicle/powerloader/manual_unbuckle(mob/user)
+	if(!buckled_mob || buckled_mob.buckled != src)
+		return FALSE
+	if(user == buckled_mob)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+		return ..()
+	buckled_mob.visible_message(
+		"<span class='warning'>[user] tries to move [buckled_mob] out of [src].</span>",
+		"<span class='danger'>[user] tries to move you out of [src]!</span>"
+		)
+	var/olddir = dir
+	var/old_buckled_mob = buckled_mob
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_HOSTILE) || dir != olddir || buckled_mob != old_buckled_mob)
+		return TRUE //True to intercept the click. No need for further actions after this.
+	. = ..()
+	if(.)
+		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+
+
 /obj/vehicle/powerloader/afterbuckle(mob/M)
 	. = ..()
 	overlays.Cut()
@@ -138,10 +150,10 @@
 	if(buckled_mob?.dir != dir)
 		buckled_mob.setDir(dir)
 
-/obj/vehicle/powerloader/explode()
+/obj/vehicle/powerloader/deconstruct(disassembled)
 	new /obj/structure/powerloader_wreckage(loc)
 	playsound(loc, 'sound/effects/metal_crash.ogg', 75)
-	..()
+	return ..()
 
 /obj/item/powerloader_clamp
 	icon = 'icons/obj/powerloader.dmi'
@@ -157,64 +169,68 @@
 	if(linked_powerloader)
 		forceMove(linked_powerloader)
 		if(linked_powerloader.buckled_mob && linked_powerloader.buckled_mob == user)
-			linked_powerloader.unbuckle() //drop a clamp, you auto unbuckle from the powerloader.
+			linked_powerloader.unbuckle(user) //drop a clamp, you auto unbuckle from the powerloader.
 	else qdel(src)
 
 
-/obj/item/powerloader_clamp/attack(mob/living/M, mob/living/user, def_zone)
-	if(M == linked_powerloader.buckled_mob)
-		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
-		return 1
-	else if(isxeno(M) && user.a_intent == INTENT_HELP)
-		var/mob/living/carbon/xenomorph/X = M
-		if(X.stat == DEAD)
-			if(!X.anchored)
-				if(linked_powerloader)
-					X.forceMove(linked_powerloader)
-					loaded = X
-					playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-					update_icon()
-					user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
-					"<span class='notice'>You grab [loaded] with [src].</span>")
-	else
-		return ..()
+/obj/item/powerloader_clamp/attack(mob/living/victim, mob/living/user, def_zone)
+	if(victim == linked_powerloader.buckled_mob)
+		unbuckle(victim) //if the pilot clicks themself with the clamp, it unbuckles them.
+		return TRUE
+	if(isxeno(victim) && victim.stat == DEAD && !victim.anchored && user.a_intent == INTENT_HELP)
+		victim.forceMove(linked_powerloader)
+		loaded = victim
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+			"<span class='notice'>You grab [loaded] with [src].</span>")
+	return ..()
+
 
 /obj/item/powerloader_clamp/afterattack(atom/target, mob/user, proximity)
-
-	if(!proximity) return
+	if(!proximity)
+		return
 
 	if(loaded)
-		if(isturf(target))
-			var/turf/T = target
-			if(!T.density)
-				for(var/atom/movable/AM in T.contents)
-					if(AM.density)
-						to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-						return
-				if(loaded.bound_height > 32)
-					var/turf/next_turf = get_step(T, NORTH)
-					if(next_turf.density)
-						to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
-						return
-					for(var/atom/movable/AM in next_turf.contents)
-						if(AM.density)
-							to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-							return
-				if(loaded.bound_width > 32)
-					var/turf/next_turf = get_step(T, EAST)
-					if(next_turf.density)
-						to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
-						return
-					for(var/atom/movable/AM in next_turf.contents)
-						if(AM.density)
-							to_chat(user, "<span class='warning'>You can't drop [loaded] here, [AM] blocks the way.</span>")
-							return
-				user.visible_message("<span class='notice'>[user] drops [loaded] on [T] with [src].</span>",
-				"<span class='notice'>You drop [loaded] on [T] with [src].</span>")
-				loaded.forceMove(T)
-				loaded = null
-				playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-				update_icon()
+		if(!isturf(target))
+			return
+		var/turf/T = target
+		if(T.density)
+			return
+		for(var/i in T.contents)
+			var/atom/movable/blocky_stuff = i
+			if(!blocky_stuff.density)
+				continue
+			to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
+			return
+		if(loaded.bound_height > 32)
+			var/turf/next_turf = get_step(T, NORTH)
+			if(next_turf.density)
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
+				return
+			for(var/i in next_turf.contents)
+				var/atom/movable/blocky_stuff = i
+				if(!blocky_stuff.density)
+					continue
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
+				return
+		if(loaded.bound_width > 32)
+			var/turf/next_turf = get_step(T, EAST)
+			if(next_turf.density)
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, something blocks the way.</span>")
+				return
+			for(var/i in next_turf.contents)
+				var/atom/movable/blocky_stuff = i
+				if(!blocky_stuff.density)
+					continue
+				to_chat(user, "<span class='warning'>You can't drop [loaded] here, [blocky_stuff] blocks the way.</span>")
+				return
+		user.visible_message("<span class='notice'>[user] drops [loaded] on [T] with [src].</span>",
+		"<span class='notice'>You drop [loaded] on [T] with [src].</span>")
+		loaded.forceMove(T)
+		loaded = null
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+		update_icon()
 
 	else if(istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/C = target
@@ -235,16 +251,16 @@
 
 	else if(istype(target, /obj/structure/largecrate))
 		var/obj/structure/largecrate/LC = target
-		if(!LC.anchored)
-			if(linked_powerloader)
-				LC.forceMove(linked_powerloader)
-				loaded = LC
-				playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				update_icon()
-				user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
-				"<span class='notice'>You grab [loaded] with [src].</span>")
-		else
+		if(LC.anchored)
 			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
+			return
+		LC.forceMove(linked_powerloader)
+		loaded = LC
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		update_icon()
+		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+		"<span class='notice'>You grab [loaded] with [src].</span>")
+
 
 /obj/item/powerloader_clamp/update_icon()
 	if(loaded)
@@ -264,14 +280,4 @@
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE
-
-
-/obj/structure/powerloader_wreckage/attack_alien(mob/living/carbon/xenomorph/X)
-	if(X.a_intent == INTENT_HARM)
-		X.do_attack_animation(src)
-		X.flick_attack_overlay(src, "slash")
-		playsound(loc, "alien_claw_metal", 25, 1)
-		X.visible_message("<span class='danger'>[X] slashes [src].</span>", "<span class='danger'>You slash [src].</span>")
-		take_damage(rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper))
-	else
-		attack_hand(X)
+	resistance_flags = XENO_DAMAGEABLE

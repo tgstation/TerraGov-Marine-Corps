@@ -1,31 +1,33 @@
-/mob/proc/toggle_typing_indicator(emoting)
-	var/image/typing_indicator
+/mob/proc/add_typing_indicator(emoting)
+	if(stat != CONSCIOUS || !client.prefs.show_typing)
+		return
+
+	if(typing_indicator)
+		remove_typing_indicator(typing_indicator)
 
 	if(emoting)
 		typing_indicator = image('icons/mob/talk.dmi', src, "emoting")
 	else
 		typing_indicator = image('icons/mob/talk.dmi', src, "typing")
 
-	if(!(client?.prefs?.show_typing))
-		remove_emote_overlay(client, typing_indicator, viewers())
+	add_emote_overlay(typing_indicator, remove_delay = NONE)
+
+
+/mob/proc/remove_typing_indicator()
+	if(!typing_indicator)
 		return
 
-	if(typing)
-		remove_emote_overlay(client, typing, viewers())
-		typing = null
-
-	else if(stat == CONSCIOUS)
-		typing = typing_indicator
-		add_emote_overlay(typing, remove_delay = NONE)
+	remove_emote_overlay(typing_indicator)
+	QDEL_NULL(typing_indicator)
 
 
 /mob/verb/say_wrapper()
 	set name = ".Say"
 	set hidden = TRUE
 
-	toggle_typing_indicator()
+	add_typing_indicator()
 	var/message = input("", "Say") as text
-	toggle_typing_indicator()
+	remove_typing_indicator()
 
 	if(!message)
 		return
@@ -37,9 +39,9 @@
 	set name = ".Me"
 	set hidden = TRUE
 
-	toggle_typing_indicator(emoting = TRUE)
-	var/message = input("", "Me") as text
-	toggle_typing_indicator(emoting = TRUE)
+	add_typing_indicator(TRUE)
+	var/message = input("", "Me \"text\"") as null|text
+	remove_typing_indicator()
 
 	if(!message)
 		return

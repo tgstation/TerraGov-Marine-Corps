@@ -39,7 +39,7 @@
 	return ..()
 
 
-/obj/machinery/self_destruct/console/attack_hand(mob/user)
+/obj/machinery/self_destruct/console/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return FALSE
@@ -113,7 +113,7 @@
 		layer = ABOVE_OBJ_LAYER
 
 
-/obj/machinery/self_destruct/rod/attack_hand(mob/user)
+/obj/machinery/self_destruct/rod/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

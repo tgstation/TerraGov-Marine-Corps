@@ -260,16 +260,16 @@ GLOBAL_LIST_EMPTY(exports_types)
 /obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_paw(mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_paw(mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_hand(mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -330,8 +330,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
-			for(var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
+			visible_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
 			return
 
 		//Find the correct supply_pack datum
@@ -355,7 +354,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		SSshuttle.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -400,7 +399,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/supplycomp/attack_hand(mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -453,15 +452,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	popup.open(FALSE)
 	onclose(user, "computer")
 
-
-/obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
-	if(istype(I,/obj/item/card/emag) && !hacked)
-		to_chat(user, "<span class='notice'>Special supplies unlocked.</span>")
-		hacked = 1
-		return
-	else
-		..()
-	return
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	. = ..()
@@ -524,8 +514,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
-			for(var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
+			visible_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
 			return
 
 		//Find the correct supply_pack datum
@@ -550,7 +539,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		SSshuttle.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"

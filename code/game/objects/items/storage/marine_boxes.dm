@@ -87,7 +87,7 @@
 			reloading = FALSE
 	return TRUE
 
-/obj/item/smartgun_powerpack/attack_hand(mob/user)
+/obj/item/smartgun_powerpack/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(QDELETED(pcell))
@@ -134,7 +134,7 @@
 		to_chat(user, "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
 	else
 		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
-	playsound(user, 'sound/weapons/unload.ogg', 25, 1)
+	playsound(user, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 
 	reloading = FALSE
 	return TRUE

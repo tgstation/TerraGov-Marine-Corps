@@ -17,7 +17,7 @@
 	open = round(rand(0, 1))
 	update_icon()
 
-/obj/structure/toilet/attack_hand(mob/living/user as mob)
+/obj/structure/toilet/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -61,7 +61,7 @@
 		update_icon()
 
 	else if(istype(I, /obj/item/grab))
-		if(isxeno(user)) 
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I
 
@@ -81,7 +81,7 @@
 		if(open && !swirlie)
 			user.visible_message("<span class='danger'>[user] starts to give [C] a swirlie!</span>", "<span class='notice'>You start to give [C] a swirlie!</span>")
 			swirlie = C
-			if(!do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
+			if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
 				return
 
 			user.visible_message("<span class='danger'>[user] gives [C] a swirlie!</span>", "<span class='notice'>You give [C] a swirlie!</span>", "You hear a toilet flushing.")
@@ -104,13 +104,17 @@
 		if(w_items + I.w_class > 5)
 			to_chat(user, "<span class='notice'>The cistern is full.</span>")
 			return
-			
+
 		user.drop_held_item()
 		I.forceMove(src)
 		w_items += I.w_class
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 
+/obj/structure/toilet/alternate
+	icon_state = "toilet200"
 
+/obj/structure/toilet/alternate/update_icon()
+	icon_state = "toilet2[open][cistern]"
 
 /obj/structure/urinal
 	name = "urinal"
@@ -124,7 +128,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/grab))
-		if(isxeno(user)) 
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))
@@ -164,7 +168,6 @@
 	. = ..()
 	create_reagents(2)
 
-//add heat controls? when emagged, you can freeze to death in it?
 
 /obj/effect/mist
 	name = "mist"
@@ -174,7 +177,7 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/machinery/shower/attack_hand(mob/M as mob)
+/obj/machinery/shower/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -182,9 +185,9 @@
 	update_icon()
 	if(on)
 		start_processing()
-		if (M.loc == loc)
-			wash(M)
-			check_heat(M)
+		if (user.loc == loc)
+			wash(user)
+			check_heat(user)
 		for (var/atom/movable/G in src.loc)
 			G.clean_blood()
 	else
@@ -347,7 +350,7 @@
 		return
 	is_washing = 1
 	var/turf/T = get_turf(src)
-//	reagents.add_reagent("water", 2)
+//	reagents.add_reagent(/datum/reagent/water, 2)
 	T.clean(src)
 	spawn(100)
 		is_washing = 0
@@ -391,11 +394,11 @@
 		if(WEST)
 			pixel_x = -12
 		if(NORTH)
-			pixel_y = 30
+			pixel_y = -10
 		if(EAST)
 			pixel_x = 12
 
-/obj/structure/sink/attack_hand(mob/user)
+/obj/structure/sink/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -420,8 +423,7 @@
 	user.clean_blood()
 	if(ishuman(user))
 		user:update_inv_gloves()
-	for(var/mob/V in viewers(src, null))
-		V.show_message("<span class='notice'> [user] washes their hands using \the [src].</span>")
+	visible_message("<span class='notice'>[user] washes their hands using \the [src].</span>")
 
 
 /obj/structure/sink/attackby(obj/item/I, mob/user, params)
@@ -432,8 +434,8 @@
 		return
 
 	var/obj/item/reagent_container/RG = I
-	if(istype(RG) && RG.is_open_container())
-		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+	if(istype(RG) && RG.is_open_container() && RG.reagents.total_volume < RG.reagents.maximum_volume)
+		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")
 		return
 
@@ -451,13 +453,16 @@
 		var/mob/living/L = user
 
 		flick("baton_active", src)
-		L.Stun(10)
+		L.stun(10)
 		L.stuttering = 10
-		L.KnockDown(10)
+		L.knock_down(10)
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
+	if(I.flags_item & ITEM_ABSTRACT)
+		return
+
 	var/turf/location = user.loc
-	if(!isturf(location)) 
+	if(!isturf(location))
 		return
 
 	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
@@ -465,7 +470,7 @@
 	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		return
 
-	if(user.loc != location || user.get_active_held_item() != I) 
+	if(user.loc != location || user.get_active_held_item() != I)
 		return
 
 	I.clean_blood()
@@ -476,15 +481,18 @@
 
 /obj/structure/sink/kitchen
 	name = "kitchen sink"
-	icon_state = "sink_alt"
+	icon_state = "sink2"
 
+/obj/structure/sink/bathroom
+	name = "bathroom sink"
+	icon_state = "sink3"
 
 /obj/structure/sink/puddle	//splishy splashy ^_^
 	name = "puddle"
 	icon_state = "puddle"
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/structure/sink/puddle/attack_hand(mob/M as mob)
+/obj/structure/sink/puddle/attack_hand(mob/living/user)
 	icon_state = "puddle-splash"
 	. = ..()
 	icon_state = "puddle"

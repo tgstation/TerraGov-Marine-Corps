@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	var/reversing = FALSE
 	var/fallDuration = 4
 	var/fallingSoundLength = 11
-	var/fallingSound = 'sound/weapons/mortar_long_whistle.ogg'
+	var/fallingSound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
 	var/landingSound
 	var/openingSound
 	var/leavingSound
@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	bluespace = TRUE
 	explosionSize = list(0, 0, 0, 0)
 	landingDelay = 20
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	resistance_flags = RESIST_ALL
 
 
 /obj/structure/closet/supplypod/Initialize()
@@ -288,12 +288,12 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		L.forceMove(src)
 	if(pod.effectStun)
 		for(var/mob/living/M in get_turf(src))
-			M.Stun(pod.landingDelay + 10)
+			M.stun(pod.landingDelay + 10)
 	if(pod.effectStealth)
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)
-		pod.fallingSoundLength = 3 
-		pod.fallingSound =  'sound/weapons/mortar_whistle.ogg'
+		pod.fallingSoundLength = 3
+		pod.fallingSound =  'sound/weapons/guns/misc/mortar_whistle.ogg'
 	var/soundStartTime = pod.landingDelay - pod.fallingSoundLength + pod.fallDuration
 	if(soundStartTime < 0)
 		soundStartTime = 1

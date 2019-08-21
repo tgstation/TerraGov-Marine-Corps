@@ -260,29 +260,25 @@
 		if(!cell)
 			replace_install = "You install a cell in [src]"
 		else
-			cell.updateicon()
+			cell.update_icon()
 			user.put_in_hands(cell)
 		cell = I
 		to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
-		playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
+		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 		update_plasmacutter()
 
 
-/obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
+/obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
-		return
+		return ..()
 	if(!cell)
-		return
-	cell.updateicon()
+		return ..()
+	cell.update_icon()
 	user.put_in_active_hand(cell)
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 25, 1, 5)
 	to_chat(user, "<span class='notice'>You remove the cell from [src].</span>")
 	update_plasmacutter()
-	return
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)
@@ -331,3 +327,20 @@
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
 		ST.update_icon(1,0)
 		cut_apart(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "You melt the snow with [src]. ") //costs 25% normal
+
+
+
+/obj/item/tool/pickaxe/plasmacutter/attack_obj(obj/O, mob/living/user)
+	if(!powered || user.action_busy || CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
+		. = ..()
+		return TRUE
+
+	if(!start_cut(user, O.name, O))
+		return TRUE
+		
+	if(!do_after(user, calc_delay(user), TRUE, O, BUSY_ICON_HOSTILE))
+		return TRUE
+
+	cut_apart(user, O.name, O)
+	qdel(O)
+	return TRUE

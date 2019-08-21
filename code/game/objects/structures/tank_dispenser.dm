@@ -37,7 +37,7 @@
 		return attack_hand(user)
 	..()
 
-/obj/structure/dispenser/attack_hand(mob/user as mob)
+/obj/structure/dispenser/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

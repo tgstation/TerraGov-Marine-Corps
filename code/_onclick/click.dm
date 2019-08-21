@@ -358,8 +358,10 @@
 	For most objects, pull
 */
 /mob/proc/CtrlClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMSIG_ITEM_CLICKCTRLON_INTERCEPTED)
+		return
 	A.CtrlClick(src)
-	return
 
 
 /atom/proc/CtrlClick(mob/user)
@@ -509,9 +511,10 @@
 		var/mob/living/carbon/human/H = usr
 		H.swap_hand()
 	else
-		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client?.eye ? usr.client.eye : usr), usr.client)
+		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"
-		T?.Click(location, control, params)
+		if(T)
+			T.Click(location, control, params)
 	. = TRUE
 
 

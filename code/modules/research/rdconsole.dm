@@ -91,7 +91,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		for(var/R in subtypesof(/datum/reagent))
 			temp_reagent = null
 			temp_reagent = new R()
-			if(temp_reagent.id == ID)
+			if(temp_reagent.type == ID)
 				return_name = temp_reagent.name
 				qdel(temp_reagent)
 				temp_reagent = null
@@ -157,11 +157,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		user.transferItemToLoc(I, src)
 		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
-	
-	else if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
-		playsound(loc, 'sound/effects/sparks4.ogg', 25, 1)
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 
 	updateUsrDialog()
 
@@ -173,7 +168,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	usr.set_interaction(src)
 	if(href_list["menu"]) //Switches menu screens. Converts a sent text string into a number. Saves a LOT of code.
 		var/temp_screen = text2num(href_list["menu"])
-		if(temp_screen <= 1.1 || (3 <= temp_screen && 4.9 >= temp_screen) || src.allowed(usr) || CHECK_BITFIELD(obj_flags, EMAGGED)) //Unless you are making something, you need access.
+		if(temp_screen <= 1.1 || (3 <= temp_screen && 4.9 >= temp_screen) || src.allowed(usr)) //Unless you are making something, you need access.
 			screen = temp_screen
 		else
 			to_chat(usr, "Unauthorized Access.")
@@ -524,7 +519,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/rdconsole/attack_hand(mob/user as mob)
+/obj/machinery/computer/rdconsole/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -798,7 +793,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Chemical Storage<BR><HR>"
 			for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
 				dat += "Name: [R.name]|Units: [R.volume] "
-				dat += "<A href='?src=\ref[src];disposeP=[R.id]'>(Purge)</A><BR>"
+				dat += "<A href='?src=\ref[src];disposeP=[R.type]'>(Purge)</A><BR>"
 				dat += "<A href='?src=\ref[src];disposeallP=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
 		///////////////////CIRCUIT IMPRINTER SCREENS////////////////////
@@ -844,7 +839,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Chemical Storage<BR><HR>"
 			for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
 				dat += "Name: [R.name]|Units: [R.volume] "
-				dat += "<A href='?src=\ref[src];disposeI=[R.id]'>(Purge)</A><BR>"
+				dat += "<A href='?src=\ref[src];disposeI=[R.type]'>(Purge)</A><BR>"
 				dat += "<A href='?src=\ref[src];disposeallI=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
 		if(4.3)

@@ -96,7 +96,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 			var/datum/camerachunk/c = chunk
 			c.add(eye)
 
-		if(!eye.visibleCameraChunks.len)
+		if(!length(eye.visibleCameraChunks))
 			var/client/client = eye.GetViewerClient()
 			if(client)
 				switch(eye.use_static)
@@ -131,7 +131,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 		majorChunkChange(c, 1)
 
 
-// Used for Cyborg cameras. Since portable cameras can be in ANY chunk.
+// Used for portable cameras. Since they can be in ANY chunk.
 /datum/cameranet/proc/updatePortableCamera(obj/machinery/camera/c)
 	if(c.can_use())
 		majorChunkChange(c, 1)
@@ -185,7 +185,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	if(!statclick)
 		statclick = new /obj/effect/statclick/debug(null, "Initializing...", src)
 
-	stat(name, statclick.update("Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]"))
+	stat(name, statclick.update("Cameras: [length(GLOB.cameranet.cameras)] | Chunks: [length(GLOB.cameranet.chunks)]"))
 
 
 /obj/effect/overlay/camera_static

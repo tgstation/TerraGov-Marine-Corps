@@ -167,7 +167,7 @@
 
 /obj/item/tool/weldingtool/Initialize()
 	. = ..()
-	create_reagents(max_fuel, null, list("fuel" = max_fuel))
+	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 	return
 
 
@@ -188,7 +188,7 @@
 	if(get_fuel() < used)
 		return FALSE
 
-	reagents.remove_reagent("fuel", used)
+	reagents.remove_reagent(/datum/reagent/fuel, used)
 	check_fuel()
 	return TRUE
 
@@ -280,7 +280,7 @@
 
 //Returns the amount of fuel in the welder
 /obj/item/tool/weldingtool/proc/get_fuel()
-	return reagents.get_reagent_amount("fuel")
+	return reagents.get_reagent_amount(/datum/reagent/fuel)
 
 
 //Removes fuel from the blowtorch. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
@@ -288,7 +288,7 @@
 	if(!welding || !check_fuel())
 		return 0
 	if(get_fuel() >= amount)
-		reagents.remove_reagent("fuel", amount)
+		reagents.remove_reagent(/datum/reagent/fuel, amount)
 		check_fuel()
 		if(M)
 			eyecheck(M)
@@ -443,7 +443,7 @@ Welding backpack
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
 /obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -451,8 +451,6 @@ Welding backpack
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding & prob(50))
-			message_admins("[ADMIN_TPMONTY(user)] triggered a weldpack explosion at [ADMIN_VERBOSEJMP(src.loc)].")
-			log_game("[key_name(user)] triggered a weldpack explosion at [AREACOORD(src.loc)].")
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(get_turf(src),-1,0,2)

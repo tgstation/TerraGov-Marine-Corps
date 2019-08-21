@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/verb/ai_network_change()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Jump To Network"
 
 	if(incapacitated())
@@ -31,7 +31,7 @@
 
 
 /mob/living/silicon/ai/verb/display_status()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Display Status"
 
 	if(incapacitated())
@@ -60,7 +60,7 @@
 
 
 /mob/living/silicon/ai/verb/change_hologram()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Change Hologram"
 
 	if(incapacitated())
@@ -129,7 +129,7 @@
 
 
 /mob/living/silicon/ai/verb/toggle_sensors()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Toggle Sensors"
 
 	if(incapacitated())
@@ -139,10 +139,14 @@
 
 
 /mob/living/silicon/ai/verb/make_announcement()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Make Announcement"
 
-	if(incapacitated() || last_announcement > world.time + 60 SECONDS)
+	if(incapacitated())
+		return
+
+	if(last_announcement + 60 SECONDS > world.time)
+		to_chat(src, "<span class='warning'>You must wait before announcing again.</span>")
 		return
 
 	var/input = stripped_input(usr, "Please write a message to announce to the station crew.", "Announcement")
@@ -154,7 +158,7 @@
 
 
 /mob/living/silicon/ai/verb/ai_core_display()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "AI Core Display"
 
 	if(incapacitated())
@@ -177,14 +181,14 @@
 
 
 /mob/living/silicon/ai/cancel_camera()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Cancel Camera View"
 
 	view_core()
 
 
 /mob/living/silicon/ai/verb/toggle_acceleration()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Toggle Camera Acceleration"
 
 	if(incapacitated())
@@ -192,11 +196,11 @@
 
 	acceleration = !acceleration
 
-	to_chat(src, "<span class='notice'>Camera acceleration has been toggled [acceleration ? "on" : "off"].</span>")
+	to_chat(src, "<span class='notice'>Camera acceleration has been [acceleration ? "enabled" : "disabled"].</span>")
 
 
 /mob/living/silicon/ai/verb/radio_settings()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "Radio Settings"
 
 	if(incapacitated())
@@ -210,24 +214,8 @@
 	radio.interact(src)
 
 
-/mob/living/silicon/ai/verb/toggle_floor_bolts()
-	set category = "AI Commands"
-	set name = "Toggle Floor Bolts"
-
-	if(!isturf(loc))
-		return
-
-	if(incapacitated())
-		return
-
-	anchored = !anchored
-
-	to_chat(src, "<span class='notice'>You are now [anchored ? "" : "un"]anchored.</span>")
-
-
-
 /mob/living/silicon/ai/verb/view_manifest()
-	set category = "AI Commands"
+	set category = "Silicon"
 	set name = "View Crew Manifest"
 
 	if(incapacitated())
@@ -238,3 +226,76 @@
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+
+/mob/living/silicon/ai/verb/show_laws()
+	set category = "Silicon"
+	set name = "Show Laws"
+
+	if(incapacitated())
+		return
+
+	to_chat(src, "<span class='notice'><b>Obey these laws:</b></span>")
+	for(var/i in laws)
+		to_chat(src, "<span class='notice'>[i]</span>")
+
+
+/mob/living/silicon/ai/verb/state_laws()
+	set category = "Silicon"
+	set name = "State Laws"
+
+	if(incapacitated())
+		return
+
+	if(input(src, "Are you sure you want to announce your laws[radiomod ? " over the [radiomod] channel" : ""]?", "State Laws", "Yes", "No") != "Yes")
+		return
+
+	say("[radiomod] Current Active Lawset:")
+
+	var/delay = 1 SECONDS
+	for(var/i in laws)
+		addtimer(CALLBACK(src, /atom/movable/.proc/say, "[radiomod] [i]"), delay)
+		delay += 1 SECONDS
+
+
+/mob/living/silicon/ai/verb/set_autosay()
+	set category = "Silicon"
+	set name = "Set Announce Mode"
+
+	if(incapacitated())
+		return
+
+	if(!radio)
+		to_chat(src, "Radio not detected.")
+		return
+
+	var/chan = input("Select a channel:") as null|anything in list("Default", "None") + radio.channels
+	if(!chan)
+		return
+
+	if(chan == "Default")
+		radiomod = ";"
+		chan += " ([radio.frequency])"
+	else if(chan == "None")
+		radiomod = ""
+	else
+		for(var/key in GLOB.department_radio_keys)
+			if(GLOB.department_radio_keys[key] == chan)
+				radiomod = ":" + key
+				break
+
+	to_chat(src, "<span class='notice'>Automatic announcements [chan == "None" ? "will not use the radio." : "set to [chan]."]</span>")
+
+
+/mob/living/silicon/ai/verb/shutdown_systems()
+	set category = "Silicon"
+	set name = "Shutdown Systems"
+
+
+	if(alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", "Yes", "No") != "Yes")
+		return
+
+	to_chat(src, "<span class='notice'>Systems shutting down...</span>")
+
+	ghostize(FALSE)
+	offer_mob()

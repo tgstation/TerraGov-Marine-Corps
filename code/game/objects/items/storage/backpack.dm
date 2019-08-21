@@ -12,9 +12,8 @@
 	storage_slots = null
 	max_storage_space = 24
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
-	var/list/uniform_restricted //Need to wear this uniform to equip this
 
-/obj/item/storage/backpack/attack_hand(mob/user)
+/obj/item/storage/backpack/attack_hand(mob/living/user)
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
@@ -27,30 +26,25 @@
 			return TRUE
 	return ..()
 
+
+/obj/item/storage/backpack/AltClick(mob/user)
+	if(!ishuman(user) || !length(contents) || isturf(loc))
+		return ..() //Return to fail and go back to base.
+	if(worn_accessible)
+		return ..() //Return to succeed and draw the item.
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.back == src)
+		to_chat(human_user, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
+		return
+	return ..()
+
+
 /obj/item/storage/backpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	
 	if (use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
 
-/obj/item/storage/backpack/mob_can_equip(M as mob, slot)
-	if (!..())
-		return 0
-
-	if (!uniform_restricted)
-		return 1
-
-	if (!ishuman(M))
-		return 0
-
-	var/mob/living/carbon/human/H = M
-	var/list/equipment = list(H.wear_suit, H.w_uniform, H.shoes, H.belt, H.gloves, H.glasses, H.head, H.wear_ear, H.wear_id, H.r_store, H.l_store, H.s_store)
-
-	for (var/type in uniform_restricted)
-		if (!(locate(type) in equipment))
-			to_chat(H, "<span class='warning'>You must be wearing [initial(type:name)] to equip [name]!")
-			return 0
-	return 1
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
@@ -351,11 +345,11 @@
 			if(!cell)
 				replace_install = "You install a cell in [src]'s defibrillator recharge unit."
 			else
-				cell.updateicon()
+				cell.update_icon()
 				user.put_in_hands(cell)
 			cell = W
 			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
-			playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
+			playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
 			update_icon()
 	return ..()
 
@@ -400,13 +394,38 @@
 	icon_state = "smock"
 	worn_accessible = TRUE
 
+//CLOAKS	
+
+/obj/item/storage/backpack/marine/satchel/officer_cloak
+	name = "Officer Cloak"
+	desc = "A dashing cloak as befitting an officer."
+	icon_state = "officer_cloak" //with thanks to Baystation12
+	item_state = "officer_cloak" //with thanks to Baystation12	
+
+/obj/item/storage/backpack/marine/satchel/captain_cloak
+	name = "Captain's Cloak"
+	desc = "An opulant cloak detailed with your many accomplishments."
+	icon_state = "commander_cloak" //with thanks to Baystation12
+	item_state = "commander_cloak" //with thanks to Baystation12
+
+/obj/item/storage/backpack/marine/satchel/officer_cloak_red
+	name = "Officer Cloak - Red"
+	desc = "A dashing cloak as befitting an officer. with fancy red trim."
+	icon_state = "officer_cloak_red" //with thanks to Baystation12
+	item_state = "officer_cloak_red" //with thanks to Baystation12
+
+/obj/item/storage/backpack/marine/satchel/captain_cloak_red
+	name = "Captain's Cloak - Red"
+	desc = "An opulant cloak detailed with your many accomplishments. with fancy red trim."
+	icon_state = "commander_cloak_red" //with thanks to Baystation12
+	item_state = "commander_cloak_red" //with thanks to Baystation12	
+
 
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
 	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
 	icon_state = "scout_cloak"
-	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S) //Need to wear Scout armor to equip this.
 	var/camo_active = 0
 	var/camo_active_timer = 0
 	var/camo_cooldown_timer = null
@@ -622,7 +641,6 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper
 	name = "\improper M68-B Thermal Cloak"
 	icon_state = "smock"
-	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/sniper) //Need to wear Scout armor and helmet to equip this.
 	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
@@ -657,7 +675,7 @@
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
 
 /obj/item/storage/backpack/marine/engineerpack/attackby(obj/item/I, mob/user, params)
@@ -679,7 +697,7 @@
 			return ..()
 
 		var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
-		reagents.remove_reagent("fuel", fuel_available)
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_available)
 		FT.current_rounds = fuel_available
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = "Fuel"
@@ -727,7 +745,7 @@
 		var/fuel_refill = FTL.max_rounds - FTL.current_rounds
 		if(reagents.total_volume < fuel_refill)
 			fuel_refill = reagents.total_volume
-		reagents.remove_reagent("fuel", fuel_refill)
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_refill)
 		FTL.current_rounds = FTL.current_rounds + fuel_refill
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, "<span class='notice'>You refill [FTL] with UT-Napthal Fuel as you place it inside of \the [src].</span>")

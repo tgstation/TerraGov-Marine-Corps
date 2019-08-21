@@ -57,20 +57,20 @@
 #define GUN_TRIGGER_SAFETY		(1<<1)
 #define GUN_UNUSUAL_DESIGN		(1<<2)
 #define GUN_SILENCED			(1<<3)
-#define GUN_AUTOMATIC			(1<<4)
+#define GUN_SHOTGUN_CHAMBER		(1<<4)
 #define GUN_INTERNAL_MAG		(1<<5)
 #define GUN_AUTO_EJECTOR		(1<<6)
 #define GUN_AMMO_COUNTER		(1<<7)
-#define GUN_BURST_ON			(1<<8)
-#define GUN_BURST_FIRING		(1<<9)
+#define GUN_LOAD_INTO_CHAMBER	(1<<8)
+#define GUN_ENERGY				(1<<9)
 #define GUN_FLASHLIGHT_ON		(1<<10)
 #define GUN_WIELDED_FIRING_ONLY	(1<<11)
-#define GUN_HAS_FULL_AUTO		(1<<12)
-#define GUN_FULL_AUTO_ON		(1<<13)
-#define GUN_POLICE				(1<<14)
-#define GUN_ENERGY				(1<<15)
-#define GUN_LOAD_INTO_CHAMBER	(1<<16)
-#define GUN_SHOTGUN_CHAMBER		(1<<17)
+#define GUN_POLICE				(1<<12)
+#define GUN_BURST_FIRING		(1<<13)
+#define GUN_ALLOW_SYNTHETIC		(1<<14)
+
+#define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
+#define GUN_FIREMODE_BURSTFIRE "burst fire mode"
 
 //Gun attachable related flags.
 //flags_attach_features
@@ -118,7 +118,7 @@
 #define DETPACK_TIMER_MAX			300
 
 //Define flamer
-#define M240T_WATER_AMOUNT 			reagents.get_reagent_amount("water")
+#define M240T_WATER_AMOUNT 			reagents.get_reagent_amount(/datum/reagent/water)
 
 //Define sniper laser multipliers
 
@@ -188,3 +188,6 @@
 #define X_FIRE_LAYER			1
 #define X_TOTAL_LAYERS			9
 /////////////////////////////////
+
+//We will round to this value in damage calculations.
+#define DAMAGE_PRECISION 0.1

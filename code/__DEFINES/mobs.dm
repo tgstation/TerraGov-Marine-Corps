@@ -1,9 +1,6 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 
-#define BORGMESON 1
-#define BORGTHERM 2
-#define BORGXRAY  4
 
 //Pain or shock reduction for different reagents
 #define PAIN_REDUCTION_VERY_LIGHT	-10 //alkysine
@@ -67,17 +64,10 @@
 //=================================================
 
 //disabilities
-#define NEARSIGHTED		(1<<0)
-#define EPILEPSY		(1<<1)
-#define COUGHING		(1<<2)
-#define TOURETTES		(1<<3)
-#define NERVOUS			(1<<4)
-//=================================================
-
-//sdisabilities
 #define BLIND			(1<<0)
 #define MUTE			(1<<1)
 #define DEAF			(1<<2)
+#define NEARSIGHTED		(1<<3)
 //=================================================
 
 //mob/var/stat things
@@ -122,12 +112,10 @@
 #define CANKNOCKDOWN	(1<<1)
 #define CANKNOCKOUT		(1<<2)
 #define CANPUSH			(1<<3)
-#define LEAPING			(1<<4)
-#define PASSEMOTES		(1<<5)      //holders inside of mob that need to see emotes.
-#define GODMODE			(1<<6)
-#define FAKEDEATH		(1<<7)	//Replaces stuff like changeling.changeling_fakedeath
-#define DISFIGURED		(1<<8)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
-#define XENO_HOST		(1<<9)	//Tracks whether we're gonna be a baby alien's mummy.
+#define GODMODE			(1<<4)
+#define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
+#define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
+#define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
 
 // =============================
 // hive types
@@ -169,9 +157,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SLASHING_ALLOWED 1
 #define XENO_SLASHING_RESTRICTED 2
 
-
-#define XENO_NIGHTVISION_ENABLED 8
-#define XENO_NIGHTVISION_DISABLED 4
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////
@@ -359,20 +344,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUMAN_MAX_PALENESS	30 //this is added to human skin tone to get value of pale_max variable
 
 
-//diseases
-
-#define SPECIAL -1
-#define NON_CONTAGIOUS 0
-#define BLOOD 1
-#define CONTACT_FEET 2
-#define CONTACT_HANDS 3
-#define CONTACT_GENERAL 4
-#define AIRBORNE 5
-
-#define SCANNER 1
-#define PANDEMIC 2
-
-
 // halloss defines
 
 #define BASE_HALLOSS_RECOVERY_RATE -4
@@ -455,13 +426,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_VENT_CRAWL		(1<<1)
 #define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
 #define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
-#define CASTE_INNATE_HEALING		(1<<4)
+#define CASTE_INNATE_HEALING		(1<<4) // Xenomorphs heal outside of weeds. Larvas, for example.
 #define CASTE_FIRE_IMMUNE			(1<<5)
 #define CASTE_EVOLUTION_ALLOWED		(1<<6)
 #define CASTE_IS_INTELLIGENT		(1<<7) // A hive leader or able to use more human controls
 #define CASTE_DECAY_PROOF			(1<<8)
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
+#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
+#define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1
@@ -587,3 +560,27 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define AI_IDLE		2
 #define AI_OFF		3
 #define AI_Z_OFF	4
+
+
+
+//Cooldowns
+#define COOLDOWN_CHEW 		"chew"
+#define COOLDOWN_PUKE 		"puke"
+#define COOLDOWN_POINT 		"point"
+#define COOLDOWN_EMOTE		"emote"
+#define COOLDOWN_VENTCRAWL	"ventcrawl"
+#define COOLDOWN_BUCKLE		"buckle"
+#define COOLDOWN_RESIST		"resist"
+#define COOLDOWN_ORDER		"order"
+#define COOLDOWN_DISPOSAL	"disposal"
+#define COOLDOWN_ACID		"acid"
+#define COOLDOWN_GUT		"gut"
+#define COOLDOWN_ZOOM		"zoom"
+#define COOLDOWN_BUMP		"bump"
+#define COOLDOWN_ENTANGLE	"entangle"
+#define COOLDOWN_NEST		"nest"
+
+// Xeno Cooldowns
+// -- Ravager
+#define COOLDOWN_RAV_LAST_RAGE		"last_rage"
+#define COOLDOWN_RAV_NEXT_DAMAGE	"next_damage"

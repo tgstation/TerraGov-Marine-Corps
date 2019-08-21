@@ -8,7 +8,7 @@
 	throwforce = 2.0
 	w_class = WEIGHT_CLASS_BULKY
 
-/obj/item/moneybag/attack_hand(mob/user)
+/obj/item/moneybag/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

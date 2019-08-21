@@ -79,10 +79,11 @@ Defined in conflicts.dm of the #defines folder.
 	var/current_rounds 	= 0 //How much it has.
 	var/max_rounds 		= 0 //How much ammo it can store
 	var/max_range		= 0
-	var/attach_applied = FALSE //Prevents it from getting picked up after being attached
 
 	var/attachment_action_type
 	var/scope_zoom_mod = FALSE //codex
+
+	var/obj/item/weapon/gun/master_gun
 
 
 /obj/item/attachable/attackby(obj/item/I, mob/user, params)
@@ -96,19 +97,16 @@ Defined in conflicts.dm of the #defines folder.
 		return TRUE
 
 
-/obj/item/attachable/attack_hand(mob/user as mob)
-	if(src.attach_applied == TRUE)
+/obj/item/attachable/attack_hand(mob/living/user)
+	if(master_gun)
 		return
-	else
-		..()
+	return ..()
 
 
-
-/obj/item/attachable/proc/Attach(obj/item/weapon/gun/G)
-	if(!istype(G))
+/obj/item/attachable/proc/Attach(obj/item/weapon/gun/gun_to_attach, mob/user)
+	if(!istype(gun_to_attach))
 		return //Guns only
-	attach_applied = TRUE
-
+	master_gun = gun_to_attach
 	/*
 	This does not check if the attachment can be removed.
 	Instead of checking individual attachments, I simply removed
@@ -119,121 +117,132 @@ Defined in conflicts.dm of the #defines folder.
 	*/
 	switch(slot)
 		if("rail")
-			if(G.rail) G.rail.Detach(G)
-			G.rail = src
+			master_gun.rail?.Detach(user)
+			master_gun.rail = src
 		if("muzzle")
-			if(G.muzzle) G.muzzle.Detach(G)
-			G.muzzle = src
+			master_gun.muzzle?.Detach(user)
+			master_gun.muzzle = src
 		if("under")
-			if(G.under) G.under.Detach(G)
-			G.under = src
+			master_gun.under?.Detach(user)
+			master_gun.under = src
 		if("stock")
-			if(G.stock) G.stock.Detach(G)
-			G.stock = src
+			master_gun.stock?.Detach(user)
+			master_gun.stock = src
 
-	if(ishuman(loc))
-		var/mob/living/carbon/human/M = src.loc
-		M.drop_held_item(src)
-	forceMove(G)
+	if(ishuman(user))
+		var/mob/living/carbon/human/wielder = user
+		wielder.drop_held_item(src)
 
-	G.accuracy_mult		+= accuracy_mod
-	G.accuracy_mult_unwielded += accuracy_unwielded_mod
-	G.damage_mult		+= damage_mod
-	G.damage_falloff_mult += damage_falloff_mod
-	G.w_class 			+= size_mod
-	G.scatter			+= scatter_mod
-	G.scatter_unwielded += scatter_unwielded_mod
-	G.fire_delay 		+= delay_mod
-	G.burst_delay 	+= burst_delay_mod
-	G.burst_amount 		+= burst_mod
-	G.recoil 			+= recoil_mod
-	G.recoil_unwielded	+= recoil_unwielded_mod
-	G.force 			+= melee_mod
-	G.aim_slowdown		+= aim_speed_mod
-	G.wield_delay		+= wield_delay_mod
-	G.burst_scatter_mult += burst_scatter_mod
-	G.movement_acc_penalty_mult += movement_acc_penalty_mod
-	G.shell_speed_mod	+= attach_shell_speed_mod
-	G.scope_zoom 		+= scope_zoom_mod
+	forceMove(master_gun)
 
-	if(G.burst_amount <= 1)
-		G.flags_gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
-	G.update_force_list() //This updates the gun to use proper force verbs.
+	master_gun.accuracy_mult				+= accuracy_mod
+	master_gun.accuracy_mult_unwielded		+= accuracy_unwielded_mod
+	master_gun.damage_mult					+= damage_mod
+	master_gun.damage_falloff_mult			+= damage_falloff_mod
+	master_gun.w_class						+= size_mod
+	master_gun.scatter						+= scatter_mod
+	master_gun.scatter_unwielded			+= scatter_unwielded_mod
+	master_gun.fire_delay					+= delay_mod
+	master_gun.burst_delay					+= burst_delay_mod
+	master_gun.burst_amount					+= burst_mod
+	master_gun.recoil						+= recoil_mod
+	master_gun.recoil_unwielded				+= recoil_unwielded_mod
+	master_gun.force						+= melee_mod
+	master_gun.aim_slowdown					+= aim_speed_mod
+	master_gun.wield_delay					+= wield_delay_mod
+	master_gun.burst_scatter_mult			+= burst_scatter_mod
+	master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
+	master_gun.shell_speed_mod				+= attach_shell_speed_mod
+	master_gun.scope_zoom					+= scope_zoom_mod
+
+	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
 	if(silence_mod)
-		G.flags_gun_features |= GUN_SILENCED
-		G.muzzle_flash = null
-		G.fire_sound = "gun_silenced"
+		master_gun.flags_gun_features |= GUN_SILENCED
+		master_gun.muzzle_flash = null
+		master_gun.fire_sound = "gun_silenced"
+
+	master_gun.update_attachable(slot)
+
+	if(burst_mod)
+		on_burst_amount_change(user)
 
 	if(attachment_action_type)
-		var/datum/action/A = new attachment_action_type(src, G)
-		if(isliving(G.loc))
-			var/mob/living/L = G.loc
-			if(G == L.l_hand || G == L.r_hand)
-				A.give_action(G.loc)
+		var/datum/action/action_to_update = new attachment_action_type(src, master_gun)
+		if(isliving(master_gun.loc))
+			var/mob/living/living_user = master_gun.loc
+			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
+				action_to_update.give_action(living_user)
 
 
-
-/obj/item/attachable/proc/Detach(obj/item/weapon/gun/G)
-	if(!istype(G))
-		return //Guns only
-	attach_applied = FALSE
-
-
+/obj/item/attachable/proc/Detach(mob/user)
 	if(flags_attach_features & ATTACH_ACTIVATION)
-		activate_attachment(G, null, TRUE)
+		activate_attachment(null, TRUE)
 
-	switch(slot) //I am removing checks for the attachment being src.
-		if("rail") 		G.rail = null//If it's being called on by this proc, it has to be that attachment. ~N
-		if("muzzle") 	G.muzzle = null
-		if("under")		G.under = null
-		if("stock")		G.stock = null
+	switch(slot)
+		if("rail")
+			master_gun.rail = null
+		if("muzzle")
+			master_gun.muzzle = null
+		if("under")
+			master_gun.under = null
+		if("stock")
+			master_gun.stock = null
 
+	master_gun.accuracy_mult				-= accuracy_mod
+	master_gun.accuracy_mult_unwielded		-= accuracy_unwielded_mod
+	master_gun.damage_mult					-= damage_mod
+	master_gun.damage_falloff_mult			-= damage_falloff_mod
+	master_gun.w_class						-= size_mod
+	master_gun.scatter						-= scatter_mod
+	master_gun.scatter_unwielded			-= scatter_unwielded_mod
+	master_gun.fire_delay					-= delay_mod
+	master_gun.burst_delay					-= burst_delay_mod
+	master_gun.burst_amount					-= burst_mod
+	master_gun.recoil						-= recoil_mod
+	master_gun.recoil_unwielded				-= recoil_unwielded_mod
+	master_gun.force						-= melee_mod
+	master_gun.aim_slowdown					-= aim_speed_mod
+	master_gun.wield_delay					-= wield_delay_mod
+	master_gun.burst_scatter_mult			-= burst_scatter_mod
+	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
+	master_gun.shell_speed_mod				-=attach_shell_speed_mod
+	master_gun.scope_zoom					-= scope_zoom_mod
 
+	master_gun.update_force_list()
 
-	G.accuracy_mult		-= accuracy_mod
-	G.accuracy_mult_unwielded -= accuracy_unwielded_mod
-	G.damage_mult		-= damage_mod
-	G.damage_falloff_mult -= damage_falloff_mod
-	G.w_class 			-= size_mod
-	G.scatter			-= scatter_mod
-	G.scatter_unwielded -= scatter_unwielded_mod
-	G.fire_delay 		-= delay_mod
-	G.burst_delay 		-= burst_delay_mod
-	G.burst_amount 		-= burst_mod
-	G.recoil 			-= recoil_mod
-	G.recoil_unwielded	-= recoil_unwielded_mod
-	G.force 			-= melee_mod
-	G.aim_slowdown		-= aim_speed_mod
-	G.wield_delay		-= wield_delay_mod
-	G.burst_scatter_mult -= burst_scatter_mod
-	G.movement_acc_penalty_mult -= movement_acc_penalty_mod
-	G.shell_speed_mod	-=attach_shell_speed_mod
-	G.scope_zoom 		-= scope_zoom_mod
-	G.update_force_list()
+	if(burst_mod)
+		on_burst_amount_change(user)
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
-		G.flags_gun_features &= ~GUN_SILENCED
-		G.muzzle_flash = initial(G.muzzle_flash)
-		G.fire_sound = initial(G.fire_sound)
+		master_gun.flags_gun_features &= ~GUN_SILENCED
+		master_gun.muzzle_flash = initial(master_gun.muzzle_flash)
+		master_gun.fire_sound = initial(master_gun.fire_sound)
 
-	for(var/X in G.actions)
-		var/datum/action/DA = X
-		if(DA.target == src)
-			qdel(X)
-			break
+	for(var/i in master_gun.actions)
+		var/datum/action/action_to_update = i
+		if(action_to_update.target != src)
+			continue
+		qdel(action_to_update)
+		break
 
-	//turn_off_light()
-	//G.flags_gun_features &= ~GUN_FLASHLIGHT_ON
+	forceMove(get_turf(master_gun))
 
-	loc = get_turf(G)
-
-
+	master_gun = null
 
 
-/obj/item/attachable/ui_action_click(mob/living/user, obj/item/weapon/gun/G)
+/obj/item/attachable/proc/on_burst_amount_change(mob/user)
+	if(master_gun.burst_amount < 2)
+		if(GUN_FIREMODE_BURSTFIRE in master_gun.gun_firemode_list)
+			master_gun.remove_firemode(GUN_FIREMODE_BURSTFIRE, user)
+	else
+		if(!(GUN_FIREMODE_BURSTFIRE in master_gun.gun_firemode_list))
+			master_gun.add_firemode(GUN_FIREMODE_BURSTFIRE, user)
+
+
+/obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item())
-		if(activate_attachment(G, user)) //success
+		if(activate_attachment(user)) //success
 			playsound(user, activation_sound, 15, 1)
 	else
 		to_chat(user, "<span class='warning'>[G] must be in our hands to do this.</span>")
@@ -241,7 +250,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-/obj/item/attachable/proc/activate_attachment(atom/target, mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
+/obj/item/attachable/proc/activate_attachment(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
 
 /obj/item/attachable/proc/reload_attachment(obj/item/I, mob/user)
@@ -356,6 +365,7 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod = CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
 	attach_shell_speed_mod = CONFIG_GET(number/combat_define/slow_shell_speed)
 	delay_mod = CONFIG_GET(number/combat_define/low_fire_delay)
+	scatter_mod = CONFIG_GET(number/combat_define/min_scatter_value)
 	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
 
 
@@ -458,27 +468,27 @@ Defined in conflicts.dm of the #defines folder.
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
 
-/obj/item/attachable/flashlight/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
-	if(turn_off && !(G.flags_gun_features & GUN_FLASHLIGHT_ON))
+/obj/item/attachable/flashlight/activate_attachment(mob/living/user, turn_off)
+	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
 		return
 
-	if(ismob(G.loc) && !user)
-		user = G.loc
+	if(ismob(master_gun.loc) && !user)
+		user = master_gun.loc
 
-	if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
+	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
-		G.set_light(0)
+		master_gun.set_light(0)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
-		G.set_light(light_mod)
+		master_gun.set_light(light_mod)
 
-	G.flags_gun_features ^= GUN_FLASHLIGHT_ON
+	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
-	G.update_attachable(slot)
+	master_gun.update_attachable(slot)
 
-	for(var/X in G.actions)
+	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
 	return TRUE
@@ -552,18 +562,18 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 
 
-/obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
+/obj/item/attachable/scope/activate_attachment(mob/living/carbon/user, turn_off)
 	if(turn_off)
-		if(G.zoom)
-			G.zoom(user, zoom_offset, zoom_viewsize)
+		if(master_gun.zoom)
+			master_gun.zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
-	if(!G.zoom && !(G.flags_item & WIELDED))
+	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED))
 		if(user)
-			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
+			to_chat(user, "<span class='warning'>You must hold [master_gun] with two hands to use [src].</span>")
 		return FALSE
 	else
-		G.zoom(user, zoom_offset, zoom_viewsize)
+		master_gun.zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 
 
@@ -771,7 +781,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 	pockets = new pockets(src)
 
-/obj/item/attachable/stock/vp70/attack_hand(mob/user)
+/obj/item/attachable/stock/vp70/attack_hand(mob/living/user)
 	if(loc == user && length(pockets.contents))
 		var/obj/item/I = pockets.contents[length(pockets.contents)]
 		return I.attack_hand(user)
@@ -849,19 +859,19 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-/obj/item/attachable/attached_gun/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
-	if(G.active_attachable == src)
+/obj/item/attachable/attached_gun/activate_attachment(mob/living/user, turn_off)
+	if(master_gun.active_attachable == src)
 		if(user)
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-		G.active_attachable = null
+		master_gun.on_gun_attachment_detach(src)
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
-		G.active_attachable = src
+		master_gun.on_gun_attachment_attach(src)
 		icon_state += "-on"
 
-	for(var/X in G.actions)
+	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
 	return TRUE
@@ -879,7 +889,7 @@ Defined in conflicts.dm of the #defines folder.
 	max_rounds = 2
 	max_range = 7
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	var/list/loaded_grenades //list of grenade types loaded in the UGL
 
@@ -917,7 +927,7 @@ Defined in conflicts.dm of the #defines folder.
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else
-			playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+			playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 			current_rounds++
 			loaded_grenades += G.type
 			to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
@@ -960,7 +970,7 @@ Defined in conflicts.dm of the #defines folder.
 	max_rounds = 20
 	max_range = 4
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/flamer/unremovable
@@ -994,36 +1004,36 @@ Defined in conflicts.dm of the #defines folder.
 		var/obj/item/tool/weldpack/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
+		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/storage/backpack/marine/engineerpack))
 		var/obj/item/storage/backpack/marine/engineerpack/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
+		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/reagent_container))
 		var/obj/item/reagent_container/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(!FT.reagents.get_reagent_amount("fuel"))
+		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
-			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else
@@ -1042,7 +1052,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/list/turf/turfs = getline(user,target)
 	var/distance = 0
 	var/turf/prev_T
-	playsound(user, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
+	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
 			prev_T = T
@@ -1107,7 +1117,7 @@ Defined in conflicts.dm of the #defines folder.
 	current_rounds = 3
 	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey
 	slot = "under"
-	fire_sound = 'sound/weapons/gun_shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
 
@@ -1132,7 +1142,7 @@ Defined in conflicts.dm of the #defines folder.
 				mag.current_rounds--
 				mag.update_icon()
 				to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
-				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
+				playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temporarilyRemoveItemFromInventory(mag)
 					qdel(mag)
@@ -1215,8 +1225,6 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
 
 
-
-
 /obj/item/attachable/bipod
 	name = "bipod"
 	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
@@ -1228,49 +1236,72 @@ Defined in conflicts.dm of the #defines folder.
 	melee_mod = -10
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
+	var/mob/living/master_user
+	var/deployment_accuracy_mod
+	var/deployment_recoil_mod
+	var/deployment_scatter_mod
+	var/deployment_burst_scatter_mod
 
 
 /obj/item/attachable/bipod/Initialize()
 	. = ..()
-	size_mod = 1
+	deployment_accuracy_mod = CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	deployment_recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	deployment_scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	deployment_burst_scatter_mod = -CONFIG_GET(number/combat_define/high_burst_scatter_penalty)
 
-/obj/item/attachable/bipod/activate_attachment(obj/item/weapon/gun/G,mob/living/user, turn_off)
-	if(turn_off)
-		if(bipod_deployed)
-			bipod_deployed = FALSE
-			G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
-			G.wield_delay -= WIELD_DELAY_FAST
-	else if(bipod_deployed)
-		to_chat(user, "<span class='notice'>You retract [src].</span>")
-		G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
-		G.wield_delay -= WIELD_DELAY_FAST
-		bipod_deployed = !bipod_deployed
-	else if(do_after(user, 10, TRUE, src))
-		if(bipod_deployed)
-			return
-		bipod_deployed = !bipod_deployed
-		to_chat(user, "<span class='notice'>You deploy [src].</span>")
-		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
-		G.wield_delay += WIELD_DELAY_FAST
-	G.update_slowdown()
 
-	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
+/obj/item/attachable/bipod/activate_attachment(mob/living/user, turn_off)
 	if(bipod_deployed)
-		icon_state = "bipod-on"
-		attach_icon = "bipod_a-on"
-		//user.overlays += targeting_icon
-	else
+		bipod_deployed = FALSE
+		to_chat(user, "<span class='notice'>You retract [src].</span>")
+		master_gun.aim_slowdown -= SLOWDOWN_ADS_SCOPE
+		master_gun.wield_delay -= WIELD_DELAY_FAST
+		master_gun.accuracy_mult -= deployment_accuracy_mod
+		master_gun.recoil -= deployment_recoil_mod
+		master_gun.scatter -= deployment_scatter_mod
+		master_gun.burst_scatter_mult -= deployment_burst_scatter_mod
 		icon_state = "bipod"
 		attach_icon = "bipod_a"
-		//user.overlays -= targeting_icon
+		UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED))
+		UnregisterSignal(master_user, COMSIG_MOVABLE_MOVED)
+		master_user = null
+	else if(turn_off)
+		return //Was already offB
+	else
+		if(user.action_busy)
+			return
+		if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BAR))
+			return
+		if(bipod_deployed)
+			return
+		bipod_deployed = TRUE
+		to_chat(user, "<span class='notice'>You deploy [src].</span>")
+		master_user = user
+		RegisterSignal(master_user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
+		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
+		master_gun.aim_slowdown += SLOWDOWN_ADS_SCOPE
+		master_gun.wield_delay += WIELD_DELAY_FAST
+		master_gun.accuracy_mult += deployment_accuracy_mod
+		master_gun.recoil += deployment_recoil_mod
+		master_gun.scatter += deployment_scatter_mod
+		master_gun.burst_scatter_mult += deployment_burst_scatter_mod
+		icon_state = "bipod-on"
+		attach_icon = "bipod_a-on"
 
-	G.update_attachable(slot)
+	master_gun.update_slowdown()
+	master_gun.update_attachable(slot)
 
-	for(var/X in G.actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	for(var/i in master_gun.actions)
+		var/datum/action/action_to_update = i
+		action_to_update.update_button_icon()
 	return TRUE
 
+
+/obj/item/attachable/bipod/proc/retract_bipod(datum/source)
+	activate_attachment(source, TRUE)
+	to_chat(source, "<span class='warning'>Losing support, the bipod retracts!</span>")
+	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
 
 
 //when user fires the gun, we check if they have something to support the gun's bipod.
@@ -1321,19 +1352,19 @@ Defined in conflicts.dm of the #defines folder.
 	var/max_water = 200
 	var/last_use
 
-/obj/item/attachable/hydro_cannon/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
-	if(G.active_attachable == src)
+/obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
+	if(master_gun.active_attachable == src)
 		if(user)
 			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
-		G.active_attachable = null
+		master_gun.active_attachable = null
 		icon_state = initial(icon_state)
 	else if(!turn_off)
 		if(user)
 			to_chat(user, "<span class='notice'>You are now using [src].</span>")
-		G.active_attachable = src
+		master_gun.active_attachable = src
 		icon_state += "-on"
 
-	for(var/X in G.actions)
+	for(var/X in master_gun.actions)
 		var/datum/action/A = X
 		A.update_button_icon()
 	return TRUE

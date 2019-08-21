@@ -60,7 +60,7 @@ obj/structure/sign/poster/New(var/serial)
 			roll_and_drop(user.loc)
 
 
-/obj/structure/sign/poster/attack_hand(mob/user as mob)
+/obj/structure/sign/poster/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
