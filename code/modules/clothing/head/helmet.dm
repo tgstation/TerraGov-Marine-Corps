@@ -295,6 +295,7 @@
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
+	icon_state = "grenadier_helmet"
 	armor = list("melee" = 95, "bullet" = 105, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
