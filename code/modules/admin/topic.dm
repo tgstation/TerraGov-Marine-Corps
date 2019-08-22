@@ -941,15 +941,15 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
 
 			if("use_dest")
-				if(alert("Are you sure you want to destroy the [CONFIG_GET(string/ship_name)] right now?", "Self-Destruct", "Yes", "No") != "Yes")
+				if(alert("Are you sure you want to destroy the [SSmapping.configs[SHIP_MAP].map_name] right now?", "Self-Destruct", "Yes", "No") != "Yes")
 					return
 
 				if(!SSevacuation.initiate_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
 
-				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
-				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
+				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [SSmapping.configs[SHIP_MAP].map_name].")
+				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [SSmapping.configs[SHIP_MAP].map_name].")
 
 			if("toggle_dest")
 				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
@@ -1170,7 +1170,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/dat
 
-		for(var/x in GLOB.access_log)
+		for(var/x in GLOB.manifest_log)
 			dat += "[x]<br>"
 
 		var/datum/browser/browser = new(usr, "manifest_log", "<div align='center'>Manifest Log</div>")

@@ -99,7 +99,7 @@
 					visible_message("\ [src] whirrs and gurgles as the dialysis module operates.")
 					to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
 			if(blood_transfer)
-				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
+				if(connected && occupant.blood_volume < BLOOD_VOLUME_NORMAL)
 					if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
 						connected.blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
 						visible_message("\ [src] speaks: Blood reserves depleted, switching to fresh bag.")
@@ -704,7 +704,7 @@
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(loc)
-	if(connected.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
+	if(connected?.release_notice && occupant) //If auto-release notices are on as they should be, let the doctors know what's up
 		var/reason = "Reason for discharge: Procedural completion."
 		switch(notice_code)
 			if(AUTODOC_NOTICE_SUCCESS)
@@ -1046,6 +1046,9 @@
 		return
 
 	usr.set_interaction(src)
+
+	if(!connected)
+		return
 
 	if(ishuman(connected.occupant))
 		// manual surgery handling

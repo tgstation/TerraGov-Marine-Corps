@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(faxes)
 			P.overlays += stampoverlay
 			P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
 
-		playsound(FM.loc, "sound/items/polaroid1.ogg", 15, 1)
+		playsound(FM.loc, "sound/machines/dotprinter.ogg", 25, 1)
 
 
 /datum/admins/proc/view_faxes()
@@ -100,21 +100,24 @@ GLOBAL_LIST_EMPTY(faxes)
 	var/fax_html = {"
 		<font face="Verdana" color="black" size="1">
 			<center>
+				<img src='tgmclogo.png' />
+			</center>
+			<center>
 				Secure Communication SC-CLTMGC-01b
 			</center>
 
 			<hr />
 
 			<b>Assignment detail</b><br />
-			Vessel: [CONFIG_GET(string/ship_name)]
+			Vessel: [SSmapping.configs[SHIP_MAP].map_name]
 			<br />
 			Date, Time: [GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [worldtime2text()]<br />
 			Index: #001<br />
 
 			<hr />
-			
+
 			<br />
-			Recipient: [addressed_to] [to_department], [CONFIG_GET(string/ship_name)].<br />
+			Recipient: [addressed_to] [to_department], [SSmapping.configs[SHIP_MAP].map_name].<br />
 			Subject: <b>[subject]</b>
 
 			<br /><br />
@@ -127,12 +130,12 @@ GLOBAL_LIST_EMPTY(faxes)
 			<hr />
 			<font size ="1">
 				<i>
-					This message is intended only for the Corporate Liason aboard the [CONFIG_GET(string/ship_name)], 
+					This message is intended only for the Corporate Liason aboard the [SSmapping.configs[SHIP_MAP].map_name], 
 					all other suchs persons should not read, receive a copy, or be exposed to this communication in any form. 
 					Failing to adhere to this warning will result in liquidation of division under Act 09.B-4. 
 					By authoring a reply to this transmission, such person confirms they abide by the regulations as set forth to them.
 				</i>
 			</font>
-		</font>	
+		</font>
 	"}
 	return fax_html

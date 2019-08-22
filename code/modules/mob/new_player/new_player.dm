@@ -229,8 +229,9 @@
 
 			switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 				if("Burrowed Larva")
-					if(SSticker.mode.attempt_to_join_as_larva(src))
-						close_spawn_windows()
+					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_larva(src)
+					if(new_xeno)
+						close_spawn_windows(new_xeno)
 				if("Living Xenomorph")
 					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
 					if(new_xeno)
@@ -381,10 +382,12 @@
 	return FALSE
 
 
-/mob/new_player/proc/close_spawn_windows()
-	src << browse(null, "window=latechoices") //closes late choices window
-	src << browse(null, "window=playersetup") //closes the player setup window
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
+/mob/new_player/proc/close_spawn_windows(mob/user)
+	if(!user)
+		user = src
+	user << browse(null, "window=latechoices") //closes late choices window
+	user << browse(null, "window=playersetup") //closes the player setup window
+	user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
 
 
 /mob/new_player/get_species()

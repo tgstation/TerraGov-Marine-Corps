@@ -214,22 +214,6 @@
 	radio.interact(src)
 
 
-/mob/living/silicon/ai/verb/toggle_floor_bolts()
-	set category = "Silicon"
-	set name = "Toggle Floor Bolts"
-
-	if(!isturf(loc))
-		return
-
-	if(incapacitated())
-		return
-
-	anchored = !anchored
-
-	to_chat(src, "<span class='notice'>You are now [anchored ? "" : "un"]anchored.</span>")
-
-
-
 /mob/living/silicon/ai/verb/view_manifest()
 	set category = "Silicon"
 	set name = "View Crew Manifest"

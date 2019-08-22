@@ -65,7 +65,7 @@
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
 		return
 
-	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, "[CONFIG_GET(string/ship_name)]")
+	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, SSmapping.configs[SHIP_MAP].map_name)
 
 
 /datum/game_mode/distress/process()
@@ -115,7 +115,7 @@
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [CONFIG_GET(string/ship_name)] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
 	var/xeno_track
 	var/human_track
 	switch(round_finished)

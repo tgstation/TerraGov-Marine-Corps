@@ -165,9 +165,6 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aaL" = (
@@ -183,9 +180,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "aaN" = (
@@ -193,9 +187,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
@@ -251,7 +242,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aaW" = (
@@ -645,7 +635,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -768,9 +757,6 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/telecomm)
 "acI" = (
@@ -779,9 +765,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/telecomm)
 "acJ" = (
@@ -789,9 +772,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
@@ -841,7 +821,6 @@
 	name = "\improper Telecommunications";
 	req_one_access_txt = "0"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "acS" = (
@@ -900,15 +879,6 @@
 /area/bigredv2/outside/telecomm)
 "adc" = (
 /obj/structure/table,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
-"add" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "ade" = (
@@ -1000,7 +970,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "adv" = (
@@ -1189,20 +1158,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"aee" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 1;
-	on = 1
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/telecomm)
 "aef" = (
 /obj/structure/table,
 /obj/item/radio/headset/survivor,
@@ -1214,7 +1169,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "aeh" = (
@@ -1912,9 +1866,6 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "ago" = (
@@ -1922,9 +1873,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -1936,9 +1884,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "agq" = (
@@ -1946,9 +1891,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
@@ -1964,9 +1906,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -2260,7 +2199,6 @@
 	},
 /area/bigredv2/outside/space_port)
 "ahf" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -2491,7 +2429,6 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "ahS" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3186,8 +3123,8 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
@@ -25468,13 +25405,14 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
-"iNd" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
+"iKn" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/space_port)
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/nw)
 "iWB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -25748,6 +25686,14 @@
 	dir = 4
 	},
 /area/bigredv2/outside/sw)
+"mLR" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/nw)
 "mSx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
@@ -26145,6 +26091,14 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
+"qYD" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/nw)
 "qZK" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -26219,9 +26173,6 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "shZ" = (
@@ -26232,12 +26183,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/sw)
-"sqy" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/space_port)
 "svV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
@@ -29761,10 +29706,10 @@ aas
 aas
 acH
 acR
-add
+aeE
 adu
 adu
-aee
+adu
 aeE
 aff
 afL
@@ -35630,10 +35575,10 @@ aaV
 agr
 ahf
 ahS
-aix
-aix
-aix
-ajX
+qYD
+qYD
+qYD
+iKn
 ajx
 ajx
 ajx
@@ -35850,7 +35795,7 @@ ahT
 aiy
 aiy
 ajx
-ajY
+mLR
 ajx
 aiy
 aiy
@@ -36067,7 +36012,7 @@ ahU
 ahP
 ahP
 ajy
-ajY
+mLR
 ahR
 ahP
 ahP
@@ -36284,7 +36229,7 @@ ahT
 ahP
 ahP
 ajy
-ajY
+mLR
 ahR
 ahP
 ahP
@@ -36472,7 +36417,7 @@ aad
 hkk
 plF
 aay
-sqy
+aaO
 aaO
 aaO
 aaO
@@ -36501,7 +36446,7 @@ ahV
 ahV
 ahP
 ajy
-ajY
+mLR
 ajx
 aiw
 aiw
@@ -36689,7 +36634,7 @@ aad
 hkk
 plF
 aaB
-iNd
+aaO
 aaP
 aaO
 aaP
@@ -36718,7 +36663,7 @@ ahW
 ahX
 aiA
 ajy
-ajY
+mLR
 ajx
 ajx
 ajx

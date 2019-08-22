@@ -6,7 +6,7 @@
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled
-	var/no_destination_swap = 0
+	var/no_destination_swap = FALSE
 
 /obj/machinery/computer/shuttle/attack_hand(mob/living/user)
 	. = ..()

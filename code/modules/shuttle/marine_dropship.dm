@@ -32,6 +32,11 @@
 			M.knock_down(3)
 		CHECK_TICK
 
+	for(var/i in GLOB.ai_list)
+		var/mob/living/silicon/ai/AI = i
+		AI.anchored = FALSE
+		CHECK_TICK
+
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	//clear areas around the shuttle with explosions
@@ -364,9 +369,6 @@
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/carbon/monkey/user)
-	attack_alien(user)
-
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
@@ -376,7 +378,7 @@
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
-		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [CONFIG_GET(string/ship_name)]</A><br>"
+		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.hijack_state = HIJACK_STATE_CALLED_DOWN
 		M.unlock_all()
 	dat += "<a href='?src=[REF(X)];mach_close=computer'>Close</a>"
@@ -473,6 +475,7 @@
 		M.crashing = TRUE
 		M.hijack_state = HIJACK_STATE_CRASHING
 		M.unlock_all()
+		no_destination_swap = TRUE
 		priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 		to_chat(X, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
 		X.hive.xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Rejoice!")
@@ -891,4 +894,4 @@
 		return
 
 	C.marines_evac = CRASH_EVAC_INPROGRESS
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
