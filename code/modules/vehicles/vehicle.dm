@@ -95,10 +95,11 @@
 	new /obj/effect/overlay/temp/emp_sparks (loc)
 	if(on)
 		turn_off()
-	spawn(severity*300)
-		stat &= ~EMPED
-		if(was_on)
-			turn_on()
+
+	var/timer = severity * 300
+	addtimer(VARSET_CALLBACK(src, stat, (stat & ~EMPED)), timer)
+	if(was_on)
+		addtimer(CALLBACK(src, .proc/turn_on), timer)
 
 //-------------------------------------------
 // Vehicle procs
