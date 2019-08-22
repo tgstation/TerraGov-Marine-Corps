@@ -11,9 +11,8 @@
 	S.attack_alien(src)
 
 
-//The parent proc, will default to attack_paw behaviour unless overriden
-/atom/proc/attack_alien(mob/user)
-	return attack_paw(user)
+/atom/proc/attack_alien(mob/living/carbon/xenomorph/X)
+	return
 
 
 /mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, proximity_flag)
@@ -23,9 +22,8 @@
 	A.attack_larva(src)
 
 
-//Larva attack, will default to attack_alien behaviour unless overriden
-/atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/user)
-	return attack_alien(user)
+/atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/L)
+	return
 
 
 /mob/living/carbon/xenomorph/queen/CtrlMiddleClickOn(atom/A)

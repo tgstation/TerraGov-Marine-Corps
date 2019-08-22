@@ -242,8 +242,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<h2>Occupation Choices:</h2>"
 
-	var/n = 0
 	for(var/role in BE_SPECIAL_FLAGS)
+		var/n = BE_SPECIAL_FLAGS[role]
 		var/ban_check_name
 
 		switch(role)
@@ -259,8 +259,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(is_banned_from(user.ckey, ban_check_name))
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
 		else
-			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
-		n++
+			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[CHECK_BITFIELD(be_special, n) ? "Yes" : "No"]</a><br>"
 
 	dat += "<br><b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=squad'>[preferred_squad]</a><br>"
 
@@ -623,7 +622,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(newname == "")
 				ai_name = "ARES v3.2"
 			else
-				newname = reject_bad_name(newname)
+				newname = reject_bad_name(newname, TRUE)
 				if(!newname)
 					to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 					return
@@ -693,7 +692,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("be_special")
 			var/flag = text2num(href_list["flag"])
-			be_special ^= (1 << flag)
+			TOGGLE_BITFIELD(be_special, flag)
 
 		if("jobmenu")
 			SetChoices(user)

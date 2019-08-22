@@ -134,7 +134,7 @@
 	var/mob/picked
 
 	//If the bursted person themselves has Xeno enabled, they get the honor of first dibs on the new larva.
-	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & BE_ALIEN) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
+	if(affected_mob.client?.prefs && (affected_mob.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) && !is_banned_from(affected_mob.ckey, ROLE_XENOMORPH))
 		picked = affected_mob
 	else //Get a candidate from observers.
 		picked = get_alien_candidate()

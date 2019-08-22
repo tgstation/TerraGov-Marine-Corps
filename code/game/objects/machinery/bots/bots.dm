@@ -4,10 +4,9 @@
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
 	use_power = FALSE
+	resistance_flags = XENO_DAMAGEABLE
 	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
 	var/on = TRUE
-	var/fire_dam_coeff = 1.0
-	var/brute_dam_coeff = 1.0
 	var/open = FALSE //Maint panel
 	var/locked = TRUE
 
@@ -23,12 +22,6 @@
 	on = FALSE
 	set_light(0)
 
-/obj/machinery/bot/proc/explode()
-	qdel(src)
-
-/obj/machinery/bot/proc/healthcheck()
-	if(obj_integrity <= 0)
-		explode()
 
 /obj/machinery/bot/examine(mob/user)
 	..()
@@ -37,30 +30,6 @@
 			to_chat(user, "<span class='warning'>[src]'s parts look loose.</span>")
 		else
 			to_chat(user, "<span class='danger'>[src]'s parts look very loose!</span>")
-
-/obj/machinery/bot/attack_animal(mob/living/simple_animal/M as mob)
-	if(M.melee_damage_upper == 0)
-		return
-	obj_integrity -= M.melee_damage_upper
-	visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
-	log_combat(M, src, "attacked")
-	if(prob(10))
-		new /obj/effect/decal/cleanable/blood/oil(src.loc)
-	healthcheck()
-
-/obj/machinery/bot/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	obj_integrity -= rand(15, 30)
-	if(obj_integrity <= 0)
-		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>We slice [src] apart!</span>", null, 5)
-	else
-		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>We slash [src]!</span>", null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)
-	if(prob(10))
-		new /obj/effect/decal/cleanable/blood/oil(src.loc)
-	healthcheck()
 
 /obj/machinery/bot/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -80,36 +49,9 @@
 			to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 			return
 
-		obj_integrity = min(max_integrity, obj_integrity + 10)
+		repair_damage(10)
 		user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
 
-	else if(I.force && I.damtype)
-		switch(I.damtype)
-			if("fire")
-				obj_integrity -= I.force * fire_dam_coeff
-			if("brute")
-				obj_integrity -= I.force * brute_dam_coeff
-		healthcheck()
-
-/obj/machinery/bot/bullet_act(obj/item/projectile/Proj)
-	obj_integrity -= Proj.ammo.damage
-	..()
-	healthcheck()
-	return TRUE
-
-/obj/machinery/bot/ex_act(severity)
-	switch(severity)
-		if(1)
-			explode()
-		if(2)
-			obj_integrity -= rand(5, 10)*fire_dam_coeff
-			obj_integrity -= rand(10, 20)*brute_dam_coeff
-			healthcheck()
-		if(3)
-			if(prob(50))
-				obj_integrity -= rand(1, 5)*fire_dam_coeff
-				obj_integrity -= rand(1, 5)*brute_dam_coeff
-				healthcheck()
 
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on
@@ -124,23 +66,6 @@
 
 /obj/machinery/bot/attack_ai(mob/user as mob)
 	attack_hand(user)
-
-/obj/machinery/bot/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(!ishuman(user))
-		return
-
-	var/mob/living/carbon/human/H = user
-
-	if(H.species.can_shred(H))
-		src.obj_integrity -= rand(15,30)*brute_dam_coeff
-		src.visible_message("<span class ='danger'>[H] has slashed [src]!</span>")
-		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1)
-		if(prob(10))
-			new /obj/effect/decal/cleanable/blood/oil(src.loc)
-		healthcheck()
 
 /******************************************************************/
 // Navigation procs

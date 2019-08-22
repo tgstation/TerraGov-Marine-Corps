@@ -78,7 +78,7 @@
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	X.visible_message("<span class='notice'>\The [X] begins digging their claws into the ground.</span>", \
 	"<span class='notice'>We begin digging ourselves into place.</span>", null, 5)
-	if(!do_after(X, 4 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
+	if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 		on_deactivation()
 		X.selected_ability = null
 		X.update_action_button_icons()
@@ -156,7 +156,7 @@
 
 	succeed_activate()
 
-	if(!do_after(X, 3 SECONDS, FALSE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
 		to_chat(X, "<span class='warning'>We decide not to launch any acid.</span>")
 		return fail_activate()
 

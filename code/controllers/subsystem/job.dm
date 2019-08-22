@@ -199,7 +199,6 @@ SUBSYSTEM_DEF(job)
 	else //Something gone wrong if we got here.
 		var/message = "DO: [player] fell through handling unassigned"
 		JobDebug(message)
-		log_game(message)
 		message_admins(message)
 		RejectPlayer(player)
 

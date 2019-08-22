@@ -35,6 +35,11 @@
 /client/Click(atom/object, atom/location, control, params)
 	if(!control)
 		return
+	if(click_intercepted)
+		if(click_intercepted >= world.time)
+			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercepted = 0 //Just reset. Let's not keep re-checking forever.
 	var/ab = FALSE
 	var/list/L = params2list(params)
 
@@ -354,7 +359,7 @@
 */
 /mob/proc/CtrlClickOn(atom/A)
 	var/obj/item/held_thing = get_active_held_item()
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMSIG_ITEM_CLICKCTRLON_INTERCEPTED)
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED)
 		return
 	A.CtrlClick(src)
 
@@ -506,9 +511,10 @@
 		var/mob/living/carbon/human/H = usr
 		H.swap_hand()
 	else
-		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client?.eye ? usr.client.eye : usr), usr.client)
+		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"
-		T?.Click(location, control, params)
+		if(T)
+			T.Click(location, control, params)
 	. = TRUE
 
 

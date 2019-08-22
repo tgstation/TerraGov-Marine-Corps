@@ -180,6 +180,8 @@
 			roletext = "End of Round Deathmatch"
 		if(BE_ALIEN)
 			roletext = ROLE_XENOMORPH
+		if(BE_ALIEN_UNREVIVABLE)
+			roletext = "[ROLE_XENOMORPH] when unrevivable"
 		if(BE_QUEEN)
 			roletext = ROLE_XENO_QUEEN
 		if(BE_SURVIVOR)
@@ -193,8 +195,7 @@
 		if(!(player.client?.prefs?.be_special & role) || !player.ready)
 			continue
 		else if(is_banned_from(player.ckey, roletext))
-			continue	
-		log_game("[key_name(player)] had [roletext] enabled, so we are drafting them.")
+			continue
 		candidates += player.mind
 
 	//Shuffle the players list so that it becomes ping-independent.
@@ -458,6 +459,9 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		if(isnewplayer(M))
 			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
+			continue
+		if(!M.mind) //This proc is too important to prevent one admin shenanigan from runtiming it entirely
+			to_chat(M, "<br><br><h1><span class='danger'>You don't have a mind, if you believe this is not intended, please report it.</span></h1><br><br>")
 			continue
 
 		var/turf/picked

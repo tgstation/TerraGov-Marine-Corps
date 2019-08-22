@@ -33,6 +33,7 @@
 	name = "river_overlay"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = RIVER_OVERLAY_LAYER
+	plane = FLOOR_PLANE
 
 
 /turf/open/ground/river/Initialize()
@@ -296,7 +297,7 @@
 	. = ..()
 	if(bushes_spawn)
 		var/obj/structure/bush/B = new(src)
-		B.indestructable = TRUE
+		ENABLE_BITFIELD(B.resistance_flags, INDESTRUCTIBLE)
 
 
 /turf/open/ground/jungle/water

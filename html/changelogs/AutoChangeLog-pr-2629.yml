@@ -1,5 +1,0 @@
-author: "grinkgo"
-delete-after: True
-changes: 
-  - rscadd: "Added the G8 general utility pouch to the synth vendor."
-  - rscdel: "Removed the HealthMate HUD from the Essential Synthetic Set"

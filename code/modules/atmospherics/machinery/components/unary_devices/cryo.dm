@@ -241,9 +241,6 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		log_game("[key_name(usr)] put a [beaker] into [src], containing [reagentnames] at [AREACOORD(loc)].")
-		message_admins("[ADMIN_TPMONTY(usr)] put a [beaker] into [src], containing [reagentnames].")
-
 		user.visible_message("[user] adds \a [I] to \the [src]!", "You add \a [I] to \the [src]!")
 
 	else if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.

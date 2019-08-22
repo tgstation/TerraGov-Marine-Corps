@@ -24,7 +24,7 @@
 
 /datum/job/command/captain/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As the captain of the [CONFIG_GET(string/ship_name)] you are held by higher standard and are expected to act competently.
+	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
@@ -488,7 +488,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 /datum/job/medical/professor/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are the chief medical officer aboard the [CONFIG_GET(string/ship_name)], navy officer and supervisor to the medical department.
+	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name], navy officer and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
 
@@ -530,7 +530,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/job/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a military doctor stationed aboard the [CONFIG_GET(string/ship_name)].
+	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."})
 
@@ -706,16 +706,14 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	if(!length(GLOB.ai_spawn))
 		CRASH("attempted to spawn an AI with no landmark set")
 
+	if(!H.mind) //Could be a dummy.
+		return
+
 	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
 	H.mind.transfer_to(AI, TRUE)
-	qdel(H)
-
-
-/datum/job/ai/assign(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
 	if(preference_source?.prefs)
-		H.fully_replace_character_name(H.name, preference_source.prefs.synthetic_name)
-
-	return ..()
+		AI.fully_replace_character_name(AI.name, preference_source.prefs.ai_name)
+	qdel(H)
 
 
 /datum/job/ai/after_spawn(mob/living/L, mob/M, latejoin = FALSE)

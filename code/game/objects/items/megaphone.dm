@@ -27,8 +27,7 @@
 	if(!message)
 		return
 	message = capitalize(message)
-	log_game("[key_name(user)] used a megaphone to say: [message]")
-	user.log_talk(message, LOG_SAY)
+	user.log_talk(message, LOG_SAY, "(megaphone)")
 	if ((src.loc == user && usr.stat == 0))
 		audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>")
 

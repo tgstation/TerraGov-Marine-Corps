@@ -41,8 +41,10 @@
 /obj/item/radio/detpack/Destroy()
 	if(sound_timer)
 		deltimer(sound_timer)
+		sound_timer = null
 	if(detonation_pending)
 		deltimer(detonation_pending)
+		detonation_pending = null
 	if(plant_target && !boom) //whatever name you give it
 		loc = get_turf(src)
 		nullvars()
@@ -304,10 +306,12 @@
 /obj/item/radio/detpack/proc/disarm()
 	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 		timer = DETPACK_TIMER_MIN
-	deltimer(sound_timer)
+	if(sound_timer)
+		deltimer(sound_timer)
+		sound_timer = null
 	if(detonation_pending)
 		deltimer(detonation_pending)
-	sound_timer = null
+		detonation_pending = null
 	update_icon()
 
 /obj/item/radio/detpack/proc/do_detonate()

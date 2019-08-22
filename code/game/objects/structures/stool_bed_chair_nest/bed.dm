@@ -15,6 +15,10 @@
 	can_buckle = TRUE
 	buckle_lying = TRUE
 	throwpass = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
+	resistance_flags = XENO_DAMAGEABLE
+	hit_sound = 'sound/effects/metalhit.ogg'
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 1
 	var/foldabletype //To fold into an item (e.g. roller bed item)
@@ -22,7 +26,6 @@
 	var/obj/structure/closet/bodybag/buckled_bodybag
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
-	var/hit_bed_sound = 'sound/effects/metalhit.ogg' //sound player when attacked by a xeno
 
 /obj/structure/bed/update_icon()
 	if(base_bed_icon)
@@ -151,16 +154,8 @@ obj/structure/bed/Destroy()
 				qdel(src)
 
 /obj/structure/bed/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent == INTENT_HARM)
-		M.do_attack_animation(src)
-		playsound(src, hit_bed_sound, 25, 1)
-		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
-		"<span class='danger'>We slice [src] apart!</span>", null, 5)
-		if(buckled_mob || buckled_bodybag)
-			unbuckle()
-		destroy_structure()
-		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
-	else attack_hand(M)
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BED)
+	return ..()
 
 /obj/structure/bed/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -312,6 +307,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	foldabletype = /obj/item/roller/medevac
 	base_bed_icon = "stretcher"
 	accepts_bodybag = TRUE
+	resistance_flags = NONE
 	var/last_teleport = null
 	var/obj/item/medevac_beacon/linked_beacon = null
 	var/stretcher_activated

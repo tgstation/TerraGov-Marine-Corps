@@ -299,7 +299,7 @@
 				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
 					var/obj/structure/S = O
 					visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
-					S.destroy_structure() //We want to continue moving, so we do not reset throwing.
+					S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 				else O.hitby(src, speed) //This resets throwing.
 		return TRUE
 
@@ -571,8 +571,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	obj_integrity -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
-	update_health(TRUE)
+	take_damage(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X))
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)

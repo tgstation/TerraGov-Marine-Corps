@@ -17,7 +17,6 @@
 	active_power_usage = 0
 	power_channel = ENVIRON
 	layer = GAS_PIPE_HIDDEN_LAYER //under wires
-	resistance_flags = FIRE_PROOF
 	max_integrity = 200
 	var/can_unwrench = 0
 	var/initialize_directions = 0
@@ -63,7 +62,6 @@
 
 	SSair.atmos_machinery -= src
 
-	dropContents()
 	if(pipe_vision_img)
 		qdel(pipe_vision_img)
 
@@ -221,9 +219,8 @@
 			var/obj/item/pipe/stored = new construction_type(loc, null, dir, src)
 			stored.setPipingLayer(piping_layer)
 			if(!disassembled)
-				stored.obj_integrity = stored.max_integrity * 0.5
-			qdel(src)
-	..()
+				stored.take_damage(stored.max_integrity * 0.5)
+	return ..()
 
 /obj/machinery/atmospherics/proc/getpipeimage(iconset, iconstate, direction, col=rgb(255,255,255), piping_layer=2)
 
