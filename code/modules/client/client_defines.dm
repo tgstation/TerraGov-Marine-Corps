@@ -33,6 +33,7 @@
 	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
 	var/mouse_up_icon = null
 	var/mouse_down_icon = null
+	var/click_intercepted = FALSE //Check if current click was intercepted. Reset and return if TRUE. This is because there's no communication between Click(), MouseDown() and MouseUp().
 
 	//Sound related
 	var/played = FALSE
