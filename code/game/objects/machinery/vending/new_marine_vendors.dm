@@ -307,8 +307,8 @@
 			var/type_p = L[3]
 
 			var/item = new type_p(loc)
-			if(istype(item, /obj))
-				var/obj/O = item
+			if(isitem(item))
+				var/obj/item/O = item
 				usr.put_in_hands(O)
 
 			if(icon_vend)
