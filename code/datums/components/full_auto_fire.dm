@@ -19,7 +19,7 @@
 
 /datum/component/automatic_fire/Initialize(autofire_shot_delay, burstfire_shot_delay, shots_to_fire, firemode, parent_loc)
 	. = ..()
-	if(!isgun(parent))
+	if(!isgun(parent) && !istankweapon(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_GUN_FIREMODE_TOGGLE, .proc/wake_up)
 	RegisterSignal(parent, COMSIG_GUN_FIREDELAY_MODIFIED, .proc/modify_firedelay)
@@ -118,6 +118,7 @@
 
 
 /datum/component/automatic_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
+	to_chat(world, "mouse down")
 	var/list/modifiers = params2list(params) //If they're shift+clicking, for example, let's not have them accidentally shoot.
 	if(modifiers["shift"])
 		return
@@ -128,12 +129,14 @@
 	if(modifiers["alt"])
 		return
 
+	to_chat(world, "after checks")
 	if(source.mob.in_throw_mode)
 		return
-	if(!isturf(source.mob.loc)) //No firing inside lockers and stuff.
+	if(!isturf(source.mob.loc) && !istype(source.mob.loc, /obj/vehicle/tank)) //No firing inside lockers and stuff.
 		return
 	if(get_dist(source.mob, target) < 2) //Adjacent clicking.
 		return
+	to_chat(world, "after 2ndchecks")
 
 	if(isnull(location)) //Clicking on a screen object.
 		if(target.plane != CLICKCATCHER_PLANE) //The clickcatcher is a special case. We want the click to trigger then, under it.
@@ -142,8 +145,10 @@
 		if(!target)
 			CRASH("Failed to get the turf under clickcatcher")
 	
+	to_chat(world, "before signal")
 	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS)
 		return
+	to_chat(world, "after signal")
 
 	source.click_intercepted = world.time //From this point onwards Click() will no longer be triggered.
 
@@ -180,6 +185,11 @@
 	if(isgun(parent))
 		var/obj/item/weapon/gun/shoota = parent
 		if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
+			stop_autofiring()
+			return
+	if(istankweapon(parent))
+		var/obj/item/tank_weapon/secondary_weapon/shoota = parent
+		if(!shoota.on_autofire_start(shooter))
 			stop_autofiring()
 			return
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)

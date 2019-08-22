@@ -33,6 +33,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	ammo = new default_ammo(src)
 	accepted_ammo += default_ammo
 
+
 /obj/item/tank_weapon/secondary_weapon
 	name = "TGS 3 XENOCRUSHER tank machine gun"
 	desc = "A much better gun that shits out bullets at ridiculous speeds, don't get in its way!"
@@ -47,6 +48,43 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	)
 	cooldown = 0.3 SECONDS //Minimal cooldown
 	range_safety_check = 0
+
+/obj/item/tank_weapon/secondary_weapon/Initialize()
+	. = ..()
+	
+	AddComponent(/datum/component/automatic_fire, 3, 1, 3, GUN_FIREMODE_AUTOMATIC, owner)
+
+/obj/item/tank_weapon/secondary_weapon/proc/on_autofire_start(mob/living/shooter)
+	if(!can_fire())
+		return FALSE
+	return TRUE
+
+/obj/item/tank_weapon/secondary_weapon/proc/on_autofire_stop(shots_fired)
+	return
+
+/obj/item/tank_weapon/secondary_weapon/proc/autofire_bypass_check(datum/source, client/clicker, atom/target, turf/location, control, params)
+	if(clicker.mob.get_active_held_item() != src)
+		return COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS
+		
+/obj/item/tank_weapon/secondary_weapon/proc/do_autofire(datum/source, atom/target, mob/living/shooter, params, shots_fired)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIRE, target, shooter)
+	if(!can_fire())
+		return NONE
+	var/obj/item/projectile/P = new
+
+	var/list/mouse_control = params2list(params)
+	if(mouse_control["icon-x"])
+		P.p_x = text2num(mouse_control["icon-x"])
+	if(mouse_control["icon-y"])
+		P.p_y = text2num(mouse_control["icon-y"])
+		
+	log_combat(shooter, target, "fired the [src].")
+	P.generate_bullet(new ammo.default_ammo)
+	P.fire_at(target, owner, src, P.ammo.max_range, P.ammo.shell_speed)
+	lastfired = world.time
+	SEND_SIGNAL(src, COMSIG_HUMAN_GUN_AUTOFIRED, target, src, shooter)
+	ammo.current_rounds--
+	return COMPONENT_AUTOFIRE_SHOT_SUCCESS
 
 /obj/item/tank_weapon/apc_cannon
 	name = "MKV-7 utility payload launcher"
@@ -70,21 +108,17 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 	log_combat(user, T, "fired the [src].")
 	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 
-	// TODO: Fix this config?!
-	// if(!CONFIG_GET(flag/tank_mouth_noise))
-	// 	playsound(get_turf(owner), pick(fire_sounds), 60, 1)
-
 	ammo.current_rounds--
 	return TRUE
 
-/obj/item/tank_weapon/proc/can_fire(turf/T)
+/obj/item/tank_weapon/proc/can_fire(turf/T = null)
 	if(world.time < lastfired + cooldown)
-		return FALSE
-	if(get_dist(T, src) <= range_safety_check)
-		to_chat(owner.gunner, "<span class='warning'>Firing [src] here would damage your vehicle!</span>")
 		return FALSE
 	if(ammo.current_rounds <= 0)
 		playsound(get_turf(src), 'sound/weapons/guns/fire/empty.ogg', 100, 1)
+		return FALSE
+	if(istype(T) && get_dist(T, src) <= range_safety_check)
+		to_chat(owner.gunner, "<span class='warning'>Firing [src] here would damage your vehicle!</span>")
 		return FALSE
 	return TRUE
 

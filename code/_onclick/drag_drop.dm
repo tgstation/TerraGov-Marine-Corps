@@ -27,9 +27,9 @@
 	if(mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
 
-	if(istype(mob.loc, /obj/vehicle/tank)) //This code is related to tank + vehicle autofire code, as seen in tank.dm
-		var/obj/vehicle/tank/our_tank = mob.loc
-		our_tank.onMouseDown(object,mob,params)
+	// if(istype(mob.loc, /obj/vehicle/tank)) //This code is related to tank + vehicle autofire code, as seen in tank.dm
+	// 	var/obj/vehicle/tank/our_tank = mob.loc
+	// 	our_tank.onMouseDown(object, mob, params)
 
 /client/MouseUp(atom/object, turf/location, control, params)
 	if(!control)
@@ -39,9 +39,9 @@
 	if(mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
 
-	if(istype(mob.loc, /obj/vehicle/tank)) //This code is related to tank + vehicle autofire code, as seen in tank.dm
-		var/obj/vehicle/tank/our_tank = mob.loc
-		our_tank.onMouseUp(object,mob,params)
+	// if(istype(mob.loc, /obj/vehicle/tank)) //This code is related to tank + vehicle autofire code, as seen in tank.dm
+	// 	var/obj/vehicle/tank/our_tank = mob.loc
+	// 	our_tank.onMouseUp(object,mob,params)
 
 /client/MouseDrag(atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params) //The order seems to be wrong in the reference.
 	var/list/L = params2list(params)
