@@ -456,7 +456,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
-	var/client/C = usr.client
 	if(marked)
 		if(marked == usr.client.key)
 			if(alert("Do you want to unmark this ticket?", "Confirmation", "Yes", "No") != "Yes")
