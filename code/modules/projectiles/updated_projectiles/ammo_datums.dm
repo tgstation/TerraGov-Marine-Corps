@@ -343,7 +343,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	debilitate = list(4,4,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
-	shell_speed = 1
+	shell_speed = 2
 
 /datum/ammo/bullet/pistol/mankey/New()
 	..()
