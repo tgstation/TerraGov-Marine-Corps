@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Full-auto and autoburst modes added, along with actions to toggle those. Dakka-dakka!"
