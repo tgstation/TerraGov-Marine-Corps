@@ -613,13 +613,10 @@ and you're good to go.
 	if(gun_on_cooldown(user))
 		return
 
-	var/turf/curloc = get_turf(user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
-	if (!targloc || !curloc)
+	if(!targloc)
+		CRASH("Fire called on [QDELETED(target) ? "qdeleted" : "invalid loc"] target ([target])")
 		return //Something has gone wrong...
-	var/atom/original_target = target //This is for burst mode, in case the target changes per scatter chance in between fired bullets.
-
-	
 
 	/*
 	This is where burst is established for the proceeding section. Which just means the proc loops around that many times.
@@ -647,6 +644,11 @@ and you're good to go.
 			click_empty(user)
 			break
 
+		if(QDELETED(target)) //This can happen on burstfire, as it's a sleeping proc.
+			if(QDELETED(targloc))
+				break
+			target = targloc //If the original targets gets destroyed, fire at its location.
+
 		var/recoil_comp = 0 //used by bipod and akimbo firing
 
 		//checking for a gun in other hand to fire akimbo
@@ -670,8 +672,7 @@ and you're good to go.
 			if(mouse_control["icon-y"])
 				projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
 
-		target = original_target ? original_target : targloc
-		target = simulate_scatter(projectile_to_fire, target, targloc, user)
+		var/target_scatter = simulate_scatter(projectile_to_fire, target, targloc, user)
 
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
@@ -682,21 +683,16 @@ and you're good to go.
 		if(user)
 			play_fire_sound(user)
 
-		if(get_turf(target) != get_turf(user))
-			simulate_recoil(recoil_comp, user)
+		simulate_recoil(recoil_comp, user)
 
-			//This is where the projectile leaves the barrel and deals with projectile code only.
-			//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-			projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed)
-			//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-			last_fired = world.time
-
-		else // This happens in very rare circumstances when you're moving a lot while burst firing, so I'm going to toss it up to guns jamming.
-			clear_jam(projectile_to_fire,user)
-			break
+		//This is where the projectile leaves the barrel and deals with projectile code only.
+		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+		projectile_to_fire.fire_at(target_scatter, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed)
+		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		last_fired = world.time
 
 		//>>POST PROCESSING AND CLEANUP BEGIN HERE.<<
-		if(target) //If we had a target, let's do a muzzle flash.
+		if(!QDELETED(target)) //If the target didn't get destroyed, let's do a muzzle flash. TODO: rework this to use the same angle as `fire_at` and flash before firing.
 			var/angle = round(Get_Angle(user,target))
 			muzzle_flash(angle,user)
 

@@ -104,15 +104,17 @@
 		projectile_speed = speed
 	if(!isnull(range))
 		proj_max_range = range
-	if(!original_target)
-		original_target = target
+	original_target = target
 
-	// VVVVVVVVVVV
+	//Safety checks. Neither should happen without a coder oofing, but if they do it risks breaking a lot, so better safe than sorry.
+	if(QDELETED(original_target))
+		stack_trace("fire_at called on a QDELETED target ([target]).")
+		qdel(src)
+		return
 	if(projectile_speed <= 0)
 		stack_trace("[src] achieved [projectile_speed] velocity somehow at fire_at. Type: [type]. From: [target]. Shot by: [shooter].")
 		qdel(src)
 		return
-	// ^^^^^^^^^^^
 
 	if(shooter)
 		firer = shooter
@@ -281,11 +283,10 @@
 CEILING() is used on some contexts:
 1) For absolute pixel locations to tile conversions, as the coordinates are read from left-to-right (from low to high numbers) and each tile occupies 32 pixels. 
 So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we are on the 33th (to 64th) we are then on the second tile.
-2) For relative pixel coordinates as floats to integers. No special reason, we could use FLOOR()/round() instead and it would tend to offset things a little down instead of up.
-3) For number of pixel moves, as it is counting number of full (pixel) moves required.
+2) For number of pixel moves, as it is counting number of full (pixel) moves required.
 */
 #define PROJ_ABS_PIXEL_TO_TURF(abspx, abspy, zlevel) (locate(CEILING((abspx / 32), 1), CEILING((abspy / 32), 1), zlevel))
-#define PROJ_ABS_PIXEL_TO_REL(apc) (MODULUS(apc, 32) || 32) //Absolute pixel coordinate to relative. If MODULUS is zero, then we want to return 32, as pixel coordinates within a tile range from 1 to 32.
+#define PROJ_ABS_PIXEL_TO_REL(apc) (MODULUS(apc, 32) || 32) //Absolute pixel coordinate to relative. If MODULUS is zero, then we want to return 32, as pixel coordinates range from 1 to 32 within a tile.
 #define PROJ_ANIMATION_SPEED ((end_of_movement/projectile_speed) || (required_moves/projectile_speed)) //Movements made times deciseconds per movement.
 
 /obj/item/projectile/proc/projectile_batch_move(required_moves)
@@ -400,17 +401,17 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/new_pixel_x = PROJ_ABS_PIXEL_TO_REL(apx) //The final pixel offset after this movement. Float value.
 	var/new_pixel_y = PROJ_ABS_PIXEL_TO_REL(apy)
 	if(projectile_speed > 5) //At this speed the animation barely shows. Changing the vars through animation alone takes almost 5 times the CPU than setting them directly. No need for that if there's nothing to show for it.
-		pixel_x = CEILING(new_pixel_x, 1) - 16
-		pixel_y = CEILING(new_pixel_y, 1) - 16
+		pixel_x = round(new_pixel_x, 1) - 16
+		pixel_y = round(new_pixel_y, 1) - 16
 		forceMove(last_processed_turf)
 	else //Pixel shifts during the animation, which happens after the fact has happened. Light travels slowly here...
 		var/old_pixel_x = new_pixel_x - x_pixel_dist_travelled //The pixel offset relative to the new position of where we came from. Float value.
 		var/old_pixel_y = new_pixel_y - y_pixel_dist_travelled
-		pixel_x = CEILING(old_pixel_x, 1) - 16 //Projectile's sprite is displaced back to where it came from through relative pixel offset. Integer value.
-		pixel_y = CEILING(old_pixel_y, 1) - 16 //We substract 16 because this value should range from 1 to 32, but pixel offset usually ranges within the same tile from -15 to 16 (depending on the sprite).
+		pixel_x = round(old_pixel_x, 1) - 16 //Projectile's sprite is displaced back to where it came from through relative pixel offset. Integer value.
+		pixel_y = round(old_pixel_y, 1) - 16 //We substract 16 because this value should range from 1 to 32, but pixel offset usually ranges within the same tile from -15 to 16 (depending on the sprite).
 		if(last_processed_turf != loc)
 			forceMove(last_processed_turf)
-		animate(src, pixel_x = (CEILING(new_pixel_x, 1) - 16), pixel_y = (CEILING(new_pixel_y, 1) - 16), time = PROJ_ANIMATION_SPEED, flags = ANIMATION_END_NOW) //Then we represent the movement through the animation, which updates the position to the new and correct one.
+		animate(src, pixel_x = (round(new_pixel_x, 1) - 16), pixel_y = (round(new_pixel_y, 1) - 16), time = PROJ_ANIMATION_SPEED, flags = ANIMATION_END_NOW) //Then we represent the movement through the animation, which updates the position to the new and correct one.
 
 	last_projectile_move = world.time
 	if(end_of_movement) //We hit something ...probably!
