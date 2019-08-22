@@ -261,6 +261,7 @@ Defined in conflicts.dm of the #defines folder.
 	silence_mod = 1
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
+	attach_shell_speed_mod = -1
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
@@ -280,7 +281,6 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod = -CONFIG_GET(number/combat_define/min_hit_damage_mult)
 	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
 	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
-	attach_shell_speed_mod = -CONFIG_GET(number/combat_define/min_shell_speed)
 	attach_icon = pick("suppressor_a","suppressor2_a")
 
 	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
@@ -332,12 +332,12 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	icon_state = "ebarrel"
 	attach_icon = "ebarrel_a"
+	attach_shell_speed_mod = -1
 
 /obj/item/attachable/extended_barrel/Initialize()
 	. = ..()
 	accuracy_mod = CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
 	accuracy_unwielded_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	attach_shell_speed_mod = CONFIG_GET(number/combat_define/min_shell_speed)
 	damage_mod = -CONFIG_GET(number/combat_define/min_hit_damage_mult)
 	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
 	size_mod = 1
@@ -349,12 +349,13 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
+	attach_shell_speed_mod = 1
+
 
 /obj/item/attachable/heavy_barrel/Initialize()
 	. = ..()
 	accuracy_mod = -CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
 	damage_mod = CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
-	attach_shell_speed_mod = CONFIG_GET(number/combat_define/slow_shell_speed)
 	delay_mod = CONFIG_GET(number/combat_define/low_fire_delay)
 	scatter_mod = CONFIG_GET(number/combat_define/min_scatter_value)
 	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
