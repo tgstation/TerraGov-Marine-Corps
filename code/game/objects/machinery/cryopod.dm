@@ -320,7 +320,7 @@
 
 	return ..()
 
-/obj/item/proc/store_in_cryo(list/items)
+/obj/item/proc/store_in_cryo(list/items, move_loc = TRUE)
 
 	//bandaid for special cases (mob_holders, intellicards etc.) which are NOT currently handled on their own.
 	if(locate(/mob) in src)
@@ -336,15 +336,14 @@
 	if(flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP) || (is_type_in_typecache(src, GLOB.do_not_preserve_empty) && !length(contents)))
 		items -= src
 		qdel(src)
-	else
+	else if(move_loc)
 		loc = null
 	return items
 
 /obj/item/storage/store_in_cryo(list/items)
 	for(var/O in src)
 		var/obj/item/I = O
-		remove_from_storage(I, loc)
-		items = I.store_in_cryo(items)
+		items = I.store_in_cryo(items, FALSE)
 	return ..()
 
 /obj/item/clothing/suit/storage/store_in_cryo(list/items)
@@ -428,7 +427,7 @@
 	go_out()
 
 /obj/machinery/cryopod/relaymove(mob/user)
-	if(user.incapacitated(TRUE)) 
+	if(user.incapacitated(TRUE))
 		return
 	go_out()
 
@@ -466,7 +465,7 @@
 	else
 		user.visible_message("<span class='notice'>[user] starts climbing into [src].</span>",
 		"<span class='notice'>You start climbing into [src].</span>")
-		
+
 
 	var/mob/initiator = helper ? helper : user
 	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
