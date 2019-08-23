@@ -54,6 +54,9 @@
 	var/current_specialists = 0
 	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
 
+	var/datum/job/SL = SSjob.GetJobType(/datum/job/marine/leader)
+	SL.total_positions = 1 // Force only one SL.
+
 	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
 	SG.total_positions = maximum_smartgunners
 
