@@ -812,9 +812,8 @@
 
 	if(AH && AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
-
 	if(AH && !AH.marked)
-		AH.marked = usr.client
+		AH.marked = usr.client.key
 		if(AH.tier == TICKET_MENTOR)
 			message_staff("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 		else if(AH.tier == TICKET_ADMIN)
@@ -822,7 +821,7 @@
 				return
 			message_admins("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 
-	else if(AH && AH.marked != usr.client)
+	else if(AH && AH.marked != usr.client.key)
 		to_chat(usr, "<span class='warning'>This ticket has already been marked by [AH.marked], click the mark button to replace them.</span>")
 		return
 	var/msg = input("Message:", "Private message to [key_name(C, FALSE, FALSE)]") as message|null
