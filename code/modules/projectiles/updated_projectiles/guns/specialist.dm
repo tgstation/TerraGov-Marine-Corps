@@ -340,12 +340,12 @@
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 16
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
+	wield_delay = 1.6 SECONDS
+	aim_slowdown = SLOWDOWN_ADS_SMARTGUN
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
-	var/restriction_toggled = 1 //Begin with the safety on.
+	var/restriction_toggled = TRUE //Begin with the safety on.
 	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
