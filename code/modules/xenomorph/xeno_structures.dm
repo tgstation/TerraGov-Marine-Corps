@@ -1,4 +1,5 @@
 /obj/structure/resin
+	hit_sound = "alien_resin_break"
 	layer = RESIN_STRUCTURE_LAYER
 	resistance_flags = UNACIDABLE
 
