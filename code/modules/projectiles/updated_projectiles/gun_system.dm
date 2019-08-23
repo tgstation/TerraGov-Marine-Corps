@@ -63,7 +63,7 @@
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
-	var/burst_delay 	= 1						//The delay in between shots. Lower = less delay = faster.
+	var/burst_delay 	= 0.1 SECONDS			//The delay in between shots. Lower = less delay = faster.
 	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 
 	//Energy Weapons
@@ -132,6 +132,7 @@
 	handle_starting_attachment()
 
 	setup_firemodes()
+	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after set_gun_config_values(), handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 
 //Called by the gun's New(), set the gun variables' values.
@@ -659,7 +660,8 @@ and you're good to go.
 						dual_wield = TRUE
 						recoil_comp++
 
-		apply_bullet_effects(projectile_to_fire, user, i, reflex, dual_wield) //User can be passed as null.
+		apply_gun_modifiers(projectile_to_fire, target)
+		setup_bullet_accuracy(projectile_to_fire, user, i, dual_wield) //User can be passed as null.
 
 		if(params)
 			var/list/mouse_control = params2list(params)
@@ -676,6 +678,9 @@ and you're good to go.
 			stack_trace("projectile malfunctioned while firing. User: [user]")
 			flags_gun_features &= ~GUN_BURST_FIRING
 			return
+
+		if(user)
+			play_fire_sound(user)
 
 		if(get_turf(target) != get_turf(user))
 			simulate_recoil(recoil_comp, user)
@@ -737,10 +742,12 @@ and you're good to go.
 			return // no ..(), already invoked above
 
 		user.visible_message("<span class='danger'>[user] fires [src] point blank at [M]!</span>")
-		apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
+		apply_gun_modifiers(projectile_to_fire, M)
+		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
 		projectile_to_fire.setDir(get_dir(user, M))
 		projectile_to_fire.distance_travelled = get_dist(user, M)
 		simulate_recoil(1, user) // 1 is a scalar value not boolean
+		play_fire_sound(user)
 
 		if(projectile_to_fire.ammo.bonus_projectiles_amount)
 			var/obj/item/projectile/BP
@@ -884,6 +891,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
+	SEND_SIGNAL(src, COMSIG_GUN_CLICKEMPTY)
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
@@ -892,10 +900,26 @@ and you're good to go.
 	else
 		playsound(src, dry_fire_sound, 25, 1, 5)
 
-//This proc applies some bonus effects to the shot/makes the message when a bullet is actually fired.
-/obj/item/weapon/gun/proc/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, reflex = 0, dual_wield = 0)
-	var/actual_sound = fire_sound
 
+/obj/item/weapon/gun/proc/play_fire_sound(mob/user)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
+		if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
+			playsound(user, active_attachable.fire_sound, 50)
+		return
+	if(flags_gun_features & GUN_SILENCED)
+		playsound(user, fire_sound, 25)
+		return
+	playsound(user, fire_sound, 60)
+
+
+/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/item/projectile/projectile_to_fire, atom/target)
+	projectile_to_fire.shot_from = src
+	projectile_to_fire.damage *= damage_mult
+	projectile_to_fire.damage_falloff *= damage_falloff_mult
+	projectile_to_fire.projectile_speed += shell_speed_mod
+
+
+/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
 	var/gun_scatter = scatter_unwielded
 
@@ -919,31 +943,31 @@ and you're good to go.
 			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.1*rand(2,4))
 			gun_scatter += 10*rand(3,5)
 
+	if(user)
 	// Apply any skill-based bonuses to accuracy
-	if(user?.mind?.cm_skills)
-		var/skill_accuracy = 0
-		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			skill_accuracy = -1
-		else
-			switch(gun_skill_category)
-				if(GUN_SKILL_PISTOLS)
-					skill_accuracy = user.mind.cm_skills.pistols
-				if(GUN_SKILL_SMGS)
-					skill_accuracy = user.mind.cm_skills.smgs
-				if(GUN_SKILL_RIFLES)
-					skill_accuracy = user.mind.cm_skills.rifles
-				if(GUN_SKILL_SHOTGUNS)
-					skill_accuracy = user.mind.cm_skills.shotguns
-				if(GUN_SKILL_HEAVY_WEAPONS)
-					skill_accuracy = user.mind.cm_skills.heavy_weapons
-				if(GUN_SKILL_SMARTGUN)
-					skill_accuracy = user.mind.cm_skills.smartgun
-				if(GUN_SKILL_SPEC)
-					skill_accuracy = user.mind.cm_skills.spec_weapons
-		if(skill_accuracy)
-			gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
+		if(user.mind?.cm_skills)
+			var/skill_accuracy = 0
+			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+				skill_accuracy = -1
+			else
+				switch(gun_skill_category)
+					if(GUN_SKILL_PISTOLS)
+						skill_accuracy = user.mind.cm_skills.pistols
+					if(GUN_SKILL_SMGS)
+						skill_accuracy = user.mind.cm_skills.smgs
+					if(GUN_SKILL_RIFLES)
+						skill_accuracy = user.mind.cm_skills.rifles
+					if(GUN_SKILL_SHOTGUNS)
+						skill_accuracy = user.mind.cm_skills.shotguns
+					if(GUN_SKILL_HEAVY_WEAPONS)
+						skill_accuracy = user.mind.cm_skills.heavy_weapons
+					if(GUN_SKILL_SMARTGUN)
+						skill_accuracy = user.mind.cm_skills.smartgun
+					if(GUN_SKILL_SPEC)
+						skill_accuracy = user.mind.cm_skills.spec_weapons
+			if(skill_accuracy)
+				gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
-	if(user) //The gun only messages when fired by a user.
 		projectile_to_fire.firer = user
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
@@ -951,38 +975,9 @@ and you're good to go.
 			if(C.stagger)
 				gun_scatter += 30
 
-		//firing from an attachment
-		if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-			if(active_attachable.fire_sound) //If we're firing from an attachment, use that noise instead.
-				playsound(user, active_attachable.fire_sound, 50)
-			user.visible_message(
-			"<span class='danger'>[user] fires [active_attachable][reflex ? " by reflex":""]!</span>", \
-			"<span class='warning'>You fire [active_attachable][reflex ? "by reflex":""]!</span>", \
-			"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
-			)
-		else
-			if(!(flags_gun_features & GUN_SILENCED))
-				playsound(user, actual_sound, 60)
-				if(bullets_fired == 1)
-					user.visible_message(
-					"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0, current_mag.current_rounds)]</b>/[current_mag.max_rounds]" : ""]</span>", \
-					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
-					)
-			else
-				playsound(user, actual_sound, 25)
-				if(bullets_fired == 1)
-					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0, current_mag.current_rounds)]</b>/[current_mag.max_rounds]" : ""]</span>")
-
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
-	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
-	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage_falloff * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
-	projectile_to_fire.projectile_speed += shell_speed_mod
-	projectile_to_fire.shot_from = src
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
-
-	return TRUE
 
 /obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, mob/user)
 	var/total_scatter = projectile_to_fire.scatter
@@ -1143,7 +1138,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
 		return NONE //By default, let people CTRL+grab others if they are one-handing the weapon.
-	. = COMSIG_ITEM_CLICKCTRLON_INTERCEPTED
+	. = COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))

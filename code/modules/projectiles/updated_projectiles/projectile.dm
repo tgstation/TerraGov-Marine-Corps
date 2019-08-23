@@ -762,34 +762,52 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
 
+
+#define BULLET_MESSAGE_NO_SHOOTER 0
+#define BULLET_MESSAGE_HUMAN_SHOOTER 1
+#define BULLET_MESSAGE_OTHER_SHOOTER 2
+
 /mob/living/proc/bullet_message(obj/item/projectile/P)
-	if(!P) return
-
-	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		to_chat(src, "[isxeno(src) ? "<span class='xenodanger'>" : "<span class='highdanger'>" ]You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
-	else
-		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", \
-						"<span class='highdanger'>You are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)
-
-	if(isliving(P.firer))
-		var/mob/living/firingMob = P.firer
-		var/turf/T = get_turf(firingMob)
-		if(ishuman(firingMob) && ishuman(src) && !firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
-			log_combat(firingMob, src, "shot", P)
-			log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
-			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
-			GLOB.round_statistics.total_bullet_hits_on_marines++
-		else
-			log_combat(firingMob, src, "shot", P)
-			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
-		return
-
-	if(P.firer)
-		log_combat(P.firer, src, "shot", P)
-		msg_admin_attack("[ADMIN_TPMONTY(P.firer)] shot [ADMIN_TPMONTY(src)] with a [P]")
-	else
+	if(!P.firer)
 		log_message("SOMETHING?? shot [key_name(src)] with a [P]", LOG_ATTACK)
 		msg_admin_attack("SOMETHING?? shot [ADMIN_TPMONTY(src)] with a [P])")
+		return BULLET_MESSAGE_NO_SHOOTER
+	var/turf/T = get_turf(P.firer)
+	log_combat(P.firer, src, "shot", P)
+	msg_admin_attack("[ADMIN_TPMONTY(P.firer)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
+	if(ishuman(P.firer))
+		SEND_SOUND(P.firer, get_sfx("ballistic hitmarker"))
+		return BULLET_MESSAGE_HUMAN_SHOOTER
+	return BULLET_MESSAGE_OTHER_SHOOTER
+
+/mob/living/carbon/xenomorph/bullet_message(obj/item/projectile/P)
+	. = ..()
+	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
+		to_chat(src, "<span class='xenodanger'>We've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
+	else
+		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>",
+		"<span class='xenodanger'>We are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)
+
+/mob/living/carbon/human/bullet_message(obj/item/projectile/P)
+	. = ..()
+	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
+		to_chat(src, "<span class='highdanger'>You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
+	else
+		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>",
+		"<span class='highdanger'>You are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)
+	if(. != BULLET_MESSAGE_HUMAN_SHOOTER)
+		return
+	var/mob/living/carbon/human/firingMob = P.firer
+	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
+		var/turf/T = get_turf(firingMob)
+		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
+		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
+		GLOB.round_statistics.total_bullet_hits_on_marines++
+
+#undef BULLET_MESSAGE_NO_SHOOTER
+#undef BULLET_MESSAGE_HUMAN_SHOOTER
+#undef BULLET_MESSAGE_OTHER_SHOOTER
+
 
 //Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals
 /proc/get_adj_simple(atom/Loc1,atom/Loc2)

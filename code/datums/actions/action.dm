@@ -8,6 +8,7 @@
 	var/action_icon_state = "default"
 	var/background_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "template"
+	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
 
 /datum/action/New(Target)
 	target = Target
@@ -128,4 +129,3 @@
 
 	if(reload_screen)
 		client.screen += hud_used.hide_actions_toggle
-
