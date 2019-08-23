@@ -124,6 +124,8 @@
 
 #define isitem(A) (istype(A, /obj/item))
 
+#define isgun(A) (istype(A, /obj/item/weapon/gun))
+
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
 #define iswelder(I) (istype(I, /obj/item/tool/weldingtool))

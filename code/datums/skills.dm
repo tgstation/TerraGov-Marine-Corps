@@ -14,20 +14,20 @@
 	//used to allow observers to bypass possible skill checks mainly found on examine().
 	var/omnighost = FALSE
 
-/datum/skills/New(mob/target, datum/skillset/S)
+/datum/skills/New(mob/target)
 	if(!target)
 		stack_trace("[type] created without an assigned mind owner arg.")
 		return
 	owner = target
 	if(owner.current)
-		owner.current += /mob/proc/check_skills
+		owner.current.verbs += /mob/proc/check_skills
 	for(var/A in skill_list)
 		skill_list[A] = SKILL_LEVEL_NONE
 
 /datum/skills/Destroy()
 	if(owner)
 		if(owner.current)
-			owner.current -= /mob/proc/check_skills
+			owner.current.verbs -= /mob/proc/check_skills
 		owner.cm_skills = null
 		owner = null
 	return ..()
@@ -55,6 +55,9 @@
 		if(V)
 			LAZYREMOVE(skill_mods[A], V)
 			LAZYREMOVE(skill_mod_ids[A], id)
+			if(!skill_mod_ids[A])
+				skill_mod_ids -= A
+				skill_mods -= A
 			cached_skills_dat = null
 			if(!LAZYLEN(skill_mods))
 				skill_mods = null
@@ -84,12 +87,14 @@
 				dat += "You are seemengly devoid of any sort of skill."
 			else
 				for(var/index in ALL_SKILL_TYPES)
-					var/value = S.skillset[index]
+					var/value = S.skill_list[index]
 					var/font_color
 					if(S.skill_mods)
-						value += S.skill_mods[index]
-						font_color = S.skill_mods > 0 ? "#29b245" : "#ff0000"
-					dat += "[index]: [font_color ? "<font color='#487553'><b>[value]</b></font>" : value]<br>"
+						var/mod = S.skill_mods[index]
+						if(mod)
+							value += mod
+							font_color = mod > 0 ? "#29b245" : "#ff0000"
+					dat += "[index]: [font_color ? "<font color='[font_color]'><b>[value]</b></font>" : value]<br>"
 			S.cached_skills_dat = dat
 
 	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
@@ -594,7 +599,7 @@
 	name = "Guardsman"
 	cqc = SKILL_LEVEL_NOVICE
 	melee_weapons = SKILL_LEVEL_TRAINED
-	
+
 	// guardsmen don't use pistol, so he doesn't have experience with them, unless they use boltpistols
 	// shotguns too
 	firearms = SKILL_LEVEL_PROFESSIONAL
@@ -603,11 +608,11 @@
 
 /datum/skillset/imperial/SL
 	name = "Guardsman Sergeant" // veteran guardsman, practically better in all
-	
+
 	heavy_weapons = SKILL_LEVEL_TRAINED
 	smartgun = SKILL_LEVEL_NONE // can use smartgun
 	spec_weapons = SKILL_LEVEL_TRAINED
-	
+
 	// higher SL skills
 	engineer = SKILL_LEVEL_PROFESSIONAL
 	construction = SKILL_LEVEL_PROFESSIONAL
@@ -647,7 +652,7 @@
 	name = "Space Marine Apothecary" // a slightly less stronger space marine with medical skills
 	cqc = SKILL_LEVEL_EXPERT
 	melee_weapons = SKILL_LEVEL_TRAINED
-	
+
 	medical = SKILL_LEVEL_EXPERT
 	surgery = SKILL_LEVEL_EXPERT
 

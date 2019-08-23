@@ -84,7 +84,7 @@ Make the TGMC proud!"})
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	shoes = /obj/item/clothing/shoes/marine
-	gloves = /obj/item/clothing/gloves/marine/officer 
+	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/megaphone
@@ -656,7 +656,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
-			H.mind.set_skills(GLOB.skillsets[/datum/skillset/early_synthetic])
+			H.mind.gain_skills(GLOB.skillsets[/datum/skillset/early_synthetic])
 		new_name = preference_source.prefs.synthetic_name
 
 	if(!new_name || new_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.

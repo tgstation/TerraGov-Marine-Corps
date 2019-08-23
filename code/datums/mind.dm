@@ -122,8 +122,7 @@
 /mob/living/carbon/human/mind_initialize()
 	. = ..()
 	if(!mind.cm_skills)
-		mind.cm_skills = new
-		mind.set_skills(GLOB.skillsets[DEFAULT_SKILLSET])
+		mind.gain_skills(GLOB.skillsets[DEFAULT_SKILLSET])
 
 
 /mob/living/carbon/xenomorph/mind_initialize()
@@ -145,7 +144,7 @@
 	. = ..()
 	mind.assigned_role = "Animal"
 
-/datum/mind/proc/set_skills(datum/skillset/S)
+/datum/mind/proc/gain_skills(datum/skillset/S)
 	if(!cm_skills)
 		cm_skills = new(src)
 	else if(cm_skills.skillset)

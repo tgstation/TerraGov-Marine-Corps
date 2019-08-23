@@ -40,6 +40,12 @@
 #define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
 #define COMSIG_TOPIC "handle_topic"                             //generic topic handler (usr, href_list)
 
+// /datum/component signals
+#define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
+	#define COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)
+#define COMSIG_AUTOFIRE_SHOT "autofire_shot"
+	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
+
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
 #define COMSIG_AREA_EXITED "area_exited" 							//from base of area/Exited(): (atom/movable/M)
@@ -62,6 +68,13 @@
 #define COMSIG_DBLCLICK_ALT "dblclick_alt"
 #define COMSIG_DBLCLICK_CTRL "dblclick_ctrl"
 
+
+// /client signals
+#define COMSIG_CLIENT_MOUSEDOWN "client_mousedown"			//from base of client/MouseDown(): (/client, object, location, control, params)
+#define COMSIG_CLIENT_MOUSEUP "client_mouseup"				//from base of client/MouseUp(): (/client, object, location, control, params)
+	#define COMPONENT_CLIENT_MOUSEUP_INTERCEPT (1<<0)
+#define COMSIG_CLIENT_MOUSEDRAG "client_mousedrag"			//from base of client/MouseUp(): (/client, object, location, control, params)
+#define COMSIG_CLIENT_DISCONNECTED "client_disconnecred"	//from base of /client/Del(): (/client)
 
 
 // /atom signals
@@ -118,11 +131,17 @@
 	#define COMPONENT_NO_ATTACK_OBJ 1
 
 #define COMSIG_ITEM_CLICKCTRLON "item_ctrlclickon"					//from base of mob/CtrlClickOn(): (/atom, /mob)
-	#define COMSIG_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
+	#define COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 	#define COMPONENT_GUN_FIRED 1
+#define COMSIG_GUN_AUTOFIRE "gun_autofire"
+#define COMSIG_GUN_CLICKEMPTY "gun_clickempty"
+#define COMSIG_GUN_FIREMODE_TOGGLE "gun_firemode_toggle"		//from /obj/item/weapon/gun/verb/toggle_firemode()
+#define COMSIG_GUN_FIREDELAY_MODIFIED "gun_firedelay_modified"
+#define COMSIG_GUN_BURSTDELAY_MODIFIED "gun_burstdelay_modified"
+#define COMSIG_GUN_BURSTAMOUNT_MODIFIED "gun_burstamount_modified"
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
@@ -140,6 +159,7 @@
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+#define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): () 
 
 //mob/living signals
 #define COMSIG_LIVING_DO_RESIST			"living_do_resist"		//from the base of /mob/living/do_resist()
@@ -148,6 +168,7 @@
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
+#define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
 
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
@@ -293,6 +314,7 @@
 #define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"			//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
 
 #define COMSIG_HUMAN_GUN_FIRED "human_gun_fired"				//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
+#define COMSIG_HUMAN_GUN_AUTOFIRED "human_gun_autofired"
 #define COMSIG_HUMAN_ATTACHMENT_FIRED "human_attachment_fired"
 #define COMSIG_HUMAN_ITEM_ATTACK "human_item_attack"			//from base of obj/item/attack(): (/mob/living/target, obj/item/I, /mob/living/carbon/human/user)
 #define COMSIG_HUMAN_ITEM_THROW "human_item_throw"

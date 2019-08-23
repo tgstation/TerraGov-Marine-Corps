@@ -29,7 +29,7 @@
 			to_chat(usr, "<span class='warning'>Ticket [ahelp_ref] has been deleted!</span>")
 			return
 
-		AH.Action(href_list["ahelp_action"])		
+		AH.Action(href_list["ahelp_action"])
 
 
 	else if(href_list["ahelp_tickets"])
@@ -700,20 +700,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!ref)
 			return
 		var/datum/fax/F = GLOB.faxes[ref]
-		if(!F || F.admin || F.marked == usr.client)
+		if(!F || F.admin || F.marked == usr.client.key)
 			return
 
 		if(F.marked)
 			switch(alert("This fax has already been marked by [F.marked], do you want to replace them?", "Warning", "Replace", "Unmark", "Cancel"))
 				if("Replace")
-					F.marked = usr.client
+					F.marked = usr.client.key
 					message_staff("[key_name_admin(usr)] has re-marked a fax from [key_name_admin(F.sender)].")
 				if("Unmark")
 					F.marked = null
 					message_staff("[key_name_admin(usr)] has un-marked a fax from [key_name_admin(F.sender)].")
 			return
 
-		F.marked = usr.client
+		F.marked = usr.client.key
 		message_staff("[key_name_admin(usr)] has marked a fax from [key_name_admin(F.sender)].")
 
 
@@ -730,13 +730,13 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(!F || F.admin)
 				return
 
-			if(F.marked && F.marked != usr.client)
+			if(F.marked && F.marked != usr.client.key)
 				to_chat(usr, "<span class='warning'>This fax has already been marked by [F.marked], please unmark it to be able to proceed.")
 				return
 			else if(!F.marked)
-				F.marked = usr.client
+				F.marked = usr.client.key
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
-			
+
 			sender = F.sender
 
 		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
@@ -777,7 +777,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 						return
 					if(addressed == "Sender")
 						addressed_to = "[sender.real_name]"
-						
+
 				if(!addressed_to)
 					addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
 				var/message_body = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
@@ -1260,8 +1260,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		GLOB.custom_outfits += O
 
-		log_admin("[key_name(usr)] created a \"[O.name]\" outfit.") 
-		message_admins("[ADMIN_TPMONTY(usr)] created a \"[O.name]\" outfit.") 
+		log_admin("[key_name(usr)] created a \"[O.name]\" outfit.")
+		message_admins("[ADMIN_TPMONTY(usr)] created a \"[O.name]\" outfit.")
 
 
 	else if(href_list["load_outfit"])
@@ -1304,8 +1304,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		var/datum/outfit/O = locate(href_list["chosen_outfit"]) in GLOB.custom_outfits
 		GLOB.custom_outfits -= O
-		log_admin("[key_name(usr)] deleted the \"[O.name]\" outfit.") 
-		message_admins("[ADMIN_TPMONTY(usr)] deleted the \"[O.name]\" outfit.") 
+		log_admin("[key_name(usr)] deleted the \"[O.name]\" outfit.")
+		message_admins("[ADMIN_TPMONTY(usr)] deleted the \"[O.name]\" outfit.")
 		qdel(O)
 		outfit_manager()
 
@@ -1930,7 +1930,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/datum/skillset/S = pickedtype
 				previous = H.mind.cm_skills.name
 				change = S.name
-				H.mind.set_skills(S)
+				H.mind.gain_skills(S)
 			if("commstitle")
 				change = input("Input a comms title - \[Requisitions (Title)\]", "Edit Rank") as null|text
 				if(!change || !istype(H) || !H.mind)
@@ -2063,9 +2063,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 
 				X.transfer_to_hive(change)
-			
+
 			if("nicknumber")
-				previous = X.nicknumber 
+				previous = X.nicknumber
 
 				change = input("Select a nicknumber.", "Xeno Panel", previous) as null|num
 				if(!change || change == previous)
@@ -2079,7 +2079,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				X.generate_name()
 
 			if("upgrade")
-				previous = X.xeno_caste.upgrade 
+				previous = X.xeno_caste.upgrade
 
 				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)
 				if(!change || change == previous)
