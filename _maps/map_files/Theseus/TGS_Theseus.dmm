@@ -32698,7 +32698,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/holopad,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship,
 /area/mainship/living/briefing)
 "bBP" = (
 /obj/machinery/door/window/eastright/briefing,
@@ -32746,7 +32746,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/holopad,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bBV" = (
 /obj/machinery/light{
