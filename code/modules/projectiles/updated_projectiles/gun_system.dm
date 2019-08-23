@@ -668,7 +668,7 @@ and you're good to go.
 			if(mouse_control["icon-y"])
 				projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
 
-		var/firing_angle = get_angle_with_scatter((user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, target, user), projectile_to_fire.p_x, projectile_to_fire.p_y)
+		var/firing_angle = get_angle_with_scatter((user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
@@ -970,25 +970,18 @@ and you're good to go.
 
 
 
-/obj/item/weapon/gun/proc/get_scatter(starting_scatter, atom/target, mob/user)
+/obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
 	. = starting_scatter //projectile_to_fire.scatter
 
 	if(. <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
 		return 0
 
-	var/targdist = get_dist(target, get_turf(src))
-
 	switch(gun_firemode)
-		if(GUN_FIREMODE_BURSTFIRE) //Much higher chance on a burst.
+		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
 			if(flags_item & WIELDED && wielded_stable())
 				. += burst_amount * burst_scatter_mult
 			else
 				. += burst_amount * burst_scatter_mult * 5
-			if(targdist > world.view) //Long range burst shots have more chance to scatter.
-				. += 25
-		if(GUN_FIREMODE_SEMIAUTO)
-			if(targdist < 4) //No scatter on single fire for close targets.
-				return 0
 
 	if(user?.mind?.cm_skills)
 		if(user.mind.cm_skills.firearms <= 0) //no training in any firearms

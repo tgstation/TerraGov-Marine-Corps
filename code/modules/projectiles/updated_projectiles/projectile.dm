@@ -142,7 +142,7 @@
 		if(isliving(target)) //If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel. 
 			dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
 		else
-			dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + p_x) - apx), ((((target.y - 1) * 32) + p_y) - apy)))
+			dir_angle = round(Get_Pixel_Angle((ABS_COOR_OFFSET(target.x, p_x) - apx), (ABS_COOR_OFFSET(target.y, p_y) - apy)))
 
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
@@ -283,7 +283,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 2) For number of pixel moves, as it is counting number of full (pixel) moves required.
 */
 #define PROJ_ABS_PIXEL_TO_TURF(abspx, abspy, zlevel) (locate(CEILING((abspx / 32), 1), CEILING((abspy / 32), 1), zlevel))
-#define PROJ_ABS_PIXEL_TO_REL(apc) (MODULUS(apc, 32) || 32) //Absolute pixel coordinate to relative. If MODULUS is zero, then we want to return 32, as pixel coordinates range from 1 to 32 within a tile.
 #define PROJ_ANIMATION_SPEED ((end_of_movement/projectile_speed) || (required_moves/projectile_speed)) //Movements made times deciseconds per movement.
 
 /obj/item/projectile/proc/projectile_batch_move(required_moves)
@@ -309,8 +308,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				stack_trace("projectile_batch_move called with diagonal movement_dir and offset-lacking. x_offset: [x_offset], y_offset: [y_offset].")
 				return TRUE
 			var/turf/turf_crossed_by
-			var/rel_pixel_x_pre = PROJ_ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)
-			var/rel_pixel_y_pre = PROJ_ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)
+			var/rel_pixel_x_pre = ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)
+			var/rel_pixel_y_pre = ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)
 			var/pixel_moves_until_crossing_x_border
 			var/pixel_moves_until_crossing_y_border
 			switch(movement_dir)
@@ -395,8 +394,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	apx += x_pixel_dist_travelled
 	apy += y_pixel_dist_travelled
 
-	var/new_pixel_x = PROJ_ABS_PIXEL_TO_REL(apx) //The final pixel offset after this movement. Float value.
-	var/new_pixel_y = PROJ_ABS_PIXEL_TO_REL(apy)
+	var/new_pixel_x = ABS_PIXEL_TO_REL(apx) //The final pixel offset after this movement. Float value.
+	var/new_pixel_y = ABS_PIXEL_TO_REL(apy)
 	if(projectile_speed > 5) //At this speed the animation barely shows. Changing the vars through animation alone takes almost 5 times the CPU than setting them directly. No need for that if there's nothing to show for it.
 		pixel_x = round(new_pixel_x, 1) - 16
 		pixel_y = round(new_pixel_y, 1) - 16
@@ -416,7 +415,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return FALSE //No hits ...yet!
 
 #undef PROJ_ABS_PIXEL_TO_TURF
-#undef PROJ_ABS_PIXEL_TO_REL
+#undef ABS_PIXEL_TO_REL
 #undef PROJ_ANIMATION_SPEED
 
 

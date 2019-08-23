@@ -91,7 +91,3 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LUMA_R 0.213
 #define LUMA_G 0.715
 #define LUMA_B 0.072
-
-////Tile coordinates (x, y) to absolute coordinates (in number of pixels). Center of a tile is generally assumed to be (16,16), but can be offset.
-#define ABS_COOR(c) (((c - 1) * 32) + 16) 
-#define ABS_COOR_OFFSET(c, o) (((c - 1) * 32) + o) 
