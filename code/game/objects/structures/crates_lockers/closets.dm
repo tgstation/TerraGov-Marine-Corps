@@ -193,6 +193,8 @@
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
 		return FALSE
+	if(I.flags_item & ITEM_ABSTRACT)
+		return FALSE
 	. = ..()
 	if(opened)
 		if(istype(I, /obj/item/grab))
