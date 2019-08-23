@@ -50,6 +50,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/shell_speed 				= 2 		// How fast the projectile moves
 	var/bonus_projectiles_type 					// Type path of the extra projectiles
 	var/bonus_projectiles_amount 	= 0 		// How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together
+	var/bonus_projectiles_scatter	= 8			// Degrees scattered per two projectiles, each in a different direction.
 	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
@@ -182,28 +183,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.apply_damage(rand(proj.damage * modifier * 0.1, proj.damage * modifier),damage_type)
 
 
-/datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/original_P)
-	set waitfor = FALSE
+/datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/item/projectile/new_proj = new /obj/item/projectile(original_P.shot_from)
-		new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
-		var/turf/new_target = null
+		var/obj/item/projectile/new_proj = new /obj/item/projectile(main_proj.loc)
+		if(bonus_projectiles_type)
+			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
+		else //If no bonus type is defined then the extra projectiles are the same as the main one.
+			new_proj.generate_bullet(src)
+		new_proj.accuracy = round(new_proj.accuracy * main_proj.accuracy/initial(main_proj.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
 
-		new_proj.scatter = round(new_proj.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
+		 //Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
+		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? -(i + 1 / 2) : i / 2))
+		if(new_angle < 0)
+			new_angle += 380
+		else if(new_angle > 380)
+			new_angle -= 380
+		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
-		if(prob(new_proj.scatter))
-			var/scatter_x = rand(-1, 1)
-			var/scatter_y = rand(-1, 1)
-			new_target = locate(original_P.original_target_turf.x + round(scatter_x), original_P.original_target_turf.y + round(scatter_y), original_P.original_target_turf.z)
-			if(!istype(new_target))
-				continue	//If we didn't find anything, make another pass.
-			new_proj.original_target = new_target
-
-		new_proj.accuracy = round(new_proj.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
-
-		if(!new_target)
-			new_target = original_P.original_target_turf
-		new_proj.fire_at(new_target,original_P.firer, original_P.shot_from, new_proj.ammo.max_range, new_proj.ammo.shell_speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 /datum/ammo/proc/stun_living(mob/living/target, obj/item/projectile/proj) //Taser proc to stun folks.
@@ -627,6 +623,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 8
 
 /datum/ammo/bullet/shotgun/flechette/New()
 	..()
@@ -638,7 +636,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
 	penetration	= CONFIG_GET(number/combat_define/med_armor_penetration)
-	bonus_projectiles_amount = CONFIG_GET(number/combat_define/low_proj_extra)
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -654,14 +651,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
 	penetration	= CONFIG_GET(number/combat_define/med_armor_penetration)
-	scatter = CONFIG_GET(number/combat_define/thirty_scatter_value) //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 10
 
 /datum/ammo/bullet/shotgun/buckshot/New()
 	..()
@@ -674,7 +671,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	damage_falloff = CONFIG_GET(number/combat_define/buckshot_damage_falloff)
 	penetration	= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
-	bonus_projectiles_amount = CONFIG_GET(number/combat_define/low_proj_extra)
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -704,7 +700,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	damage_falloff = CONFIG_GET(number/combat_define/buckshot_damage_falloff)
 	penetration	= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
-	scatter = CONFIG_GET(number/combat_define/max_scatter_value)*1.5 //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/spread/masterkey/New()
 	..()

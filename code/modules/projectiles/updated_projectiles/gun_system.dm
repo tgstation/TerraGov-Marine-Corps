@@ -72,19 +72,10 @@
 
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 
-	//Targeting.
-	var/tmp/list/mob/living/target				//List of who yer targeting.
-	var/tmp/mob/living/last_moved_mob			//Used to fire faster at more than one person.
-	var/tmp/lock_time 		= -100
-	var/automatic 			= 0					//Used to determine if you can target multiple people.
-	var/tmp/told_cant_shoot = 0					//So that it doesn't spam them with the fact they cannot hit them.
-	var/firerate 			= 0					//0 for keep shooting until aim is lowered
-												//1 for one bullet after target moves and aim is lowered
-
 	//Attachments.
-	var/attachable_overlays[] 		= null		//List of overlays so we can switch them in an out, instead of using Cut() on overlays.
-	var/attachable_offset[] 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
-	var/attachable_allowed[]		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
+	var/list/attachable_overlays	= list("muzzle", "rail", "under", "stock", "mag") //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
+	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
+	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
 	var/obj/item/attachable/muzzle 	= null		//Attachable slots. Only one item per slot.
 	var/obj/item/attachable/rail 	= null
 	var/obj/item/attachable/under 	= null
@@ -116,7 +107,6 @@
 /obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
-	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -163,16 +153,22 @@
 
 
 /obj/item/weapon/gun/Destroy()
-	in_chamber 		= null
-	ammo 			= null
-	current_mag 	= null
-	target 			= null
-	last_moved_mob 	= null
-	muzzle 			= null
-	rail 			= null
-	under 			= null
-	stock 			= null
-	attachable_overlays = null
+	ammo = null
+	active_attachable = null
+	if(muzzle)
+		QDEL_NULL(muzzle)
+	if(rail)
+		QDEL_NULL(rail)
+	if(under)
+		QDEL_NULL(under)
+	if(stock)
+		QDEL_NULL(stock)
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
+	if(current_mag)
+		QDEL_NULL(current_mag)
+	if(muzzle_flash)
+		QDEL_NULL(muzzle_flash)
 	return ..()
 
 /obj/item/weapon/gun/emp_act(severity)

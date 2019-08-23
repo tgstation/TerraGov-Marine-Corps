@@ -41,7 +41,7 @@
 
 	var/damage_falloff = 0 //how many damage point the projectile loses per tiles travelled
 
-	var/scatter = 0
+	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
 
 	var/distance_travelled = 0
 
@@ -99,23 +99,22 @@
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
-/obj/item/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle)
+/obj/item/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity)
 	if(!isnull(speed))
 		projectile_speed = speed
-	if(!isnull(range))
-		proj_max_range = range
-	original_target = target
 
-	//Safety checks. Neither should happen without a coder oofing, but if they do it risks breaking a lot, so better safe than sorry.
-	if(QDELETED(original_target))
-		stack_trace("fire_at called on a QDELETED target ([target]).")
+	//Safety checks.
+	if(QDELETED(target) && !isnum(angle)) //We can work with either a target or an angle, or both, but not without any.
+		stack_trace("fire_at called on a QDELETED target ([target]) with no original_target_turf and a null angle.")
 		qdel(src)
 		return
-	if(projectile_speed <= 0)
+	if(projectile_speed <= 0) //Shouldn't happen without a coder oofing, but if they do, it risks breaking a lot, so better safe than sorry.
 		stack_trace("[src] achieved [projectile_speed] velocity somehow at fire_at. Type: [type]. From: [target]. Shot by: [shooter].")
 		qdel(src)
 		return
 
+	if(!isnull(range))
+		proj_max_range = range
 	if(shooter)
 		firer = shooter
 		permutated += firer //Don't hit the shooter
@@ -125,28 +124,22 @@
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
-	original_target_turf = get_turf(target)
 
-	// VVVVVVVVVVV
-	if(!original_target_turf) //This shouldn't happen, but it can. //If that's true, then let's fix it.
-		stack_trace("[src] triggered fire_at without a original_target_turf. target: [target]. shooter: [shooter]. source: [source]")
-		qdel(src)
-		return
-	// ^^^^^^^^^^^
-
-	if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
-		scan_a_turf(original_target_turf)
-		qdel(src)
-		return
+	if(target)
+		original_target = target
+		original_target_turf = get_turf(target)
+		if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
+			scan_a_turf(loc)
+			qdel(src)
+			return
 
 	apx = ABS_COOR(x) //Set the absolute coordinates. Center of a tile is assumed to be (16,16)
 	apy = ABS_COOR(y)
 
-	//If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel. 
 	if(isnum(angle))
 		dir_angle = angle
 	else
-		if(isliving(target))
+		if(isliving(target)) //If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel. 
 			dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
 		else
 			dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + p_x) - apx), ((((target.y - 1) * 32) + p_y) - apy)))
@@ -232,8 +225,8 @@
 			GLOB.round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
-	if(ammo.bonus_projectiles_amount && ammo.bonus_projectiles_type)
-		ammo.fire_bonus_projectiles(src)
+	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
+		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle)
 
 	var/matrix/rotate = matrix() //Change the bullet angle.
 	rotate.Turn(dir_angle)

@@ -450,33 +450,6 @@ Flat number subtracted from target armor before damage calculations take place.
 /datum/config_entry/number/combat_define/ltb_armor_penetration
 	config_entry_value = 200
 
-/*
-Extra projectiles.
-How many extra projectiles the projectile spawn when fired. Extra projectiles scatter when fired.
-*/
-/datum/config_entry/number/combat_define/min_proj_extra
-	config_entry_value = 1
-
-/datum/config_entry/number/combat_define/low_proj_extra
-	config_entry_value = 2
-
-/datum/config_entry/number/combat_define/med_proj_extra
-	config_entry_value = 3
-
-/datum/config_entry/number/combat_define/hmed_proj_extra
-	config_entry_value = 4
-
-/datum/config_entry/number/combat_define/high_proj_extra
-	config_entry_value = 5
-
-/datum/config_entry/number/combat_define/mhigh_proj_extra
-	config_entry_value = 6
-
-/datum/config_entry/number/combat_define/vhigh_proj_extra
-	config_entry_value = 7
-
-/datum/config_entry/number/combat_define/max_proj_extra
-	config_entry_value = 8
 
 /*
 Projectile variance.
