@@ -111,6 +111,8 @@
 
 /obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
 	if(isxeno(mover))
+		var/mob/living/carbon/xenomorph/X = mover
+		X.empty_gut()
 		return TRUE
 	return FALSE
 
