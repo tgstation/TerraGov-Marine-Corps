@@ -162,6 +162,7 @@
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
 
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 
@@ -376,6 +377,11 @@
 
 	return TRUE
 
+/datum/game_mode/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+	var/list/living_player_list = count_humans_and_xenos()
+	var/num_humans = living_player_list[1]
+	if(!num_humans) // no humans left on planet to try and restart it.
+		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
 
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)

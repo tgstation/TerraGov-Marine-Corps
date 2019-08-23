@@ -30,6 +30,7 @@
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
+#define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 
 //////////////////////////////////////////////////////////////////
 
