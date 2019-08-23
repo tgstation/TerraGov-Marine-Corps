@@ -700,20 +700,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!ref)
 			return
 		var/datum/fax/F = GLOB.faxes[ref]
-		if(!F || F.admin || F.marked == usr.client)
+		if(!F || F.admin || F.marked == usr.client.key)
 			return
 
 		if(F.marked)
 			switch(alert("This fax has already been marked by [F.marked], do you want to replace them?", "Warning", "Replace", "Unmark", "Cancel"))
 				if("Replace")
-					F.marked = usr.client
+					F.marked = usr.client.key
 					message_staff("[key_name_admin(usr)] has re-marked a fax from [key_name_admin(F.sender)].")
 				if("Unmark")
 					F.marked = null
 					message_staff("[key_name_admin(usr)] has un-marked a fax from [key_name_admin(F.sender)].")
 			return
 
-		F.marked = usr.client
+		F.marked = usr.client.key
 		message_staff("[key_name_admin(usr)] has marked a fax from [key_name_admin(F.sender)].")
 
 
@@ -730,11 +730,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(!F || F.admin)
 				return
 
-			if(F.marked && F.marked != usr.client)
+			if(F.marked && F.marked != usr.client.key)
 				to_chat(usr, "<span class='warning'>This fax has already been marked by [F.marked], please unmark it to be able to proceed.")
 				return
 			else if(!F.marked)
-				F.marked = usr.client
+				F.marked = usr.client.key
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
 			
 			sender = F.sender
