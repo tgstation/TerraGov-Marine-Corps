@@ -332,7 +332,6 @@
 		akimbo_gun.Fire(target, shooter, params, FALSE, dual_wield)
 	apply_gun_modifiers(projectile_to_fire, target)
 	setup_bullet_accuracy(projectile_to_fire, shooter, shots_fired, dual_wield)
-	target = simulate_scatter(projectile_to_fire, target, get_turf(target), shooter)
 	var/list/mouse_control = params2list(params)
 	if(mouse_control["icon-x"])
 		projectile_to_fire.p_x = text2num(mouse_control["icon-x"])
@@ -340,9 +339,10 @@
 		projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
 	simulate_recoil(0 , shooter)
 	play_fire_sound(shooter)
-	projectile_to_fire.fire_at(target, shooter, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed)
+	var/firing_angle = get_angle_with_scatter(shooter, target, get_scatter(projectile_to_fire.scatter, target, shooter), projectile_to_fire.p_x, projectile_to_fire.p_y)
+	muzzle_flash(firing_angle, shooter)
+	projectile_to_fire.fire_at(target, shooter, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 	last_fired = world.time
-	muzzle_flash(Get_Angle(shooter, target), shooter)
 	if(!reload_into_chamber(shooter))
 		click_empty(shooter)
 		return NONE

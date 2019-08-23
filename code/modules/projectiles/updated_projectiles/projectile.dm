@@ -99,7 +99,7 @@
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
-/obj/item/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed)
+/obj/item/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle)
 	if(!isnull(speed))
 		projectile_speed = speed
 	if(!isnull(range))
@@ -139,14 +139,18 @@
 		qdel(src)
 		return
 
-	apx = (((x - 1) * 32) + 16) //Set the absolute coordinates. Center of a tile is assumed to be (16,16)
-	apy = (((y - 1) * 32) + 16)
+	apx = ABS_COOR(x) //Set the absolute coordinates. Center of a tile is assumed to be (16,16)
+	apy = ABS_COOR(y)
 
 	//If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel. 
-	if(isliving(target))
-		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + 16) - apx), ((((target.y - 1) * 32) + 16) - apy))) //Using absolute pixel coordinates.
+	if(isnum(angle))
+		dir_angle = angle
 	else
-		dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + p_x) - apx), ((((target.y - 1) * 32) + p_y) - apy)))
+		if(isliving(target))
+			dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
+		else
+			dir_angle = round(Get_Pixel_Angle(((((target.x - 1) * 32) + p_x) - apx), ((((target.y - 1) * 32) + p_y) - apy)))
+
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
 

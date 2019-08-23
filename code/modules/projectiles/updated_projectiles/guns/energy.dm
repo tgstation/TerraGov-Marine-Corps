@@ -8,6 +8,7 @@
 	var/charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
 	flags_gun_features = GUN_AMMO_COUNTER
+	general_codex_key = "energy weapons"
 
 /obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()

@@ -119,6 +119,21 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	return (da >= 0 ? da : da + 360)
 
 
+/proc/get_angle_with_scatter(atom/start, atom/end, scatter, y_offset = 16, x_offset = 16)
+	var/end_apx
+	var/end_apy
+	if(isliving(end)) //Center mass.
+		end_apx = ABS_COOR(end.x)
+		end_apy = ABS_COOR(end.y)
+	else //Exact pixel.
+		end_apx = ABS_COOR_OFFSET(end.x, x_offset)
+		end_apy = ABS_COOR_OFFSET(end.y, y_offset)
+	scatter = ( (rand(0, min(scatter, 45))) * (prob(50) ? 1 : -1) ) //Up to 45 degrees deviation to either side.
+	. = round(((90 - ATAN2(end_apx - ABS_COOR(start.x), end_apy - ABS_COOR(start.y))) + scatter), 1)
+	if(. < 0)
+		. += 360
+
+
 /proc/LinkBlocked(turf/A, turf/B)
 	if(isnull(A) || isnull(B))
 		return TRUE
