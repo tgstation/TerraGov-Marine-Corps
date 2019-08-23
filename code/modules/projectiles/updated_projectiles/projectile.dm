@@ -415,7 +415,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return FALSE //No hits ...yet!
 
 #undef PROJ_ABS_PIXEL_TO_TURF
-#undef ABS_PIXEL_TO_REL
 #undef PROJ_ANIMATION_SPEED
 
 
