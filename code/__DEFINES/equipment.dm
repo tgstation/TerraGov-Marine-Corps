@@ -31,12 +31,11 @@
 //flags_item
 #define NODROP					(1<<0)	// Cannot be dropped/unequipped at all, only deleted.
 #define NOBLUDGEON  			(1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				(1<<2)	// weapon not affected by shield (does nothing currently)
-#define DELONDROP				(1<<3)	// Deletes on drop instead of falling on the floor.
-#define TWOHANDED				(1<<4)	// The item is twohanded.
-#define WIELDED					(1<<5)	// The item is wielded with both hands.
-#define	ITEM_ABSTRACT			(1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
-#define BEING_REMOVED			(1<<7)	//Cuffs and legcuffs
+#define DELONDROP				(1<<2)	// Deletes on drop instead of falling on the floor.
+#define TWOHANDED				(1<<3)	// The item is twohanded.
+#define WIELDED					(1<<4)	// The item is wielded with both hands.
+#define	ITEM_ABSTRACT			(1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
+#define BEING_REMOVED			(1<<6)	//Cuffs and legcuffs
 
 //==========================================================================================
 

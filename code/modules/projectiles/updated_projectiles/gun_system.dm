@@ -287,22 +287,23 @@
 	do_wield(user, wdelay)
 	return TRUE
 
-/obj/item/weapon/gun/unwield(mob/user)
 
-	if((flags_item|TWOHANDED|WIELDED) != flags_item)
-		return //Have to be actually a twohander and wielded.
+/obj/item/weapon/gun/unwield(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
 	if(zoom)
 		zoom(user)
-	flags_item ^= WIELDED
-	name 	    = copytext(name, 1, -10)
-	item_state  = copytext(item_state, 1, -2)
-	update_slowdown()
-	remove_offhand(user)
 
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.remove_hud(user)
+	update_slowdown()
+
+	var/obj/screen/ammo/A = user.hud_used?.ammo
+	if(A)
+		A.remove_hud(user)
 
 	return TRUE
+
 
 /obj/item/weapon/gun/proc/update_slowdown()
 	if(flags_item & WIELDED)
