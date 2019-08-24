@@ -1006,6 +1006,16 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 
+obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
+		if(user.action_busy)
+			return
+		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
+		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+			return
+	return ..()
+
+
 /obj/item/weapon/gun/minigun/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/minigun_burst_value)
