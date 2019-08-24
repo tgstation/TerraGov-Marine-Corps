@@ -320,7 +320,7 @@
 
 	return ..()
 
-/obj/item/proc/store_in_cryo(list/items, move_loc = TRUE)
+/obj/item/proc/store_in_cryo(list/items, nullspace_it = TRUE)
 
 	//bandaid for special cases (mob_holders, intellicards etc.) which are NOT currently handled on their own.
 	if(locate(/mob) in src)
@@ -336,45 +336,45 @@
 	if(flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP) || (is_type_in_typecache(src, GLOB.do_not_preserve_empty) && !length(contents)))
 		items -= src
 		qdel(src)
-	else if(move_loc)
-		loc = null
+	else if(nullspace_it)
+		moveToNullspace()
 	return items
 
-/obj/item/storage/store_in_cryo(list/items)
+/obj/item/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in src)
 		var/obj/item/I = O
 		items = I.store_in_cryo(items, FALSE)
 	return ..()
 
-/obj/item/clothing/suit/storage/store_in_cryo(list/items)
+/obj/item/clothing/suit/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in pockets)
 		var/obj/item/I = O
 		pockets.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/under/store_in_cryo(list/items)
+/obj/item/clothing/under/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(hastie)
 		var/obj/item/TIE = hastie
 		remove_accessory()
 		items = TIE.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/shoes/marine/store_in_cryo(list/items)
+/obj/item/clothing/shoes/marine/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(knife)
 		items = knife.store_in_cryo(items)
 		knife = null
 		update_icon()
 	return ..()
 
-/obj/item/clothing/tie/storage/store_in_cryo(list/items)
+/obj/item/clothing/tie/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in hold)
 		var/obj/item/I = O
 		hold.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/tie/holster/store_in_cryo(list/items)
+/obj/item/clothing/tie/holster/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(holstered)
 		items = holstered.store_in_cryo(items)
 		holstered = null
