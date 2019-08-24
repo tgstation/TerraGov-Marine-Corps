@@ -1,22 +1,23 @@
 /atom/movable/proc/supply_export()
-	return FALSE
+	return 0
 
 
 /obj/structure/closet/crate/supply_export()
-	SSpoints.supply_points += POINTS_PER_CRATE
-	return TRUE
+	. = POINTS_PER_CRATE
+	SSpoints.supply_points += .
 
 
 /mob/living/carbon/xenomorph/supply_export()
 	switch(tier)
 		if(XENO_TIER_ZERO)
 			SSpoints.supply_points++
+			. = 1
 		if(XENO_TIER_ONE)
-			SSpoints.supply_points += 5
+			. = 5
 		if(XENO_TIER_TWO)
-			SSpoints.supply_points += 10
+			. = 10
 		if(XENO_TIER_THREE)
-			SSpoints.supply_points += 30
+			. = 30
 		if(XENO_TIER_FOUR)
-			SSpoints.supply_points += 50
-	return TRUE
+			. = 50
+	SSpoints.supply_points += .

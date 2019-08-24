@@ -62,8 +62,9 @@
 	animate(pixel_z = 10, time = 1 SECONDS)
 	animate(pixel_z = 320, time = 2 SECONDS)
 
-	spirited_away.supply_export()
-
+	. = spirited_away.supply_export()
+	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
+	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [. ? . : "no"] point[. == 1 ? "" : "s"].</span>", null, 5)
 	qdel(spirited_away)
 
 
