@@ -39,8 +39,6 @@
 		return
 
 	active = TRUE
-	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
-	"<span class='notice'>You attach the pack to [spirited_away] and activate it.</span>", null, 5)
 
 	holder_obj.appearance = spirited_away.appearance
 	holder_obj.forceMove(spirited_away.loc)
@@ -49,8 +47,8 @@
 	holder_obj.vis_contents += baloon
 
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(holder_obj), 'sound/items/fultext_deploy.ogg', 50, TRUE), 0.4 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(holder_obj), 'sound/items/fultext_launch.ogg', 50, TRUE), 8.4 SECONDS)
-	addtimer(CALLBACK(src, .proc/cleanup_extraction), 9 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, get_turf(holder_obj), 'sound/items/fultext_launch.ogg', 50, TRUE), 7.4 SECONDS)
+	addtimer(CALLBACK(src, .proc/cleanup_extraction), 8 SECONDS)
 
 	flick("fulton_expand", baloon)
 	baloon.icon_state = "fulton_balloon"
@@ -60,7 +58,7 @@
 	animate(pixel_z = 10, time = 1 SECONDS)
 	animate(pixel_z = 15, time = 1 SECONDS)
 	animate(pixel_z = 10, time = 1 SECONDS)
-	animate(pixel_z = 320, time = 2 SECONDS)
+	animate(pixel_z = 480, time = 1 SECONDS)
 
 	. = spirited_away.supply_export()
 	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
