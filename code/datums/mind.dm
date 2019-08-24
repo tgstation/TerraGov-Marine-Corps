@@ -75,7 +75,7 @@
 	SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
 	if(cm_skills)
-		cm_skills.omnighost = FALSE
+		cm_skills.skills_bypass = FALSE
 		current.verbs -= /mob/proc/check_skills
 		new_character.verbs += /mob/proc/check_skills
 

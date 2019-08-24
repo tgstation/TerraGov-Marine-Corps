@@ -21,16 +21,9 @@
 	var/sortBy = "name"
 	var/order = 1 // -1 = Descending - 1 = Ascending
 
-/proc/I_runtime_on_rails()
-	var/list/L = list()
-	var/chumpo = "fetusin"
-	var/chumpo2 = "fetus"
-	L[chumpo[chumpo2]] = "???"
-	return L
-
 /obj/machinery/computer/skills/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	
+
 	if(istype(I, /obj/item/card/id) && !scan)
 		if(!user.drop_held_item())
 			return

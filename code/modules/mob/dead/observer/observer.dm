@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.mind = mind
 
 	if(mind?.cm_skills)
-		mind.cm_skills.omnighost = TRUE
+		mind.cm_skills.skills_bypass = TRUE
 		mind.current.verbs -= /mob/proc/check_skills
 
 	mind = null

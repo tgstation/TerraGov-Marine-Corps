@@ -52,7 +52,7 @@
 
 //D(irect) as in they don't perform the mind and skills datums existence sanity check. Use these only if their existence has been already checked.
 #define D_GET_SKILL_MOD(user, skill) (user.mind.cm_skills.skill_mods ? user.mind.cm_skills.skill_mods[skill] : SKILL_LEVEL_NONE)
-#define D_GET_SKILL(user, skill) (user.mind.cm_skills.omnighost ? SKILL_LEVEL_MASTER : CLAMP((user.mind.cm_skills.skill_list ? user.mind.cm_skills.skill_list[skill] : SKILL_LEVEL_NONE) + D_GET_SKILL_MOD(user, skill), SKILL_LEVEL_MIN, SKILL_LEVEL_MAX))
+#define D_GET_SKILL(user, skill) (user.mind.cm_skills.skills_bypass ? SKILL_LEVEL_MASTER : CLAMP((user.mind.cm_skills.skill_list ? user.mind.cm_skills.skill_list[skill] : SKILL_LEVEL_NONE) + D_GET_SKILL_MOD(user, skill), SKILL_LEVEL_MIN, SKILL_LEVEL_MAX))
 #define D_HAS_SKILL_LEVEL(user, skill, level) (D_GET_SKILL(user, skill) >= level)
 #define D_GET_SKILL_MOD_ID(user, skill, id) (user.mind.cm_skills.skill_mod_ids && user.mind.cm_skills.skill_mod_ids[skill] ? user.mind.cm_skills.skill_mod_ids[skill[id]] : null)
 #define D_GET_SKILL_DIFF(user, skill, level) abs(level - D_GET_SKILL(user, skill))

@@ -12,7 +12,7 @@
 	var/cached_skills_dat
 
 	//used to allow observers to bypass possible skill checks mainly found on examine().
-	var/omnighost = FALSE
+	var/skills_bypass = FALSE
 
 /datum/skills/New(mob/target)
 	if(!target)

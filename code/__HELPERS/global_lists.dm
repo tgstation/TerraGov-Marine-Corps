@@ -158,7 +158,9 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			GLOB.chemical_reactions_list[id] += D
 			break // Don't bother adding ourselves to other reagent ids, it is redundant
 
-	GLOB.namepool = init_paths_assoc_types(/datum/namepool, subtypes = FALSE)
+	for(var/path in typesof(/datum/namepool))
+		var/datum/namepool/NP = new path
+		GLOB.namepool[path] = NP
 
 	GLOB.skillsets = init_paths_assoc_types(/datum/skillset)
 
