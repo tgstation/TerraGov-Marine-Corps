@@ -1001,20 +1001,14 @@
 		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
 		return
 
-	var/list/possible_destinations
-	if(shuttle_id == SSshuttle.canterbury?.id)
-		possible_destinations = list("canterbury_dock")
-	else
-		possible_destinations = list("lz1", "lz2", "alamo", "normandy")
-
 	if(D.mode != SHUTTLE_IDLE && alert("[D.name] is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
 		return
 
 	var/list/valid_docks = list()
 	var/i = 1
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!possible_destinations.Find(S.id))
-			continue
+		if(istype(S, /obj/docking_port/stationary/transit))
+			continue // Don't use transit destinations
 		if(!D.check_dock(S, silent=TRUE))
 			continue
 		valid_docks["[S.name] ([i++])"] = S
