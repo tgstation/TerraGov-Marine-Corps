@@ -1,4 +1,5 @@
 /obj/structure/girder
+	name = "girder"
 	icon_state = "girder"
 	anchored = TRUE
 	density = TRUE
@@ -256,14 +257,12 @@
 
 /obj/structure/girder/update_icon()
 	if(obj_integrity <= 0)
-		icon_state = "[icon_state]_damaged"
-		ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
+		icon_state = "girder_damaged"
+		ENABLE_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE)
 		density = FALSE
 	else
-		var/underscore_position =  findtext(icon_state,"_")
-		var/new_state = copytext(icon_state, 1, underscore_position)
-		icon_state = new_state
-		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
+		icon_state = initial(icon_state)
+		DISABLE_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE)
 		density = TRUE
 
 
