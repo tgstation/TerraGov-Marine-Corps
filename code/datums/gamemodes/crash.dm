@@ -247,7 +247,7 @@
 
 	var/victory_options = (num_humans == 0 && num_xenos == 0)						<< 0 // Draw, for all other reasons
 	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) 			<< 1 // XENO Major (All marines killed)
-	victory_options |= ((marines_evac == CRASH_EVAC_COMPLETED && !planet_nuked) || (marines_evac == CRASH_EVAC_INPROGRESS && !nuke_set))		<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
+	victory_options |= ((marines_evac == CRASH_EVAC_COMPLETED && !planet_nuked) || (marines_evac == CRASH_EVAC_INPROGRESS && !length(GLOB.active_nuke_list)))		<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
 	victory_options |= (marines_evac == CRASH_EVAC_NONE && planet_nuked)		<< 3 // Marine minor (Planet nuked, some human left on planet)
 	victory_options |= ((marines_evac == CRASH_EVAC_INPROGRESS || marines_evac == CRASH_EVAC_COMPLETED) && planet_nuked) 		<< 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
 
