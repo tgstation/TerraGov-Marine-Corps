@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			if(is_type_in_typecache(machine, GLOB.ventcrawl_machinery))
 				vent_found = machine
 
-			if(!vent_found.can_crawl_through())
+			if(!vent_found?.can_crawl_through())
 				vent_found = null
 
 			if(vent_found)
