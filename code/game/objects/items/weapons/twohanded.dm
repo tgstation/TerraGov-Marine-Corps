@@ -120,6 +120,7 @@
 	icon_state = "offhand"
 	name = "offhand"
 	flags_item = DELONDROP|TWOHANDED|WIELDED
+	resistance_flags = RESIST_ALL
 
 
 /obj/item/weapon/twohanded/offhand/Destroy()
