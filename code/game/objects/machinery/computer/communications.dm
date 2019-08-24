@@ -210,10 +210,11 @@
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
 
+				var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
 				for(var/i in GLOB.admins)
 					var/client/C = i
 					if(check_other_rights(C, R_ADMIN, FALSE))
-						SEND_SOUND(C, 'sound/effects/sos-morse-code.ogg')
+						SEND_SOUND(C, S)
 						to_chat(C, "<span class='notice'><b><font color='purple'>DISTRESS:</font> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. Humans: [AllMarines], Xenos: [AllXenos]. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</b></span>")
 				to_chat(usr, "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
 
@@ -306,7 +307,7 @@
 		if("changeseclevel")
 			state = STATE_ALERT_LEVEL
 
-		else 
+		else
 			return FALSE
 
 	updateUsrDialog()

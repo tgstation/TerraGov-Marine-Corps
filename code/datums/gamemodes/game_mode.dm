@@ -24,7 +24,7 @@
 	var/waiting_for_candidates = FALSE
 
 	// Xeno round start conditions
-	var/xeno_required_num = 1 // Number of xenos required to start 
+	var/xeno_required_num = 1 // Number of xenos required to start
 	var/xeno_starting_num // Number of xenos given at start
 	var/list/xenomorphs = list()
 
@@ -61,7 +61,7 @@
 	return TRUE
 
 /datum/game_mode/proc/setup()
-	SSjob.DivideOccupations() 
+	SSjob.DivideOccupations()
 	create_characters() //Create player characters
 	collect_minds()
 	reset_squads()
@@ -286,7 +286,7 @@
 				msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (Dead)<br>"
 		else if(!D.can_reenter_corpse)
 			msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job] (<b>Ghosted</b>)<br>"
-				
+
 
 	msg += "<hr>"
 
@@ -374,11 +374,11 @@
 	if(length(hostLocationsS))
 		hostLocationS = pick(hostLocationsS)
 
-
+	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
 		for(var/i in GLOB.alive_xeno_list)
 			var/mob/M = i
-			SEND_SOUND(M, sound(get_sfx("queen"), wait = 0, volume = 50))
+			SEND_SOUND(M, S)
 			to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
 			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[show_locations && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[show_locations && hostLocationP ? ", including one in [hostLocationP]":""].</span>")
 
@@ -395,7 +395,7 @@
 	var/input = {"Bioscan complete.
 
 Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[show_locations && xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[show_locations && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
-	
+
 	if(announce_humans)
 		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
 
@@ -474,7 +474,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			if(!length(spawns))
 				to_chat(world, "<br><br><h1><span class='danger'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
 				return
-			
+
 			picked = pick(spawns)
 			spawns -= picked
 
@@ -615,7 +615,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		var/datum/recipient_awards/RA = GLOB.medal_awards[recipient]
 		for(var/i in 1 to length(RA.medal_names))
 			dat += "<br><b>[RA.recipient_rank] [recipient]</b> is awarded [RA.posthumous[i] ? "posthumously " : ""]the <span class='boldnotice'>[RA.medal_names[i]]</span>: \'<i>[RA.medal_citations[i]]</i>\'."
-	
+
 	to_chat(world, dat)
 
 
@@ -690,7 +690,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	set waitfor = FALSE
 
 	DISABLE_BITFIELD(flags_round_type, MODE_FOG_ACTIVATED)
-	
+
 	for(var/i in GLOB.fog_blockers)
 		qdel(i)
 		stoplag(1)

@@ -387,7 +387,7 @@
 		user = src
 	user << browse(null, "window=latechoices") //closes late choices window
 	user << browse(null, "window=playersetup") //closes the player setup window
-	user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
+	user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 
 
 /mob/new_player/get_species()

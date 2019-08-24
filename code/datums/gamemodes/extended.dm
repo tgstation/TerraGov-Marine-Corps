@@ -10,7 +10,7 @@
 	to_chat(world, "<b>Just have fun and role-play!</b>")
 
 /datum/game_mode/extended/check_finished()
-	if(!round_finished) 
+	if(!round_finished)
 		return FALSE
 	return TRUE
 
@@ -18,8 +18,9 @@
 	. = ..()
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
-	SEND_SOUND(world, pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg'))
-	
+	var/sound/S = sound(pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg'), channel = CHANNEL_CINEMATIC)
+	SEND_SOUND(world, S)
+
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 	announce_medal_awards()
