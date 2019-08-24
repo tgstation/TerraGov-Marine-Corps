@@ -7,7 +7,7 @@
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
-	var/item_color = "red"
+	color = COLOR_RED
 	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = WEIGHT_CLASS_SMALL
@@ -26,10 +26,8 @@
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = MAXCOIL, param_color = null)
 	. = ..()
 
-	var/list/cable_colors = GLOB.cable_colors
-	item_color = param_color || item_color || pick(cable_colors)
-	if(cable_colors[item_color])
-		color = cable_colors[item_color]
+	if(param_color)
+		color = param_color
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	update_icon()
@@ -82,7 +80,7 @@
 
 	if(iswirecutter(I) && amount > 1)
 		amount--
-		new /obj/item/stack/cable_coil(user.loc, 1, item_color)
+		new /obj/item/stack/cable_coil(user.loc, 1, color)
 		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
 		updateicon()
 		update_wclass()
@@ -110,7 +108,7 @@
 	if(.)
 		return
 	if (user.get_inactive_held_item() == src)
-		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
+		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
 		user.put_in_hands(F)
 		use(1)
 
@@ -140,7 +138,7 @@
 
 /obj/item/stack/cable_coil/proc/get_new_cable(location)
 	var/path = /obj/structure/cable
-	return new path(location, item_color)
+	return new path(location, color)
 
 
 /obj/item/stack/cable_coil/use(used)
@@ -207,7 +205,7 @@
 
 	if(C.shock(user, 50))
 		if(prob(50)) //fail
-			new /obj/item/stack/cable_coil(get_turf(C), 1, C.cable_color)
+			new /obj/item/stack/cable_coil(get_turf(C), 1, C.color)
 			C.deconstruct()
 
 	return C
@@ -305,8 +303,8 @@
 		C.d2 = nd2
 
 		//updates the stored cable coil
-		C.update_stored(2, item_color)
-		C.cable_color = item_color
+		C.update_stored(2)
+		C.color = color
 
 		C.update_icon()
 
@@ -337,42 +335,35 @@
 /obj/item/stack/cable_coil/cut
 	item_state = "coil2"
 
-/obj/item/stack/cable_coil/cut/New(loc)
-	..()
-	src.amount = rand(1,2)
-	pixel_x = rand(-2,2)
-	pixel_y = rand(-2,2)
+/obj/item/stack/cable_coil/cut/Initialize(mapload, new_amount, param_color)
+	. = ..()
+	amount = rand(1, 2)
+	pixel_x = rand(-2, 2)
+	pixel_y = rand(-2, 2)
 	updateicon()
 	update_wclass()
 
 /obj/item/stack/cable_coil/yellow
-	item_color = "yellow"
-	color = "#FFFF00"
+	color = COLOR_YELLOW
 
 /obj/item/stack/cable_coil/blue
-	item_color = "blue"
-	color = "#1919C8"
+	color = COLOR_BLUE
 
 /obj/item/stack/cable_coil/green
-	item_color = "green"
-	color = "#00AA00"
+	color = COLOR_GREEN
 
 /obj/item/stack/cable_coil/pink
-	item_color = "pink"
-	color = "#FF3CCD"
+	color = COLOR_PINK
 
 /obj/item/stack/cable_coil/orange
-	item_color = "orange"
-	color = "#FF8000"
+	color = COLOR_ORANGE
 
 /obj/item/stack/cable_coil/cyan
-	item_color = "cyan"
-	color = "#00FFFF"
+	color = COLOR_CYAN
 
 /obj/item/stack/cable_coil/white
-	item_color = "white"
-	color = "#FFFFFF"
+	color = COLOR_WHITE
 
-/obj/item/stack/cable_coil/random/New()
-	item_color = pick("red", "blue", "green", "white", "pink", "yellow", "cyan")
-	..()
+/obj/item/stack/cable_coil/random/Initialize(mapload, new_amount, param_color)
+	. = ..()
+	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_BLUE, COLOR_GREEN, COLOR_PINK, COLOR_ORANGE, COLOR_CYAN, COLOR_WHITE)

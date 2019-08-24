@@ -56,7 +56,7 @@
 			TU.add_blood(L, B.color)
 		//blood_splatter(src,B,1)
 
-	obj_integrity -= rand(0,1)
+	take_damage(rand(0,1))
 	if(obj_integrity <= 0)
 		die()
 

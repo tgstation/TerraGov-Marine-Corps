@@ -55,10 +55,12 @@
 	if(knocked_out || sleeping || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
+			disabilities |= DEAF
 		stat = UNCONSCIOUS
 	else if(stat == UNCONSCIOUS)
 		stat = CONSCIOUS
 		adjust_blindness(-1)
+		disabilities &= ~DEAF
 	update_canmove()
 
 /mob/living/carbon/handle_status_effects()

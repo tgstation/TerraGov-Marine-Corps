@@ -2,7 +2,6 @@
 	see_invisible = SEE_INVISIBLE_LIVING
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
-	var/living_flags = NONE
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
 
 	//Health and life related vars
@@ -102,4 +101,8 @@
 	var/job
 	var/faction = "Neutral"
 
-	var/away_time = 0 //When the player has disconnected.
+	var/last_taste_time
+	var/last_taste_text
+
+	var/blood_volume = 0 //how much blood the mob has
+	var/heart_multi = 1 //Multiplier.

@@ -149,6 +149,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	if(istype(headset))
 		headset.set_frequency(radio_freq)
+		headset.recalculateChannels()
 		if(headset.sl_direction && H != squad_leader)
 			SSdirection.start_tracking(tracking_id, H)
 

@@ -381,18 +381,21 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigaroff"
 	smoketime = 1500
 	chem_volume = 40
+	list_reagents = list(/datum/reagent/nicotine = 10)
 
 /obj/item/clothing/mask/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
 	desc = "There's little more you could want from a cigar."
 	smoketime = 2000
 	chem_volume = 80
+	list_reagents = list(/datum/reagent/nicotine = 15)
 
 /obj/item/clothing/mask/cigarette/cigar/havana
 	name = "premium Havanian cigar"
 	desc = "A cigar fit for only the best of the best."
 	smoketime = 7200
 	chem_volume = 50
+	list_reagents = list(/datum/reagent/nicotine = 20)
 
 /////////////////
 //SMOKING PIPES//

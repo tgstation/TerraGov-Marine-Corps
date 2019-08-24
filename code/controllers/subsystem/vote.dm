@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(vote)
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 
 		var/avr = CONFIG_GET(flag/allow_vote_restart)
-		if(avr)
+		if(avr || admin)
 			. += "<a href='?src=[REF(src)];vote=restart'>Restart</a>"
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
@@ -267,14 +267,16 @@ SUBSYSTEM_DEF(vote)
 		. += "</li><li>"
 
 		var/avm = CONFIG_GET(flag/allow_vote_mode)
-		if(avm)
+		if(avm || admin)
 			. += "<a href='?src=[REF(src)];vote=gamemode'>GameMode</a>"
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
+
 		if(admin)
 			. += "[GLOB.TAB](<a href='?src=[REF(src)];vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
 
-		. += "</li>"
+		. += "</li><hr>"
+
 		if(admin)
 			. += "<li><a href='?src=[REF(src)];vote=groundmap'>Ground Map Vote</a></li>"
 			. += "<li><a href='?src=[REF(src)];vote=shipmap'>Ship Map Vote</a></li>"
@@ -297,7 +299,7 @@ SUBSYSTEM_DEF(vote)
 			usr << browse(null, "window=vote")
 			return
 		if("cancel")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE))
+			if(check_other_rights(usr.client, R_ADMIN, FALSE) && alert(usr, "Are you sure you want to cancel the vote?", "Cancel Vote", "Yes", "No") == "Yes")
 				reset()
 				to_chat(world, "<b><font color='purple'>The vote has been cancelled.</font></b>")
 		if("toggle_restart")
@@ -340,7 +342,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote
 	name = "Vote!"
-	icon_icon_state = "vote"
+	action_icon_state = "vote"
 
 /datum/action/innate/vote/give_action(mob/M)
 	. = ..()

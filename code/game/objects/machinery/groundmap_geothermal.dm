@@ -223,7 +223,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 0
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	var/list/floodlist = list() // This will save our list of floodlights on the map
 
 /obj/machinery/colony_floodlight_switch/Initialize()
@@ -291,12 +291,22 @@
 	anchored = TRUE
 	var/damaged = FALSE //Can be smashed by xenos
 	var/is_lit = FALSE //whether the floodlight is switched to on or off. Does not necessarily mean it emits light.
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	use_power = NO_POWER_USE //It's the switch that uses the actual power, not the lights
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
 	var/repair_state = FLOODLIGHT_REPAIR_FINE
 	max_integrity = 120
+
+
+/obj/machinery/colony_floodlight/deconstruct(disassembled = TRUE)
+	if(disassembled)
+		return ..()
+	playsound(src, "shatter", 70, 1)
+	damaged = TRUE
+	repair_state = FLOODLIGHT_REPAIR_WELD
+	toggle_light(SWITCH_OFF)
+
 
 /obj/machinery/colony_floodlight/Destroy()
 	toggle_light(SWITCH_OFF)
@@ -315,34 +325,6 @@
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		icon_state = "[icon_state]_o"
 
-/obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!", null, 5)
-
-/obj/machinery/colony_floodlight/proc/breakdown()
-	playsound(src, "shatter", 70, 1)
-	damaged = TRUE
-	repair_state = FLOODLIGHT_REPAIR_WELD
-	toggle_light(SWITCH_OFF)
-
-/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/xenomorph/M)
-	if(!is_lit)
-		to_chat(M, "Why bother? It's just some weird metal thing.")
-		return FALSE
-	else if(damaged)
-		to_chat(M, "It's already damaged.")
-		return FALSE
-	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		breakdown()
-	else
-		M.do_attack_animation(src)
-		M.visible_message("[M] slashes away at [src]!","We slash and claw at the bright light!", null, null, 5)
-		obj_integrity  = max(obj_integrity - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
-		if(!obj_integrity)
-			ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
-			playsound(loc, 'sound/items/trayhit2.ogg', 25, 1)
-			update_icon()
-		else
-			playsound(loc, "alien_claw_metal", 25, 1)
 
 /obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -403,7 +385,7 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		repair_state = FLOODLIGHT_REPAIR_FINE
 		damaged = FALSE
-		obj_integrity = initial(obj_integrity)
+		repair_damage(max_integrity)
 		toggle_light(SWITCH_ON)
 		user.visible_message("<span class='notice'>[user] mend [src]'s damaged cables.</span>",\
 		"<span class='notice'>You mend [src]'s damaged cables.</span>")

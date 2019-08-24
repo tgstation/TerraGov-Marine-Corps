@@ -833,7 +833,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 
 
 /proc/params2turf(scr_loc, turf/origin, client/C)
-	if(!scr_loc)
+	if(!scr_loc || !origin)
 		return
 	var/tX = splittext(scr_loc, ",")
 	var/tY = splittext(tX[2], ":")

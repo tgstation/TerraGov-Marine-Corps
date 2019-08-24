@@ -76,8 +76,6 @@
 		var/obj/item/clothing/gloves/G = h_user.gloves
 		if(G.siemens_coefficient == 0)
 			user_protected = 1
-	log_game("SMES failure by [key_name(user)], Intensity: [intensity] / 100.")
-	message_admins("SMES failure by [ADMIN_TPMONTY(user)], Intensity: [intensity] / 100.")
 
 
 	switch (intensity)
@@ -141,9 +139,6 @@
 			visible_message("Caution. Output regulators malfunction. Significant uncontrolled discharge detected.")
 
 			if (prob(50))
-				// Added admin-notifications so they can stop it when griffed.
-				log_game("SMES explosion imminent [AREACOORD(src.loc)].")
-				message_admins("SMES explosion imminent [ADMIN_VERBOSEJMP(src.loc)].")
 				visible_message("DANGER! Magnetic containment field unstable! Containment field failure imminent!")
 				failing = 1
 				// 30 - 60 seconds and then BAM!

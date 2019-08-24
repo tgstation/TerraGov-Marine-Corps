@@ -91,7 +91,7 @@
 	channels = list(RADIO_CHANNEL_PMC = TRUE)
 
 
-/obj/item/encryptionkey/bears
+/obj/item/encryptionkey/wolves
 	name = "\improper UPP encryption key"
 	channels = list(RADIO_CHANNEL_UPP = TRUE)
 

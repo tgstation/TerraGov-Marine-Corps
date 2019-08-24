@@ -1,14 +1,8 @@
-/mob/living/silicon/ai/compose_track_href(atom/movable/speaker, namepart)
-	var/mob/M = speaker.GetSource()
-	if(M)
-		return "<a href='?src=[REF(src)];track=[html_encode(namepart)]'> "
-	return ""
+/mob/living/silicon/ai/compose_freq(atom/movable/speaker, radio_freq)
+	var/job = speaker.GetJob()
+	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
 
-
-/mob/living/silicon/ai/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq)
-	//Also includes the </a> for AI hrefs, for convenience.
-	return "[radio_freq ? " (" + speaker.GetJob() + ")" : ""]" + "[speaker.GetSource() ? "</a>" : ""] "
-
+	return radio_freq ? "\[[get_radio_name(radio_freq)][job ? " <a href='?src=[REF(src)];track=[html_encode(namepart)]'>([job])</a>": ""]\] " : ""
 
 /mob/living/silicon/ai/radio(message, message_mode, list/spans, language)
 	if(incapacitated())

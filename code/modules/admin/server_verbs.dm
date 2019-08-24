@@ -315,7 +315,7 @@
 	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")
 		return
 
-	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention", MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_X_MINOR,  MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
+	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention") + SSticker.mode.round_end_states
 	if(!winstate)
 		return
 
@@ -385,7 +385,7 @@
 	SSticker.delay_end = !SSticker.delay_end
 
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
-	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].<br></h4><hr>")
+	message_admins("<hr><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()

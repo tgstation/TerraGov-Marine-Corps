@@ -154,7 +154,7 @@
 
 							usr.visible_message("<span class='notice'> [usr] inserts \the [C] into \the [src].</span>", "<span class='notice'> You insert \the [C] into \the [src].</span>")
 
-		updateDialog()
+		updateUsrDialog()
 	else
 		usr << browse(null, "window=spaceheater")
 		usr.unset_interaction()

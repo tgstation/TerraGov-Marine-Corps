@@ -715,8 +715,6 @@
 							list("Labcoat", 0, /obj/item/clothing/suit/storage/labcoat, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Researcher's labcoat", 0, /obj/item/clothing/suit/storage/labcoat/researcher, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Snow suit", 0, /obj/item/clothing/suit/storage/snow_suit , MARINE_CAN_BUY_ARMOR, "black"),
-							list("Officer cloak", 0, /obj/item/clothing/suit/officer_cloak , MARINE_CAN_BUY_ARMOR, "black"),
-							list("Officer cloak, red", 0, /obj/item/clothing/suit/officer_cloak_red, MARINE_CAN_BUY_ARMOR, "black"),
 							list("M70 flak jacket", 0, /obj/item/clothing/suit/armor/vest/pilot, MARINE_CAN_BUY_ARMOR, "black"),
 							list("N2 pattern MA armor", 0, /obj/item/clothing/suit/storage/marine/MP, MARINE_CAN_BUY_ARMOR, "black"),
 							list("M3 pattern officer armor", 0, /obj/item/clothing/suit/storage/marine/MP/RO, MARINE_CAN_BUY_ARMOR, "black"),
@@ -730,6 +728,8 @@
 							list("TGMC technician backpack", 0, /obj/item/storage/backpack/marine/tech , MARINE_CAN_BUY_BACKPACK, "black"),
 							list("TGMC technician welderpack", 0, /obj/item/storage/backpack/marine/engineerpack , MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Lightweight combat pack", 0, /obj/item/storage/backpack/lightpack, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("Officer cloak", 0, /obj/item/storage/backpack/marine/satchel/officer_cloak, MARINE_CAN_BUY_BACKPACK, "black"),
+							list("Officer cloak, red", 0, /obj/item/storage/backpack/marine/satchel/officer_cloak_red, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("WEBBING (choose 1)", 0, null, null, null),
 							list("Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
 							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "black"),
@@ -743,7 +743,8 @@
 							list("M276 pattern medical storage rig", 0, /obj/item/storage/belt/medical, MARINE_CAN_BUY_BELT, "black"),
 							list("M276 pattern lifesaver bag", 0, /obj/item/storage/belt/combatLifesaver, MARINE_CAN_BUY_BELT, "black"),
 							list("M276 pattern toolbelt rig", 0, /obj/item/storage/belt/utility/full, MARINE_CAN_BUY_BELT, "black"),
-							list("M276 pattern security rig ", 0, /obj/item/storage/belt/security/MP/full , MARINE_CAN_BUY_BELT, "black"),
+							list("M276 pattern security rig ", 0, /obj/item/storage/belt/security/MP/full, MARINE_CAN_BUY_BELT, "black"),
+							list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "black"),
 							list("SHOES (choose 1)", 0, null, null, null),
 							list("Marine combat boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "black"),
 							list("White shoes", 0, /obj/item/clothing/shoes/white, MARINE_CAN_BUY_SHOES, "black"),
@@ -1100,7 +1101,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/storage/box/MRE
+						/obj/item/weapon/combat_knife,
+						/obj/item/storage/box/MRE,
 						)
 
 
@@ -1109,6 +1111,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1116,6 +1119,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1126,6 +1130,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1135,6 +1140,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/corpsman,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1144,6 +1150,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
 						/obj/item/clothing/shoes/marine,
+						/obj/item/weapon/combat_knife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1188,8 +1195,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/stack/sheet/plasteel/medium_stack,
 						/obj/item/stack/sheet/metal/large_stack,
-						/obj/item/lightreplacer,						
-						/obj/item/clothing/glasses/hud/health,
+						/obj/item/lightreplacer,
 						/obj/item/healthanalyzer,
 						/obj/item/defibrillator,
 						/obj/item/medevac_beacon,

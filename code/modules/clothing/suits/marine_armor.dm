@@ -25,13 +25,10 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun)
-
-	var/brightness_on = 5 //Average attachable pocket light
-	var/flashlight_cooldown = 0 //Cooldown for toggling the light
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
-	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
+	flags_armor_features = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
@@ -56,8 +53,8 @@
 	I = armor_overlays["lamp"]
 	overlays -= I
 	qdel(I)
-	if(flags_marine_armor & ARMOR_LAMP_OVERLAY)
-		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_marine_armor & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
+		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		overlays += I
 	else
@@ -69,13 +66,6 @@
 	if(loc != user)
 		turn_off_light(user)
 	return ..()
-
-/obj/item/clothing/suit/storage/marine/proc/turn_off_light(mob/wearer)
-	if(flags_marine_armor & ARMOR_LAMP_ON)
-		set_light(0)
-		toggle_armor_light(wearer) //turn the light off
-		return TRUE
-	return FALSE
 
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(pockets)
@@ -102,18 +92,6 @@
 	if(slot != SLOT_WEAR_SUIT)
 		return FALSE
 	return TRUE //only give action button when armor is worn.
-
-/obj/item/clothing/suit/storage/marine/proc/toggle_armor_light(mob/user)
-	//message_admins("TOGGLE ARMOR LIGHT DEBUG 1: flags_marine_armor: [flags_marine_armor] user: [user]")
-	flashlight_cooldown = world.time + 2 SECONDS //2 seconds cooldown every time the light is toggled
-	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
-		set_light(0)
-	else //Turn it on.
-		set_light(brightness_on)
-	flags_marine_armor ^= ARMOR_LAMP_ON
-	playsound(src,'sound/items/flashlight.ogg', 15, 1)
-	update_icon(user)
-	update_action_button_icons()
 
 /obj/item/clothing/suit/storage/marine/M3HB
 	name = "\improper M3-H pattern marine armor"
@@ -185,6 +163,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
+		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun)
 
 /obj/item/clothing/suit/storage/marine/MP/WO
@@ -583,7 +562,7 @@
 //=============================//PMCS\\==================================
 
 /obj/item/clothing/suit/storage/marine/veteran
-	flags_marine_armor = ARMOR_LAMP_OVERLAY
+	flags_armor_features = ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC
 	name = "\improper M4 pattern PMC armor"
@@ -639,10 +618,10 @@
 
 //===========================//DISTRESS\\================================
 
-/obj/item/clothing/suit/storage/marine/veteran/bear
-	name = "\improper H1 Iron Bears vest"
-	desc = "A protective vest worn by Iron Bears mercenaries."
-	icon_state = "bear_armor"
+/obj/item/clothing/suit/storage/marine/veteran/wolves
+	name = "\improper H1 Steel Wolves vest"
+	desc = "A protective vest worn by Steel Wolves mercenaries."
+	icon_state = "wolves_armor"
 	flags_armor_protection = CHEST|GROIN
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
@@ -734,12 +713,10 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete)
-	var/brightness_on = 5 //Average attachable pocket light
-	var/flashlight_cooldown = 0 //Cooldown for toggling the light
+	flags_armor_features = ARMOR_LAMP_OVERLAY
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/armor_overlays["lamp"]
 	actions_types = list(/datum/action/item_action/toggle)
-	var/flags_faction_armor = ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/faction/Initialize(mapload, ...)
 	. = ..()
@@ -751,8 +728,8 @@
 	I = armor_overlays["lamp"]
 	overlays -= I
 	qdel(I)
-	if(flags_faction_armor & ARMOR_LAMP_OVERLAY)
-		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_faction_armor & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
+		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		overlays += I
 	else armor_overlays["lamp"] = null
@@ -778,21 +755,6 @@
 	if(!ishuman(user)) return FALSE
 	if(slot != SLOT_WEAR_SUIT) return FALSE
 	return TRUE //only give action button when armor is worn.
-
-/obj/item/clothing/suit/storage/faction/proc/toggle_armor_light(mob/user)
-	flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
-	if(flags_faction_armor & ARMOR_LAMP_ON) //Turn it off.
-		set_light(0)
-	else //Turn it on.
-		set_light(brightness_on)
-
-	flags_faction_armor ^= ARMOR_LAMP_ON
-
-	playsound(src,'sound/items/flashlight.ogg', 15, 1)
-	update_icon(user)
-
-	update_action_button_icons()
-
 
 
 

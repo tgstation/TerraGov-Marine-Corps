@@ -1,6 +1,6 @@
 /datum/language_holder
-	var/list/languages = list(/datum/language/common)
-	var/list/shadow_languages = list()
+	var/list/languages = list(/datum/language/common) //Can speak and understand.
+	var/list/shadow_languages = list() //Can't speak, can understand.
 	var/only_speaks_language = null
 	var/selected_default_language = null
 
@@ -25,7 +25,7 @@
 /datum/language_holder/proc/copy(newowner)
 	var/datum/language_holder/copy = new(newowner)
 	copy.languages = src.languages.Copy()
-	// shadow languages are not copied.
+	copy.shadow_languages = src.shadow_languages.Copy()
 	copy.only_speaks_language = src.only_speaks_language
 	copy.selected_default_language = src.selected_default_language
 	copy.omnitongue = src.omnitongue
@@ -68,12 +68,8 @@
 /datum/language_holder/proc/has_language(datum/language/dt)
 	if(is_type_in_typecache(dt, languages))
 		return LANGUAGE_KNOWN
-	else
-		var/atom/movable/AM = get_atom()
-		var/datum/language_holder/L = AM.get_language_holder(shadow = FALSE)
-		if(L != src)
-			if(is_type_in_typecache(dt, L.shadow_languages))
-				return LANGUAGE_SHADOWED
+	else if(is_type_in_typecache(dt, shadow_languages))
+		return LANGUAGE_SHADOWED
 	return FALSE
 
 
@@ -87,10 +83,10 @@
 		other = AM.get_language_holder()
 
 	if(replace)
-		src.remove_all_languages()
+		remove_all_languages()
 
 	for(var/l in other.languages)
-		src.grant_language(l)
+		grant_language(l)
 
 
 /datum/language_holder/proc/get_atom()
@@ -118,8 +114,31 @@
 
 /datum/language_holder/synthetic
 	languages = list(/datum/language/common)
-	shadow_languages = list(/datum/language/common, /datum/language/machine)
+	shadow_languages = list(/datum/language/machine, /datum/language/xenocommon)
 
+
+/datum/language_holder/unathi
+	languages = list(/datum/language/common, /datum/language/unathi)
+
+
+/datum/language_holder/tajaran
+	languages = list(/datum/language/common, /datum/language/tajaran)
+
+
+/datum/language_holder/skrell
+	languages = list(/datum/language/common, /datum/language/skrell)
+
+
+/datum/language_holder/moth
+	languages = list(/datum/language/common, /datum/language/moth)
+
+
+/datum/language_holder/vox
+	languages = list(/datum/language/common, /datum/language/vox)
+
+
+/datum/language_holder/machine
+	languages = list(/datum/language/common, /datum/language/machine)
 
 
 /mob/living/verb/language_menu()

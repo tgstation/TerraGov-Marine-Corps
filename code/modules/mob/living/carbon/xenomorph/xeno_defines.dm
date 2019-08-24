@@ -118,10 +118,11 @@
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
-	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()
 	var/hivenumber = XENO_HIVE_NORMAL
 	job = ROLE_XENOMORPH
 
@@ -239,9 +240,6 @@
 
 	//Hunter vars
 	var/sneak_bonus = 0.00
-
-	//Larva Growth
-	var/last_larva_growth_used = 0
 
 	//Notification spam controls
 	var/recent_notice = 0

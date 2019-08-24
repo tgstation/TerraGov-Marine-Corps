@@ -142,9 +142,12 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.w_class						+= size_mod
 	master_gun.scatter						+= scatter_mod
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
-	master_gun.fire_delay					+= delay_mod
-	master_gun.burst_delay					+= burst_delay_mod
-	master_gun.burst_amount					+= burst_mod
+	if(delay_mod)
+		master_gun.modify_fire_delay(delay_mod)
+	if(burst_delay_mod)
+		master_gun.modify_burst_delay(burst_delay_mod)
+	if(burst_mod)
+		master_gun.modify_burst_amount(burst_mod, user)
 	master_gun.recoil						+= recoil_mod
 	master_gun.recoil_unwielded				+= recoil_unwielded_mod
 	master_gun.force						+= melee_mod
@@ -163,9 +166,6 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.fire_sound = "gun_silenced"
 
 	master_gun.update_attachable(slot)
-
-	if(burst_mod)
-		on_burst_amount_change(user)
 
 	if(attachment_action_type)
 		var/datum/action/action_to_update = new attachment_action_type(src, master_gun)
@@ -196,9 +196,12 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.w_class						-= size_mod
 	master_gun.scatter						-= scatter_mod
 	master_gun.scatter_unwielded			-= scatter_unwielded_mod
-	master_gun.fire_delay					-= delay_mod
-	master_gun.burst_delay					-= burst_delay_mod
-	master_gun.burst_amount					-= burst_mod
+	if(delay_mod)
+		master_gun.modify_fire_delay(-delay_mod)
+	if(burst_delay_mod)
+		master_gun.modify_burst_delay(-burst_delay_mod)
+	if(burst_mod)
+		master_gun.modify_burst_amount(-burst_mod, user)
 	master_gun.recoil						-= recoil_mod
 	master_gun.recoil_unwielded				-= recoil_unwielded_mod
 	master_gun.force						-= melee_mod
@@ -210,9 +213,6 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.scope_zoom					-= scope_zoom_mod
 
 	master_gun.update_force_list()
-
-	if(burst_mod)
-		on_burst_amount_change(user)
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
 		master_gun.flags_gun_features &= ~GUN_SILENCED
@@ -229,15 +229,6 @@ Defined in conflicts.dm of the #defines folder.
 	forceMove(get_turf(master_gun))
 
 	master_gun = null
-
-
-/obj/item/attachable/proc/on_burst_amount_change(mob/user)
-	if(master_gun.burst_amount < 2)
-		if(GUN_FIREMODE_BURSTFIRE in master_gun.gun_firemode_list)
-			master_gun.remove_firemode(GUN_FIREMODE_BURSTFIRE, user)
-	else
-		if(!(GUN_FIREMODE_BURSTFIRE in master_gun.gun_firemode_list))
-			master_gun.add_firemode(GUN_FIREMODE_BURSTFIRE, user)
 
 
 /obj/item/attachable/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
@@ -1299,6 +1290,8 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/bipod/proc/retract_bipod(datum/source)
+	if(!ismob(source))
+		return
 	activate_attachment(source, TRUE)
 	to_chat(source, "<span class='warning'>Losing support, the bipod retracts!</span>")
 	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)

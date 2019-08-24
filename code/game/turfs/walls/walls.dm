@@ -20,8 +20,8 @@
 		/obj/structure/girder,
 		/obj/machinery/door)
 
-	var/damage = 0
-	var/damage_cap = 1000 //Wall will break down to girders if damage reaches this point
+	var/wall_integrity
+	var/max_integrity = 1000 //Wall will break down to girders if damage reaches this point
 
 	var/damage_overlay
 	var/global/damage_overlays[8]
@@ -42,6 +42,9 @@
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()
 	
+	if(isnull(wall_integrity))
+		wall_integrity = max_integrity
+
 	//smooth wall stuff
 	relativewall()
 	relativewall_neighbours()
@@ -106,16 +109,16 @@
 /turf/closed/wall/examine(mob/user)
 	. = ..()
 
-	if(!damage)
+	if(wall_integrity == max_integrity)
 		if (acided_hole)
 			to_chat(user, "<span class='warning'>It looks fully intact, except there's a large hole that could've been caused by some sort of acid.</span>")
 		else
 			to_chat(user, "<span class='notice'>It looks fully intact.</span>")
 	else
-		var/dam = damage / damage_cap
-		if(dam <= 0.3)
+		var/integ = wall_integrity / max_integrity
+		if(integ >= 0.6)
 			to_chat(user, "<span class='warning'>It looks slightly damaged.</span>")
-		else if(dam <= 0.6)
+		else if(integ >= 0.3)
 			to_chat(user, "<span class='warning'>It looks moderately damaged.</span>")
 		else
 			to_chat(user, "<span class='danger'>It looks heavily damaged.</span>")
@@ -150,7 +153,7 @@
 	if(!damage_overlays[1]) //list hasn't been populated
 		generate_overlays()
 
-	if(!damage) //If the thing was healed for damage; otherwise update_icon() won't run at all, unless it was strictly damaged.
+	if(wall_integrity == max_integrity) //If the thing was healed for damage; otherwise update_icon() won't run at all, unless it was strictly damaged.
 		overlays.Cut()
 		damage_overlay = initial(damage_overlay)
 		current_bulletholes = initial(current_bulletholes)
@@ -160,7 +163,7 @@
 		bullethole_overlay = null
 		return
 
-	var/overlay = round(damage / damage_cap * damage_overlays.len) + 1
+	var/overlay = round((max_integrity - wall_integrity) / max_integrity * damage_overlays.len) + 1
 	if(overlay > damage_overlays.len) overlay = damage_overlays.len
 
 	if(!damage_overlay || overlay != damage_overlay)
@@ -205,15 +208,16 @@
 		damage_overlays[i] = img
 
 //Damage
-/turf/closed/wall/proc/take_damage(dam)
+/turf/closed/wall/proc/take_damage(damage)
 	if(hull) //Hull is literally invincible
 		return
-	if(!dam)
+	
+	if(!damage)
 		return
 
-	damage = max(0, damage + dam)
+	wall_integrity = max(0, wall_integrity - damage)
 
-	if(damage >= damage_cap)
+	if(wall_integrity <= 0)
 		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
 		if (acided_hole)
 			dismantle_wall(1)
@@ -223,13 +227,24 @@
 		update_icon()
 
 
+/turf/closed/wall/proc/repair_damage(repair_amount)
+	if(hull) //Hull is literally invincible
+		return
+	
+	if(!repair_amount)
+		return
+
+	wall_integrity = min(max_integrity, wall_integrity + repair_amount)
+	update_icon()
+
+
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
 	G.icon_state = "girder[junctiontype]"
 	G.original = src.type
 
 	if(destroyed_girder)
-		G.dismantle()
+		G.deconstruct(FALSE)
 
 
 
@@ -367,7 +382,7 @@
 		P.cut_apart(user, name, src)
 		dismantle_wall()
 
-	else if(damage && iswelder(I))
+	else if(wall_integrity < max_integrity && iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
@@ -376,12 +391,12 @@
 		user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 		"<span class='notice'>You start repairing the damage to [src].</span>")
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, max(5, round(damage / 5)), TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
 			return
 
 		user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 		"<span class='notice'>You finish repairing the damage to [src].</span>")
-		take_damage(-damage)
+		repair_damage(250)
 
 	else
 		//DECONSTRUCTION

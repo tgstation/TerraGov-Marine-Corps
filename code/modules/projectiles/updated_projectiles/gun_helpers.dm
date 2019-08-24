@@ -551,12 +551,66 @@ should be alright.
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
 		return ..()
-	if(firemode_action.action_firemode == gun_firemode)
-		return
-	gun_firemode = firemode_action.action_firemode
-	playsound(user, 'sound/machines/click.ogg', 15, 1)
-	to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
+	do_toggle_firemode(user)
 	user.update_action_buttons()
+
+
+/obj/item/weapon/gun/verb/toggle_autofire()
+	set category = "Weapons"
+	set name = "Toggle Auto Fire"
+	set desc = "Toggle automatic firemode, if the gun has it."
+	set src = usr.contents
+
+	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
+	if(!automatic_gun)
+		return
+	automatic_gun.do_toggle_automatic(usr)
+
+
+/obj/item/weapon/gun/proc/do_toggle_automatic(mob/user)
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		return
+	do_toggle_firemode(user, new_firemode)
+
+
+/obj/item/weapon/gun/verb/toggle_burstfire()
+	set category = "Weapons"
+	set name = "Toggle Burst Fire"
+	set desc = "Toggle burst firemode, if the gun has it."
+	set src = usr.contents
+
+	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
+	if(!automatic_gun)
+		return
+	automatic_gun.do_toggle_burst(usr)
+
+
+/obj/item/weapon/gun/proc/do_toggle_burst(mob/user)
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		return
+	do_toggle_firemode(user, new_firemode)
 
 
 /obj/item/weapon/gun/verb/toggle_firemode()
@@ -597,62 +651,41 @@ should be alright.
 		playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
+	
+	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
-	var/list/affected_firemodes
-	
 	gun_firemode_list += added_firemode
 	
 	switch(length(gun_firemode_list))
 		if(0)
 			CRASH("add_firemode called with a resulting gun_firemode_list length of [length(gun_firemode_list)].")
-		if(1)
+		if(1) //No need to toggle anything if there's a single firemode.
 			return
 		if(2)
-			affected_firemodes = gun_firemode_list
-		else
-			affected_firemodes = list(added_firemode)
-
-	for(var/i in affected_firemodes)
-		switch(i)
-			if(GUN_FIREMODE_SEMIAUTO)
-				actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
-			if(GUN_FIREMODE_BURSTFIRE)
-				actions_types += list(/datum/action/item_action/firemode/burst_firemode)
-		var/action_type = actions_types[length(actions_types)]
-		var/datum/action/new_action = new action_type(src)
-		if(user)
-			var/mob/living/living_user = user
-			if(src == living_user.l_hand || src == living_user.r_hand)
-				new_action.give_action(living_user)
+			actions_types += /datum/action/item_action/firemode
+			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
+			if(user)
+				var/mob/living/living_user = user
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					new_action.give_action(living_user)
+		else //The action should already be there by now.
+			return
 
 
 /obj/item/weapon/gun/proc/remove_firemode(removed_firemode, mob/user)
-	var/list/affected_firemodes
 	switch(length(gun_firemode_list))
 		if(0, 1)
 			CRASH("remove_firemode called with gun_firemode_list length [length(gun_firemode_list)].")
 		if(2)
-			affected_firemodes = gun_firemode_list
-		else
-			affected_firemodes = list(removed_firemode)
-
-	for(var/i in affected_firemodes)
-		var/action_type
-		switch(i)
-			if(GUN_FIREMODE_SEMIAUTO)
-				action_type = /datum/action/item_action/firemode/semiauto_firemode
-			if(GUN_FIREMODE_BURSTFIRE)
-				action_type = /datum/action/item_action/firemode/burst_firemode
-		actions_types -= action_type
-
-		var/datum/action/old_action = locate(action_type) in actions
-		if(user)
-			var/mob/living/living_user = user
-			if(src == living_user.l_hand || src == living_user.r_hand)
-				old_action.remove_action(living_user)
-		qdel(old_action)
+			actions_types -= /datum/action/item_action/firemode
+			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
+			if(user)
+				var/mob/living/living_user = user
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					old_action.remove_action(living_user)
+			qdel(old_action)
 
 	gun_firemode_list -= removed_firemode
 
@@ -671,19 +704,11 @@ should be alright.
 			gun_firemode = gun_firemode_list[1]
 		else
 			gun_firemode = gun_firemode_list[1]
-			for(var/i in gun_firemode_list)
-				switch(i)
-					if(GUN_FIREMODE_SEMIAUTO)
-						actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
-					if(GUN_FIREMODE_BURSTFIRE)
-						actions_types += list(/datum/action/item_action/firemode/burst_firemode)
-				var/action_type = actions_types[length(actions_types)]
-				var/datum/action/new_action = new action_type(src)
-				if(isliving(loc))
-					var/mob/living/living_user = loc
-					if(src == living_user.l_hand || src == living_user.r_hand)
-						new_action.give_action(living_user)
-
+			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
+			if(isliving(loc))
+				var/mob/living/living_user = loc
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					new_action.give_action(living_user)
 
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -813,6 +838,29 @@ should be alright.
 /obj/item/weapon/gun/proc/get_ammo_count()
 	return FALSE
 
+
+/obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)
+	fire_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_FIREDELAY_MODIFIED, fire_delay)
+
+/obj/item/weapon/gun/proc/modify_burst_delay(value, mob/user)
+	burst_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_BURSTDELAY_MODIFIED, fire_delay)
+
+/obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
+	burst_amount += value
+	SEND_SIGNAL(src, COMSIG_GUN_BURSTAMOUNT_MODIFIED, fire_delay)
+
+	if(burst_amount < 2)
+		if(GUN_FIREMODE_BURSTFIRE in gun_firemode_list)
+			remove_firemode(GUN_FIREMODE_BURSTFIRE, user)
+		if(GUN_FIREMODE_AUTOBURST in gun_firemode_list)
+			remove_firemode(GUN_FIREMODE_AUTOBURST, user)
+	else
+		if(!(GUN_FIREMODE_BURSTFIRE in gun_firemode_list))
+			add_firemode(GUN_FIREMODE_BURSTFIRE, user)
+		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
+			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 
 //----------------------------------------------------------

@@ -112,12 +112,10 @@
 #define CANKNOCKDOWN	(1<<1)
 #define CANKNOCKOUT		(1<<2)
 #define CANPUSH			(1<<3)
-#define LEAPING			(1<<4)
-#define PASSEMOTES		(1<<5)      //holders inside of mob that need to see emotes.
-#define GODMODE			(1<<6)
-#define FAKEDEATH		(1<<7)	//Replaces stuff like changeling.changeling_fakedeath
-#define DISFIGURED		(1<<8)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
-#define XENO_HOST		(1<<9)	//Tracks whether we're gonna be a baby alien's mummy.
+#define GODMODE			(1<<4)
+#define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
+#define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
+#define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
 
 // =============================
 // hive types
@@ -159,9 +157,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SLASHING_ALLOWED 1
 #define XENO_SLASHING_RESTRICTED 2
 
-
-#define XENO_NIGHTVISION_ENABLED 8
-#define XENO_NIGHTVISION_DISABLED 4
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////
@@ -431,13 +426,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_VENT_CRAWL		(1<<1)
 #define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
 #define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
-#define CASTE_INNATE_HEALING		(1<<4)
+#define CASTE_INNATE_HEALING		(1<<4) // Xenomorphs heal outside of weeds. Larvas, for example.
 #define CASTE_FIRE_IMMUNE			(1<<5)
 #define CASTE_EVOLUTION_ALLOWED		(1<<6)
 #define CASTE_IS_INTELLIGENT		(1<<7) // A hive leader or able to use more human controls
 #define CASTE_DECAY_PROOF			(1<<8)
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
+#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
+#define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1

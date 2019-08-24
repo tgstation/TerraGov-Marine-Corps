@@ -1,7 +1,3 @@
-/client
-	var/codex_on_cooldown = FALSE
-	var/const/max_codex_entries_shown = 10
-
 /client/verb/search_codex(searching as text)
 
 	set name = "Search Codex"

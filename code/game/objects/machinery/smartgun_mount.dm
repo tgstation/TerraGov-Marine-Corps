@@ -116,17 +116,15 @@
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
+	resistance_flags = XENO_DAMAGEABLE
 	var/gun_mounted = FALSE //Has the gun been mounted?
 	var/gun_rounds = 0 //Did the gun come with any ammo?
-	var/health = 100
 
 
-/obj/machinery/m56d_post/proc/update_health(damage)
-	health -= damage
-	if(health <= 0)
-		if(prob(30))
-			new /obj/item/m56d_post (src)
-		qdel(src)
+/obj/machinery/m56d_post/deconstruct(disassembled = TRUE)
+	if(disassembled || prob(30))
+		new /obj/item/m56d_post(loc)
+	return ..()
 
 
 
@@ -136,15 +134,8 @@
 		to_chat(user, "The <b>M56D Smartgun</b> is not yet mounted.")
 
 /obj/machinery/m56d_post/attack_alien(mob/living/carbon/xenomorph/M)
-	if(isxenolarva(M))
-		return //Larvae can't do shit
-	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>We slash [src]!</span>")
-	M.do_attack_animation(src)
-	M.flick_attack_overlay(src, "slash")
-	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_M56_POST)
+	return ..()
 
 /obj/machinery/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
 	if(!ishuman(usr))
@@ -230,10 +221,11 @@
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
 	use_power = 0
+	max_integrity = 200
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700
 	var/fire_delay = 4 //Gotta have rounds down quick.
@@ -241,8 +233,6 @@
 	var/burst_fire = FALSE
 	var/burst_fire_toggled = FALSE
 	var/safety = FALSE
-	var/health = 200
-	var/health_max = 200 //Why not just give it sentry-tier health for now.
 	var/atom/target = null // required for shooting at things.
 	var/datum/ammo/bullet/machinegun/ammo = /datum/ammo/bullet/machinegun
 	var/obj/item/projectile/in_chamber = null
@@ -261,6 +251,11 @@
 /obj/machinery/m56d_hmg/Destroy() //Make sure we pick up our trash.
 	operator?.unset_interaction()
 	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/machinery/m56d_hmg/deconstruct(disassembled = TRUE)
+	var/obj/item/m56d_gun/HMG = new(loc)
+	HMG.rounds = rounds //Inherent the amount of ammo we had.
 	return ..()
 
 /obj/machinery/m56d_hmg/examine(mob/user) //Let us see how much ammo we got in this thing.
@@ -331,40 +326,10 @@
 		user.temporarilyRemoveItemFromInventory(I)
 		qdel(I)
 
-/obj/machinery/m56d_hmg/proc/update_health(damage) //Negative damage restores health.
-	health -= damage
-	if(health <= 0)
-		var/destroyed = rand(0,1) //Ammo cooks off or something. Who knows.
-		playsound(src.loc, 'sound/items/welder2.ogg', 25, 1)
-		if(!destroyed) new /obj/machinery/m56d_post(loc)
-		else
-			var/obj/item/m56d_gun/HMG = new(loc)
-			HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-		qdel(src)
-		return
-
-	if(health > health_max)
-		health = health_max
-	update_icon()
-
-/obj/machinery/m56d_hmg/bullet_act(obj/item/projectile/Proj) //Nope.
-	if(prob(30)) // What the fuck is this from sentry gun code. Sorta keeping it because it does make sense that this is just a gun, unlike the sentry.
-		return 0
-
-	visible_message("\The [src] is hit by the [Proj.name]!")
-	update_health(round(Proj.damage / 10)) //Universal low damage to what amounts to a post with a gun.
-	return 1
 
 /obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/xenomorph/M) // Those Ayy lmaos.
-	if(isxenolarva(M))
-		return //Larvae can't do shit
-	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>We slash [src]!</span>")
-	M.do_attack_animation(src)
-	M.flick_attack_overlay(src, "slash")
-	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_M56)
+	return ..()
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
 	if(in_chamber)

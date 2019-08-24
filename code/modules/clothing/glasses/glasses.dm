@@ -4,7 +4,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
-	var/prescription = 0
+	var/prescription = FALSE
 	var/toggleable = 0
 	var/active = 1
 	flags_inventory = COVEREYES
@@ -80,11 +80,11 @@
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
-	name = "marine RPG glasses"
+	name = "regulation prescription glasses"
 	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
-	icon_state = "mBCG"
-	item_state = "mBCG"
-	prescription = 1
+	icon_state = "glasses"
+	item_state = "glasses"
+	prescription = TRUE
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "prescription glasses"
@@ -118,7 +118,7 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "\improper M42 scout sight"
@@ -220,7 +220,7 @@
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
