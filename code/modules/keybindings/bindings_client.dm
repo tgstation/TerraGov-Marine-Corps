@@ -5,14 +5,13 @@
 	set hidden = TRUE
 
 	keys_held[_key] = world.time
-	var/focus_chat = prefs.focus_chat
-	var/movement = focus_chat ? SSinput.arrow_movement_keys[_key] : SSinput.wasd_movement_keys[_key]
+	var/movement = prefs.focus_chat ? SSinput.arrow_movement_keys[_key] : SSinput.wasd_movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
 
 	//Keys longer than 1 aren't printable, so we process them normally, regardless of Focus Chat.
 	//Otherwise, return focus to chat window if it isn't already, and relay the character.
-	if(focus_chat && !winget(src, null, "input.focus") && length(_key) == 1)
+	if(prefs.focus_chat && !winget(src, null, "input.focus") && length(_key) == 1)
 		winset(src, null, "input.focus=true")
 		winset(src, null, "input.text=[url_encode(_key)]")
 		return
