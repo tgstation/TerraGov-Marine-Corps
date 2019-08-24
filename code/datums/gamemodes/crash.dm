@@ -243,8 +243,6 @@
 				add_larva()
 			return FALSE
 
-	var/nuke_set = length(GLOB.active_nuke_list)
-
 	var/victory_options = (num_humans == 0 && num_xenos == 0)						<< 0 // Draw, for all other reasons
 	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) 			<< 1 // XENO Major (All marines killed)
 	victory_options |= ((marines_evac == CRASH_EVAC_COMPLETED && !planet_nuked) || (marines_evac == CRASH_EVAC_INPROGRESS && !length(GLOB.active_nuke_list)))		<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
