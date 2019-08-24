@@ -383,6 +383,8 @@
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
 
+	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
+
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
